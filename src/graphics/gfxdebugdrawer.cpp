@@ -1,0 +1,78 @@
+#include "graphics/gfxdebugdrawer.h"
+
+#include "graphics/gfxbuffer.h"
+#include "graphics/gfxapi.h"
+#include "graphics/gfxrenderer.h"
+#include "globals.h"
+
+GfxDebugDrawer::ShaderComb::ShaderComb()
+{
+    vertex = resMgr->getResourceByFilename<GfxShader>(
+    "resources/shaders/debugDrawVertex.bin");
+
+    fragment = resMgr->getResourceByFilename<GfxShader>(
+    "resources/shaders/debugDrawFragment.bin");
+}
+
+ResPtr<GfxShader> GfxDebugDrawer::ShaderComb::getVertexShader() const
+{
+    return vertex;
+}
+
+ResPtr<GfxShader> GfxDebugDrawer::ShaderComb::getFragmentShader() const
+{
+    return fragment;
+}
+
+GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : shaders(nullptr),
+                                                 mesh(nullptr)
+{
+    buffer = gfxApi->createBuffer();
+}
+
+GfxDebugDrawer::~GfxDebugDrawer()
+{
+    DELETE(ShaderComb, shaders)
+    DELETE(GfxBuffer, buffer);
+}
+
+void GfxDebugDrawer::render(const Camera& camera)
+{
+    if (shaders == nullptr)
+    {
+        shaders = NEW(ShaderComb);
+    }
+
+    if (mesh == nullptr)
+    {
+        mesh = NEW(GfxMesh, "debugDrawerMesh");
+        mesh->primitive = GfxLines;
+
+        GfxMesh::VertexAttribute positionAttribute;
+        positionAttribute.buffer = buffer;
+        positionAttribute.numComponents = 3;
+        positionAttribute.type = GfxFloat;
+        positionAttribute.stride = 28;
+        positionAttribute.offset = 16;
+
+        mesh->setVertexAttrib(GfxPosition, positionAttribute);
+
+        GfxMesh::VertexAttribute colorAttribute;
+        colorAttribute.buffer = buffer;
+        colorAttribute.numComponents = 4;
+        colorAttribute.type = GfxFloat;
+        colorAttribute.stride = 28;
+        colorAttribute.offset = 0;
+
+        mesh->setVertexAttrib(GfxColor, colorAttribute);
+    }
+
+    buffer->allocData(lines.getCount()*sizeof(Line), lines.getData(), GfxBuffer::Dynamic);
+
+    mesh->numVertices = lines.getCount() * 2;
+
+    renderer->beginRenderMesh(camera, Matrix4x4(), mesh, shaders);
+    renderer->endRenderMesh(mesh);
+
+    lines.clear();
+}

@@ -1,0 +1,11 @@
+#ifndef VERTEX_ATTRIBUTES_INCLUDED
+#define VERTEX_ATTRIBUTES_INCLUDED
+
+#define POSITION 0
+#define NORMAL 1
+#define TANGENT 2
+#define BITANGENT 3
+#define COLOR 4
+#define TEXCOORD 5
+
+#endif

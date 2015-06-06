@@ -1,0 +1,168 @@
+# depslib dependency file v1.0
+1426634306 source:/home/rugrats/Documents/CPP/WIP12/src/file.cpp
+	"file.h"
+	"endian_utils.h"
+	<cmath>
+
+1432487980 source:/home/rugrats/Documents/CPP/WIP12/meshconverter.cpp
+	"endian_utils.h"
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<stddef.h>
+	<stdint.h>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+
+1426417832 /home/rugrats/Documents/CPP/WIP12/include/endian_utils.h
+	<stdint.h>
+
+1426867003 /usr/include/assimp/Importer.hpp
+	"types.h"
+	"config.h"
+
+1426867003 /usr/include/assimp/types.h
+	<sys/types.h>
+	<memory.h>
+	<math.h>
+	<stddef.h>
+	<string.h>
+	<limits.h>
+	"defs.h"
+	"vector3.h"
+	"vector2.h"
+	"color4.h"
+	"matrix3x3.h"
+	"matrix4x4.h"
+	"quaternion.h"
+	<cstring>
+	<new>
+	<string>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"vector2.inl"
+	"vector3.inl"
+	"color4.inl"
+	"quaternion.inl"
+	"matrix3x3.inl"
+	"matrix4x4.inl"
+
+1426867003 /usr/include/assimp/defs.h
+
+1426867003 /usr/include/assimp/vector3.h
+	<cmath>
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1426867003 /usr/include/assimp/Compiler/pushpack1.h
+
+1426867003 /usr/include/assimp/Compiler/poppack1.h
+
+1426867003 /usr/include/assimp/vector2.h
+	<cmath>
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1426867003 /usr/include/assimp/color4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1426867003 /usr/include/assimp/matrix3x3.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1426867003 /usr/include/assimp/matrix4x4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1426867003 /usr/include/assimp/quaternion.h
+
+1426867003 /usr/include/assimp/vector2.inl
+	"vector2.h"
+	<cmath>
+
+1426867003 /usr/include/assimp/vector3.inl
+	"vector3.h"
+	<cmath>
+
+1426867003 /usr/include/assimp/color4.inl
+	"color4.h"
+
+1426867003 /usr/include/assimp/quaternion.inl
+	"quaternion.h"
+	<cmath>
+
+1426867003 /usr/include/assimp/matrix3x3.inl
+	"matrix3x3.h"
+	"matrix4x4.h"
+	<algorithm>
+	<cmath>
+	<limits>
+
+1426867003 /usr/include/assimp/matrix4x4.inl
+	"matrix4x4.h"
+	"matrix3x3.h"
+	"quaternion.h"
+	<algorithm>
+	<limits>
+	<cmath>
+
+1426867003 /usr/include/assimp/config.h
+
+1426867003 /usr/include/assimp/scene.h
+	"types.h"
+	"texture.h"
+	"mesh.h"
+	"light.h"
+	"camera.h"
+	"material.h"
+	"anim.h"
+	"metadata.h"
+
+1426867003 /usr/include/assimp/texture.h
+	"types.h"
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1426867003 /usr/include/assimp/mesh.h
+	"types.h"
+
+1426867003 /usr/include/assimp/light.h
+	"types.h"
+
+1426867003 /usr/include/assimp/camera.h
+	"types.h"
+
+1426867003 /usr/include/assimp/material.h
+	"types.h"
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"material.inl"
+
+1426867003 /usr/include/assimp/material.inl
+
+1426867003 /usr/include/assimp/anim.h
+	"types.h"
+	"quaternion.h"
+
+1426867003 /usr/include/assimp/postprocess.h
+	"types.h"
+
+1426867003 /usr/include/assimp/metadata.h
+	<assert.h>
+	"Compiler/pstdint.h"
+	<limits.h>
+	<stdint.h>
+	<string>
+
+1426867003 /usr/include/assimp/Compiler/pstdint.h
+	<stddef.h>
+	<limits.h>
+	<signal.h>
+	<stdint.h>
+	<wchar.h>
+

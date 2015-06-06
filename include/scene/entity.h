@@ -1,0 +1,137 @@
+#ifndef ENTITY_H
+#define ENTITY_H
+
+#include "containers/string.h"
+#include "containers/list.h"
+#include "scene/transform.h"
+#include "misc_macros.h"
+#include "memory.h"
+#include "physics/rigidbody.h"
+#include "physics/physicsworld.h"
+#include "graphics/gfxmodel.h"
+#include "scripting/script.h"
+
+class Scene;
+class Entity;
+
+class RenderComponent
+{
+    friend Entity;
+
+    public:
+        enum Type
+        {
+            Nothing,
+            Model
+        };
+
+        Type type;
+
+        ResPtr<GfxModel> model;
+    private:
+        RenderComponent() : type(Nothing) {}
+        ~RenderComponent() {}
+};
+
+class Entity
+{
+    friend Scene;
+
+    private:
+        Entity(const String& name, ResPtr<Scene> scene);
+        ~Entity();
+    public:
+        inline void addScript(ResPtr<Script> script)
+        {
+            scripts.append(script->createInstance(this));
+        }
+
+        inline void removeScript(ScriptInstance *instance)
+        {
+            int index = scripts.find(instance);
+
+            if (index != -1)
+            {
+                scripts.remove(index);
+
+                DELETE(ScriptInstance, instance);
+            }
+        }
+
+        inline const List<ScriptInstance *> getScripts() const
+        {
+            return scripts;
+        }
+
+        void addRigidBody(PhysicsWorld *world,
+                          const RigidBody::ConstructionInfo& info);
+
+        inline RigidBody *getRigidBody() const
+        {
+            return rigidBody;
+        }
+
+        inline void removeRigidBody()
+        {
+            if (rigidBody != nullptr)
+            {
+                rigidBody->getWorld()->destroyRigidBody(rigidBody);
+                rigidBody = nullptr;
+            }
+        }
+
+        inline bool hasRigidBody() const
+        {
+            return rigidBody != nullptr;
+        }
+
+        inline void addRenderComponent(ResPtr<GfxModel> model)
+        {
+            render = true;
+            renderComponent.type = RenderComponent::Model;
+            renderComponent.model = model;
+        }
+
+        inline void removeRenderComponent()
+        {
+            render = false;
+        }
+
+        inline RenderComponent *getRenderComponent()
+        {
+            return &renderComponent;
+        }
+
+        inline const RenderComponent *getRenderComponent() const
+        {
+            return &renderComponent;
+        }
+
+        inline bool hasRenderComponent() const
+        {
+            return render;
+        }
+
+        inline bool operator == (const Entity& other) const
+        {
+            return this == &other;
+        }
+
+        inline ResPtr<Scene>& getScene() const
+        {
+            return scene;
+        }
+
+        String name;
+        Transform transform;
+    private:
+        List<ScriptInstance *> scripts;
+        RigidBody *rigidBody;
+        bool render;
+        RenderComponent renderComponent;
+        mutable ResPtr<Scene> scene;
+
+    NO_COPY(Entity);
+};
+
+#endif // ENTITY_H
