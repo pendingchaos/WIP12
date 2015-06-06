@@ -148,7 +148,7 @@ void Script::removeContent()
         dl = nullptr;
     }
 }
-#include <iostream>
+
 void Script::_load()
 {
     removeContent();
