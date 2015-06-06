@@ -148,7 +148,7 @@ void Script::removeContent()
         dl = nullptr;
     }
 }
-
+#include <iostream>
 void Script::_load()
 {
     removeContent();
@@ -168,22 +168,16 @@ void Script::_load()
               e.getString());
     }
 
-    String dir(".");
-    String scriptFilename = filename;
+    String scriptFilename = fileSys->getAbsolutePath(filename.getData());
 
-    source = scriptStart.copy().append(filename).append("\"\n").append(source);
+    source = scriptStart.copy().append(scriptFilename).append("\"\n").append(source);
 
-    int index = filename.findLast('/');
+    int index = scriptFilename.findLast('/');
 
-    if (index != -1)
-    {
-        dir = filename.subStr(0, index);
-        scriptFilename = filename.subStr(index+1, filename.getLength()-index-1);
-    }
+    String dir = scriptFilename.subStr(0, index);
+    scriptFilename = scriptFilename.subStr(index+1, scriptFilename.getLength()-index-1);
 
     String binaryFilename = String::format("%s/bin/%s.so", dir.getData(), scriptFilename.getData());
-
-    binaryFilename = fileSys->getAbsolutePath(binaryFilename.getData());
 
     String command = String::format("g++ -o\"%s\" -g -I../include "
                                     "`pkg-config bullet --cflags`"

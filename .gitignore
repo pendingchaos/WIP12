@@ -1,3 +1,7 @@
 /obj/*
 /bin/WIP12
 /bin/log.txt
+/MeshConverter/obj*
+/bin/programs/main/libMeshConverter.so
+/bin/programs/main/scripts/bin/*
+/bin/programs/tests/scripts/bin/*

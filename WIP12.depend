@@ -1620,7 +1620,7 @@
 
 1427987043 /home/rugrats/Documents/CPP/WIP12/include/scripting/as_bind_function.h
 
-1433604936 source:/home/rugrats/Documents/CPP/WIP12/src/scripting/script.cpp
+1433608470 source:/home/rugrats/Documents/CPP/WIP12/src/scripting/script.cpp
 	"scripting/script.h"
 	"error.h"
 	"globals.h"
@@ -1629,6 +1629,7 @@
 	"platform/platform.h"
 	<stdio.h>
 	<dlfcn.h>
+	<iostream>
 
 1433604937 /home/rugrats/Documents/CPP/WIP12/include/scripting/script.h
 	"resource/resource.h"
