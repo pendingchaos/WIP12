@@ -2,7 +2,6 @@
 
 #include "platform/sdl2/sdl2platform.h"
 #include "graphics/GL/gfxglapi.h"
-#include "graphics/gfxrenderer.h"
 #include "scene/scene.h"
 #include "graphics/gfxshader.h"
 #include "graphics/gfxtexture.h"
@@ -37,9 +36,6 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     gfxApi_ = NEW(GfxGLApi);
     gfxApi = gfxApi_;
 
-    renderer_ = NEW(GfxRenderer);
-    renderer = renderer_;
-
     debugDrawer_ = NEW(GfxDebugDrawer, gfxApi_);
     debugDrawer = debugDrawer_;
 
@@ -51,7 +47,6 @@ Application::~Application()
     DELETE(ScriptInstance, script);
 
     DELETE(GfxDebugDrawer, debugDrawer_);
-    DELETE(GfxRenderer, renderer_);
     DELETE(GfxApi, gfxApi_);
     DELETE(ResourceManager, resMgr_);
 

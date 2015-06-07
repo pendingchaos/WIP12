@@ -27,18 +27,6 @@ class GfxDebugDrawer
 
         void render(const Camera& camera);
     private:
-        class ShaderComb : public GfxShaderCombination
-        {
-            public:
-                ShaderComb();
-
-                ResPtr<GfxShader> getVertexShader() const;
-                ResPtr<GfxShader> getFragmentShader() const;
-            private:
-                ResPtr<GfxShader> vertex;
-                ResPtr<GfxShader> fragment;
-        };
-
         struct Line
         {
             Float4 startColor;
@@ -57,9 +45,14 @@ class GfxDebugDrawer
 
         List<Line> lines;
 
-        ShaderComb *shaders;
         ResPtr<GfxMesh> mesh;
         GfxBuffer *buffer;
+
+        ResPtr<GfxShader> vertex;
+        GfxCompiledShader *compiledVertex;
+
+        ResPtr<GfxShader> fragment;
+        GfxCompiledShader *compiledFragment;
 
     NO_COPY(GfxDebugDrawer)
 };

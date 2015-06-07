@@ -17,8 +17,6 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
-					<Add directory="include/graphics" />
-					<Add directory="include/graphics/GL" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,8 +30,6 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DNDEBUG" />
-					<Add directory="include/graphics" />
-					<Add directory="include/graphics/GL" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

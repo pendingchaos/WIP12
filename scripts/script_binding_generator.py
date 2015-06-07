@@ -60,7 +60,7 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "Quaternion", "PhysicsWorld", "RigidBody", "PhysicsShape", "PhysicsDebugDrawer",
 "Platform", "GfxShaderCombination", "Exception", "ShaderCompileException",
 "FileException", "LookupException", "ResourceIOException", "LogEntry",
-"PhysicsShapeImpl"]
+"PhysicsShapeImpl", "Framebuffer"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",

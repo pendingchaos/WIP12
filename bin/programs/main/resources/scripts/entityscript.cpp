@@ -15,7 +15,7 @@ BEGIN_SCRIPT
 
     virtual void fixedUpdate(float timestep)
     {
-        Camera& camera = entity->getScene()->camera;
+        Camera& camera = entity->getScene()->getRenderer()->camera;
 
         RigidBody *body = entity->getRigidBody();
 

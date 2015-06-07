@@ -41,11 +41,6 @@ class Application
             return gfxApi_;
         }
 
-        inline GfxRenderer *getRenderer() const
-        {
-            return renderer_;
-        }
-
         inline Filesystem *getFilesystem() const
         {
             return fileSystem_;
@@ -78,7 +73,6 @@ class Application
         Filesystem *fileSystem_;
         ResourceManager *resMgr_;
         GfxApi *gfxApi_;
-        GfxRenderer *renderer_;
         GfxDebugDrawer *debugDrawer_;
 
         ScriptInstance *script;

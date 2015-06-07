@@ -1,27 +1,30 @@
 #ifndef GFXRENDERER_H
 #define GFXRENDERER_H
 
+#include "math/t2.h"
 #include "graphics/gfxmesh.h"
 #include "graphics/gfxshader.h"
 #include "graphics/gfxmodel.h"
+#include "graphics/camera.h"
+#include "graphics/light.h"
 
-class Camera;
 class Matrix4x4;
 class String;
 
 class GfxRenderer
 {
     public:
-        GfxRenderer();
+        GfxRenderer(ResPtr<Scene> scene);
         ~GfxRenderer();
 
-        void beginRenderMesh(const Camera& camera,
-                             const Matrix4x4& worldMatrix,
-                             ResPtr<GfxMesh> mesh,
-                             GfxShaderCombination *comb);
-        void endRenderMesh(ResPtr<GfxMesh> mesh);
+        static void beginRenderMesh(const Camera& camera,
+                                    const Matrix4x4& worldMatrix,
+                                    ResPtr<GfxMesh> mesh,
+                                    GfxShaderCombination *comb);
+        static void endRenderMesh(ResPtr<GfxMesh> mesh);
 
-        void renderScene(const ResPtr<Scene> scene);
+        void resize(const UInt2& size);
+        void render();
 
         inline size_t getNumLights() const
         {
@@ -32,7 +35,17 @@ class GfxRenderer
         {
             return lightBuffer;
         }
+
+        Camera camera;
+        bool debugDraw;
+        ResPtr<GfxTexture> skybox;
+        List<Light> lights;
     private:
+        unsigned int width;
+        unsigned int height;
+
+        ResPtr<Scene> scene;
+
         ResPtr<GfxShader> skyboxVertex;
         ResPtr<GfxShader> skyboxFragment;
         ResPtr<GfxMesh> skyboxMesh;
@@ -41,6 +54,8 @@ class GfxRenderer
         GfxBuffer *lightBuffer;
 
         void fillLightBuffer(ResPtr<Scene> scene);
+        void renderEntities();
+        void renderSkybox();
         void renderModel(GfxModel::ContextType contextName,
                          const Camera& camera,
                          const Matrix4x4& worldMatrix,

@@ -90,13 +90,13 @@ GfxForwardMaterialImpl::~GfxForwardMaterialImpl()
     DELETE(GfxBuffer, fragmentBuffer);
 }
 
-void GfxForwardMaterialImpl::render(const Camera& camera,
+void GfxForwardMaterialImpl::render(GfxRenderer *renderer,
                                     ResPtr<GfxMesh> mesh,
                                     const Matrix4x4& worldMatrix)
 {
     GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
 
-    renderer->beginRenderMesh(camera, worldMatrix, mesh, shaderComb);
+    GfxRenderer::beginRenderMesh(renderer->camera, worldMatrix, mesh, shaderComb);
 
     if (smoothness != lastSmoothness or
         metalMask != lastMetalMask or
@@ -141,7 +141,7 @@ void GfxForwardMaterialImpl::render(const Camera& camera,
         gfxApi->addTextureBinding(fragment, "environment", environmentMap);
     }
 
-    renderer->endRenderMesh(mesh);
+    GfxRenderer::endRenderMesh(mesh);
 }
 
 GfxMaterial::GfxMaterial(const String& name) : Resource(name,

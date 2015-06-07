@@ -5,7 +5,6 @@ class Application;
 class Platform;
 class ResourceManager;
 class GfxApi;
-class GfxRenderer;
 class Filesystem;
 class GfxDebugDrawer;
 
@@ -14,7 +13,6 @@ extern Application *app;
 extern Platform *platform;
 extern ResourceManager *resMgr;
 extern GfxApi *gfxApi;
-extern GfxRenderer *renderer;
 extern Filesystem *fileSys;
 extern GfxDebugDrawer *debugDrawer;
 

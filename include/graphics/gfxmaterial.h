@@ -14,8 +14,8 @@
 #include "misc_macros.h"
 #include "memory.h"
 
-class Camera;
 class Matrix4x4;
+class GfxRenderer;
 
 class GfxMaterialImpl
 {
@@ -23,7 +23,7 @@ class GfxMaterialImpl
         GfxMaterialImpl() {}
         virtual ~GfxMaterialImpl() {}
 
-        virtual void render(const Camera& camera,
+        virtual void render(GfxRenderer *renderer,
                             ResPtr<GfxMesh> mesh,
                             const Matrix4x4& worldMatrix)=0;
 
@@ -43,7 +43,7 @@ class GfxForwardMaterialImpl : public GfxMaterialImpl
         GfxForwardMaterialImpl();
         virtual ~GfxForwardMaterialImpl();
 
-        virtual void render(const Camera& camera,
+        virtual void render(GfxRenderer *renderer,
                             ResPtr<GfxMesh> mesh,
                             const Matrix4x4& worldMatrix);
 
@@ -130,11 +130,11 @@ class GfxMaterial : public Resource
             return matType;
         }
 
-        void render(const Camera& camera,
+        void render(GfxRenderer *renderer,
                     ResPtr<GfxMesh> mesh,
                     const Matrix4x4& worldMatrix) const
         {
-            impl->render(camera, mesh, worldMatrix);
+            impl->render(renderer, mesh, worldMatrix);
         }
 
         inline GfxShaderCombination *getShaderComb() const

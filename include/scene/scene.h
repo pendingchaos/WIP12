@@ -5,7 +5,6 @@
 #include "containers/string.h"
 #include "graphics/camera.h"
 #include "graphics/gfxtexture.h"
-#include "graphics/light.h"
 #include "resource/resource.h"
 #include "scene/entity.h"
 #include "memory.h"
@@ -33,13 +32,14 @@ class Scene : public Resource
         void update();
         void fixedUpdate(float timestep);
 
-        Camera camera;
-        ResPtr<GfxTexture> skybox;
-        List<Light> lights;
-
         inline PhysicsWorld *getPhysicsWorld() const
         {
             return physicsWorld;
+        }
+
+        inline GfxRenderer *getRenderer() const
+        {
+            return renderer;
         }
 
         virtual void save();
@@ -52,6 +52,7 @@ class Scene : public Resource
             return entities;
         }
     private:
+        GfxRenderer *renderer;
         List<Entity *> entities;
 
         void _handleInput(const List<Entity *>& entities_);

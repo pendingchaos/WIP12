@@ -220,22 +220,18 @@ BEGIN_SCRIPT
 
     virtual void render()
     {
-        gfxApi->setViewport(0,
-                            0,
-                            platform->getWindowWidth(),
-                            platform->getWindowHeight());
-        scene->camera.setWidth(platform->getWindowWidth());
-        scene->camera.setHeight(platform->getWindowHeight());
-
-        gfxApi->clearDepth();
+        bool debugDraw = platform->isRightMouseButtonPressed();
         
-        renderer->renderScene(scene);
-
-        scene->getPhysicsWorld()->debugDraw();
-
-        if (platform->isRightMouseButtonPressed())
+        scene->getRenderer()->debugDraw = debugDraw;
+        
+        if (debugDraw)
         {
-            debugDrawer->render(scene->camera);
+            scene->getPhysicsWorld()->debugDraw();
         }
+        
+        scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
+                                           platform->getWindowHeight()));
+
+        scene->getRenderer()->render();
     }
 END_SCRIPT

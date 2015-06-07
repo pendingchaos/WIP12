@@ -4,13 +4,15 @@
 #include "graphics/gfxapi.h"
 #include "graphics/camera.h"
 #include "graphics/gfxframebuffer.h"
+#include "graphics/gfxdebugdrawer.h"
 #include "scene/scene.h"
 #include "scene/entity.h"
 #include "globals.h"
 
 #include <cmath>
 
-GfxRenderer::GfxRenderer()
+GfxRenderer::GfxRenderer(ResPtr<Scene> scene_) : debugDraw(false),
+                                                 scene(scene_)
 {
     skyboxVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxVertex.bin");
     skyboxFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxFragment.bin");
@@ -73,89 +75,43 @@ void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> mesh)
     }
 }
 
-void GfxRenderer::renderScene(const ResPtr<Scene> scene)
+void GfxRenderer::resize(const UInt2& size)
 {
-    Camera camera = scene->camera;
+    width = size.x;
+    height = size.y;
+
+    if (camera.getType() == Camera::Perspective)
+    {
+        camera.setWidth(width);
+        camera.setHeight(height);
+    }
+}
+
+void GfxRenderer::render()
+{
+    gfxApi->clearDepth();
+
+    if (skybox == nullptr)
+    {
+        gfxApi->clearColor(0, Float4(1.0f));
+    }
+
+    gfxApi->setViewport(0, 0, width, height);
 
     fillLightBuffer(scene);
 
-    const List<Entity *>& entities = scene->getEntities();
+    renderEntities();
 
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    renderSkybox();
+
+    if (debugDraw)
     {
-        const Entity *entity = entities[i];
-
-        Matrix4x4 transform = entity->transform.createMatrix();
-
-        for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
-        {
-            entity->getScripts()[i]->render();
-        }
-
-        if (entity->hasRenderComponent())
-        {
-            const RenderComponent *comp = entity->getRenderComponent();
-
-            switch (comp->type)
-            {
-            case RenderComponent::Nothing:
-            {
-                break;
-            }
-            case RenderComponent::Model:
-            {
-                renderModel(GfxModel::Forward, camera, transform, comp->model);
-                break;
-            }
-            }
-        }
-    }
-
-    if (scene->skybox != nullptr)
-    {
-        gfxApi->pushState();
-
-        GfxCompiledShader *compiledVS = skyboxVertex->getCompiled();
-        GfxCompiledShader *compiledFS = skyboxFragment->getCompiled();
-
-        gfxApi->begin(compiledVS,
-                      nullptr,
-                      nullptr,
-                      nullptr,
-                      compiledFS,
-                      skyboxMesh);
-
-        gfxApi->setDepthFunction(GfxLessEqual);
-
-        gfxApi->uniform(compiledVS, "projectionMatrix", camera.getProjectionMatrix());
-
-        gfxApi->uniform(compiledVS, "viewMatrix", Matrix4x4(Matrix3x3(camera.getViewMatrix())));
-
-        gfxApi->addTextureBinding(compiledFS, "enviroment", scene->skybox);
-
-        if (skyboxMesh->indexed)
-        {
-            gfxApi->endIndexed(skyboxMesh->primitive,
-                               skyboxMesh->indexData.type,
-                               skyboxMesh->indexData.numIndices,
-                               skyboxMesh->indexData.offset,
-                               skyboxMesh->indexData.buffer,
-                               skyboxMesh->winding);
-        } else
-        {
-            gfxApi->end(skyboxMesh->primitive,
-                        skyboxMesh->numVertices,
-                        skyboxMesh->winding);
-        }
-
-        gfxApi->popState();
+        debugDrawer->render(camera);
     }
 }
 
 void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
 {
-    const List<Light>& lights = scene->lights;
-
     numLights = lights.getCount();
 
     float *lightData = NEW_ARRAY(float, numLights * 16);
@@ -213,6 +169,84 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
     DELETE_ARRAY(float, lightData);
 }
 
+void GfxRenderer::renderEntities()
+{
+    const List<Entity *>& entities = scene->getEntities();
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        const Entity *entity = entities[i];
+
+        Matrix4x4 transform = entity->transform.createMatrix();
+
+        for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
+        {
+            entity->getScripts()[i]->render();
+        }
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            switch (comp->type)
+            {
+            case RenderComponent::Nothing:
+            {
+                break;
+            }
+            case RenderComponent::Model:
+            {
+                renderModel(GfxModel::Forward, camera, transform, comp->model);
+                break;
+            }
+            }
+        }
+    }
+}
+
+void GfxRenderer::renderSkybox()
+{
+    if (skybox != nullptr)
+    {
+        gfxApi->pushState();
+
+        GfxCompiledShader *compiledVS = skyboxVertex->getCompiled();
+        GfxCompiledShader *compiledFS = skyboxFragment->getCompiled();
+
+        gfxApi->begin(compiledVS,
+                      nullptr,
+                      nullptr,
+                      nullptr,
+                      compiledFS,
+                      skyboxMesh);
+
+        gfxApi->setDepthFunction(GfxLessEqual);
+
+        gfxApi->uniform(compiledVS, "projectionMatrix", camera.getProjectionMatrix());
+
+        gfxApi->uniform(compiledVS, "viewMatrix", Matrix4x4(Matrix3x3(camera.getViewMatrix())));
+
+        gfxApi->addTextureBinding(compiledFS, "enviroment", skybox);
+
+        if (skyboxMesh->indexed)
+        {
+            gfxApi->endIndexed(skyboxMesh->primitive,
+                               skyboxMesh->indexData.type,
+                               skyboxMesh->indexData.numIndices,
+                               skyboxMesh->indexData.offset,
+                               skyboxMesh->indexData.buffer,
+                               skyboxMesh->winding);
+        } else
+        {
+            gfxApi->end(skyboxMesh->primitive,
+                        skyboxMesh->numVertices,
+                        skyboxMesh->winding);
+        }
+
+        gfxApi->popState();
+    }
+}
+
 void GfxRenderer::renderModel(GfxModel::ContextType contextType,
                               const Camera& camera,
                               const Matrix4x4& worldMatrix,
@@ -243,7 +277,7 @@ void GfxRenderer::renderModel(GfxModel::ContextType contextType,
 
             if (lod.minDistance < distance and distance < lod.maxDistance)
             {
-                lod.material->render(camera, lod.mesh, worldMatrix * lod.worldMatrix);
+                lod.material->render(this, lod.mesh, worldMatrix * lod.worldMatrix);
                 break;
             }
         }

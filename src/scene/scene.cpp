@@ -13,6 +13,7 @@
 Scene::Scene(const String& name) : Resource(name, SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
+    renderer = NEW(GfxRenderer, this);
 }
 
 Scene::Scene(const String& filename,
@@ -21,12 +22,14 @@ Scene::Scene(const String& filename,
                                             SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
+    renderer = NEW(GfxRenderer, this);
 }
 
 Scene::~Scene()
 {
     removeContent();
 
+    DELETE(GfxRenderer, renderer);
     DELETE(PhysicsWorld, physicsWorld);
 }
 
@@ -40,9 +43,10 @@ void Scene::removeContent()
     physicsWorld->~PhysicsWorld();
     new (physicsWorld) PhysicsWorld;
 
+    renderer->~GfxRenderer();
+    new (renderer) GfxRenderer(this);
+
     entities = List<Entity *>();
-    camera = Camera();
-    lights.clear();
 }
 
 void Scene::handleInput()
@@ -248,6 +252,8 @@ void Scene::_load()
         float camNear = file.readFloat32();
         float camFar = file.readFloat32();
 
+        Camera& camera = renderer->camera;
+
         camera.setPosition(Position3D(camPosX, camPosY, camPosZ));
         camera.setDirection(Direction3D(camDirX, camDirY, camDirZ));
         camera.setUp(Direction3D(camUpX, camUpY, camUpZ));
@@ -283,10 +289,10 @@ void Scene::_load()
 
         if (skyboxFileLen != 0)
         {
-            skybox = resMgr->getResourceByFilename<GfxTexture>(skyboxFile);
+            renderer->skybox = resMgr->getResourceByFilename<GfxTexture>(skyboxFile);
         } else
         {
-            skybox = nullptr;
+            renderer->skybox = nullptr;
         }
 
         uint32_t numEntities = file.readUInt32LE();
@@ -325,7 +331,7 @@ void Scene::_load()
                 l.power = power;
                 l.color = Float3(red, green, blue);
 
-                lights.append(l);
+                renderer->lights.append(l);
             } else if (type == 1)
             {
                 float posX = file.readFloat32();
@@ -347,7 +353,7 @@ void Scene::_load()
                 l.power = power;
                 l.color = Float3(red, green, blue);
 
-                lights.append(l);
+                renderer->lights.append(l);
             } else if (type == 2)
             {
                 float posX = file.readFloat32();
@@ -360,13 +366,13 @@ void Scene::_load()
                 l.power = power;
                 l.color = Float3(red, green, blue);
 
-                lights.append(l);
+                renderer->lights.append(l);
             } else
             {
-            THROW(ResourceIOException,
-                  "scene",
-                  filename,
-                  "Invalid light type");
+                THROW(ResourceIOException,
+                      "scene",
+                      filename,
+                      "Invalid light type");
             }
         }
     } catch (FileException& e)
@@ -476,6 +482,8 @@ void Scene::save()
 
         file.write(6, "scen\x01\x00");
 
+        const Camera& camera = renderer->camera;
+
         file.writeUInt8(camera.getType() == Camera::Perspective ? 0 : 1);
         file.writeFloat32(camera.getPosition().x);
         file.writeFloat32(camera.getPosition().y);
@@ -501,6 +509,8 @@ void Scene::save()
             file.writeFloat32(camera.getTop());
             file.writeFloat32(camera.getBottom());
         }
+
+        ResPtr<GfxTexture> skybox = renderer->skybox;
 
         if (skybox != nullptr)
         {
