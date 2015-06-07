@@ -18,6 +18,7 @@
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
 					<Add directory="include/graphics" />
+					<Add directory="include/graphics/GL" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,6 +33,7 @@
 					<Add option="-O2" />
 					<Add option="-DNDEBUG" />
 					<Add directory="include/graphics" />
+					<Add directory="include/graphics/GL" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -75,6 +77,7 @@
 		<Unit filename="include/globals.h" />
 		<Unit filename="include/graphics/GL/gfxglapi.h" />
 		<Unit filename="include/graphics/GL/gfxglbuffer.h" />
+		<Unit filename="include/graphics/GL/gfxglframebuffer.h" />
 		<Unit filename="include/graphics/GL/gfxglmeshimpl.h" />
 		<Unit filename="include/graphics/GL/gfxglshaderimpl.h" />
 		<Unit filename="include/graphics/GL/gfxgltextureimpl.h" />
@@ -83,6 +86,7 @@
 		<Unit filename="include/graphics/gfxbuffer.h" />
 		<Unit filename="include/graphics/gfxdebugdrawer.h" />
 		<Unit filename="include/graphics/gfxdefs.h" />
+		<Unit filename="include/graphics/gfxframebuffer.h" />
 		<Unit filename="include/graphics/gfxmaterial.h" />
 		<Unit filename="include/graphics/gfxmesh.h" />
 		<Unit filename="include/graphics/gfxmodel.h" />
@@ -130,6 +134,7 @@
 		<Unit filename="src/globals.cpp" />
 		<Unit filename="src/graphics/GL/gfxglapi.cpp" />
 		<Unit filename="src/graphics/GL/gfxglbuffer.cpp" />
+		<Unit filename="src/graphics/GL/gfxglframebuffer.cpp" />
 		<Unit filename="src/graphics/GL/gfxglmeshimpl.cpp" />
 		<Unit filename="src/graphics/GL/gfxglshaderimpl.cpp" />
 		<Unit filename="src/graphics/GL/gfxgltextureimpl.cpp" />
@@ -138,6 +143,7 @@
 		<Unit filename="src/graphics/gfxapi.cpp" />
 		<Unit filename="src/graphics/gfxbuffer.cpp" />
 		<Unit filename="src/graphics/gfxdebugdrawer.cpp" />
+		<Unit filename="src/graphics/gfxframebuffer.cpp" />
 		<Unit filename="src/graphics/gfxmaterial.cpp" />
 		<Unit filename="src/graphics/gfxmesh.cpp" />
 		<Unit filename="src/graphics/gfxmodel.cpp" />
