@@ -27,7 +27,10 @@ Scene::Scene(const String& filename,
 
 Scene::~Scene()
 {
-    removeContent();
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        DELETE(Entity, entities[i]);
+    }
 
     DELETE(GfxRenderer, renderer);
     DELETE(PhysicsWorld, physicsWorld);

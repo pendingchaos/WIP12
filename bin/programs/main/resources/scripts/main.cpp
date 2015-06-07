@@ -220,6 +220,9 @@ BEGIN_SCRIPT
 
     virtual void render()
     {
+        scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
+                                           platform->getWindowHeight()));
+
         bool debugDraw = platform->isRightMouseButtonPressed();
         
         scene->getRenderer()->debugDraw = debugDraw;
@@ -229,9 +232,6 @@ BEGIN_SCRIPT
             scene->getPhysicsWorld()->debugDraw();
         }
         
-        scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
-                                           platform->getWindowHeight()));
-
         scene->getRenderer()->render();
     }
 END_SCRIPT

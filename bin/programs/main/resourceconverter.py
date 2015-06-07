@@ -768,9 +768,12 @@ if __name__ == "__main__":
     conv["skyboxVertex.vs"] = Shader(["source/shaders/skyboxVertex.vs"], "../../resources/shaders/skyboxVertex.bin")
     conv["skyboxFragment.fs"] = Shader(["source/shaders/skyboxFragment.fs"], "../../resources/shaders/skyboxFragment.bin")
     conv["skyboxFragment.fs"].stage_ = Shader.Stage.Fragment
-    conv["vertex.vs"] = Shader(["source/shaders/vertex.vs"], "resources/shaders/vertex.bin")
-    conv["fragment.fs"] = Shader(["source/shaders/fragment.fs"], "resources/shaders/fragment.bin")
+    conv["vertex.vs"] = Shader(["source/shaders/vertex.vs"], "../../resources/shaders/vertex.bin")
+    conv["fragment.fs"] = Shader(["source/shaders/fragment.fs"], "../../resources/shaders/fragment.bin")
     conv["fragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["displayVertex.vs"] = Shader(["source/shaders/displayVertex.vs"], "../../resources/shaders/displayVertex.bin")
+    conv["displayFragment.fs"] = Shader(["source/shaders/displayFragment.fs"], "../../resources/shaders/displayFragment.bin")
+    conv["displayFragment.fs"].stage_ = Shader.Stage.Fragment
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")

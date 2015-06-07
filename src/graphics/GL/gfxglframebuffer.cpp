@@ -27,16 +27,6 @@ void GfxGLFramebuffer::addColorAttachment(size_t rtIndex,
         return;
     }
 
-    BEGIN_FRAMEBUFER_BINDING
-
-    glFramebufferTexture2D(GL_FRAMEBUFFER,
-                           GL_COLOR_ATTACHMENT0+rtIndex,
-                           GL_TEXTURE_2D,
-                           ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                           mipmapLevel);
-
-    END_FRAMEBUFFER_BINDING
-
     Attachment attachment;
 
     attachment.mipmapLevel = mipmapLevel;
@@ -90,16 +80,6 @@ void GfxGLFramebuffer::setDepthAttachment(ResPtr<GfxTexture> texture,
     {
         return;
     }
-
-    BEGIN_FRAMEBUFER_BINDING
-
-    glFramebufferTexture2D(GL_FRAMEBUFFER,
-                           GL_DEPTH_ATTACHMENT,
-                           GL_TEXTURE_2D,
-                           ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                           mipmapLevel);
-
-    END_FRAMEBUFFER_BINDING
 
     hasDepth = true;
     depthAttachment.mipmapLevel = mipmapLevel;

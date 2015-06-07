@@ -5,24 +5,72 @@
 #include "graphics/camera.h"
 #include "graphics/gfxframebuffer.h"
 #include "graphics/gfxdebugdrawer.h"
+#include "graphics/gfxbuffer.h"
 #include "scene/scene.h"
 #include "scene/entity.h"
 #include "globals.h"
 
 #include <cmath>
 
-GfxRenderer::GfxRenderer(ResPtr<Scene> scene_) : debugDraw(false),
-                                                 scene(scene_)
+GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
+                                          vignetteRadius(1.5f),
+                                          vignetteSoftness(1.0f),
+                                          vignetteIntensity(1.0f),
+                                          width(0),
+                                          height(0),
+                                          scene(scene_)
 {
     skyboxVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxVertex.bin");
     skyboxFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxFragment.bin");
     skyboxMesh = resMgr->getResourceByFilename<GfxMesh>("resources/meshes/cube.bin");
+    displayVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/displayVertex.bin");
+    displayFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/displayFragment.bin");
+
+    compiledDisplayVertex = displayVertex->getCompiled();
+    compiledDisplayFragment = displayFragment->getCompiled();
 
     lightBuffer = gfxApi->createBuffer();
+
+    static const float positionData[] = {-1.0f,  1.0f,
+                                         -1.0f, -1.0f,
+                                          1.0f, -1.0f,
+                                         -1.0f,  1.0f,
+                                          1.0f, -1.0f,
+                                          1.0f,  1.0f};
+
+    GfxBuffer *positionBuffer = gfxApi->createBuffer();
+    positionBuffer->allocData(sizeof(positionData), positionData, GfxBuffer::Static);
+
+    fullScreenQuadMesh = NEW(GfxMesh, "");
+    fullScreenQuadMesh->buffers.append(positionBuffer);
+    fullScreenQuadMesh->primitive = GfxTriangles;
+    fullScreenQuadMesh->numVertices = 6;
+
+    GfxMesh::VertexAttribute positionAttribute;
+    positionAttribute.buffer = positionBuffer;
+    positionAttribute.numComponents = 2;
+    positionAttribute.type = GfxFloat;
+    positionAttribute.stride = 8;
+    positionAttribute.offset = 0;
+
+    fullScreenQuadMesh->setVertexAttrib(GfxPosition, positionAttribute);
+
+    unmodifiedColorTexture = NEW(GfxTexture, "");
+
+    depthTexture = NEW(GfxTexture, "");
+
+    resize(640);
+
+    unmodifiedFramebuffer = gfxApi->createFramebuffer();
+
+    unmodifiedFramebuffer->addColorAttachment(0, unmodifiedColorTexture);
+    unmodifiedFramebuffer->setDepthAttachment(depthTexture);
 }
 
 GfxRenderer::~GfxRenderer()
 {
+    DELETE(GfxFramebuffer, unmodifiedFramebuffer);
+
     DELETE(GfxBuffer, lightBuffer);
 }
 
@@ -77,26 +125,51 @@ void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> mesh)
 
 void GfxRenderer::resize(const UInt2& size)
 {
-    width = size.x;
-    height = size.y;
-
-    if (camera.getType() == Camera::Perspective)
+    if (size.x != width or size.y != width)
     {
-        camera.setWidth(width);
-        camera.setHeight(height);
+        width = size.x;
+        height = size.y;
+
+        if (camera.getType() == Camera::Perspective)
+        {
+            camera.setWidth(width);
+            camera.setHeight(height);
+        }
+
+        unmodifiedColorTexture->startCreation(GfxTexture::Texture2D,
+                                              false,
+                                              width,
+                                              height,
+                                              0,
+                                              GfxTexture::Other,
+                                              GfxTexture::RGBF32_F16);
+        unmodifiedColorTexture->allocMipmap(0, 1, NULL);
+
+        depthTexture->startCreation(GfxTexture::Texture2D,
+                                    false,
+                                    width,
+                                    height,
+                                    0,
+                                    GfxTexture::Other,
+                                    GfxTexture::DepthF32_F24);
+        depthTexture->allocMipmap(0, 1, NULL);
     }
 }
 
 void GfxRenderer::render()
 {
+    gfxApi->setViewport(0, 0, width, height);
+
+    gfxApi->setCurrentFramebuffer(unmodifiedFramebuffer);
+    gfxApi->setWriteDepth(true);
+    gfxApi->setDepthFunction(GfxLess);
+
     gfxApi->clearDepth();
 
     if (skybox == nullptr)
     {
         gfxApi->clearColor(0, Float4(1.0f));
     }
-
-    gfxApi->setViewport(0, 0, width, height);
 
     fillLightBuffer(scene);
 
@@ -108,6 +181,26 @@ void GfxRenderer::render()
     {
         debugDrawer->render(camera);
     }
+
+    gfxApi->setCurrentFramebuffer(NULL);
+    gfxApi->setWriteDepth(false);
+    gfxApi->setDepthFunction(GfxAlways);
+
+    gfxApi->begin(compiledDisplayVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledDisplayFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->uniform(compiledDisplayFragment, "vignetteRadius", vignetteRadius);
+    gfxApi->uniform(compiledDisplayFragment, "vignetteSoftness", vignetteSoftness);
+    gfxApi->uniform(compiledDisplayFragment, "vignetteIntensity", vignetteIntensity);
+    gfxApi->addTextureBinding(compiledDisplayFragment, "colorTexture", unmodifiedColorTexture);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
 }
 
 void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)

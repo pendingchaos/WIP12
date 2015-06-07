@@ -5,16 +5,22 @@
 #include "graphics/gfxmesh.h"
 #include "graphics/gfxshader.h"
 #include "graphics/gfxmodel.h"
+#include "graphics/gfxtexture.h"
 #include "graphics/camera.h"
 #include "graphics/light.h"
+#include "scene/scene.h"
 
 class Matrix4x4;
 class String;
+class GfxFramebuffer;
 
 class GfxRenderer
 {
+    private:
+        friend class Scene;
+
+        GfxRenderer(Scene *scene);
     public:
-        GfxRenderer(ResPtr<Scene> scene);
         ~GfxRenderer();
 
         static void beginRenderMesh(const Camera& camera,
@@ -37,18 +43,30 @@ class GfxRenderer
         }
 
         Camera camera;
+
         bool debugDraw;
+
         ResPtr<GfxTexture> skybox;
+
         List<Light> lights;
+
+        float vignetteRadius;
+        float vignetteSoftness;
+        float vignetteIntensity;
     private:
         unsigned int width;
         unsigned int height;
 
-        ResPtr<Scene> scene;
+        Scene *scene;
 
         ResPtr<GfxShader> skyboxVertex;
         ResPtr<GfxShader> skyboxFragment;
         ResPtr<GfxMesh> skyboxMesh;
+        ResPtr<GfxMesh> fullScreenQuadMesh;
+        ResPtr<GfxShader> displayVertex;
+        ResPtr<GfxShader> displayFragment;
+        GfxCompiledShader *compiledDisplayVertex;
+        GfxCompiledShader *compiledDisplayFragment;
 
         size_t numLights;
         GfxBuffer *lightBuffer;
@@ -60,6 +78,11 @@ class GfxRenderer
                          const Camera& camera,
                          const Matrix4x4& worldMatrix,
                          const ResPtr<GfxModel> model);
+
+        ResPtr<GfxTexture> unmodifiedColorTexture;
+        ResPtr<GfxTexture> depthTexture;
+
+        GfxFramebuffer *unmodifiedFramebuffer;
 };
 
 #endif // GFXRENDERER_H

@@ -193,8 +193,6 @@ void SDL2Platform::initWindow(uint32_t width,
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
-    SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, 1);
-
     context = SDL_GL_CreateContext(window);
 
     if (context == nullptr)

@@ -21,7 +21,7 @@
 ## Other
 - [ ] Benchmarks.
 - [ ] The matrix inversion functions need improvement.
-- [ ] Fix banding in darkly lit areas.
+- [ ] Fix banding in darkly lit areas and on metallic surfaces.
 
 ## Performance Improvements
 - [ ] Script compilation is very slow.

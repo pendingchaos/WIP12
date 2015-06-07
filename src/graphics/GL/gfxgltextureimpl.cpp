@@ -340,6 +340,8 @@ GfxGLTextureImpl::GfxGLTextureImpl()
     baseWidth = 0;
     baseHeight = 0;
     shadowmap = false;
+
+    setMinFiltering();
 }
 
 GfxGLTextureImpl::~GfxGLTextureImpl()
