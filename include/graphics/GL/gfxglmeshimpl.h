@@ -7,9 +7,7 @@ class GfxGLMeshImpl : public GfxMeshImpl
 {
     NO_COPY_INHERITED(GfxGLMeshImpl, GfxMeshImpl)
 
-    friend class GfxGLApi;
-
-    protected:
+    public:
         GfxGLMeshImpl();
         virtual ~GfxGLMeshImpl();
 
@@ -23,7 +21,7 @@ class GfxGLMeshImpl : public GfxMeshImpl
         {
             return vao;
         }
-
+    private:
         GLuint vao;
         GfxMesh::VertexAttribute attributes[GFX_VERTEX_ATTRIB_PURPOSE_COUNT];
 };

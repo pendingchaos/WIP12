@@ -39,10 +39,7 @@ class GfxGLShaderImpl : public GfxShaderImpl
 {
     NO_COPY(GfxGLShaderImpl)
 
-    friend class GfxShader;
-    friend class GfxGLApi;
-
-    protected:
+    public:
         GfxGLShaderImpl();
         virtual ~GfxGLShaderImpl();
 
@@ -63,7 +60,7 @@ class GfxGLShaderImpl : public GfxShaderImpl
         GLuint _compile(GLenum type, GLsizei count, const char **strings, String& infoLog) const;
         void _compile();
         GLuint _compile(const HashMap<String, String >& defines) const;
-
+    private:
         GfxShader::Stage stage;
 
         String source;

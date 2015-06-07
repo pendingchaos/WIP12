@@ -14,6 +14,7 @@
 class GfxShaderImpl;
 class GfxCompiledShader;
 class GfxBuffer;
+class GfxFramebuffer;
 
 class GfxApi
 {
@@ -25,11 +26,14 @@ class GfxApi
         virtual GfxBuffer *createBuffer()=0;
         virtual GfxTextureImpl *createTextureImpl()=0;
         virtual GfxMeshImpl *createMeshImpl()=0;
+        virtual GfxFramebuffer *createFramebuffer()=0;
 
-        virtual void clear(bool color,
-                           bool depth,
-                           const Float4& colorValue,
-                           float depthValue)=0;
+        virtual void setCurrentFramebuffer(GfxFramebuffer *framebuffer)=0;
+
+        virtual void clearDepth(float depthValue=1.0f)=0;
+        virtual void clearColor(size_t rtIndex, Float4 value)=0;
+        virtual void clearColor(size_t rtIndex, Int4 value)=0;
+        virtual void clearColor(size_t rtIndex, UInt4 value)=0;
 
         virtual void begin(GfxCompiledShader *vertex,
                            GfxCompiledShader *tessControl,

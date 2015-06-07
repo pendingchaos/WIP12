@@ -227,8 +227,8 @@ BEGIN_SCRIPT
         scene->camera.setWidth(platform->getWindowWidth());
         scene->camera.setHeight(platform->getWindowHeight());
 
-        gfxApi->clear(false, true, Float4(1.0), 1.0);
-
+        gfxApi->clearDepth();
+        
         renderer->renderScene(scene);
 
         scene->getPhysicsWorld()->debugDraw();

@@ -120,7 +120,11 @@ class GfxTexture : public Resource
             UInt4_32,
 
             SRGBU8,
-            SRGBAU8
+            SRGBAU8,
+
+            DepthF32_F16,
+            DepthF32_F24,
+            DepthF32
         };
 
         enum Purpose
@@ -233,11 +237,17 @@ class GfxTexture : public Resource
             return format;
         }
 
+        inline bool getShadowmap() const
+        {
+            return shadowmap;
+        }
+
         void setMaximumAnisotropy(float maxAnisotropy);
         void setMinFilter(GfxTexture::Filter minFilter);
         void setMagFilter(GfxTexture::Filter magFilter);
         void setMipmapMode(GfxTexture::MipmapMode mode);
         void setWrapMode(GfxTexture::WrapMode mode);
+        void setShadowmap(bool shadowmap);
 
         inline GfxTextureImpl *getImpl() const
         {
@@ -259,6 +269,7 @@ class GfxTexture : public Resource
         uint8_t compressionQuality;
         Purpose purpose;
         Format format;
+        bool shadowmap;
     protected:
         virtual void _load();
 
@@ -304,6 +315,7 @@ class GfxTextureImpl
         virtual void setMagFilter(GfxTexture::Filter magFilter)=0;
         virtual void setMipmapMode(GfxTexture::MipmapMode mode)=0;
         virtual void setWrapMode(GfxTexture::WrapMode mode)=0;
+        virtual void setShadowmap(bool shadowmap)=0;
 
     NO_COPY(GfxTextureImpl)
 };

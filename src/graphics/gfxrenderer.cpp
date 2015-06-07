@@ -3,6 +3,7 @@
 #include "math/matrix3x3.h"
 #include "graphics/gfxapi.h"
 #include "graphics/camera.h"
+#include "graphics/gfxframebuffer.h"
 #include "scene/scene.h"
 #include "scene/entity.h"
 #include "globals.h"

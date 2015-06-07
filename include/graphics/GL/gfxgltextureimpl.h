@@ -7,9 +7,7 @@ class GfxGLTextureImpl : public GfxTextureImpl
 {
     NO_COPY_INHERITED(GfxGLTextureImpl, GfxTextureImpl)
 
-    friend class GfxGLApi;
-
-    protected:
+    public:
         GfxGLTextureImpl();
         virtual ~GfxGLTextureImpl();
 
@@ -61,7 +59,8 @@ class GfxGLTextureImpl : public GfxTextureImpl
         virtual void setMagFilter(GfxTexture::Filter magFilter);
         virtual void setMipmapMode(GfxTexture::MipmapMode mode);
         virtual void setWrapMode(GfxTexture::WrapMode mode);
-
+        virtual void setShadowmap(bool shadowmap);
+    private:
         GLuint texture;
         GfxTexture::TextureType textureType;
 
@@ -70,6 +69,10 @@ class GfxGLTextureImpl : public GfxTextureImpl
         unsigned int baseWidth;
         unsigned int baseHeight;
         GfxTexture::Format format;
+        float maximumAnisotropy;
+        GfxTexture::WrapMode wrapMode;
+        bool shadowmap;
+        GfxTexture::Filter magFilter;
 
         void setMinFiltering();
 };

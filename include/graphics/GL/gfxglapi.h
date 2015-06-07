@@ -13,11 +13,14 @@ class GfxGLApi : public GfxApi
         virtual GfxBuffer *createBuffer();
         virtual GfxTextureImpl *createTextureImpl();
         virtual GfxMeshImpl *createMeshImpl();
+        virtual GfxFramebuffer *createFramebuffer();
 
-        virtual void clear(bool color,
-                           bool depth,
-                           const Float4& colorValue,
-                           float depthValue);
+        virtual void setCurrentFramebuffer(GfxFramebuffer *framebuffer);
+
+        virtual void clearDepth(float depthValue=1.0f);
+        virtual void clearColor(size_t rtIndex, Float4 value);
+        virtual void clearColor(size_t rtIndex, Int4 value);
+        virtual void clearColor(size_t rtIndex, UInt4 value);
 
         virtual void begin(GfxCompiledShader *vertex,
                            GfxCompiledShader *tessControl,

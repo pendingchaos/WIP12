@@ -1620,7 +1620,7 @@
 
 1427987043 /home/rugrats/Documents/CPP/WIP12/include/scripting/as_bind_function.h
 
-1433608470 source:/home/rugrats/Documents/CPP/WIP12/src/scripting/script.cpp
+1433608783 source:/home/rugrats/Documents/CPP/WIP12/src/scripting/script.cpp
 	"scripting/script.h"
 	"error.h"
 	"globals.h"
@@ -1629,7 +1629,6 @@
 	"platform/platform.h"
 	<stdio.h>
 	<dlfcn.h>
-	<iostream>
 
 1433604937 /home/rugrats/Documents/CPP/WIP12/include/scripting/script.h
 	"resource/resource.h"
@@ -6318,7 +6317,7 @@
 1431979908 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/gfxapi.cpp
 	"graphics/gfxapi.h"
 
-1432897391 /home/rugrats/Documents/CPP/WIP12/include/graphics/gfxapi.h
+1433682551 /home/rugrats/Documents/CPP/WIP12/include/graphics/gfxapi.h
 	"misc_macros.h"
 	"math/t2.h"
 	"math/t3.h"
@@ -6329,7 +6328,7 @@
 	"graphics/gfxtexture.h"
 	"graphics/gfxmesh.h"
 
-1433604936 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/GL/gfxglapi.cpp
+1433688571 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/GL/gfxglapi.cpp
 	"graphics/GL/gfxglapi.h"
 	"graphics/gfxbuffer.h"
 	"graphics/gfxtexture.h"
@@ -6337,6 +6336,7 @@
 	"graphics/GL/gfxglmeshimpl.h"
 	"graphics/GL/gfxgltextureimpl.h"
 	"graphics/GL/gfxglbuffer.h"
+	"graphics/GL/gfxglframebuffer.h"
 	"logging.h"
 	"memory.h"
 	"error.h"
@@ -6344,7 +6344,7 @@
 	<cstdio>
 	<cstring>
 
-1432825841 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglapi.h
+1433682561 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglapi.h
 	"graphics/gfxapi.h"
 
 1433604937 /home/rugrats/Documents/CPP/WIP12/include/graphics/gfxshader.h
@@ -6392,7 +6392,7 @@
 	"containers/list.h"
 	"containers/pair.h"
 
-1433078102 /home/rugrats/Documents/CPP/WIP12/include/graphics/gfxtexture.h
+1433684190 /home/rugrats/Documents/CPP/WIP12/include/graphics/gfxtexture.h
 	"containers/string.h"
 	"resource/resource.h"
 	"graphics/GL/glfl.h"
@@ -6400,7 +6400,7 @@
 	<cmath>
 	<algorithm>
 
-1433366924 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/gfxtexture.cpp
+1433683662 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/gfxtexture.cpp
 	"graphics/gfxtexture.h"
 	"graphics/gfxapi.h"
 	"globals.h"
@@ -6439,7 +6439,7 @@
 	<SDL2/SDL.h>
 	<string.h>
 
-1432298597 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglshaderimpl.h
+1433681768 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglshaderimpl.h
 	"misc_macros.h"
 	"containers/string.h"
 	"containers/hashmap.h"
@@ -6462,21 +6462,22 @@
 	"graphics/GL/gfxglmeshimpl.h"
 	"graphics/GL/gfxglbuffer.h"
 
-1432915281 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglmeshimpl.h
+1433681754 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglmeshimpl.h
 	"graphics/gfxmesh.h"
 
-1433604936 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/GL/gfxgltextureimpl.cpp
+1433688392 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/GL/gfxgltextureimpl.cpp
 	"graphics/GL/gfxgltextureimpl.h"
 	"logging.h"
 
-1432476113 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxgltextureimpl.h
+1433688388 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxgltextureimpl.h
 	"graphics/gfxtexture.h"
 
-1433604936 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/gfxrenderer.cpp
+1433689340 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/gfxrenderer.cpp
 	"graphics/gfxrenderer.h"
 	"math/matrix3x3.h"
 	"graphics/gfxapi.h"
 	"graphics/camera.h"
+	"graphics/gfxframebuffer.h"
 	"scene/scene.h"
 	"scene/entity.h"
 	"globals.h"
@@ -6954,4 +6955,19 @@
 1433604513 /home/rugrats/Documents/CPP/WIP12/include/graphics/light.h
 	"math/t3.h"
 	"math/t4.h"
+
+1433682786 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/gfxframebuffer.cpp
+	"graphics/gfxframebuffer.h"
+
+1433682780 /home/rugrats/Documents/CPP/WIP12/include/graphics/gfxframebuffer.h
+	"graphics/gfxtexture.h"
+	<stddef.h>
+
+1433685285 source:/home/rugrats/Documents/CPP/WIP12/src/graphics/GL/gfxglframebuffer.cpp
+	"graphics/GL/gfxglframebuffer.h"
+	"graphics/GL/gfxgltextureimpl.h"
+
+1433682747 /home/rugrats/Documents/CPP/WIP12/include/graphics/GL/gfxglframebuffer.h
+	"graphics/gfxframebuffer.h"
+	"graphics/GL/glfl.h"
 

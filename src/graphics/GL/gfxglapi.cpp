@@ -6,6 +6,7 @@
 #include "graphics/GL/gfxglmeshimpl.h"
 #include "graphics/GL/gfxgltextureimpl.h"
 #include "graphics/GL/gfxglbuffer.h"
+#include "graphics/GL/gfxglframebuffer.h"
 #include "logging.h"
 #include "memory.h"
 #include "error.h"
@@ -204,16 +205,47 @@ GfxMeshImpl *GfxGLApi::createMeshImpl()
     return NEW(GfxGLMeshImpl);
 }
 
-void GfxGLApi::clear(bool color,
-                     bool depth,
-                     const Float4& colorValue,
-                     float depthValue)
+GfxFramebuffer *GfxGLApi::createFramebuffer()
 {
-    glClearColor(colorValue.x, colorValue.y, colorValue.z, colorValue.w);
-    glClearDepth(depthValue);
+    return NEW(GfxGLFramebuffer);
+}
 
-    glClear(  (color ? GL_COLOR_BUFFER_BIT : 0)
-            | (depth ? GL_DEPTH_BUFFER_BIT : 0));
+void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
+{
+    if (framebuffer != NULL)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER,
+                          ((GfxGLFramebuffer *)framebuffer)->getGLFramebuffer());
+    } else
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+}
+
+void GfxGLApi::clearDepth(float depthValue)
+{
+    glClearBufferfv(GL_DEPTH, 0, &depthValue);
+}
+
+void GfxGLApi::clearColor(size_t rtIndex, Float4 value)
+{
+    GLfloat value_[] = {value.x, value.y, value.z, value.w};
+
+    glClearBufferfv(GL_COLOR, rtIndex, value_);
+}
+
+void GfxGLApi::clearColor(size_t rtIndex, Int4 value)
+{
+    GLint value_[] = {value.x, value.y, value.z, value.w};
+
+    glClearBufferiv(GL_COLOR, rtIndex, value_);
+}
+
+void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
+{
+    GLuint value_[] = {value.x, value.y, value.z, value.w};
+
+    glClearBufferuiv(GL_COLOR, rtIndex, value_);
 }
 
 #define BEGIN_DRAW for (size_t i = 0; i < textureBindingCount; ++i)\
@@ -256,6 +288,7 @@ case GfxCW:\
 \
     glActiveTexture(GL_TEXTURE0+i);\
     glBindTexture(binding.target, binding.lastTexture);\
+    binding.texture = nullptr;\
 }\
 \
 textureBindingCount = 0;\

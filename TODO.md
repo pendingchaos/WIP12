@@ -4,7 +4,6 @@
     * PhysicsCompoundShape should be resizable.
 - [ ] Text rendering.
 - [ ] Overlay rendering.
-- [ ] Framebuffers.
 - [ ] Post processing effects.
 - [ ] Shadow mapping.
 - [ ] Audio

@@ -76,7 +76,10 @@ static const GfxTexture::Format formats[] = {GfxTexture::AlphaU8,
                                              GfxTexture::Int4_32,
                                              GfxTexture::UInt4_32,
                                              GfxTexture::SRGBU8,
-                                             GfxTexture::SRGBAU8};
+                                             GfxTexture::SRGBAU8,
+                                             GfxTexture::DepthF32_F16,
+                                             GfxTexture::DepthF32_F24,
+                                             GfxTexture::DepthF32};
 
 static const GfxTexture::Face faces[] = {GfxTexture::PositiveX,
                                          GfxTexture::NegativeX,
@@ -146,11 +149,39 @@ GfxTexture::GfxTexture(const String& filename,
                        const String& name) : Resource(filename,
                                                       name,
                                                       GfxTextureType),
-                                             impl(gfxApi->createTextureImpl()) {}
+                                             impl(gfxApi->createTextureImpl())
+{
+    textureType = Texture2D;
+    compress = false;
+    setMaximumAnisotropy(1.0f);
+    setMinFilter(Bilinear);
+    setMagFilter(Bilinear);
+    setMipmapMode(None);
+    setWrapMode(Repeat);
+    baseWidth = 0;
+    baseHeight = 0;
+    compressionQuality = 255;
+    purpose = Other;
+    shadowmap = false;
+}
 
 GfxTexture::GfxTexture(const String& name) : Resource(name,
                                                       GfxTextureType),
-                                             impl(gfxApi->createTextureImpl()) {}
+                                             impl(gfxApi->createTextureImpl())
+{
+    textureType = Texture2D;
+    compress = false;
+    setMaximumAnisotropy(1.0f);
+    setMinFilter(Bilinear);
+    setMagFilter(Bilinear);
+    setMipmapMode(None);
+    setWrapMode(Repeat);
+    baseWidth = 0;
+    baseHeight = 0;
+    compressionQuality = 255;
+    purpose = Other;
+    shadowmap = false;
+}
 
 GfxTexture::~GfxTexture()
 {
@@ -170,6 +201,7 @@ void GfxTexture::removeContent()
     baseHeight = 0;
     compressionQuality = 255;
     purpose = Other;
+    shadowmap = false;
 
     DELETE(GfxTextureImpl, impl);
     impl = gfxApi->createTextureImpl();
@@ -263,6 +295,13 @@ void GfxTexture::setWrapMode(WrapMode mode)
     wrapMode = mode;
 
     impl->setWrapMode(wrapMode);
+}
+
+void GfxTexture::setShadowmap(bool shadowmap_)
+{
+    shadowmap = shadowmap_;
+
+    impl->setShadowmap(shadowmap_);
 }
 
 void GfxTexture::_load()

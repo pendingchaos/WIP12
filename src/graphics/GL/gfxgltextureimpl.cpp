@@ -66,7 +66,11 @@ static GLenum internalFormats[] = {GL_R8,
                                    GL_RGBA32UI,
 
                                    GL_SRGB8,
-                                   GL_SRGB8_ALPHA8};
+                                   GL_SRGB8_ALPHA8,
+
+                                   GL_DEPTH_COMPONENT16,
+                                   GL_DEPTH_COMPONENT24,
+                                   GL_DEPTH_COMPONENT32};
 
 static GLenum formats[] = {GL_RED,
                            GL_RED,
@@ -132,7 +136,11 @@ static GLenum formats[] = {GL_RED,
                            GL_RGBA,
 
                            GL_RGB,
-                           GL_RGBA};
+                           GL_RGBA,
+
+                           GL_DEPTH_COMPONENT,
+                           GL_DEPTH_COMPONENT,
+                           GL_DEPTH_COMPONENT};
 
 static GLenum types[] = {GL_UNSIGNED_BYTE,
                          GL_BYTE,
@@ -198,7 +206,11 @@ static GLenum types[] = {GL_UNSIGNED_BYTE,
                          GL_INT,
 
                          GL_UNSIGNED_BYTE,
-                         GL_UNSIGNED_BYTE};
+                         GL_UNSIGNED_BYTE,
+
+                         GL_FLOAT,
+                         GL_FLOAT,
+                         GL_FLOAT};
 
 #define R GL_RED
 #define G GL_GREEN
@@ -208,70 +220,74 @@ static GLenum types[] = {GL_UNSIGNED_BYTE,
 #define Z GL_ZERO
 
 static GLint swizzles[][4] = {{O, O, O, R},
-                               {O, O, O, R},
-                               {O, O, O, R},
-                               {O, O, O, R},
-                               {O, O, O, R},
-                               {O, O, O, R},
+                              {O, O, O, R},
+                              {O, O, O, R},
+                              {O, O, O, R},
+                              {O, O, O, R},
+                              {O, O, O, R},
 
-                               {R, R, R, O},
-                               {R, R, R, O},
-                               {R, R, R, O},
-                               {R, R, R, O},
-                               {R, R, R, O},
-                               {R, R, R, O},
+                              {R, R, R, O},
+                              {R, R, R, O},
+                              {R, R, R, O},
+                              {R, R, R, O},
+                              {R, R, R, O},
+                              {R, R, R, O},
 
-                               {R, R, R, G},
-                               {R, R, R, G},
-                               {R, R, R, G},
-                               {R, R, R, G},
-                               {R, R, R, G},
-                               {R, R, R, G},
+                              {R, R, R, G},
+                              {R, R, R, G},
+                              {R, R, R, G},
+                              {R, R, R, G},
+                              {R, R, R, G},
+                              {R, R, R, G},
 
-                               {R, G, B, O},
-                               {R, G, B, O},
-                               {R, G, B, O},
-                               {R, G, B, O},
-                               {R, G, B, O},
-                               {R, G, B, O},
+                              {R, G, B, O},
+                              {R, G, B, O},
+                              {R, G, B, O},
+                              {R, G, B, O},
+                              {R, G, B, O},
+                              {R, G, B, O},
 
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
 
-                               {R, Z, Z, Z},
-                               {R, Z, Z, Z},
-                               {R, Z, Z, Z},
-                               {R, Z, Z, Z},
-                               {R, Z, Z, Z},
-                               {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
 
-                               {R, G, Z, Z},
-                               {R, G, Z, Z},
-                               {R, G, Z, Z},
-                               {R, G, Z, Z},
-                               {R, G, Z, Z},
-                               {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
 
-                               {R, G, B, Z},
-                               {R, G, B, Z},
-                               {R, G, B, Z},
-                               {R, G, B, Z},
-                               {R, G, B, Z},
-                               {R, G, B, Z},
+                              {R, G, B, Z},
+                              {R, G, B, Z},
+                              {R, G, B, Z},
+                              {R, G, B, Z},
+                              {R, G, B, Z},
+                              {R, G, B, Z},
 
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
-                               {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
+                              {R, G, B, A},
 
-                               {R, G, B, Z},
-                               {R, G, B, A}};
+                              {R, G, B, Z},
+                              {R, G, B, A},
+
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z}};
 
 #undef R
 #undef G
@@ -290,20 +306,6 @@ glGetIntegerv(textureType == GfxTexture::CubeMap\
 glBindTexture(target, texture);
 
 #define END_TEXTURE_BINDING glBindTexture(target, lastTexture);
-
-#define SET_DEFAULT textureType = Texture2D;\
-    compress = false;\
-    maximumAnisotropy = 1.0f;\
-    minFilter = Bilinear;\
-    magFilter = Bilinear;\
-    mipmapMode = None;\
-    wrapMode = Repeat;\
-    gamma = 1.0f;\
-    baseWidth = 0;\
-    baseHeight = 0;\
-    compressionQuality = 255;\
-    purpose = Other;\
-    format = RGBU8;
 
 #define SET_DEFAULT_GL glTexImage2D(target, 0, GL_RGB, 0, 0, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);\
 glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -326,13 +328,18 @@ GfxGLTextureImpl::GfxGLTextureImpl()
 {
     glGenTextures(1, &texture);
 
-    textureType = GfxTexture::Texture2D;
-    minFilter = GfxTexture::Bilinear;
-    mipmapMode = GfxTexture::None;
-
     BEGIN_TEXTURE_BINDING
     SET_DEFAULT_GL
     END_TEXTURE_BINDING
+
+    maximumAnisotropy = 1.0f;
+    minFilter = GfxTexture::Bilinear;
+    magFilter = GfxTexture::Bilinear;
+    mipmapMode = GfxTexture::None;
+    wrapMode = GfxTexture::Repeat;
+    baseWidth = 0;
+    baseHeight = 0;
+    shadowmap = false;
 }
 
 GfxGLTextureImpl::~GfxGLTextureImpl()
@@ -359,6 +366,11 @@ void GfxGLTextureImpl::startCreation(GfxTexture::TextureType type_,
     BEGIN_TEXTURE_BINDING
 
     glTexParameteriv(target, GL_TEXTURE_SWIZZLE_RGBA, swizzles[(int)format_]);
+    glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, maximumAnisotropy);
+    setMinFiltering();
+    setMagFilter(magFilter);
+    setWrapMode(wrapMode);
+    setShadowmap(shadowmap);
 
     END_TEXTURE_BINDING
 }
@@ -498,6 +510,8 @@ void GfxGLTextureImpl::setMaximumAnisotropy(float maxAnisotropy)
 
         glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
 
+        maximumAnisotropy = maxAnisotropy;
+
         END_TEXTURE_BINDING;
     }
 }
@@ -569,6 +583,8 @@ void GfxGLTextureImpl::setWrapMode(GfxTexture::WrapMode mode)
     }
 
     END_TEXTURE_BINDING
+
+    wrapMode = mode;
 }
 
 void GfxGLTextureImpl::setMinFiltering()
@@ -631,4 +647,22 @@ void GfxGLTextureImpl::setMinFiltering()
     }
 
     END_TEXTURE_BINDING
+}
+
+void GfxGLTextureImpl::setShadowmap(bool shadowmap_)
+{
+    BEGIN_TEXTURE_BINDING
+
+    if (shadowmap_)
+    {
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LESS);
+    } else
+    {
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+    }
+
+    END_TEXTURE_BINDING
+
+    shadowmap = shadowmap_;
 }

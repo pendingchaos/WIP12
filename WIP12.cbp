@@ -43,7 +43,6 @@
 			<Add option="-fexceptions" />
 			<Add option="`sdl2-config --cflags`" />
 			<Add option="`pkg-config bullet --cflags`" />
-			<Add option="`pkg-config gtk+-3.0 --cflags`" />
 			<Add option="-std=gnu++11" />
 			<Add option="-DUSE_SDL2" />
 			<Add option="-DGLFL_USE_SDL2" />
@@ -55,7 +54,6 @@
 			<Add option="-rdynamic" />
 			<Add option="`sdl2-config --libs`" />
 			<Add option="`pkg-config bullet --libs`" />
-			<Add option="`pkg-config gtk+-3.0 --libs`" />
 			<Add library="libGL" />
 			<Add library="BulletDynamics" />
 			<Add library="BulletCollision" />

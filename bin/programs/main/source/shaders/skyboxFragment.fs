@@ -3,7 +3,6 @@ in vec3 frag_position;
 layout (location = 0) out vec4 result_color;
 
 uniform samplerCube enviroment;
-uniform float enviromentGamma;
 
 void main()
 {
