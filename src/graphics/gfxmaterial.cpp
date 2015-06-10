@@ -5,23 +5,30 @@
 #include "graphics/gfxrenderer.h"
 #include "file.h"
 
-GfxForwardMaterialImpl::ShaderComb::ShaderComb(GfxForwardMaterialImpl *mat_) : mat(mat_)
+GfxLitMaterialImpl::ShaderComb::ShaderComb(GfxLitMaterialImpl *mat_) : mat(mat_)
 {
-    vertexShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/vertex.bin");
-    fragmentShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/fragment.bin");
+    if (mat->forward)
+    {
+        vertexShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/forwardVertex.bin");
+        fragmentShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/forwardFragment.bin");
+    } else
+    {
+        vertexShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/gbufferVertex.bin");
+        fragmentShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/gbufferFragment.bin");
+    }
 }
 
-ResPtr<GfxShader> GfxForwardMaterialImpl::ShaderComb::getVertexShader() const
+ResPtr<GfxShader> GfxLitMaterialImpl::ShaderComb::getVertexShader() const
 {
     return vertexShader;
 }
 
-ResPtr<GfxShader> GfxForwardMaterialImpl::ShaderComb::getFragmentShader() const
+ResPtr<GfxShader> GfxLitMaterialImpl::ShaderComb::getFragmentShader() const
 {
     return fragmentShader;
 }
 
-bool GfxForwardMaterialImpl::ShaderComb::fragmentDefinesDirty() const
+bool GfxLitMaterialImpl::ShaderComb::fragmentDefinesDirty() const
 {
     return GfxShaderCombination::fragmentDefinesDirty() or
            lastAlbedoMap != mat->albedoMap or
@@ -31,7 +38,7 @@ bool GfxForwardMaterialImpl::ShaderComb::fragmentDefinesDirty() const
            lastEnvironmentMap != mat->environmentMap;
 }
 
-void GfxForwardMaterialImpl::ShaderComb::getFragmentDefines(HashMap<String, String >& defines) const
+void GfxLitMaterialImpl::ShaderComb::getFragmentDefines(HashMap<String, String >& defines) const
 {
     if (mat->smoothnessMap != nullptr)
     {
@@ -69,13 +76,14 @@ void GfxForwardMaterialImpl::ShaderComb::getFragmentDefines(HashMap<String, Stri
     }
 }
 
-GfxForwardMaterialImpl::GfxForwardMaterialImpl() : smoothness(1.0f),
-                                                   metalMask(1.0f),
-                                                   albedo(1.0f),
-                                                   fragmentBuffer(gfxApi->createBuffer()),
-                                                   lastSmoothness(0.0f),
-                                                   lastMetalMask(0.0f),
-                                                   lastAlbedo(0.0f)
+GfxLitMaterialImpl::GfxLitMaterialImpl(bool forward_) : smoothness(1.0f),
+                                                        metalMask(1.0f),
+                                                        albedo(1.0f),
+                                                        forward(forward_),
+                                                        fragmentBuffer(gfxApi->createBuffer()),
+                                                        lastSmoothness(0.0f),
+                                                        lastMetalMask(0.0f),
+                                                        lastAlbedo(0.0f)
 {
     shaderComb = NEW(ShaderComb, this);
 
@@ -84,15 +92,15 @@ GfxForwardMaterialImpl::GfxForwardMaterialImpl() : smoothness(1.0f),
     fragmentBuffer->allocData(24, data, GfxBuffer::Static);
 }
 
-GfxForwardMaterialImpl::~GfxForwardMaterialImpl()
+GfxLitMaterialImpl::~GfxLitMaterialImpl()
 {
     DELETE(GfxShaderCombination, shaderComb);
     DELETE(GfxBuffer, fragmentBuffer);
 }
 
-void GfxForwardMaterialImpl::render(GfxRenderer *renderer,
-                                    ResPtr<GfxMesh> mesh,
-                                    const Matrix4x4& worldMatrix)
+void GfxLitMaterialImpl::render(GfxRenderer *renderer,
+                                ResPtr<GfxMesh> mesh,
+                                const Matrix4x4& worldMatrix)
 {
     GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
 
@@ -113,8 +121,11 @@ void GfxForwardMaterialImpl::render(GfxRenderer *renderer,
 
     gfxApi->addUBOBinding(fragment, "material", fragmentBuffer);
 
-    gfxApi->uniform(fragment, "numLights", (uint32_t)renderer->getNumLights());
-    gfxApi->addUBOBinding(fragment, "lights_", renderer->getLightBuffer());
+    if (forward)
+    {
+        gfxApi->uniform(fragment, "numLights", (uint32_t)renderer->getNumLights());
+        gfxApi->addUBOBinding(fragment, "lights_", renderer->getLightBuffer());
+    }
 
     if (smoothnessMap != nullptr)
     {
@@ -136,7 +147,7 @@ void GfxForwardMaterialImpl::render(GfxRenderer *renderer,
         gfxApi->addTextureBinding(fragment, "normalMap", normalMap);
     }
 
-    if (environmentMap != nullptr)
+    if (environmentMap != nullptr and forward)
     {
         gfxApi->addTextureBinding(fragment, "environment", environmentMap);
     }
@@ -180,10 +191,13 @@ void GfxMaterial::save()
     switch (matType)
     {
     case Forward:
+    case Deferred:
     {
         file.writeUInt8(0);
 
-        GfxForwardMaterialImpl *impl_ = dynamic_cast<GfxForwardMaterialImpl *>(impl);
+        GfxLitMaterialImpl *impl_ = dynamic_cast<GfxLitMaterialImpl *>(impl);
+
+        file.writeUInt8(impl_->isForward());
 
         file.writeFloat32(impl_->albedo.x);
         file.writeFloat32(impl_->albedo.y);
@@ -281,9 +295,9 @@ void GfxMaterial::_load()
 
         if (type == 0)
         {
-            setMatType(GfxMaterial::Forward);
+            setMatType(file.readUInt8() == 0 ? Deferred : Forward);
 
-            GfxForwardMaterialImpl *impl = dynamic_cast<GfxForwardMaterialImpl *>(getImpl());
+            GfxLitMaterialImpl *impl = dynamic_cast<GfxLitMaterialImpl *>(getImpl());
 
             float r = file.readFloat32();
             float g = file.readFloat32();
@@ -346,4 +360,25 @@ void GfxMaterial::_load()
               filename,
               e.getString());
     }
+}
+
+void GfxMaterial::setMatType(MaterialType type_)
+{
+    DELETE(GfxMaterialImpl, impl);
+
+    switch (type_)
+    {
+    case Forward:
+    {
+        impl = NEW(GfxLitMaterialImpl, true);
+        break;
+    }
+    case Deferred:
+    {
+        impl = NEW(GfxLitMaterialImpl, false);
+        break;
+    }
+    }
+
+    matType = type_;
 }

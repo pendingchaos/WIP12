@@ -70,7 +70,14 @@ static GLenum internalFormats[] = {GL_R8,
 
                                    GL_DEPTH_COMPONENT16,
                                    GL_DEPTH_COMPONENT24,
-                                   GL_DEPTH_COMPONENT32};
+                                   GL_DEPTH_COMPONENT32,
+
+                                   GL_RG8,
+                                   GL_RG8_SNORM,
+                                   GL_RG16,
+                                   GL_RG16_SNORM,
+                                   GL_RG32F,
+                                   GL_RG16F};
 
 static GLenum formats[] = {GL_RED,
                            GL_RED,
@@ -140,7 +147,14 @@ static GLenum formats[] = {GL_RED,
 
                            GL_DEPTH_COMPONENT,
                            GL_DEPTH_COMPONENT,
-                           GL_DEPTH_COMPONENT};
+                           GL_DEPTH_COMPONENT,
+
+                           GL_RG,
+                           GL_RG,
+                           GL_RG,
+                           GL_RG,
+                           GL_RG,
+                           GL_RG};
 
 static GLenum types[] = {GL_UNSIGNED_BYTE,
                          GL_BYTE,
@@ -209,6 +223,13 @@ static GLenum types[] = {GL_UNSIGNED_BYTE,
                          GL_UNSIGNED_BYTE,
 
                          GL_FLOAT,
+                         GL_FLOAT,
+                         GL_FLOAT,
+
+                         GL_UNSIGNED_BYTE,
+                         GL_BYTE,
+                         GL_UNSIGNED_SHORT,
+                         GL_SHORT,
                          GL_FLOAT,
                          GL_FLOAT};
 
@@ -287,7 +308,14 @@ static GLint swizzles[][4] = {{O, O, O, R},
 
                               {R, Z, Z, Z},
                               {R, Z, Z, Z},
-                              {R, Z, Z, Z}};
+                              {R, Z, Z, Z},
+
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z},
+                              {R, G, Z, Z}};
 
 #undef R
 #undef G
@@ -326,6 +354,8 @@ glTexImage2D(target,\
 
 GfxGLTextureImpl::GfxGLTextureImpl()
 {
+    textureType = GfxTexture::Texture2D;
+
     glGenTextures(1, &texture);
 
     BEGIN_TEXTURE_BINDING

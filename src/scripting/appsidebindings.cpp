@@ -241,27 +241,26 @@ struct _functionStruct
     PhysicsShape *(*f195)(const String & arg0, const String & arg1);
     ShaderCompileException *(*f196)(const char * arg0, size_t arg1, const char * arg2, const String & arg3);
     Exception *(*f197)(const char * arg0, size_t arg1, const char * arg2);
-    GfxForwardMaterialImpl *(*f198)();
-    GfxForwardMaterialImpl *(*f199)(size_t count);
-    FileException *(*f200)(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4);
-    ResourceIOException *(*f201)(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5);
-    GfxTexture *(*f202)(const String & arg0, const String & arg1);
-    GfxTexture *(*f203)(const String & arg0);
-    PhysicsShapeImpl *(*f204)();
-    PhysicsShapeImpl *(*f205)(size_t count);
-    PhysicsDebugDrawer *(*f206)();
-    PhysicsDebugDrawer *(*f207)(size_t count);
-    Application *(*f208)(const char * arg0);
-    GfxModel *(*f209)(const String & arg0);
-    GfxModel *(*f210)(const String & arg0, const String & arg1);
-    Scene *(*f211)(const String & arg0);
-    Scene *(*f212)(const String & arg0, const String & arg1);
-    File *(*f213)(const char * arg0, const char * arg1);
-    Matrix3x3 *(*f214)();
-    Matrix3x3 *(*f215)(size_t count);
-    Matrix3x3 *(*f216)(const Matrix4x4 & arg0);
-    Matrix3x3 *(*f217)(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
-    GfxDebugDrawer *(*f218)(GfxApi * arg0);
+    FileException *(*f198)(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4);
+    ResourceIOException *(*f199)(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5);
+    GfxLitMaterialImpl *(*f200)(bool arg0);
+    GfxTexture *(*f201)(const String & arg0, const String & arg1);
+    GfxTexture *(*f202)(const String & arg0);
+    PhysicsShapeImpl *(*f203)();
+    PhysicsShapeImpl *(*f204)(size_t count);
+    PhysicsDebugDrawer *(*f205)();
+    PhysicsDebugDrawer *(*f206)(size_t count);
+    Application *(*f207)(const char * arg0);
+    GfxModel *(*f208)(const String & arg0);
+    GfxModel *(*f209)(const String & arg0, const String & arg1);
+    Scene *(*f210)(const String & arg0);
+    Scene *(*f211)(const String & arg0, const String & arg1);
+    File *(*f212)(const char * arg0, const char * arg1);
+    Matrix3x3 *(*f213)();
+    Matrix3x3 *(*f214)(size_t count);
+    Matrix3x3 *(*f215)(const Matrix4x4 & arg0);
+    Matrix3x3 *(*f216)(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
+    GfxDebugDrawer *(*f217)(GfxApi * arg0);
 };
 const char ** f0(unsigned int & arg0) {return getBacktrace(arg0);}
 size_t f1(const String & arg0) {return getHash(arg0);}
@@ -461,26 +460,25 @@ PhysicsShape *f194(const String & arg0) {return NEW(PhysicsShape, arg0);}
 PhysicsShape *f195(const String & arg0, const String & arg1) {return NEW(PhysicsShape, arg0, arg1);}
 ShaderCompileException *f196(const char * arg0, size_t arg1, const char * arg2, const String & arg3) {return NEW(ShaderCompileException, arg0, arg1, arg2, arg3);}
 Exception *f197(const char * arg0, size_t arg1, const char * arg2) {return NEW(Exception, arg0, arg1, arg2);}
-GfxForwardMaterialImpl *f198() {return NEW(GfxForwardMaterialImpl);}
-GfxForwardMaterialImpl *f199(size_t count) {return NEW_ARRAY(GfxForwardMaterialImpl, count);}
-FileException *f200(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4) {return NEW(FileException, arg0, arg1, arg2, arg3, arg4);}
-ResourceIOException *f201(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5) {return NEW(ResourceIOException, arg0, arg1, arg2, arg3, arg4, arg5);}
-GfxTexture *f202(const String & arg0, const String & arg1) {return NEW(GfxTexture, arg0, arg1);}
-GfxTexture *f203(const String & arg0) {return NEW(GfxTexture, arg0);}
-PhysicsShapeImpl *f204() {return NEW(PhysicsShapeImpl);}
-PhysicsShapeImpl *f205(size_t count) {return NEW_ARRAY(PhysicsShapeImpl, count);}
-PhysicsDebugDrawer *f206() {return NEW(PhysicsDebugDrawer);}
-PhysicsDebugDrawer *f207(size_t count) {return NEW_ARRAY(PhysicsDebugDrawer, count);}
-Application *f208(const char * arg0) {return NEW(Application, arg0);}
-GfxModel *f209(const String & arg0) {return NEW(GfxModel, arg0);}
-GfxModel *f210(const String & arg0, const String & arg1) {return NEW(GfxModel, arg0, arg1);}
-Scene *f211(const String & arg0) {return NEW(Scene, arg0);}
-Scene *f212(const String & arg0, const String & arg1) {return NEW(Scene, arg0, arg1);}
-File *f213(const char * arg0, const char * arg1) {return NEW(File, arg0, arg1);}
-Matrix3x3 *f214() {return NEW(Matrix3x3);}
-Matrix3x3 *f215(size_t count) {return NEW_ARRAY(Matrix3x3, count);}
-Matrix3x3 *f216(const Matrix4x4 & arg0) {return NEW(Matrix3x3, arg0);}
-Matrix3x3 *f217(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {return NEW(Matrix3x3, arg0, arg1, arg2);}
-GfxDebugDrawer *f218(GfxApi * arg0) {return NEW(GfxDebugDrawer, arg0);}
-static const _functionStruct functions = {f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51, f52, f53, f54, f55, f56, f57, f58, f59, f60, f61, f62, f63, f64, f65, f66, f67, f68, f69, f70, f71, f72, f73, f74, f75, f76, f77, f78, f79, f80, f81, f82, f83, f84, f85, f86, f87, f88, f89, f90, f91, f92, f93, f94, f95, f96, f97, f98, f99, f100, f101, f102, f103, f104, f105, f106, f107, f108, f109, f110, f111, f112, f113, f114, f115, f116, f117, f118, f119, f120, f121, f122, f123, f124, f125, f126, f127, f128, f129, f130, f131, f132, f133, f134, f135, f136, f137, f138, f139, f140, f141, f142, f143, f144, f145, f146, f147, f148, f149, f150, f151, f152, f153, f154, f155, f156, f157, f158, f159, f160, f161, f162, f163, f164, f165, f166, f167, f168, f169, f170, f171, f172, f173, f174, f175, f176, f177, f178, f179, f180, f181, f182, f183, f184, f185, f186, f187, f188, f189, f190, f191, f192, f193, f194, f195, f196, f197, f198, f199, f200, f201, f202, f203, f204, f205, f206, f207, f208, f209, f210, f211, f212, f213, f214, f215, f216, f217, f218};
+FileException *f198(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4) {return NEW(FileException, arg0, arg1, arg2, arg3, arg4);}
+ResourceIOException *f199(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5) {return NEW(ResourceIOException, arg0, arg1, arg2, arg3, arg4, arg5);}
+GfxLitMaterialImpl *f200(bool arg0) {return NEW(GfxLitMaterialImpl, arg0);}
+GfxTexture *f201(const String & arg0, const String & arg1) {return NEW(GfxTexture, arg0, arg1);}
+GfxTexture *f202(const String & arg0) {return NEW(GfxTexture, arg0);}
+PhysicsShapeImpl *f203() {return NEW(PhysicsShapeImpl);}
+PhysicsShapeImpl *f204(size_t count) {return NEW_ARRAY(PhysicsShapeImpl, count);}
+PhysicsDebugDrawer *f205() {return NEW(PhysicsDebugDrawer);}
+PhysicsDebugDrawer *f206(size_t count) {return NEW_ARRAY(PhysicsDebugDrawer, count);}
+Application *f207(const char * arg0) {return NEW(Application, arg0);}
+GfxModel *f208(const String & arg0) {return NEW(GfxModel, arg0);}
+GfxModel *f209(const String & arg0, const String & arg1) {return NEW(GfxModel, arg0, arg1);}
+Scene *f210(const String & arg0) {return NEW(Scene, arg0);}
+Scene *f211(const String & arg0, const String & arg1) {return NEW(Scene, arg0, arg1);}
+File *f212(const char * arg0, const char * arg1) {return NEW(File, arg0, arg1);}
+Matrix3x3 *f213() {return NEW(Matrix3x3);}
+Matrix3x3 *f214(size_t count) {return NEW_ARRAY(Matrix3x3, count);}
+Matrix3x3 *f215(const Matrix4x4 & arg0) {return NEW(Matrix3x3, arg0);}
+Matrix3x3 *f216(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {return NEW(Matrix3x3, arg0, arg1, arg2);}
+GfxDebugDrawer *f217(GfxApi * arg0) {return NEW(GfxDebugDrawer, arg0);}
+static const _functionStruct functions = {f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51, f52, f53, f54, f55, f56, f57, f58, f59, f60, f61, f62, f63, f64, f65, f66, f67, f68, f69, f70, f71, f72, f73, f74, f75, f76, f77, f78, f79, f80, f81, f82, f83, f84, f85, f86, f87, f88, f89, f90, f91, f92, f93, f94, f95, f96, f97, f98, f99, f100, f101, f102, f103, f104, f105, f106, f107, f108, f109, f110, f111, f112, f113, f114, f115, f116, f117, f118, f119, f120, f121, f122, f123, f124, f125, f126, f127, f128, f129, f130, f131, f132, f133, f134, f135, f136, f137, f138, f139, f140, f141, f142, f143, f144, f145, f146, f147, f148, f149, f150, f151, f152, f153, f154, f155, f156, f157, f158, f159, f160, f161, f162, f163, f164, f165, f166, f167, f168, f169, f170, f171, f172, f173, f174, f175, f176, f177, f178, f179, f180, f181, f182, f183, f184, f185, f186, f187, f188, f189, f190, f191, f192, f193, f194, f195, f196, f197, f198, f199, f200, f201, f202, f203, f204, f205, f206, f207, f208, f209, f210, f211, f212, f213, f214, f215, f216, f217};
 const void *getScriptFunctionStruct() {return &functions;}

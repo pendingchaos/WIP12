@@ -36,10 +36,7 @@ void GfxModel::save()
 
     for (size_t i = 0; i < contexts.getEntryCount(); ++i)
     {
-        const String& contextName = contexts.getKey(i);
-
-        file.writeUInt32LE(contextName.getLength());
-        file.write(contextName.getLength(), contextName.getData());
+        file.writeUInt8((uint8_t)contexts.getKey(i));
 
         const Context& context = contexts.getValue(i);
 

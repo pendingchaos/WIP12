@@ -113,7 +113,6 @@
 		<Unit filename="include/scripting/script.h" />
 		<Unit filename="include/scripting/scriptinclude.h" />
 		<Unit filename="include/scripting/scriptsidebindings.h" />
-		<Unit filename="scripts/blog.py" />
 		<Unit filename="scripts/genGLFL.py" />
 		<Unit filename="scripts/gen_misc_macros.py" />
 		<Unit filename="scripts/script_binding_generator.py" />

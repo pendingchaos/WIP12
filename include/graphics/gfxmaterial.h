@@ -37,11 +37,11 @@ class GfxMaterialImpl
     NO_COPY(GfxMaterialImpl)
 };
 
-class GfxForwardMaterialImpl : public GfxMaterialImpl
+class GfxLitMaterialImpl : public GfxMaterialImpl
 {
     public:
-        GfxForwardMaterialImpl();
-        virtual ~GfxForwardMaterialImpl();
+        GfxLitMaterialImpl(bool forward);
+        virtual ~GfxLitMaterialImpl();
 
         virtual void render(GfxRenderer *renderer,
                             ResPtr<GfxMesh> mesh,
@@ -55,7 +55,13 @@ class GfxForwardMaterialImpl : public GfxMaterialImpl
         ResPtr<GfxTexture> albedoMap;
         ResPtr<GfxTexture> environmentMap;
         ResPtr<GfxTexture> normalMap;
+
+        inline bool isForward()
+        {
+            return forward;
+        }
     private:
+        bool forward;
         GfxBuffer *fragmentBuffer;
 
         float lastSmoothness;
@@ -65,7 +71,7 @@ class GfxForwardMaterialImpl : public GfxMaterialImpl
         class ShaderComb : public GfxShaderCombination
         {
             public:
-                ShaderComb(GfxForwardMaterialImpl *mat);
+                ShaderComb(GfxLitMaterialImpl *mat);
 
                 virtual ResPtr<GfxShader> getVertexShader() const;
 
@@ -74,7 +80,7 @@ class GfxForwardMaterialImpl : public GfxMaterialImpl
                 virtual bool fragmentDefinesDirty() const;
                 virtual void getFragmentDefines(HashMap<String, String >& defines) const;
 
-                GfxForwardMaterialImpl *mat;
+                GfxLitMaterialImpl *mat;
 
                 ResPtr<GfxShader> vertexShader;
                 ResPtr<GfxShader> fragmentShader;
@@ -86,7 +92,7 @@ class GfxForwardMaterialImpl : public GfxMaterialImpl
                 mutable ResPtr<GfxTexture> lastEnvironmentMap;
         };
 
-    NO_COPY_INHERITED(GfxForwardMaterialImpl, GfxMaterialImpl)
+    NO_COPY_INHERITED(GfxLitMaterialImpl, GfxMaterialImpl)
 };
 
 class GfxMaterial : public Resource
@@ -94,7 +100,8 @@ class GfxMaterial : public Resource
     public:
         enum MaterialType
         {
-            Forward
+            Forward,
+            Deferred
         };
 
         static const Resource::Type resource_type = GfxMaterialType;
@@ -109,21 +116,7 @@ class GfxMaterial : public Resource
 
         virtual void save();
 
-        inline void setMatType(MaterialType type_)
-        {
-            DELETE(GfxMaterialImpl, impl);
-
-            switch (type_)
-            {
-            case Forward:
-            {
-                impl = NEW(GfxForwardMaterialImpl);
-                break;
-            }
-            }
-
-            matType = type_;
-        }
+        void setMatType(MaterialType type_);
 
         inline MaterialType getMatType() const
         {

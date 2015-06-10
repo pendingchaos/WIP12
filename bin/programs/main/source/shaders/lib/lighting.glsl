@@ -99,7 +99,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
             _lighting(dir,
                       specular,
                       diffuse,
-                      mix(vec3(1.0), albedo.rgb, metallic),
+                      mix(vec3(1.0), albedo, metallic),
                       roughness,
                       metallic,
                       normal,

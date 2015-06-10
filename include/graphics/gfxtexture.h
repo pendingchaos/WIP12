@@ -124,7 +124,14 @@ class GfxTexture : public Resource
 
             DepthF32_F16,
             DepthF32_F24,
-            DepthF32
+            DepthF32,
+
+            RedGreenU8,
+            RedGreenI8,
+            RedGreenU16,
+            RedGreenI16,
+            RedGreenF32,
+            RedGreenF32_F16,
         };
 
         enum Purpose

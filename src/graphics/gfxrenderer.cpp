@@ -23,11 +23,27 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     skyboxVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxVertex.bin");
     skyboxFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxFragment.bin");
     skyboxMesh = resMgr->getResourceByFilename<GfxMesh>("resources/meshes/cube.bin");
-    displayVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/displayVertex.bin");
-    displayFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/displayFragment.bin");
+    gammaCorrectionFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/toSRGBFragment.bin");
+    vignetteFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/vignetteFragment.bin");
+    fxaaFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/fxaaFragment.bin");
+    lightingDirectional = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lightingDirectional.bin");
+    lightingPoint = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lightingPoint.bin");
+    lightingSpot = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lightingSpot.bin");
+    ssaoFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoFragment.bin");
+    ssaoBlurXFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
+    ssaoBlurYFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
+    postEffectVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/postEffectVertex.bin");
 
-    compiledDisplayVertex = displayVertex->getCompiled();
-    compiledDisplayFragment = displayFragment->getCompiled();
+    compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
+    compiledVignetteFragment = vignetteFragment->getCompiled();
+    compiledFXAAFragment = fxaaFragment->getCompiled();
+    compiledLightingDirectional = lightingDirectional->getCompiled();
+    compiledLightingPoint = lightingPoint->getCompiled();
+    compiledLightingSpot = lightingSpot->getCompiled();
+    compiledSSAOFragment = ssaoFragment->getCompiled();
+    compiledSSAOBlurXFragment = ssaoBlurXFragment->getCompiled();
+    compiledSSAOBlurYFragment = ssaoBlurYFragment->getCompiled();
+    compiledPostEffectVertex = postEffectVertex->getCompiled();
 
     lightBuffer = gfxApi->createBuffer();
 
@@ -55,21 +71,44 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     fullScreenQuadMesh->setVertexAttrib(GfxPosition, positionAttribute);
 
-    unmodifiedColorTexture = NEW(GfxTexture, "");
-
+    readColorTexture = NEW(GfxTexture, "");
+    writeColorTexture = NEW(GfxTexture, "");
     depthTexture = NEW(GfxTexture, "");
+    materialTexture = NEW(GfxTexture, "");
+    normalTexture = NEW(GfxTexture, "");
+    ssaoTexture = NEW(GfxTexture, "");
+    ssaoBlurXTexture = NEW(GfxTexture, "");
 
     resize(640);
 
-    unmodifiedFramebuffer = gfxApi->createFramebuffer();
+    readFramebuffer = gfxApi->createFramebuffer();
+    readFramebuffer->addColorAttachment(0, readColorTexture);
+    readFramebuffer->setDepthAttachment(depthTexture);
 
-    unmodifiedFramebuffer->addColorAttachment(0, unmodifiedColorTexture);
-    unmodifiedFramebuffer->setDepthAttachment(depthTexture);
+    writeFramebuffer = gfxApi->createFramebuffer();
+    writeFramebuffer->addColorAttachment(0, writeColorTexture);
+    writeFramebuffer->setDepthAttachment(depthTexture);
+
+    gBufferFramebuffer = gfxApi->createFramebuffer();
+    gBufferFramebuffer->addColorAttachment(0, writeColorTexture);
+    gBufferFramebuffer->addColorAttachment(1, materialTexture);
+    gBufferFramebuffer->addColorAttachment(2, normalTexture);
+    gBufferFramebuffer->setDepthAttachment(depthTexture);
+
+    ssaoFramebuffer = gfxApi->createFramebuffer();
+    ssaoFramebuffer->addColorAttachment(0, ssaoTexture);
+
+    ssaoBlurXFramebuffer = gfxApi->createFramebuffer();
+    ssaoBlurXFramebuffer->addColorAttachment(0, ssaoBlurXTexture);
 }
 
 GfxRenderer::~GfxRenderer()
 {
-    DELETE(GfxFramebuffer, unmodifiedFramebuffer);
+    DELETE(GfxFramebuffer, readFramebuffer);
+    DELETE(GfxFramebuffer, writeFramebuffer);
+    DELETE(GfxFramebuffer, gBufferFramebuffer);
+    DELETE(GfxFramebuffer, ssaoFramebuffer);
+    DELETE(GfxFramebuffer, ssaoBlurXFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
 }
@@ -136,14 +175,23 @@ void GfxRenderer::resize(const UInt2& size)
             camera.setHeight(height);
         }
 
-        unmodifiedColorTexture->startCreation(GfxTexture::Texture2D,
-                                              false,
-                                              width,
-                                              height,
-                                              0,
-                                              GfxTexture::Other,
-                                              GfxTexture::RGBF32_F16);
-        unmodifiedColorTexture->allocMipmap(0, 1, NULL);
+        readColorTexture->startCreation(GfxTexture::Texture2D,
+                                        false,
+                                        width,
+                                        height,
+                                        0,
+                                        GfxTexture::Other,
+                                        GfxTexture::RGBF32_F16);
+        readColorTexture->allocMipmap(0, 1, NULL);
+
+        writeColorTexture->startCreation(GfxTexture::Texture2D,
+                                         false,
+                                         width,
+                                         height,
+                                         0,
+                                         GfxTexture::Other,
+                                         GfxTexture::RGBF32_F16);
+        writeColorTexture->allocMipmap(0, 1, NULL);
 
         depthTexture->startCreation(GfxTexture::Texture2D,
                                     false,
@@ -153,27 +201,213 @@ void GfxRenderer::resize(const UInt2& size)
                                     GfxTexture::Other,
                                     GfxTexture::DepthF32_F24);
         depthTexture->allocMipmap(0, 1, NULL);
+
+        materialTexture->startCreation(GfxTexture::Texture2D,
+                                       false,
+                                       width,
+                                       height,
+                                       0,
+                                       GfxTexture::Other,
+                                       GfxTexture::RedGreenU8);
+        materialTexture->allocMipmap(0, 1, NULL);
+
+        normalTexture->startCreation(GfxTexture::Texture2D,
+                                     false,
+                                     width,
+                                     height,
+                                     0,
+                                     GfxTexture::Other,
+                                     GfxTexture::RGBF32_F16);
+        normalTexture->allocMipmap(0, 1, NULL);
+
+        ssaoTexture->startCreation(GfxTexture::Texture2D,
+                                   false,
+                                   width,
+                                   height,
+                                   0,
+                                   GfxTexture::Other,
+                                   GfxTexture::LuminanceU8);
+        ssaoTexture->allocMipmap(0, 1, NULL);
+
+        ssaoBlurXTexture->startCreation(GfxTexture::Texture2D,
+                                        false,
+                                        width,
+                                        height,
+                                        0,
+                                        GfxTexture::Other,
+                                        GfxTexture::LuminanceU8);
+        ssaoBlurXTexture->allocMipmap(0, 1, NULL);
     }
 }
 
 void GfxRenderer::render()
 {
+    ResPtr<GfxTexture> oldReadTex = readColorTexture;
+    ResPtr<GfxTexture> oldWriteTex = writeColorTexture;
+    GfxFramebuffer *oldReadFb = readFramebuffer;
+    GfxFramebuffer *oldWriteFb = writeFramebuffer;
+
     gfxApi->setViewport(0, 0, width, height);
 
-    gfxApi->setCurrentFramebuffer(unmodifiedFramebuffer);
+    //G buffer
+    gfxApi->setCurrentFramebuffer(gBufferFramebuffer);
     gfxApi->setWriteDepth(true);
     gfxApi->setDepthFunction(GfxLess);
 
     gfxApi->clearDepth();
 
-    if (skybox == nullptr)
+    gfxApi->clearColor(0, Float4(0.0f));
+    gfxApi->clearColor(1, Float4(0.0f));
+    gfxApi->clearColor(2, Float4(0.5f, 0.5f, 0.5f, 0.0f));
+
+    renderEntities(GfxModel::GBuffer);
+
+    swapFramebuffers();
+
+    gfxApi->setWriteDepth(false);
+    gfxApi->setDepthFunction(GfxAlways);
+
+    //SSAO
+    //This should not mess up readColorTexture.
+    gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledSSAOFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledSSAOFragment, "depthTexture", depthTexture);
+    gfxApi->addTextureBinding(compiledSSAOFragment, "normalTexture", normalTexture);
+    gfxApi->uniform(compiledSSAOFragment, "cameraNear", camera.getNear());
+    gfxApi->uniform(compiledSSAOFragment, "cameraFar", camera.getFar());
+    gfxApi->uniform(compiledSSAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    //SSAO Blur X
+    gfxApi->setCurrentFramebuffer(ssaoBlurXFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledSSAOBlurXFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledSSAOBlurXFragment, "aoTexture", ssaoTexture);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    //SSAO Blur Y
+    gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledSSAOBlurYFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledSSAOBlurYFragment, "aoTexture", ssaoBlurXTexture);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    //Lighting using the G buffer
+    gfxApi->setCurrentFramebuffer(writeFramebuffer);
+    gfxApi->clearColor(0, Float4(0.0f));
+
+    Matrix4x4 viewProjection = (camera.getProjectionMatrix() * camera.getViewMatrix());
+
+    gfxApi->setBlendingEnabled(true);
+    gfxApi->setBlendFactors(GfxOne, GfxOne, GfxOne, GfxOne);
+    gfxApi->setBlendMode(GfxAdd, GfxAdd);
+
+    for (size_t i = 0; i < lights.getCount(); ++i)
     {
-        gfxApi->clearColor(0, Float4(1.0f));
+        const Light& light = lights[i];
+
+        GfxCompiledShader *fragmentShader;
+
+        switch (light.type)
+        {
+        case Light::Directional:
+        {
+            fragmentShader = compiledLightingDirectional;
+            break;
+        }
+        case Light::Point:
+        {
+            fragmentShader = compiledLightingPoint;
+            break;
+        }
+        case Light::Spot:
+        {
+            fragmentShader = compiledLightingSpot;
+            break;
+        }
+        }
+
+        gfxApi->begin(compiledPostEffectVertex,
+                      NULL,
+                      NULL,
+                      NULL,
+                      fragmentShader,
+                      fullScreenQuadMesh);
+
+        gfxApi->addTextureBinding(fragmentShader, "albedoTexture", readColorTexture);
+        gfxApi->addTextureBinding(fragmentShader, "materialTexture", materialTexture);
+        gfxApi->addTextureBinding(fragmentShader, "normalTexture", normalTexture);
+        gfxApi->addTextureBinding(fragmentShader, "depthTexture", depthTexture);
+        gfxApi->addTextureBinding(fragmentShader, "aoTexture", ssaoTexture);
+        gfxApi->uniform(fragmentShader, "viewProjection", viewProjection);
+        gfxApi->uniform(fragmentShader, "lightColor", light.color * light.power);
+        gfxApi->uniform(fragmentShader, "cameraPosition", camera.getPosition());
+
+        switch (light.type)
+        {
+        case Light::Directional:
+        {
+            gfxApi->uniform(fragmentShader, "lightNegDir", -light.direction.direction.normalize());
+            break;
+        }
+        case Light::Spot:
+        {
+            gfxApi->uniform(fragmentShader, "lightNegDir", -light.spot.direction.normalize());
+            gfxApi->uniform(fragmentShader, "lightPos", light.spot.position);
+            gfxApi->uniform(fragmentShader, "lightCosInnerCutoff", (float)std::cos(RADIANS(light.spot.innerCutoff)));
+            gfxApi->uniform(fragmentShader, "lightCosOuterCutoff", (float)std::cos(RADIANS(light.spot.outerCutoff)));
+            gfxApi->uniform(fragmentShader, "lightRadius", light.spot.radius);
+            break;
+        }
+        case Light::Point:
+        {
+            gfxApi->uniform(fragmentShader, "lightPos", light.point.position);
+            gfxApi->uniform(fragmentShader, "lightRadius", light.point.radius);
+            break;
+        }
+        }
+
+        gfxApi->end(fullScreenQuadMesh->primitive,
+                    fullScreenQuadMesh->numVertices,
+                    fullScreenQuadMesh->winding);
     }
+
+    //Forward
+    gfxApi->setBlendingEnabled(false);
+    gfxApi->setWriteDepth(true);
+    gfxApi->setDepthFunction(GfxLessEqual);
 
     fillLightBuffer(scene);
 
-    renderEntities();
+    renderEntities(GfxModel::Forward);
 
     renderSkybox();
 
@@ -182,25 +416,70 @@ void GfxRenderer::render()
         debugDrawer->render(camera);
     }
 
-    gfxApi->setCurrentFramebuffer(NULL);
+    swapFramebuffers();
+
     gfxApi->setWriteDepth(false);
     gfxApi->setDepthFunction(GfxAlways);
 
-    gfxApi->begin(compiledDisplayVertex,
+    //Vignette
+    gfxApi->setCurrentFramebuffer(writeFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
                   NULL,
                   NULL,
                   NULL,
-                  compiledDisplayFragment,
+                  compiledVignetteFragment,
                   fullScreenQuadMesh);
 
-    gfxApi->uniform(compiledDisplayFragment, "vignetteRadius", vignetteRadius);
-    gfxApi->uniform(compiledDisplayFragment, "vignetteSoftness", vignetteSoftness);
-    gfxApi->uniform(compiledDisplayFragment, "vignetteIntensity", vignetteIntensity);
-    gfxApi->addTextureBinding(compiledDisplayFragment, "colorTexture", unmodifiedColorTexture);
+    gfxApi->uniform(compiledVignetteFragment, "vignetteRadius", vignetteRadius);
+    gfxApi->uniform(compiledVignetteFragment, "vignetteSoftness", vignetteSoftness);
+    gfxApi->uniform(compiledVignetteFragment, "vignetteIntensity", vignetteIntensity);
+    gfxApi->addTextureBinding(compiledVignetteFragment, "colorTexture", readColorTexture);
 
     gfxApi->end(fullScreenQuadMesh->primitive,
                 fullScreenQuadMesh->numVertices,
                 fullScreenQuadMesh->winding);
+
+    swapFramebuffers();
+
+    //FXAA
+    gfxApi->setCurrentFramebuffer(writeFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledFXAAFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledFXAAFragment, "colorTexture", readColorTexture);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    swapFramebuffers();
+
+    //Gamma correction
+    gfxApi->setCurrentFramebuffer(NULL);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledGammaCorrectionFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledGammaCorrectionFragment, "colorTexture", readColorTexture);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    readColorTexture = oldReadTex;
+    writeColorTexture = oldWriteTex;
+    readFramebuffer = oldReadFb;
+    writeFramebuffer = oldWriteFb;
 }
 
 void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
@@ -262,7 +541,7 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
     DELETE_ARRAY(float, lightData);
 }
 
-void GfxRenderer::renderEntities()
+void GfxRenderer::renderEntities(GfxModel::ContextType contextType)
 {
     const List<Entity *>& entities = scene->getEntities();
 
@@ -289,7 +568,7 @@ void GfxRenderer::renderEntities()
             }
             case RenderComponent::Model:
             {
-                renderModel(GfxModel::Forward, camera, transform, comp->model);
+                renderModel(contextType, camera, transform, comp->model);
                 break;
             }
             }
@@ -375,4 +654,10 @@ void GfxRenderer::renderModel(GfxModel::ContextType contextType,
             }
         }
     }
+}
+
+void GfxRenderer::swapFramebuffers()
+{
+    std::swap(writeFramebuffer, readFramebuffer);
+    std::swap(writeColorTexture, readColorTexture);
 }

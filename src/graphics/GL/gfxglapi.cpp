@@ -215,7 +215,9 @@ void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
         glBindFramebuffer(GL_FRAMEBUFFER,
                           ((GfxGLFramebuffer *)framebuffer)->getGLFramebuffer());
 
-        for (size_t i = 0; i < framebuffer->getNumColorAttachments(); ++i)
+        size_t numBuffers = framebuffer->getNumColorAttachments();
+
+        for (size_t i = 0; i < numBuffers; ++i)
         {
             ResPtr<GfxTexture> texture = framebuffer->getColorAttachment(i);
 
@@ -236,6 +238,15 @@ void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
                                    ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
                                    framebuffer->getDepthTextureMipmapLevel());
         }
+
+        GLenum drawBuffers[numBuffers];
+
+        for (size_t i = 0; i < numBuffers; ++i)
+        {
+            drawBuffers[i] = GL_COLOR_ATTACHMENT0+i;
+        }
+
+        glDrawBuffers(numBuffers, drawBuffers);
     } else
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);

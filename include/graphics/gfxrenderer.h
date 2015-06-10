@@ -63,26 +63,53 @@ class GfxRenderer
         ResPtr<GfxShader> skyboxFragment;
         ResPtr<GfxMesh> skyboxMesh;
         ResPtr<GfxMesh> fullScreenQuadMesh;
-        ResPtr<GfxShader> displayVertex;
-        ResPtr<GfxShader> displayFragment;
-        GfxCompiledShader *compiledDisplayVertex;
-        GfxCompiledShader *compiledDisplayFragment;
+        ResPtr<GfxShader> gammaCorrectionFragment;
+        ResPtr<GfxShader> vignetteFragment;
+        ResPtr<GfxShader> fxaaFragment;
+        ResPtr<GfxShader> lightingDirectional;
+        ResPtr<GfxShader> lightingPoint;
+        ResPtr<GfxShader> lightingSpot;
+        ResPtr<GfxShader> ssaoFragment;
+        ResPtr<GfxShader> ssaoBlurXFragment;
+        ResPtr<GfxShader> ssaoBlurYFragment;
+        ResPtr<GfxShader> postEffectVertex;
+        GfxCompiledShader *compiledGammaCorrectionFragment;
+        GfxCompiledShader *compiledVignetteFragment;
+        GfxCompiledShader *compiledFXAAFragment;
+        GfxCompiledShader *compiledLightingDirectional;
+        GfxCompiledShader *compiledLightingPoint;
+        GfxCompiledShader *compiledLightingSpot;
+        GfxCompiledShader *compiledSSAOFragment;
+        GfxCompiledShader *compiledSSAOBlurXFragment;
+        GfxCompiledShader *compiledSSAOBlurYFragment;
+        GfxCompiledShader *compiledPostEffectVertex;
 
         size_t numLights;
         GfxBuffer *lightBuffer;
 
         void fillLightBuffer(ResPtr<Scene> scene);
-        void renderEntities();
+        void renderEntities(GfxModel::ContextType contextType);
         void renderSkybox();
-        void renderModel(GfxModel::ContextType contextName,
+        void renderModel(GfxModel::ContextType contextType,
                          const Camera& camera,
                          const Matrix4x4& worldMatrix,
                          const ResPtr<GfxModel> model);
 
-        ResPtr<GfxTexture> unmodifiedColorTexture;
+        ResPtr<GfxTexture> writeColorTexture;
+        ResPtr<GfxTexture> readColorTexture;
         ResPtr<GfxTexture> depthTexture;
+        ResPtr<GfxTexture> materialTexture;
+        ResPtr<GfxTexture> normalTexture;
+        ResPtr<GfxTexture> ssaoTexture;
+        ResPtr<GfxTexture> ssaoBlurXTexture;
 
-        GfxFramebuffer *unmodifiedFramebuffer;
+        GfxFramebuffer *readFramebuffer;
+        GfxFramebuffer *writeFramebuffer;
+        GfxFramebuffer *gBufferFramebuffer;
+        GfxFramebuffer *ssaoFramebuffer;
+        GfxFramebuffer *ssaoBlurXFramebuffer;
+
+        void swapFramebuffers();
 };
 
 #endif // GFXRENDERER_H

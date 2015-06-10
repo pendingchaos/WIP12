@@ -1,5 +1,3 @@
-#include "lib/color.glsl"
-
 layout (location = 0) out vec4 result_color;
 
 in vec2 frag_uv;
@@ -23,7 +21,5 @@ void main()
     result_color = texture(colorTexture, frag_uv);
     
     result_color *= getVignette();
-    
-    result_color = toSRGB(result_color);
 }
 

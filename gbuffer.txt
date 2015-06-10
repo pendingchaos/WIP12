@@ -1,8 +1,6 @@
 g0 r(16F) g(16F) b(16F)
 g1 metallic(u8) roughness(u8)
-g2 normalx(u8) normaly(u8) normalz(u8)
+g2 normalx(16F) normaly(16F) normalz(16F)
 g3 depth(24F)
 
-    size: 14 bytes, 4 textures = 29 megabytes at 1920x1080
-
-Uses Best Fit Normals (BFN).
+    size: 17 bytes, 4 textures = 35.25 megabytes at 1920x1080

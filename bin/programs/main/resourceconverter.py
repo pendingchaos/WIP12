@@ -239,13 +239,15 @@ if __name__ == "__main__":
     class Material(Resource):
         class Type:
             Forward = "forward"
+            Deferred = "deferred"
         
         class Params(object):
             def save(self):
                 return {}
         
-        class ForwardParams(Params):
-            def __init__(self):
+        class LitParams(Params):
+            def __init__(self, forward):
+                self.forward = forward
                 self.albedo = [1.0, 1.0, 1.0, 1.0]
                 self.smoothness = 0.6
                 self.metalMask = 0.0
@@ -256,7 +258,8 @@ if __name__ == "__main__":
                 self.environmentMap = None
             
             def convert(self):
-                s = struct.pack("<ffffff",
+                s = struct.pack("<bffffff",
+                                self.forward,
                                 self.albedo[0],
                                 self.albedo[1],
                                 self.albedo[2],
@@ -300,14 +303,15 @@ if __name__ == "__main__":
             Resource.__init__(self, "material", src_filenames, dest_filename)
             
             self.type = Material.Type.Forward
-            self.params = Material.ForwardParams()
+            self.params = Material.LitParams(True)
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
             
             output.write("mtrl\x01\x00")
             
-            output.write({Material.Type.Forward: "\x00"}[self.type])
+            output.write({Material.Type.Forward: "\x00",
+                          Material.Type.Deferred: "\x00"}[self.type])
             
             output.write(self.params.convert())
             
@@ -318,6 +322,7 @@ if __name__ == "__main__":
     class Model(Resource):
         class ContextType:
             Forward = "forward"
+            GBuffer = "gbuffer"
         
         class LOD(object):
             def __init__(self, mesh, material, min_distance, max_distance):
@@ -342,7 +347,8 @@ if __name__ == "__main__":
             output.write(struct.pack("<L", len(self.contexts)))
             
             for type_, submodels in self.contexts.iteritems():
-                output.write({Model.ContextType.Forward: "\x00"}[type_])
+                output.write({Model.ContextType.Forward: "\x00",
+                              Model.ContextType.GBuffer: "\x01"}[type_])
                 
                 output.write(struct.pack("<L", len(submodels)))
                 
@@ -528,8 +534,8 @@ if __name__ == "__main__":
                 elif type_ == Scene.Light.Type.Spot:
                     self.position = [0.0, 0.0, 0.0]
                     self.direction = [0.0, -1.0, 0.0]
-                    self.inner_cutoff = 20.0
-                    self.outer_cutoff = 18.0
+                    self.inner_cutoff = 18.0
+                    self.outer_cutoff = 20.0
                     self.radius = 1.0
                 elif type_ == Scene.Light.Type.Point:
                     self.position = [0.0, 0.0, 0.0]
@@ -762,18 +768,52 @@ if __name__ == "__main__":
                                  "source/Yokohama3/posz.jpg",
                                  "source/Yokohama3/negz.jpg"],
                                  "resources/textures/Yokohama3.bin")
+    
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
     conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
     conv["debugDraw.fs"].stage_ = Shader.Stage.Fragment
+    
     conv["skyboxVertex.vs"] = Shader(["source/shaders/skyboxVertex.vs"], "../../resources/shaders/skyboxVertex.bin")
     conv["skyboxFragment.fs"] = Shader(["source/shaders/skyboxFragment.fs"], "../../resources/shaders/skyboxFragment.bin")
     conv["skyboxFragment.fs"].stage_ = Shader.Stage.Fragment
-    conv["vertex.vs"] = Shader(["source/shaders/vertex.vs"], "../../resources/shaders/vertex.bin")
-    conv["fragment.fs"] = Shader(["source/shaders/fragment.fs"], "../../resources/shaders/fragment.bin")
-    conv["fragment.fs"].stage_ = Shader.Stage.Fragment
-    conv["displayVertex.vs"] = Shader(["source/shaders/displayVertex.vs"], "../../resources/shaders/displayVertex.bin")
-    conv["displayFragment.fs"] = Shader(["source/shaders/displayFragment.fs"], "../../resources/shaders/displayFragment.bin")
-    conv["displayFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["forwardVertex.vs"] = Shader(["source/shaders/forwardVertex.vs"], "../../resources/shaders/forwardVertex.bin")
+    conv["forwardFragment.fs"] = Shader(["source/shaders/forwardFragment.fs"], "../../resources/shaders/forwardFragment.bin")
+    conv["forwardFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["gbufferVertex.vs"] = Shader(["source/shaders/gbufferVertex.vs"], "../../resources/shaders/gbufferVertex.bin")
+    conv["gbufferFragment.fs"] = Shader(["source/shaders/gbufferFragment.fs"], "../../resources/shaders/gbufferFragment.bin")
+    conv["gbufferFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["toSRGBFragment.fs"] = Shader(["source/shaders/toSRGBFragment.fs"], "../../resources/shaders/toSRGBFragment.bin")
+    conv["toSRGBFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["vignetteFragment.fs"] = Shader(["source/shaders/vignetteFragment.fs"], "../../resources/shaders/vignetteFragment.bin")
+    conv["vignetteFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["fxaaFragment.fs"] = Shader(["source/shaders/fxaaFragment.fs"], "../../resources/shaders/fxaaFragment.bin")
+    conv["fxaaFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["lightingDirectional.fs"] = Shader(["source/shaders/lightingDirectional.fs"], "../../resources/shaders/lightingDirectional.bin")
+    conv["lightingDirectional.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["lightingPoint.fs"] = Shader(["source/shaders/lightingPoint.fs"], "../../resources/shaders/lightingPoint.bin")
+    conv["lightingPoint.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["lightingSpot.fs"] = Shader(["source/shaders/lightingSpot.fs"], "../../resources/shaders/lightingSpot.bin")
+    conv["lightingSpot.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["ssaoFragment.fs"] = Shader(["source/shaders/ssaoFragment.fs"], "../../resources/shaders/ssaoFragment.bin")
+    conv["ssaoFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["ssaoBlurXFragment.fs"] = Shader(["source/shaders/ssaoBlurXFragment.fs"], "../../resources/shaders/ssaoBlurXFragment.bin")
+    conv["ssaoBlurXFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["ssaoBlurYFragment.fs"] = Shader(["source/shaders/ssaoBlurYFragment.fs"], "../../resources/shaders/ssaoBlurYFragment.bin")
+    conv["ssaoBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["postEffectVertex.vs"] = Shader(["source/shaders/postEffectVertex.vs"], "../../resources/shaders/postEffectVertex.bin")
+    
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")
@@ -781,8 +821,10 @@ if __name__ == "__main__":
     conv["teapot.obj"] = Mesh(["source/teapot.obj"], "resources/meshes/teapot.bin")
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
     conv["fence.obj"] = Mesh(["source/fence.obj"], "resources/meshes/fence.bin")
+    conv["aotest.obj"] = Mesh(["source/ao test.obj"], "resources/meshes/aotest.bin")
     
     mat = Material([], "resources/materials/material.bin")
+    mat.params.forward = False
     mat.params.smoothness = 0.6
     mat.params.metalMask = 0.0
     mat.params.albedoMap = conv["texture2.png"]
@@ -791,6 +833,7 @@ if __name__ == "__main__":
     conv["material"] = mat
     
     mat = Material([], "resources/materials/clay.bin")
+    mat.params.forward = False
     mat.params.smoothness = 0.6
     mat.params.metalMask = 0.0
     mat.params.albedo = [1.0, 0.403921569, 0.0, 1.0]
@@ -798,6 +841,7 @@ if __name__ == "__main__":
     conv["clay"] = mat
     
     mat = Material([], "resources/materials/gold.bin")
+    mat.params.forward = False
     mat.params.smoothness = 0.5
     mat.params.metalMask = 1.0
     mat.params.albedo = [1.0, 0.403921569, 0.0, 1.0]
@@ -805,6 +849,7 @@ if __name__ == "__main__":
     conv["gold"] = mat
     
     mat = Material([], "resources/materials/plastic.bin")
+    mat.params.forward = False
     mat.params.smoothness = 0.875
     mat.params.metalMask = 0.0
     mat.params.albedo = [1.0, 0.403921569, 0.0, 1.0]
@@ -812,6 +857,7 @@ if __name__ == "__main__":
     conv["plastic"] = mat
     
     mat = Material([], "resources/materials/floor.bin")
+    mat.params.forward = False
     mat.params.smoothness = 0.6
     mat.params.metalMask = 0.0
     mat.params.environmentMap = conv["Yokohama3"]
@@ -819,34 +865,39 @@ if __name__ == "__main__":
     conv["floor"] = mat
     
     mat = Material([], "resources/materials/fence.bin")
+    mat.params.forward = False
     mat.params.smoothness = 0.65
     mat.params.metalMask = 1.0
     mat.params.environmentMap = conv["Yokohama3"]
     conv["fence"] = mat
     
     model = Model([], "resources/models/model.bin")
-    model.contexts[Model.ContextType.Forward] = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
     conv["model"] = model
     
     model = Model([], "resources/models/clay.bin")
-    model.contexts[Model.ContextType.Forward] = [[Model.LOD(conv["material test 2.obj"], conv["clay"], 0.0, 9999.0)]]
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["material test 2.obj"], conv["clay"], 0.0, 9999.0)]]
     conv["clay model"] = model
     
     model = Model([], "resources/models/gold.bin")
-    model.contexts[Model.ContextType.Forward] = [[Model.LOD(conv["material test 2.obj"], conv["gold"], 0.0, 9999.0)]]
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["material test 2.obj"], conv["gold"], 0.0, 9999.0)]]
     conv["gold model"] = model
     
     model = Model([], "resources/models/plastic.bin")
-    model.contexts[Model.ContextType.Forward] = [[Model.LOD(conv["material test 2.obj"], conv["plastic"], 0.0, 9999.0)]]
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["material test 2.obj"], conv["plastic"], 0.0, 9999.0)]]
     conv["plastic model"] = model
     
     model = Model([], "resources/models/floor.bin")
-    model.contexts[Model.ContextType.Forward] = [[Model.LOD(conv["floor.obj"], conv["floor"], 0.0, 9999.0)]]
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["floor.obj"], conv["floor"], 0.0, 9999.0)]]
     conv["floor model"] = model
     
     model = Model([], "resources/models/fence.bin")
-    model.contexts[Model.ContextType.Forward] = [[Model.LOD(conv["fence.obj"], conv["fence"], 0.0, 9999.0)]]
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["fence.obj"], conv["fence"], 0.0, 9999.0)]]
     conv["fence model"] = model
+    
+    model = Model([], "resources/models/aotest.bin")
+    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["aotest.obj"], conv["clay"], 0.0, 9999.0)]]
+    conv["ao test model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
     floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
@@ -884,21 +935,21 @@ if __name__ == "__main__":
     scene.entities.append(cubeEnt)
     
     clayEnt = Scene.Entity("Clay")
-    clayEnt.transform.position = [11.0, 3.01, -6.0]
+    clayEnt.transform.position = [11.0, 3.0, -6.0]
     clayEnt.model = conv["clay model"]
     clayEnt.rigidBody = Scene.RigidBody()
     clayEnt.rigidBody.shape = someShape
     scene.entities.append(clayEnt)
     
     plasticEnt = Scene.Entity("Plastic")
-    plasticEnt.transform.position = [11.0, 3.01, 0.0]
+    plasticEnt.transform.position = [11.0, 3.0, 0.0]
     plasticEnt.model = conv["plastic model"]
     plasticEnt.rigidBody = Scene.RigidBody()
     plasticEnt.rigidBody.shape = someShape
     scene.entities.append(plasticEnt)
     
     goldEnt = Scene.Entity("Gold")
-    goldEnt.transform.position = [11.0, 3.01, 6.0]
+    goldEnt.transform.position = [11.0, 3.0, 6.0]
     goldEnt.model = conv["gold model"]
     goldEnt.rigidBody = Scene.RigidBody()
     goldEnt.rigidBody.shape = someShape
@@ -918,14 +969,6 @@ if __name__ == "__main__":
     fenceEnt.rigidBody.shape = fenceShape
     scene.entities.append(fenceEnt)
     
-    """fenceEnt = Scene.Entity("Fence2")
-    fenceEnt.transform.position = [8.0, 1.55, 0.0]
-    fenceEnt.transform.orientation = [0.0, 180.0, 0.0]
-    fenceEnt.model = conv["fence model"]
-    fenceEnt.rigidBody = Scene.RigidBody()
-    fenceEnt.rigidBody.shape = fenceShape
-    scene.entities.append(fenceEnt)"""
-    
     fenceEnt = Scene.Entity("Fence3")
     fenceEnt.transform.position = [0.0, 1.55, 8.0]
     fenceEnt.transform.orientation = [0.0, 90.0, 0.0]
@@ -941,6 +984,12 @@ if __name__ == "__main__":
     fenceEnt.rigidBody = Scene.RigidBody()
     fenceEnt.rigidBody.shape = fenceShape
     scene.entities.append(fenceEnt)
+    
+    ent = Scene.Entity("AO test")
+    ent.transform.position = [-5.0, 0.0, 0.0]
+    ent.transform.orientation = [0.0, 100.0, 0.0]
+    ent.model = conv["ao test model"]
+    scene.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)
     light.position = [8.0, 2.5, 10.0]
@@ -1017,6 +1066,7 @@ if __name__ == "__main__":
     light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
+    light.power = 1.0;
     scene.lights.append(light)
     
     conv["scene"] = scene

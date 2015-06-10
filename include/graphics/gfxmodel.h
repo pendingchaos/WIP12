@@ -15,7 +15,8 @@ class GfxModel : public Resource
     public:
         enum ContextType
         {
-            Forward
+            Forward,
+            GBuffer
         };
 
         static const Resource::Type resource_type = GfxModelType;
