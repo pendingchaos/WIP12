@@ -225,10 +225,10 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 {
     running = true;
 
-    float titleUpdateDelay = 0.75f;
+    float titleUpdateDelay = 1.0f;
     float titleUpdateCountdown = 0.0f;
     float displayFrametime = 0.0f;
-    float displayGpuFrametime = 0.0f;
+    double displayGpuFrametime = 0.0f;
 
     GPUTimer *gpuTimer = gfxApi->createTimer();
     uint64_t gpuTime = 0;
@@ -254,9 +254,9 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
             gpuTime = gpuTimer->getResult();
         }
 
-        frametime = static_cast<float>(end-start) / static_cast<float>(SDL_GetPerformanceFrequency());
+        frametime = double(end-start) / double(SDL_GetPerformanceFrequency());
 
-        float gpuFrametime = (gpuTime / 1000000000.0f);
+        float gpuFrametime = double(gpuTime) / double(gpuTimer->getResultResolution()) * 1000.0;
 
         titleUpdateCountdown -= frametime;
 
@@ -268,22 +268,14 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
             displayGpuFrametime = gpuFrametime;
         }
 
-        float cpuOverhead
-        =   ((displayFrametime - displayGpuFrametime))
-          / (displayFrametime) * 100.0f;
-
         char title[256];
         memset(title, '\x00', sizeof(title));
 
         std::snprintf(title,
                       sizeof(title),
-                      "Frametime: %f FPS: %.0f GPU Frametime: %f GPU FPS: %f CPU overhead: %.0f%s",
-                      displayFrametime,
-                      1.0f/displayFrametime,
-                      displayGpuFrametime,
-                      1.0f/displayGpuFrametime,
-                      cpuOverhead,
-                      "%s");
+                      "Frametime: %f ms GPU Frametime: %f ms",
+                      displayFrametime*1000.0f,
+                      displayGpuFrametime);
 
         SDL_SetWindowTitle(window, title);
     }
