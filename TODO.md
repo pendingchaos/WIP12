@@ -17,7 +17,7 @@
 - [ ] More tests should be created.
 - [ ] When a shape is changed from a type to another, rigid bodies using that shape will have invalid shapes.
 - [ ] Sometimes when a script fails to compile, a segmentation fault happens.
-- [ ] The matrix 4x4 inverse function is incorrect.
+- [ ] The matrix 4x4 inverse function is incorrect(?).
 
 ## Other
 - [ ] Benchmarks.
