@@ -15,6 +15,7 @@ class GfxShaderImpl;
 class GfxCompiledShader;
 class GfxBuffer;
 class GfxFramebuffer;
+class GPUTimer;
 
 class GfxApi
 {
@@ -27,6 +28,7 @@ class GfxApi
         virtual GfxTextureImpl *createTextureImpl()=0;
         virtual GfxMeshImpl *createMeshImpl()=0;
         virtual GfxFramebuffer *createFramebuffer()=0;
+        virtual GPUTimer *createTimer()=0;
 
         virtual void setCurrentFramebuffer(GfxFramebuffer *framebuffer)=0;
 

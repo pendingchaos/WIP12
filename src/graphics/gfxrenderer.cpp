@@ -6,9 +6,11 @@
 #include "graphics/gfxframebuffer.h"
 #include "graphics/gfxdebugdrawer.h"
 #include "graphics/gfxbuffer.h"
+#include "graphics/gputimer.h"
 #include "scene/scene.h"
 #include "scene/entity.h"
 #include "globals.h"
+#include "logging.h"
 
 #include <cmath>
 
@@ -16,6 +18,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           vignetteRadius(1.5f),
                                           vignetteSoftness(1.0f),
                                           vignetteIntensity(1.0f),
+                                          stats({0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                                 0, 0, 0, 0, 0, 0, 0, 0, 0}),
                                           width(0),
                                           height(0),
                                           scene(scene_)
@@ -100,10 +104,30 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     ssaoBlurXFramebuffer = gfxApi->createFramebuffer();
     ssaoBlurXFramebuffer->addColorAttachment(0, ssaoBlurXTexture);
+
+    gBufferTimer = gfxApi->createTimer();
+    ssaoTimer = gfxApi->createTimer();
+    ssaoBlurXTimer = gfxApi->createTimer();
+    ssaoBlurYTimer = gfxApi->createTimer();
+    deferredShadingTimer = gfxApi->createTimer();
+    forwardTimer = gfxApi->createTimer();
+    gammaCorrectionTimer = gfxApi->createTimer();
+    fxaaTimer = gfxApi->createTimer();
+    vignetteTimer = gfxApi->createTimer();
 }
 
 GfxRenderer::~GfxRenderer()
 {
+    DELETE(GPUTimer, gBufferTimer);
+    DELETE(GPUTimer, ssaoTimer);
+    DELETE(GPUTimer, ssaoBlurXTimer);
+    DELETE(GPUTimer, ssaoBlurYTimer);
+    DELETE(GPUTimer, deferredShadingTimer);
+    DELETE(GPUTimer, forwardTimer);
+    DELETE(GPUTimer, gammaCorrectionTimer);
+    DELETE(GPUTimer, fxaaTimer);
+    DELETE(GPUTimer, vignetteTimer);
+
     DELETE(GfxFramebuffer, readFramebuffer);
     DELETE(GfxFramebuffer, writeFramebuffer);
     DELETE(GfxFramebuffer, gBufferFramebuffer);
@@ -111,6 +135,82 @@ GfxRenderer::~GfxRenderer()
     DELETE(GfxFramebuffer, ssaoBlurXFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
+}
+
+void GfxRenderer::updateStats()
+{
+    if (gBufferTimer->resultAvailable())
+    {
+        stats.gBufferTimingResolution = gBufferTimer->getResultResolution();
+        stats.gBufferTiming = gBufferTimer->getResult();
+    }
+
+    if (ssaoTimer->resultAvailable())
+    {
+        stats.ssaoTimingResolution = ssaoTimer->getResultResolution();
+        stats.ssaoTiming = ssaoTimer->getResult();
+    }
+
+    if (ssaoBlurXTimer->resultAvailable())
+    {
+        stats.ssaoBlurXTimingResolution = ssaoBlurXTimer->getResultResolution();
+        stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult();
+    }
+
+    if (ssaoBlurYTimer->resultAvailable())
+    {
+        stats.ssaoBlurYTimingResolution = ssaoBlurYTimer->getResultResolution();
+        stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult();
+    }
+
+    if (deferredShadingTimer->resultAvailable())
+    {
+        stats.deferredShadingTimingResolution = deferredShadingTimer->getResultResolution();
+        stats.deferredShadingTiming = deferredShadingTimer->getResult();
+    }
+
+    if (forwardTimer->resultAvailable())
+    {
+        stats.forwardTimingResolution = forwardTimer->getResultResolution();
+        stats.forwardTiming = forwardTimer->getResult();
+    }
+
+    if (gammaCorrectionTimer->resultAvailable())
+    {
+        stats.gammaCorrectionTimingResolution = gammaCorrectionTimer->getResultResolution();
+        stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult();
+    }
+
+    if (fxaaTimer->resultAvailable())
+    {
+        stats.fxaaTimingResolution = fxaaTimer->getResultResolution();
+        stats.fxaaTiming = fxaaTimer->getResult();
+    }
+
+    if (vignetteTimer->resultAvailable())
+    {
+        stats.vignetteTimingResolution = vignetteTimer->getResultResolution();
+        stats.vignetteTiming = vignetteTimer->getResult();
+    }
+
+    /*log("GBuffer: %f ms\n"
+        "SSAO: %f ms\n"
+        "SSAO blur y: %f ms\n"
+        "SSAO blur x: %f ms\n"
+        "Deferred shading: %f ms\n"
+        "Forward pass: %f ms\n"
+        "Gamma correction: %f ms\n"
+        "FXAA: %f ms\n"
+        "Vignette: %f ms\n\n",
+        double(stats.gBufferTiming) / double(stats.gBufferTimingResolution) * 1000.0,
+        double(stats.ssaoTiming) / double(stats.ssaoTimingResolution) * 1000.0,
+        double(stats.ssaoBlurXTiming) / double(stats.ssaoBlurXTimingResolution) * 1000.0,
+        double(stats.ssaoBlurYTiming) / double(stats.ssaoBlurYTimingResolution) * 1000.0,
+        double(stats.deferredShadingTiming) / double(stats.deferredShadingTimingResolution) * 1000.0,
+        double(stats.forwardTiming) / double(stats.forwardTimingResolution) * 1000.0,
+        double(stats.gammaCorrectionTiming) / double(stats.gammaCorrectionTimingResolution) * 1000.0,
+        double(stats.fxaaTiming) / double(stats.fxaaTimingResolution) * 1000.0,
+        double(stats.vignetteTiming) / double(stats.vignetteTimingResolution) * 1000.0);*/
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
@@ -242,6 +342,8 @@ void GfxRenderer::resize(const UInt2& size)
 
 void GfxRenderer::render()
 {
+    updateStats();
+
     ResPtr<GfxTexture> oldReadTex = readColorTexture;
     ResPtr<GfxTexture> oldWriteTex = writeColorTexture;
     GfxFramebuffer *oldReadFb = readFramebuffer;
@@ -250,6 +352,8 @@ void GfxRenderer::render()
     gfxApi->setViewport(0, 0, width, height);
 
     //G buffer
+    gBufferTimer->begin();
+
     gfxApi->setCurrentFramebuffer(gBufferFramebuffer);
     gfxApi->setWriteDepth(true);
     gfxApi->setDepthFunction(GfxLess);
@@ -267,8 +371,12 @@ void GfxRenderer::render()
     gfxApi->setWriteDepth(false);
     gfxApi->setDepthFunction(GfxAlways);
 
+    gBufferTimer->end();
+
     //SSAO
     //This should not mess up readColorTexture.
+    ssaoTimer->begin();
+
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
@@ -288,7 +396,11 @@ void GfxRenderer::render()
                 fullScreenQuadMesh->numVertices,
                 fullScreenQuadMesh->winding);
 
+    ssaoTimer->end();
+
     //SSAO Blur X
+    ssaoBlurXTimer->begin();
+
     gfxApi->setCurrentFramebuffer(ssaoBlurXFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
@@ -304,7 +416,11 @@ void GfxRenderer::render()
                 fullScreenQuadMesh->numVertices,
                 fullScreenQuadMesh->winding);
 
+    ssaoBlurXTimer->end();
+
     //SSAO Blur Y
+    ssaoBlurYTimer->begin();
+
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
@@ -320,7 +436,11 @@ void GfxRenderer::render()
                 fullScreenQuadMesh->numVertices,
                 fullScreenQuadMesh->winding);
 
+    ssaoBlurYTimer->end();
+
     //Lighting using the G buffer
+    deferredShadingTimer->begin();
+
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
     gfxApi->clearColor(0, Float4(0.0f));
 
@@ -400,7 +520,11 @@ void GfxRenderer::render()
                     fullScreenQuadMesh->winding);
     }
 
+    deferredShadingTimer->end();
+
     //Forward
+    forwardTimer->begin();
+
     gfxApi->setBlendingEnabled(false);
     gfxApi->setWriteDepth(true);
     gfxApi->setDepthFunction(GfxLessEqual);
@@ -421,7 +545,11 @@ void GfxRenderer::render()
     gfxApi->setWriteDepth(false);
     gfxApi->setDepthFunction(GfxAlways);
 
+    forwardTimer->end();
+
     //Vignette
+    vignetteTimer->begin();
+
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
@@ -442,7 +570,11 @@ void GfxRenderer::render()
 
     swapFramebuffers();
 
+    vignetteTimer->end();
+
     //FXAA
+    fxaaTimer->begin();
+
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
@@ -460,7 +592,11 @@ void GfxRenderer::render()
 
     swapFramebuffers();
 
+    fxaaTimer->end();
+
     //Gamma correction
+    gammaCorrectionTimer->begin();
+
     gfxApi->setCurrentFramebuffer(NULL);
 
     gfxApi->begin(compiledPostEffectVertex,
@@ -476,10 +612,14 @@ void GfxRenderer::render()
                 fullScreenQuadMesh->numVertices,
                 fullScreenQuadMesh->winding);
 
+    gammaCorrectionTimer->end();
+
     readColorTexture = oldReadTex;
     writeColorTexture = oldWriteTex;
     readFramebuffer = oldReadFb;
     writeFramebuffer = oldWriteFb;
+
+    updateStats();
 }
 
 void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)

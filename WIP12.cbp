@@ -12,6 +12,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="programs/main" />
 				<Option host_application="./WIP12" />
 				<Option run_host_application_in_terminal="0" />
 				<Compiler>
@@ -25,6 +26,7 @@
 				<Option object_output="obj/Release" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="programs/main" />
 				<Option host_application="./WIP12" />
 				<Option run_host_application_in_terminal="0" />
 				<Compiler>
@@ -77,6 +79,7 @@
 		<Unit filename="include/graphics/GL/gfxglmeshimpl.h" />
 		<Unit filename="include/graphics/GL/gfxglshaderimpl.h" />
 		<Unit filename="include/graphics/GL/gfxgltextureimpl.h" />
+		<Unit filename="include/graphics/GL/glgputimer.h" />
 		<Unit filename="include/graphics/camera.h" />
 		<Unit filename="include/graphics/gfxapi.h" />
 		<Unit filename="include/graphics/gfxbuffer.h" />
@@ -89,6 +92,7 @@
 		<Unit filename="include/graphics/gfxrenderer.h" />
 		<Unit filename="include/graphics/gfxshader.h" />
 		<Unit filename="include/graphics/gfxtexture.h" />
+		<Unit filename="include/graphics/gputimer.h" />
 		<Unit filename="include/graphics/light.h" />
 		<Unit filename="include/logging.h" />
 		<Unit filename="include/math/matrix3x3.h" />
@@ -134,6 +138,7 @@
 		<Unit filename="src/graphics/GL/gfxglshaderimpl.cpp" />
 		<Unit filename="src/graphics/GL/gfxgltextureimpl.cpp" />
 		<Unit filename="src/graphics/GL/glfl.cpp" />
+		<Unit filename="src/graphics/GL/glgputimer.cpp" />
 		<Unit filename="src/graphics/camera.cpp" />
 		<Unit filename="src/graphics/gfxapi.cpp" />
 		<Unit filename="src/graphics/gfxbuffer.cpp" />
@@ -145,6 +150,7 @@
 		<Unit filename="src/graphics/gfxrenderer.cpp" />
 		<Unit filename="src/graphics/gfxshader.cpp" />
 		<Unit filename="src/graphics/gfxtexture.cpp" />
+		<Unit filename="src/graphics/gputimer.cpp" />
 		<Unit filename="src/graphics/light.cpp" />
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />

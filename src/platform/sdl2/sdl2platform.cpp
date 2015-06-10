@@ -1,8 +1,10 @@
 #include "platform/sdl2/sdl2platform.h"
 
 #include "memory.h"
-#include "graphics/GL/glfl.h"
 #include "error.h"
+#include "graphics/gfxapi.h"
+#include "graphics/gputimer.h"
+#include "globals.h"
 
 #include <cstdio>
 
@@ -228,33 +230,29 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
     float displayFrametime = 0.0f;
     float displayGpuFrametime = 0.0f;
 
-    GLuint timerQuery;
-    glGenQueries(1, &timerQuery);
+    GPUTimer *gpuTimer = gfxApi->createTimer();
+    uint64_t gpuTime = 0;
 
     while (running)
     {
         Uint64 start = SDL_GetPerformanceCounter();
 
-        glBeginQuery(GL_TIME_ELAPSED, timerQuery);
-
         SDL_PumpEvents();
+
+        gpuTimer->begin();
 
         updateFunction(this);
 
-        glEndQuery(GL_TIME_ELAPSED);
+        gpuTimer->end();
 
         SDL_GL_SwapWindow(window);
 
         Uint64 end = SDL_GetPerformanceCounter();
 
-        GLint done = 0;
-        while (not done)
+        if (gpuTimer->resultAvailable())
         {
-            glGetQueryObjectiv(timerQuery, GL_QUERY_RESULT_AVAILABLE, &done);
+            gpuTime = gpuTimer->getResult();
         }
-
-        GLuint64 gpuTime;
-        glGetQueryObjectui64v(timerQuery, GL_QUERY_RESULT, &gpuTime);
 
         frametime = static_cast<float>(end-start) / static_cast<float>(SDL_GetPerformanceFrequency());
 
@@ -289,6 +287,8 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 
         SDL_SetWindowTitle(window, title);
     }
+
+    DELETE(GPUTimer, gpuTimer);
 }
 
 bool SDL2Platform::pollEvent(Event& event)

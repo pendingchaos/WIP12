@@ -7,6 +7,7 @@
 #include "graphics/GL/gfxgltextureimpl.h"
 #include "graphics/GL/gfxglbuffer.h"
 #include "graphics/GL/gfxglframebuffer.h"
+#include "graphics/GL/glgputimer.h"
 #include "logging.h"
 #include "memory.h"
 #include "error.h"
@@ -206,6 +207,11 @@ GfxMeshImpl *GfxGLApi::createMeshImpl()
 GfxFramebuffer *GfxGLApi::createFramebuffer()
 {
     return NEW(GfxGLFramebuffer);
+}
+
+GPUTimer *GfxGLApi::createTimer()
+{
+    return NEW(GLGPUTimer);
 }
 
 void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)

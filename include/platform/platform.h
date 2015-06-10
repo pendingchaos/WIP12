@@ -7,7 +7,7 @@
 
 #include <stddef.h>
 
-class PlatformException : Exception
+class PlatformException : public Exception
 {
     public:
         PlatformException(const char *file_,

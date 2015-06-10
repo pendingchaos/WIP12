@@ -14,6 +14,7 @@ class GfxGLApi : public GfxApi
         virtual GfxTextureImpl *createTextureImpl();
         virtual GfxMeshImpl *createMeshImpl();
         virtual GfxFramebuffer *createFramebuffer();
+        virtual GPUTimer *createTimer();
 
         virtual void setCurrentFramebuffer(GfxFramebuffer *framebuffer);
 

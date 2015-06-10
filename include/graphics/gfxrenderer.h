@@ -13,6 +13,7 @@
 class Matrix4x4;
 class String;
 class GfxFramebuffer;
+class GPUTimer;
 
 class GfxRenderer
 {
@@ -21,6 +22,29 @@ class GfxRenderer
 
         GfxRenderer(Scene *scene);
     public:
+        struct RenderStats
+        {
+            uint64_t gBufferTimingResolution;
+            uint64_t ssaoTimingResolution;
+            uint64_t ssaoBlurXTimingResolution;
+            uint64_t ssaoBlurYTimingResolution;
+            uint64_t deferredShadingTimingResolution;
+            uint64_t forwardTimingResolution;
+            uint64_t gammaCorrectionTimingResolution;
+            uint64_t fxaaTimingResolution;
+            uint64_t vignetteTimingResolution;
+
+            uint64_t gBufferTiming;
+            uint64_t ssaoTiming;
+            uint64_t ssaoBlurXTiming;
+            uint64_t ssaoBlurYTiming;
+            uint64_t deferredShadingTiming;
+            uint64_t forwardTiming;
+            uint64_t gammaCorrectionTiming;
+            uint64_t fxaaTiming;
+            uint64_t vignetteTiming;
+        };
+
         ~GfxRenderer();
 
         static void beginRenderMesh(const Camera& camera,
@@ -42,6 +66,13 @@ class GfxRenderer
             return lightBuffer;
         }
 
+        inline RenderStats getStats() const
+        {
+            return stats;
+        }
+
+        void updateStats();
+
         Camera camera;
 
         bool debugDraw;
@@ -54,6 +85,18 @@ class GfxRenderer
         float vignetteSoftness;
         float vignetteIntensity;
     private:
+        RenderStats stats;
+
+        GPUTimer *gBufferTimer;
+        GPUTimer *ssaoTimer;
+        GPUTimer *ssaoBlurXTimer;
+        GPUTimer *ssaoBlurYTimer;
+        GPUTimer *deferredShadingTimer;
+        GPUTimer *forwardTimer;
+        GPUTimer *gammaCorrectionTimer;
+        GPUTimer *fxaaTimer;
+        GPUTimer *vignetteTimer;
+
         unsigned int width;
         unsigned int height;
 
