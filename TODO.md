@@ -27,4 +27,3 @@
 ## Performance Improvements
 - [ ] Script compilation is very slow.
 - [ ] Instancing (explicit and implicit).
-- [ ] Post processing is slow.

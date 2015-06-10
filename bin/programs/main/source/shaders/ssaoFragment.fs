@@ -38,8 +38,6 @@ vec3 getRandom(int x, int y)
     return random[x+y*4];
 }
 
-#define KERNEL_SIZE 32
-
 const vec3 kernel[] = {vec3(-0.021705, 0.061174, 0.076070),
                        vec3(-0.059246, 0.022466, 0.078497),
                        vec3(0.027279, -0.098184, 0.018202),
@@ -75,6 +73,14 @@ const vec3 kernel[] = {vec3(-0.021705, 0.061174, 0.076070),
 
 #define RADIUS 0.1
 
+#define SAMPLE(i) {\
+    vec3 samplePos = tbn * kernel[i] * RADIUS + origin;\
+    vec2 texPos = (samplePos.xy + 1.0) / 2.0;\
+    float sampleDepth = linearizeDepth(texture(depthTexture, texPos));\
+    float rangeCheck = smoothstep(0.0, 1.0, RADIUS / abs(samplePos.z - sampleDepth));\
+    result_ao += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
+}\
+
 void main()
 {
     float depth = linearizeDepth(texture(depthTexture, frag_uv).r);
@@ -86,18 +92,39 @@ void main()
     vec3 bitangent = cross(tangent, normal);
     mat3 tbn = mat3(tangent, bitangent, normal);
 
-    for (int i = 0; i < KERNEL_SIZE; ++i)
-    {
-        vec3 samplePos = tbn * kernel[i] * RADIUS + origin;
-        
-        vec2 texPos = (samplePos.xy + 1.0) / 2.0;
-        
-        float sampleDepth = linearizeDepth(texture(depthTexture, texPos));
-        
-		float rangeCheck = smoothstep(0.0, 1.0, RADIUS / abs(samplePos.z - sampleDepth));
-        result_ao += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;
-    }
+    SAMPLE(0)
+    SAMPLE(1)
+    SAMPLE(2)
+    SAMPLE(3)
+    SAMPLE(4)
+    SAMPLE(5)
+    SAMPLE(6)
+    SAMPLE(7)
+    SAMPLE(8)
+    SAMPLE(9)
+    SAMPLE(10)
+    SAMPLE(11)
+    SAMPLE(12)
+    SAMPLE(13)
+    SAMPLE(14)
+    SAMPLE(15)
+    SAMPLE(16)
+    SAMPLE(17)
+    SAMPLE(18)
+    SAMPLE(19)
+    SAMPLE(20)
+    SAMPLE(21)
+    SAMPLE(22)
+    SAMPLE(23)
+    SAMPLE(24)
+    SAMPLE(25)
+    SAMPLE(26)
+    SAMPLE(27)
+    SAMPLE(28)
+    SAMPLE(29)
+    SAMPLE(30)
+    SAMPLE(31)
     
-    result_ao = 1.0 - result_ao / float(KERNEL_SIZE);
+    result_ao = 1.0 - result_ao / 32.0;
 }
 
