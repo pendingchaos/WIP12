@@ -90,6 +90,7 @@ class GfxRenderer
         float vignetteIntensity;
         float bloomThreshold;
         float bloomRadius;
+        bool bloomEnabled;
     private:
         RenderStats stats;
 
