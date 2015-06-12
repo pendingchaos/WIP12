@@ -114,12 +114,12 @@ LogEntry& LogEntry::info(const char *category,
 }
 
 LogEntry& LogEntry::log(const char *category,
-                            const char *type,
-                            const char *file,
-                            int line,
-                            const char *function,
-                            const char *format,
-                            va_list args)
+                        const char *type,
+                        const char *file,
+                        int line,
+                        const char *function,
+                        const char *format,
+                        va_list args)
 {
     va_list args2;
     va_copy(args2, args);

@@ -33,6 +33,8 @@ class GfxRenderer
             uint64_t gammaCorrectionTimingResolution;
             uint64_t fxaaTimingResolution;
             uint64_t vignetteTimingResolution;
+            uint64_t bloomXTimingResolution;
+            uint64_t bloomYTimingResolution;
 
             uint64_t gBufferTiming;
             uint64_t ssaoTiming;
@@ -43,6 +45,8 @@ class GfxRenderer
             uint64_t gammaCorrectionTiming;
             uint64_t fxaaTiming;
             uint64_t vignetteTiming;
+            uint64_t bloomXTiming;
+            uint64_t bloomYTiming;
         };
 
         ~GfxRenderer();
@@ -84,6 +88,8 @@ class GfxRenderer
         float vignetteRadius;
         float vignetteSoftness;
         float vignetteIntensity;
+        float bloomThreshold;
+        float bloomRadius;
     private:
         RenderStats stats;
 
@@ -96,6 +102,8 @@ class GfxRenderer
         GPUTimer *gammaCorrectionTimer;
         GPUTimer *fxaaTimer;
         GPUTimer *vignetteTimer;
+        GPUTimer *bloomXTimer;
+        GPUTimer *bloomYTimer;
 
         unsigned int width;
         unsigned int height;
@@ -115,6 +123,8 @@ class GfxRenderer
         ResPtr<GfxShader> ssaoFragment;
         ResPtr<GfxShader> ssaoBlurXFragment;
         ResPtr<GfxShader> ssaoBlurYFragment;
+        ResPtr<GfxShader> bloomBlurXFragment;
+        ResPtr<GfxShader> bloomBlurYFragment;
         ResPtr<GfxShader> postEffectVertex;
         GfxCompiledShader *compiledGammaCorrectionFragment;
         GfxCompiledShader *compiledVignetteFragment;
@@ -125,6 +135,8 @@ class GfxRenderer
         GfxCompiledShader *compiledSSAOFragment;
         GfxCompiledShader *compiledSSAOBlurXFragment;
         GfxCompiledShader *compiledSSAOBlurYFragment;
+        GfxCompiledShader *compiledBloomBlurXFragment;
+        GfxCompiledShader *compiledBloomBlurYFragment;
         GfxCompiledShader *compiledPostEffectVertex;
 
         size_t numLights;
@@ -145,12 +157,14 @@ class GfxRenderer
         ResPtr<GfxTexture> normalTexture;
         ResPtr<GfxTexture> ssaoTexture;
         ResPtr<GfxTexture> ssaoBlurXTexture;
+        ResPtr<GfxTexture> bloomBlurXTexture;
 
         GfxFramebuffer *readFramebuffer;
         GfxFramebuffer *writeFramebuffer;
         GfxFramebuffer *gBufferFramebuffer;
         GfxFramebuffer *ssaoFramebuffer;
         GfxFramebuffer *ssaoBlurXFramebuffer;
+        GfxFramebuffer *bloomblurXFramebuffer;
 
         void swapFramebuffers();
 };

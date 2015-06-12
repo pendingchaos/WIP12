@@ -812,6 +812,12 @@ if __name__ == "__main__":
     conv["ssaoBlurYFragment.fs"] = Shader(["source/shaders/ssaoBlurYFragment.fs"], "../../resources/shaders/ssaoBlurYFragment.bin")
     conv["ssaoBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
     
+    conv["bloomBlurXFragment.fs"] = Shader(["source/shaders/bloomBlurXFragment.fs"], "../../resources/shaders/bloomBlurXFragment.bin")
+    conv["bloomBlurXFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["bloomBlurYFragment.fs"] = Shader(["source/shaders/bloomBlurYFragment.fs"], "../../resources/shaders/bloomBlurYFragment.bin")
+    conv["bloomBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
+    
     conv["postEffectVertex.vs"] = Shader(["source/shaders/postEffectVertex.vs"], "../../resources/shaders/postEffectVertex.bin")
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")

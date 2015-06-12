@@ -10,6 +10,12 @@ G Buffer
     |
  Forward
     |
+    +-----Bloom X
+             |
+    +--------+
+    |
+ Bloom Y (using the same framebuffer as Forward)
+    |
  Vignette
     |
   FXAA
@@ -23,3 +29,4 @@ G Buffer:
     g3 depth(24F)
 
     size: 17 bytes, 4 textures = 35.25 megabytes at 1920x1080
+

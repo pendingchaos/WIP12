@@ -48,6 +48,21 @@ GLuint GfxGLShaderImpl::_compile(GLenum type, GLsizei count, const char **string
 
     glDeleteShader(shader);
 
+    GLint linked;
+
+    glGetProgramiv(program, GL_LINK_STATUS, &linked);
+
+    if (not linked and compiled)
+    {
+        GLint length;
+
+        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+
+        infoLog.resize(length);
+
+        glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
+    }
+
     return program;
 }
 

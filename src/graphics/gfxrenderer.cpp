@@ -14,10 +14,18 @@
 
 #include <cmath>
 
+float gauss(float x, float sigma)
+{
+    return (1.0 / (sigma*std::sqrt(2.0*3.141529))) *
+           std::exp(-(x*x) / (2.0*sigma*sigma));
+}
+
 GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           vignetteRadius(1.5f),
                                           vignetteSoftness(1.0f),
-                                          vignetteIntensity(1.0f),
+                                          vignetteIntensity(0.0f),
+                                          bloomThreshold(1.0f),
+                                          bloomRadius(0.01f),
                                           stats({0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                  0, 0, 0, 0, 0, 0, 0, 0, 0}),
                                           width(0),
@@ -36,6 +44,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoFragment.bin");
     ssaoBlurXFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
     ssaoBlurYFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
+    bloomBlurXFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/bloomBlurXFragment.bin");
+    bloomBlurYFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/bloomBlurYFragment.bin");
     postEffectVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/postEffectVertex.bin");
 
     compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
@@ -47,6 +57,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledSSAOFragment = ssaoFragment->getCompiled();
     compiledSSAOBlurXFragment = ssaoBlurXFragment->getCompiled();
     compiledSSAOBlurYFragment = ssaoBlurYFragment->getCompiled();
+    compiledBloomBlurXFragment = bloomBlurXFragment->getCompiled();
+    compiledBloomBlurYFragment = bloomBlurYFragment->getCompiled();
     compiledPostEffectVertex = postEffectVertex->getCompiled();
 
     lightBuffer = gfxApi->createBuffer();
@@ -82,6 +94,16 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     normalTexture = NEW(GfxTexture, "");
     ssaoTexture = NEW(GfxTexture, "");
     ssaoBlurXTexture = NEW(GfxTexture, "");
+    bloomBlurXTexture = NEW(GfxTexture, "");
+
+    readColorTexture->setWrapMode(GfxTexture::Stretch);
+    writeColorTexture->setWrapMode(GfxTexture::Stretch);
+    depthTexture->setWrapMode(GfxTexture::Stretch);
+    materialTexture->setWrapMode(GfxTexture::Stretch);
+    normalTexture->setWrapMode(GfxTexture::Stretch);
+    ssaoTexture->setWrapMode(GfxTexture::Stretch);
+    ssaoBlurXTexture->setWrapMode(GfxTexture::Stretch);
+    bloomBlurXTexture->setWrapMode(GfxTexture::Stretch);
 
     resize(640);
 
@@ -105,6 +127,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoBlurXFramebuffer = gfxApi->createFramebuffer();
     ssaoBlurXFramebuffer->addColorAttachment(0, ssaoBlurXTexture);
 
+    bloomblurXFramebuffer = gfxApi->createFramebuffer();
+    bloomblurXFramebuffer->addColorAttachment(0, bloomBlurXTexture);
+
     gBufferTimer = gfxApi->createTimer();
     ssaoTimer = gfxApi->createTimer();
     ssaoBlurXTimer = gfxApi->createTimer();
@@ -114,6 +139,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     gammaCorrectionTimer = gfxApi->createTimer();
     fxaaTimer = gfxApi->createTimer();
     vignetteTimer = gfxApi->createTimer();
+    bloomXTimer = gfxApi->createTimer();
+    bloomYTimer = gfxApi->createTimer();
 }
 
 GfxRenderer::~GfxRenderer()
@@ -127,12 +154,15 @@ GfxRenderer::~GfxRenderer()
     DELETE(GPUTimer, gammaCorrectionTimer);
     DELETE(GPUTimer, fxaaTimer);
     DELETE(GPUTimer, vignetteTimer);
+    DELETE(GPUTimer, bloomXTimer);
+    DELETE(GPUTimer, bloomYTimer);
 
     DELETE(GfxFramebuffer, readFramebuffer);
     DELETE(GfxFramebuffer, writeFramebuffer);
     DELETE(GfxFramebuffer, gBufferFramebuffer);
     DELETE(GfxFramebuffer, ssaoFramebuffer);
     DELETE(GfxFramebuffer, ssaoBlurXFramebuffer);
+    DELETE(GfxFramebuffer, bloomblurXFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
 }
@@ -193,6 +223,18 @@ void GfxRenderer::updateStats()
         stats.vignetteTiming = vignetteTimer->getResult();
     }
 
+    if (bloomXTimer->resultAvailable())
+    {
+        stats.bloomXTimingResolution = bloomXTimer->getResultResolution();
+        stats.bloomXTiming = bloomXTimer->getResult();
+    }
+
+    if (bloomYTimer->resultAvailable())
+    {
+        stats.bloomYTimingResolution = bloomYTimer->getResultResolution();
+        stats.bloomYTiming = bloomYTimer->getResult();
+    }
+
     /*log("GBuffer: %f ms\n"
         "SSAO: %f ms\n"
         "SSAO blur y: %f ms\n"
@@ -201,7 +243,9 @@ void GfxRenderer::updateStats()
         "Forward pass: %f ms\n"
         "Gamma correction: %f ms\n"
         "FXAA: %f ms\n"
-        "Vignette: %f ms\n\n",
+        "Vignette: %f ms\n"
+        "Bloom X: %f ms\n"
+        "Bloom Y: %f ms\n\n",
         double(stats.gBufferTiming) / double(stats.gBufferTimingResolution) * 1000.0,
         double(stats.ssaoTiming) / double(stats.ssaoTimingResolution) * 1000.0,
         double(stats.ssaoBlurXTiming) / double(stats.ssaoBlurXTimingResolution) * 1000.0,
@@ -210,7 +254,9 @@ void GfxRenderer::updateStats()
         double(stats.forwardTiming) / double(stats.forwardTimingResolution) * 1000.0,
         double(stats.gammaCorrectionTiming) / double(stats.gammaCorrectionTimingResolution) * 1000.0,
         double(stats.fxaaTiming) / double(stats.fxaaTimingResolution) * 1000.0,
-        double(stats.vignetteTiming) / double(stats.vignetteTimingResolution) * 1000.0);*/
+        double(stats.vignetteTiming) / double(stats.vignetteTimingResolution) * 1000.0,
+        double(stats.bloomXTiming) / double(stats.bloomXTimingResolution) * 1000.0,
+        double(stats.bloomYTiming) / double(stats.bloomYTimingResolution) * 1000.0);*/
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
@@ -337,6 +383,15 @@ void GfxRenderer::resize(const UInt2& size)
                                         GfxTexture::Other,
                                         GfxTexture::LuminanceU8);
         ssaoBlurXTexture->allocMipmap(0, 1, NULL);
+
+        bloomBlurXTexture->startCreation(GfxTexture::Texture2D,
+                                         false,
+                                         width,
+                                         height,
+                                         0,
+                                         GfxTexture::Other,
+                                         GfxTexture::RGBF32_F16);
+        bloomBlurXTexture->allocMipmap(0, 1, NULL);
     }
 }
 
@@ -522,10 +577,11 @@ void GfxRenderer::render()
 
     deferredShadingTimer->end();
 
+    gfxApi->setBlendingEnabled(false);
+
     //Forward
     forwardTimer->begin();
 
-    gfxApi->setBlendingEnabled(false);
     gfxApi->setWriteDepth(true);
     gfxApi->setDepthFunction(GfxLessEqual);
 
@@ -540,12 +596,65 @@ void GfxRenderer::render()
         debugDrawer->render(camera);
     }
 
-    swapFramebuffers();
-
     gfxApi->setWriteDepth(false);
     gfxApi->setDepthFunction(GfxAlways);
 
     forwardTimer->end();
+
+    //Bloom X
+    uint32_t bloomRadiusPixels = uint32_t(std::min(width, height)*bloomRadius);
+    float bloomDivisor = 0.0;
+    float bloomSigma = bloomRadiusPixels;
+
+    for (int32_t i = -bloomRadiusPixels; i < (int32_t)bloomRadiusPixels+1; ++i)
+    {
+        bloomDivisor += gauss(i, bloomSigma);
+    }
+
+    gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledBloomBlurXFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledBloomBlurXFragment, "colorTexture", writeColorTexture);
+    gfxApi->uniform(compiledBloomBlurXFragment, "threshold", bloomThreshold);
+    gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)bloomRadiusPixels);
+    gfxApi->uniform(compiledBloomBlurXFragment, "divisor", bloomDivisor);
+    gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    //Bloom Y
+    gfxApi->setCurrentFramebuffer(writeFramebuffer);
+    gfxApi->setBlendingEnabled(true);
+    gfxApi->setBlendFactors(GfxOne, GfxOne, GfxOne, GfxOne);
+    gfxApi->setBlendMode(GfxAdd, GfxAdd);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  NULL,
+                  NULL,
+                  NULL,
+                  compiledBloomBlurYFragment,
+                  fullScreenQuadMesh);
+
+    gfxApi->addTextureBinding(compiledBloomBlurYFragment, "colorTexture", bloomBlurXTexture);
+    gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)bloomRadiusPixels);
+    gfxApi->uniform(compiledBloomBlurYFragment, "divisor", bloomDivisor);
+    gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);
+
+    gfxApi->end(fullScreenQuadMesh->primitive,
+                fullScreenQuadMesh->numVertices,
+                fullScreenQuadMesh->winding);
+
+    swapFramebuffers();
+
+    gfxApi->setBlendingEnabled(false);
 
     //Vignette
     vignetteTimer->begin();
