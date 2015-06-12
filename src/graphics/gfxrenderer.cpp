@@ -23,9 +23,10 @@ float gauss(float x, float sigma)
 GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           vignetteRadius(1.5f),
                                           vignetteSoftness(1.0f),
-                                          vignetteIntensity(1.0f),
+                                          vignetteIntensity(0.0f),
                                           bloomThreshold(1.0f),
-                                          bloomRadius(0.1f),
+                                          bloomRadius(0.025f),
+                                          bloomQuality(0.5f),
                                           bloomEnabled(true),
                                           stats({0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                  0, 0, 0, 0, 0, 0, 0, 0, 0}),
@@ -236,7 +237,7 @@ void GfxRenderer::updateStats()
         stats.bloomYTiming = bloomYTimer->getResult();
     }
 
-    log("GBuffer: %f ms\n"
+    /*log("GBuffer: %f ms\n"
         "SSAO: %f ms\n"
         "SSAO blur y: %f ms\n"
         "SSAO blur x: %f ms\n"
@@ -257,7 +258,7 @@ void GfxRenderer::updateStats()
         double(stats.fxaaTiming) / double(stats.fxaaTimingResolution) * 1000.0,
         double(stats.vignetteTiming) / double(stats.vignetteTimingResolution) * 1000.0,
         double(stats.bloomXTiming) / double(stats.bloomXTimingResolution) * 1000.0,
-        double(stats.bloomYTiming) / double(stats.bloomYTimingResolution) * 1000.0);
+        double(stats.bloomYTiming) / double(stats.bloomYTimingResolution) * 1000.0);*/
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
@@ -610,8 +611,9 @@ void GfxRenderer::render()
         uint32_t bloomRadiusPixels = uint32_t(std::min(width, height)*bloomRadius);
         float bloomDivisor = 0.0;
         float bloomSigma = bloomRadiusPixels / 3.0f;
+        float bloomStep = bloomRadiusPixels / (bloomQuality * bloomRadiusPixels);
 
-        for (int32_t i = -bloomRadiusPixels; i < (int32_t)bloomRadiusPixels+1; ++i)
+        for (float i = -(float)bloomRadiusPixels; i < (float)bloomRadiusPixels+1; i += bloomStep)
         {
             bloomDivisor += gauss(i, bloomSigma);
         }
@@ -630,6 +632,7 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)bloomRadiusPixels);
         gfxApi->uniform(compiledBloomBlurXFragment, "divisor", bloomDivisor);
         gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);
+        gfxApi->uniform(compiledBloomBlurXFragment, "step", bloomStep);
 
         gfxApi->end(fullScreenQuadMesh->primitive,
                     fullScreenQuadMesh->numVertices,
@@ -656,6 +659,7 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)bloomRadiusPixels);
         gfxApi->uniform(compiledBloomBlurYFragment, "divisor", bloomDivisor);
         gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);
+        gfxApi->uniform(compiledBloomBlurYFragment, "step", bloomStep);
 
         gfxApi->end(fullScreenQuadMesh->primitive,
                     fullScreenQuadMesh->numVertices,

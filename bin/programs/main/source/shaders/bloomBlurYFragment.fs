@@ -6,6 +6,7 @@ uniform sampler2D colorTexture;
 uniform float divisor;
 uniform int radius;
 uniform float sigma;
+uniform float step;
 
 float gauss(float x)
 {
@@ -18,9 +19,9 @@ void main()
     vec2 onePixel = 1.0 / vec2(textureSize(colorTexture, 0));
     result_color = vec3(0.0);
     
-    for (int y = -radius; y < radius+1; ++y)
+    for (float y = -radius; y < radius+1; y += step)
     {
-        result_color += texture(colorTexture, frag_uv+vec2(0.0, y*onePixel.y)).rgb * gauss(float(y));
+        result_color += texture(colorTexture, frag_uv+vec2(0.0, y*onePixel.y)).rgb * gauss(y);
     }
     
     result_color /= divisor;

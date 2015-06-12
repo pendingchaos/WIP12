@@ -7,6 +7,7 @@ uniform float threshold;
 uniform float divisor;
 uniform int radius;
 uniform float sigma;
+uniform float step;
 
 float sampleTexture(vec2 uv)
 {
@@ -24,9 +25,9 @@ void main()
     vec2 onePixel = 1.0 / vec2(textureSize(colorTexture, 0));
     result_color = vec3(0.0);
     
-    for (int x = -radius; x < radius+1; ++x)
+    for (float x = -radius; x < radius+1; x += step)
     {
-        result_color += sampleTexture(frag_uv+vec2(x*onePixel.x, 0.0)) * gauss(float(x));
+        result_color += sampleTexture(frag_uv+vec2(x*onePixel.x, 0.0)) * gauss(x);
     }
     
     result_color /= divisor;
