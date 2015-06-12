@@ -7,7 +7,6 @@
 - [ ] Overlay rendering.
 - [ ] Post processing effects.
     - [ ] Color grading (using a 3d texture)
-    - [ ] Bloom
     - [ ] Tomemapping
     - [ ] Eye adaptation
 - [ ] Shadow mapping.
