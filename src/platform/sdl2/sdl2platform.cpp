@@ -225,7 +225,7 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 {
     running = true;
 
-    float titleUpdateDelay = 1.0f;
+    float titleUpdateDelay = 0.0f;
     float titleUpdateCountdown = 0.0f;
     float displayFrametime = 0.0f;
     float displayGpuFrametime = 0.0f;

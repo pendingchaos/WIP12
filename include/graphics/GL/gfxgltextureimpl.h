@@ -37,6 +37,8 @@ class GfxGLTextureImpl : public GfxTextureImpl
                                unsigned int pixelAlignment,
                                void *data);
 
+        virtual void generateMipmaps();
+
         GLuint getGLTexture() const
         {
             return texture;

@@ -117,6 +117,18 @@ class GfxGLApi : public GfxApi
         virtual uint16_t getViewportBottom() const;
         virtual uint16_t getViewportWidth() const;
         virtual uint16_t getViewportHeight() const;
+
+        virtual void setScissor(uint16_t left,
+                                uint16_t bottom,
+                                uint16_t width,
+                                uint16_t height);
+        virtual uint16_t getScissorLeft() const;
+        virtual uint16_t getScissorBottom() const;
+        virtual uint16_t getScissorWidth() const;
+        virtual uint16_t getScissorHeight() const;
+
+        virtual void setScissorEnabled(bool enabled);
+        virtual bool getScissorEnabled();
     private:
         struct State
         {
@@ -134,7 +146,12 @@ class GfxGLApi : public GfxApi
             uint16_t viewportBottom;
             uint16_t viewportWidth;
             uint16_t viewportHeight;
+            uint16_t scissorLeft;
+            uint16_t scissorBottom;
+            uint16_t scissorWidth;
+            uint16_t scissorHeight;
             GfxCullMode cullMode;
+            bool scissorEnabled:1;
         };
 
         GLuint pipeline;

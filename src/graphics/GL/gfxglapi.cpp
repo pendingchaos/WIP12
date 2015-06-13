@@ -729,7 +729,12 @@ void GfxGLApi::resetState()
     state.viewportBottom = 0;
     state.viewportWidth = 100;
     state.viewportHeight = 100;
+    state.scissorLeft = 0;
+    state.scissorBottom = 0;
+    state.scissorWidth = 100;
+    state.scissorHeight = 100;
     state.cullMode = GfxCullNone;
+    state.scissorEnabled = false;
 
     useState(state);
 }
@@ -837,6 +842,19 @@ void GfxGLApi::setViewport(uint16_t left,
     currentState.viewportHeight = height;
 }
 
+void GfxGLApi::setScissor(uint16_t left,
+                          uint16_t bottom,
+                          uint16_t width,
+                          uint16_t height)
+{
+    glScissor(left, bottom, width, height);
+
+    currentState.scissorLeft = left;
+    currentState.scissorBottom = bottom;
+    currentState.scissorWidth = width;
+    currentState.scissorHeight = height;
+}
+
 void GfxGLApi::useState(const State& state)
 {
     setBlendConstantColor(state.constantColor);
@@ -940,4 +958,42 @@ uint16_t GfxGLApi::getViewportWidth() const
 uint16_t GfxGLApi::getViewportHeight() const
 {
     return currentState.viewportHeight;
+}
+
+uint16_t GfxGLApi::getScissorLeft() const
+{
+    return currentState.scissorLeft;
+}
+
+uint16_t GfxGLApi::getScissorBottom() const
+{
+    return currentState.scissorBottom;
+}
+
+uint16_t GfxGLApi::getScissorWidth() const
+{
+    return currentState.scissorWidth;
+}
+
+uint16_t GfxGLApi::getScissorHeight() const
+{
+    return currentState.scissorHeight;
+}
+
+void GfxGLApi::setScissorEnabled(bool enabled)
+{
+    if (enabled)
+    {
+        glEnable(GL_SCISSOR_TEST);
+    } else
+    {
+        glDisable(GL_SCISSOR_TEST);
+    }
+
+    currentState.scissorEnabled = enabled;
+}
+
+bool GfxGLApi::getScissorEnabled()
+{
+    return currentState.scissorEnabled;
 }

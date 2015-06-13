@@ -132,6 +132,18 @@ class GfxApi
         virtual uint16_t getViewportWidth() const=0;
         virtual uint16_t getViewportHeight() const=0;
 
+        virtual void setScissor(uint16_t left,
+                                uint16_t bottom,
+                                uint16_t width,
+                                uint16_t height)=0;
+        virtual uint16_t getScissorLeft() const=0;
+        virtual uint16_t getScissorBottom() const=0;
+        virtual uint16_t getScissorWidth() const=0;
+        virtual uint16_t getScissorHeight() const=0;
+
+        virtual void setScissorEnabled(bool enabled)=0;
+        virtual bool getScissorEnabled()=0;
+
     NO_COPY(GfxApi)
 };
 

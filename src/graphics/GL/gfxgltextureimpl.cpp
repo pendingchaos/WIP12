@@ -77,7 +77,14 @@ static GLenum internalFormats[] = {GL_R8,
                                    GL_RG16,
                                    GL_RG16_SNORM,
                                    GL_RG32F,
-                                   GL_RG16F};
+                                   GL_RG16F,
+
+                                   GL_R8,
+                                   GL_R8_SNORM,
+                                   GL_R16,
+                                   GL_R16_SNORM,
+                                   GL_R32F,
+                                   GL_R16F};
 
 static GLenum formats[] = {GL_RED,
                            GL_RED,
@@ -154,7 +161,14 @@ static GLenum formats[] = {GL_RED,
                            GL_RG,
                            GL_RG,
                            GL_RG,
-                           GL_RG};
+                           GL_RG,
+
+                           GL_RED,
+                           GL_RED,
+                           GL_RED,
+                           GL_RED,
+                           GL_RED,
+                           GL_RED};
 
 static GLenum types[] = {GL_UNSIGNED_BYTE,
                          GL_BYTE,
@@ -223,6 +237,13 @@ static GLenum types[] = {GL_UNSIGNED_BYTE,
                          GL_UNSIGNED_BYTE,
 
                          GL_FLOAT,
+                         GL_FLOAT,
+                         GL_FLOAT,
+
+                         GL_UNSIGNED_BYTE,
+                         GL_BYTE,
+                         GL_UNSIGNED_SHORT,
+                         GL_SHORT,
                          GL_FLOAT,
                          GL_FLOAT,
 
@@ -315,7 +336,14 @@ static GLint swizzles[][4] = {{O, O, O, R},
                               {R, G, Z, Z},
                               {R, G, Z, Z},
                               {R, G, Z, Z},
-                              {R, G, Z, Z}};
+                              {R, G, Z, Z},
+
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z},
+                              {R, Z, Z, Z}};
 
 #undef R
 #undef G
@@ -480,7 +508,7 @@ void GfxGLTextureImpl::getMipmapFace(unsigned int level,
     glGetTexImage(target,
                   level,
                   formats[static_cast<int>(format)],
-                  GL_UNSIGNED_BYTE,
+                  types[static_cast<int>(format)],
                   data);
 
     glBindTexture(GL_TEXTURE_CUBE_MAP, lastTexture);
@@ -509,10 +537,19 @@ void GfxGLTextureImpl::getMipmap(unsigned int level,
     glGetTexImage(GL_TEXTURE_2D,
                   level,
                   formats[static_cast<int>(format)],
-                  GL_UNSIGNED_BYTE,
+                  types[static_cast<int>(format)],
                   data);
 
     glBindTexture(GL_TEXTURE_2D, lastTexture);
+}
+
+void GfxGLTextureImpl::generateMipmaps()
+{
+    BEGIN_TEXTURE_BINDING
+
+    glGenerateMipmap(target);
+
+    END_TEXTURE_BINDING
 }
 
 GLenum GfxGLTextureImpl::getGLInternalFormat() const

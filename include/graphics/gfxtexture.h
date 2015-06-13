@@ -132,6 +132,13 @@ class GfxTexture : public Resource
             RedGreenI16,
             RedGreenF32,
             RedGreenF32_F16,
+
+            RedU8,
+            RedI8,
+            RedU16,
+            RedI16,
+            RedF32,
+            RedF32_F16
         };
 
         enum Purpose
@@ -183,6 +190,8 @@ class GfxTexture : public Resource
         void getMipmap(unsigned int level,
                        unsigned int pixelAlignment,
                        void *data);
+
+        void generateMipmaps();
 
         inline GfxTexture::TextureType getTextureType() const
         {
@@ -316,6 +325,8 @@ class GfxTextureImpl
         virtual void getMipmap(unsigned int level,
                                unsigned int pixelAlignment,
                                void *data)=0;
+
+        virtual void generateMipmaps()=0;
 
         virtual void setMaximumAnisotropy(float maxAnisotropy)=0;
         virtual void setMinFilter(GfxTexture::Filter minFilter)=0;

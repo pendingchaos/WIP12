@@ -818,6 +818,15 @@ if __name__ == "__main__":
     conv["bloomBlurYFragment.fs"] = Shader(["source/shaders/bloomBlurYFragment.fs"], "../../resources/shaders/bloomBlurYFragment.bin")
     conv["bloomBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
     
+    conv["lumCalcFragment.fs"] = Shader(["source/shaders/lumCalcFragment.fs"], "../../resources/shaders/lumCalcFragment.bin")
+    conv["lumCalcFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["applyBloomFragment.fs"] = Shader(["source/shaders/applyBloomFragment.fs"], "../../resources/shaders/applyBloomFragment.bin")
+    conv["applyBloomFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["tonemapFragment.fs"] = Shader(["source/shaders/tonemapFragment.fs"], "../../resources/shaders/tonemapFragment.bin")
+    conv["tonemapFragment.fs"].stage_ = Shader.Stage.Fragment
+    
     conv["postEffectVertex.vs"] = Shader(["source/shaders/postEffectVertex.vs"], "../../resources/shaders/postEffectVertex.bin")
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")

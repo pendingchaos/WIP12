@@ -85,7 +85,13 @@ static const GfxTexture::Format formats[] = {GfxTexture::AlphaU8,
                                              GfxTexture::RedGreenU16,
                                              GfxTexture::RedGreenI16,
                                              GfxTexture::RedGreenF32,
-                                             GfxTexture::RedGreenF32_F16,};
+                                             GfxTexture::RedGreenF32_F16,
+                                             GfxTexture::RedU8,
+                                             GfxTexture::RedI8,
+                                             GfxTexture::RedU16,
+                                             GfxTexture::RedI16,
+                                             GfxTexture::RedF32,
+                                             GfxTexture::RedF32_F16};
 
 static const GfxTexture::Face faces[] = {GfxTexture::PositiveX,
                                          GfxTexture::NegativeX,
@@ -155,7 +161,13 @@ static const size_t formatSizes[] = {1,
                                      4,
                                      4,
                                      8,
-                                     8};
+                                     8,
+                                     1,
+                                     1,
+                                     2,
+                                     2,
+                                     4,
+                                     4};
 
 GfxTexture::GfxTexture(const String& filename,
                        const String& name) : Resource(filename,
@@ -272,6 +284,11 @@ void GfxTexture::getMipmap(unsigned int level,
                            void *data)
 {
     impl->getMipmap(level, pixelAlignment, data);
+}
+
+void GfxTexture::generateMipmaps()
+{
+    impl->generateMipmaps();
 }
 
 void GfxTexture::setMaximumAnisotropy(float maxAnisotropy)
