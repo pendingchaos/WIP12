@@ -10,12 +10,16 @@ G Buffer
     |
  Forward
     |
+Luminance Calculation
+    |
     +-----Bloom X
              |
     +--------+
     |
- Bloom Y (using the same framebuffer as Forward)
+ Bloom Y
     |
+Tonemapping
+   |
  Vignette
     |
   FXAA
