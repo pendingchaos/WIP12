@@ -1081,7 +1081,6 @@ if __name__ == "__main__":
     light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
-    light.power = 1.0;
     scene.lights.append(light)
     
     conv["scene"] = scene

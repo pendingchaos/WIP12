@@ -41,6 +41,8 @@ void main()
     float dist = length(dir);
     dir = normalize(dir);
     
+    float intensity = 1.0 / pow(dist / lightRadius + 1.0, 2.0);
+    
     _lighting(dir,
               specular,
               diffuse,
@@ -50,14 +52,12 @@ void main()
               normal,
               viewDir);
     
-    float ao = texture(aoTexture, frag_uv).r * (1.0 - diffuse);
+    float ao = max(texture(aoTexture, frag_uv).r * clamp(1.0 - diffuse * intensity, 0.0, 1.0), 0.0);
     
-    result_color.rgb = albedo * 0.1 * (1.0 - metallic) * ao;
+    result_color.rgb = albedo * 0.01 * (1.0 - metallic) * ao;
     result_color.a = 1.0;
     
     vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
-    
-    float intensity = 1.0 / pow(dist / lightRadius + 1.0, 2.0);
     
     result_color.rgb += (diffuseResult + specular) * lightColor * intensity;
 }

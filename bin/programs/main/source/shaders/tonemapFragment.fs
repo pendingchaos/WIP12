@@ -55,7 +55,7 @@ void main()
 
     float exposure = 1.0 / exp(max(averageLuminance, 0.0001));
     
-    result_color *= exposure;
+    result_color = 1.0 - exp(-result_color * exposure);
     
     #ifdef REINHARD
     vec3 xyY = RGBToxyY(result_color);

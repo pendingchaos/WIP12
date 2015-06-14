@@ -36,6 +36,7 @@ class GfxRenderer
             uint64_t bloomXTimingResolution;
             uint64_t bloomYTimingResolution;
             uint64_t lumCalcTimingResolution;
+            uint64_t tonemappingTimingResolution;
 
             uint64_t gBufferTiming;
             uint64_t ssaoTiming;
@@ -49,6 +50,7 @@ class GfxRenderer
             uint64_t bloomXTiming;
             uint64_t bloomYTiming;
             uint64_t lumCalcTiming;
+            uint64_t tonemappingTiming;
         };
 
         ~GfxRenderer();
@@ -114,6 +116,7 @@ class GfxRenderer
         GPUTimer *bloomXTimer;
         GPUTimer *bloomYTimer;
         GPUTimer *luminanceCalcTimer;
+        GPUTimer *tonemappingTimer;
 
         unsigned int width;
         unsigned int height;
@@ -135,7 +138,6 @@ class GfxRenderer
         ResPtr<GfxShader> ssaoBlurYFragment;
         ResPtr<GfxShader> bloomBlurXFragment;
         ResPtr<GfxShader> bloomBlurYFragment;
-        ResPtr<GfxShader> applyBloomFragment;
         ResPtr<GfxShader> tonemapFragment;
         ResPtr<GfxShader> lumCalcFragment;
         ResPtr<GfxShader> postEffectVertex;
@@ -150,7 +152,6 @@ class GfxRenderer
         GfxCompiledShader *compiledSSAOBlurYFragment;
         GfxCompiledShader *compiledBloomBlurXFragment;
         GfxCompiledShader *compiledBloomBlurYFragment;
-        GfxCompiledShader *compiledApplyBloomFragment;
         GfxCompiledShader *compiledTonemapFragment;
         GfxCompiledShader *compiledLumCalcFragment;
         GfxCompiledShader *compiledPostEffectVertex;
@@ -175,7 +176,6 @@ class GfxRenderer
         ResPtr<GfxTexture> ssaoTexture;
         ResPtr<GfxTexture> ssaoBlurXTexture;
         ResPtr<GfxTexture> bloomBlurXTexture;
-        ResPtr<GfxTexture> bloomTexture;
         ResPtr<GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
@@ -184,7 +184,6 @@ class GfxRenderer
         GfxFramebuffer *ssaoFramebuffer;
         GfxFramebuffer *ssaoBlurXFramebuffer;
         GfxFramebuffer *bloomblurXFramebuffer;
-        GfxFramebuffer *bloomFramebuffer;
         GfxFramebuffer *luminanceFramebuffer;
 
         void swapFramebuffers();
