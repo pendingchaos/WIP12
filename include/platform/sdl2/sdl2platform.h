@@ -29,6 +29,10 @@ class SDL2Platform : public Platform
         {
             return frametime;
         }
+        virtual float getGPUFrametime() const
+        {
+            return gpuFrametime;
+        }
 
         virtual size_t getWindowWidth() const;
         virtual size_t getWindowHeight() const;
@@ -50,6 +54,7 @@ class SDL2Platform : public Platform
         SDL_Window *window;
         SDL_GLContext context;
         float frametime;
+        float gpuFrametime;
         bool fullscreen;
 };
 #endif

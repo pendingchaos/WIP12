@@ -150,7 +150,7 @@ Platform::MouseButton toMouseButton(Uint32 button)
     }
 }
 
-SDL2Platform::SDL2Platform() : frametime(0.0f), fullscreen(false)
+SDL2Platform::SDL2Platform() : frametime(0.0f), gpuFrametime(0.0f), fullscreen(false)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -255,7 +255,7 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 
         frametime = float(end-start) / float(SDL_GetPerformanceFrequency());
 
-        float gpuFrametime = float(gpuTime) / float(gpuTimer->getResultResolution()) * 1000.0;
+        gpuFrametime = float(gpuTime) / float(gpuTimer->getResultResolution());
 
         titleUpdateCountdown -= frametime;
 
@@ -274,7 +274,7 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
                       sizeof(title),
                       "Frametime: %f ms GPU Frametime: %f ms",
                       displayFrametime*1000.0f,
-                      displayGpuFrametime);
+                      displayGpuFrametime*1000.0f);
 
         SDL_SetWindowTitle(window, title);
     }

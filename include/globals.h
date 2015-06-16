@@ -1,6 +1,9 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 class Application;
 class Platform;
 class ResourceManager;
@@ -15,6 +18,7 @@ extern ResourceManager *resMgr;
 extern GfxApi *gfxApi;
 extern Filesystem *fileSys;
 extern GfxDebugDrawer *debugDrawer;
+extern FT_Library freeType;
 
 void setApplication(Application *app);
 

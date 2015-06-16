@@ -24,35 +24,20 @@ class GfxRenderer
     public:
         struct RenderStats
         {
-            uint64_t gBufferTimingResolution;
-            uint64_t ssaoTimingResolution;
-            uint64_t ssaoBlurXTimingResolution;
-            uint64_t ssaoBlurYTimingResolution;
-            uint64_t deferredShadingTimingResolution;
-            uint64_t forwardTimingResolution;
-            uint64_t gammaCorrectionTimingResolution;
-            uint64_t fxaaTimingResolution;
-            uint64_t vignetteTimingResolution;
-            uint64_t bloomXTimingResolution;
-            uint64_t bloomYTimingResolution;
-            //uint64_t lumCalcTimingResolution;
-            uint64_t tonemappingTimingResolution;
-            uint64_t shadowmapTimingResolution;
-
-            uint64_t gBufferTiming;
-            uint64_t ssaoTiming;
-            uint64_t ssaoBlurXTiming;
-            uint64_t ssaoBlurYTiming;
-            uint64_t deferredShadingTiming;
-            uint64_t forwardTiming;
-            uint64_t gammaCorrectionTiming;
-            uint64_t fxaaTiming;
-            uint64_t vignetteTiming;
-            uint64_t bloomXTiming;
-            uint64_t bloomYTiming;
-            //uint64_t lumCalcTiming;
-            uint64_t tonemappingTiming;
-            uint64_t shadowmapTiming;
+            float gBufferTiming;
+            float ssaoTiming;
+            float ssaoBlurXTiming;
+            float ssaoBlurYTiming;
+            float deferredShadingTiming;
+            float forwardTiming;
+            float gammaCorrectionTiming;
+            float fxaaTiming;
+            float vignetteTiming;
+            float bloomXTiming;
+            float bloomYTiming;
+            //float lumCalcTiming;
+            float tonemappingTiming;
+            float shadowmapTiming;
         };
 
         ~GfxRenderer();

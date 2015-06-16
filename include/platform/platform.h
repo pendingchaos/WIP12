@@ -187,6 +187,7 @@ class Platform
         virtual uint64_t getTime() const=0;
         virtual uint64_t getTimerFrequency() const=0;
         virtual float getFrametime() const=0;
+        virtual float getGPUFrametime() const=0;
 
         virtual size_t getWindowWidth() const=0;
         virtual size_t getWindowHeight() const=0;

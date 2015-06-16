@@ -21,6 +21,9 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
 {
     app = this;
 
+    FT_Init_FreeType(&freeType_);
+    freeType = freeType_;
+
     platform_ = NEW(SDL2Platform);
     platform = platform_;
 
@@ -55,6 +58,8 @@ Application::~Application()
     DELETE(Filesystem, fileSystem_);
 
     DELETE(Platform, platform_);
+
+    FT_Done_FreeType(freeType);
 }
 
 void Application::updateFunction()

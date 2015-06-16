@@ -31,6 +31,8 @@
 #include "graphics/gfxrenderer.h"
 #include "graphics/camera.h"
 #include "graphics/gfxdebugdrawer.h"
+#include "graphics/font.h"
+#include "graphics/gputimer.h"
 #include "scripting/script.h"
 #include "resource/resource.h"
 #include "resource/resourcemanager.h"

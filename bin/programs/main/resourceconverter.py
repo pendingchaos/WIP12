@@ -773,20 +773,6 @@ if __name__ == "__main__":
     conv["normal.png"].purpose = Texture.Purpose.Normal
     conv["floor.png"] = Texture(["source/floor.png"], "resources/textures/floor.bin")
     conv["floor.png"].mag_filter = Texture.Filter.Nearest
-    conv["Storforsen"] = Texture(["source/Storforsen/posx.jpg",
-                                  "source/Storforsen/negx.jpg",
-                                  "source/Storforsen/posy.jpg",
-                                  "source/Storforsen/negy.jpg",
-                                  "source/Storforsen/posz.jpg",
-                                  "source/Storforsen/negz.jpg"],
-                                  "resources/textures/Storforsen.bin")
-    conv["Storforsen4"] = Texture(["source/Storforsen4/posx.jpg",
-                                   "source/Storforsen4/negx.jpg",
-                                   "source/Storforsen4/posy.jpg",
-                                   "source/Storforsen4/negy.jpg",
-                                   "source/Storforsen4/posz.jpg",
-                                   "source/Storforsen4/negz.jpg"],
-                                   "resources/textures/Storforsen4.bin")
     conv["Yokohama3"] = Texture(["source/Yokohama3/posx.jpg",
                                  "source/Yokohama3/negx.jpg",
                                  "source/Yokohama3/posy.jpg",
@@ -856,6 +842,14 @@ if __name__ == "__main__":
     conv["shadowmapFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["shadowmapVertex.vs"] = Shader(["source/shaders/shadowmapVertex.vs"], "../../resources/shaders/shadowmapVertex.bin")
+    
+    conv["fontFragment.fs"] = Shader(["source/shaders/fontFragment.fs"], "../../resources/shaders/fontFragment.bin")
+    conv["fontFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["fontGeometry.gs"] = Shader(["source/shaders/fontGeometry.gs"], "../../resources/shaders/fontGeometry.bin")
+    conv["fontGeometry.gs"].stage_ = Shader.Stage.Geometry
+    
+    conv["fontVertex.vs"] = Shader(["source/shaders/fontVertex.vs"], "../../resources/shaders/fontVertex.bin")
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")

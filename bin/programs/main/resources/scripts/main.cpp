@@ -143,13 +143,39 @@ class FPSCamera
         float maxAngularVelocity;
 };
 
+#define TIMINGS_UPDATE_COUNTDOWN 0.1f
+
 BEGIN_SCRIPT
     ResPtr<Scene> scene;
     FPSCamera cam;
+    Font *font;
+    bool showExtraTimings;
+    String timings;
+    String extraTimings;
+    float timingsUpdateCountdown;
+    bool freezeTimings;
+    GPUTimer *debugDrawTimer;
+    GPUTimer *textTimer;
 
     virtual void init()
     {
+        showExtraTimings = false;
+        timingsUpdateCountdown = 0.0f;
+        freezeTimings = false;
+        
         scene = resMgr->getResourceByFilename<Scene>("resources/scenes/scene.bin");
+    
+        font = NEW(Font, "/usr/share/fonts/gnu-free/FreeSans.ttf");
+    
+        debugDrawTimer = gfxApi->createTimer();
+        textTimer = gfxApi->createTimer();
+    }
+    
+    virtual void deinit()
+    {
+        DELETE(GPUTimer, debugDrawTimer);
+        DELETE(GPUTimer, textTimer);
+        DELETE(Font, font);
     }
 
     virtual void handleInput()
@@ -192,6 +218,16 @@ BEGIN_SCRIPT
                     platform->setFullscreen(not platform->getFullscreen());
                     break;
                 }
+                case Platform::F2:
+                {
+                    showExtraTimings = not showExtraTimings;
+                    break;
+                }
+                case Platform::F3:
+                {
+                    freezeTimings = not freezeTimings;
+                    break;
+                }
                 case Platform::Escape:
                 {
                     platform->setFullscreen(false);
@@ -220,6 +256,13 @@ BEGIN_SCRIPT
 
     virtual void render()
     {
+        while (not debugDrawTimer->resultAvailable());
+        while (not textTimer->resultAvailable());
+        scene->getRenderer()->updateStats();
+        
+        timingsUpdateCountdown -= platform->getFrametime();
+    
+        gfxApi->setViewport(0, 0, platform->getWindowWidth(), platform->getWindowHeight());
         scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
                                            platform->getWindowHeight()));
 
@@ -227,11 +270,118 @@ BEGIN_SCRIPT
         
         scene->getRenderer()->debugDraw = debugDraw;
         
+        debugDrawTimer->begin();
         if (debugDraw)
         {
             scene->getPhysicsWorld()->debugDraw();
         }
+        debugDrawTimer->end();
         
         scene->getRenderer()->render();
+        
+        size_t fontSize = 40;
+        float y = gfxApi->getViewportHeight() - fontSize;
+        y /= gfxApi->getViewportHeight();
+        
+        if (timingsUpdateCountdown < 0.0f and not freezeTimings)
+        {
+            timingsUpdateCountdown = TIMINGS_UPDATE_COUNTDOWN;
+            
+            timings = String::format("FPS: %.0f\n"
+                                     "Frametime: %.0f ms\n"
+                                     "GPU FPS: %.0f\n"
+                                     "GPU Frametime: %.0f\n",
+                                      1.0f / platform->getFrametime(),
+                                      platform->getFrametime() * 1000.0f,
+                                      1.0f / platform->getGPUFrametime(),
+                                      platform->getGPUFrametime() * 1000.0f);
+        
+            GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
+            
+            float total = platform->getGPUFrametime();
+            float debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();
+            float textTiming = textTimer->getResult() / (float)textTimer->getResultResolution();
+            float sum = stats.gBufferTiming +
+                        stats.ssaoTiming +
+                        stats.ssaoBlurXTiming +
+                        stats.ssaoBlurYTiming +
+                        stats.deferredShadingTiming +
+                        stats.forwardTiming +
+                        stats.gammaCorrectionTiming +
+                        stats.fxaaTiming +
+                        stats.vignetteTiming +
+                        stats.bloomXTiming +
+                        stats.bloomYTiming +
+                        stats.tonemappingTiming +
+                        stats.shadowmapTiming +
+                        debugDrawTiming +
+                        textTiming;
+            
+            extraTimings = String::format("GBuffer: %.2f ms (%.0f%)\n"
+                                          "SSAO: %.2f ms (%.0f%)\n"
+                                          "SSAO blur X: %.2f ms (%.0f%)\n"
+                                          "SSAO blur Y: %.2f ms (%.0f%)\n"
+                                          "Deferred shading: %.2f ms (%.0f%)\n"
+                                          "Forward render: %.2f ms (%.0f%)\n"
+                                          "Gamma correction: %.2f ms (%.0f%)\n"
+                                          "FXAA: %.2f ms (%.0f%)\n"
+                                          "Vignette: %.2f ms (%.0f%)\n"
+                                          "Bloom X: %.2f ms (%.0f%)\n"
+                                          "Bloom Y: %.2f ms (%.0f%)\n"
+                                          "Tonemapping: %.2f ms (%.0f%)\n"
+                                          "Shadow map: %.2f ms (%.0f%)\n"
+                                          "Debug draw: %.2f ms (%.0f%)\n"
+                                          "Text: %.2f ms (%.0f%)\n"
+                                          "Other: %.2f ms (%.0f%)\n",
+                                          stats.gBufferTiming * 1000.0f,
+                                          stats.gBufferTiming / total * 100.0f,
+                                          stats.ssaoTiming * 1000.0f,
+                                          stats.ssaoTiming / total * 100.0f,
+                                          stats.ssaoBlurXTiming * 1000.0f,
+                                          stats.ssaoBlurXTiming / total * 100.0f,
+                                          stats.ssaoBlurYTiming * 1000.0f,
+                                          stats.ssaoBlurYTiming / total * 100.0f,
+                                          stats.deferredShadingTiming * 1000.0f,
+                                          stats.deferredShadingTiming / total * 100.0f,
+                                          stats.forwardTiming * 1000.0f,
+                                          stats.forwardTiming / total * 100.0f,
+                                          stats.gammaCorrectionTiming * 1000.0f,
+                                          stats.gammaCorrectionTiming / total * 100.0f,
+                                          stats.fxaaTiming * 1000.0f,
+                                          stats.fxaaTiming / total * 100.0f,
+                                          stats.vignetteTiming * 1000.0f,
+                                          stats.vignetteTiming / total * 100.0f,
+                                          stats.bloomXTiming * 1000.0f,
+                                          stats.bloomXTiming / total * 100.0f,
+                                          stats.bloomYTiming * 1000.0f,
+                                          stats.bloomYTiming / total * 100.0f,
+                                          stats.tonemappingTiming * 1000.0f,
+                                          stats.tonemappingTiming / total * 100.0f,
+                                          stats.shadowmapTiming * 1000.0f,
+                                          stats.shadowmapTiming / total * 100.0f,
+                                          debugDrawTiming * 1000.0f,
+                                          debugDrawTiming / total * 100.0f,
+                                          textTiming * 1000.0f,
+                                          textTiming / total * 100.0f,
+                                          (total - sum) * 1000.0f,
+                                          (total - sum) / total * 100.0f);
+        }
+        
+        String displayTimings = timings.copy();
+        
+        if (showExtraTimings)
+        {
+            displayTimings.append(extraTimings);
+        }
+        
+        textTimer->begin();
+        
+        font->render(fontSize,
+                     Float2(-1.0, y),
+                     displayTimings.getData(),
+                     NULL,
+                     Float3(1.0));
+        
+        textTimer->end();
     }
 END_SCRIPT

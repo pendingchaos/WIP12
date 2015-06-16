@@ -7,6 +7,8 @@
 #include "scripting/script.h"
 
 #include <stdint.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 class Platform;
 class Application;
@@ -51,6 +53,11 @@ class Application
             return debugDrawer_;
         }
 
+        inline FT_Library getFreeType() const
+        {
+            return freeType_;
+        }
+
         inline void setNextScript(ResPtr<Script> script_)
         {
             nextScript = script_;
@@ -74,6 +81,7 @@ class Application
         ResourceManager *resMgr_;
         GfxApi *gfxApi_;
         GfxDebugDrawer *debugDrawer_;
+        FT_Library freeType_;
 
         ScriptInstance *script;
         ResPtr<Script> nextScript;

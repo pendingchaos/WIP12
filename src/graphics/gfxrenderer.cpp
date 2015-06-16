@@ -28,8 +28,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomRadius(0.025f),
                                           bloomQuality(0.9f),
                                           bloomEnabled(true),
-                                          stats({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}),
+                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
                                           width(0),
                                           height(0),
                                           scene(scene_),
@@ -208,76 +207,20 @@ void GfxRenderer::updateStats()
     while (not tonemappingTimer->resultAvailable());
     while (not shadowmapTimer->resultAvailable());
 
-    stats.gBufferTimingResolution = gBufferTimer->getResultResolution();
-    stats.gBufferTiming = gBufferTimer->getResult();
-
-    stats.ssaoTimingResolution = ssaoTimer->getResultResolution();
-    stats.ssaoTiming = ssaoTimer->getResult();
-
-    stats.ssaoBlurXTimingResolution = ssaoBlurXTimer->getResultResolution();
-    stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult();
-
-    stats.ssaoBlurYTimingResolution = ssaoBlurYTimer->getResultResolution();
-    stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult();
-
-    stats.deferredShadingTimingResolution = deferredShadingTimer->getResultResolution();
-    stats.deferredShadingTiming = deferredShadingTimer->getResult();
-
-    stats.forwardTimingResolution = forwardTimer->getResultResolution();
-    stats.forwardTiming = forwardTimer->getResult();
-
-    stats.gammaCorrectionTimingResolution = gammaCorrectionTimer->getResultResolution();
-    stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult();
-
-    stats.fxaaTimingResolution = fxaaTimer->getResultResolution();
-    stats.fxaaTiming = fxaaTimer->getResult();
-
-    stats.vignetteTimingResolution = vignetteTimer->getResultResolution();
-    stats.vignetteTiming = vignetteTimer->getResult();
-
-    stats.bloomXTimingResolution = bloomXTimer->getResultResolution();
-    stats.bloomXTiming = bloomXTimer->getResult();
-
-    stats.bloomYTimingResolution = bloomYTimer->getResultResolution();
-    stats.bloomYTiming = bloomYTimer->getResult();
-
-    /*stats.lumCalcTimingResolution = luminanceCalcTimer->getResultResolution();
-    stats.lumCalcTiming = luminanceCalcTimer->getResult();*/
-
-    stats.tonemappingTimingResolution = tonemappingTimer->getResultResolution();
-    stats.tonemappingTiming = tonemappingTimer->getResult();
-
-    stats.shadowmapTimingResolution = shadowmapTimer->getResultResolution();
-    stats.shadowmapTiming = shadowmapTimer->getResult();
-
-    /*log("GBuffer: %f ms\n"
-        "SSAO: %f ms\n"
-        "SSAO blur y: %f ms\n"
-        "SSAO blur x: %f ms\n"
-        "Deferred shading: %f ms\n"
-        "Forward pass: %f ms\n"
-        "Gamma correction: %f ms\n"
-        "FXAA: %f ms\n"
-        "Vignette: %f ms\n"
-        "Bloom X: %f ms\n"
-        "Bloom Y: %f ms\n"
-        //"Luminance calculation: %f ms\n"
-        "Tonemapping: %f ms\n"
-        "Shadow map generation: %f ms\n\n",
-        float(stats.gBufferTiming) / float(stats.gBufferTimingResolution) * 1000.0f,
-        float(stats.ssaoTiming) / float(stats.ssaoTimingResolution) * 1000.0f,
-        float(stats.ssaoBlurXTiming) / float(stats.ssaoBlurXTimingResolution) * 1000.0f,
-        float(stats.ssaoBlurYTiming) / float(stats.ssaoBlurYTimingResolution) * 1000.0f,
-        float(stats.deferredShadingTiming) / float(stats.deferredShadingTimingResolution) * 1000.0f,
-        float(stats.forwardTiming) / float(stats.forwardTimingResolution) * 1000.0f,
-        float(stats.gammaCorrectionTiming) / float(stats.gammaCorrectionTimingResolution) * 1000.0f,
-        float(stats.fxaaTiming) / float(stats.fxaaTimingResolution) * 1000.0f,
-        float(stats.vignetteTiming) / float(stats.vignetteTimingResolution) * 1000.0f,
-        float(stats.bloomXTiming) / float(stats.bloomXTimingResolution) * 1000.0f,
-        float(stats.bloomYTiming) / float(stats.bloomYTimingResolution) * 1000.0f,
-        //float(stats.lumCalcTiming) / float(stats.lumCalcTimingResolution) * 1000.0f,
-        float(stats.tonemappingTiming) / float(stats.tonemappingTimingResolution) * 1000.0f,
-        float(stats.shadowmapTiming) / float(stats.shadowmapTimingResolution) * 1000.0f);*/
+    stats.gBufferTiming = gBufferTimer->getResult() / (float)gBufferTimer->getResultResolution();
+    stats.ssaoTiming = ssaoTimer->getResult() / (float)ssaoTimer->getResultResolution();
+    stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult() / (float)ssaoBlurXTimer->getResultResolution();
+    stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult() / (float)ssaoBlurYTimer->getResultResolution();
+    stats.deferredShadingTiming = deferredShadingTimer->getResult() / (float)deferredShadingTimer->getResultResolution();
+    stats.forwardTiming = forwardTimer->getResult() / (float)forwardTimer->getResultResolution();
+    stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult() / (float)gammaCorrectionTimer->getResultResolution();
+    stats.fxaaTiming = fxaaTimer->getResult() / (float)fxaaTimer->getResultResolution();
+    stats.vignetteTiming = vignetteTimer->getResult() / (float)vignetteTimer->getResultResolution();
+    stats.bloomXTiming = bloomXTimer->getResult() / (float)bloomXTimer->getResultResolution();
+    stats.bloomYTiming = bloomYTimer->getResult() / (float)bloomYTimer->getResultResolution();
+    //stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
+    stats.tonemappingTiming = tonemappingTimer->getResult() / (float)tonemappingTimer->getResultResolution();
+    stats.shadowmapTiming = shadowmapTimer->getResult() / (float)shadowmapTimer->getResultResolution();
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
@@ -433,8 +376,6 @@ void GfxRenderer::resize(const UInt2& size)
 
 void GfxRenderer::render()
 {
-    updateStats();
-
     ResPtr<GfxTexture> oldReadTex = readColorTexture;
     ResPtr<GfxTexture> oldWriteTex = writeColorTexture;
     GfxFramebuffer *oldReadFb = readFramebuffer;

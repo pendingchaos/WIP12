@@ -178,8 +178,8 @@ void Script::_load()
     String binaryFilename = String::format("%s/bin/%s.so", dir.getData(), scriptFilename.getData());
 
     String command = String::format("g++ -o\"%s\" -g -I../include "
-                                    "`pkg-config bullet --cflags`"
-                                    "-fPIC -shared -std=gnu++11 -fabi-version="
+                                    "`pkg-config bullet --cflags` `freetype-config --cflags`"
+                                    " -fPIC -shared -std=gnu++11 -fabi-version="
                                     STR(__GXX_ABI_VERSION) " -xc++ -",
                                     binaryFilename.getData());
 

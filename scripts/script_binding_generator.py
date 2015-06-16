@@ -26,6 +26,8 @@ files = [
 "../include/graphics/gfxrenderer.h",
 "../include/graphics/camera.h",
 "../include/graphics/gfxdebugdrawer.h",
+"../include/graphics/font.h",
+"../include/graphics/gputimer.h",
 "../include/scripting/script.h",
 "../include/resource/resource.h",
 "../include/resource/resourcemanager.h",
@@ -48,7 +50,7 @@ files = [
 
 print "Running preprocessor"
 
-pipe = os.popen("g++ -E -o.script_includes.h -I../include `sdl2-config --cflags` `pkg-config bullet --cflags` -std=gnu++11 -xc++ -", "w")
+pipe = os.popen("g++ -E -o.script_includes.h -I../include `sdl2-config --cflags` `pkg-config bullet --cflags` `freetype-config --cflags` -std=gnu++11 -xc++ -", "w")
 pipe.write("\n".join("#include \"%s\"" % file_ for file_ in files))
 pipe.close()
 
@@ -60,7 +62,7 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "Quaternion", "PhysicsWorld", "RigidBody", "PhysicsShape", "PhysicsDebugDrawer",
 "Platform", "GfxShaderCombination", "Exception", "ShaderCompileException",
 "FileException", "LookupException", "ResourceIOException", "LogEntry",
-"PhysicsShapeImpl", "Framebuffer", "Light"]
+"PhysicsShapeImpl", "Framebuffer", "Light", "Font", "GPUTimer"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",

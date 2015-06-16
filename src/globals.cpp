@@ -8,6 +8,7 @@ ResourceManager *resMgr = nullptr;
 GfxApi *gfxApi = nullptr;
 Filesystem *fileSys = nullptr;
 GfxDebugDrawer *debugDrawer = nullptr;
+FT_Library freeType = nullptr;
 
 void setApplication(Application *app_)
 {
@@ -20,6 +21,7 @@ void setApplication(Application *app_)
         gfxApi = app->getGfxApi();
         fileSys = app->getFilesystem();
         debugDrawer = app->getDebugDrawer();
+        freeType = app->getFreeType();
     } else
     {
         platform = nullptr;
@@ -27,5 +29,6 @@ void setApplication(Application *app_)
         gfxApi = nullptr;
         fileSys = nullptr;
         debugDrawer = nullptr;
+        freeType = nullptr;
     }
 }

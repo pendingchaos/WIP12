@@ -3,7 +3,6 @@
     * It seems Bullet's api does not allow this for many shapes.
     * PhysicsCompoundShape should be resizable.
 - [ ] 3D textures.
-- [ ] Text rendering.
 - [ ] Overlay rendering.
 - [ ] Post processing effects.
     - [ ] Color grading (using a 3d texture)
@@ -29,6 +28,7 @@
 - [ ] When a shape is changed from a type to another, rigid bodies using that shape will have invalid shapes.
 - [ ] Sometimes when a script fails to compile, a segmentation fault happens.
 - [ ] The matrix 4x4 inverse function is incorrect(?).
+- [ ] The computer freezes when the window is too small.
 
 ## Other
 - [ ] Benchmarks.
