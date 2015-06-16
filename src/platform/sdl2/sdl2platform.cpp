@@ -225,7 +225,7 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 {
     running = true;
 
-    float titleUpdateDelay = 0.0f;
+    float titleUpdateDelay = 0.5f;
     float titleUpdateCountdown = 0.0f;
     float displayFrametime = 0.0f;
     float displayGpuFrametime = 0.0f;
@@ -249,10 +249,9 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 
         Uint64 end = SDL_GetPerformanceCounter();
 
-        if (gpuTimer->resultAvailable())
-        {
-            gpuTime = gpuTimer->getResult();
-        }
+        while (not gpuTimer->resultAvailable());
+
+        gpuTime = gpuTimer->getResult();
 
         frametime = float(end-start) / float(SDL_GetPerformanceFrequency());
 
@@ -278,8 +277,6 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
                       displayGpuFrametime);
 
         SDL_SetWindowTitle(window, title);
-
-        SDL_JoystickUpdate();
     }
 
     DELETE(GPUTimer, gpuTimer);

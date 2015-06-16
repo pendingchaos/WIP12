@@ -35,8 +35,9 @@ class GfxRenderer
             uint64_t vignetteTimingResolution;
             uint64_t bloomXTimingResolution;
             uint64_t bloomYTimingResolution;
-            uint64_t lumCalcTimingResolution;
+            //uint64_t lumCalcTimingResolution;
             uint64_t tonemappingTimingResolution;
+            uint64_t shadowmapTimingResolution;
 
             uint64_t gBufferTiming;
             uint64_t ssaoTiming;
@@ -49,8 +50,9 @@ class GfxRenderer
             uint64_t vignetteTiming;
             uint64_t bloomXTiming;
             uint64_t bloomYTiming;
-            uint64_t lumCalcTiming;
+            //uint64_t lumCalcTiming;
             uint64_t tonemappingTiming;
+            uint64_t shadowmapTiming;
         };
 
         ~GfxRenderer();
@@ -79,9 +81,30 @@ class GfxRenderer
             return stats;
         }
 
-        inline float getAverageLuminance() const
+        /*inline float getAverageLuminance() const
         {
             return averageLuminance;
+        }*/
+
+        inline Light *addLight()
+        {
+            Light *light = NEW(Light);
+
+            lights.append(light);
+
+            return light;
+        }
+
+        inline void removeLight(size_t index)
+        {
+            DELETE(Light, lights[index]);
+
+            lights.remove(index);
+        }
+
+        inline const List<Light *>& getLights() const
+        {
+            return lights;
         }
 
         void updateStats();
@@ -92,8 +115,6 @@ class GfxRenderer
 
         ResPtr<GfxTexture> skybox;
 
-        List<Light> lights;
-
         float vignetteRadius;
         float vignetteSoftness;
         float vignetteIntensity;
@@ -102,6 +123,8 @@ class GfxRenderer
         float bloomQuality;
         bool bloomEnabled;
     private:
+        List<Light *> lights;
+
         RenderStats stats;
 
         GPUTimer *gBufferTimer;
@@ -115,8 +138,9 @@ class GfxRenderer
         GPUTimer *vignetteTimer;
         GPUTimer *bloomXTimer;
         GPUTimer *bloomYTimer;
-        GPUTimer *luminanceCalcTimer;
+        //GPUTimer *luminanceCalcTimer;
         GPUTimer *tonemappingTimer;
+        GPUTimer *shadowmapTimer;
 
         unsigned int width;
         unsigned int height;
@@ -141,12 +165,15 @@ class GfxRenderer
         ResPtr<GfxShader> tonemapFragment;
         ResPtr<GfxShader> lumCalcFragment;
         ResPtr<GfxShader> postEffectVertex;
+        ResPtr<GfxShader> shadowmapVertex;
+        ResPtr<GfxShader> shadowmapFragment;
         GfxCompiledShader *compiledGammaCorrectionFragment;
         GfxCompiledShader *compiledVignetteFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingPoint;
         GfxCompiledShader *compiledLightingSpot;
+        GfxCompiledShader *compiledLightingSpotShadow;
         GfxCompiledShader *compiledSSAOFragment;
         GfxCompiledShader *compiledSSAOBlurXFragment;
         GfxCompiledShader *compiledSSAOBlurYFragment;
@@ -155,7 +182,9 @@ class GfxRenderer
         GfxCompiledShader *compiledTonemapFragment;
         GfxCompiledShader *compiledLumCalcFragment;
         GfxCompiledShader *compiledPostEffectVertex;
-        float averageLuminance;
+        GfxCompiledShader *compiledShadowmapVertex;
+        GfxCompiledShader *compiledShadowmapFragment;
+        //float averageLuminance;
 
         size_t numLights;
         GfxBuffer *lightBuffer;
@@ -167,6 +196,11 @@ class GfxRenderer
                          const Camera& camera,
                          const Matrix4x4& worldMatrix,
                          const ResPtr<GfxModel> model);
+        void renderModelToShadowmap(const Matrix4x4& viewMatrix,
+                                    const Matrix4x4& projectionMatrix,
+                                    const Matrix4x4& worldMatrix,
+                                    const ResPtr<GfxModel> model);
+        void renderShadowmap(Light *light);
 
         ResPtr<GfxTexture> writeColorTexture;
         ResPtr<GfxTexture> readColorTexture;
@@ -176,7 +210,7 @@ class GfxRenderer
         ResPtr<GfxTexture> ssaoTexture;
         ResPtr<GfxTexture> ssaoBlurXTexture;
         ResPtr<GfxTexture> bloomBlurXTexture;
-        ResPtr<GfxTexture> luminanceTexture;
+        //ResPtr<GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
         GfxFramebuffer *writeFramebuffer;
@@ -184,7 +218,7 @@ class GfxRenderer
         GfxFramebuffer *ssaoFramebuffer;
         GfxFramebuffer *ssaoBlurXFramebuffer;
         GfxFramebuffer *bloomblurXFramebuffer;
-        GfxFramebuffer *luminanceFramebuffer;
+        //GfxFramebuffer *luminanceFramebuffer;
 
         void swapFramebuffers();
 };

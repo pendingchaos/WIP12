@@ -3,9 +3,15 @@
 
 #include "math/t3.h"
 #include "math/t4.h"
+#include "math/matrix4x4.h"
+#include "graphics/gfxtexture.h"
+#include "graphics/gfxframebuffer.h"
+#include "misc_macros.h"
 
 class Light
 {
+    NO_COPY(Light)
+
     public:
         enum Type
         {
@@ -14,70 +20,41 @@ class Light
             Point
         };
 
-        Light(const Vector3D& direction_) : type(Directional),
-                                            power(1.0f),
-                                            color(1.0f),
-                                            direction({direction_}) {}
-
-        Light(const Position3D& position,
-              const Vector3D& direction_,
-              float innerCutoff,
-              float outerCutoff,
-              float radius) : type(Spot),
-                              power(1.0f),
-                              color(1.0f),
-                              spot({position, direction_, innerCutoff, outerCutoff, radius}) {}
-
-        Light(const Position3D& position,
-              float radius) : type(Point),
-                              power(1.0f),
-                              color(1.0f),
-                              point({position, radius}) {}
-
-        bool operator == (const Light& other) const
+        enum ShadowmapQuality
         {
-            if (type != other.type or
-                power != other.power or
-                color != other.color)
-            {
-                return false;
-            }
+            Low,
+            Medium,
+            High
+        };
 
-            switch (type)
-            {
-            case Directional:
-            {
-                return direction.direction == other.direction.direction;
-            }
-            case Spot:
-            {
-                return spot.position == other.spot.position or
-                       spot.direction == other.spot.direction or
-                       spot.innerCutoff == other.spot.innerCutoff or
-                       spot.outerCutoff == other.spot.outerCutoff or
-                       spot.radius == other.spot.radius;
-            }
-            case Point:
-            {
-                return point.position == other.point.position or
-                       point.radius == other.point.radius;
-            }
-            }
-        }
+        Light() : type(Directional),
+                  power(1.0f),
+                  color(1.0f),
+                  shadowmapNear(0.1f),
+                  shadowmapFar(100.0f),
+                  shadowMinBias(0.005f),
+                  shadowBiasScale(0.05f),
+                  direction({Direction3D(0.0f, -1.0f, 0.0f)}),
+                  shadowmap(nullptr),
+                  shadowmapFramebuffer(nullptr) {}
 
         Type type;
         float power;
         Float3 color;
+        float shadowmapNear;
+        float shadowmapFar;
+        float shadowMinBias;
+        float shadowBiasScale;
 
         struct
         {
-            Vector3D direction;
+            Direction3D direction;
         } direction;
 
         struct
         {
             Position3D position;
-            Vector3D direction;
+            Direction3D direction;
             float innerCutoff;
             float outerCutoff;
             float radius;
@@ -88,6 +65,42 @@ class Light
             Position3D position;
             float radius;
         } point;
+
+        void addShadowmap(size_t resolution, ShadowmapQuality quality);
+
+        inline void removeShadowmap()
+        {
+            DELETE(GfxFramebuffer, shadowmapFramebuffer);
+            shadowmap = nullptr;
+        }
+
+        inline ResPtr<GfxTexture> getShadowmap() const
+        {
+            return shadowmap;
+        }
+
+        inline GfxFramebuffer *getShadowmapFramebuffer() const
+        {
+            return shadowmapFramebuffer;
+        }
+
+        inline size_t getShadowmapResolution() const
+        {
+            return shadowmapResolution;
+        }
+
+        inline ShadowmapQuality getShadowmapQuality() const
+        {
+            return shadowmapQuality;
+        }
+
+        Matrix4x4 getViewMatrix() const;
+        Matrix4x4 getProjectionMatrix() const;
+    private:
+        ResPtr<GfxTexture> shadowmap;
+        GfxFramebuffer *shadowmapFramebuffer;
+        size_t shadowmapResolution;
+        ShadowmapQuality shadowmapQuality;
 };
 
 #endif // LIGHT_H

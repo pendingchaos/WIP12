@@ -518,11 +518,16 @@ if __name__ == "__main__":
             os.rename(self.dest_filename+".temp", self.dest_filename)
     
     class Scene(Resource):
-        class Light(object):
+        class Light:
             class Type:
                 Directional = "directional"
                 Spot = "spot"
                 Point = "point"
+            
+            class ShadowmapQuality:
+                Low = "low"
+                Medium = "medium"
+                High = "high"
             
             def __init__(self, type_):
                 self.type_ = type_
@@ -540,6 +545,8 @@ if __name__ == "__main__":
                 elif type_ == Scene.Light.Type.Point:
                     self.position = [0.0, 0.0, 0.0]
                     self.radius = 1.0
+                
+                self.shadowmap = False
             
             def convert(self):
                 s = {Scene.Light.Type.Directional: "\x00",
@@ -574,6 +581,22 @@ if __name__ == "__main__":
                                      self.position[1],
                                      self.position[2],
                                      self.radius)
+                
+                if self.shadowmap:
+                    s += "\x01"
+                    
+                    s += struct.pack("<ffffH",
+                                     self.shadowmap_near,
+                                     self.shadowmap_far,
+                                     self.shadow_min_bias,
+                                     self.shadow_bias_scale,
+                                     self.shadowmap_resolution)
+                    
+                    s += {Scene.Light.ShadowmapQuality.Low: "\x00",
+                          Scene.Light.ShadowmapQuality.Medium: "\x01",
+                          Scene.Light.ShadowmapQuality.High: "\x02"}[self.shadowmap_quality]
+                else:
+                    s += "\x00"
                 
                 return s
         
@@ -644,6 +667,7 @@ if __name__ == "__main__":
                 self.model = None
                 self.scripts = []
                 self.rigidBody = None
+                self.shadow_caster = True
             
             def convert(self):
                 s = struct.pack("<L", len(self.name))
@@ -656,6 +680,8 @@ if __name__ == "__main__":
                 if self.model != None:
                     s += struct.pack("<L", len(get_dest_filename(self.model, Model)))
                     s += get_dest_filename(self.model, Model)
+                    
+                    s += struct.pack("<?", self.shadow_caster)
                 
                 s += self.rigidBody.convert() if self.rigidBody != None else ""
                 
@@ -821,13 +847,15 @@ if __name__ == "__main__":
     conv["lumCalcFragment.fs"] = Shader(["source/shaders/lumCalcFragment.fs"], "../../resources/shaders/lumCalcFragment.bin")
     conv["lumCalcFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["applyBloomFragment.fs"] = Shader(["source/shaders/applyBloomFragment.fs"], "../../resources/shaders/applyBloomFragment.bin")
-    conv["applyBloomFragment.fs"].stage_ = Shader.Stage.Fragment
-    
     conv["tonemapFragment.fs"] = Shader(["source/shaders/tonemapFragment.fs"], "../../resources/shaders/tonemapFragment.bin")
     conv["tonemapFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["postEffectVertex.vs"] = Shader(["source/shaders/postEffectVertex.vs"], "../../resources/shaders/postEffectVertex.bin")
+    
+    conv["shadowmapFragment.fs"] = Shader(["source/shaders/shadowmapFragment.fs"], "../../resources/shaders/shadowmapFragment.bin")
+    conv["shadowmapFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["shadowmapVertex.vs"] = Shader(["source/shaders/shadowmapVertex.vs"], "../../resources/shaders/shadowmapVertex.bin")
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
@@ -1078,12 +1106,59 @@ if __name__ == "__main__":
     light.color = [1.0, 1.0, 0.0]
     scene.lights.append(light)"""
     
-    light = Scene.Light(Scene.Light.Type.Directional)
+    """light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
+    scene.lights.append(light)"""
+    
+    light = Scene.Light(Scene.Light.Type.Spot)
+    light.position = [8.0, 2.5, 0.0]
+    light.direction = [1.0, -0.75, 0.0]
+    light.color = [1.0, 1.0, 1.0]
+    light.power = 5.0
+    light.inner_cutoff = 28.0
+    light.outer_cutoff = 30.0
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadowmap_resolution = 512
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    scene.lights.append(light)
+    
+    light = Scene.Light(Scene.Light.Type.Spot)
+    light.position = [8.0, 2.5, -6.0]
+    light.direction = [1.0, -0.75, 0.0]
+    light.color = [1.0, 1.0, 1.0]
+    light.power = 5.0
+    light.inner_cutoff = 28.0
+    light.outer_cutoff = 30.0
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadowmap_resolution = 512
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
     scene.lights.append(light)
     
     conv["scene"] = scene
+    light = Scene.Light(Scene.Light.Type.Spot)
+    light.position = [8.0, 2.5, 6.0]
+    light.direction = [1.0, -0.75, 0.0]
+    light.color = [1.0, 1.0, 1.0]
+    light.power = 5.0
+    light.inner_cutoff = 28.0
+    light.outer_cutoff = 30.0
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadowmap_resolution = 512
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    scene.lights.append(light)
     
     for res in conv.values():
         res.convert()

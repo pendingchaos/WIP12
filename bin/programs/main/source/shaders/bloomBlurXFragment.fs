@@ -9,7 +9,7 @@ uniform int radius;
 uniform float sigma;
 uniform float step;
 
-float sampleTexture(vec2 uv)
+vec3 sampleTexture(vec2 uv)
 {
     return max(texture(colorTexture, uv).rgb - threshold, 0.0);
 }

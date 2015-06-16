@@ -3,11 +3,7 @@ layout (location = 0) out vec3 result_color;
 in vec2 frag_uv;
 
 uniform sampler2D colorTexture;
-uniform float averageLuminance;
 
-#define REINHARD
-
-#ifdef REINHARD
 vec3 RGBToxyY(vec3 rgb)
 {
 	const mat3 RGB2XYZ = mat3(0.4124, 0.3576, 0.1805,
@@ -34,41 +30,15 @@ vec3 xyYToRGB(vec3 xyY)
 	
 	return XYZ2RGB * XYZ;
 }
-#else
-float A = 0.15;
-float B = 0.50;
-float C = 0.10;
-float D = 0.20;
-float E = 0.02;
-float F = 0.30;
-float W = 11.2;
- 
-vec3 Uncharted2Tonemap(vec3 x)
-{
-    return ((x*(A*x+C*B)+D*E)/(x*(A*x+B)+D*F))-E/F;
-}
-#endif
 
 void main()
 {
     result_color = texture(colorTexture, frag_uv).rgb;
 
-    float exposure = 1.0 / exp(max(averageLuminance, 0.0001));
-    
-    result_color = 1.0 - exp(-result_color * exposure);
-    
-    #ifdef REINHARD
     vec3 xyY = RGBToxyY(result_color);
     
     xyY.z /= xyY.z + 1.0;
     
     result_color = xyYToRGB(xyY);
-    #else
-    float exposureBias = 2.0;
-    
-    result_color = Uncharted2Tonemap(result_color * exposureBias);
-    
-    result_color *= 1.0 / Uncharted2Tonemap(vec3(W));
-    #endif
 }
 

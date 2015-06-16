@@ -11,6 +11,6 @@ float calcLum(vec3 color)
 
 void main()
 {
-    result_lum = log(calcLum(texture(colorTexture, frag_uv).rgb));
+    result_lum = log(max(calcLum(texture(colorTexture, frag_uv).rgb), 0.0001));
 }
 

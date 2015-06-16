@@ -7,11 +7,16 @@
 - [ ] Overlay rendering.
 - [ ] Post processing effects.
     - [ ] Color grading (using a 3d texture)
-    - [ ] Eye adaptation
 - [ ] Shadow mapping.
     - [ ] Directional
+        - [ ] Deferred
+        - [ ] Forward
     - [ ] Point
+        - [ ] Deferred
+        - [ ] Forward
     - [ ] Spot
+        - [x] Deferred
+        - [ ] Forward
 - [ ] Audio
 - [ ] Make scripts less independent. (eg. calling a function in a script from another script should work).
 - [ ] Ghost objects (btGhostObject).
@@ -34,3 +39,5 @@
 ## Performance Improvements
 - [ ] Script compilation is very slow.
 - [ ] Instancing (explicit and implicit).
+
+- [ ] Get rid of resource names.

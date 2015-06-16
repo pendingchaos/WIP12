@@ -136,7 +136,10 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String modelFile(modelFileLen);
         file->read(modelFileLen, modelFile.getData());
 
-        entity->addRenderComponent(resMgr->getResourceByFilename<GfxModel>(modelFile));
+        bool shadowCaster = file->readUInt8() != 0;
+
+        entity->addRenderComponent(resMgr->getResourceByFilename<GfxModel>(modelFile),
+                                   shadowCaster);
     }
 
     if (useRigidBody)
@@ -323,18 +326,20 @@ void Scene::_load()
             float green = file.readFloat32();
             float blue = file.readFloat32();
 
+            Light *light = renderer->addLight();
+
+            light->power = power;
+            light->color = Float3(red, green, blue);
+
             if (type == 0)
             {
                 float dirX = file.readFloat32();
                 float dirY = file.readFloat32();
                 float dirZ = file.readFloat32();
 
-                Light l(Vector3D(dirX, dirY, dirZ));
+                light->type = Light::Directional;
 
-                l.power = power;
-                l.color = Float3(red, green, blue);
-
-                renderer->lights.append(l);
+                light->direction.direction = Vector3D(dirX, dirY, dirZ);
             } else if (type == 1)
             {
                 float posX = file.readFloat32();
@@ -347,16 +352,13 @@ void Scene::_load()
                 float outerCutoff = file.readFloat32();
                 float radius = file.readFloat32();
 
-                Light l(Position3D(posX, posY, posZ),
-                        Vector3D(dirX, dirY, dirZ),
-                        innerCutoff,
-                        outerCutoff,
-                        radius);
+                light->type = Light::Spot;
 
-                l.power = power;
-                l.color = Float3(red, green, blue);
-
-                renderer->lights.append(l);
+                light->spot.position = Position3D(posX, posY, posZ);
+                light->spot.direction = Vector3D(dirX, dirY, dirZ);
+                light->spot.innerCutoff = innerCutoff;
+                light->spot.outerCutoff = outerCutoff;
+                light->spot.radius = radius;
             } else if (type == 2)
             {
                 float posX = file.readFloat32();
@@ -364,18 +366,33 @@ void Scene::_load()
                 float posZ = file.readFloat32();
                 float radius = file.readFloat32();
 
-                Light l(Position3D(posX, posY, posZ), radius);
-
-                l.power = power;
-                l.color = Float3(red, green, blue);
-
-                renderer->lights.append(l);
+                light->point.position = Position3D(posX, posY, posZ);
+                light->point.radius = radius;
             } else
             {
                 THROW(ResourceIOException,
                       "scene",
                       filename,
                       "Invalid light type");
+            }
+
+            bool shadowmap = file.readUInt8() != 0;
+
+            if (shadowmap)
+            {
+                float near = file.readFloat32();
+                float far = file.readFloat32();
+                float minBias = file.readFloat32();
+                float biasScale = file.readFloat32();
+                size_t resolution = file.readUInt16LE();
+                Light::ShadowmapQuality quality = (Light::ShadowmapQuality)file.readUInt8();
+
+                light->addShadowmap(resolution, quality);
+
+                light->shadowmapNear = near;
+                light->shadowmapFar = far;
+                light->shadowMinBias = minBias;
+                light->shadowBiasScale = biasScale;
             }
         }
     } catch (FileException& e)
@@ -429,6 +446,8 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
             file->writeUInt32LE(model->filename.getLength());
             file->write(model->filename.getLength(), model->filename.getData());
+
+            file->writeUInt8(entity->getRenderComponent()->shadowCaster);
         }
     }
 
@@ -537,6 +556,60 @@ void Scene::save()
         for (size_t i = 0; i < entities.getCount(); ++i)
         {
             saveEntity(entities[i], &file, filename);
+        }
+
+        file.writeUInt32LE(renderer->getLights().getCount());
+
+        for (uint32_t i = 0; i < renderer->getLights().getCount(); ++i)
+        {
+            const Light *light = renderer->getLights()[i];
+
+            file.writeUInt8((uint8_t)light->type);
+            file.writeFloat32(light->power);
+            file.writeFloat32(light->color.x);
+            file.writeFloat32(light->color.y);
+            file.writeFloat32(light->color.z);
+
+            switch (light->type)
+            {
+            case Light::Directional:
+            {
+                file.writeFloat32(light->direction.direction.x);
+                file.writeFloat32(light->direction.direction.y);
+                file.writeFloat32(light->direction.direction.z);
+                break;
+            }
+            case Light::Spot:
+            {
+                file.writeFloat32(light->spot.position.x);
+                file.writeFloat32(light->spot.position.y);
+                file.writeFloat32(light->spot.position.z);
+                file.writeFloat32(light->spot.direction.x);
+                file.writeFloat32(light->spot.direction.y);
+                file.writeFloat32(light->spot.direction.z);
+                file.writeFloat32(light->spot.innerCutoff);
+                file.writeFloat32(light->spot.outerCutoff);
+                file.writeFloat32(light->spot.radius);
+                break;
+            }
+            case Light::Point:
+            {
+                file.writeFloat32(light->point.position.x);
+                file.writeFloat32(light->point.position.y);
+                file.writeFloat32(light->point.position.z);
+                file.writeFloat32(light->point.radius);
+            }
+            }
+
+            file.writeUInt8(light->getShadowmap() != nullptr);
+
+            if (light->getShadowmap() != nullptr)
+            {
+                file.writeFloat32(light->shadowmapNear);
+                file.writeFloat32(light->shadowmapFar);
+                file.writeUInt16LE(light->getShadowmapResolution());
+                file.writeUInt8((int)light->getShadowmapQuality());
+            }
         }
     } catch (FileException& e)
     {

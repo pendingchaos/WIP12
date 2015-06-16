@@ -28,6 +28,7 @@ class RenderComponent
         Type type;
 
         ResPtr<GfxModel> model;
+        bool shadowCaster;
     private:
         RenderComponent() : type(Nothing) {}
         ~RenderComponent() {}
@@ -85,11 +86,12 @@ class Entity
             return rigidBody != nullptr;
         }
 
-        inline void addRenderComponent(ResPtr<GfxModel> model)
+        inline void addRenderComponent(ResPtr<GfxModel> model, bool shadowCaster=true)
         {
             render = true;
             renderComponent.type = RenderComponent::Model;
             renderComponent.model = model;
+            renderComponent.shadowCaster = shadowCaster;
         }
 
         inline void removeRenderComponent()

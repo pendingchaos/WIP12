@@ -28,12 +28,12 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomRadius(0.025f),
                                           bloomQuality(0.9f),
                                           bloomEnabled(true),
-                                          stats({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}),
+                                          stats({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}),
                                           width(0),
                                           height(0),
                                           scene(scene_),
-                                          averageLuminance(0.0f),
+                                          //averageLuminance(0.0f),
                                           numLights(0)
 {
     skyboxVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxVertex.bin");
@@ -53,6 +53,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     lumCalcFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lumCalcFragment.bin");
     tonemapFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/tonemapFragment.bin");
     postEffectVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/postEffectVertex.bin");
+    shadowmapVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/shadowmapVertex.bin");
+    shadowmapFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/shadowmapFragment.bin");
 
     compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
     compiledVignetteFragment = vignetteFragment->getCompiled();
@@ -60,6 +62,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledLightingDirectional = lightingDirectional->getCompiled();
     compiledLightingPoint = lightingPoint->getCompiled();
     compiledLightingSpot = lightingSpot->getCompiled();
+    compiledLightingSpotShadow = lightingSpot->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
     compiledSSAOFragment = ssaoFragment->getCompiled();
     compiledSSAOBlurXFragment = ssaoBlurXFragment->getCompiled();
     compiledSSAOBlurYFragment = ssaoBlurYFragment->getCompiled();
@@ -68,6 +71,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledLumCalcFragment = lumCalcFragment->getCompiled();
     compiledTonemapFragment = tonemapFragment->getCompiled();
     compiledPostEffectVertex = postEffectVertex->getCompiled();
+    compiledShadowmapVertex = shadowmapVertex->getCompiled();
+    compiledShadowmapFragment = shadowmapFragment->getCompiled();
 
     lightBuffer = gfxApi->createBuffer();
 
@@ -103,7 +108,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoTexture = NEW(GfxTexture, "");
     ssaoBlurXTexture = NEW(GfxTexture, "");
     bloomBlurXTexture = NEW(GfxTexture, "");
-    luminanceTexture = NEW(GfxTexture, "");
+    //luminanceTexture = NEW(GfxTexture, "");
 
     readColorTexture->setWrapMode(GfxTexture::Stretch);
     writeColorTexture->setWrapMode(GfxTexture::Stretch);
@@ -113,7 +118,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoTexture->setWrapMode(GfxTexture::Stretch);
     ssaoBlurXTexture->setWrapMode(GfxTexture::Stretch);
     bloomBlurXTexture->setWrapMode(GfxTexture::Stretch);
-    luminanceTexture->setWrapMode(GfxTexture::Stretch);
+    //luminanceTexture->setWrapMode(GfxTexture::Stretch);
 
     resize(640);
 
@@ -140,8 +145,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloomblurXFramebuffer = gfxApi->createFramebuffer();
     bloomblurXFramebuffer->addColorAttachment(0, bloomBlurXTexture);
 
-    luminanceFramebuffer = gfxApi->createFramebuffer();
-    luminanceFramebuffer->addColorAttachment(0, luminanceTexture);
+    /*luminanceFramebuffer = gfxApi->createFramebuffer();
+    luminanceFramebuffer->addColorAttachment(0, luminanceTexture);*/
 
     gBufferTimer = gfxApi->createTimer();
     ssaoTimer = gfxApi->createTimer();
@@ -154,8 +159,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     vignetteTimer = gfxApi->createTimer();
     bloomXTimer = gfxApi->createTimer();
     bloomYTimer = gfxApi->createTimer();
-    luminanceCalcTimer = gfxApi->createTimer();
+    //luminanceCalcTimer = gfxApi->createTimer();
     tonemappingTimer = gfxApi->createTimer();
+    shadowmapTimer = gfxApi->createTimer();
 }
 
 GfxRenderer::~GfxRenderer()
@@ -171,8 +177,9 @@ GfxRenderer::~GfxRenderer()
     DELETE(GPUTimer, vignetteTimer);
     DELETE(GPUTimer, bloomXTimer);
     DELETE(GPUTimer, bloomYTimer);
-    DELETE(GPUTimer, luminanceCalcTimer);
+    //DELETE(GPUTimer, luminanceCalcTimer);
     DELETE(GPUTimer, tonemappingTimer);
+    DELETE(GPUTimer, shadowmapTimer);
 
     DELETE(GfxFramebuffer, readFramebuffer);
     DELETE(GfxFramebuffer, writeFramebuffer);
@@ -180,92 +187,70 @@ GfxRenderer::~GfxRenderer()
     DELETE(GfxFramebuffer, ssaoFramebuffer);
     DELETE(GfxFramebuffer, ssaoBlurXFramebuffer);
     DELETE(GfxFramebuffer, bloomblurXFramebuffer);
-    DELETE(GfxFramebuffer, luminanceFramebuffer);
+    //DELETE(GfxFramebuffer, luminanceFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
 }
 
 void GfxRenderer::updateStats()
 {
-    if (gBufferTimer->resultAvailable())
-    {
-        stats.gBufferTimingResolution = gBufferTimer->getResultResolution();
-        stats.gBufferTiming = gBufferTimer->getResult();
-    }
+    while (not gBufferTimer->resultAvailable());
+    while (not ssaoTimer->resultAvailable());
+    while (not ssaoBlurXTimer->resultAvailable());
+    while (not ssaoBlurYTimer->resultAvailable());
+    while (not deferredShadingTimer->resultAvailable());
+    while (not forwardTimer->resultAvailable());
+    while (not gammaCorrectionTimer->resultAvailable());
+    while (not fxaaTimer->resultAvailable());
+    while (not vignetteTimer->resultAvailable());
+    while (not bloomXTimer->resultAvailable());
+    while (not bloomYTimer->resultAvailable());
+    while (not tonemappingTimer->resultAvailable());
+    while (not shadowmapTimer->resultAvailable());
 
-    if (ssaoTimer->resultAvailable())
-    {
-        stats.ssaoTimingResolution = ssaoTimer->getResultResolution();
-        stats.ssaoTiming = ssaoTimer->getResult();
-    }
+    stats.gBufferTimingResolution = gBufferTimer->getResultResolution();
+    stats.gBufferTiming = gBufferTimer->getResult();
 
-    if (ssaoBlurXTimer->resultAvailable())
-    {
-        stats.ssaoBlurXTimingResolution = ssaoBlurXTimer->getResultResolution();
-        stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult();
-    }
+    stats.ssaoTimingResolution = ssaoTimer->getResultResolution();
+    stats.ssaoTiming = ssaoTimer->getResult();
 
-    if (ssaoBlurYTimer->resultAvailable())
-    {
-        stats.ssaoBlurYTimingResolution = ssaoBlurYTimer->getResultResolution();
-        stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult();
-    }
+    stats.ssaoBlurXTimingResolution = ssaoBlurXTimer->getResultResolution();
+    stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult();
 
-    if (deferredShadingTimer->resultAvailable())
-    {
-        stats.deferredShadingTimingResolution = deferredShadingTimer->getResultResolution();
-        stats.deferredShadingTiming = deferredShadingTimer->getResult();
-    }
+    stats.ssaoBlurYTimingResolution = ssaoBlurYTimer->getResultResolution();
+    stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult();
 
-    if (forwardTimer->resultAvailable())
-    {
-        stats.forwardTimingResolution = forwardTimer->getResultResolution();
-        stats.forwardTiming = forwardTimer->getResult();
-    }
+    stats.deferredShadingTimingResolution = deferredShadingTimer->getResultResolution();
+    stats.deferredShadingTiming = deferredShadingTimer->getResult();
 
-    if (gammaCorrectionTimer->resultAvailable())
-    {
-        stats.gammaCorrectionTimingResolution = gammaCorrectionTimer->getResultResolution();
-        stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult();
-    }
+    stats.forwardTimingResolution = forwardTimer->getResultResolution();
+    stats.forwardTiming = forwardTimer->getResult();
 
-    if (fxaaTimer->resultAvailable())
-    {
-        stats.fxaaTimingResolution = fxaaTimer->getResultResolution();
-        stats.fxaaTiming = fxaaTimer->getResult();
-    }
+    stats.gammaCorrectionTimingResolution = gammaCorrectionTimer->getResultResolution();
+    stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult();
 
-    if (vignetteTimer->resultAvailable())
-    {
-        stats.vignetteTimingResolution = vignetteTimer->getResultResolution();
-        stats.vignetteTiming = vignetteTimer->getResult();
-    }
+    stats.fxaaTimingResolution = fxaaTimer->getResultResolution();
+    stats.fxaaTiming = fxaaTimer->getResult();
 
-    if (bloomXTimer->resultAvailable())
-    {
-        stats.bloomXTimingResolution = bloomXTimer->getResultResolution();
-        stats.bloomXTiming = bloomXTimer->getResult();
-    }
+    stats.vignetteTimingResolution = vignetteTimer->getResultResolution();
+    stats.vignetteTiming = vignetteTimer->getResult();
 
-    if (bloomYTimer->resultAvailable())
-    {
-        stats.bloomYTimingResolution = bloomYTimer->getResultResolution();
-        stats.bloomYTiming = bloomYTimer->getResult();
-    }
+    stats.bloomXTimingResolution = bloomXTimer->getResultResolution();
+    stats.bloomXTiming = bloomXTimer->getResult();
 
-    if (luminanceCalcTimer->resultAvailable())
-    {
-        stats.lumCalcTimingResolution = luminanceCalcTimer->getResultResolution();
-        stats.lumCalcTiming = luminanceCalcTimer->getResult();
-    }
+    stats.bloomYTimingResolution = bloomYTimer->getResultResolution();
+    stats.bloomYTiming = bloomYTimer->getResult();
 
-    if (tonemappingTimer->resultAvailable())
-    {
-        stats.tonemappingTimingResolution = tonemappingTimer->getResultResolution();
-        stats.tonemappingTiming = tonemappingTimer->getResult();
-    }
+    /*stats.lumCalcTimingResolution = luminanceCalcTimer->getResultResolution();
+    stats.lumCalcTiming = luminanceCalcTimer->getResult();*/
 
-    log("GBuffer: %f ms\n"
+    stats.tonemappingTimingResolution = tonemappingTimer->getResultResolution();
+    stats.tonemappingTiming = tonemappingTimer->getResult();
+
+    stats.shadowmapTimingResolution = shadowmapTimer->getResultResolution();
+    stats.shadowmapTiming = shadowmapTimer->getResult();
+
+    /*log("GBuffer: %f ms\n"
         "SSAO: %f ms\n"
         "SSAO blur y: %f ms\n"
         "SSAO blur x: %f ms\n"
@@ -276,21 +261,23 @@ void GfxRenderer::updateStats()
         "Vignette: %f ms\n"
         "Bloom X: %f ms\n"
         "Bloom Y: %f ms\n"
-        "Luminance calculation: %f ms\n"
-        "Tonemapping: %f ms\n\n",
-        double(stats.gBufferTiming) / double(stats.gBufferTimingResolution) * 1000.0,
-        double(stats.ssaoTiming) / double(stats.ssaoTimingResolution) * 1000.0,
-        double(stats.ssaoBlurXTiming) / double(stats.ssaoBlurXTimingResolution) * 1000.0,
-        double(stats.ssaoBlurYTiming) / double(stats.ssaoBlurYTimingResolution) * 1000.0,
-        double(stats.deferredShadingTiming) / double(stats.deferredShadingTimingResolution) * 1000.0,
-        double(stats.forwardTiming) / double(stats.forwardTimingResolution) * 1000.0,
-        double(stats.gammaCorrectionTiming) / double(stats.gammaCorrectionTimingResolution) * 1000.0,
-        double(stats.fxaaTiming) / double(stats.fxaaTimingResolution) * 1000.0,
-        double(stats.vignetteTiming) / double(stats.vignetteTimingResolution) * 1000.0,
-        double(stats.bloomXTiming) / double(stats.bloomXTimingResolution) * 1000.0,
-        double(stats.bloomYTiming) / double(stats.bloomYTimingResolution) * 1000.0,
-        double(stats.lumCalcTiming) / double(stats.lumCalcTimingResolution) * 1000.0,
-        double(stats.tonemappingTiming) / double(stats.tonemappingTimingResolution) * 1000.0);
+        //"Luminance calculation: %f ms\n"
+        "Tonemapping: %f ms\n"
+        "Shadow map generation: %f ms\n\n",
+        float(stats.gBufferTiming) / float(stats.gBufferTimingResolution) * 1000.0f,
+        float(stats.ssaoTiming) / float(stats.ssaoTimingResolution) * 1000.0f,
+        float(stats.ssaoBlurXTiming) / float(stats.ssaoBlurXTimingResolution) * 1000.0f,
+        float(stats.ssaoBlurYTiming) / float(stats.ssaoBlurYTimingResolution) * 1000.0f,
+        float(stats.deferredShadingTiming) / float(stats.deferredShadingTimingResolution) * 1000.0f,
+        float(stats.forwardTiming) / float(stats.forwardTimingResolution) * 1000.0f,
+        float(stats.gammaCorrectionTiming) / float(stats.gammaCorrectionTimingResolution) * 1000.0f,
+        float(stats.fxaaTiming) / float(stats.fxaaTimingResolution) * 1000.0f,
+        float(stats.vignetteTiming) / float(stats.vignetteTimingResolution) * 1000.0f,
+        float(stats.bloomXTiming) / float(stats.bloomXTimingResolution) * 1000.0f,
+        float(stats.bloomYTiming) / float(stats.bloomYTimingResolution) * 1000.0f,
+        //float(stats.lumCalcTiming) / float(stats.lumCalcTimingResolution) * 1000.0f,
+        float(stats.tonemappingTiming) / float(stats.tonemappingTimingResolution) * 1000.0f,
+        float(stats.shadowmapTiming) / float(stats.shadowmapTimingResolution) * 1000.0f);*/
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
@@ -298,6 +285,10 @@ void GfxRenderer::beginRenderMesh(const Camera& camera,
                                   ResPtr<GfxMesh> mesh,
                                   GfxShaderCombination *comb)
 {
+    gfxApi->pushState();
+
+    gfxApi->setCullMode(mesh->cullMode);
+
     Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
     Matrix4x4 viewMatrix = camera.getViewMatrix();
     Matrix3x3 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
@@ -340,6 +331,8 @@ void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> mesh)
     {
         gfxApi->end(mesh->primitive, mesh->numVertices, mesh->winding);
     }
+
+    gfxApi->popState();
 }
 
 void GfxRenderer::resize(const UInt2& size)
@@ -427,14 +420,14 @@ void GfxRenderer::resize(const UInt2& size)
                                          GfxTexture::RGBF32_F16);
         bloomBlurXTexture->allocMipmap(0, 1, NULL);
 
-        luminanceTexture->startCreation(GfxTexture::Texture2D,
+        /*luminanceTexture->startCreation(GfxTexture::Texture2D,
                                         false,
                                         width,
                                         height,
                                         0,
                                         GfxTexture::Other,
                                         GfxTexture::RedF32_F16);
-        luminanceTexture->allocMipmap(0, 1, NULL);
+        luminanceTexture->allocMipmap(0, 1, NULL);*/
     }
 }
 
@@ -447,14 +440,31 @@ void GfxRenderer::render()
     GfxFramebuffer *oldReadFb = readFramebuffer;
     GfxFramebuffer *oldWriteFb = writeFramebuffer;
 
-    gfxApi->setViewport(0, 0, width, height);
+    //Shadowmaps
+    shadowmapTimer->begin();
+
+    for (size_t i = 0; i < lights.getCount(); ++i)
+    {
+        Light *light = lights[i];
+
+        if (light->getShadowmap() == nullptr)
+        {
+            continue;
+        }
+
+        renderShadowmap(light);
+    }
+
+    shadowmapTimer->end();
 
     //G buffer
+    gfxApi->setViewport(0, 0, width, height);
+    gfxApi->setWriteDepth(true);
+    gfxApi->setDepthFunction(GfxLess);
+
     gBufferTimer->begin();
 
     gfxApi->setCurrentFramebuffer(gBufferFramebuffer);
-    gfxApi->setWriteDepth(true);
-    gfxApi->setDepthFunction(GfxLess);
 
     gfxApi->clearDepth();
 
@@ -550,11 +560,11 @@ void GfxRenderer::render()
 
     for (size_t i = 0; i < lights.getCount(); ++i)
     {
-        const Light& light = lights[i];
+        Light *light = lights[i];
 
         GfxCompiledShader *fragmentShader;
 
-        switch (light.type)
+        switch (light->type)
         {
         case Light::Directional:
         {
@@ -568,7 +578,13 @@ void GfxRenderer::render()
         }
         case Light::Spot:
         {
-            fragmentShader = compiledLightingSpot;
+            if (light->getShadowmap() != nullptr)
+            {
+                fragmentShader = compiledLightingSpotShadow;
+            } else
+            {
+                fragmentShader = compiledLightingSpot;
+            }
             break;
         }
         }
@@ -586,29 +602,38 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(fragmentShader, "depthTexture", depthTexture);
         gfxApi->addTextureBinding(fragmentShader, "aoTexture", ssaoTexture);
         gfxApi->uniform(fragmentShader, "viewProjection", viewProjection);
-        gfxApi->uniform(fragmentShader, "lightColor", light.color * light.power);
+        gfxApi->uniform(fragmentShader, "lightColor", light->color * light->power);
         gfxApi->uniform(fragmentShader, "cameraPosition", camera.getPosition());
 
-        switch (light.type)
+        if (light->getShadowmap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragmentShader, "shadowmap", light->getShadowmap());
+            gfxApi->uniform(fragmentShader, "shadowmapViewMatrix", light->getViewMatrix());
+            gfxApi->uniform(fragmentShader, "shadowmapProjectionMatrix", light->getProjectionMatrix());
+            gfxApi->uniform(fragmentShader, "shadowMinBias", light->shadowMinBias);
+            gfxApi->uniform(fragmentShader, "shadowBiasScale", light->shadowBiasScale);
+        }
+
+        switch (light->type)
         {
         case Light::Directional:
         {
-            gfxApi->uniform(fragmentShader, "lightNegDir", -light.direction.direction.normalize());
+            gfxApi->uniform(fragmentShader, "lightNegDir", -light->direction.direction.normalize());
             break;
         }
         case Light::Spot:
         {
-            gfxApi->uniform(fragmentShader, "lightNegDir", -light.spot.direction.normalize());
-            gfxApi->uniform(fragmentShader, "lightPos", light.spot.position);
-            gfxApi->uniform(fragmentShader, "lightCosInnerCutoff", (float)std::cos(RADIANS(light.spot.innerCutoff)));
-            gfxApi->uniform(fragmentShader, "lightCosOuterCutoff", (float)std::cos(RADIANS(light.spot.outerCutoff)));
-            gfxApi->uniform(fragmentShader, "lightRadius", light.spot.radius);
+            gfxApi->uniform(fragmentShader, "lightNegDir", -light->spot.direction.normalize());
+            gfxApi->uniform(fragmentShader, "lightPos", light->spot.position);
+            gfxApi->uniform(fragmentShader, "lightCosInnerCutoff", (float)std::cos(RADIANS(light->spot.innerCutoff)));
+            gfxApi->uniform(fragmentShader, "lightCosOuterCutoff", (float)std::cos(RADIANS(light->spot.outerCutoff)));
+            gfxApi->uniform(fragmentShader, "lightRadius", light->spot.radius);
             break;
         }
         case Light::Point:
         {
-            gfxApi->uniform(fragmentShader, "lightPos", light.point.position);
-            gfxApi->uniform(fragmentShader, "lightRadius", light.point.radius);
+            gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
+            gfxApi->uniform(fragmentShader, "lightRadius", light->point.radius);
             break;
         }
         }
@@ -647,7 +672,7 @@ void GfxRenderer::render()
     swapFramebuffers();
 
     //Luminance calculation.
-    luminanceCalcTimer->begin();
+    /*luminanceCalcTimer->begin();
 
     gfxApi->setCurrentFramebuffer(luminanceFramebuffer);
 
@@ -695,7 +720,9 @@ void GfxRenderer::render()
 
     averageLuminance /= lumWidth * lumHeight;
 
-    luminanceCalcTimer->end();
+    averageLuminance = std::max(std::exp(averageLuminance), 0.001f);
+
+    luminanceCalcTimer->end();*/
 
     if (bloomEnabled)
     {
@@ -775,7 +802,6 @@ void GfxRenderer::render()
                   fullScreenQuadMesh);
 
     gfxApi->addTextureBinding(compiledTonemapFragment, "colorTexture", readColorTexture);
-    gfxApi->uniform(compiledTonemapFragment, "averageLuminance", averageLuminance);
 
     gfxApi->end(fullScreenQuadMesh->primitive,
                 fullScreenQuadMesh->numVertices,
@@ -868,17 +894,17 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
 
     for (size_t i = 0; i < numLights; ++i)
     {
-        const Light& light = lights[i];
+        const Light *light = lights[i];
 
-        lightData[i*16  ] = light.color.x * light.power;
-        lightData[i*16+1] = light.color.y * light.power;
-        lightData[i*16+2] = light.color.z * light.power;
+        lightData[i*16  ] = light->color.x * light->power;
+        lightData[i*16+1] = light->color.y * light->power;
+        lightData[i*16+2] = light->color.z * light->power;
 
-        switch (light.type)
+        switch (light->type)
         {
         case Light::Directional:
         {
-            Vector3D dir = -light.direction.direction.normalize();
+            Vector3D dir = -light->direction.direction.normalize();
 
             lightData[i*16+3] = dir.x;
             lightData[i*16+4] = dir.y;
@@ -888,27 +914,27 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
         }
         case Light::Spot:
         {
-            Vector3D dir = -light.spot.direction.normalize();
+            Vector3D dir = -light->spot.direction.normalize();
 
-            lightData[i*16+3] = light.spot.position.x;
-            lightData[i*16+4] = light.spot.position.y;
-            lightData[i*16+5] = light.spot.position.z;
+            lightData[i*16+3] = light->spot.position.x;
+            lightData[i*16+4] = light->spot.position.y;
+            lightData[i*16+5] = light->spot.position.z;
             lightData[i*16+6] = dir.x;
             lightData[i*16+7] = dir.y;
             lightData[i*16+8] = dir.z;
-            lightData[i*16+9] = std::cos(RADIANS(light.spot.innerCutoff));
-            lightData[i*16+10] = std::cos(RADIANS(light.spot.outerCutoff));
+            lightData[i*16+9] = std::cos(RADIANS(light->spot.innerCutoff));
+            lightData[i*16+10] = std::cos(RADIANS(light->spot.outerCutoff));
             lightData[i*16+11] = 1.0;
-            lightData[i*16+12] = light.spot.radius;
+            lightData[i*16+12] = light->spot.radius;
             break;
         }
         case Light::Point:
         {
-            lightData[i*16+3] = light.point.position.x;
-            lightData[i*16+4] = light.point.position.y;
-            lightData[i*16+5] = light.point.position.z;
+            lightData[i*16+3] = light->point.position.x;
+            lightData[i*16+4] = light->point.position.y;
+            lightData[i*16+5] = light->point.position.z;
             lightData[i*16+11] = 2.0;
-            lightData[i*16+12] = light.point.radius;
+            lightData[i*16+12] = light->point.radius;
             break;
         }
         }
@@ -973,7 +999,6 @@ void GfxRenderer::renderSkybox()
         gfxApi->setDepthFunction(GfxLessEqual);
 
         gfxApi->uniform(compiledVS, "projectionMatrix", camera.getProjectionMatrix());
-
         gfxApi->uniform(compiledVS, "viewMatrix", Matrix4x4(Matrix3x3(camera.getViewMatrix())));
 
         gfxApi->addTextureBinding(compiledFS, "enviroment", skybox);
@@ -1032,6 +1057,108 @@ void GfxRenderer::renderModel(GfxModel::ContextType contextType,
             }
         }
     }
+}
+
+void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
+                                         const Matrix4x4& projectionMatrix,
+                                         const Matrix4x4& worldMatrix,
+                                         const ResPtr<GfxModel> model)
+{
+    if (model->contexts.getEntryCount() == 0)
+    {
+        return;
+    }
+
+    const GfxModel::Context& context = model->contexts.getValue(0);
+
+    Position3D position = Position3D(worldMatrix[0][3],
+                                     worldMatrix[1][3],
+                                     worldMatrix[2][3]);
+
+    float distance = position.distance(camera.getPosition());
+
+    for (size_t i = 0; i < context.getCount(); ++i)
+    {
+        GfxModel::SubModel subModel = context[i];
+
+        for (size_t j = 0; j < subModel.getCount(); ++j)
+        {
+            const GfxModel::LOD& lod = subModel[j];
+
+            if (lod.minDistance < distance and distance < lod.maxDistance)
+            {
+                ResPtr<GfxMesh> mesh = lod.mesh;
+
+                gfxApi->begin(compiledShadowmapVertex,
+                              nullptr,
+                              nullptr,
+                              nullptr,
+                              compiledShadowmapFragment,
+                              mesh);
+
+                gfxApi->uniform(compiledShadowmapVertex, "projectionMatrix", projectionMatrix);
+                gfxApi->uniform(compiledShadowmapVertex, "viewMatrix", viewMatrix);
+                gfxApi->uniform(compiledShadowmapVertex, "worldMatrix", worldMatrix * lod.worldMatrix);
+
+                if (mesh->indexed)
+                {
+                    gfxApi->endIndexed(mesh->primitive,
+                                       mesh->indexData.type,
+                                       mesh->indexData.numIndices,
+                                       mesh->indexData.offset,
+                                       mesh->indexData.buffer,
+                                       mesh->winding);
+                } else
+                {
+                    gfxApi->end(mesh->primitive, mesh->numVertices, mesh->winding);
+                }
+            }
+        }
+    }
+}
+
+void GfxRenderer::renderShadowmap(Light *light)
+{
+    Matrix4x4 projectionMatrix = light->getProjectionMatrix();
+    Matrix4x4 viewMatrix = light->getViewMatrix();
+
+    gfxApi->pushState();
+    gfxApi->resetState();
+    gfxApi->setCullMode(GfxCullBack);
+
+    gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
+    gfxApi->setCurrentFramebuffer(light->getShadowmapFramebuffer());
+
+    gfxApi->clearDepth();
+
+    const List<Entity *>& entities = scene->getEntities();
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        const Entity *entity = entities[i];
+
+        Matrix4x4 transform = entity->transform.createMatrix();
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            switch (comp->type)
+            {
+            case RenderComponent::Nothing:
+            {
+                break;
+            }
+            case RenderComponent::Model:
+            {
+                renderModelToShadowmap(viewMatrix, projectionMatrix, transform, comp->model);
+                break;
+            }
+            }
+        }
+    }
+
+    gfxApi->popState();
 }
 
 void GfxRenderer::swapFramebuffers()
