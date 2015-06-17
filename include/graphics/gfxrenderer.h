@@ -107,6 +107,7 @@ class GfxRenderer
         float bloomRadius;
         float bloomQuality;
         bool bloomEnabled;
+        float ssaoRadius;
     private:
         List<Light *> lights;
 
@@ -196,6 +197,7 @@ class GfxRenderer
         ResPtr<GfxTexture> ssaoBlurXTexture;
         ResPtr<GfxTexture> bloomBlurXTexture;
         //ResPtr<GfxTexture> luminanceTexture;
+        ResPtr<GfxTexture> ssaoRandomTexture;
 
         GfxFramebuffer *readFramebuffer;
         GfxFramebuffer *writeFramebuffer;

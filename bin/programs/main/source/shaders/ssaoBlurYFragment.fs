@@ -7,9 +7,11 @@ uniform sampler2D aoTexture;
 void main()
 {
     result_ao = (texture(aoTexture, frag_uv) +
+                 textureOffset(aoTexture, frag_uv, ivec2(0, -3)) +
                  textureOffset(aoTexture, frag_uv, ivec2(0, -1)) +
                  textureOffset(aoTexture, frag_uv, ivec2(0, -2)) +
                  textureOffset(aoTexture, frag_uv, ivec2(0, 1)) +
-                 textureOffset(aoTexture, frag_uv, ivec2(0, 2))) / 5.0;
+                 textureOffset(aoTexture, frag_uv, ivec2(0, 2)) +
+                 textureOffset(aoTexture, frag_uv, ivec2(0, 3))) / 7.0;
 }
 
