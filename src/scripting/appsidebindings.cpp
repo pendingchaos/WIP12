@@ -149,7 +149,7 @@ struct _functionStruct
     void (*f101)( RigidBody *obj, ResPtr<PhysicsShape> arg0);
     void (*f102)( Resource *obj);
     bool (*f103)(const Resource *obj);
-    void (*f104)( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, uint8_t arg4, GfxTexture::Purpose arg5, GfxTexture::Format arg6);
+    void (*f104)( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7);
     void (*f105)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3);
     void (*f106)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2);
     void (*f107)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3);
@@ -386,7 +386,7 @@ void f100( RigidBody *obj, size_t arg0, const PhysicsCompoundShape::Child * arg1
 void f101( RigidBody *obj, ResPtr<PhysicsShape> arg0) { obj->setShape(arg0);}
 void f102( Resource *obj) { obj->load();}
 bool f103(const Resource *obj) {return obj->shouldReload();}
-void f104( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, uint8_t arg4, GfxTexture::Purpose arg5, GfxTexture::Format arg6) { obj->startCreation(arg0, arg1, arg2, arg3, arg4, arg5, arg6);}
+void f104( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7) { obj->startCreation(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
 void f105( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3) { obj->allocMipmapFace(arg0, arg1, arg2, arg3);}
 void f106( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2) { obj->allocMipmap(arg0, arg1, arg2);}
 void f107( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3) { obj->getMipmapFace(arg0, arg1, arg2, arg3);}

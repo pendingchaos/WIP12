@@ -295,6 +295,7 @@ void GfxRenderer::resize(const UInt2& size)
                                         false,
                                         width,
                                         height,
+                                        1,
                                         0,
                                         GfxTexture::Other,
                                         GfxTexture::RGBF32_F16);
@@ -304,6 +305,7 @@ void GfxRenderer::resize(const UInt2& size)
                                          false,
                                          width,
                                          height,
+                                         1,
                                          0,
                                          GfxTexture::Other,
                                          GfxTexture::RGBF32_F16);
@@ -313,6 +315,7 @@ void GfxRenderer::resize(const UInt2& size)
                                     false,
                                     width,
                                     height,
+                                    1,
                                     0,
                                     GfxTexture::Other,
                                     GfxTexture::DepthF32_F24);
@@ -322,6 +325,7 @@ void GfxRenderer::resize(const UInt2& size)
                                        false,
                                        width,
                                        height,
+                                       1,
                                        0,
                                        GfxTexture::Other,
                                        GfxTexture::RedGreenU8);
@@ -331,6 +335,7 @@ void GfxRenderer::resize(const UInt2& size)
                                      false,
                                      width,
                                      height,
+                                     1,
                                      0,
                                      GfxTexture::Other,
                                      GfxTexture::RGBF32_F16);
@@ -340,6 +345,7 @@ void GfxRenderer::resize(const UInt2& size)
                                    false,
                                    width,
                                    height,
+                                   1,
                                    0,
                                    GfxTexture::Other,
                                    GfxTexture::LuminanceU8);
@@ -349,6 +355,7 @@ void GfxRenderer::resize(const UInt2& size)
                                         false,
                                         width,
                                         height,
+                                        1,
                                         0,
                                         GfxTexture::Other,
                                         GfxTexture::LuminanceU8);
@@ -358,6 +365,7 @@ void GfxRenderer::resize(const UInt2& size)
                                          false,
                                          width,
                                          height,
+                                         1,
                                          0,
                                          GfxTexture::Other,
                                          GfxTexture::RGBF32_F16);

@@ -108,7 +108,7 @@ if __name__ == "__main__":
             num_mipmaps = self.get_num_mipmaps(faces[0])
             
             out.write("texr\x01\x00")
-            out.write(struct.pack("<?BBBfBBBBLLLL",
+            out.write(struct.pack("<?BBBfBBBBBLLLL",
                                   self.compress,
                                   int(self.compression_quality*255.0),
                                   {Texture.Filter.Nearest:0,
@@ -130,10 +130,11 @@ if __name__ == "__main__":
                                   {"L": 6,
                                    "RGB": 18,
                                    "RGBA": 24}[faces[0].mode],
-                                  len(faces),
+                                  0 if len(faces) == 1 else 1,
                                   num_mipmaps,
                                   faces[0].size[0],
-                                  faces[0].size[1]))
+                                  faces[0].size[1],
+                                  1))
             
             for face in faces:
                 for j in xrange(num_mipmaps):

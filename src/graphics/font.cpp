@@ -140,6 +140,7 @@ void Font::loadGlyph(Face& face, char character)
                                  false,
                                  glyph.size.x,
                                  glyph.size.y,
+                                 1,
                                  255,
                                  GfxTexture::Color,
                                  GfxTexture::LuminanceU8);

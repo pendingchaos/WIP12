@@ -182,6 +182,7 @@ GfxTexture::GfxTexture(const String& filename) : Resource(filename,
     setWrapMode(Repeat);
     baseWidth = 0;
     baseHeight = 0;
+    baseDepth = 0;
     compressionQuality = 255;
     purpose = Other;
     shadowmap = false;
@@ -199,6 +200,7 @@ GfxTexture::GfxTexture() : Resource(GfxTextureType),
     setWrapMode(Repeat);
     baseWidth = 0;
     baseHeight = 0;
+    baseDepth = 0;
     compressionQuality = 255;
     purpose = Other;
     shadowmap = false;
@@ -220,6 +222,7 @@ void GfxTexture::removeContent()
     setWrapMode(Repeat);
     baseWidth = 0;
     baseHeight = 0;
+    baseDepth = 0;
     compressionQuality = 255;
     purpose = Other;
     shadowmap = false;
@@ -232,6 +235,7 @@ void GfxTexture::startCreation(TextureType type_,
                                bool compress_,
                                unsigned int baseWidth_,
                                unsigned int baseHeight_,
+                               unsigned int baseDepth_,
                                uint8_t compressionQuality_,
                                Purpose purpose_,
                                Format format_)
@@ -240,6 +244,7 @@ void GfxTexture::startCreation(TextureType type_,
     compress = compress_;
     baseWidth = baseWidth_;
     baseHeight = baseHeight_;
+    baseDepth = type_ == Texture3D ? baseDepth_ : 1;
     compressionQuality = compressionQuality_;
     purpose = purpose_;
     format = format_;
@@ -248,6 +253,7 @@ void GfxTexture::startCreation(TextureType type_,
                         compress,
                         baseWidth,
                         baseHeight,
+                        baseDepth,
                         compressionQuality,
                         purpose,
                         format);
@@ -374,23 +380,17 @@ void GfxTexture::_load()
         GfxTexture::Purpose purpose = purposes[file.readUInt8()];
         GfxTexture::Format format = formats[file.readUInt8()];
 
-        uint32_t numFaces = file.readUInt32LE();
+        TextureType type = (TextureType)file.readUInt8();
         uint32_t numMipmaps = file.readUInt32LE();
         uint32_t baseWidth = file.readUInt32LE();
         uint32_t baseHeight = file.readUInt32LE();
+        uint32_t baseDepth = file.readUInt32LE();
 
-        if (numFaces != 1 and numFaces != 6)
-        {
-            THROW(ResourceIOException,
-                  "texture",
-                  filename,
-                  "Invalid face count");
-        }
-
-        startCreation(numFaces == 1 ? GfxTexture::Texture2D : GfxTexture::CubeMap,
+        startCreation(type,
                       compress,
                       baseWidth,
                       baseHeight,
+                      baseDepth,
                       compressionQuality,
                       purpose,
                       format);
@@ -401,7 +401,7 @@ void GfxTexture::_load()
         setWrapMode(wrapMode);
         setMaximumAnisotropy(maxAnisotropy);
 
-        for (size_t i = 0; i < numFaces; ++i)
+        for (size_t i = 0; i < (type == CubeMap ? 6 : 1); ++i)
         {
             GfxTexture::Face face = faces[i];
 
@@ -413,12 +413,12 @@ void GfxTexture::_load()
 
                 file.read(size, data);
 
-                if (numFaces == 1)
-                {
-                    allocMipmap(j, 1, data);
-                } else if (numFaces == 6)
+                if (type == CubeMap)
                 {
                     allocMipmapFace(j, 1, face, data);
+                } else
+                {
+                    allocMipmap(j, 1, data);
                 }
 
                 DEALLOCATE(data);
@@ -452,10 +452,11 @@ void GfxTexture::save()
         file.writeUInt8((uint8_t)wrapMode);
         file.writeUInt8((uint8_t)purpose);
         file.writeUInt8((uint8_t)format);
-        file.writeUInt32LE(textureType == GfxTexture::Texture2D ? 1 : 6);
+        file.writeUInt8((uint8_t)textureType);
         file.writeUInt32LE(numMipmaps);
         file.writeUInt32LE(baseWidth);
         file.writeUInt32LE(baseHeight);
+        file.writeUInt32LE(baseDepth);
 
         if (textureType == GfxTexture::Texture2D)
         {
@@ -478,6 +479,30 @@ void GfxTexture::save()
 
                 width /= 2;
                 height /= 2;
+            }
+        } else if (textureType == GfxTexture::Texture3D)
+        {
+            size_t width = baseWidth;
+            size_t height = baseHeight;
+            size_t depth = baseDepth;
+
+            for (size_t i = 0; i < numMipmaps; ++i)
+            {
+                size_t amount = formatSizes[(int)format] * width * height * depth;
+
+                file.writeUInt32LE(amount);
+
+                void *data = ALLOCATE(amount);
+
+                getMipmap(i, 1, data);
+
+                file.write(amount, data);
+
+                DEALLOCATE(data);
+
+                width /= 2;
+                height /= 2;
+                depth /= 2;
             }
         } else if (textureType == GfxTexture::CubeMap)
         {

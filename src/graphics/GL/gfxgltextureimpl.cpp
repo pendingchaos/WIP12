@@ -352,13 +352,12 @@ static GLint swizzles[][4] = {{O, O, O, R},
 #undef O
 #undef Z
 
+GLenum textureTargets[] = {GL_TEXTURE_2D, GL_TEXTURE_CUBE_MAP, GL_TEXTURE_3D};
+GLenum textureBindingGets[] = {GL_TEXTURE_BINDING_2D, GL_TEXTURE_BINDING_CUBE_MAP, GL_TEXTURE_BINDING_3D};
+
 #define BEGIN_TEXTURE_BINDING GLint lastTexture;\
-GLenum target = textureType == GfxTexture::CubeMap\
-                ? GL_TEXTURE_CUBE_MAP\
-                : GL_TEXTURE_2D;\
-glGetIntegerv(textureType == GfxTexture::CubeMap\
-              ? GL_TEXTURE_BINDING_CUBE_MAP\
-              : GL_TEXTURE_BINDING_2D, &lastTexture);\
+GLenum target = textureTargets[(int)textureType];\
+glGetIntegerv(textureBindingGets[(int)textureType], &lastTexture);\
 glBindTexture(target, texture);
 
 #define END_TEXTURE_BINDING glBindTexture(target, lastTexture);
@@ -370,15 +369,31 @@ glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 glPixelStorei(GL_UNPACK_ALIGNMENT, pixelAlignment);\
 unsigned int width = TEX_COMPUTE_MIPMAP_SIZE(baseWidth, level);\
 unsigned int height = TEX_COMPUTE_MIPMAP_SIZE(baseHeight, level);\
-glTexImage2D(target,\
-             level,\
-             internalFormats[(int)format],\
-             width,\
-             height,\
-             0,\
-             formats[(int)format],\
-             types[(int)format],\
-             data);
+if (textureType == GfxTexture::Texture2D or textureType == GfxTexture::CubeMap)\
+{\
+    glTexImage2D(target,\
+                 level,\
+                 internalFormats[(int)format],\
+                 width,\
+                 height,\
+                 0,\
+                 formats[(int)format],\
+                 types[(int)format],\
+                 data);\
+} else\
+{\
+    unsigned int depth = TEX_COMPUTE_MIPMAP_SIZE(baseDepth, level);\
+    glTexImage3D(target,\
+                 level,\
+                 internalFormats[(int)format],\
+                 width,\
+                 height,\
+                 depth,\
+                 0,\
+                 formats[(int)format],\
+                 types[(int)format],\
+                 data);\
+}
 
 GfxGLTextureImpl::GfxGLTextureImpl()
 {
@@ -397,6 +412,7 @@ GfxGLTextureImpl::GfxGLTextureImpl()
     wrapMode = GfxTexture::Repeat;
     baseWidth = 0;
     baseHeight = 0;
+    baseDepth = 0;
     shadowmap = false;
 
     setMinFiltering();
@@ -411,6 +427,7 @@ void GfxGLTextureImpl::startCreation(GfxTexture::TextureType type_,
                                      bool compress_,
                                      unsigned int baseWidth_,
                                      unsigned int baseHeight_,
+                                     unsigned int baseDepth_,
                                      uint8_t compressionQuality_,
                                      GfxTexture::Purpose purpose_,
                                      GfxTexture::Format format_)
@@ -421,6 +438,7 @@ void GfxGLTextureImpl::startCreation(GfxTexture::TextureType type_,
     textureType = type_;
     baseWidth = baseWidth_;
     baseHeight = baseHeight_;
+    baseDepth = baseDepth_;
     format = format_;
 
     BEGIN_TEXTURE_BINDING
@@ -550,6 +568,16 @@ void GfxGLTextureImpl::generateMipmaps()
     glGenerateMipmap(target);
 
     END_TEXTURE_BINDING
+}
+
+GLenum GfxGLTextureImpl::getGLTarget() const
+{
+    return textureTargets[(int)textureType];
+}
+
+GLenum GfxGLTextureImpl::getGLBindingGet() const
+{
+    return textureBindingGets[(int)textureType];
 }
 
 GLenum GfxGLTextureImpl::getGLInternalFormat() const

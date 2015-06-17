@@ -21,6 +21,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
                                  false,
                                  resolution,
                                  resolution,
+                                 1,
                                  0,
                                  GfxTexture::Other,
                                  formats[(int)quality]);

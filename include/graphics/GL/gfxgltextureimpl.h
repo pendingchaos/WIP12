@@ -15,6 +15,7 @@ class GfxGLTextureImpl : public GfxTextureImpl
                                    bool compress,
                                    unsigned int baseWidth,
                                    unsigned int baseHeight,
+                                   unsigned int baseDepth,
                                    uint8_t compressionQuality,
                                    GfxTexture::Purpose purpose,
                                    GfxTexture::Format format);
@@ -44,16 +45,8 @@ class GfxGLTextureImpl : public GfxTextureImpl
             return texture;
         }
 
-        GLenum getGLTarget() const
-        {
-            return textureType == GfxTexture::CubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D;
-        }
-
-        GLenum getGLBindingGet() const
-        {
-            return textureType == GfxTexture::CubeMap ? GL_TEXTURE_BINDING_CUBE_MAP : GL_TEXTURE_BINDING_2D;
-        }
-
+        GLenum getGLTarget() const;
+        GLenum getGLBindingGet() const;
         GLenum getGLInternalFormat() const;
 
         virtual void setMaximumAnisotropy(float maxAnisotropy);
@@ -70,6 +63,7 @@ class GfxGLTextureImpl : public GfxTextureImpl
         GfxTexture::MipmapMode mipmapMode;
         unsigned int baseWidth;
         unsigned int baseHeight;
+        unsigned int baseDepth;
         GfxTexture::Format format;
         float maximumAnisotropy;
         GfxTexture::WrapMode wrapMode;

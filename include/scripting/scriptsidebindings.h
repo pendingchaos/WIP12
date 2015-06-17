@@ -105,7 +105,7 @@ struct _functionStruct
     void (*f101)( RigidBody *obj, ResPtr<PhysicsShape> arg0);
     void (*f102)( Resource *obj);
     bool (*f103)(const Resource *obj);
-    void (*f104)( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, uint8_t arg4, GfxTexture::Purpose arg5, GfxTexture::Format arg6);
+    void (*f104)( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7);
     void (*f105)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3);
     void (*f106)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2);
     void (*f107)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3);
@@ -343,7 +343,7 @@ void RigidBody::setCompound(size_t arg0, const PhysicsCompoundShape::Child * arg
 void RigidBody::setShape(ResPtr<PhysicsShape> arg0)  { _functions->f101(this, arg0);}
 void Resource::load()  { _functions->f102(this);}
 bool Resource::shouldReload() const {return _functions->f103(this);}
-void GfxTexture::startCreation(GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, uint8_t arg4, GfxTexture::Purpose arg5, GfxTexture::Format arg6)  { _functions->f104(this, arg0, arg1, arg2, arg3, arg4, arg5, arg6);}
+void GfxTexture::startCreation(GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7)  { _functions->f104(this, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
 void GfxTexture::allocMipmapFace(unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3)  { _functions->f105(this, arg0, arg1, arg2, arg3);}
 void GfxTexture::allocMipmap(unsigned int arg0, unsigned int arg1, const void * arg2)  { _functions->f106(this, arg0, arg1, arg2);}
 void GfxTexture::getMipmapFace(unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3)  { _functions->f107(this, arg0, arg1, arg2, arg3);}

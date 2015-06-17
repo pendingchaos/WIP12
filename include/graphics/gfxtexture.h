@@ -24,7 +24,8 @@ class GfxTexture : public Resource
         enum TextureType
         {
             Texture2D,
-            CubeMap
+            CubeMap,
+            Texture3D
         };
 
         enum Filter
@@ -168,6 +169,7 @@ class GfxTexture : public Resource
                            bool compress,
                            unsigned int baseWidth,
                            unsigned int baseHeight,
+                           unsigned int baseDepth,
                            uint8_t compressionQuality,
                            GfxTexture::Purpose purpose,
                            GfxTexture::Format format);
@@ -237,6 +239,11 @@ class GfxTexture : public Resource
             return baseHeight;
         }
 
+        inline unsigned int getBaseDepth() const
+        {
+            return baseDepth;
+        }
+
         inline uint8_t getCompressionQuality() const
         {
             return compressionQuality;
@@ -281,6 +288,7 @@ class GfxTexture : public Resource
         WrapMode wrapMode;
         unsigned int baseWidth;
         unsigned int baseHeight;
+        unsigned int baseDepth;
         uint8_t compressionQuality;
         Purpose purpose;
         Format format;
@@ -303,6 +311,7 @@ class GfxTextureImpl
                                    bool compress,
                                    unsigned int baseWidth,
                                    unsigned int baseHeight,
+                                   unsigned int baseDepth,
                                    uint8_t compressionQuality,
                                    GfxTexture::Purpose purpose,
                                    GfxTexture::Format format)=0;
