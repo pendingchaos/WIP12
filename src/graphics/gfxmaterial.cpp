@@ -5,77 +5,6 @@
 #include "graphics/gfxrenderer.h"
 #include "file.h"
 
-GfxLitMaterialImpl::ShaderComb::ShaderComb(GfxLitMaterialImpl *mat_) : mat(mat_)
-{
-    if (mat->forward)
-    {
-        vertexShader = resMgr->getResource<GfxShader>("resources/shaders/forwardVertex.bin");
-        fragmentShader = resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin");
-    } else
-    {
-        vertexShader = resMgr->getResource<GfxShader>("resources/shaders/gbufferVertex.bin");
-        fragmentShader = resMgr->getResource<GfxShader>("resources/shaders/gbufferFragment.bin");
-    }
-}
-
-ResPtr<GfxShader> GfxLitMaterialImpl::ShaderComb::getVertexShader() const
-{
-    return vertexShader;
-}
-
-ResPtr<GfxShader> GfxLitMaterialImpl::ShaderComb::getFragmentShader() const
-{
-    return fragmentShader;
-}
-
-bool GfxLitMaterialImpl::ShaderComb::fragmentDefinesDirty() const
-{
-    return GfxShaderCombination::fragmentDefinesDirty() or
-           lastAlbedoMap != mat->albedoMap or
-           lastSmoothnessMap != mat->smoothnessMap or
-           lastMetalMaskMap != mat->metalMaskMap or
-           lastNormalMap != mat->normalMap or
-           lastEnvironmentMap != mat->environmentMap;
-}
-
-void GfxLitMaterialImpl::ShaderComb::getFragmentDefines(HashMap<String, String >& defines) const
-{
-    if (mat->smoothnessMap != nullptr)
-    {
-        defines.set("SMOOTHNESS_MAP", "1");
-
-        lastSmoothnessMap = mat->smoothnessMap;
-    }
-
-    if (mat->metalMaskMap != nullptr)
-    {
-        defines.set("METAL_MASK_MAP", "1");
-
-        lastMetalMaskMap = mat->metalMaskMap;
-    }
-
-    if (mat->albedoMap != nullptr)
-    {
-        defines.set("ALBEDO_MAP", "1");
-
-        lastAlbedoMap = mat->albedoMap;
-    }
-
-    if (mat->normalMap != nullptr)
-    {
-        defines.set("NORMAL_MAP", "1");
-
-        lastNormalMap = mat->normalMap;
-    }
-
-    if (mat->environmentMap != nullptr)
-    {
-        defines.set("ENVIRONMENT_MAP", "1");
-
-        lastEnvironmentMap = mat->environmentMap;
-    }
-}
-
 GfxLitMaterialImpl::GfxLitMaterialImpl(bool forward_) : smoothness(1.0f),
                                                         metalMask(1.0f),
                                                         albedo(1.0f),
@@ -85,7 +14,17 @@ GfxLitMaterialImpl::GfxLitMaterialImpl(bool forward_) : smoothness(1.0f),
                                                         lastMetalMask(0.0f),
                                                         lastAlbedo(0.0f)
 {
-    shaderComb = NEW(ShaderComb, this);
+    if (forward)
+    {
+        shaderComb = NEW(GfxShaderCombination,
+                         resMgr->getResource<GfxShader>("resources/shaders/forwardVertex.bin"),
+                         resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
+    } else
+    {
+        shaderComb = NEW(GfxShaderCombination,
+                         resMgr->getResource<GfxShader>("resources/shaders/gbufferVertex.bin"),
+                         resMgr->getResource<GfxShader>("resources/shaders/gbufferFragment.bin"));
+    }
 
     float data[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
@@ -203,9 +142,9 @@ void GfxMaterial::save()
         file.writeFloat32(impl_->smoothness);
         file.writeFloat32(impl_->metalMask);
 
-        if (impl_->albedoMap != nullptr)
+        if (impl_->getAlbedoMap() != nullptr)
         {
-            String filename = impl_->albedoMap->filename;
+            String filename = impl_->getAlbedoMap()->filename;
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -214,9 +153,9 @@ void GfxMaterial::save()
             file.writeUInt32LE(0);
         }
 
-        if (impl_->smoothnessMap != nullptr)
+        if (impl_->getSmoothnessMap() != nullptr)
         {
-            String filename = impl_->smoothnessMap->filename;
+            String filename = impl_->getSmoothnessMap()->filename;
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -225,9 +164,9 @@ void GfxMaterial::save()
             file.writeUInt32LE(0);
         }
 
-        if (impl_->metalMaskMap != nullptr)
+        if (impl_->getMetalMaskMap() != nullptr)
         {
-            String filename = impl_->metalMaskMap->filename;
+            String filename = impl_->getMetalMaskMap()->filename;
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -236,9 +175,9 @@ void GfxMaterial::save()
             file.writeUInt32LE(0);
         }
 
-        if (impl_->normalMap != nullptr)
+        if (impl_->getNormalMap() != nullptr)
         {
-            String filename = impl_->normalMap->filename;
+            String filename = impl_->getNormalMap()->filename;
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -247,9 +186,9 @@ void GfxMaterial::save()
             file.writeUInt32LE(0);
         }
 
-        if (impl_->environmentMap != nullptr)
+        if (impl_->getEnvironmentMap() != nullptr)
         {
-            String filename = impl_->environmentMap->filename;
+            String filename = impl_->getEnvironmentMap()->filename;
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -312,7 +251,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->albedoMap = resMgr->getResource<GfxTexture>(tex);
+                impl->setAlbedoMap(resMgr->getResource<GfxTexture>(tex));
             }
 
             len = file.readUInt32LE();
@@ -320,7 +259,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->smoothnessMap = resMgr->getResource<GfxTexture>(tex);
+                impl->setSmoothnessMap(resMgr->getResource<GfxTexture>(tex));
             }
 
             len = file.readUInt32LE();
@@ -328,7 +267,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->metalMaskMap = resMgr->getResource<GfxTexture>(tex);
+                impl->setMetalMaskMap(resMgr->getResource<GfxTexture>(tex));
             }
 
             len = file.readUInt32LE();
@@ -336,7 +275,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->normalMap = resMgr->getResource<GfxTexture>(tex);
+                impl->setNormalMap(resMgr->getResource<GfxTexture>(tex));
             }
 
             len = file.readUInt32LE();
@@ -344,7 +283,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->environmentMap = resMgr->getResource<GfxTexture>(tex);
+                impl->setEnvironmentMap(resMgr->getResource<GfxTexture>(tex));
             }
         } else
         {

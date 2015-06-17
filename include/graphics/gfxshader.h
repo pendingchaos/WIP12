@@ -136,58 +136,237 @@ class GfxShaderImpl
 class GfxShaderCombination
 {
     public:
-        GfxShaderCombination() : cachedVertexShader(nullptr),
-                                 cachedTessControlShader(nullptr),
-                                 cachedTessEvalShader(nullptr),
-                                 cachedGeometryShader(nullptr),
-                                 cachedFragmentShader(nullptr) {}
-        virtual ~GfxShaderCombination() {}
+        GfxShaderCombination(ResPtr<GfxShader> vertex_,
+                             ResPtr<GfxShader> fragment_) : vertex(vertex_),
+                                                            fragment(fragment_),
+                                                            compiledVertex(vertex_->getCompiled()),
+                                                            compiledTessControl(nullptr),
+                                                            compiledTessEval(nullptr),
+                                                            compiledGeometry(nullptr),
+                                                            compiledFragment(fragment_->getCompiled()) {}
 
-        virtual ResPtr<GfxShader> getVertexShader() const=0;
-
-        virtual ResPtr<GfxShader> getTessControlShader() const
+        inline ResPtr<GfxShader> getVertexShader() const
         {
-            return nullptr;
+            return vertex;
         }
 
-        virtual ResPtr<GfxShader> getTessEvalShader() const
+        inline ResPtr<GfxShader> getTessControlShader() const
         {
-            return nullptr;
+            return tessControl;
         }
 
-        virtual ResPtr<GfxShader> getGeometryShader() const
+        inline ResPtr<GfxShader> getTessEvalShader() const
         {
-            return nullptr;
+            return tessEval;
         }
 
-        virtual ResPtr<GfxShader> getFragmentShader() const=0;
+        inline ResPtr<GfxShader> getGeometryShader() const
+        {
+            return geometry;
+        }
 
-        virtual bool vertexDefinesDirty() const {return false;}
-        virtual void getVertexDefines(HashMap<String, String >& defines) const {}
+        inline ResPtr<GfxShader> getFragmentShader() const
+        {
+            return fragment;
+        }
 
-        virtual bool tessControlDefinesDirty() const {return false;}
-        virtual void getTessControlDefines(HashMap<String, String >& defines) const {}
+        inline void setVertexShader(ResPtr<GfxShader> shader)
+        {
+            vertex = shader;
+            compileVertex();
+        }
 
-        virtual bool tessEvalDefinesDirty() const {return false;}
-        virtual void getTessEvalDefines(HashMap<String, String >& defines) const {}
+        inline void setTessControlShader(ResPtr<GfxShader> shader)
+        {
+            tessControl = shader;
+            compileTessControl();
+        }
 
-        virtual bool geometryDefinesDirty() const {return false;}
-        virtual void getGeometryDefines(HashMap<String, String >& defines) const {}
+        inline void setTessEvalShader(ResPtr<GfxShader> shader)
+        {
+            tessEval = shader;
+            compileTessEval();
+        }
 
-        virtual bool fragmentDefinesDirty() const {return false;}
-        virtual void getFragmentDefines(HashMap<String, String >& defines) const {}
+        inline void setGeometryShader(ResPtr<GfxShader> shader)
+        {
+            geometry = shader;
+            compileGeometry();
+        }
 
-        GfxCompiledShader *getCompiledVertexShader() const;
-        GfxCompiledShader *getCompiledTessControlShader() const;
-        GfxCompiledShader *getCompiledTessEvalShader() const;
-        GfxCompiledShader *getCompiledGeometryShader() const;
-        GfxCompiledShader *getCompiledFragmentShader() const;
+        inline void setFragmentShader(ResPtr<GfxShader> shader)
+        {
+            fragment = shader;
+            compileFragment();
+        }
+
+        inline void setVertexDefine(const char *name, const char *value)
+        {
+            vertexDefines.set(name, value);
+            compileVertex();
+        }
+
+        inline void setTessControlDefine(const char *name, const char *value)
+        {
+            tessControlDefines.set(name, value);
+            compileTessControl();
+        }
+
+        inline void setTessEvalDefine(const char *name, const char *value)
+        {
+            tessEvalDefines.set(name, value);
+            compileTessEval();
+        }
+
+        inline void setGeometryDefine(const char *name, const char *value)
+        {
+            geometryDefines.set(name, value);
+            compileGeometry();
+        }
+
+        inline void setFragmentDefine(const char *name, const char *value)
+        {
+            fragmentDefines.set(name, value);
+            compileFragment();
+        }
+
+        inline const String& getVertexDefine(const String& name)
+        {
+            return vertexDefines.get(name);
+        }
+
+        inline const String& getTessControlDefine(const String& name)
+        {
+            return tessControlDefines.get(name);
+        }
+
+        inline const String& getTessEvalDefine(const String& name)
+        {
+            return tessEvalDefines.get(name);
+        }
+
+        inline const String& getGeometryDefine(const String& name)
+        {
+            return geometryDefines.get(name);
+        }
+
+        inline const String& getFragmentDefine(const String& name)
+        {
+            return fragmentDefines.get(name);
+        }
+
+        inline void removeVertexDefine(const String& name)
+        {
+            vertexDefines.remove(name);
+            compileVertex();
+        }
+
+        inline void removeTessControlDefine(const String& name)
+        {
+            tessControlDefines.remove(name);
+            compileTessControl();
+        }
+
+        inline void removeTessEvalDefine(const String& name)
+        {
+            tessEvalDefines.remove(name);
+            compileTessEval();
+        }
+
+        inline void removeGeometryDefine(const String& name)
+        {
+            geometryDefines.remove(name);
+            compileGeometry();
+        }
+
+        inline void removeFragmentDefine(const String& name)
+        {
+            fragmentDefines.remove(name);
+            compileFragment();
+        }
+
+        inline GfxCompiledShader *getCompiledVertexShader() const
+        {
+            return compiledVertex;
+        }
+
+        inline GfxCompiledShader *getCompiledTessControlShader() const
+        {
+            return compiledTessControl;
+        }
+
+        inline GfxCompiledShader *getCompiledTessEvalShader() const
+        {
+            return compiledTessEval;
+        }
+
+        inline GfxCompiledShader *getCompiledGeometryShader() const
+        {
+            return compiledGeometry;
+        }
+
+        inline GfxCompiledShader *getCompiledFragmentShader() const
+        {
+            return compiledFragment;
+        }
     private:
-        mutable GfxCompiledShader *cachedVertexShader;
-        mutable GfxCompiledShader *cachedTessControlShader;
-        mutable GfxCompiledShader *cachedTessEvalShader;
-        mutable GfxCompiledShader *cachedGeometryShader;
-        mutable GfxCompiledShader *cachedFragmentShader;
+        inline void compileVertex()
+        {
+            if (vertex != nullptr)
+            {
+                compiledVertex = vertex->getCompiled(vertexDefines);
+            }
+        }
+
+        inline void compileTessControl()
+        {
+            if (tessControl != nullptr)
+            {
+                compiledTessControl = tessControl->getCompiled(tessControlDefines);
+            }
+        }
+
+        inline void compileTessEval()
+        {
+            if (tessEval != nullptr)
+            {
+                compiledTessEval = tessEval->getCompiled(tessEvalDefines);
+            }
+        }
+
+        inline void compileGeometry()
+        {
+            if (geometry != nullptr)
+            {
+                compiledGeometry = geometry->getCompiled(geometryDefines);
+            }
+        }
+
+        inline void compileFragment()
+        {
+            if (fragment != nullptr)
+            {
+                compiledFragment = fragment->getCompiled(fragmentDefines);
+            }
+        }
+
+        HashMap<String, String> vertexDefines;
+        HashMap<String, String> tessControlDefines;
+        HashMap<String, String> tessEvalDefines;
+        HashMap<String, String> geometryDefines;
+        HashMap<String, String> fragmentDefines;
+
+        ResPtr<GfxShader> vertex;
+        ResPtr<GfxShader> tessControl;
+        ResPtr<GfxShader> tessEval;
+        ResPtr<GfxShader> geometry;
+        ResPtr<GfxShader> fragment;
+
+        GfxCompiledShader *compiledVertex;
+        GfxCompiledShader *compiledTessControl;
+        GfxCompiledShader *compiledTessEval;
+        GfxCompiledShader *compiledGeometry;
+        GfxCompiledShader *compiledFragment;
 
     NO_COPY(GfxShaderCombination)
 };

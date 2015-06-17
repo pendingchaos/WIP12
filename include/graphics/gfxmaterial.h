@@ -39,6 +39,8 @@ class GfxMaterialImpl
 
 class GfxLitMaterialImpl : public GfxMaterialImpl
 {
+    NO_COPY_INHERITED(GfxLitMaterialImpl, GfxMaterialImpl)
+
     public:
         GfxLitMaterialImpl(bool forward);
         virtual ~GfxLitMaterialImpl();
@@ -48,51 +50,116 @@ class GfxLitMaterialImpl : public GfxMaterialImpl
                             const Matrix4x4& worldMatrix);
 
         float smoothness;
-        ResPtr<GfxTexture> smoothnessMap;
         float metalMask;
-        ResPtr<GfxTexture> metalMaskMap;
         Float4 albedo;
-        ResPtr<GfxTexture> albedoMap;
-        ResPtr<GfxTexture> environmentMap;
-        ResPtr<GfxTexture> normalMap;
+
+        inline void setSmoothnessMap(ResPtr<GfxTexture> texture)
+        {
+            smoothnessMap = texture;
+
+            if (smoothnessMap != nullptr)
+            {
+                shaderComb->setFragmentDefine("SMOOTHNESS_MAP", "1");
+            } else
+            {
+                shaderComb->removeFragmentDefine("SMOOTHNESS_MAP");
+            }
+        }
+
+        inline void setMetalMaskMap(ResPtr<GfxTexture> texture)
+        {
+            metalMaskMap = texture;
+
+            if (metalMaskMap != nullptr)
+            {
+                shaderComb->setFragmentDefine("METAL_MASK_MAP", "1");
+            } else
+            {
+                shaderComb->removeFragmentDefine("METAL_MASK_MAP");
+            }
+        }
+
+        inline void setAlbedoMap(ResPtr<GfxTexture> texture)
+        {
+            albedoMap = texture;
+
+            if (albedoMap != nullptr)
+            {
+                shaderComb->setFragmentDefine("ALBEDO_MAP", "1");
+            } else
+            {
+                shaderComb->removeFragmentDefine("ALBEDO_MAP");
+            }
+        }
+
+        inline void setNormalMap(ResPtr<GfxTexture> texture)
+        {
+            normalMap = texture;
+
+            if (normalMap != nullptr)
+            {
+                shaderComb->setFragmentDefine("NORMAL_MAP", "1");
+            } else
+            {
+                shaderComb->removeFragmentDefine("NORMAL_MAP");
+            }
+        }
+
+        inline void setEnvironmentMap(ResPtr<GfxTexture> texture)
+        {
+            environmentMap = texture;
+
+            if (environmentMap != nullptr)
+            {
+                shaderComb->setFragmentDefine("ENVIRONMENT_MAP", "1");
+            } else
+            {
+                shaderComb->removeFragmentDefine("ENVIRONMENT_MAP");
+            }
+        }
+
+        inline ResPtr<GfxTexture> getSmoothnessMap() const
+        {
+            return smoothnessMap;
+        }
+
+        inline ResPtr<GfxTexture> getMetalMaskMap() const
+        {
+            return metalMaskMap;
+        }
+
+        inline ResPtr<GfxTexture> getAlbedoMap() const
+        {
+            return albedoMap;
+        }
+
+        inline ResPtr<GfxTexture> getNormalMap() const
+        {
+            return normalMap;
+        }
+
+        inline ResPtr<GfxTexture> getEnvironmentMap() const
+        {
+            return environmentMap;
+        }
 
         inline bool isForward()
         {
             return forward;
         }
     private:
+        ResPtr<GfxTexture> smoothnessMap;
+        ResPtr<GfxTexture> metalMaskMap;
+        ResPtr<GfxTexture> albedoMap;
+        ResPtr<GfxTexture> normalMap;
+        ResPtr<GfxTexture> environmentMap;
+
         bool forward;
         GfxBuffer *fragmentBuffer;
 
         float lastSmoothness;
         float lastMetalMask;
         Float4 lastAlbedo;
-
-        class ShaderComb : public GfxShaderCombination
-        {
-            public:
-                ShaderComb(GfxLitMaterialImpl *mat);
-
-                virtual ResPtr<GfxShader> getVertexShader() const;
-
-                virtual ResPtr<GfxShader> getFragmentShader() const;
-
-                virtual bool fragmentDefinesDirty() const;
-                virtual void getFragmentDefines(HashMap<String, String >& defines) const;
-
-                GfxLitMaterialImpl *mat;
-
-                ResPtr<GfxShader> vertexShader;
-                ResPtr<GfxShader> fragmentShader;
-
-                mutable ResPtr<GfxTexture> lastSmoothnessMap;
-                mutable ResPtr<GfxTexture> lastMetalMaskMap;
-                mutable ResPtr<GfxTexture> lastAlbedoMap;
-                mutable ResPtr<GfxTexture> lastNormalMap;
-                mutable ResPtr<GfxTexture> lastEnvironmentMap;
-        };
-
-    NO_COPY_INHERITED(GfxLitMaterialImpl, GfxMaterialImpl)
 };
 
 class GfxMaterial : public Resource
