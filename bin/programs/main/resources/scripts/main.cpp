@@ -156,21 +156,23 @@ BEGIN_SCRIPT
     bool freezeTimings;
     GPUTimer *debugDrawTimer;
     GPUTimer *textTimer;
+    float debugDrawTiming;
+    float textTiming;
 
     virtual void init()
     {
         showExtraTimings = false;
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
-        
+
         scene = resMgr->getResource<Scene>("resources/scenes/scene.bin");
-    
+
         font = NEW(Font, "/usr/share/fonts/gnu-free/FreeSans.ttf");
-    
+
         debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
     }
-    
+
     virtual void deinit()
     {
         DELETE(GPUTimer, debugDrawTimer);
@@ -256,37 +258,35 @@ BEGIN_SCRIPT
 
     virtual void render()
     {
-        while (not debugDrawTimer->resultAvailable());
-        while (not textTimer->resultAvailable());
         scene->getRenderer()->updateStats();
-        
+
         timingsUpdateCountdown -= platform->getFrametime();
-    
+
         gfxApi->setViewport(0, 0, platform->getWindowWidth(), platform->getWindowHeight());
         scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
                                            platform->getWindowHeight()));
 
         bool debugDraw = platform->isRightMouseButtonPressed();
-        
+
         scene->getRenderer()->debugDraw = debugDraw;
-        
+
         debugDrawTimer->begin();
         if (debugDraw)
         {
             scene->getPhysicsWorld()->debugDraw();
         }
         debugDrawTimer->end();
-        
+
         scene->getRenderer()->render();
-        
+
         size_t fontSize = 40;
         float y = gfxApi->getViewportHeight() - fontSize;
         y /= gfxApi->getViewportHeight();
-        
+
         if (timingsUpdateCountdown < 0.0f and not freezeTimings)
         {
             timingsUpdateCountdown = TIMINGS_UPDATE_COUNTDOWN;
-            
+
             timings = String::format("FPS: %.0f\n"
                                      "Frametime: %.0f ms\n"
                                      "GPU FPS: %.0f\n"
@@ -295,12 +295,21 @@ BEGIN_SCRIPT
                                       platform->getFrametime() * 1000.0f,
                                       1.0f / platform->getGPUFrametime(),
                                       platform->getGPUFrametime() * 1000.0f);
-        
+
             GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
-            
+
             float total = platform->getGPUFrametime();
-            float debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();
-            float textTiming = textTimer->getResult() / (float)textTimer->getResultResolution();
+
+            if (debugDrawTimer->resultAvailable())
+            {
+                debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();
+            }
+
+            if (textTimer->resultAvailable())
+            {
+                textTiming = textTimer->getResult() / (float)textTimer->getResultResolution();
+            }
+
             float sum = stats.gBufferTiming +
                         stats.ssaoTiming +
                         stats.ssaoBlurXTiming +
@@ -316,7 +325,7 @@ BEGIN_SCRIPT
                         stats.shadowmapTiming +
                         debugDrawTiming +
                         textTiming;
-            
+
             extraTimings = String::format("GBuffer: %.2f ms (%.0f%)\n"
                                           "SSAO: %.2f ms (%.0f%)\n"
                                           "SSAO blur X: %.2f ms (%.0f%)\n"
@@ -366,22 +375,22 @@ BEGIN_SCRIPT
                                           (total - sum) * 1000.0f,
                                           (total - sum) / total * 100.0f);
         }
-        
+
         String displayTimings = timings.copy();
-        
+
         if (showExtraTimings)
         {
             displayTimings.append(extraTimings);
         }
-        
+
         textTimer->begin();
-        
+
         font->render(fontSize,
                      Float2(-1.0, y),
                      displayTimings.getData(),
                      NULL,
                      Float3(1.0));
-        
+
         textTimer->end();
     }
 END_SCRIPT

@@ -193,34 +193,75 @@ GfxRenderer::~GfxRenderer()
 
 void GfxRenderer::updateStats()
 {
-    while (not gBufferTimer->resultAvailable());
-    while (not ssaoTimer->resultAvailable());
-    while (not ssaoBlurXTimer->resultAvailable());
-    while (not ssaoBlurYTimer->resultAvailable());
-    while (not deferredShadingTimer->resultAvailable());
-    while (not forwardTimer->resultAvailable());
-    while (not gammaCorrectionTimer->resultAvailable());
-    while (not fxaaTimer->resultAvailable());
-    while (not vignetteTimer->resultAvailable());
-    while (not bloomXTimer->resultAvailable());
-    while (not bloomYTimer->resultAvailable());
-    while (not tonemappingTimer->resultAvailable());
-    while (not shadowmapTimer->resultAvailable());
+    if (gBufferTimer->resultAvailable())
+    {
+        stats.gBufferTiming = gBufferTimer->getResult() / (float)gBufferTimer->getResultResolution();
+    }
 
-    stats.gBufferTiming = gBufferTimer->getResult() / (float)gBufferTimer->getResultResolution();
-    stats.ssaoTiming = ssaoTimer->getResult() / (float)ssaoTimer->getResultResolution();
-    stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult() / (float)ssaoBlurXTimer->getResultResolution();
-    stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult() / (float)ssaoBlurYTimer->getResultResolution();
-    stats.deferredShadingTiming = deferredShadingTimer->getResult() / (float)deferredShadingTimer->getResultResolution();
-    stats.forwardTiming = forwardTimer->getResult() / (float)forwardTimer->getResultResolution();
-    stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult() / (float)gammaCorrectionTimer->getResultResolution();
-    stats.fxaaTiming = fxaaTimer->getResult() / (float)fxaaTimer->getResultResolution();
-    stats.vignetteTiming = vignetteTimer->getResult() / (float)vignetteTimer->getResultResolution();
-    stats.bloomXTiming = bloomXTimer->getResult() / (float)bloomXTimer->getResultResolution();
-    stats.bloomYTiming = bloomYTimer->getResult() / (float)bloomYTimer->getResultResolution();
-    //stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
-    stats.tonemappingTiming = tonemappingTimer->getResult() / (float)tonemappingTimer->getResultResolution();
-    stats.shadowmapTiming = shadowmapTimer->getResult() / (float)shadowmapTimer->getResultResolution();
+    if (ssaoTimer->resultAvailable())
+    {
+        stats.ssaoTiming = ssaoTimer->getResult() / (float)ssaoTimer->getResultResolution();
+    }
+
+    if (ssaoBlurXTimer->resultAvailable())
+    {
+        stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult() / (float)ssaoBlurXTimer->getResultResolution();
+    }
+
+    if (ssaoBlurYTimer->resultAvailable())
+    {
+        stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult() / (float)ssaoBlurYTimer->getResultResolution();
+    }
+
+    if (deferredShadingTimer->resultAvailable())
+    {
+        stats.deferredShadingTiming = deferredShadingTimer->getResult() / (float)deferredShadingTimer->getResultResolution();
+    }
+
+    if (forwardTimer->resultAvailable())
+    {
+        stats.forwardTiming = forwardTimer->getResult() / (float)forwardTimer->getResultResolution();
+    }
+
+    if (gammaCorrectionTimer->resultAvailable())
+    {
+        stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult() / (float)gammaCorrectionTimer->getResultResolution();
+    }
+
+    if (fxaaTimer->resultAvailable())
+    {
+        stats.fxaaTiming = fxaaTimer->getResult() / (float)fxaaTimer->getResultResolution();
+    }
+
+    if (vignetteTimer->resultAvailable())
+    {
+        stats.vignetteTiming = vignetteTimer->getResult() / (float)vignetteTimer->getResultResolution();
+    }
+
+    if (bloomXTimer->resultAvailable())
+    {
+        stats.bloomXTiming = bloomXTimer->getResult() / (float)bloomXTimer->getResultResolution();
+    }
+
+    if (bloomYTimer->resultAvailable())
+    {
+        stats.bloomYTiming = bloomYTimer->getResult() / (float)bloomYTimer->getResultResolution();
+    }
+
+    /*if (luminanceCalcTimer->resultAvailable())
+    {
+        stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
+    }*/
+
+    if (tonemappingTimer->resultAvailable())
+    {
+        stats.tonemappingTiming = tonemappingTimer->getResult() / (float)tonemappingTimer->getResultResolution();
+    }
+
+    if (shadowmapTimer->resultAvailable())
+    {
+        stats.shadowmapTiming = shadowmapTimer->getResult() / (float)shadowmapTimer->getResultResolution();
+    }
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,

@@ -246,12 +246,14 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
         gpuTimer->end();
 
         SDL_GL_SwapWindow(window);
+        glFinish();
 
         Uint64 end = SDL_GetPerformanceCounter();
 
-        while (not gpuTimer->resultAvailable());
-
-        gpuTime = gpuTimer->getResult();
+        if (gpuTimer->resultAvailable())
+        {
+            gpuTime = gpuTimer->getResult();
+        }
 
         frametime = float(end-start) / float(SDL_GetPerformanceFrequency());
 
