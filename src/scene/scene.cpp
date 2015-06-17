@@ -10,16 +10,14 @@
 #include "globals.h"
 #include "file.h"
 
-Scene::Scene(const String& name) : Resource(name, SceneType)
+Scene::Scene() : Resource(SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
     renderer = NEW(GfxRenderer, this);
 }
 
-Scene::Scene(const String& filename,
-             const String& name) : Resource(filename,
-                                            name,
-                                            SceneType)
+Scene::Scene(const String& filename) : Resource(filename,
+                                                SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
     renderer = NEW(GfxRenderer, this);
@@ -138,7 +136,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
 
         bool shadowCaster = file->readUInt8() != 0;
 
-        entity->addRenderComponent(resMgr->getResourceByFilename<GfxModel>(modelFile),
+        entity->addRenderComponent(resMgr->getResource<GfxModel>(modelFile),
                                    shadowCaster);
     }
 
@@ -194,7 +192,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String shape(length);
         file->read(length, shape.getData());
 
-        rigidBody->setShape(resMgr->getResourceByFilename<PhysicsShape>(shape));
+        rigidBody->setShape(resMgr->getResource<PhysicsShape>(shape));
     }
 
     uint32_t numScripts = file->readUInt32LE();
@@ -205,7 +203,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String scriptFile(scriptFileLen);
         file->read(scriptFileLen, scriptFile.getData());
 
-        entity->addScript(resMgr->getResourceByFilename<Script>(scriptFile));
+        entity->addScript(resMgr->getResource<Script>(scriptFile));
     }
 }
 
@@ -295,7 +293,7 @@ void Scene::_load()
 
         if (skyboxFileLen != 0)
         {
-            renderer->skybox = resMgr->getResourceByFilename<GfxTexture>(skyboxFile);
+            renderer->skybox = resMgr->getResource<GfxTexture>(skyboxFile);
         } else
         {
             renderer->skybox = nullptr;

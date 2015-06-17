@@ -106,9 +106,8 @@ class GfxMaterial : public Resource
 
         static const Resource::Type resource_type = GfxMaterialType;
 
-        GfxMaterial(const String& name);
-        GfxMaterial(const String& filename,
-                    const String& name);
+        GfxMaterial();
+        GfxMaterial(const String& filename);
 
         virtual ~GfxMaterial();
 

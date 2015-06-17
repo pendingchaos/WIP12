@@ -9,16 +9,16 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
 {
     buffer = gfxApi->createBuffer();
 
-    vertex = resMgr->getResourceByFilename<GfxShader>(
+    vertex = resMgr->getResource<GfxShader>(
     "resources/shaders/debugDrawVertex.bin");
 
-    fragment = resMgr->getResourceByFilename<GfxShader>(
+    fragment = resMgr->getResource<GfxShader>(
     "resources/shaders/debugDrawFragment.bin");
 
     compiledVertex = vertex->getCompiled();
     compiledFragment = fragment->getCompiled();
 
-    mesh = NEW(GfxMesh, "debugDrawerMesh");
+    mesh = NEW(GfxMesh);
     mesh->primitive = GfxLines;
 
     GfxMesh::VertexAttribute positionAttribute;

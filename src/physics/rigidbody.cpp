@@ -38,7 +38,7 @@ class MotionState : public btMotionState
 };
 
 RigidBody::RigidBody(const ConstructionInfo& info,
-                     PhysicsWorld *world_) : shape(NEW(PhysicsShape, "rigidBodyShape")),
+                     PhysicsWorld *world_) : shape(NEW(PhysicsShape)),
                                              world(world_),
                                              type(info.type),
                                              collisionMask(info.collisionMask)

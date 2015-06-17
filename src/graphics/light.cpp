@@ -15,7 +15,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
 
     if (type == Spot)
     {
-        shadowmap = NEW(GfxTexture, "");
+        shadowmap = NEW(GfxTexture);
 
         shadowmap->startCreation(GfxTexture::Texture2D,
                                  false,

@@ -17,7 +17,7 @@ void run(const char *dir)
 
     setApplication(&app_);
 
-    ResPtr<Script> script = resMgr->getResourceByFilename<Script>("resources/scripts/main.cpp");
+    ResPtr<Script> script = resMgr->getResource<Script>("resources/scripts/main.cpp");
 
     app->setNextScript(script);
 

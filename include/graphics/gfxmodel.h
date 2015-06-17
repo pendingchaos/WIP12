@@ -49,9 +49,8 @@ class GfxModel : public Resource
         typedef List<LOD> SubModel;
         typedef List<SubModel> Context;
 
-        GfxModel(const String& name);
-        GfxModel(const String& filename,
-                 const String& name);
+        GfxModel();
+        GfxModel(const String& filename);
 
         virtual void removeContent();
 

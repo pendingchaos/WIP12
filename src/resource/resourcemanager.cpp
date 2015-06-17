@@ -1,19 +1,16 @@
 #include "resource/resourcemanager.h"
 
-#include "memory.h"
 #include "logging.h"
-
-#include <sys/stat.h>
 
 ResourceManager::ResourceManager() {}
 
 ResourceManager::~ResourceManager() {}
 
-void ResourceManager::removeResource(Resource::Type type, const String& name)
+void ResourceManager::removeResource(Resource::Type type, const String& filename)
 {
     HashMap<String, ResPtr<Resource> > resources_ = resources.get(type);
 
-    int entry = resources_.findEntry(name);
+    int entry = resources_.findEntry(filename);
 
     if (entry != -1)
     {
@@ -21,13 +18,13 @@ void ResourceManager::removeResource(Resource::Type type, const String& name)
     }
 }
 
-bool ResourceManager::isResource(Resource::Type type, const String& name) const
+bool ResourceManager::isResource(Resource::Type type, const String& filename) const
 {
     int entry = resources.findEntry(type);
 
     if (entry != -1)
     {
-        return resources.getValue(entry).findEntry(name) != -1;
+        return resources.getValue(entry).findEntry(filename) != -1;
     }
 
     return false;

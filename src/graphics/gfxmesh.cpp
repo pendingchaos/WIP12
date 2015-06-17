@@ -6,25 +6,22 @@
 #include "containers/list.h"
 #include "containers/pair.h"
 
-GfxMesh::GfxMesh(const String& filename,
-                 const String& name) : Resource(filename,
-                                                name,
-                                                GfxMeshType),
-                                       primitive(GfxTriangles),
-                                       numVertices(0),
-                                       cullMode(GfxCullNone),
-                                       winding(GfxCCW),
-                                       indexed(false),
-                                       impl(gfxApi->createMeshImpl()) {}
+GfxMesh::GfxMesh(const String& filename) : Resource(filename,
+                                                    GfxMeshType),
+                                           primitive(GfxTriangles),
+                                           numVertices(0),
+                                           cullMode(GfxCullNone),
+                                           winding(GfxCCW),
+                                           indexed(false),
+                                           impl(gfxApi->createMeshImpl()) {}
 
-GfxMesh::GfxMesh(const String& name) : Resource(name,
-                                                GfxMeshType),
-                                       primitive(GfxTriangles),
-                                       numVertices(0),
-                                       cullMode(GfxCullNone),
-                                       winding(GfxCCW),
-                                       indexed(false),
-                                       impl(gfxApi->createMeshImpl()) {}
+GfxMesh::GfxMesh() : Resource(GfxMeshType),
+                     primitive(GfxTriangles),
+                     numVertices(0),
+                     cullMode(GfxCullNone),
+                     winding(GfxCCW),
+                     indexed(false),
+                     impl(gfxApi->createMeshImpl()) {}
 
 GfxMesh::~GfxMesh()
 {

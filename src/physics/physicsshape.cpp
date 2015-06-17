@@ -8,12 +8,11 @@
 #include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 #include <cstring>
 
-PhysicsShape::PhysicsShape(const String& name) : Resource(name, Resource::PhysicsShapeType),
-                                                 impl(NEW(PhysicsShapeImpl)) {}
+PhysicsShape::PhysicsShape() : Resource(Resource::PhysicsShapeType),
+                               impl(NEW(PhysicsShapeImpl)) {}
 
-PhysicsShape::PhysicsShape(const String& filename,
-                           const String& name) : Resource(filename, name, Resource::PhysicsShapeType),
-                                                 impl(NEW(PhysicsShapeImpl)) {}
+PhysicsShape::PhysicsShape(const String& filename) : Resource(filename, Resource::PhysicsShapeType),
+                                                     impl(NEW(PhysicsShapeImpl)) {}
 
 PhysicsShape::~PhysicsShape() {}
 
@@ -461,7 +460,7 @@ ResPtr<PhysicsShape> loadShape(ResPtr<PhysicsShape> dest, File *file, const Stri
         String filename2(length);
         file->read(length, filename2.getData());
 
-        dest = resMgr->getResourceByFilename<PhysicsShape>(filename2);
+        dest = resMgr->getResource<PhysicsShape>(filename2);
         break;
     }
     default:

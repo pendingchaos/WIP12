@@ -207,11 +207,6 @@ class Resource
         virtual void reload();
         virtual void save();
 
-        inline const String& getName() const
-        {
-            return name;
-        }
-
         inline Type getType() const
         {
             return type;
@@ -260,7 +255,6 @@ class Resource
     private:
         void refreshModification();
 
-        const String name;
         Type type;
         bool loaded;
         time_t lastFileModification;
@@ -268,9 +262,8 @@ class Resource
     protected:
         virtual void _load() {}
 
-        Resource(const String& name, Type type);
+        Resource(Type type);
         Resource(const String& filename,
-                 const String& name,
                  Type type);
 
     NO_COPY(Resource)

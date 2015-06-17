@@ -21,9 +21,8 @@ class Scene : public Resource
     public:
         static const Resource::Type resource_type = Resource::SceneType;
 
-        Scene(const String& name);
-        Scene(const String& filename,
-              const String& name);
+        Scene();
+        Scene(const String& filename);
         virtual ~Scene();
 
         virtual void removeContent();

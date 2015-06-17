@@ -9,12 +9,12 @@ GfxLitMaterialImpl::ShaderComb::ShaderComb(GfxLitMaterialImpl *mat_) : mat(mat_)
 {
     if (mat->forward)
     {
-        vertexShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/forwardVertex.bin");
-        fragmentShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/forwardFragment.bin");
+        vertexShader = resMgr->getResource<GfxShader>("resources/shaders/forwardVertex.bin");
+        fragmentShader = resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin");
     } else
     {
-        vertexShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/gbufferVertex.bin");
-        fragmentShader = resMgr->getResourceByFilename<GfxShader>("resources/shaders/gbufferFragment.bin");
+        vertexShader = resMgr->getResource<GfxShader>("resources/shaders/gbufferVertex.bin");
+        fragmentShader = resMgr->getResource<GfxShader>("resources/shaders/gbufferFragment.bin");
     }
 }
 
@@ -155,18 +155,15 @@ void GfxLitMaterialImpl::render(GfxRenderer *renderer,
     GfxRenderer::endRenderMesh(mesh);
 }
 
-GfxMaterial::GfxMaterial(const String& name) : Resource(name,
-                                                        GfxMaterialType),
-                                               impl(nullptr)
+GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
+                             impl(nullptr)
 {
     setMatType(Forward);
 }
 
-GfxMaterial::GfxMaterial(const String& filename,
-                         const String& name) : Resource(filename,
-                                                        name,
-                                                        GfxMaterialType),
-                                               impl(nullptr)
+GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
+                                                            GfxMaterialType),
+                                                   impl(nullptr)
 {
     setMatType(Forward);
 }
@@ -315,7 +312,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->albedoMap = resMgr->getResourceByFilename<GfxTexture>(tex);
+                impl->albedoMap = resMgr->getResource<GfxTexture>(tex);
             }
 
             len = file.readUInt32LE();
@@ -323,7 +320,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->smoothnessMap = resMgr->getResourceByFilename<GfxTexture>(tex);
+                impl->smoothnessMap = resMgr->getResource<GfxTexture>(tex);
             }
 
             len = file.readUInt32LE();
@@ -331,7 +328,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->metalMaskMap = resMgr->getResourceByFilename<GfxTexture>(tex);
+                impl->metalMaskMap = resMgr->getResource<GfxTexture>(tex);
             }
 
             len = file.readUInt32LE();
@@ -339,7 +336,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->normalMap = resMgr->getResourceByFilename<GfxTexture>(tex);
+                impl->normalMap = resMgr->getResource<GfxTexture>(tex);
             }
 
             len = file.readUInt32LE();
@@ -347,7 +344,7 @@ void GfxMaterial::_load()
             {
                 String tex(len);
                 file.read(len, tex.getData());
-                impl->environmentMap = resMgr->getResourceByFilename<GfxTexture>(tex);
+                impl->environmentMap = resMgr->getResource<GfxTexture>(tex);
             }
         } else
         {

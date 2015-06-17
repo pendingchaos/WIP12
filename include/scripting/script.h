@@ -44,9 +44,8 @@ class Script : public Resource
     public:
         static const Type resource_type = ScriptType;
 
-        Script(const String& name);
-        Script(const String& filename,
-               const String& name);
+        Script();
+        Script(const String& filename);
 
         virtual ~Script();
 

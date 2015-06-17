@@ -22,9 +22,8 @@ class GfxMesh : public Resource
     public:
         static const Resource::Type resource_type = GfxMeshType;
 
-        GfxMesh(const String& filename,
-                const String& name);
-        GfxMesh(const String& name);
+        GfxMesh(const String& filename);
+        GfxMesh();
         virtual ~GfxMesh();
 
         void init(GfxPrimitive primitive_,

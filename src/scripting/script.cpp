@@ -108,14 +108,12 @@ void ScriptInstance::render()
     }
 }
 
-Script::Script(const String& name) : Resource(name, ScriptType),
-                                     dl(nullptr) {}
+Script::Script() : Resource(ScriptType),
+                   dl(nullptr) {}
 
-Script::Script(const String& filename,
-               const String& name) : Resource(filename,
-                                              name,
-                                              ScriptType),
-                                     dl(nullptr) {}
+Script::Script(const String& filename) : Resource(filename,
+                                                  ScriptType),
+                                         dl(nullptr) {}
 
 Script::~Script()
 {

@@ -13,13 +13,10 @@ GfxModel::LOD::LOD(float minDistance_,
                                               material(material_),
                                               worldMatrix(matrix) {}
 
-GfxModel::GfxModel(const String& name) : Resource(name,
-                                                  Resource::GfxModelType) {}
+GfxModel::GfxModel() : Resource(Resource::GfxModelType) {}
 
-GfxModel::GfxModel(const String& filename,
-                   const String& name) : Resource(filename,
-                                                  name,
-                                                  Resource::GfxModelType) {}
+GfxModel::GfxModel(const String& filename) : Resource(filename,
+                                                      Resource::GfxModelType) {}
 
 void GfxModel::removeContent()
 {
@@ -171,8 +168,8 @@ void GfxModel::_load()
 
                     subModel.append(LOD(minDistance,
                                         maxDistance,
-                                        resMgr->getResourceByFilename<GfxMesh>(mesh),
-                                        resMgr->getResourceByFilename<GfxMaterial>(material),
+                                        resMgr->getResource<GfxMesh>(mesh),
+                                        resMgr->getResource<GfxMaterial>(material),
                                         Matrix4x4(Float4(r0c0, r0c1, r0c2, r0c3),
                                                   Float4(r1c0, r1c1, r1c2, r1c3),
                                                   Float4(r2c0, r2c1, r2c2, r2c3),

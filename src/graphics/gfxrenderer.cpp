@@ -35,25 +35,25 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           //averageLuminance(0.0f),
                                           numLights(0)
 {
-    skyboxVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxVertex.bin");
-    skyboxFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/skyboxFragment.bin");
-    skyboxMesh = resMgr->getResourceByFilename<GfxMesh>("resources/meshes/cube.bin");
-    gammaCorrectionFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/toSRGBFragment.bin");
-    vignetteFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/vignetteFragment.bin");
-    fxaaFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/fxaaFragment.bin");
-    lightingDirectional = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lightingDirectional.bin");
-    lightingPoint = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lightingPoint.bin");
-    lightingSpot = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lightingSpot.bin");
-    ssaoFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoFragment.bin");
-    ssaoBlurXFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
-    ssaoBlurYFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
-    bloomBlurXFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/bloomBlurXFragment.bin");
-    bloomBlurYFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/bloomBlurYFragment.bin");
-    lumCalcFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/lumCalcFragment.bin");
-    tonemapFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/tonemapFragment.bin");
-    postEffectVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/postEffectVertex.bin");
-    shadowmapVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/shadowmapVertex.bin");
-    shadowmapFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/shadowmapFragment.bin");
+    skyboxVertex = resMgr->getResource<GfxShader>("resources/shaders/skyboxVertex.bin");
+    skyboxFragment = resMgr->getResource<GfxShader>("resources/shaders/skyboxFragment.bin");
+    skyboxMesh = resMgr->getResource<GfxMesh>("resources/meshes/cube.bin");
+    gammaCorrectionFragment = resMgr->getResource<GfxShader>("resources/shaders/toSRGBFragment.bin");
+    vignetteFragment = resMgr->getResource<GfxShader>("resources/shaders/vignetteFragment.bin");
+    fxaaFragment = resMgr->getResource<GfxShader>("resources/shaders/fxaaFragment.bin");
+    lightingDirectional = resMgr->getResource<GfxShader>("resources/shaders/lightingDirectional.bin");
+    lightingPoint = resMgr->getResource<GfxShader>("resources/shaders/lightingPoint.bin");
+    lightingSpot = resMgr->getResource<GfxShader>("resources/shaders/lightingSpot.bin");
+    ssaoFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoFragment.bin");
+    ssaoBlurXFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
+    ssaoBlurYFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
+    bloomBlurXFragment = resMgr->getResource<GfxShader>("resources/shaders/bloomBlurXFragment.bin");
+    bloomBlurYFragment = resMgr->getResource<GfxShader>("resources/shaders/bloomBlurYFragment.bin");
+    lumCalcFragment = resMgr->getResource<GfxShader>("resources/shaders/lumCalcFragment.bin");
+    tonemapFragment = resMgr->getResource<GfxShader>("resources/shaders/tonemapFragment.bin");
+    postEffectVertex = resMgr->getResource<GfxShader>("resources/shaders/postEffectVertex.bin");
+    shadowmapVertex = resMgr->getResource<GfxShader>("resources/shaders/shadowmapVertex.bin");
+    shadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/shadowmapFragment.bin");
 
     compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
     compiledVignetteFragment = vignetteFragment->getCompiled();
@@ -85,7 +85,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     GfxBuffer *positionBuffer = gfxApi->createBuffer();
     positionBuffer->allocData(sizeof(positionData), positionData, GfxBuffer::Static);
 
-    fullScreenQuadMesh = NEW(GfxMesh, "");
+    fullScreenQuadMesh = NEW(GfxMesh);
     fullScreenQuadMesh->buffers.append(positionBuffer);
     fullScreenQuadMesh->primitive = GfxTriangles;
     fullScreenQuadMesh->numVertices = 6;
@@ -99,15 +99,15 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     fullScreenQuadMesh->setVertexAttrib(GfxPosition, positionAttribute);
 
-    readColorTexture = NEW(GfxTexture, "");
-    writeColorTexture = NEW(GfxTexture, "");
-    depthTexture = NEW(GfxTexture, "");
-    materialTexture = NEW(GfxTexture, "");
-    normalTexture = NEW(GfxTexture, "");
-    ssaoTexture = NEW(GfxTexture, "");
-    ssaoBlurXTexture = NEW(GfxTexture, "");
-    bloomBlurXTexture = NEW(GfxTexture, "");
-    //luminanceTexture = NEW(GfxTexture, "");
+    readColorTexture = NEW(GfxTexture);
+    writeColorTexture = NEW(GfxTexture);
+    depthTexture = NEW(GfxTexture);
+    materialTexture = NEW(GfxTexture);
+    normalTexture = NEW(GfxTexture);
+    ssaoTexture = NEW(GfxTexture);
+    ssaoBlurXTexture = NEW(GfxTexture);
+    bloomBlurXTexture = NEW(GfxTexture);
+    //luminanceTexture = NEW(GfxTexture);
 
     readColorTexture->setWrapMode(GfxTexture::Stretch);
     writeColorTexture->setWrapMode(GfxTexture::Stretch);

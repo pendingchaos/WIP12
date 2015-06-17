@@ -7,13 +7,13 @@
 
 Font::Font(const char *filename_) : filename(filename_)
 {
-    quadMesh = NEW(GfxMesh, "");
+    quadMesh = NEW(GfxMesh);
     quadMesh->primitive = GfxPoints;
     quadMesh->numVertices = 1;
 
-    quadVertex = resMgr->getResourceByFilename<GfxShader>("resources/shaders/fontVertex.bin");
-    quadGeometry = resMgr->getResourceByFilename<GfxShader>("resources/shaders/fontGeometry.bin");
-    quadFragment = resMgr->getResourceByFilename<GfxShader>("resources/shaders/fontFragment.bin");
+    quadVertex = resMgr->getResource<GfxShader>("resources/shaders/fontVertex.bin");
+    quadGeometry = resMgr->getResource<GfxShader>("resources/shaders/fontGeometry.bin");
+    quadFragment = resMgr->getResource<GfxShader>("resources/shaders/fontFragment.bin");
 
     compiledQuadVertex = quadVertex->getCompiled();
     compiledQuadGeometry = quadGeometry->getCompiled();
@@ -134,7 +134,7 @@ void Font::loadGlyph(Face& face, char character)
     glyph.bearing.y = face.face->glyph->bitmap_top;
     glyph.xAdvance = face.face->glyph->advance.x / 64.0f;
 
-    glyph.texture = NEW(GfxTexture, "");
+    glyph.texture = NEW(GfxTexture);
 
     glyph.texture->startCreation(GfxTexture::Texture2D,
                                  false,

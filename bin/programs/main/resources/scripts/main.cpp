@@ -163,7 +163,7 @@ BEGIN_SCRIPT
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
         
-        scene = resMgr->getResourceByFilename<Scene>("resources/scenes/scene.bin");
+        scene = resMgr->getResource<Scene>("resources/scenes/scene.bin");
     
         font = NEW(Font, "/usr/share/fonts/gnu-free/FreeSans.ttf");
     

@@ -158,9 +158,8 @@ class GfxTexture : public Resource
             NegativeZ
         };
 
-        GfxTexture(const String& filename,
-                   const String& name);
-        GfxTexture(const String& name);
+        GfxTexture(const String& filename);
+        GfxTexture();
         virtual ~GfxTexture();
 
         virtual void removeContent();

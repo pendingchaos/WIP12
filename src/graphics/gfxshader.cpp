@@ -8,15 +8,12 @@
 
 #include <unistd.h>
 
-GfxShader::GfxShader(const String& filename,
-                     const String& name) : Resource(filename,
-                                                    name,
-                                                    GfxShaderType),
-                                           impl(gfxApi->createShaderImpl()) {}
+GfxShader::GfxShader(const String& filename) : Resource(filename,
+                                                        GfxShaderType),
+                                               impl(gfxApi->createShaderImpl()) {}
 
-GfxShader::GfxShader(const String& name) : Resource(name,
-                                                    GfxShaderType),
-                                           impl(gfxApi->createShaderImpl()) {}
+GfxShader::GfxShader() : Resource(GfxShaderType),
+                         impl(gfxApi->createShaderImpl()) {}
 
 GfxShader::~GfxShader()
 {

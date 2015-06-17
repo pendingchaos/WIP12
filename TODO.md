@@ -39,5 +39,3 @@
 ## Performance Improvements
 - [ ] Script compilation is very slow.
 - [ ] Instancing (explicit and implicit).
-
-- [ ] Get rid of resource names.

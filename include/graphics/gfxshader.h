@@ -63,9 +63,8 @@ class GfxShader : public Resource
             Compute
         };
 
-        GfxShader(const String& filename,
-                  const String& name);
-        GfxShader(const String& name);
+        GfxShader(const String& filename);
+        GfxShader();
 
         ~GfxShader();
 
