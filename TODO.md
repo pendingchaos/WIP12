@@ -2,7 +2,6 @@
 - [ ] Shapes should be mutable eg. from a radius of 5 to a radius of 10.
     * It seems Bullet's api does not allow this for many shapes.
     * PhysicsCompoundShape should be resizable.
-- [ ] Overlay rendering.
 - [ ] Post processing effects.
     - [ ] Color grading (using a 3d texture)
 - [ ] Shadow mapping.
