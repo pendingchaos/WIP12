@@ -166,3 +166,15 @@
 	<stdint.h>
 	<wchar.h>
 
+1434667500 source:/home/rugrats/Documents/CPP/WIP12/MeshConverter/meshconverter.cpp
+	"../include/endian_utils.h"
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<stddef.h>
+	<stdint.h>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+

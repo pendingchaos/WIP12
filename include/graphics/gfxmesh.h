@@ -9,6 +9,7 @@
 #include "graphics/gfxdefs.h"
 #include "resource/resource.h"
 #include "graphics/GL/glfl.h"
+#include "math/aabb.h"
 #include "misc_macros.h"
 
 #include <stddef.h>
@@ -79,6 +80,7 @@ class GfxMesh : public Resource
         } indexData;
 
         List<GfxBuffer *> buffers;
+        AABB aabb;
     private:
         GfxMeshImpl *impl;
     protected:

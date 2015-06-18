@@ -112,6 +112,35 @@ void convert(const char *input, const char *out)
 
     std::fwrite(indexed ? "\x01" : "\x00", 1, 1, output);
 
+    float minX = 0.0f;
+    float minY = 0.0f;
+    float minZ = 0.0f;
+    float maxX = 0.0f;
+    float maxY = 0.0f;
+    float maxZ = 0.0f;
+
+    if (mesh->HasPositions())
+    {
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            aiVector3D position = mesh->mVertices[i];
+
+            minX = std::min(minX, position.x);
+            minY = std::min(minY, position.y);
+            minZ = std::min(minZ, position.z);
+            maxX = std::max(maxX, position.x);
+            maxY = std::max(maxY, position.y);
+            maxZ = std::max(maxZ, position.z);
+        }
+    }
+
+    std::fwrite(&minX, 4, 1, output);
+    std::fwrite(&minY, 4, 1, output);
+    std::fwrite(&minZ, 4, 1, output);
+    std::fwrite(&maxX, 4, 1, output);
+    std::fwrite(&maxY, 4, 1, output);
+    std::fwrite(&maxZ, 4, 1, output);
+
     uint32_t stride = 0;
 
     stride += mesh->HasPositions() ? 12 : 0;

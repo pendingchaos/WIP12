@@ -84,6 +84,13 @@ void GfxMesh::save()
         file.writeUInt8(cullMode);
         file.writeUInt8(indexed ? 1 : 0);
 
+        file.writeFloat32(aabb.min.x);
+        file.writeFloat32(aabb.min.y);
+        file.writeFloat32(aabb.min.z);
+        file.writeFloat32(aabb.max.x);
+        file.writeFloat32(aabb.max.y);
+        file.writeFloat32(aabb.max.z);
+
         if (indexed)
         {
             file.writeUInt8(indexData.type);
@@ -227,6 +234,13 @@ void GfxMesh::_load()
     winding = (GfxWinding)file.readUInt8();
     cullMode = (GfxCullMode)file.readUInt8();
     indexed = file.readUInt8() != 0;
+
+    aabb.min.x = file.readFloat32();
+    aabb.min.y = file.readFloat32();
+    aabb.min.z = file.readFloat32();
+    aabb.max.x = file.readFloat32();
+    aabb.max.y = file.readFloat32();
+    aabb.max.z = file.readFloat32();
 
     numVertices = indexed ? 0 : count;
 

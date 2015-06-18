@@ -98,6 +98,7 @@
 		<Unit filename="include/graphics/gputimer.h" />
 		<Unit filename="include/graphics/light.h" />
 		<Unit filename="include/logging.h" />
+		<Unit filename="include/math/aabb.h" />
 		<Unit filename="include/math/matrix3x3.h" />
 		<Unit filename="include/math/matrix4x4.h" />
 		<Unit filename="include/math/quaternion.h" />
@@ -158,6 +159,7 @@
 		<Unit filename="src/graphics/light.cpp" />
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/math/aabb.cpp" />
 		<Unit filename="src/math/matrix3x3.cpp" />
 		<Unit filename="src/math/matrix4x4.cpp" />
 		<Unit filename="src/math/quaternion.cpp" />
