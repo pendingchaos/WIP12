@@ -42,6 +42,7 @@
 #include "math/matrix3x3.h"
 #include "math/matrix4x4.h"
 #include "math/quaternion.h"
+#include "math/aabb.h"
 #include "containers/list.h"
 #include "containers/pair.h"
 #include "containers/string.h"

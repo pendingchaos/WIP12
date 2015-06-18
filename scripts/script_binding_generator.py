@@ -37,6 +37,7 @@ files = [
 "../include/math/matrix3x3.h",
 "../include/math/matrix4x4.h",
 "../include/math/quaternion.h",
+"../include/math/aabb.h",
 "../include/containers/list.h",
 "../include/containers/pair.h",
 "../include/containers/string.h",
@@ -62,7 +63,7 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "Quaternion", "PhysicsWorld", "RigidBody", "PhysicsShape", "PhysicsDebugDrawer",
 "Platform", "GfxShaderCombination", "Exception", "ShaderCompileException",
 "FileException", "LookupException", "ResourceIOException", "LogEntry",
-"PhysicsShapeImpl", "Framebuffer", "Light", "Font", "GPUTimer", "Overlay"]
+"PhysicsShapeImpl", "Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",
