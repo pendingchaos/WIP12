@@ -125,6 +125,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
     entity->transform.orientation = Quaternion(Float3(rotX, rotY, rotZ));
 
     bool useModel = file->readUInt8() != 0;
+    bool useOverlay = file->readUInt8() != 0;
     bool useRigidBody = file->readUInt8() != 0;
 
     if (useModel)
@@ -136,8 +137,21 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
 
         bool shadowCaster = file->readUInt8() != 0;
 
-        entity->addRenderComponent(resMgr->getResource<GfxModel>(modelFile),
-                                   shadowCaster);
+        entity->addModel(resMgr->getResource<GfxModel>(modelFile), shadowCaster);
+    } else if (useOverlay)
+    {
+        uint32_t textureFileLen = file->readUInt32LE();
+
+        String textureFile(textureFileLen);
+        file->read(textureFileLen, textureFile.getData());
+
+        float red = file->readFloat32();
+        float green = file->readFloat32();
+        float blue = file->readFloat32();
+
+        entity->addOverlay(resMgr->getResource<GfxTexture>(textureFile));
+
+        entity->getRenderComponent()->overlayData.color = Float3(red, green, blue);
     }
 
     if (useRigidBody)
@@ -445,7 +459,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
             file->writeUInt32LE(model->filename.getLength());
             file->write(model->filename.getLength(), model->filename.getData());
 
-            file->writeUInt8(entity->getRenderComponent()->shadowCaster);
+            file->writeUInt8(entity->getRenderComponent()->modelData.shadowCaster);
         }
     }
 

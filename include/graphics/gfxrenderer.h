@@ -38,6 +38,7 @@ class GfxRenderer
             //float lumCalcTiming;
             float tonemappingTiming;
             float shadowmapTiming;
+            float overlayTiming;
         };
 
         ~GfxRenderer();
@@ -127,6 +128,7 @@ class GfxRenderer
         //GPUTimer *luminanceCalcTimer;
         GPUTimer *tonemappingTimer;
         GPUTimer *shadowmapTimer;
+        GPUTimer *overlayTimer;
 
         unsigned int width;
         unsigned int height;
@@ -136,7 +138,7 @@ class GfxRenderer
         ResPtr<GfxShader> skyboxVertex;
         ResPtr<GfxShader> skyboxFragment;
         ResPtr<GfxMesh> skyboxMesh;
-        ResPtr<GfxMesh> fullScreenQuadMesh;
+        ResPtr<GfxMesh> quadMesh;
         ResPtr<GfxShader> gammaCorrectionFragment;
         ResPtr<GfxShader> vignetteFragment;
         ResPtr<GfxShader> fxaaFragment;
@@ -153,6 +155,8 @@ class GfxRenderer
         ResPtr<GfxShader> postEffectVertex;
         ResPtr<GfxShader> shadowmapVertex;
         ResPtr<GfxShader> shadowmapFragment;
+        ResPtr<GfxShader> overlayVertex;
+        ResPtr<GfxShader> overlayFragment;
         GfxCompiledShader *compiledGammaCorrectionFragment;
         GfxCompiledShader *compiledVignetteFragment;
         GfxCompiledShader *compiledFXAAFragment;
@@ -170,6 +174,8 @@ class GfxRenderer
         GfxCompiledShader *compiledPostEffectVertex;
         GfxCompiledShader *compiledShadowmapVertex;
         GfxCompiledShader *compiledShadowmapFragment;
+        GfxCompiledShader *compiledOverlayVertex;
+        GfxCompiledShader *compiledOverlayFragment;
         //float averageLuminance;
 
         size_t numLights;

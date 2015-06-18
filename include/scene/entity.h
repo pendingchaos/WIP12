@@ -22,13 +22,26 @@ class RenderComponent
         enum Type
         {
             Nothing,
-            Model
+            Model,
+            Overlay
         };
 
         Type type;
 
         ResPtr<GfxModel> model;
-        bool shadowCaster;
+        ResPtr<GfxTexture> overlayTexture;
+
+        union
+        {
+            struct
+            {
+                bool shadowCaster;
+            } modelData;
+            struct
+            {
+                Float3 color;
+            } overlayData;
+        };
     private:
         RenderComponent() : type(Nothing) {}
         ~RenderComponent() {}
@@ -86,12 +99,22 @@ class Entity
             return rigidBody != nullptr;
         }
 
-        inline void addRenderComponent(ResPtr<GfxModel> model, bool shadowCaster=true)
+        inline void addModel(ResPtr<GfxModel> model, bool shadowCaster=true)
         {
             render = true;
             renderComponent.type = RenderComponent::Model;
+            renderComponent.overlayTexture = nullptr;
             renderComponent.model = model;
-            renderComponent.shadowCaster = shadowCaster;
+            renderComponent.modelData.shadowCaster = shadowCaster;
+        }
+
+        inline void addOverlay(ResPtr<GfxTexture> texture)
+        {
+            render = true;
+            renderComponent.type = RenderComponent::Overlay;
+            renderComponent.model = nullptr;
+            renderComponent.overlayTexture = texture;
+            renderComponent.overlayData.color = Float3(1.0f);
         }
 
         inline void removeRenderComponent()

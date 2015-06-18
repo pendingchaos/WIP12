@@ -665,10 +665,14 @@ if __name__ == "__main__":
             def __init__(self, name=""):
                 self.name = name
                 self.transform = Scene.Transform()
-                self.model = None
                 self.scripts = []
                 self.rigidBody = None
+                
+                self.model = None
                 self.shadow_caster = True
+                
+                self.overlayTexture = None
+                self.overlayColor = [1.0, 1.0, 1.0]
             
             def convert(self):
                 s = struct.pack("<L", len(self.name))
@@ -676,13 +680,18 @@ if __name__ == "__main__":
                 
                 s += self.transform.convert()
                 
-                s += struct.pack("<??", self.model != None, self.rigidBody != None)
+                s += struct.pack("<???", self.model != None, self.overlayTexture != None, self.rigidBody != None)
                 
                 if self.model != None:
                     s += struct.pack("<L", len(get_dest_filename(self.model, Model)))
                     s += get_dest_filename(self.model, Model)
                     
                     s += struct.pack("<?", self.shadow_caster)
+                elif self.overlayTexture != None:
+                    s += struct.pack("<L", len(get_dest_filename(self.overlayTexture, Texture)))
+                    s += get_dest_filename(self.overlayTexture, Texture)
+                    
+                    s += struct.pack("<fff", self.overlayColor[0], self.overlayColor[1], self.overlayColor[2]);
                 
                 s += self.rigidBody.convert() if self.rigidBody != None else ""
                 
@@ -851,6 +860,11 @@ if __name__ == "__main__":
     conv["fontGeometry.gs"].stage_ = Shader.Stage.Geometry
     
     conv["fontVertex.vs"] = Shader(["source/shaders/fontVertex.vs"], "../../resources/shaders/fontVertex.bin")
+    
+    conv["overlayVertex.vs"] = Shader(["source/shaders/overlayVertex.vs"], "../../resources/shaders/overlayVertex.bin")
+    
+    conv["overlayFragment.fs"] = Shader(["source/shaders/overlayFragment.fs"], "../../resources/shaders/overlayFragment.bin")
+    conv["overlayFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")

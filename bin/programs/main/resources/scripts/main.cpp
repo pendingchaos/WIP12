@@ -323,6 +323,7 @@ BEGIN_SCRIPT
                         stats.bloomYTiming +
                         stats.tonemappingTiming +
                         stats.shadowmapTiming +
+                        stats.overlayTiming +
                         debugDrawTiming +
                         textTiming;
 
@@ -341,6 +342,7 @@ BEGIN_SCRIPT
                                           "Shadow map: %.2f ms (%.0f%)\n"
                                           "Debug draw: %.2f ms (%.0f%)\n"
                                           "Text: %.2f ms (%.0f%)\n"
+                                          "Overlays: %.2f ms (%.0f%)\n"
                                           "Other: %.2f ms (%.0f%)\n",
                                           stats.gBufferTiming * 1000.0f,
                                           stats.gBufferTiming / total * 100.0f,
@@ -372,6 +374,8 @@ BEGIN_SCRIPT
                                           debugDrawTiming / total * 100.0f,
                                           textTiming * 1000.0f,
                                           textTiming / total * 100.0f,
+                                          stats.overlayTiming * 1000.0f,
+                                          stats.overlayTiming / total * 100.0f,
                                           (total - sum) * 1000.0f,
                                           (total - sum) / total * 100.0f);
         }

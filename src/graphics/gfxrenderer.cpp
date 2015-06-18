@@ -55,6 +55,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     postEffectVertex = resMgr->getResource<GfxShader>("resources/shaders/postEffectVertex.bin");
     shadowmapVertex = resMgr->getResource<GfxShader>("resources/shaders/shadowmapVertex.bin");
     shadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/shadowmapFragment.bin");
+    overlayVertex = resMgr->getResource<GfxShader>("resources/shaders/overlayVertex.bin");
+    overlayFragment = resMgr->getResource<GfxShader>("resources/shaders/overlayFragment.bin");
 
     compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
     compiledVignetteFragment = vignetteFragment->getCompiled();
@@ -73,6 +75,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledPostEffectVertex = postEffectVertex->getCompiled();
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
+    compiledOverlayVertex = overlayVertex->getCompiled();
+    compiledOverlayFragment = overlayFragment->getCompiled();
 
     lightBuffer = gfxApi->createBuffer();
 
@@ -86,10 +90,10 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     GfxBuffer *positionBuffer = gfxApi->createBuffer();
     positionBuffer->allocData(sizeof(positionData), positionData, GfxBuffer::Static);
 
-    fullScreenQuadMesh = NEW(GfxMesh);
-    fullScreenQuadMesh->buffers.append(positionBuffer);
-    fullScreenQuadMesh->primitive = GfxTriangles;
-    fullScreenQuadMesh->numVertices = 6;
+    quadMesh = NEW(GfxMesh);
+    quadMesh->buffers.append(positionBuffer);
+    quadMesh->primitive = GfxTriangles;
+    quadMesh->numVertices = 6;
 
     GfxMesh::VertexAttribute positionAttribute;
     positionAttribute.buffer = positionBuffer;
@@ -98,7 +102,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     positionAttribute.stride = 8;
     positionAttribute.offset = 0;
 
-    fullScreenQuadMesh->setVertexAttrib(GfxPosition, positionAttribute);
+    quadMesh->setVertexAttrib(GfxPosition, positionAttribute);
 
     readColorTexture = NEW(GfxTexture);
     writeColorTexture = NEW(GfxTexture);
@@ -191,6 +195,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //luminanceCalcTimer = gfxApi->createTimer();
     tonemappingTimer = gfxApi->createTimer();
     shadowmapTimer = gfxApi->createTimer();
+    overlayTimer = gfxApi->createTimer();
 }
 
 GfxRenderer::~GfxRenderer()
@@ -209,6 +214,7 @@ GfxRenderer::~GfxRenderer()
     //DELETE(GPUTimer, luminanceCalcTimer);
     DELETE(GPUTimer, tonemappingTimer);
     DELETE(GPUTimer, shadowmapTimer);
+    DELETE(GPUTimer, overlayTimer);
 
     DELETE(GfxFramebuffer, readFramebuffer);
     DELETE(GfxFramebuffer, writeFramebuffer);
@@ -291,6 +297,11 @@ void GfxRenderer::updateStats()
     if (shadowmapTimer->resultAvailable())
     {
         stats.shadowmapTiming = shadowmapTimer->getResult() / (float)shadowmapTimer->getResultResolution();
+    }
+
+    if (overlayTimer->resultAvailable())
+    {
+        stats.overlayTiming = overlayTimer->getResult() / (float)overlayTimer->getResultResolution();
     }
 }
 
@@ -512,7 +523,7 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledSSAOFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledSSAOFragment, "depthTexture", depthTexture);
     gfxApi->addTextureBinding(compiledSSAOFragment, "normalTexture", normalTexture);
@@ -522,9 +533,9 @@ void GfxRenderer::render()
     gfxApi->uniform(compiledSSAOFragment, "radius", ssaoRadius);
     gfxApi->addTextureBinding(compiledSSAOFragment, "randomTex", ssaoRandomTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     ssaoTimer->end();
 
@@ -538,13 +549,13 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledSSAOBlurXFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledSSAOBlurXFragment, "aoTexture", ssaoTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     ssaoBlurXTimer->end();
 
@@ -558,13 +569,13 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledSSAOBlurYFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledSSAOBlurYFragment, "aoTexture", ssaoBlurXTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     ssaoBlurYTimer->end();
 
@@ -616,7 +627,7 @@ void GfxRenderer::render()
                       NULL,
                       NULL,
                       fragmentShader,
-                      fullScreenQuadMesh);
+                      quadMesh);
 
         gfxApi->addTextureBinding(fragmentShader, "albedoTexture", readColorTexture);
         gfxApi->addTextureBinding(fragmentShader, "materialTexture", materialTexture);
@@ -660,9 +671,9 @@ void GfxRenderer::render()
         }
         }
 
-        gfxApi->end(fullScreenQuadMesh->primitive,
-                    fullScreenQuadMesh->numVertices,
-                    fullScreenQuadMesh->winding);
+        gfxApi->end(quadMesh->primitive,
+                    quadMesh->numVertices,
+                    quadMesh->winding);
     }
 
     deferredShadingTimer->end();
@@ -703,13 +714,13 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledLumCalcFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledLumCalcFragment, "colorTexture", writeColorTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     luminanceTexture->generateMipmaps();
 
@@ -768,7 +779,7 @@ void GfxRenderer::render()
                       NULL,
                       NULL,
                       compiledBloomBlurXFragment,
-                      fullScreenQuadMesh);
+                      quadMesh);
 
         gfxApi->addTextureBinding(compiledBloomBlurXFragment, "colorTexture", readColorTexture);
         gfxApi->uniform(compiledBloomBlurXFragment, "threshold", bloomThreshold);
@@ -777,9 +788,9 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);
         gfxApi->uniform(compiledBloomBlurXFragment, "step", bloomStep);
 
-        gfxApi->end(fullScreenQuadMesh->primitive,
-                    fullScreenQuadMesh->numVertices,
-                    fullScreenQuadMesh->winding);
+        gfxApi->end(quadMesh->primitive,
+                    quadMesh->numVertices,
+                    quadMesh->winding);
 
         bloomXTimer->end();
 
@@ -793,7 +804,7 @@ void GfxRenderer::render()
                       NULL,
                       NULL,
                       compiledBloomBlurYFragment,
-                      fullScreenQuadMesh);
+                      quadMesh);
 
         gfxApi->addTextureBinding(compiledBloomBlurYFragment, "colorTexture", readColorTexture);
         gfxApi->addTextureBinding(compiledBloomBlurYFragment, "bloomTexture", bloomBlurXTexture);
@@ -802,9 +813,9 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);
         gfxApi->uniform(compiledBloomBlurYFragment, "step", bloomStep);
 
-        gfxApi->end(fullScreenQuadMesh->primitive,
-                    fullScreenQuadMesh->numVertices,
-                    fullScreenQuadMesh->winding);
+        gfxApi->end(quadMesh->primitive,
+                    quadMesh->numVertices,
+                    quadMesh->winding);
 
         swapFramebuffers();
 
@@ -821,13 +832,13 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledTonemapFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledTonemapFragment, "colorTexture", readColorTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     tonemappingTimer->end();
 
@@ -843,16 +854,16 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledVignetteFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->uniform(compiledVignetteFragment, "vignetteRadius", vignetteRadius);
     gfxApi->uniform(compiledVignetteFragment, "vignetteSoftness", vignetteSoftness);
     gfxApi->uniform(compiledVignetteFragment, "vignetteIntensity", vignetteIntensity);
     gfxApi->addTextureBinding(compiledVignetteFragment, "colorTexture", readColorTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     swapFramebuffers();
 
@@ -868,17 +879,62 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledFXAAFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledFXAAFragment, "colorTexture", readColorTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
+
+    fxaaTimer->end();
+
+    //Overlays
+    overlayTimer->begin();
+
+    const List<Entity *>& entities = scene->getEntities();
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        const Entity *entity = entities[i];
+
+        Matrix4x4 transform = entity->transform.createMatrix();
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            switch (comp->type)
+            {
+            case RenderComponent::Overlay:
+            {
+                gfxApi->begin(compiledOverlayVertex,
+                              NULL,
+                              NULL,
+                              NULL,
+                              compiledOverlayFragment,
+                              quadMesh);
+
+                gfxApi->uniform(compiledOverlayVertex, "transform", transform);
+                gfxApi->uniform(compiledOverlayFragment, "color", comp->overlayData.color);
+                gfxApi->addTextureBinding(compiledOverlayFragment, "colorTexture", comp->overlayTexture);
+
+                gfxApi->end(quadMesh->primitive,
+                            quadMesh->numVertices,
+                            quadMesh->winding);
+                break;
+            }
+            default:
+            {
+                break;
+            }
+            }
+        }
+    }
 
     swapFramebuffers();
 
-    fxaaTimer->end();
+    overlayTimer->end();
 
     //Gamma correction
     gammaCorrectionTimer->begin();
@@ -890,13 +946,13 @@ void GfxRenderer::render()
                   NULL,
                   NULL,
                   compiledGammaCorrectionFragment,
-                  fullScreenQuadMesh);
+                  quadMesh);
 
     gfxApi->addTextureBinding(compiledGammaCorrectionFragment, "colorTexture", readColorTexture);
 
-    gfxApi->end(fullScreenQuadMesh->primitive,
-                fullScreenQuadMesh->numVertices,
-                fullScreenQuadMesh->winding);
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
 
     gammaCorrectionTimer->end();
 
@@ -977,10 +1033,6 @@ void GfxRenderer::renderEntities(GfxModel::ContextType contextType)
 
         Matrix4x4 transform = entity->transform.createMatrix();
 
-        for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
-        {
-            entity->getScripts()[i]->render();
-        }
 
         if (entity->hasRenderComponent())
         {
@@ -988,13 +1040,13 @@ void GfxRenderer::renderEntities(GfxModel::ContextType contextType)
 
             switch (comp->type)
             {
-            case RenderComponent::Nothing:
-            {
-                break;
-            }
             case RenderComponent::Model:
             {
                 renderModel(contextType, camera, transform, comp->model);
+                break;
+            }
+            default:
+            {
                 break;
             }
             }
@@ -1167,13 +1219,13 @@ void GfxRenderer::renderShadowmap(Light *light)
 
             switch (comp->type)
             {
-            case RenderComponent::Nothing:
-            {
-                break;
-            }
             case RenderComponent::Model:
             {
                 renderModelToShadowmap(viewMatrix, projectionMatrix, transform, comp->model);
+                break;
+            }
+            default:
+            {
                 break;
             }
             }
