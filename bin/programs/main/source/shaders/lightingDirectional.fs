@@ -11,6 +11,14 @@ uniform sampler2D depthTexture;
 uniform sampler2D aoTexture;
 uniform mat4 viewProjection;
 
+#ifdef SHADOW_MAP
+uniform sampler2DShadow shadowmap;
+uniform mat4 shadowmapViewMatrix;
+uniform mat4 shadowmapProjectionMatrix;
+uniform float shadowMinBias;
+uniform float shadowBiasScale;
+#endif
+
 uniform vec3 cameraPosition;
 
 uniform vec3 lightColor;
@@ -44,20 +52,52 @@ void main()
               normal,
               viewDir);
     
-    float ao = texture(aoTexture, frag_uv).r * (1.0 - diffuse);
+    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
     
-    result_color.rgb = albedo * 0.1 * (1.0 - metallic) * ao;
+    #ifdef SHADOW_MAP
+    vec4 shadowCoord = shadowmapProjectionMatrix * shadowmapViewMatrix * vec4(position, 1.0);
+    
+    shadowCoord.xyz /= shadowCoord.w;
+    shadowCoord.z -= max(shadowBiasScale * (1.0 - dot(normal, lightNegDir)), shadowMinBias);
+    shadowCoord.xyz += 1.0;
+    shadowCoord.xyz /= 2.0;
+    
+    float shadow = 0.0;
+    
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, -1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 2));
+   
+    shadow /= 17.0;
+    
+    shadow = pow(shadow, 2.2);
+    #endif
+    
+    float ao = max(texture(aoTexture, frag_uv).r * (1.0 -
+    #ifdef SHADOW_MAP
+    min(diffuse, shadow)
+    #else
+    diffuse
+    #endif
+    ), 0.0);
+    
+    result_color.rgb = albedo * 0.05 * (1.0 - metallic) * ao;
     result_color.a = 1.0;
     
-    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
-            
-    result_color.rgb += (diffuseResult + specular) * lightColor;
-    
-    //result_color = vec4(material, 0.0, 1.0);
-    //result_color = vec4((normal + 1.0) / 2.0, 1.0);
-    
-    //result_color.rgb = position;
-    
-    //result_color.rgb = vec3(texture(aoTexture, frag_uv).r);
+    result_color.rgb += (diffuseResult + specular) * lightColor
+    #ifdef SHADOW_MAP
+    * shadow
+    #endif
+    ;
 }
 

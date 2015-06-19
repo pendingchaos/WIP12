@@ -68,11 +68,6 @@ void main()
               normal,
               viewDir);
     
-    float ao = max(texture(aoTexture, frag_uv).r * (1.0 - diffuse * intensity), 0.0);
-    
-    result_color.rgb = albedo * 0.05 * (1.0 - metallic) * ao;
-    result_color.a = 1.0;
-    
     vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
     
     #ifdef SHADOW_MAP
@@ -105,6 +100,11 @@ void main()
     
     intensity = min(intensity, shadow);
     #endif
+    
+    float ao = max(texture(aoTexture, frag_uv).r * (1.0 - diffuse * intensity), 0.0);
+    
+    result_color.rgb = albedo * 0.05 * (1.0 - metallic) * ao;
+    result_color.a = 1.0;
     
     result_color.rgb += (diffuseResult + specular) * lightColor * intensity;
 }

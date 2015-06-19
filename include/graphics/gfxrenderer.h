@@ -2,6 +2,7 @@
 #define GFXRENDERER_H
 
 #include "math/t2.h"
+#include "math/aabb.h"
 #include "graphics/gfxmesh.h"
 #include "graphics/gfxshader.h"
 #include "graphics/gfxmodel.h"
@@ -93,6 +94,9 @@ class GfxRenderer
             return lights;
         }
 
+        AABB computeSceneAABB() const;
+        AABB computeShadowCasterAABB() const;
+
         void updateStats();
 
         Camera camera;
@@ -161,6 +165,7 @@ class GfxRenderer
         GfxCompiledShader *compiledVignetteFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
+        GfxCompiledShader *compiledLightingDirectionalShadow;
         GfxCompiledShader *compiledLightingPoint;
         GfxCompiledShader *compiledLightingSpot;
         GfxCompiledShader *compiledLightingSpotShadow;
@@ -191,7 +196,8 @@ class GfxRenderer
         void renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                     const Matrix4x4& projectionMatrix,
                                     const Matrix4x4& worldMatrix,
-                                    const ResPtr<GfxModel> model);
+                                    const ResPtr<GfxModel> model,
+                                    float biasScale);
         void renderShadowmap(Light *light);
 
         ResPtr<GfxTexture> writeColorTexture;

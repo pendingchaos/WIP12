@@ -8,6 +8,8 @@
 #include "graphics/gfxframebuffer.h"
 #include "misc_macros.h"
 
+class GfxRenderer;
+
 class Light
 {
     NO_COPY(Light)
@@ -34,6 +36,7 @@ class Light
                   shadowmapFar(100.0f),
                   shadowMinBias(0.005f),
                   shadowBiasScale(0.05f),
+                  shadowAutoBiasScale(1.0f),
                   direction({Direction3D(0.0f, -1.0f, 0.0f)}),
                   shadowmap(nullptr),
                   shadowmapFramebuffer(nullptr) {}
@@ -45,6 +48,7 @@ class Light
         float shadowmapFar;
         float shadowMinBias;
         float shadowBiasScale;
+        float shadowAutoBiasScale;
 
         struct
         {
@@ -94,13 +98,25 @@ class Light
             return shadowmapQuality;
         }
 
-        Matrix4x4 getViewMatrix() const;
-        Matrix4x4 getProjectionMatrix() const;
+        void updateMatrices(GfxRenderer *renderer);
+
+        inline Matrix4x4 getViewMatrix() const
+        {
+            return viewMatrix;
+        }
+
+        inline Matrix4x4 getProjectionMatrix() const
+        {
+            return projectionMatrix;
+        }
     private:
         ResPtr<GfxTexture> shadowmap;
         GfxFramebuffer *shadowmapFramebuffer;
         size_t shadowmapResolution;
         ShadowmapQuality shadowmapQuality;
+
+        Matrix4x4 viewMatrix;
+        Matrix4x4 projectionMatrix;
 };
 
 #endif // LIGHT_H

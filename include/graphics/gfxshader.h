@@ -85,6 +85,7 @@ class GfxShader : public Resource
             for (size_t i = 0; i < defines.getEntryCount(); ++i)
             {
                 names.append(defines.getKey(i));
+
                 values.append(defines.getValue(i));
             }
 

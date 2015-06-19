@@ -396,6 +396,7 @@ void Scene::_load()
                 float far = file.readFloat32();
                 float minBias = file.readFloat32();
                 float biasScale = file.readFloat32();
+                float autoBiasScale = file.readFloat32();
                 size_t resolution = file.readUInt16LE();
                 Light::ShadowmapQuality quality = (Light::ShadowmapQuality)file.readUInt8();
 
@@ -405,6 +406,7 @@ void Scene::_load()
                 light->shadowmapFar = far;
                 light->shadowMinBias = minBias;
                 light->shadowBiasScale = biasScale;
+                light->shadowAutoBiasScale = autoBiasScale;
             }
         }
     } catch (FileException& e)

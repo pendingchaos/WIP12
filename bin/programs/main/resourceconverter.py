@@ -191,10 +191,10 @@ if __name__ == "__main__":
                     
                     included = self.include_files(filename, open(filename, "r").read())
                     
-                    result += "#line 0 \"%s\"\n%s\n#line %d \"%s\"" % (filename,
-                                                                       included,
-                                                                       linenum+1,
-                                                                       glsl_filename)
+                    result += "#line 0 \"%s\"\n%s\n#line %d \"%s\"\n" % (filename,
+                                                                         included,
+                                                                         linenum+1,
+                                                                         glsl_filename)
                     
                     linenum += 1
                 else:
@@ -218,7 +218,7 @@ if __name__ == "__main__":
                                    Shader.Stage.Geometry:3,
                                    Shader.Stage.Fragment:4,
                                    Shader.Stage.Compute:5}[self.stage_]))
-            
+                
             out.write(glsl)
             
             out.close()
@@ -551,11 +551,12 @@ if __name__ == "__main__":
                 if self.shadowmap:
                     s += "\x01"
                     
-                    s += struct.pack("<ffffH",
+                    s += struct.pack("<fffffH",
                                      self.shadowmap_near,
                                      self.shadowmap_far,
                                      self.shadow_min_bias,
                                      self.shadow_bias_scale,
+                                     self.shadow_auto_bias_scale,
                                      self.shadowmap_resolution)
                     
                     s += {Scene.Light.ShadowmapQuality.Low: "\x00",
@@ -934,6 +935,7 @@ if __name__ == "__main__":
     conv["fence shape"] = fenceShape
     
     scene = Scene([], "resources/scenes/scene.bin")
+    conv["scene"] = scene
     scene.skybox = conv["Yokohama3"]
     scene.camera.position = [-4.0, 4.0, 4.0]
     scene.camera.direction = [4.0, -2.0, -4.0]
@@ -1081,12 +1083,20 @@ if __name__ == "__main__":
     light.color = [1.0, 1.0, 0.0]
     scene.lights.append(light)"""
     
-    """light = Scene.Light(Scene.Light.Type.Directional)
+    light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
-    scene.lights.append(light)"""
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.01
+    light.shadow_bias_scale = 0.1
+    light.shadow_auto_bias_scale = 1.0
+    light.shadowmap_resolution = 2048
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    scene.lights.append(light)
     
-    light = Scene.Light(Scene.Light.Type.Spot)
+    """light = Scene.Light(Scene.Light.Type.Spot)
     light.position = [8.0, 2.5, 0.0]
     light.direction = [1.0, -0.75, 0.0]
     light.color = [1.0, 1.0, 1.0]
@@ -1098,6 +1108,7 @@ if __name__ == "__main__":
     light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
     light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
     scene.lights.append(light)
@@ -1114,6 +1125,7 @@ if __name__ == "__main__":
     light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
     light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
     scene.lights.append(light)
@@ -1131,8 +1143,9 @@ if __name__ == "__main__":
     light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low"""
     scene.lights.append(light)
     
     for res in conv.values():

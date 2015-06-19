@@ -62,6 +62,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledVignetteFragment = vignetteFragment->getCompiled();
     compiledFXAAFragment = fxaaFragment->getCompiled();
     compiledLightingDirectional = lightingDirectional->getCompiled();
+    compiledLightingDirectionalShadow = lightingDirectional->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
     compiledLightingPoint = lightingPoint->getCompiled();
     compiledLightingSpot = lightingSpot->getCompiled();
     compiledLightingSpotShadow = lightingSpot->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
@@ -344,6 +345,8 @@ void GfxRenderer::beginRenderMesh(const Camera& camera,
 
 void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> mesh)
 {
+    gfxApi->setCullMode(mesh->cullMode);
+
     if (mesh->indexed)
     {
         gfxApi->endIndexed(mesh->primitive,
@@ -478,6 +481,8 @@ void GfxRenderer::render()
     {
         Light *light = lights[i];
 
+        light->updateMatrices(this);
+
         if (light->getShadowmap() == nullptr)
         {
             continue;
@@ -601,7 +606,13 @@ void GfxRenderer::render()
         {
         case Light::Directional:
         {
-            fragmentShader = compiledLightingDirectional;
+            if (light->getShadowmap() != nullptr)
+            {
+                fragmentShader = compiledLightingDirectionalShadow;
+            } else
+            {
+                fragmentShader = compiledLightingDirectional;
+            }
             break;
         }
         case Light::Point:
@@ -964,6 +975,82 @@ void GfxRenderer::render()
     updateStats();
 }
 
+AABB GfxRenderer::computeSceneAABB() const
+{
+    AABB aabb;
+
+    const List<Entity *>& entities = scene->getEntities();
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        const Entity *entity = entities[i];
+
+        Matrix4x4 transform = entity->transform.createMatrix();
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            if (comp->type == RenderComponent::Model)
+            {
+                ResPtr<GfxModel> model = comp->model;
+
+                for (size_t i = 0; i < model->subModels.getCount(); ++i)
+                {
+                    const GfxModel::SubModel& subModel = model->subModels[i];
+
+                    for (size_t j = 0; j < subModel.getCount(); ++j)
+                    {
+                        const GfxModel::LOD& lod = subModel[j];
+
+                        aabb.extend(lod.mesh->aabb.transform(transform * lod.worldMatrix));
+                    }
+                }
+            }
+        }
+    }
+
+    return aabb;
+}
+
+AABB GfxRenderer::computeShadowCasterAABB() const
+{
+    AABB aabb;
+
+    const List<Entity *>& entities = scene->getEntities();
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        const Entity *entity = entities[i];
+
+        Matrix4x4 transform = entity->transform.createMatrix();
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            if (comp->type == RenderComponent::Model and comp->modelData.shadowCaster)
+            {
+                ResPtr<GfxModel> model = comp->model;
+
+                for (size_t i = 0; i < model->subModels.getCount(); ++i)
+                {
+                    const GfxModel::SubModel& subModel = model->subModels[i];
+
+                    for (size_t j = 0; j < subModel.getCount(); ++j)
+                    {
+                        const GfxModel::LOD& lod = subModel[j];
+
+                        aabb.extend(lod.mesh->aabb.transform(transform * lod.worldMatrix));
+                    }
+                }
+            }
+        }
+    }
+
+    return aabb;
+}
+
 void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
 {
     numLights = lights.getCount();
@@ -1032,7 +1119,6 @@ void GfxRenderer::renderEntities(bool forward)
         const Entity *entity = entities[i];
 
         Matrix4x4 transform = entity->transform.createMatrix();
-
 
         if (entity->hasRenderComponent())
         {
@@ -1165,7 +1251,8 @@ void GfxRenderer::renderModel(bool forward,
 void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                          const Matrix4x4& projectionMatrix,
                                          const Matrix4x4& worldMatrix,
-                                         const ResPtr<GfxModel> model)
+                                         const ResPtr<GfxModel> model,
+                                         float biasScale)
 {
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
@@ -1195,6 +1282,7 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                 gfxApi->uniform(compiledShadowmapVertex, "projectionMatrix", projectionMatrix);
                 gfxApi->uniform(compiledShadowmapVertex, "viewMatrix", viewMatrix);
                 gfxApi->uniform(compiledShadowmapVertex, "worldMatrix", worldMatrix * lod.worldMatrix);
+                gfxApi->uniform(compiledShadowmapFragment, "biasScale", biasScale);
 
                 if (mesh->indexed)
                 {
@@ -1220,7 +1308,12 @@ void GfxRenderer::renderShadowmap(Light *light)
 
     gfxApi->pushState();
     gfxApi->resetState();
-    gfxApi->setCullMode(GfxCullBack);
+
+    //For some reason this add peter panning for spot lights. So it is disabled for spot lights.
+    if (light->type != Light::Spot)
+    {
+        gfxApi->setCullMode(GfxCullFront);
+    }
 
     gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
     gfxApi->setCurrentFramebuffer(light->getShadowmapFramebuffer());
@@ -1243,7 +1336,11 @@ void GfxRenderer::renderShadowmap(Light *light)
             {
             case RenderComponent::Model:
             {
-                renderModelToShadowmap(viewMatrix, projectionMatrix, transform, comp->model);
+                renderModelToShadowmap(viewMatrix,
+                                       projectionMatrix,
+                                       transform,
+                                       comp->model,
+                                       light->shadowAutoBiasScale);
                 break;
             }
             default:

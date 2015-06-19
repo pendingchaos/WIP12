@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <stdint.h>
+#include <stddef.h>
 
 template <typename T>
 class T2
@@ -221,6 +222,16 @@ class T2
             T length_ = length();
 
             return length_ == T(0) ? *this : *this / T2(length_);
+        }
+
+        inline T& operator [] (size_t index)
+        {
+            return ((T *)this)[index];
+        }
+
+        inline const T& operator [] (size_t index) const
+        {
+            return ((T *)this)[index];
         }
 
         inline T2 getXY() const

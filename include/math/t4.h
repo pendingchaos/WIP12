@@ -7,6 +7,7 @@
 
 #include <cmath>
 #include <stdint.h>
+#include <stddef.h>
 
 template <typename T>
 class T4
@@ -241,6 +242,16 @@ class T4
             T length_ = length();
 
             return length_ == T(0) ? *this : *this / T4(length_);
+        }
+
+        inline T& operator [] (size_t index)
+        {
+            return ((T *)this)[index];
+        }
+
+        inline const T& operator [] (size_t index) const
+        {
+            return ((T *)this)[index];
         }
 
         #define SWIZZLE4(upperX, upperY, upperZ, upperW, X, Y, Z, W) inline T4 JOIN(JOIN(JOIN(JOIN(get, upperX), upperY), upperZ), upperW)() const\

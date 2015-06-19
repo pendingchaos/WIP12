@@ -6,6 +6,7 @@
 
 #include <cmath>
 #include <stdint.h>
+#include <stddef.h>
 
 template <typename T>
 class T3
@@ -240,6 +241,16 @@ class T3
             return T3(y * other.z - z * other.y,
                       z * other.x - x * other.z,
                       x * other.y - y * other.x);
+        }
+
+        inline T& operator [] (size_t index)
+        {
+            return ((T *)this)[index];
+        }
+
+        inline const T& operator [] (size_t index) const
+        {
+            return ((T *)this)[index];
         }
 
         #define SWIZZLE3(upperX, upperY, upperZ, X, Y, Z) inline T3 JOIN(JOIN(JOIN(get, upperX), upperY), upperZ)() const\
