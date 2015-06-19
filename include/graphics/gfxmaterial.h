@@ -14,40 +14,24 @@
 #include "misc_macros.h"
 #include "memory.h"
 
-class Matrix4x4;
-class GfxRenderer;
-
-class GfxMaterialImpl
+class GfxMaterial : public Resource
 {
     public:
-        GfxMaterialImpl() {}
-        virtual ~GfxMaterialImpl() {}
+        static const Resource::Type resource_type = GfxMaterialType;
 
-        virtual void render(GfxRenderer *renderer,
-                            ResPtr<GfxMesh> mesh,
-                            const Matrix4x4& worldMatrix)=0;
+        GfxMaterial();
+        GfxMaterial(const String& filename);
+
+        virtual ~GfxMaterial();
+
+        virtual void removeContent();
+
+        virtual void save();
 
         inline GfxShaderCombination *getShaderComb() const
         {
             return shaderComb;
         }
-    protected:
-        GfxShaderCombination *shaderComb;
-
-    NO_COPY(GfxMaterialImpl)
-};
-
-class GfxLitMaterialImpl : public GfxMaterialImpl
-{
-    NO_COPY_INHERITED(GfxLitMaterialImpl, GfxMaterialImpl)
-
-    public:
-        GfxLitMaterialImpl(bool forward);
-        virtual ~GfxLitMaterialImpl();
-
-        virtual void render(GfxRenderer *renderer,
-                            ResPtr<GfxMesh> mesh,
-                            const Matrix4x4& worldMatrix);
 
         float smoothness;
         float metalMask;
@@ -105,19 +89,6 @@ class GfxLitMaterialImpl : public GfxMaterialImpl
             }
         }
 
-        inline void setEnvironmentMap(ResPtr<GfxTexture> texture)
-        {
-            environmentMap = texture;
-
-            if (environmentMap != nullptr)
-            {
-                shaderComb->setFragmentDefine("ENVIRONMENT_MAP", "1");
-            } else
-            {
-                shaderComb->removeFragmentDefine("ENVIRONMENT_MAP");
-            }
-        }
-
         inline ResPtr<GfxTexture> getSmoothnessMap() const
         {
             return smoothnessMap;
@@ -138,76 +109,21 @@ class GfxLitMaterialImpl : public GfxMaterialImpl
             return normalMap;
         }
 
-        inline ResPtr<GfxTexture> getEnvironmentMap() const
-        {
-            return environmentMap;
-        }
-
-        inline bool isForward()
+        inline bool isForward() const
         {
             return forward;
         }
+
+        void setForward(bool forward);
     private:
+        GfxShaderCombination *shaderComb;
+
         ResPtr<GfxTexture> smoothnessMap;
         ResPtr<GfxTexture> metalMaskMap;
         ResPtr<GfxTexture> albedoMap;
         ResPtr<GfxTexture> normalMap;
-        ResPtr<GfxTexture> environmentMap;
 
         bool forward;
-        GfxBuffer *fragmentBuffer;
-
-        float lastSmoothness;
-        float lastMetalMask;
-        Float4 lastAlbedo;
-};
-
-class GfxMaterial : public Resource
-{
-    public:
-        enum MaterialType
-        {
-            Forward,
-            Deferred
-        };
-
-        static const Resource::Type resource_type = GfxMaterialType;
-
-        GfxMaterial();
-        GfxMaterial(const String& filename);
-
-        virtual ~GfxMaterial();
-
-        virtual void removeContent();
-
-        virtual void save();
-
-        void setMatType(MaterialType type_);
-
-        inline MaterialType getMatType() const
-        {
-            return matType;
-        }
-
-        void render(GfxRenderer *renderer,
-                    ResPtr<GfxMesh> mesh,
-                    const Matrix4x4& worldMatrix) const
-        {
-            impl->render(renderer, mesh, worldMatrix);
-        }
-
-        inline GfxShaderCombination *getShaderComb() const
-        {
-            return impl->getShaderComb();
-        }
-
-        inline GfxMaterialImpl *getImpl() const
-        {
-            return impl;
-        }
-    private:
-        MaterialType matType;
-        mutable GfxMaterialImpl *impl;
     protected:
         virtual void _load();
 

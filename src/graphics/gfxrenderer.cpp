@@ -1115,12 +1115,47 @@ void GfxRenderer::renderModel(bool forward,
         {
             const GfxModel::LOD& lod = subModel[j];
 
-            if (lod.minDistance < distance and distance < lod.maxDistance)
+            if (lod.minDistance < distance and
+                distance < lod.maxDistance and
+                lod.material->isForward() == forward)
             {
-                if ((lod.material->getMatType() == GfxMaterial::Forward) == forward)
+                ResPtr<GfxMaterial> material = lod.material;
+                GfxShaderCombination *shaderComb = material->getShaderComb();
+                GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
+
+                beginRenderMesh(camera, worldMatrix, lod.mesh, shaderComb);
+
+                gfxApi->uniform(fragment, "smoothness", lod.material->smoothness);
+                gfxApi->uniform(fragment, "metalMask", lod.material->metalMask);
+                gfxApi->uniform(fragment, "albedo", lod.material->albedo);
+
+                if (lod.material->isForward())
                 {
-                    lod.material->render(this, lod.mesh, worldMatrix * lod.worldMatrix);
+                    gfxApi->uniform(fragment, "numLights", (uint32_t)lights.getCount());
+                    gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
                 }
+
+                if (material->getSmoothnessMap() != nullptr)
+                {
+                    gfxApi->addTextureBinding(fragment, "smoothnessMap", material->getSmoothnessMap());
+                }
+
+                if (material->getMetalMaskMap() != nullptr)
+                {
+                    gfxApi->addTextureBinding(fragment, "metalMaskMap", material->getMetalMaskMap());
+                }
+
+                if (material->getAlbedoMap() != nullptr)
+                {
+                    gfxApi->addTextureBinding(fragment, "albedoMap", material->getAlbedoMap());
+                }
+
+                if (material->getNormalMap() != nullptr)
+                {
+                    gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
+                }
+
+                endRenderMesh(lod.mesh);
                 break;
             }
         }

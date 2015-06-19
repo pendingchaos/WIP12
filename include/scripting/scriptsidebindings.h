@@ -7,7 +7,7 @@ struct _functionStruct
     List<String> (*f3)(const char * arg0);
     void (*f4)(Application * arg0);
     ScriptInstance * (*f5)( Script *obj, Entity * arg0);
-    void (*f6)( GfxMaterial *obj, GfxMaterial::MaterialType arg0);
+    void (*f6)( GfxMaterial *obj, bool arg0);
     void (*f7)(const Camera & arg0, const Matrix4x4 & arg1, ResPtr<GfxMesh> arg2, GfxShaderCombination * arg3);
     void (*f8)(ResPtr<GfxMesh> arg0);
     void (*f9)( GfxRenderer *obj, const UInt2 & arg0);
@@ -213,29 +213,28 @@ struct _functionStruct
     AABB *(*f209)(size_t count);
     AABB *(*f210)(const Position3D & arg0, const Position3D & arg1);
     ResourceIOException *(*f211)(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5);
-    GfxLitMaterialImpl *(*f212)(bool arg0);
-    GfxTexture *(*f213)(const String & arg0);
-    GfxTexture *(*f214)();
-    GfxTexture *(*f215)(size_t count);
-    PhysicsShapeImpl *(*f216)();
-    PhysicsShapeImpl *(*f217)(size_t count);
-    PhysicsDebugDrawer *(*f218)();
-    PhysicsDebugDrawer *(*f219)(size_t count);
-    Application *(*f220)(const char * arg0);
-    GfxModel *(*f221)();
-    GfxModel *(*f222)(size_t count);
-    GfxModel *(*f223)(const String & arg0);
-    Scene *(*f224)();
-    Scene *(*f225)(size_t count);
-    Scene *(*f226)(const String & arg0);
-    File *(*f227)(const char * arg0, const char * arg1);
-    GfxShaderCombination *(*f228)(ResPtr<GfxShader> arg0, ResPtr<GfxShader> arg1);
-    Matrix3x3 *(*f229)();
-    Matrix3x3 *(*f230)(size_t count);
-    Matrix3x3 *(*f231)(const Matrix4x4 & arg0);
-    Matrix3x3 *(*f232)(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
-    Font *(*f233)(const char * arg0);
-    GfxDebugDrawer *(*f234)(GfxApi * arg0);
+    GfxTexture *(*f212)(const String & arg0);
+    GfxTexture *(*f213)();
+    GfxTexture *(*f214)(size_t count);
+    PhysicsShapeImpl *(*f215)();
+    PhysicsShapeImpl *(*f216)(size_t count);
+    PhysicsDebugDrawer *(*f217)();
+    PhysicsDebugDrawer *(*f218)(size_t count);
+    Application *(*f219)(const char * arg0);
+    GfxModel *(*f220)();
+    GfxModel *(*f221)(size_t count);
+    GfxModel *(*f222)(const String & arg0);
+    Scene *(*f223)();
+    Scene *(*f224)(size_t count);
+    Scene *(*f225)(const String & arg0);
+    File *(*f226)(const char * arg0, const char * arg1);
+    GfxShaderCombination *(*f227)(ResPtr<GfxShader> arg0, ResPtr<GfxShader> arg1);
+    Matrix3x3 *(*f228)();
+    Matrix3x3 *(*f229)(size_t count);
+    Matrix3x3 *(*f230)(const Matrix4x4 & arg0);
+    Matrix3x3 *(*f231)(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
+    Font *(*f232)(const char * arg0);
+    GfxDebugDrawer *(*f233)(GfxApi * arg0);
 };
 const _functionStruct *_functions;
 const char ** getBacktrace(unsigned int & arg0) {return _functions->f0(arg0);}
@@ -244,7 +243,7 @@ bool doesFileExist(const char * arg0) {return _functions->f2(arg0);}
 List<String> listFiles(const char * arg0) {return _functions->f3(arg0);}
 void setApplication(Application * arg0) { _functions->f4(arg0);}
 ScriptInstance * Script::createInstance(Entity * arg0)  {return _functions->f5(this, arg0);}
-void GfxMaterial::setMatType(GfxMaterial::MaterialType arg0)  { _functions->f6(this, arg0);}
+void GfxMaterial::setForward(bool arg0)  { _functions->f6(this, arg0);}
 void GfxRenderer::beginRenderMesh(const Camera & arg0, const Matrix4x4 & arg1, ResPtr<GfxMesh> arg2, GfxShaderCombination * arg3)  { _functions->f7(arg0, arg1, arg2, arg3);}
 void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> arg0)  { _functions->f8(arg0);}
 void GfxRenderer::resize(const UInt2 & arg0)  { _functions->f9(this, arg0);}
@@ -450,29 +449,28 @@ AABB *_newAABB() {return _functions->f208();}
 AABB *_newArrayAABB(size_t count) {return _functions->f209(count);}
 AABB *_newAABB(const Position3D & arg0, const Position3D & arg1) {return _functions->f210(arg0, arg1);}
 ResourceIOException *_newResourceIOException(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5) {return _functions->f211(arg0, arg1, arg2, arg3, arg4, arg5);}
-GfxLitMaterialImpl *_newGfxLitMaterialImpl(bool arg0) {return _functions->f212(arg0);}
-GfxTexture *_newGfxTexture(const String & arg0) {return _functions->f213(arg0);}
-GfxTexture *_newGfxTexture() {return _functions->f214();}
-GfxTexture *_newArrayGfxTexture(size_t count) {return _functions->f215(count);}
-PhysicsShapeImpl *_newPhysicsShapeImpl() {return _functions->f216();}
-PhysicsShapeImpl *_newArrayPhysicsShapeImpl(size_t count) {return _functions->f217(count);}
-PhysicsDebugDrawer *_newPhysicsDebugDrawer() {return _functions->f218();}
-PhysicsDebugDrawer *_newArrayPhysicsDebugDrawer(size_t count) {return _functions->f219(count);}
-Application *_newApplication(const char * arg0) {return _functions->f220(arg0);}
-GfxModel *_newGfxModel() {return _functions->f221();}
-GfxModel *_newArrayGfxModel(size_t count) {return _functions->f222(count);}
-GfxModel *_newGfxModel(const String & arg0) {return _functions->f223(arg0);}
-Scene *_newScene() {return _functions->f224();}
-Scene *_newArrayScene(size_t count) {return _functions->f225(count);}
-Scene *_newScene(const String & arg0) {return _functions->f226(arg0);}
-File *_newFile(const char * arg0, const char * arg1) {return _functions->f227(arg0, arg1);}
-GfxShaderCombination *_newGfxShaderCombination(ResPtr<GfxShader> arg0, ResPtr<GfxShader> arg1) {return _functions->f228(arg0, arg1);}
-Matrix3x3 *_newMatrix3x3() {return _functions->f229();}
-Matrix3x3 *_newArrayMatrix3x3(size_t count) {return _functions->f230(count);}
-Matrix3x3 *_newMatrix3x3(const Matrix4x4 & arg0) {return _functions->f231(arg0);}
-Matrix3x3 *_newMatrix3x3(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {return _functions->f232(arg0, arg1, arg2);}
-Font *_newFont(const char * arg0) {return _functions->f233(arg0);}
-GfxDebugDrawer *_newGfxDebugDrawer(GfxApi * arg0) {return _functions->f234(arg0);}
+GfxTexture *_newGfxTexture(const String & arg0) {return _functions->f212(arg0);}
+GfxTexture *_newGfxTexture() {return _functions->f213();}
+GfxTexture *_newArrayGfxTexture(size_t count) {return _functions->f214(count);}
+PhysicsShapeImpl *_newPhysicsShapeImpl() {return _functions->f215();}
+PhysicsShapeImpl *_newArrayPhysicsShapeImpl(size_t count) {return _functions->f216(count);}
+PhysicsDebugDrawer *_newPhysicsDebugDrawer() {return _functions->f217();}
+PhysicsDebugDrawer *_newArrayPhysicsDebugDrawer(size_t count) {return _functions->f218(count);}
+Application *_newApplication(const char * arg0) {return _functions->f219(arg0);}
+GfxModel *_newGfxModel() {return _functions->f220();}
+GfxModel *_newArrayGfxModel(size_t count) {return _functions->f221(count);}
+GfxModel *_newGfxModel(const String & arg0) {return _functions->f222(arg0);}
+Scene *_newScene() {return _functions->f223();}
+Scene *_newArrayScene(size_t count) {return _functions->f224(count);}
+Scene *_newScene(const String & arg0) {return _functions->f225(arg0);}
+File *_newFile(const char * arg0, const char * arg1) {return _functions->f226(arg0, arg1);}
+GfxShaderCombination *_newGfxShaderCombination(ResPtr<GfxShader> arg0, ResPtr<GfxShader> arg1) {return _functions->f227(arg0, arg1);}
+Matrix3x3 *_newMatrix3x3() {return _functions->f228();}
+Matrix3x3 *_newArrayMatrix3x3(size_t count) {return _functions->f229(count);}
+Matrix3x3 *_newMatrix3x3(const Matrix4x4 & arg0) {return _functions->f230(arg0);}
+Matrix3x3 *_newMatrix3x3(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {return _functions->f231(arg0, arg1, arg2);}
+Font *_newFont(const char * arg0) {return _functions->f232(arg0);}
+GfxDebugDrawer *_newGfxDebugDrawer(GfxApi * arg0) {return _functions->f233(arg0);}
 Script *_new<Script>::f() {return _newScript();}
 
 template <typename T0>
@@ -520,9 +518,6 @@ AABB *_new<AABB>::f(T0 arg0, T1 arg1) {return _newAABB(arg0, arg1);}
 
 template <typename T0, typename T1, typename T2, typename T3, typename T4, typename T5>
 ResourceIOException *_new<ResourceIOException>::f(T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5) {return _newResourceIOException(arg0, arg1, arg2, arg3, arg4, arg5);}
-
-template <typename T0>
-GfxLitMaterialImpl *_new<GfxLitMaterialImpl>::f(T0 arg0) {return _newGfxLitMaterialImpl(arg0);}
 
 template <typename T0>
 GfxTexture *_new<GfxTexture>::f(T0 arg0) {return _newGfxTexture(arg0);}
@@ -764,14 +759,6 @@ struct _new<ResourceIOException>
 {
     template <typename T0, typename T1, typename T2, typename T3, typename T4, typename T5>
     static ResourceIOException *f(T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
-};
-
-class GfxLitMaterialImpl;
-template <>
-struct _new<GfxLitMaterialImpl>
-{
-    template <typename T0>
-    static GfxLitMaterialImpl *f(T0 arg0);
 };
 
 class Filesystem;
@@ -1025,12 +1012,6 @@ struct _newArray<AABB>
 class ResourceIOException;
 template <>
 struct _newArray<ResourceIOException>
-{
-};
-
-class GfxLitMaterialImpl;
-template <>
-struct _newArray<GfxLitMaterialImpl>
 {
 };
 

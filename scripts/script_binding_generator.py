@@ -58,12 +58,12 @@ pipe.close()
 class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "Transform", "GfxApi", "GfxMesh", "GfxModel", "GfxShader", "GfxTexture",
 "GfxMaterial", "GfxBuffer", "GfxRenderer", "GfxMeshImpl", "GfxShaderImpl",
-"GfxTextureImpl", "GfxMaterialImpl", "GfxLitMaterialImpl", "GfxDebugDrawer",
-"Camera", "Script", "Resource", "ResourceManager", "Matrix3x3", "Matrix4x4",
-"Quaternion", "PhysicsWorld", "RigidBody", "PhysicsShape", "PhysicsDebugDrawer",
-"Platform", "GfxShaderCombination", "Exception", "ShaderCompileException",
-"FileException", "LookupException", "ResourceIOException", "LogEntry",
-"PhysicsShapeImpl", "Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB"]
+"GfxTextureImpl", "GfxDebugDrawer", "Camera", "Script", "Resource",
+"ResourceManager", "Matrix3x3", "Matrix4x4", "Quaternion", "PhysicsWorld",
+"RigidBody", "PhysicsShape", "PhysicsDebugDrawer", "Platform",
+"GfxShaderCombination", "Exception", "ShaderCompileException", "FileException",
+"LookupException", "ResourceIOException", "LogEntry", "PhysicsShapeImpl",
+"Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",

@@ -13,6 +13,7 @@ class PhysicsWorld;
 class GfxShader;
 class GfxMesh;
 class GfxBuffer;
+class GfxRenderer;
 
 class Scene : public Resource
 {

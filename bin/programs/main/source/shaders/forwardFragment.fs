@@ -10,12 +10,9 @@ in vec3 frag_bitangent_worldSpace;
 
 layout (location = 0) out vec4 result_color;
 
-layout (std140) uniform material
-{
-    vec4 albedo;
-    float smoothness;
-    float metalMask;
-};
+uniform vec4 albedo;
+uniform float smoothness;
+uniform float metalMask;
 
 #ifdef ALBEDO_MAP
 uniform sampler2D albedoMap;

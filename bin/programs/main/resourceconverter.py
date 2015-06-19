@@ -238,83 +238,57 @@ if __name__ == "__main__":
             os.rename(self.dest_filename+".temp", self.dest_filename)
     
     class Material(Resource):
-        class Type:
-            Forward = "forward"
-            Deferred = "deferred"
-        
-        class Params(object):
-            def save(self):
-                return {}
-        
-        class LitParams(Params):
-            def __init__(self, forward):
-                self.forward = forward
-                self.albedo = [1.0, 1.0, 1.0, 1.0]
-                self.smoothness = 0.6
-                self.metalMask = 0.0
-                self.albedoMap = None
-                self.smoothnessMap = None
-                self.metalMaskMap = None
-                self.normalMap = None
-                self.environmentMap = None
-            
-            def convert(self):
-                s = struct.pack("<bffffff",
-                                self.forward,
-                                self.albedo[0],
-                                self.albedo[1],
-                                self.albedo[2],
-                                self.albedo[3],
-                                self.smoothness,
-                                self.metalMask)
-                
-                if self.albedoMap != None:
-                    s += struct.pack("<L", len(get_dest_filename(self.albedoMap, Texture)))
-                    s += get_dest_filename(self.albedoMap, Texture)
-                else:
-                    s += struct.pack("<L", 0)
-                
-                if self.smoothnessMap != None:
-                    s += struct.pack("<L", len(get_dest_filename(self.smoothnessMap, Texture)))
-                    s += get_dest_filename(self.smoothnessMap, Texture)
-                else:
-                    s += struct.pack("<L", 0)
-                
-                if self.metalMaskMap != None:
-                    s += struct.pack("<L", len(get_dest_filename(self.metalMaskMap, Texture)))
-                    s += get_dest_filename(self.metalMaskMap, Texture)
-                else:
-                    s += struct.pack("<L", 0)
-                
-                if self.normalMap != None:
-                    s += struct.pack("<L", len(get_dest_filename(self.normalMap, Texture)))
-                    s += get_dest_filename(self.normalMap, Texture)
-                else:
-                    s += struct.pack("<L", 0)
-                
-                if self.environmentMap != None:
-                    s += struct.pack("<L", len(get_dest_filename(self.environmentMap, Texture)))
-                    s += get_dest_filename(self.environmentMap, Texture)
-                else:
-                    s += struct.pack("<L", 0)
-                
-                return s
-        
         def __init__(self, src_filenames, dest_filename):
             Resource.__init__(self, "material", src_filenames, dest_filename)
             
-            self.type = Material.Type.Forward
-            self.params = Material.LitParams(True)
+            self.forward = True
+            self.albedo = [1.0, 1.0, 1.0, 1.0]
+            self.smoothness = 0.6
+            self.metalMask = 0.0
+            self.albedoMap = None
+            self.smoothnessMap = None
+            self.metalMaskMap = None
+            self.normalMap = None
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
             
             output.write("mtrl\x01\x00")
             
-            output.write({Material.Type.Forward: "\x00",
-                          Material.Type.Deferred: "\x00"}[self.type])
+            s = struct.pack("<bffffff",
+                            self.forward,
+                            self.albedo[0],
+                            self.albedo[1],
+                            self.albedo[2],
+                            self.albedo[3],
+                            self.smoothness,
+                            self.metalMask)
             
-            output.write(self.params.convert())
+            if self.albedoMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.albedoMap, Texture)))
+                s += get_dest_filename(self.albedoMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            if self.smoothnessMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.smoothnessMap, Texture)))
+                s += get_dest_filename(self.smoothnessMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            if self.metalMaskMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.metalMaskMap, Texture)))
+                s += get_dest_filename(self.metalMaskMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            if self.normalMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.normalMap, Texture)))
+                s += get_dest_filename(self.normalMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            output.write(s)
             
             output.close()
             
@@ -867,52 +841,53 @@ if __name__ == "__main__":
     conv["aotest.obj"] = Mesh(["source/ao test.obj"], "resources/meshes/aotest.bin")
     
     mat = Material([], "resources/materials/material.bin")
-    mat.params.forward = False
-    mat.params.smoothness = 0.6
-    mat.params.metalMask = 0.0
-    mat.params.albedoMap = conv["texture2.png"]
-    mat.params.environmentMap = conv["Yokohama3"]
-    mat.params.normalMap = conv["normal.png"]
+    mat.forward = False
+    mat.smoothness = 0.6
+    mat.metalMask = 0.0
+    mat.albedoMap = conv["texture2.png"]
+    mat.normalMap = conv["normal.png"]
     conv["material"] = mat
     
     mat = Material([], "resources/materials/clay.bin")
-    mat.params.forward = False
-    mat.params.smoothness = 0.6
-    mat.params.metalMask = 0.0
-    mat.params.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    mat.params.environmentMap = conv["Yokohama3"]
+    mat.forward = False
+    mat.smoothness = 0.6
+    mat.metalMask = 0.0
+    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["clay"] = mat
     
     mat = Material([], "resources/materials/gold.bin")
-    mat.params.forward = False
-    mat.params.smoothness = 0.5
-    mat.params.metalMask = 1.0
-    mat.params.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    mat.params.environmentMap = conv["Yokohama3"]
+    mat.forward = False
+    mat.smoothness = 0.5
+    mat.metalMask = 1.0
+    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["gold"] = mat
     
     mat = Material([], "resources/materials/plastic.bin")
-    mat.params.forward = False
-    mat.params.smoothness = 0.875
-    mat.params.metalMask = 0.0
-    mat.params.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    mat.params.environmentMap = conv["Yokohama3"]
+    mat.forward = False
+    mat.smoothness = 0.875
+    mat.metalMask = 0.0
+    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["plastic"] = mat
     
     mat = Material([], "resources/materials/floor.bin")
-    mat.params.forward = False
-    mat.params.smoothness = 0.6
-    mat.params.metalMask = 0.0
-    mat.params.environmentMap = conv["Yokohama3"]
-    mat.params.albedoMap = conv["floor.png"]
+    mat.forward = False
+    mat.smoothness = 0.6
+    mat.metalMask = 0.0
+    mat.albedoMap = conv["floor.png"]
     conv["floor"] = mat
     
     mat = Material([], "resources/materials/fence.bin")
-    mat.params.forward = False
-    mat.params.smoothness = 0.65
-    mat.params.metalMask = 1.0
-    mat.params.environmentMap = conv["Yokohama3"]
+    mat.forward = False
+    mat.smoothness = 0.65
+    mat.metalMask = 1.0
     conv["fence"] = mat
+    
+    mat = Material([], "resources/materials/ao test material.bin")
+    mat.forward = False
+    mat.smoothness = 0.6
+    mat.metalMask = 0.0
+    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
+    conv["ao test material"] = mat
     
     model = Model([], "resources/models/model.bin")
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
@@ -939,7 +914,7 @@ if __name__ == "__main__":
     conv["fence model"] = model
     
     model = Model([], "resources/models/aotest.bin")
-    model.sub_models = [[Model.LOD(conv["aotest.obj"], conv["clay"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["aotest.obj"], conv["ao test material"], 0.0, 9999.0)]]
     conv["ao test model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
