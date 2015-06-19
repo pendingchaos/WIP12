@@ -12,14 +12,9 @@
 
 class GfxModel : public Resource
 {
-    public:
-        enum ContextType
-        {
-            Forward,
-            GBuffer,
-            Shadowmap
-        };
+    NO_COPY_INHERITED(GfxModel, Resource)
 
+    public:
         static const Resource::Type resource_type = GfxModelType;
 
         struct LOD
@@ -47,7 +42,6 @@ class GfxModel : public Resource
         };
 
         typedef List<LOD> SubModel;
-        typedef List<SubModel> Context;
 
         GfxModel();
         GfxModel(const String& filename);
@@ -56,11 +50,9 @@ class GfxModel : public Resource
 
         virtual void save();
 
-        HashMap<ContextType, Context> contexts;
+        List<SubModel> subModels;
     protected:
         virtual void _load();
-
-    NO_COPY_INHERITED(GfxModel, Resource)
 };
 
 #endif // GFXMODEL_H

@@ -321,10 +321,6 @@ if __name__ == "__main__":
             os.rename(self.dest_filename+".temp", self.dest_filename)
     
     class Model(Resource):
-        class ContextType:
-            Forward = "forward"
-            GBuffer = "gbuffer"
-        
         class LOD(object):
             def __init__(self, mesh, material, min_distance, max_distance):
                 self.mesh = mesh
@@ -339,52 +335,47 @@ if __name__ == "__main__":
         def __init__(self, src_filenames, dest_filename):
             Resource.__init__(self, "model", src_filenames, dest_filename)
             
-            self.contexts = {}
+            self.sub_models = []
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
             
             output.write("modl\x01\x00")
-            output.write(struct.pack("<L", len(self.contexts)))
             
-            for type_, submodels in self.contexts.iteritems():
-                output.write({Model.ContextType.Forward: "\x00",
-                              Model.ContextType.GBuffer: "\x01"}[type_])
+            output.write(struct.pack("<L", len(self.sub_models)))
+            
+            for lods in self.sub_models:
+                output.write(struct.pack("<L", len(lods)))
                 
-                output.write(struct.pack("<L", len(submodels)))
-                
-                for lods in submodels:
-                    output.write(struct.pack("<L", len(lods)))
+                for lod in lods:
+                    mesh_file = get_dest_filename(lod.mesh, Mesh)
+                    material_file = get_dest_filename(lod.material, Material)
                     
-                    for lod in lods:
-                        mesh_file = get_dest_filename(lod.mesh, Mesh)
-                        material_file = get_dest_filename(lod.material, Material)
-                        
-                        output.write(struct.pack("ff", lod.min_distance, lod.max_distance))
-                        
-                        output.write(struct.pack("ffffffffffffffff",
-                                                 lod.worldMatrix[0][0],
-                                                 lod.worldMatrix[0][1],
-                                                 lod.worldMatrix[0][2],
-                                                 lod.worldMatrix[0][3],
-                                                 lod.worldMatrix[1][0],
-                                                 lod.worldMatrix[1][1],
-                                                 lod.worldMatrix[1][2],
-                                                 lod.worldMatrix[1][3],
-                                                 lod.worldMatrix[2][0],
-                                                 lod.worldMatrix[2][1],
-                                                 lod.worldMatrix[2][2],
-                                                 lod.worldMatrix[2][3],
-                                                 lod.worldMatrix[3][0],
-                                                 lod.worldMatrix[3][1],
-                                                 lod.worldMatrix[3][2],
-                                                 lod.worldMatrix[3][3]))
-                        
-                        output.write(struct.pack("<L", len(mesh_file)))
-                        output.write(mesh_file)
-                        
-                        output.write(struct.pack("<L", len(material_file)))
-                        output.write(material_file)
+                    output.write(struct.pack("ff", lod.min_distance, lod.max_distance))
+                    
+                    output.write(struct.pack("ffffffffffffffff",
+                                             lod.worldMatrix[0][0],
+                                             lod.worldMatrix[0][1],
+                                             lod.worldMatrix[0][2],
+                                             lod.worldMatrix[0][3],
+                                             lod.worldMatrix[1][0],
+                                             lod.worldMatrix[1][1],
+                                             lod.worldMatrix[1][2],
+                                             lod.worldMatrix[1][3],
+                                             lod.worldMatrix[2][0],
+                                             lod.worldMatrix[2][1],
+                                             lod.worldMatrix[2][2],
+                                             lod.worldMatrix[2][3],
+                                             lod.worldMatrix[3][0],
+                                             lod.worldMatrix[3][1],
+                                             lod.worldMatrix[3][2],
+                                             lod.worldMatrix[3][3]))
+                    
+                    output.write(struct.pack("<L", len(mesh_file)))
+                    output.write(mesh_file)
+                    
+                    output.write(struct.pack("<L", len(material_file)))
+                    output.write(material_file)
             
             output.close()
             
@@ -924,31 +915,31 @@ if __name__ == "__main__":
     conv["fence"] = mat
     
     model = Model([], "resources/models/model.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
     conv["model"] = model
     
     model = Model([], "resources/models/clay.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["material test 2.obj"], conv["clay"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["clay"], 0.0, 9999.0)]]
     conv["clay model"] = model
     
     model = Model([], "resources/models/gold.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["material test 2.obj"], conv["gold"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["gold"], 0.0, 9999.0)]]
     conv["gold model"] = model
     
     model = Model([], "resources/models/plastic.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["material test 2.obj"], conv["plastic"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["plastic"], 0.0, 9999.0)]]
     conv["plastic model"] = model
     
     model = Model([], "resources/models/floor.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["floor.obj"], conv["floor"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["floor.obj"], conv["floor"], 0.0, 9999.0)]]
     conv["floor model"] = model
     
     model = Model([], "resources/models/fence.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["fence.obj"], conv["fence"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["fence.obj"], conv["fence"], 0.0, 9999.0)]]
     conv["fence model"] = model
     
     model = Model([], "resources/models/aotest.bin")
-    model.contexts[Model.ContextType.GBuffer] = [[Model.LOD(conv["aotest.obj"], conv["clay"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD(conv["aotest.obj"], conv["clay"], 0.0, 9999.0)]]
     conv["ao test model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")

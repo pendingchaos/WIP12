@@ -503,7 +503,7 @@ void GfxRenderer::render()
     gfxApi->clearColor(1, Float4(0.0f));
     gfxApi->clearColor(2, Float4(0.5f, 0.5f, 0.5f, 0.0f));
 
-    renderEntities(GfxModel::GBuffer);
+    renderEntities(false);
 
     swapFramebuffers();
 
@@ -688,7 +688,7 @@ void GfxRenderer::render()
 
     fillLightBuffer(scene);
 
-    renderEntities(GfxModel::Forward);
+    renderEntities(true);
 
     renderSkybox();
 
@@ -1023,7 +1023,7 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
     DELETE_ARRAY(float, lightData);
 }
 
-void GfxRenderer::renderEntities(GfxModel::ContextType contextType)
+void GfxRenderer::renderEntities(bool forward)
 {
     const List<Entity *>& entities = scene->getEntities();
 
@@ -1042,7 +1042,7 @@ void GfxRenderer::renderEntities(GfxModel::ContextType contextType)
             {
             case RenderComponent::Model:
             {
-                renderModel(contextType, camera, transform, comp->model);
+                renderModel(forward, camera, transform, comp->model);
                 break;
             }
             default:
@@ -1096,29 +1096,20 @@ void GfxRenderer::renderSkybox()
     }
 }
 
-void GfxRenderer::renderModel(GfxModel::ContextType contextType,
+void GfxRenderer::renderModel(bool forward,
                               const Camera& camera,
                               const Matrix4x4& worldMatrix,
                               const ResPtr<GfxModel> model)
 {
-    int contextIndex = model->contexts.findEntry(contextType);
-
-    if (contextIndex == -1)
-    {
-        return;
-    }
-
-    const GfxModel::Context& context = model->contexts.getValue(contextIndex);
-
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
                                      worldMatrix[2][3]);
 
     float distance = position.distance(camera.getPosition());
 
-    for (size_t i = 0; i < context.getCount(); ++i)
+    for (size_t i = 0; i < model->subModels.getCount(); ++i)
     {
-        GfxModel::SubModel subModel = context[i];
+        GfxModel::SubModel subModel = model->subModels[i];
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {
@@ -1126,7 +1117,10 @@ void GfxRenderer::renderModel(GfxModel::ContextType contextType,
 
             if (lod.minDistance < distance and distance < lod.maxDistance)
             {
-                lod.material->render(this, lod.mesh, worldMatrix * lod.worldMatrix);
+                if ((lod.material->getMatType() == GfxMaterial::Forward) == forward)
+                {
+                    lod.material->render(this, lod.mesh, worldMatrix * lod.worldMatrix);
+                }
                 break;
             }
         }
@@ -1138,22 +1132,15 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                          const Matrix4x4& worldMatrix,
                                          const ResPtr<GfxModel> model)
 {
-    if (model->contexts.getEntryCount() == 0)
-    {
-        return;
-    }
-
-    const GfxModel::Context& context = model->contexts.getValue(0);
-
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
                                      worldMatrix[2][3]);
 
     float distance = position.distance(camera.getPosition());
 
-    for (size_t i = 0; i < context.getCount(); ++i)
+    for (size_t i = 0; i < model->subModels.getCount(); ++i)
     {
-        GfxModel::SubModel subModel = context[i];
+        GfxModel::SubModel subModel = model->subModels[i];
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {

@@ -182,9 +182,9 @@ class GfxRenderer
         GfxBuffer *lightBuffer;
 
         void fillLightBuffer(ResPtr<Scene> scene);
-        void renderEntities(GfxModel::ContextType contextType);
+        void renderEntities(bool forward);
         void renderSkybox();
-        void renderModel(GfxModel::ContextType contextType,
+        void renderModel(bool forward,
                          const Camera& camera,
                          const Matrix4x4& worldMatrix,
                          const ResPtr<GfxModel> model);
