@@ -6,7 +6,7 @@
     - [ ] Color grading (using a 3d texture)
 - [ ] Shadow mapping.
     - [ ] Directional
-        - [ ] Deferred
+        - [x] Deferred
         - [ ] Forward
     - [ ] Point
         - [ ] Deferred
