@@ -1,3 +1,5 @@
+Shadow maps
+    |
 G Buffer
     |
     +------SSAO
@@ -10,8 +12,6 @@ G Buffer
     |
  Forward
     |
-Luminance Calculation
-    |
     +-----Bloom X
              |
     +--------+
@@ -23,6 +23,8 @@ Tonemapping
  Vignette
     |
   FXAA
+    |
+ Overlays
     |
 Gamma Correction
 
