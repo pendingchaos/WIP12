@@ -9,7 +9,6 @@ uniform float cameraNear;
 uniform float cameraFar;
 uniform mat3 normalMatrix;
 uniform float radius;
-uniform vec3 randomVecs[16];
 
 float linearizeDepth(float depth)
 {

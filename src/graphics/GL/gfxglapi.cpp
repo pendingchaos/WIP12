@@ -227,22 +227,20 @@ void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
         {
             ResPtr<GfxTexture> texture = framebuffer->getColorAttachment(i);
 
-            glFramebufferTexture2D(GL_FRAMEBUFFER,
-                                   GL_COLOR_ATTACHMENT0+framebuffer->getColorRT(i),
-                                   GL_TEXTURE_2D,
-                                   ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                                   framebuffer->getColorAttachmentMipmapLevel(i));
+            glFramebufferTexture(GL_FRAMEBUFFER,
+                                 GL_COLOR_ATTACHMENT0+framebuffer->getColorRT(i),
+                                 ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
+                                 framebuffer->getColorAttachmentMipmapLevel(i));
         }
 
         if (framebuffer->hasDepthAttachment())
         {
             ResPtr<GfxTexture> texture = framebuffer->getDepthTexture();
 
-            glFramebufferTexture2D(GL_FRAMEBUFFER,
-                                   GL_DEPTH_ATTACHMENT,
-                                   GL_TEXTURE_2D,
-                                   ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                                   framebuffer->getDepthTextureMipmapLevel());
+            glFramebufferTexture(GL_FRAMEBUFFER,
+                                 GL_DEPTH_ATTACHMENT,
+                                 ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
+                                 framebuffer->getDepthTextureMipmapLevel());
         }
 
         GLenum drawBuffers[numBuffers];

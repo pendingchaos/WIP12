@@ -54,7 +54,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     tonemapFragment = resMgr->getResource<GfxShader>("resources/shaders/tonemapFragment.bin");
     postEffectVertex = resMgr->getResource<GfxShader>("resources/shaders/postEffectVertex.bin");
     shadowmapVertex = resMgr->getResource<GfxShader>("resources/shaders/shadowmapVertex.bin");
+    pointShadowmapGeometry = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
     shadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/shadowmapFragment.bin");
+    pointShadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
     overlayVertex = resMgr->getResource<GfxShader>("resources/shaders/overlayVertex.bin");
     overlayFragment = resMgr->getResource<GfxShader>("resources/shaders/overlayFragment.bin");
 
@@ -64,6 +66,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledLightingDirectional = lightingDirectional->getCompiled();
     compiledLightingDirectionalShadow = lightingDirectional->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
     compiledLightingPoint = lightingPoint->getCompiled();
+    compiledLightingPointShadow = lightingPoint->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
     compiledLightingSpot = lightingSpot->getCompiled();
     compiledLightingSpotShadow = lightingSpot->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
     compiledSSAOFragment = ssaoFragment->getCompiled();
@@ -75,7 +78,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledTonemapFragment = tonemapFragment->getCompiled();
     compiledPostEffectVertex = postEffectVertex->getCompiled();
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
+    compiledPointShadowmapGeometry = pointShadowmapGeometry->getCompiled();
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
+    compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
     compiledOverlayVertex = overlayVertex->getCompiled();
     compiledOverlayFragment = overlayFragment->getCompiled();
 
@@ -114,7 +119,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoBlurXTexture = NEW(GfxTexture);
     bloomBlurXTexture = NEW(GfxTexture);
     //luminanceTexture = NEW(GfxTexture);
-    ssaoRandomTexture = NEW(GfxTexture);
 
     readColorTexture->setWrapMode(GfxTexture::Stretch);
     writeColorTexture->setWrapMode(GfxTexture::Stretch);
@@ -127,34 +131,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //luminanceTexture->setWrapMode(GfxTexture::Stretch);
 
     resize(640);
-
-    ssaoRandomTexture->startCreation(GfxTexture::Texture2D,
-                                     false,
-                                     4,
-                                     4,
-                                     1,
-                                     0,
-                                     GfxTexture::Other,
-                                     GfxTexture::RedGreenF32_F16);
-
-    static const float randomVecs[] = {-0.99f, -0.15f,
-                                       -0.5f, 0.87f,
-                                       0.97f, -0.24f,
-                                       0.65f, 0.76f,
-                                       -0.81f, 0.59f,
-                                       0.9f, -0.44f,
-                                       -1.0f, 0.07f,
-                                       0.79f, 0.61f,
-                                       0.20f, -0.98f,
-                                       0.93f, -0.36f,
-                                       0.99f, -0.15f,
-                                       -0.74f, -0.67f,
-                                       0.87f, 0.49f,
-                                       0.71f, -0.7f,
-                                       -0.66f, -0.75f,
-                                       -1.0f, 0.07f};
-
-    ssaoRandomTexture->allocMipmap(0, 1, randomVecs);
 
     readFramebuffer = gfxApi->createFramebuffer();
     readFramebuffer->addColorAttachment(0, readColorTexture);
@@ -536,7 +512,6 @@ void GfxRenderer::render()
     gfxApi->uniform(compiledSSAOFragment, "cameraFar", camera.getFar());
     gfxApi->uniform(compiledSSAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
     gfxApi->uniform(compiledSSAOFragment, "radius", ssaoRadius);
-    gfxApi->addTextureBinding(compiledSSAOFragment, "randomTex", ssaoRandomTexture);
 
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
@@ -601,6 +576,7 @@ void GfxRenderer::render()
         Light *light = lights[i];
 
         GfxCompiledShader *fragmentShader;
+        GfxCompiledShader *geometryShader = nullptr;
 
         switch (light->type)
         {
@@ -617,7 +593,13 @@ void GfxRenderer::render()
         }
         case Light::Point:
         {
-            fragmentShader = compiledLightingPoint;
+            if (light->getShadowmap() != nullptr)
+            {
+                fragmentShader = compiledLightingPointShadow;
+            } else
+            {
+                fragmentShader = compiledLightingPoint;
+            }
             break;
         }
         case Light::Spot:
@@ -636,7 +618,7 @@ void GfxRenderer::render()
         gfxApi->begin(compiledPostEffectVertex,
                       NULL,
                       NULL,
-                      NULL,
+                      geometryShader,
                       fragmentShader,
                       quadMesh);
 
@@ -678,6 +660,11 @@ void GfxRenderer::render()
         {
             gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
             gfxApi->uniform(fragmentShader, "lightRadius", light->point.radius);
+
+            if (light->getShadowmap() != nullptr)
+            {
+                gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
+            }
             break;
         }
         }
@@ -1252,7 +1239,7 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                          const Matrix4x4& projectionMatrix,
                                          const Matrix4x4& worldMatrix,
                                          const ResPtr<GfxModel> model,
-                                         float biasScale)
+                                         Light *light)
 {
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
@@ -1272,17 +1259,69 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
             {
                 ResPtr<GfxMesh> mesh = lod.mesh;
 
+                GfxCompiledShader *geometryShader = nullptr;
+                GfxCompiledShader *fragmentShader = compiledShadowmapFragment;
+
+                if (light->type == Light::Point)
+                {
+                    geometryShader = compiledPointShadowmapGeometry;
+                    fragmentShader = compiledPointShadowmapFragment;
+                }
+
                 gfxApi->begin(compiledShadowmapVertex,
                               nullptr,
                               nullptr,
-                              nullptr,
-                              compiledShadowmapFragment,
+                              geometryShader,
+                              fragmentShader,
                               mesh);
 
-                gfxApi->uniform(compiledShadowmapVertex, "projectionMatrix", projectionMatrix);
-                gfxApi->uniform(compiledShadowmapVertex, "viewMatrix", viewMatrix);
+                if (light->type == Light::Point)
+                {
+                    Position3D pos = light->point.position;
+
+                    Matrix4x4 matrices[] = {Matrix4x4::lookAt(pos,
+                                                              pos+Direction3D(1.0f, 0.0f, 0.0f),
+                                                              Direction3D(0.0f, -1.0f, 0.0f)),
+                                            Matrix4x4::lookAt(pos,
+                                                              pos+Direction3D(-1.0f, 0.0f, 0.0f),
+                                                              Direction3D(0.0f, -1.0f, 0.0f)),
+                                            Matrix4x4::lookAt(pos,
+                                                              pos+Direction3D(0.0f, 1.0f, 0.0f),
+                                                              Direction3D(0.0f, 0.0f, 1.0f)),
+                                            Matrix4x4::lookAt(pos,
+                                                              pos+Direction3D(0.0f, -1.0f, 0.0f),
+                                                              Direction3D(0.0f, 0.0f, -1.0f)),
+                                            Matrix4x4::lookAt(pos,
+                                                              pos+Direction3D(0.0f, 0.0f, 1.0f),
+                                                              Direction3D(0.0f, -1.0f, 0.0f)),
+                                            Matrix4x4::lookAt(pos,
+                                                              pos+Direction3D(0.0f, 0.0f, -1.0f),
+                                                              Direction3D(0.0f, -1.0f, 0.0f))};
+
+                    gfxApi->uniform(geometryShader, "matrix0", projectionMatrix * matrices[0]);
+                    gfxApi->uniform(geometryShader, "matrix1", projectionMatrix * matrices[1]);
+                    gfxApi->uniform(geometryShader, "matrix2", projectionMatrix * matrices[2]);
+                    gfxApi->uniform(geometryShader, "matrix3", projectionMatrix * matrices[3]);
+                    gfxApi->uniform(geometryShader, "matrix4", projectionMatrix * matrices[4]);
+                    gfxApi->uniform(geometryShader, "matrix5", projectionMatrix * matrices[5]);
+
+                    gfxApi->uniform(compiledShadowmapVertex, "projectionMatrix", Matrix4x4());
+                    gfxApi->uniform(compiledShadowmapVertex, "viewMatrix", Matrix4x4());
+                } else
+                {
+                    gfxApi->uniform(compiledShadowmapVertex, "projectionMatrix", projectionMatrix);
+                    gfxApi->uniform(compiledShadowmapVertex, "viewMatrix", viewMatrix);
+                }
+
                 gfxApi->uniform(compiledShadowmapVertex, "worldMatrix", worldMatrix * lod.worldMatrix);
-                gfxApi->uniform(compiledShadowmapFragment, "biasScale", biasScale);
+
+                if (light->type == Light::Point)
+                {
+                    gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
+                    gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
+                }
+
+                gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
 
                 if (mesh->indexed)
                 {
@@ -1309,12 +1348,6 @@ void GfxRenderer::renderShadowmap(Light *light)
     gfxApi->pushState();
     gfxApi->resetState();
 
-    //For some reason this add peter panning for spot lights. So it is disabled for spot lights.
-    if (light->type != Light::Spot)
-    {
-        gfxApi->setCullMode(GfxCullFront);
-    }
-
     gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
     gfxApi->setCurrentFramebuffer(light->getShadowmapFramebuffer());
 
@@ -1340,7 +1373,7 @@ void GfxRenderer::renderShadowmap(Light *light)
                                        projectionMatrix,
                                        transform,
                                        comp->model,
-                                       light->shadowAutoBiasScale);
+                                       light);
                 break;
             }
             default:

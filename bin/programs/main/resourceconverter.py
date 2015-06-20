@@ -814,10 +814,16 @@ if __name__ == "__main__":
     
     conv["postEffectVertex.vs"] = Shader(["source/shaders/postEffectVertex.vs"], "../../resources/shaders/postEffectVertex.bin")
     
+    conv["shadowmapVertex.vs"] = Shader(["source/shaders/shadowmapVertex.vs"], "../../resources/shaders/shadowmapVertex.bin")
+    
+    conv["pointShadowmapGeometry.gs"] = Shader(["source/shaders/pointShadowmapGeometry.gs"], "../../resources/shaders/pointShadowmapGeometry.bin")
+    conv["pointShadowmapGeometry.gs"].stage_ = Shader.Stage.Geometry
+    
     conv["shadowmapFragment.fs"] = Shader(["source/shaders/shadowmapFragment.fs"], "../../resources/shaders/shadowmapFragment.bin")
     conv["shadowmapFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["shadowmapVertex.vs"] = Shader(["source/shaders/shadowmapVertex.vs"], "../../resources/shaders/shadowmapVertex.bin")
+    conv["pointShadowmapFragment.fs"] = Shader(["source/shaders/pointShadowmapFragment.fs"], "../../resources/shaders/pointShadowmapFragment.bin")
+    conv["pointShadowmapFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["fontFragment.fs"] = Shader(["source/shaders/fontFragment.fs"], "../../resources/shaders/fontFragment.bin")
     conv["fontFragment.fs"].stage_ = Shader.Stage.Fragment
@@ -1096,6 +1102,20 @@ if __name__ == "__main__":
     light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
     scene.lights.append(light)
     
+    """light = Scene.Light(Scene.Light.Type.Point)
+    light.position = [0.0, 1.0, 0.0]
+    light.radius = 10.0
+    light.color = [1.0, 1.0, 1.0]
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    scene.lights.append(light)"""
+    
     """light = Scene.Light(Scene.Light.Type.Spot)
     light.position = [8.0, 2.5, 0.0]
     light.direction = [1.0, -0.75, 0.0]
@@ -1145,8 +1165,8 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low"""
-    scene.lights.append(light)
+    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    scene.lights.append(light)"""
     
     for res in conv.values():
         res.convert()

@@ -752,11 +752,11 @@ void GfxGLTextureImpl::setShadowmap(bool shadowmap_)
 
     if (shadowmap_)
     {
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LESS);
+            glTexParameteri(target, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+            glTexParameteri(target, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
     } else
     {
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+            glTexParameteri(target, GL_TEXTURE_COMPARE_MODE, GL_NONE);
     }
 
     END_TEXTURE_BINDING

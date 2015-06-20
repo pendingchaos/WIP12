@@ -158,7 +158,9 @@ class GfxRenderer
         ResPtr<GfxShader> lumCalcFragment;
         ResPtr<GfxShader> postEffectVertex;
         ResPtr<GfxShader> shadowmapVertex;
+        ResPtr<GfxShader> pointShadowmapGeometry;
         ResPtr<GfxShader> shadowmapFragment;
+        ResPtr<GfxShader> pointShadowmapFragment;
         ResPtr<GfxShader> overlayVertex;
         ResPtr<GfxShader> overlayFragment;
         GfxCompiledShader *compiledGammaCorrectionFragment;
@@ -167,6 +169,7 @@ class GfxRenderer
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingDirectionalShadow;
         GfxCompiledShader *compiledLightingPoint;
+        GfxCompiledShader *compiledLightingPointShadow;
         GfxCompiledShader *compiledLightingSpot;
         GfxCompiledShader *compiledLightingSpotShadow;
         GfxCompiledShader *compiledSSAOFragment;
@@ -178,7 +181,9 @@ class GfxRenderer
         GfxCompiledShader *compiledLumCalcFragment;
         GfxCompiledShader *compiledPostEffectVertex;
         GfxCompiledShader *compiledShadowmapVertex;
+        GfxCompiledShader *compiledPointShadowmapGeometry;
         GfxCompiledShader *compiledShadowmapFragment;
+        GfxCompiledShader *compiledPointShadowmapFragment;
         GfxCompiledShader *compiledOverlayVertex;
         GfxCompiledShader *compiledOverlayFragment;
         //float averageLuminance;
@@ -197,7 +202,7 @@ class GfxRenderer
                                     const Matrix4x4& projectionMatrix,
                                     const Matrix4x4& worldMatrix,
                                     const ResPtr<GfxModel> model,
-                                    float biasScale);
+                                    Light *light);
         void renderShadowmap(Light *light);
 
         ResPtr<GfxTexture> writeColorTexture;
@@ -209,7 +214,6 @@ class GfxRenderer
         ResPtr<GfxTexture> ssaoBlurXTexture;
         ResPtr<GfxTexture> bloomBlurXTexture;
         //ResPtr<GfxTexture> luminanceTexture;
-        ResPtr<GfxTexture> ssaoRandomTexture;
 
         GfxFramebuffer *readFramebuffer;
         GfxFramebuffer *writeFramebuffer;

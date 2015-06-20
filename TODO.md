@@ -9,7 +9,7 @@
         - [x] Deferred
         - [ ] Forward
     - [ ] Point
-        - [ ] Deferred
+        - [x] Deferred
         - [ ] Forward
     - [ ] Spot
         - [x] Deferred
@@ -20,6 +20,7 @@
 - [ ] Saving the state of scripts when they are reloaded.
 - [ ] Raycasting.
 - [ ] Collision callbacks.
+- [ ] Controllable ambient strength for lights.
 
 ## Bugs
 - [ ] More tests should be created.
@@ -35,6 +36,7 @@
 - [ ] The matrix inversion functions need improvement.
 - [ ] Fix banding in darkly lit areas and on metallic surfaces.
 - [ ] Ambient occlusion looks very bad on spheres.
+- [ ] Improve error and exception handling.
 
 ## Performance Improvements
 - [ ] Script compilation is very slow.

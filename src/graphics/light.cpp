@@ -15,10 +15,10 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
                                                  GfxTexture::DepthF32_F24,
                                                  GfxTexture::DepthF32};
 
+    shadowmap = NEW(GfxTexture);
+
     if (type == Spot or type == Directional)
     {
-        shadowmap = NEW(GfxTexture);
-
         shadowmap->startCreation(GfxTexture::Texture2D,
                                  false,
                                  resolution,
@@ -27,15 +27,34 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
                                  0,
                                  GfxTexture::Other,
                                  formats[(int)quality]);
+
         shadowmap->allocMipmap(0, 1, NULL);
-        shadowmap->setShadowmap(true);
+    } else
+    {
+        shadowmap->startCreation(GfxTexture::CubeMap,
+                                 false,
+                                 resolution,
+                                 resolution,
+                                 1,
+                                 0,
+                                 GfxTexture::Other,
+                                 formats[(int)quality]);
 
-        shadowmapFramebuffer = gfxApi->createFramebuffer();
-        shadowmapFramebuffer->setDepthAttachment(shadowmap);
-
-        shadowmapResolution = resolution;
-        shadowmapQuality = quality;
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveX, NULL);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeX, NULL);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveY, NULL);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeY, NULL);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveZ, NULL);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeZ, NULL);
     }
+
+    shadowmap->setShadowmap(true);
+
+    shadowmapFramebuffer = gfxApi->createFramebuffer();
+    shadowmapFramebuffer->setDepthAttachment(shadowmap);
+
+    shadowmapResolution = resolution;
+    shadowmapQuality = quality;
 }
 
 void Light::updateMatrices(GfxRenderer *renderer)
@@ -60,6 +79,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                        spot.position + spot.direction,
                                        up);
 
+        //TODO: Automatic calculation of near and far.
         projectionMatrix = Matrix4x4::perspective(std::min(spot.outerCutoff * 1.2f, 175.0f),
                                                   1.0f,
                                                   shadowmapNear,
@@ -136,8 +156,12 @@ void Light::updateMatrices(GfxRenderer *renderer)
         projectionMatrix[2][3] = shift.z * scale.z;
         break;
     }
-    default:
+    case Point:
     {
+        projectionMatrix = Matrix4x4::perspective(RADIANS(90.0f),
+                                                  1.0f,
+                                                  shadowmapNear,
+                                                  shadowmapFar);
         break;
     }
     }

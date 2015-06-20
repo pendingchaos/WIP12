@@ -378,6 +378,8 @@ void Scene::_load()
                 float posZ = file.readFloat32();
                 float radius = file.readFloat32();
 
+                light->type = Light::Point;
+
                 light->point.position = Position3D(posX, posY, posZ);
                 light->point.radius = radius;
             } else
