@@ -15,7 +15,6 @@
         - [x] Deferred
         - [ ] Forward
 - [ ] Audio
-- [ ] Make scripts less independent. (eg. calling a function in a script from another script should work).
 - [ ] Ghost objects (btGhostObject).
 - [ ] Saving the state of scripts when they are reloaded.
 - [ ] Raycasting.
