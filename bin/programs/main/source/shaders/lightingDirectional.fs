@@ -39,20 +39,6 @@ void main()
     float roughness = material.y;
     
     vec3 viewDir = normalize(cameraPosition - position);
-
-    vec3 specular;
-    float diffuse;
-    
-    _lighting(lightNegDir,
-              specular,
-              diffuse,
-              mix(vec3(1.0), albedo.rgb, metallic),
-              roughness,
-              metallic,
-              normal,
-              viewDir);
-    
-    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
     
     #ifdef SHADOW_MAP
     vec4 shadowCoord = shadowmapProjectionMatrix * shadowmapViewMatrix * vec4(position, 1.0);
@@ -61,43 +47,16 @@ void main()
     shadowCoord.z -= max(shadowBiasScale * (1.0 - dot(normal, lightNegDir)), shadowMinBias);
     shadowCoord.xyz += 1.0;
     shadowCoord.xyz /= 2.0;
-    
-    float shadow = 0.0;
-    
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 2));
-   
-    shadow /= 17.0;
-    
-    shadow = pow(shadow, 2.2);
     #endif
     
-    float ao = max(texture(aoTexture, frag_uv).r * (1.0 -
+    float ao = max(texture(aoTexture, frag_uv).r, 0.0);
+    
+    result_color.rgb = directionalLight(lightNegDir, lightColor, 0.05,
+                                        albedo, metallic, roughness, normal, viewDir, ao
     #ifdef SHADOW_MAP
-    min(diffuse, shadow)
-    #else
-    diffuse
+    , shadowCoord, shadowmap
     #endif
-    ), 0.0);
-    
-    result_color.rgb = albedo * 0.05 * (1.0 - metallic) * ao;
+    );
     result_color.a = 1.0;
-    
-    result_color.rgb += (diffuseResult + specular) * lightColor
-    #ifdef SHADOW_MAP
-    * shadow
-    #endif
-    ;
 }
 

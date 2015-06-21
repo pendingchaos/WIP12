@@ -22,7 +22,7 @@ class Light
             Point
         };
 
-        enum ShadowmapQuality
+        enum ShadowmapPrecision
         {
             Low,
             Medium,
@@ -70,7 +70,7 @@ class Light
             float radius;
         } point;
 
-        void addShadowmap(size_t resolution, ShadowmapQuality quality);
+        void addShadowmap(size_t resolution, ShadowmapPrecision quality);
 
         inline void removeShadowmap()
         {
@@ -93,9 +93,9 @@ class Light
             return shadowmapResolution;
         }
 
-        inline ShadowmapQuality getShadowmapQuality() const
+        inline ShadowmapPrecision getShadowmapPrecision() const
         {
-            return shadowmapQuality;
+            return shadowmapPrecision;
         }
 
         void updateMatrices(GfxRenderer *renderer);
@@ -113,7 +113,7 @@ class Light
         ResPtr<GfxTexture> shadowmap;
         GfxFramebuffer *shadowmapFramebuffer;
         size_t shadowmapResolution;
-        ShadowmapQuality shadowmapQuality;
+        ShadowmapPrecision shadowmapPrecision;
 
         Matrix4x4 viewMatrix;
         Matrix4x4 projectionMatrix;

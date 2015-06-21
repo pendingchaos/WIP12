@@ -400,9 +400,9 @@ void Scene::_load()
                 float biasScale = file.readFloat32();
                 float autoBiasScale = file.readFloat32();
                 size_t resolution = file.readUInt16LE();
-                Light::ShadowmapQuality quality = (Light::ShadowmapQuality)file.readUInt8();
+                Light::ShadowmapPrecision precision = (Light::ShadowmapPrecision)file.readUInt8();
 
-                light->addShadowmap(resolution, quality);
+                light->addShadowmap(resolution, precision);
 
                 light->shadowmapNear = near;
                 light->shadowmapFar = far;
@@ -624,7 +624,7 @@ void Scene::save()
                 file.writeFloat32(light->shadowmapNear);
                 file.writeFloat32(light->shadowmapFar);
                 file.writeUInt16LE(light->getShadowmapResolution());
-                file.writeUInt8((int)light->getShadowmapQuality());
+                file.writeUInt8((int)light->getShadowmapPrecision());
             }
         }
     } catch (FileException& e)

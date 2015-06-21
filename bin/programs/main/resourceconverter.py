@@ -490,7 +490,7 @@ if __name__ == "__main__":
                 Spot = "spot"
                 Point = "point"
             
-            class ShadowmapQuality:
+            class ShadowmapPrecision:
                 Low = "low"
                 Medium = "medium"
                 High = "high"
@@ -559,9 +559,9 @@ if __name__ == "__main__":
                                      self.shadow_auto_bias_scale,
                                      self.shadowmap_resolution)
                     
-                    s += {Scene.Light.ShadowmapQuality.Low: "\x00",
-                          Scene.Light.ShadowmapQuality.Medium: "\x01",
-                          Scene.Light.ShadowmapQuality.High: "\x02"}[self.shadowmap_quality]
+                    s += {Scene.Light.ShadowmapPrecision.Low: "\x00",
+                          Scene.Light.ShadowmapPrecision.Medium: "\x01",
+                          Scene.Light.ShadowmapPrecision.High: "\x02"}[self.shadowmap_precision]
                 else:
                     s += "\x00"
                 
@@ -1099,7 +1099,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.1
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 2048
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     """light = Scene.Light(Scene.Light.Type.Point)
@@ -1113,7 +1113,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
     light.shadowmap_resolution = 1024
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)"""
     
     """light = Scene.Light(Scene.Light.Type.Spot)
@@ -1130,7 +1130,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Spot)
@@ -1147,7 +1147,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     conv["scene"] = scene
@@ -1165,7 +1165,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
-    light.shadowmap_quality = Scene.Light.ShadowmapQuality.Low
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)"""
     
     for res in conv.values():

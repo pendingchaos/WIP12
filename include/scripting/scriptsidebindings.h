@@ -45,7 +45,7 @@ struct _functionStruct
     LogEntry & (*f41)( LogEntry *obj, unsigned int arg0, const char ** arg1);
     int (*f42)( LogEntry *obj);
     int (*f43)( LogEntry *obj);
-    void (*f44)( Light *obj, size_t arg0, Light::ShadowmapQuality arg1);
+    void (*f44)( Light *obj, size_t arg0, Light::ShadowmapPrecision arg1);
     void (*f45)( Light *obj, GfxRenderer * arg0);
     void (*f46)( PhysicsShape *obj);
     void (*f47)( PhysicsShape *obj, float arg0);
@@ -282,7 +282,7 @@ LogEntry & LogEntry::printBacktrace()  {return _functions->f40(this);}
 LogEntry & LogEntry::printBacktrace(unsigned int arg0, const char ** arg1)  {return _functions->f41(this, arg0, arg1);}
 int LogEntry::end()  {return _functions->f42(this);}
 int LogEntry::fatalEnd()  {return _functions->f43(this);}
-void Light::addShadowmap(size_t arg0, Light::ShadowmapQuality arg1)  { _functions->f44(this, arg0, arg1);}
+void Light::addShadowmap(size_t arg0, Light::ShadowmapPrecision arg1)  { _functions->f44(this, arg0, arg1);}
 void Light::updateMatrices(GfxRenderer * arg0)  { _functions->f45(this, arg0);}
 void PhysicsShape::setEmpty()  { _functions->f46(this);}
 void PhysicsShape::setSphere(float arg0)  { _functions->f47(this, arg0);}

@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cmath>
 
-void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
+void Light::addShadowmap(size_t resolution, ShadowmapPrecision precision)
 {
     removeShadowmap();
 
@@ -26,7 +26,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
                                  1,
                                  0,
                                  GfxTexture::Other,
-                                 formats[(int)quality]);
+                                 formats[(int)precision]);
 
         shadowmap->allocMipmap(0, 1, NULL);
     } else
@@ -38,7 +38,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
                                  1,
                                  0,
                                  GfxTexture::Other,
-                                 formats[(int)quality]);
+                                 formats[(int)precision]);
 
         shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveX, NULL);
         shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeX, NULL);
@@ -54,7 +54,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapQuality quality)
     shadowmapFramebuffer->setDepthAttachment(shadowmap);
 
     shadowmapResolution = resolution;
-    shadowmapQuality = quality;
+    shadowmapPrecision = precision;
 }
 
 void Light::updateMatrices(GfxRenderer *renderer)
