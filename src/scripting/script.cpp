@@ -15,13 +15,15 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "{\n"
 "    public:\n"
 "        _InstanceBase(Application *app_,\n"
-"                      Entity *entity_) : app(app_),\n"
-"                                         platform(app->getPlatform()),\n"
-"                                         resMgr(app->getResourceManager()),\n"
-"                                         gfxApi(app->getGfxApi()),\n"
-"                                         fileSys(app->getFilesystem()),\n"
-"                                         debugDrawer(app->getDebugDrawer()),\n"
-"                                         entity(entity_) {}\n"
+"                      Entity *entity_,\n"
+"                      ResPtr<Script> script_) : app(app_),\n"
+"                                                platform(app->getPlatform()),\n"
+"                                                resMgr(app->getResourceManager()),\n"
+"                                                gfxApi(app->getGfxApi()),\n"
+"                                                fileSys(app->getFilesystem()),\n"
+"                                                debugDrawer(app->getDebugDrawer()),\n"
+"                                                entity(entity_),\n"
+"                                                script(script_) {}\n"
 "        virtual ~_InstanceBase() {}\n"
 "        virtual void init() {}\n"
 "        virtual void deinit() {}\n"
@@ -37,14 +39,15 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "        Filesystem *fileSys;\n"
 "        GfxDebugDrawer *debugDrawer;\n"
 "        Entity *entity;\n"
+"        ResPtr<Script> script;\n"
 "};\n"
 "#define BEGIN_SCRIPT class _Instance : public _InstanceBase"
 "{"
 "    public:"
-"        _Instance(Application *app, Entity *entity) : _InstanceBase(app, entity) {init();}"
+"        _Instance(Application *app, Entity *entity, ResPtr<Script> script) : _InstanceBase(app, entity, script) {init();}"
 "        virtual ~_Instance() {deinit();}\n"
-"#define END_SCRIPT }; extern \"C\"{_Instance *_createInstance(Application *app, Entity *entity){"
-"    return new _Instance(app, entity);"
+"#define END_SCRIPT }; extern \"C\"{_Instance *_createInstance(Application *app, Entity *entity, Script *script){"
+"    return new _Instance(app, entity, script);"
 "}"
 "_Instance *_destroyInstance(_Instance *obj)"
 "{"
@@ -65,7 +68,7 @@ class _InstanceBase
         virtual void render() {}
 };
 
-ScriptInstance::ScriptInstance(Script *script_,
+ScriptInstance::ScriptInstance(ResPtr<Script> script_,
                                void *ptr_,
                                Entity *entity_) : script(script_),
                                                   ptr(ptr_),
@@ -132,6 +135,11 @@ void Script::removeContent()
 {
     if (dl != nullptr)
     {
+        for (size_t i = 0; i < userDatas.getCount(); ++i)
+        {
+            userDatas[i]->deinitFunc(userDatas[i]->pointer);
+        }
+
         for (size_t i = 0; i < instances.getCount(); ++i)
         {
             ScriptInstance *instance = instances[i];
@@ -217,7 +225,7 @@ void Script::_load()
             return;
         }
 
-        createFunc = (void *(*)(Application *, Entity *))dlsym(dl, "_createInstance");
+        createFunc = (void *(*)(Application *, Entity *, Script *))dlsym(dl, "_createInstance");
         destroyFunc = (void (*)(void *))dlsym(dl, "_destroyInstance");
 
         void (*initFunc)(const void *) = (void (*)(const void *))dlsym(dl, "_initFunctions");
@@ -241,7 +249,12 @@ void Script::_load()
             {
                 ScriptInstance *instance = instances[i];
 
-                instance->ptr = createFunc(app, instance->entity);
+                instance->ptr = createFunc(app, instance->entity, this);
+            }
+
+            for (size_t i = 0; i < userDatas.getCount(); ++i)
+            {
+                userDatas[i]->pointer = userDatas[i]->initFunc();
             }
         }
     } else
@@ -255,7 +268,7 @@ void Script::_load()
 
 ScriptInstance *Script::createInstance(Entity *entity)
 {
-    _InstanceBase *ptr = dl == nullptr ? nullptr : (_InstanceBase *)createFunc(app, entity);
+    _InstanceBase *ptr = dl == nullptr ? nullptr : (_InstanceBase *)createFunc(app, entity, this);
 
     ScriptInstance *result = NEW(ScriptInstance, this, ptr, entity);
 

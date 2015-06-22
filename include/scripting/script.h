@@ -13,14 +13,14 @@ class ScriptFunctionException : public Exception
 {
     public:
         ScriptFunctionException(const char *file_,
-                      size_t line_,
-                      const char *function_,
-                      String filename_,
-                      String scriptFunction_,
-                      String problem_) : Exception(file_, line_, function_),
-                                         filename(filename_),
-                                         scriptFunction(scriptFunction_),
-                                         problem(problem_) {}
+                                size_t line_,
+                                const char *function_,
+                                String filename_,
+                                String scriptFunction_,
+                                String problem_) : Exception(file_, line_, function_),
+                                                   filename(filename_),
+                                                   scriptFunction(scriptFunction_),
+                                                   problem(problem_) {}
 
         virtual const char *getString() const
         {
@@ -76,17 +76,20 @@ class ScriptInstance
             return script;
         }
     private:
-        ScriptInstance(Script *script,
+        ScriptInstance(ResPtr<Script> script,
                        void *ptr,
                        Entity *entity);
 
-        Script *script;
+        ResPtr<Script> script;
         void *ptr;
         Entity *entity;
 };
 
+class UserData;
+
 class Script : public Resource
 {
+    friend UserData;
     friend ScriptInstance;
 
     NO_COPY_INHERITED(Script, Resource);
@@ -104,7 +107,7 @@ class Script : public Resource
         ScriptInstance *createInstance(Entity *entity=nullptr);
 
         template <typename Return, typename ... Args>
-        Return call(const String& name, Args... args)
+        inline Return call(const String& name, Args... args)
         {
             return ((Return (*)(Args...))getFunction(name))(args...);
         }
@@ -112,12 +115,13 @@ class Script : public Resource
         virtual void _load();
     private:
         void *dl;
-        void *(*createFunc)(Application *, Entity *entity);
+        void *(*createFunc)(Application *, Entity *entity, Script *);
         void (*destroyFunc)(void *);
 
         List<ScriptInstance *> instances;
+        List<UserData *> userDatas;
 
-        inline void (*getFunction(const String& name))()
+        void (*getFunction(const String& name))()
         {
             if (dl != nullptr)
             {
@@ -136,6 +140,72 @@ class Script : public Resource
         }
 
         void destroyInstance(ScriptInstance *instance);
+};
+
+template <typename Return, typename ... Args>
+class ScriptFunction
+{
+    public:
+        ScriptFunction(ResPtr<Script> script_, const char *name_) : script(script_),
+                                                                    name(name_) {}
+
+        inline ResPtr<Script> getScript() const
+        {
+            return script;
+        }
+
+        inline const String& getName() const
+        {
+            return name;
+        }
+
+        inline Return operator () (Args... args)
+        {
+            return script->call<Return>(name, args...);
+        }
+    private:
+        ResPtr<Script> script;
+        String name;
+};
+
+class UserData
+{
+    friend Script;
+
+    public:
+        UserData(const ScriptFunction<void *>& initFunc_,
+                 const ScriptFunction<void, void *>& deinitFunc_) : initFunc(initFunc_),
+                                                                    deinitFunc(deinitFunc_)
+        {
+            pointer = initFunc();
+
+            initFunc.getScript()->userDatas.append(this);
+        }
+
+        ~UserData()
+        {
+            deinitFunc(pointer);
+
+            List<UserData *> userDatas = initFunc.getScript()->userDatas;
+
+            userDatas.remove(userDatas.find(this));
+        }
+
+        inline void *getPointer()
+        {
+            return pointer;
+        }
+
+        inline void reinit()
+        {
+            deinitFunc(pointer);
+
+            pointer = initFunc();
+        }
+    private:
+        ScriptFunction<void *> initFunc;
+        ScriptFunction<void, void *> deinitFunc;
+        void *pointer;
 };
 
 #endif // SCRIPT_H

@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "physics/physicsshape.h"
+#include "scripting/script.h"
 
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
@@ -166,6 +167,22 @@ class RigidBody
         {
             return shape;
         }
+
+        inline void setUserData(const ScriptFunction<void *>& initFunc,
+                                const ScriptFunction<void, void *>& deinitFunc)
+        {
+            userData = NEW(UserData, initFunc, deinitFunc);
+        }
+
+        inline void removeUserData()
+        {
+            DELETE(UserData, userData);
+        }
+
+        inline UserData *getUserData()
+        {
+            return userData;
+        }
     private:
         RigidBody(const ConstructionInfo& info, PhysicsWorld *world);
         virtual ~RigidBody();
@@ -177,6 +194,7 @@ class RigidBody
         Transform *syncTransform;
         RigidBody::Type type;
         short collisionMask;
+        UserData *userData;
 };
 
 #endif // RIGIDBODY_H

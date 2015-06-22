@@ -41,7 +41,8 @@ RigidBody::RigidBody(const ConstructionInfo& info,
                      PhysicsWorld *world_) : shape(NEW(PhysicsShape)),
                                              world(world_),
                                              type(info.type),
-                                             collisionMask(info.collisionMask)
+                                             collisionMask(info.collisionMask),
+                                             userData(nullptr)
 {
     transform = info.transform == nullptr ? NEW(Transform) : nullptr;
     syncTransform = info.transform;
@@ -93,6 +94,8 @@ RigidBody::RigidBody(const ConstructionInfo& info,
 
 RigidBody::~RigidBody()
 {
+    removeUserData();
+
     world->getBulletWorld()->removeRigidBody(rigidBody);
 
     btMotionState *motionState = rigidBody->getMotionState();

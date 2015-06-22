@@ -147,6 +147,22 @@ class Entity
             return scene;
         }
 
+        inline void setUserData(const ScriptFunction<void *>& initFunc,
+                                const ScriptFunction<void, void *>& deinitFunc)
+        {
+            userData = NEW(UserData, initFunc, deinitFunc);
+        }
+
+        inline void removeUserData()
+        {
+            DELETE(UserData, userData);
+        }
+
+        inline UserData *getUserData()
+        {
+            return userData;
+        }
+
         String name;
         Transform transform;
     private:
@@ -155,6 +171,7 @@ class Entity
         bool render;
         RenderComponent renderComponent;
         mutable ResPtr<Scene> scene;
+        UserData *userData;
 
     NO_COPY(Entity);
 };

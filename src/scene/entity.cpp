@@ -6,7 +6,8 @@ Entity::Entity(const String& name_,
                ResPtr<Scene> scene_) : name(name_),
                                        rigidBody(nullptr),
                                        render(false),
-                                       scene(scene_) {}
+                                       scene(scene_),
+                                       userData(nullptr) {}
 
 Entity::~Entity()
 {
@@ -16,6 +17,7 @@ Entity::~Entity()
     }
 
     removeRigidBody();
+    removeUserData();
 }
 
 void Entity::addRigidBody(PhysicsWorld *world,
