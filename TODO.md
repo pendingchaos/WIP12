@@ -17,7 +17,6 @@
 - [ ] Audio
 - [ ] Ghost objects (btGhostObject).
 - [ ] Saving the state of scripts when they are reloaded.
-- [ ] Raycasting.
 - [ ] Collision callbacks.
 
 ## Bugs

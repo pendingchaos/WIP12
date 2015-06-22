@@ -65,6 +65,8 @@ RigidBody::RigidBody(const ConstructionInfo& info,
 
     rigidBody = NEW(btRigidBody, btInfo);
 
+    rigidBody->setUserPointer(this);
+
     switch (info.type)
     {
     case Static:

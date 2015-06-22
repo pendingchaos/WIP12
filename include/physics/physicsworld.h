@@ -16,6 +16,20 @@ class Camera;
 class PhysicsWorld
 {
     public:
+        struct RayCastResult
+        {
+            float distance;
+            Direction3D normal;
+            RigidBody *body;
+
+            inline bool operator == (const RayCastResult& other) const
+            {
+                return distance == other.distance and
+                       normal == other.normal and
+                       body == other.body;
+            }
+        };
+
         PhysicsWorld();
         virtual ~PhysicsWorld();
 
@@ -47,6 +61,10 @@ class PhysicsWorld
                             float fixedTimeStep=1.0f/60.0f);
 
         void debugDraw();
+
+        List<RayCastResult> castRay(const Position3D& start,
+                                    const Direction3D& direction,
+                                    float distance=9999.0f);
 
         inline btDynamicsWorld *getBulletWorld()
         {
