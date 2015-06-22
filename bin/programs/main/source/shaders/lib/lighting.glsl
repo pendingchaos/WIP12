@@ -13,7 +13,7 @@ struct Light
     vec4 f0; //R, G, B, NegDirPosX
     vec4 f1; //NegDirPosY, NegDirPosZ, NegSpotDirX, NegSpotDirY
     vec4 f2; //NegSpotDirZ, InnerCosCut, OuterCosCut, type
-    vec4 f3; //Radius, unused, unused, unused
+    vec4 f3; //Radius, AmbientStrength, unused, unused
 };
 
 uniform uint numLights;
@@ -353,9 +353,9 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
     
     for (uint i = 0; i < numLights; ++i)
     {
-        result += albedo * 0.001 * (1.0 - metallic);
-        
         Light light = lights[i];
+        
+        result += albedo * light.f3.y * (1.0 - metallic);
         
         switch (uint(light.f2.w))
         {

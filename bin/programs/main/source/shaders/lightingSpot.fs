@@ -28,6 +28,7 @@ uniform float lightCosInnerCutoff;
 uniform float lightCosOuterCutoff;
 uniform float lightRadius;
 uniform vec3 lightColor;
+uniform float lightAmbientStrength;
 
 void main()
 {
@@ -57,7 +58,7 @@ void main()
     float ao = max(texture(aoTexture, frag_uv).r, 0.0);
     
     result_color.rgb = spotLight(lightNegDir, lightPos, lightCosInnerCutoff, lightCosOuterCutoff, lightRadius, lightColor,
-                                 0.05, albedo, metallic, roughness, normal, viewDir, ao, position
+                                 lightAmbientStrength, albedo, metallic, roughness, normal, viewDir, ao, position
 #ifdef SHADOW_MAP
 , shadowCoord, shadowmap
 #endif

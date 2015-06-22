@@ -22,6 +22,7 @@ uniform float shadowBiasScale;
 uniform vec3 cameraPosition;
 
 uniform vec3 lightColor;
+uniform float lightAmbientStrength;
 uniform vec3 lightNegDir;
 
 void main()
@@ -51,7 +52,7 @@ void main()
     
     float ao = max(texture(aoTexture, frag_uv).r, 0.0);
     
-    result_color.rgb = directionalLight(lightNegDir, lightColor, 0.05,
+    result_color.rgb = directionalLight(lightNegDir, lightColor, lightAmbientStrength,
                                         albedo, metallic, roughness, normal, viewDir, ao
     #ifdef SHADOW_MAP
     , shadowCoord, shadowmap

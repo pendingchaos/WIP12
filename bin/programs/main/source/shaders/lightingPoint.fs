@@ -25,6 +25,7 @@ uniform vec3 cameraPosition;
 uniform vec3 lightPos;
 uniform float lightRadius;
 uniform vec3 lightColor;
+uniform float lightAmbientStrength;
 
 void main()
 {
@@ -44,7 +45,7 @@ void main()
 
     float ao = max(texture(aoTexture, frag_uv).r, 0.0);
     
-    result_color.rgb = pointLight(lightPos, lightRadius, lightColor, 0.05,
+    result_color.rgb = pointLight(lightPos, lightRadius, lightColor, lightAmbientStrength,
                                   albedo, metallic, roughness, normal, viewDir, ao, position
     #ifdef SHADOW_MAP
     , shadowmap, 0.01, shadowBiasScale, shadowMinBias, lightFar

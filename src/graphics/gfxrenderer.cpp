@@ -629,6 +629,7 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(fragmentShader, "aoTexture", ssaoTexture);
         gfxApi->uniform(fragmentShader, "viewProjection", viewProjection);
         gfxApi->uniform(fragmentShader, "lightColor", light->color * light->power);
+        gfxApi->uniform(fragmentShader, "lightAmbientStrength", light->ambientStrength);
         gfxApi->uniform(fragmentShader, "cameraPosition", camera.getPosition());
 
         if (light->getShadowmap() != nullptr)
@@ -1051,6 +1052,7 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
         lightData[i*16  ] = light->color.x * light->power;
         lightData[i*16+1] = light->color.y * light->power;
         lightData[i*16+2] = light->color.z * light->power;
+        lightData[i*16+13] = light->ambientStrength;
 
         switch (light->type)
         {

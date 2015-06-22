@@ -342,6 +342,7 @@ void Scene::_load()
 
             light->power = power;
             light->color = Float3(red, green, blue);
+            light->ambientStrength = file.readFloat32();
 
             if (type == 0)
             {
@@ -585,6 +586,7 @@ void Scene::save()
             file.writeFloat32(light->color.x);
             file.writeFloat32(light->color.y);
             file.writeFloat32(light->color.z);
+            file.writeFloat32(light->ambientStrength);
 
             switch (light->type)
             {

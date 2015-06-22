@@ -512,6 +512,8 @@ if __name__ == "__main__":
                     self.position = [0.0, 0.0, 0.0]
                     self.radius = 1.0
                 
+                self.ambient_strength = 0.05
+                
                 self.shadowmap = False
             
             def convert(self):
@@ -519,11 +521,12 @@ if __name__ == "__main__":
                      Scene.Light.Type.Spot: "\x01",
                      Scene.Light.Type.Point: "\x02"}[self.type_]
                 
-                s += struct.pack("<ffff",
+                s += struct.pack("<fffff",
                                  self.power,
                                  self.color[0],
                                  self.color[1],
-                                 self.color[2])
+                                 self.color[2],
+                                 self.ambient_strength)
                 
                 if self.type_ == Scene.Light.Type.Directional:
                     s += struct.pack("<fff", 

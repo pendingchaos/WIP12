@@ -19,7 +19,6 @@
 - [ ] Saving the state of scripts when they are reloaded.
 - [ ] Raycasting.
 - [ ] Collision callbacks.
-- [ ] Controllable ambient strength for lights.
 
 ## Bugs
 - [ ] More tests should be created.

@@ -32,6 +32,7 @@ class Light
         Light() : type(Directional),
                   power(1.0f),
                   color(1.0f),
+                  ambientStrength(0.05f),
                   shadowmapNear(0.1f),
                   shadowmapFar(100.0f),
                   shadowMinBias(0.005f),
@@ -44,6 +45,7 @@ class Light
         Type type;
         float power;
         Float3 color;
+        float ambientStrength;
         float shadowmapNear;
         float shadowmapFar;
         float shadowMinBias;
