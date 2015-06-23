@@ -15,9 +15,7 @@
         - [x] Deferred
         - [ ] Forward
 - [ ] Audio
-- [ ] Ghost objects (btGhostObject).
 - [ ] Saving the state of scripts when they are reloaded.
-- [ ] Collision callbacks.
 
 ## Bugs
 - [ ] More tests should be created.

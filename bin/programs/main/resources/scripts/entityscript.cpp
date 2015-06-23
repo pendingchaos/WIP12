@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 
 BEGIN_SCRIPT
     virtual void init()
@@ -11,6 +12,15 @@ BEGIN_SCRIPT
         maxAngularVelocity = 0.5f;
 
         entity->getRigidBody()->setAngularFactor(Float3(0.0f));
+    
+        feetGhost = entity->getScene()->getPhysicsWorld()->createGhostObject();
+        
+        feetGhost->setCylinder(PhysicsCylinderShape::Y, 0.1f, 0.8f);
+    }
+    
+    virtual void deinit()
+    {
+        entity->getScene()->getPhysicsWorld()->destroyGhostObject(feetGhost);
     }
 
     virtual void fixedUpdate(float timestep)
@@ -69,6 +79,8 @@ BEGIN_SCRIPT
             velocity -= dir * platform->getFrametime() * resSpeed;
         }
 
+        velocity.y = 0.0f;
+
         //Modify the velocity so it does not make it go over the max.
         Vector3D oldVelocity = body->getLinearVelocity();
         Vector3D newVelocity = oldVelocity + velocity;
@@ -91,6 +103,15 @@ BEGIN_SCRIPT
         //End of velocity modification.
 
         body->setLinearVelocity(oldVelocity + velocity);
+
+        if (platform->isKeyPressed(Platform::Space) and onFloor)
+        {
+            Vector3D vel = body->getLinearVelocity();
+            
+            vel.y = 10.0f;
+            
+            body->setLinearVelocity(vel);
+        }
 
         if (platform->isLeftMouseButtonPressed())
         {
@@ -135,7 +156,23 @@ BEGIN_SCRIPT
 
         camera.setPosition(entity->transform.position+Position3D(0.0f, 1.5f, 0.0f));
     }
+    
+    virtual void update()
+    {
+        Transform feetTransform = entity->transform;
+        feetTransform.position.y -= 2.55f;
+        feetGhost->setTransform(feetTransform);
+        
+        List<RigidBody *> rigidBodies;
+        List<GhostObject *> ghosts;
+        
+        feetGhost->getCollisions(rigidBodies, ghosts);
+        
+        onFloor = rigidBodies.getCount() != 0;
+    }
 
+    GhostObject *feetGhost;
+    bool onFloor;
     Float2 angle;
     float speed;
     float rotateSpeed;

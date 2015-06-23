@@ -1,21 +1,34 @@
 #include "physics/physicsworld.h"
 
-#include "graphics/camera.h"
-
 #include "memory.h"
 
 PhysicsWorld::PhysicsWorld() : debugDrawer(nullptr)
 {
     configuration = NEW(btDefaultCollisionConfiguration);
+
     dispatcher = NEW(btCollisionDispatcher, configuration);
+
     broadphase = NEW(btDbvtBroadphase);
+    broadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
+
     solver = NEW(btSequentialImpulseConstraintSolver);
+
     world = NEW(btDiscreteDynamicsWorld, dispatcher, broadphase, solver, configuration);
     world->setGravity(btVector3(0.0f, -9.8f, 0.0f));
 }
 
 PhysicsWorld::~PhysicsWorld()
 {
+    for (size_t i = 0; i < rigidBodies.getCount(); ++i)
+    {
+        DELETE(RigidBody, rigidBodies[i]);
+    }
+
+    for (size_t i = 0; i < ghostObjects.getCount(); ++i)
+    {
+        DELETE(GhostObject, ghostObjects[i]);
+    }
+
     world->setDebugDrawer(nullptr);
     DELETE(PhysicsDebugDrawer, debugDrawer);
     DELETE(btDynamicsWorld, world);
@@ -46,6 +59,22 @@ void PhysicsWorld::destroyRigidBody(RigidBody *rigidBody)
     rigidBodies.remove(rigidBodies.find(rigidBody));
 
     DELETE(RigidBody, rigidBody);
+}
+
+GhostObject *PhysicsWorld::createGhostObject(unsigned short collisionMask)
+{
+    GhostObject *ghost = NEW(GhostObject, collisionMask, this);
+
+    ghostObjects.append(ghost);
+
+    return ghost;
+}
+
+void PhysicsWorld::destroyGhostObject(GhostObject *ghostObject)
+{
+    ghostObjects.remove(ghostObjects.find(ghostObject));
+
+    DELETE(GhostObject, ghostObject);
 }
 
 void PhysicsWorld::stepSimulation(float timeStep,
@@ -90,7 +119,17 @@ List<PhysicsWorld::RayCastResult> PhysicsWorld::castRay(const Position3D& start,
                     result.normal = Direction3D(normal.getX(), normal.getY(), normal.getZ());
                 }
 
-                result.body = (RigidBody *)rayResult.m_collisionObject->getUserPointer();
+                const btCollisionObject *object = rayResult.m_collisionObject;
+
+                if (dynamic_cast<const btRigidBody *>(object) != nullptr)
+                {
+                    result.objType = RayCastResult::ObjectType::Body;
+                    result.body = (RigidBody *)rayResult.m_collisionObject->getUserPointer();
+                } else
+                {
+                    result.objType = RayCastResult::ObjectType::Ghost;
+                    result.ghost = (GhostObject *)rayResult.m_collisionObject->getUserPointer();
+                }
 
                 results.append(result);
 

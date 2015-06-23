@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "physics/rigidbody.h"
+#include "physics/ghostobject.h"
 #include "physics/physicsdebugdrawer.h"
 #include "containers/list.h"
 
@@ -18,14 +19,27 @@ class PhysicsWorld
     public:
         struct RayCastResult
         {
+            enum ObjectType
+            {
+                Body,
+                Ghost
+            };
+
             float distance;
             Direction3D normal;
-            RigidBody *body;
+            ObjectType objType;
+
+            union
+            {
+                RigidBody *body;
+                GhostObject *ghost;
+            };
 
             inline bool operator == (const RayCastResult& other) const
             {
                 return distance == other.distance and
                        normal == other.normal and
+                       objType == other.objType and
                        body == other.body;
             }
         };
@@ -52,9 +66,16 @@ class PhysicsWorld
             return rigidBodies;
         }
 
-        RigidBody *createRigidBody(const RigidBody::ConstructionInfo& info);
+        inline const List<GhostObject *>& getGhostObjects() const
+        {
+            return ghostObjects;
+        }
 
+        RigidBody *createRigidBody(const RigidBody::ConstructionInfo& info);
         void destroyRigidBody(RigidBody *rigidBody);
+
+        GhostObject *createGhostObject(unsigned short collisionMask=0xFFFF);
+        void destroyGhostObject(GhostObject *object);
 
         void stepSimulation(float timeStep,
                             size_t maxSubSteps=1,
@@ -77,6 +98,7 @@ class PhysicsWorld
         btConstraintSolver *solver;
         btDynamicsWorld *world;
         List<RigidBody *> rigidBodies;
+        List<GhostObject *> ghostObjects;
         PhysicsDebugDrawer *debugDrawer;
 };
 
