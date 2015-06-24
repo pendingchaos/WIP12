@@ -21,14 +21,12 @@
 - [ ] More tests should be created.
 - [ ] When a shape is changed from a type to another, rigid bodies using that shape will have invalid shapes.
 - [ ] Sometimes when a script fails to compile, a segmentation fault happens.
-- [ ] The matrix 4x4 inverse function is incorrect(?).
 - [ ] The computer freezes when the window is too small.
 
 ## Other
 - [ ] Benchmarks.
     - [ ] Draw call
     - [ ] ???
-- [ ] The matrix inversion functions need improvement.
 - [ ] Fix banding in darkly lit areas and on metallic surfaces.
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.

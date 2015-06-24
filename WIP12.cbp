@@ -107,6 +107,7 @@
 		<Unit filename="include/math/t4.h" />
 		<Unit filename="include/memory.h" />
 		<Unit filename="include/misc_macros.h" />
+		<Unit filename="include/physics/ghostobject.h" />
 		<Unit filename="include/physics/physicsdebugdrawer.h" />
 		<Unit filename="include/physics/physicsshape.h" />
 		<Unit filename="include/physics/physicsworld.h" />
@@ -167,6 +168,7 @@
 		<Unit filename="src/math/t3.cpp" />
 		<Unit filename="src/math/t4.cpp" />
 		<Unit filename="src/memory.cpp" />
+		<Unit filename="src/physics/ghostobject.cpp" />
 		<Unit filename="src/physics/physicsdebugdrawer.cpp" />
 		<Unit filename="src/physics/physicsshape.cpp" />
 		<Unit filename="src/physics/physicsworld.cpp" />
