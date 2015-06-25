@@ -13,8 +13,6 @@ class T2
         inline T2(T xy) : x(xy), y(xy) {}
         inline T2(T x_, T y_) : x(x_), y(y_) {}
 
-        inline T2(const T2& other) : x(other.x), y(other.y) {}
-
         template <typename OtherT>
         inline T2(const T2<OtherT>& other) : x(other.x), y(other.y) {}
 

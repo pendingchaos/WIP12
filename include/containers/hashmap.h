@@ -128,7 +128,6 @@ class HashMap
             return true;
         }
 
-        template <typename OtherAllocator>
         bool operator != (const HashMap<Key,
                                         Value,
                                         Hash,

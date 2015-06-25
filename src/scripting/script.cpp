@@ -183,11 +183,12 @@ void Script::_load()
 
     String binaryFilename = String::format("%s/bin/%s.so", dir.getData(), scriptFilename.getData());
 
-    String command = String::format("g++ -o\"%s\" -g -I../include "
+    String command = String::format("g++ -o\"%s\" -g -I../include -I\"%s\" "
                                     "`pkg-config bullet --cflags` `freetype-config --cflags`"
                                     " -fPIC -shared -std=gnu++11 -fabi-version="
                                     STR(__GXX_ABI_VERSION) " -xc++ -",
-                                    binaryFilename.getData());
+                                    binaryFilename.getData(),
+                                    dir.getData());
 
     uint64_t start = platform->getTime();
 

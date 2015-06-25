@@ -17,8 +17,6 @@ class T4
         inline T4(T xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) {}
         inline T4(T x_, T y_, T z_, T w_) : x(x_), y(y_), z(z_), w(w_) {}
 
-        inline T4(const T4& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
-
         template <typename OtherT>
         inline T4(const T4<OtherT>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
 
