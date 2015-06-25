@@ -20,6 +20,7 @@
 #include "tests/list.h"
 #include "tests/hashmap.h"
 #include "tests/t2.h"
+#include "tests/t3.h"
 
 BEGIN_SCRIPT
     virtual void init()
@@ -30,6 +31,7 @@ BEGIN_SCRIPT
         HASHMAP_TESTS
         LIST_TESTS
         T2_TESTS
+        T3_TESTS
         
         size_t numTests = succeeded + failed;
         
