@@ -360,7 +360,7 @@ void GfxRenderer::resize(const UInt2& size)
                                         0,
                                         GfxTexture::Other,
                                         GfxTexture::RGBF32_F16);
-        readColorTexture->allocMipmap(0, 1, NULL);
+        readColorTexture->allocMipmap(0, 1, nullptr);
 
         writeColorTexture->startCreation(GfxTexture::Texture2D,
                                          false,
@@ -370,7 +370,7 @@ void GfxRenderer::resize(const UInt2& size)
                                          0,
                                          GfxTexture::Other,
                                          GfxTexture::RGBF32_F16);
-        writeColorTexture->allocMipmap(0, 1, NULL);
+        writeColorTexture->allocMipmap(0, 1, nullptr);
 
         depthTexture->startCreation(GfxTexture::Texture2D,
                                     false,
@@ -380,7 +380,7 @@ void GfxRenderer::resize(const UInt2& size)
                                     0,
                                     GfxTexture::Other,
                                     GfxTexture::DepthF32_F24);
-        depthTexture->allocMipmap(0, 1, NULL);
+        depthTexture->allocMipmap(0, 1, nullptr);
 
         materialTexture->startCreation(GfxTexture::Texture2D,
                                        false,
@@ -390,7 +390,7 @@ void GfxRenderer::resize(const UInt2& size)
                                        0,
                                        GfxTexture::Other,
                                        GfxTexture::RedGreenU8);
-        materialTexture->allocMipmap(0, 1, NULL);
+        materialTexture->allocMipmap(0, 1, nullptr);
 
         normalTexture->startCreation(GfxTexture::Texture2D,
                                      false,
@@ -400,7 +400,7 @@ void GfxRenderer::resize(const UInt2& size)
                                      0,
                                      GfxTexture::Other,
                                      GfxTexture::RGBF32_F16);
-        normalTexture->allocMipmap(0, 1, NULL);
+        normalTexture->allocMipmap(0, 1, nullptr);
 
         ssaoTexture->startCreation(GfxTexture::Texture2D,
                                    false,
@@ -410,7 +410,7 @@ void GfxRenderer::resize(const UInt2& size)
                                    0,
                                    GfxTexture::Other,
                                    GfxTexture::LuminanceU8);
-        ssaoTexture->allocMipmap(0, 1, NULL);
+        ssaoTexture->allocMipmap(0, 1, nullptr);
 
         ssaoBlurXTexture->startCreation(GfxTexture::Texture2D,
                                         false,
@@ -420,7 +420,7 @@ void GfxRenderer::resize(const UInt2& size)
                                         0,
                                         GfxTexture::Other,
                                         GfxTexture::LuminanceU8);
-        ssaoBlurXTexture->allocMipmap(0, 1, NULL);
+        ssaoBlurXTexture->allocMipmap(0, 1, nullptr);
 
         bloomBlurXTexture->startCreation(GfxTexture::Texture2D,
                                          false,
@@ -430,7 +430,7 @@ void GfxRenderer::resize(const UInt2& size)
                                          0,
                                          GfxTexture::Other,
                                          GfxTexture::RGBF32_F16);
-        bloomBlurXTexture->allocMipmap(0, 1, NULL);
+        bloomBlurXTexture->allocMipmap(0, 1, nullptr);
 
         /*luminanceTexture->startCreation(GfxTexture::Texture2D,
                                         false,
@@ -439,7 +439,7 @@ void GfxRenderer::resize(const UInt2& size)
                                         0,
                                         GfxTexture::Other,
                                         GfxTexture::RedF32_F16);
-        luminanceTexture->allocMipmap(0, 1, NULL);*/
+        luminanceTexture->allocMipmap(0, 1, nullptr);*/
     }
 }
 
@@ -500,9 +500,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledSSAOFragment,
                   quadMesh);
 
@@ -525,9 +525,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(ssaoBlurXFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledSSAOBlurXFragment,
                   quadMesh);
 
@@ -545,9 +545,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledSSAOBlurYFragment,
                   quadMesh);
 
@@ -576,7 +576,6 @@ void GfxRenderer::render()
         Light *light = lights[i];
 
         GfxCompiledShader *fragmentShader;
-        GfxCompiledShader *geometryShader = nullptr;
 
         switch (light->type)
         {
@@ -616,9 +615,9 @@ void GfxRenderer::render()
         }
 
         gfxApi->begin(compiledPostEffectVertex,
-                      NULL,
-                      NULL,
-                      geometryShader,
+                      nullptr,
+                      nullptr,
+                      nullptr,
                       fragmentShader,
                       quadMesh);
 
@@ -709,9 +708,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(luminanceFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledLumCalcFragment,
                   quadMesh);
 
@@ -774,9 +773,9 @@ void GfxRenderer::render()
         gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);
 
         gfxApi->begin(compiledPostEffectVertex,
-                      NULL,
-                      NULL,
-                      NULL,
+                      nullptr,
+                      nullptr,
+                      nullptr,
                       compiledBloomBlurXFragment,
                       quadMesh);
 
@@ -799,9 +798,9 @@ void GfxRenderer::render()
         gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
         gfxApi->begin(compiledPostEffectVertex,
-                      NULL,
-                      NULL,
-                      NULL,
+                      nullptr,
+                      nullptr,
+                      nullptr,
                       compiledBloomBlurYFragment,
                       quadMesh);
 
@@ -827,9 +826,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledTonemapFragment,
                   quadMesh);
 
@@ -849,9 +848,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledVignetteFragment,
                   quadMesh);
 
@@ -874,9 +873,9 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledFXAAFragment,
                   quadMesh);
 
@@ -908,9 +907,9 @@ void GfxRenderer::render()
             case RenderComponent::Overlay:
             {
                 gfxApi->begin(compiledOverlayVertex,
-                              NULL,
-                              NULL,
-                              NULL,
+                              nullptr,
+                              nullptr,
+                              nullptr,
                               compiledOverlayFragment,
                               quadMesh);
 
@@ -938,12 +937,12 @@ void GfxRenderer::render()
     //Gamma correction
     gammaCorrectionTimer->begin();
 
-    gfxApi->setCurrentFramebuffer(NULL);
+    gfxApi->setCurrentFramebuffer(nullptr);
 
     gfxApi->begin(compiledPostEffectVertex,
-                  NULL,
-                  NULL,
-                  NULL,
+                  nullptr,
+                  nullptr,
+                  nullptr,
                   compiledGammaCorrectionFragment,
                   quadMesh);
 

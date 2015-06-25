@@ -28,7 +28,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapPrecision precision)
                                  GfxTexture::Other,
                                  formats[(int)precision]);
 
-        shadowmap->allocMipmap(0, 1, NULL);
+        shadowmap->allocMipmap(0, 1, nullptr);
     } else
     {
         shadowmap->startCreation(GfxTexture::CubeMap,
@@ -40,12 +40,12 @@ void Light::addShadowmap(size_t resolution, ShadowmapPrecision precision)
                                  GfxTexture::Other,
                                  formats[(int)precision]);
 
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveX, NULL);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeX, NULL);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveY, NULL);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeY, NULL);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveZ, NULL);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeZ, NULL);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveX, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeX, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveY, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeY, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveZ, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeZ, nullptr);
     }
 
     shadowmap->setShadowmap(true);

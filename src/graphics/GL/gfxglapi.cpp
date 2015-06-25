@@ -216,7 +216,7 @@ GPUTimer *GfxGLApi::createTimer()
 
 void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
 {
-    if (framebuffer != NULL)
+    if (framebuffer != nullptr)
     {
         glBindFramebuffer(GL_FRAMEBUFFER,
                           ((GfxGLFramebuffer *)framebuffer)->getGLFramebuffer());

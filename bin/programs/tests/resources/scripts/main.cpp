@@ -2,9 +2,9 @@
 #define REQUIRE(cond) if (not (cond)) {return __COUNTER__ - testStartCounter;}
 #define FAIL() REQUIRE(false)
 
-#define RUN_TEST(test)\
+#define RUN_TEST(test, ...)\
 {\
-    int cond = test();\
+    int cond = test(__VA_ARGS__);\
     \
     if (cond == -1)\
     {\
@@ -21,6 +21,8 @@
 #include "tests/hashmap.h"
 #include "tests/t2.h"
 #include "tests/t3.h"
+#include "tests/t4.h"
+#include "tests/gfxbuffer.h"
 
 BEGIN_SCRIPT
     virtual void init()
@@ -32,6 +34,8 @@ BEGIN_SCRIPT
         LIST_TESTS
         T2_TESTS
         T3_TESTS
+        T4_TESTS
+        GFX_BUFFER_TESTS(gfxApi)
         
         size_t numTests = succeeded + failed;
         
