@@ -40,6 +40,12 @@ class GfxMaterial : public Resource
         Float4 albedo;
         unsigned int pomMinLayers;
         unsigned int pomMaxLayers;
+        float minTessLevel;
+        float maxTessLevel;
+        float tessMinDistance;
+        float tessMaxDistance;
+        float displacementStrength;
+        float displacementMidlevel;
 
         #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(ResPtr<GfxTexture> texture)\
         {\
@@ -67,6 +73,13 @@ class GfxMaterial : public Resource
 
         #undef TEXTURE
 
+        void setDisplacementMap(ResPtr<GfxTexture> texture);
+
+        inline ResPtr<GfxTexture> getDisplacementMap() const
+        {
+            return displacementMap;
+        }
+
         inline bool isForward() const
         {
             return forward;
@@ -82,6 +95,7 @@ class GfxMaterial : public Resource
         ResPtr<GfxTexture> normalMap;
         ResPtr<GfxTexture> parallaxHeightMap;
         ResPtr<GfxTexture> pomHeightMap;
+        ResPtr<GfxTexture> displacementMap;
 
         bool forward;
     protected:

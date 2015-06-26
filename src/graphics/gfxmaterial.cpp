@@ -12,6 +12,12 @@ GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
                              albedo(1.0f),
                              pomMinLayers(8),
                              pomMaxLayers(32),
+                             minTessLevel(1.0f),
+                             maxTessLevel(10.0f),
+                             tessMinDistance(0.0f),
+                             tessMaxDistance(10.0f),
+                             displacementStrength(0.1f),
+                             displacementMidlevel(0.5f),
                              forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -27,6 +33,12 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    albedo(1.0f),
                                                    pomMinLayers(8),
                                                    pomMaxLayers(32),
+                                                   minTessLevel(1.0f),
+                                                   maxTessLevel(10.0f),
+                                                   tessMinDistance(0.0f),
+                                                   tessMaxDistance(10.0f),
+                                                   displacementStrength(0.1f),
+                                                   displacementMidlevel(0.5f),
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -62,6 +74,12 @@ void GfxMaterial::save()
     file.writeUInt8(parallaxEdgeDiscard ? 1 : 0);
     file.writeUInt8(pomMinLayers);
     file.writeUInt8(pomMaxLayers);
+    file.writeFloat32(minTessLevel);
+    file.writeFloat32(maxTessLevel);
+    file.writeFloat32(tessMinDistance);
+    file.writeFloat32(tessMaxDistance);
+    file.writeFloat32(displacementStrength);
+    file.writeFloat32(displacementMidlevel);
 
     if (albedoMap != nullptr)
     {
@@ -128,6 +146,28 @@ void GfxMaterial::save()
     {
         file.writeUInt32LE(0);
     }
+
+    if (displacementMap != nullptr)
+    {
+        String filename = displacementMap->filename;
+
+        file.writeUInt32LE(filename.getLength());
+        file.write(filename.getLength(), filename.getData());
+    } else
+    {
+        file.writeUInt32LE(0);
+    }
+}
+
+void GfxMaterial::setDisplacementMap(ResPtr<GfxTexture> texture)
+{
+    displacementMap = texture;
+
+    if (displacementMap != nullptr)
+    {
+        shaderComb->setTessControlShader(resMgr->getResource<GfxShader>("resources/shaders/objectTessControl.bin"));
+        shaderComb->setTessEvalShader(resMgr->getResource<GfxShader>("resources/shaders/objectTessEval.bin"));
+    }
 }
 
 void GfxMaterial::setForward(bool forward_)
@@ -145,6 +185,8 @@ void GfxMaterial::setForward(bool forward_)
                          resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
                          resMgr->getResource<GfxShader>("resources/shaders/gbufferFragment.bin"));
     }
+
+    setDisplacementMap(displacementMap);
 }
 
 void GfxMaterial::_load()
@@ -193,6 +235,13 @@ void GfxMaterial::_load()
         pomMinLayers = file.readUInt8();
         pomMaxLayers = file.readUInt8();
 
+        minTessLevel = file.readFloat32();
+        maxTessLevel = file.readFloat32();
+        tessMinDistance = file.readFloat32();
+        tessMaxDistance = file.readFloat32();
+        displacementStrength = file.readFloat32();
+        displacementMidlevel = file.readFloat32();
+
         uint32_t len = file.readUInt32LE();
         if (len != 0)
         {
@@ -239,6 +288,14 @@ void GfxMaterial::_load()
             String tex(len);
             file.read(len, tex.getData());
             setPOMHeightMap(resMgr->getResource<GfxTexture>(tex));
+        }
+
+        len = file.readUInt32LE();
+        if (len != 0)
+        {
+            String tex(len);
+            file.read(len, tex.getData());
+            setDisplacementMap(resMgr->getResource<GfxTexture>(tex));
         }
     } catch (FileException& e)
     {

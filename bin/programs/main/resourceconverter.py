@@ -245,23 +245,34 @@ if __name__ == "__main__":
             self.albedo = [1.0, 1.0, 1.0, 1.0]
             self.smoothness = 0.6
             self.metalMask = 0.0
-            self.parallaxStrength = 0.0
             self.albedoMap = None
             self.smoothnessMap = None
             self.metalMaskMap = None
             self.normalMap = None
-            self.parallaxHeightMap = None
-            self.pomHeightMap = None
+            
+            self.parallaxStrength = 0.0
             self.parallaxEdgeDiscard = True
+            
+            self.parallaxHeightMap = None
+            
+            self.pomHeightMap = None
             self.pomMinLayers = 8
             self.pomMaxLayers = 32
+            
+            self.displacementMap = None
+            self.minTessLevel = 1.0
+            self.maxTessLevel = 10.0
+            self.tessMinDistance = 0.0
+            self.tessMaxDistance = 10.0
+            self.displacementStrength = 0.1
+            self.displacementMidlevel = 0.5
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
             
             output.write("mtrl\x01\x00")
             
-            s = struct.pack("<bfffffffbbb",
+            s = struct.pack("<bfffffffbbbffffff",
                             self.forward,
                             self.albedo[0],
                             self.albedo[1],
@@ -272,7 +283,13 @@ if __name__ == "__main__":
                             self.parallaxStrength,
                             self.parallaxEdgeDiscard,
                             self.pomMinLayers,
-                            self.pomMaxLayers)
+                            self.pomMaxLayers,
+                            self.minTessLevel,
+                            self.maxTessLevel,
+                            self.tessMinDistance,
+                            self.tessMaxDistance,
+                            self.displacementStrength,
+                            self.displacementMidlevel)
             
             if self.albedoMap != None:
                 s += struct.pack("<L", len(get_dest_filename(self.albedoMap, Texture)))
@@ -307,6 +324,12 @@ if __name__ == "__main__":
             if self.pomHeightMap != None:
                 s += struct.pack("<L", len(get_dest_filename(self.pomHeightMap, Texture)))
                 s += get_dest_filename(self.pomHeightMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            if self.displacementMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.displacementMap, Texture)))
+                s += get_dest_filename(self.displacementMap, Texture)
             else:
                 s += struct.pack("<L", 0)
             
@@ -797,8 +820,15 @@ if __name__ == "__main__":
     conv["forwardFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["objectVertex.vs"] = Shader(["source/shaders/objectVertex.vs"], "../../resources/shaders/objectVertex.bin")
+    
     conv["gbufferFragment.fs"] = Shader(["source/shaders/gbufferFragment.fs"], "../../resources/shaders/gbufferFragment.bin")
     conv["gbufferFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["objectTessControl.tcs"] = Shader(["source/shaders/objectTessControl.tcs"], "../../resources/shaders/objectTessControl.bin")
+    conv["objectTessControl.tcs"].stage_ = Shader.Stage.TessControl
+    
+    conv["objectTessEval.tes"] = Shader(["source/shaders/objectTessEval.tes"], "../../resources/shaders/objectTessEval.bin")
+    conv["objectTessEval.tes"].stage_ = Shader.Stage.TessEval
     
     conv["toSRGBFragment.fs"] = Shader(["source/shaders/toSRGBFragment.fs"], "../../resources/shaders/toSRGBFragment.bin")
     conv["toSRGBFragment.fs"].stage_ = Shader.Stage.Fragment
@@ -868,6 +898,7 @@ if __name__ == "__main__":
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")
+    conv["tesselation test.obj"] = Mesh(["source/tesselation test.obj"], "resources/meshes/tesselation test.bin")
     conv["sphere.obj"] = Mesh(["source/sphere.obj"], "resources/meshes/sphere.bin")
     conv["teapot.obj"] = Mesh(["source/teapot.obj"], "resources/meshes/teapot.bin")
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
@@ -935,6 +966,21 @@ if __name__ == "__main__":
     mat.pomMaxLayers = 70
     conv["parallax test material"] = mat
     
+    mat = Material([], "resources/materials/tesselation test material.bin")
+    mat.forward = False
+    mat.smoothness = 0.5
+    mat.metalMask = 1.0
+    mat.albedoMap = conv["bricks2.jpg"]
+    mat.normalMap = conv["bricks2_normal.jpg"]
+    mat.displacementMap = conv["bricks2_disp.jpg"]
+    mat.minTessLevel = 1.0
+    mat.maxTessLevel = 15.0
+    mat.tessMinDistance = 0.0
+    mat.tessMaxDistance = 30.0
+    mat.displacementStrength = 0.1
+    mat.displacementMidlevel = 0.0
+    conv["tesselation test material"] = mat
+    
     model = Model([], "resources/models/model.bin")
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
     conv["model"] = model
@@ -950,6 +996,10 @@ if __name__ == "__main__":
     model = Model([], "resources/models/plastic.bin")
     model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["plastic"], 0.0, 9999.0)]]
     conv["plastic model"] = model
+    
+    model = Model([], "resources/models/tesstest.bin")
+    model.sub_models = [[Model.LOD(conv["tesselation test.obj"], conv["tesselation test material"], 0.0, 9999.0)]]
+    conv["tesstest"] = model
     
     model = Model([], "resources/models/floor.bin")
     model.sub_models = [[Model.LOD(conv["floor.obj"], conv["floor"], 0.0, 9999.0)]]
@@ -982,6 +1032,10 @@ if __name__ == "__main__":
     fenceShape = PhysicsShape([], "resources/shapes/fence.bin")
     fenceShape.shape = PhysicsShape.Box([0.1, 0.55, 8.0])
     conv["fence shape"] = fenceShape
+    
+    tessTestShape = PhysicsShape([], "resources/shapes/tessTest.bin")
+    tessTestShape.shape = PhysicsShape.Box([2.0, 1.15, 2.0])
+    conv["tess test shape"] = tessTestShape
     
     scene = Scene([], "resources/scenes/scene.bin")
     conv["scene"] = scene
@@ -1065,6 +1119,14 @@ if __name__ == "__main__":
     ent.transform.scale = [0.1, 1.0, 0.1]
     ent.transform.orientation = [0.0, 45.0, 0.0]
     ent.model = conv["parallax test model"]
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("TessTest")
+    ent.transform.position = [0.0, 1.15, 5.0]
+    ent.transform.orientation = [0.0, 90.0, 0.0]
+    ent.model = conv["tesstest"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = tessTestShape
     scene.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)

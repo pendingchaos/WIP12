@@ -144,6 +144,9 @@ class GfxApi
         virtual void setScissorEnabled(bool enabled)=0;
         virtual bool getScissorEnabled()=0;
 
+        virtual void setTessPatchSize(size_t size)=0;
+        virtual size_t getTessPatchSize()=0;
+
     NO_COPY(GfxApi)
 };
 

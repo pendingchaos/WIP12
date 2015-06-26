@@ -14,6 +14,7 @@
     - [ ] Spot
         - [x] Deferred
         - [ ] Forward
+    - [ ] Tesselation and displacement mapping.
 - [ ] Audio
 - [ ] Saving the state of scripts when they are reloaded.
 
