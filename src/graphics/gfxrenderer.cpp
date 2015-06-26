@@ -1199,11 +1199,11 @@ void GfxRenderer::renderModel(bool forward,
 
                 beginRenderMesh(camera, worldMatrix, lod.mesh, shaderComb);
 
-                gfxApi->uniform(fragment, "smoothness", lod.material->smoothness);
-                gfxApi->uniform(fragment, "metalMask", lod.material->metalMask);
-                gfxApi->uniform(fragment, "albedo", lod.material->albedo);
+                gfxApi->uniform(fragment, "smoothness", material->smoothness);
+                gfxApi->uniform(fragment, "metalMask", material->metalMask);
+                gfxApi->uniform(fragment, "albedo", material->albedo);
 
-                if (lod.material->isForward())
+                if (material->isForward())
                 {
                     gfxApi->uniform(fragment, "numLights", (uint32_t)lights.getCount());
                     gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
@@ -1227,6 +1227,24 @@ void GfxRenderer::renderModel(bool forward,
                 if (material->getNormalMap() != nullptr)
                 {
                     gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
+                }
+
+                if (material->getParallaxHeightMap() != nullptr)
+                {
+                    gfxApi->addTextureBinding(fragment, "heightMap", material->getParallaxHeightMap());
+
+                    gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
+                    gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
+                }
+
+                if (material->getPOMHeightMap() != nullptr)
+                {
+                    gfxApi->addTextureBinding(fragment, "heightMap", material->getPOMHeightMap());
+
+                    gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
+                    gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
+                    gfxApi->uniform(fragment, "pomMinLayers", material->pomMinLayers);
+                    gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
                 }
 
                 endRenderMesh(lod.mesh);

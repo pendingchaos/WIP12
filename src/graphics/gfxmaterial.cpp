@@ -6,6 +6,12 @@
 #include "file.h"
 
 GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
+                             smoothness(0.5f),
+                             metalMask(0.0f),
+                             parallaxStrength(0.0F),
+                             albedo(1.0f),
+                             pomMinLayers(8),
+                             pomMaxLayers(32),
                              forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -15,6 +21,12 @@ GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
 
 GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                             GfxMaterialType),
+                                                   smoothness(0.5f),
+                                                   metalMask(0.0f),
+                                                   parallaxStrength(0.0F),
+                                                   albedo(1.0f),
+                                                   pomMinLayers(8),
+                                                   pomMaxLayers(32),
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -46,6 +58,10 @@ void GfxMaterial::save()
     file.writeFloat32(albedo.w);
     file.writeFloat32(smoothness);
     file.writeFloat32(metalMask);
+    file.writeFloat32(parallaxStrength);
+    file.writeUInt8(parallaxEdgeDiscard ? 1 : 0);
+    file.writeUInt8(pomMinLayers);
+    file.writeUInt8(pomMaxLayers);
 
     if (albedoMap != nullptr)
     {
@@ -83,6 +99,28 @@ void GfxMaterial::save()
     if (normalMap != nullptr)
     {
         String filename = normalMap->filename;
+
+        file.writeUInt32LE(filename.getLength());
+        file.write(filename.getLength(), filename.getData());
+    } else
+    {
+        file.writeUInt32LE(0);
+    }
+
+    if (parallaxHeightMap != nullptr)
+    {
+        String filename = parallaxHeightMap->filename;
+
+        file.writeUInt32LE(filename.getLength());
+        file.write(filename.getLength(), filename.getData());
+    } else
+    {
+        file.writeUInt32LE(0);
+    }
+
+    if (pomHeightMap != nullptr)
+    {
+        String filename = pomHeightMap->filename;
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -148,6 +186,13 @@ void GfxMaterial::_load()
 
         metalMask = file.readFloat32();
 
+        parallaxStrength = file.readFloat32();
+
+        parallaxEdgeDiscard = file.readUInt8() != 0;
+
+        pomMinLayers = file.readUInt8();
+        pomMaxLayers = file.readUInt8();
+
         uint32_t len = file.readUInt32LE();
         if (len != 0)
         {
@@ -178,6 +223,22 @@ void GfxMaterial::_load()
             String tex(len);
             file.read(len, tex.getData());
             setNormalMap(resMgr->getResource<GfxTexture>(tex));
+        }
+
+        len = file.readUInt32LE();
+        if (len != 0)
+        {
+            String tex(len);
+            file.read(len, tex.getData());
+            setParallaxHeightMap(resMgr->getResource<GfxTexture>(tex));
+        }
+
+        len = file.readUInt32LE();
+        if (len != 0)
+        {
+            String tex(len);
+            file.read(len, tex.getData());
+            setPOMHeightMap(resMgr->getResource<GfxTexture>(tex));
         }
     } catch (FileException& e)
     {

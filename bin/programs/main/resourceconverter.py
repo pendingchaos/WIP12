@@ -245,24 +245,34 @@ if __name__ == "__main__":
             self.albedo = [1.0, 1.0, 1.0, 1.0]
             self.smoothness = 0.6
             self.metalMask = 0.0
+            self.parallaxStrength = 0.0
             self.albedoMap = None
             self.smoothnessMap = None
             self.metalMaskMap = None
             self.normalMap = None
+            self.parallaxHeightMap = None
+            self.pomHeightMap = None
+            self.parallaxEdgeDiscard = True
+            self.pomMinLayers = 8
+            self.pomMaxLayers = 32
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
             
             output.write("mtrl\x01\x00")
             
-            s = struct.pack("<bffffff",
+            s = struct.pack("<bfffffffbbb",
                             self.forward,
                             self.albedo[0],
                             self.albedo[1],
                             self.albedo[2],
                             self.albedo[3],
                             self.smoothness,
-                            self.metalMask)
+                            self.metalMask,
+                            self.parallaxStrength,
+                            self.parallaxEdgeDiscard,
+                            self.pomMinLayers,
+                            self.pomMaxLayers)
             
             if self.albedoMap != None:
                 s += struct.pack("<L", len(get_dest_filename(self.albedoMap, Texture)))
@@ -285,6 +295,18 @@ if __name__ == "__main__":
             if self.normalMap != None:
                 s += struct.pack("<L", len(get_dest_filename(self.normalMap, Texture)))
                 s += get_dest_filename(self.normalMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            if self.parallaxHeightMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.parallaxHeightMap, Texture)))
+                s += get_dest_filename(self.parallaxHeightMap, Texture)
+            else:
+                s += struct.pack("<L", 0)
+            
+            if self.pomHeightMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.pomHeightMap, Texture)))
+                s += get_dest_filename(self.pomHeightMap, Texture)
             else:
                 s += struct.pack("<L", 0)
             
@@ -759,6 +781,9 @@ if __name__ == "__main__":
                                  "source/Yokohama3/posz.jpg",
                                  "source/Yokohama3/negz.jpg"],
                                  "resources/textures/Yokohama3.bin")
+    conv["bricks2.jpg"] = Texture(["source/bricks2.jpg"], "resources/textures/bricks2.bin")
+    conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
+    conv["bricks2_normal.jpg"] = Texture(["source/bricks2_normal.jpg"], "resources/textures/bricks2_normal.bin")
     
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
     conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
@@ -891,13 +916,25 @@ if __name__ == "__main__":
     mat.smoothness = 0.65
     mat.metalMask = 1.0
     conv["fence"] = mat
-    
+
     mat = Material([], "resources/materials/ao test material.bin")
     mat.forward = False
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["ao test material"] = mat
+    
+    mat = Material([], "resources/materials/parallax test material.bin")
+    mat.forward = False
+    mat.smoothness = 0.875
+    mat.metalMask = 0.0
+    mat.albedoMap = conv["bricks2.jpg"]
+    mat.pomHeightMap = conv["bricks2_disp.jpg"]
+    mat.normalMap = conv["bricks2_normal.jpg"]
+    mat.parallaxStrength = 0.1
+    mat.pomMinLayers = 30
+    mat.pomMaxLayers = 70
+    conv["parallax test material"] = mat
     
     model = Model([], "resources/models/model.bin")
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
@@ -926,6 +963,10 @@ if __name__ == "__main__":
     model = Model([], "resources/models/aotest.bin")
     model.sub_models = [[Model.LOD(conv["aotest.obj"], conv["ao test material"], 0.0, 9999.0)]]
     conv["ao test model"] = model
+    
+    model = Model([], "resources/models/parallaxTest.bin")
+    model.sub_models = [[Model.LOD(conv["floor.obj"], conv["parallax test material"], 0.0, 9999.0)]]
+    conv["parallax test model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
     floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
@@ -1018,6 +1059,13 @@ if __name__ == "__main__":
     ent.transform.position = [-5.0, 0.0, 0.0]
     ent.transform.orientation = [0.0, 100.0, 0.0]
     ent.model = conv["ao test model"]
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Parallax test test")
+    ent.transform.position = [0.0, 1.0, 0.0]
+    ent.transform.scale = [0.1, 1.0, 0.1]
+    ent.transform.orientation = [0.0, 45.0, 0.0]
+    ent.model = conv["parallax test model"]
     scene.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)

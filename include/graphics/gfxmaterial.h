@@ -35,79 +35,37 @@ class GfxMaterial : public Resource
 
         float smoothness;
         float metalMask;
+        float parallaxStrength;
+        bool parallaxEdgeDiscard;
         Float4 albedo;
+        unsigned int pomMinLayers;
+        unsigned int pomMaxLayers;
 
-        inline void setSmoothnessMap(ResPtr<GfxTexture> texture)
-        {
-            smoothnessMap = texture;
-
-            if (smoothnessMap != nullptr)
-            {
-                shaderComb->setFragmentDefine("SMOOTHNESS_MAP", "1");
-            } else
-            {
-                shaderComb->removeFragmentDefine("SMOOTHNESS_MAP");
-            }
+        #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(ResPtr<GfxTexture> texture)\
+        {\
+            name = texture;\
+            if (name != nullptr)\
+            {\
+                shaderComb->setFragmentDefine(define, "1");\
+            } else\
+            {\
+                shaderComb->removeFragmentDefine(define);\
+            }\
+        }\
+        \
+        inline ResPtr<GfxTexture> JOIN(get, upperName)() const\
+        {\
+            return name;\
         }
 
-        inline void setMetalMaskMap(ResPtr<GfxTexture> texture)
-        {
-            metalMaskMap = texture;
+        TEXTURE(smoothnessMap, SmoothnessMap, "SMOOTHNESS_MAP")
+        TEXTURE(metalMaskMap, MetalMaskMap, "METAL_MASK_MAP")
+        TEXTURE(albedoMap, AlbedoMap, "ALBEDO_MAP")
+        TEXTURE(normalMap, NormalMap, "NORMAL_MAP")
+        TEXTURE(parallaxHeightMap, ParallaxHeightMap, "PARALLAX_MAPPING")
+        TEXTURE(pomHeightMap, POMHeightMap, "POM")
 
-            if (metalMaskMap != nullptr)
-            {
-                shaderComb->setFragmentDefine("METAL_MASK_MAP", "1");
-            } else
-            {
-                shaderComb->removeFragmentDefine("METAL_MASK_MAP");
-            }
-        }
-
-        inline void setAlbedoMap(ResPtr<GfxTexture> texture)
-        {
-            albedoMap = texture;
-
-            if (albedoMap != nullptr)
-            {
-                shaderComb->setFragmentDefine("ALBEDO_MAP", "1");
-            } else
-            {
-                shaderComb->removeFragmentDefine("ALBEDO_MAP");
-            }
-        }
-
-        inline void setNormalMap(ResPtr<GfxTexture> texture)
-        {
-            normalMap = texture;
-
-            if (normalMap != nullptr)
-            {
-                shaderComb->setFragmentDefine("NORMAL_MAP", "1");
-            } else
-            {
-                shaderComb->removeFragmentDefine("NORMAL_MAP");
-            }
-        }
-
-        inline ResPtr<GfxTexture> getSmoothnessMap() const
-        {
-            return smoothnessMap;
-        }
-
-        inline ResPtr<GfxTexture> getMetalMaskMap() const
-        {
-            return metalMaskMap;
-        }
-
-        inline ResPtr<GfxTexture> getAlbedoMap() const
-        {
-            return albedoMap;
-        }
-
-        inline ResPtr<GfxTexture> getNormalMap() const
-        {
-            return normalMap;
-        }
+        #undef TEXTURE
 
         inline bool isForward() const
         {
@@ -122,6 +80,8 @@ class GfxMaterial : public Resource
         ResPtr<GfxTexture> metalMaskMap;
         ResPtr<GfxTexture> albedoMap;
         ResPtr<GfxTexture> normalMap;
+        ResPtr<GfxTexture> parallaxHeightMap;
+        ResPtr<GfxTexture> pomHeightMap;
 
         bool forward;
     protected:
