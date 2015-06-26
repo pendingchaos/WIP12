@@ -15,7 +15,7 @@ GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
                              forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
-                     resMgr->getResource<GfxShader>("resources/shaders/forwardVertex.bin"),
+                     resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
                      resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
 }
 
@@ -30,7 +30,7 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
-                     resMgr->getResource<GfxShader>("resources/shaders/forwardVertex.bin"),
+                     resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
                      resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
 }
 
@@ -137,12 +137,12 @@ void GfxMaterial::setForward(bool forward_)
     if (forward)
     {
         shaderComb = NEW(GfxShaderCombination,
-                         resMgr->getResource<GfxShader>("resources/shaders/forwardVertex.bin"),
+                         resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
                          resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
     } else
     {
         shaderComb = NEW(GfxShaderCombination,
-                         resMgr->getResource<GfxShader>("resources/shaders/gbufferVertex.bin"),
+                         resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
                          resMgr->getResource<GfxShader>("resources/shaders/gbufferFragment.bin"));
     }
 }

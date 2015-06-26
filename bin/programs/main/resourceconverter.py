@@ -793,11 +793,10 @@ if __name__ == "__main__":
     conv["skyboxFragment.fs"] = Shader(["source/shaders/skyboxFragment.fs"], "../../resources/shaders/skyboxFragment.bin")
     conv["skyboxFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["forwardVertex.vs"] = Shader(["source/shaders/forwardVertex.vs"], "../../resources/shaders/forwardVertex.bin")
     conv["forwardFragment.fs"] = Shader(["source/shaders/forwardFragment.fs"], "../../resources/shaders/forwardFragment.bin")
     conv["forwardFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["gbufferVertex.vs"] = Shader(["source/shaders/gbufferVertex.vs"], "../../resources/shaders/gbufferVertex.bin")
+    conv["objectVertex.vs"] = Shader(["source/shaders/objectVertex.vs"], "../../resources/shaders/objectVertex.bin")
     conv["gbufferFragment.fs"] = Shader(["source/shaders/gbufferFragment.fs"], "../../resources/shaders/gbufferFragment.bin")
     conv["gbufferFragment.fs"].stage_ = Shader.Stage.Fragment
     
