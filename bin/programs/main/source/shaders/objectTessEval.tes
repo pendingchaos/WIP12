@@ -1,0 +1,87 @@
+layout (triangles) in;
+
+in gl_PerVertex
+{
+    vec4 gl_Position;
+} gl_in[];
+
+in vec3 eval_normal_worldSpace[];
+in vec2 eval_uv_tangentSpace[];
+in vec3 eval_position_worldSpace[];
+in vec3 eval_viewDir_worldSpace[];
+in vec3 eval_tangent_worldSpace[];
+in vec3 eval_bitangent_worldSpace[];
+
+out gl_PerVertex
+{
+    vec4 gl_Position;
+};
+
+out vec3 frag_normal_worldSpace;
+out vec2 frag_uv_tangentSpace;
+out vec3 frag_position_worldSpace;
+out vec3 frag_viewDir_worldSpace;
+out vec3 frag_tangent_worldSpace;
+out vec3 frag_bitangent_worldSpace;
+
+uniform sampler2D heightMap;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform float strength;
+uniform float displacementMidlevel;
+
+vec2 interpolateVec2(in vec2 v0, in vec2 v1, in vec2 v2)
+{
+    return   v0 * gl_TessCoord.x
+           + v1 * gl_TessCoord.y
+           + v2 * gl_TessCoord.z;
+}
+
+vec3 interpolateVec3(in vec3 v0, in vec3 v1, in vec3 v2)
+{
+    return   v0 * gl_TessCoord.x
+           + v1 * gl_TessCoord.y
+           + v2 * gl_TessCoord.z;
+}
+
+vec4 interpolateVec4(in vec4 v0, in vec4 v1, in vec4 v2)
+{
+    return   v0 * gl_TessCoord.x
+           + v1 * gl_TessCoord.y
+           + v2 * gl_TessCoord.z;
+}
+
+void main()
+{
+    gl_Position = interpolateVec4(gl_in[0].gl_Position,
+                                  gl_in[1].gl_Position,
+                                  gl_in[2].gl_Position);
+
+    frag_normal_worldSpace = interpolateVec3(eval_normal_worldSpace[0],
+                                             eval_normal_worldSpace[1],
+                                             eval_normal_worldSpace[2]);
+
+    frag_uv_tangentSpace = interpolateVec2(eval_uv_tangentSpace[0],
+                                           eval_uv_tangentSpace[1],
+                                           eval_uv_tangentSpace[2]);
+
+    frag_position_worldSpace = interpolateVec3(eval_position_worldSpace[0],
+                                               eval_position_worldSpace[1],
+                                               eval_position_worldSpace[2]);
+
+    frag_viewDir_worldSpace = interpolateVec3(eval_viewDir_worldSpace[0],
+                                              eval_viewDir_worldSpace[1],
+                                              eval_viewDir_worldSpace[2]);
+
+    frag_tangent_worldSpace = interpolateVec3(eval_tangent_worldSpace[0],
+                                              eval_tangent_worldSpace[1],
+                                              eval_tangent_worldSpace[2]);
+
+    frag_bitangent_worldSpace = interpolateVec3(eval_bitangent_worldSpace[0],
+                                                eval_bitangent_worldSpace[1],
+                                                eval_bitangent_worldSpace[2]);
+
+    gl_Position.xyz += frag_normal_worldSpace * (texture(heightMap, frag_uv_tangentSpace).r - displacementMidlevel) * strength;
+
+    gl_Position = projectionMatrix * viewMatrix * gl_Position;
+}

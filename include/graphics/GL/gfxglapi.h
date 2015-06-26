@@ -129,9 +129,13 @@ class GfxGLApi : public GfxApi
 
         virtual void setScissorEnabled(bool enabled);
         virtual bool getScissorEnabled();
+
+        virtual void setTessPatchSize(size_t size);
+        virtual size_t getTessPatchSize();
     private:
         struct State
         {
+            size_t patchSize;
             uint8_t constantColor[4];
             GfxBlendFactor srcFactorRGB:4;
             GfxBlendFactor srcFactorAlpha:4;

@@ -710,6 +710,7 @@ void GfxGLApi::resetState()
 {
     State state;
 
+    state.patchSize = 0;
     state.constantColor[0] = 0;
     state.constantColor[1] = 0;
     state.constantColor[2] = 0;
@@ -994,4 +995,16 @@ void GfxGLApi::setScissorEnabled(bool enabled)
 bool GfxGLApi::getScissorEnabled()
 {
     return currentState.scissorEnabled;
+}
+
+void GfxGLApi::setTessPatchSize(size_t size)
+{
+    glPatchParameteri(GL_PATCH_VERTICES, size);
+
+    currentState.patchSize = size;
+}
+
+size_t GfxGLApi::getTessPatchSize()
+{
+    return currentState.patchSize;
 }

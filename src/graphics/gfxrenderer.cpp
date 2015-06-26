@@ -1181,6 +1181,10 @@ void GfxRenderer::renderModel(bool forward,
 
     float distance = position.distance(camera.getPosition());
 
+    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
+    Matrix4x4 viewMatrix = camera.getViewMatrix();
+    Matrix3x3 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
+
     for (size_t i = 0; i < model->subModels.getCount(); ++i)
     {
         GfxModel::SubModel subModel = model->subModels[i];
@@ -1193,11 +1197,55 @@ void GfxRenderer::renderModel(bool forward,
                 distance < lod.maxDistance and
                 lod.material->isForward() == forward)
             {
+                gfxApi->setCullMode(lod.mesh->cullMode);
+
                 ResPtr<GfxMaterial> material = lod.material;
+                ResPtr<GfxMesh> mesh = lod.mesh;
                 GfxShaderCombination *shaderComb = material->getShaderComb();
+
+                gfxApi->pushState();
+
+                GfxCompiledShader *vertex = shaderComb->getCompiledVertexShader();
+                GfxCompiledShader *tessControl = shaderComb->getCompiledTessControlShader();
+                GfxCompiledShader *tessEval = shaderComb->getCompiledTessEvalShader();
+                GfxCompiledShader *geometry = shaderComb->getCompiledGeometryShader();
                 GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
 
-                beginRenderMesh(camera, worldMatrix, lod.mesh, shaderComb);
+                gfxApi->begin(vertex,
+                              tessControl,
+                              tessEval,
+                              geometry,
+                              fragment,
+                              mesh);
+
+                if (material->getDisplacementMap() == nullptr)
+                {
+                    gfxApi->uniform(vertex, "projectionMatrix", projectionMatrix);
+                    gfxApi->uniform(vertex, "viewMatrix", viewMatrix);
+                } else
+                {
+                    gfxApi->uniform(vertex, "projectionMatrix", Matrix4x4());
+                    gfxApi->uniform(vertex, "viewMatrix", Matrix4x4());
+                }
+
+                gfxApi->uniform(vertex, "worldMatrix", worldMatrix);
+                gfxApi->uniform(vertex, "normalMatrix", normalMatrix);
+                gfxApi->uniform(vertex, "cameraPosition", camera.getPosition());
+
+                if (material->getDisplacementMap() != nullptr)
+                {
+                    gfxApi->uniform(tessControl, "minTessLevel", material->minTessLevel);
+                    gfxApi->uniform(tessControl, "maxTessLevel", material->maxTessLevel);
+                    gfxApi->uniform(tessControl, "tessMinDistance", material->tessMinDistance);
+                    gfxApi->uniform(tessControl, "tessMaxDistance", material->tessMaxDistance);
+                    gfxApi->uniform(tessControl, "cameraPosition", camera.getPosition());
+
+                    gfxApi->addTextureBinding(tessEval, "heightMap", material->getDisplacementMap());
+                    gfxApi->uniform(tessEval, "displacementMidlevel", material->displacementMidlevel);
+                    gfxApi->uniform(tessEval, "projectionMatrix", projectionMatrix);
+                    gfxApi->uniform(tessEval, "viewMatrix", viewMatrix);
+                    gfxApi->uniform(tessEval, "strength", material->displacementStrength);
+                }
 
                 gfxApi->uniform(fragment, "smoothness", material->smoothness);
                 gfxApi->uniform(fragment, "metalMask", material->metalMask);
@@ -1247,7 +1295,28 @@ void GfxRenderer::renderModel(bool forward,
                     gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
                 }
 
-                endRenderMesh(lod.mesh);
+                gfxApi->setCullMode(mesh->cullMode);
+
+                GfxPrimitive primitive = material->getDisplacementMap() != nullptr ?
+                                         GfxPatches :
+                                         mesh->primitive;
+
+                gfxApi->setTessPatchSize(3);
+
+                if (mesh->indexed)
+                {
+                    gfxApi->endIndexed(primitive,
+                                       mesh->indexData.type,
+                                       mesh->indexData.numIndices,
+                                       mesh->indexData.offset,
+                                       mesh->indexData.buffer,
+                                       mesh->winding);
+                } else
+                {
+                    gfxApi->end(primitive, mesh->numVertices, mesh->winding);
+                }
+
+                gfxApi->popState();
                 break;
             }
         }
