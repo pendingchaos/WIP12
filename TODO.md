@@ -28,7 +28,7 @@
 - [ ] Benchmarks.
     - [ ] Draw call
     - [ ] ???
-- [ ] Fix banding in darkly lit areas and on metallic surfaces.
+- [ ] Fix banding in darkly lit areas, on metallic surfaces and point light lit areas.
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
 
