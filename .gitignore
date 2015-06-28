@@ -7,3 +7,4 @@
 /bin/programs/tests/resources/scripts/bin/*
 /WIP12.layout
 /WIP12.depend
+/include/scripting/scriptinclude.h.gch
