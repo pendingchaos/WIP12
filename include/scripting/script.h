@@ -9,6 +9,8 @@ class Script;
 class Application;
 class Entity;
 
+void precompileScriptInclude();
+
 class ScriptFunctionException : public Exception
 {
     public:

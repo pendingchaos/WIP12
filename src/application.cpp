@@ -21,6 +21,8 @@
 Application::Application(const char *workingDir) : fixedTimestep(0.016f),
                                                    nextScript(nullptr)
 {
+    precompileScriptInclude();
+
     app = this;
 
     FT_Init_FreeType(&freeType_);

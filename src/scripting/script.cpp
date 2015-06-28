@@ -9,6 +9,15 @@
 #include <stdio.h>
 #include <dlfcn.h>
 
+void precompileScriptInclude()
+{
+    system("g++ -g -fPIC -D_REENTRANT -I../include"
+           " -std=gnu++11 ../include/scripting/scriptinclude.h"
+           " -o../include/scripting/scriptinclude.h.gch `sdl2-config --cflags`"
+           " `pkg-config bullet --cflags` `freetype-config --cflags` "
+           "-fabi-version=" STR(__GXX_ABI_VERSION));
+}
+
 const void *getScriptFunctionStruct();
 
 static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting/scriptinclude.h\"\nclass _InstanceBase\n"
@@ -186,8 +195,8 @@ void Script::_load()
     String binaryFilename = String::format("%s/bin/%s.so", dir.getData(), scriptFilename.getData());
 
     String command = String::format("g++ -o\"%s\" -g -I../include -I\"%s\" "
-                                    "`pkg-config bullet --cflags` `freetype-config --cflags`"
-                                    " -fPIC -shared -std=gnu++11 -fabi-version="
+                                    "`pkg-config bullet --cflags` `freetype-config --cflags` -D_REENTRANT"
+                                    " -fPIC -shared -std=gnu++11 -Winvalid-pch -fabi-version="
                                     STR(__GXX_ABI_VERSION) " -xc++ -",
                                     binaryFilename.getData(),
                                     dir.getData());
