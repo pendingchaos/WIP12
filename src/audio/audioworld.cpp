@@ -59,10 +59,17 @@ void audioWorldCallback(float *data, size_t numSamples, void *userdata, AudioDev
 
                         index %= audio->getNumSamples();
 
-                        float sample = audio->getMonoSample(index) * gain;
+                        if (source->is3d)
+                        {
+                            float sample = audio->getMonoSample(index) * gain;
 
-                        data[j*2] += sample;
-                        data[j*2+1] += sample;
+                            data[j*2] += sample;
+                            data[j*2+1] += sample;
+                        } else
+                        {
+                            data[j*2] += audio->getSample(index, 0) * gain;
+                            data[j*2+1] += audio->getSample(index, 1) * gain;
+                        }
                     }
                 } else
                 {
@@ -77,10 +84,17 @@ void audioWorldCallback(float *data, size_t numSamples, void *userdata, AudioDev
 
                         if (index < audio->getNumSamples())
                         {
+                        if (source->is3d)
+                        {
                             float sample = audio->getMonoSample(index) * gain;
 
                             data[j*2] += sample;
                             data[j*2+1] += sample;
+                        } else
+                        {
+                            data[j*2] += audio->getSample(index, 0) * gain;
+                            data[j*2+1] += audio->getSample(index, 1) * gain;
+                        }
                         }
                     }
                 }
