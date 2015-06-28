@@ -17,6 +17,7 @@ class GfxRenderer;
 class PhysicsWorld;
 class Filesystem;
 class GfxDebugDrawer;
+class AudioDevice;
 
 class Application
 {
@@ -58,6 +59,11 @@ class Application
             return freeType_;
         }
 
+        inline AudioDevice *getAudioDevice() const
+        {
+            return audioDevice_;
+        }
+
         inline void setNextScript(ResPtr<Script> script_)
         {
             nextScript = script_;
@@ -82,6 +88,7 @@ class Application
         GfxApi *gfxApi_;
         GfxDebugDrawer *debugDrawer_;
         FT_Library freeType_;
+        AudioDevice *audioDevice_;
 
         ScriptInstance *script;
         ResPtr<Script> nextScript;

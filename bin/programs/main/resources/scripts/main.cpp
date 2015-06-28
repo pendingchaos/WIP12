@@ -158,6 +158,7 @@ BEGIN_SCRIPT
     GPUTimer *textTimer;
     float debugDrawTiming;
     float textTiming;
+    AudioSource *source;
 
     virtual void init()
     {
@@ -171,6 +172,12 @@ BEGIN_SCRIPT
 
         debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
+        
+        ResPtr<Audio> audio = resMgr->getResource<Audio>("resources/audio/hi.ogg");
+        
+        source = scene->getAudioWorld()->createSource(audio);
+    
+        source->position = Position3D(0.0f, 1.0f, 0.0f);
     }
 
     virtual void deinit()
@@ -235,6 +242,11 @@ BEGIN_SCRIPT
                     platform->setFullscreen(false);
                     break;
                 }
+                case Platform::H:
+                {
+                    source->playing = true;
+                    break;
+                }
                 }
                 break;
             }
@@ -249,6 +261,8 @@ BEGIN_SCRIPT
     virtual void update()
     {
         scene->update();
+        
+        scene->getAudioWorld()->listenerPosition = scene->getRenderer()->camera.getPosition();
     }
 
     virtual void fixedUpdate(float timestep)

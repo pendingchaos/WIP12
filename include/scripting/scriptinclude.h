@@ -53,6 +53,9 @@
 #include "physics/physicsshape.h"
 #include "physics/physicsdebugdrawer.h"
 #include "platform/platform.h"
+#include "audio/audio.h"
+#include "audio/audioworld.h"
+#include "audio/audiodevice.h"
 
 #define _SCRIPT_SIDE_IMPLS
 #include "scripting/scriptsidebindings.h"

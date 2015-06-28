@@ -11,10 +11,12 @@
 #include "graphics/gfxdebugdrawer.h"
 #include "scripting/script.h"
 #include "physics/physicsworld.h"
+#include "audio/audiodevice.h"
 #include "misc_macros.h"
 #include "filesystem.h"
 #include "error.h"
 #include "globals.h"
+#include "logging.h"
 
 Application::Application(const char *workingDir) : fixedTimestep(0.016f),
                                                    nextScript(nullptr)
@@ -42,12 +44,19 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     debugDrawer_ = NEW(GfxDebugDrawer, gfxApi_);
     debugDrawer = debugDrawer_;
 
+    audioDevice_ = NEW(AudioDevice, 0, 44100, 4096);
+    audioDevice = audioDevice_;
+
+    INFO(CATEGORY_AUDIO, "Initialized an audio device called \"%s\".", audioDevice_->getName().getData())();
+
     script = nullptr;
 }
 
 Application::~Application()
 {
     DELETE(ScriptInstance, script);
+
+    DELETE(AudioDevice, audioDevice_);
 
     DELETE(GfxDebugDrawer, debugDrawer_);
     DELETE(GfxApi, gfxApi_);
@@ -95,6 +104,17 @@ void Application::updateFunction()
     resMgr_->autoReloadResources();
 
     platform_->running = running;
+
+    int numSamples = audioDevice->getSamples() * 2 - audioDevice->getNumQueuedSamples();
+
+    numSamples = std::max(numSamples, 0);
+
+    if (numSamples > 0)
+    {
+        audioDevice->runCallbacks(numSamples);
+    }
+
+    audioDevice->play();
 }
 
 struct Data

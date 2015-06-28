@@ -15,7 +15,7 @@
         - [x] Deferred
         - [ ] Forward
     - [ ] Tesselation and displacement mapping.
-- [ ] Audio
+- [ ] The doppler effect (disabled) causes popping noise.
 - [ ] Saving the state of scripts when they are reloaded.
 
 ## Bugs

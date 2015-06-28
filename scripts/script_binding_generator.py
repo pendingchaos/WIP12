@@ -47,7 +47,10 @@ files = [
 "../include/physics/rigidbody.h",
 "../include/physics/physicsshape.h",
 "../include/physics/physicsdebugdrawer.h",
-"../include/platform/platform.h"]
+"../include/platform/platform.h",
+"../include/audio/audio.h",
+"../include/audio/audioworld.h",
+"../include/audio/audiodevice.h"]
 
 print "Running preprocessor"
 
@@ -64,7 +67,7 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "GfxShaderCombination", "Exception", "ShaderCompileException", "FileException",
 "LookupException", "ResourceIOException", "LogEntry", "PhysicsShapeImpl",
 "Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB", "ScriptFunction",
-"UserData", "GhostObject"]
+"UserData", "GhostObject", "Audio", "AudioDevice", "AudioWorld", "AudioSource"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",

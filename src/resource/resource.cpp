@@ -61,10 +61,18 @@ void Resource::save() {}
 
 bool Resource::shouldReload() const
 {
+    if (filename.getLength() == 0)
+    {
+        return false;
+    }
+
     return ::getLastFileModification(filename.getData()) != lastFileModification;
 }
 
 void Resource::refreshModification()
 {
-    lastFileModification = ::getLastFileModification(filename.getData());
+    if (filename.getLength() != 0)
+    {
+        lastFileModification = ::getLastFileModification(filename.getData());
+    }
 }

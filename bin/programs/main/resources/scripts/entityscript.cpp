@@ -169,6 +169,8 @@ BEGIN_SCRIPT
         feetGhost->getCollisions(rigidBodies, ghosts);
         
         onFloor = rigidBodies.getCount() != 0;
+        
+        entity->getScene()->getAudioWorld()->listenerVelocity = entity->getRigidBody()->getLinearVelocity();
     }
 
     GhostObject *feetGhost;

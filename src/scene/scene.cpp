@@ -7,6 +7,7 @@
 #include "graphics/gfxapi.h"
 #include "physics/physicsworld.h"
 #include "scripting/script.h"
+#include "audio/audioworld.h"
 #include "globals.h"
 #include "file.h"
 
@@ -14,6 +15,9 @@ Scene::Scene() : Resource(SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
     renderer = NEW(GfxRenderer, this);
+    audioWorld = NEW(AudioWorld);
+
+    audioWorld->addToAudioDevice(audioDevice);
 }
 
 Scene::Scene(const String& filename) : Resource(filename,
@@ -21,6 +25,9 @@ Scene::Scene(const String& filename) : Resource(filename,
 {
     physicsWorld = NEW(PhysicsWorld);
     renderer = NEW(GfxRenderer, this);
+    audioWorld = NEW(AudioWorld);
+
+    audioWorld->addToAudioDevice(audioDevice);
 }
 
 Scene::~Scene()
@@ -30,6 +37,9 @@ Scene::~Scene()
         DELETE(Entity, entities[i]);
     }
 
+    audioWorld->removeFromAudioDevice(audioDevice);
+
+    DELETE(AudioWorld, audioWorld);
     DELETE(GfxRenderer, renderer);
     DELETE(PhysicsWorld, physicsWorld);
 }
@@ -41,11 +51,13 @@ void Scene::removeContent()
         DELETE(Entity, entities[i]);
     }
 
-    physicsWorld->~PhysicsWorld();
-    new (physicsWorld) PhysicsWorld;
+    audioWorld->clearSources();
 
     renderer->~GfxRenderer();
     new (renderer) GfxRenderer(this);
+
+    physicsWorld->~PhysicsWorld();
+    new (physicsWorld) PhysicsWorld;
 
     entities = List<Entity *>();
 }

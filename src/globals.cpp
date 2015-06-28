@@ -9,6 +9,7 @@ GfxApi *gfxApi = nullptr;
 Filesystem *fileSys = nullptr;
 GfxDebugDrawer *debugDrawer = nullptr;
 FT_Library freeType = nullptr;
+AudioDevice *audioDevice = nullptr;
 
 void setApplication(Application *app_)
 {
@@ -22,6 +23,7 @@ void setApplication(Application *app_)
         fileSys = app->getFilesystem();
         debugDrawer = app->getDebugDrawer();
         freeType = app->getFreeType();
+        audioDevice = app->getAudioDevice();
     } else
     {
         platform = nullptr;
@@ -30,5 +32,6 @@ void setApplication(Application *app_)
         fileSys = nullptr;
         debugDrawer = nullptr;
         freeType = nullptr;
+        audioDevice = nullptr;
     }
 }

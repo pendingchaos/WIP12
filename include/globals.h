@@ -10,6 +10,7 @@ class ResourceManager;
 class GfxApi;
 class Filesystem;
 class GfxDebugDrawer;
+class AudioDevice;
 
 extern const char *programName;
 extern Application *app;
@@ -19,6 +20,7 @@ extern GfxApi *gfxApi;
 extern Filesystem *fileSys;
 extern GfxDebugDrawer *debugDrawer;
 extern FT_Library freeType;
+extern AudioDevice *audioDevice;
 
 void setApplication(Application *app);
 

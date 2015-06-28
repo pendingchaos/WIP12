@@ -166,5 +166,6 @@ class LogEntry
 #define CATEGORY_FILE "FILE"
 #define CATEGORY_SCRIPT "SCRIPT"
 #define CATEGORY_PHYSICS "PHYSICS"
+#define CATEGORY_AUDIO "AUDIO"
 
 #endif // LOGGING_H

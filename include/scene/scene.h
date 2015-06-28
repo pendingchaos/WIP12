@@ -14,6 +14,7 @@ class GfxShader;
 class GfxMesh;
 class GfxBuffer;
 class GfxRenderer;
+class AudioWorld;
 
 class Scene : public Resource
 {
@@ -42,6 +43,11 @@ class Scene : public Resource
             return renderer;
         }
 
+        inline AudioWorld *getAudioWorld() const
+        {
+            return audioWorld;
+        }
+
         virtual void save();
 
         Entity *createEntity(const String& name);
@@ -53,6 +59,7 @@ class Scene : public Resource
         }
     private:
         GfxRenderer *renderer;
+        AudioWorld *audioWorld;
         List<Entity *> entities;
 
         void _handleInput(const List<Entity *>& entities_);

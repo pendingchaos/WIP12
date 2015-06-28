@@ -44,6 +44,7 @@
 			<Add option="`sdl2-config --cflags`" />
 			<Add option="`pkg-config bullet --cflags`" />
 			<Add option="`freetype-config --cflags`" />
+			<Add option="`pkg-config vorbisfile --cflags`" />
 			<Add option="-std=gnu++11" />
 			<Add option="-DUSE_SDL2" />
 			<Add option="-DGLFL_USE_SDL2" />
@@ -56,6 +57,7 @@
 			<Add option="`sdl2-config --libs`" />
 			<Add option="`pkg-config bullet --libs`" />
 			<Add option="`freetype-config --libs`" />
+			<Add option="`pkg-config vorbisfile --libs`" />
 			<Add library="libGL" />
 			<Add library="BulletDynamics" />
 			<Add library="BulletCollision" />
@@ -64,6 +66,9 @@
 		</Linker>
 		<Unit filename="TODO.md" />
 		<Unit filename="include/application.h" />
+		<Unit filename="include/audio/audio.h" />
+		<Unit filename="include/audio/audiodevice.h" />
+		<Unit filename="include/audio/audioworld.h" />
 		<Unit filename="include/backtrace.h" />
 		<Unit filename="include/containers/hashmap.h" />
 		<Unit filename="include/containers/list.h" />
@@ -126,6 +131,9 @@
 		<Unit filename="scripts/gen_misc_macros.py" />
 		<Unit filename="scripts/script_binding_generator.py" />
 		<Unit filename="src/application.cpp" />
+		<Unit filename="src/audio/audio.cpp" />
+		<Unit filename="src/audio/audiodevice.cpp" />
+		<Unit filename="src/audio/audioworld.cpp" />
 		<Unit filename="src/backtrace.cpp" />
 		<Unit filename="src/containers/hashmap.cpp" />
 		<Unit filename="src/containers/list.cpp" />

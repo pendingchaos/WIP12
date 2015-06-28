@@ -196,7 +196,8 @@ class Resource
             GfxModelType,
             SceneType,
             ScriptType,
-            PhysicsShapeType
+            PhysicsShapeType,
+            AudioType
         };
 
         virtual ~Resource();
