@@ -33,5 +33,5 @@
 - [ ] Improve error and exception handling.
 
 ## Performance Improvements
-- [ ] Script compilation is very slow.
 - [ ] Instancing (explicit and implicit).
+- [ ] SSAO performance should be improved.

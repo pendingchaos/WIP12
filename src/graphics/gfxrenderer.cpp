@@ -119,6 +119,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoBlurXTexture = NEW(GfxTexture);
     bloomBlurXTexture = NEW(GfxTexture);
     //luminanceTexture = NEW(GfxTexture);
+    ssaoRandomTexture = NEW(GfxTexture);
 
     readColorTexture->setWrapMode(GfxTexture::Stretch);
     writeColorTexture->setWrapMode(GfxTexture::Stretch);
@@ -131,6 +132,34 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //luminanceTexture->setWrapMode(GfxTexture::Stretch);
 
     resize(640);
+
+    ssaoRandomTexture->startCreation(GfxTexture::Texture2D,
+                                     false,
+                                     4,
+                                     4,
+                                     1,
+                                     0,
+                                     GfxTexture::Other,
+                                     GfxTexture::RedGreenF32_F16);
+
+    static const float randomVecs[] = {-0.99f, -0.15f,
+                                       -0.5f, 0.87f,
+                                       0.97f, -0.24f,
+                                       0.65f, 0.76f,
+                                       -0.81f, 0.59f,
+                                       0.9f, -0.44f,
+                                       -1.0f, 0.07f,
+                                       0.79f, 0.61f,
+                                       0.20f, -0.98f,
+                                       0.93f, -0.36f,
+                                       0.99f, -0.15f,
+                                       -0.74f, -0.67f,
+                                       0.87f, 0.49f,
+                                       0.71f, -0.7f,
+                                       -0.66f, -0.75f,
+                                       -1.0f, 0.07f};
+
+    ssaoRandomTexture->allocMipmap(0, 1, randomVecs);
 
     readFramebuffer = gfxApi->createFramebuffer();
     readFramebuffer->addColorAttachment(0, readColorTexture);
@@ -512,6 +541,7 @@ void GfxRenderer::render()
     gfxApi->uniform(compiledSSAOFragment, "cameraFar", camera.getFar());
     gfxApi->uniform(compiledSSAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
     gfxApi->uniform(compiledSSAOFragment, "radius", ssaoRadius);
+    gfxApi->addTextureBinding(compiledSSAOFragment, "randomTex", ssaoRandomTexture);
 
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,

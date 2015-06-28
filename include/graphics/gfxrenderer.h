@@ -213,6 +213,7 @@ class GfxRenderer
         ResPtr<GfxTexture> ssaoTexture;
         ResPtr<GfxTexture> ssaoBlurXTexture;
         ResPtr<GfxTexture> bloomBlurXTexture;
+        ResPtr<GfxTexture> ssaoRandomTexture;
         //ResPtr<GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
