@@ -41,6 +41,8 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "        virtual void update() {}\n"
 "        virtual void fixedUpdate(float timestep) {}\n"
 "        virtual void render() {}\n"
+"        virtual void serialize(Serializable& serialized) {}\n"
+"        virtual void deserialize(const  Serializable& serialized) {}\n"
 "    protected:"
 "        Application *app;\n"
 "        Platform *platform;\n"
@@ -77,6 +79,8 @@ class _InstanceBase
         virtual void update() {}
         virtual void fixedUpdate(float timestep) {}
         virtual void render() {}
+        virtual void serialize(Serializable& serialized) {}
+        virtual void deserialize(const Serializable& serialized) {}
 };
 
 ScriptInstance::ScriptInstance(ResPtr<Script> script_,
@@ -119,6 +123,22 @@ void ScriptInstance::render()
     if (ptr != nullptr)
     {
         ((_InstanceBase *)ptr)->render();
+    }
+}
+
+void ScriptInstance::serialize(Serializable& serialized)
+{
+    if (ptr != nullptr)
+    {
+        ((_InstanceBase *)ptr)->serialize(serialized);
+    }
+}
+
+void ScriptInstance::deserialize(const Serializable& serialized)
+{
+    if (ptr != nullptr)
+    {
+        ((_InstanceBase *)ptr)->deserialize(serialized);
     }
 }
 
@@ -166,6 +186,20 @@ void Script::removeContent()
 
 void Script::_load()
 {
+    List<Serializable> serialized;
+
+    if (dl != nullptr)
+    {
+        for (size_t i = 0; i < instances.getCount(); ++i)
+        {
+            Serializable serialized_;
+
+            instances[i]->serialize(serialized_);
+
+            serialized.append(serialized_);
+        }
+    }
+
     removeContent();
 
     String source;
@@ -262,6 +296,24 @@ void Script::_load()
                 ScriptInstance *instance = instances[i];
 
                 instance->ptr = createFunc(app, instance->entity, this);
+
+                if (serialized.getCount() != 0)
+                {
+                    try
+                    {
+                        instance->deserialize(serialized[i]);
+                    } catch (SerializeException& e)
+                    {
+                        log("Serialization exception");
+                        log("    File: %s\n", e.getFile());
+                        log("    Line: %d\n", e.getLine());
+                        log("    Function: %s\n", e.getFunction());
+                        log("    Script: %s\n", filename.getData());
+
+                        destroyFunc(instance->ptr);
+                        instance->ptr = createFunc(app, instance->entity, this);
+                    }
+                }
             }
 
             for (size_t i = 0; i < userDatas.getCount(); ++i)

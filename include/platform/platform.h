@@ -198,6 +198,8 @@ class Platform
         virtual bool isRightMouseButtonPressed() const=0;
         virtual bool isMiddleMouseButtonPressed() const=0;
 
+        virtual Int2 getMouseWheel() const=0;
+
         virtual bool isCursorVisible() const=0;
         virtual void setCursorVisible(bool visible) const=0;
 

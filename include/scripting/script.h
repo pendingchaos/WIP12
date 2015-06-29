@@ -2,6 +2,7 @@
 #define SCRIPT_H
 
 #include "resource/resource.h"
+#include "serialization.h"
 
 #include <dlfcn.h>
 
@@ -72,6 +73,8 @@ class ScriptInstance
         void update();
         void fixedUpdate(float timestep);
         void render();
+        void serialize(Serializable& serialized);
+        void deserialize(const Serializable& serialized);
 
         inline ResPtr<Script> getScript() const
         {

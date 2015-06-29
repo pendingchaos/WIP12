@@ -123,8 +123,20 @@ BEGIN_SCRIPT
 
             platform->setMousePosition(Int2(w/2.0f, h/2.0f));
 
-            angularVelocity.x += rotateSpeed * platform->getFrametime() * (w / 2.0f - pos.x) / 4.0f;
-            angularVelocity.y += rotateSpeed * platform->getFrametime() * (h / 2.0f - pos.y) / 4.0f;
+            Float2 rel = Float2(w, h) / 2.0f - pos;
+            
+            if (rel.x > -1.0 and rel.x < 1.0)
+            {
+                rel.x = 0.0;
+            }
+            
+            if (rel.y > -1.0 and rel.y < 1.0)
+            {
+                rel.y = 0.0;
+            }
+            
+            angularVelocity.x += rotateSpeed * platform->getFrametime() * rel.x / 4.0f;
+            angularVelocity.y += rotateSpeed * platform->getFrametime() * rel.y / 4.0f;
         } else
         {
             platform->setCursorVisible(true);
@@ -135,7 +147,7 @@ BEGIN_SCRIPT
 
         angularVelocity.x = std::max(angularVelocity.x, -maxAngularVelocity);
         angularVelocity.y = std::max(angularVelocity.y, -maxAngularVelocity);
-
+        
         angle += angularVelocity;
 
         if (angle.y < -3.1415f / 2.0f)
@@ -148,11 +160,31 @@ BEGIN_SCRIPT
             angle.y = 3.1415f / 2.0f;
         }
 
+        if (platform->getMouseWheel().y > 0)
+        {
+            zoom -= 1.0f * platform->getFrametime();
+        }
+
+        if (platform->getMouseWheel().y < 0)
+        {
+            zoom += 1.0f * platform->getFrametime();
+        }
+
         zoom = std::max(std::min(zoom, 1.7f), 0.3f);
 
         camera.setFieldOfView(zoom * 50.0f);
 
-        angularVelocity -= angularVelocity * platform->getFrametime() * 15.0f;
+        angularVelocity *= platform->getFrametime() * 50.0f;
+        
+        if (angularVelocity.x > -0.001f and angularVelocity.x < 0.001f)
+        {
+            angularVelocity.x = 0.0;
+        }
+        
+        if (angularVelocity.y > -0.001f and angularVelocity.y < 0.001f)
+        {
+            angularVelocity.y = 0.0f;
+        }
 
         camera.setPosition(entity->transform.position+Position3D(0.0f, 1.5f, 0.0f));
     }
@@ -171,6 +203,28 @@ BEGIN_SCRIPT
         onFloor = rigidBodies.getCount() != 0;
         
         entity->getScene()->getAudioWorld()->listenerVelocity = entity->getRigidBody()->getLinearVelocity();
+    }
+    
+    virtual void serialize(Serializable& serialized)
+    {
+        serialized.set("angle", angle);
+        serialized.set("speed", speed);
+        serialized.set("rotateSpeed", rotateSpeed);
+        serialized.set("zoom", zoom);
+        serialized.set("angularVelocity", angularVelocity);
+        serialized.set("maximumVelocity", maximumVelocity);
+        serialized.set("maxAngularVelocity", maxAngularVelocity);
+    }
+    
+    virtual void deserialize(const Serializable& serialized)
+    {
+        serialized.get("angle", angle);
+        serialized.get("speed", speed);
+        serialized.get("rotateSpeed", rotateSpeed);
+        serialized.get("zoom", zoom);
+        serialized.get("angularVelocity", angularVelocity);
+        serialized.get("maximumVelocity", maximumVelocity);
+        serialized.get("maxAngularVelocity", maxAngularVelocity);
     }
 
     GhostObject *feetGhost;

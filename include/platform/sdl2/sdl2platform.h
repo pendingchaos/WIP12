@@ -43,6 +43,8 @@ class SDL2Platform : public Platform
         virtual bool isRightMouseButtonPressed() const;
         virtual bool isMiddleMouseButtonPressed() const;
 
+        virtual Int2 getMouseWheel() const;
+
         virtual bool isCursorVisible() const;
         virtual void setCursorVisible(bool visible) const;
 
@@ -56,6 +58,7 @@ class SDL2Platform : public Platform
         float frametime;
         float gpuFrametime;
         bool fullscreen;
+        Int2 mouseWheel;
 };
 #endif
 

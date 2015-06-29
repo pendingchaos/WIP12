@@ -16,7 +16,6 @@
         - [ ] Forward
     - [ ] Tesselation and displacement mapping.
 - [ ] The doppler effect (disabled) causes popping noise.
-- [ ] Saving the state of scripts when they are reloaded.
 
 ## Bugs
 - [ ] More tests should be created.

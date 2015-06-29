@@ -235,6 +235,8 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
 
     while (running)
     {
+        mouseWheel = Int2();
+
         Uint64 start = SDL_GetPerformanceCounter();
 
         SDL_PumpEvents();
@@ -362,6 +364,9 @@ bool SDL2Platform::pollEvent(Event& event)
         event.type = Event::MouseWheel;
         event.mouseWheel.relativeX = sdlEvent.wheel.x;
         event.mouseWheel.relativeY = sdlEvent.wheel.y;
+
+        mouseWheel.x = sdlEvent.wheel.x;
+        mouseWheel.y = sdlEvent.wheel.y;
         break;
     }
     default:
@@ -445,6 +450,11 @@ bool SDL2Platform::isRightMouseButtonPressed() const
 bool SDL2Platform::isMiddleMouseButtonPressed() const
 {
     return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_MMASK;
+}
+
+Int2 SDL2Platform::getMouseWheel() const
+{
+    return mouseWheel;
 }
 
 bool SDL2Platform::isCursorVisible() const

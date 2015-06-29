@@ -67,7 +67,8 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "GfxShaderCombination", "Exception", "ShaderCompileException", "FileException",
 "LookupException", "ResourceIOException", "LogEntry", "PhysicsShapeImpl",
 "Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB", "ScriptFunction",
-"UserData", "GhostObject", "Audio", "AudioDevice", "AudioWorld", "AudioSource"]
+"UserData", "GhostObject", "Audio", "AudioDevice", "AudioWorld", "AudioSource",
+"SerializeException", "Serializable"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",
@@ -361,7 +362,14 @@ for class_ in classes.values():
     if class_.has_pure_virtual_methods:
         continue
 
+    lens = {}
+
     for constructor in class_.constructors:
+        if len(constructor.args) in lens:
+            continue
+        
+        lens[len(constructor.args)] = True
+        
         argDecls = ["T%d arg%d" % (j, j) for j in xrange(len(constructor.args))]
         argDeclStr = ", ".join(argDecls)
 
@@ -405,7 +413,14 @@ for class_ in classes.values():
 
     script_side.write("template <>\nstruct _new<%s>\n{\n" % (class_.name))
 
+    lens = {}
+
     for constructor in class_.constructors:
+        if len(constructor.args) in lens:
+            continue
+        
+        lens[len(constructor.args)] = True
+        
         argDecls = ["T%d arg%d" % (j, j) for j in xrange(len(constructor.args))]
         argDeclStr = ", ".join(argDecls)
 
