@@ -20,7 +20,6 @@
 ## Bugs
 - [ ] More tests should be created.
 - [ ] When a shape is changed from a type to another, rigid bodies using that shape will have invalid shapes.
-- [ ] Sometimes when a script fails to compile, a segmentation fault happens.
 - [ ] The computer freezes when the window is too small.
 
 ## Other

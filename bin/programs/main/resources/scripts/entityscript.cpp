@@ -1,5 +1,4 @@
 #include <cmath>
-#include <iostream>
 
 BEGIN_SCRIPT
     virtual void init()
