@@ -14,6 +14,7 @@ class Transform;
 class RigidBody
 {
     friend PhysicsWorld;
+    friend PhysicsShape;
 
     public:
         enum Type
@@ -150,17 +151,6 @@ class RigidBody
             return collisionMask;
         }
 
-        void setEmpty();
-        void setSphere(float radius);
-        void setBox(const Vector3D& halfExtents);
-        void setCylinder(PhysicsCylinderShape::Axis axis, float height, float radius);
-        void setCapsule(PhysicsCapsuleShape::Axis axis, float height, float radius);
-        void setCone(PhysicsConeShape::Axis axis, float height, float radius);
-        void setConvexHull(size_t pointCount, const Position3D *points);
-        void setStaticTriangleMesh(size_t numVertices, const Position3D *vertices);
-        void setHeightfield(uint32_t width, uint32_t height, const float *data);
-        void setPlane(const Vector3D& normal, float distance);
-        void setCompound(size_t childCount, const PhysicsCompoundShape::Child *children);
         void setShape(ResPtr<PhysicsShape> shape);
 
         inline ResPtr<PhysicsShape> getShape() const
@@ -184,8 +174,10 @@ class RigidBody
             return userData;
         }
     private:
-        RigidBody(const ConstructionInfo& info, PhysicsWorld *world);
+        RigidBody(const ConstructionInfo& info, ResPtr<PhysicsShape> shape, PhysicsWorld *world);
         virtual ~RigidBody();
+
+        void updateShape();
 
         ResPtr<PhysicsShape> shape;
         btRigidBody *rigidBody;

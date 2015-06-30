@@ -38,12 +38,15 @@ class MotionState : public btMotionState
 };
 
 RigidBody::RigidBody(const ConstructionInfo& info,
-                     PhysicsWorld *world_) : shape(NEW(PhysicsShape)),
+                     ResPtr<PhysicsShape> shape_,
+                     PhysicsWorld *world_) : shape(shape_),
                                              world(world_),
                                              type(info.type),
                                              collisionMask(info.collisionMask),
                                              userData(nullptr)
 {
+    shape->rigidBodies.append(this);
+
     transform = info.transform == nullptr ? NEW(Transform) : nullptr;
     syncTransform = info.transform;
 
@@ -94,6 +97,8 @@ RigidBody::RigidBody(const ConstructionInfo& info,
 
 RigidBody::~RigidBody()
 {
+    shape->rigidBodies.remove(shape->rigidBodies.find(this));
+
     removeUserData();
 
     world->getBulletWorld()->removeRigidBody(rigidBody);
@@ -309,99 +314,23 @@ void RigidBody::setAngularFactor(const Float3& factor) const
     rigidBody->setAngularFactor(btVector3(factor.x, factor.y, factor.z));
 }
 
-#define UPDATE_SHAPE rigidBody->setCollisionShape(shape->getBulletShape());\
-btVector3 localInertia;\
-shape->getBulletShape()->calculateLocalInertia(getMass(), localInertia);\
-rigidBody->setMassProps(getMass(), localInertia);
-
-void RigidBody::setEmpty()
-{
-    shape->setEmpty();
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setSphere(float radius)
-{
-    shape->setSphere(radius);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setBox(const Vector3D& halfExtents)
-{
-    shape->setBox(halfExtents);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setCylinder(PhysicsCylinderShape::Axis axis,
-                            float height,
-                            float radius)
-{
-    shape->setCylinder(axis, height, radius);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setCapsule(PhysicsCapsuleShape::Axis axis,
-                           float height,
-                           float radius)
-{
-    shape->setCapsule(axis, height, radius);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setCone(PhysicsConeShape::Axis axis,
-                        float height,
-                        float radius)
-{
-    shape->setCone(axis, height, radius);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setConvexHull(size_t pointCount, const Position3D *points)
-{
-    shape->setConvexHull(pointCount, points);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setStaticTriangleMesh(size_t vertexCount, const Position3D *vertices)
-{
-    shape->setStaticTriangleMesh(vertexCount, vertices);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setHeightfield(uint32_t width, uint32_t height, const float *data)
-{
-    shape->setHeightfield(width, height, data);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setPlane(const Vector3D& normal, float distance)
-{
-    shape->setPlane(normal, distance);
-
-    UPDATE_SHAPE
-}
-
-void RigidBody::setCompound(size_t childCount, const PhysicsCompoundShape::Child *children)
-{
-    shape->setCompound(childCount, children);
-
-    UPDATE_SHAPE
-}
-
 void RigidBody::setShape(ResPtr<PhysicsShape> shape_)
 {
+    shape->rigidBodies.remove(shape->rigidBodies.find(this));
+
     shape = shape_;
 
-    UPDATE_SHAPE
+    updateShape();
+
+    shape->rigidBodies.append(this);
 }
 
-#undef UPDATE_SHAPE
+void RigidBody::updateShape()
+{
+    rigidBody->setCollisionShape(shape->getBulletShape());
+
+    btVector3 localInertia;
+    shape->getBulletShape()->calculateLocalInertia(getMass(), localInertia);
+
+    rigidBody->setMassProps(getMass(), localInertia);
+}

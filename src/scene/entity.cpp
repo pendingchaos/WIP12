@@ -21,11 +21,12 @@ Entity::~Entity()
 }
 
 void Entity::addRigidBody(PhysicsWorld *world,
-                          const RigidBody::ConstructionInfo& info)
+                          const RigidBody::ConstructionInfo& info,
+                          ResPtr<PhysicsShape> shape)
 {
     RigidBody::ConstructionInfo newInfo = info;
 
     newInfo.transform = &transform;
 
-    rigidBody = world->createRigidBody(newInfo);
+    rigidBody = world->createRigidBody(newInfo, shape);
 }

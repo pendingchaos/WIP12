@@ -4,6 +4,8 @@
 #include "file.h"
 #include "globals.h"
 #include "resource/resourcemanager.h"
+#include "physics/rigidbody.h"
+#include "physics/ghostobject.h"
 
 #include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 #include <cstring>
@@ -16,11 +18,23 @@ PhysicsShape::PhysicsShape(const String& filename) : Resource(filename, Resource
 
 PhysicsShape::~PhysicsShape() {}
 
+#define UPDATE_RIGID_BODIES for (size_t i = 0; i < rigidBodies.getCount(); ++i)\
+{\
+    rigidBodies[i]->updateShape();\
+}\
+\
+for (size_t i = 0; i < ghosts.getCount(); ++i)\
+{\
+    ghosts[i]->ghostObject->setCollisionShape(impl->getBulletShape());\
+}
+
 void PhysicsShape::setEmpty()
 {
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsShapeImpl);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setSphere(float radius)
@@ -28,6 +42,8 @@ void PhysicsShape::setSphere(float radius)
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsSphereShape, radius);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setBox(const Vector3D& halfExtents)
@@ -35,6 +51,8 @@ void PhysicsShape::setBox(const Vector3D& halfExtents)
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsBoxShape, halfExtents);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setCylinder(PhysicsCylinderShape::Axis axis,
@@ -44,6 +62,8 @@ void PhysicsShape::setCylinder(PhysicsCylinderShape::Axis axis,
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsCylinderShape, axis, height, radius);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setCapsule(PhysicsCapsuleShape::Axis axis,
@@ -53,6 +73,8 @@ void PhysicsShape::setCapsule(PhysicsCapsuleShape::Axis axis,
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsCapsuleShape, axis, height, radius);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setCone(PhysicsConeShape::Axis axis,
@@ -62,6 +84,8 @@ void PhysicsShape::setCone(PhysicsConeShape::Axis axis,
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsConeShape, axis, height, radius);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setConvexHull(size_t pointCount, const Position3D *points)
@@ -69,6 +93,8 @@ void PhysicsShape::setConvexHull(size_t pointCount, const Position3D *points)
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsConvexHullShape, pointCount, points);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setStaticTriangleMesh(size_t vertexCount, const Position3D *vertices)
@@ -76,6 +102,8 @@ void PhysicsShape::setStaticTriangleMesh(size_t vertexCount, const Position3D *v
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsStaticTriangleMesh, vertexCount, vertices);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setHeightfield(uint32_t width, uint32_t height, const float *data)
@@ -83,6 +111,8 @@ void PhysicsShape::setHeightfield(uint32_t width, uint32_t height, const float *
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsHeightfield, width, height, data);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setPlane(const Vector3D& normal, float distance)
@@ -90,6 +120,8 @@ void PhysicsShape::setPlane(const Vector3D& normal, float distance)
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsPlaneShape, normal, distance);
+
+    UPDATE_RIGID_BODIES
 }
 
 void PhysicsShape::setCompound(size_t childCount,
@@ -98,6 +130,8 @@ void PhysicsShape::setCompound(size_t childCount,
     DELETE(PhysicsShapeImpl, impl);
 
     impl = NEW(PhysicsCompoundShape, childCount, children);
+
+    UPDATE_RIGID_BODIES
 }
 
 void saveShape(ResPtr<PhysicsShape> shape, File *file)

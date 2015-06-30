@@ -15,6 +15,7 @@ class RigidBody;
 class GhostObject
 {
     friend PhysicsWorld;
+    friend PhysicsShape;
 
     public:
         inline btGhostObject *getBulletGhostObject() const
@@ -35,17 +36,6 @@ class GhostObject
             return collisionMask;
         }
 
-        void setEmpty();
-        void setSphere(float radius);
-        void setBox(const Vector3D& halfExtents);
-        void setCylinder(PhysicsCylinderShape::Axis axis, float height, float radius);
-        void setCapsule(PhysicsCapsuleShape::Axis axis, float height, float radius);
-        void setCone(PhysicsConeShape::Axis axis, float height, float radius);
-        void setConvexHull(size_t pointCount, const Position3D *points);
-        void setStaticTriangleMesh(size_t numVertices, const Position3D *vertices);
-        void setHeightfield(uint32_t width, uint32_t height, const float *data);
-        void setPlane(const Vector3D& normal, float distance);
-        void setCompound(size_t childCount, const PhysicsCompoundShape::Child *children);
         void setShape(ResPtr<PhysicsShape> shape);
 
         void getCollisions(List<RigidBody *>& rigidBodies, List<GhostObject *>& ghostObjects) const;
@@ -71,7 +61,7 @@ class GhostObject
             return userData;
         }
     private:
-        GhostObject(unsigned short collisionMask, PhysicsWorld *world);
+        GhostObject(unsigned short collisionMask, PhysicsWorld *world, ResPtr<PhysicsShape> shape);
         ~GhostObject();
 
         ResPtr<PhysicsShape> shape;

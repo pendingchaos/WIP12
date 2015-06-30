@@ -78,7 +78,8 @@ class Entity
         }
 
         void addRigidBody(PhysicsWorld *world,
-                          const RigidBody::ConstructionInfo& info);
+                          const RigidBody::ConstructionInfo& info,
+                          ResPtr<PhysicsShape> shape);
 
         inline RigidBody *getRigidBody() const
         {

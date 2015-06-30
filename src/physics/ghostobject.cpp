@@ -3,11 +3,14 @@
 #include "physics/physicsworld.h"
 
 GhostObject::GhostObject(unsigned short collisionMask,
-                         PhysicsWorld *world_) : shape(NEW(PhysicsShape)),
-                                                 world(world_),
-                                                 userData(nullptr),
-                                                 collisionMask(collisionMask)
+                         PhysicsWorld *world_,
+                         ResPtr<PhysicsShape> shape_) : shape(shape_),
+                                                        world(world_),
+                                                        userData(nullptr),
+                                                        collisionMask(collisionMask)
 {
+    shape->ghosts.append(this);
+
     ghostObject = NEW(btPairCachingGhostObject);
 
     ghostObject->setUserPointer(this);
@@ -61,97 +64,16 @@ void GhostObject::setTransform(const Transform& transform) const
 
 #define UPDATE_SHAPE ghostObject->setCollisionShape(shape->getBulletShape());
 
-void GhostObject::setEmpty()
-{
-    shape->setEmpty();
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setSphere(float radius)
-{
-    shape->setSphere(radius);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setBox(const Vector3D& halfExtents)
-{
-    shape->setBox(halfExtents);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setCylinder(PhysicsCylinderShape::Axis axis,
-                              float height,
-                              float radius)
-{
-    shape->setCylinder(axis, height, radius);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setCapsule(PhysicsCapsuleShape::Axis axis,
-                             float height,
-                             float radius)
-{
-    shape->setCapsule(axis, height, radius);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setCone(PhysicsConeShape::Axis axis,
-                          float height,
-                          float radius)
-{
-    shape->setCone(axis, height, radius);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setConvexHull(size_t pointCount, const Position3D *points)
-{
-    shape->setConvexHull(pointCount, points);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setStaticTriangleMesh(size_t vertexCount, const Position3D *vertices)
-{
-    shape->setStaticTriangleMesh(vertexCount, vertices);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setHeightfield(uint32_t width, uint32_t height, const float *data)
-{
-    shape->setHeightfield(width, height, data);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setPlane(const Vector3D& normal, float distance)
-{
-    shape->setPlane(normal, distance);
-
-    UPDATE_SHAPE
-}
-
-void GhostObject::setCompound(size_t childCount, const PhysicsCompoundShape::Child *children)
-{
-    shape->setCompound(childCount, children);
-
-    UPDATE_SHAPE
-}
-
 void GhostObject::setShape(ResPtr<PhysicsShape> shape_)
 {
+    shape->ghosts.remove(shape->ghosts.find(this));
+
     shape = shape_;
 
-    UPDATE_SHAPE
-}
+    shape->ghosts.append(this);
 
-#undef UPDATE_SHAPE
+    ghostObject->setCollisionShape(shape->getBulletShape());
+}
 
 void GhostObject::getCollisions(List<RigidBody *>& rigidBodies, List<GhostObject *>& ghostObjects) const
 {

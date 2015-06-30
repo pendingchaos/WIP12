@@ -352,8 +352,14 @@ class PhysicsCompoundShape : public PhysicsShapeImpl
     NO_COPY_INHERITED(PhysicsCompoundShape, PhysicsShapeImpl)
 };
 
+class RigidBody;
+class GhostObject;
+
 class PhysicsShape : public Resource
 {
+    friend RigidBody;
+    friend GhostObject;
+
     public:
         static const Resource::Type resource_type = Resource::PhysicsShapeType;
 
@@ -416,6 +422,8 @@ class PhysicsShape : public Resource
         virtual void save();
     private:
         PhysicsShapeImpl *impl;
+        List<RigidBody *> rigidBodies;
+        List<GhostObject *> ghosts;
     protected:
         virtual void _load();
 };

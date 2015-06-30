@@ -19,7 +19,6 @@
 
 ## Bugs
 - [ ] More tests should be created.
-- [ ] When a shape is changed from a type to another, rigid bodies using that shape will have invalid shapes.
 - [ ] The computer freezes when the window is too small.
 
 ## Other

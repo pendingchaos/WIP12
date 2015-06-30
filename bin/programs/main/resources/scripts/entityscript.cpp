@@ -12,9 +12,11 @@ BEGIN_SCRIPT
 
         entity->getRigidBody()->setAngularFactor(Float3(0.0f));
     
-        feetGhost = entity->getScene()->getPhysicsWorld()->createGhostObject();
+        ResPtr<PhysicsShape> shape = NEW(PhysicsShape);
+    
+        shape->setCylinder(PhysicsCylinderShape::Y, 0.1f, 0.8f);
         
-        feetGhost->setCylinder(PhysicsCylinderShape::Y, 0.1f, 0.8f);
+        feetGhost = entity->getScene()->getPhysicsWorld()->createGhostObject(shape);
     }
     
     virtual void deinit()

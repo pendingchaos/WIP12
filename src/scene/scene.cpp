@@ -210,15 +210,11 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         info.angularSleepingThreshold = angularSleepingThreshold;
         info.collisionMask = collisionMask;
 
-        entity->addRigidBody(world, info);
-
-        RigidBody *rigidBody = entity->getRigidBody();
-
         uint32_t length = file->readUInt32LE();
         String shape(length);
         file->read(length, shape.getData());
 
-        rigidBody->setShape(resMgr->getResource<PhysicsShape>(shape));
+        entity->addRigidBody(world, info, resMgr->getResource<PhysicsShape>(shape));
     }
 
     uint32_t numScripts = file->readUInt32LE();
