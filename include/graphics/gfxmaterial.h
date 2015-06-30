@@ -46,6 +46,9 @@ class GfxMaterial : public Resource
         float tessMaxDistance;
         float displacementStrength;
         float displacementMidlevel;
+        bool shadowTesselation;
+        float shadowMinTessLevel;
+        float shadowMaxTessLevel;
 
         #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(ResPtr<GfxTexture> texture)\
         {\

@@ -158,6 +158,8 @@ class GfxRenderer
         ResPtr<GfxShader> lumCalcFragment;
         ResPtr<GfxShader> postEffectVertex;
         ResPtr<GfxShader> shadowmapVertex;
+        ResPtr<GfxShader> shadowmapTessControl;
+        ResPtr<GfxShader> shadowmapTessEval;
         ResPtr<GfxShader> pointShadowmapGeometry;
         ResPtr<GfxShader> shadowmapFragment;
         ResPtr<GfxShader> pointShadowmapFragment;
@@ -181,6 +183,9 @@ class GfxRenderer
         GfxCompiledShader *compiledLumCalcFragment;
         GfxCompiledShader *compiledPostEffectVertex;
         GfxCompiledShader *compiledShadowmapVertex;
+        GfxCompiledShader *compiledShadowmapVertexTesselation;
+        GfxCompiledShader *compiledShadowmapTessControl;
+        GfxCompiledShader *compiledShadowmapTessEval;
         GfxCompiledShader *compiledPointShadowmapGeometry;
         GfxCompiledShader *compiledShadowmapFragment;
         GfxCompiledShader *compiledPointShadowmapFragment;

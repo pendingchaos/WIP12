@@ -266,13 +266,16 @@ if __name__ == "__main__":
             self.tessMaxDistance = 10.0
             self.displacementStrength = 0.1
             self.displacementMidlevel = 0.5
+            self.shadowTesselation = False
+            self.shadowMinTessLevel = 1.0
+            self.shadowMaxTessLevel = 5.0
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
             
             output.write("mtrl\x01\x00")
             
-            s = struct.pack("<bfffffffbbbffffff",
+            s = struct.pack("<bfffffffbbbffffffbff",
                             self.forward,
                             self.albedo[0],
                             self.albedo[1],
@@ -289,7 +292,10 @@ if __name__ == "__main__":
                             self.tessMinDistance,
                             self.tessMaxDistance,
                             self.displacementStrength,
-                            self.displacementMidlevel)
+                            self.displacementMidlevel,
+                            self.shadowTesselation,
+                            self.shadowMinTessLevel,
+                            self.shadowMaxTessLevel)
             
             if self.albedoMap != None:
                 s += struct.pack("<L", len(get_dest_filename(self.albedoMap, Texture)))
@@ -873,6 +879,12 @@ if __name__ == "__main__":
     
     conv["shadowmapVertex.vs"] = Shader(["source/shaders/shadowmapVertex.vs"], "../../resources/shaders/shadowmapVertex.bin")
     
+    conv["shadowmapControl.tcs"] = Shader(["source/shaders/shadowmapControl.tcs"], "../../resources/shaders/shadowmapControl.bin")
+    conv["shadowmapControl.tcs"].stage_ = Shader.Stage.TessControl
+    
+    conv["shadowmapEval.tes"] = Shader(["source/shaders/shadowmapEval.tes"], "../../resources/shaders/shadowmapEval.bin")
+    conv["shadowmapEval.tes"].stage_ = Shader.Stage.TessEval
+    
     conv["pointShadowmapGeometry.gs"] = Shader(["source/shaders/pointShadowmapGeometry.gs"], "../../resources/shaders/pointShadowmapGeometry.bin")
     conv["pointShadowmapGeometry.gs"].stage_ = Shader.Stage.Geometry
     
@@ -969,7 +981,6 @@ if __name__ == "__main__":
     mat = Material([], "resources/materials/tesselation test material.bin")
     mat.forward = False
     mat.smoothness = 0.5
-    mat.metalMask = 1.0
     mat.albedoMap = conv["bricks2.jpg"]
     mat.normalMap = conv["bricks2_normal.jpg"]
     mat.displacementMap = conv["bricks2_disp.jpg"]
@@ -979,6 +990,8 @@ if __name__ == "__main__":
     mat.tessMaxDistance = 30.0
     mat.displacementStrength = 0.1
     mat.displacementMidlevel = 0.0
+    mat.shadowTesselation = True
+    mat.shadowMaxTessLevel = 15.0
     conv["tesselation test material"] = mat
     
     model = Model([], "resources/models/model.bin")
@@ -1130,75 +1143,86 @@ if __name__ == "__main__":
     scene.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [8.0, 2.5, 10.0]
+    light.position = [9.0, 2.5, -6.0]
     light.radius = 0.33
     light.color = [1.0, 0.0, 0.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [10.0, 2.5, 10.0]
+    light.position = [11.0, 2.5, -6.0]
+    light.radius = 0.33
+    light.color = [0.0, 1.0, 0.0]
+    light.ambient_strength = 0.005
+    scene.lights.append(light)
+    
+    light = Scene.Light(Scene.Light.Type.Point)
+    light.position = [10.0, 2.5, -7.0]
+    light.radius = 0.33
+    light.color = [0.0, 0.0, 1.0]
+    light.ambient_strength = 0.005
+    scene.lights.append(light)
+    
+    light = Scene.Light(Scene.Light.Type.Point)
+    light.position = [10.0, 2.5, -5.0]
+    light.radius = 0.33
+    light.color = [1.0, 1.0, 0.0]
+    light.ambient_strength = 0.005
+    scene.lights.append(light)
+    
+    light = Scene.Light(Scene.Light.Type.Point)
+    light.position = [9.0, 2.5, 0.0]
+    light.radius = 0.33
+    light.color = [1.0, 0.0, 0.0]
+    light.ambient_strength = 0.005
+    scene.lights.append(light)
+    
+    light = Scene.Light(Scene.Light.Type.Point)
+    light.position = [11.0, 2.5, 0.0]
     light.radius = 0.33
     light.color = [0.0, 1.0, 0.0]
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [9.0, 2.5, 9.0]
+    light.position = [10.0, 2.5, -1.0]
     light.radius = 0.33
     light.color = [0.0, 0.0, 1.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [9.0, 2.5, 11.0]
+    light.position = [10.0, 2.5, 1.0]
     light.radius = 0.33
     light.color = [1.0, 1.0, 0.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [8.0, 2.5, 17.0]
+    light.position = [9.0, 2.5, 6.0]
     light.radius = 0.33
     light.color = [1.0, 0.0, 0.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [10.0, 2.5, 17.0]
+    light.position = [11.0, 2.5, 6.0]
     light.radius = 0.33
     light.color = [0.0, 1.0, 0.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [9.0, 2.5, 16.0]
+    light.position = [10.0, 2.5, 5.0]
     light.radius = 0.33
     light.color = [0.0, 0.0, 1.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [9.0, 2.5, 18.0]
+    light.position = [10.0, 2.5, 7.0]
     light.radius = 0.33
     light.color = [1.0, 1.0, 0.0]
-    scene.lights.append(light)
-    
-    light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [8.0, 2.5, 24.0]
-    light.radius = 0.33
-    light.color = [1.0, 0.0, 0.0]
-    scene.lights.append(light)
-    
-    light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [10.0, 2.5, 24.0]
-    light.radius = 0.33
-    light.color = [0.0, 1.0, 0.0]
-    scene.lights.append(light)
-    
-    light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [9.0, 2.5, 23.0]
-    light.radius = 0.33
-    light.color = [0.0, 0.0, 1.0]
-    scene.lights.append(light)
-    
-    light = Scene.Light(Scene.Light.Type.Point)
-    light.position = [9.0, 2.5, 25.0]
-    light.radius = 0.33
-    light.color = [1.0, 1.0, 0.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)"""
     
     light = Scene.Light(Scene.Light.Type.Directional)
@@ -1207,8 +1231,8 @@ if __name__ == "__main__":
     light.shadowmap = True
     light.shadowmap_near = 0.1
     light.shadowmap_far = 100.0
-    light.shadow_min_bias = 0.01
-    light.shadow_bias_scale = 0.1
+    light.shadow_min_bias = 0.0025
+    light.shadow_bias_scale = 0.025
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 2048
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low

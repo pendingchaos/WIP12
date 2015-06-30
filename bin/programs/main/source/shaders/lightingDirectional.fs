@@ -50,7 +50,7 @@ void main()
     shadowCoord.xyz /= 2.0;
     #endif
     
-    float ao = max(texture(aoTexture, frag_uv).r, 0.0);
+    float ao = texture(aoTexture, frag_uv).r;
     
     result_color.rgb = directionalLight(lightNegDir, lightColor, lightAmbientStrength,
                                         albedo, metallic, roughness, normal, viewDir, ao

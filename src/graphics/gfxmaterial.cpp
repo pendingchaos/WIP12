@@ -18,6 +18,9 @@ GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
                              tessMaxDistance(10.0f),
                              displacementStrength(0.1f),
                              displacementMidlevel(0.5f),
+                             shadowTesselation(false),
+                             shadowMinTessLevel(1.0f),
+                             shadowMaxTessLevel(5.0f),
                              forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -39,6 +42,9 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    tessMaxDistance(10.0f),
                                                    displacementStrength(0.1f),
                                                    displacementMidlevel(0.5f),
+                                                   shadowTesselation(false),
+                                                   shadowMinTessLevel(1.0f),
+                                                   shadowMaxTessLevel(5.0f),
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -80,6 +86,9 @@ void GfxMaterial::save()
     file.writeFloat32(tessMaxDistance);
     file.writeFloat32(displacementStrength);
     file.writeFloat32(displacementMidlevel);
+    file.writeUInt8(shadowTesselation ? 1 : 0);
+    file.writeFloat32(shadowMinTessLevel);
+    file.writeFloat32(shadowMaxTessLevel);
 
     if (albedoMap != nullptr)
     {
@@ -241,6 +250,10 @@ void GfxMaterial::_load()
         tessMaxDistance = file.readFloat32();
         displacementStrength = file.readFloat32();
         displacementMidlevel = file.readFloat32();
+
+        shadowTesselation = file.readUInt8() != 0;
+        shadowMinTessLevel = file.readFloat32();
+        shadowMaxTessLevel = file.readFloat32();
 
         uint32_t len = file.readUInt32LE();
         if (len != 0)
