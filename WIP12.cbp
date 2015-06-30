@@ -127,6 +127,7 @@
 		<Unit filename="include/scripting/script.h" />
 		<Unit filename="include/scripting/scriptinclude.h" />
 		<Unit filename="include/scripting/scriptsidebindings.h" />
+		<Unit filename="include/serialization.h" />
 		<Unit filename="scripts/genGLFL.py" />
 		<Unit filename="scripts/gen_misc_macros.py" />
 		<Unit filename="scripts/script_binding_generator.py" />
@@ -189,6 +190,7 @@
 		<Unit filename="src/scene/transform.cpp" />
 		<Unit filename="src/scripting/appsidebindings.cpp" />
 		<Unit filename="src/scripting/script.cpp" />
+		<Unit filename="src/serialization.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

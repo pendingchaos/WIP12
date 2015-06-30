@@ -173,7 +173,7 @@ BEGIN_SCRIPT
 
         camera.setFieldOfView(zoom * 50.0f);
 
-        angularVelocity *= platform->getFrametime() * 50.0f;
+        angularVelocity *= platform->getFrametime() * 0.1f;
         
         if (angularVelocity.x > -0.001f and angularVelocity.x < 0.001f)
         {
