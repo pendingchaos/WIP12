@@ -15,7 +15,7 @@ class RigidBody;
 class GhostObject
 {
     friend PhysicsWorld;
-    friend PhysicsShape;
+    friend PhysicsShapeImpl;
 
     public:
         inline btGhostObject *getBulletGhostObject() const

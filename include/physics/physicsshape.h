@@ -15,8 +15,12 @@
 STATIC_ASSERT_FAIL_IF_TRUE(true);
 #endif
 
+class PhysicsShape;
+
 class PhysicsShapeImpl
 {
+    friend PhysicsShape;
+
     public:
         enum Type
         {
@@ -32,9 +36,6 @@ class PhysicsShapeImpl
             Compound,
             Empty
         };
-
-        PhysicsShapeImpl();
-        virtual ~PhysicsShapeImpl();
 
         inline Type getType() const
         {
@@ -70,8 +71,13 @@ class PhysicsShapeImpl
     private:
         Type type;
     protected:
-        PhysicsShapeImpl(Type type, btCollisionShape *shape);
+        PhysicsShapeImpl(PhysicsShape *physShape, Type type, btCollisionShape *shape);
+        virtual ~PhysicsShapeImpl();
+
+        void updateRigidBodies();
+
         btCollisionShape *shape;
+        PhysicsShape *physShape;
 
     NO_COPY(PhysicsShapeImpl)
 };
@@ -79,13 +85,17 @@ class PhysicsShapeImpl
 class PhysicsSphereShape : public PhysicsShapeImpl
 {
     public:
-        PhysicsSphereShape(float radius);
+        PhysicsSphereShape(PhysicsShape *physShape, float radius);
 
         inline float getRadius() const
         {
             return radius;
         }
+
+        void setRadius(float radius);
     private:
+        void create();
+
         float radius;
 
     NO_COPY_INHERITED(PhysicsSphereShape, PhysicsShapeImpl)
@@ -94,13 +104,17 @@ class PhysicsSphereShape : public PhysicsShapeImpl
 class PhysicsBoxShape : public PhysicsShapeImpl
 {
     public:
-        PhysicsBoxShape(const Vector3D& halfExtents);
+        PhysicsBoxShape(PhysicsShape *physShape, const Vector3D& halfExtents);
 
         inline Vector3D getHalfExtents() const
         {
             return halfExtents;
         }
+
+        void setHalfExtents(const Vector3D& halfExtents);
     private:
+        void create();
+
         Vector3D halfExtents;
 
     NO_COPY_INHERITED(PhysicsBoxShape, PhysicsShapeImpl)
@@ -116,9 +130,9 @@ class PhysicsCylinderShape : public PhysicsShapeImpl
             Z
         };
 
-        PhysicsCylinderShape(PhysicsCylinderShape::Axis axis, float height, float radius);
+        PhysicsCylinderShape(PhysicsShape *physShape, PhysicsCylinderShape::Axis axis, float height, float radius);
 
-        inline PhysicsCylinderShape::Axis getAxis() const
+        inline Axis getAxis() const
         {
             return axis;
         }
@@ -132,7 +146,13 @@ class PhysicsCylinderShape : public PhysicsShapeImpl
         {
             return radius;
         }
+
+        void setAxis(Axis axis);
+        void setHeight(float height);
+        void setRadius(float radius);
     private:
+        void create();
+
         Axis axis;
         float height;
         float radius;
@@ -150,7 +170,7 @@ class PhysicsCapsuleShape : public PhysicsShapeImpl
             Z
         };
 
-        PhysicsCapsuleShape(PhysicsCapsuleShape::Axis axis, float height, float radius);
+        PhysicsCapsuleShape(PhysicsShape *physShape, PhysicsCapsuleShape::Axis axis, float height, float radius);
 
         inline PhysicsCapsuleShape::Axis getAxis() const
         {
@@ -166,7 +186,13 @@ class PhysicsCapsuleShape : public PhysicsShapeImpl
         {
             return radius;
         }
+
+        void setAxis(Axis axis);
+        void setHeight(float height);
+        void setRadius(float radius);
     private:
+        void create();
+
         Axis axis;
         float height;
         float radius;
@@ -184,7 +210,7 @@ class PhysicsConeShape : public PhysicsShapeImpl
             Z
         };
 
-        PhysicsConeShape(PhysicsConeShape::Axis axis, float height, float radius);
+        PhysicsConeShape(PhysicsShape *physShape, PhysicsConeShape::Axis axis, float height, float radius);
 
         inline PhysicsConeShape::Axis getAxis() const
         {
@@ -200,7 +226,13 @@ class PhysicsConeShape : public PhysicsShapeImpl
         {
             return radius;
         }
+
+        void setAxis(Axis axis);
+        void setHeight(float height);
+        void setRadius(float radius);
     private:
+        void create();
+
         Axis axis;
         float height;
         float radius;
@@ -211,7 +243,7 @@ class PhysicsConeShape : public PhysicsShapeImpl
 class PhysicsConvexHullShape : public PhysicsShapeImpl
 {
     public:
-        PhysicsConvexHullShape(size_t numPoints, const Position3D *points);
+        PhysicsConvexHullShape(PhysicsShape *physShape, size_t numPoints, const Position3D *points);
         virtual ~PhysicsConvexHullShape();
 
         inline size_t getNumPoints() const
@@ -223,7 +255,11 @@ class PhysicsConvexHullShape : public PhysicsShapeImpl
         {
             return points;
         }
+
+        void setPoints(size_t numPoints, const Position3D *points);
     private:
+        void create(const Position3D *points);
+
         size_t numPoints;
         Position3D *points;
 
@@ -233,7 +269,7 @@ class PhysicsConvexHullShape : public PhysicsShapeImpl
 class PhysicsStaticTriangleMesh : public PhysicsShapeImpl
 {
     public:
-        PhysicsStaticTriangleMesh(size_t numTriangles, const Position3D *triangles);
+        PhysicsStaticTriangleMesh(PhysicsShape *physShape, size_t numTriangles, const Position3D *triangles);
         virtual ~PhysicsStaticTriangleMesh();
 
         inline size_t getNumTriangles() const
@@ -245,7 +281,11 @@ class PhysicsStaticTriangleMesh : public PhysicsShapeImpl
         {
             return triangles;
         }
+
+        void setTriangles(size_t numTriangles, const Position3D *triangles);
     private:
+        void create(const Position3D *triangles);
+
         size_t numTriangles;
         Position3D *triangles;
         btTriangleIndexVertexArray *vertexArray;
@@ -258,7 +298,7 @@ class PhysicsStaticTriangleMesh : public PhysicsShapeImpl
 class PhysicsHeightfield : public PhysicsShapeImpl
 {
     public:
-        PhysicsHeightfield(uint32_t width, uint32_t height, const float *data);
+        PhysicsHeightfield(PhysicsShape *physShape, uint32_t width, uint32_t height, const float *data);
         virtual ~PhysicsHeightfield();
 
         inline uint32_t getWidth() const
@@ -275,7 +315,11 @@ class PhysicsHeightfield : public PhysicsShapeImpl
         {
             return data;
         }
+
+        void setData(uint32_t width, uint32_t height, const float *data);
     private:
+        void create(const float *data);
+
         uint32_t width;
         uint32_t height;
         float *data;
@@ -286,7 +330,7 @@ class PhysicsHeightfield : public PhysicsShapeImpl
 class PhysicsPlaneShape : public PhysicsShapeImpl
 {
     public:
-        PhysicsPlaneShape(const Vector3D& normal, float distance);
+        PhysicsPlaneShape(PhysicsShape *physShape, const Vector3D& normal, float distance);
 
         inline Vector3D getNormal() const
         {
@@ -297,7 +341,12 @@ class PhysicsPlaneShape : public PhysicsShapeImpl
         {
             return distance;
         }
+
+        void setNormal(const Vector3D& normal);
+        void setDistance(float distance);
     private:
+        void create();
+
         Vector3D normal;
         float distance;
 
@@ -329,7 +378,7 @@ class PhysicsCompoundShape : public PhysicsShapeImpl
                 }
         };
 
-        PhysicsCompoundShape(size_t shapeCount, const PhysicsCompoundShape::Child *shapes);
+        PhysicsCompoundShape(PhysicsShape *physShape, size_t shapeCount, const Child *shapes);
         virtual ~PhysicsCompoundShape();
 
         inline size_t getShapeCount() const
@@ -341,13 +390,17 @@ class PhysicsCompoundShape : public PhysicsShapeImpl
         {
             return shapes;
         }
+
+        void setChildren(size_t count, const Child *children);
     private:
+        void create(const Child *shapes);
+
         size_t shapeCount;
         Child *shapes;
 
         static btCollisionShape *createCompoundShape(size_t shapeCount,
-                                                     const PhysicsCompoundShape::Child *shapes,
-                                                     PhysicsCompoundShape::Child *& destShapes);
+                                                     const Child *shapes,
+                                                     Child *& destShapes);
 
     NO_COPY_INHERITED(PhysicsCompoundShape, PhysicsShapeImpl)
 };
@@ -357,6 +410,7 @@ class GhostObject;
 
 class PhysicsShape : public Resource
 {
+    friend PhysicsShapeImpl;
     friend RigidBody;
     friend GhostObject;
 

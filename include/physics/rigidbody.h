@@ -14,7 +14,7 @@ class Transform;
 class RigidBody
 {
     friend PhysicsWorld;
-    friend PhysicsShape;
+    friend PhysicsShapeImpl;
 
     public:
         enum Type
