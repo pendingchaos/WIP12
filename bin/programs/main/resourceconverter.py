@@ -836,12 +836,6 @@ if __name__ == "__main__":
     conv["objectTessEval.tes"] = Shader(["source/shaders/objectTessEval.tes"], "../../resources/shaders/objectTessEval.bin")
     conv["objectTessEval.tes"].stage_ = Shader.Stage.TessEval
     
-    conv["toSRGBFragment.fs"] = Shader(["source/shaders/toSRGBFragment.fs"], "../../resources/shaders/toSRGBFragment.bin")
-    conv["toSRGBFragment.fs"].stage_ = Shader.Stage.Fragment
-    
-    conv["vignetteFragment.fs"] = Shader(["source/shaders/vignetteFragment.fs"], "../../resources/shaders/vignetteFragment.bin")
-    conv["vignetteFragment.fs"].stage_ = Shader.Stage.Fragment
-    
     conv["fxaaFragment.fs"] = Shader(["source/shaders/fxaaFragment.fs"], "../../resources/shaders/fxaaFragment.bin")
     conv["fxaaFragment.fs"].stage_ = Shader.Stage.Fragment
     
@@ -906,6 +900,9 @@ if __name__ == "__main__":
     
     conv["overlayFragment.fs"] = Shader(["source/shaders/overlayFragment.fs"], "../../resources/shaders/overlayFragment.bin")
     conv["overlayFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["gammaCorrectionFragment.fs"] = Shader(["source/shaders/gammaCorrectionFragment.fs"], "../../resources/shaders/gammaCorrectionFragment.bin")
+    conv["gammaCorrectionFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")

@@ -1,3 +1,5 @@
+#include "lib/color.glsl"
+
 in vec2 frag_uv;
 
 layout (location = 0) out vec4 result_color;

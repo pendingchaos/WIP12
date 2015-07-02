@@ -23,6 +23,130 @@ class GfxRenderer
 
         GfxRenderer(Scene *scene);
     public:
+        struct ColorModifier
+        {
+            enum Type
+            {
+                ReinhardTonemapping,
+                Vignette,
+                HueShift,
+                SaturationShift,
+                BrightnessShift,
+                Contrast,
+                Multiply,
+                HueReplace,
+                SaturationReplace,
+                BrightnessReplace
+            };
+
+            Type type;
+
+            union
+            {
+                struct
+                {
+                    bool brightnessOnly;
+                } reinhardTonemap;
+                struct
+                {
+                    float radius;
+                    float softness;
+                    float intensity;
+                } vignette;
+                struct
+                {
+                    float hue;
+                } hueShift;
+                struct
+                {
+                    float saturation;
+                } saturationShift;
+                struct
+                {
+                    float brightness;
+                } brightnessShift;
+                struct
+                {
+                    float contrast;
+                } contrast;
+                struct
+                {
+                    float red;
+                    float green;
+                    float blue;
+                } multiply;
+                struct
+                {
+                    float hue;
+                } hueReplace;
+                struct
+                {
+                    float saturation;
+                } saturationReplace;
+                struct
+                {
+                    float brightness;
+                } brightnessReplace;
+            };
+
+            bool operator == (const ColorModifier& other) const
+            {
+                if (type != other.type)
+                {
+                    return false;
+                }
+
+                switch (type)
+                {
+                case ReinhardTonemapping:
+                {
+                    return reinhardTonemap.brightnessOnly ==
+                           other.reinhardTonemap.brightnessOnly;
+                }
+                case Vignette:
+                {
+                    return vignette.radius == other.vignette.radius and
+                           vignette.softness == other.vignette.softness and
+                           vignette.intensity == other.vignette.intensity;
+                }
+                case HueShift:
+                {
+                    return hueShift.hue == other.hueShift.hue;
+                }
+                case SaturationShift:
+                {
+                    return saturationShift.saturation == other.saturationShift.saturation;
+                }
+                case BrightnessShift:
+                {
+                    return brightnessShift.brightness == other.brightnessShift.brightness;
+                }
+                case Contrast:
+                {
+                    return contrast.contrast == other.contrast.contrast;
+                }
+                case Multiply:
+                {
+                    return multiply.red == other.multiply.red and
+                           multiply.green == other.multiply.green and
+                           multiply.blue == other.multiply.blue;
+                }
+                case HueReplace:
+                {
+                    return hueReplace.hue == other.hueReplace.hue;
+                }
+                case SaturationReplace:
+                {
+                    return saturationReplace.saturation == other.saturationReplace.saturation;
+                }
+                case BrightnessReplace:
+                {
+                    return brightnessReplace.brightness == other.brightnessReplace.brightness;
+                }
+                }
+            }
+        };
+
         struct RenderStats
         {
             float gBufferTiming;
@@ -33,11 +157,10 @@ class GfxRenderer
             float forwardTiming;
             float gammaCorrectionTiming;
             float fxaaTiming;
-            float vignetteTiming;
+            float colorModifierTiming;
             float bloomXTiming;
             float bloomYTiming;
             //float lumCalcTiming;
-            float tonemappingTiming;
             float shadowmapTiming;
             float overlayTiming;
         };
@@ -105,14 +228,14 @@ class GfxRenderer
 
         ResPtr<GfxTexture> skybox;
 
-        float vignetteRadius;
-        float vignetteSoftness;
-        float vignetteIntensity;
         float bloomThreshold;
         float bloomRadius;
         float bloomQuality;
         bool bloomEnabled;
         float ssaoRadius;
+        List<ColorModifier> colorModifiers;
+
+        void updateColorModifierShader();
     private:
         List<Light *> lights;
 
@@ -126,11 +249,10 @@ class GfxRenderer
         GPUTimer *forwardTimer;
         GPUTimer *gammaCorrectionTimer;
         GPUTimer *fxaaTimer;
-        GPUTimer *vignetteTimer;
+        GPUTimer *colorModifierTimer;
         GPUTimer *bloomXTimer;
         GPUTimer *bloomYTimer;
         //GPUTimer *luminanceCalcTimer;
-        GPUTimer *tonemappingTimer;
         GPUTimer *shadowmapTimer;
         GPUTimer *overlayTimer;
 
@@ -143,8 +265,6 @@ class GfxRenderer
         ResPtr<GfxShader> skyboxFragment;
         ResPtr<GfxMesh> skyboxMesh;
         ResPtr<GfxMesh> quadMesh;
-        ResPtr<GfxShader> gammaCorrectionFragment;
-        ResPtr<GfxShader> vignetteFragment;
         ResPtr<GfxShader> fxaaFragment;
         ResPtr<GfxShader> lightingDirectional;
         ResPtr<GfxShader> lightingPoint;
@@ -165,8 +285,8 @@ class GfxRenderer
         ResPtr<GfxShader> pointShadowmapFragment;
         ResPtr<GfxShader> overlayVertex;
         ResPtr<GfxShader> overlayFragment;
-        GfxCompiledShader *compiledGammaCorrectionFragment;
-        GfxCompiledShader *compiledVignetteFragment;
+        ResPtr<GfxShader> colorModifierFragment;
+        ResPtr<GfxShader> gammaCorrectionFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingDirectionalShadow;
@@ -191,6 +311,8 @@ class GfxRenderer
         GfxCompiledShader *compiledPointShadowmapFragment;
         GfxCompiledShader *compiledOverlayVertex;
         GfxCompiledShader *compiledOverlayFragment;
+        GfxCompiledShader *compiledColorModifier;
+        GfxCompiledShader *compiledGammaCorrectionFragment;
         //float averageLuminance;
 
         size_t numLights;

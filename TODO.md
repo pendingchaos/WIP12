@@ -1,6 +1,4 @@
 ## Features
-- [ ] Post processing effects.
-    - [ ] Color grading (using a 3d texture)
 - [ ] Shadow mapping.
     - [ ] Directional
         - [x] Deferred
@@ -12,10 +10,14 @@
         - [x] Deferred
         - [ ] Forward
 - [ ] The doppler effect (disabled) causes popping noise.
+- [ ] Loading and saving of post processing settings.
+- [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
+- [ ] Improve directional shadow map quality.
 
 ## Bugs
 - [ ] More tests should be created.
 - [ ] The computer freezes when the window is too small.
+- [ ] Parallax occlusion mapping seems to be incorrect.
 
 ## Other
 - [ ] Benchmarks.

@@ -332,10 +332,9 @@ BEGIN_SCRIPT
                         stats.forwardTiming +
                         stats.gammaCorrectionTiming +
                         stats.fxaaTiming +
-                        stats.vignetteTiming +
+                        stats.colorModifierTiming +
                         stats.bloomXTiming +
                         stats.bloomYTiming +
-                        stats.tonemappingTiming +
                         stats.shadowmapTiming +
                         stats.overlayTiming +
                         debugDrawTiming +
@@ -349,10 +348,9 @@ BEGIN_SCRIPT
                                           "Forward render: %.2f ms (%.0f%)\n"
                                           "Gamma correction: %.2f ms (%.0f%)\n"
                                           "FXAA: %.2f ms (%.0f%)\n"
-                                          "Vignette: %.2f ms (%.0f%)\n"
+                                          "Color modifiers: %.2f ms (%.0f%)\n"
                                           "Bloom X: %.2f ms (%.0f%)\n"
                                           "Bloom Y: %.2f ms (%.0f%)\n"
-                                          "Tonemapping: %.2f ms (%.0f%)\n"
                                           "Shadow map: %.2f ms (%.0f%)\n"
                                           "Debug draw: %.2f ms (%.0f%)\n"
                                           "Text: %.2f ms (%.0f%)\n"
@@ -374,14 +372,12 @@ BEGIN_SCRIPT
                                           stats.gammaCorrectionTiming / total * 100.0f,
                                           stats.fxaaTiming * 1000.0f,
                                           stats.fxaaTiming / total * 100.0f,
-                                          stats.vignetteTiming * 1000.0f,
-                                          stats.vignetteTiming / total * 100.0f,
+                                          stats.colorModifierTiming * 1000.0f,
+                                          stats.colorModifierTiming / total * 100.0f,
                                           stats.bloomXTiming * 1000.0f,
                                           stats.bloomXTiming / total * 100.0f,
                                           stats.bloomYTiming * 1000.0f,
                                           stats.bloomYTiming / total * 100.0f,
-                                          stats.tonemappingTiming * 1000.0f,
-                                          stats.tonemappingTiming / total * 100.0f,
                                           stats.shadowmapTiming * 1000.0f,
                                           stats.shadowmapTiming / total * 100.0f,
                                           debugDrawTiming * 1000.0f,

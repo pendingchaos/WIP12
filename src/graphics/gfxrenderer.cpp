@@ -21,9 +21,6 @@ float gauss(float x, float sigma)
 }
 
 GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
-                                          vignetteRadius(1.5f),
-                                          vignetteSoftness(1.0f),
-                                          vignetteIntensity(0.0f),
                                           bloomThreshold(1.0f),
                                           bloomRadius(0.025f),
                                           bloomQuality(0.9f),
@@ -39,8 +36,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     skyboxVertex = resMgr->getResource<GfxShader>("resources/shaders/skyboxVertex.bin");
     skyboxFragment = resMgr->getResource<GfxShader>("resources/shaders/skyboxFragment.bin");
     skyboxMesh = resMgr->getResource<GfxMesh>("resources/meshes/cube.bin");
-    gammaCorrectionFragment = resMgr->getResource<GfxShader>("resources/shaders/toSRGBFragment.bin");
-    vignetteFragment = resMgr->getResource<GfxShader>("resources/shaders/vignetteFragment.bin");
     fxaaFragment = resMgr->getResource<GfxShader>("resources/shaders/fxaaFragment.bin");
     lightingDirectional = resMgr->getResource<GfxShader>("resources/shaders/lightingDirectional.bin");
     lightingPoint = resMgr->getResource<GfxShader>("resources/shaders/lightingPoint.bin");
@@ -61,9 +56,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     pointShadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
     overlayVertex = resMgr->getResource<GfxShader>("resources/shaders/overlayVertex.bin");
     overlayFragment = resMgr->getResource<GfxShader>("resources/shaders/overlayFragment.bin");
+    colorModifierFragment = NEW(GfxShader);
+    gammaCorrectionFragment = resMgr->getResource<GfxShader>("resources/shaders/gammaCorrectionFragment.bin");
 
-    compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
-    compiledVignetteFragment = vignetteFragment->getCompiled();
     compiledFXAAFragment = fxaaFragment->getCompiled();
     compiledLightingDirectional = lightingDirectional->getCompiled();
     compiledLightingDirectionalShadow = lightingDirectional->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
@@ -88,6 +83,25 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
     compiledOverlayVertex = overlayVertex->getCompiled();
     compiledOverlayFragment = overlayFragment->getCompiled();
+    compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
+
+    ColorModifier modifier;
+
+    modifier.type = ColorModifier::ReinhardTonemapping;
+    modifier.reinhardTonemap.brightnessOnly = true;
+    colorModifiers.append(modifier);
+
+    modifier.type = ColorModifier::SaturationShift;
+    modifier.saturationShift.saturation = 0.05f;
+    colorModifiers.append(modifier);
+
+    modifier.type = ColorModifier::Vignette;
+    modifier.vignette.radius = 1.5f;
+    modifier.vignette.softness = 1.0f;
+    modifier.vignette.intensity = 1.0f;
+    colorModifiers.append(modifier);
+
+    updateColorModifierShader();
 
     lightBuffer = gfxApi->createBuffer();
 
@@ -200,11 +214,10 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     forwardTimer = gfxApi->createTimer();
     gammaCorrectionTimer = gfxApi->createTimer();
     fxaaTimer = gfxApi->createTimer();
-    vignetteTimer = gfxApi->createTimer();
+    colorModifierTimer = gfxApi->createTimer();
     bloomXTimer = gfxApi->createTimer();
     bloomYTimer = gfxApi->createTimer();
     //luminanceCalcTimer = gfxApi->createTimer();
-    tonemappingTimer = gfxApi->createTimer();
     shadowmapTimer = gfxApi->createTimer();
     overlayTimer = gfxApi->createTimer();
 }
@@ -219,11 +232,10 @@ GfxRenderer::~GfxRenderer()
     DELETE(GPUTimer, forwardTimer);
     DELETE(GPUTimer, gammaCorrectionTimer);
     DELETE(GPUTimer, fxaaTimer);
-    DELETE(GPUTimer, vignetteTimer);
+    DELETE(GPUTimer, colorModifierTimer);
     DELETE(GPUTimer, bloomXTimer);
     DELETE(GPUTimer, bloomYTimer);
     //DELETE(GPUTimer, luminanceCalcTimer);
-    DELETE(GPUTimer, tonemappingTimer);
     DELETE(GPUTimer, shadowmapTimer);
     DELETE(GPUTimer, overlayTimer);
 
@@ -280,9 +292,9 @@ void GfxRenderer::updateStats()
         stats.fxaaTiming = fxaaTimer->getResult() / (float)fxaaTimer->getResultResolution();
     }
 
-    if (vignetteTimer->resultAvailable())
+    if (colorModifierTimer->resultAvailable())
     {
-        stats.vignetteTiming = vignetteTimer->getResult() / (float)vignetteTimer->getResultResolution();
+        stats.colorModifierTiming = colorModifierTimer->getResult() / (float)colorModifierTimer->getResultResolution();
     }
 
     if (bloomXTimer->resultAvailable())
@@ -300,11 +312,6 @@ void GfxRenderer::updateStats()
         stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
     }*/
 
-    if (tonemappingTimer->resultAvailable())
-    {
-        stats.tonemappingTiming = tonemappingTimer->getResult() / (float)tonemappingTimer->getResultResolution();
-    }
-
     if (shadowmapTimer->resultAvailable())
     {
         stats.shadowmapTiming = shadowmapTimer->getResult() / (float)shadowmapTimer->getResultResolution();
@@ -314,6 +321,240 @@ void GfxRenderer::updateStats()
     {
         stats.overlayTiming = overlayTimer->getResult() / (float)overlayTimer->getResultResolution();
     }
+}
+
+void GfxRenderer::updateColorModifierShader()
+{
+    String source = STR(
+vec3 RGBToxyY(vec3 rgb)
+{
+	const mat3 RGB2XYZ = mat3(0.4124, 0.3576, 0.1805,
+							  0.2126, 0.7152, 0.0722,
+							  0.0193, 0.1192, 0.9505);
+	vec3 XYZ = RGB2XYZ * rgb;
+
+	// XYZ to xyY
+	return vec3(XYZ.x / (XYZ.x + XYZ.y + XYZ.z),
+				XYZ.y / (XYZ.x + XYZ.y + XYZ.z),
+				XYZ.y);
+}
+
+vec3 xyYToRGB(vec3 xyY)
+{
+	// xyY to XYZ
+	vec3 XYZ = vec3((xyY.z / xyY.y) * xyY.x,
+					xyY.z,
+					(xyY.z / xyY.y) * (1.0 - xyY.x - xyY.y));
+
+	const mat3 XYZ2RGB = mat3(3.2406, -1.5372, -0.4986,
+                              -0.9689, 1.8758, 0.0415,
+                              0.0557, -0.2040, 1.0570);
+
+	return XYZ2RGB * XYZ;
+}
+
+//From http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl
+vec3 rgb2hsv(vec3 c)
+{
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    //vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    //vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+    vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);
+    vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);
+
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+layout (location = 0) out vec3 result_color;
+
+in vec2 frag_uv;
+
+uniform sampler2D colorTexture;
+
+vec3 reinhard(vec3 color)
+{
+    return color / (color + 1.0);
+}
+
+vec3 reinhardBrightnessOnly(vec3 color)
+{
+    vec3 xyY = RGBToxyY(color);
+
+    xyY.z /= xyY.z + 1.0;
+
+    return xyYToRGB(xyY);
+}
+
+vec3 vignette(vec3 color, float radius, float softness, float intensity)
+{
+    float vignette = distance(vec2(0.5), frag_uv);
+
+    vignette = smoothstep(radius/2.0, (radius-softness)/2.0, vignette);
+
+    return color * mix(1.0, vignette, intensity);
+}
+
+vec3 hueShift(vec3 color, float hue)
+{
+    vec3 hsv = rgb2hsv(color);
+
+    hsv.x += hue;
+
+    return hsv2rgb(hsv);
+}
+
+vec3 saturationShift(vec3 color, float saturation)
+{
+    vec3 hsv = rgb2hsv(color);
+
+    hsv.y += saturation;
+
+    return hsv2rgb(hsv);
+}
+
+vec3 brightnessShift(vec3 color, float brightness)
+{
+    vec3 xyY = RGBToxyY(color);
+
+    xyY.z += brightness;
+
+    return xyYToRGB(xyY);
+}
+
+vec3 contrast(vec3 color, float contrast)
+{
+    return (color - 0.5) * contrast + 0.5;
+}
+
+vec3 multiply(vec3 color, vec3 by)
+{
+    return color * by;
+}
+
+vec3 hueReplace(vec3 color, float hue)
+{
+    vec3 hsv = rgb2hsv(color);
+
+    hsv.x = hue;
+
+    return hsv2rgb(hsv);
+}
+
+vec3 saturationReplace(vec3 color, float saturation)
+{
+    vec3 hsv = rgb2hsv(color);
+
+    hsv.y = saturation;
+
+    return hsv2rgb(hsv);
+}
+
+vec3 brightnessReplace(vec3 color, float brightness)
+{
+    vec3 xyY = RGBToxyY(color);
+
+    xyY.z = brightness;
+
+    return xyYToRGB(xyY);
+}
+
+void main()
+{
+    result_color = texture(colorTexture, frag_uv).rgb;
+);
+
+    for (size_t i = 0; i < colorModifiers.getCount(); ++i)
+    {
+        const ColorModifier& modifier = colorModifiers[i];
+
+        switch (modifier.type)
+        {
+        case ColorModifier::ReinhardTonemapping:
+        {
+            if (modifier.reinhardTonemap.brightnessOnly)
+            {
+                source.append("result_color = reinhardBrightnessOnly(result_color);");
+            } else
+            {
+                source.append("result_color = reinhard(result_color);");
+            }
+            break;
+        }
+        case ColorModifier::Vignette:
+        {
+            source.append(String::format("result_color = vignette(result_color, %f, %f, %f);",
+                                         modifier.vignette.radius,
+                                         modifier.vignette.softness,
+                                         modifier.vignette.intensity));
+            break;
+        }
+        case ColorModifier::HueShift:
+        {
+            source.append(String::format("result_color = hueShift(result_color, %f);",
+                                         modifier.hueShift.hue));
+            break;
+        }
+        case ColorModifier::SaturationShift:
+        {
+            source.append(String::format("result_color = saturationShift(result_color, %f);",
+                                         modifier.saturationShift.saturation));
+            break;
+        }
+        case ColorModifier::BrightnessShift:
+        {
+            source.append(String::format("result_color = brightnessShift(result_color, %f);",
+                                         modifier.brightnessShift.brightness));
+            break;
+        }
+        case ColorModifier::Contrast:
+        {
+            source.append(String::format("result_color = contrast(result_color, %f);",
+                                         modifier.contrast.contrast));
+            break;
+        }
+        case ColorModifier::Multiply:
+        {
+            source.append(String::format("result_color = multiply(result_color, vec3(%f, %f, %f));",
+                                         modifier.multiply.red,
+                                         modifier.multiply.green,
+                                         modifier.multiply.blue));
+            break;
+        }
+        case ColorModifier::HueReplace:
+        {
+            source.append(String::format("result_color = hueReplace(result_color, %f);",
+                                         modifier.hueReplace.hue));
+            break;
+        }
+        case ColorModifier::SaturationReplace:
+        {
+            source.append(String::format("result_color = saturationReplace(result_color, %f);",
+                                         modifier.saturationReplace.saturation));
+            break;
+        }
+        case ColorModifier::BrightnessReplace:
+        {
+            source.append(String::format("result_color = brightnessReplace(result_color, %f);",
+                                         modifier.brightnessReplace.brightness));
+            break;
+        }
+        }
+    }
+
+    source.append("}");
+
+    colorModifierFragment->setSource(GfxShader::Fragment, source);
+
+    compiledColorModifier = colorModifierFragment->getCompiled();
 }
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
@@ -855,8 +1096,8 @@ void GfxRenderer::render()
         bloomYTimer->end();
     }
 
-    //Tonemapping
-    tonemappingTimer->begin();
+    //Color modifiers.
+    colorModifierTimer->begin();
 
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
@@ -864,63 +1105,16 @@ void GfxRenderer::render()
                   nullptr,
                   nullptr,
                   nullptr,
-                  compiledTonemapFragment,
+                  compiledColorModifier,
                   quadMesh);
 
-    gfxApi->addTextureBinding(compiledTonemapFragment, "colorTexture", readColorTexture);
+    gfxApi->addTextureBinding(compiledColorModifier, "colorTexture", readColorTexture);
 
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
 
-    tonemappingTimer->end();
-
-    swapFramebuffers();
-
-    //Vignette
-    vignetteTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(writeFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledVignetteFragment,
-                  quadMesh);
-
-    gfxApi->uniform(compiledVignetteFragment, "vignetteRadius", vignetteRadius);
-    gfxApi->uniform(compiledVignetteFragment, "vignetteSoftness", vignetteSoftness);
-    gfxApi->uniform(compiledVignetteFragment, "vignetteIntensity", vignetteIntensity);
-    gfxApi->addTextureBinding(compiledVignetteFragment, "colorTexture", readColorTexture);
-
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
-
-    swapFramebuffers();
-
-    vignetteTimer->end();
-
-    //FXAA
-    fxaaTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(writeFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledFXAAFragment,
-                  quadMesh);
-
-    gfxApi->addTextureBinding(compiledFXAAFragment, "colorTexture", readColorTexture);
-
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
-
-    fxaaTimer->end();
+    colorModifierTimer->end();
 
     //Overlays
     overlayTimer->begin();
@@ -972,7 +1166,7 @@ void GfxRenderer::render()
     //Gamma correction
     gammaCorrectionTimer->begin();
 
-    gfxApi->setCurrentFramebuffer(nullptr);
+    gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
                   nullptr,
@@ -987,7 +1181,29 @@ void GfxRenderer::render()
                 quadMesh->numVertices,
                 quadMesh->winding);
 
+    swapFramebuffers();
+
     gammaCorrectionTimer->end();
+
+    //FXAA
+    fxaaTimer->begin();
+
+    gfxApi->setCurrentFramebuffer(nullptr);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  nullptr,
+                  nullptr,
+                  nullptr,
+                  compiledFXAAFragment,
+                  quadMesh);
+
+    gfxApi->addTextureBinding(compiledFXAAFragment, "colorTexture", readColorTexture);
+
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);
+
+    fxaaTimer->end();
 
     readColorTexture = oldReadTex;
     writeColorTexture = oldWriteTex;
