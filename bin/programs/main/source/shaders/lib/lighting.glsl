@@ -117,21 +117,33 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     
     float shadow = 0.0;
     
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, -2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, -1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, 1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -1));
     shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 0));
     shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 0));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 1));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, -2));
     shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, -1));
     shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 0));
     shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 2));
+    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 2));
    
-    shadow /= 17.0;
+    shadow /= 25.0;
     
     shadow = pow(shadow, 2.2);
     
