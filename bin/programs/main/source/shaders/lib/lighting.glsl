@@ -74,7 +74,7 @@ void _lighting(vec3 lightDir, out vec3 specular, out float diffuse, vec3 specula
     vec3 G = max(SchlickG(nl, nv, roughness), 0.0);
 
     specular = max((D*F*G) / (4.0*nl*nv), 0.0) * nl;
-    diffuse = nl;
+    diffuse = nl * mix(0.96, 0.0, metallic);
 }
 
 vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
@@ -94,7 +94,7 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     
     albedo /= PI;    
     
-    vec3 diffuseResult = mix(albedo * diffuse, vec3(0.0), metallic);
+    vec3 diffuseResult = albedo * diffuse;
     
     vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse);
     
@@ -151,7 +151,7 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     
     albedo /= PI;
     
-    vec3 diffuseResult = mix(albedo * min(diffuse, shadow), vec3(0.0), metallic);
+    vec3 diffuseResult = albedo * min(diffuse, shadow);
     
     vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow));
     
@@ -187,7 +187,7 @@ vec3 spotLight(vec3 lightNegDir, vec3 lightPos, float lightCosInnerCutoff, float
     
     albedo /= PI;
     
-    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
+    vec3 diffuseResult = albedo * diffuse;
     
     vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse);
     
@@ -224,7 +224,7 @@ vec3 spotLight(vec3 lightNegDir, vec3 lightPos, float lightCosInnerCutoff, float
     
     albedo /= PI;
     
-    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
+    vec3 diffuseResult = albedo * diffuse;
     
     float shadow = 0.0;
     
@@ -278,7 +278,7 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
     
     vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse);
     
-    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
+    vec3 diffuseResult = albedo * diffuse;
     
     return (diffuseResult + specular) * lightColor * intensity + mix(ambient, vec3(0.0), metallic);
 }
@@ -366,7 +366,7 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
     
     vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow));
     
-    vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
+    vec3 diffuseResult = albedo * diffuse;
     
     return (diffuseResult + specular) * lightColor * intensity + mix(ambient, vec3(0.0), metallic);
 }
@@ -399,7 +399,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
                       normal,
                       viewDir);
             
-            vec3 diffuseResult = mix(albedo/PI, vec3(0.0), metallic) * diffuse;
+            vec3 diffuseResult = albedo/PI * diffuse;
             
             result += (diffuseResult + specular) * light.f0.rgb;
             break;
@@ -427,7 +427,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
             float outer = light.f2.z;
             float inner = clamp(light.f2.y, (1.0-outer)+0.0001, 1.0);
             
-            vec3 diffuseResult = mix(albedo/PI, vec3(0.0), metallic) * diffuse;
+            vec3 diffuseResult = albedo/PI * diffuse;
             
             float epsilon = inner - outer;
             float intensity = clamp((dot(dir, spotDir) - outer) / epsilon, 0.0, 1.0);
@@ -455,7 +455,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
                       normal,
                       viewDir);
             
-            vec3 diffuseResult = mix(albedo, vec3(0.0), metallic) * diffuse;
+            vec3 diffuseResult = albedo/PI * diffuse;
             
             float intensity = 1.0 / pow(dist / light.f3.x + 1.0, 2.0);
             //float intensity = clamp((light.f3.x - dist) / light.f3.x, 0.0, 1.0);
