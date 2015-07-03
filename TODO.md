@@ -25,7 +25,7 @@
     - [ ] AudioWorld
     - [ ] ???
 - [ ] Fix banding in darkly lit areas, on metallic surfaces and point light lit areas.
-    - [ ] https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering
+    - [ ] Dithering? https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering?
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
 
