@@ -18,6 +18,7 @@
 - [ ] More tests should be created.
 - [ ] The computer freezes when the window is too small.
 - [ ] Parallax occlusion mapping seems to be incorrect.
+- [ ] The tesselation test's normals seem incorrect.
 
 ## Other
 - [ ] Benchmarks.
