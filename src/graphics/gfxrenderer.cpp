@@ -85,22 +85,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledOverlayFragment = overlayFragment->getCompiled();
     compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
 
-    ColorModifier modifier;
-
-    modifier.type = ColorModifier::ReinhardTonemapping;
-    modifier.reinhardTonemap.brightnessOnly = true;
-    colorModifiers.append(modifier);
-
-    modifier.type = ColorModifier::SaturationShift;
-    modifier.saturationShift.saturation = 0.05f;
-    colorModifiers.append(modifier);
-
-    modifier.type = ColorModifier::Vignette;
-    modifier.vignette.radius = 1.5f;
-    modifier.vignette.softness = 1.0f;
-    modifier.vignette.intensity = 1.0f;
-    colorModifiers.append(modifier);
-
     updateColorModifierShader();
 
     lightBuffer = gfxApi->createBuffer();

@@ -763,6 +763,58 @@ if __name__ == "__main__":
                 
                 return s
         
+        class ColorModifier(object):
+            class Type:
+                ReinhardTonemap = "reinhard tonemap"
+                Vignette = "vignette"
+                HueShift = "hue shift"
+                SaturationShift = "saturation shift"
+                BrightnessShift = "brightness shift"
+                Contrast = "contrast"
+                Multiply = "multiply"
+                HueReplace = "hue replace"
+                SaturationReplace = "saturation replace"
+                BrightnessReplace = "brightness replace"
+            
+            def __init__(self):
+                self.type_ = Scene.ColorModifier.Type.Contrast
+                self.contrast = 1.0
+            
+            def convert(self):
+                s = struct.pack("<B", {Scene.ColorModifier.Type.ReinhardTonemap: 0,
+                                       Scene.ColorModifier.Type.Vignette: 1,
+                                       Scene.ColorModifier.Type.HueShift: 2,
+                                       Scene.ColorModifier.Type.SaturationShift: 3,
+                                       Scene.ColorModifier.Type.BrightnessShift: 4,
+                                       Scene.ColorModifier.Type.Contrast: 5,
+                                       Scene.ColorModifier.Type.Multiply: 6,
+                                       Scene.ColorModifier.Type.HueReplace: 7,
+                                       Scene.ColorModifier.Type.SaturationReplace: 8,
+                                       Scene.ColorModifier.Type.BrightnessReplace: 9}[self.type_])
+                
+                if self.type_ == Scene.ColorModifier.Type.ReinhardTonemap:
+                    s += struct.pack("<B", self.brightnessOnly)
+                elif self.type_ == Scene.ColorModifier.Type.Vignette:
+                    s += struct.pack("<fff", self.radius, self.softness, self.intensity)
+                elif self.type_ == Scene.ColorModifier.Type.HueShift:
+                    s += struct.pack("<f", self.hue)
+                elif self.type_ == Scene.ColorModifier.Type.SaturationShift:
+                    s += struct.pack("<f", self.saturation)
+                elif self.type_ == Scene.ColorModifier.Type.BrightnessShift:
+                    s += struct.pack("<f", self.brightness)
+                elif self.type_ == Scene.ColorModifier.Type.Contrast:
+                    s += struct.pack("<f", self.contrast)
+                elif self.type_ == Scene.ColorModifier.Type.Multiply:
+                    s += struct.pack("<fff", self.color[0], self.color[1], self.color[2])
+                elif self.type_ == Scene.ColorModifier.Type.HueReplace:
+                    s += struct.pack("<f", self.hue)
+                elif self.type_ == Scene.ColorModifier.Type.SaturationReplace:
+                    s += struct.pack("<f", self.saturation)
+                elif self.type_ == Scene.ColorModifier.Type.BrightnessReplace:
+                    s += struct.pack("<f", self.brightness)
+                
+                return s
+        
         def __init__(self, src_filenames, dest_filename):
             Resource.__init__(self, "scene", src_filenames, dest_filename)
             
@@ -770,6 +822,12 @@ if __name__ == "__main__":
             self.camera = Scene.Camera()
             self.skybox = None
             self.lights = []
+            self.bloomThreshold = 1.0
+            self.bloomRadius = 0.025
+            self.bloomQuality = 0.9
+            self.bloomEnabled = True
+            self.ssaoRadius = 0.1
+            self.colorModifiers = []
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
@@ -780,6 +838,17 @@ if __name__ == "__main__":
             
             output.write(struct.pack("<L", len(get_dest_filename(self.skybox, Texture, True))))
             output.write(get_dest_filename(self.skybox, Texture, True) if self.skybox != None else "")
+            
+            output.write(struct.pack("<ffffBL",
+                                     self.bloomThreshold,
+                                     self.bloomRadius,
+                                     self.bloomQuality,
+                                     self.ssaoRadius,
+                                     self.bloomEnabled,
+                                     len(self.colorModifiers)))
+
+            for modifier in self.colorModifiers:
+                output.write(modifier.convert())
             
             output.write(struct.pack("<L", len(self.entities)))
             
@@ -1053,6 +1122,23 @@ if __name__ == "__main__":
     scene.camera.position = [-4.0, 4.0, 4.0]
     scene.camera.direction = [4.0, -2.0, -4.0]
     scene.camera.up = [0.0, 1.0, 0.0]
+    
+    modifier = Scene.ColorModifier()
+    modifier.type_ = Scene.ColorModifier.Type.ReinhardTonemap
+    modifier.brightnessOnly = True
+    scene.colorModifiers.append(modifier)
+    
+    modifier = Scene.ColorModifier()
+    modifier.type_ = Scene.ColorModifier.Type.SaturationShift
+    modifier.saturation = 0.05
+    scene.colorModifiers.append(modifier)
+    
+    modifier = Scene.ColorModifier()
+    modifier.type_ = Scene.ColorModifier.Type.Vignette
+    modifier.radius = 1.5
+    modifier.softness = 1.0
+    modifier.intensity = 1.0
+    scene.colorModifiers.append(modifier)
     
     cubeEnt = Scene.Entity("Cube")
     cubeEnt.transform.position = [0.0, 2.0, 0.0]

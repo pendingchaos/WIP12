@@ -321,6 +321,92 @@ void Scene::_load()
             renderer->skybox = nullptr;
         }
 
+        renderer->bloomThreshold = file.readFloat32();
+        renderer->bloomRadius = file.readFloat32();
+        renderer->bloomQuality = file.readFloat32();
+        renderer->ssaoRadius = file.readFloat32();
+        renderer->bloomEnabled = file.readUInt8() != 0;
+        uint32_t numColorModifiers = file.readUInt32LE();
+
+        renderer->colorModifiers.clear();
+
+        for (size_t i = 0; i < numColorModifiers; ++i)
+        {
+            GfxRenderer::ColorModifier::Type type = (GfxRenderer::ColorModifier::Type)file.readUInt8();
+
+            GfxRenderer::ColorModifier modifier;
+            modifier.type = type;
+
+            switch (type)
+            {
+            case GfxRenderer::ColorModifier::ReinhardTonemapping:
+            {
+                modifier.reinhardTonemap.brightnessOnly = file.readUInt8() != 0;
+                break;
+            }
+            case GfxRenderer::ColorModifier::Vignette:
+            {
+                modifier.vignette.radius = file.readFloat32();
+                modifier.vignette.softness = file.readFloat32();
+                modifier.vignette.intensity = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::HueShift:
+            {
+                modifier.hueShift.hue = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::SaturationShift:
+            {
+                modifier.saturationShift.saturation = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::BrightnessShift:
+            {
+                modifier.brightnessShift.brightness = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::Contrast:
+            {
+                modifier.contrast.contrast = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::Multiply:
+            {
+                modifier.multiply.red = file.readFloat32();
+                modifier.multiply.green = file.readFloat32();
+                modifier.multiply.blue = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::HueReplace:
+            {
+                modifier.hueReplace.hue = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::SaturationReplace:
+            {
+                modifier.saturationReplace.saturation = file.readFloat32();
+                break;
+            }
+            case GfxRenderer::ColorModifier::BrightnessReplace:
+            {
+                modifier.brightnessReplace.brightness = file.readFloat32();
+                break;
+            }
+            default:
+            {
+                THROW(ResourceIOException,
+                      "scene",
+                      filename,
+                      "Invalid color modifier type");
+            }
+            }
+
+            renderer->colorModifiers.append(modifier);
+        }
+
+        renderer->updateColorModifierShader();
+
         uint32_t numEntities = file.readUInt32LE();
 
         for (uint32_t i = 0; i < numEntities; ++i)
@@ -574,6 +660,79 @@ void Scene::save()
         } else
         {
             file.writeUInt32LE(0);
+        }
+
+        file.writeFloat32(renderer->bloomThreshold);
+        file.writeFloat32(renderer->bloomRadius);
+        file.writeFloat32(renderer->bloomQuality);
+        file.writeFloat32(renderer->ssaoRadius);
+        file.writeUInt8(renderer->bloomEnabled ? 1 : 0);
+
+        file.writeUInt32LE(renderer->colorModifiers.getCount());
+
+        for (size_t i = 0; i < renderer->colorModifiers.getCount(); ++i)
+        {
+            GfxRenderer::ColorModifier& modifier = renderer->colorModifiers[i];
+
+            file.writeUInt8((uint8_t)modifier.type);
+
+            switch (modifier.type)
+            {
+            case GfxRenderer::ColorModifier::ReinhardTonemapping:
+            {
+                file.writeUInt8(modifier.reinhardTonemap.brightnessOnly ? 1 : 0);
+                break;
+            }
+            case GfxRenderer::ColorModifier::Vignette:
+            {
+                file.writeFloat32(modifier.vignette.radius);
+                file.writeFloat32(modifier.vignette.softness);
+                file.writeFloat32(modifier.vignette.intensity);
+                break;
+            }
+            case GfxRenderer::ColorModifier::HueShift:
+            {
+                file.writeFloat32(modifier.hueShift.hue);
+                break;
+            }
+            case GfxRenderer::ColorModifier::SaturationShift:
+            {
+                file.writeFloat32(modifier.saturationShift.saturation);
+                break;
+            }
+            case GfxRenderer::ColorModifier::BrightnessShift:
+            {
+                file.writeFloat32(modifier.brightnessShift.brightness);
+                break;
+            }
+            case GfxRenderer::ColorModifier::Contrast:
+            {
+                file.writeFloat32(modifier.contrast.contrast);
+                break;
+            }
+            case GfxRenderer::ColorModifier::Multiply:
+            {
+                file.writeFloat32(modifier.multiply.red);
+                file.writeFloat32(modifier.multiply.green);
+                file.writeFloat32(modifier.multiply.blue);
+                break;
+            }
+            case GfxRenderer::ColorModifier::HueReplace:
+            {
+                file.writeFloat32(modifier.hueReplace.hue);
+                break;
+            }
+            case GfxRenderer::ColorModifier::SaturationReplace:
+            {
+                file.writeFloat32(modifier.saturationReplace.saturation);
+                break;
+            }
+            case GfxRenderer::ColorModifier::BrightnessReplace:
+            {
+                file.writeFloat32(modifier.brightnessReplace.brightness);
+                break;
+            }
+            }
         }
 
         file.writeUInt32LE(entities.getCount());
