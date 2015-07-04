@@ -12,7 +12,6 @@
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] Loading and saving of post processing settings.
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
-- [ ] Improve directional shadow map quality.
 
 ## Bugs
 - [ ] More tests should be created.

@@ -1228,10 +1228,10 @@ if __name__ == "__main__":
     light.shadowmap = True
     light.shadowmap_near = 0.1
     light.shadowmap_far = 100.0
-    light.shadow_min_bias = 0.0025
-    light.shadow_bias_scale = 0.025
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
-    light.shadowmap_resolution = 2048
+    light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     

@@ -251,11 +251,18 @@ Matrix4x4 Matrix4x4::lookAt(const Position3D& eye,
                             const Position3D& center,
                             const Direction3D& up)
 {
+    return lookAtDir(eye, center - eye, up);
+}
+
+Matrix4x4 Matrix4x4::lookAtDir(const Position3D& eye,
+                               const Direction3D& dir,
+                               const Direction3D& up)
+{
     Direction3D up_ = up.normalize();
 
-    Float3 f = (center - eye).normalize();
+    Float3 f = dir.normalize();
 
-    Float3 s = f.cross(up_).normalize();
+    Float3 s = f.cross(up_);
     Float3 u = s.normalize().cross(f);
 
     return Matrix4x4(Float4(s.x, s.y, s.z, -s.dot(eye)),

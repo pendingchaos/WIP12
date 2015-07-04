@@ -93,6 +93,10 @@ class Matrix4x4
                                 const Position3D& center,
                                 const Direction3D& up);
 
+        static Matrix4x4 lookAtDir(const Position3D& eye,
+                                  const Direction3D& dir,
+                                  const Direction3D& up);
+
         float data[4][4];
 };
 

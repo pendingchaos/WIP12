@@ -88,6 +88,34 @@ void Light::updateMatrices(GfxRenderer *renderer)
     }
     case Directional:
     {
+        //This creates a projection matrix where the top and bottom is too high if line 110 is set to Float3(0.0f).
+        /*Direction3D dir = direction.direction.normalize();
+
+        Direction3D up(0.0f, 1.0f, 0.0f);
+
+        if (std::abs(up.dot(dir)) >= 1.0f)
+        {
+            up = Direction3D(0.0f, 0.0f, 1.0f);
+        }
+
+        Direction3D left = dir.cross(up).normalize();
+        up = dir.cross(left).normalize();
+
+        viewMatrix = Matrix4x4::lookAtDir(Position3D(0.0f),
+                                          dir,
+                                          up);
+
+        AABB casterBounds = renderer->computeShadowCasterAABB().transform(viewMatrix);
+
+        Float3 shift = -(casterBounds.max + casterBounds.min);
+
+        projectionMatrix = Matrix4x4::orthographic(casterBounds.min.x + shift.x,
+                                                   casterBounds.max.x + shift.x,
+                                                   casterBounds.min.y + shift.y,
+                                                   casterBounds.max.y + shift.y,
+                                                   casterBounds.min.z,
+                                                   casterBounds.max.z);*/
+
         //Based on the algorithm from 0 A.D.
 
         //View
@@ -95,9 +123,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
 
         Float3 z = direction.direction.normalize();
         Float3 y;
-        Float3 x = Float3(cameraView[0][2], cameraView[1][2], cameraView[2][2]);
-
-        Float3 eyePos = Float3(cameraView[0][3], cameraView[1][3], cameraView[2][3]);
+        Float3 x = Float3(0.0f);
 
         x -= z * z.dot(x);
 
@@ -123,10 +149,6 @@ void Light::updateMatrices(GfxRenderer *renderer)
         viewMatrix[2][0] = z.x;
         viewMatrix[2][1] = z.y;
         viewMatrix[2][2] = z.z;
-
-        viewMatrix[0][3] = -x.dot(eyePos);
-        viewMatrix[1][3] = -y.dot(eyePos);
-        viewMatrix[2][3] = -z.dot(eyePos);
 
         //Projection
         AABB casterBounds = renderer->computeShadowCasterAABB().transform(viewMatrix);

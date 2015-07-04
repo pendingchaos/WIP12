@@ -12,7 +12,7 @@ class AABB
         AABB() {}
         AABB(const Position3D& min_, const Position3D& max_) : min(min_), max(max_) {}
 
-        //Modified from https://github.com/horde3d/Horde3D/blob/master/Horde3D/Source/Horde3DEngine/egPrimitives.h#L63.
+        //Modified from https://github.com/horde3d/Horde3D/blob/master/Horde3D/Source/Horde3DEngine/egPrimitives.h#L63
         AABB transform(const Matrix4x4& matrix) const
         {
             AABB result;
