@@ -28,6 +28,7 @@
     - [ ] Dithering? https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering?
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
+- [ ] Get WIP12 running on OpenGL 3.3.
 
 ## Performance Improvements
 - [ ] Instancing (explicit and implicit).
