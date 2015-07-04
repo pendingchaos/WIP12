@@ -594,14 +594,17 @@ void PhysicsCylinderShape::create()
     case PhysicsCylinderShape::X:
     {
         shape = NEW(btCylinderShapeX, btVector3(height/2.0f, radius, radius));
+        break;
     }
     case PhysicsCylinderShape::Y:
     {
         shape = NEW(btCylinderShape, btVector3(radius, height/2.0f, radius));
+        break;
     }
     case PhysicsCylinderShape::Z:
     {
         shape = NEW(btCylinderShapeZ, btVector3(radius, radius, height/2.0f));
+        break;
     }
     }
 
@@ -652,14 +655,17 @@ void PhysicsCapsuleShape::create()
     case PhysicsCapsuleShape::X:
     {
         shape = NEW(btCapsuleShapeX, radius, height);
+        break;
     }
     case PhysicsCapsuleShape::Y:
     {
         shape = NEW(btCapsuleShape, radius, height);
+        break;
     }
     case PhysicsCapsuleShape::Z:
     {
         shape = NEW(btCapsuleShapeZ, radius, height);
+        break;
     }
     }
 
@@ -710,14 +716,17 @@ void PhysicsConeShape::create()
     case PhysicsConeShape::X:
     {
         shape = NEW(btConeShapeX, radius, height);
+        break;
     }
     case PhysicsConeShape::Y:
     {
         shape = NEW(btConeShape, radius, height);
+        break;
     }
     case PhysicsConeShape::Z:
     {
         shape = NEW(btConeShapeZ, radius, height);
+        break;
     }
     }
 
