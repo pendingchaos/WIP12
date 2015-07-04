@@ -1,3 +1,5 @@
+#include "lib/color.glsl"
+
 layout (location = 0) out vec3 result_color;
 
 in vec2 frag_uv;
@@ -11,7 +13,11 @@ uniform float step;
 
 vec3 sampleTexture(vec2 uv)
 {
-    return max(texture(colorTexture, uv).rgb - threshold, 0.0);
+    vec3 color = texture(colorTexture, uv).rgb;
+    
+    vec3 xyY = RGBToxyY(color);
+    
+    return (xyY.z > threshold) ? xyYToRGB(xyY - vec3(0.0, 0.0, 1.0)) : vec3(0.0);
 }
 
 float gauss(float x)
