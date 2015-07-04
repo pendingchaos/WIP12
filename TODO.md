@@ -11,6 +11,7 @@
         - [ ] Forward
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
+- [ ] Resource copy() function.
 
 ## Bugs
 - [ ] More tests should be created.
