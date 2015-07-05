@@ -1,6 +1,7 @@
 #include "lib/color.glsl"
 #include "lib/lighting.glsl"
 #include "lib/parallax.glsl"
+#include "lib/uniform.glsl"
 
 in vec3 frag_normal_worldSpace;
 in vec2 frag_uv_tangentSpace;
@@ -13,40 +14,40 @@ layout (location = 0) out vec3 result_albedo;
 layout (location = 1) out vec2 result_material;
 layout (location = 2) out vec3 result_normal;
 
-uniform vec4 albedo;
-uniform float smoothness;
-uniform float metalMask;
+DECLUNIFORM(vec4, albedo)
+DECLUNIFORM(float, smoothness)
+DECLUNIFORM(float, metalMask)
 
 #ifdef ALBEDO_MAP
-uniform sampler2D albedoMap;
+DECLUNIFORM(sampler2D, albedoMap)
 #endif
 
 #ifdef SMOOTHNESS_MAP
-uniform sampler2D smoothnessMap;
+DECLUNIFORM(sampler2D, smoothnessMap)
 #endif
 
 #ifdef METAL_MASK_MAP
-uniform sampler2D metalMaskMap;
+DECLUNIFORM(sampler2D, metalMaskMap)
 #endif
 
 #ifdef NORMAL_MAP
-uniform sampler2D normalMap;
+DECLUNIFORM(sampler2D, normalMap)
 #endif
 
 #if defined(PARALLAX_MAPPING) || defined(POM)
-uniform sampler2D heightMap;
-uniform float heightScale;
-uniform bool parallaxEdgeDiscard;
+DECLUNIFORM(sampler2D, heightMap)
+DECLUNIFORM(float, heightScale)
+DECLUNIFORM(bool, parallaxEdgeDiscard)
 #endif
 
 #ifdef POM
-uniform uint pomMinLayers;
-uniform uint pomMaxLayers;
+DECLUNIFORM(uint, pomMinLayers)
+DECLUNIFORM(uint, pomMaxLayers)
 #endif
 
 void main()
 {
-    vec4 albedo_ = albedo;
+    vec4 albedo_ = U(albedo);
     vec3 normal_worldSpace = normalize(frag_normal_worldSpace);
 
     #if defined(NORMAL_MAP) || defined(PARALLAX_MAPPING) || defined(POM)
@@ -55,47 +56,47 @@ void main()
     #endif
 
     #ifdef PARALLAX_MAPPING
-    vec2 texCoord = parallaxMapping(heightMap,
+    vec2 texCoord = parallaxMapping(U(heightMap),
                                     mod(frag_uv_tangentSpace, vec2(1.0)),
                                     normalize(toTangentSpace * normalize(frag_viewDir_worldSpace)),
-                                    heightScale);
+                                    U(heightScale));
     #elif defined(POM)
-    vec2 texCoord = pom(heightMap,
+    vec2 texCoord = pom(U(heightMap),
                         mod(frag_uv_tangentSpace, vec2(1.0)),
                         normalize(toTangentSpace * normalize(frag_viewDir_worldSpace)),
-                        heightScale,
-                        pomMinLayers,
-                        pomMaxLayers);
+                        U(heightScale),
+                        U(pomMinLayers),
+                        U(pomMaxLayers));
     #else
     vec2 texCoord = frag_uv_tangentSpace;
     #endif
 
     #if defined(PARALLAX_MAPPING) || defined(POM)
     if ((texCoord.x > 1.0 || texCoord.y > 1.0 || texCoord.x < 0.0 || texCoord.y < 0.0) &&
-        parallaxEdgeDiscard)
+        U(parallaxEdgeDiscard))
     {
         discard;
     }
     #endif
 
     #ifdef ALBEDO_MAP
-    albedo_ *= texture(albedoMap, texCoord);
+    albedo_ *= texture(U(albedoMap), texCoord);
     #endif
 
-    float roughness_ = 1.0 - smoothness;
+    float roughness_ = 1.0 - U(smoothness);
 
     #ifdef SMOOTHNESS_MAP
-    roughness_ *= 1.0 - texture(smoothnessMap, texCoord).r;
+    roughness_ *= 1.0 - texture(U(smoothnessMap), texCoord).r;
     #endif
 
-    float metallic_ = metalMask;
+    float metallic_ = U(metalMask);
 
     #ifdef METAL_MASK_MAP
-    metallic_ *= texture(metalMaskMap, texCoord).r;
+    metallic_ *= texture((metalMaskMap), texCoord).r;
     #endif
 
     #ifdef NORMAL_MAP
-    normal_worldSpace = fromTangentSpace * normalize(texture(normalMap, texCoord).xyz * 2.0 - 1.0);
+    normal_worldSpace = fromTangentSpace * normalize(texture(U(normalMap), texCoord).xyz * 2.0 - 1.0);
 
     normal_worldSpace = normalize(normal_worldSpace);
     #endif

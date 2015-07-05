@@ -20,6 +20,9 @@ class GfxGLCompiledShader : public GfxCompiledShader
     public:
         virtual ~GfxGLCompiledShader() {}
 
+        /**
+        This is a shader if GL_ARB_seperate_shader_objects is not supported.
+        **/
         inline GLuint getGLProgram() const
         {
             return program;
@@ -30,7 +33,7 @@ class GfxGLCompiledShader : public GfxCompiledShader
             return program == 0;
         }
     private:
-        GfxGLCompiledShader(GLuint program_) : program(program_) {}
+        GfxGLCompiledShader(GfxShader::Stage stage, GLuint program_) : GfxCompiledShader(stage), program(program_) {}
 
         GLuint program;
 };

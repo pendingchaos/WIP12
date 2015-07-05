@@ -34,17 +34,7 @@ class ShaderCompileException : public Exception
         String infoLog;
 };
 
-class GfxCompiledShader
-{
-    NO_COPY(GfxCompiledShader)
-
-    public:
-        virtual ~GfxCompiledShader() {}
-
-        virtual bool isInvalid() const=0;
-    protected:
-        GfxCompiledShader() {}
-};
+class GfxCompiledShader;
 
 class GfxShader : public Resource
 {
@@ -110,6 +100,25 @@ class GfxShader : public Resource
         virtual void _load();
 
     NO_COPY_INHERITED(GfxShader, Resource)
+};
+
+class GfxCompiledShader
+{
+    NO_COPY(GfxCompiledShader)
+
+    public:
+        virtual ~GfxCompiledShader() {}
+
+        virtual bool isInvalid() const=0;
+
+        inline GfxShader::Stage getStage() const
+        {
+            return stage;
+        }
+    protected:
+        GfxCompiledShader(GfxShader::Stage stage_) : stage(stage_) {}
+    private:
+        GfxShader::Stage stage;
 };
 
 class GfxShaderImpl

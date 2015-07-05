@@ -1,39 +1,41 @@
+#include "lib/uniform.glsl"
+
 layout (location = 0) out float result_ao;
 
 in vec2 frag_uv;
 
-uniform sampler2D depthTexture;
-uniform sampler2D normalTexture;
-uniform sampler2D randomTex;
-uniform float cameraNear;
-uniform float cameraFar;
-uniform mat3 normalMatrix;
-uniform float radius;
+DECLUNIFORM(sampler2D, depthTexture)
+DECLUNIFORM(sampler2D, normalTexture)
+DECLUNIFORM(sampler2D, randomTex)
+DECLUNIFORM(float, cameraNear)
+DECLUNIFORM(float, cameraFar)
+DECLUNIFORM(mat3, normalMatrix)
+DECLUNIFORM(float, radius)
 
 float linearizeDepth(float depth)
 {
-    return cameraNear * cameraFar / ((depth * (cameraFar - cameraNear)) - cameraFar);
+    return U(cameraNear) * U(cameraFar) / ((depth * (U(cameraFar) - U(cameraNear))) - U(cameraFar));
 }
 
 vec3 getRandom(vec2 pos)
 {
-    return texelFetch(randomTex, ivec2(pos) % 4, 0).xyz;
+    return texelFetch(U(randomTex), ivec2(pos) % 4, 0).xyz;
 }
 
 #define SAMPLE(kernel) {\
-    vec3 samplePos = tbn * kernel * radius + origin;\
+    vec3 samplePos = tbn * kernel * U(radius) + origin;\
     vec2 texPos = (samplePos.xy + 1.0) / 2.0;\
-    float sampleDepth = linearizeDepth(texture(depthTexture, texPos));\
-    float rangeCheck = smoothstep(0.0, 1.0, radius / abs(samplePos.z - sampleDepth));\
+    float sampleDepth = linearizeDepth(texture(U(depthTexture), texPos));\
+    float rangeCheck = smoothstep(0.0, 1.0, U(radius) / abs(samplePos.z - sampleDepth));\
     result_ao += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
 }\
 
 void main()
 {
-    float depth = linearizeDepth(texture(depthTexture, frag_uv).r);
+    float depth = linearizeDepth(texture(U(depthTexture), frag_uv).r);
     vec3 origin = vec3(frag_uv * 2.0 - 1.0, depth);
     
-    vec3 normal = normalize(normalMatrix * texture(normalTexture, frag_uv).xyz);
+    vec3 normal = normalize(U(normalMatrix) * texture(U(normalTexture), frag_uv).xyz);
     vec3 rvec = getRandom(gl_FragCoord.xy);
     vec3 tangent = normalize(rvec - normal * dot(rvec, normal));
     vec3 bitangent = cross(tangent, normal);

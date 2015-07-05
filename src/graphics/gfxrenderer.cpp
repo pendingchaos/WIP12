@@ -309,7 +309,36 @@ void GfxRenderer::updateStats()
 
 void GfxRenderer::updateColorModifierShader()
 {
-    String source = STR(
+    //uniform.glsl
+    String source = "#extension GL_ARB_separate_shader_objects : enable\n"
+"\n"
+"#ifdef GL_ARB_separate_shader_objects\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_uniform;\n"
+"#define U(name) _##name##_uniform\n"
+"#else\n"
+"#ifdef __VERTEX__\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_vertex;\n"
+"#define U(name) _##name##_vertex\n"
+"#elif defined(__TESS_CONTROL__)\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_tessControl;\n"
+"#define U(name) _##name##_tessControl\n"
+"#elif defined(__TESS_EVAL__)\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_tessEval;\n"
+"#define U(name) _##name##_tessEval\n"
+"#elif defined(__GEOMETRY__)\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_geometry;\n"
+"#define U(name) _##name##_geometry\n"
+"#elif defined(__FRAGMENT__)\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_fragment;\n"
+"#define U(name) _##name##_fragment\n"
+"#elif defined(__COMPUTE__)\n"
+"#define DECLUNIFORM(type, name) uniform type _##name##_compute;\n"
+"#define U(name) _##name##_compute\n"
+"#endif\n"
+"#endif\n";
+
+    source.append(STR(
+//Begin color.glsl\n
 vec3 RGBToxyY(vec3 rgb)
 {
 	const mat3 RGB2XYZ = mat3(0.4124, 0.3576, 0.1805,
@@ -317,7 +346,7 @@ vec3 RGBToxyY(vec3 rgb)
 							  0.0193, 0.1192, 0.9505);
 	vec3 XYZ = RGB2XYZ * rgb;
 
-	// XYZ to xyY
+	// XYZ to xyY\n
 	return vec3(XYZ.x / (XYZ.x + XYZ.y + XYZ.z),
 				XYZ.y / (XYZ.x + XYZ.y + XYZ.z),
 				XYZ.y);
@@ -325,7 +354,7 @@ vec3 RGBToxyY(vec3 rgb)
 
 vec3 xyYToRGB(vec3 xyY)
 {
-	// xyY to XYZ
+	// xyY to XYZ\n
 	vec3 XYZ = vec3((xyY.z / xyY.y) * xyY.x,
 					xyY.z,
 					(xyY.z / xyY.y) * (1.0 - xyY.x - xyY.y));
@@ -337,12 +366,12 @@ vec3 xyYToRGB(vec3 xyY)
 	return XYZ2RGB * XYZ;
 }
 
-//From http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl
+//From http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl\n
 vec3 rgb2hsv(vec3 c)
 {
     vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-    //vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
-    //vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+    //vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));\n
+    //vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));\n
     vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);
     vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);
 
@@ -357,12 +386,13 @@ vec3 hsv2rgb(vec3 c)
     vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
     return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
 }
+//End color.glsl\n
 
 layout (location = 0) out vec3 result_color;
 
 in vec2 frag_uv;
 
-uniform sampler2D colorTexture;
+DECLUNIFORM(sampler2D, colorTexture)
 
 vec3 reinhard(vec3 color)
 {
@@ -453,8 +483,8 @@ vec3 brightnessReplace(vec3 color, float brightness)
 
 void main()
 {
-    result_color = texture(colorTexture, frag_uv).rgb;
-);
+    result_color = texture(U(colorTexture), frag_uv).rgb;
+));
 
     for (size_t i = 0; i < colorModifiers.getCount(); ++i)
     {

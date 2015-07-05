@@ -1,3 +1,5 @@
+#include "lib/uniform.glsl"
+
 layout (vertices = 3) out;
 
 in gl_PerVertex
@@ -17,22 +19,22 @@ out gl_PerVertex
 out vec3 eval_normal_worldSpace[];
 out vec2 eval_uv_tangentSpace[];
 
-uniform float minTessLevel;
-uniform float maxTessLevel;
-uniform float tessMinDistance;
-uniform float tessMaxDistance;
-uniform vec3 cameraPosition;
+DECLUNIFORM(float, minTessLevel)
+DECLUNIFORM(float, maxTessLevel)
+DECLUNIFORM(float, tessMinDistance)
+DECLUNIFORM(float, tessMaxDistance)
+DECLUNIFORM(vec3, cameraPosition)
 
 float getTessLevel(in float distance)
 {
-    return mix(maxTessLevel, minTessLevel, clamp((distance - tessMinDistance) / tessMaxDistance, 0.0, 1.0));
+    return mix(U(maxTessLevel), U(minTessLevel), clamp((distance - U(tessMinDistance)) / U(tessMaxDistance), 0.0, 1.0));
 }
 
 void main()
 {
-    float distance0 = distance(control_position_worldSpace[0], cameraPosition);
-    float distance1 = distance(control_position_worldSpace[1], cameraPosition);
-    float distance2 = distance(control_position_worldSpace[2], cameraPosition);
+    float distance0 = distance(control_position_worldSpace[0], U(cameraPosition));
+    float distance1 = distance(control_position_worldSpace[1], U(cameraPosition));
+    float distance2 = distance(control_position_worldSpace[2], U(cameraPosition));
 
     float tessLevel0 = getTessLevel((distance1 + distance2) / 2.0);
     float tessLevel1 = getTessLevel((distance2 + distance0) / 2.0);

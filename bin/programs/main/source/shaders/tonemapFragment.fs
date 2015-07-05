@@ -1,8 +1,10 @@
+#include "lib/uniform.glsl"
+
 layout (location = 0) out vec3 result_color;
 
 in vec2 frag_uv;
 
-uniform sampler2D colorTexture;
+DECLUNIFORM(sampler2D, colorTexture)
 
 vec3 RGBToxyY(vec3 rgb)
 {
@@ -33,7 +35,7 @@ vec3 xyYToRGB(vec3 xyY)
 
 void main()
 {
-    result_color = texture(colorTexture, frag_uv).rgb;
+    result_color = texture(U(colorTexture), frag_uv).rgb;
 
     vec3 xyY = RGBToxyY(result_color);
     

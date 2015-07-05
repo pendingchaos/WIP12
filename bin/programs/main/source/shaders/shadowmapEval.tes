@@ -1,3 +1,5 @@
+#include "lib/uniform.glsl"
+
 layout (triangles) in;
 
 in gl_PerVertex
@@ -13,11 +15,11 @@ out gl_PerVertex
     vec4 gl_Position;
 };
 
-uniform sampler2D heightMap;
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform float strength;
-uniform float displacementMidlevel;
+DECLUNIFORM(sampler2D, heightMap)
+DECLUNIFORM(mat4, projectionMatrix)
+DECLUNIFORM(mat4, viewMatrix)
+DECLUNIFORM(float, strength)
+DECLUNIFORM(float, displacementMidlevel)
 
 vec2 interpolateVec2(in vec2 v0, in vec2 v1, in vec2 v2)
 {
@@ -54,7 +56,7 @@ void main()
                               eval_uv_tangentSpace[1],
                               eval_uv_tangentSpace[2]);
 
-    gl_Position.xyz += normal * (texture(heightMap, uv).r - displacementMidlevel) * strength;
+    gl_Position.xyz += normal * (texture(U(heightMap), uv).r - U(displacementMidlevel)) * U(strength);
 
-    gl_Position = projectionMatrix * viewMatrix * gl_Position;
+    gl_Position = U(projectionMatrix) * U(viewMatrix) * gl_Position;
 }

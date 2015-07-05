@@ -2,6 +2,7 @@
 #define GFXGLAPI_H
 
 #include "graphics/gfxapi.h"
+#include "containers/hashmap.h"
 
 class GfxGLApi : public GfxApi
 {
@@ -159,11 +160,6 @@ class GfxGLApi : public GfxApi
         };
 
         GLuint pipeline;
-        GLuint vertex;
-        GLuint tessEval;
-        GLuint tessControl;
-        GLuint geometry;
-        GLuint fragment;
         State currentState;
         State stateStack[64];
         uint8_t stateStackSize;
@@ -194,6 +190,26 @@ class GfxGLApi : public GfxApi
 
         void useState(const State& state);
         void beginEndTest();
+
+        struct ProgramCombination
+        {
+            GLuint vertex;
+            GLuint tessControl;
+            GLuint tessEval;
+            GLuint geometry;
+            GLuint fragment;
+
+            inline bool operator == (const ProgramCombination& other) const
+            {
+                return vertex == other.vertex and
+                       tessControl == other.tessControl and
+                       tessEval == other.tessEval and
+                       geometry == other.geometry and
+                       fragment == other.fragment;
+            }
+        };
+
+        HashMap<ProgramCombination, GLuint> programs;
 };
 
 #endif // GFXGLAPI_H

@@ -1,12 +1,14 @@
+#include "lib/uniform.glsl"
+
 in vec3 frag_position;
 
-uniform vec3 lightPos;
-uniform float lightFar;
-uniform float biasScale;
+DECLUNIFORM(vec3, lightPos)
+DECLUNIFORM(float, lightFar)
+DECLUNIFORM(float, biasScale)
 
 void main()
 {
-    float dist = distance(lightPos, frag_position) / lightFar;
+    float dist = distance(U(lightPos), frag_position) / U(lightFar);
     
-    gl_FragDepth = dist + (abs(dFdx(dist)) + abs(dFdy(dist))) * biasScale;
+    gl_FragDepth = dist + (abs(dFdx(dist)) + abs(dFdy(dist))) * U(biasScale);
 }

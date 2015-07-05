@@ -1,4 +1,5 @@
 #include "lib/vertex attributes.glsl"
+#include "lib/uniform.glsl"
 
 layout (location=POSITION) in vec3 position_modelSpace;
 layout (location=NORMAL) in vec3 normal_modelSpace;
@@ -18,21 +19,21 @@ out gl_PerVertex
     vec4 gl_Position;
 };
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 worldMatrix;
-uniform mat3 normalMatrix;
-uniform vec3 cameraPosition;
+DECLUNIFORM(mat4, projectionMatrix)
+DECLUNIFORM(mat4, viewMatrix)
+DECLUNIFORM(mat4, worldMatrix)
+DECLUNIFORM(mat3, normalMatrix)
+DECLUNIFORM(vec3, cameraPosition)
 
 void main()
 {
-    gl_Position = projectionMatrix * viewMatrix * worldMatrix * vec4(position_modelSpace, 1.0);
-    frag_normal_worldSpace = normalize(normalMatrix * normal_modelSpace);
+    gl_Position = U(projectionMatrix) * U(viewMatrix) * U(worldMatrix) * vec4(position_modelSpace, 1.0);
+    frag_normal_worldSpace = normalize(U(normalMatrix) * normal_modelSpace);
     frag_uv_tangentSpace = texCoord0_tangentSpace;
-    frag_position_worldSpace = (worldMatrix * vec4(position_modelSpace, 1.0)).xyz;
+    frag_position_worldSpace = (U(worldMatrix) * vec4(position_modelSpace, 1.0)).xyz;
 
-    frag_viewDir_worldSpace = normalize(cameraPosition - frag_position_worldSpace);
+    frag_viewDir_worldSpace = normalize(U(cameraPosition) - frag_position_worldSpace);
 
-    frag_tangent_worldSpace = normalize(normalMatrix * tangent_modelSpace);
-    frag_bitangent_worldSpace = normalize(normalMatrix * bitangent_modelSpace);
+    frag_tangent_worldSpace = normalize(U(normalMatrix) * tangent_modelSpace);
+    frag_bitangent_worldSpace = normalize(U(normalMatrix) * bitangent_modelSpace);
 }

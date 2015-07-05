@@ -8,7 +8,13 @@ GfxGLShaderImpl::~GfxGLShaderImpl()
 {
     for (size_t i = 0; i < compiledShaders.getEntryCount(); ++i)
     {
-        glDeleteProgram(compiledShaders.getValue(i)->getGLProgram());
+        if (GLFL_GL_ARB_separate_shader_objects)
+        {
+            glDeleteProgram(compiledShaders.getValue(i)->getGLProgram());
+        } else
+        {
+            glDeleteShader(compiledShaders.getValue(i)->getGLProgram());
+        }
 
         DELETE(CompiledShader, compiledShaders.getValue(i));
     }
@@ -22,48 +28,69 @@ GLuint GfxGLShaderImpl::_compile(GLenum type, GLsizei count, const char **string
 
     glCompileShader(shader);
 
-    GLuint program = glCreateProgram();
-
-    GLint compiled;
-
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-
-    glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
-
-    if (compiled)
+    if (GLFL_GL_ARB_separate_shader_objects)
     {
-        glAttachShader(program, shader);
-        glLinkProgram(program);
-        glDetachShader(program, shader);
+        GLuint program = glCreateProgram();
+
+        GLint compiled;
+
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+
+        glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
+
+        if (compiled)
+        {
+            glAttachShader(program, shader);
+            glLinkProgram(program);
+            glDetachShader(program, shader);
+        } else
+        {
+            GLint length;
+
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+            infoLog.resize(length);
+
+            glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
+        }
+
+        glDeleteShader(shader);
+
+        GLint linked;
+
+        glGetProgramiv(program, GL_LINK_STATUS, &linked);
+
+        if (not linked and compiled)
+        {
+            GLint length;
+
+            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+
+            infoLog.resize(length);
+
+            glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
+        }
+
+        return program;
     } else
     {
-        GLint length;
+        GLint compiled;
 
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
 
-        infoLog.resize(length);
+        if (not compiled)
+        {
+            GLint length;
 
-        glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+            infoLog.resize(length);
+
+            glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
+        }
+
+        return shader;
     }
-
-    glDeleteShader(shader);
-
-    GLint linked;
-
-    glGetProgramiv(program, GL_LINK_STATUS, &linked);
-
-    if (not linked and compiled)
-    {
-        GLint length;
-
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
-
-        infoLog.resize(length);
-
-        glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
-    }
-
-    return program;
 }
 
 void GfxGLShaderImpl::_compile()
@@ -80,7 +107,13 @@ void GfxGLShaderImpl::_compile()
 
             if (oldProgram != 0)
             {
-                glDeleteProgram(oldProgram);
+                if (GLFL_GL_ARB_separate_shader_objects)
+                {
+                    glDeleteProgram(oldProgram);
+                } else
+                {
+                    glDeleteShader(oldProgram);
+                }
             }
         } catch (ShaderCompileException& e)
         {
@@ -100,7 +133,7 @@ GfxCompiledShader *GfxGLShaderImpl::getCompiled(const HashMap<String, String >& 
 
     if (entry == -1)
     {
-        GfxGLCompiledShader *shader = NEW(GfxGLCompiledShader, _compile(defines));
+        GfxGLCompiledShader *shader = NEW(GfxGLCompiledShader, stage, _compile(defines));
 
         compiledShaders.set(defines, shader);
 
