@@ -1,6 +1,7 @@
 #include "graphics/GL/gfxglshaderimpl.h"
 
-#include <iostream>
+#include "graphics/GL/gfxglapi.h"
+#include "globals.h"
 
 GfxGLShaderImpl::GfxGLShaderImpl() : stage(GfxShader::Vertex) {}
 
@@ -149,7 +150,31 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     const char **sources = NEW_ARRAY(const char *, numSources);
     String *defineSources = NEW_ARRAY(String, defines.getEntryCount());
 
-    sources[0] = "#version 430 core\n";
+    unsigned int major = ((GfxGLApi *)gfxApi)->getOpenGLMajorVersion();
+    unsigned int minor = ((GfxGLApi *)gfxApi)->getOpenGLMinorVersion();
+
+    if (major == 3 and minor == 3)
+    {
+        sources[0] = "#version 330 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    } else if (major == 4 and minor == 0)
+    {
+        sources[0] = "#version 400 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    } else if (major == 4 and minor == 1)
+    {
+        sources[0] = "#version 410 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    } else if (major == 4 and minor == 2)
+    {
+        sources[0] = "#version 420 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    } else if (major == 4 and minor == 3)
+    {
+        sources[0] = "#version 430 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    } else if (major == 4 and minor == 4)
+    {
+        sources[0] = "#version 440 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    } else if (major == 4 and minor == 5)
+    {
+        sources[0] = "#version 450 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+    }
 
     for (size_t i = 0; i < defines.getEntryCount(); ++i)
     {
@@ -163,27 +188,27 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     {
     case GfxShader::Vertex:
     {
-        sources[defines.getEntryCount()+1] = "#define __VERTEX__ 1\n";
+        sources[defines.getEntryCount()+1] = "#define VERTEX 1\n";
         break;
     }
     case GfxShader::TessControl:
     {
-        sources[defines.getEntryCount()+1] = "#define __TESS_CONTROL__ 1\n";
+        sources[defines.getEntryCount()+1] = "#define TESS_CONTROL 1\n";
         break;
     }
     case GfxShader::TessEval:
     {
-        sources[defines.getEntryCount()+1] = "#define __TESS_EVAL__ 1\n";
+        sources[defines.getEntryCount()+1] = "#define TESS_EVAL 1\n";
         break;
     }
     case GfxShader::Geometry:
     {
-        sources[defines.getEntryCount()+1] = "#define __GEOMETRY__ 1\n";
+        sources[defines.getEntryCount()+1] = "#define GEOMETRY 1\n";
         break;
     }
     case GfxShader::Fragment:
     {
-        sources[defines.getEntryCount()+1] = "#define __FRAGMENT__ 1\n";
+        sources[defines.getEntryCount()+1] = "#define FRAGMENT 1\n";
         break;
     }
     case GfxShader::Compute:

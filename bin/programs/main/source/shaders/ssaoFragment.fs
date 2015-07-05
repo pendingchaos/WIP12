@@ -25,7 +25,7 @@ vec3 getRandom(vec2 pos)
 #define SAMPLE(kernel) {\
     vec3 samplePos = tbn * kernel * U(radius) + origin;\
     vec2 texPos = (samplePos.xy + 1.0) / 2.0;\
-    float sampleDepth = linearizeDepth(texture(U(depthTexture), texPos));\
+    float sampleDepth = linearizeDepth(texture(U(depthTexture), texPos).r);\
     float rangeCheck = smoothstep(0.0, 1.0, U(radius) / abs(samplePos.z - sampleDepth));\
     result_ao += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
 }\

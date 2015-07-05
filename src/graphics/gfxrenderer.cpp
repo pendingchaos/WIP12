@@ -50,8 +50,13 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     postEffectVertex = resMgr->getResource<GfxShader>("resources/shaders/postEffectVertex.bin");
     shadowmapVertex = resMgr->getResource<GfxShader>("resources/shaders/shadowmapVertex.bin");
     pointShadowmapGeometry = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
-    shadowmapTessControl = resMgr->getResource<GfxShader>("resources/shaders/shadowmapControl.bin");
-    shadowmapTessEval = resMgr->getResource<GfxShader>("resources/shaders/shadowmapEval.bin");
+
+    if (gfxApi->tesselationSupported())
+    {
+        shadowmapTessControl = resMgr->getResource<GfxShader>("resources/shaders/shadowmapControl.bin");
+        shadowmapTessEval = resMgr->getResource<GfxShader>("resources/shaders/shadowmapEval.bin");
+    }
+
     shadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/shadowmapFragment.bin");
     pointShadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
     overlayVertex = resMgr->getResource<GfxShader>("resources/shaders/overlayVertex.bin");
@@ -75,10 +80,20 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledTonemapFragment = tonemapFragment->getCompiled();
     compiledPostEffectVertex = postEffectVertex->getCompiled();
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
-    compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1"));
+
+    if (gfxApi->tesselationSupported())
+    {
+        compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1"));
+    }
+
     compiledPointShadowmapGeometry = pointShadowmapGeometry->getCompiled();
-    compiledShadowmapTessControl = shadowmapTessControl->getCompiled();
-    compiledShadowmapTessEval = shadowmapTessEval->getCompiled();
+
+    if (gfxApi->tesselationSupported())
+    {
+        compiledShadowmapTessControl = shadowmapTessControl->getCompiled();
+        compiledShadowmapTessEval = shadowmapTessEval->getCompiled();
+    }
+
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
     compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
     compiledOverlayVertex = overlayVertex->getCompiled();
@@ -1468,6 +1483,10 @@ void GfxRenderer::renderModel(bool forward,
                 ResPtr<GfxMesh> mesh = lod.mesh;
                 GfxShaderCombination *shaderComb = material->getShaderComb();
 
+                bool useTesselation = material->getDisplacementMap() != nullptr and
+                                      gfxApi->tesselationSupported() and
+                                      mesh->primitive == GfxTriangles;
+
                 gfxApi->pushState();
 
                 GfxCompiledShader *vertex = shaderComb->getCompiledVertexShader();
@@ -1483,21 +1502,21 @@ void GfxRenderer::renderModel(bool forward,
                               fragment,
                               mesh);
 
-                if (material->getDisplacementMap() == nullptr)
-                {
-                    gfxApi->uniform(vertex, "projectionMatrix", projectionMatrix);
-                    gfxApi->uniform(vertex, "viewMatrix", viewMatrix);
-                } else
+                if (useTesselation)
                 {
                     gfxApi->uniform(vertex, "projectionMatrix", Matrix4x4());
                     gfxApi->uniform(vertex, "viewMatrix", Matrix4x4());
+                } else
+                {
+                    gfxApi->uniform(vertex, "projectionMatrix", projectionMatrix);
+                    gfxApi->uniform(vertex, "viewMatrix", viewMatrix);
                 }
 
                 gfxApi->uniform(vertex, "worldMatrix", worldMatrix);
                 gfxApi->uniform(vertex, "normalMatrix", normalMatrix);
                 gfxApi->uniform(vertex, "cameraPosition", camera.getPosition());
 
-                if (material->getDisplacementMap() != nullptr)
+                if (useTesselation)
                 {
                     gfxApi->uniform(tessControl, "minTessLevel", material->minTessLevel);
                     gfxApi->uniform(tessControl, "maxTessLevel", material->maxTessLevel);
@@ -1562,11 +1581,14 @@ void GfxRenderer::renderModel(bool forward,
 
                 gfxApi->setCullMode(mesh->cullMode);
 
-                GfxPrimitive primitive = material->getDisplacementMap() != nullptr ?
+                GfxPrimitive primitive = useTesselation ?
                                          GfxPatches :
                                          mesh->primitive;
 
-                gfxApi->setTessPatchSize(3);
+                if (useTesselation)
+                {
+                    gfxApi->setTessPatchSize(3);
+                }
 
                 if (mesh->indexed)
                 {
@@ -1621,7 +1643,9 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                 GfxCompiledShader *tessControlShader = nullptr;
                 GfxCompiledShader *tessEvalShader = nullptr;
 
-                bool useTesselation = material->getDisplacementMap() != nullptr and material->shadowTesselation;
+                bool useTesselation = material->getDisplacementMap() != nullptr and
+                                      material->shadowTesselation and
+                                      gfxApi->tesselationSupported();
 
                 if (useTesselation)
                 {

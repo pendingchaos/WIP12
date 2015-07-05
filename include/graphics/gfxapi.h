@@ -23,6 +23,8 @@ class GfxApi
         GfxApi() {}
         virtual ~GfxApi();
 
+        virtual bool tesselationSupported()=0;
+
         virtual GfxShaderImpl *createShaderImpl()=0;
         virtual GfxBuffer *createBuffer()=0;
         virtual GfxTextureImpl *createTextureImpl()=0;

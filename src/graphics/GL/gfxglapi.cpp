@@ -206,6 +206,8 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 {
     glflInit();
 
+    std::sscanf((const char *)glGetString(GL_VERSION), "%u.%u", &glMajor, &glMinor);
+
     resetState();
 
     printOpenGLInfo();
@@ -240,6 +242,11 @@ GfxGLApi::~GfxGLApi()
     {
         glDeleteProgram(programs.getValue(i));
     }
+}
+
+bool GfxGLApi::tesselationSupported()
+{
+    return GLFL_GL_ARB_tessellation_shader;
 }
 
 GfxShaderImpl *GfxGLApi::createShaderImpl()
@@ -1333,7 +1340,10 @@ bool GfxGLApi::getScissorEnabled()
 
 void GfxGLApi::setTessPatchSize(size_t size)
 {
-    glPatchParameteri(GL_PATCH_VERTICES, size);
+    if (GLFL_GL_ARB_tessellation_shader)
+    {
+        glPatchParameteri(GL_PATCH_VERTICES, size);
+    }
 
     currentState.patchSize = size;
 }

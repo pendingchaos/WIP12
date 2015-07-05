@@ -10,6 +10,18 @@ class GfxGLApi : public GfxApi
         GfxGLApi();
         virtual ~GfxGLApi();
 
+        inline unsigned int getOpenGLMinorVersion() const
+        {
+            return glMinor;
+        }
+
+        inline unsigned int getOpenGLMajorVersion() const
+        {
+            return glMajor;
+        }
+
+        virtual bool tesselationSupported();
+
         virtual GfxShaderImpl *createShaderImpl();
         virtual GfxBuffer *createBuffer();
         virtual GfxTextureImpl *createTextureImpl();
@@ -158,6 +170,9 @@ class GfxGLApi : public GfxApi
             GfxCullMode cullMode;
             bool scissorEnabled:1;
         };
+
+        unsigned int glMajor;
+        unsigned int glMinor;
 
         GLuint pipeline;
         State currentState;

@@ -1,3 +1,5 @@
+#extension GL_ARB_tessellation_shader : require
+
 #include "lib/uniform.glsl"
 
 layout (vertices = 3) out;

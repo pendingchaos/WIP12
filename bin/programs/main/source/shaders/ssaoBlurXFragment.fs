@@ -8,10 +8,10 @@ DECLUNIFORM(sampler2D, aoTexture)
 
 void main()
 {
-    result_ao = (texture(U(aoTexture), frag_uv) +
-                 textureOffset(U(aoTexture), frag_uv, ivec2(-1, 0)) * 0.5 +
-                 textureOffset(U(aoTexture), frag_uv, ivec2(-2, 0)) * 0.25 +
-                 textureOffset(U(aoTexture), frag_uv, ivec2(1, 0)) * 0.5 +
-                 textureOffset(U(aoTexture), frag_uv, ivec2(2, 0)) * 0.25) / 2.5;
+    result_ao = (texture(U(aoTexture), frag_uv).r +
+                 textureOffset(U(aoTexture), frag_uv, ivec2(-1, 0)).r * 0.5 +
+                 textureOffset(U(aoTexture), frag_uv, ivec2(-2, 0)).r * 0.25 +
+                 textureOffset(U(aoTexture), frag_uv, ivec2(1, 0)).r * 0.5 +
+                 textureOffset(U(aoTexture), frag_uv, ivec2(2, 0)).r * 0.25) / 2.5;
 }
 

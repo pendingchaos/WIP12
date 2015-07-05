@@ -375,7 +375,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
 {
     vec3 result = vec3(0.0);
     
-    for (uint i = 0; i < numLights; ++i)
+    for (uint i = uint(0); i < numLights; ++i)
     {
         Light light = lights[i];
         

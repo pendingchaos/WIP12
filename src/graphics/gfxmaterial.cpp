@@ -172,7 +172,7 @@ void GfxMaterial::setDisplacementMap(ResPtr<GfxTexture> texture)
 {
     displacementMap = texture;
 
-    if (displacementMap != nullptr)
+    if (displacementMap != nullptr and gfxApi->tesselationSupported())
     {
         shaderComb->setTessControlShader(resMgr->getResource<GfxShader>("resources/shaders/objectTessControl.bin"));
         shaderComb->setTessEvalShader(resMgr->getResource<GfxShader>("resources/shaders/objectTessEval.bin"));

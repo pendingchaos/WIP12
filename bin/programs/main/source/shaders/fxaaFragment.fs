@@ -1,3 +1,9 @@
+#extension GL_ARB_gpu_shader5 : enable
+
+#ifndef GL_ARB_gpu_shader5
+#extension GL_EXT_gpu_shader4 : enable
+#endif
+
 #include "lib/uniform.glsl"
 
 layout (location = 0) out vec4 result_color;
@@ -12,7 +18,7 @@ DECLUNIFORM(sampler2D, colorTexture)
  
 #define FXAA_PC 1
 #define FXAA_GLSL_130 1
- 
+
 #if QUALITY == 2
 	#define FXAA_QUALITY__PRESET 39
 #else

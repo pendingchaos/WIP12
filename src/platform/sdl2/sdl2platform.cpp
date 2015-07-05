@@ -192,10 +192,24 @@ void SDL2Platform::initWindow(uint32_t width,
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
 
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    #define TRY_VERSION(major, minor)\
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, major);\
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minor);\
+    context = SDL_GL_CreateContext(window);\
+    if (context != nullptr)\
+    {\
+        goto success;\
+    }\
 
-    context = SDL_GL_CreateContext(window);
+    TRY_VERSION(4, 5)
+    TRY_VERSION(4, 4)
+    TRY_VERSION(4, 3)
+    TRY_VERSION(4, 2)
+    TRY_VERSION(4, 1)
+    TRY_VERSION(4, 0)
+    TRY_VERSION(3, 3)
+
+    success:;
 
     if (context == nullptr)
     {
