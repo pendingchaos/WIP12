@@ -21,6 +21,8 @@ class Resource(object):
         pass
 
 if __name__ == "__main__":
+    os.makedirs("resources/textures")
+    
     def get_dest_filename(obj, type_, allowNone=False):
         if obj == None and allowNone:
             return None
@@ -28,7 +30,7 @@ if __name__ == "__main__":
         return obj.dest_filename if isinstance(obj, type_) else str(obj)
     
     try:
-        meshConverter = ctypes.CDLL("./libMeshConvertera.so")
+        meshConverter = ctypes.CDLL("./libMeshConverter.so")
     except:
         print "Warning: libMeshConverter.so can not be loaded. Meshes will not be converted."
         
