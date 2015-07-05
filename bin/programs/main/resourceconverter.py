@@ -27,7 +27,12 @@ if __name__ == "__main__":
         
         return obj.dest_filename if isinstance(obj, type_) else str(obj)
     
-    meshConverter = ctypes.CDLL("./libMeshConverter.so")
+    try:
+        meshConverter = ctypes.CDLL("./libMeshConvertera.so")
+    except:
+        print "Warning: libMeshConverter.so can not be loaded. Meshes will not be converted."
+        
+        meshConverter = None
     
     class Texture(Resource):
         class Filter:
@@ -230,12 +235,13 @@ if __name__ == "__main__":
             Resource.__init__(self, "mesh", src_filenames, dest_filename)
         
         def convert(self):
-            src = self.src_filenames[0].encode("ascii")
-            dest = (self.dest_filename+".temp").encode("ascii")
-            
-            meshConverter.convert(src, dest)
-            
-            os.rename(self.dest_filename+".temp", self.dest_filename)
+            if meshConverter != None:
+                src = self.src_filenames[0].encode("ascii")
+                dest = (self.dest_filename+".temp").encode("ascii")
+                
+                meshConverter.convert(src, dest)
+                
+                os.rename(self.dest_filename+".temp", self.dest_filename)
     
     class Material(Resource):
         def __init__(self, src_filenames, dest_filename):

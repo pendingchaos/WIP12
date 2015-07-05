@@ -20,3 +20,5 @@ To run, go to the directory named "bin" (in a shell) and run
 ```shell
 ./run_main.
 ```
+
+You should also run resourceconverter.py to convert the textures to the format WIP12 uses before running.
