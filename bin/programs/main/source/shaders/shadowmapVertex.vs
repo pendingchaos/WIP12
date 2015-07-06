@@ -22,6 +22,8 @@ out gl_PerVertex
 #ifndef TESSELATION
 DECLUNIFORM(mat4, projectionMatrix)
 DECLUNIFORM(mat4, viewMatrix)
+
+out vec3 frag_position;
 #endif
 
 DECLUNIFORM(mat4, worldMatrix)
@@ -38,5 +40,9 @@ void main()
     control_normal_worldSpace = normalize(U(normalMatrix) * normal_modelSpace);
     control_uv_tangentSpace = uv_tangentSpace;
     control_position_worldSpace = (U(worldMatrix) * vec4(position_modelSpace, 1.0)).xyz;
+    #endif
+    
+    #ifndef TESSELATION
+    frag_position = (U(worldMatrix) * vec4(position_modelSpace, 1.0)).xyz;
     #endif
 }

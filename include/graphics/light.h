@@ -40,7 +40,8 @@ class Light
                   shadowAutoBiasScale(1.0f),
                   direction({Direction3D(0.0f, -1.0f, 0.0f)}),
                   shadowmap(nullptr),
-                  shadowmapFramebuffer(nullptr) {}
+                  shadowmapFramebuffer(nullptr) {point.singlePassShadowMap = true;}
+        ~Light() {removeShadowmap();}
 
         Type type;
         float power;
@@ -70,6 +71,7 @@ class Light
         {
             Position3D position;
             float radius;
+            bool singlePassShadowMap;
         } point;
 
         void addShadowmap(size_t resolution, ShadowmapPrecision quality);
@@ -79,7 +81,24 @@ class Light
             if (shadowmap != nullptr)
             {
                 DELETE(GfxFramebuffer, shadowmapFramebuffer);
+                shadowmapFramebuffer = nullptr;
                 shadowmap = nullptr;
+
+                if (type == Point)
+                {
+                    DELETE(GfxFramebuffer, pointLightFramebuffers[0]);
+                    DELETE(GfxFramebuffer, pointLightFramebuffers[1]);
+                    DELETE(GfxFramebuffer, pointLightFramebuffers[2]);
+                    DELETE(GfxFramebuffer, pointLightFramebuffers[3]);
+                    DELETE(GfxFramebuffer, pointLightFramebuffers[4]);
+                    DELETE(GfxFramebuffer, pointLightFramebuffers[5]);
+                    pointLightFramebuffers[0] = nullptr;
+                    pointLightFramebuffers[1] = nullptr;
+                    pointLightFramebuffers[2] = nullptr;
+                    pointLightFramebuffers[3] = nullptr;
+                    pointLightFramebuffers[4] = nullptr;
+                    pointLightFramebuffers[5] = nullptr;
+                }
             }
         }
 
@@ -91,6 +110,11 @@ class Light
         inline GfxFramebuffer *getShadowmapFramebuffer() const
         {
             return shadowmapFramebuffer;
+        }
+
+        inline GfxFramebuffer *const *getPointLightFramebuffers() const
+        {
+            return pointLightFramebuffers;
         }
 
         inline size_t getShadowmapResolution() const
@@ -118,6 +142,7 @@ class Light
     private:
         ResPtr<GfxTexture> shadowmap;
         GfxFramebuffer *shadowmapFramebuffer;
+        GfxFramebuffer *pointLightFramebuffers[6];
         size_t shadowmapResolution;
         ShadowmapPrecision shadowmapPrecision;
 

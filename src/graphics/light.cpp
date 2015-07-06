@@ -46,6 +46,20 @@ void Light::addShadowmap(size_t resolution, ShadowmapPrecision precision)
         shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeY, nullptr);
         shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveZ, nullptr);
         shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeZ, nullptr);
+
+        pointLightFramebuffers[0] = gfxApi->createFramebuffer();
+        pointLightFramebuffers[1] = gfxApi->createFramebuffer();
+        pointLightFramebuffers[2] = gfxApi->createFramebuffer();
+        pointLightFramebuffers[3] = gfxApi->createFramebuffer();
+        pointLightFramebuffers[4] = gfxApi->createFramebuffer();
+        pointLightFramebuffers[5] = gfxApi->createFramebuffer();
+
+        pointLightFramebuffers[0]->setDepthAttachment(shadowmap, 0, 0);
+        pointLightFramebuffers[1]->setDepthAttachment(shadowmap, 0, 1);
+        pointLightFramebuffers[2]->setDepthAttachment(shadowmap, 0, 2);
+        pointLightFramebuffers[3]->setDepthAttachment(shadowmap, 0, 3);
+        pointLightFramebuffers[4]->setDepthAttachment(shadowmap, 0, 4);
+        pointLightFramebuffers[5]->setDepthAttachment(shadowmap, 0, 5);
     }
 
     shadowmap->setShadowmap(true);

@@ -1614,7 +1614,8 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                          const Matrix4x4& projectionMatrix,
                                          const Matrix4x4& worldMatrix,
                                          const ResPtr<GfxModel> model,
-                                         Light *light)
+                                         Light *light,
+                                         size_t cubemapFace)
 {
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
@@ -1656,8 +1657,12 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
 
                 if (light->type == Light::Point)
                 {
-                    geometryShader = compiledPointShadowmapGeometry;
                     fragmentShader = compiledPointShadowmapFragment;
+
+                    if (light->point.singlePassShadowMap)
+                    {
+                        geometryShader = compiledPointShadowmapGeometry;
+                    }
                 }
 
                 gfxApi->begin(vertexShader,
@@ -1690,24 +1695,43 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                                               pos+Direction3D(0.0f, 0.0f, -1.0f),
                                                               Direction3D(0.0f, -1.0f, 0.0f))};
 
-                    gfxApi->uniform(geometryShader, "matrix0", projectionMatrix * matrices[0]);
-                    gfxApi->uniform(geometryShader, "matrix1", projectionMatrix * matrices[1]);
-                    gfxApi->uniform(geometryShader, "matrix2", projectionMatrix * matrices[2]);
-                    gfxApi->uniform(geometryShader, "matrix3", projectionMatrix * matrices[3]);
-                    gfxApi->uniform(geometryShader, "matrix4", projectionMatrix * matrices[4]);
-                    gfxApi->uniform(geometryShader, "matrix5", projectionMatrix * matrices[5]);
+                    if (light->point.singlePassShadowMap)
+                    {
+                        gfxApi->uniform(geometryShader, "matrix0", projectionMatrix * matrices[0]);
+                        gfxApi->uniform(geometryShader, "matrix1", projectionMatrix * matrices[1]);
+                        gfxApi->uniform(geometryShader, "matrix2", projectionMatrix * matrices[2]);
+                        gfxApi->uniform(geometryShader, "matrix3", projectionMatrix * matrices[3]);
+                        gfxApi->uniform(geometryShader, "matrix4", projectionMatrix * matrices[4]);
+                        gfxApi->uniform(geometryShader, "matrix5", projectionMatrix * matrices[5]);
+                    }
 
                     gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
                     gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
 
-                    if (not useTesselation)
+                    if (light->point.singlePassShadowMap)
                     {
-                        gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
-                        gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
+                        if (not useTesselation)
+                        {
+                            gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
+                            gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
+                        } else
+                        {
+                            gfxApi->uniform(tessEvalShader, "projectionMatrix", Matrix4x4());
+                            gfxApi->uniform(tessEvalShader, "viewMatrix", Matrix4x4());
+                        }
                     } else
                     {
-                        gfxApi->uniform(tessEvalShader, "projectionMatrix", Matrix4x4());
-                        gfxApi->uniform(tessEvalShader, "viewMatrix", Matrix4x4());
+                        Matrix4x4 viewMatrix = matrices[cubemapFace];
+
+                        if (not useTesselation)
+                        {
+                            gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
+                            gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
+                        } else
+                        {
+                            gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
+                            gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
+                        }
                     }
                 } else
                 {
@@ -1773,37 +1797,50 @@ void GfxRenderer::renderShadowmap(Light *light)
     gfxApi->resetState();
 
     gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
-    gfxApi->setCurrentFramebuffer(light->getShadowmapFramebuffer());
-
-    gfxApi->clearDepth();
 
     const List<Entity *>& entities = scene->getEntities();
 
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    bool singlePass = light->type == Light::Point ? light->point.singlePassShadowMap : true;
+
+    for (size_t i = 0; i < (singlePass ? 1 : 6); ++i)
     {
-        const Entity *entity = entities[i];
-
-        Matrix4x4 transform = entity->transform.createMatrix();
-
-        if (entity->hasRenderComponent())
+        if (singlePass)
         {
-            const RenderComponent *comp = entity->getRenderComponent();
+            gfxApi->setCurrentFramebuffer(light->getShadowmapFramebuffer());
+        } else
+        {
+            gfxApi->setCurrentFramebuffer(light->getPointLightFramebuffers()[i]);
+        }
 
-            switch (comp->type)
+        gfxApi->clearDepth();
+
+        for (size_t j = 0; j < entities.getCount(); ++j)
+        {
+            const Entity *entity = entities[j];
+
+            Matrix4x4 transform = entity->transform.createMatrix();
+
+            if (entity->hasRenderComponent())
             {
-            case RenderComponent::Model:
-            {
-                renderModelToShadowmap(viewMatrix,
-                                       projectionMatrix,
-                                       transform,
-                                       comp->model,
-                                       light);
-                break;
-            }
-            default:
-            {
-                break;
-            }
+                const RenderComponent *comp = entity->getRenderComponent();
+
+                switch (comp->type)
+                {
+                case RenderComponent::Model:
+                {
+                    renderModelToShadowmap(viewMatrix,
+                                           projectionMatrix,
+                                           transform,
+                                           comp->model,
+                                           light,
+                                           i);
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+                }
             }
         }
     }

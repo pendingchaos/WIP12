@@ -17,6 +17,8 @@ out gl_PerVertex
     vec4 gl_Position;
 };
 
+out vec3 frag_position;
+
 DECLUNIFORM(sampler2D, heightMap)
 DECLUNIFORM(mat4, projectionMatrix)
 DECLUNIFORM(mat4, viewMatrix)
@@ -59,6 +61,8 @@ void main()
                               eval_uv_tangentSpace[2]);
 
     gl_Position.xyz += normal * (texture(U(heightMap), uv).r - U(displacementMidlevel)) * U(strength);
-
+    
+    frag_position = gl_Position.xyz;
+    
     gl_Position = U(projectionMatrix) * U(viewMatrix) * gl_Position;
 }

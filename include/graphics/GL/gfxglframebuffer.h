@@ -12,19 +12,23 @@ class GfxGLFramebuffer : public GfxFramebuffer
 
         virtual void addColorAttachment(size_t rtIndex,
                                         ResPtr<GfxTexture> texture,
-                                        size_t mipmapLevel=0);
+                                        size_t mipmapLevel=0,
+                                        int layer=-1);
         virtual void removeColorAttachment(size_t index);
         virtual size_t getNumColorAttachments();
         virtual size_t getColorRT(size_t index);
         virtual ResPtr<GfxTexture> getColorAttachment(size_t index);
         virtual size_t getColorAttachmentMipmapLevel(size_t index);
+        virtual int getColorAttachmentLayer(size_t index);
 
         virtual void setDepthAttachment(ResPtr<GfxTexture> texture,
-                                        size_t mipmapLevel=0);
+                                        size_t mipmapLevel=0,
+                                        int layer=-1);
         virtual void removeDepthAttachment();
         virtual bool hasDepthAttachment();
         virtual ResPtr<GfxTexture> getDepthTexture();
         virtual size_t getDepthTextureMipmapLevel();
+        virtual int getDepthAttachmentLayer();
 
         inline GLuint getGLFramebuffer() const
         {
@@ -36,12 +40,14 @@ class GfxGLFramebuffer : public GfxFramebuffer
             size_t rtIndex;
             ResPtr<GfxTexture> texture;
             size_t mipmapLevel;
+            int layer;
 
             inline bool operator == (const Attachment& other) const
             {
                 return rtIndex == other.rtIndex and
                        texture == other.texture and
-                       mipmapLevel == other.mipmapLevel;
+                       mipmapLevel == other.mipmapLevel and
+                       layer == other.layer;
             }
         };
 

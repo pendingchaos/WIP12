@@ -1358,6 +1358,7 @@ if __name__ == "__main__":
     light.position = [11.0, 2.5, 0.0]
     light.radius = 0.33
     light.color = [0.0, 1.0, 0.0]
+    light.ambient_strength = 0.005
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)

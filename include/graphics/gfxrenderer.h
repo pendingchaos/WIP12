@@ -329,7 +329,8 @@ class GfxRenderer
                                     const Matrix4x4& projectionMatrix,
                                     const Matrix4x4& worldMatrix,
                                     const ResPtr<GfxModel> model,
-                                    Light *light);
+                                    Light *light,
+                                    size_t cubemapFace);
         void renderShadowmap(Light *light);
 
         ResPtr<GfxTexture> writeColorTexture;
