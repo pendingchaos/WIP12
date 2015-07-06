@@ -135,7 +135,7 @@ class List
             data.clear();
         }
 
-        int find(const T& toFind)
+        int find(const T& toFind) const
         {
             for (std::size_t i = 0; i < getCount(); ++i)
             {

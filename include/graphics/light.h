@@ -76,8 +76,11 @@ class Light
 
         inline void removeShadowmap()
         {
-            DELETE(GfxFramebuffer, shadowmapFramebuffer);
-            shadowmap = nullptr;
+            if (shadowmap != nullptr)
+            {
+                DELETE(GfxFramebuffer, shadowmapFramebuffer);
+                shadowmap = nullptr;
+            }
         }
 
         inline ResPtr<GfxTexture> getShadowmap() const
@@ -102,6 +105,7 @@ class Light
 
         void updateMatrices(GfxRenderer *renderer);
 
+        //These two functions only work with spot and directional lights.
         inline Matrix4x4 getViewMatrix() const
         {
             return viewMatrix;

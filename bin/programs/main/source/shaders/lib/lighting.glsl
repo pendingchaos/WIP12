@@ -96,7 +96,7 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     
     vec3 diffuseResult = albedo * diffuse;
     
-    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse);
+    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse) * lightColor;
     
     return (diffuseResult + specular) * lightColor + mix(ambient, vec3(0.0), metallic);
 }
@@ -153,7 +153,7 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     
     vec3 diffuseResult = albedo * min(diffuse, shadow);
     
-    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow));
+    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow)) * lightColor;
     
     return (diffuseResult + specular * shadow) * lightColor + mix(ambient, vec3(0.0), metallic);
 }
@@ -189,7 +189,7 @@ vec3 spotLight(vec3 lightNegDir, vec3 lightPos, float lightCosInnerCutoff, float
     
     vec3 diffuseResult = albedo * diffuse;
     
-    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse);
+    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse) * lightColor;
     
     return (diffuseResult + specular) * lightColor * intensity + mix(ambient, vec3(0.0), metallic);
 }
@@ -248,7 +248,7 @@ vec3 spotLight(vec3 lightNegDir, vec3 lightPos, float lightCosInnerCutoff, float
     
     intensity = min(intensity, shadow);
     
-    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow));
+    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow)) * lightColor;
     
     return (diffuseResult + specular) * lightColor * intensity + mix(ambient, vec3(0.0), metallic);
 }
@@ -276,7 +276,7 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
     
     albedo /= PI;
     
-    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse);
+    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, diffuse) * lightColor;
     
     vec3 diffuseResult = albedo * diffuse;
     
@@ -355,16 +355,17 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
    
     shadow /= 16.0;
     
-    shadow += dFdx(shadow) + shadow +
+    //Disabled because it causes artifacts around edges of objects.
+    /*shadow += dFdx(shadow) + shadow +
               dFdy(shadow) + shadow;
     
-    shadow /= 3.0;
+    shadow /= 3.0;*/
     
     intensity = min(intensity, shadow);
     
     albedo /= PI;
     
-    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow));
+    vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow)) * lightColor;
     
     vec3 diffuseResult = albedo * diffuse;
     

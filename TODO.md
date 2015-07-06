@@ -12,12 +12,14 @@
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Resource copy() function.
+- [ ] Make it possible for an object to rotate around another.
 
 ## Bugs
 - [ ] More tests should be created.
 - [ ] The computer freezes when the window is too small.
 - [ ] Parallax occlusion mapping seems to be incorrect.
 - [ ] The tesselation test's normals seem incorrect.
+- [ ] The program crashes when the script fails to compile on startup.
 
 ## Other
 - [ ] Benchmarks.

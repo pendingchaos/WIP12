@@ -996,6 +996,7 @@ if __name__ == "__main__":
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
     conv["fence.obj"] = Mesh(["source/fence.obj"], "resources/meshes/fence.bin")
     conv["aotest.obj"] = Mesh(["source/ao test.obj"], "resources/meshes/aotest.bin")
+    conv["platform.obj"] = Mesh(["source/platform.obj"], "resources/meshes/platform.bin")
     
     mat = Material([], "resources/materials/material.bin")
     mat.forward = False
@@ -1074,6 +1075,12 @@ if __name__ == "__main__":
     mat.shadowMaxTessLevel = 15.0
     conv["tesselation test material"] = mat
     
+    mat = Material([], "resources/materials/platform material.bin")
+    mat.forward = False
+    mat.smoothness = 0.1
+    mat.albedo = [0.9, 0.9, 1.0, 1.0]
+    conv["platform material"] = mat
+    
     model = Model([], "resources/models/model.bin")
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
     conv["model"] = model
@@ -1110,6 +1117,10 @@ if __name__ == "__main__":
     model.sub_models = [[Model.LOD(conv["floor.obj"], conv["parallax test material"], 0.0, 9999.0)]]
     conv["parallax test model"] = model
     
+    model = Model([], "resources/models/platform.bin")
+    model.sub_models = [[Model.LOD(conv["platform.obj"], conv["platform material"], 0.0, 9999.0)]]
+    conv["platform"] = model
+    
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
     floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
     conv["floor shape"] = floorShape
@@ -1129,6 +1140,10 @@ if __name__ == "__main__":
     tessTestShape = PhysicsShape([], "resources/shapes/tessTest.bin")
     tessTestShape.shape = PhysicsShape.Box([2.0, 1.15, 2.0])
     conv["tess test shape"] = tessTestShape
+    
+    platformShape = PhysicsShape([], "resources/shapes/platform.bin")
+    platformShape.shape = PhysicsShape.Cylinder("y", 0.1, 4.0)
+    conv["platform shape"] = platformShape
     
     scene = Scene([], "resources/scenes/scene.bin")
     conv["scene"] = scene
@@ -1164,7 +1179,9 @@ if __name__ == "__main__":
     cubeEnt.rigidBody.linearSleepingThreshold = 0.0
     cubeEnt.rigidBody.angularSleepingThreshold = 0.0
     cubeEnt.rigidBody.linearDamping = 0.8
+    cubeEnt.rigidBody.mass = 5.0
     cubeEnt.scripts.append(("resources/scripts/entityscript.cpp", "Player"))
+    cubeEnt.scripts.append(("resources/scripts/lightscript.cpp", "PlayerLight"))
     scene.entities.append(cubeEnt)
     
     clayEnt = Scene.Entity("Clay")
@@ -1237,6 +1254,69 @@ if __name__ == "__main__":
     ent.model = conv["tesstest"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = tessTestShape
+    scene.entities.append(ent)
+    
+    plat_off = [0.0, 0.0, 20.0]
+    
+    def vec_add(a, b):
+        return [a[0]+b[0], a[1]+b[1], a[2]+b[2]]
+    
+    ent = Scene.Entity("Platform1")
+    ent.transform.position = vec_add(plat_off, [0.0, 0.1, 0.0])
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform2")
+    ent.transform.position = vec_add(plat_off, [4.0, 6.1, -3.0])
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform3")
+    ent.transform.position = vec_add(plat_off, [-7.0, 4.1, 5.0])
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform4")
+    ent.transform.position = vec_add(plat_off, [-7.0, 1.1, -5.0])
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform5")
+    ent.transform.position = vec_add(plat_off, [4.0, 1.1, 4.0])
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform6")
+    ent.transform.position = vec_add(plat_off, [4.0, 7.1, 10.0])
+    ent.transform.orientation = [15.0, -5.0, -2.0]
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform7")
+    ent.transform.position = vec_add(plat_off, [-2.0, 9.1, -13.0])
+    ent.transform.orientation = [15.0, 124.0, -2.0]
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
+    scene.entities.append(ent)
+    
+    ent = Scene.Entity("Platform8")
+    ent.transform.position = vec_add(plat_off, [-13.0, 11.1, -3.0])
+    ent.model = conv["platform"]
+    ent.rigidBody = Scene.RigidBody()
+    ent.rigidBody.shape = platformShape
     scene.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)
@@ -1331,7 +1411,7 @@ if __name__ == "__main__":
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
-    light.shadowmap_resolution = 1024
+    light.shadowmap_resolution = 2048
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     

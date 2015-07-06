@@ -50,11 +50,6 @@ BEGIN_INSTANCE
             resSpeed *= 2.0f;
         }
 
-        if (platform->isKeyPressed(Platform::LeftShift))
-        {
-            resSpeed /= 2.0f;
-        }
-
         Vector3D moveDir(std::sin(angle.x),
                          0.0f,
                          std::cos(angle.x));
@@ -194,7 +189,7 @@ BEGIN_INSTANCE
     virtual void update()
     {
         Transform feetTransform = entity->transform;
-        feetTransform.position.y -= 2.55f;
+        feetTransform.position.y -= 2.2f;
         feetGhost->setTransform(feetTransform);
         
         List<RigidBody *> rigidBodies;
