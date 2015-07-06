@@ -80,11 +80,23 @@ class ScriptInstance
         {
             return script;
         }
+
+        inline const String& getName() const
+        {
+            return name;
+        }
+
+        inline void *getPointer() const
+        {
+            return ptr;
+        }
     private:
-        ScriptInstance(ResPtr<Script> script,
+        ScriptInstance(const char *name,
+                       ResPtr<Script> script,
                        void *ptr,
                        Entity *entity);
 
+        String name;
         ResPtr<Script> script;
         void *ptr;
         Entity *entity;
@@ -109,7 +121,7 @@ class Script : public Resource
 
         virtual void removeContent();
 
-        ScriptInstance *createInstance(Entity *entity=nullptr);
+        ScriptInstance *createInstance(const char *name, Entity *entity=nullptr);
 
         template <typename Return, typename ... Args>
         inline Return call(const String& name, Args... args)
@@ -120,11 +132,12 @@ class Script : public Resource
         virtual void _load();
     private:
         void *dl;
-        void *(*createFunc)(Application *, Entity *entity, Script *);
-        void (*destroyFunc)(void *);
 
         List<ScriptInstance *> instances;
         List<UserData *> userDatas;
+
+        void *(*getCreateFunc(const char *name))(Application *, Entity *, Script *);
+        void (*getDestroyFunc(const char *name))(void *);
 
         void (*getFunction(const String& name))()
         {

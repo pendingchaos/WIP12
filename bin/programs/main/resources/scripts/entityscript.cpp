@@ -1,6 +1,7 @@
 #include <cmath>
 
-BEGIN_SCRIPT
+#define INST_NAME Player
+BEGIN_INSTANCE
     virtual void init()
     {
         angle = Float2(M_PI, 0.0f);
@@ -237,4 +238,4 @@ BEGIN_SCRIPT
     Float2 angularVelocity;
     float maximumVelocity;
     float maxAngularVelocity;
-END_SCRIPT
+END_INSTANCE

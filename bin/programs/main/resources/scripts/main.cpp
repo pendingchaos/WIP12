@@ -145,7 +145,8 @@ class FPSCamera
 
 #define TIMINGS_UPDATE_COUNTDOWN 0.1f
 
-BEGIN_SCRIPT
+#define INST_NAME Main
+BEGIN_INSTANCE
     ResPtr<Scene> scene;
     FPSCamera cam;
     Font *font;
@@ -407,4 +408,4 @@ BEGIN_SCRIPT
 
         textTimer->end();
     }
-END_SCRIPT
+END_INSTANCE

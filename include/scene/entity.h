@@ -55,9 +55,9 @@ class Entity
         Entity(const String& name, ResPtr<Scene> scene);
         ~Entity();
     public:
-        inline void addScript(ResPtr<Script> script)
+        inline void addScript(ResPtr<Script> script, const char *name)
         {
-            scripts.append(script->createInstance(this));
+            scripts.append(script->createInstance(name, this));
         }
 
         inline void removeScript(ScriptInstance *instance)
@@ -72,8 +72,23 @@ class Entity
             }
         }
 
-        inline const List<ScriptInstance *> getScripts() const
+        inline const List<ScriptInstance *>& getScripts() const
         {
+            return scripts;
+        }
+
+        inline List<ScriptInstance *> findScriptsByName(const char *name) const
+        {
+            List<ScriptInstance *> scripts;
+
+            for (size_t i = 0; i < scripts.getCount(); ++i)
+            {
+                if (scripts[i]->getName() == name)
+                {
+                    scripts.append(scripts[i]);
+                }
+            }
+
             return scripts;
         }
 

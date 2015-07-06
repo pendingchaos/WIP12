@@ -54,15 +54,15 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "        Entity *entity;\n"
 "        ResPtr<Script> script;\n"
 "};\n"
-"#define BEGIN_SCRIPT class _Instance : public _InstanceBase"
+"#define BEGIN_INSTANCE class INST_NAME : public _InstanceBase"
 "{"
 "    public:"
-"        _Instance(Application *app, Entity *entity, ResPtr<Script> script) : _InstanceBase(app, entity, script) {init();}"
-"        virtual ~_Instance() {deinit();}\n"
-"#define END_SCRIPT }; extern \"C\"{_Instance *_createInstance(Application *app, Entity *entity, Script *script){"
-"    return new _Instance(app, entity, script);"
+"        INST_NAME(Application *app, Entity *entity, ResPtr<Script> script) : _InstanceBase(app, entity, script) {init();}"
+"        virtual ~INST_NAME() {deinit();}\n"
+"#define END_INSTANCE }; extern \"C\"{INST_NAME *JOIN(_create, INST_NAME)(Application *app, Entity *entity, Script *script){"
+"    return new INST_NAME(app, entity, script);"
 "}"
-"_Instance *_destroyInstance(_Instance *obj)"
+"INST_NAME *JOIN(_destroy, INST_NAME)(INST_NAME *obj)"
 "{"
 "    delete obj;"
 "}}\n\n#line 1 \"";
@@ -83,9 +83,11 @@ class _InstanceBase
         virtual void deserialize(const Serializable& serialized) {}
 };
 
-ScriptInstance::ScriptInstance(ResPtr<Script> script_,
+ScriptInstance::ScriptInstance(const char *name_,
+                               ResPtr<Script> script_,
                                void *ptr_,
-                               Entity *entity_) : script(script_),
+                               Entity *entity_) : name(name_),
+                                                  script(script_),
                                                   ptr(ptr_),
                                                   entity(entity_) {}
 
@@ -155,7 +157,13 @@ Script::~Script()
     {
         ScriptInstance *instance = instances[i];
 
-        destroyFunc(instance->ptr);
+        void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
+
+        if (destroyFunc != nullptr)
+        {
+            destroyFunc(instance->ptr);
+        }
+
         instance->ptr = nullptr;
     }
 
@@ -175,7 +183,13 @@ void Script::removeContent()
         {
             ScriptInstance *instance = instances[i];
 
-            destroyFunc(instance->ptr);
+            void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
+
+            if (destroyFunc != nullptr)
+            {
+                destroyFunc(instance->ptr);
+            }
+
             instance->ptr = nullptr;
         }
 
@@ -271,12 +285,9 @@ void Script::_load()
             return;
         }
 
-        createFunc = (void *(*)(Application *, Entity *, Script *))dlsym(dl, "_createInstance");
-        destroyFunc = (void (*)(void *))dlsym(dl, "_destroyInstance");
-
         void (*initFunc)(const void *) = (void (*)(const void *))dlsym(dl, "_initFunctions");
 
-        if (createFunc == nullptr or destroyFunc == nullptr or initFunc == nullptr)
+        if (initFunc == nullptr)
         {
             dlclose(dl);
 
@@ -295,6 +306,13 @@ void Script::_load()
             {
                 ScriptInstance *instance = instances[i];
 
+                void *(*createFunc)(Application *, Entity *, Script *) = getCreateFunc(instance->getName().getData());
+
+                if (createFunc == nullptr)
+                {
+                    instance->ptr = nullptr;
+                }
+
                 instance->ptr = createFunc(app, instance->entity, this);
 
                 if (serialized.getCount() != 0)
@@ -310,8 +328,16 @@ void Script::_load()
                         log("    Function: %s\n", e.getFunction());
                         log("    Script: %s\n", filename.getData());
 
-                        destroyFunc(instance->ptr);
-                        instance->ptr = createFunc(app, instance->entity, this);
+                        void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
+
+                        if (destroyFunc != nullptr)
+                        {
+                            destroyFunc(instance->ptr);
+                            instance->ptr = createFunc(app, instance->entity, this);
+                        } else
+                        {
+                            instance->ptr = nullptr;
+                        }
                     }
                 }
             }
@@ -330,22 +356,61 @@ void Script::_load()
     }
 }
 
-ScriptInstance *Script::createInstance(Entity *entity)
+ScriptInstance *Script::createInstance(const char *name, Entity *entity)
 {
-    _InstanceBase *ptr = dl == nullptr ? nullptr : (_InstanceBase *)createFunc(app, entity, this);
+    void *(*createFunc)(Application *, Entity *, Script *) = getCreateFunc(name);
 
-    ScriptInstance *result = NEW(ScriptInstance, this, ptr, entity);
+    _InstanceBase *ptr;
+
+    if (createFunc == nullptr)
+    {
+        ptr = nullptr;
+    } else
+    {
+        ptr = dl == nullptr ? nullptr : (_InstanceBase *)createFunc(app, entity, this);
+    }
+
+    ScriptInstance *result = NEW(ScriptInstance, name, this, ptr, entity);
 
     instances.append(result);
 
     return result;
 }
 
+void *(*Script::getCreateFunc(const char *name))(Application *, Entity *, Script *)
+{
+    if (dl == nullptr)
+    {
+        return nullptr;
+    }
+
+    String resName = String::format("_create%s", name);
+
+    return (void *(*)(Application *, Entity *, Script *))dlsym(dl, resName.getData());
+}
+
+void (*Script::getDestroyFunc(const char *name))(void *)
+{
+    if (dl == nullptr)
+    {
+        return nullptr;
+    }
+
+    String resName = String::format("_destroy%s", name);
+
+    return (void (*)(void *))dlsym(dl, resName.getData());
+}
+
 void Script::destroyInstance(ScriptInstance *instance)
 {
     if (instance->script == this and instance->ptr != nullptr)
     {
-        destroyFunc(instance->ptr);
+        void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
+
+        if (destroyFunc != nullptr)
+        {
+            destroyFunc(instance->ptr);
+        }
 
         instances.remove(instances.find(instance));
     }

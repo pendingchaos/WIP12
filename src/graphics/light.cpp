@@ -119,8 +119,6 @@ void Light::updateMatrices(GfxRenderer *renderer)
         //Based on the algorithm from 0 A.D.
 
         //View
-        Matrix4x4 cameraView = renderer->camera.getViewMatrix();
-
         Float3 z = direction.direction.normalize();
         Float3 y;
         Float3 x = Float3(0.0f);

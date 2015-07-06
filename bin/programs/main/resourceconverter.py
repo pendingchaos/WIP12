@@ -21,7 +21,11 @@ class Resource(object):
         pass
 
 if __name__ == "__main__":
-    os.makedirs("resources/textures")
+    #It seems resources/textures folder is not on Github.
+    try:
+        os.makedirs("resources/textures")
+    except OSError:
+        pass
     
     def get_dest_filename(obj, type_, allowNone=False):
         if obj == None and allowNone:
@@ -726,8 +730,10 @@ if __name__ == "__main__":
                 s += struct.pack("<L", len(self.scripts))
                 
                 for script in self.scripts:
-                    s += struct.pack("<L", len(script))
-                    s += script
+                    s += struct.pack("<L", len(script[0]))
+                    s += script[0]
+                    s += struct.pack("<L", len(script[1]))
+                    s += script[1]
                 
                 return s
         
@@ -1158,7 +1164,7 @@ if __name__ == "__main__":
     cubeEnt.rigidBody.linearSleepingThreshold = 0.0
     cubeEnt.rigidBody.angularSleepingThreshold = 0.0
     cubeEnt.rigidBody.linearDamping = 0.8
-    cubeEnt.scripts.append("resources/scripts/entityscript.cpp")
+    cubeEnt.scripts.append(("resources/scripts/entityscript.cpp", "Player"))
     scene.entities.append(cubeEnt)
     
     clayEnt = Scene.Entity("Clay")

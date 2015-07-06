@@ -225,7 +225,11 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String scriptFile(scriptFileLen);
         file->read(scriptFileLen, scriptFile.getData());
 
-        entity->addScript(resMgr->getResource<Script>(scriptFile));
+        uint32_t nameLen = file->readUInt32LE();
+        String name(nameLen);
+        file->read(nameLen, name.getData());
+
+        entity->addScript(resMgr->getResource<Script>(scriptFile), name.getData());
     }
 }
 

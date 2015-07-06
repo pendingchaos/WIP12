@@ -147,7 +147,7 @@ void Application::_switchScripts()
     {
         DELETE(ScriptInstance, script);
 
-        script = nextScript->createInstance();
+        script = nextScript->createInstance(nextScriptName.getData());
 
         nextScript = nullptr;
     }

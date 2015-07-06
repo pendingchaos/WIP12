@@ -19,7 +19,7 @@ void run(const char *dir)
 
     ResPtr<Script> script = resMgr->getResource<Script>("resources/scripts/main.cpp");
 
-    app->setNextScript(script);
+    app->setNextScript(script, "Main");
 
     app->mainloop();
 
