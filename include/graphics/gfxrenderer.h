@@ -232,6 +232,10 @@ class GfxRenderer
         float bloom2Radius;
         float bloom3Radius;
         float bloom4Radius;
+        float bloom1Strength;
+        float bloom2Strength;
+        float bloom3Strength;
+        float bloom4Strength;
         bool bloomEnabled;
         float ssaoRadius;
         List<ColorModifier> colorModifiers;

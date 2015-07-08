@@ -841,6 +841,10 @@ if __name__ == "__main__":
             self.bloom2Radius = 0.05
             self.bloom3Radius = 0.025
             self.bloom4Radius = 0.0125
+            self.bloom1Strength = 1.0
+            self.bloom2Strength = 1.0
+            self.bloom3Strength = 1.0
+            self.bloom4Strength = 1.0
             self.bloomEnabled = True
             self.ssaoRadius = 0.1
             self.colorModifiers = []
@@ -855,12 +859,16 @@ if __name__ == "__main__":
             output.write(struct.pack("<L", len(get_dest_filename(self.skybox, Texture, True))))
             output.write(get_dest_filename(self.skybox, Texture, True) if self.skybox != None else "")
             
-            output.write(struct.pack("<ffffffBL",
+            output.write(struct.pack("<ffffffffffBL",
                                      self.bloomThreshold,
                                      self.bloom1Radius,
                                      self.bloom2Radius,
                                      self.bloom3Radius,
                                      self.bloom4Radius,
+                                     self.bloom1Strength,
+                                     self.bloom2Strength,
+                                     self.bloom3Strength,
+                                     self.bloom4Strength,
                                      self.ssaoRadius,
                                      self.bloomEnabled,
                                      len(self.colorModifiers)))
@@ -1279,6 +1287,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform2")
@@ -1286,6 +1295,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform3")
@@ -1293,6 +1303,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform4")
@@ -1300,6 +1311,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform5")
@@ -1307,6 +1319,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform6")
@@ -1315,6 +1328,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform7")
@@ -1323,6 +1337,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     ent = Scene.Entity("Platform8")
@@ -1330,6 +1345,7 @@ if __name__ == "__main__":
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
+    ent.rigidBody.friction = 0.1
     scene.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)

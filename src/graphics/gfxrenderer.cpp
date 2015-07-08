@@ -26,6 +26,10 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloom2Radius(0.05f),
                                           bloom3Radius(0.025f),
                                           bloom4Radius(0.0125f),
+                                          bloom1Strength(1.0f),
+                                          bloom2Strength(1.0f),
+                                          bloom3Strength(1.0f),
+                                          bloom4Strength(1.0f),
                                           bloomEnabled(true),
                                           ssaoRadius(0.1f),
                                           stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
@@ -1243,6 +1247,10 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom2Texture", bloom2Texture);
         gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom3Texture", bloom3Texture);
         gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom4Texture", bloom4Texture);
+        gfxApi->uniform(compiledApplyBloomFragment, "bloom1Strength", bloom1Strength);
+        gfxApi->uniform(compiledApplyBloomFragment, "bloom2Strength", bloom2Strength);
+        gfxApi->uniform(compiledApplyBloomFragment, "bloom3Strength", bloom3Strength);
+        gfxApi->uniform(compiledApplyBloomFragment, "bloom4Strength", bloom4Strength);
 
         gfxApi->end(quadMesh->primitive,
                     quadMesh->numVertices,
