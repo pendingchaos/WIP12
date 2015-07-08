@@ -326,8 +326,10 @@ void Scene::_load()
         }
 
         renderer->bloomThreshold = file.readFloat32();
-        renderer->bloomRadius = file.readFloat32();
-        renderer->bloomQuality = file.readFloat32();
+        renderer->bloom1Radius = file.readFloat32();
+        renderer->bloom2Radius = file.readFloat32();
+        renderer->bloom3Radius = file.readFloat32();
+        renderer->bloom4Radius = file.readFloat32();
         renderer->ssaoRadius = file.readFloat32();
         renderer->bloomEnabled = file.readUInt8() != 0;
         uint32_t numColorModifiers = file.readUInt32LE();
@@ -667,8 +669,10 @@ void Scene::save()
         }
 
         file.writeFloat32(renderer->bloomThreshold);
-        file.writeFloat32(renderer->bloomRadius);
-        file.writeFloat32(renderer->bloomQuality);
+        file.writeFloat32(renderer->bloom1Radius);
+        file.writeFloat32(renderer->bloom2Radius);
+        file.writeFloat32(renderer->bloom3Radius);
+        file.writeFloat32(renderer->bloom4Radius);
         file.writeFloat32(renderer->ssaoRadius);
         file.writeUInt8(renderer->bloomEnabled ? 1 : 0);
 

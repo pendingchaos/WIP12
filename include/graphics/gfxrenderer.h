@@ -158,8 +158,7 @@ class GfxRenderer
             float gammaCorrectionTiming;
             float fxaaTiming;
             float colorModifierTiming;
-            float bloomXTiming;
-            float bloomYTiming;
+            float bloomTiming;
             //float lumCalcTiming;
             float shadowmapTiming;
             float overlayTiming;
@@ -229,8 +228,10 @@ class GfxRenderer
         ResPtr<GfxTexture> skybox;
 
         float bloomThreshold;
-        float bloomRadius;
-        float bloomQuality;
+        float bloom1Radius;
+        float bloom2Radius;
+        float bloom3Radius;
+        float bloom4Radius;
         bool bloomEnabled;
         float ssaoRadius;
         List<ColorModifier> colorModifiers;
@@ -250,8 +251,7 @@ class GfxRenderer
         GPUTimer *gammaCorrectionTimer;
         GPUTimer *fxaaTimer;
         GPUTimer *colorModifierTimer;
-        GPUTimer *bloomXTimer;
-        GPUTimer *bloomYTimer;
+        GPUTimer *bloomTimer;
         //GPUTimer *luminanceCalcTimer;
         GPUTimer *shadowmapTimer;
         GPUTimer *overlayTimer;
@@ -287,6 +287,8 @@ class GfxRenderer
         ResPtr<GfxShader> overlayFragment;
         ResPtr<GfxShader> colorModifierFragment;
         ResPtr<GfxShader> gammaCorrectionFragment;
+        ResPtr<GfxShader> applyBloomFragment;
+        ResPtr<GfxShader> bloomDownsampleFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingDirectionalShadow;
@@ -313,6 +315,8 @@ class GfxRenderer
         GfxCompiledShader *compiledOverlayFragment;
         GfxCompiledShader *compiledColorModifier;
         GfxCompiledShader *compiledGammaCorrectionFragment;
+        GfxCompiledShader *compiledApplyBloomFragment;
+        GfxCompiledShader *compiledBloomDownsampleFragment;
         //float averageLuminance;
 
         size_t numLights;
@@ -342,6 +346,11 @@ class GfxRenderer
         ResPtr<GfxTexture> ssaoBlurXTexture;
         ResPtr<GfxTexture> bloomBlurXTexture;
         ResPtr<GfxTexture> ssaoRandomTexture;
+        ResPtr<GfxTexture> bloom1Texture;
+        ResPtr<GfxTexture> bloom2Texture;
+        ResPtr<GfxTexture> bloom3Texture;
+        ResPtr<GfxTexture> bloom4Texture;
+        ResPtr<GfxTexture> bloomDownsampleTexture;
         //ResPtr<GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
@@ -350,6 +359,11 @@ class GfxRenderer
         GfxFramebuffer *ssaoFramebuffer;
         GfxFramebuffer *ssaoBlurXFramebuffer;
         GfxFramebuffer *bloomblurXFramebuffer;
+        GfxFramebuffer *bloom1Framebuffer;
+        GfxFramebuffer *bloom2Framebuffer;
+        GfxFramebuffer *bloom3Framebuffer;
+        GfxFramebuffer *bloom4Framebuffer;
+        GfxFramebuffer *bloomDownsampleFramebuffer;
         //GfxFramebuffer *luminanceFramebuffer;
 
         void swapFramebuffers();

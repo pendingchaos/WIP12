@@ -35,6 +35,5 @@
 ## Performance Improvements
 - [ ] Instancing (explicit and implicit).
 - [ ] SSAO performance should be improved.
-- [ ] Bloom performance should be improved.
-    - http://kalogirou.net/2006/05/20/how-to-do-good-bloom-for-hdr-rendering/
-    - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
+
+Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for point light filtering) (advances.realtimerendering.com).

@@ -1,25 +1,13 @@
-#include "lib/color.glsl"
 #include "lib/uniform.glsl"
 
 layout (location = 0) out vec3 result_color;
 
 in vec2 frag_uv;
 
-DECLUNIFORM(sampler2D, colorTexture)
-DECLUNIFORM(float, threshold)
+DECLUNIFORM(sampler2D, bloomTexture)
 DECLUNIFORM(float, divisor)
 DECLUNIFORM(int, radius)
 DECLUNIFORM(float, sigma)
-DECLUNIFORM(float, step)
-
-vec3 sampleTexture(vec2 uv)
-{
-    vec3 color = texture(U(colorTexture), uv).rgb;
-    
-    vec3 xyY = RGBToxyY(color);
-    
-    return (xyY.z > U(threshold)) ? xyYToRGB(xyY - vec3(0.0, 0.0, 1.0)) : vec3(0.0);
-}
 
 float gauss(float x)
 {
@@ -29,14 +17,29 @@ float gauss(float x)
 
 void main()
 {
-    vec2 onePixel = 1.0 / vec2(textureSize(U(colorTexture), 0));
-    result_color = vec3(0.0);
+    vec2 onePixel = 1.0 / vec2(textureSize(U(bloomTexture), 0));
+    result_color = texture(U(bloomTexture), frag_uv).rgb * gauss(0.0);
     
-    for (float x = -U(radius); x < U(radius)+1; x += U(step))
+    float sum = gauss(0.0);
+    
+    for (float x = 1.0; x < U(radius); x += 2.0)
     {
-        result_color += sampleTexture(frag_uv+vec2(x*onePixel.x, 0.0)) * gauss(x);
+        float offset1 = x;
+        float offset2 = offset1 + 1.0;
+        
+        float weight1 = gauss(offset1);
+        float weight2 = gauss(offset2);
+        
+        float weight = weight1 + weight2;
+        
+        float offset = (offset1 * weight1 + offset2 * weight2) / weight;
+        
+        result_color += texture(U(bloomTexture), frag_uv+vec2(offset*onePixel.x, 0.0)).rgb * weight;
+        result_color += texture(U(bloomTexture), frag_uv-vec2(offset*onePixel.x, 0.0)).rgb * weight;
+        
+        sum += weight * 2.0;
     }
     
-    result_color /= U(divisor);
+    result_color /= sum;
 }
 

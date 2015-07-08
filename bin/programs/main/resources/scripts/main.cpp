@@ -334,8 +334,7 @@ BEGIN_INSTANCE
                         stats.gammaCorrectionTiming +
                         stats.fxaaTiming +
                         stats.colorModifierTiming +
-                        stats.bloomXTiming +
-                        stats.bloomYTiming +
+                        stats.bloomTiming +
                         stats.shadowmapTiming +
                         stats.overlayTiming +
                         debugDrawTiming +
@@ -350,8 +349,7 @@ BEGIN_INSTANCE
                                           "Gamma correction: %.2f ms (%.0f%)\n"
                                           "FXAA: %.2f ms (%.0f%)\n"
                                           "Color modifiers: %.2f ms (%.0f%)\n"
-                                          "Bloom X: %.2f ms (%.0f%)\n"
-                                          "Bloom Y: %.2f ms (%.0f%)\n"
+                                          "Bloom: %.2f ms (%.0f%)\n"
                                           "Shadow map: %.2f ms (%.0f%)\n"
                                           "Debug draw: %.2f ms (%.0f%)\n"
                                           "Text: %.2f ms (%.0f%)\n"
@@ -375,10 +373,8 @@ BEGIN_INSTANCE
                                           stats.fxaaTiming / total * 100.0f,
                                           stats.colorModifierTiming * 1000.0f,
                                           stats.colorModifierTiming / total * 100.0f,
-                                          stats.bloomXTiming * 1000.0f,
-                                          stats.bloomXTiming / total * 100.0f,
-                                          stats.bloomYTiming * 1000.0f,
-                                          stats.bloomYTiming / total * 100.0f,
+                                          stats.bloomTiming * 1000.0f,
+                                          stats.bloomTiming / total * 100.0f,
                                           stats.shadowmapTiming * 1000.0f,
                                           stats.shadowmapTiming / total * 100.0f,
                                           debugDrawTiming * 1000.0f,

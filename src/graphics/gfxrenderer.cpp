@@ -22,8 +22,10 @@ float gauss(float x, float sigma)
 
 GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomThreshold(1.0f),
-                                          bloomRadius(0.025f),
-                                          bloomQuality(0.9f),
+                                          bloom1Radius(0.1f),
+                                          bloom2Radius(0.05f),
+                                          bloom3Radius(0.025f),
+                                          bloom4Radius(0.0125f),
                                           bloomEnabled(true),
                                           ssaoRadius(0.1f),
                                           stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
@@ -50,6 +52,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     postEffectVertex = resMgr->getResource<GfxShader>("resources/shaders/postEffectVertex.bin");
     shadowmapVertex = resMgr->getResource<GfxShader>("resources/shaders/shadowmapVertex.bin");
     pointShadowmapGeometry = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
+    applyBloomFragment = resMgr->getResource<GfxShader>("resources/shaders/applyBloomFragment.bin");
+    bloomDownsampleFragment = resMgr->getResource<GfxShader>("resources/shaders/bloomDownsampleFragment.bin");
 
     if (gfxApi->tesselationSupported())
     {
@@ -80,6 +84,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledTonemapFragment = tonemapFragment->getCompiled();
     compiledPostEffectVertex = postEffectVertex->getCompiled();
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
+    compiledApplyBloomFragment = applyBloomFragment->getCompiled();
+    compiledBloomDownsampleFragment = bloomDownsampleFragment->getCompiled();
 
     if (gfxApi->tesselationSupported())
     {
@@ -138,6 +144,11 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloomBlurXTexture = NEW(GfxTexture);
     //luminanceTexture = NEW(GfxTexture);
     ssaoRandomTexture = NEW(GfxTexture);
+    bloom1Texture = NEW(GfxTexture);
+    bloom2Texture = NEW(GfxTexture);
+    bloom3Texture = NEW(GfxTexture);
+    bloom4Texture = NEW(GfxTexture);
+    bloomDownsampleTexture = NEW(GfxTexture);
 
     readColorTexture->setWrapMode(GfxTexture::Stretch);
     writeColorTexture->setWrapMode(GfxTexture::Stretch);
@@ -147,6 +158,11 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoTexture->setWrapMode(GfxTexture::Stretch);
     ssaoBlurXTexture->setWrapMode(GfxTexture::Stretch);
     bloomBlurXTexture->setWrapMode(GfxTexture::Stretch);
+    bloom1Texture->setWrapMode(GfxTexture::Stretch);
+    bloom2Texture->setWrapMode(GfxTexture::Stretch);
+    bloom3Texture->setWrapMode(GfxTexture::Stretch);
+    bloom4Texture->setWrapMode(GfxTexture::Stretch);
+    bloomDownsampleTexture->setWrapMode(GfxTexture::Stretch);
     //luminanceTexture->setWrapMode(GfxTexture::Stretch);
 
     resize(640);
@@ -202,6 +218,21 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloomblurXFramebuffer = gfxApi->createFramebuffer();
     bloomblurXFramebuffer->addColorAttachment(0, bloomBlurXTexture);
 
+    bloom1Framebuffer = gfxApi->createFramebuffer();
+    bloom1Framebuffer->addColorAttachment(0, bloom1Texture);
+
+    bloom2Framebuffer = gfxApi->createFramebuffer();
+    bloom2Framebuffer->addColorAttachment(0, bloom2Texture);
+
+    bloom3Framebuffer = gfxApi->createFramebuffer();
+    bloom3Framebuffer->addColorAttachment(0, bloom3Texture);
+
+    bloom4Framebuffer = gfxApi->createFramebuffer();
+    bloom4Framebuffer->addColorAttachment(0, bloom4Texture);
+
+    bloomDownsampleFramebuffer = gfxApi->createFramebuffer();
+    bloomDownsampleFramebuffer->addColorAttachment(0, bloomDownsampleTexture);
+
     /*luminanceFramebuffer = gfxApi->createFramebuffer();
     luminanceFramebuffer->addColorAttachment(0, luminanceTexture);*/
 
@@ -214,8 +245,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     gammaCorrectionTimer = gfxApi->createTimer();
     fxaaTimer = gfxApi->createTimer();
     colorModifierTimer = gfxApi->createTimer();
-    bloomXTimer = gfxApi->createTimer();
-    bloomYTimer = gfxApi->createTimer();
+    bloomTimer = gfxApi->createTimer();
     //luminanceCalcTimer = gfxApi->createTimer();
     shadowmapTimer = gfxApi->createTimer();
     overlayTimer = gfxApi->createTimer();
@@ -232,8 +262,7 @@ GfxRenderer::~GfxRenderer()
     DELETE(GPUTimer, gammaCorrectionTimer);
     DELETE(GPUTimer, fxaaTimer);
     DELETE(GPUTimer, colorModifierTimer);
-    DELETE(GPUTimer, bloomXTimer);
-    DELETE(GPUTimer, bloomYTimer);
+    DELETE(GPUTimer, bloomTimer);
     //DELETE(GPUTimer, luminanceCalcTimer);
     DELETE(GPUTimer, shadowmapTimer);
     DELETE(GPUTimer, overlayTimer);
@@ -244,6 +273,11 @@ GfxRenderer::~GfxRenderer()
     DELETE(GfxFramebuffer, ssaoFramebuffer);
     DELETE(GfxFramebuffer, ssaoBlurXFramebuffer);
     DELETE(GfxFramebuffer, bloomblurXFramebuffer);
+    DELETE(GfxFramebuffer, bloom1Framebuffer);
+    DELETE(GfxFramebuffer, bloom2Framebuffer);
+    DELETE(GfxFramebuffer, bloom3Framebuffer);
+    DELETE(GfxFramebuffer, bloom4Framebuffer);
+    DELETE(GfxFramebuffer, bloomDownsampleFramebuffer);
     //DELETE(GfxFramebuffer, luminanceFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
@@ -296,15 +330,11 @@ void GfxRenderer::updateStats()
         stats.colorModifierTiming = colorModifierTimer->getResult() / (float)colorModifierTimer->getResultResolution();
     }
 
-    if (bloomXTimer->resultAvailable())
+    if (bloomTimer->resultAvailable())
     {
-        stats.bloomXTiming = bloomXTimer->getResult() / (float)bloomXTimer->getResultResolution();
+        stats.bloomTiming = bloomTimer->getResult() / (float)bloomTimer->getResultResolution();
     }
 
-    if (bloomYTimer->resultAvailable())
-    {
-        stats.bloomYTiming = bloomYTimer->getResult() / (float)bloomYTimer->getResultResolution();
-    }
 
     /*if (luminanceCalcTimer->resultAvailable())
     {
@@ -728,13 +758,63 @@ void GfxRenderer::resize(const UInt2& size)
 
         bloomBlurXTexture->startCreation(GfxTexture::Texture2D,
                                          false,
-                                         width,
-                                         height,
+                                         width/4,
+                                         height/4,
                                          1,
                                          0,
                                          GfxTexture::Other,
                                          GfxTexture::RGBF32_F16);
         bloomBlurXTexture->allocMipmap(0, 1, nullptr);
+
+        bloom1Texture->startCreation(GfxTexture::Texture2D,
+                                     false,
+                                     width/4,
+                                     height/4,
+                                     1,
+                                     0,
+                                     GfxTexture::Other,
+                                     GfxTexture::RGBF32_F16);
+        bloom1Texture->allocMipmap(0, 1, nullptr);
+
+        bloom2Texture->startCreation(GfxTexture::Texture2D,
+                                     false,
+                                     width/4,
+                                     height/4,
+                                     1,
+                                     0,
+                                     GfxTexture::Other,
+                                     GfxTexture::RGBF32_F16);
+        bloom2Texture->allocMipmap(0, 1, nullptr);
+
+        bloom3Texture->startCreation(GfxTexture::Texture2D,
+                                     false,
+                                     width/4,
+                                     height/4,
+                                     1,
+                                     0,
+                                     GfxTexture::Other,
+                                     GfxTexture::RGBF32_F16);
+        bloom3Texture->allocMipmap(0, 1, nullptr);
+
+        bloom4Texture->startCreation(GfxTexture::Texture2D,
+                                     false,
+                                     width/4,
+                                     height/4,
+                                     1,
+                                     0,
+                                     GfxTexture::Other,
+                                     GfxTexture::RGBF32_F16);
+        bloom4Texture->allocMipmap(0, 1, nullptr);
+
+        bloomDownsampleTexture->startCreation(GfxTexture::Texture2D,
+                                              false,
+                                              width/4,
+                                              height/4,
+                                              1,
+                                              0,
+                                              GfxTexture::Other,
+                                              GfxTexture::RGBF32_F16);
+        bloomDownsampleTexture->allocMipmap(0, 1, nullptr);
 
         /*luminanceTexture->startCreation(GfxTexture::Texture2D,
                                         false,
@@ -1062,59 +1142,107 @@ void GfxRenderer::render()
 
     if (bloomEnabled)
     {
-        //Bloom X
-        bloomXTimer->begin();
+        bloomTimer->begin();
 
-        uint32_t bloomRadiusPixels = uint32_t(std::min(width, height)*bloomRadius);
-        float bloomDivisor = 0.0;
-        float bloomSigma = bloomRadiusPixels / 3.0f;
-        float bloomStep = bloomRadiusPixels / (bloomQuality * bloomRadiusPixels);
-
-        for (float i = -(float)bloomRadiusPixels; i < (float)bloomRadiusPixels+1; i += bloomStep)
-        {
-            bloomDivisor += gauss(i, bloomSigma);
-        }
-
-        gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);
+        //Downsample
+        gfxApi->setCurrentFramebuffer(bloomDownsampleFramebuffer);
+        gfxApi->setViewport(0, 0, width/4, height/4);
 
         gfxApi->begin(compiledPostEffectVertex,
                       nullptr,
                       nullptr,
                       nullptr,
-                      compiledBloomBlurXFragment,
+                      compiledBloomDownsampleFragment,
                       quadMesh);
 
-        gfxApi->addTextureBinding(compiledBloomBlurXFragment, "colorTexture", readColorTexture);
-        gfxApi->uniform(compiledBloomBlurXFragment, "threshold", bloomThreshold);
-        gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)bloomRadiusPixels);
-        gfxApi->uniform(compiledBloomBlurXFragment, "divisor", bloomDivisor);
-        gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);
-        gfxApi->uniform(compiledBloomBlurXFragment, "step", bloomStep);
+        gfxApi->addTextureBinding(compiledBloomDownsampleFragment, "colorTexture", readColorTexture);
+        gfxApi->uniform(compiledBloomDownsampleFragment, "threshold", bloomThreshold);
 
         gfxApi->end(quadMesh->primitive,
                     quadMesh->numVertices,
                     quadMesh->winding);
 
-        bloomXTimer->end();
+        #define BLOOM(framebuffer) {\
+        int32_t radius = bloomRadiusPixels / 4;\
+        float bloomDivisor = 0.0;\
+        float bloomSigma = radius / 3.0f;\
+\
+        for (float i = -(float)radius; i < (float)radius+1; ++i)\
+        {\
+            bloomDivisor += gauss(i, bloomSigma);\
+        }\
+        \
+        gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);\
+\
+        gfxApi->begin(compiledPostEffectVertex,\
+                      nullptr,\
+                      nullptr,\
+                      nullptr,\
+                      compiledBloomBlurXFragment,\
+                      quadMesh);\
+\
+        gfxApi->addTextureBinding(compiledBloomBlurXFragment, "bloomTexture", bloomDownsampleTexture);\
+        gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)radius);\
+        gfxApi->uniform(compiledBloomBlurXFragment, "divisor", bloomDivisor);\
+        gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);\
+\
+        gfxApi->end(quadMesh->primitive,\
+                    quadMesh->numVertices,\
+                    quadMesh->winding);\
+\
+        gfxApi->setCurrentFramebuffer(framebuffer);\
+\
+        gfxApi->begin(compiledPostEffectVertex,\
+                      nullptr,\
+                      nullptr,\
+                      nullptr,\
+                      compiledBloomBlurYFragment,\
+                      quadMesh);\
+\
+        gfxApi->addTextureBinding(compiledBloomBlurYFragment, "bloomTexture", bloomBlurXTexture);\
+        gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)radius);\
+        gfxApi->uniform(compiledBloomBlurYFragment, "divisor", bloomDivisor);\
+        gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);\
+\
+        gfxApi->end(quadMesh->primitive,\
+                    quadMesh->numVertices,\
+                    quadMesh->winding);\
+        }
 
-        //Bloom Y
-        bloomYTimer->begin();
+        uint32_t bloomRadiusPixels = uint32_t(std::min(width, height)*bloom1Radius);
+        bloomRadiusPixels = std::max(bloomRadiusPixels, 1u);
+        BLOOM(bloom1Framebuffer);
 
+        bloomRadiusPixels = uint32_t(std::min(width, height)*bloom2Radius);
+        bloomRadiusPixels = std::max(bloomRadiusPixels, 1u);
+        BLOOM(bloom2Framebuffer);
+
+        bloomRadiusPixels = uint32_t(std::min(width, height)*bloom3Radius);
+        bloomRadiusPixels = std::max(bloomRadiusPixels, 1u);
+        BLOOM(bloom3Framebuffer);
+
+        bloomRadiusPixels = uint32_t(std::min(width, height)*bloom4Radius);
+        bloomRadiusPixels = std::max(bloomRadiusPixels, 1u);
+        BLOOM(bloom4Framebuffer);
+
+        #undef BLOOM
+
+        //Apply bloom
         gfxApi->setCurrentFramebuffer(writeFramebuffer);
+        gfxApi->setViewport(0, 0, width, height);
 
         gfxApi->begin(compiledPostEffectVertex,
                       nullptr,
                       nullptr,
                       nullptr,
-                      compiledBloomBlurYFragment,
+                      compiledApplyBloomFragment,
                       quadMesh);
 
-        gfxApi->addTextureBinding(compiledBloomBlurYFragment, "colorTexture", readColorTexture);
-        gfxApi->addTextureBinding(compiledBloomBlurYFragment, "bloomTexture", bloomBlurXTexture);
-        gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)bloomRadiusPixels);
-        gfxApi->uniform(compiledBloomBlurYFragment, "divisor", bloomDivisor);
-        gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);
-        gfxApi->uniform(compiledBloomBlurYFragment, "step", bloomStep);
+        gfxApi->addTextureBinding(compiledApplyBloomFragment, "colorTexture", readColorTexture);
+        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom1Texture", bloom1Texture);
+        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom2Texture", bloom2Texture);
+        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom3Texture", bloom3Texture);
+        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom4Texture", bloom4Texture);
 
         gfxApi->end(quadMesh->primitive,
                     quadMesh->numVertices,
@@ -1122,7 +1250,7 @@ void GfxRenderer::render()
 
         swapFramebuffers();
 
-        bloomYTimer->end();
+        bloomTimer->end();
     }
 
     //Color modifiers.

@@ -837,8 +837,10 @@ if __name__ == "__main__":
             self.skybox = None
             self.lights = []
             self.bloomThreshold = 1.0
-            self.bloomRadius = 0.025
-            self.bloomQuality = 0.9
+            self.bloom1Radius = 0.1
+            self.bloom2Radius = 0.05
+            self.bloom3Radius = 0.025
+            self.bloom4Radius = 0.0125
             self.bloomEnabled = True
             self.ssaoRadius = 0.1
             self.colorModifiers = []
@@ -853,10 +855,12 @@ if __name__ == "__main__":
             output.write(struct.pack("<L", len(get_dest_filename(self.skybox, Texture, True))))
             output.write(get_dest_filename(self.skybox, Texture, True) if self.skybox != None else "")
             
-            output.write(struct.pack("<ffffBL",
+            output.write(struct.pack("<ffffffBL",
                                      self.bloomThreshold,
-                                     self.bloomRadius,
-                                     self.bloomQuality,
+                                     self.bloom1Radius,
+                                     self.bloom2Radius,
+                                     self.bloom3Radius,
+                                     self.bloom4Radius,
                                      self.ssaoRadius,
                                      self.bloomEnabled,
                                      len(self.colorModifiers)))
@@ -986,6 +990,15 @@ if __name__ == "__main__":
     
     conv["gammaCorrectionFragment.fs"] = Shader(["source/shaders/gammaCorrectionFragment.fs"], "../../resources/shaders/gammaCorrectionFragment.bin")
     conv["gammaCorrectionFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["applyBloomFragment.fs"] = Shader(["source/shaders/applyBloomFragment.fs"], "../../resources/shaders/applyBloomFragment.bin")
+    conv["applyBloomFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["applyBloomFragment.fs"] = Shader(["source/shaders/applyBloomFragment.fs"], "../../resources/shaders/applyBloomFragment.bin")
+    conv["applyBloomFragment.fs"].stage_ = Shader.Stage.Fragment
+    
+    conv["bloomDownsampleFragment.fs"] = Shader(["source/shaders/bloomDownsampleFragment.fs"], "../../resources/shaders/bloomDownsampleFragment.bin")
+    conv["bloomDownsampleFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
@@ -1179,7 +1192,7 @@ if __name__ == "__main__":
     cubeEnt.rigidBody.linearSleepingThreshold = 0.0
     cubeEnt.rigidBody.angularSleepingThreshold = 0.0
     cubeEnt.rigidBody.linearDamping = 0.8
-    cubeEnt.rigidBody.mass = 5.0
+    cubeEnt.rigidBody.mass = 100.0
     cubeEnt.scripts.append(("resources/scripts/entityscript.cpp", "Player"))
     cubeEnt.scripts.append(("resources/scripts/lightscript.cpp", "PlayerLight"))
     scene.entities.append(cubeEnt)
