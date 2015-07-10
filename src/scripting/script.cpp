@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <dlfcn.h>
+#include <sys/stat.h>
 
 void precompileScriptInclude()
 {
@@ -241,6 +242,10 @@ void Script::_load()
     scriptFilename = scriptFilename.subStr(index+1, scriptFilename.getLength()-index-1);
 
     String binaryFilename = String::format("%s/bin/%s.so", dir.getData(), scriptFilename.getData());
+
+    String binaryDirectory = String::format("%s/bin", dir.getData());
+
+    mkdir(binaryDirectory.getData(), 0777);
 
     String command = String::format("g++ -o\"%s\" -g -I../include -I\"%s\" "
                                     "`pkg-config bullet --cflags` `freetype-config --cflags` -D_REENTRANT"

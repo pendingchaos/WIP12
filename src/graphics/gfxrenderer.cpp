@@ -938,7 +938,9 @@ void GfxRenderer::render()
     gBufferTimer->end();
 
     //SSAO
-    /*gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
+    ssaoTimer->begin();
+
+    gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
     gfxApi->begin(compiledPostEffectVertex,
                   nullptr,
@@ -957,10 +959,12 @@ void GfxRenderer::render()
 
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
-                quadMesh->winding);*/
+                quadMesh->winding);
+
+    ssaoTimer->end();
 
     //Deinterleave
-    ssaoTimer->begin();
+    /*ssaoTimer->begin();
 
     gfxApi->setCurrentFramebuffer(ssaoDepthDeinterleaveFramebuffer);
 
@@ -1054,7 +1058,7 @@ void GfxRenderer::render()
                 quadMesh->numVertices,
                 quadMesh->winding);
 
-    ssaoTimer->end();
+    ssaoTimer->end();*/
 
     //SSAO Blur X
     ssaoBlurXTimer->begin();
@@ -1112,7 +1116,7 @@ void GfxRenderer::render()
     {
         Light *light = lights[i];
 
-        GfxCompiledShader *fragmentShader;
+        GfxCompiledShader *fragmentShader = nullptr;
 
         switch (light->type)
         {
