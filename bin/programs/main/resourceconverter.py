@@ -845,7 +845,7 @@ if __name__ == "__main__":
             self.bloom2Strength = 1.0
             self.bloom3Strength = 1.0
             self.bloom4Strength = 1.0
-            self.bloomEnabled = False
+            self.bloomEnabled = True
             self.ssaoRadius = 0.25
             self.colorModifiers = []
         
@@ -1184,7 +1184,7 @@ if __name__ == "__main__":
     scene.camera.position = [-4.0, 4.0, 4.0]
     scene.camera.direction = [4.0, -2.0, -4.0]
     scene.camera.up = [0.0, 1.0, 0.0]
-    """
+    
     modifier = Scene.ColorModifier()
     modifier.type_ = Scene.ColorModifier.Type.ReinhardTonemap
     modifier.brightnessOnly = True
@@ -1201,7 +1201,7 @@ if __name__ == "__main__":
     modifier.softness = 1.0
     modifier.intensity = 1.0
     scene.colorModifiers.append(modifier)
-    """
+    
     cubeEnt = Scene.Entity("Cube")
     cubeEnt.transform.position = [0.0, 2.0, 0.0]
     cubeEnt.transform.scale = [1.0, 1.0, 1.0]

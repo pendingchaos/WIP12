@@ -62,5 +62,4 @@ IBL:
     https://github.com/jMonkeyEngine/jmonkeyengine/compare/PBRisComing#diff-a76e40d1405edd3626e52286d1f179dfR476
     https://github.com/jMonkeyEngine/jmonkeyengine/tree/af35f27b938ca8ec7e2e6d2b479ea6e452cee835/jme3-core/src/main/java/com/jme3/texture/pbr
 
-- Remember to turn bloom on.
 - Interleaving is incorrect or HBAO is.

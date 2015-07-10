@@ -1,6 +1,6 @@
 #include "lib/uniform.glsl"
 
-layout (location = 0) out float result_ao;
+layout (location = 0) out vec4 result_ao;
 
 in vec2 frag_uv;
 
@@ -27,7 +27,7 @@ vec3 getRandom(vec2 pos)
     vec2 texPos = samplePos.xy * 0.5 + 0.5;\
     float sampleDepth = linearizeDepth(texture(U(depthTexture), texPos).r);\
     float rangeCheck = smoothstep(0.0, 1.0, U(radius) / abs(samplePos.z - sampleDepth));\
-    result_ao += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
+    result_ao.r += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
 }\
 
 void main()
@@ -42,7 +42,7 @@ void main()
     vec3 bitangent = cross(tangent, normal);
     mat3 tbn = mat3(tangent, bitangent, normal);
 
-    result_ao = 0.0;
+    result_ao.r = 0.0;
 
     SAMPLE(vec3(-0.021705, 0.061174, 0.076070))
     SAMPLE(vec3(-0.059246, 0.022466, 0.078497))
@@ -77,6 +77,7 @@ void main()
     SAMPLE(vec3(-0.502290, 0.454897, 0.578517))
     SAMPLE(vec3(0.311337, -0.725261, 0.519028))
 
-    result_ao = 1.0 - result_ao / 32.0;
+    result_ao.r = 1.0 - result_ao.r / 32.0;
+    result_ao.gba = normal;
 }
 

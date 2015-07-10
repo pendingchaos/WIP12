@@ -17,14 +17,14 @@ void main()
     {
         vec4 aoNormal = texture(U(aoTexture), frag_uv+vec2(0.0, float(i))*onePixel);
         
-        float weight = 1.0; //step(0.996, dot(center.yzw, aoNormal.yzw));
+        float weight = step(0.996, dot(center.yzw, aoNormal.yzw));
         
         result_ao.r += aoNormal.r * weight;
         divisor += weight;
         
         aoNormal = texture(U(aoTexture), frag_uv+vec2(0.0, float(-i))*onePixel);
         
-        weight = 1.0; //step(0.996, dot(center.yzw, aoNormal.yzw));
+        weight = step(0.996, dot(center.yzw, aoNormal.yzw));
         
         result_ao.r += aoNormal.r * weight;
         divisor += weight;

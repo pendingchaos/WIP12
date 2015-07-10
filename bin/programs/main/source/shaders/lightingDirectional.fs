@@ -60,9 +60,5 @@ void main()
     #endif
     );
     result_color.a = 1.0;
-    
-    result_color.rgb = vec3(ao);
-    
-    //result_color.rgb = (texture(U(aoTexture), frag_uv).gba + 1.0) / 2.0;
 }
 
