@@ -24,7 +24,7 @@ vec3 getRandom(vec2 pos)
 
 #define SAMPLE(kernel) {\
     vec3 samplePos = tbn * kernel * U(radius) + origin;\
-    vec2 texPos = (samplePos.xy + 1.0) / 2.0;\
+    vec2 texPos = samplePos.xy * 0.5 + 0.5;\
     float sampleDepth = linearizeDepth(texture(U(depthTexture), texPos).r);\
     float rangeCheck = smoothstep(0.0, 1.0, U(radius) / abs(samplePos.z - sampleDepth));\
     result_ao += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
@@ -36,6 +36,7 @@ void main()
     vec3 origin = vec3(frag_uv * 2.0 - 1.0, depth);
     
     vec3 normal = normalize(U(normalMatrix) * texture(U(normalTexture), frag_uv).xyz);
+    //vec3 normal = normalize(cross(dFdx(origin), dFdy(origin)));
     vec3 rvec = getRandom(gl_FragCoord.xy);
     vec3 tangent = normalize(rvec - normal * dot(rvec, normal));
     vec3 bitangent = cross(tangent, normal);

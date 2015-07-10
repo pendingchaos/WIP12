@@ -22,4 +22,3 @@ void main()
     result_color += texture(U(bloom3Texture), frag_uv).rgb * U(bloom3Strength);
     result_color += texture(U(bloom4Texture), frag_uv).rgb * U(bloom4Strength);
 }
-

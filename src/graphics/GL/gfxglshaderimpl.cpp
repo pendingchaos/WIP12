@@ -146,7 +146,7 @@ GfxCompiledShader *GfxGLShaderImpl::getCompiled(const HashMap<String, String >& 
 
 GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
 {
-    GLsizei numSources = defines.getEntryCount() + 4;
+    GLsizei numSources = defines.getEntryCount() + 5;
     const char **sources = NEW_ARRAY(const char *, numSources);
     String *defineSources = NEW_ARRAY(String, defines.getEntryCount());
 
@@ -155,72 +155,80 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
 
     if (major == 3 and minor == 3)
     {
-        sources[0] = "#version 330 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 330 core\n";
     } else if (major == 4 and minor == 0)
     {
-        sources[0] = "#version 400 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 400 core\n";
     } else if (major == 4 and minor == 1)
     {
-        sources[0] = "#version 410 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 410 core\n";
     } else if (major == 4 and minor == 2)
     {
-        sources[0] = "#version 420 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 420 core\n";
     } else if (major == 4 and minor == 3)
     {
-        sources[0] = "#version 430 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 430 core\n";
     } else if (major == 4 and minor == 4)
     {
-        sources[0] = "#version 440 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 440 core\n";
     } else if (major == 4 and minor == 5)
     {
-        sources[0] = "#version 450 core\n#extension GL_ARB_separate_shader_objects : enable\n";
+        sources[0] = "#version 450 core\n";
     }
+
+    sources[1] = "#extension GL_ARB_separate_shader_objects : enable\n"
+"#pragma optionNV(fastmath on)\n"
+"#pragma optionNV(fastprecision on)\n"
+"#pragma optionNV(ifcvt none)\n"
+"#pragma optionNV(inline all)\n"
+"#pragma optionNV(strict on)\n"
+"#pragma optionNV(unroll all)\n";
 
     for (size_t i = 0; i < defines.getEntryCount(); ++i)
     {
         defineSources[i] = String::format("#define %s %s\n",
                                           defines.getKey(i).getData(),
                                           defines.getValue(i).getData());
-        sources[i+1] = defineSources[i].getData();
+        sources[i+2] = defineSources[i].getData();
     }
 
     switch (stage)
     {
     case GfxShader::Vertex:
     {
-        sources[defines.getEntryCount()+1] = "#define VERTEX 1\n";
+        sources[defines.getEntryCount()+2] = "#define VERTEX 1\n";
         break;
     }
     case GfxShader::TessControl:
     {
-        sources[defines.getEntryCount()+1] = "#define TESS_CONTROL 1\n";
+        sources[defines.getEntryCount()+2] = "#define TESS_CONTROL 1\n";
         break;
     }
     case GfxShader::TessEval:
     {
-        sources[defines.getEntryCount()+1] = "#define TESS_EVAL 1\n";
+        sources[defines.getEntryCount()+2] = "#define TESS_EVAL 1\n";
         break;
     }
     case GfxShader::Geometry:
     {
-        sources[defines.getEntryCount()+1] = "#define GEOMETRY 1\n";
+        sources[defines.getEntryCount()+2] = "#define GEOMETRY 1\n";
         break;
     }
     case GfxShader::Fragment:
     {
-        sources[defines.getEntryCount()+1] = "#define FRAGMENT 1\n";
+        sources[defines.getEntryCount()+2] = "#define FRAGMENT 1\n";
         break;
     }
     case GfxShader::Compute:
     {
-        sources[defines.getEntryCount()+1] = "#define __COMPUTE__ 1\n";
+        sources[defines.getEntryCount()+2] = "#define __COMPUTE__ 1\n";
         break;
     }
     }
 
-    sources[defines.getEntryCount()+2] = "#line 1\n";
+    sources[defines.getEntryCount()+3] = "#line 1\n";
 
-    sources[defines.getEntryCount()+3] = source.getData();
+    sources[defines.getEntryCount()+4] = source.getData();
 
     GLuint result = 0;
     String infoLog;
