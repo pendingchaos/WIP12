@@ -242,13 +242,9 @@ class Resource
         {
             if (--refCount == 0)
             {
+                refCount = INT_MIN;
                 DELETE(Resource, this);
             }
-        }
-
-        inline uint32_t getRefCount() const
-        {
-            return refCount;
         }
 
         String filename;
@@ -259,7 +255,7 @@ class Resource
         Type type;
         bool loaded;
         time_t lastFileModification;
-        uint32_t refCount;
+        int32_t refCount;
     protected:
         virtual void _load() {}
 

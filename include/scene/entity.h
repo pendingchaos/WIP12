@@ -52,7 +52,7 @@ class Entity
     friend Scene;
 
     private:
-        Entity(const String& name, ResPtr<Scene> scene);
+        Entity(const String& name, Scene *scene);
         ~Entity();
     public:
         inline bool addScript(ResPtr<Script> script, const char *name)
@@ -180,10 +180,7 @@ class Entity
             return this == &other;
         }
 
-        inline ResPtr<Scene>& getScene() const
-        {
-            return scene;
-        }
+        ResPtr<Scene> getScene() const;
 
         inline void setUserData(const ScriptFunction<void *>& initFunc,
                                 const ScriptFunction<void, void *>& deinitFunc)
@@ -208,7 +205,7 @@ class Entity
         RigidBody *rigidBody;
         bool render;
         RenderComponent renderComponent;
-        mutable ResPtr<Scene> scene;
+        mutable Scene *scene;
         UserData *userData;
 
     NO_COPY(Entity);

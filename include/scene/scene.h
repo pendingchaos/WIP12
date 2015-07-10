@@ -32,6 +32,7 @@ class Scene : public Resource
         void handleInput();
         void update();
         void fixedUpdate(float timestep);
+        void render();
 
         inline PhysicsWorld *getPhysicsWorld() const
         {
@@ -57,7 +58,67 @@ class Scene : public Resource
         {
             return entities;
         }
+
+        inline bool addScript(ResPtr<Script> script, const char *name)
+        {
+            ScriptInstance *inst = findScriptInstanceByName(name);
+
+            if (inst == nullptr)
+            {
+                scripts.append(script->createInstance(name, nullptr, this));
+
+                return true;
+            }
+
+            return false;
+        }
+
+        inline void removeScript(ScriptInstance *instance)
+        {
+            int index = scripts.find(instance);
+
+            if (index != -1)
+            {
+                scripts.remove(index);
+
+                DELETE(ScriptInstance, instance);
+            }
+        }
+
+        inline const List<ScriptInstance *>& getScripts() const
+        {
+            return scripts;
+        }
+
+        inline ScriptInstance *findScriptInstanceByName(const char *name) const
+        {
+            for (size_t i = 0; i < scripts.getCount(); ++i)
+            {
+                if (scripts[i]->getName() == name)
+                {
+                    return scripts[i];
+                }
+            }
+
+            return nullptr;
+        }
+
+        #ifdef IN_SCRIPT
+        template <typename T>
+        inline T *findScriptInstance() const
+        {
+            ScriptInstance *inst = findScriptInstanceByName(T::_name);
+
+            if (inst == nullptr)
+            {
+                return nullptr;
+            }
+
+            return (T *)inst->getPointer();
+        }
+        #endif
     private:
+        List<ScriptInstance *> scripts;
         GfxRenderer *renderer;
         AudioWorld *audioWorld;
         List<Entity *> entities;

@@ -37,6 +37,11 @@ Scene::~Scene()
         DELETE(Entity, entities[i]);
     }
 
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        DELETE(ScriptInstance, scripts[i]);
+    }
+
     audioWorld->removeFromAudioDevice(audioDevice);
 
     DELETE(AudioWorld, audioWorld);
@@ -50,6 +55,13 @@ void Scene::removeContent()
     {
         DELETE(Entity, entities[i]);
     }
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        DELETE(ScriptInstance, scripts[i]);
+    }
+
+    scripts.clear();
 
     audioWorld->clearSources();
 
@@ -65,16 +77,31 @@ void Scene::removeContent()
 void Scene::handleInput()
 {
     _handleInput(entities);
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        scripts[i]->handleInput();
+    }
 }
 
 void Scene::update()
 {
     _update(entities);
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        scripts[i]->update();
+    }
 }
 
 void Scene::fixedUpdate(float timestep)
 {
     _fixedUpdate(entities, timestep);
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        scripts[i]->fixedUpdate(timestep);
+    }
 
     physicsWorld->stepSimulation(timestep);
 }
@@ -115,6 +142,23 @@ void Scene::_fixedUpdate(const List<Entity *>& entities_, float timestep)
         {
             entity->getScripts()[i]->fixedUpdate(timestep);
         }
+    }
+}
+
+void Scene::render()
+{
+    renderer->updateStats();
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        scripts[i]->preRender();
+    }
+
+    renderer->render();
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        scripts[i]->postRender();
     }
 }
 
@@ -516,6 +560,21 @@ void Scene::_load()
                 light->shadowAutoBiasScale = autoBiasScale;
             }
         }
+
+        uint32_t numScripts = file.readUInt32LE();
+
+        for (size_t i = 0; i < numScripts; ++i)
+        {
+            uint32_t scriptFileLen = file.readUInt32LE();
+            String scriptFile(scriptFileLen);
+            file.read(scriptFileLen, scriptFile.getData());
+
+            uint32_t nameLen = file.readUInt32LE();
+            String name(nameLen);
+            file.read(nameLen, name.getData());
+
+            addScript(resMgr->getResource<Script>(scriptFile), name.getData());
+        }
     } catch (FileException& e)
     {
         THROW(ResourceIOException,
@@ -811,6 +870,16 @@ void Scene::save()
                 file.writeUInt16LE(light->getShadowmapResolution());
                 file.writeUInt8((int)light->getShadowmapPrecision());
             }
+        }
+
+        file.writeUInt32LE(scripts.getCount());
+
+        for (size_t i = 0; i < scripts.getCount(); ++i)
+        {
+            String filename = scripts[i]->getScript()->filename;
+
+            file.writeUInt32LE(filename.getLength());
+            file.write(filename.getLength(), filename.getData());
         }
     } catch (FileException& e)
     {

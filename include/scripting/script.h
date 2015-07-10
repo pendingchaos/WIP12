@@ -72,7 +72,8 @@ class ScriptInstance
         void handleInput();
         void update();
         void fixedUpdate(float timestep);
-        void render();
+        void preRender();
+        void postRender();
         void serialize(Serializable& serialized);
         void deserialize(const Serializable& serialized);
 
@@ -94,12 +95,14 @@ class ScriptInstance
         ScriptInstance(const char *name,
                        ResPtr<Script> script,
                        void *ptr,
-                       Entity *entity);
+                       Entity *entity,
+                       Scene *scene);
 
         String name;
         ResPtr<Script> script;
         void *ptr;
         Entity *entity;
+        Scene *scene;
 };
 
 class UserData;
@@ -121,7 +124,7 @@ class Script : public Resource
 
         virtual void removeContent();
 
-        ScriptInstance *createInstance(const char *name, Entity *entity=nullptr);
+        ScriptInstance *createInstance(const char *name, Entity *entity=nullptr, Scene *scene=nullptr);
 
         template <typename Return, typename ... Args>
         inline Return call(const String& name, Args... args)
@@ -136,7 +139,7 @@ class Script : public Resource
         List<ScriptInstance *> instances;
         List<UserData *> userDatas;
 
-        void *(*getCreateFunc(const char *name))(Application *, Entity *, Script *);
+        void *(*getCreateFunc(const char *name))(Application *, Entity *, Scene *, Script *);
         void (*getDestroyFunc(const char *name))(void *);
 
         void (*getFunction(const String& name))()

@@ -98,7 +98,8 @@ void Application::updateFunction()
     {
         script->update();
 
-        script->render();
+        script->preRender();
+        script->postRender();
     }
 
     _switchScripts();

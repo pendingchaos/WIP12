@@ -151,7 +151,6 @@ class FPSCamera
 
 BEGIN_INSTANCE(Main)
     ResPtr<Scene> scene;
-    FPSCamera cam;
     Font *font;
     bool showExtraTimings;
     String timings;
@@ -163,38 +162,38 @@ BEGIN_INSTANCE(Main)
     float debugDrawTiming;
     float textTiming;
     AudioSource *source;
-
+    
     virtual void init()
     {
         showExtraTimings = false;
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
-
+        
         scene = resMgr->getResource<Scene>("resources/scenes/scene.bin");
-
+        
         font = NEW(Font, "/usr/share/fonts/gnu-free/FreeSans.ttf");
-
+        
         debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
         
         ResPtr<Audio> audio = resMgr->getResource<Audio>("resources/audio/hi.ogg");
         
         source = scene->getAudioWorld()->createSource(audio);
-    
+        
         source->position = Position3D(0.0f, 1.0f, 0.0f);
     }
-
+    
     virtual void deinit()
     {
         DELETE(GPUTimer, debugDrawTimer);
         DELETE(GPUTimer, textTimer);
         DELETE(Font, font);
     }
-
+    
     virtual void handleInput()
     {
         Platform::Event event;
-
+        
         while (platform->pollEvent(event))
         {
             switch (event.type)
@@ -202,24 +201,6 @@ BEGIN_INSTANCE(Main)
             case Platform::Event::Quit:
             {
                 app->running = false;
-                break;
-            }
-            case Platform::Event::MouseWheel:
-            {
-                float zoomSpeed = 4.0f;
-
-                if (platform->isKeyPressed(Platform::Space))
-                {
-                    zoomSpeed *= 4.0f;
-                }
-
-                if (platform->isKeyPressed(Platform::LeftShift))
-                {
-                    zoomSpeed /= 4.0f;
-                }
-
-                cam.zoom += -event.mouseWheel.relativeY * zoomSpeed * platform->getFrametime();
-
                 break;
             }
             case Platform::Event::KeyDown:
@@ -256,10 +237,8 @@ BEGIN_INSTANCE(Main)
             }
             }
         }
-
+        
         scene->handleInput();
-
-        //cam.update(scene->camera);
     }
 
     virtual void update()
@@ -274,37 +253,37 @@ BEGIN_INSTANCE(Main)
         scene->fixedUpdate(timestep);
     }
 
-    virtual void render()
+    virtual void postRender()
     {
         scene->getRenderer()->updateStats();
-
+        
         timingsUpdateCountdown -= platform->getFrametime();
-
+        
         gfxApi->setViewport(0, 0, platform->getWindowWidth(), platform->getWindowHeight());
         scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
                                            platform->getWindowHeight()));
-
+        
         bool debugDraw = platform->isRightMouseButtonPressed();
-
+        
         scene->getRenderer()->debugDraw = debugDraw;
-
+        
         debugDrawTimer->begin();
         if (debugDraw)
         {
             scene->getPhysicsWorld()->debugDraw();
         }
         debugDrawTimer->end();
-
+        
         scene->getRenderer()->render();
-
+        
         size_t fontSize = 40;
         float y = gfxApi->getViewportHeight() - fontSize;
         y /= gfxApi->getViewportHeight();
-
+        
         if (timingsUpdateCountdown < 0.0f and not freezeTimings)
         {
             timingsUpdateCountdown = TIMINGS_UPDATE_COUNTDOWN;
-
+            
             timings = String::format("FPS: %.0f\n"
                                      "Frametime: %.0f ms\n"
                                      "GPU FPS: %.0f\n"
@@ -313,21 +292,21 @@ BEGIN_INSTANCE(Main)
                                       platform->getFrametime() * 1000.0f,
                                       1.0f / platform->getGPUFrametime(),
                                       platform->getGPUFrametime() * 1000.0f);
-
+            
             GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
-
+            
             float total = platform->getGPUFrametime();
-
+            
             if (debugDrawTimer->resultAvailable())
             {
                 debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();
             }
-
+            
             if (textTimer->resultAvailable())
             {
                 textTiming = textTimer->getResult() / (float)textTimer->getResultResolution();
             }
-
+            
             float sum = stats.gBufferTiming +
                         stats.ssaoTiming +
                         stats.ssaoBlurXTiming +
@@ -342,22 +321,23 @@ BEGIN_INSTANCE(Main)
                         stats.overlayTiming +
                         debugDrawTiming +
                         textTiming;
-
-            extraTimings = String::format("GBuffer: %.2f ms (%.0f%)\n"
-                                          "SSAO: %.2f ms (%.0f%)\n"
-                                          "SSAO blur X: %.2f ms (%.0f%)\n"
-                                          "SSAO blur Y: %.2f ms (%.0f%)\n"
-                                          "Deferred shading: %.2f ms (%.0f%)\n"
-                                          "Forward render: %.2f ms (%.0f%)\n"
-                                          "Gamma correction: %.2f ms (%.0f%)\n"
-                                          "FXAA: %.2f ms (%.0f%)\n"
-                                          "Color modifiers: %.2f ms (%.0f%)\n"
-                                          "Bloom: %.2f ms (%.0f%)\n"
-                                          "Shadow map: %.2f ms (%.0f%)\n"
-                                          "Debug draw: %.2f ms (%.0f%)\n"
-                                          "Text: %.2f ms (%.0f%)\n"
-                                          "Overlays: %.2f ms (%.0f%)\n"
-                                          "Other: %.2f ms (%.0f%)\n",
+            
+            extraTimings = String::format("Timings:\n"
+                                          "    GBuffer: %.2f ms (%.0f%)\n"
+                                          "    SSAO: %.2f ms (%.0f%)\n"
+                                          "    SSAO blur X: %.2f ms (%.0f%)\n"
+                                          "    SSAO blur Y: %.2f ms (%.0f%)\n"
+                                          "    Deferred shading: %.2f ms (%.0f%)\n"
+                                          "    Forward render: %.2f ms (%.0f%)\n"
+                                          "    Gamma correction: %.2f ms (%.0f%)\n"
+                                          "    FXAA: %.2f ms (%.0f%)\n"
+                                          "    Color modifiers: %.2f ms (%.0f%)\n"
+                                          "    Bloom: %.2f ms (%.0f%)\n"
+                                          "    Shadow map: %.2f ms (%.0f%)\n"
+                                          "    Debug draw: %.2f ms (%.0f%)\n"
+                                          "    Text: %.2f ms (%.0f%)\n"
+                                          "    Overlays: %.2f ms (%.0f%)\n"
+                                          "    Other: %.2f ms (%.0f%)\n",
                                           stats.gBufferTiming * 1000.0f,
                                           stats.gBufferTiming / total * 100.0f,
                                           stats.ssaoTiming * 1000.0f,
@@ -389,9 +369,9 @@ BEGIN_INSTANCE(Main)
                                           (total - sum) * 1000.0f,
                                           (total - sum) / total * 100.0f);
         }
-
+        
         String displayedText = timings.copy();
-
+        
         if (showExtraTimings)
         {
             displayedText.append(extraTimings);
@@ -405,13 +385,13 @@ BEGIN_INSTANCE(Main)
         }
         
         textTimer->begin();
-
+        
         font->render(fontSize,
                      Float2(-1.0, y),
                      displayedText.getData(),
                      NULL,
                      Float3(1.0));
-
+        
         textTimer->end();
     }
     

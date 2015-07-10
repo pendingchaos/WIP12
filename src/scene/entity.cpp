@@ -3,11 +3,11 @@
 #include "scene/scene.h"
 
 Entity::Entity(const String& name_,
-               ResPtr<Scene> scene_) : name(name_),
-                                       rigidBody(nullptr),
-                                       render(false),
-                                       scene(scene_),
-                                       userData(nullptr) {}
+               Scene *scene_) : name(name_),
+                                rigidBody(nullptr),
+                                render(false),
+                                scene(scene_),
+                                userData(nullptr) {}
 
 Entity::~Entity()
 {
@@ -29,4 +29,9 @@ void Entity::addRigidBody(PhysicsWorld *world,
     newInfo.transform = &transform;
 
     rigidBody = world->createRigidBody(newInfo, shape);
+}
+
+ResPtr<Scene> Entity::getScene() const
+{
+    return scene;
 }

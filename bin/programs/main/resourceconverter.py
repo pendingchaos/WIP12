@@ -848,6 +848,7 @@ if __name__ == "__main__":
             self.bloomEnabled = True
             self.ssaoRadius = 0.25
             self.colorModifiers = []
+            self.scripts = []
         
         def convert(self):
             output = open(self.dest_filename+".temp", "wb")
@@ -885,6 +886,18 @@ if __name__ == "__main__":
             
             for light in self.lights:
                 output.write(light.convert())
+            
+            s = ""
+            
+            s += struct.pack("<L", len(self.scripts))
+            
+            for script in self.scripts:
+                s += struct.pack("<L", len(script[0]))
+                s += script[0]
+                s += struct.pack("<L", len(script[1]))
+                s += script[1]
+            
+            output.write(s)
             
             output.close()
             
