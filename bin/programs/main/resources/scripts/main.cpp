@@ -1,4 +1,8 @@
+#ifndef MAIN
+#define MAIN
+
 #include <cmath>
+#include "entityscript.cpp"
 
 class FPSCamera
 {
@@ -145,8 +149,7 @@ class FPSCamera
 
 #define TIMINGS_UPDATE_COUNTDOWN 0.1f
 
-#define INST_NAME Main
-BEGIN_INSTANCE
+BEGIN_INSTANCE(Main)
     ResPtr<Scene> scene;
     FPSCamera cam;
     Font *font;
@@ -387,21 +390,47 @@ BEGIN_INSTANCE
                                           (total - sum) / total * 100.0f);
         }
 
-        String displayTimings = timings.copy();
+        String displayedText = timings.copy();
 
         if (showExtraTimings)
         {
-            displayTimings.append(extraTimings);
+            displayedText.append(extraTimings);
         }
-
+        
+        Player *player = findPlayer();
+        
+        if (player != nullptr)
+        {
+            displayedText.append(String::format("Zoom: %f\n", 1.0f / player->zoom));
+        }
+        
         textTimer->begin();
 
         font->render(fontSize,
                      Float2(-1.0, y),
-                     displayTimings.getData(),
+                     displayedText.getData(),
                      NULL,
                      Float3(1.0));
 
         textTimer->end();
     }
-END_INSTANCE
+    
+    Player *findPlayer() const
+    {
+        for (size_t i = 0; i < scene->getEntities().getCount(); ++i)
+        {
+            Entity *entity = scene->getEntities()[i];
+            
+            Player *inst = entity->findScriptInstance<Player>();
+            
+            if (inst != nullptr)
+            {
+                return inst;
+            }
+        }
+        
+        return nullptr;
+    }
+END_INSTANCE(Main)
+
+#endif

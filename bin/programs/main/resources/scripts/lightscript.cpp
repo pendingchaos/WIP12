@@ -1,5 +1,7 @@
-#define INST_NAME PlayerLight
-BEGIN_INSTANCE
+#ifndef LIGHTSCRIPT
+#define LIGHTSCRIPT
+
+BEGIN_INSTANCE(PlayerLight)
     virtual void init()
     {
         on = false;
@@ -77,4 +79,6 @@ BEGIN_INSTANCE
 
     Light *light;
     bool on;
-END_INSTANCE
+END_INSTANCE(PlayerLight)
+
+#endif

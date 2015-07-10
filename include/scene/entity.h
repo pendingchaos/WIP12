@@ -55,9 +55,18 @@ class Entity
         Entity(const String& name, ResPtr<Scene> scene);
         ~Entity();
     public:
-        inline void addScript(ResPtr<Script> script, const char *name)
+        inline bool addScript(ResPtr<Script> script, const char *name)
         {
-            scripts.append(script->createInstance(name, this));
+            ScriptInstance *inst = findScriptInstanceByName(name);
+
+            if (inst == nullptr)
+            {
+                scripts.append(script->createInstance(name, this));
+
+                return true;
+            }
+
+            return false;
         }
 
         inline void removeScript(ScriptInstance *instance)
@@ -77,20 +86,33 @@ class Entity
             return scripts;
         }
 
-        inline List<ScriptInstance *> findScriptsByName(const char *name) const
+        inline ScriptInstance *findScriptInstanceByName(const char *name) const
         {
-            List<ScriptInstance *> scripts;
-
             for (size_t i = 0; i < scripts.getCount(); ++i)
             {
                 if (scripts[i]->getName() == name)
                 {
-                    scripts.append(scripts[i]);
+                    return scripts[i];
                 }
             }
 
-            return scripts;
+            return nullptr;
         }
+
+        #ifdef IN_SCRIPT
+        template <typename T>
+        inline T *findScriptInstance() const
+        {
+            ScriptInstance *inst = findScriptInstanceByName(T::_name);
+
+            if (inst == nullptr)
+            {
+                return nullptr;
+            }
+
+            return (T *)inst->getPointer();
+        }
+        #endif
 
         void addRigidBody(PhysicsWorld *world,
                           const RigidBody::ConstructionInfo& info,

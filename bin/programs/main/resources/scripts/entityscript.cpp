@@ -1,7 +1,9 @@
+#ifndef ENTITYSCRIPT
+#define ENTITYSCRIPT
+
 #include <cmath>
 
-#define INST_NAME Player
-BEGIN_INSTANCE
+BEGIN_INSTANCE(Player)
     virtual void init()
     {
         angle = Float2(M_PI, 0.0f);
@@ -233,4 +235,6 @@ BEGIN_INSTANCE
     Float2 angularVelocity;
     float maximumVelocity;
     float maxAngularVelocity;
-END_INSTANCE
+END_INSTANCE(Player)
+
+#endif

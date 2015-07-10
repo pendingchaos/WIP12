@@ -21,10 +21,12 @@ void precompileScriptInclude()
 
 const void *getScriptFunctionStruct();
 
-static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting/scriptinclude.h\"\nclass _InstanceBase\n"
+static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting/scriptinclude.h\"\n"
+"#ifndef _INSTANCEBASE\n#define _INSTANCEBASE\n"
+"class InstanceBase\n"
 "{\n"
 "    public:\n"
-"        _InstanceBase(Application *app_,\n"
+"        InstanceBase(Application *app_,\n"
 "                      Entity *entity_,\n"
 "                      ResPtr<Script> script_) : app(app_),\n"
 "                                                platform(app->getPlatform()),\n"
@@ -35,7 +37,7 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "                                                audioDevice(app->getAudioDevice()),\n"
 "                                                entity(entity_),\n"
 "                                                script(script_) {}\n"
-"        virtual ~_InstanceBase() {}\n"
+"        virtual ~InstanceBase() {}\n"
 "        virtual void init() {}\n"
 "        virtual void deinit() {}\n"
 "        virtual void handleInput() {}\n"
@@ -55,24 +57,26 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "        Entity *entity;\n"
 "        ResPtr<Script> script;\n"
 "};\n"
-"#define BEGIN_INSTANCE class INST_NAME : public _InstanceBase"
+"#endif\n"
+"#define BEGIN_INSTANCE(name) class name : public InstanceBase"
 "{"
 "    public:"
-"        INST_NAME(Application *app, Entity *entity, ResPtr<Script> script) : _InstanceBase(app, entity, script) {init();}"
-"        virtual ~INST_NAME() {deinit();}\n"
-"#define END_INSTANCE }; extern \"C\"{INST_NAME *JOIN(_create, INST_NAME)(Application *app, Entity *entity, Script *script){"
-"    return new INST_NAME(app, entity, script);"
+"        constexpr static const char *_name = STR(name);"
+"        name(Application *app, Entity *entity, ResPtr<Script> script) : InstanceBase(app, entity, script) {init();}"
+"        virtual ~name() {deinit();}\n"
+"#define END_INSTANCE(name) }; extern \"C\"{name *JOIN(_create, name)(Application *app, Entity *entity, Script *script){"
+"    return new name(app, entity, script);"
 "}"
-"INST_NAME *JOIN(_destroy, INST_NAME)(INST_NAME *obj)"
+"name *JOIN(_destroy, name)(name *obj)"
 "{"
 "    delete obj;"
 "}}\n\n#line 1 \"";
 
-class _InstanceBase
+class InstanceBase
 {
     public:
-        _InstanceBase();
-        virtual ~_InstanceBase();
+        InstanceBase();
+        virtual ~InstanceBase();
 
         virtual void init() {}
         virtual void deinit() {}
@@ -101,7 +105,7 @@ void ScriptInstance::handleInput()
 {
     if (ptr != nullptr)
     {
-        ((_InstanceBase *)ptr)->handleInput();
+        ((InstanceBase *)ptr)->handleInput();
     }
 }
 
@@ -109,7 +113,7 @@ void ScriptInstance::update()
 {
     if (ptr != nullptr)
     {
-        ((_InstanceBase *)ptr)->update();
+        ((InstanceBase *)ptr)->update();
     }
 }
 
@@ -117,7 +121,7 @@ void ScriptInstance::fixedUpdate(float timestep)
 {
     if (ptr != nullptr)
     {
-        ((_InstanceBase *)ptr)->fixedUpdate(timestep);
+        ((InstanceBase *)ptr)->fixedUpdate(timestep);
     }
 }
 
@@ -125,7 +129,7 @@ void ScriptInstance::render()
 {
     if (ptr != nullptr)
     {
-        ((_InstanceBase *)ptr)->render();
+        ((InstanceBase *)ptr)->render();
     }
 }
 
@@ -133,7 +137,7 @@ void ScriptInstance::serialize(Serializable& serialized)
 {
     if (ptr != nullptr)
     {
-        ((_InstanceBase *)ptr)->serialize(serialized);
+        ((InstanceBase *)ptr)->serialize(serialized);
     }
 }
 
@@ -141,7 +145,7 @@ void ScriptInstance::deserialize(const Serializable& serialized)
 {
     if (ptr != nullptr)
     {
-        ((_InstanceBase *)ptr)->deserialize(serialized);
+        ((InstanceBase *)ptr)->deserialize(serialized);
     }
 }
 
@@ -365,14 +369,14 @@ ScriptInstance *Script::createInstance(const char *name, Entity *entity)
 {
     void *(*createFunc)(Application *, Entity *, Script *) = getCreateFunc(name);
 
-    _InstanceBase *ptr;
+    InstanceBase *ptr;
 
     if (createFunc == nullptr)
     {
         ptr = nullptr;
     } else
     {
-        ptr = dl == nullptr ? nullptr : (_InstanceBase *)createFunc(app, entity, this);
+        ptr = dl == nullptr ? nullptr : (InstanceBase *)createFunc(app, entity, this);
     }
 
     ScriptInstance *result = NEW(ScriptInstance, name, this, ptr, entity);

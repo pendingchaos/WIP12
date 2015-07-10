@@ -9,13 +9,13 @@
     - [ ] Spot
         - [x] Deferred
         - [ ] Forward
-- [ ] The doppler effect (disabled) causes popping noise.
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Resource copy() function.
 - [ ] Make it possible for an object to rotate around another.
 - [ ] Skeletal animation.
 
 ## Bugs
+- [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
 - [ ] The computer freezes when the window is too small.
 - [ ] Parallax occlusion mapping seems to be incorrect.
