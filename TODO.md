@@ -13,6 +13,7 @@
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Resource copy() function.
 - [ ] Make it possible for an object to rotate around another.
+- [ ] Skeletal animation.
 
 ## Bugs
 - [ ] More tests should be created.
