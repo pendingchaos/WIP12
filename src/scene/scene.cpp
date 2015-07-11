@@ -303,7 +303,7 @@ void Scene::_load()
 
         physicsWorld->addDebugDrawer();
 
-        File file(filename.getData(), "rb");
+        File file(getFilename().getData(), "rb");
 
         char magic[4];
 
@@ -316,7 +316,7 @@ void Scene::_load()
         {
             THROW(ResourceIOException,
                   "scene",
-                  filename,
+                  getFilename(),
                   "Invalid magic");
         }
 
@@ -327,7 +327,7 @@ void Scene::_load()
         {
             THROW(ResourceIOException,
                   "scene",
-                  filename,
+                  getFilename(),
                   "Unsupported version");
         }
 
@@ -371,7 +371,7 @@ void Scene::_load()
         {
             THROW(ResourceIOException,
                   "scene",
-                  filename,
+                  getFilename(),
                   "Invalid camera type");
         }
 
@@ -469,7 +469,7 @@ void Scene::_load()
             {
                 THROW(ResourceIOException,
                       "scene",
-                      filename,
+                      getFilename(),
                       "Invalid color modifier type");
             }
             }
@@ -551,7 +551,7 @@ void Scene::_load()
             {
                 THROW(ResourceIOException,
                       "scene",
-                      filename,
+                      getFilename(),
                       "Invalid light type");
             }
 
@@ -595,7 +595,7 @@ void Scene::_load()
     {
         THROW(ResourceIOException,
               "scene",
-              filename,
+              getFilename(),
               e.getString());
     }
 }
@@ -640,8 +640,8 @@ void saveEntity(Entity *entity, File *file, const String& filename)
         {
             ResPtr<GfxModel> model = entity->getRenderComponent()->model;
 
-            file->writeUInt32LE(model->filename.getLength());
-            file->write(model->filename.getLength(), model->filename.getData());
+            file->writeUInt32LE(model->getFilename().getLength());
+            file->write(model->getFilename().getLength(), model->getFilename().getData());
 
             file->writeUInt8(entity->getRenderComponent()->modelData.shadowCaster);
         }
@@ -664,7 +664,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
         file->writeFloat32(body->getAngularSleepingThreshold());
         file->writeInt16LE(body->getCollisionMask());
 
-        String shapeFilename = body->getShape()->filename;
+        String shapeFilename = body->getShape()->getFilename();
 
         if (shapeFilename.getLength() == 0)
         {
@@ -685,7 +685,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
     for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
     {
-        String filename = entity->getScripts()[i]->getScript()->filename;
+        String filename = entity->getScripts()[i]->getScript()->getFilename();
 
         file->writeUInt32LE(filename.getLength());
         file->write(filename.getLength(), filename.getData());
@@ -696,7 +696,7 @@ void Scene::save()
 {
     try
     {
-        File file(filename.getData(), "wb");
+        File file(getFilename().getData(), "wb");
 
         file.write(6, "scen\x01\x00");
 
@@ -732,16 +732,16 @@ void Scene::save()
 
         if (skybox != nullptr)
         {
-            if (skybox->filename.getLength() == 0)
+            if (skybox->getFilename().getLength() == 0)
             {
                 THROW(ResourceIOException,
                       "scene",
-                      filename,
+                      getFilename(),
                       "The scene must have a skybox with a filename");
             }
 
-            file.writeUInt32LE(skybox->filename.getLength());
-            file.write(skybox->filename.getLength(), skybox->filename.getData());
+            file.writeUInt32LE(skybox->getFilename().getLength());
+            file.write(skybox->getFilename().getLength(), skybox->getFilename().getData());
         } else
         {
             file.writeUInt32LE(0);
@@ -830,7 +830,7 @@ void Scene::save()
 
         for (size_t i = 0; i < entities.getCount(); ++i)
         {
-            saveEntity(entities[i], &file, filename);
+            saveEntity(entities[i], &file, getFilename());
         }
 
         file.writeUInt32LE(renderer->getLights().getCount());
@@ -892,7 +892,7 @@ void Scene::save()
 
         for (size_t i = 0; i < scripts.getCount(); ++i)
         {
-            String filename = scripts[i]->getScript()->filename;
+            String filename = scripts[i]->getScript()->getFilename();
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -901,7 +901,7 @@ void Scene::save()
     {
         THROW(ResourceIOException,
               "scene",
-              filename,
+              getFilename(),
               e.getString());
     }
 }

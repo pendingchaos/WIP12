@@ -74,7 +74,7 @@ void GfxMesh::save()
 {
     try
     {
-        File file(filename.getData(), "wb");
+        File file(getFilename().getData(), "wb");
 
         file.write(6, "mesh\x01\x00");
 
@@ -178,7 +178,7 @@ void GfxMesh::save()
     {
         THROW(ResourceIOException,
               "mesh",
-              filename,
+              getFilename(),
               e.getString());
     }
 }
@@ -207,7 +207,7 @@ void GfxMesh::_load()
 {
     removeContent();
 
-    File file(filename.getData(), "rb");
+    File file(getFilename().getData(), "rb");
 
     char magic[4];
 
@@ -218,7 +218,7 @@ void GfxMesh::_load()
         magic[2] != 's' or
         magic[3] != 'h')
     {
-            THROW(ResourceIOException, "mesh", filename, "Invalid magic.");
+            THROW(ResourceIOException, "mesh", getFilename(), "Invalid magic.");
     }
 
     uint8_t majorVer = file.readUInt8();
@@ -226,7 +226,7 @@ void GfxMesh::_load()
 
     if (majorVer != 1 or minorVer != 0)
     {
-            THROW(ResourceIOException, "mesh", filename, "Unsupported version.");
+            THROW(ResourceIOException, "mesh", getFilename(), "Unsupported version.");
     }
 
     uint32_t count = file.readUInt32LE();

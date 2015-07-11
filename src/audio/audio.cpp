@@ -27,9 +27,9 @@ void Audio::_load()
 {
     OggVorbis_File file;
 
-    if (ov_fopen(fileSys->getAbsolutePath(filename.getData()).getData(), &file) < 0)
+    if (ov_fopen(fileSys->getAbsolutePath(getFilename().getData()).getData(), &file) < 0)
     {
-        THROW(ResourceIOException, "audio", filename, "Unable to open ogg vorbis file.");
+        THROW(ResourceIOException, "audio", getFilename(), "Unable to open ogg vorbis file.");
     }
 
     vorbis_info *info = ov_info(&file, -1);
@@ -61,7 +61,7 @@ void Audio::_load()
 
         if (result < 0)
         {
-            THROW(ResourceIOException, "audio", filename, String::format("Unable to decode ogg vorbis file: %d", result));
+            THROW(ResourceIOException, "audio", getFilename(), String::format("Unable to decode ogg vorbis file: %d", result));
         }
 
         if (info->channels == 2)

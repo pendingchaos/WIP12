@@ -150,13 +150,13 @@ class Script : public Resource
 
                 if (func == nullptr)
                 {
-                    THROW(ScriptFunctionException, filename, name, "No such function.");
+                    THROW(ScriptFunctionException, getFilename(), name, "No such function.");
                 }
 
                 return func;
             } else
             {
-                THROW(ScriptFunctionException, filename, name, "Script not loaded.");
+                THROW(ScriptFunctionException, getFilename(), name, "Script not loaded.");
             }
         }
 

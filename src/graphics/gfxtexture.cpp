@@ -342,7 +342,7 @@ void GfxTexture::_load()
     {
         removeContent();
 
-        File file(filename.getData(), "rb");
+        File file(getFilename().getData(), "rb");
 
         char magic[4];
 
@@ -355,7 +355,7 @@ void GfxTexture::_load()
         {
             THROW(ResourceIOException,
                   "texture",
-                  filename,
+                  getFilename(),
                   "Invalid magic");
         }
 
@@ -366,7 +366,7 @@ void GfxTexture::_load()
         {
             THROW(ResourceIOException,
                   "texture",
-                  filename,
+                  getFilename(),
                   "Unsupported version");
         }
 
@@ -428,7 +428,7 @@ void GfxTexture::_load()
     {
         THROW(ResourceIOException,
               "texture",
-              filename,
+              getFilename(),
               e.getString());
     }
 }
@@ -437,7 +437,7 @@ void GfxTexture::save()
 {
     try
     {
-        File file(filename.getData(), "wb");
+        File file(getFilename().getData(), "wb");
 
         file.write(6, "texr\x01\x00");
 
@@ -534,7 +534,7 @@ void GfxTexture::save()
     {
         THROW(ResourceIOException,
               "texture",
-              filename,
+              getFilename(),
               e.getString());
     }
 }

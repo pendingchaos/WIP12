@@ -46,7 +46,7 @@ void ResourceManager::autoReloadResources() const
             {
                 ERROR(CATEGORY_RENDER,
                       "Unable to reload resource at %s: %s",
-                      resource->filename.getData(),
+                      resource->getFilename().getData(),
                       e.getString())(e.getFile(),
                                      e.getLine(),
                                      e.getFunction());

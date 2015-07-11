@@ -112,7 +112,7 @@ void GfxMaterial::removeContent()
 
 void GfxMaterial::save()
 {
-    File file(filename.getData(), "wb");
+    File file(getFilename().getData(), "wb");
 
     file.write(6, "mtrl\x01\x00");
 
@@ -140,7 +140,7 @@ void GfxMaterial::save()
 
     if (albedoMap != nullptr)
     {
-        String filename = albedoMap->filename;
+        String filename = albedoMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -151,7 +151,7 @@ void GfxMaterial::save()
 
     if (smoothnessMap != nullptr)
     {
-        String filename = smoothnessMap->filename;
+        String filename = smoothnessMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -162,7 +162,7 @@ void GfxMaterial::save()
 
     if (metalMaskMap != nullptr)
     {
-        String filename = metalMaskMap->filename;
+        String filename = metalMaskMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -173,7 +173,7 @@ void GfxMaterial::save()
 
     if (normalMap != nullptr)
     {
-        String filename = normalMap->filename;
+        String filename = normalMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -184,7 +184,7 @@ void GfxMaterial::save()
 
     if (parallaxHeightMap != nullptr)
     {
-        String filename = parallaxHeightMap->filename;
+        String filename = parallaxHeightMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -195,7 +195,7 @@ void GfxMaterial::save()
 
     if (pomHeightMap != nullptr)
     {
-        String filename = pomHeightMap->filename;
+        String filename = pomHeightMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -206,7 +206,7 @@ void GfxMaterial::save()
 
     if (displacementMap != nullptr)
     {
-        String filename = displacementMap->filename;
+        String filename = displacementMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -275,7 +275,7 @@ void GfxMaterial::_load()
 {
     try
     {
-        File file(filename.getData(), "rb");
+        File file(getFilename().getData(), "rb");
 
         char magic[4];
 
@@ -286,7 +286,7 @@ void GfxMaterial::_load()
             magic[2] != 'r' or
             magic[3] != 'l')
         {
-            THROW(ResourceIOException, "material", filename, "Invalid magic.");
+            THROW(ResourceIOException, "material", getFilename(), "Invalid magic.");
         }
 
         uint8_t majorVer = file.readUInt8();
@@ -294,7 +294,7 @@ void GfxMaterial::_load()
 
         if (majorVer != 1 or minorVer != 0)
         {
-            THROW(ResourceIOException, "material", filename, "Unsupported version.");
+            THROW(ResourceIOException, "material", getFilename(), "Unsupported version.");
         }
 
         setForward(file.readUInt8() != 0);
@@ -387,7 +387,7 @@ void GfxMaterial::_load()
     {
         THROW(ResourceIOException,
               "material",
-              filename,
+              getFilename(),
               e.getString());
     }
 }

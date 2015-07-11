@@ -28,7 +28,7 @@ void GfxShader::removeContent()
 
 void GfxShader::save()
 {
-    File file(filename.getData(), "wb");
+    File file(getFilename().getData(), "wb");
 
     file.write(6, "shdr\x01\x00");
 
@@ -75,7 +75,7 @@ void GfxShader::_load()
 {
     try
     {
-        File file(filename.getData(), "rb");
+        File file(getFilename().getData(), "rb");
 
         char magic[4];
 
@@ -86,7 +86,7 @@ void GfxShader::_load()
             magic[2] != 'd' or
             magic[3] != 'r')
         {
-            THROW(ResourceIOException, "shader", filename, "Invalid magic.");
+            THROW(ResourceIOException, "shader", getFilename(), "Invalid magic.");
         }
 
         uint8_t majorVer = file.readUInt8();
@@ -94,7 +94,7 @@ void GfxShader::_load()
 
         if (majorVer != 1 or minorVer != 0)
         {
-            THROW(ResourceIOException, "shader", filename, "Unsupported version.");
+            THROW(ResourceIOException, "shader", getFilename(), "Unsupported version.");
         }
 
         Stage stage = GfxShader::Vertex;
@@ -133,7 +133,7 @@ void GfxShader::_load()
         }
         default:
         {
-            THROW(ResourceIOException, "shader", filename, "Invalid stage.");
+            THROW(ResourceIOException, "shader", getFilename(), "Invalid stage.");
             break;
         }
         }
@@ -149,14 +149,14 @@ void GfxShader::_load()
         {
             THROW(ResourceIOException,
                   "shader",
-                  filename,
+                  getFilename(),
                   String::format("Unable to compile shader: %s", e.getString()));
         }
     } catch (const FileException& e)
     {
         THROW(ResourceIOException,
               "shader",
-              filename,
+              getFilename(),
               e.getString());
     }
 }

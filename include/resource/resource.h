@@ -229,9 +229,23 @@ class Resource
             return ResPtr<T>(const_cast<Resource *>(this));
         }
 
-        String filename;
+        inline const String& getFilename() const
+        {
+            return filename;
+        }
+
+        inline void setFilename(const String& filename_)
+        {
+            removeContent();
+
+            filename = filename_.copy();
+
+            load();
+        }
+
         bool autoReload;
     private:
+        String filename;
         void refreshModification();
 
         Type type;

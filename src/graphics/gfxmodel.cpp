@@ -50,7 +50,7 @@ void GfxModel::removeContent()
 
 void GfxModel::save()
 {
-    File file(filename.getData(), "wb");
+    File file(getFilename().getData(), "wb");
 
     file.write(6, "modl\x01\x00");
 
@@ -86,17 +86,17 @@ void GfxModel::save()
             file.writeFloat32(lod.worldMatrix[3][2]);
             file.writeFloat32(lod.worldMatrix[3][3]);
 
-            const String& mesh = lod.mesh->filename;
-            const String& material = lod.material->filename;
+            const String& mesh = lod.mesh->getFilename();
+            const String& material = lod.material->getFilename();
 
             if (mesh.getLength() == 0)
             {
-                THROW(ResourceIOException, "model", filename, "Model's mesh must have a filename.");
+                THROW(ResourceIOException, "model", getFilename(), "Model's mesh must have a filename.");
             }
 
             if (material.getLength() == 0)
             {
-                THROW(ResourceIOException, "model", filename, "Model's material must have a filename.");
+                THROW(ResourceIOException, "model", getFilename(), "Model's material must have a filename.");
             }
 
             file.writeUInt32LE(mesh.getLength());
@@ -114,7 +114,7 @@ void GfxModel::_load()
     {
         removeContent();
 
-        File file(filename.getData(), "rb");
+        File file(getFilename().getData(), "rb");
 
         char magic[4];
 
@@ -125,7 +125,7 @@ void GfxModel::_load()
             magic[2] != 'd' or
             magic[3] != 'l')
         {
-            THROW(ResourceIOException, "model", filename, "Invalid magic.");
+            THROW(ResourceIOException, "model", getFilename(), "Invalid magic.");
         }
 
         uint8_t majorVer = file.readUInt8();
@@ -133,7 +133,7 @@ void GfxModel::_load()
 
         if (majorVer != 1 or minorVer != 0)
         {
-            THROW(ResourceIOException, "model", filename, "Unsupported version.");
+            THROW(ResourceIOException, "model", getFilename(), "Unsupported version.");
         }
 
         subModels.clear();
@@ -192,7 +192,7 @@ void GfxModel::_load()
     {
         THROW(ResourceIOException,
               "model",
-              filename,
+              getFilename(),
               e.getString());
     }
 }

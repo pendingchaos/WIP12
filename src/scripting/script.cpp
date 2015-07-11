@@ -242,18 +242,18 @@ void Script::_load()
 
     try
     {
-        File sourceFile(filename.getData(), "r");
+        File sourceFile(getFilename().getData(), "r");
         source = String(sourceFile.getSize());
         sourceFile.read(sourceFile.getSize(), source.getData());
     } catch (const FileException& e)
     {
         THROW(ResourceIOException,
               "script",
-              filename,
+              getFilename(),
               e.getString());
     }
 
-    String scriptFilename = fileSys->getAbsolutePath(filename.getData());
+    String scriptFilename = fileSys->getAbsolutePath(getFilename().getData());
 
     source = scriptStart.copy().append(scriptFilename).append("\"\n").append(source);
 
@@ -283,7 +283,7 @@ void Script::_load()
     {
         THROW(ResourceIOException,
               "script",
-              filename,
+              getFilename(),
               String("Unable to execute command: ").append(command));
     }
 
@@ -303,7 +303,7 @@ void Script::_load()
         {
             THROW(ResourceIOException,
                   "script",
-                  filename,
+                  getFilename(),
                   String::format("Unable to load compiled script at %s: %s",
                                  binaryFilename.getData(),
                                  dlerror()));
@@ -321,7 +321,7 @@ void Script::_load()
 
             THROW(ResourceIOException,
                   "script",
-                  filename,
+                  getFilename(),
                   String::format("Compiled script at %s does not contain the needed functions.",
                                  binaryFilename.getData()));
         } else
@@ -352,7 +352,7 @@ void Script::_load()
                         log("    File: %s\n", e.getFile());
                         log("    Line: %d\n", e.getLine());
                         log("    Function: %s\n", e.getFunction());
-                        log("    Script: %s\n", filename.getData());
+                        log("    Script: %s\n", getFilename().getData());
 
                         void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
 
@@ -377,7 +377,7 @@ void Script::_load()
     {
         THROW(ResourceIOException,
               "script",
-              filename,
+              getFilename(),
               String("Unable to execute command: ").append(command));
     }
 }

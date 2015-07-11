@@ -109,12 +109,12 @@ void PhysicsShape::setCompound(size_t childCount,
 
 void saveShape(ResPtr<PhysicsShape> shape, File *file)
 {
-    if (shape->filename.getLength() != 0)
+    if (shape->getFilename().getLength() != 0)
     {
         file->writeUInt8(11);
 
-        file->writeUInt32LE(shape->filename.getLength());
-        file->write(shape->filename.getLength(), shape->filename.getData());
+        file->writeUInt32LE(shape->getFilename().getLength());
+        file->write(shape->getFilename().getLength(), shape->getFilename().getData());
     }
 
     switch (shape->getShapeType())
@@ -255,7 +255,7 @@ void PhysicsShape::save()
 {
     try
     {
-        File file(filename.getData(), "wb");
+        File file(getFilename().getData(), "wb");
 
         file.write(6, "shpe\x01\x00");
 
@@ -264,7 +264,7 @@ void PhysicsShape::save()
     {
         THROW(ResourceIOException,
               "physicsShape",
-              filename,
+              getFilename(),
               e.getString());
     }
 }
@@ -483,7 +483,7 @@ void PhysicsShape::_load()
 {
     try
     {
-        File file(filename.getData(), "rb");
+        File file(getFilename().getData(), "rb");
 
         char magic[4];
 
@@ -494,7 +494,7 @@ void PhysicsShape::_load()
             magic[2] != 'p' or
             magic[3] != 'e')
         {
-            THROW(ResourceIOException, "physicsShape", filename, "Invalid magic.");
+            THROW(ResourceIOException, "physicsShape", getFilename(), "Invalid magic.");
         }
 
         uint8_t majorVer = file.readUInt8();
@@ -502,15 +502,15 @@ void PhysicsShape::_load()
 
         if (majorVer != 1 or minorVer != 0)
         {
-            THROW(ResourceIOException, "physicsShape", filename, "Unsupported version.");
+            THROW(ResourceIOException, "physicsShape", getFilename(), "Unsupported version.");
         }
 
-        loadShape(this, &file, filename);
+        loadShape(this, &file, getFilename());
     } catch (const FileException& e)
     {
         THROW(ResourceIOException,
               "physicsShape",
-              filename,
+              getFilename(),
               e.getString());
     }
 }
