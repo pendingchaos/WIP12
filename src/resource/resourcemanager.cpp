@@ -54,3 +54,41 @@ void ResourceManager::autoReloadResources() const
         }
     }
 }
+
+void ResourceManager::cleanupResources()
+{
+    for (size_t i = 0; i < resources.getEntryCount(); ++i)
+    {
+        HashMap<String, ResPtr<Resource> >& resources_ = resources.getValue(i);
+
+        List<ResPtr<Resource>> toDelete;
+
+        for (size_t j = 0; j < resources_.getEntryCount(); ++j)
+        {
+            ResPtr<Resource> resource = resources_.getValue(j);
+
+            if (resource->getRefCount() == 1)
+            {
+                toDelete.append(resource);
+            }
+        }
+
+        for (size_t j = 0; j < toDelete.getCount(); ++j)
+        {
+            int index;
+
+            for (size_t i2 = 0; i2 < resources_.getEntryCount(); ++i2)
+            {
+                if (resources_.getValue(i2) == toDelete[j])
+                {
+                    index = i2;
+                    break;
+                }
+            }
+
+            resources_.removeEntry(index);
+
+            toDelete[j]->release();
+        }
+    }
+}

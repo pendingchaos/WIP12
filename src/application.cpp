@@ -116,6 +116,7 @@ void Application::updateFunction()
 
     _switchScripts();
 
+    resMgr_->cleanupResources();
     resMgr_->autoReloadResources();
 
     platform_->running = running;

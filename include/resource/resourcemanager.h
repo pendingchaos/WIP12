@@ -50,6 +50,7 @@ class ResourceManager
         bool isResource(Resource::Type type, const String& filename) const;
 
         void autoReloadResources() const;
+        void cleanupResources();
     private:
         HashMap<Resource::Type, HashMap<String, ResPtr<Resource> > > resources;
 

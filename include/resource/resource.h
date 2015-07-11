@@ -216,6 +216,11 @@ class Resource
             }
         }
 
+        inline uint32_t getRefCount() const
+        {
+            return refCount;
+        }
+
         template <typename T>
         inline ResPtr<T> copyRef() const
         {
