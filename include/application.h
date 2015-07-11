@@ -66,6 +66,11 @@ class Application
 
         inline void setNextScript(ResPtr<Script> script_, const char *name)
         {
+            if (nextScript != nullptr)
+            {
+                nextScript->release();
+            }
+
             nextScript = script_;
             nextScriptName = name;
         }

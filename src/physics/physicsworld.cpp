@@ -8,8 +8,10 @@ PhysicsWorld::PhysicsWorld() : debugDrawer(nullptr)
 
     dispatcher = NEW(btCollisionDispatcher, configuration);
 
+    ghostCallback = NEW(btGhostPairCallback);
+
     broadphase = NEW(btDbvtBroadphase);
-    broadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
+    broadphase->getOverlappingPairCache()->setInternalGhostPairCallback(ghostCallback);
 
     solver = NEW(btSequentialImpulseConstraintSolver);
 
@@ -34,6 +36,7 @@ PhysicsWorld::~PhysicsWorld()
     DELETE(btDynamicsWorld, world);
     DELETE(btConstraintSolver, solver);
     DELETE(btBroadphaseInterface, broadphase);
+    DELETE(btGhostPairCallback, ghostCallback);
     DELETE(btCollisionDispatcher, dispatcher);
     DELETE(btCollisionConfiguration, configuration);
 }

@@ -225,8 +225,6 @@ class GfxRenderer
 
         bool debugDraw;
 
-        ResPtr<GfxTexture> skybox;
-
         float bloomThreshold;
         float bloom1Radius;
         float bloom2Radius;
@@ -241,7 +239,23 @@ class GfxRenderer
         List<ColorModifier> colorModifiers;
 
         void updateColorModifierShader();
+
+        inline void setSkybox(ResPtr<GfxTexture> skybox_)
+        {
+            if (skybox != nullptr)
+            {
+                skybox->release();
+            }
+
+            skybox = skybox_;
+        }
+
+        inline ResPtr<GfxTexture> getSkybox() const
+        {
+            return skybox;
+        }
     private:
+        ResPtr<GfxTexture> skybox;
         List<Light *> lights;
 
         RenderStats stats;

@@ -52,6 +52,10 @@ class GfxMaterial : public Resource
 
         #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(ResPtr<GfxTexture> texture)\
         {\
+            if (name != nullptr)\
+            {\
+                name->release();\
+            }\
             name = texture;\
             if (name != nullptr)\
             {\

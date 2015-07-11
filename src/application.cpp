@@ -56,13 +56,25 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
 
 Application::~Application()
 {
-    DELETE(ScriptInstance, script);
+    if (script != nullptr)
+    {
+        ResPtr<Script> script_ = script->getScript();
+
+        DELETE(ScriptInstance, script);
+
+        script_->release();
+    }
+
+    if (nextScript != nullptr)
+    {
+        nextScript->release();
+    }
+
+    DELETE(ResourceManager, resMgr_);
 
     DELETE(AudioDevice, audioDevice_);
-
     DELETE(GfxDebugDrawer, debugDrawer_);
     DELETE(GfxApi, gfxApi_);
-    DELETE(ResourceManager, resMgr_);
 
     platform_->destroyWindow();
 

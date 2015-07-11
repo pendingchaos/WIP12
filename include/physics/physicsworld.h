@@ -96,6 +96,7 @@ class PhysicsWorld
         btCollisionDispatcher *dispatcher;
         btBroadphaseInterface *broadphase;
         btConstraintSolver *solver;
+        btGhostPairCallback *ghostCallback;
         btDynamicsWorld *world;
         List<RigidBody *> rigidBodies;
         List<GhostObject *> ghostObjects;

@@ -13,15 +13,15 @@
 
 void run(const char *dir)
 {
-    Application app_(dir);
+    {
+        Application app_(dir);
 
-    setApplication(&app_);
+        setApplication(&app_);
 
-    ResPtr<Script> script = resMgr->getResource<Script>("resources/scripts/main.cpp");
+        app->setNextScript(resMgr->load<Script>("resources/scripts/main.cpp"), "Main");
 
-    app->setNextScript(script, "Main");
-
-    app->mainloop();
+        app->mainloop();
+    }
 
     setApplication(nullptr);
 }

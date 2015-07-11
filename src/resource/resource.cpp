@@ -9,14 +9,14 @@ Resource::Resource(Type type_) : filename(""),
                                  autoReload(true),
                                  type(type_),
                                  loaded(true),
-                                 refCount(0) {}
+                                 refCount(1) {}
 
 Resource::Resource(const String& filename_,
                    Type type_) : filename(filename_),
                                  autoReload(true),
                                  type(type_),
                                  loaded(false),
-                                 refCount(0)
+                                 refCount(1)
 {
     refreshModification();
 }

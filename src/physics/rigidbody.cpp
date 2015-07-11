@@ -99,6 +99,8 @@ RigidBody::~RigidBody()
 {
     shape->rigidBodies.remove(shape->rigidBodies.find(this));
 
+    shape->release();
+
     removeUserData();
 
     world->getBulletWorld()->removeRigidBody(rigidBody);
@@ -317,6 +319,8 @@ void RigidBody::setAngularFactor(const Float3& factor) const
 void RigidBody::setShape(ResPtr<PhysicsShape> shape_)
 {
     shape->rigidBodies.remove(shape->rigidBodies.find(this));
+
+    shape->release();
 
     shape = shape_;
 

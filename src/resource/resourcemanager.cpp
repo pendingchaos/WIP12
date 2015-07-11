@@ -4,17 +4,16 @@
 
 ResourceManager::ResourceManager() {}
 
-ResourceManager::~ResourceManager() {}
-
-void ResourceManager::removeResource(Resource::Type type, const String& filename)
+ResourceManager::~ResourceManager()
 {
-    HashMap<String, ResPtr<Resource> > resources_ = resources.get(type);
-
-    int entry = resources_.findEntry(filename);
-
-    if (entry != -1)
+    for (size_t i = 0; i < resources.getEntryCount(); ++i)
     {
-        resources_.removeEntry(entry);
+        HashMap<String, ResPtr<Resource> > resources_ = resources.getValue(i);
+
+        for (size_t j = 0; j < resources_.getEntryCount(); ++j)
+        {
+            resources_.getValue(j)->release();
+        }
     }
 }
 

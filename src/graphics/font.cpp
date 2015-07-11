@@ -11,9 +11,9 @@ Font::Font(const char *filename_) : filename(filename_)
     quadMesh->primitive = GfxPoints;
     quadMesh->numVertices = 1;
 
-    quadVertex = resMgr->getResource<GfxShader>("resources/shaders/fontVertex.bin");
-    quadGeometry = resMgr->getResource<GfxShader>("resources/shaders/fontGeometry.bin");
-    quadFragment = resMgr->getResource<GfxShader>("resources/shaders/fontFragment.bin");
+    quadVertex = resMgr->load<GfxShader>("resources/shaders/fontVertex.bin");
+    quadGeometry = resMgr->load<GfxShader>("resources/shaders/fontGeometry.bin");
+    quadFragment = resMgr->load<GfxShader>("resources/shaders/fontFragment.bin");
 
     compiledQuadVertex = quadVertex->getCompiled();
     compiledQuadGeometry = quadGeometry->getCompiled();
@@ -22,8 +22,21 @@ Font::Font(const char *filename_) : filename(filename_)
 
 Font::~Font()
 {
+    quadFragment->release();
+    quadGeometry->release();
+    quadVertex->release();
+
+    quadMesh->release();
+
     for (size_t i = 0; i < faces.getEntryCount(); ++i)
     {
+        HashMap<char, Glyph> glyphs = faces.getValue(i).glyphs;
+
+        for (size_t j = 0; j < glyphs.getEntryCount(); ++j)
+        {
+            glyphs.getValue(j).texture->release();
+        }
+
         FT_Done_Face(faces.getValue(i).face);
     }
 }

@@ -13,11 +13,13 @@ class ResourceManager
         ~ResourceManager();
 
         template <typename T>
-        ResPtr<T> newResource(const String& filename)
+        ResPtr<T> load(const String& filename)
         {
-            if (isResource(T::resource_type, filename))
+            if (isResource(getType<T>(), filename))
             {
-                return getResource<T>(filename);
+                ResPtr<Resource> res = resources.get(getType<T>()).get(filename);
+
+                return ResPtr<T>((T *)res->copyRef<Resource>().getPtr());
             }
 
             ResPtr<T> resource = NEW(T, filename);
@@ -40,33 +42,9 @@ class ResourceManager
 
             resources_->set(filename, resource.getPtr());
 
-            return resource;
-        }
+            ResPtr<Resource> res((Resource *)resource.getPtr());
 
-        void removeResource(Resource::Type type, const String& filename);
-
-        template <typename T>
-        ResPtr<T> getResource(const String& filename)
-        {
-            Resource::Type type = T::resource_type;
-
-            int entry = resources.findEntry(type);
-
-            if (entry == -1)
-            {
-                return newResource<T>(filename);
-            }
-
-            HashMap<String, ResPtr<Resource> > resources_ = resources.getValue(entry);
-
-            entry = resources_.findEntry(filename);
-
-            if (entry == -1)
-            {
-                return newResource<T>(filename);
-            }
-
-            return ResPtr<T>((T *)resources_.getValue(entry).getPtr());
+            return ResPtr<T>((T *)res->copyRef<Resource>().getPtr());
         }
 
         bool isResource(Resource::Type type, const String& filename) const;
@@ -75,7 +53,6 @@ class ResourceManager
     private:
         HashMap<Resource::Type, HashMap<String, ResPtr<Resource> > > resources;
 
-        //Hack around wierd compilation error.
         template <typename T>
         inline Resource::Type getType() const
         {

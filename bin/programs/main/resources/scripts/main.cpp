@@ -162,6 +162,7 @@ BEGIN_INSTANCE(Main)
     float debugDrawTiming;
     float textTiming;
     AudioSource *source;
+    ResPtr<Audio> audio;
     
     virtual void init()
     {
@@ -169,14 +170,14 @@ BEGIN_INSTANCE(Main)
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
         
-        scene = resMgr->getResource<Scene>("resources/scenes/scene.bin");
+        scene = resMgr->load<Scene>("resources/scenes/scene.bin");
         
         font = NEW(Font, "/usr/share/fonts/gnu-free/FreeSans.ttf");
         
         debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
         
-        ResPtr<Audio> audio = resMgr->getResource<Audio>("resources/audio/hi.ogg");
+        audio = resMgr->load<Audio>("resources/audio/hi.ogg");
         
         source = scene->getAudioWorld()->createSource(audio);
         
@@ -185,9 +186,13 @@ BEGIN_INSTANCE(Main)
     
     virtual void deinit()
     {
-        DELETE(GPUTimer, debugDrawTimer);
+        audio->release();
+        
         DELETE(GPUTimer, textTimer);
+        DELETE(GPUTimer, debugDrawTimer);
+        
         DELETE(Font, font);
+        scene->release();
     }
     
     virtual void handleInput()

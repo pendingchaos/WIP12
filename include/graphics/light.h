@@ -82,6 +82,7 @@ class Light
             {
                 DELETE(GfxFramebuffer, shadowmapFramebuffer);
                 shadowmapFramebuffer = nullptr;
+                shadowmap->release();
                 shadowmap = nullptr;
 
                 if (type == Point)

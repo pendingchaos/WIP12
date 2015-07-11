@@ -45,6 +45,7 @@ class GfxModel : public Resource
 
         GfxModel();
         GfxModel(const String& filename);
+        virtual ~GfxModel();
 
         virtual void removeContent();
 

@@ -39,42 +39,42 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           //averageLuminance(0.0f),
                                           numLights(0)
 {
-    skyboxVertex = resMgr->getResource<GfxShader>("resources/shaders/skyboxVertex.bin");
-    skyboxFragment = resMgr->getResource<GfxShader>("resources/shaders/skyboxFragment.bin");
-    skyboxMesh = resMgr->getResource<GfxMesh>("resources/meshes/cube.bin");
-    fxaaFragment = resMgr->getResource<GfxShader>("resources/shaders/fxaaFragment.bin");
-    lightingDirectional = resMgr->getResource<GfxShader>("resources/shaders/lightingDirectional.bin");
-    lightingPoint = resMgr->getResource<GfxShader>("resources/shaders/lightingPoint.bin");
-    lightingSpot = resMgr->getResource<GfxShader>("resources/shaders/lightingSpot.bin");
-    ssaoFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoFragment.bin");
-    ssaoBlurXFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
-    ssaoBlurYFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
-    bloomBlurXFragment = resMgr->getResource<GfxShader>("resources/shaders/bloomBlurXFragment.bin");
-    bloomBlurYFragment = resMgr->getResource<GfxShader>("resources/shaders/bloomBlurYFragment.bin");
-    lumCalcFragment = resMgr->getResource<GfxShader>("resources/shaders/lumCalcFragment.bin");
-    tonemapFragment = resMgr->getResource<GfxShader>("resources/shaders/tonemapFragment.bin");
-    postEffectVertex = resMgr->getResource<GfxShader>("resources/shaders/postEffectVertex.bin");
-    shadowmapVertex = resMgr->getResource<GfxShader>("resources/shaders/shadowmapVertex.bin");
-    pointShadowmapGeometry = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
-    applyBloomFragment = resMgr->getResource<GfxShader>("resources/shaders/applyBloomFragment.bin");
-    bloomDownsampleFragment = resMgr->getResource<GfxShader>("resources/shaders/bloomDownsampleFragment.bin");
-    hbaoFragment = resMgr->getResource<GfxShader>("resources/shaders/hbaoFragment.bin");
-    ssaoInterleaveFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoInterleaveFragment.bin");
-    ssaoDeinterleaveFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoDeinterleaveFragment.bin");
-    ssaoGenerateNormalsFragment = resMgr->getResource<GfxShader>("resources/shaders/ssaoGenerateNormalsFragment.bin");
+    skyboxVertex = resMgr->load<GfxShader>("resources/shaders/skyboxVertex.bin");
+    skyboxFragment = resMgr->load<GfxShader>("resources/shaders/skyboxFragment.bin");
+    skyboxMesh = resMgr->load<GfxMesh>("resources/meshes/cube.bin");
+    fxaaFragment = resMgr->load<GfxShader>("resources/shaders/fxaaFragment.bin");
+    lightingDirectional = resMgr->load<GfxShader>("resources/shaders/lightingDirectional.bin");
+    lightingPoint = resMgr->load<GfxShader>("resources/shaders/lightingPoint.bin");
+    lightingSpot = resMgr->load<GfxShader>("resources/shaders/lightingSpot.bin");
+    ssaoFragment = resMgr->load<GfxShader>("resources/shaders/ssaoFragment.bin");
+    ssaoBlurXFragment = resMgr->load<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
+    ssaoBlurYFragment = resMgr->load<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
+    bloomBlurXFragment = resMgr->load<GfxShader>("resources/shaders/bloomBlurXFragment.bin");
+    bloomBlurYFragment = resMgr->load<GfxShader>("resources/shaders/bloomBlurYFragment.bin");
+    lumCalcFragment = resMgr->load<GfxShader>("resources/shaders/lumCalcFragment.bin");
+    tonemapFragment = resMgr->load<GfxShader>("resources/shaders/tonemapFragment.bin");
+    postEffectVertex = resMgr->load<GfxShader>("resources/shaders/postEffectVertex.bin");
+    shadowmapVertex = resMgr->load<GfxShader>("resources/shaders/shadowmapVertex.bin");
+    pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
+    applyBloomFragment = resMgr->load<GfxShader>("resources/shaders/applyBloomFragment.bin");
+    bloomDownsampleFragment = resMgr->load<GfxShader>("resources/shaders/bloomDownsampleFragment.bin");
+    hbaoFragment = resMgr->load<GfxShader>("resources/shaders/hbaoFragment.bin");
+    ssaoInterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoInterleaveFragment.bin");
+    ssaoDeinterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoDeinterleaveFragment.bin");
+    ssaoGenerateNormalsFragment = resMgr->load<GfxShader>("resources/shaders/ssaoGenerateNormalsFragment.bin");
 
     if (gfxApi->tesselationSupported())
     {
-        shadowmapTessControl = resMgr->getResource<GfxShader>("resources/shaders/shadowmapControl.bin");
-        shadowmapTessEval = resMgr->getResource<GfxShader>("resources/shaders/shadowmapEval.bin");
+        shadowmapTessControl = resMgr->load<GfxShader>("resources/shaders/shadowmapControl.bin");
+        shadowmapTessEval = resMgr->load<GfxShader>("resources/shaders/shadowmapEval.bin");
     }
 
-    shadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/shadowmapFragment.bin");
-    pointShadowmapFragment = resMgr->getResource<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
-    overlayVertex = resMgr->getResource<GfxShader>("resources/shaders/overlayVertex.bin");
-    overlayFragment = resMgr->getResource<GfxShader>("resources/shaders/overlayFragment.bin");
+    shadowmapFragment = resMgr->load<GfxShader>("resources/shaders/shadowmapFragment.bin");
+    pointShadowmapFragment = resMgr->load<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
+    overlayVertex = resMgr->load<GfxShader>("resources/shaders/overlayVertex.bin");
+    overlayFragment = resMgr->load<GfxShader>("resources/shaders/overlayFragment.bin");
     colorModifierFragment = NEW(GfxShader);
-    gammaCorrectionFragment = resMgr->getResource<GfxShader>("resources/shaders/gammaCorrectionFragment.bin");
+    gammaCorrectionFragment = resMgr->load<GfxShader>("resources/shaders/gammaCorrectionFragment.bin");
 
     compiledFXAAFragment = fxaaFragment->getCompiled();
     compiledLightingDirectional = lightingDirectional->getCompiled();
@@ -280,6 +280,16 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
 GfxRenderer::~GfxRenderer()
 {
+    for (size_t i = 0; i < lights.getCount(); ++i)
+    {
+        DELETE(Light, lights[i]);
+    }
+
+    if (skybox != nullptr)
+    {
+        skybox->release();
+    }
+
     DELETE(GPUTimer, gBufferTimer);
     DELETE(GPUTimer, ssaoTimer);
     DELETE(GPUTimer, ssaoBlurXTimer);
@@ -311,6 +321,64 @@ GfxRenderer::~GfxRenderer()
     //DELETE(GfxFramebuffer, luminanceFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
+
+    ssaoNormalTexture->release();
+    deinterleavedDepthTexture->release();
+    deinterleavedSSAOTexture->release();
+    bloomDownsampleTexture->release();
+    bloom4Texture->release();
+    bloom3Texture->release();
+    bloom2Texture->release();
+    bloom1Texture->release();
+    ssaoRandomTexture->release();
+    //luminanceTexture->release();
+    bloomBlurXTexture->release();
+    ssaoBlurXTexture->release();
+    ssaoTexture->release();
+    normalTexture->release();
+    materialTexture->release();
+    depthTexture->release();
+    writeColorTexture->release();
+    readColorTexture->release();
+
+    quadMesh->release();
+
+    gammaCorrectionFragment->release();
+    colorModifierFragment->release();
+    overlayFragment->release();
+    overlayVertex->release();
+    pointShadowmapFragment->release();
+    shadowmapFragment->release();
+
+    if (gfxApi->tesselationSupported())
+    {
+        shadowmapTessEval->release();
+        shadowmapTessControl->release();
+    }
+
+    ssaoGenerateNormalsFragment->release();
+    ssaoDeinterleaveFragment->release();
+    ssaoInterleaveFragment->release();
+    hbaoFragment->release();
+    bloomDownsampleFragment->release();
+    applyBloomFragment->release();
+    pointShadowmapGeometry->release();
+    shadowmapVertex->release();
+    postEffectVertex->release();
+    tonemapFragment->release();
+    lumCalcFragment->release();
+    bloomBlurYFragment->release();
+    bloomBlurXFragment->release();
+    ssaoBlurYFragment->release();
+    ssaoBlurXFragment->release();
+    ssaoFragment->release();
+    lightingSpot->release();
+    lightingPoint->release();
+    lightingDirectional->release();
+    fxaaFragment->release();
+    skyboxMesh->release();
+    skyboxFragment->release();
+    skyboxVertex->release();
 }
 
 void GfxRenderer::updateStats()

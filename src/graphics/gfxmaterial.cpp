@@ -24,8 +24,8 @@ GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
                              forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
-                     resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
-                     resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
+                     resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
+                     resMgr->load<GfxShader>("resources/shaders/forwardFragment.bin"));
 }
 
 GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
@@ -48,12 +48,60 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
-                     resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
-                     resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
+                     resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
+                     resMgr->load<GfxShader>("resources/shaders/forwardFragment.bin"));
 }
 
 GfxMaterial::~GfxMaterial()
 {
+    if (smoothnessMap != nullptr)
+    {
+        smoothnessMap->release();
+    }
+
+    if (metalMaskMap != nullptr)
+    {
+        metalMaskMap->release();
+    }
+
+    if (albedoMap != nullptr)
+    {
+        albedoMap->release();
+    }
+
+    if (normalMap != nullptr)
+    {
+        normalMap->release();
+    }
+
+    if (parallaxHeightMap != nullptr)
+    {
+        parallaxHeightMap->release();
+    }
+
+    if (pomHeightMap != nullptr)
+    {
+        pomHeightMap->release();
+    }
+
+    if (displacementMap != nullptr)
+    {
+        displacementMap->release();
+    }
+
+    shaderComb->getVertexShader()->release();
+    shaderComb->getFragmentShader()->release();
+
+    if (shaderComb->getTessControlShader() != nullptr)
+    {
+        shaderComb->getTessControlShader()->release();
+    }
+
+    if (shaderComb->getTessEvalShader() != nullptr)
+    {
+        shaderComb->getTessEvalShader()->release();
+    }
+
     DELETE(GfxShaderCombination, shaderComb);
 }
 
@@ -174,8 +222,18 @@ void GfxMaterial::setDisplacementMap(ResPtr<GfxTexture> texture)
 
     if (displacementMap != nullptr and gfxApi->tesselationSupported())
     {
-        shaderComb->setTessControlShader(resMgr->getResource<GfxShader>("resources/shaders/objectTessControl.bin"));
-        shaderComb->setTessEvalShader(resMgr->getResource<GfxShader>("resources/shaders/objectTessEval.bin"));
+        if (shaderComb->getTessControlShader() != nullptr)
+        {
+            shaderComb->getTessControlShader()->release();
+        }
+
+        if (shaderComb->getTessEvalShader() != nullptr)
+        {
+            shaderComb->getTessEvalShader()->release();
+        }
+
+        shaderComb->setTessControlShader(resMgr->load<GfxShader>("resources/shaders/objectTessControl.bin"));
+        shaderComb->setTessEvalShader(resMgr->load<GfxShader>("resources/shaders/objectTessEval.bin"));
     }
 }
 
@@ -183,16 +241,31 @@ void GfxMaterial::setForward(bool forward_)
 {
     forward = forward_;
 
+    shaderComb->getVertexShader()->release();
+    shaderComb->getFragmentShader()->release();
+
+    if (shaderComb->getTessControlShader() != nullptr)
+    {
+        shaderComb->getTessControlShader()->release();
+    }
+
+    if (shaderComb->getTessEvalShader() != nullptr)
+    {
+        shaderComb->getTessEvalShader()->release();
+    }
+
+    DELETE(GfxShaderCombination, shaderComb);
+
     if (forward)
     {
         shaderComb = NEW(GfxShaderCombination,
-                         resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
-                         resMgr->getResource<GfxShader>("resources/shaders/forwardFragment.bin"));
+                         resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
+                         resMgr->load<GfxShader>("resources/shaders/forwardFragment.bin"));
     } else
     {
         shaderComb = NEW(GfxShaderCombination,
-                         resMgr->getResource<GfxShader>("resources/shaders/objectVertex.bin"),
-                         resMgr->getResource<GfxShader>("resources/shaders/gbufferFragment.bin"));
+                         resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
+                         resMgr->load<GfxShader>("resources/shaders/gbufferFragment.bin"));
     }
 
     setDisplacementMap(displacementMap);
@@ -260,7 +333,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setAlbedoMap(resMgr->getResource<GfxTexture>(tex));
+            setAlbedoMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -268,7 +341,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setSmoothnessMap(resMgr->getResource<GfxTexture>(tex));
+            setSmoothnessMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -276,7 +349,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setMetalMaskMap(resMgr->getResource<GfxTexture>(tex));
+            setMetalMaskMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -284,7 +357,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setNormalMap(resMgr->getResource<GfxTexture>(tex));
+            setNormalMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -292,7 +365,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setParallaxHeightMap(resMgr->getResource<GfxTexture>(tex));
+            setParallaxHeightMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -300,7 +373,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setPOMHeightMap(resMgr->getResource<GfxTexture>(tex));
+            setPOMHeightMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -308,7 +381,7 @@ void GfxMaterial::_load()
         {
             String tex(len);
             file.read(len, tex.getData());
-            setDisplacementMap(resMgr->getResource<GfxTexture>(tex));
+            setDisplacementMap(resMgr->load<GfxTexture>(tex));
         }
     } catch (FileException& e)
     {

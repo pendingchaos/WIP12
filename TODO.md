@@ -22,7 +22,6 @@
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] The program crashes when the script fails to compile on startup.
 - [ ] When a script is reloaded, the scripts that #include it will not be recompiled.
-- [ ] Fix memory leaks.
 
 ## Other
 - [ ] Benchmarks.
@@ -35,7 +34,6 @@
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
 - [ ] Make fonts a resource.
-- [ ] Get rid of reference counted resource pointers.
 
 ## Performance Improvements
 - [ ] Instancing (explicit and implicit).

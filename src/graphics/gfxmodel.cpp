@@ -18,8 +18,33 @@ GfxModel::GfxModel() : Resource(Resource::GfxModelType) {}
 GfxModel::GfxModel(const String& filename) : Resource(filename,
                                                       Resource::GfxModelType) {}
 
+GfxModel::~GfxModel()
+{
+    for (size_t i = 0; i < subModels.getCount(); ++i)
+    {
+        List<LOD> subModel = subModels[i];
+
+        for (size_t j = 0; j < subModel.getCount(); ++j)
+        {
+            subModel[i].mesh->release();
+            subModel[i].material->release();
+        }
+    }
+}
+
 void GfxModel::removeContent()
 {
+    for (size_t i = 0; i < subModels.getCount(); ++i)
+    {
+        List<LOD> subModel = subModels[i];
+
+        for (size_t j = 0; j < subModel.getCount(); ++j)
+        {
+            subModel[i].mesh->release();
+            subModel[i].material->release();
+        }
+    }
+
     subModels.clear();
 }
 
@@ -153,8 +178,8 @@ void GfxModel::_load()
 
                 subModel.append(LOD(minDistance,
                                     maxDistance,
-                                    resMgr->getResource<GfxMesh>(mesh),
-                                    resMgr->getResource<GfxMaterial>(material),
+                                    resMgr->load<GfxMesh>(mesh),
+                                    resMgr->load<GfxMaterial>(material),
                                     Matrix4x4(Float4(r0c0, r0c1, r0c2, r0c3),
                                               Float4(r1c0, r1c1, r1c2, r1c3),
                                               Float4(r2c0, r2c1, r2c2, r2c3),

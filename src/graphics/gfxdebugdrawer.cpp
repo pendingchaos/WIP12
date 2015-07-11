@@ -9,10 +9,10 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
 {
     buffer = gfxApi->createBuffer();
 
-    vertex = resMgr->getResource<GfxShader>(
+    vertex = resMgr->load<GfxShader>(
     "resources/shaders/debugDrawVertex.bin");
 
-    fragment = resMgr->getResource<GfxShader>(
+    fragment = resMgr->load<GfxShader>(
     "resources/shaders/debugDrawFragment.bin");
 
     compiledVertex = vertex->getCompiled();
@@ -42,6 +42,11 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
 
 GfxDebugDrawer::~GfxDebugDrawer()
 {
+    mesh->release();
+
+    fragment->release();
+    vertex->release();
+
     DELETE(GfxBuffer, buffer);
 }
 

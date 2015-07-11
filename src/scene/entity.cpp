@@ -1,6 +1,7 @@
 #include "scene/entity.h"
 
 #include "scene/scene.h"
+#include "backtrace.h"
 
 Entity::Entity(const String& name_,
                Scene *scene_) : name(name_),
@@ -11,9 +12,29 @@ Entity::Entity(const String& name_,
 
 Entity::~Entity()
 {
+    List<ResPtr<Script>> scripts_;
+
     for (size_t i = 0; i < scripts.getCount(); ++i)
     {
+        scripts_.append(scripts[i]->getScript());
+
         DELETE(ScriptInstance, scripts[i]);
+    }
+
+    for (size_t i = 0; i < scripts_.getCount(); ++i)
+    {
+        scripts_[i]->release();
+    }
+
+    if (render)
+    {
+        if (renderComponent.type == RenderComponent::Model)
+        {
+            renderComponent.model->release();
+        } else if (renderComponent.type == RenderComponent::Overlay)
+        {
+            renderComponent.overlayTexture->release();
+        }
     }
 
     removeRigidBody();

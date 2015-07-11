@@ -22,6 +22,8 @@ GhostObject::GhostObject(unsigned short collisionMask,
 
 GhostObject::~GhostObject()
 {
+    shape->release();
+
     removeUserData();
 
     world->getBulletWorld()->removeCollisionObject(ghostObject);
@@ -67,6 +69,8 @@ void GhostObject::setTransform(const Transform& transform) const
 void GhostObject::setShape(ResPtr<PhysicsShape> shape_)
 {
     shape->ghosts.remove(shape->ghosts.find(this));
+
+    shape->release();
 
     shape = shape_;
 

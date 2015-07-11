@@ -37,9 +37,18 @@ Scene::~Scene()
         DELETE(Entity, entities[i]);
     }
 
+    List<ResPtr<Script>> scripts_;
+
     for (size_t i = 0; i < scripts.getCount(); ++i)
     {
+        scripts_.append(scripts[i]->getScript());
+
         DELETE(ScriptInstance, scripts[i]);
+    }
+
+    for (size_t i = 0; i < scripts_.getCount(); ++i)
+    {
+        scripts_[i]->release();
     }
 
     audioWorld->removeFromAudioDevice(audioDevice);
@@ -56,9 +65,20 @@ void Scene::removeContent()
         DELETE(Entity, entities[i]);
     }
 
+    entities.clear();
+
+    List<ResPtr<Script>> scripts_;
+
     for (size_t i = 0; i < scripts.getCount(); ++i)
     {
+        scripts_.append(scripts[i]->getScript());
+
         DELETE(ScriptInstance, scripts[i]);
+    }
+
+    for (size_t i = 0; i < scripts_.getCount(); ++i)
+    {
+        scripts_[i]->release();
     }
 
     scripts.clear();
@@ -70,8 +90,6 @@ void Scene::removeContent()
 
     physicsWorld->~PhysicsWorld();
     new (physicsWorld) PhysicsWorld;
-
-    entities = List<Entity *>();
 }
 
 void Scene::handleInput()
@@ -193,7 +211,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
 
         bool shadowCaster = file->readUInt8() != 0;
 
-        entity->addModel(resMgr->getResource<GfxModel>(modelFile), shadowCaster);
+        entity->addModel(resMgr->load<GfxModel>(modelFile), shadowCaster);
     } else if (useOverlay)
     {
         uint32_t textureFileLen = file->readUInt32LE();
@@ -205,7 +223,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         float green = file->readFloat32();
         float blue = file->readFloat32();
 
-        entity->addOverlay(resMgr->getResource<GfxTexture>(textureFile));
+        entity->addOverlay(resMgr->load<GfxTexture>(textureFile));
 
         entity->getRenderComponent()->overlayData.color = Float3(red, green, blue);
     }
@@ -258,7 +276,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String shape(length);
         file->read(length, shape.getData());
 
-        entity->addRigidBody(world, info, resMgr->getResource<PhysicsShape>(shape));
+        entity->addRigidBody(world, info, resMgr->load<PhysicsShape>(shape));
     }
 
     uint32_t numScripts = file->readUInt32LE();
@@ -273,7 +291,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String name(nameLen);
         file->read(nameLen, name.getData());
 
-        entity->addScript(resMgr->getResource<Script>(scriptFile), name.getData());
+        entity->addScript(resMgr->load<Script>(scriptFile), name.getData());
     }
 }
 
@@ -363,10 +381,10 @@ void Scene::_load()
 
         if (skyboxFileLen != 0)
         {
-            renderer->skybox = resMgr->getResource<GfxTexture>(skyboxFile);
+            renderer->setSkybox(resMgr->load<GfxTexture>(skyboxFile));
         } else
         {
-            renderer->skybox = nullptr;
+            renderer->setSkybox(nullptr);
         }
 
         renderer->bloomThreshold = file.readFloat32();
@@ -472,8 +490,6 @@ void Scene::_load()
             Entity *entity = createEntity(name);
 
             loadEntity(entity, physicsWorld, &file);
-
-            entities.append(entity);
         }
 
         uint32_t numLights = file.readUInt32LE();
@@ -573,7 +589,7 @@ void Scene::_load()
             String name(nameLen);
             file.read(nameLen, name.getData());
 
-            addScript(resMgr->getResource<Script>(scriptFile), name.getData());
+            addScript(resMgr->load<Script>(scriptFile), name.getData());
         }
     } catch (FileException& e)
     {

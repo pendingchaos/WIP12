@@ -16,7 +16,10 @@ PhysicsShape::PhysicsShape() : Resource(Resource::PhysicsShapeType),
 PhysicsShape::PhysicsShape(const String& filename) : Resource(filename, Resource::PhysicsShapeType),
                                                      impl(NEW(PhysicsShapeImpl, this, PhysicsShapeImpl::Empty, NEW(btEmptyShape))) {}
 
-PhysicsShape::~PhysicsShape() {}
+PhysicsShape::~PhysicsShape()
+{
+    DELETE(PhysicsShapeImpl, impl);
+}
 
 void PhysicsShape::setEmpty()
 {
@@ -464,7 +467,7 @@ ResPtr<PhysicsShape> loadShape(ResPtr<PhysicsShape> dest, File *file, const Stri
         String filename2(length);
         file->read(length, filename2.getData());
 
-        dest = resMgr->getResource<PhysicsShape>(filename2);
+        dest = resMgr->load<PhysicsShape>(filename2);
         break;
     }
     default:
@@ -952,6 +955,11 @@ PhysicsCompoundShape::PhysicsCompoundShape(PhysicsShape *physShape,
 
 PhysicsCompoundShape::~PhysicsCompoundShape()
 {
+    for (size_t i = 0; i < shapeCount; ++i)
+    {
+        shapes[i].shape->release();
+    }
+
     DELETE_ARRAY(Child, shapes);
 }
 

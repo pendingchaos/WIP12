@@ -18,16 +18,6 @@ class GfxModel;
 class Scene;
 class Script;
 
-#define _RES_INC_REF_COUNT(ptr) if (ptr != nullptr)\
-{\
-    ptr->incRefCount();\
-}
-
-#define _RES_RELEASE(ptr) if (ptr != nullptr)\
-{\
-    ptr->release();\
-}
-
 class ResourceIOException : public Exception
 {
     public:
@@ -85,28 +75,14 @@ class ResPtr
         ResPtr() : ptr(nullptr) {}
         ResPtr(nullptr_t null) : ptr(nullptr) {}
 
-        ResPtr(T *ptr_) : ptr(ptr_)
-        {
-            _RES_INC_REF_COUNT(ptr)
-        }
+        ResPtr(T *ptr_) : ptr(ptr_) {}
 
         ResPtr(const ResPtr& other)
-         : ptr(const_cast<T *>(other.getPtr()))
-        {
-            _RES_INC_REF_COUNT(ptr)
-        }
-
-        ~ResPtr()
-        {
-            _RES_RELEASE(ptr)
-        }
+         : ptr(const_cast<T *>(other.getPtr())) {}
 
         ResPtr& operator = (const ResPtr& other)
         {
             T *otherPtr = const_cast<T *>(other.getPtr());
-
-            _RES_INC_REF_COUNT(otherPtr)
-            _RES_RELEASE(ptr)
 
             ptr = reinterpret_cast<T *>(otherPtr);
 
@@ -116,9 +92,6 @@ class ResPtr
         template <typename Other>
         ResPtr& operator = (Other *other)
         {
-            _RES_INC_REF_COUNT(other)
-            _RES_RELEASE(ptr)
-
             ptr = reinterpret_cast<T *>(other);
 
             return *this;
@@ -233,18 +206,22 @@ class Resource
             }
         }
 
-        inline void incRefCount()
-        {
-            ++refCount;
-        }
-
         inline void release()
         {
-            if (--refCount == 0)
+            --refCount;
+
+            if (refCount == 0)
             {
-                refCount = INT_MIN;
                 DELETE(Resource, this);
             }
+        }
+
+        template <typename T>
+        inline ResPtr<T> copyRef() const
+        {
+            ++refCount;
+
+            return ResPtr<T>(const_cast<Resource *>(this));
         }
 
         String filename;
@@ -255,7 +232,7 @@ class Resource
         Type type;
         bool loaded;
         time_t lastFileModification;
-        int32_t refCount;
+        mutable uint32_t refCount;
     protected:
         virtual void _load() {}
 
