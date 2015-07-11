@@ -14,12 +14,6 @@
 
 #include <cmath>
 
-float gauss(float x, float sigma)
-{
-    return (1.0 / (sigma*std::sqrt(2.0*3.141529))) *
-           std::exp(-(x*x) / (2.0*sigma*sigma));
-}
-
 GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomThreshold(1.0f),
                                           bloom1Radius(0.1f),
@@ -1388,13 +1382,7 @@ void GfxRenderer::render()
 
         #define BLOOM(framebuffer) {\
         int32_t radius = bloomRadiusPixels / 4;\
-        float bloomDivisor = 0.0;\
         float bloomSigma = radius / 3.0f;\
-\
-        for (float i = -(float)radius; i < (float)radius+1; ++i)\
-        {\
-            bloomDivisor += gauss(i, bloomSigma);\
-        }\
         \
         gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);\
 \
@@ -1407,7 +1395,6 @@ void GfxRenderer::render()
 \
         gfxApi->addTextureBinding(compiledBloomBlurXFragment, "bloomTexture", bloomDownsampleTexture);\
         gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)radius);\
-        gfxApi->uniform(compiledBloomBlurXFragment, "divisor", bloomDivisor);\
         gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);\
 \
         gfxApi->end(quadMesh->primitive,\
@@ -1425,7 +1412,6 @@ void GfxRenderer::render()
 \
         gfxApi->addTextureBinding(compiledBloomBlurYFragment, "bloomTexture", bloomBlurXTexture);\
         gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)radius);\
-        gfxApi->uniform(compiledBloomBlurYFragment, "divisor", bloomDivisor);\
         gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);\
 \
         gfxApi->end(quadMesh->primitive,\

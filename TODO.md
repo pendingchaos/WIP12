@@ -17,7 +17,6 @@
 ## Bugs
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
-- [ ] Nothing is rendered when the window is smaller than 320x320.
 - [ ] Parallax occlusion mapping seems to be incorrect(?).
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] The program crashes when the script fails to compile on startup.
