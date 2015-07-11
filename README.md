@@ -17,7 +17,7 @@ The rest should already be installed (with the exception of the OpenGL implement
 The scripts have only been tested with Python 2.7 but they might work with a different version.
 
 To compile, run compile.py in the scripts directory or use the Code::Blocks project with an IDE that supports it.
-You might want to change process_count (on line 6) in compile.py to the number of cores on your CPU (and possibly plus one or two).
+You might want to change [process_count](https://github.com/pendingchaos/WIP12/blob/master/scripts/compile.py#L6) in compile.py to the number of cores on your CPU (and possibly plus one or two).
 
 To run, go to the directory named "bin" (in a shell) and run
 ```shell
