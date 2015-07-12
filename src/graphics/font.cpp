@@ -5,7 +5,7 @@
 
 #include <cstring>
 
-Font::Font(const char *filename_) : filename(filename_)
+Font::Font(const String& filename) : Resource(filename, FontType)
 {
     quadMesh = NEW(GfxMesh);
     quadMesh->primitive = GfxPoints;
@@ -19,6 +19,8 @@ Font::Font(const char *filename_) : filename(filename_)
     compiledQuadGeometry = quadGeometry->getCompiled();
     compiledQuadFragment = quadFragment->getCompiled();
 }
+
+Font::Font() : Resource(FontType) {}
 
 Font::~Font()
 {
@@ -41,12 +43,34 @@ Font::~Font()
     }
 }
 
+void Font::removeContent()
+{
+    for (size_t i = 0; i < faces.getEntryCount(); ++i)
+    {
+        HashMap<char, Glyph> glyphs = faces.getValue(i).glyphs;
+
+        for (size_t j = 0; j < glyphs.getEntryCount(); ++j)
+        {
+            glyphs.getValue(j).texture->release();
+        }
+
+        FT_Done_Face(faces.getValue(i).face);
+    }
+
+    faces.clear();
+}
+
 void Font::render(size_t size,
                   const Float2& position,
                   const char *string,
                   GfxFramebuffer *framebuffer,
                   const Float3& color)
 {
+    if (getFilename().getLength() == 0)
+    {
+        return;
+    }
+
     Float2 onePixel = Float2(1.0f) / Float2(gfxApi->getViewportWidth(), gfxApi->getViewportHeight());
 
     int faceIndex = faces.findEntry(size);
@@ -56,9 +80,9 @@ void Font::render(size_t size,
     {
         Face newFace;
 
-        if (FT_New_Face(freeType, filename.getData(), 0, &newFace.face) != 0)
+        if (FT_New_Face(freeType, getFilename().getData(), 0, &newFace.face) != 0)
         {
-            THROW(FontException, filename, "Unable to load font.")
+            THROW(FontException, getFilename(), "Unable to load font.")
         }
 
         FT_Set_Pixel_Sizes(newFace.face, 0, size);

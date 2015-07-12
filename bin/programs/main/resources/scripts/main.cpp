@@ -151,7 +151,7 @@ class FPSCamera
 
 BEGIN_INSTANCE(Main)
     ResPtr<Scene> scene;
-    Font *font;
+    ResPtr<Font> font;
     bool showExtraTimings;
     String timings;
     String extraTimings;
@@ -172,7 +172,7 @@ BEGIN_INSTANCE(Main)
         
         scene = resMgr->load<Scene>("resources/scenes/scene.bin");
         
-        font = NEW(Font, "/usr/share/fonts/gnu-free/FreeSans.ttf");
+        font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
         
         debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
@@ -191,7 +191,7 @@ BEGIN_INSTANCE(Main)
         DELETE(GPUTimer, textTimer);
         DELETE(GPUTimer, debugDrawTimer);
         
-        DELETE(Font, font);
+        font->release();
         scene->release();
     }
     

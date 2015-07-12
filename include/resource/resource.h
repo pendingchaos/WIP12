@@ -170,7 +170,8 @@ class Resource
             SceneType,
             ScriptType,
             PhysicsShapeType,
-            AudioType
+            AudioType,
+            FontType
         };
 
         virtual ~Resource();

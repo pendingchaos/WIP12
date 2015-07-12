@@ -1,3 +1,7 @@
+Next:
+- [ ] Make it possible for an object to rotate around another.
+- [ ] Resource copy() function.
+
 ## Features
 - [ ] Shadow mapping.
     - [ ] Directional

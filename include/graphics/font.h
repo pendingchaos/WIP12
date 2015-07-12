@@ -6,6 +6,7 @@
 #include "graphics/gfxmesh.h"
 #include "graphics/gfxshader.h"
 #include "math/t2.h"
+#include "resource/resource.h"
 #include "error.h"
 
 #include <ft2build.h>
@@ -52,22 +53,22 @@ class FontException : public Exception
         String problem;
 };
 
-class Font
+class Font : public Resource
 {
     public:
-        Font(const char *filename);
+        static const Resource::Type resource_type = FontType;
+
+        Font();
+        Font(const String& filename);
         ~Font();
+
+        virtual void removeContent();
 
         void render(size_t size,
                     const Float2& position,
                     const char *string,
                     GfxFramebuffer *framebuffer,
                     const Float3& color);
-
-        inline const String& getFilename() const
-        {
-            return filename;
-        }
     private:
         struct Glyph
         {
@@ -99,7 +100,6 @@ class Font
 
         void loadGlyph(Face& face, char character);
 
-        String filename;
         HashMap<size_t, Face> faces;
 
         ResPtr<GfxMesh> quadMesh;
