@@ -182,6 +182,12 @@ class Resource
         virtual void reload();
         virtual void save();
 
+        template <typename T>
+        ResPtr<T> *copy() const
+        {
+            return ResPtr<T>((T *)_copy());
+        }
+
         inline Type getType() const
         {
             return type;
@@ -255,6 +261,7 @@ class Resource
         mutable uint32_t refCount;
     protected:
         virtual void _load() {}
+        virtual Resource *_copy() const {return nullptr;}
 
         Resource(Type type);
         Resource(const String& filename,

@@ -171,7 +171,7 @@ void GfxShader::possiblyReload()
 
 void GfxShader::setSource(Stage stage, const String& source)
 {
-    impl->setSource(stage, source);
+    impl->setSource(stage, source.copy());
 }
 
 const String GfxShader::getSource() const
@@ -199,4 +199,13 @@ void GfxShader::recompile()
 GfxShader::Stage GfxShader::getStage() const
 {
     return impl->getStage();
+}
+
+Resource *GfxShader::_copy() const
+{
+    GfxShader *shader = NEW(GfxShader);
+
+    shader->setSource(getStage(), getSource());
+
+    return (Resource *)shader;
 }

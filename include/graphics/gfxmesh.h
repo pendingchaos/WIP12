@@ -34,7 +34,6 @@ class GfxMesh : public Resource
 
         struct VertexAttribute
         {
-            GfxBuffer *buffer;
             uint8_t numComponents;
             GfxVertexAttribType type;
             uint32_t stride;
@@ -42,8 +41,7 @@ class GfxMesh : public Resource
 
             inline bool operator == (const VertexAttribute& other) const
             {
-                return buffer == other.buffer and
-                       numComponents == other.numComponents and
+                return numComponents == other.numComponents and
                        type == other.type and
                        stride == other.stride and
                        offset == other.offset;
@@ -51,10 +49,10 @@ class GfxMesh : public Resource
         };
 
         void setVertexAttrib(GfxVertexAttribPurpose purpose,
-                             const GfxMesh::VertexAttribute& attribute);
+                             const VertexAttribute& attribute);
         void disableVertexAttrib(GfxVertexAttribPurpose purpose);
         bool isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const;
-        GfxMesh::VertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const;
+        VertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const;
 
         virtual void removeContent();
 
@@ -76,15 +74,20 @@ class GfxMesh : public Resource
             GfxVertexAttribType type;
             size_t numIndices;
             size_t offset;
-            GfxBuffer *buffer;
         } indexData;
 
-        List<GfxBuffer *> buffers;
         AABB aabb;
+
+        inline GfxBuffer *getBuffer() const
+        {
+            return buffer;
+        }
     private:
+        GfxBuffer *buffer;
         GfxMeshImpl *impl;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxMesh, Resource)
 };
@@ -94,7 +97,7 @@ class GfxMeshImpl
     friend class GfxMesh;
 
     protected:
-        GfxMeshImpl() {}
+        GfxMeshImpl(GfxMesh *mesh_) : mesh(mesh_) {}
         virtual ~GfxMeshImpl() {}
 
         virtual void setVertexAttrib(GfxVertexAttribPurpose purpose,
@@ -102,6 +105,8 @@ class GfxMeshImpl
         virtual void disableVertexAttrib(GfxVertexAttribPurpose purpose)=0;
         virtual bool isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const=0;
         virtual GfxMesh::VertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const=0;
+
+        GfxMesh *mesh;
 
     NO_COPY(GfxMeshImpl)
 };

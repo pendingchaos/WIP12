@@ -264,9 +264,9 @@ GfxTextureImpl *GfxGLApi::createTextureImpl()
     return NEW(GfxGLTextureImpl);
 }
 
-GfxMeshImpl *GfxGLApi::createMeshImpl()
+GfxMeshImpl *GfxGLApi::createMeshImpl(GfxMesh *mesh)
 {
-    return NEW(GfxGLMeshImpl);
+    return NEW(GfxGLMeshImpl, mesh);
 }
 
 GfxFramebuffer *GfxGLApi::createFramebuffer()

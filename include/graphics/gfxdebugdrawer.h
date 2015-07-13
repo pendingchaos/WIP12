@@ -46,7 +46,6 @@ class GfxDebugDrawer
         List<Line> lines;
 
         ResPtr<GfxMesh> mesh;
-        GfxBuffer *buffer;
 
         ResPtr<GfxShader> vertex;
         GfxCompiledShader *compiledVertex;

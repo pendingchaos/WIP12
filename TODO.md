@@ -1,5 +1,10 @@
 ## Next
 - [ ] Resource copy() function.
+    - [ ] Material
+    - [ ] Model
+    - [ ] Scene
+    - [ ] PhysicsShape
+    - [ ] Font
 
 ## Features
 - [ ] Shadow mapping.
@@ -13,7 +18,6 @@
         - [x] Deferred
         - [ ] Forward
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
-- [ ] Resource copy() function.
 - [ ] Skeletal animation.
 
 ## Bugs
@@ -35,6 +39,7 @@
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
+- [ ] Get rid of ResPtr.
 
 ## Performance Improvements
 - [ ] Instancing (explicit and implicit).

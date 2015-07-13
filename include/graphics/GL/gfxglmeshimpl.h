@@ -8,7 +8,7 @@ class GfxGLMeshImpl : public GfxMeshImpl
     NO_COPY_INHERITED(GfxGLMeshImpl, GfxMeshImpl)
 
     public:
-        GfxGLMeshImpl();
+        GfxGLMeshImpl(GfxMesh *mesh);
         virtual ~GfxGLMeshImpl();
 
         virtual void setVertexAttrib(GfxVertexAttribPurpose purpose,

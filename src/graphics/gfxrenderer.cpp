@@ -123,16 +123,14 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           1.0f, -1.0f,
                                           1.0f,  1.0f};
 
-    GfxBuffer *positionBuffer = gfxApi->createBuffer();
-    positionBuffer->allocData(sizeof(positionData), positionData, GfxBuffer::Static);
-
     quadMesh = NEW(GfxMesh);
-    quadMesh->buffers.append(positionBuffer);
+
+    quadMesh->getBuffer()->allocData(sizeof(positionData), positionData, GfxBuffer::Static);
+
     quadMesh->primitive = GfxTriangles;
     quadMesh->numVertices = 6;
 
     GfxMesh::VertexAttribute positionAttribute;
-    positionAttribute.buffer = positionBuffer;
     positionAttribute.numComponents = 2;
     positionAttribute.type = GfxFloat;
     positionAttribute.stride = 8;
@@ -755,7 +753,7 @@ void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> mesh)
                            mesh->indexData.type,
                            mesh->indexData.numIndices,
                            mesh->indexData.offset,
-                           mesh->indexData.buffer,
+                           mesh->getBuffer(),
                            mesh->winding);
     } else
     {
@@ -1793,7 +1791,7 @@ void GfxRenderer::renderSkybox()
                                skyboxMesh->indexData.type,
                                skyboxMesh->indexData.numIndices,
                                skyboxMesh->indexData.offset,
-                               skyboxMesh->indexData.buffer,
+                               skyboxMesh->getBuffer(),
                                skyboxMesh->winding);
         } else
         {
@@ -1952,7 +1950,7 @@ void GfxRenderer::renderModel(bool forward,
                                        mesh->indexData.type,
                                        mesh->indexData.numIndices,
                                        mesh->indexData.offset,
-                                       mesh->indexData.buffer,
+                                       mesh->getBuffer(),
                                        mesh->winding);
                 } else
                 {
@@ -2133,7 +2131,7 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                        mesh->indexData.type,
                                        mesh->indexData.numIndices,
                                        mesh->indexData.offset,
-                                       mesh->indexData.buffer,
+                                       mesh->getBuffer(),
                                        mesh->winding);
                 } else
                 {

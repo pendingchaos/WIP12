@@ -84,3 +84,13 @@ void Audio::_load()
 
     ov_clear(&file);
 }
+
+Resource *Audio::_copy() const
+{
+    Audio *audio = NEW(Audio);
+
+    audio->frequency = frequency;
+    audio->data = data.copy();
+
+    return (Resource *)audio;
+}

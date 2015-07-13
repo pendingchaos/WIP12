@@ -2,7 +2,7 @@
 
 #include "graphics/GL/gfxglbuffer.h"
 
-GfxGLMeshImpl::GfxGLMeshImpl()
+GfxGLMeshImpl::GfxGLMeshImpl(GfxMesh *mesh) : GfxMeshImpl(mesh)
 {
     glGenVertexArrays(1, &vao);
 }
@@ -21,7 +21,7 @@ void GfxGLMeshImpl::setVertexAttrib(GfxVertexAttribPurpose purpose,
 
     size_t soffset = static_cast<size_t>(attribute.offset);
 
-    glBindBuffer(GL_ARRAY_BUFFER, dynamic_cast<GfxGLBuffer *>(attribute.buffer)->getGLBuffer());
+    glBindBuffer(GL_ARRAY_BUFFER, dynamic_cast<GfxGLBuffer *>(mesh->getBuffer())->getGLBuffer());
 
     GLint location = (GLint)purpose;
 

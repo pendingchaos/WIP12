@@ -65,6 +65,7 @@ class Audio : public Resource
         }
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 };
 
 #endif // AUDIO_H

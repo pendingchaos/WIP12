@@ -13,7 +13,10 @@ GfxMesh::GfxMesh(const String& filename) : Resource(filename,
                                            cullMode(GfxCullNone),
                                            winding(GfxCCW),
                                            indexed(false),
-                                           impl(gfxApi->createMeshImpl()) {}
+                                           impl(gfxApi->createMeshImpl(this))
+{
+    buffer = gfxApi->createBuffer();
+}
 
 GfxMesh::GfxMesh() : Resource(GfxMeshType),
                      primitive(GfxTriangles),
@@ -21,16 +24,16 @@ GfxMesh::GfxMesh() : Resource(GfxMeshType),
                      cullMode(GfxCullNone),
                      winding(GfxCCW),
                      indexed(false),
-                     impl(gfxApi->createMeshImpl()) {}
+                     impl(gfxApi->createMeshImpl(this))
+{
+    buffer = gfxApi->createBuffer();
+}
 
 GfxMesh::~GfxMesh()
 {
     DELETE(GfxMeshImpl, impl);
 
-    for (size_t i = 0; i < buffers.getCount(); ++i)
-    {
-        DELETE(GfxBuffer, buffers[i]);
-    }
+    DELETE(GfxBuffer, buffer);
 }
 
 void GfxMesh::init(GfxPrimitive primitive_,
@@ -62,12 +65,7 @@ void GfxMesh::removeContent()
         impl->disableVertexAttrib((GfxVertexAttribPurpose)i);
     }
 
-    for (size_t i = 0; i < buffers.getCount(); ++i)
-    {
-        DELETE(GfxBuffer, buffers[i]);
-    }
-
-    buffers.clear();
+    buffer->allocData(0, NULL, GfxBuffer::Static);
 }
 
 void GfxMesh::save()
@@ -111,69 +109,28 @@ void GfxMesh::save()
 
         file.writeUInt8(attributes.getCount());
 
-        List<Pair<size_t, GfxBuffer *>> uniqueBuffers;
-        size_t size = 0;
-
-        for (size_t i = 0; i < attributes.getCount(); ++i)
-        {
-            GfxBuffer *buffer = attributes[i].value2.buffer;
-
-            bool unique = true;
-
-            for (size_t j = 0; j < uniqueBuffers.getCount(); ++j)
-            {
-                if (uniqueBuffers[j].value2 == buffer)
-                {
-                    unique = false;
-                    break;
-                }
-            }
-
-            if (unique)
-            {
-                uniqueBuffers.append(Pair<size_t, GfxBuffer *>(size, buffer));
-
-                size += buffer->getSize();
-            }
-        }
-
         for (size_t i = 0; i < attributes.getCount(); ++i)
         {
             const VertexAttribute& attribute = attributes[i].value2;
 
-            size_t bufferOffset = 0;
-
-            for (size_t j = 0; j < uniqueBuffers.getCount(); ++j)
-            {
-                if (uniqueBuffers[j].value2 == attribute.buffer)
-                {
-                    bufferOffset = uniqueBuffers[j].value1;
-                    break;
-                }
-            }
-
             file.writeUInt32LE(attribute.stride);
-            file.writeUInt32LE(attribute.offset + bufferOffset);
+            file.writeUInt32LE(attribute.offset);
             file.writeUInt8((uint8_t)attributes[i].value1);
             file.writeUInt8(attribute.numComponents);
             file.writeUInt8((uint8_t)attribute.type);
         }
 
-        file.writeUInt32LE(size);
+        file.writeUInt32LE(buffer->getSize());
 
-        for (size_t i = 0; i < uniqueBuffers.getCount(); ++i)
-        {
-            GfxBuffer *buffer = uniqueBuffers[i].value2;
-            size_t bufSize = buffer->getSize();
+        size_t bufSize = buffer->getSize();
 
-            void *data = ALLOCATE(bufSize);
+        void *data = ALLOCATE(bufSize);
 
-            buffer->getData(0, bufSize, data);
+        buffer->getData(0, bufSize, data);
 
-            file.write(buffer->getSize(), data);
+        file.write(buffer->getSize(), data);
 
-            DEALLOCATE(data);
-        }
+        DEALLOCATE(data);
     } catch (FileException& e)
     {
         THROW(ResourceIOException,
@@ -255,16 +212,14 @@ void GfxMesh::_load()
 
     uint8_t numVertexAttribs = file.readUInt8();
 
-    GfxBuffer *buffer = gfxApi->createBuffer();
-
-    buffers.append(buffer);
+    DELETE(GfxBuffer, buffer);
+    buffer = gfxApi->createBuffer();
 
     if (indexed)
     {
         indexData.type = indexType;
         indexData.numIndices = count;
         indexData.offset = indicesOffset;
-        indexData.buffer = buffer;
     }
 
     for (size_t i = 0; i < numVertexAttribs; ++i)
@@ -277,7 +232,6 @@ void GfxMesh::_load()
 
         GfxMesh::VertexAttribute attribute;
 
-        attribute.buffer = buffer;
         attribute.numComponents = numComponents;
         attribute.offset = offset;
         attribute.stride = stride;
@@ -295,4 +249,40 @@ void GfxMesh::_load()
     buffer->allocData(size, data, GfxBuffer::Static);
 
     DEALLOCATE(data);
+}
+
+Resource *GfxMesh::_copy() const
+{
+    GfxMesh *mesh = NEW(GfxMesh);
+
+    mesh->primitive = primitive;
+    mesh->numVertices = numVertices;
+    mesh->cullMode = cullMode;
+    mesh->winding = winding;
+    mesh->indexed = indexed;
+    mesh->indexData.type = indexData.type;
+    mesh->indexData.numIndices = indexData.numIndices;
+    mesh->indexData.offset = indexData.offset;
+    mesh->aabb = aabb;
+
+    void *data = ALLOCATE(buffer->getSize());
+
+    mesh->getBuffer()->getData(0, buffer->getSize(), data);
+    mesh->getBuffer()->allocData(buffer->getSize(), data, GfxBuffer::Static);
+
+    DEALLOCATE(data);
+
+    for (size_t i = 0; i < GFX_VERTEX_ATTRIB_PURPOSE_COUNT; ++i)
+    {
+        GfxVertexAttribPurpose purpose = (GfxVertexAttribPurpose)i;
+
+        if (isVertexAttribEnabled(purpose))
+        {
+            VertexAttribute attrib = getVertexAttrib(purpose);
+
+            mesh->setVertexAttrib(purpose, attrib);
+        }
+    }
+
+    return (Resource *)mesh;
 }

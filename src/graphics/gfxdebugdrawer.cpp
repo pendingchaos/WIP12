@@ -7,8 +7,6 @@
 
 GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
 {
-    buffer = gfxApi->createBuffer();
-
     vertex = resMgr->load<GfxShader>(
     "resources/shaders/debugDrawVertex.bin");
 
@@ -22,7 +20,6 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
     mesh->primitive = GfxLines;
 
     GfxMesh::VertexAttribute positionAttribute;
-    positionAttribute.buffer = buffer;
     positionAttribute.numComponents = 3;
     positionAttribute.type = GfxFloat;
     positionAttribute.stride = 28;
@@ -31,7 +28,6 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
     mesh->setVertexAttrib(GfxPosition, positionAttribute);
 
     GfxMesh::VertexAttribute colorAttribute;
-    colorAttribute.buffer = buffer;
     colorAttribute.numComponents = 4;
     colorAttribute.type = GfxFloat;
     colorAttribute.stride = 28;
@@ -46,13 +42,11 @@ GfxDebugDrawer::~GfxDebugDrawer()
 
     fragment->release();
     vertex->release();
-
-    DELETE(GfxBuffer, buffer);
 }
 
 void GfxDebugDrawer::render(const Camera& camera)
 {
-    buffer->allocData(lines.getCount()*sizeof(Line), lines.getData(), GfxBuffer::Dynamic);
+    mesh->getBuffer()->allocData(lines.getCount()*sizeof(Line), lines.getData(), GfxBuffer::Dynamic);
 
     mesh->numVertices = lines.getCount() * 2;
 

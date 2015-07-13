@@ -28,7 +28,7 @@ class GfxApi
         virtual GfxShaderImpl *createShaderImpl()=0;
         virtual GfxBuffer *createBuffer()=0;
         virtual GfxTextureImpl *createTextureImpl()=0;
-        virtual GfxMeshImpl *createMeshImpl()=0;
+        virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh)=0;
         virtual GfxFramebuffer *createFramebuffer()=0;
         virtual GPUTimer *createTimer()=0;
 

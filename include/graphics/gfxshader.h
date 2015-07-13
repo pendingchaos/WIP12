@@ -98,6 +98,7 @@ class GfxShader : public Resource
         GfxShaderImpl *impl;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxShader, Resource)
 };

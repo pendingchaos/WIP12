@@ -186,11 +186,11 @@ class GfxTexture : public Resource
         void getMipmapFace(unsigned int level,
                            unsigned int pixelAlignment,
                            GfxTexture::Face face,
-                           void *data);
+                           void *data) const;
 
         void getMipmap(unsigned int level,
                        unsigned int pixelAlignment,
-                       void *data);
+                       void *data) const;
 
         void generateMipmaps();
 
@@ -295,6 +295,7 @@ class GfxTexture : public Resource
         bool shadowmap;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxTexture, Resource)
 };

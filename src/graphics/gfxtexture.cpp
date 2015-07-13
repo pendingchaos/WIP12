@@ -277,14 +277,14 @@ void GfxTexture::allocMipmap(unsigned int level,
 void GfxTexture::getMipmapFace(unsigned int level,
                                unsigned int pixelAlignment,
                                Face face,
-                               void *data)
+                               void *data) const
 {
-    getMipmapFace(level, pixelAlignment, face, data);
+    impl->getMipmapFace(level, pixelAlignment, face, data);
 }
 
 void GfxTexture::getMipmap(unsigned int level,
                            unsigned int pixelAlignment,
-                           void *data)
+                           void *data) const
 {
     impl->getMipmap(level, pixelAlignment, data);
 }
@@ -537,4 +537,90 @@ void GfxTexture::save()
               getFilename(),
               e.getString());
     }
+}
+
+Resource *GfxTexture::_copy() const
+{
+    GfxTexture *texture = NEW(GfxTexture);
+
+    texture->startCreation(textureType,
+                           compress,
+                           baseWidth,
+                           baseHeight,
+                           baseDepth,
+                           compressionQuality,
+                           purpose,
+                           format);
+
+    if (textureType == GfxTexture::Texture2D)
+    {
+        size_t w = baseWidth;
+        size_t h = baseHeight;
+
+        for (size_t i = 0; w>1 and h>1; ++i)
+        {
+            void *data = ALLOCATE(formatSizes[format]*w*h);
+
+            getMipmap(i, 1, data);
+
+            texture->allocMipmap(i, 1, data);
+
+            DEALLOCATE(data);
+
+            w /= 2;
+            h /= 2;
+        }
+    } else if (textureType == GfxTexture::Texture3D)
+    {
+        size_t w = baseWidth;
+        size_t h = baseHeight;
+        size_t d = baseDepth;
+
+        for (size_t i = 0; w>1 and h>1 and d>1; ++i)
+        {
+            void *data = ALLOCATE(formatSizes[format]*w*h*d);
+
+            getMipmap(i, 1, data);
+
+            texture->allocMipmap(i, 1, data);
+
+            DEALLOCATE(data);
+
+            w /= 2;
+            h /= 2;
+            d /= 2;
+        }
+    } else if (textureType == GfxTexture::CubeMap)
+    {
+        size_t w = baseWidth;
+        size_t h = baseHeight;
+
+        for (size_t i = 0; w>1 and h>1; ++i)
+        {
+            void *data = ALLOCATE(formatSizes[format]*w*h);
+
+            for (size_t j = 0; j < 6; ++j)
+            {
+                GfxTexture::Face face = (GfxTexture::Face)j;
+
+                getMipmapFace(i, 1, face, data);
+
+                texture->allocMipmapFace(i, 1, face, data);
+            }
+
+            DEALLOCATE(data);
+
+            w /= 2;
+            h /= 2;
+        }
+    }
+
+    texture->setMaximumAnisotropy(maximumAnisotropy);
+    texture->setMinFilter(minFilter);
+    texture->setMagFilter(magFilter);
+    texture->setMipmapMode(mipmapMode);
+    texture->setWrapMode(wrapMode);
+    texture->setShadowmap(shadowmap);
+
+    return (Resource *)texture;
 }
