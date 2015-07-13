@@ -54,6 +54,7 @@ class GfxModel : public Resource
         List<SubModel> subModels;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 };
 
 #endif // GFXMODEL_H

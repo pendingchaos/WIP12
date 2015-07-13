@@ -391,3 +391,32 @@ void GfxMaterial::_load()
               e.getString());
     }
 }
+
+Resource *GfxMaterial::_copy() const
+{
+    GfxMaterial *material = NEW(GfxMaterial);
+
+    material->setForward(forward);
+    material->smoothness = smoothness;
+    material->metalMask = metalMask;
+    material->parallaxStrength = parallaxStrength;
+    material->parallaxEdgeDiscard = parallaxEdgeDiscard;
+    material->albedo = albedo;
+    material->pomMinLayers = pomMinLayers;
+    material->pomMaxLayers = pomMaxLayers;
+    material->tessMinDistance = tessMinDistance;
+    material->tessMaxDistance = tessMaxDistance;
+    material->displacementStrength = displacementStrength;
+    material->displacementMidlevel = displacementMidlevel;
+    material->shadowTesselation = shadowTesselation;
+    material->shadowMinTessLevel = shadowMinTessLevel;
+    material->shadowMaxTessLevel = shadowMaxTessLevel;
+    material->setSmoothnessMap(smoothnessMap->copyRef<GfxTexture>());
+    material->setMetalMaskMap(metalMaskMap->copyRef<GfxTexture>());
+    material->setAlbedoMap(albedoMap->copyRef<GfxTexture>());
+    material->setNormalMap(normalMap->copyRef<GfxTexture>());
+    material->setParallaxHeightMap(parallaxHeightMap->copyRef<GfxTexture>());
+    material->setPOMHeightMap(pomHeightMap->copyRef<GfxTexture>());
+
+    return (Resource *)material;
+}

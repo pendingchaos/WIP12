@@ -233,7 +233,7 @@ class Resource
         {
             ++refCount;
 
-            return ResPtr<T>(const_cast<Resource *>(this));
+            return ResPtr<T>((T *)const_cast<Resource *>(this));
         }
 
         inline const String& getFilename() const

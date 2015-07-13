@@ -1,7 +1,5 @@
 ## Next
 - [ ] Resource copy() function.
-    - [ ] Material
-    - [ ] Model
     - [ ] Scene
     - [ ] PhysicsShape
     - [ ] Font

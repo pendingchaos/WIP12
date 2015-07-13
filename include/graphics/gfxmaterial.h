@@ -107,6 +107,7 @@ class GfxMaterial : public Resource
         bool forward;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxMaterial, Resource)
 };

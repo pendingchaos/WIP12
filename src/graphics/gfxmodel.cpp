@@ -196,3 +196,28 @@ void GfxModel::_load()
               e.getString());
     }
 }
+
+Resource *GfxModel::_copy() const
+{
+    GfxModel *model = NEW(GfxModel);
+
+    for (size_t i = 0; i < subModels.getCount(); ++i)
+    {
+        const SubModel& subModel = subModels[i];
+        SubModel newSubModel;
+
+        for (size_t j = 0; j < subModel.getCount(); ++j)
+        {
+            const LOD& lod = subModel[j];
+            newSubModel.append(LOD(lod.minDistance,
+                                   lod.maxDistance,
+                                   lod.mesh->copyRef<GfxMesh>(),
+                                   lod.material->copyRef<GfxMaterial>(),
+                                   lod.worldMatrix));
+        }
+
+        model->subModels.append(newSubModel);
+    }
+
+    return (Resource *)model;
+}
