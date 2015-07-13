@@ -198,6 +198,26 @@ class Entity
             return userData;
         }
 
+        Entity *createEntity(const String& name);
+        void removeEntity(size_t index);
+
+        inline const List<Entity *>& getEntities() const
+        {
+            return entities;
+        }
+
+        inline Entity *getParent() const
+        {
+            return parent;
+        }
+
+        void updateFinalTransform();
+
+        inline const Matrix4x4& getFinalTransform() const
+        {
+            return finalTransform;
+        }
+
         String name;
         Transform transform;
     private:
@@ -207,6 +227,9 @@ class Entity
         RenderComponent renderComponent;
         mutable Scene *scene;
         UserData *userData;
+        List<Entity *> entities;
+        Entity *parent;
+        Matrix4x4 finalTransform;
 
     NO_COPY(Entity);
 };

@@ -1,59 +1,97 @@
 #include "physics/rigidbody.h"
 
 #include "physics/physicsworld.h"
-#include "scene/transform.h"
+#include "scene/entity.h"
 #include "memory.h"
 #include "logging.h"
 
 class MotionState : public btMotionState
 {
     public:
-        MotionState(Transform *transform_) : transform(transform_) {}
+        MotionState(Entity *entity_) : entity(entity_) {}
 
         virtual void getWorldTransform(btTransform& otherTransform) const
         {
-            otherTransform.setOrigin(btVector3(transform->position.x,
-                                               transform->position.y,
-                                               transform->position.z));
+            if (entity != nullptr)
+            {
+                Matrix4x4 mat = entity->getFinalTransform();
 
-            otherTransform.setRotation(btQuaternion(transform->orientation.x,
-                                                    transform->orientation.y,
-                                                    transform->orientation.z,
-                                                    transform->orientation.w));
+                otherTransform.setOrigin(btVector3(mat[0][3],
+                                                   mat[1][3],
+                                                   mat[2][3]));
+
+                otherTransform.setBasis(btMatrix3x3(mat[0][0], mat[0][1], mat[0][2],
+                                                    mat[1][0], mat[1][1], mat[1][2],
+                                                    mat[2][0], mat[2][1], mat[2][2]));
+            }
         }
 
         virtual void setWorldTransform(const btTransform& otherTransform)
         {
-            transform->position = Position3D(otherTransform.getOrigin().getX(),
-                                             otherTransform.getOrigin().getY(),
-                                             otherTransform.getOrigin().getZ());
+            if (entity != nullptr)
+            {
+                if (entity->getParent() == nullptr)
+                {
+                    Position3D position = Position3D(otherTransform.getOrigin().getX(),
+                                                     otherTransform.getOrigin().getY(),
+                                                     otherTransform.getOrigin().getZ());
 
-            transform->orientation = Quaternion(otherTransform.getRotation().getX(),
-                                                otherTransform.getRotation().getY(),
-                                                otherTransform.getRotation().getZ(),
-                                                otherTransform.getRotation().getW());
+                    Quaternion orientation = Quaternion(otherTransform.getRotation().getX(),
+                                                        otherTransform.getRotation().getY(),
+                                                        otherTransform.getRotation().getZ(),
+                                                        otherTransform.getRotation().getW());
+
+                    entity->transform.position = position;
+                    entity->transform.orientation = orientation;
+                } else
+                {
+                    Matrix4x4 parentMat = entity->getParent()->getFinalTransform().inverse().transpose();
+
+                    btTransform parentTransform;
+
+                    parentTransform.setOrigin(btVector3(parentMat[0][3],
+                                                        parentMat[1][3],
+                                                        parentMat[2][3]));
+
+                    parentTransform.setBasis(btMatrix3x3(parentMat[0][0], parentMat[0][1], parentMat[0][2],
+                                                         parentMat[1][0], parentMat[1][1], parentMat[1][2],
+                                                         parentMat[2][0], parentMat[2][1], parentMat[2][2]));
+
+                    btTransform transform = otherTransform * parentTransform.inverse();
+
+                    Position3D position = Position3D(transform.getOrigin().getX(),
+                                                     transform.getOrigin().getY(),
+                                                     transform.getOrigin().getZ());
+
+                    Quaternion orientation = Quaternion(transform.getRotation().getX(),
+                                                        transform.getRotation().getY(),
+                                                        transform.getRotation().getZ(),
+                                                        transform.getRotation().getW());
+
+                    entity->transform.position = position;
+                    entity->transform.orientation = orientation;
+                }
+            }
         }
     private:
-        Transform *transform;
+        Entity *entity;
 };
 
 RigidBody::RigidBody(const ConstructionInfo& info,
                      ResPtr<PhysicsShape> shape_,
                      PhysicsWorld *world_) : shape(shape_),
                                              world(world_),
+                                             entity(info.entity),
                                              type(info.type),
                                              collisionMask(info.collisionMask),
                                              userData(nullptr)
 {
     shape->rigidBodies.append(this);
 
-    transform = info.transform == nullptr ? NEW(Transform) : nullptr;
-    syncTransform = info.transform;
-
     float mass = info.type == Dynamic ? info.mass : 0.0f;
 
     btRigidBody::btRigidBodyConstructionInfo btInfo(mass,
-                                                    NEW(MotionState, getTransform()),
+                                                    NEW(MotionState, entity),
                                                     shape->getBulletShape());
 
     shape->getBulletShape()->calculateLocalInertia(mass,
@@ -108,7 +146,6 @@ RigidBody::~RigidBody()
     btMotionState *motionState = rigidBody->getMotionState();
 
     DELETE(btRigidBody, rigidBody);
-    DELETE(Transform, transform);
     DELETE(btMotionState, motionState);
 }
 
@@ -276,20 +313,21 @@ void RigidBody::setRollingFriction(float friction)
     rigidBody->setRollingFriction(friction);
 }
 
-void RigidBody::setTransform(const Transform& transform) const
+void RigidBody::setTransform(const Matrix4x4& transform) const
 {
-    btTransform btTransform;
+    btTransform btTransform_;
 
-    btTransform.setOrigin(btVector3(transform.position.x,
-                                    transform.position.y,
-                                    transform.position.z));
+    Matrix4x4 mat = transform;
 
-    btTransform.setRotation(btQuaternion(transform.orientation.x,
-                                         transform.orientation.y,
-                                         transform.orientation.z,
-                                         transform.orientation.w));
+    btTransform_.setOrigin(btVector3(mat[0][3],
+                                     mat[1][3],
+                                     mat[2][3]));
 
-    rigidBody->setCenterOfMassTransform(btTransform);
+    btTransform_.setBasis(btMatrix3x3(mat[0][0], mat[0][1], mat[0][2],
+                                      mat[1][0], mat[1][1], mat[1][2],
+                                      mat[2][0], mat[2][1], mat[2][2]));
+
+    rigidBody->setCenterOfMassTransform(btTransform_);
 }
 
 Float3 RigidBody::getLinearFactor() const

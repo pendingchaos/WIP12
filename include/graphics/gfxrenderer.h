@@ -255,6 +255,9 @@ class GfxRenderer
             return skybox;
         }
     private:
+        void _computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const;
+        void _computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const;
+
         ResPtr<GfxTexture> skybox;
         List<Light *> lights;
 
@@ -349,7 +352,7 @@ class GfxRenderer
         GfxBuffer *lightBuffer;
 
         void fillLightBuffer(ResPtr<Scene> scene);
-        void renderEntities(bool forward);
+        void renderEntities(bool forward, const List<Entity *>& entities);
         void renderSkybox();
         void renderModel(bool forward,
                          const Camera& camera,
@@ -361,6 +364,11 @@ class GfxRenderer
                                     const ResPtr<GfxModel> model,
                                     Light *light,
                                     size_t cubemapFace);
+        void renderEntitiesToShadowmap(const Matrix4x4& viewMatrix,
+                                       const Matrix4x4& projectionMatrix,
+                                       Light *light,
+                                       size_t i,
+                                       const List<Entity *>& entities);
         void renderShadowmap(Light *light);
 
         ResPtr<GfxTexture> writeColorTexture;

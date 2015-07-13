@@ -87,10 +87,10 @@ Matrix4x4 Matrix4x4::operator * (const Matrix4x4& other) const
 
 Float4 Matrix4x4::operator * (const Float4& other) const
 {
-    return Float4((*reinterpret_cast<const Float4 *>(data)*other).sum(),
-                  (*reinterpret_cast<const Float4 *>(&data[1])*other).sum(),
-                  (*reinterpret_cast<const Float4 *>(&data[2])*other).sum(),
-                  (*reinterpret_cast<const Float4 *>(&data[3])*other).sum());
+    return Float4(reinterpret_cast<const Float4 *>(data)->dot(other),
+                  reinterpret_cast<const Float4 *>(&data[1])->dot(other),
+                  reinterpret_cast<const Float4 *>(&data[2])->dot(other),
+                  reinterpret_cast<const Float4 *>(&data[3])->dot(other));
 }
 
 Matrix4x4 Matrix4x4::operator / (float other) const

@@ -8,10 +8,16 @@ Entity::Entity(const String& name_,
                                 rigidBody(nullptr),
                                 render(false),
                                 scene(scene_),
-                                userData(nullptr) {}
+                                userData(nullptr),
+                                parent(nullptr) {}
 
 Entity::~Entity()
 {
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        DELETE(Entity, entities[i]);
+    }
+
     List<ResPtr<Script>> scripts_;
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
@@ -45,9 +51,11 @@ void Entity::addRigidBody(PhysicsWorld *world,
                           const RigidBody::ConstructionInfo& info,
                           ResPtr<PhysicsShape> shape)
 {
+    updateFinalTransform();
+
     RigidBody::ConstructionInfo newInfo = info;
 
-    newInfo.transform = &transform;
+    newInfo.entity = this;
 
     rigidBody = world->createRigidBody(newInfo, shape);
 }
@@ -55,4 +63,38 @@ void Entity::addRigidBody(PhysicsWorld *world,
 ResPtr<Scene> Entity::getScene() const
 {
     return scene;
+}
+
+Entity *Entity::createEntity(const String& name)
+{
+    Entity *entity = NEW(Entity, name, scene);
+
+    entity->parent = this;
+
+    entities.append(entity);
+
+    return entity;
+}
+
+void Entity::removeEntity(size_t index)
+{
+    DELETE(Entity, entities[index]);
+
+    entities.remove(index);
+}
+
+void Entity::updateFinalTransform()
+{
+    if (parent != nullptr)
+    {
+        finalTransform = parent->getFinalTransform() * transform.createMatrix();
+    } else
+    {
+        finalTransform = transform.createMatrix();
+    }
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        entities[i]->updateFinalTransform();
+    }
 }

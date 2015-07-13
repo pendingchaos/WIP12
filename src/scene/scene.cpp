@@ -114,6 +114,11 @@ void Scene::update()
 
 void Scene::fixedUpdate(float timestep)
 {
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        entities[i]->updateFinalTransform();
+    }
+
     _fixedUpdate(entities, timestep);
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
@@ -134,6 +139,8 @@ void Scene::_handleInput(const List<Entity *>& entities_)
         {
             entity->getScripts()[i]->handleInput();
         }
+
+        _handleInput(entity->getEntities());
     }
 }
 
@@ -147,6 +154,8 @@ void Scene::_update(const List<Entity *>& entities_)
         {
             entity->getScripts()[i]->update();
         }
+
+        _update(entity->getEntities());
     }
 }
 
@@ -160,6 +169,8 @@ void Scene::_fixedUpdate(const List<Entity *>& entities_, float timestep)
         {
             entity->getScripts()[i]->fixedUpdate(timestep);
         }
+
+        _fixedUpdate(entity->getEntities(), timestep);
     }
 }
 
@@ -197,6 +208,8 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
     entity->transform.position = Position3D(posX, posY, posZ);
     entity->transform.scale = Float3(scaleX, scaleY, scaleZ);
     entity->transform.orientation = Quaternion(Float3(rotX, rotY, rotZ));
+
+    entity->updateFinalTransform();
 
     bool useModel = file->readUInt8() != 0;
     bool useOverlay = file->readUInt8() != 0;
@@ -292,6 +305,19 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         file->read(nameLen, name.getData());
 
         entity->addScript(resMgr->load<Script>(scriptFile), name.getData());
+    }
+
+    uint32_t numChildren = file->readUInt32LE();
+
+    for (size_t i = 0; i < numChildren; ++i)
+    {
+        uint32_t nameLen = file->readUInt32LE();
+        String name(nameLen);
+        file->read(nameLen, name.getData());
+
+        Entity *child = entity->createEntity(name);
+
+        loadEntity(child, world, file);
     }
 }
 
@@ -690,6 +716,14 @@ void saveEntity(Entity *entity, File *file, const String& filename)
         file->writeUInt32LE(filename.getLength());
         file->write(filename.getLength(), filename.getData());
     }
+
+    file->writeUInt32LE(entity->getEntities().getCount());
+
+    for (size_t i = 0; i < entity->getEntities().getCount(); ++i)
+    {
+        saveEntity(entity->getEntities()[i], file, filename);
+    }
+
 }
 
 void Scene::save()

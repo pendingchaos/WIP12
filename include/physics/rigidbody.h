@@ -2,6 +2,7 @@
 #define RIGIDBODY_H
 
 #include "math/t3.h"
+#include "math/matrix4x4.h"
 #include "physics/physicsshape.h"
 #include "scripting/script.h"
 
@@ -9,7 +10,7 @@
 #include "btBulletDynamicsCommon.h"
 
 class PhysicsWorld;
-class Transform;
+class Entity;
 
 class RigidBody
 {
@@ -29,7 +30,7 @@ class RigidBody
             public:
                 ConstructionInfo() : type(RigidBody::Dynamic),
                                      mass(1.0f),
-                                     transform(nullptr),
+                                     entity(nullptr),
                                      linearDamping(0.04f),
                                      angularDamping(0.1f),
                                      friction(0.5f),
@@ -41,7 +42,7 @@ class RigidBody
 
                 RigidBody::Type type;
                 float mass;
-                Transform *transform;
+                Entity *entity;
                 float linearDamping;
                 float angularDamping;
                 float friction;
@@ -129,17 +130,7 @@ class RigidBody
         Float3 getAngularFactor() const;
         void setAngularFactor(const Float3& factor) const;
 
-        inline Transform *getTransform()
-        {
-            return transform == nullptr ? syncTransform : transform;
-        }
-
-        inline const Transform *getTransform() const
-        {
-            return transform == nullptr ? syncTransform : transform;
-        }
-
-        void setTransform(const Transform& transform) const;
+        void setTransform(const Matrix4x4& transform) const;
 
         inline PhysicsWorld *getWorld() const
         {
@@ -169,9 +160,14 @@ class RigidBody
             DELETE(UserData, userData);
         }
 
-        inline UserData *getUserData()
+        inline UserData *getUserData() const
         {
             return userData;
+        }
+
+        inline Entity *getEntity() const
+        {
+            return entity;
         }
     private:
         RigidBody(const ConstructionInfo& info, ResPtr<PhysicsShape> shape, PhysicsWorld *world);
@@ -182,8 +178,7 @@ class RigidBody
         ResPtr<PhysicsShape> shape;
         btRigidBody *rigidBody;
         PhysicsWorld *world;
-        Transform *transform;
-        Transform *syncTransform;
+        Entity *entity;
         RigidBody::Type type;
         short collisionMask;
         UserData *userData;

@@ -705,6 +705,8 @@ if __name__ == "__main__":
                 
                 self.overlayTexture = None
                 self.overlayColor = [1.0, 1.0, 1.0]
+                
+                self.entities = []
             
             def convert(self):
                 s = struct.pack("<L", len(self.name))
@@ -734,6 +736,11 @@ if __name__ == "__main__":
                     s += script[0]
                     s += struct.pack("<L", len(script[1]))
                     s += script[1]
+                
+                s += struct.pack("<L", len(self.entities))
+                
+                for child in self.entities:
+                    s += child.convert();
                 
                 return s
         
@@ -1302,76 +1309,75 @@ if __name__ == "__main__":
     ent.rigidBody.shape = tessTestShape
     scene.entities.append(ent)
     
-    plat_off = [0.0, 0.0, 20.0]
-    
-    def vec_add(a, b):
-        return [a[0]+b[0], a[1]+b[1], a[2]+b[2]]
+    platforms = Scene.Entity("Platfoms")
+    platforms.transform.position = [0.0, 0.0, 20.0]
+    scene.entities.append(platforms)
     
     ent = Scene.Entity("Platform1")
-    ent.transform.position = vec_add(plat_off, [0.0, 0.1, 0.0])
+    ent.transform.position = [0.0, 0.1, 0.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform2")
-    ent.transform.position = vec_add(plat_off, [4.0, 6.1, -3.0])
+    ent.transform.position = [4.0, 6.1, -3.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform3")
-    ent.transform.position = vec_add(plat_off, [-7.0, 4.1, 5.0])
+    ent.transform.position = [-7.0, 4.1, 5.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform4")
-    ent.transform.position = vec_add(plat_off, [-7.0, 1.1, -5.0])
+    ent.transform.position = [-7.0, 1.1, -5.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform5")
-    ent.transform.position = vec_add(plat_off, [4.0, 1.1, 4.0])
+    ent.transform.position = [4.0, 1.1, 4.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform6")
-    ent.transform.position = vec_add(plat_off, [4.0, 7.1, 10.0])
+    ent.transform.position = [4.0, 7.1, 10.0]
     ent.transform.orientation = [15.0, -5.0, -2.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform7")
-    ent.transform.position = vec_add(plat_off, [-2.0, 9.1, -13.0])
+    ent.transform.position = [-2.0, 9.1, -13.0]
     ent.transform.orientation = [15.0, 124.0, -2.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     ent = Scene.Entity("Platform8")
-    ent.transform.position = vec_add(plat_off, [-13.0, 11.1, -3.0])
+    ent.transform.position = [-13.0, 11.1, -3.0]
     ent.model = conv["platform"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    scene.entities.append(ent)
+    platforms.entities.append(ent)
     
     """light = Scene.Light(Scene.Light.Type.Point)
     light.position = [9.0, 2.5, -6.0]

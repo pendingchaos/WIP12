@@ -1,5 +1,4 @@
 ## Next
-- [ ] Make it possible for an object to rotate around another.
 - [ ] Resource copy() function.
 
 ## Features
@@ -15,7 +14,6 @@
         - [ ] Forward
 - [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Resource copy() function.
-- [ ] Make it possible for an object to rotate around another.
 - [ ] Skeletal animation.
 
 ## Bugs
@@ -25,6 +23,7 @@
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] The program crashes when the script fails to compile on startup.
 - [ ] When a script is reloaded, the scripts that #include it will not be recompiled.
+- [ ] Displacement mapping should contribute to the scene AABB.
 
 ## Other
 - [ ] Benchmarks.

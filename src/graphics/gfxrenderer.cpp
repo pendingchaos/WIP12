@@ -990,7 +990,7 @@ void GfxRenderer::render()
     gfxApi->clearColor(1, Float4(0.0f));
     gfxApi->clearColor(2, Float4(0.5f, 0.5f, 0.5f, 0.0f));
 
-    renderEntities(false);
+    renderEntities(false, scene->getEntities());
 
     swapFramebuffers();
 
@@ -1289,7 +1289,7 @@ void GfxRenderer::render()
 
     fillLightBuffer(scene);
 
-    renderEntities(true);
+    renderEntities(true, scene->getEntities());
 
     renderSkybox();
 
@@ -1496,7 +1496,7 @@ void GfxRenderer::render()
     {
         const Entity *entity = entities[i];
 
-        Matrix4x4 transform = entity->transform.createMatrix();
+        Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
         {
@@ -1590,11 +1590,29 @@ AABB GfxRenderer::computeSceneAABB() const
 
     const List<Entity *>& entities = scene->getEntities();
 
+    _computeSceneAABB(entities, aabb);
+
+    return aabb;
+}
+
+AABB GfxRenderer::computeShadowCasterAABB() const
+{
+    AABB aabb;
+
+    const List<Entity *>& entities = scene->getEntities();
+
+    _computeShadowCasterAABB(entities, aabb);
+
+    return aabb;
+}
+
+void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const
+{
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
         const Entity *entity = entities[i];
 
-        Matrix4x4 transform = entity->transform.createMatrix();
+        Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
         {
@@ -1617,22 +1635,18 @@ AABB GfxRenderer::computeSceneAABB() const
                 }
             }
         }
-    }
 
-    return aabb;
+        _computeSceneAABB(entity->getEntities(), aabb);
+    }
 }
 
-AABB GfxRenderer::computeShadowCasterAABB() const
+void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const
 {
-    AABB aabb;
-
-    const List<Entity *>& entities = scene->getEntities();
-
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
         const Entity *entity = entities[i];
 
-        Matrix4x4 transform = entity->transform.createMatrix();
+        Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
         {
@@ -1655,9 +1669,9 @@ AABB GfxRenderer::computeShadowCasterAABB() const
                 }
             }
         }
-    }
 
-    return aabb;
+        _computeShadowCasterAABB(entity->getEntities(), aabb);
+    }
 }
 
 void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
@@ -1720,15 +1734,13 @@ void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
     DELETE_ARRAY(float, lightData);
 }
 
-void GfxRenderer::renderEntities(bool forward)
+void GfxRenderer::renderEntities(bool forward, const List<Entity *>& entities)
 {
-    const List<Entity *>& entities = scene->getEntities();
-
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
         const Entity *entity = entities[i];
 
-        Matrix4x4 transform = entity->transform.createMatrix();
+        Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
         {
@@ -1747,6 +1759,8 @@ void GfxRenderer::renderEntities(bool forward)
             }
             }
         }
+
+        renderEntities(forward, entity->getEntities());;
     }
 }
 
@@ -2130,6 +2144,49 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
     }
 }
 
+void GfxRenderer::renderEntitiesToShadowmap(const Matrix4x4& viewMatrix,
+                                            const Matrix4x4& projectionMatrix,
+                                            Light *light,
+                                            size_t i,
+                                            const List<Entity *>& entities)
+{
+    for (size_t j = 0; j < entities.getCount(); ++j)
+    {
+        const Entity *entity = entities[j];
+
+        Matrix4x4 transform = entity->getFinalTransform();
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            switch (comp->type)
+            {
+            case RenderComponent::Model:
+            {
+                renderModelToShadowmap(viewMatrix,
+                                       projectionMatrix,
+                                       transform,
+                                       comp->model,
+                                       light,
+                                       i);
+                break;
+            }
+            default:
+            {
+                break;
+            }
+            }
+        }
+
+        renderEntitiesToShadowmap(viewMatrix,
+                                  projectionMatrix,
+                                  light,
+                                  i,
+                                  entity->getEntities());
+    }
+}
+
 void GfxRenderer::renderShadowmap(Light *light)
 {
     Matrix4x4 projectionMatrix = light->getProjectionMatrix();
@@ -2139,8 +2196,6 @@ void GfxRenderer::renderShadowmap(Light *light)
     gfxApi->resetState();
 
     gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
-
-    const List<Entity *>& entities = scene->getEntities();
 
     bool singlePass = light->type == Light::Point ? light->point.singlePassShadowMap : true;
 
@@ -2156,35 +2211,11 @@ void GfxRenderer::renderShadowmap(Light *light)
 
         gfxApi->clearDepth();
 
-        for (size_t j = 0; j < entities.getCount(); ++j)
-        {
-            const Entity *entity = entities[j];
-
-            Matrix4x4 transform = entity->transform.createMatrix();
-
-            if (entity->hasRenderComponent())
-            {
-                const RenderComponent *comp = entity->getRenderComponent();
-
-                switch (comp->type)
-                {
-                case RenderComponent::Model:
-                {
-                    renderModelToShadowmap(viewMatrix,
-                                           projectionMatrix,
-                                           transform,
-                                           comp->model,
-                                           light,
-                                           i);
-                    break;
-                }
-                default:
-                {
-                    break;
-                }
-                }
-            }
-        }
+        renderEntitiesToShadowmap(viewMatrix,
+                                  projectionMatrix,
+                                  light,
+                                  i,
+                                  scene->getEntities());
     }
 
     gfxApi->popState();
