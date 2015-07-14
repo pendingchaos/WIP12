@@ -187,3 +187,8 @@ void Font::loadGlyph(Face& face, char character)
 
     face.glyphs.set(character, glyph);
 }
+
+Resource *Font::_copy() const
+{
+    return (Resource *)NEW(Font, getFilename());
+}

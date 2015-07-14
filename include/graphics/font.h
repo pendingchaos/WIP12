@@ -109,6 +109,8 @@ class Font : public Resource
         GfxCompiledShader *compiledQuadVertex;
         GfxCompiledShader *compiledQuadGeometry;
         GfxCompiledShader *compiledQuadFragment;
+    protected:
+        Resource *_copy() const;
 };
 
 #endif // FONT_H
