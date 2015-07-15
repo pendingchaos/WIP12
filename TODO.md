@@ -2,7 +2,6 @@
 - [ ] Resource copy() function.
     - [ ] Scene
     - [ ] PhysicsShape
-    - [ ] Font
 
 ## Features
 - [ ] Shadow mapping.
