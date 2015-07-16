@@ -202,7 +202,7 @@ if __name__ == "__main__":
                     
                     included = self.include_files(filename, open(filename, "r").read())
                     
-                    result += "#line 1 \"%s\"\n%s\n#line %d \"%s\"\n" % (filename,
+                    result += "//#line 1 \"%s\"\n%s\n//#line %d %s\n" % (filename,
                                                                          included,
                                                                          linenum+1,
                                                                          glsl_filename)
@@ -229,7 +229,7 @@ if __name__ == "__main__":
                                    Shader.Stage.Geometry:3,
                                    Shader.Stage.Fragment:4,
                                    Shader.Stage.Compute:5}[self.stage_]))
-                
+            
             out.write(glsl)
             
             out.close()
