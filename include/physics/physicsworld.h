@@ -71,10 +71,10 @@ class PhysicsWorld
             return ghostObjects;
         }
 
-        RigidBody *createRigidBody(const RigidBody::ConstructionInfo& info, ResPtr<PhysicsShape> shape);
+        RigidBody *createRigidBody(const RigidBody::ConstructionInfo& info, PhysicsShape *shape);
         void destroyRigidBody(RigidBody *rigidBody);
 
-        GhostObject *createGhostObject(ResPtr<PhysicsShape> shape, unsigned short collisionMask=0xFFFF);
+        GhostObject *createGhostObject(PhysicsShape *shape, unsigned short collisionMask=0xFFFF);
         void destroyGhostObject(GhostObject *object);
 
         void stepSimulation(float timeStep,

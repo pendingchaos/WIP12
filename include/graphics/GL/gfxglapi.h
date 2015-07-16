@@ -41,7 +41,7 @@ class GfxGLApi : public GfxApi
                            GfxCompiledShader *tessEval,
                            GfxCompiledShader *geometry,
                            GfxCompiledShader *fragment,
-                           ResPtr<GfxMesh> mesh);
+                           GfxMesh *mesh);
         virtual void end(GfxPrimitive primitive, uint32_t count, GfxWinding winding);
         virtual void endIndexed(GfxPrimitive primitive,
                                 GfxVertexAttribType type,
@@ -81,7 +81,7 @@ class GfxGLApi : public GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values);
 
         virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer);
-        virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, ResPtr<GfxTexture> texture);
+        virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture);
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value);
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value);
@@ -182,7 +182,7 @@ class GfxGLApi : public GfxApi
 
         struct TextureBinding
         {
-            ResPtr<GfxTexture> texture;
+            GfxTexture *texture;
             GLuint target;
             GLint location;
             GLuint program;

@@ -364,11 +364,11 @@ class PhysicsCompoundShape : public PhysicsShapeImpl
 
             public:
                 Child() {}
-                Child(ResPtr<PhysicsShape> shape_) : shape(shape_) {}
+                Child(PhysicsShape *shape_) : shape(shape_) {}
 
                 Quaternion orientation;
                 Position3D position;
-                ResPtr<PhysicsShape> shape;
+                PhysicsShape *shape;
 
                 bool operator == (const PhysicsCompoundShape::Child& other) const
                 {

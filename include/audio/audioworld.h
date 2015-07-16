@@ -11,16 +11,16 @@ class AudioDevice;
 class AudioSource
 {
     public:
-        AudioSource(ResPtr<Audio> audio_) : is3d(true),
-                                            referenceDistance(1.0f),
-                                            rolloffFactor(1.0f),
-                                            maxDistance(INFINITY),
-                                            volume(1.0f),
-                                            dopplerFactor(1.0f),
-                                            offset(0),
-                                            loop(false),
-                                            playing(false),
-                                            audio(audio_) {}
+        AudioSource(Audio *audio_) : is3d(true),
+                                     referenceDistance(1.0f),
+                                     rolloffFactor(1.0f),
+                                     maxDistance(INFINITY),
+                                     volume(1.0f),
+                                     dopplerFactor(1.0f),
+                                     offset(0),
+                                     loop(false),
+                                     playing(false),
+                                     audio(audio_) {}
         ~AudioSource()
         {
             audio->release();
@@ -38,18 +38,18 @@ class AudioSource
         bool loop;
         bool playing;
 
-        inline ResPtr<Audio> getAudio() const
+        inline Audio *getAudio() const
         {
             return audio;
         }
 
-        inline void setAudio(ResPtr<Audio> audio_)
+        inline void setAudio(Audio *audio_)
         {
             audio->release();
             audio = audio_;
         }
     private:
-        ResPtr<Audio> audio;
+        Audio *audio;
 };
 
 class AudioWorld
@@ -63,7 +63,7 @@ class AudioWorld
         Position3D listenerPosition;
         float speedOfSound;
 
-        inline AudioSource *createSource(ResPtr<Audio> audio)
+        inline AudioSource *createSource(Audio *audio)
         {
             AudioSource *source = NEW(AudioSource, audio);
 

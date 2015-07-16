@@ -70,10 +70,10 @@ struct _functionStruct
     void (*f17)( AudioDevice *obj, size_t arg0);
     void (*f18)( AudioDevice *obj, size_t arg0, size_t arg1, size_t arg2);
     void (*f19)( AudioDevice *obj);
-    void (*f20)( GfxMaterial *obj, ResPtr<GfxTexture> arg0);
+    void (*f20)( GfxMaterial *obj, GfxTexture * arg0);
     void (*f21)( GfxMaterial *obj, bool arg0);
-    void (*f22)(const Camera & arg0, const Matrix4x4 & arg1, ResPtr<GfxMesh> arg2, GfxShaderCombination * arg3);
-    void (*f23)(ResPtr<GfxMesh> arg0);
+    void (*f22)(const Camera & arg0, const Matrix4x4 & arg1, GfxMesh * arg2, GfxShaderCombination * arg3);
+    void (*f23)(GfxMesh * arg0);
     void (*f24)( GfxRenderer *obj, const UInt2 & arg0);
     void (*f25)( GfxRenderer *obj);
     AABB (*f26)(const GfxRenderer *obj);
@@ -142,7 +142,7 @@ struct _functionStruct
     void (*f89)( GfxTexture *obj, bool arg0);
     Transform (*f90)( GhostObject *obj);
     void (*f91)(const GhostObject *obj, const Transform & arg0);
-    void (*f92)( GhostObject *obj, ResPtr<PhysicsShape> arg0);
+    void (*f92)( GhostObject *obj, PhysicsShape * arg0);
     void (*f93)(const GhostObject *obj, List<RigidBody *> & arg0, List<GhostObject *> & arg1);
     void (*f94)( Application *obj);
     void (*f95)( Application *obj, const char * arg0);
@@ -153,12 +153,12 @@ struct _functionStruct
     void (*f100)( Scene *obj);
     Entity * (*f101)( Scene *obj, const String & arg0);
     void (*f102)( Scene *obj, size_t arg0);
-    RigidBody * (*f103)( Entity *obj, const RigidBody::ConstructionInfo & arg0, ResPtr<PhysicsShape> arg1);
-    ResPtr<Scene> (*f104)(const Entity *obj);
+    RigidBody * (*f103)( Entity *obj, const RigidBody::ConstructionInfo & arg0, PhysicsShape * arg1);
+    Scene * (*f104)(const Entity *obj);
     Entity * (*f105)( Entity *obj, const String & arg0);
     void (*f106)( Entity *obj, size_t arg0);
     void (*f107)( Entity *obj);
-    AudioSource * (*f108)( Entity *obj, ResPtr<Audio> arg0);
+    AudioSource * (*f108)( Entity *obj, Audio * arg0);
     void (*f109)( Entity *obj, size_t arg0);
     void (*f110)( File *obj, size_t arg0, void * arg1);
     void (*f111)( File *obj, size_t arg0, const void * arg1);
@@ -220,7 +220,7 @@ struct _functionStruct
     void (*f167)( GfxDebugDrawer *obj, const Camera & arg0);
     void (*f168)( GfxDebugDrawer *obj, GfxApi * arg0);
     void (*f169)( GfxDebugDrawer *obj);
-    AudioSource *(*f170)(ResPtr<Audio> arg0);
+    AudioSource *(*f170)(Audio * arg0);
     Script *(*f171)();
     Script *(*f172)(size_t count);
     Script *(*f173)(const String & arg0);
@@ -287,7 +287,7 @@ struct _functionStruct
     Scene *(*f234)(size_t count);
     Scene *(*f235)(const String & arg0);
     File *(*f236)(const char * arg0, const char * arg1);
-    GfxShaderCombination *(*f237)(ResPtr<GfxShader> arg0, ResPtr<GfxShader> arg1);
+    GfxShaderCombination *(*f237)(GfxShader * arg0, GfxShader * arg1);
     Matrix3x3 *(*f238)();
     Matrix3x3 *(*f239)(size_t count);
     Matrix3x3 *(*f240)(const Matrix4x4 & arg0);
@@ -317,10 +317,10 @@ bool f16( AudioDevice *obj) {return obj->getPaused();}
 void f17( AudioDevice *obj, size_t arg0) { obj->runCallbacks(arg0);}
 void f18( AudioDevice *obj, size_t arg0, size_t arg1, size_t arg2) {new (obj) AudioDevice(arg0, arg1, arg2);}
 void f19( AudioDevice *obj) { obj->~AudioDevice();}
-void f20( GfxMaterial *obj, ResPtr<GfxTexture> arg0) { obj->setDisplacementMap(arg0);}
+void f20( GfxMaterial *obj, GfxTexture * arg0) { obj->setDisplacementMap(arg0);}
 void f21( GfxMaterial *obj, bool arg0) { obj->setForward(arg0);}
-void f22(const Camera & arg0, const Matrix4x4 & arg1, ResPtr<GfxMesh> arg2, GfxShaderCombination * arg3) { GfxRenderer::beginRenderMesh(arg0, arg1, arg2, arg3);}
-void f23(ResPtr<GfxMesh> arg0) { GfxRenderer::endRenderMesh(arg0);}
+void f22(const Camera & arg0, const Matrix4x4 & arg1, GfxMesh * arg2, GfxShaderCombination * arg3) { GfxRenderer::beginRenderMesh(arg0, arg1, arg2, arg3);}
+void f23(GfxMesh * arg0) { GfxRenderer::endRenderMesh(arg0);}
 void f24( GfxRenderer *obj, const UInt2 & arg0) { obj->resize(arg0);}
 void f25( GfxRenderer *obj) { obj->render();}
 AABB f26(const GfxRenderer *obj) {return obj->computeSceneAABB();}
@@ -389,7 +389,7 @@ void f88( GfxTexture *obj, GfxTexture::WrapMode arg0) { obj->setWrapMode(arg0);}
 void f89( GfxTexture *obj, bool arg0) { obj->setShadowmap(arg0);}
 Transform f90( GhostObject *obj) {return obj->getTransform();}
 void f91(const GhostObject *obj, const Transform & arg0) { obj->setTransform(arg0);}
-void f92( GhostObject *obj, ResPtr<PhysicsShape> arg0) { obj->setShape(arg0);}
+void f92( GhostObject *obj, PhysicsShape * arg0) { obj->setShape(arg0);}
 void f93(const GhostObject *obj, List<RigidBody *> & arg0, List<GhostObject *> & arg1) { obj->getCollisions(arg0, arg1);}
 void f94( Application *obj) { obj->mainloop();}
 void f95( Application *obj, const char * arg0) {new (obj) Application(arg0);}
@@ -400,12 +400,12 @@ void f99( Scene *obj, float arg0) { obj->fixedUpdate(arg0);}
 void f100( Scene *obj) { obj->render();}
 Entity * f101( Scene *obj, const String & arg0) {return obj->createEntity(arg0);}
 void f102( Scene *obj, size_t arg0) { obj->removeEntity(arg0);}
-RigidBody * f103( Entity *obj, const RigidBody::ConstructionInfo & arg0, ResPtr<PhysicsShape> arg1) {return obj->addRigidBody(arg0, arg1);}
-ResPtr<Scene> f104(const Entity *obj) {return obj->getScene();}
+RigidBody * f103( Entity *obj, const RigidBody::ConstructionInfo & arg0, PhysicsShape * arg1) {return obj->addRigidBody(arg0, arg1);}
+Scene * f104(const Entity *obj) {return obj->getScene();}
 Entity * f105( Entity *obj, const String & arg0) {return obj->createEntity(arg0);}
 void f106( Entity *obj, size_t arg0) { obj->removeEntity(arg0);}
 void f107( Entity *obj) { obj->updateFinalTransform();}
-AudioSource * f108( Entity *obj, ResPtr<Audio> arg0) {return obj->addAudioSource(arg0);}
+AudioSource * f108( Entity *obj, Audio * arg0) {return obj->addAudioSource(arg0);}
 void f109( Entity *obj, size_t arg0) { obj->removeAudioSource(arg0);}
 void f110( File *obj, size_t arg0, void * arg1) { obj->read(arg0, arg1);}
 void f111( File *obj, size_t arg0, const void * arg1) { obj->write(arg0, arg1);}
@@ -467,7 +467,7 @@ void f166( Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFr
 void f167( GfxDebugDrawer *obj, const Camera & arg0) { obj->render(arg0);}
 void f168( GfxDebugDrawer *obj, GfxApi * arg0) {new (obj) GfxDebugDrawer(arg0);}
 void f169( GfxDebugDrawer *obj) { obj->~GfxDebugDrawer();}
-AudioSource *f170(ResPtr<Audio> arg0) {return NEW(AudioSource, arg0);}
+AudioSource *f170(Audio * arg0) {return NEW(AudioSource, arg0);}
 Script *f171() {return NEW(Script);}
 Script *f172(size_t count) {return NEW_ARRAY(Script, count);}
 Script *f173(const String & arg0) {return NEW(Script, arg0);}
@@ -534,7 +534,7 @@ Scene *f233() {return NEW(Scene);}
 Scene *f234(size_t count) {return NEW_ARRAY(Scene, count);}
 Scene *f235(const String & arg0) {return NEW(Scene, arg0);}
 File *f236(const char * arg0, const char * arg1) {return NEW(File, arg0, arg1);}
-GfxShaderCombination *f237(ResPtr<GfxShader> arg0, ResPtr<GfxShader> arg1) {return NEW(GfxShaderCombination, arg0, arg1);}
+GfxShaderCombination *f237(GfxShader * arg0, GfxShader * arg1) {return NEW(GfxShaderCombination, arg0, arg1);}
 Matrix3x3 *f238() {return NEW(Matrix3x3);}
 Matrix3x3 *f239(size_t count) {return NEW_ARRAY(Matrix3x3, count);}
 Matrix3x3 *f240(const Matrix4x4 & arg0) {return NEW(Matrix3x3, arg0);}

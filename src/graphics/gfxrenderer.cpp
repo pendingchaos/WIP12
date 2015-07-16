@@ -26,7 +26,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloom4Strength(1.0f),
                                           bloomEnabled(true),
                                           ssaoRadius(0.1f),
-                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
+                                          skybox(nullptr),
+                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
                                           width(0),
                                           height(0),
                                           scene(scene_),
@@ -268,6 +269,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //luminanceCalcTimer = gfxApi->createTimer();
     shadowmapTimer = gfxApi->createTimer();
     overlayTimer = gfxApi->createTimer();
+    debugDrawTimer = gfxApi->createTimer();
 }
 
 GfxRenderer::~GfxRenderer()
@@ -295,6 +297,7 @@ GfxRenderer::~GfxRenderer()
     //DELETE(GPUTimer, luminanceCalcTimer);
     DELETE(GPUTimer, shadowmapTimer);
     DELETE(GPUTimer, overlayTimer);
+    DELETE(GPUTimer, debugDrawTimer);
 
     DELETE(GfxFramebuffer, readFramebuffer);
     DELETE(GfxFramebuffer, writeFramebuffer);
@@ -425,7 +428,6 @@ void GfxRenderer::updateStats()
         stats.bloomTiming = bloomTimer->getResult() / (float)bloomTimer->getResultResolution();
     }
 
-
     /*if (luminanceCalcTimer->resultAvailable())
     {
         stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
@@ -439,6 +441,11 @@ void GfxRenderer::updateStats()
     if (overlayTimer->resultAvailable())
     {
         stats.overlayTiming = overlayTimer->getResult() / (float)overlayTimer->getResultResolution();
+    }
+
+    if (debugDrawTimer->resultAvailable())
+    {
+        stats.debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();
     }
 }
 
@@ -708,7 +715,7 @@ void main()
 
 void GfxRenderer::beginRenderMesh(const Camera& camera,
                                   const Matrix4x4& worldMatrix,
-                                  ResPtr<GfxMesh> mesh,
+                                  GfxMesh *mesh,
                                   GfxShaderCombination *comb)
 {
     gfxApi->pushState();
@@ -743,7 +750,7 @@ void GfxRenderer::beginRenderMesh(const Camera& camera,
     gfxApi->uniform(vertexShader, "cameraPosition", camera.getPosition());
 }
 
-void GfxRenderer::endRenderMesh(ResPtr<GfxMesh> mesh)
+void GfxRenderer::endRenderMesh(GfxMesh *mesh)
 {
     gfxApi->setCullMode(mesh->cullMode);
 
@@ -949,8 +956,8 @@ void GfxRenderer::resize(const UInt2& size)
 
 void GfxRenderer::render()
 {
-    ResPtr<GfxTexture> oldReadTex = readColorTexture;
-    ResPtr<GfxTexture> oldWriteTex = writeColorTexture;
+    GfxTexture *oldReadTex = readColorTexture;
+    GfxTexture *oldWriteTex = writeColorTexture;
     GfxFramebuffer *oldReadFb = readFramebuffer;
     GfxFramebuffer *oldWriteFb = writeFramebuffer;
 
@@ -1291,15 +1298,19 @@ void GfxRenderer::render()
 
     renderSkybox();
 
+    forwardTimer->end();
+
+    debugDrawTimer->begin();
+
     if (debugDraw)
     {
         debugDrawer->render(camera);
     }
 
+    debugDrawTimer->end();
+
     gfxApi->setWriteDepth(false);
     gfxApi->setDepthFunction(GfxAlways);
-
-    forwardTimer->end();
 
     swapFramebuffers();
 
@@ -1618,7 +1629,7 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
 
             if (comp->type == RenderComponent::Model)
             {
-                ResPtr<GfxModel> model = comp->model;
+                GfxModel *model = comp->model;
 
                 for (size_t i = 0; i < model->subModels.getCount(); ++i)
                 {
@@ -1652,7 +1663,7 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
 
             if (comp->type == RenderComponent::Model and comp->modelData.shadowCaster)
             {
-                ResPtr<GfxModel> model = comp->model;
+                GfxModel *model = comp->model;
 
                 for (size_t i = 0; i < model->subModels.getCount(); ++i)
                 {
@@ -1672,7 +1683,7 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
     }
 }
 
-void GfxRenderer::fillLightBuffer(ResPtr<Scene> scene)
+void GfxRenderer::fillLightBuffer(Scene *scene)
 {
     numLights = lights.getCount();
 
@@ -1807,7 +1818,7 @@ void GfxRenderer::renderSkybox()
 void GfxRenderer::renderModel(bool forward,
                               const Camera& camera,
                               const Matrix4x4& worldMatrix,
-                              const ResPtr<GfxModel> model)
+                              const GfxModel *model)
 {
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
@@ -1833,8 +1844,8 @@ void GfxRenderer::renderModel(bool forward,
             {
                 gfxApi->setCullMode(lod.mesh->cullMode);
 
-                ResPtr<GfxMaterial> material = lod.material;
-                ResPtr<GfxMesh> mesh = lod.mesh;
+                GfxMaterial *material = lod.material;
+                GfxMesh *mesh = lod.mesh;
                 GfxShaderCombination *shaderComb = material->getShaderComb();
 
                 bool useTesselation = material->getDisplacementMap() != nullptr and
@@ -1967,7 +1978,7 @@ void GfxRenderer::renderModel(bool forward,
 void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                          const Matrix4x4& projectionMatrix,
                                          const Matrix4x4& worldMatrix,
-                                         const ResPtr<GfxModel> model,
+                                         const GfxModel *model,
                                          Light *light,
                                          size_t cubemapFace)
 {
@@ -1989,8 +2000,8 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
             {
                 Matrix4x4 newWorldMatrix = worldMatrix * lod.worldMatrix;
 
-                ResPtr<GfxMaterial> material = lod.material;
-                ResPtr<GfxMesh> mesh = lod.mesh;
+                GfxMaterial *material = lod.material;
+                GfxMesh *mesh = lod.mesh;
 
                 GfxCompiledShader *vertexShader = compiledShadowmapVertex;
                 GfxCompiledShader *geometryShader = nullptr;

@@ -45,12 +45,12 @@ class GfxDebugDrawer
 
         List<Line> lines;
 
-        ResPtr<GfxMesh> mesh;
+        GfxMesh *mesh;
 
-        ResPtr<GfxShader> vertex;
+        GfxShader *vertex;
         GfxCompiledShader *compiledVertex;
 
-        ResPtr<GfxShader> fragment;
+        GfxShader *fragment;
         GfxCompiledShader *compiledFragment;
 
     NO_COPY(GfxDebugDrawer)

@@ -142,9 +142,9 @@ class RigidBody
             return collisionMask;
         }
 
-        void setShape(ResPtr<PhysicsShape> shape);
+        void setShape(PhysicsShape *shape);
 
-        inline ResPtr<PhysicsShape> getShape() const
+        inline PhysicsShape *getShape() const
         {
             return shape;
         }
@@ -154,12 +154,12 @@ class RigidBody
             return entity;
         }
     private:
-        RigidBody(const ConstructionInfo& info, ResPtr<PhysicsShape> shape, PhysicsWorld *world);
+        RigidBody(const ConstructionInfo& info, PhysicsShape *shape, PhysicsWorld *world);
         virtual ~RigidBody();
 
         void updateShape();
 
-        ResPtr<PhysicsShape> shape;
+        PhysicsShape *shape;
         btRigidBody *rigidBody;
         PhysicsWorld *world;
         Entity *entity;

@@ -17,7 +17,7 @@ Entity::~Entity()
         DELETE(Entity, entities[i]);
     }
 
-    List<ResPtr<Script>> scripts_;
+    List<Script *> scripts_;
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
     {
@@ -46,7 +46,7 @@ Entity::~Entity()
 }
 
 RigidBody *Entity::addRigidBody(const RigidBody::ConstructionInfo& info,
-                                ResPtr<PhysicsShape> shape)
+                                PhysicsShape *shape)
 {
     updateFinalTransform();
 
@@ -59,7 +59,7 @@ RigidBody *Entity::addRigidBody(const RigidBody::ConstructionInfo& info,
     return rigidBody;
 }
 
-ResPtr<Scene> Entity::getScene() const
+Scene *Entity::getScene() const
 {
     return scene;
 }
@@ -98,7 +98,7 @@ void Entity::updateFinalTransform()
     }
 }
 
-AudioSource *Entity::addAudioSource(ResPtr<Audio> audio)
+AudioSource *Entity::addAudioSource(Audio *audio)
 {
     AudioSource *source = scene->getAudioWorld()->createSource(audio);
 

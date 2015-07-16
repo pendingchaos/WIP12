@@ -21,14 +21,14 @@ class GfxModel : public Resource
         {
             LOD(float minDistance,
                 float maxDistance,
-                ResPtr<GfxMesh> mesh,
-                ResPtr<GfxMaterial> material,
+                GfxMesh *mesh,
+                GfxMaterial *material,
                 const Matrix4x4& matrix);
 
             float minDistance;
             float maxDistance;
-            ResPtr<GfxMesh> mesh;
-            ResPtr<GfxMaterial> material;
+            GfxMesh *mesh;
+            GfxMaterial *material;
             Matrix4x4 worldMatrix;
 
             bool operator == (const GfxModel::LOD& other) const

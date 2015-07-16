@@ -29,8 +29,8 @@ class RenderComponent
 
         Type type;
 
-        ResPtr<GfxModel> model;
-        ResPtr<GfxTexture> overlayTexture;
+        GfxModel *model;
+        GfxTexture *overlayTexture;
 
         union
         {
@@ -56,7 +56,7 @@ class Entity
         Entity(const String& name, Scene *scene);
         ~Entity();
     public:
-        inline ScriptInstance *addScript(ResPtr<Script> script, const char *name)
+        inline ScriptInstance *addScript(Script *script, const char *name)
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 
@@ -118,7 +118,7 @@ class Entity
         #endif
 
         RigidBody *addRigidBody(const RigidBody::ConstructionInfo& info,
-                                ResPtr<PhysicsShape> shape);
+                                PhysicsShape *shape);
 
         inline RigidBody *getRigidBody() const
         {
@@ -139,7 +139,7 @@ class Entity
             return rigidBody != nullptr;
         }
 
-        inline void addModel(ResPtr<GfxModel> model, bool shadowCaster=true)
+        inline void addModel(GfxModel *model, bool shadowCaster=true)
         {
             render = true;
             renderComponent.type = RenderComponent::Model;
@@ -148,7 +148,7 @@ class Entity
             renderComponent.modelData.shadowCaster = shadowCaster;
         }
 
-        inline void addOverlay(ResPtr<GfxTexture> texture)
+        inline void addOverlay(GfxTexture *texture)
         {
             render = true;
             renderComponent.type = RenderComponent::Overlay;
@@ -182,7 +182,7 @@ class Entity
             return this == &other;
         }
 
-        ResPtr<Scene> getScene() const;
+        Scene *getScene() const;
 
         Entity *createEntity(const String& name);
         void removeEntity(size_t index);
@@ -209,7 +209,7 @@ class Entity
             return audioSources;
         }
 
-        AudioSource *addAudioSource(ResPtr<Audio> audio);
+        AudioSource *addAudioSource(Audio *audio);
         void removeAudioSource(size_t index);
 
         String name;

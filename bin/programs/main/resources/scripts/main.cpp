@@ -150,19 +150,18 @@ class FPSCamera
 #define TIMINGS_UPDATE_COUNTDOWN 0.1f
 
 BEGIN_INSTANCE(Main)
-    ResPtr<Scene> scene;
-    ResPtr<Font> font;
+    Scene *scene;
+    Font *font;
     bool showExtraTimings;
     String timings;
     String extraTimings;
     float timingsUpdateCountdown;
     bool freezeTimings;
-    GPUTimer *debugDrawTimer;
     GPUTimer *textTimer;
     float debugDrawTiming;
     float textTiming;
     AudioSource *source;
-    ResPtr<Audio> audio;
+    Audio *audio;
     
     virtual void init()
     {
@@ -174,7 +173,6 @@ BEGIN_INSTANCE(Main)
         
         font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
         
-        debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
         
         Entity *entity = scene->createEntity("Audio source");
@@ -186,7 +184,6 @@ BEGIN_INSTANCE(Main)
     virtual void deinit()
     {
         DELETE(GPUTimer, textTimer);
-        DELETE(GPUTimer, debugDrawTimer);
         
         font->release();
         scene->release();
@@ -269,12 +266,10 @@ BEGIN_INSTANCE(Main)
         
         scene->getRenderer()->debugDraw = debugDraw;
         
-        debugDrawTimer->begin();
         if (debugDraw)
         {
             scene->getPhysicsWorld()->debugDraw();
         }
-        debugDrawTimer->end();
         
         scene->getRenderer()->render();
         
@@ -299,11 +294,6 @@ BEGIN_INSTANCE(Main)
             
             float total = platform->getGPUFrametime();
             
-            if (debugDrawTimer->resultAvailable())
-            {
-                debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();
-            }
-            
             if (textTimer->resultAvailable())
             {
                 textTiming = textTimer->getResult() / (float)textTimer->getResultResolution();
@@ -321,7 +311,7 @@ BEGIN_INSTANCE(Main)
                         stats.bloomTiming +
                         stats.shadowmapTiming +
                         stats.overlayTiming +
-                        debugDrawTiming +
+                        stats.debugDrawTiming +
                         textTiming;
             
             extraTimings = String::format("Timings:\n"
@@ -362,8 +352,8 @@ BEGIN_INSTANCE(Main)
                                           stats.bloomTiming / total * 100.0f,
                                           stats.shadowmapTiming * 1000.0f,
                                           stats.shadowmapTiming / total * 100.0f,
-                                          debugDrawTiming * 1000.0f,
-                                          debugDrawTiming / total * 100.0f,
+                                          stats.debugDrawTiming * 1000.0f,
+                                          stats.debugDrawTiming / total * 100.0f,
                                           textTiming * 1000.0f,
                                           textTiming / total * 100.0f,
                                           stats.overlayTiming * 1000.0f,

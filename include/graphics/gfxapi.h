@@ -44,7 +44,7 @@ class GfxApi
                            GfxCompiledShader *tessEval,
                            GfxCompiledShader *geometry,
                            GfxCompiledShader *fragment,
-                           ResPtr<GfxMesh> mesh)=0;
+                           GfxMesh *mesh)=0;
         virtual void end(GfxPrimitive primitive, uint32_t count, GfxWinding winding)=0;
         virtual void endIndexed(GfxPrimitive primitive,
                                 GfxVertexAttribType type,
@@ -84,7 +84,7 @@ class GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values)=0;
 
         virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer)=0;
-        virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, ResPtr<GfxTexture> texture)=0;
+        virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)=0;
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)=0;

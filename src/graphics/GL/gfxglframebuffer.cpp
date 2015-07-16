@@ -19,7 +19,7 @@ GfxGLFramebuffer::~GfxGLFramebuffer()
 }
 
 void GfxGLFramebuffer::addColorAttachment(size_t rtIndex,
-                                          ResPtr<GfxTexture> texture,
+                                          GfxTexture *texture,
                                           size_t mipmapLevel,
                                           int layer)
 {
@@ -59,7 +59,7 @@ size_t GfxGLFramebuffer::getColorRT(size_t index)
     return attachments[index].rtIndex;
 }
 
-ResPtr<GfxTexture> GfxGLFramebuffer::getColorAttachment(size_t index)
+GfxTexture *GfxGLFramebuffer::getColorAttachment(size_t index)
 {
     return attachments[index].texture;
 }
@@ -74,7 +74,7 @@ int GfxGLFramebuffer::getColorAttachmentLayer(size_t index)
     return attachments[index].layer;
 }
 
-void GfxGLFramebuffer::setDepthAttachment(ResPtr<GfxTexture> texture,
+void GfxGLFramebuffer::setDepthAttachment(GfxTexture *texture,
                                           size_t mipmapLevel,
                                           int layer)
 {
@@ -104,7 +104,7 @@ bool GfxGLFramebuffer::hasDepthAttachment()
     return hasDepth;
 }
 
-ResPtr<GfxTexture> GfxGLFramebuffer::getDepthTexture()
+GfxTexture *GfxGLFramebuffer::getDepthTexture()
 {
     return depthAttachment.texture;
 }

@@ -64,7 +64,7 @@ class Application
             return audioDevice_;
         }
 
-        inline void setNextScript(ResPtr<Script> script_, const char *name)
+        inline void setNextScript(Script *script_, const char *name)
         {
             if (nextScript != nullptr)
             {
@@ -75,7 +75,7 @@ class Application
             nextScriptName = name;
         }
 
-        inline ResPtr<Script> getNextScript() const
+        inline Script *getNextScript() const
         {
             return nextScript;
         }
@@ -97,7 +97,7 @@ class Application
         AudioDevice *audioDevice_;
 
         ScriptInstance *script;
-        ResPtr<Script> nextScript;
+        Script *nextScript;
         String nextScriptName;
         uint64_t simulationTime;
 

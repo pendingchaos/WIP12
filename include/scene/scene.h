@@ -59,7 +59,7 @@ class Scene : public Resource
             return entities;
         }
 
-        inline ScriptInstance *addScript(ResPtr<Script> script, const char *name)
+        inline ScriptInstance *addScript(Script *script, const char *name)
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 

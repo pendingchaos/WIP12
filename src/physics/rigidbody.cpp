@@ -78,7 +78,7 @@ class MotionState : public btMotionState
 };
 
 RigidBody::RigidBody(const ConstructionInfo& info,
-                     ResPtr<PhysicsShape> shape_,
+                     PhysicsShape *shape_,
                      PhysicsWorld *world_) : shape(shape_),
                                              world(world_),
                                              entity(info.entity),
@@ -351,7 +351,7 @@ void RigidBody::setAngularFactor(const Float3& factor) const
     rigidBody->setAngularFactor(btVector3(factor.x, factor.y, factor.z));
 }
 
-void RigidBody::setShape(ResPtr<PhysicsShape> shape_)
+void RigidBody::setShape(PhysicsShape *shape_)
 {
     shape->rigidBodies.remove(shape->rigidBodies.find(this));
 

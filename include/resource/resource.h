@@ -66,94 +66,6 @@ class ResourceIOException : public Exception
         String problem;
 };
 
-template <typename T>
-class ResPtr
-{
-    public:
-        typedef T type;
-
-        ResPtr() : ptr(nullptr) {}
-        ResPtr(nullptr_t null) : ptr(nullptr) {}
-
-        ResPtr(T *ptr_) : ptr(ptr_) {}
-
-        ResPtr(const ResPtr& other)
-         : ptr(const_cast<T *>(other.getPtr())) {}
-
-        ResPtr& operator = (const ResPtr& other)
-        {
-            T *otherPtr = const_cast<T *>(other.getPtr());
-
-            ptr = reinterpret_cast<T *>(otherPtr);
-
-            return *this;
-        }
-
-        template <typename Other>
-        ResPtr& operator = (Other *other)
-        {
-            ptr = reinterpret_cast<T *>(other);
-
-            return *this;
-        }
-
-        inline T& operator * ()
-        {
-            return *ptr;
-        }
-
-        inline const T& operator * () const
-        {
-            return *ptr;
-        }
-
-        inline T *operator -> ()
-        {
-            return ptr;
-        }
-
-        inline const T *operator -> () const
-        {
-            return ptr;
-        }
-
-        inline T *getPtr()
-        {
-            return ptr;
-        }
-
-        inline const T *getPtr() const
-        {
-            return ptr;
-        }
-
-        template <typename OtherT>
-        inline bool operator == (const ResPtr<OtherT>& other) const
-        {
-            return ptr == other.getPtr();
-        }
-
-        template <typename OtherT>
-        inline bool operator == (OtherT other) const
-        {
-            return ptr == (T *)other;
-        }
-
-        template <typename OtherT>
-        inline bool operator != (const ResPtr<OtherT>& other) const
-        {
-            return ptr != other.getPtr();
-        }
-
-        template <typename OtherT>
-        inline bool operator != (OtherT other) const
-        {
-            return ptr != (T *)other;
-        }
-    private:
-        T *ptr;
-};
-
 #undef _RES_INC_REF_COUNT
 #undef _RES_RELEASE
 
@@ -228,11 +140,19 @@ class Resource
         }
 
         template <typename T>
-        inline ResPtr<T> copyRef() const
+        inline T *copyRef()
         {
             ++refCount;
 
-            return ResPtr<T>((T *)const_cast<Resource *>(this));
+            return (T *)this;
+        }
+
+        template <typename T>
+        inline T *copyRef() const
+        {
+            ++refCount;
+
+            return (const T *)this;
         }
 
         inline const String& getFilename() const

@@ -13,20 +13,20 @@ class ResourceManager
         ~ResourceManager();
 
         template <typename T>
-        ResPtr<T> load(const String& filename)
+        T *load(const String& filename)
         {
             if (isResource(getType<T>(), filename))
             {
-                ResPtr<Resource> res = resources.get(getType<T>()).get(filename);
+                Resource *res = resources.get(getType<T>()).get(filename);
 
-                return ResPtr<T>((T *)res->copyRef<Resource>().getPtr());
+                return (T *)res->copyRef<Resource>();
             }
 
-            ResPtr<T> resource = NEW(T, filename);
+            T *resource = NEW(T, filename);
 
             resource->load();
 
-            HashMap<String, ResPtr<Resource> > *resources_;
+            HashMap<String, Resource *> *resources_;
 
             Resource::Type type = resource->getType();
 
@@ -35,22 +35,22 @@ class ResourceManager
                 resources_ = &resources.get(type);
             } catch (const LookupException& e)
             {
-                resources.set(type, HashMap<String, ResPtr<Resource> >());
+                resources.set(type, HashMap<String, Resource *>());
 
                 resources_ = &resources.get(type);
             }
 
-            resources_->set(filename, resource.getPtr());
+            resources_->set(filename, resource);
 
-            ResPtr<Resource> res((Resource *)resource.getPtr());
+            Resource *res = resource;
 
-            return ResPtr<T>((T *)res->copyRef<Resource>().getPtr());
+            return (T *)res->copyRef<Resource>();
         }
 
         template <typename T>
-        ResPtr<T> loadAndCopy(const String& filename)
+        T *loadAndCopy(const String& filename)
         {
-            ResPtr<T> res = load<T>(filename);
+            T *res = load<T>(filename);
             res->release();
 
             return (T *)res->copy();
@@ -61,7 +61,7 @@ class ResourceManager
         void autoReloadResources() const;
         void cleanupResources();
     private:
-        HashMap<Resource::Type, HashMap<String, ResPtr<Resource> > > resources;
+        HashMap<Resource::Type, HashMap<String, Resource *>> resources;
 
         template <typename T>
         inline Resource::Type getType() const

@@ -15,7 +15,7 @@ BEGIN_INSTANCE(Player)
 
         entity->getRigidBody()->setAngularFactor(Float3(0.0f));
     
-        ResPtr<PhysicsShape> shape = NEW(PhysicsShape);
+        PhysicsShape *shape = NEW(PhysicsShape);
     
         shape->setCylinder(PhysicsCylinderShape::Y, 0.1f, 0.8f);
         

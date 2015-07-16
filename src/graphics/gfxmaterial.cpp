@@ -45,6 +45,13 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    shadowTesselation(false),
                                                    shadowMinTessLevel(1.0f),
                                                    shadowMaxTessLevel(5.0f),
+                                                   smoothnessMap(nullptr),
+                                                   metalMaskMap(nullptr),
+                                                   albedoMap(nullptr),
+                                                   normalMap(nullptr),
+                                                   parallaxHeightMap(nullptr),
+                                                   pomHeightMap(nullptr),
+                                                   displacementMap(nullptr),
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
@@ -216,7 +223,7 @@ void GfxMaterial::save()
     }
 }
 
-void GfxMaterial::setDisplacementMap(ResPtr<GfxTexture> texture)
+void GfxMaterial::setDisplacementMap(GfxTexture *texture)
 {
     displacementMap = texture;
 

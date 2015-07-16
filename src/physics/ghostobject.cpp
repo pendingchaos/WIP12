@@ -4,9 +4,9 @@
 
 GhostObject::GhostObject(unsigned short collisionMask,
                          PhysicsWorld *world_,
-                         ResPtr<PhysicsShape> shape_) : shape(shape_),
-                                                        world(world_),
-                                                        collisionMask(collisionMask)
+                         PhysicsShape *shape_) : shape(shape_),
+                                                 world(world_),
+                                                 collisionMask(collisionMask)
 {
     shape->ghosts.append(this);
 
@@ -63,7 +63,7 @@ void GhostObject::setTransform(const Transform& transform) const
 
 #define UPDATE_SHAPE ghostObject->setCollisionShape(shape->getBulletShape());
 
-void GhostObject::setShape(ResPtr<PhysicsShape> shape_)
+void GhostObject::setShape(PhysicsShape *shape_)
 {
     shape->ghosts.remove(shape->ghosts.find(this));
 

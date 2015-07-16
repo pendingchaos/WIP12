@@ -5,8 +5,8 @@
 
 GfxModel::LOD::LOD(float minDistance_,
                    float maxDistance_,
-                   ResPtr<GfxMesh> mesh_,
-                   ResPtr<GfxMaterial> material_,
+                   GfxMesh *mesh_,
+                   GfxMaterial *material_,
                    const Matrix4x4& matrix) : minDistance(minDistance_),
                                               maxDistance(maxDistance_),
                                               mesh(mesh_),

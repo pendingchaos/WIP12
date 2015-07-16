@@ -290,7 +290,7 @@ void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
 
         for (size_t i = 0; i < numBuffers; ++i)
         {
-            ResPtr<GfxTexture> texture = framebuffer->getColorAttachment(i);
+            GfxTexture *texture = framebuffer->getColorAttachment(i);
 
             if (framebuffer->getColorAttachmentLayer(i) >= 0)
             {
@@ -311,7 +311,7 @@ void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
 
         if (framebuffer->hasDepthAttachment())
         {
-            ResPtr<GfxTexture> texture = framebuffer->getDepthTexture();
+            GfxTexture *texture = framebuffer->getDepthTexture();
 
             if (framebuffer->getDepthAttachmentLayer() >= 0)
             {
@@ -429,7 +429,7 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *tessEval_,
                      GfxCompiledShader *geometry_,
                      GfxCompiledShader *fragment_,
-                     ResPtr<GfxMesh> mesh)
+                     GfxMesh *mesh)
 {
     glBindVertexArray(dynamic_cast<GfxGLMeshImpl *>(mesh->getImpl())->getGLVAO());
 
@@ -980,7 +980,7 @@ void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const 
     }
 }
 
-void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, ResPtr<GfxTexture> texture)
+void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
 {
     UNIFORM_START
 

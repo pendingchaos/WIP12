@@ -8,7 +8,7 @@ ResourceManager::~ResourceManager()
 {
     for (size_t i = 0; i < resources.getEntryCount(); ++i)
     {
-        HashMap<String, ResPtr<Resource> > resources_ = resources.getValue(i);
+        HashMap<String, Resource *> resources_ = resources.getValue(i);
 
         for (size_t j = 0; j < resources_.getEntryCount(); ++j)
         {
@@ -33,11 +33,11 @@ void ResourceManager::autoReloadResources() const
 {
     for (size_t i = 0; i < resources.getEntryCount(); ++i)
     {
-        HashMap<String, ResPtr<Resource> > resources_ = resources.getValue(i);
+        HashMap<String, Resource *> resources_ = resources.getValue(i);
 
         for (size_t j = 0; j < resources_.getEntryCount(); ++j)
         {
-            ResPtr<Resource> resource = resources_.getValue(j);
+            Resource *resource = resources_.getValue(j);
 
             try
             {
@@ -59,13 +59,13 @@ void ResourceManager::cleanupResources()
 {
     for (size_t i = 0; i < resources.getEntryCount(); ++i)
     {
-        HashMap<String, ResPtr<Resource> >& resources_ = resources.getValue(i);
+        HashMap<String, Resource *>& resources_ = resources.getValue(i);
 
-        List<ResPtr<Resource>> toDelete;
+        List<Resource *> toDelete;
 
         for (size_t j = 0; j < resources_.getEntryCount(); ++j)
         {
-            ResPtr<Resource> resource = resources_.getValue(j);
+            Resource *resource = resources_.getValue(j);
 
             if (resource->getRefCount() == 1)
             {

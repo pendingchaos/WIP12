@@ -16,7 +16,7 @@ void audioWorldCallback(float *data, size_t numSamples, void *userdata, AudioDev
 
         if (source->playing)
         {
-            ResPtr<Audio> audio = source->getAudio();
+            Audio *audio = source->getAudio();
 
             float distance = world->listenerPosition.distance(source->position);
 

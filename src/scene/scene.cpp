@@ -38,7 +38,7 @@ Scene::~Scene()
         DELETE(Entity, entities[i]);
     }
 
-    List<ResPtr<Script>> scripts_;
+    List<Script *> scripts_;
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
     {
@@ -68,7 +68,7 @@ void Scene::removeContent()
 
     entities.clear();
 
-    List<ResPtr<Script>> scripts_;
+    List<Script *> scripts_;
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
     {
@@ -665,7 +665,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
     {
         if (entity->getRenderComponent()->type == RenderComponent::Model)
         {
-            ResPtr<GfxModel> model = entity->getRenderComponent()->model;
+            GfxModel *model = entity->getRenderComponent()->model;
 
             file->writeUInt32LE(model->getFilename().getLength());
             file->write(model->getFilename().getLength(), model->getFilename().getData());
@@ -763,7 +763,7 @@ void Scene::save()
             file.writeFloat32(camera.getBottom());
         }
 
-        ResPtr<GfxTexture> skybox = renderer->skybox;
+        GfxTexture *skybox = renderer->skybox;
 
         if (skybox != nullptr)
         {

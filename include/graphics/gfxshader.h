@@ -147,65 +147,68 @@ class GfxShaderImpl
 class GfxShaderCombination
 {
     public:
-        GfxShaderCombination(ResPtr<GfxShader> vertex_,
-                             ResPtr<GfxShader> fragment_) : vertex(vertex_),
-                                                            fragment(fragment_),
-                                                            compiledVertex(vertex_->getCompiled()),
-                                                            compiledTessControl(nullptr),
-                                                            compiledTessEval(nullptr),
-                                                            compiledGeometry(nullptr),
-                                                            compiledFragment(fragment_->getCompiled()) {}
+        GfxShaderCombination(GfxShader *vertex_,
+                             GfxShader *fragment_) : vertex(vertex_),
+                                                     tessControl(nullptr),
+                                                     tessEval(nullptr),
+                                                     geometry(nullptr),
+                                                     fragment(fragment_),
+                                                     compiledVertex(vertex_->getCompiled()),
+                                                     compiledTessControl(nullptr),
+                                                     compiledTessEval(nullptr),
+                                                     compiledGeometry(nullptr),
+                                                     compiledFragment(fragment_->getCompiled()) {}
 
-        inline ResPtr<GfxShader> getVertexShader() const
+        inline GfxShader *getVertexShader() const
         {
             return vertex;
         }
 
-        inline ResPtr<GfxShader> getTessControlShader() const
+        inline GfxShader *getTessControlShader() const
         {
             return tessControl;
         }
 
-        inline ResPtr<GfxShader> getTessEvalShader() const
+        inline GfxShader *getTessEvalShader() const
         {
             return tessEval;
         }
 
-        inline ResPtr<GfxShader> getGeometryShader() const
+        inline GfxShader *getGeometryShader() const
         {
             return geometry;
         }
 
-        inline ResPtr<GfxShader> getFragmentShader() const
+        inline GfxShader *getFragmentShader() const
         {
             return fragment;
         }
 
-        inline void setVertexShader(ResPtr<GfxShader> shader)
+        inline void setVertexShader(GfxShader *shader)
         {
             vertex = shader;
             compileVertex();
         }
 
-        inline void setTessControlShader(ResPtr<GfxShader> shader)
+        inline void setTessControlShader(GfxShader *shader)
         {
             tessControl = shader;
             compileTessControl();
         }
 
-        inline void setTessEvalShader(ResPtr<GfxShader> shader)
+        inline void setTessEvalShader(GfxShader *shader)
         {
             tessEval = shader;
             compileTessEval();
         }
 
-        inline void setGeometryShader(ResPtr<GfxShader> shader)
+        inline void setGeometryShader(GfxShader *shader)
         {
             geometry = shader;
             compileGeometry();
         }
 
-        inline void setFragmentShader(ResPtr<GfxShader> shader)
+        inline void setFragmentShader(GfxShader *shader)
         {
             fragment = shader;
             compileFragment();
@@ -367,11 +370,11 @@ class GfxShaderCombination
         HashMap<String, String> geometryDefines;
         HashMap<String, String> fragmentDefines;
 
-        ResPtr<GfxShader> vertex;
-        ResPtr<GfxShader> tessControl;
-        ResPtr<GfxShader> tessEval;
-        ResPtr<GfxShader> geometry;
-        ResPtr<GfxShader> fragment;
+        GfxShader *vertex;
+        GfxShader *tessControl;
+        GfxShader *tessEval;
+        GfxShader *geometry;
+        GfxShader *fragment;
 
         GfxCompiledShader *compiledVertex;
         GfxCompiledShader *compiledTessControl;

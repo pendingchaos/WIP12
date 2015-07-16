@@ -107,7 +107,7 @@ void PhysicsShape::setCompound(size_t childCount,
     impl = NEW(PhysicsCompoundShape, this, childCount, children);
 }
 
-void saveShape(ResPtr<PhysicsShape> shape, File *file)
+void saveShape(PhysicsShape *shape, File *file)
 {
     if (shape->getFilename().getLength() != 0)
     {
@@ -269,7 +269,7 @@ void PhysicsShape::save()
     }
 }
 
-ResPtr<PhysicsShape> loadShape(ResPtr<PhysicsShape> dest, File *file, const String& filename)
+PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
 {
     uint8_t shapeType = file->readUInt8();
 
@@ -1089,7 +1089,7 @@ Resource *PhysicsShape::_copy() const
         {
             children[i].orientation = impl_->getShapes()[i].orientation;
             children[i].position = impl_->getShapes()[i].position;
-            children[i].shape = impl_->getShapes()[i].shape->copy();
+            children[i].shape = (PhysicsShape *)impl_->getShapes()[i].shape->copy();
         }
 
         shape->setCompound(impl_->getShapeCount(), children);

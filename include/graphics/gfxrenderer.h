@@ -162,15 +162,16 @@ class GfxRenderer
             //float lumCalcTiming;
             float shadowmapTiming;
             float overlayTiming;
+            float debugDrawTiming;
         };
 
         ~GfxRenderer();
 
         static void beginRenderMesh(const Camera& camera,
                                     const Matrix4x4& worldMatrix,
-                                    ResPtr<GfxMesh> mesh,
+                                    GfxMesh *mesh,
                                     GfxShaderCombination *comb);
-        static void endRenderMesh(ResPtr<GfxMesh> mesh);
+        static void endRenderMesh(GfxMesh *mesh);
 
         void resize(const UInt2& size);
         void render();
@@ -240,7 +241,7 @@ class GfxRenderer
 
         void updateColorModifierShader();
 
-        inline void setSkybox(ResPtr<GfxTexture> skybox_)
+        inline void setSkybox(GfxTexture *skybox_)
         {
             if (skybox != nullptr)
             {
@@ -250,7 +251,7 @@ class GfxRenderer
             skybox = skybox_;
         }
 
-        inline ResPtr<GfxTexture> getSkybox() const
+        inline GfxTexture *getSkybox() const
         {
             return skybox;
         }
@@ -258,7 +259,7 @@ class GfxRenderer
         void _computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const;
         void _computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const;
 
-        ResPtr<GfxTexture> skybox;
+        GfxTexture *skybox;
         List<Light *> lights;
 
         RenderStats stats;
@@ -276,44 +277,45 @@ class GfxRenderer
         //GPUTimer *luminanceCalcTimer;
         GPUTimer *shadowmapTimer;
         GPUTimer *overlayTimer;
+        GPUTimer *debugDrawTimer;
 
         unsigned int width;
         unsigned int height;
 
         Scene *scene;
 
-        ResPtr<GfxShader> skyboxVertex;
-        ResPtr<GfxShader> skyboxFragment;
-        ResPtr<GfxMesh> skyboxMesh;
-        ResPtr<GfxMesh> quadMesh;
-        ResPtr<GfxShader> fxaaFragment;
-        ResPtr<GfxShader> lightingDirectional;
-        ResPtr<GfxShader> lightingPoint;
-        ResPtr<GfxShader> lightingSpot;
-        ResPtr<GfxShader> ssaoFragment;
-        ResPtr<GfxShader> ssaoBlurXFragment;
-        ResPtr<GfxShader> ssaoBlurYFragment;
-        ResPtr<GfxShader> bloomBlurXFragment;
-        ResPtr<GfxShader> bloomBlurYFragment;
-        ResPtr<GfxShader> tonemapFragment;
-        ResPtr<GfxShader> lumCalcFragment;
-        ResPtr<GfxShader> postEffectVertex;
-        ResPtr<GfxShader> shadowmapVertex;
-        ResPtr<GfxShader> shadowmapTessControl;
-        ResPtr<GfxShader> shadowmapTessEval;
-        ResPtr<GfxShader> pointShadowmapGeometry;
-        ResPtr<GfxShader> shadowmapFragment;
-        ResPtr<GfxShader> pointShadowmapFragment;
-        ResPtr<GfxShader> overlayVertex;
-        ResPtr<GfxShader> overlayFragment;
-        ResPtr<GfxShader> colorModifierFragment;
-        ResPtr<GfxShader> gammaCorrectionFragment;
-        ResPtr<GfxShader> applyBloomFragment;
-        ResPtr<GfxShader> bloomDownsampleFragment;
-        ResPtr<GfxShader> hbaoFragment;
-        ResPtr<GfxShader> ssaoInterleaveFragment;
-        ResPtr<GfxShader> ssaoDeinterleaveFragment;
-        ResPtr<GfxShader> ssaoGenerateNormalsFragment;
+        GfxShader *skyboxVertex;
+        GfxShader *skyboxFragment;
+        GfxMesh *skyboxMesh;
+        GfxMesh *quadMesh;
+        GfxShader *fxaaFragment;
+        GfxShader *lightingDirectional;
+        GfxShader *lightingPoint;
+        GfxShader *lightingSpot;
+        GfxShader *ssaoFragment;
+        GfxShader *ssaoBlurXFragment;
+        GfxShader *ssaoBlurYFragment;
+        GfxShader *bloomBlurXFragment;
+        GfxShader *bloomBlurYFragment;
+        GfxShader *tonemapFragment;
+        GfxShader *lumCalcFragment;
+        GfxShader *postEffectVertex;
+        GfxShader *shadowmapVertex;
+        GfxShader *shadowmapTessControl;
+        GfxShader *shadowmapTessEval;
+        GfxShader *pointShadowmapGeometry;
+        GfxShader *shadowmapFragment;
+        GfxShader *pointShadowmapFragment;
+        GfxShader *overlayVertex;
+        GfxShader *overlayFragment;
+        GfxShader *colorModifierFragment;
+        GfxShader *gammaCorrectionFragment;
+        GfxShader *applyBloomFragment;
+        GfxShader *bloomDownsampleFragment;
+        GfxShader *hbaoFragment;
+        GfxShader *ssaoInterleaveFragment;
+        GfxShader *ssaoDeinterleaveFragment;
+        GfxShader *ssaoGenerateNormalsFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingDirectionalShadow;
@@ -351,17 +353,17 @@ class GfxRenderer
         size_t numLights;
         GfxBuffer *lightBuffer;
 
-        void fillLightBuffer(ResPtr<Scene> scene);
+        void fillLightBuffer(Scene *scene);
         void renderEntities(bool forward, const List<Entity *>& entities);
         void renderSkybox();
         void renderModel(bool forward,
                          const Camera& camera,
                          const Matrix4x4& worldMatrix,
-                         const ResPtr<GfxModel> model);
+                         const GfxModel *model);
         void renderModelToShadowmap(const Matrix4x4& viewMatrix,
                                     const Matrix4x4& projectionMatrix,
                                     const Matrix4x4& worldMatrix,
-                                    const ResPtr<GfxModel> model,
+                                    const GfxModel *model,
                                     Light *light,
                                     size_t cubemapFace);
         void renderEntitiesToShadowmap(const Matrix4x4& viewMatrix,
@@ -371,25 +373,25 @@ class GfxRenderer
                                        const List<Entity *>& entities);
         void renderShadowmap(Light *light);
 
-        ResPtr<GfxTexture> writeColorTexture;
-        ResPtr<GfxTexture> readColorTexture;
-        ResPtr<GfxTexture> depthTexture;
-        ResPtr<GfxTexture> materialTexture;
-        ResPtr<GfxTexture> normalTexture;
-        ResPtr<GfxTexture> ssaoTexture;
-        ResPtr<GfxTexture> ssaoBlurXTexture;
-        ResPtr<GfxTexture> bloomBlurXTexture;
-        ResPtr<GfxTexture> ssaoRandomTexture;
-        ResPtr<GfxTexture> bloom1Texture;
-        ResPtr<GfxTexture> bloom2Texture;
-        ResPtr<GfxTexture> bloom3Texture;
-        ResPtr<GfxTexture> bloom4Texture;
-        ResPtr<GfxTexture> bloomDownsampleTexture;
-        ResPtr<GfxTexture> hbaoRandomTexture;
-        ResPtr<GfxTexture> deinterleavedDepthTexture;
-        ResPtr<GfxTexture> ssaoNormalTexture;
-        ResPtr<GfxTexture> deinterleavedSSAOTexture;
-        //ResPtr<GfxTexture> luminanceTexture;
+        GfxTexture *writeColorTexture;
+        GfxTexture *readColorTexture;
+        GfxTexture *depthTexture;
+        GfxTexture *materialTexture;
+        GfxTexture *normalTexture;
+        GfxTexture *ssaoTexture;
+        GfxTexture *ssaoBlurXTexture;
+        GfxTexture *bloomBlurXTexture;
+        GfxTexture *ssaoRandomTexture;
+        GfxTexture *bloom1Texture;
+        GfxTexture *bloom2Texture;
+        GfxTexture *bloom3Texture;
+        GfxTexture *bloom4Texture;
+        GfxTexture *bloomDownsampleTexture;
+        GfxTexture *hbaoRandomTexture;
+        GfxTexture *deinterleavedDepthTexture;
+        GfxTexture *ssaoNormalTexture;
+        GfxTexture *deinterleavedSSAOTexture;
+        //GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
         GfxFramebuffer *writeFramebuffer;

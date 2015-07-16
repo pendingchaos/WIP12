@@ -58,7 +58,7 @@ Application::~Application()
 {
     if (script != nullptr)
     {
-        ResPtr<Script> script_ = script->getScript();
+        Script *script_ = script->getScript();
 
         DELETE(ScriptInstance, script);
 

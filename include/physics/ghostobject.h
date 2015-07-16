@@ -36,19 +36,19 @@ class GhostObject
             return collisionMask;
         }
 
-        void setShape(ResPtr<PhysicsShape> shape);
+        void setShape(PhysicsShape *shape);
 
         void getCollisions(List<RigidBody *>& rigidBodies, List<GhostObject *>& ghostObjects) const;
 
-        inline ResPtr<PhysicsShape> getShape() const
+        inline PhysicsShape *getShape() const
         {
             return shape;
         }
     private:
-        GhostObject(unsigned short collisionMask, PhysicsWorld *world, ResPtr<PhysicsShape> shape);
+        GhostObject(unsigned short collisionMask, PhysicsWorld *world, PhysicsShape *shape);
         ~GhostObject();
 
-        ResPtr<PhysicsShape> shape;
+        PhysicsShape *shape;
         btPairCachingGhostObject *ghostObject;
         PhysicsWorld *world;
         unsigned short collisionMask;

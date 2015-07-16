@@ -48,7 +48,7 @@ void PhysicsWorld::addDebugDrawer()
     world->setDebugDrawer(debugDrawer);
 }
 
-RigidBody *PhysicsWorld::createRigidBody(const RigidBody::ConstructionInfo& info, ResPtr<PhysicsShape> shape)
+RigidBody *PhysicsWorld::createRigidBody(const RigidBody::ConstructionInfo& info, PhysicsShape *shape)
 {
     RigidBody *body = NEW(RigidBody, info, shape, this);
 
@@ -64,7 +64,7 @@ void PhysicsWorld::destroyRigidBody(RigidBody *rigidBody)
     DELETE(RigidBody, rigidBody);
 }
 
-GhostObject *PhysicsWorld::createGhostObject(ResPtr<PhysicsShape> shape, unsigned short collisionMask)
+GhostObject *PhysicsWorld::createGhostObject(PhysicsShape *shape, unsigned short collisionMask)
 {
     GhostObject *ghost = NEW(GhostObject, collisionMask, this, shape);
 

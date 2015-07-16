@@ -103,7 +103,7 @@ class Light
             }
         }
 
-        inline ResPtr<GfxTexture> getShadowmap() const
+        inline GfxTexture *getShadowmap() const
         {
             return shadowmap;
         }
@@ -141,7 +141,7 @@ class Light
             return projectionMatrix;
         }
     private:
-        ResPtr<GfxTexture> shadowmap;
+        GfxTexture *shadowmap;
         GfxFramebuffer *shadowmapFramebuffer;
         GfxFramebuffer *pointLightFramebuffers[6];
         size_t shadowmapResolution;

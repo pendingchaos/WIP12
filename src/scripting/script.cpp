@@ -60,8 +60,8 @@ static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting
 "        GfxDebugDrawer *debugDrawer;\n"
 "        AudioDevice *audioDevice;\n"
 "        Entity *entity;\n"
-"        ResPtr<Script> script;\n"
-"        ResPtr<Scene> scene;\n;\n"
+"        Script *script;\n"
+"        Scene *scene;\n;\n"
 "};\n"
 "#endif\n"
 "#define BEGIN_INSTANCE(name) class name : public InstanceBase"
@@ -96,7 +96,7 @@ class InstanceBase
 };
 
 ScriptInstance::ScriptInstance(const char *name_,
-                               ResPtr<Script> script_,
+                               Script *script_,
                                void *ptr_,
                                Entity *entity_,
                                Scene *scene_) : name(name_),
@@ -376,7 +376,7 @@ ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *
 {
     if (entity != nullptr)
     {
-        scene = entity->getScene().getPtr();
+        scene = entity->getScene();
     }
 
     void *(*createFunc)(Application *, Entity *, Scene *, Script *) = getCreateFunc(name);

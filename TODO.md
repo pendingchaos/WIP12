@@ -14,6 +14,8 @@
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
 
 ## Bugs
+- [ ] Forward rendering does not work.
+- [ ] Debug draw does not work.
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
 - [ ] Parallax occlusion mapping seems to be incorrect(?).
@@ -33,7 +35,6 @@
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
-- [ ] Get rid of ResPtr.
 
 ## Performance Improvements
 - [ ] Instancing (explicit and implicit).

@@ -11,22 +11,22 @@ class GfxGLFramebuffer : public GfxFramebuffer
         virtual ~GfxGLFramebuffer();
 
         virtual void addColorAttachment(size_t rtIndex,
-                                        ResPtr<GfxTexture> texture,
+                                        GfxTexture *texture,
                                         size_t mipmapLevel=0,
                                         int layer=-1);
         virtual void removeColorAttachment(size_t index);
         virtual size_t getNumColorAttachments();
         virtual size_t getColorRT(size_t index);
-        virtual ResPtr<GfxTexture> getColorAttachment(size_t index);
+        virtual GfxTexture *getColorAttachment(size_t index);
         virtual size_t getColorAttachmentMipmapLevel(size_t index);
         virtual int getColorAttachmentLayer(size_t index);
 
-        virtual void setDepthAttachment(ResPtr<GfxTexture> texture,
+        virtual void setDepthAttachment(GfxTexture *texture,
                                         size_t mipmapLevel=0,
                                         int layer=-1);
         virtual void removeDepthAttachment();
         virtual bool hasDepthAttachment();
-        virtual ResPtr<GfxTexture> getDepthTexture();
+        virtual GfxTexture *getDepthTexture();
         virtual size_t getDepthTextureMipmapLevel();
         virtual int getDepthAttachmentLayer();
 
@@ -38,7 +38,7 @@ class GfxGLFramebuffer : public GfxFramebuffer
         struct Attachment
         {
             size_t rtIndex;
-            ResPtr<GfxTexture> texture;
+            GfxTexture *texture;
             size_t mipmapLevel;
             int layer;
 

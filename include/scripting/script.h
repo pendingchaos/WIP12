@@ -77,7 +77,7 @@ class ScriptInstance
         void serialize(Serializable& serialized);
         void deserialize(const Serializable& serialized);
 
-        inline ResPtr<Script> getScript() const
+        inline Script *getScript() const
         {
             return script;
         }
@@ -93,13 +93,13 @@ class ScriptInstance
         }
     private:
         ScriptInstance(const char *name,
-                       ResPtr<Script> script,
+                       Script *script,
                        void *ptr,
                        Entity *entity,
                        Scene *scene);
 
         String name;
-        ResPtr<Script> script;
+        Script *script;
         void *ptr;
         Entity *entity;
         Scene *scene;

@@ -75,7 +75,7 @@ class Font : public Resource
             UInt2 size;
             UInt2 bearing;
             float xAdvance;
-            ResPtr<GfxTexture> texture;
+            GfxTexture *texture;
 
             inline bool operator == (const Glyph& other) const
             {
@@ -102,10 +102,10 @@ class Font : public Resource
 
         HashMap<size_t, Face> faces;
 
-        ResPtr<GfxMesh> quadMesh;
-        ResPtr<GfxShader> quadVertex;
-        ResPtr<GfxShader> quadGeometry;
-        ResPtr<GfxShader> quadFragment;
+        GfxMesh *quadMesh;
+        GfxShader *quadVertex;
+        GfxShader *quadGeometry;
+        GfxShader *quadFragment;
         GfxCompiledShader *compiledQuadVertex;
         GfxCompiledShader *compiledQuadGeometry;
         GfxCompiledShader *compiledQuadFragment;

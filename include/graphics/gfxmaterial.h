@@ -50,7 +50,7 @@ class GfxMaterial : public Resource
         float shadowMinTessLevel;
         float shadowMaxTessLevel;
 
-        #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(ResPtr<GfxTexture> texture)\
+        #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(GfxTexture *texture)\
         {\
             if (name != nullptr)\
             {\
@@ -66,7 +66,7 @@ class GfxMaterial : public Resource
             }\
         }\
         \
-        inline ResPtr<GfxTexture> JOIN(get, upperName)() const\
+        inline GfxTexture *JOIN(get, upperName)() const\
         {\
             return name;\
         }
@@ -80,9 +80,9 @@ class GfxMaterial : public Resource
 
         #undef TEXTURE
 
-        void setDisplacementMap(ResPtr<GfxTexture> texture);
+        void setDisplacementMap(GfxTexture *texture);
 
-        inline ResPtr<GfxTexture> getDisplacementMap() const
+        inline GfxTexture *getDisplacementMap() const
         {
             return displacementMap;
         }
@@ -96,13 +96,13 @@ class GfxMaterial : public Resource
     private:
         GfxShaderCombination *shaderComb;
 
-        ResPtr<GfxTexture> smoothnessMap;
-        ResPtr<GfxTexture> metalMaskMap;
-        ResPtr<GfxTexture> albedoMap;
-        ResPtr<GfxTexture> normalMap;
-        ResPtr<GfxTexture> parallaxHeightMap;
-        ResPtr<GfxTexture> pomHeightMap;
-        ResPtr<GfxTexture> displacementMap;
+        GfxTexture *smoothnessMap;
+        GfxTexture *metalMaskMap;
+        GfxTexture *albedoMap;
+        GfxTexture *normalMap;
+        GfxTexture *parallaxHeightMap;
+        GfxTexture *pomHeightMap;
+        GfxTexture *displacementMap;
 
         bool forward;
     protected:
