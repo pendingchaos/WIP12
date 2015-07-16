@@ -14,6 +14,7 @@
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
 
 ## Bugs
+- [ ] Resource reloading does not work.
 - [ ] Forward rendering does not work.
 - [ ] Debug draw does not work.
 - [ ] The doppler effect (disabled) causes popping noise.

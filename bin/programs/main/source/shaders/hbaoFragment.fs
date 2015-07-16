@@ -60,9 +60,9 @@ void main()
     mat2 rotationMatrix = mat2(U(random).x, -U(random).y, 
                                U(random).y, U(random).x);
     
-    for (uint i = 0; i < NUM_DIRECTIONS; ++i)
+    for (uint i = uint(0); i < uint(NUM_DIRECTIONS); ++i)
     {
-        float angle = 2.0 * PI / NUM_DIRECTIONS * i;
+        float angle = 2.0 * PI / float(NUM_DIRECTIONS) * float(i);
         
         float c = cos(angle);
         float s = sin(angle);
@@ -71,7 +71,7 @@ void main()
         
         float rayPixels = stepSize;
         
-        for (uint j = 0; j < NUM_STEPS; ++j)
+        for (uint j = uint(0); j < uint(NUM_STEPS); ++j)
         {
             vec3 samplePos = getPosition(round(rayPixels * dir) * onePixel + frag_uv, resolution);
             
