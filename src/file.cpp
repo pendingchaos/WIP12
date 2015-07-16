@@ -63,6 +63,8 @@ List<String> listFiles(const char *directory)
         }
     }
 
+    closedir(dir);
+
     return result;
 }
 

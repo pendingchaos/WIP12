@@ -24,7 +24,6 @@
 - [ ] Parallax occlusion mapping seems to be incorrect(?).
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] The program crashes when the script fails to compile on startup.
-- [ ] When a script is reloaded, the scripts that #include it will not be recompiled.
 - [ ] Displacement mapping should contribute to the scene AABB.
 - [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
 

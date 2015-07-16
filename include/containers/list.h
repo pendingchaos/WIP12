@@ -152,6 +152,11 @@ class List
         {
             return List(getCount(), data.data());
         }
+
+        inline bool in(const T& value) const
+        {
+            return find(value) != -1;
+        }
     private:
         std::vector<T> data;
 };

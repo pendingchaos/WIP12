@@ -2,6 +2,7 @@
 #define STRING_H
 
 #include "containers/resizabledata.h"
+#include "containers/list.h"
 #include "misc_macros.h"
 #include "memory.h"
 
@@ -286,6 +287,60 @@ class String
         inline static String formatValue(float value)
         {
             return String::format("f", value);
+        }
+
+        inline bool startsWith(const String& with) const
+        {
+            if (getLength() < with.getLength())
+            {
+                return false;
+            }
+
+            for (size_t i = 0; i < with.getLength(); ++i)
+            {
+                if ((*this)[i] != with[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        inline bool splitLeftRight(char separator, String& left, String& right) const
+        {
+            int location = find(separator);
+
+            if (location == -1)
+            {
+                return false;
+            }
+
+            left = subStr(0, location);
+            right = subStr(location+1, getLength()-location-1);
+
+            return true;
+        }
+
+        inline List<String> split(char separator) const
+        {
+            List<String> result;
+
+            String left;
+            String right = copy();
+            while (right.splitLeftRight(separator, left, right))
+            {
+                result.append(left);
+            }
+
+            result.append(right);
+
+            return result;
+        }
+
+        inline String join(const String& other) const
+        {
+            return copy().append(other);
         }
     private:
         ResizableData data;

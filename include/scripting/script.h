@@ -120,6 +120,7 @@ class Script : public Resource
         virtual ~Script();
 
         virtual void removeContent();
+        virtual void possiblyReload();
 
         ScriptInstance *createInstance(const char *name, Entity *entity=nullptr, Scene *scene=nullptr);
 
@@ -134,6 +135,8 @@ class Script : public Resource
         void *dl;
 
         List<ScriptInstance *> instances;
+        List<String> includes;
+        List<time_t> includesModifications;
 
         void *(*getCreateFunc(const char *name))(Application *, Entity *, Scene *, Script *);
         void (*getDestroyFunc(const char *name))(void *);

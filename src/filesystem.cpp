@@ -63,7 +63,10 @@ String Filesystem::getAbsolutePath(const char *path) const
 
     char result[PATH_MAX];
     std::memset(result, '\x00', sizeof(result));
-    realpath(path, result);
+    if (realpath(path, result) == nullptr)
+    {
+        return "";
+    }
 
     return result;
 }

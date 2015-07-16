@@ -213,6 +213,33 @@ void Script::removeContent()
         dlclose(dl);
         dl = nullptr;
     }
+
+    includes.clear();
+    includesModifications.clear();
+}
+
+void Script::possiblyReload()
+{
+    bool includesDirty = false;
+
+    for (size_t i = 0; i < includes.getCount(); ++i)
+    {
+        try
+        {
+            if (::getLastFileModification(includes[i].getData()) != includesModifications[i])
+            {
+                includesDirty = true;
+            }
+        } catch (FileException& e)
+        {
+            includesDirty = true;
+        }
+    }
+
+    if (shouldReload() or includesDirty)
+    {
+        reload();
+    }
 }
 
 void Script::_load()
@@ -370,6 +397,45 @@ void Script::_load()
               getFilename(),
               String("Unable to execute command: ").append(command));
     }
+
+    List<String> lines = source.split('\n');
+
+    fileSys->pushSearchPaths();
+    fileSys->addSearchPath(dir);
+
+    for (size_t i = 0; i < lines.getCount(); ++i)
+    {
+        const String& line = lines[i];
+
+        try
+        {
+            if (line.startsWith("#include"))
+            {
+                List<String> parts = line.split('"');
+                String includedFile;
+
+                if (parts.getCount() == 1)
+                {
+                    parts = line.split('<');
+
+                    includedFile = parts[1].split('>')[0];
+                } else
+                {
+                    includedFile = parts[1];
+                }
+
+                includedFile = fileSys->getAbsolutePath(includedFile.getData());
+
+                if (includedFile.getLength() != 0)
+                {
+                    includes.append(includedFile);
+                    includesModifications.append(::getLastFileModification(includedFile.getData()));
+                }
+            }
+        } catch (BoundsException& e) {}
+    }
+
+    fileSys->popSearchPaths();
 }
 
 ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *scene)
