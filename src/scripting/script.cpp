@@ -196,11 +196,6 @@ void Script::removeContent()
 {
     if (dl != nullptr)
     {
-        for (size_t i = 0; i < userDatas.getCount(); ++i)
-        {
-            userDatas[i]->deinitFunc(userDatas[i]->pointer);
-        }
-
         for (size_t i = 0; i < instances.getCount(); ++i)
         {
             ScriptInstance *instance = instances[i];
@@ -366,11 +361,6 @@ void Script::_load()
                         }
                     }
                 }
-            }
-
-            for (size_t i = 0; i < userDatas.getCount(); ++i)
-            {
-                userDatas[i]->pointer = userDatas[i]->initFunc();
             }
         }
     } else

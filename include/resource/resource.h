@@ -182,10 +182,9 @@ class Resource
         virtual void reload();
         virtual void save();
 
-        template <typename T>
-        ResPtr<T> *copy() const
+        Resource *copy() const
         {
-            return ResPtr<T>((T *)_copy());
+            return _copy();
         }
 
         inline Type getType() const

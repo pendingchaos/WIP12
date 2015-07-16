@@ -1006,3 +1006,96 @@ void PhysicsCompoundShape::setChildren(size_t count, const Child *children)
 
     create(children);
 }
+
+Resource *PhysicsShape::_copy() const
+{
+    PhysicsShape *shape = NEW(PhysicsShape);
+
+    shape->setMargin(getMargin());
+    shape->setScale(getScale());
+
+    switch (getShapeType())
+    {
+    case PhysicsShapeImpl::Empty:
+    {
+        break;
+    }
+    case PhysicsShapeImpl::Sphere:
+    {
+        shape->setSphere(((PhysicsSphereShape *)impl)->getRadius());
+        break;
+    }
+    case PhysicsShapeImpl::Box:
+    {
+        shape->setBox(((PhysicsBoxShape *)impl)->getHalfExtents());
+        break;
+    }
+    case PhysicsShapeImpl::Cylinder:
+    {
+        PhysicsCylinderShape *impl_ = (PhysicsCylinderShape *)impl;
+
+        shape->setCylinder(impl_->getAxis(), impl_->getHeight(), impl_->getRadius());
+        break;
+    }
+    case PhysicsShapeImpl::Capsule:
+    {
+        PhysicsCapsuleShape *impl_ = (PhysicsCapsuleShape *)impl;
+
+        shape->setCapsule(impl_->getAxis(), impl_->getHeight(), impl_->getRadius());
+        break;
+    }
+    case PhysicsShapeImpl::Cone:
+    {
+        PhysicsConeShape *impl_ = (PhysicsConeShape *)impl;
+
+        shape->setCone(impl_->getAxis(), impl_->getHeight(), impl_->getRadius());
+        break;
+    }
+    case PhysicsShapeImpl::ConvexHull:
+    {
+        PhysicsConvexHullShape *impl_ = (PhysicsConvexHullShape *)impl;
+
+        shape->setConvexHull(impl_->getNumPoints(), impl_->getPoints());
+        break;
+    }
+    case PhysicsShapeImpl::StaticTriangleMesh:
+    {
+        PhysicsStaticTriangleMesh *impl_ = (PhysicsStaticTriangleMesh *)impl;
+
+        shape->setStaticTriangleMesh(impl_->getNumTriangles()*3, impl_->getTriangles());
+        break;
+    }
+    case PhysicsShapeImpl::Heightfield:
+    {
+        PhysicsHeightfield *impl_ = (PhysicsHeightfield *)impl;
+
+        shape->setHeightfield(impl_->getWidth(), impl_->getHeight(), impl_->getData());
+        break;
+    }
+    case PhysicsShapeImpl::Plane:
+    {
+        PhysicsPlaneShape *impl_ = (PhysicsPlaneShape *)impl;
+
+        shape->setPlane(impl_->getNormal(), impl_->getDistance());
+        break;
+    }
+    case PhysicsShapeImpl::Compound:
+    {
+        PhysicsCompoundShape *impl_ = (PhysicsCompoundShape *)impl;
+
+        PhysicsCompoundShape::Child children[impl_->getShapeCount()];
+
+        for (size_t i = 0; i < impl_->getShapeCount(); ++i)
+        {
+            children[i].orientation = impl_->getShapes()[i].orientation;
+            children[i].position = impl_->getShapes()[i].position;
+            children[i].shape = impl_->getShapes()[i].shape->copy();
+        }
+
+        shape->setCompound(impl_->getShapeCount(), children);
+        break;
+    }
+    }
+
+    return (Resource *)shape;
+}

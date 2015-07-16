@@ -7,7 +7,7 @@ BEGIN_INSTANCE(Player)
     virtual void init()
     {
         angle = Float2(M_PI, 0.0f);
-        speed = 5.0f;
+        speed = 10.0f;
         rotateSpeed = 0.5f;
         zoom = 1.0f;
         maximumVelocity = 12.0f;

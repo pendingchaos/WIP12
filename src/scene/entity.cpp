@@ -8,7 +8,6 @@ Entity::Entity(const String& name_,
                                 rigidBody(nullptr),
                                 render(false),
                                 scene(scene_),
-                                userData(nullptr),
                                 parent(nullptr) {}
 
 Entity::~Entity()
@@ -44,12 +43,10 @@ Entity::~Entity()
     }
 
     removeRigidBody();
-    removeUserData();
 }
 
-void Entity::addRigidBody(PhysicsWorld *world,
-                          const RigidBody::ConstructionInfo& info,
-                          ResPtr<PhysicsShape> shape)
+RigidBody *Entity::addRigidBody(const RigidBody::ConstructionInfo& info,
+                                ResPtr<PhysicsShape> shape)
 {
     updateFinalTransform();
 
@@ -57,7 +54,9 @@ void Entity::addRigidBody(PhysicsWorld *world,
 
     newInfo.entity = this;
 
-    rigidBody = world->createRigidBody(newInfo, shape);
+    rigidBody = scene->getPhysicsWorld()->createRigidBody(newInfo, shape);
+
+    return rigidBody;
 }
 
 ResPtr<Scene> Entity::getScene() const
@@ -97,4 +96,20 @@ void Entity::updateFinalTransform()
     {
         entities[i]->updateFinalTransform();
     }
+}
+
+AudioSource *Entity::addAudioSource(ResPtr<Audio> audio)
+{
+    AudioSource *source = scene->getAudioWorld()->createSource(audio);
+
+    audioSources.append(source);
+
+    return source;
+}
+
+void Entity::removeAudioSource(size_t index)
+{
+    scene->getAudioWorld()->destroySource(audioSources[index]);
+
+    audioSources.remove(index);
 }

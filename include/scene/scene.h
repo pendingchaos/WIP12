@@ -59,18 +59,20 @@ class Scene : public Resource
             return entities;
         }
 
-        inline bool addScript(ResPtr<Script> script, const char *name)
+        inline ScriptInstance *addScript(ResPtr<Script> script, const char *name)
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 
             if (inst == nullptr)
             {
-                scripts.append(script->createInstance(name, nullptr, this));
+                ScriptInstance *new_ = script->createInstance(name, nullptr, this);
 
-                return true;
+                scripts.append(new_);
+
+                return new_;
             }
 
-            return false;
+            return nullptr;
         }
 
         inline void removeScript(ScriptInstance *instance)
@@ -130,6 +132,7 @@ class Scene : public Resource
         PhysicsWorld *physicsWorld;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 };
 
 #endif // SCENE_H

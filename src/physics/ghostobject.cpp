@@ -6,7 +6,6 @@ GhostObject::GhostObject(unsigned short collisionMask,
                          PhysicsWorld *world_,
                          ResPtr<PhysicsShape> shape_) : shape(shape_),
                                                         world(world_),
-                                                        userData(nullptr),
                                                         collisionMask(collisionMask)
 {
     shape->ghosts.append(this);
@@ -23,8 +22,6 @@ GhostObject::GhostObject(unsigned short collisionMask,
 GhostObject::~GhostObject()
 {
     shape->release();
-
-    removeUserData();
 
     world->getBulletWorld()->removeCollisionObject(ghostObject);
 

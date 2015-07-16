@@ -10,6 +10,7 @@
 #include "audio/audioworld.h"
 #include "globals.h"
 #include "file.h"
+#include "logging.h"
 
 Scene::Scene() : Resource(SceneType)
 {
@@ -191,7 +192,7 @@ void Scene::render()
     }
 }
 
-void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
+void loadEntity(Entity *entity, File *file)
 {
     float posX = file->readFloat32();
     float posY = file->readFloat32();
@@ -289,7 +290,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
         String shape(length);
         file->read(length, shape.getData());
 
-        entity->addRigidBody(world, info, resMgr->load<PhysicsShape>(shape));
+        entity->addRigidBody(info, resMgr->load<PhysicsShape>(shape));
     }
 
     uint32_t numScripts = file->readUInt32LE();
@@ -317,7 +318,7 @@ void loadEntity(Entity *entity, PhysicsWorld *world, File *file)
 
         Entity *child = entity->createEntity(name);
 
-        loadEntity(child, world, file);
+        loadEntity(child, file);
     }
 }
 
@@ -515,7 +516,7 @@ void Scene::_load()
 
             Entity *entity = createEntity(name);
 
-            loadEntity(entity, physicsWorld, &file);
+            loadEntity(entity, &file);
         }
 
         uint32_t numLights = file.readUInt32LE();
@@ -954,4 +955,196 @@ void Scene::removeEntity(size_t index)
     DELETE(Entity, entities[index]);
 
     entities.remove(index);
+}
+
+void copyEntity(Entity *dest, Entity *source)
+{
+    dest->transform = source->transform;
+    dest->updateFinalTransform();
+
+    if (source->hasRigidBody())
+    {
+        RigidBody *body = source->getRigidBody();
+        RigidBody::ConstructionInfo info;
+
+        info.type = body->getType();
+        info.mass = body->getMass();
+        info.linearDamping = body->getLinearDamping();
+        info.angularDamping = body->getAngularDamping();
+        info.friction = body->getFriction();
+        info.rollingFriction = body->getRollingFriction();
+        info.restitution = body->getRestitution();
+        info.linearSleepingThreshold = body->getLinearSleepingThreshold();
+        info.angularSleepingThreshold = body->getAngularSleepingThreshold();
+        info.collisionMask = body->getCollisionMask();
+
+        RigidBody *body2 = dest->addRigidBody(info,
+                                              source->getRigidBody()->getShape()->copyRef<PhysicsShape>());
+
+        body2->setGravity(body->getGravity());
+        body2->setLinearVelocity(body->getLinearVelocity());
+        body2->setAngularVelocity(body->getAngularVelocity());
+    }
+
+    if (source->hasRenderComponent())
+    {
+        RenderComponent *render = source->getRenderComponent();
+
+        if (render->type == RenderComponent::Model)
+        {
+            dest->addModel(render->model->copyRef<GfxModel>(), render->modelData.shadowCaster);
+        } else if (render->type == RenderComponent::Overlay)
+        {
+            dest->addOverlay(render->overlayTexture);
+            dest->getRenderComponent()->overlayData.color = render->overlayData.color;
+        }
+    }
+
+    for (size_t i = 0; i < source->getAudioSources().getCount(); ++i)
+    {
+        AudioSource *audio = source->getAudioSources()[i];
+        AudioSource *audio2 = dest->addAudioSource(audio->getAudio()->copyRef<Audio>());
+
+        audio2->is3d = audio->is3d;
+        audio2->position = audio->position;
+        audio2->referenceDistance = audio->referenceDistance;
+        audio2->rolloffFactor = audio->rolloffFactor;
+        audio2->maxDistance = audio->maxDistance;
+        audio2->volume = audio->volume;
+        audio2->velocity = audio->velocity;
+        audio2->dopplerFactor = audio->dopplerFactor;
+        audio2->offset = audio->offset;
+        audio2->loop = audio->loop;
+        audio2->playing = audio->playing;
+    }
+
+    for (size_t i = 0; i < source->getScripts().getCount(); ++i)
+    {
+        ScriptInstance *inst = source->getScripts()[i];
+
+        Serializable serialized;
+
+        inst->serialize(serialized);
+
+        ScriptInstance *new_ = dest->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+
+        try
+        {
+            new_->deserialize(serialized);
+        } catch (SerializeException& e)
+        {
+            log("Serialization exception");
+            log("    File: %s\n", e.getFile());
+            log("    Line: %d\n", e.getLine());
+            log("    Function: %s\n", e.getFunction());
+            log("    Script: %s\n", inst->getScript()->getFilename().getData());
+
+            dest->removeScript(new_);
+
+            dest->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+        }
+    }
+
+    for (size_t i = 0; i < source->getEntities().getCount(); ++i)
+    {
+        Entity *entity = source->getEntities()[i];
+
+        copyEntity(dest->createEntity(entity->name.copy()), entity);
+    }
+}
+
+Resource *Scene::_copy() const
+{
+    Scene *scene = NEW(Scene);
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        ScriptInstance *inst = scripts[i];
+
+        scene->addScript(inst->getScript(), inst->getName().getData());
+    }
+
+    scene->renderer->camera = renderer->camera;
+    scene->renderer->debugDraw = renderer->debugDraw;
+    scene->renderer->bloomThreshold = renderer->bloomThreshold;
+    scene->renderer->bloom1Radius = renderer->bloom1Radius;
+    scene->renderer->bloom2Radius = renderer->bloom2Radius;
+    scene->renderer->bloom3Radius = renderer->bloom3Radius;
+    scene->renderer->bloom4Radius = renderer->bloom4Radius;
+    scene->renderer->bloom1Strength = renderer->bloom1Strength;
+    scene->renderer->bloom2Strength = renderer->bloom2Strength;
+    scene->renderer->bloom3Strength = renderer->bloom3Strength;
+    scene->renderer->bloom4Strength = renderer->bloom4Strength;
+    scene->renderer->bloomEnabled = renderer->bloomEnabled;
+    scene->renderer->ssaoRadius = renderer->ssaoRadius;
+    scene->renderer->colorModifiers = renderer->colorModifiers.copy();
+    scene->renderer->setSkybox(renderer->getSkybox()->copyRef<GfxTexture>());
+
+    scene->renderer->updateColorModifierShader();
+
+    for (size_t i = 0; i < renderer->getLights().getCount(); ++i)
+    {
+        Light *light = renderer->getLights()[i];
+        Light *light2 = scene->renderer->addLight();
+
+        light2->type = light->type;
+        light2->power = light->power;
+        light2->color = light->color;
+        light2->ambientStrength = light->ambientStrength;
+        light2->shadowmapNear = light->shadowmapNear;
+        light2->shadowmapFar = light->shadowmapFar;
+        light2->shadowMinBias = light->shadowMinBias;
+        light2->shadowAutoBiasScale = light->shadowAutoBiasScale;
+        light2->direction.direction = light->direction.direction;
+        light2->spot.position = light->spot.position;
+        light2->spot.direction = light->spot.direction;
+        light2->spot.innerCutoff = light->spot.innerCutoff;
+        light2->spot.outerCutoff = light->spot.outerCutoff;
+        light2->spot.radius = light->spot.radius;
+        light2->point.position = light->point.position;
+        light2->point.radius = light->point.radius;
+        light2->point.singlePassShadowMap = light->point.singlePassShadowMap;
+
+        if (light->getShadowmap() != nullptr)
+        {
+            light2->addShadowmap(light->getShadowmapResolution(),
+                                 light->getShadowmapPrecision());
+        }
+    }
+
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        Entity *entity = entities[i];
+
+        copyEntity(scene->createEntity(entity->name.copy()), entity);
+    }
+
+    for (size_t i = 0; i < scripts.getCount(); ++i)
+    {
+        ScriptInstance *inst = scripts[i];
+
+        Serializable serialized;
+
+        inst->serialize(serialized);
+
+        ScriptInstance *new_ = scene->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+
+        try
+        {
+            new_->deserialize(serialized);
+        } catch (SerializeException& e)
+        {
+            log("Serialization exception");
+            log("    File: %s\n", e.getFile());
+            log("    Line: %d\n", e.getLine());
+            log("    Function: %s\n", e.getFunction());
+            log("    Script: %s\n", inst->getScript()->getFilename().getData());
+
+            scene->removeScript(new_);
+
+            scene->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+        }
+    }
+
+    return (Resource *)scene;
 }

@@ -446,12 +446,12 @@ class PhysicsShape : public Resource
             impl->setMargin(margin);
         }
 
-        inline Direction3D getScale() const
+        inline Vector3D getScale() const
         {
             return impl->getScale();
         }
 
-        inline void setScale(const Direction3D& scale)
+        inline void setScale(const Vector3D& scale)
         {
             impl->setScale(scale);
         }
@@ -480,6 +480,7 @@ class PhysicsShape : public Resource
         List<GhostObject *> ghosts;
     protected:
         virtual void _load();
+        virtual Resource *_copy() const;
 };
 
 #endif // PHYSICSSHAPE_H

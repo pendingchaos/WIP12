@@ -170,24 +170,21 @@ BEGIN_INSTANCE(Main)
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
         
-        scene = resMgr->load<Scene>("resources/scenes/scene.bin");
+        scene = resMgr->loadAndCopy<Scene>("resources/scenes/scene.bin");
         
         font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
         
         debugDrawTimer = gfxApi->createTimer();
         textTimer = gfxApi->createTimer();
         
-        audio = resMgr->load<Audio>("resources/audio/hi.ogg");
+        Entity *entity = scene->createEntity("Audio source");
         
-        source = scene->getAudioWorld()->createSource(audio);
-        
+        source = entity->addAudioSource(resMgr->load<Audio>("resources/audio/hi.ogg"));
         source->position = Position3D(0.0f, 1.0f, 0.0f);
     }
     
     virtual void deinit()
     {
-        audio->release();
-        
         DELETE(GPUTimer, textTimer);
         DELETE(GPUTimer, debugDrawTimer);
         
@@ -232,11 +229,6 @@ BEGIN_INSTANCE(Main)
                     platform->setFullscreen(false);
                     break;
                 }
-                case Platform::H:
-                {
-                    source->playing = true;
-                    break;
-                }
                 }
                 break;
             }
@@ -251,6 +243,11 @@ BEGIN_INSTANCE(Main)
         scene->update();
         
         scene->getAudioWorld()->listenerPosition = scene->getRenderer()->camera.getPosition();
+    
+        if (platform->isKeyPressed(Platform::H))
+        {
+            source->playing = true;
+        }
     }
 
     virtual void fixedUpdate(float timestep)

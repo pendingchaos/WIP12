@@ -83,8 +83,7 @@ RigidBody::RigidBody(const ConstructionInfo& info,
                                              world(world_),
                                              entity(info.entity),
                                              type(info.type),
-                                             collisionMask(info.collisionMask),
-                                             userData(nullptr)
+                                             collisionMask(info.collisionMask)
 {
     shape->rigidBodies.append(this);
 
@@ -138,8 +137,6 @@ RigidBody::~RigidBody()
     shape->rigidBodies.remove(shape->rigidBodies.find(this));
 
     shape->release();
-
-    removeUserData();
 
     world->getBulletWorld()->removeRigidBody(rigidBody);
 

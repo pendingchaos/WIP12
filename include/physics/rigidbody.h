@@ -149,22 +149,6 @@ class RigidBody
             return shape;
         }
 
-        inline void setUserData(const ScriptFunction<void *>& initFunc,
-                                const ScriptFunction<void, void *>& deinitFunc)
-        {
-            userData = NEW(UserData, initFunc, deinitFunc);
-        }
-
-        inline void removeUserData()
-        {
-            DELETE(UserData, userData);
-        }
-
-        inline UserData *getUserData() const
-        {
-            return userData;
-        }
-
         inline Entity *getEntity() const
         {
             return entity;
@@ -181,7 +165,6 @@ class RigidBody
         Entity *entity;
         RigidBody::Type type;
         short collisionMask;
-        UserData *userData;
 };
 
 #endif // RIGIDBODY_H

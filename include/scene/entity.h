@@ -10,6 +10,7 @@
 #include "physics/physicsworld.h"
 #include "graphics/gfxmodel.h"
 #include "scripting/script.h"
+#include "audio/audioworld.h"
 
 class Scene;
 class Entity;
@@ -55,18 +56,20 @@ class Entity
         Entity(const String& name, Scene *scene);
         ~Entity();
     public:
-        inline bool addScript(ResPtr<Script> script, const char *name)
+        inline ScriptInstance *addScript(ResPtr<Script> script, const char *name)
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 
             if (inst == nullptr)
             {
-                scripts.append(script->createInstance(name, this));
+                ScriptInstance *new_ = script->createInstance(name, this);
 
-                return true;
+                scripts.append(new_);
+
+                return new_;
             }
 
-            return false;
+            return nullptr;
         }
 
         inline void removeScript(ScriptInstance *instance)
@@ -114,9 +117,8 @@ class Entity
         }
         #endif
 
-        void addRigidBody(PhysicsWorld *world,
-                          const RigidBody::ConstructionInfo& info,
-                          ResPtr<PhysicsShape> shape);
+        RigidBody *addRigidBody(const RigidBody::ConstructionInfo& info,
+                                ResPtr<PhysicsShape> shape);
 
         inline RigidBody *getRigidBody() const
         {
@@ -182,22 +184,6 @@ class Entity
 
         ResPtr<Scene> getScene() const;
 
-        inline void setUserData(const ScriptFunction<void *>& initFunc,
-                                const ScriptFunction<void, void *>& deinitFunc)
-        {
-            userData = NEW(UserData, initFunc, deinitFunc);
-        }
-
-        inline void removeUserData()
-        {
-            DELETE(UserData, userData);
-        }
-
-        inline UserData *getUserData()
-        {
-            return userData;
-        }
-
         Entity *createEntity(const String& name);
         void removeEntity(size_t index);
 
@@ -218,6 +204,14 @@ class Entity
             return finalTransform;
         }
 
+        inline const List<AudioSource *>& getAudioSources() const
+        {
+            return audioSources;
+        }
+
+        AudioSource *addAudioSource(ResPtr<Audio> audio);
+        void removeAudioSource(size_t index);
+
         String name;
         Transform transform;
     private:
@@ -226,10 +220,10 @@ class Entity
         bool render;
         RenderComponent renderComponent;
         mutable Scene *scene;
-        UserData *userData;
         List<Entity *> entities;
         Entity *parent;
         Matrix4x4 finalTransform;
+        List<AudioSource *> audioSources;
 
     NO_COPY(Entity);
 };

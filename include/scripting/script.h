@@ -105,11 +105,8 @@ class ScriptInstance
         Scene *scene;
 };
 
-class UserData;
-
 class Script : public Resource
 {
-    friend UserData;
     friend ScriptInstance;
 
     NO_COPY_INHERITED(Script, Resource);
@@ -137,7 +134,6 @@ class Script : public Resource
         void *dl;
 
         List<ScriptInstance *> instances;
-        List<UserData *> userDatas;
 
         void *(*getCreateFunc(const char *name))(Application *, Entity *, Scene *, Script *);
         void (*getDestroyFunc(const char *name))(void *);
@@ -161,72 +157,6 @@ class Script : public Resource
         }
 
         void destroyInstance(ScriptInstance *instance);
-};
-
-template <typename Return, typename ... Args>
-class ScriptFunction
-{
-    public:
-        ScriptFunction(ResPtr<Script> script_, const char *name_) : script(script_),
-                                                                    name(name_) {}
-
-        inline ResPtr<Script> getScript() const
-        {
-            return script;
-        }
-
-        inline const String& getName() const
-        {
-            return name;
-        }
-
-        inline Return operator () (Args... args)
-        {
-            return script->call<Return>(name, args...);
-        }
-    private:
-        ResPtr<Script> script;
-        String name;
-};
-
-class UserData
-{
-    friend Script;
-
-    public:
-        UserData(const ScriptFunction<void *>& initFunc_,
-                 const ScriptFunction<void, void *>& deinitFunc_) : initFunc(initFunc_),
-                                                                    deinitFunc(deinitFunc_)
-        {
-            pointer = initFunc();
-
-            initFunc.getScript()->userDatas.append(this);
-        }
-
-        ~UserData()
-        {
-            deinitFunc(pointer);
-
-            List<UserData *> userDatas = initFunc.getScript()->userDatas;
-
-            userDatas.remove(userDatas.find(this));
-        }
-
-        inline void *getPointer()
-        {
-            return pointer;
-        }
-
-        inline void reinit()
-        {
-            deinitFunc(pointer);
-
-            pointer = initFunc();
-        }
-    private:
-        ScriptFunction<void *> initFunc;
-        ScriptFunction<void, void *> deinitFunc;
-        void *pointer;
 };
 
 #endif // SCRIPT_H

@@ -44,22 +44,6 @@ class GhostObject
         {
             return shape;
         }
-
-        inline void setUserData(const ScriptFunction<void *>& initFunc,
-                                const ScriptFunction<void, void *>& deinitFunc)
-        {
-            userData = NEW(UserData, initFunc, deinitFunc);
-        }
-
-        inline void removeUserData()
-        {
-            DELETE(UserData, userData);
-        }
-
-        inline UserData *getUserData()
-        {
-            return userData;
-        }
     private:
         GhostObject(unsigned short collisionMask, PhysicsWorld *world, ResPtr<PhysicsShape> shape);
         ~GhostObject();
@@ -67,7 +51,6 @@ class GhostObject
         ResPtr<PhysicsShape> shape;
         btPairCachingGhostObject *ghostObject;
         PhysicsWorld *world;
-        UserData *userData;
         unsigned short collisionMask;
 };
 

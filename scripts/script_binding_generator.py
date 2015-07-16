@@ -66,9 +66,9 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "RigidBody", "PhysicsShape", "PhysicsDebugDrawer", "Platform",
 "GfxShaderCombination", "Exception", "ShaderCompileException", "FileException",
 "LookupException", "ResourceIOException", "LogEntry", "PhysicsShapeImpl",
-"Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB", "ScriptFunction",
-"UserData", "GhostObject", "Audio", "AudioDevice", "AudioWorld", "AudioSource",
-"SerializeException", "Serializable"]
+"Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB", "GhostObject",
+"Audio", "AudioDevice", "AudioWorld", "AudioSource", "SerializeException",
+"Serializable"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",
@@ -276,6 +276,7 @@ script_side = open("../include/scripting/scriptsidebindings.h", "w")
 
 i = 0
 
+script_side.write("//Generated from script_binding_generator.py. Do not edit. Edit script_binding_generator.py instead.\n")
 script_side.write("#ifdef _SCRIPT_SIDE_IMPLS\n")
 
 script_side.write(function_struct)
@@ -449,6 +450,8 @@ script_side.write("#endif")
 script_side.close()
 
 app_side = open("../src/scripting/appsidebindings.cpp", "w")
+
+app_side.write("//Generated from script_binding_generator.py. Do not edit. Edit script_binding_generator.py instead.\n")
 
 for file_ in files:
     app_side.write("#include \"%s\"\n" % (file_[11:]))

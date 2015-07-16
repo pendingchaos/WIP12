@@ -47,6 +47,15 @@ class ResourceManager
             return ResPtr<T>((T *)res->copyRef<Resource>().getPtr());
         }
 
+        template <typename T>
+        ResPtr<T> loadAndCopy(const String& filename)
+        {
+            ResPtr<T> res = load<T>(filename);
+            res->release();
+
+            return (T *)res->copy();
+        }
+
         bool isResource(Resource::Type type, const String& filename) const;
 
         void autoReloadResources() const;

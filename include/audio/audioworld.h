@@ -12,7 +12,6 @@ class AudioSource
 {
     public:
         AudioSource(ResPtr<Audio> audio_) : is3d(true),
-                                            audio(audio_),
                                             referenceDistance(1.0f),
                                             rolloffFactor(1.0f),
                                             maxDistance(INFINITY),
@@ -20,10 +19,14 @@ class AudioSource
                                             dopplerFactor(1.0f),
                                             offset(0),
                                             loop(false),
-                                            playing(false) {}
+                                            playing(false),
+                                            audio(audio_) {}
+        ~AudioSource()
+        {
+            audio->release();
+        }
 
         bool is3d;
-        ResPtr<Audio> audio;
         Position3D position;
         float referenceDistance;
         float rolloffFactor;
@@ -34,6 +37,19 @@ class AudioSource
         size_t offset;
         bool loop;
         bool playing;
+
+        inline ResPtr<Audio> getAudio() const
+        {
+            return audio;
+        }
+
+        inline void setAudio(ResPtr<Audio> audio_)
+        {
+            audio->release();
+            audio = audio_;
+        }
+    private:
+        ResPtr<Audio> audio;
 };
 
 class AudioWorld
