@@ -9,7 +9,6 @@
     - [ ] Spot
         - [x] Deferred
         - [ ] Forward
-- [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Skeletal animation.
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
 
@@ -23,11 +22,11 @@
 - [ ] More tests should be created.
 - [ ] Parallax occlusion mapping seems to be incorrect(?).
 - [ ] The tesselation test's normals seem incorrect.
-- [ ] The program crashes when the script fails to compile on startup.
 - [ ] Displacement mapping should contribute to the scene AABB.
 - [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
 
 ## Other
+- [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Benchmarks.
     - [ ] Draw call
     - [ ] AudioWorld
