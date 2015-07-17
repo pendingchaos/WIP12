@@ -6,6 +6,8 @@
 #include "error.h"
 
 #include <stddef.h>
+#include <stdint.h>
+#include <SDL2/SDL.h>
 
 class PlatformException : public Exception
 {
@@ -172,43 +174,58 @@ class Platform
             };
         };
 
-        Platform() : running(false) {}
-        virtual ~Platform() {}
+        Platform();
+        ~Platform();
 
-        virtual void initWindow(uint32_t width,
+        void initWindow(uint32_t width,
                                 uint32_t height,
-                                uint32_t MSAA)=0;
-        virtual void destroyWindow()=0;
+                                uint32_t MSAA);
+        void destroyWindow();
 
-        virtual void run(void (*updateFunction)(Platform *platform))=0;
-        virtual bool pollEvent(Event& event)=0;
-        virtual bool eventsLeft() const=0;
+        virtual void run(void (*updateFunction)(Platform *platform));
+        bool pollEvent(Event& event);
+        bool eventsLeft() const;
 
-        virtual uint64_t getTime() const=0;
-        virtual uint64_t getTimerFrequency() const=0;
-        virtual float getFrametime() const=0;
-        virtual float getGPUFrametime() const=0;
+        uint64_t getTime() const;
+        uint64_t getTimerFrequency() const;
 
-        virtual size_t getWindowWidth() const=0;
-        virtual size_t getWindowHeight() const=0;
+        size_t getWindowWidth() const;
+        size_t getWindowHeight() const;
 
-        virtual Int2 getMousePosition() const=0;
-        virtual void setMousePosition(Int2 position)=0;
-        virtual bool isLeftMouseButtonPressed() const=0;
-        virtual bool isRightMouseButtonPressed() const=0;
-        virtual bool isMiddleMouseButtonPressed() const=0;
+        Int2 getMousePosition() const;
+        void setMousePosition(Int2 position);
+        bool isLeftMouseButtonPressed() const;
+        bool isRightMouseButtonPressed() const;
+        bool isMiddleMouseButtonPressed() const;
 
-        virtual Int2 getMouseWheel() const=0;
+        Int2 getMouseWheel() const;
 
-        virtual bool isCursorVisible() const=0;
-        virtual void setCursorVisible(bool visible) const=0;
+        bool isCursorVisible() const;
+        void setCursorVisible(bool visible) const;
 
-        virtual bool isKeyPressed(Key key) const=0;
+        bool isKeyPressed(Key key) const;
 
-        virtual bool getFullscreen() const=0;
-        virtual void setFullscreen(bool fullscreen)=0;
+        bool getFullscreen() const;
+        void setFullscreen(bool fullscreen);
+
+        inline float getFrametime() const
+        {
+            return frametime;
+        }
+
+        inline float getGPUFrametime() const
+        {
+            return gpuFrametime;
+        }
 
         bool running;
+    private:
+        SDL_Window *window;
+        SDL_GLContext context;
+        float frametime;
+        float gpuFrametime;
+        bool fullscreen;
+        Int2 mouseWheel;
 };
 
 #endif // PLATFORM_H

@@ -1,6 +1,6 @@
 #include "application.h"
 
-#include "platform/sdl2/sdl2platform.h"
+#include "platform/platform.h"
 #include "graphics/GL/gfxglapi.h"
 #include "scene/scene.h"
 #include "graphics/gfxshader.h"
@@ -28,7 +28,7 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     FT_Init_FreeType(&freeType_);
     freeType = freeType_;
 
-    platform_ = NEW(SDL2Platform);
+    platform_ = NEW(Platform);
     platform = platform_;
 
     platform_->initWindow(640, 640, 1);

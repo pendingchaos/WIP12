@@ -1,4 +1,4 @@
-#include "platform/sdl2/sdl2platform.h"
+#include "platform.h"
 
 #include "memory.h"
 #include "error.h"
@@ -8,7 +8,6 @@
 
 #include <cstdio>
 
-#ifdef USE_SDL2
 struct toSDLScancodeStruct {
     Platform::Key key;
     SDL_Scancode scancode;
@@ -150,7 +149,7 @@ Platform::MouseButton toMouseButton(Uint32 button)
     }
 }
 
-SDL2Platform::SDL2Platform() : frametime(0.0f), gpuFrametime(0.0f), fullscreen(false)
+Platform::Platform() : running(false), frametime(0.0f), gpuFrametime(0.0f), fullscreen(false)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -158,14 +157,14 @@ SDL2Platform::SDL2Platform() : frametime(0.0f), gpuFrametime(0.0f), fullscreen(f
     context = nullptr;
 }
 
-SDL2Platform::~SDL2Platform()
+Platform::~Platform()
 {
     SDL_Quit();
 }
 
-void SDL2Platform::initWindow(uint32_t width,
-                              uint32_t height,
-                              uint32_t MSAA)
+void Platform::initWindow(uint32_t width,
+                          uint32_t height,
+                          uint32_t MSAA)
 {
     if (window != nullptr)
     {
@@ -226,7 +225,7 @@ void SDL2Platform::initWindow(uint32_t width,
     SDL_PushEvent(&event);
 }
 
-void SDL2Platform::destroyWindow()
+void Platform::destroyWindow()
 {
     SDL_GL_DeleteContext(context);
     SDL_DestroyWindow(window);
@@ -235,7 +234,7 @@ void SDL2Platform::destroyWindow()
     window = nullptr;
 }
 
-void SDL2Platform::run(void (*updateFunction)(Platform *platform))
+void Platform::run(void (*updateFunction)(Platform *platform))
 {
     running = true;
 
@@ -300,7 +299,7 @@ void SDL2Platform::run(void (*updateFunction)(Platform *platform))
     DELETE(GPUTimer, gpuTimer);
 }
 
-bool SDL2Platform::pollEvent(Event& event)
+bool Platform::pollEvent(Event& event)
 {
     SDL_Event sdlEvent;
 
@@ -393,22 +392,22 @@ bool SDL2Platform::pollEvent(Event& event)
     return true;
 }
 
-bool SDL2Platform::eventsLeft() const
+bool Platform::eventsLeft() const
 {
     return SDL_HasEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
-uint64_t SDL2Platform::getTime() const
+uint64_t Platform::getTime() const
 {
     return SDL_GetPerformanceCounter();
 }
 
-uint64_t SDL2Platform::getTimerFrequency() const
+uint64_t Platform::getTimerFrequency() const
 {
     return SDL_GetPerformanceFrequency();
 }
 
-size_t SDL2Platform::getWindowWidth() const
+size_t Platform::getWindowWidth() const
 {
     if (window == nullptr)
     {
@@ -421,7 +420,7 @@ size_t SDL2Platform::getWindowWidth() const
     return result;
 }
 
-size_t SDL2Platform::getWindowHeight() const
+size_t Platform::getWindowHeight() const
 {
     if (window == nullptr)
     {
@@ -434,7 +433,7 @@ size_t SDL2Platform::getWindowHeight() const
     return result;
 }
 
-Int2 SDL2Platform::getMousePosition() const
+Int2 Platform::getMousePosition() const
 {
     Int2 pos;
 
@@ -443,7 +442,7 @@ Int2 SDL2Platform::getMousePosition() const
     return pos;
 }
 
-void SDL2Platform::setMousePosition(Int2 position)
+void Platform::setMousePosition(Int2 position)
 {
     if (window != nullptr)
     {
@@ -451,47 +450,47 @@ void SDL2Platform::setMousePosition(Int2 position)
     }
 }
 
-bool SDL2Platform::isLeftMouseButtonPressed() const
+bool Platform::isLeftMouseButtonPressed() const
 {
     return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_LMASK;
 }
 
-bool SDL2Platform::isRightMouseButtonPressed() const
+bool Platform::isRightMouseButtonPressed() const
 {
     return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_RMASK;
 }
 
-bool SDL2Platform::isMiddleMouseButtonPressed() const
+bool Platform::isMiddleMouseButtonPressed() const
 {
     return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_MMASK;
 }
 
-Int2 SDL2Platform::getMouseWheel() const
+Int2 Platform::getMouseWheel() const
 {
     return mouseWheel;
 }
 
-bool SDL2Platform::isCursorVisible() const
+bool Platform::isCursorVisible() const
 {
     return SDL_ShowCursor(-1);
 }
 
-void SDL2Platform::setCursorVisible(bool visible) const
+void Platform::setCursorVisible(bool visible) const
 {
     SDL_ShowCursor(visible ? 1 : 0);
 }
 
-bool SDL2Platform::isKeyPressed(Key key) const
+bool Platform::isKeyPressed(Key key) const
 {
     return SDL_GetKeyboardState(nullptr)[toSDLScancode(key)] != 0;
 }
 
-bool SDL2Platform::getFullscreen() const
+bool Platform::getFullscreen() const
 {
     return fullscreen;
 }
 
-void SDL2Platform::setFullscreen(bool fullscreen_)
+void Platform::setFullscreen(bool fullscreen_)
 {
     if (window != nullptr)
     {
@@ -500,4 +499,3 @@ void SDL2Platform::setFullscreen(bool fullscreen_)
 
     fullscreen = fullscreen_;
 }
-#endif

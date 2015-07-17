@@ -52,7 +52,7 @@
 #include "physics/rigidbody.h"
 #include "physics/physicsshape.h"
 #include "physics/physicsdebugdrawer.h"
-#include "platform/platform.h"
+#include "platform.h"
 #include "audio/audio.h"
 #include "audio/audioworld.h"
 #include "audio/audiodevice.h"
