@@ -20,8 +20,17 @@ class GPUTimer;
 class GfxApi
 {
     public:
+        enum Driver
+        {
+            Nvidia,
+            Mesa,
+            Unknown
+        };
+
         GfxApi() {}
         virtual ~GfxApi();
+
+        virtual Driver getDriver() const=0;
 
         virtual bool tesselationSupported()=0;
 

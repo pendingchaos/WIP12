@@ -16,6 +16,7 @@
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)
+        - Might now be fixed.
 - [ ] Forward rendering does not work.
 - [ ] Debug draw does not work.
 - [ ] The doppler effect (disabled) causes popping noise.

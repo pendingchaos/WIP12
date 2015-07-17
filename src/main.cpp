@@ -9,7 +9,7 @@
 #include "error.h"
 #include "filesystem.h"
 #include "globals.h"
-#include "platform/platform.h"
+#include "platform.h"
 
 void run(const char *dir)
 {

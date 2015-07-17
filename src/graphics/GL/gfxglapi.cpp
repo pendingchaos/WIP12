@@ -208,6 +208,22 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 
     std::sscanf((const char *)glGetString(GL_VERSION), "%u.%u", &glMajor, &glMinor);
 
+    String vendor = (const char *)glGetString(GL_VENDOR);
+
+    if (vendor == "NVIDIA Corporation")
+    {
+        driver = Nvidia;
+    } else if (vendor.find("nouveau") != -1)
+    {
+        driver = Mesa;
+    } else if (vendor.find("mesa") != -1)
+    {
+        driver = Mesa;
+    } else
+    {
+        driver = Unknown;
+    }
+
     resetState();
 
     printOpenGLInfo();
@@ -242,6 +258,11 @@ GfxGLApi::~GfxGLApi()
     {
         glDeleteProgram(programs.getValue(i));
     }
+}
+
+GfxApi::Driver GfxGLApi::getDriver() const
+{
+    return driver;
 }
 
 bool GfxGLApi::tesselationSupported()

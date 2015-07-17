@@ -1,14 +1,20 @@
 #include "graphics/GL/glgputimer.h"
 
+#include "graphics/gfxapi.h"
+#include "globals.h"
+
 GLGPUTimer::GLGPUTimer()
 {
     glGenQueries(2, queries);
 
-    glBeginQuery(GL_TIME_ELAPSED, queries[0]);
-    glEndQuery(GL_TIME_ELAPSED);
+    if (gfxApi->getDriver() == GfxApi::Nvidia)
+    {
+        glBeginQuery(GL_TIME_ELAPSED, queries[0]);
+        glEndQuery(GL_TIME_ELAPSED);
 
-    glBeginQuery(GL_TIME_ELAPSED, queries[1]);
-    glEndQuery(GL_TIME_ELAPSED);
+        glBeginQuery(GL_TIME_ELAPSED, queries[1]);
+        glEndQuery(GL_TIME_ELAPSED);
+    }
 }
 
 GLGPUTimer::~GLGPUTimer()

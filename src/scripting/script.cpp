@@ -4,7 +4,7 @@
 #include "globals.h"
 #include "filesystem.h"
 #include "logging.h"
-#include "platform/platform.h"
+#include "platform.h"
 #include "scene/entity.h"
 #include "scene/scene.h"
 

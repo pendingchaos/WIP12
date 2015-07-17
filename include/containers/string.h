@@ -198,6 +198,35 @@ class String
             return -1;
         }
 
+        int find(const String& toFind) const
+        {
+            if (toFind.getLength() > getLength())
+            {
+                return -1;
+            }
+
+            for (size_t i = 0; i+toFind.getLength() <= getLength(); ++i)
+            {
+                bool found = true;
+
+                for (size_t j = 0; j < toFind.getLength(); ++j)
+                {
+                    if (getData()[i+j] != toFind[j])
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
         int findLast(char character) const
         {
             const char *chars = getData();
