@@ -1,6 +1,6 @@
 #include "application.h"
 
-#include "platform/platform.h"
+#include "platform.h"
 #include "graphics/GL/gfxglapi.h"
 #include "scene/scene.h"
 #include "graphics/gfxshader.h"

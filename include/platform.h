@@ -175,13 +175,14 @@ class Platform
         };
 
         Platform();
-        ~Platform();
+        virtual ~Platform();
 
         void initWindow(uint32_t width,
                                 uint32_t height,
                                 uint32_t MSAA);
         void destroyWindow();
 
+        //Virtual to get around bug in script_binding_generator.py.
         virtual void run(void (*updateFunction)(Platform *platform));
         bool pollEvent(Event& event);
         bool eventsLeft() const;

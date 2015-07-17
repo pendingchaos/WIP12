@@ -16,7 +16,6 @@
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)
-- [ ] Resource reloading does not work.
 - [ ] Forward rendering does not work.
 - [ ] Debug draw does not work.
 - [ ] The doppler effect (disabled) causes popping noise.
@@ -56,6 +55,9 @@ Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for 
     - Normal mapping won't increase detail.
     - Creates artifacts around borders
         - https://github.com/nvpro-samples/gl_ssao/blob/master/hbao.frag.glsl#L123
+- Store flat normals in the G buffer.
+    - Memory usage is higher.
+    - Should work perfectly.
 
 ## IBL
 - blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf
@@ -67,4 +69,3 @@ Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for 
 - https://github.com/jMonkeyEngine/jmonkeyengine/compare/PBRisComing#diff-a76e40d1405edd3626e52286d1f179dfR441
 - https://github.com/jMonkeyEngine/jmonkeyengine/compare/PBRisComing#diff-a76e40d1405edd3626e52286d1f179dfR476
 - https://github.com/jMonkeyEngine/jmonkeyengine/tree/af35f27b938ca8ec7e2e6d2b479ea6e452cee835/jme3-core/src/main/java/com/jme3/texture/pbr
-
