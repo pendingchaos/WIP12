@@ -53,7 +53,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
     applyBloomFragment = resMgr->load<GfxShader>("resources/shaders/applyBloomFragment.bin");
     bloomDownsampleFragment = resMgr->load<GfxShader>("resources/shaders/bloomDownsampleFragment.bin");
-    hbaoFragment = resMgr->load<GfxShader>("resources/shaders/hbaoFragment.bin");
+    //hbaoFragment = resMgr->load<GfxShader>("resources/shaders/hbaoFragment.bin");
     ssaoInterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoInterleaveFragment.bin");
     ssaoDeinterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoDeinterleaveFragment.bin");
     ssaoGenerateNormalsFragment = resMgr->load<GfxShader>("resources/shaders/ssaoGenerateNormalsFragment.bin");
@@ -89,7 +89,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
     compiledApplyBloomFragment = applyBloomFragment->getCompiled();
     compiledBloomDownsampleFragment = bloomDownsampleFragment->getCompiled();
-    compiledHBAOFragment = hbaoFragment->getCompiled();
+    //compiledHBAOFragment = hbaoFragment->getCompiled();
     compiledSSAOInterleaveFragment = ssaoInterleaveFragment->getCompiled();
     compiledSSAODeinterleaveFragment = ssaoDeinterleaveFragment->getCompiled();
     compiledSSAOGenerateNormalsFragment = ssaoGenerateNormalsFragment->getCompiled();
@@ -354,7 +354,7 @@ GfxRenderer::~GfxRenderer()
     ssaoGenerateNormalsFragment->release();
     ssaoDeinterleaveFragment->release();
     ssaoInterleaveFragment->release();
-    hbaoFragment->release();
+    //hbaoFragment->release();
     bloomDownsampleFragment->release();
     applyBloomFragment->release();
     pointShadowmapGeometry->release();
