@@ -42,14 +42,14 @@
 - [ ] SSAO performance should be improved.
 - [ ] Fix performance warnings in shaders (Mesa3D):
     - [ ] lightingDirectional.bin:
-        fragment shader triggered register spilling.  Try reducing the number of live scalar values to improve performance.
-        SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
+        - [ ] fragment shader triggered register spilling.  Try reducing the number of live scalar values to improve performance.
+        - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
     - [ ] lightingPoint.bin:
-        SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
+        - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
     - [ ] lightingSpot.bin:
-        SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
+        - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
     - [ ] ssaoFragment.bin:
-        SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
+        - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
 
 Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for point light filtering) (advances.realtimerendering.com).
 
