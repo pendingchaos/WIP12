@@ -24,7 +24,7 @@
 #include "tests/t4.h"
 #include "tests/gfxbuffer.h"
 
-BEGIN_SCRIPT
+BEGIN_INSTANCE(Main)
     virtual void init()
     {
         size_t succeeded = 0;
@@ -47,4 +47,4 @@ BEGIN_SCRIPT
         
         app->running = false;
     }
-END_SCRIPT
+END_INSTANCE(Main)
