@@ -31,12 +31,22 @@ The scripts have only been tested with Python 2.7 but they might work with a dif
 ## Compiling
 To compile, run compile.py in the scripts directory or use the Code::Blocks project with an IDE that supports it.
 You might want to change [process_count](https://github.com/pendingchaos/WIP12/blob/master/scripts/compile.py#L6) in compile.py to the number of cores on your CPU (and possibly plus one or two).
+You can also run compile.py like this:
+```shell
+make compile
+```
 
 ## Running
-Run resourceconverter.py to convert the textures to the format WIP12 uses, go to the directory named "bin" (in a shell) and run
-```shell
-./run_main.
+Before you run, run resourceconverter.py or run this:
 ```
+make resource_convert
+```
+
+Then run
+```shell
+make run_main
+```
+or bin/run_main.
 
 ## Compiling and running the lazy way
 ```shell
