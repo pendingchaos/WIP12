@@ -51,10 +51,14 @@ uint64_t GLGPUTimer::getResultResolution()
 
 void GLGPUTimer::begin()
 {
+    glDeleteQueries(1, &queries[0]);
+    glGenQueries(1, &queries[0]);
     glQueryCounter(queries[0], GL_TIMESTAMP);
 }
 
 void GLGPUTimer::end()
 {
+    glDeleteQueries(1, &queries[1]);
+    glGenQueries(1, &queries[1]);
     glQueryCounter(queries[1], GL_TIMESTAMP);
 }

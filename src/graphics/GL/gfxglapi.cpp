@@ -468,24 +468,27 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
             glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, 0);
         }
 
-        if (tessControl_ != nullptr)
+        if (GLFL_GL_ARB_tessellation_shader)
         {
-            GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
+            if (tessControl_ != nullptr)
+            {
+                GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
 
-            glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, glTessControl->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, 0);
-        }
+                glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, glTessControl->getGLProgram());
+            } else
+            {
+                glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, 0);
+            }
 
-        if (tessEval_ != nullptr)
-        {
-            GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
+            if (tessEval_ != nullptr)
+            {
+                GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
 
-            glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, glTessEval->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, 0);
+                glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, glTessEval->getGLProgram());
+            } else
+            {
+                glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, 0);
+            }
         }
 
         if (geometry_ != nullptr)
@@ -521,24 +524,27 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
             comb.vertex = 0;
         }
 
-        if (tessControl_ != nullptr)
+        if (GLFL_GL_ARB_tessellation_shader)
         {
-            GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
+            if (tessControl_ != nullptr)
+            {
+                GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
 
-            comb.tessControl = glTessControl->getGLProgram();
-        } else
-        {
-            comb.tessControl = 0;
-        }
+                comb.tessControl = glTessControl->getGLProgram();
+            } else
+            {
+                comb.tessControl = 0;
+            }
 
-        if (tessEval_ != nullptr)
-        {
-            GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
+            if (tessEval_ != nullptr)
+            {
+                GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
 
-            comb.tessEval = glTessEval->getGLProgram();
-        } else
-        {
-            comb.tessEval = 0;
+                comb.tessEval = glTessEval->getGLProgram();
+            } else
+            {
+                comb.tessEval = 0;
+            }
         }
 
         if (geometry_ != nullptr)
