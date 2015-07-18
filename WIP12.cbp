@@ -46,10 +46,8 @@
 			<Add option="`freetype-config --cflags`" />
 			<Add option="`pkg-config vorbisfile --cflags`" />
 			<Add option="-std=gnu++11" />
-			<Add option="-DUSE_SDL2" />
 			<Add option="-DGLFL_USE_SDL2" />
 			<Add option="-DGLFL_USE_GL" />
-			<Add option="-DUSE_GTK" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
@@ -118,7 +116,6 @@
 		<Unit filename="include/physics/physicsworld.h" />
 		<Unit filename="include/physics/rigidbody.h" />
 		<Unit filename="include/platform/platform.h" />
-		<Unit filename="include/platform/sdl2/sdl2platform.h" />
 		<Unit filename="include/resource/resource.h" />
 		<Unit filename="include/resource/resourcemanager.h" />
 		<Unit filename="include/scene/entity.h" />
@@ -182,7 +179,7 @@
 		<Unit filename="src/physics/physicsshape.cpp" />
 		<Unit filename="src/physics/physicsworld.cpp" />
 		<Unit filename="src/physics/rigidbody.cpp" />
-		<Unit filename="src/platform/sdl2/sdl2platform.cpp" />
+		<Unit filename="src/platform/platform.cpp" />
 		<Unit filename="src/resource/resource.cpp" />
 		<Unit filename="src/resource/resourcemanager.cpp" />
 		<Unit filename="src/scene/entity.cpp" />
