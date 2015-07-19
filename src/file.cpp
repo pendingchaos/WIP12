@@ -15,6 +15,11 @@ time_t getLastFileModification(const char *filename)
 
     String fullFilename = fileSys != nullptr ? fileSys->getAbsolutePath(filename) : filename;
 
+    if (fullFilename.getLength() == 0)
+    {
+        THROW(FileException, filename, "Unable to get modification date.");
+    }
+
     if (stat(fullFilename.getData(), &status) != -1)
     {
         return status.st_mtime;

@@ -2,6 +2,9 @@
 #define ENTITYSCRIPT
 
 #include <cmath>
+#include <cstdlib>
+#include <algorithm>
+#include "projectilescript.cpp"
 
 BEGIN_INSTANCE(Player)
     virtual void init()
@@ -12,6 +15,7 @@ BEGIN_INSTANCE(Player)
         zoom = 1.0f;
         maximumVelocity = 12.0f;
         maxAngularVelocity = 0.5f;
+        fireTimeout = 0.0f;
 
         entity->getRigidBody()->setAngularFactor(Float3(0.0f));
     
@@ -27,8 +31,35 @@ BEGIN_INSTANCE(Player)
         entity->getScene()->getPhysicsWorld()->destroyGhostObject(feetGhost);
     }
 
+    virtual void handleInput()
+    {
+        if (platform->isKeyPressed(Platform::Tab) and fireTimeout < 0.0f)
+        {
+            Entity *proj = scene->createEntity("projectile");
+            
+            proj->transform.position = entity->transform.position +
+                                       Position3D(0.0f, 1.0f, 0.0f) +
+                                       scene->getRenderer()->camera.getDirection() * 2.0f;
+            
+            RigidBody::ConstructionInfo info;
+            info.mass = 100.0f;
+            
+            proj->addRigidBody(info, resMgr->loadAndCopy<PhysicsShape>("resources/shapes/projectile.bin"))
+            ->setLinearVelocity(scene->getRenderer()->camera.getDirection()*10.0f);
+            
+            proj->addModel(resMgr->load<GfxModel>("resources/models/projectile.bin"));
+            proj->addScript(resMgr->load<Script>("resources/scripts/projectilescript.cpp"), "Projectile");
+            
+            proj->findScriptInstance<Projectile>()->scale = std::max(std::rand() / (float)RAND_MAX, 0.1f);
+            
+            fireTimeout = 0.25f;
+        }
+    }
+
     virtual void fixedUpdate(float timestep)
     {
+        fireTimeout -= timestep;
+    
         Camera& camera = entity->getScene()->getRenderer()->camera;
 
         RigidBody *body = entity->getRigidBody();
@@ -226,6 +257,7 @@ BEGIN_INSTANCE(Player)
         serialized.get("maxAngularVelocity", maxAngularVelocity);
     }
 
+    float fireTimeout;
     GhostObject *feetGhost;
     bool onFloor;
     Float2 angle;

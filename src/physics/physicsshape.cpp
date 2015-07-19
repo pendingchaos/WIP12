@@ -540,7 +540,7 @@ void PhysicsShapeImpl::updateRigidBodies()
 }
 
 PhysicsSphereShape::PhysicsSphereShape(PhysicsShape *physShape, float radius_)
-: PhysicsShapeImpl(physShape, Sphere, nullptr) {create();}
+: PhysicsShapeImpl(physShape, Sphere, nullptr), radius(radius_) {create();}
 
 void PhysicsSphereShape::setRadius(float radius_)
 {

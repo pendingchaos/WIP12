@@ -66,6 +66,7 @@ Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for 
 - Store flat normals in the G buffer.
     - Memory usage is higher.
     - Should work perfectly.
+    - Also use for shadow bias calculation.
 
 ## IBL
 - blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf

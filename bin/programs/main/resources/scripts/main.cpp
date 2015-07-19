@@ -162,6 +162,7 @@ BEGIN_INSTANCE(Main)
     float textTiming;
     AudioSource *source;
     Audio *audio;
+    Script *projScript;
     
     virtual void init()
     {
@@ -179,10 +180,15 @@ BEGIN_INSTANCE(Main)
         
         source = entity->addAudioSource(resMgr->load<Audio>("resources/audio/hi.ogg"));
         source->position = Position3D(0.0f, 1.0f, 0.0f);
+    
+        //Kept around to speed up projectile creation.
+        projScript = resMgr->load<Script>("resources/scripts/projectilescript.cpp");
     }
     
     virtual void deinit()
     {
+        projScript->release();
+    
         DELETE(GPUTimer, textTimer);
         
         font->release();

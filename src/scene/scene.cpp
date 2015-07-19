@@ -95,6 +95,11 @@ void Scene::removeContent()
 
 void Scene::handleInput()
 {
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        entities[i]->updateFinalTransform();
+    }
+
     _handleInput(entities);
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
@@ -105,6 +110,11 @@ void Scene::handleInput()
 
 void Scene::update()
 {
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        entities[i]->updateFinalTransform();
+    }
+
     _update(entities);
 
     for (size_t i = 0; i < scripts.getCount(); ++i)
@@ -177,6 +187,11 @@ void Scene::_fixedUpdate(const List<Entity *>& entities_, float timestep)
 
 void Scene::render()
 {
+    for (size_t i = 0; i < entities.getCount(); ++i)
+    {
+        entities[i]->updateFinalTransform();
+    }
+
     renderer->updateStats();
 
     for (size_t i = 0; i < scripts.getCount(); ++i)

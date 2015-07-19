@@ -108,6 +108,11 @@ RigidBody::RigidBody(const ConstructionInfo& info,
 
     rigidBody->setUserPointer(this);
 
+    if (entity != nullptr)
+    {
+        setTransform(entity->getFinalTransform());
+    }
+
     switch (info.type)
     {
     case Static:

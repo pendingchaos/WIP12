@@ -1078,6 +1078,14 @@ if __name__ == "__main__":
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["plastic"] = mat
     
+    mat = Material([], "resources/materials/projectile.bin")
+    mat.forward = False
+    mat.smoothness = 0.5
+    mat.metalMask = 1.0
+    mat.albedo = [0.95349481, 0.806474433, 0.374256055, 1.0]
+    mat.normalMap = conv["normal.png"]
+    conv["projectile material"] = mat
+    
     mat = Material([], "resources/materials/floor.bin")
     mat.forward = False
     mat.smoothness = 0.6
@@ -1172,6 +1180,10 @@ if __name__ == "__main__":
     model.sub_models = [[Model.LOD(conv["platform.obj"], conv["platform material"], 0.0, 9999.0)]]
     conv["platform"] = model
     
+    model = Model([], "resources/models/projectile.bin")
+    model.sub_models = [[Model.LOD(conv["sphere.obj"], conv["projectile material"], 0.0, 9999.0)]]
+    conv["projectile"] = model
+    
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
     floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
     conv["floor shape"] = floorShape
@@ -1195,6 +1207,10 @@ if __name__ == "__main__":
     platformShape = PhysicsShape([], "resources/shapes/platform.bin")
     platformShape.shape = PhysicsShape.Cylinder("y", 0.1, 4.0)
     conv["platform shape"] = platformShape
+    
+    projectileShape = PhysicsShape([], "resources/shapes/projectile.bin")
+    projectileShape.shape = PhysicsShape.Sphere(1.0)
+    conv["projectile shape"] = projectileShape
     
     scene = Scene([], "resources/scenes/scene.bin")
     conv["scene"] = scene
