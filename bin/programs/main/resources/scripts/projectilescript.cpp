@@ -1,45 +1,42 @@
 #ifndef PROJSCRIPT
 #define PROJSCRIPT
 
+#include <cmath>
+
 BEGIN_INSTANCE(Projectile)
     virtual void init()
     {
         scale = 1.0f;
-        timeleft = 5.5f;
+        scale2 = 1.0f;
     }
     
     virtual void fixedUpdate(float timestep)
     {
-        timeleft -= timestep;
-    
-        if (timeleft < 0.5f)
-        {
-            entity->transform.scale = Vector3D(timeleft * 2.0f) * scale;
-        } else
-        {
-            entity->transform.scale = scale;
-        }
+        entity->transform.scale = scale * scale2;
         
-        entity->getRigidBody()->getShape()->setScale(entity->transform.scale);
+        entity->getRigidBody()->getShape()->setScale(scale * scale2);
         
-        if (timeleft < 0.0f)
+        if (entity->transform.position.y < -12.5)
         {
             scene->removeEntity(scene->getEntities().find(entity));
+        } else if (entity->transform.position.y < -10.0)
+        {
+            scale2 = (2.5f - std::abs(entity->transform.position.y + 10.0f)) / 2.5f;
         }
     }
     
     virtual void serialize(Serializable& serialized)
     {
-        serialized.set("timeleft", timeleft);
+        serialized.set("scale", scale);
     }
     
     virtual void deserialize(const Serializable& serialized)
     {
-        serialized.get("timeleft", timeleft);
+        serialized.get("scale", scale);
     }
 
     float scale;
-    float timeleft;
+    float scale2;
 END_INSTANCE(Projectile)
 
 #endif

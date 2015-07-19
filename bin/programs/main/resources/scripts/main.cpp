@@ -232,6 +232,11 @@ BEGIN_INSTANCE(Main)
                     platform->setFullscreen(false);
                     break;
                 }
+                case Platform::F4:
+                {
+                    scene->getRenderer()->debugDraw = not scene->getRenderer()->debugDraw;
+                    break;
+                }
                 }
                 break;
             }
@@ -270,9 +275,7 @@ BEGIN_INSTANCE(Main)
         
         bool debugDraw = platform->isRightMouseButtonPressed();
         
-        scene->getRenderer()->debugDraw = debugDraw;
-        
-        if (debugDraw)
+        if (scene->getRenderer()->debugDraw)
         {
             scene->getPhysicsWorld()->debugDraw();
         }

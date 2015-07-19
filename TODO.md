@@ -17,7 +17,6 @@
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)
         - Might now be fixed.
 - [ ] Forward rendering does not work.
-- [ ] Debug draw does not work.
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
 - [ ] The tesselation test's normals seem incorrect.
