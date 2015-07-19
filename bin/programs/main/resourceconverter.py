@@ -925,7 +925,7 @@ if __name__ == "__main__":
                                  "resources/textures/Yokohama3.bin")
     conv["bricks2.jpg"] = Texture(["source/bricks2.jpg"], "resources/textures/bricks2.bin")
     conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
-    conv["bricks2_normal.jpg"] = Texture(["source/bricks2_normal.jpg"], "resources/textures/bricks2_normal.bin")
+    conv["bricks2_normal.jpg"] = Texture(["source/bricks2_normal.png"], "resources/textures/bricks2_normal.bin")
     
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
     conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
@@ -1295,7 +1295,6 @@ if __name__ == "__main__":
     ent = Scene.Entity("Parallax test test")
     ent.transform.position = [0.0, 1.0, 0.0]
     ent.transform.scale = [0.1, 1.0, 0.1]
-    ent.transform.orientation = [0.0, 45.0, 0.0]
     ent.model = conv["parallax test model"]
     scene.entities.append(ent)
     
@@ -1308,7 +1307,8 @@ if __name__ == "__main__":
     scene.entities.append(ent)
     
     platforms = Scene.Entity("Platfoms")
-    platforms.transform.position = [0.0, 0.0, 20.0]
+    platforms.transform.position = [0.0, 0.0, 25.0]
+    platforms.transform.orientation = [0.0, 90.0, 0.0]
     scene.entities.append(platforms)
     
     ent = Scene.Entity("Platform1")

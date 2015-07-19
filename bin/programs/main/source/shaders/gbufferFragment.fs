@@ -103,5 +103,5 @@ void main()
 
     result_albedo = albedo_.rgb;
     result_material = vec2(metallic_, roughness_);
-    result_normal.rgb = normal_worldSpace;
+    result_normal = normal_worldSpace;
 }

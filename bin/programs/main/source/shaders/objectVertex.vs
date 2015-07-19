@@ -36,4 +36,7 @@ void main()
 
     frag_tangent_worldSpace = normalize(U(normalMatrix) * tangent_modelSpace);
     frag_bitangent_worldSpace = normalize(U(normalMatrix) * bitangent_modelSpace);
+    
+    frag_tangent_worldSpace = normalize(frag_tangent_worldSpace - dot(frag_tangent_worldSpace, frag_normal_worldSpace) * frag_normal_worldSpace);
+    frag_bitangent_worldSpace = cross(frag_tangent_worldSpace, frag_normal_worldSpace);
 }

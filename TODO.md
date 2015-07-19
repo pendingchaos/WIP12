@@ -20,13 +20,11 @@
 - [ ] Debug draw does not work.
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
-- [ ] Parallax occlusion mapping seems to be incorrect(?).
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] Displacement mapping should contribute to the scene AABB.
 - [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
 
 ## Other
-- [ ] Use a subdivided cube instead of a sphere for the displacement mapping test.
 - [ ] Benchmarks.
     - [ ] Draw call
     - [ ] AudioWorld

@@ -1828,7 +1828,6 @@ void GfxRenderer::renderModel(bool forward,
 
     Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
     Matrix4x4 viewMatrix = camera.getViewMatrix();
-    Matrix3x3 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
 
     for (size_t i = 0; i < model->subModels.getCount(); ++i)
     {
@@ -1842,6 +1841,8 @@ void GfxRenderer::renderModel(bool forward,
                 distance < lod.maxDistance and
                 lod.material->isForward() == forward)
             {
+                Matrix4x4 newWorldMatrix = worldMatrix * lod.worldMatrix;
+
                 gfxApi->setCullMode(lod.mesh->cullMode);
 
                 GfxMaterial *material = lod.material;
@@ -1877,8 +1878,8 @@ void GfxRenderer::renderModel(bool forward,
                     gfxApi->uniform(vertex, "viewMatrix", viewMatrix);
                 }
 
-                gfxApi->uniform(vertex, "worldMatrix", worldMatrix);
-                gfxApi->uniform(vertex, "normalMatrix", normalMatrix);
+                gfxApi->uniform(vertex, "worldMatrix", newWorldMatrix);
+                gfxApi->uniform(vertex, "normalMatrix", Matrix3x3(newWorldMatrix.inverse().transpose()));
                 gfxApi->uniform(vertex, "cameraPosition", camera.getPosition());
 
                 if (useTesselation)
