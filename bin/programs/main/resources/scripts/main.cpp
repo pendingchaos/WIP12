@@ -170,7 +170,7 @@ BEGIN_INSTANCE(Main)
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
         
-        scene = resMgr->loadAndCopy<Scene>("resources/scenes/scene.bin");
+        scene = resMgr->load<Scene>("resources/scenes/scene.bin");
         
         font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
         
