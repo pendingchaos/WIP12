@@ -74,9 +74,8 @@ enum GfxVertexAttribPurpose
     GfxPosition = 0,
     GfxNormal = 1,
     GfxTangent = 2,
-    GfxBitangent = 3,
-    GfxColor = 4,
-    GfxTexCoord = 5,
+    GfxColor = 3,
+    GfxTexCoord = 4,
 };
 
 enum GfxVertexAttribType

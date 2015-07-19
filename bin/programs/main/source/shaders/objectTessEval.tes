@@ -29,8 +29,7 @@ out vec3 frag_tangent_worldSpace;
 out vec3 frag_bitangent_worldSpace;
 
 DECLUNIFORM(sampler2D, heightMap)
-DECLUNIFORM(mat4, projectionMatrix)
-DECLUNIFORM(mat4, viewMatrix)
+DECLUNIFORM(mat4, projectionViewMatrix)
 DECLUNIFORM(float, strength)
 DECLUNIFORM(float, displacementMidlevel)
 
@@ -87,5 +86,5 @@ void main()
 
     gl_Position.xyz += frag_normal_worldSpace * (texture(U(heightMap), frag_uv_tangentSpace).r - U(displacementMidlevel)) * U(strength);
 
-    gl_Position = U(projectionMatrix) * U(viewMatrix) * gl_Position;
+    gl_Position = U(projectionViewMatrix) * gl_Position;
 }

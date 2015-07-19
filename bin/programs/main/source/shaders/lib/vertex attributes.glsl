@@ -4,8 +4,7 @@
 #define POSITION 0
 #define NORMAL 1
 #define TANGENT 2
-#define BITANGENT 3
-#define COLOR 4
-#define TEXCOORD 5
+#define COLOR 3
+#define TEXCOORD 4
 
 #endif

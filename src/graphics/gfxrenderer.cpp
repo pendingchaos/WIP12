@@ -1867,12 +1867,10 @@ void GfxRenderer::renderModel(bool forward,
 
                 if (useTesselation)
                 {
-                    gfxApi->uniform(vertex, "projectionMatrix", Matrix4x4());
-                    gfxApi->uniform(vertex, "viewMatrix", Matrix4x4());
+                    gfxApi->uniform(vertex, "projectionViewMatrix", Matrix4x4());
                 } else
                 {
-                    gfxApi->uniform(vertex, "projectionMatrix", projectionMatrix);
-                    gfxApi->uniform(vertex, "viewMatrix", viewMatrix);
+                    gfxApi->uniform(vertex, "projectionViewMatrix", projectionMatrix * viewMatrix);
                 }
 
                 gfxApi->uniform(vertex, "worldMatrix", newWorldMatrix);
@@ -1889,8 +1887,7 @@ void GfxRenderer::renderModel(bool forward,
 
                     gfxApi->addTextureBinding(tessEval, "heightMap", material->getDisplacementMap());
                     gfxApi->uniform(tessEval, "displacementMidlevel", material->displacementMidlevel);
-                    gfxApi->uniform(tessEval, "projectionMatrix", projectionMatrix);
-                    gfxApi->uniform(tessEval, "viewMatrix", viewMatrix);
+                    gfxApi->uniform(tessEval, "projectionViewMatrix", projectionMatrix * viewMatrix);
                     gfxApi->uniform(tessEval, "strength", material->displacementStrength);
                 }
 

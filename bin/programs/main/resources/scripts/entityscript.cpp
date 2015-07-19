@@ -52,7 +52,7 @@ BEGIN_INSTANCE(Player)
             
             proj->findScriptInstance<Projectile>()->scale = std::max(std::rand() / (float)RAND_MAX, 0.1f);
             
-            fireTimeout = 0.25f;
+            fireTimeout = 0.1f;
         }
     }
 
