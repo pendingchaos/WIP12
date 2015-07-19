@@ -297,7 +297,7 @@ shadow += texture(shadowmap, vec4(normalize(-dir + xAxis * poisson + cross(xAxis
 
 vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAmbient,
                 vec3 albedo, float metallic, float roughness, vec3 normal, vec3 viewDir, float ao, vec3 position,
-                samplerCubeShadow shadowmap, float shadowRadius, float shadowBiasScale, float shadowMinBias, float lightFar)
+                samplerCubeShadow shadowmap, float shadowRadius, float shadowBiasScale, float shadowMinBias, float lightFar, vec3 geomNormal)
 {
     vec3 specular;
     float diffuse;
@@ -318,7 +318,7 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
               viewDir);
     
     float shadow = 0.0;
-    float shadowDist = dist - max(shadowBiasScale * (1.0 - dot(normal, dir)), shadowMinBias);
+    float shadowDist = dist - max(shadowBiasScale * (1.0 - dot(geomNormal, dir)), shadowMinBias);
     
     float angle = _pointLightRandom(gl_FragCoord.xyy, 0) * 6.283285;
     float s = sin(angle);

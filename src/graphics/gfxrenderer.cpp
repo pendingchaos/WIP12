@@ -56,7 +56,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //hbaoFragment = resMgr->load<GfxShader>("resources/shaders/hbaoFragment.bin");
     ssaoInterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoInterleaveFragment.bin");
     ssaoDeinterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoDeinterleaveFragment.bin");
-    ssaoGenerateNormalsFragment = resMgr->load<GfxShader>("resources/shaders/ssaoGenerateNormalsFragment.bin");
 
     if (gfxApi->tesselationSupported())
     {
@@ -92,7 +91,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //compiledHBAOFragment = hbaoFragment->getCompiled();
     compiledSSAOInterleaveFragment = ssaoInterleaveFragment->getCompiled();
     compiledSSAODeinterleaveFragment = ssaoDeinterleaveFragment->getCompiled();
-    compiledSSAOGenerateNormalsFragment = ssaoGenerateNormalsFragment->getCompiled();
 
     if (gfxApi->tesselationSupported())
     {
@@ -157,6 +155,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     deinterleavedSSAOTexture = NEW(GfxTexture);
     deinterleavedDepthTexture = NEW(GfxTexture);
     ssaoNormalTexture = NEW(GfxTexture);
+    geomNormalTexture = NEW(GfxTexture);
 
     readColorTexture->setWrapMode(GfxTexture::Stretch);
     writeColorTexture->setWrapMode(GfxTexture::Stretch);
@@ -174,6 +173,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     deinterleavedSSAOTexture->setWrapMode(GfxTexture::Stretch);
     deinterleavedDepthTexture->setWrapMode(GfxTexture::Stretch);
     ssaoNormalTexture->setWrapMode(GfxTexture::Stretch);
+    geomNormalTexture->setWrapMode(GfxTexture::Stretch);
     //luminanceTexture->setWrapMode(GfxTexture::Stretch);
 
     resize(640);
@@ -218,6 +218,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     gBufferFramebuffer->addColorAttachment(0, writeColorTexture);
     gBufferFramebuffer->addColorAttachment(1, materialTexture);
     gBufferFramebuffer->addColorAttachment(2, normalTexture);
+    gBufferFramebuffer->addColorAttachment(3, geomNormalTexture);
     gBufferFramebuffer->setDepthAttachment(depthTexture);
 
     ssaoFramebuffer = gfxApi->createFramebuffer();
@@ -249,9 +250,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     ssaoDepthDeinterleaveFramebuffer = gfxApi->createFramebuffer();
     ssaoDepthDeinterleaveFramebuffer->addColorAttachment(0, deinterleavedDepthTexture);
-
-    ssaoNormalsFramebuffer = gfxApi->createFramebuffer();
-    ssaoNormalsFramebuffer->addColorAttachment(0, ssaoNormalTexture);
 
     /*luminanceFramebuffer = gfxApi->createFramebuffer();
     luminanceFramebuffer->addColorAttachment(0, luminanceTexture);*/
@@ -312,12 +310,11 @@ GfxRenderer::~GfxRenderer()
     DELETE(GfxFramebuffer, bloomDownsampleFramebuffer);
     DELETE(GfxFramebuffer, ssaoDeinterleavedFramebuffer);
     DELETE(GfxFramebuffer, ssaoDepthDeinterleaveFramebuffer);
-    DELETE(GfxFramebuffer, ssaoNormalsFramebuffer);
     //DELETE(GfxFramebuffer, luminanceFramebuffer);
 
     DELETE(GfxBuffer, lightBuffer);
 
-    ssaoNormalTexture->release();
+    geomNormalTexture->release();
     deinterleavedDepthTexture->release();
     deinterleavedSSAOTexture->release();
     bloomDownsampleTexture->release();
@@ -351,7 +348,6 @@ GfxRenderer::~GfxRenderer()
         shadowmapTessControl->release();
     }
 
-    ssaoGenerateNormalsFragment->release();
     ssaoDeinterleaveFragment->release();
     ssaoInterleaveFragment->release();
     //hbaoFragment->release();
@@ -942,7 +938,7 @@ void GfxRenderer::resize(const UInt2& size)
                                                  GfxTexture::RedF32);
         deinterleavedDepthTexture->allocMipmap(0, 1, nullptr);
 
-        ssaoNormalTexture->startCreation(GfxTexture::Texture2D,
+        geomNormalTexture->startCreation(GfxTexture::Texture2D,
                                          false,
                                          width,
                                          height,
@@ -950,7 +946,7 @@ void GfxRenderer::resize(const UInt2& size)
                                          0,
                                          GfxTexture::Other,
                                          GfxTexture::RGBF32_F16);
-        ssaoNormalTexture->allocMipmap(0, 1, nullptr);
+        geomNormalTexture->allocMipmap(0, 1, nullptr);
     }
 }
 
@@ -1004,6 +1000,23 @@ void GfxRenderer::render()
 
     gBufferTimer->end();
 
+    //Generate normals
+    /*gfxApi->setCurrentFramebuffer(geomNormalFramebuffer);
+
+    gfxApi->begin(compiledPostEffectVertex,
+                  nullptr,
+                  nullptr,
+                  nullptr,
+                  compiledGenerateNormalsFragment,
+                  quadMesh);
+
+    gfxApi->addTextureBinding(compiledGenerateNormalsFragment, "depthTexture", depthTexture);
+    gfxApi->uniform(compiledGenerateNormalsFragment, "viewProjectionMatrix", camera.getProjectionMatrix() * camera.getViewMatrix());
+
+    gfxApi->end(quadMesh->primitive,
+                quadMesh->numVertices,
+                quadMesh->winding);*/
+
     //SSAO
     ssaoTimer->begin();
 
@@ -1017,7 +1030,7 @@ void GfxRenderer::render()
                   quadMesh);
 
     gfxApi->addTextureBinding(compiledSSAOFragment, "depthTexture", depthTexture);
-    gfxApi->addTextureBinding(compiledSSAOFragment, "normalTexture", normalTexture);
+    gfxApi->addTextureBinding(compiledSSAOFragment, "normalTexture", geomNormalTexture);
     gfxApi->uniform(compiledSSAOFragment, "cameraNear", camera.getNear());
     gfxApi->uniform(compiledSSAOFragment, "cameraFar", camera.getFar());
     gfxApi->uniform(compiledSSAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
@@ -1043,23 +1056,6 @@ void GfxRenderer::render()
                   quadMesh);
 
     gfxApi->addTextureBinding(compiledSSAODeinterleaveFragment, "depthTexture", depthTexture);
-
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
-
-    //Generate normals
-    gfxApi->setCurrentFramebuffer(ssaoNormalsFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledSSAOGenerateNormalsFragment,
-                  quadMesh);
-
-    gfxApi->addTextureBinding(compiledSSAOGenerateNormalsFragment, "depthTexture", depthTexture);
-    gfxApi->uniform(compiledSSAOGenerateNormalsFragment, "projectionMatrix", camera.getProjectionMatrix());
 
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
@@ -1091,7 +1087,7 @@ void GfxRenderer::render()
                       quadMesh);
 
         gfxApi->addTextureBinding(compiledHBAOFragment, "depthTexture", deinterleavedDepthTexture);
-        gfxApi->addTextureBinding(compiledHBAOFragment, "normalTexture", ssaoNormalTexture);
+        gfxApi->addTextureBinding(compiledHBAOFragment, "normalTexture", geomNormalTexture);
         gfxApi->uniform(compiledHBAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
         gfxApi->uniform(compiledHBAOFragment, "projectionMatrix", camera.getProjectionMatrix());
         gfxApi->uniform(compiledHBAOFragment, "radius", 1.0f);
@@ -1232,6 +1228,7 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(fragmentShader, "albedoTexture", readColorTexture);
         gfxApi->addTextureBinding(fragmentShader, "materialTexture", materialTexture);
         gfxApi->addTextureBinding(fragmentShader, "normalTexture", normalTexture);
+        gfxApi->addTextureBinding(fragmentShader, "geomNormalTexture", geomNormalTexture);
         gfxApi->addTextureBinding(fragmentShader, "depthTexture", depthTexture);
         gfxApi->addTextureBinding(fragmentShader, "aoTexture", ssaoTexture);
         gfxApi->uniform(fragmentShader, "viewProjection", viewProjection);

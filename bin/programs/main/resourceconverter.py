@@ -1035,9 +1035,6 @@ if __name__ == "__main__":
     conv["ssaoInterleaveFragment.fs"] = Shader(["source/shaders/ssaoInterleaveFragment.fs"], "../../resources/shaders/ssaoInterleaveFragment.bin")
     conv["ssaoInterleaveFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["ssaoGenerateNormalsFragment.fs"] = Shader(["source/shaders/ssaoGenerateNormalsFragment.fs"], "../../resources/shaders/ssaoGenerateNormalsFragment.bin")
-    conv["ssaoGenerateNormalsFragment.fs"].stage_ = Shader.Stage.Fragment
-    
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")

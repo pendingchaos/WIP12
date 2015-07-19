@@ -13,6 +13,7 @@ in vec3 frag_bitangent_worldSpace;
 layout (location = 0) out vec3 result_albedo;
 layout (location = 1) out vec2 result_material;
 layout (location = 2) out vec3 result_normal;
+layout (location = 3) out vec3 result_geom_normal;
 
 DECLUNIFORM(vec4, albedo)
 DECLUNIFORM(float, smoothness)
@@ -47,6 +48,9 @@ DECLUNIFORM(uint, pomMaxLayers)
 
 void main()
 {
+    //It is important that this if before parallax mapping. Doing this before fixes artifacts with parallax edge discard.
+    result_geom_normal = cross(normalize(dFdx(frag_position_worldSpace)), normalize(dFdy(frag_position_worldSpace)));
+    
     vec4 albedo_ = U(albedo);
     vec3 normal_worldSpace = normalize(frag_normal_worldSpace);
 

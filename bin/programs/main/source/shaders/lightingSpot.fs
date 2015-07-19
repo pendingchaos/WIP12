@@ -8,6 +8,7 @@ in vec2 frag_uv;
 DECLUNIFORM(sampler2D, albedoTexture)
 DECLUNIFORM(sampler2D, materialTexture)
 DECLUNIFORM(sampler2D, normalTexture)
+DECLUNIFORM(sampler2D, geomNormalTexture)
 DECLUNIFORM(sampler2D, depthTexture)
 DECLUNIFORM(sampler2D, aoTexture)
 
@@ -51,7 +52,7 @@ void main()
     vec4 shadowCoord = U(shadowmapProjectionMatrix) * U(shadowmapViewMatrix) * vec4(position, 1.0);
     
     shadowCoord.xyz /= shadowCoord.w;
-    shadowCoord.z -= max(U(shadowBiasScale) * (1.0 - dot(normal, U(lightNegDir))), U(shadowMinBias));
+    shadowCoord.z -= max(U(shadowBiasScale) * (1.0 - dot(texture(U(geomNormalTexture), frag_uv).rgb, U(lightNegDir))), U(shadowMinBias));
     shadowCoord.xyz += 1.0;
     shadowCoord.xyz /= 2.0;
     #endif

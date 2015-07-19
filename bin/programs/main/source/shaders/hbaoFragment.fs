@@ -49,7 +49,7 @@ void main()
     
     vec3 position = getPosition(frag_uv, resolution);
     
-    vec3 normal = normalize(texture(U(normalTexture), frag_uv).xyz);
+    vec3 normal = normalMatrix * normalize(texture(U(normalTexture), frag_uv).xyz);
     
     float radiusPixels = U(radius) * resolution.y / position.z;
     

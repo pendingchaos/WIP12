@@ -315,7 +315,6 @@ class GfxRenderer
         GfxShader *hbaoFragment;
         GfxShader *ssaoInterleaveFragment;
         GfxShader *ssaoDeinterleaveFragment;
-        GfxShader *ssaoGenerateNormalsFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingDirectionalShadow;
@@ -347,7 +346,6 @@ class GfxRenderer
         GfxCompiledShader *compiledHBAOFragment;
         GfxCompiledShader *compiledSSAOInterleaveFragment;
         GfxCompiledShader *compiledSSAODeinterleaveFragment;
-        GfxCompiledShader *compiledSSAOGenerateNormalsFragment;
         //float averageLuminance;
 
         size_t numLights;
@@ -391,6 +389,7 @@ class GfxRenderer
         GfxTexture *deinterleavedDepthTexture;
         GfxTexture *ssaoNormalTexture;
         GfxTexture *deinterleavedSSAOTexture;
+        GfxTexture *geomNormalTexture;
         //GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
@@ -406,7 +405,6 @@ class GfxRenderer
         GfxFramebuffer *bloomDownsampleFramebuffer;
         GfxFramebuffer *ssaoDeinterleavedFramebuffer;
         GfxFramebuffer *ssaoDepthDeinterleaveFramebuffer;
-        GfxFramebuffer *ssaoNormalsFramebuffer;
         //GfxFramebuffer *luminanceFramebuffer;
 
         void swapFramebuffers();

@@ -33,7 +33,7 @@ BEGIN_INSTANCE(Player)
 
     virtual void handleInput()
     {
-        if (platform->isKeyPressed(Platform::Tab) and fireTimeout < 0.0f)
+        if (platform->isRightMouseButtonPressed() and fireTimeout < 0.0f)
         {
             Entity *proj = scene->createEntity("projectile");
             

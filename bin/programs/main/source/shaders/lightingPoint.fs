@@ -8,6 +8,7 @@ in vec2 frag_uv;
 DECLUNIFORM(sampler2D, albedoTexture)
 DECLUNIFORM(sampler2D, materialTexture)
 DECLUNIFORM(sampler2D, normalTexture)
+DECLUNIFORM(sampler2D, geomNormalTexture)
 DECLUNIFORM(sampler2D, depthTexture)
 DECLUNIFORM(sampler2D, aoTexture)
 DECLUNIFORM(mat4, viewProjection)
@@ -47,7 +48,7 @@ void main()
     result_color.rgb = pointLight(U(lightPos), U(lightRadius), U(lightColor), U(lightAmbientStrength),
                                   albedo, metallic, roughness, normal, viewDir, ao, position
     #ifdef SHADOW_MAP
-    , U(shadowmap), 0.01, U(shadowBiasScale), U(shadowMinBias), U(lightFar)
+    , U(shadowmap), 0.01, U(shadowBiasScale), U(shadowMinBias), U(lightFar), texture(U(geomNormalTexture), frag_uv).rgb
     #endif
     );
     result_color.a = 1.0;
