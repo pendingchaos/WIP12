@@ -22,6 +22,7 @@
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] Displacement mapping should contribute to the scene AABB.
 - [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
+- [ ] Recursive includes in scripts.
 
 ## Other
 - [ ] Benchmarks.

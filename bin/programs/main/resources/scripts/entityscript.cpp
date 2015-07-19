@@ -91,22 +91,22 @@ BEGIN_INSTANCE(Player)
 
         if (platform->isKeyPressed(Platform::A))
         {
-            velocity -= right * platform->getFrametime() * resSpeed;
+            velocity -= right * timestep * resSpeed;
         }
 
         if (platform->isKeyPressed(Platform::D))
         {
-            velocity += right * platform->getFrametime() * resSpeed;
+            velocity += right * timestep * resSpeed;
         }
 
         if (platform->isKeyPressed(Platform::W))
         {
-            velocity += dir * platform->getFrametime() * resSpeed;
+            velocity += dir * timestep * resSpeed;
         }
 
         if (platform->isKeyPressed(Platform::S))
         {
-            velocity -= dir * platform->getFrametime() * resSpeed;
+            velocity -= dir * timestep * resSpeed;
         }
 
         velocity.y = 0.0f;
@@ -165,8 +165,8 @@ BEGIN_INSTANCE(Player)
                 rel.y = 0.0;
             }
             
-            angularVelocity.x += rotateSpeed * platform->getFrametime() * rel.x / 4.0f;
-            angularVelocity.y += rotateSpeed * platform->getFrametime() * rel.y / 4.0f;
+            angularVelocity.x += rotateSpeed * timestep * rel.x / 4.0f;
+            angularVelocity.y += rotateSpeed * timestep * rel.y / 4.0f;
         } else
         {
             platform->setCursorVisible(true);
@@ -192,19 +192,19 @@ BEGIN_INSTANCE(Player)
 
         if (platform->getMouseWheel().y > 0)
         {
-            zoom -= 1.0f * platform->getFrametime();
+            zoom -= 1.0f * timestep;
         }
 
         if (platform->getMouseWheel().y < 0)
         {
-            zoom += 1.0f * platform->getFrametime();
+            zoom += 1.0f * timestep;
         }
 
         zoom = std::max(std::min(zoom, 1.7f), 0.3f);
 
         camera.setFieldOfView(zoom * 50.0f);
 
-        angularVelocity *= platform->getFrametime() * 0.1f;
+        angularVelocity *= timestep * 0.1f;
         
         if (angularVelocity.x > -0.001f and angularVelocity.x < 0.001f)
         {

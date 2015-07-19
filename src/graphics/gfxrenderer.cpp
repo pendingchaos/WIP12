@@ -826,7 +826,7 @@ void GfxRenderer::resize(const UInt2& size)
                                      1,
                                      0,
                                      GfxTexture::Other,
-                                     GfxTexture::RGBF32_F16);
+                                     GfxTexture::RGBI16);
         normalTexture->allocMipmap(0, 1, nullptr);
 
         ssaoTexture->startCreation(GfxTexture::Texture2D,
@@ -945,7 +945,7 @@ void GfxRenderer::resize(const UInt2& size)
                                          1,
                                          0,
                                          GfxTexture::Other,
-                                         GfxTexture::RGBF32_F16);
+                                         GfxTexture::RGBI16);
         geomNormalTexture->allocMipmap(0, 1, nullptr);
     }
 }
