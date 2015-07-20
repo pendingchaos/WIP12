@@ -1,7 +1,16 @@
+#extension GL_ARB_shader_image_load_store : enable
+
 #include "lib/color.glsl"
 #include "lib/lighting.glsl"
 #include "lib/parallax.glsl"
 #include "lib/uniform.glsl"
+
+#ifdef GL_ARB_shader_image_load_store
+#if defined(PARALLAX_MAPPING) || defined(POM)
+#else
+layout(early_fragment_tests) in;
+#endif
+#endif
 
 in vec3 frag_normal_worldSpace;
 in vec2 frag_uv_tangentSpace;

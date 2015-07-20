@@ -58,16 +58,6 @@ Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for 
     - Fix false occlusion at the borders.
     - Interleaving is incorrect or HBAO is.
 
-## Fixing sphere and box corner ao
-- Reconstruct normals using dFdx and dFdy.
-    - Normal mapping won't increase detail.
-    - Creates artifacts around borders
-        - https://github.com/nvpro-samples/gl_ssao/blob/master/hbao.frag.glsl#L123
-- Store flat normals in the G buffer.
-    - Memory usage is higher.
-    - Should work perfectly.
-    - Also use for shadow bias calculation.
-
 ## IBL
 - blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf
 - https://github.com/jMonkeyEngine/jmonkeyengine/compare/PBRisComing#diff-507f20304921a2bc77fb399401c5a7b8R138
