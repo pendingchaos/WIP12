@@ -22,6 +22,8 @@
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
 - [ ] Recursive includes in scripts.
+- [ ] Fix black borders around normal mapped metallic objects:
+![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/metallic border bug.png)
 
 ## Other
 - [ ] Benchmarks.
