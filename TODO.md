@@ -51,11 +51,11 @@
 Next Generation Post Processing in Call of Duty Advanced Warfare slide 120 (for point light filtering) (advances.realtimerendering.com).
 
 ## HBAO
-    - https://gist.github.com/fisch0920/6770346
-    - https://github.com/nvpro-samples/gl_ssao/blob/master/hbao.frag.glsl
-    - https://a248.e.akamai.net/f/862/5658/3/developer.download.nvidia.com/presentations/2008/SIGGRAPH/HBAO_SIG08b.pdf
-    - Fix false occlusion at the borders.
-    - Interleaving is incorrect or HBAO is.
+- https://gist.github.com/fisch0920/6770346
+- https://github.com/nvpro-samples/gl_ssao/blob/master/hbao.frag.glsl
+- https://a248.e.akamai.net/f/862/5658/3/developer.download.nvidia.com/presentations/2008/SIGGRAPH/HBAO_SIG08b.pdf
+- Fix false occlusion at the borders.
+- Interleaving is incorrect or HBAO is.
 
 ## IBL
 - blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf
