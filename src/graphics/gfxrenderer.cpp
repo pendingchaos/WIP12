@@ -1636,7 +1636,14 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
                     {
                         const GfxModel::LOD& lod = subModel[j];
 
-                        aabb.extend(lod.mesh->aabb.transform(transform * lod.worldMatrix));
+                        AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
+
+                        if (lod.material->getDisplacementMap() != nullptr)
+                        {
+                            aabb2.grow(lod.material->displacementStrength);
+                        }
+
+                        aabb.extend(aabb2);
                     }
                 }
             }
@@ -1670,7 +1677,14 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
                     {
                         const GfxModel::LOD& lod = subModel[j];
 
-                        aabb.extend(lod.mesh->aabb.transform(transform * lod.worldMatrix));
+                        AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
+
+                        if (lod.material->getDisplacementMap() != nullptr and lod.material->shadowTesselation)
+                        {
+                            aabb2.grow(lod.material->displacementStrength);
+                        }
+
+                        aabb.extend(aabb2);
                     }
                 }
             }

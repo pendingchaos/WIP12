@@ -52,6 +52,12 @@ class AABB
             extend(aabb.max);
         }
 
+        inline void grow(const Vector3D& amount)
+        {
+            min -= amount;
+            max += amount;
+        }
+
         Position3D min;
         Position3D max;
 };
