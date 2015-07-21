@@ -285,6 +285,8 @@ BEGIN_INSTANCE(Main)
         float y = gfxApi->getViewportHeight() - fontSize;
         y /= gfxApi->getViewportHeight();
         
+        GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
+        
         if (timingsUpdateCountdown < 0.0f and not freezeTimings)
         {
             timingsUpdateCountdown = TIMINGS_UPDATE_COUNTDOWN;
@@ -297,8 +299,6 @@ BEGIN_INSTANCE(Main)
                                       platform->getFrametime() * 1000.0f,
                                       platform->getGPUFrametime() * 1000.0f,
                                       platform->getCPUFrametime() * 1000.0f);
-            
-            GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
             
             Application::Stats cpuStats = app->getStats();
             
@@ -406,8 +406,9 @@ BEGIN_INSTANCE(Main)
                                           cpuStats.audio * 1000.0f,
                                           cpuStats.audio / cpuTotal * 100.0f);
         }
-        
         String displayedText = timings.copy();
+        
+        displayedText.append(String::format("Draw calls: %zu\n", stats.numDrawCalls));
         
         if (showExtraTimings)
         {

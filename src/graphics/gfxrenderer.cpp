@@ -28,7 +28,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomEnabled(true),
                                           ssaoRadius(0.1f),
                                           skybox(nullptr),
-                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
+                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0}),
                                           width(0),
                                           height(0),
                                           scene(scene_),
@@ -710,63 +710,6 @@ void main()
     compiledColorModifier = colorModifierFragment->getCompiled();
 }
 
-void GfxRenderer::beginRenderMesh(const Camera& camera,
-                                  const Matrix4x4& worldMatrix,
-                                  GfxMesh *mesh,
-                                  GfxShaderCombination *comb)
-{
-    gfxApi->pushState();
-
-    gfxApi->setCullMode(mesh->cullMode);
-
-    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
-    Matrix4x4 viewMatrix = camera.getViewMatrix();
-    Matrix3x3 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
-
-    GfxCompiledShader *vertexShader = comb->getCompiledVertexShader();
-    GfxCompiledShader *tessControlShader = comb->getCompiledTessControlShader();
-    GfxCompiledShader *tessEvalShader = comb->getCompiledTessEvalShader();
-    GfxCompiledShader *geometryShader = comb->getCompiledGeometryShader();
-    GfxCompiledShader *fragmentShader = comb->getCompiledFragmentShader();
-
-    gfxApi->begin(vertexShader,
-                  tessControlShader,
-                  tessEvalShader,
-                  geometryShader,
-                  fragmentShader,
-                  mesh);
-
-    gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
-
-    gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
-
-    gfxApi->uniform(vertexShader, "worldMatrix", worldMatrix);
-
-    gfxApi->uniform(vertexShader, "normalMatrix", normalMatrix);
-
-    gfxApi->uniform(vertexShader, "cameraPosition", camera.getPosition());
-}
-
-void GfxRenderer::endRenderMesh(GfxMesh *mesh)
-{
-    gfxApi->setCullMode(mesh->cullMode);
-
-    if (mesh->indexed)
-    {
-        gfxApi->endIndexed(mesh->primitive,
-                           mesh->indexData.type,
-                           mesh->indexData.numIndices,
-                           mesh->indexData.offset,
-                           mesh->getBuffer(),
-                           mesh->winding);
-    } else
-    {
-        gfxApi->end(mesh->primitive, mesh->numVertices, mesh->winding);
-    }
-
-    gfxApi->popState();
-}
-
 void GfxRenderer::resize(const UInt2& size)
 {
     if (size.x != width or size.y != width)
@@ -953,6 +896,8 @@ void GfxRenderer::resize(const UInt2& size)
 
 void GfxRenderer::render()
 {
+    stats.numDrawCalls = 0;
+
     GfxTexture *oldReadTex = readColorTexture;
     GfxTexture *oldWriteTex = writeColorTexture;
     GfxFramebuffer *oldReadFb = readFramebuffer;
@@ -1045,6 +990,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     ssaoTimer->end();
 
@@ -1145,6 +1091,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     ssaoBlurXTimer->end();
 
@@ -1165,6 +1112,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     ssaoBlurYTimer->end();
 
@@ -1282,6 +1230,7 @@ void GfxRenderer::render()
         gfxApi->end(quadMesh->primitive,
                     quadMesh->numVertices,
                     quadMesh->winding);
+        ++stats.numDrawCalls;
     }
 
     deferredShadingTimer->end();
@@ -1335,6 +1284,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     luminanceTexture->generateMipmaps();
 
@@ -1392,6 +1342,7 @@ void GfxRenderer::render()
         gfxApi->end(quadMesh->primitive,
                     quadMesh->numVertices,
                     quadMesh->winding);
+        ++stats.numDrawCalls;
 
         #define BLOOM(framebuffer) {\
         int32_t radius = bloomRadiusPixels / 4;\
@@ -1413,6 +1364,7 @@ void GfxRenderer::render()
         gfxApi->end(quadMesh->primitive,\
                     quadMesh->numVertices,\
                     quadMesh->winding);\
+        ++stats.numDrawCalls;\
 \
         gfxApi->setCurrentFramebuffer(framebuffer);\
 \
@@ -1430,6 +1382,7 @@ void GfxRenderer::render()
         gfxApi->end(quadMesh->primitive,\
                     quadMesh->numVertices,\
                     quadMesh->winding);\
+        ++stats.numDrawCalls;\
         }
 
         uint32_t bloomRadiusPixels = uint32_t(height*bloom1Radius);
@@ -1474,6 +1427,7 @@ void GfxRenderer::render()
         gfxApi->end(quadMesh->primitive,
                     quadMesh->numVertices,
                     quadMesh->winding);
+        ++stats.numDrawCalls;
 
         swapFramebuffers();
     }
@@ -1497,6 +1451,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     colorModifierTimer->end();
 
@@ -1534,6 +1489,7 @@ void GfxRenderer::render()
                 gfxApi->end(quadMesh->primitive,
                             quadMesh->numVertices,
                             quadMesh->winding);
+                ++stats.numDrawCalls;
                 break;
             }
             default:
@@ -1566,6 +1522,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     swapFramebuffers();
 
@@ -1588,6 +1545,7 @@ void GfxRenderer::render()
     gfxApi->end(quadMesh->primitive,
                 quadMesh->numVertices,
                 quadMesh->winding);
+    ++stats.numDrawCalls;
 
     fxaaTimer->end();
 
@@ -1830,6 +1788,7 @@ void GfxRenderer::renderSkybox()
                         skyboxMesh->numVertices,
                         skyboxMesh->winding);
         }
+        ++stats.numDrawCalls;
 
         gfxApi->popState();
     }
@@ -1985,6 +1944,7 @@ void GfxRenderer::renderModel(bool forward,
                 {
                     gfxApi->end(primitive, mesh->numVertices, mesh->winding);
                 }
+                ++stats.numDrawCalls;
 
                 gfxApi->popState();
                 break;
@@ -2166,6 +2126,7 @@ void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
                 {
                     gfxApi->end(primitive, mesh->numVertices, mesh->winding);
                 }
+                ++stats.numDrawCalls;
             }
         }
     }

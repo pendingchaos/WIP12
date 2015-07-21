@@ -167,15 +167,10 @@ class GfxRenderer
             float gbufferCPUTiming;
             float forwardCPUTiming;
             float overlayCPUTiming;
+            size_t numDrawCalls;
         };
 
         ~GfxRenderer();
-
-        static void beginRenderMesh(const Camera& camera,
-                                    const Matrix4x4& worldMatrix,
-                                    GfxMesh *mesh,
-                                    GfxShaderCombination *comb);
-        static void endRenderMesh(GfxMesh *mesh);
 
         void resize(const UInt2& size);
         void render();
