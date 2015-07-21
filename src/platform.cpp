@@ -241,7 +241,6 @@ void Platform::run(void (*updateFunction)(Platform *platform))
     float titleUpdateDelay = 0.5f;
     float titleUpdateCountdown = 0.0f;
     float displayFrametime = 0.0f;
-    float displayGpuFrametime = 0.0f;
 
     GPUTimer *gpuTimer = gfxApi->createTimer();
     uint64_t gpuTime = 0;
@@ -285,7 +284,6 @@ void Platform::run(void (*updateFunction)(Platform *platform))
             titleUpdateCountdown = titleUpdateDelay;
 
             displayFrametime = frametime;
-            displayGpuFrametime = gpuFrametime;
         }
 
         char title[256];

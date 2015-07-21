@@ -614,11 +614,11 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
     inBeginEnd = true;
 }
 
-void GfxGLApi::end(GfxPrimitive primitive, uint32_t count, GfxWinding winding)
+void GfxGLApi::end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, size_t instanceCount)
 {
     BEGIN_DRAW
 
-    glDrawArrays(toGLPrimitive[primitive], 0, count);
+    glDrawArraysInstanced(toGLPrimitive[primitive], 0, count, instanceCount);
 
     END_DRAW
 }
@@ -628,7 +628,8 @@ void GfxGLApi::endIndexed(GfxPrimitive primitive,
                           uint32_t count,
                           size_t offset,
                           GfxBuffer *indices,
-                          GfxWinding winding)
+                          GfxWinding winding,
+                          size_t instanceCount)
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamic_cast<GfxGLBuffer *>(indices)->getGLBuffer());
 
@@ -638,26 +639,29 @@ void GfxGLApi::endIndexed(GfxPrimitive primitive,
     {
     case GfxUnsignedByte:
     {
-        glDrawElements(toGLPrimitive[primitive],
-                       count,
-                       GL_UNSIGNED_BYTE,
-                       (const GLvoid *)offset);
+        glDrawElementsInstanced(toGLPrimitive[primitive],
+                                count,
+                                GL_UNSIGNED_BYTE,
+                                (const GLvoid *)offset,
+                                instanceCount);
         break;
     }
     case GfxUnsignedShort:
     {
-        glDrawElements(toGLPrimitive[primitive],
-                       count,
-                       GL_UNSIGNED_SHORT,
-                       (const GLvoid *)offset);
+        glDrawElementsInstanced(toGLPrimitive[primitive],
+                                count,
+                                GL_UNSIGNED_SHORT,
+                                (const GLvoid *)offset,
+                                instanceCount);
         break;
     }
     case GfxUnsignedInteger:
     {
-        glDrawElements(toGLPrimitive[primitive],
-                       count,
-                       GL_UNSIGNED_INT,
-                       (const GLvoid *)offset);
+        glDrawElementsInstanced(toGLPrimitive[primitive],
+                                count,
+                                GL_UNSIGNED_INT,
+                                (const GLvoid *)offset,
+                                instanceCount);
         break;
     }
     default: {break;}

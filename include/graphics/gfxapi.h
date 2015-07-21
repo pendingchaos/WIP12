@@ -54,13 +54,14 @@ class GfxApi
                            GfxCompiledShader *geometry,
                            GfxCompiledShader *fragment,
                            GfxMesh *mesh)=0;
-        virtual void end(GfxPrimitive primitive, uint32_t count, GfxWinding winding)=0;
+        virtual void end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, size_t instanceCount=1)=0;
         virtual void endIndexed(GfxPrimitive primitive,
                                 GfxVertexAttribType type,
                                 uint32_t count,
                                 size_t offset,
                                 GfxBuffer *indices,
-                                GfxWinding winding)=0;
+                                GfxWinding winding,
+                                size_t instanceCount=1)=0;
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value)=0;

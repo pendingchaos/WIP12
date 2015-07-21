@@ -111,6 +111,20 @@ void Font::render(size_t size,
                             GfxOneMinusSrcAlpha);
     gfxApi->setBlendMode(GfxAdd, GfxAdd);
 
+    struct Character
+    {
+        Position2D position;
+        Glyph glyph;
+
+        inline bool operator == (const Character& other) const
+        {
+            return position == other.position and
+                   glyph == other.glyph;
+        }
+    };
+
+    HashMap<char, List<Character>> characters;
+
     for (size_t i = 0; i < length; ++i)
     {
         if (string[i] == '\n')
@@ -122,38 +136,91 @@ void Font::render(size_t size,
         }
 
         int glyphIndex = face->glyphs.findEntry(string[i]);
-        Glyph *glyph;
+        Glyph glyph;
 
         if (glyphIndex == -1)
         {
             loadGlyph(*face, string[i]);
 
-            glyph = &face->glyphs.get(string[i]);
+            glyph = face->glyphs.get(string[i]);
         } else
         {
-            glyph = &face->glyphs.getValue(glyphIndex);
+            glyph = face->glyphs.getValue(glyphIndex);
         }
 
-        gfxApi->begin(compiledQuadVertex,
-                      nullptr,
-                      nullptr,
-                      compiledQuadGeometry,
-                      compiledQuadFragment,
-                      quadMesh);
+        Character character;
+        character.position = Position2D(x + glyph.bearing.x * onePixel.x,
+                                        y - (glyph.size.y - glyph.bearing.y) * onePixel.y);
+        character.glyph = glyph;
 
-        Float2 newPosition(x + glyph->bearing.x * onePixel.x,
-                           y - (glyph->size.y - glyph->bearing.y) * onePixel.y);
+        int index = characters.findEntry(string[i]);
 
-        gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph->size) * onePixel);
-        gfxApi->uniform(compiledQuadGeometry, "glyphPosition", newPosition);
-        gfxApi->uniform(compiledQuadFragment, "color", color);
-        gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph->texture);
+        if (index == -1)
+        {
+            List<Character> chars;
+            chars.append(character);
 
-        gfxApi->end(quadMesh->primitive,
-                    quadMesh->numVertices,
-                    quadMesh->winding);
+            characters.set(string[i], chars);
+        } else
+        {
+            characters.getValue(index).append(character);
+        }
 
-        x += glyph->xAdvance * onePixel.x;
+        x += glyph.xAdvance * onePixel.x;
+    }
+
+    for (size_t i = 0; i < characters.getEntryCount(); ++i)
+    {
+        List<Position2D> positions;
+
+        for (size_t j = 0; j < characters.getValue(i).getCount(); ++j)
+        {
+            positions.append(characters.getValue(i)[j].position);
+        }
+
+        Glyph& glyph = characters.getValue(i)[0].glyph;
+
+        for (size_t j = 0; j < positions.getCount()/100; ++j)
+        {
+            gfxApi->begin(compiledQuadVertex,
+                          nullptr,
+                          nullptr,
+                          compiledQuadGeometry,
+                          compiledQuadFragment,
+                          quadMesh);
+
+            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size) * onePixel);
+            gfxApi->uniform(compiledQuadGeometry, "glyphPositions", 100, positions.getData()+j*100*sizeof(Position2D));
+            gfxApi->uniform(compiledQuadFragment, "color", color);
+            gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
+
+            gfxApi->end(quadMesh->primitive,
+                        quadMesh->numVertices,
+                        quadMesh->winding,
+                        100);
+        }
+
+        if (positions.getCount() % 100 != 0)
+        {
+            size_t offset = positions.getCount()/100*100*sizeof(Position2D);
+
+            gfxApi->begin(compiledQuadVertex,
+                          nullptr,
+                          nullptr,
+                          compiledQuadGeometry,
+                          compiledQuadFragment,
+                          quadMesh);
+
+            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size) * onePixel);
+            gfxApi->uniform(compiledQuadGeometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);
+            gfxApi->uniform(compiledQuadFragment, "color", color);
+            gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
+
+            gfxApi->end(quadMesh->primitive,
+                        quadMesh->numVertices,
+                        quadMesh->winding,
+                        positions.getCount() % 100);
+        }
     }
 
     gfxApi->popState();

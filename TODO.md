@@ -37,7 +37,6 @@
 - [ ] Get WIP12 running on OpenGL 3.3.
 
 ## Performance Improvements
-- [ ] Text rendering is sloooow.
 - [ ] Instancing (explicit and implicit).
 - [ ] SSAO performance should be improved.
 - [ ] Fix performance warnings in shaders (Mesa3D):
