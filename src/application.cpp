@@ -19,6 +19,7 @@
 #include "logging.h"
 
 Application::Application(const char *workingDir) : fixedTimestep(0.016f),
+                                                   stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
                                                    nextScript(nullptr)
 {
     precompileScriptInclude();
@@ -89,10 +90,15 @@ void Application::updateFunction()
 {
     uint64_t timerFrequency = platform_->getTimerFrequency();
 
+    uint64_t start = platform_->getTime();
     if (script != nullptr)
     {
         script->handleInput();
     }
+    uint64_t end = platform_->getTime();
+    stats.handleInput = float(end - start) / timerFrequency;
+
+    start = platform_->getTime();
 
     uint64_t realTime = platform_->getTime();
 
@@ -106,12 +112,25 @@ void Application::updateFunction()
         simulationTime += fixedTimestep * timerFrequency;
     }
 
+    end = platform_->getTime();
+    stats.fixedUpdate = float(end - start) / timerFrequency;
+
     if (script != nullptr)
     {
+        start = platform_->getTime();
         script->update();
+        end = platform_->getTime();
+        stats.update = float(end - start) / timerFrequency;
 
+        start = platform_->getTime();
         script->preRender();
+        end = platform_->getTime();
+        stats.preRender = float(end - start) / timerFrequency;
+
+        start = platform_->getTime();
         script->postRender();
+        end = platform_->getTime();
+        stats.postRender = float(end - start) / timerFrequency;
     }
 
     _switchScripts();
@@ -125,10 +144,15 @@ void Application::updateFunction()
 
     numSamples = std::max(numSamples, 0);
 
+    start = platform_->getTime();
+
     if (numSamples > 0)
     {
         audioDevice->runCallbacks(numSamples);
     }
+
+    end = platform_->getTime();
+    stats.audio = float(end - start) / timerFrequency;
 
     audioDevice->play();
 }

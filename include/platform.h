@@ -219,12 +219,18 @@ class Platform
             return gpuFrametime;
         }
 
+        inline float getCPUFrametime() const
+        {
+            return cpuFrametime;
+        }
+
         bool running;
     private:
         SDL_Window *window;
         SDL_GLContext context;
         float frametime;
         float gpuFrametime;
+        float cpuFrametime;
         bool fullscreen;
         Int2 mouseWheel;
 };

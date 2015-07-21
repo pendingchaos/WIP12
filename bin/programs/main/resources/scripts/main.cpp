@@ -163,6 +163,7 @@ BEGIN_INSTANCE(Main)
     AudioSource *source;
     Audio *audio;
     Script *projScript;
+    float textCPUTiming;
     
     virtual void init()
     {
@@ -265,8 +266,6 @@ BEGIN_INSTANCE(Main)
 
     virtual void postRender()
     {
-        scene->getRenderer()->updateStats();
-        
         timingsUpdateCountdown -= platform->getFrametime();
         
         gfxApi->setViewport(0, 0, platform->getWindowWidth(), platform->getWindowHeight());
@@ -292,16 +291,19 @@ BEGIN_INSTANCE(Main)
             
             timings = String::format("FPS: %.0f\n"
                                      "Frametime: %.0f ms\n"
-                                     "GPU FPS: %.0f\n"
-                                     "GPU Frametime: %.0f\n",
+                                     "GPU Frametime: %.0f ms\n"
+                                     "CPU Frametime: %.0f ms\n",
                                       1.0f / platform->getFrametime(),
                                       platform->getFrametime() * 1000.0f,
-                                      1.0f / platform->getGPUFrametime(),
-                                      platform->getGPUFrametime() * 1000.0f);
+                                      platform->getGPUFrametime() * 1000.0f,
+                                      platform->getCPUFrametime() * 1000.0f);
             
             GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
             
+            Application::Stats cpuStats = app->getStats();
+            
             float total = platform->getGPUFrametime();
+            float cpuTotal = platform->getCPUFrametime();
             
             if (textTimer->resultAvailable())
             {
@@ -323,7 +325,7 @@ BEGIN_INSTANCE(Main)
                         stats.debugDrawTiming +
                         textTiming;
             
-            extraTimings = String::format("Timings:\n"
+            extraTimings = String::format("GPU Timings:\n"
                                           "    GBuffer: %.2f ms (%.0f%)\n"
                                           "    SSAO: %.2f ms (%.0f%)\n"
                                           "    SSAO blur X: %.2f ms (%.0f%)\n"
@@ -338,7 +340,19 @@ BEGIN_INSTANCE(Main)
                                           "    Debug draw: %.2f ms (%.0f%)\n"
                                           "    Text: %.2f ms (%.0f%)\n"
                                           "    Overlays: %.2f ms (%.0f%)\n"
-                                          "    Other: %.2f ms (%.0f%)\n",
+                                          "    Other: %.2f ms (%.0f%)\n"
+                                          "CPU Timings:\n"
+                                          "    Input: %.2f ms (%.0f%)\n"
+                                          "    Update: %.2f ms (%.0f%)\n"
+                                          "    Fixed Update: %.2f ms (%.0f%)\n"
+                                          "    Pre Render: %.2f ms (%.0f%)\n"
+                                          "    Post Render: %.2f ms (%.0f%)\n"
+                                          "        Shadowmap: %.2f ms (%.0f%)\n"
+                                          "        G Buffer: %.2f ms (%.0f%)\n"
+                                          "        Forward: %.2f ms (%.0f%)\n"
+                                          "        Overlay: %.2f ms (%.0f%)\n"
+                                          "        Text: %.2f ms (%.0f%)\n"
+                                          "    Audio: %.2f ms (%.0f%)\n",
                                           stats.gBufferTiming * 1000.0f,
                                           stats.gBufferTiming / total * 100.0f,
                                           stats.ssaoTiming * 1000.0f,
@@ -368,7 +382,29 @@ BEGIN_INSTANCE(Main)
                                           stats.overlayTiming * 1000.0f,
                                           stats.overlayTiming / total * 100.0f,
                                           (total - sum) * 1000.0f,
-                                          (total - sum) / total * 100.0f);
+                                          (total - sum) / total * 100.0f,
+                                          cpuStats.handleInput * 1000.0f,
+                                          cpuStats.handleInput / cpuTotal * 100.0f,
+                                          cpuStats.update * 1000.0f,
+                                          cpuStats.update / cpuTotal * 100.0f,
+                                          cpuStats.fixedUpdate * 1000.0f,
+                                          cpuStats.fixedUpdate / cpuTotal * 100.0f,
+                                          cpuStats.preRender * 1000.0f,
+                                          cpuStats.preRender / cpuTotal * 100.0f,
+                                          cpuStats.postRender * 1000.0f,
+                                          cpuStats.postRender / cpuTotal * 100.0f,
+                                          stats.shadowmapCPUTiming * 1000.0f,
+                                          stats.shadowmapCPUTiming / cpuTotal * 100.0f,
+                                          stats.gbufferCPUTiming * 1000.0f,
+                                          stats.gbufferCPUTiming / cpuTotal * 100.0f,
+                                          stats.forwardCPUTiming * 1000.0f,
+                                          stats.forwardCPUTiming / cpuTotal * 100.0f,
+                                          stats.overlayCPUTiming * 1000.0f,
+                                          stats.overlayCPUTiming / cpuTotal * 100.0f,
+                                          textCPUTiming * 1000.0f,
+                                          textCPUTiming / cpuTotal * 100.0f,
+                                          cpuStats.audio * 1000.0f,
+                                          cpuStats.audio / cpuTotal * 100.0f);
         }
         
         String displayedText = timings.copy();
@@ -386,6 +422,7 @@ BEGIN_INSTANCE(Main)
         }
         
         textTimer->begin();
+        uint64_t start = platform->getTime();
         
         font->render(fontSize,
                      Float2(-1.0, y),
@@ -393,6 +430,7 @@ BEGIN_INSTANCE(Main)
                      NULL,
                      Float3(1.0));
         
+        textCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
         textTimer->end();
     }
     

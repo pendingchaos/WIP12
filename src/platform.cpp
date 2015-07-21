@@ -260,6 +260,10 @@ void Platform::run(void (*updateFunction)(Platform *platform))
 
         gpuTimer->end();
 
+        Uint64 cpuEnd = SDL_GetPerformanceCounter();
+
+        cpuFrametime = float(cpuEnd - start) / SDL_GetPerformanceFrequency();
+
         SDL_GL_SwapWindow(window);
         glFinish();
 
@@ -289,9 +293,8 @@ void Platform::run(void (*updateFunction)(Platform *platform))
 
         std::snprintf(title,
                       sizeof(title),
-                      "Frametime: %f ms GPU Frametime: %f ms",
-                      displayFrametime*1000.0f,
-                      displayGpuFrametime*1000.0f);
+                      "Frametime: %f ms",
+                      displayFrametime*1000.0f);
 
         SDL_SetWindowTitle(window, title);
     }

@@ -163,6 +163,10 @@ class GfxRenderer
             float shadowmapTiming;
             float overlayTiming;
             float debugDrawTiming;
+            float shadowmapCPUTiming;
+            float gbufferCPUTiming;
+            float forwardCPUTiming;
+            float overlayCPUTiming;
         };
 
         ~GfxRenderer();

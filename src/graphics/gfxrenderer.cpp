@@ -11,6 +11,7 @@
 #include "scene/entity.h"
 #include "globals.h"
 #include "logging.h"
+#include "platform.h"
 
 #include <cmath>
 
@@ -27,7 +28,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomEnabled(true),
                                           ssaoRadius(0.1f),
                                           skybox(nullptr),
-                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
+                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
                                           width(0),
                                           height(0),
                                           scene(scene_),
@@ -958,6 +959,7 @@ void GfxRenderer::render()
     GfxFramebuffer *oldWriteFb = writeFramebuffer;
 
     //Shadowmaps
+    uint64_t start = platform->getTime();
     shadowmapTimer->begin();
 
     for (size_t i = 0; i < lights.getCount(); ++i)
@@ -975,12 +977,14 @@ void GfxRenderer::render()
     }
 
     shadowmapTimer->end();
+    stats.shadowmapCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //G buffer
     gfxApi->setViewport(0, 0, width, height);
     gfxApi->setWriteDepth(true);
     gfxApi->setDepthFunction(GfxLess);
 
+    start = platform->getTime();
     gBufferTimer->begin();
 
     gfxApi->setCurrentFramebuffer(gBufferFramebuffer);
@@ -999,6 +1003,7 @@ void GfxRenderer::render()
     gfxApi->setDepthFunction(GfxAlways);
 
     gBufferTimer->end();
+    stats.gbufferCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Generate normals
     /*gfxApi->setCurrentFramebuffer(geomNormalFramebuffer);
@@ -1284,6 +1289,7 @@ void GfxRenderer::render()
     gfxApi->setBlendingEnabled(false);
 
     //Forward
+    start = platform->getTime();
     forwardTimer->begin();
 
     gfxApi->setWriteDepth(true);
@@ -1305,6 +1311,7 @@ void GfxRenderer::render()
     }
 
     debugDrawTimer->end();
+    stats.forwardCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     gfxApi->setWriteDepth(false);
     gfxApi->setDepthFunction(GfxAlways);
@@ -1494,6 +1501,7 @@ void GfxRenderer::render()
     colorModifierTimer->end();
 
     //Overlays
+    start = platform->getTime();
     overlayTimer->begin();
 
     const List<Entity *>& entities = scene->getEntities();
@@ -1539,6 +1547,7 @@ void GfxRenderer::render()
     swapFramebuffers();
 
     overlayTimer->end();
+    stats.overlayCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Gamma correction
     gammaCorrectionTimer->begin();

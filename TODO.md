@@ -22,7 +22,7 @@
 - [ ] The tesselation test's normals seem incorrect.
 - [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
 - [ ] Recursive includes in scripts.
-- [ ] Fix black borders around normal mapped metallic objects:
+- [ ] Fix black borders around normal mapped metallic objects (http://marmosetco.tumblr.com/post/81245981087 ?):
 ![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/metallic border bug.png)
 
 ## Other
@@ -37,6 +37,7 @@
 - [ ] Get WIP12 running on OpenGL 3.3.
 
 ## Performance Improvements
+- [ ] Text rendering is sloooow.
 - [ ] Instancing (explicit and implicit).
 - [ ] SSAO performance should be improved.
 - [ ] Fix performance warnings in shaders (Mesa3D):

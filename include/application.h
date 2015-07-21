@@ -24,6 +24,16 @@ class Application
     NO_COPY(Application)
 
     public:
+        struct Stats
+        {
+            float handleInput;
+            float update;
+            float fixedUpdate;
+            float preRender;
+            float postRender;
+            float audio;
+        };
+
         Application(const char *workingDir);
         ~Application();
 
@@ -85,9 +95,15 @@ class Application
             return script;
         }
 
+        inline Stats getStats() const
+        {
+            return stats;
+        }
+
         float fixedTimestep;
         bool running;
     private:
+        Stats stats;
         Platform *platform_;
         Filesystem *fileSystem_;
         ResourceManager *resMgr_;
