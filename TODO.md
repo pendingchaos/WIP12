@@ -37,7 +37,12 @@
 - [ ] Get WIP12 running on OpenGL 3.3.
 
 ## Performance Improvements
-- [ ] Instancing (explicit and implicit).
+- [ ] Instancing
+    - [ ] Implicit
+        - [x] G-Buffer
+        - [x] Forward
+        - [ ] Shadowmap
+    - [ ] Explicit
 - [ ] SSAO performance should be improved.
 - [ ] Fix performance warnings in shaders (Mesa3D):
     - [ ] lightingDirectional.bin:

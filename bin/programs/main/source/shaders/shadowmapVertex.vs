@@ -1,7 +1,7 @@
 #include "lib/vertex attributes.glsl"
+#include "lib/uniform.glsl"
 
 layout (location=POSITION) in vec3 position_modelSpace;
-#include "lib/uniform.glsl"
 
 #ifdef TESSELATION
 layout (location=NORMAL) in vec3 normal_modelSpace;
