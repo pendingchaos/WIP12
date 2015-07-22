@@ -351,23 +351,14 @@ class GfxRenderer
         GfxBuffer *lightBuffer;
 
         void fillLightBuffer(Scene *scene);
-        void renderEntities(bool forward, const List<Entity *>& entities);
+        void batchEntities(const List<Entity *>& entities);
+        void batchModel(const Matrix4x4& worldMatrix, const GfxModel *model);
+        void renderBatches(bool forward);
         void renderSkybox();
-        void renderModel(bool forward,
-                         const Camera& camera,
-                         const Matrix4x4& worldMatrix,
-                         const GfxModel *model);
-        void renderModelToShadowmap(const Matrix4x4& viewMatrix,
-                                    const Matrix4x4& projectionMatrix,
-                                    const Matrix4x4& worldMatrix,
-                                    const GfxModel *model,
-                                    Light *light,
-                                    size_t cubemapFace);
-        void renderEntitiesToShadowmap(const Matrix4x4& viewMatrix,
-                                       const Matrix4x4& projectionMatrix,
-                                       Light *light,
-                                       size_t i,
-                                       const List<Entity *>& entities);
+        void renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
+                                      const Matrix4x4& projectionMatrix,
+                                      Light *light,
+                                      size_t cubemapFace);
         void renderShadowmap(Light *light);
 
         GfxTexture *writeColorTexture;
@@ -405,6 +396,22 @@ class GfxRenderer
         GfxFramebuffer *ssaoDeinterleavedFramebuffer;
         GfxFramebuffer *ssaoDepthDeinterleaveFramebuffer;
         //GfxFramebuffer *luminanceFramebuffer;
+
+        struct Batch
+        {
+            GfxMesh *mesh;
+            GfxMaterial *material;
+            List<Matrix4x4> worldMatrices;
+
+            inline bool operator == (const Batch& other) const
+            {
+                return mesh == other.mesh and material == other.material and worldMatrices == other.worldMatrices;
+            }
+        };
+
+        List<Batch> batches;
+        //GfxTexture *matrixTexture;
+        GfxBuffer *instanceBuffer;
 
         void swapFramebuffers();
 };

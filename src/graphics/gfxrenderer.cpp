@@ -269,10 +269,17 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     shadowmapTimer = gfxApi->createTimer();
     overlayTimer = gfxApi->createTimer();
     debugDrawTimer = gfxApi->createTimer();
+
+    //matrixTexture = NEW(GfxTexture);
+    instanceBuffer = gfxApi->createBuffer();
+    instanceBuffer->allocData(16384, NULL, GfxBuffer::Dynamic);
 }
 
 GfxRenderer::~GfxRenderer()
 {
+    //matrixTexture->release();
+    DELETE(GfxBuffer, instanceBuffer);
+
     for (size_t i = 0; i < lights.getCount(); ++i)
     {
         DELETE(Light, lights[i]);
@@ -903,6 +910,9 @@ void GfxRenderer::render()
     GfxFramebuffer *oldReadFb = readFramebuffer;
     GfxFramebuffer *oldWriteFb = writeFramebuffer;
 
+    batches.clear();
+    batchEntities(scene->getEntities());
+
     //Shadowmaps
     uint64_t start = platform->getTime();
     shadowmapTimer->begin();
@@ -940,7 +950,7 @@ void GfxRenderer::render()
     gfxApi->clearColor(1, Float4(0.0f));
     gfxApi->clearColor(2, Float4(0.5f, 0.5f, 0.5f, 0.0f));
 
-    renderEntities(false, scene->getEntities());
+    renderBatches(false);
 
     swapFramebuffers();
 
@@ -1246,7 +1256,7 @@ void GfxRenderer::render()
 
     fillLightBuffer(scene);
 
-    renderEntities(true, scene->getEntities());
+    renderBatches(true);
 
     renderSkybox();
 
@@ -1721,7 +1731,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
     DELETE_ARRAY(float, lightData);
 }
 
-void GfxRenderer::renderEntities(bool forward, const List<Entity *>& entities)
+void GfxRenderer::batchEntities(const List<Entity *>& entities)
 {
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
@@ -1737,7 +1747,7 @@ void GfxRenderer::renderEntities(bool forward, const List<Entity *>& entities)
             {
             case RenderComponent::Model:
             {
-                renderModel(forward, camera, transform, comp->model);
+                batchModel(transform, comp->model);
                 break;
             }
             default:
@@ -1747,7 +1757,282 @@ void GfxRenderer::renderEntities(bool forward, const List<Entity *>& entities)
             }
         }
 
-        renderEntities(forward, entity->getEntities());;
+        batchEntities(entity->getEntities());;
+    }
+}
+
+void GfxRenderer::batchModel(const Matrix4x4& worldMatrix, const GfxModel *model)
+{
+    Position3D position = Position3D(worldMatrix[0][3],
+                                     worldMatrix[1][3],
+                                     worldMatrix[2][3]);
+
+    float distance = position.distance(camera.getPosition());
+
+    for (size_t i = 0; i < model->subModels.getCount(); ++i)
+    {
+        GfxModel::SubModel subModel = model->subModels[i];
+
+        for (size_t j = 0; j < subModel.getCount(); ++j)
+        {
+            const GfxModel::LOD& lod = subModel[j];
+
+            if (lod.minDistance < distance and
+                distance < lod.maxDistance)
+            {
+                Matrix4x4 newWorldMatrix = worldMatrix * lod.worldMatrix;
+
+                GfxMaterial *material = lod.material;
+                GfxMesh *mesh = lod.mesh;
+
+                bool found = false;
+
+                for (size_t k = 0; k < batches.getCount(); ++k)
+                {
+                    if (batches[k].material == material and batches[k].mesh == mesh)
+                    {
+                        batches[k].worldMatrices.append(newWorldMatrix);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (not found)
+                {
+                    Batch batch;
+                    batch.material = material;
+                    batch.mesh = mesh;
+                    batch.worldMatrices.append(newWorldMatrix);
+
+                    batches.append(batch);
+                }
+                break;
+            }
+        }
+    }
+}
+
+void GfxRenderer::renderBatches(bool forward)
+{
+    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
+    Matrix4x4 viewMatrix = camera.getViewMatrix();
+
+    for (size_t i = 0; i < batches.getCount(); ++i)
+    {
+        Batch batch = batches[i];
+
+        if (batch.material->isForward() == forward)
+        {
+            List<Matrix4x4> worldMatrices = batch.worldMatrices;
+
+            /*uint8_t *matrixData = (uint8_t *)ALLOCATE(worldMatrices.getCount()*128);
+
+            for (size_t j = 0; j < worldMatrices.getCount(); ++j)
+            {
+                Matrix4x4 worldMatrix = worldMatrices[j];
+                Matrix4x4 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
+                worldMatrix = worldMatrix.transpose();
+                normalMatrix = normalMatrix.transpose();
+
+                std::memcpy(matrixData+j*128, (void *)&worldMatrix, 64);
+                std::memcpy(matrixData+j*128+64, (void *)&normalMatrix, 64);
+            }
+
+            matrixTexture->startCreation(GfxTexture::Texture2D,
+                                         false,
+                                         worldMatrices.getCount()*8,
+                                         1,
+                                         1,
+                                         255,
+                                         GfxTexture::Other,
+                                         GfxTexture::RGBAF32);
+
+            matrixTexture->allocMipmap(0, 1, matrixData);
+
+            DEALLOCATE(matrixData);*/
+
+            GfxMaterial *material = batch.material;
+            GfxMesh *mesh = batch.mesh;
+            GfxShaderCombination *shaderComb = material->getShaderComb();
+
+            gfxApi->setCullMode(mesh->cullMode);
+
+            bool useTesselation = material->getDisplacementMap() != nullptr and
+                                  gfxApi->tesselationSupported() and
+                                  mesh->primitive == GfxTriangles;
+
+            gfxApi->pushState();
+
+            GfxCompiledShader *vertex = shaderComb->getCompiledVertexShader();
+            GfxCompiledShader *tessControl = shaderComb->getCompiledTessControlShader();
+            GfxCompiledShader *tessEval = shaderComb->getCompiledTessEvalShader();
+            GfxCompiledShader *geometry = shaderComb->getCompiledGeometryShader();
+            GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
+
+            gfxApi->begin(vertex,
+                          tessControl,
+                          tessEval,
+                          geometry,
+                          fragment,
+                          mesh);
+
+            if (useTesselation)
+            {
+                gfxApi->uniform(vertex, "projectionViewMatrix", Matrix4x4());
+            } else
+            {
+                gfxApi->uniform(vertex, "projectionViewMatrix", projectionMatrix * viewMatrix);
+            }
+
+            gfxApi->uniform(vertex, "cameraPosition", camera.getPosition());
+
+            if (useTesselation)
+            {
+                gfxApi->uniform(tessControl, "minTessLevel", material->minTessLevel);
+                gfxApi->uniform(tessControl, "maxTessLevel", material->maxTessLevel);
+                gfxApi->uniform(tessControl, "tessMinDistance", material->tessMinDistance);
+                gfxApi->uniform(tessControl, "tessMaxDistance", material->tessMaxDistance);
+                gfxApi->uniform(tessControl, "cameraPosition", camera.getPosition());
+
+                gfxApi->addTextureBinding(tessEval, "heightMap", material->getDisplacementMap());
+                gfxApi->uniform(tessEval, "displacementMidlevel", material->displacementMidlevel);
+                gfxApi->uniform(tessEval, "projectionViewMatrix", projectionMatrix * viewMatrix);
+                gfxApi->uniform(tessEval, "strength", material->displacementStrength);
+            }
+
+            gfxApi->uniform(fragment, "smoothness", material->smoothness);
+            gfxApi->uniform(fragment, "metalMask", material->metalMask);
+            gfxApi->uniform(fragment, "albedo", material->albedo);
+
+            if (material->isForward())
+            {
+                gfxApi->uniform(fragment, "numLights", (uint32_t)lights.getCount());
+                gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
+            }
+
+            if (material->getSmoothnessMap() != nullptr)
+            {
+                gfxApi->addTextureBinding(fragment, "smoothnessMap", material->getSmoothnessMap());
+            }
+
+            if (material->getMetalMaskMap() != nullptr)
+            {
+                gfxApi->addTextureBinding(fragment, "metalMaskMap", material->getMetalMaskMap());
+            }
+
+            if (material->getAlbedoMap() != nullptr)
+            {
+                gfxApi->addTextureBinding(fragment, "albedoMap", material->getAlbedoMap());
+            }
+
+            if (material->getNormalMap() != nullptr)
+            {
+                gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
+            }
+
+            if (material->getParallaxHeightMap() != nullptr)
+            {
+                gfxApi->addTextureBinding(fragment, "heightMap", material->getParallaxHeightMap());
+
+                gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
+                gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
+            }
+
+            if (material->getPOMHeightMap() != nullptr)
+            {
+                gfxApi->addTextureBinding(fragment, "heightMap", material->getPOMHeightMap());
+
+                gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
+                gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
+                gfxApi->uniform(fragment, "pomMinLayers", material->pomMinLayers);
+                gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
+            }
+
+            //gfxApi->addTextureBinding(vertex, "matrixTexture", matrixTexture);
+            gfxApi->addUBOBinding(vertex, "instanceData", instanceBuffer);
+
+            gfxApi->setCullMode(mesh->cullMode);
+
+            GfxPrimitive primitive = useTesselation ?
+                                     GfxPatches :
+                                     mesh->primitive;
+
+            if (useTesselation)
+            {
+                gfxApi->setTessPatchSize(3);
+            }
+
+            gfxApi->addUBOBinding(vertex, "instanceData", instanceBuffer);
+
+            for (size_t j = 0; j < worldMatrices.getCount()/128; ++j)
+            {
+                float instanceData[4096];
+
+                for (size_t k = 0; k < 128; ++k)
+                {
+                    Matrix4x4 worldMatrix = worldMatrices[j*128+k];
+                    Matrix4x4 normalMatrix = worldMatrix.inverse();
+                    worldMatrix = worldMatrix.transpose();
+
+                    std::memcpy(instanceData+k*32, &worldMatrix, 64);
+                    std::memcpy(instanceData+k*32+16, &normalMatrix, 64);
+                }
+
+                instanceBuffer->setData(0, 16384, instanceData);
+
+                if (mesh->indexed)
+                {
+                    gfxApi->endIndexed(primitive,
+                                       mesh->indexData.type,
+                                       mesh->indexData.numIndices,
+                                       mesh->indexData.offset,
+                                       mesh->getBuffer(),
+                                       mesh->winding,
+                                       128);
+                } else
+                {
+                    gfxApi->end(primitive, mesh->numVertices, mesh->winding, 128);
+                }
+                ++stats.numDrawCalls;
+            }
+
+            size_t numDone = worldMatrices.getCount() / 128 * 128;
+            size_t numLeft = worldMatrices.getCount() % 128;
+
+            if (numLeft % 128 != 0)
+            {
+                float instanceData[numLeft*32];
+
+                for (size_t k = 0; k < numLeft; ++k)
+                {
+                    Matrix4x4 worldMatrix = worldMatrices[numDone+k];
+                    Matrix4x4 normalMatrix = worldMatrix.inverse();
+                    worldMatrix = worldMatrix.transpose();
+
+                    std::memcpy(instanceData+k*32, &worldMatrix, 64);
+                    std::memcpy(instanceData+k*32+16, &normalMatrix, 64);
+                }
+
+                instanceBuffer->setData(0, numLeft*128, instanceData);
+
+                if (mesh->indexed)
+                {
+                    gfxApi->endIndexed(primitive,
+                                       mesh->indexData.type,
+                                       mesh->indexData.numIndices,
+                                       mesh->indexData.offset,
+                                       mesh->getBuffer(),
+                                       mesh->winding,
+                                       numLeft);
+                } else
+                {
+                    gfxApi->end(primitive, mesh->numVertices, mesh->winding, numLeft);
+                }
+                ++stats.numDrawCalls;
+            }
+
+            gfxApi->popState();
+        }
     }
 }
 
@@ -1794,384 +2079,173 @@ void GfxRenderer::renderSkybox()
     }
 }
 
-void GfxRenderer::renderModel(bool forward,
-                              const Camera& camera,
-                              const Matrix4x4& worldMatrix,
-                              const GfxModel *model)
+void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
+                                           const Matrix4x4& projectionMatrix,
+                                           Light *light,
+                                           size_t cubemapFace)
 {
-    Position3D position = Position3D(worldMatrix[0][3],
-                                     worldMatrix[1][3],
-                                     worldMatrix[2][3]);
-
-    float distance = position.distance(camera.getPosition());
-
-    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
-    Matrix4x4 viewMatrix = camera.getViewMatrix();
-
-    for (size_t i = 0; i < model->subModels.getCount(); ++i)
+    for (size_t i = 0; i < batches.getCount(); ++i)
     {
-        GfxModel::SubModel subModel = model->subModels[i];
+        Batch batch = batches[i];
 
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        GfxMaterial *material = batch.material;
+        GfxMesh *mesh = batch.mesh;
+
+        GfxCompiledShader *vertexShader = compiledShadowmapVertex;
+        GfxCompiledShader *geometryShader = nullptr;
+        GfxCompiledShader *fragmentShader = compiledShadowmapFragment;
+        GfxCompiledShader *tessControlShader = nullptr;
+        GfxCompiledShader *tessEvalShader = nullptr;
+
+        bool useTesselation = material->getDisplacementMap() != nullptr and
+                              material->shadowTesselation and
+                              gfxApi->tesselationSupported();
+
+        if (useTesselation)
         {
-            const GfxModel::LOD& lod = subModel[j];
-
-            if (lod.minDistance < distance and
-                distance < lod.maxDistance and
-                lod.material->isForward() == forward)
-            {
-                Matrix4x4 newWorldMatrix = worldMatrix * lod.worldMatrix;
-
-                gfxApi->setCullMode(lod.mesh->cullMode);
-
-                GfxMaterial *material = lod.material;
-                GfxMesh *mesh = lod.mesh;
-                GfxShaderCombination *shaderComb = material->getShaderComb();
-
-                bool useTesselation = material->getDisplacementMap() != nullptr and
-                                      gfxApi->tesselationSupported() and
-                                      mesh->primitive == GfxTriangles;
-
-                gfxApi->pushState();
-
-                GfxCompiledShader *vertex = shaderComb->getCompiledVertexShader();
-                GfxCompiledShader *tessControl = shaderComb->getCompiledTessControlShader();
-                GfxCompiledShader *tessEval = shaderComb->getCompiledTessEvalShader();
-                GfxCompiledShader *geometry = shaderComb->getCompiledGeometryShader();
-                GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
-
-                gfxApi->begin(vertex,
-                              tessControl,
-                              tessEval,
-                              geometry,
-                              fragment,
-                              mesh);
-
-                if (useTesselation)
-                {
-                    gfxApi->uniform(vertex, "projectionViewMatrix", Matrix4x4());
-                } else
-                {
-                    gfxApi->uniform(vertex, "projectionViewMatrix", projectionMatrix * viewMatrix);
-                }
-
-                gfxApi->uniform(vertex, "worldMatrix", newWorldMatrix);
-                gfxApi->uniform(vertex, "normalMatrix", Matrix3x3(newWorldMatrix.inverse().transpose()));
-                gfxApi->uniform(vertex, "cameraPosition", camera.getPosition());
-
-                if (useTesselation)
-                {
-                    gfxApi->uniform(tessControl, "minTessLevel", material->minTessLevel);
-                    gfxApi->uniform(tessControl, "maxTessLevel", material->maxTessLevel);
-                    gfxApi->uniform(tessControl, "tessMinDistance", material->tessMinDistance);
-                    gfxApi->uniform(tessControl, "tessMaxDistance", material->tessMaxDistance);
-                    gfxApi->uniform(tessControl, "cameraPosition", camera.getPosition());
-
-                    gfxApi->addTextureBinding(tessEval, "heightMap", material->getDisplacementMap());
-                    gfxApi->uniform(tessEval, "displacementMidlevel", material->displacementMidlevel);
-                    gfxApi->uniform(tessEval, "projectionViewMatrix", projectionMatrix * viewMatrix);
-                    gfxApi->uniform(tessEval, "strength", material->displacementStrength);
-                }
-
-                gfxApi->uniform(fragment, "smoothness", material->smoothness);
-                gfxApi->uniform(fragment, "metalMask", material->metalMask);
-                gfxApi->uniform(fragment, "albedo", material->albedo);
-
-                if (material->isForward())
-                {
-                    gfxApi->uniform(fragment, "numLights", (uint32_t)lights.getCount());
-                    gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
-                }
-
-                if (material->getSmoothnessMap() != nullptr)
-                {
-                    gfxApi->addTextureBinding(fragment, "smoothnessMap", material->getSmoothnessMap());
-                }
-
-                if (material->getMetalMaskMap() != nullptr)
-                {
-                    gfxApi->addTextureBinding(fragment, "metalMaskMap", material->getMetalMaskMap());
-                }
-
-                if (material->getAlbedoMap() != nullptr)
-                {
-                    gfxApi->addTextureBinding(fragment, "albedoMap", material->getAlbedoMap());
-                }
-
-                if (material->getNormalMap() != nullptr)
-                {
-                    gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
-                }
-
-                if (material->getParallaxHeightMap() != nullptr)
-                {
-                    gfxApi->addTextureBinding(fragment, "heightMap", material->getParallaxHeightMap());
-
-                    gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
-                    gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
-                }
-
-                if (material->getPOMHeightMap() != nullptr)
-                {
-                    gfxApi->addTextureBinding(fragment, "heightMap", material->getPOMHeightMap());
-
-                    gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
-                    gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
-                    gfxApi->uniform(fragment, "pomMinLayers", material->pomMinLayers);
-                    gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
-                }
-
-                gfxApi->setCullMode(mesh->cullMode);
-
-                GfxPrimitive primitive = useTesselation ?
-                                         GfxPatches :
-                                         mesh->primitive;
-
-                if (useTesselation)
-                {
-                    gfxApi->setTessPatchSize(3);
-                }
-
-                if (mesh->indexed)
-                {
-                    gfxApi->endIndexed(primitive,
-                                       mesh->indexData.type,
-                                       mesh->indexData.numIndices,
-                                       mesh->indexData.offset,
-                                       mesh->getBuffer(),
-                                       mesh->winding);
-                } else
-                {
-                    gfxApi->end(primitive, mesh->numVertices, mesh->winding);
-                }
-                ++stats.numDrawCalls;
-
-                gfxApi->popState();
-                break;
-            }
+            vertexShader = compiledShadowmapVertexTesselation;
+            tessControlShader = compiledShadowmapTessControl;
+            tessEvalShader = compiledShadowmapTessEval;
         }
-    }
-}
 
-void GfxRenderer::renderModelToShadowmap(const Matrix4x4& viewMatrix,
-                                         const Matrix4x4& projectionMatrix,
-                                         const Matrix4x4& worldMatrix,
-                                         const GfxModel *model,
-                                         Light *light,
-                                         size_t cubemapFace)
-{
-    Position3D position = Position3D(worldMatrix[0][3],
-                                     worldMatrix[1][3],
-                                     worldMatrix[2][3]);
-
-    float distance = position.distance(camera.getPosition());
-
-    for (size_t i = 0; i < model->subModels.getCount(); ++i)
-    {
-        GfxModel::SubModel subModel = model->subModels[i];
-
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        if (light->type == Light::Point)
         {
-            const GfxModel::LOD& lod = subModel[j];
+            fragmentShader = compiledPointShadowmapFragment;
 
-            if (lod.minDistance < distance and distance < lod.maxDistance)
+            if (light->point.singlePassShadowMap)
             {
-                Matrix4x4 newWorldMatrix = worldMatrix * lod.worldMatrix;
-
-                GfxMaterial *material = lod.material;
-                GfxMesh *mesh = lod.mesh;
-
-                GfxCompiledShader *vertexShader = compiledShadowmapVertex;
-                GfxCompiledShader *geometryShader = nullptr;
-                GfxCompiledShader *fragmentShader = compiledShadowmapFragment;
-                GfxCompiledShader *tessControlShader = nullptr;
-                GfxCompiledShader *tessEvalShader = nullptr;
-
-                bool useTesselation = material->getDisplacementMap() != nullptr and
-                                      material->shadowTesselation and
-                                      gfxApi->tesselationSupported();
-
-                if (useTesselation)
-                {
-                    vertexShader = compiledShadowmapVertexTesselation;
-                    tessControlShader = compiledShadowmapTessControl;
-                    tessEvalShader = compiledShadowmapTessEval;
-                }
-
-                if (light->type == Light::Point)
-                {
-                    fragmentShader = compiledPointShadowmapFragment;
-
-                    if (light->point.singlePassShadowMap)
-                    {
-                        geometryShader = compiledPointShadowmapGeometry;
-                    }
-                }
-
-                gfxApi->begin(vertexShader,
-                              tessControlShader,
-                              tessEvalShader,
-                              geometryShader,
-                              fragmentShader,
-                              mesh);
-
-                if (light->type == Light::Point)
-                {
-                    Position3D pos = light->point.position;
-
-                    Matrix4x4 matrices[] = {Matrix4x4::lookAt(pos,
-                                                              pos+Direction3D(1.0f, 0.0f, 0.0f),
-                                                              Direction3D(0.0f, -1.0f, 0.0f)),
-                                            Matrix4x4::lookAt(pos,
-                                                              pos+Direction3D(-1.0f, 0.0f, 0.0f),
-                                                              Direction3D(0.0f, -1.0f, 0.0f)),
-                                            Matrix4x4::lookAt(pos,
-                                                              pos+Direction3D(0.0f, 1.0f, 0.0f),
-                                                              Direction3D(0.0f, 0.0f, 1.0f)),
-                                            Matrix4x4::lookAt(pos,
-                                                              pos+Direction3D(0.0f, -1.0f, 0.0f),
-                                                              Direction3D(0.0f, 0.0f, -1.0f)),
-                                            Matrix4x4::lookAt(pos,
-                                                              pos+Direction3D(0.0f, 0.0f, 1.0f),
-                                                              Direction3D(0.0f, -1.0f, 0.0f)),
-                                            Matrix4x4::lookAt(pos,
-                                                              pos+Direction3D(0.0f, 0.0f, -1.0f),
-                                                              Direction3D(0.0f, -1.0f, 0.0f))};
-
-                    if (light->point.singlePassShadowMap)
-                    {
-                        gfxApi->uniform(geometryShader, "matrix0", projectionMatrix * matrices[0]);
-                        gfxApi->uniform(geometryShader, "matrix1", projectionMatrix * matrices[1]);
-                        gfxApi->uniform(geometryShader, "matrix2", projectionMatrix * matrices[2]);
-                        gfxApi->uniform(geometryShader, "matrix3", projectionMatrix * matrices[3]);
-                        gfxApi->uniform(geometryShader, "matrix4", projectionMatrix * matrices[4]);
-                        gfxApi->uniform(geometryShader, "matrix5", projectionMatrix * matrices[5]);
-                    }
-
-                    gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
-                    gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
-
-                    if (light->point.singlePassShadowMap)
-                    {
-                        if (not useTesselation)
-                        {
-                            gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
-                            gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
-                        } else
-                        {
-                            gfxApi->uniform(tessEvalShader, "projectionMatrix", Matrix4x4());
-                            gfxApi->uniform(tessEvalShader, "viewMatrix", Matrix4x4());
-                        }
-                    } else
-                    {
-                        Matrix4x4 viewMatrix = matrices[cubemapFace];
-
-                        if (not useTesselation)
-                        {
-                            gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
-                            gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
-                        } else
-                        {
-                            gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
-                            gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
-                        }
-                    }
-                } else
-                {
-                    if (not useTesselation)
-                    {
-                        gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
-                        gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
-                    }
-                }
-
-                if (useTesselation)
-                {
-                    if (light->type != Light::Point)
-                    {
-                        gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
-                        gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
-                    }
-
-                    gfxApi->uniform(tessControlShader, "minTessLevel", material->shadowMinTessLevel);
-                    gfxApi->uniform(tessControlShader, "maxTessLevel", material->shadowMaxTessLevel);
-                    gfxApi->uniform(tessControlShader, "tessMinDistance", material->tessMaxDistance);
-                    gfxApi->uniform(tessControlShader, "tessMaxDistance", material->tessMinDistance);
-                    gfxApi->addTextureBinding(tessEvalShader, "heightMap", material->getDisplacementMap());
-                    gfxApi->uniform(tessEvalShader, "strength", material->displacementStrength);
-                    gfxApi->uniform(tessEvalShader, "displacementMidlevel", material->displacementMidlevel);
-                    gfxApi->uniform(tessControlShader, "cameraPosition", camera.getPosition());
-                    gfxApi->uniform(vertexShader, "normalMatrix", Matrix3x3(newWorldMatrix.inverse().transpose()));
-                }
-
-                gfxApi->uniform(vertexShader, "worldMatrix", newWorldMatrix);
-
-                gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
-
-                GfxPrimitive primitive = useTesselation ?
-                                         GfxPatches :
-                                         mesh->primitive;
-
-                gfxApi->setTessPatchSize(3);
-
-                if (mesh->indexed)
-                {
-                    gfxApi->endIndexed(primitive,
-                                       mesh->indexData.type,
-                                       mesh->indexData.numIndices,
-                                       mesh->indexData.offset,
-                                       mesh->getBuffer(),
-                                       mesh->winding);
-                } else
-                {
-                    gfxApi->end(primitive, mesh->numVertices, mesh->winding);
-                }
-                ++stats.numDrawCalls;
-            }
-        }
-    }
-}
-
-void GfxRenderer::renderEntitiesToShadowmap(const Matrix4x4& viewMatrix,
-                                            const Matrix4x4& projectionMatrix,
-                                            Light *light,
-                                            size_t i,
-                                            const List<Entity *>& entities)
-{
-    for (size_t j = 0; j < entities.getCount(); ++j)
-    {
-        const Entity *entity = entities[j];
-
-        Matrix4x4 transform = entity->getFinalTransform();
-
-        if (entity->hasRenderComponent())
-        {
-            const RenderComponent *comp = entity->getRenderComponent();
-
-            switch (comp->type)
-            {
-            case RenderComponent::Model:
-            {
-                renderModelToShadowmap(viewMatrix,
-                                       projectionMatrix,
-                                       transform,
-                                       comp->model,
-                                       light,
-                                       i);
-                break;
-            }
-            default:
-            {
-                break;
-            }
+                geometryShader = compiledPointShadowmapGeometry;
             }
         }
 
-        renderEntitiesToShadowmap(viewMatrix,
-                                  projectionMatrix,
-                                  light,
-                                  i,
-                                  entity->getEntities());
+        gfxApi->begin(vertexShader,
+                      tessControlShader,
+                      tessEvalShader,
+                      geometryShader,
+                      fragmentShader,
+                      mesh);
+
+        if (light->type == Light::Point)
+        {
+            Position3D pos = light->point.position;
+
+            Matrix4x4 matrices[] = {Matrix4x4::lookAt(pos,
+                                                      pos+Direction3D(1.0f, 0.0f, 0.0f),
+                                                      Direction3D(0.0f, -1.0f, 0.0f)),
+                                    Matrix4x4::lookAt(pos,
+                                                      pos+Direction3D(-1.0f, 0.0f, 0.0f),
+                                                      Direction3D(0.0f, -1.0f, 0.0f)),
+                                    Matrix4x4::lookAt(pos,
+                                                      pos+Direction3D(0.0f, 1.0f, 0.0f),
+                                                      Direction3D(0.0f, 0.0f, 1.0f)),
+                                    Matrix4x4::lookAt(pos,
+                                                      pos+Direction3D(0.0f, -1.0f, 0.0f),
+                                                      Direction3D(0.0f, 0.0f, -1.0f)),
+                                    Matrix4x4::lookAt(pos,
+                                                      pos+Direction3D(0.0f, 0.0f, 1.0f),
+                                                      Direction3D(0.0f, -1.0f, 0.0f)),
+                                    Matrix4x4::lookAt(pos,
+                                                      pos+Direction3D(0.0f, 0.0f, -1.0f),
+                                                      Direction3D(0.0f, -1.0f, 0.0f))};
+
+            if (light->point.singlePassShadowMap)
+            {
+                gfxApi->uniform(geometryShader, "matrix0", projectionMatrix * matrices[0]);
+                gfxApi->uniform(geometryShader, "matrix1", projectionMatrix * matrices[1]);
+                gfxApi->uniform(geometryShader, "matrix2", projectionMatrix * matrices[2]);
+                gfxApi->uniform(geometryShader, "matrix3", projectionMatrix * matrices[3]);
+                gfxApi->uniform(geometryShader, "matrix4", projectionMatrix * matrices[4]);
+                gfxApi->uniform(geometryShader, "matrix5", projectionMatrix * matrices[5]);
+            }
+
+            gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
+            gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
+
+            if (light->point.singlePassShadowMap)
+            {
+                if (not useTesselation)
+                {
+                    gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
+                    gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
+                } else
+                {
+                    gfxApi->uniform(tessEvalShader, "projectionMatrix", Matrix4x4());
+                    gfxApi->uniform(tessEvalShader, "viewMatrix", Matrix4x4());
+                }
+            } else
+            {
+                Matrix4x4 viewMatrix = matrices[cubemapFace];
+
+                if (not useTesselation)
+                {
+                    gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
+                    gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
+                } else
+                {
+                    gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
+                    gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
+                }
+            }
+        } else
+        {
+            if (not useTesselation)
+            {
+                gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
+                gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
+            }
+        }
+
+        if (useTesselation)
+        {
+            if (light->type != Light::Point)
+            {
+                gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
+                gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
+            }
+
+            gfxApi->uniform(tessControlShader, "minTessLevel", material->shadowMinTessLevel);
+            gfxApi->uniform(tessControlShader, "maxTessLevel", material->shadowMaxTessLevel);
+            gfxApi->uniform(tessControlShader, "tessMinDistance", material->tessMaxDistance);
+            gfxApi->uniform(tessControlShader, "tessMaxDistance", material->tessMinDistance);
+            gfxApi->addTextureBinding(tessEvalShader, "heightMap", material->getDisplacementMap());
+            gfxApi->uniform(tessEvalShader, "strength", material->displacementStrength);
+            gfxApi->uniform(tessEvalShader, "displacementMidlevel", material->displacementMidlevel);
+            gfxApi->uniform(tessControlShader, "cameraPosition", camera.getPosition());
+        }
+
+        gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
+
+        GfxPrimitive primitive = useTesselation ?
+                                 GfxPatches :
+                                 mesh->primitive;
+
+        gfxApi->setTessPatchSize(3);
+
+        for (size_t j = 0; j < batch.worldMatrices.getCount(); ++j)
+        {
+            Matrix4x4 worldMatrix = batch.worldMatrices[j];
+
+            gfxApi->uniform(vertexShader, "worldMatrix", worldMatrix);
+
+            if (useTesselation)
+            {
+                gfxApi->uniform(vertexShader, "normalMatrix", Matrix3x3(worldMatrix.inverse().transpose()));
+            }
+
+            if (mesh->indexed)
+            {
+                gfxApi->endIndexed(primitive,
+                                   mesh->indexData.type,
+                                   mesh->indexData.numIndices,
+                                   mesh->indexData.offset,
+                                   mesh->getBuffer(),
+                                   mesh->winding);
+            } else
+            {
+                gfxApi->end(primitive, mesh->numVertices, mesh->winding);
+            }
+            ++stats.numDrawCalls;
+        }
     }
 }
 
@@ -2199,11 +2273,7 @@ void GfxRenderer::renderShadowmap(Light *light)
 
         gfxApi->clearDepth();
 
-        renderEntitiesToShadowmap(viewMatrix,
-                                  projectionMatrix,
-                                  light,
-                                  i,
-                                  scene->getEntities());
+        renderBatchesToShadowmap(viewMatrix, projectionMatrix, light, i);
     }
 
     gfxApi->popState();

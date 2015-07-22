@@ -182,7 +182,6 @@ class GfxGLApi : public GfxApi
         State currentState;
         State stateStack[64];
         uint8_t stateStackSize;
-        bool inBeginEnd;
 
         struct TextureBinding
         {
@@ -208,7 +207,6 @@ class GfxGLApi : public GfxApi
         UBOBinding uboBindings[64];
 
         void useState(const State& state);
-        void beginEndTest();
 
         struct ProgramCombination
         {

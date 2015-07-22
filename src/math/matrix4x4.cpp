@@ -107,10 +107,10 @@ Matrix4x4 Matrix4x4::transpose() const
 {
     const float *m[4] = {data[0], data[1], data[2], data[3]};
 
-    return Matrix4x4(Float4(m[0][0], m[0][1], m[0][2], m[0][3]),
-                     Float4(m[1][0], m[1][1], m[1][2], m[1][3]),
-                     Float4(m[2][0], m[2][1], m[2][2], m[2][3]),
-                     Float4(m[3][0], m[3][1], m[3][2], m[3][3]));
+    return Matrix4x4(Float4(m[0][0], m[1][0], m[2][0], m[3][0]),
+                     Float4(m[0][1], m[1][1], m[2][1], m[3][1]),
+                     Float4(m[0][2], m[1][2], m[2][2], m[3][2]),
+                     Float4(m[0][3], m[1][3], m[2][3], m[3][3]));
 }
 
 Matrix4x4 Matrix4x4::inverse() const

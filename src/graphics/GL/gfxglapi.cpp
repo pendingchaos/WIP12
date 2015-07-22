@@ -17,14 +17,7 @@
 #include <cstdio>
 #include <cstring>
 
-#ifdef DEBUG
-#define BEGIN_END_TEST beginEndTest()
-#else
-#define BEGIN_END_TEST
-#endif
-
-#define UNIFORM_START BEGIN_END_TEST;\
-GLint location;\
+#define UNIFORM_START GLint location;\
 if (GLFL_GL_ARB_separate_shader_objects)\
 {\
     String newName = String::format("_%s_uniform", name);\
@@ -200,7 +193,6 @@ void debugCallback(GLenum source,
 }
 
 GfxGLApi::GfxGLApi() : stateStackSize(0),
-                       inBeginEnd(false),
                        textureBindingCount(0),
                        uboBindingCount(0)
 {
@@ -410,7 +402,7 @@ void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
 }\
 for (size_t i = 0; i < uboBindingCount; ++i)\
 {\
-    UBOBinding& binding = uboBindings[i];\
+    const UBOBinding& binding = uboBindings[i];\
 \
     glBindBufferBase(GL_UNIFORM_BUFFER, i, dynamic_cast<const GfxGLBuffer *>(binding.buffer)->getGLBuffer());\
     glUniformBlockBinding(binding.program, binding.location, i);\
@@ -430,21 +422,6 @@ case GfxCW:\
 }\
 }
 
-#define END_DRAW for (size_t i = 0; i < textureBindingCount; ++i)\
-{\
-    TextureBinding& binding = textureBindings[i];\
-\
-    glActiveTexture(GL_TEXTURE0+i);\
-    glBindTexture(binding.target, binding.lastTexture);\
-    binding.texture = nullptr;\
-}\
-\
-textureBindingCount = 0;\
-uboBindingCount = 0;\
-\
-inBeginEnd = false;\
-glBindVertexArray(0);
-
 void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *tessControl_,
                      GfxCompiledShader *tessEval_,
@@ -452,6 +429,18 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *fragment_,
                      GfxMesh *mesh)
 {
+    for (size_t i = 0; i < textureBindingCount; ++i)
+    {
+        TextureBinding& binding = textureBindings[i];
+
+        glActiveTexture(GL_TEXTURE0+i);
+        glBindTexture(binding.target, binding.lastTexture);
+        binding.texture = nullptr;
+    }
+
+    textureBindingCount = 0;
+    uboBindingCount = 0;
+
     glBindVertexArray(dynamic_cast<GfxGLMeshImpl *>(mesh->getImpl())->getGLVAO());
 
     if (GLFL_GL_ARB_separate_shader_objects)
@@ -610,8 +599,6 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
 
         glUseProgram(pipeline);
     }
-
-    inBeginEnd = true;
 }
 
 void GfxGLApi::end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, size_t instanceCount)
@@ -619,8 +606,6 @@ void GfxGLApi::end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, s
     BEGIN_DRAW
 
     glDrawArraysInstanced(toGLPrimitive[primitive], 0, count, instanceCount);
-
-    END_DRAW
 }
 
 void GfxGLApi::endIndexed(GfxPrimitive primitive,
@@ -668,8 +653,6 @@ void GfxGLApi::endIndexed(GfxPrimitive primitive,
     }
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-    END_DRAW
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, float value)
@@ -1263,13 +1246,6 @@ void GfxGLApi::useState(const State& state)
                 state.viewportWidth,
                 state.viewportHeight);
     setCullMode(state.cullMode);
-}
-
-void GfxGLApi::beginEndTest()
-{
-    FATAL_IF_TRUE(CATEGORY_RENDER,
-                  inBeginEnd == false,
-                  "Function call is not between GfxApi::begin and GfxApi::end.")();
 }
 
 bool GfxGLApi::isBlendingEnabled() const
