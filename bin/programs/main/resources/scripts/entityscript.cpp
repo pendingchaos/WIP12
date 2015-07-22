@@ -6,7 +6,7 @@
 #include <algorithm>
 #include "projectilescript.cpp"
 
-BEGIN_INSTANCE(Player)
+BEGIN_INSTANCE(Player, InstanceBase)
     virtual void init()
     {
         angle = Float2(M_PI, 0.0f);

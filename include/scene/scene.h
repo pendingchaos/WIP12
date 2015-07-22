@@ -118,8 +118,40 @@ class Scene : public Resource
 
             return (T *)inst->getPointer();
         }
+
+        template <typename T>
+        inline T *findWithScript() const
+        {
+            return _findWithScript<T>(entities);
+        }
         #endif
     private:
+        #ifdef IN_SCRIPT
+        template <typename T>
+        T *_findWithScript(const List<Entity *>& entities) const
+        {
+            for (size_t i = 0; i < entities.getCount(); ++i)
+            {
+                Entity *entity = entities[i];
+                T *inst = entity->findScriptInstance<T>();
+
+                if (inst != nullptr)
+                {
+                    return inst;
+                }
+
+                inst = _findWithScript<T>(entity->getEntities());
+
+                if (inst != nullptr)
+                {
+                    return inst;
+                }
+            }
+
+            return nullptr;
+        }
+        #endif
+
         List<ScriptInstance *> scripts;
         GfxRenderer *renderer;
         AudioWorld *audioWorld;

@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-BEGIN_INSTANCE(Projectile)
+BEGIN_INSTANCE(Projectile, InstanceBase)
     virtual void init()
     {
         scale = 1.0f;

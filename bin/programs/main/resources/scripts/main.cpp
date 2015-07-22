@@ -149,7 +149,7 @@ class FPSCamera
 
 #define TIMINGS_UPDATE_COUNTDOWN 0.1f
 
-BEGIN_INSTANCE(Main)
+BEGIN_INSTANCE(Main, InstanceBase)
     Scene *scene;
     Font *font;
     bool showExtraTimings;
@@ -351,6 +351,7 @@ BEGIN_INSTANCE(Main)
                                           "        G Buffer: %.2f ms (%.0f%)\n"
                                           "        Forward: %.2f ms (%.0f%)\n"
                                           "        Overlay: %.2f ms (%.0f%)\n"
+                                          "        Batching: %.2f ms (%.0f%)\n"
                                           "        Text: %.2f ms (%.0f%)\n"
                                           "    Audio: %.2f ms (%.0f%)\n",
                                           stats.gBufferTiming * 1000.0f,
@@ -401,6 +402,8 @@ BEGIN_INSTANCE(Main)
                                           stats.forwardCPUTiming / cpuTotal * 100.0f,
                                           stats.overlayCPUTiming * 1000.0f,
                                           stats.overlayCPUTiming / cpuTotal * 100.0f,
+                                          stats.batchingTiming * 1000.0f,
+                                          stats.batchingTiming / cpuTotal * 100.0f,
                                           textCPUTiming * 1000.0f,
                                           textCPUTiming / cpuTotal * 100.0f,
                                           cpuStats.audio * 1000.0f,
@@ -415,7 +418,7 @@ BEGIN_INSTANCE(Main)
             displayedText.append(extraTimings);
         }
         
-        Player *player = findPlayer();
+        Player *player = scene->findWithScript<Player>();
         
         if (player != nullptr)
         {
@@ -433,23 +436,6 @@ BEGIN_INSTANCE(Main)
         
         textCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
         textTimer->end();
-    }
-    
-    Player *findPlayer() const
-    {
-        for (size_t i = 0; i < scene->getEntities().getCount(); ++i)
-        {
-            Entity *entity = scene->getEntities()[i];
-            
-            Player *inst = entity->findScriptInstance<Player>();
-            
-            if (inst != nullptr)
-            {
-                return inst;
-            }
-        }
-        
-        return nullptr;
     }
 END_INSTANCE(Main)
 

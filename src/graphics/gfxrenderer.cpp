@@ -910,11 +910,15 @@ void GfxRenderer::render()
     GfxFramebuffer *oldReadFb = readFramebuffer;
     GfxFramebuffer *oldWriteFb = writeFramebuffer;
 
+    uint64_t start = platform->getTime();
+
     batches.clear();
     batchEntities(scene->getEntities());
 
+    stats.batchingTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
+
     //Shadowmaps
-    uint64_t start = platform->getTime();
+    start = platform->getTime();
     shadowmapTimer->begin();
 
     for (size_t i = 0; i < lights.getCount(); ++i)

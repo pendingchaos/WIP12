@@ -167,6 +167,7 @@ class GfxRenderer
             float gbufferCPUTiming;
             float forwardCPUTiming;
             float overlayCPUTiming;
+            float batchingTiming;
             size_t numDrawCalls;
         };
 

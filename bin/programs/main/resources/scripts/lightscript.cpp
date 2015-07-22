@@ -1,7 +1,7 @@
 #ifndef LIGHTSCRIPT
 #define LIGHTSCRIPT
 
-BEGIN_INSTANCE(PlayerLight)
+BEGIN_INSTANCE(PlayerLight, InstanceBase)
     virtual void init()
     {
         on = false;
