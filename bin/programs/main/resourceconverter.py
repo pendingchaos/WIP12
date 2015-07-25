@@ -925,6 +925,7 @@ if __name__ == "__main__":
                                  "resources/textures/Yokohama3.bin")
     conv["bricks2.jpg"] = Texture(["source/bricks2.jpg"], "resources/textures/bricks2.bin")
     conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
+    conv["bricks2_disp.jpg"].max_anisotropy = 1.0
     conv["bricks2_normal.jpg"] = Texture(["source/bricks2_normal.png"], "resources/textures/bricks2_normal.bin")
     
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")

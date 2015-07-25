@@ -86,7 +86,7 @@ def generate(api):
                 type = param.text
             else:
                 type = type.text
-                
+            
             if param.text != None:
                 type = param.text + type
             

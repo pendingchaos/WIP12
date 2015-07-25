@@ -12,7 +12,7 @@ class Quaternion
         Quaternion();
         Quaternion(const Direction3D& axis, float angle);
         Quaternion(float x, float y, float z, float w);
-        Quaternion(const Float3& angles);
+        explicit Quaternion(const Float3& angles);
 
         Quaternion operator * (const Quaternion& other) const;
 

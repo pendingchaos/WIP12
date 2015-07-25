@@ -6,6 +6,20 @@
 #include <algorithm>
 #include "projectilescript.cpp"
 
+class Player;
+
+BEGIN_MESSAGE(PlayerJump)
+    PlayerJump(Player *player_) : BaseMessage(_name), player(player_) {}
+
+    inline Player *getPlayer() const
+    {
+        return player;
+    }
+
+    private:
+        Player *player;
+END_MESSAGE(PlayerJump)
+
 BEGIN_INSTANCE(Player, InstanceBase)
     virtual void init()
     {
@@ -18,14 +32,14 @@ BEGIN_INSTANCE(Player, InstanceBase)
         fireTimeout = 0.0f;
 
         entity->getRigidBody()->setAngularFactor(Float3(0.0f));
-    
+
         PhysicsShape *shape = NEW(PhysicsShape);
-        
+
         shape->setCylinder(PhysicsCylinderShape::Y, 0.1f, 0.8f);
-        
+
         feetGhost = entity->getScene()->getPhysicsWorld()->createGhostObject(shape);
     }
-    
+
     virtual void deinit()
     {
         entity->getScene()->getPhysicsWorld()->destroyGhostObject(feetGhost);
@@ -36,22 +50,22 @@ BEGIN_INSTANCE(Player, InstanceBase)
         if (platform->isRightMouseButtonPressed() and fireTimeout < 0.0f)
         {
             Entity *proj = scene->createEntity("projectile");
-            
+
             proj->transform.position = entity->transform.position +
                                        Position3D(0.0f, 1.0f, 0.0f) +
                                        scene->getRenderer()->camera.getDirection() * 2.0f;
-            
+
             RigidBody::ConstructionInfo info;
             info.mass = 100.0f;
-            
+
             proj->addRigidBody(info, resMgr->loadAndCopy<PhysicsShape>("resources/shapes/projectile.bin"))
             ->setLinearVelocity(scene->getRenderer()->camera.getDirection()*10.0f);
-            
+
             proj->addModel(resMgr->load<GfxModel>("resources/models/projectile.bin"));
             proj->addScript(resMgr->load<Script>("resources/scripts/projectilescript.cpp"), "Projectile");
-            
+
             proj->findScriptInstance<Projectile>()->scale = std::max(std::rand() / (float)RAND_MAX, 0.1f);
-            
+
             fireTimeout = 0.1f;
         }
     }
@@ -59,7 +73,7 @@ BEGIN_INSTANCE(Player, InstanceBase)
     virtual void fixedUpdate(float timestep)
     {
         fireTimeout -= timestep;
-    
+
         Camera& camera = entity->getScene()->getRenderer()->camera;
 
         RigidBody *body = entity->getRigidBody();
@@ -137,10 +151,12 @@ BEGIN_INSTANCE(Player, InstanceBase)
         if (platform->isKeyPressed(Platform::Space) and onFloor)
         {
             Vector3D vel = body->getLinearVelocity();
-            
+
             vel.y = 10.0f;
-            
+
             body->setLinearVelocity(vel);
+
+            sendMessageGlobal<PlayerJump>(this);
         }
 
         if (platform->isLeftMouseButtonPressed())
@@ -154,17 +170,17 @@ BEGIN_INSTANCE(Player, InstanceBase)
             platform->setMousePosition(Int2(w/2.0f, h/2.0f));
 
             Float2 rel = Float2(w, h) / 2.0f - pos;
-            
+
             if (rel.x > -1.0 and rel.x < 1.0)
             {
                 rel.x = 0.0;
             }
-            
+
             if (rel.y > -1.0 and rel.y < 1.0)
             {
                 rel.y = 0.0;
             }
-            
+
             angularVelocity.x += rotateSpeed * timestep * rel.x / 4.0f;
             angularVelocity.y += rotateSpeed * timestep * rel.y / 4.0f;
         } else
@@ -177,7 +193,7 @@ BEGIN_INSTANCE(Player, InstanceBase)
 
         angularVelocity.x = std::max(angularVelocity.x, -maxAngularVelocity);
         angularVelocity.y = std::max(angularVelocity.y, -maxAngularVelocity);
-        
+
         angle += angularVelocity;
 
         if (angle.y < -3.1415f / 2.0f)
@@ -205,12 +221,12 @@ BEGIN_INSTANCE(Player, InstanceBase)
         camera.setFieldOfView(zoom * 50.0f);
 
         angularVelocity *= timestep * 0.1f;
-        
+
         if (angularVelocity.x > -0.001f and angularVelocity.x < 0.001f)
         {
             angularVelocity.x = 0.0;
         }
-        
+
         if (angularVelocity.y > -0.001f and angularVelocity.y < 0.001f)
         {
             angularVelocity.y = 0.0f;
@@ -218,23 +234,23 @@ BEGIN_INSTANCE(Player, InstanceBase)
 
         camera.setPosition(entity->transform.position+Position3D(0.0f, 1.5f, 0.0f));
     }
-    
+
     virtual void update()
     {
         Transform feetTransform = entity->transform;
         feetTransform.position.y -= 2.2f;
         feetGhost->setTransform(feetTransform);
-        
+
         List<RigidBody *> rigidBodies;
         List<GhostObject *> ghosts;
-        
+
         feetGhost->getCollisions(rigidBodies, ghosts);
-        
+
         onFloor = rigidBodies.getCount() != 0;
-        
+
         entity->getScene()->getAudioWorld()->listenerVelocity = entity->getRigidBody()->getLinearVelocity();
     }
-    
+
     virtual void serialize(Serializable& serialized)
     {
         serialized.set("angle", angle);
@@ -245,7 +261,7 @@ BEGIN_INSTANCE(Player, InstanceBase)
         serialized.set("maximumVelocity", maximumVelocity);
         serialized.set("maxAngularVelocity", maxAngularVelocity);
     }
-    
+
     virtual void deserialize(const Serializable& serialized)
     {
         serialized.get("angle", angle);
@@ -256,6 +272,15 @@ BEGIN_INSTANCE(Player, InstanceBase)
         serialized.get("maximumVelocity", maximumVelocity);
         serialized.get("maxAngularVelocity", maxAngularVelocity);
     }
+
+    BEGIN_MESSAGE_HANDLERS
+        DEF_MESSAGE_HANDLER(PlayerJump)
+        {
+        } DEF_UNKNOWN_MESSAGE_HANDLER
+        {
+
+        }
+    END_MESSAGE_HANDLERS
 
     float fireTimeout;
     GhostObject *feetGhost;

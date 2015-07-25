@@ -40482,32 +40482,32 @@ typedef void  (*PFNGLBUFFERSTORAGEEXTPROC)(GLenum target, GLsizeiptr size, const
 #define GL_MAP_WRITE_BIT 0x0002
 #endif
 
-#ifndef GL_MAP_PERSISTENT_BIT
-#define GL_MAP_PERSISTENT_BIT 0x0040
+#ifndef GL_MAP_PERSISTENT_BIT_EXT
+#define GL_MAP_PERSISTENT_BIT_EXT 0x0040
 #endif
 
-#ifndef GL_MAP_COHERENT_BIT
-#define GL_MAP_COHERENT_BIT 0x0080
+#ifndef GL_MAP_COHERENT_BIT_EXT
+#define GL_MAP_COHERENT_BIT_EXT 0x0080
 #endif
 
-#ifndef GL_DYNAMIC_STORAGE_BIT
-#define GL_DYNAMIC_STORAGE_BIT 0x0100
+#ifndef GL_DYNAMIC_STORAGE_BIT_EXT
+#define GL_DYNAMIC_STORAGE_BIT_EXT 0x0100
 #endif
 
-#ifndef GL_CLIENT_STORAGE_BIT
-#define GL_CLIENT_STORAGE_BIT 0x0200
+#ifndef GL_CLIENT_STORAGE_BIT_EXT
+#define GL_CLIENT_STORAGE_BIT_EXT 0x0200
 #endif
 
-#ifndef GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT
-#define GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT 0x00004000
+#ifndef GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT_EXT
+#define GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT_EXT 0x00004000
 #endif
 
-#ifndef GL_BUFFER_IMMUTABLE_STORAGE
-#define GL_BUFFER_IMMUTABLE_STORAGE 0x821F
+#ifndef GL_BUFFER_IMMUTABLE_STORAGE_EXT
+#define GL_BUFFER_IMMUTABLE_STORAGE_EXT 0x821F
 #endif
 
-#ifndef GL_BUFFER_STORAGE_FLAGS
-#define GL_BUFFER_STORAGE_FLAGS 0x8220
+#ifndef GL_BUFFER_STORAGE_FLAGS_EXT
+#define GL_BUFFER_STORAGE_FLAGS_EXT 0x8220
 #endif
 
 #ifndef GL_EXT_clip_volume_hint
@@ -53288,6 +53288,30 @@ typedef void  (*PFNGLSUBPIXELPRECISIONBIASNVPROC)(GLuint xbits, GLuint ybits);
 
 #ifndef GL_MAX_SUBPIXEL_PRECISION_BIAS_BITS_NV
 #define GL_MAX_SUBPIXEL_PRECISION_BIAS_BITS_NV 0x9349
+#endif
+
+#ifndef GL_NV_conservative_raster_dilate
+#define GL_NV_conservative_raster_dilate 1
+#endif
+
+#ifdef glConservativeRasterParameterfNV
+#undef glConservativeRasterParameterfNV
+#endif
+#ifdef PFNGLCONSERVATIVERASTERPARAMETERFNVPROC
+#undef PFNGLCONSERVATIVERASTERPARAMETERFNVPROC
+#endif
+typedef void  (*PFNGLCONSERVATIVERASTERPARAMETERFNVPROC)(GLenum pname, GLfloat value);
+
+#ifndef GL_CONSERVATIVE_RASTER_DILATE_NV
+#define GL_CONSERVATIVE_RASTER_DILATE_NV 0x9379
+#endif
+
+#ifndef GL_CONSERVATIVE_RASTER_DILATE_RANGE_NV
+#define GL_CONSERVATIVE_RASTER_DILATE_RANGE_NV 0x937A
+#endif
+
+#ifndef GL_CONSERVATIVE_RASTER_DILATE_GRANULARITY_NV
+#define GL_CONSERVATIVE_RASTER_DILATE_GRANULARITY_NV 0x937B
 #endif
 
 #ifndef GL_NV_copy_buffer
@@ -67768,6 +67792,7 @@ extern bool GLFL_GL_NV_command_list;
 extern bool GLFL_GL_NV_compute_program5;
 extern bool GLFL_GL_NV_conditional_render;
 extern bool GLFL_GL_NV_conservative_raster;
+extern bool GLFL_GL_NV_conservative_raster_dilate;
 extern bool GLFL_GL_NV_copy_buffer;
 extern bool GLFL_GL_NV_copy_depth_to_color;
 extern bool GLFL_GL_NV_copy_image;
@@ -69313,6 +69338,8 @@ extern PFNGLBINDMATERIALPARAMETEREXTPROC glflglBindMaterialParameterEXT;
 #define glBindMaterialParameterEXT glflglBindMaterialParameterEXT
 extern PFNGLISSAMPLERPROC glflglIsSampler;
 #define glIsSampler glflglIsSampler
+extern PFNGLCONSERVATIVERASTERPARAMETERFNVPROC glflglConservativeRasterParameterfNV;
+#define glConservativeRasterParameterfNV glflglConservativeRasterParameterfNV
 extern PFNGLMULTITEXGENIVEXTPROC glflglMultiTexGenivEXT;
 #define glMultiTexGenivEXT glflglMultiTexGenivEXT
 extern PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC glflglNamedFramebufferTexture2DEXT;

@@ -60,6 +60,40 @@ class ScriptFunctionException : public Exception
         String problem;
 };
 
+class BaseMessage
+{
+    public:
+        virtual ~BaseMessage() {}
+
+        template <typename T>
+        inline T *cast()
+        {
+            if (name == T::_name)
+            {
+                return (T *)this;
+            } else
+            {
+                return nullptr;
+            }
+        }
+
+        template <typename T>
+        inline T *cast() const
+        {
+            if (name == T::_name)
+            {
+                return (const T *)this;
+            } else
+            {
+                return nullptr;
+            }
+        }
+    private:
+        const char *name;
+    protected:
+        BaseMessage(const char *name_) : name(name_) {}
+};
+
 class ScriptInstance
 {
     NO_COPY(ScriptInstance)
@@ -76,6 +110,7 @@ class ScriptInstance
         void postRender();
         void serialize(Serializable& serialized);
         void deserialize(const Serializable& serialized);
+        void handleMessage(BaseMessage *message);
 
         inline Script *getScript() const
         {

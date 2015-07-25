@@ -60,4 +60,122 @@
 #define _SCRIPT_SIDE_IMPLS
 #include "scripting/scriptsidebindings.h"
 
+class InstanceBase
+{
+    public:
+        InstanceBase(Application *app_,
+                     Entity *entity_,
+                     Scene *scene_,
+                     Script *script_) : app(app_),
+                                        platform(app->getPlatform()),
+                                        resMgr(app->getResourceManager()),
+                                        gfxApi(app->getGfxApi()),
+                                        fileSys(app->getFilesystem()),
+                                        debugDrawer(app->getDebugDrawer()),
+                                        audioDevice(app->getAudioDevice()),
+                                        entity(entity_),
+                                        script(script_),
+                                        scene(scene_) {}
+        virtual ~InstanceBase() {}
+        virtual void init() {}
+        virtual void deinit() {}
+        virtual void handleInput() {}
+        virtual void update() {}
+        virtual void fixedUpdate(float timestep) {}
+        virtual void preRender() {}
+        virtual void postRender() {}
+        virtual void serialize(Serializable& serialized) {}
+        virtual void deserialize(const Serializable& serialized) {}
+        virtual void handleMessage(BaseMessage *message) {}
+        inline Entity *getEntity() const {return entity;}
+
+        template <typename T, typename... Args>
+        void sendMessageLocal(Args... args)
+        {
+            sendMessageEntity<T>(entity, args...);
+        }
+
+        template <typename T, typename... Args>
+        void sendMessageLocalRecursive(Args... args)
+        {
+            sendMessageEntityRecursive<T>(entity, args...);
+        }
+
+        template <typename T, typename... Args>
+        void sendMessageEntity(Entity *target, Args... args)
+        {
+            T message(args...);
+
+            for (size_t i = 0; i < target->getScripts().getCount(); ++i)
+            {
+                target->getScripts()[i]->handleMessage(&message);
+            }
+        }
+
+        template <typename T, typename... Args>
+        void sendMessageEntityRecursive(Entity *target, Args... args)
+        {
+            sendMessageEntity<T>(target, args...);
+
+            for (size_t i = 0; i < target->getEntities().getCount(); ++i)
+            {
+                sendMessageEntityRecursive<T>(target->getEntities()[i], args...);
+            }
+        }
+
+        template <typename T, typename... Args>
+        void sendMessageGlobal(Args... args)
+        {
+            for (size_t i = 0; i < scene->getEntities().getCount(); ++i)
+            {
+                sendMessageEntityRecursive<T>(scene->getEntities()[i], args...);
+            }
+        }
+    protected:
+        Application *app;
+        Platform *platform;
+        ResourceManager *resMgr;
+        GfxApi *gfxApi;
+        Filesystem *fileSys;
+        GfxDebugDrawer *debugDrawer;
+        AudioDevice *audioDevice;
+        Entity *entity;
+        Script *script;
+        Scene *scene;
+};
+
+#define BEGIN_INSTANCE(name, inherits) class name : public inherits\
+{\
+    public:\
+        constexpr static const char *_name = STR(name);\
+        name(Application *app, Entity *entity, Scene *scene, Script *script) : inherits(app, entity, scene, script) {name::init();}\
+        virtual ~name() {name::deinit();}
+
+#define END_INSTANCE(name) };\
+extern "C" {\
+name *JOIN(_create, name)(Application *app, Entity *entity, Scene *scene, Script *script){\
+    return new name(app, entity, scene, script);\
+}\
+name *JOIN(_destroy, name)(name *obj)\
+{\
+    delete obj;\
+}\
+}
+
+#define BEGIN_MESSAGE(name) class name : public BaseMessage\
+{\
+    public:\
+        constexpr static const char *_name = STR(name);
+
+#define END_MESSAGE(name) };
+
+
+#define BEGIN_MESSAGE_HANDLERS virtual void handleMessage(BaseMessage *message)\
+{
+
+#define DEF_MESSAGE_HANDLER(type) if (message->cast<type>() != nullptr)
+#define DEF_UNKNOWN_MESSAGE_HANDLER else
+
+#define END_MESSAGE_HANDLERS };
+
 #endif // SCRIPTINCLUDE_H

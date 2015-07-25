@@ -23,62 +23,6 @@ void precompileScriptInclude()
 
 const void *getScriptFunctionStruct();
 
-static const String scriptStart = "#line 0 \"scriptStart\"\n#include \"scripting/scriptinclude.h\"\n"
-"#ifndef _INSTANCEBASE\n#define _INSTANCEBASE\n"
-"class InstanceBase\n"
-"{\n"
-"    public:\n"
-"        InstanceBase(Application *app_,\n"
-"                     Entity *entity_,\n"
-"                     Scene *scene_,"
-"                     Script *script_) : app(app_),\n"
-"                                        platform(app->getPlatform()),\n"
-"                                        resMgr(app->getResourceManager()),\n"
-"                                        gfxApi(app->getGfxApi()),\n"
-"                                        fileSys(app->getFilesystem()),\n"
-"                                        debugDrawer(app->getDebugDrawer()),\n"
-"                                        audioDevice(app->getAudioDevice()),\n"
-"                                        entity(entity_),\n"
-"                                        script(script_),\n"
-"                                        scene(scene_) {}\n"
-"        virtual ~InstanceBase() {}\n"
-"        virtual void init() {}\n"
-"        virtual void deinit() {}\n"
-"        virtual void handleInput() {}\n"
-"        virtual void update() {}\n"
-"        virtual void fixedUpdate(float timestep) {}\n"
-"        virtual void preRender() {}\n"
-"        virtual void postRender() {}\n"
-"        virtual void serialize(Serializable& serialized) {}\n"
-"        virtual void deserialize(const  Serializable& serialized) {}\n"
-"        inline Entity *getEntity() const {return entity;}\n"
-"    protected:"
-"        Application *app;\n"
-"        Platform *platform;\n"
-"        ResourceManager *resMgr;\n"
-"        GfxApi *gfxApi;\n"
-"        Filesystem *fileSys;\n"
-"        GfxDebugDrawer *debugDrawer;\n"
-"        AudioDevice *audioDevice;\n"
-"        Entity *entity;\n"
-"        Script *script;\n"
-"        Scene *scene;\n;\n"
-"};\n"
-"#endif\n"
-"#define BEGIN_INSTANCE(name, inherits) class name : public inherits"
-"{"
-"    public:"
-"        constexpr static const char *_name = STR(name);"
-"        name(Application *app, Entity *entity, Scene *scene, Script *script) : inherits(app, entity, scene, script) {name::init();}"
-"        virtual ~name() {name::deinit();}\n"
-"#define END_INSTANCE(name) }; extern \"C\"{name *JOIN(_create, name)(Application *app, Entity *entity, Scene *scene, Script *script){"
-"    return new name(app, entity, scene, script);"
-"}"
-"name *JOIN(_destroy, name)(name *obj)"
-"{"
-"    delete obj;"
-"}}\n\n#line 1 \"";
-
 class InstanceBase
 {
     public:
@@ -94,6 +38,19 @@ class InstanceBase
         virtual void postRender() {}
         virtual void serialize(Serializable& serialized) {}
         virtual void deserialize(const Serializable& serialized) {}
+        virtual void handleMessage(BaseMessage *message) {}
+        inline Entity *getEntity() const {return entity;}
+    protected:
+        Application *app;
+        Platform *platform;
+        ResourceManager *resMgr;
+        GfxApi *gfxApi;
+        Filesystem *fileSys;
+        GfxDebugDrawer *debugDrawer;
+        AudioDevice *audioDevice;
+        Entity *entity;
+        Script *script;
+        Scene *scene;
 };
 
 ScriptInstance::ScriptInstance(const char *name_,
@@ -164,6 +121,14 @@ void ScriptInstance::deserialize(const Serializable& serialized)
     if (ptr != nullptr)
     {
         ((InstanceBase *)ptr)->deserialize(serialized);
+    }
+}
+
+void ScriptInstance::handleMessage(BaseMessage *message)
+{
+    if (ptr != nullptr)
+    {
+        ((InstanceBase *)ptr)->handleMessage(message);
     }
 }
 
@@ -278,7 +243,7 @@ void Script::_load()
 
     String scriptFilename = fileSys->getAbsolutePath(getFilename().getData());
 
-    source = scriptStart.copy().append(scriptFilename).append("\"\n").append(source);
+    source = String("#include <scripting/scriptinclude.h>\n#line 0\"").append(scriptFilename).append("\"\n").append(source);
 
     int index = scriptFilename.findLast('/');
 

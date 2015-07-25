@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include "entityscript.cpp"
+#include "projectilescript.cpp"
 
 class FPSCamera
 {
@@ -164,42 +165,42 @@ BEGIN_INSTANCE(Main, InstanceBase)
     Audio *audio;
     Script *projScript;
     float textCPUTiming;
-    
+
     virtual void init()
     {
         showExtraTimings = false;
         timingsUpdateCountdown = 0.0f;
         freezeTimings = false;
-        
+
         scene = resMgr->load<Scene>("resources/scenes/scene.bin");
-        
+
         font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
-        
+
         textTimer = gfxApi->createTimer();
-        
+
         Entity *entity = scene->createEntity("Audio source");
-        
+
         source = entity->addAudioSource(resMgr->load<Audio>("resources/audio/hi.ogg"));
         source->position = Position3D(0.0f, 1.0f, 0.0f);
-    
+
         //Kept around to speed up projectile creation.
         projScript = resMgr->load<Script>("resources/scripts/projectilescript.cpp");
     }
-    
+
     virtual void deinit()
     {
         projScript->release();
-    
+
         DELETE(GPUTimer, textTimer);
-        
+
         font->release();
         scene->release();
     }
-    
+
     virtual void handleInput()
     {
         Platform::Event event;
-        
+
         while (platform->pollEvent(event))
         {
             switch (event.type)
@@ -243,16 +244,16 @@ BEGIN_INSTANCE(Main, InstanceBase)
             }
             }
         }
-        
+
         scene->handleInput();
     }
 
     virtual void update()
     {
         scene->update();
-        
+
         scene->getAudioWorld()->listenerPosition = scene->getRenderer()->camera.getPosition();
-    
+
         if (platform->isKeyPressed(Platform::H))
         {
             source->playing = true;
@@ -267,30 +268,30 @@ BEGIN_INSTANCE(Main, InstanceBase)
     virtual void postRender()
     {
         timingsUpdateCountdown -= platform->getFrametime();
-        
+
         gfxApi->setViewport(0, 0, platform->getWindowWidth(), platform->getWindowHeight());
         scene->getRenderer()->resize(UInt2(platform->getWindowWidth(),
                                            platform->getWindowHeight()));
-        
+
         bool debugDraw = platform->isRightMouseButtonPressed();
-        
+
         if (scene->getRenderer()->debugDraw)
         {
             scene->getPhysicsWorld()->debugDraw();
         }
-        
+
         scene->getRenderer()->render();
-        
+
         size_t fontSize = 40;
         float y = gfxApi->getViewportHeight() - fontSize;
         y /= gfxApi->getViewportHeight();
-        
+
         GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
-        
+
         if (timingsUpdateCountdown < 0.0f and not freezeTimings)
         {
             timingsUpdateCountdown = TIMINGS_UPDATE_COUNTDOWN;
-            
+
             timings = String::format("FPS: %.0f\n"
                                      "Frametime: %.0f ms\n"
                                      "GPU Frametime: %.0f ms\n"
@@ -299,17 +300,17 @@ BEGIN_INSTANCE(Main, InstanceBase)
                                       platform->getFrametime() * 1000.0f,
                                       platform->getGPUFrametime() * 1000.0f,
                                       platform->getCPUFrametime() * 1000.0f);
-            
+
             Application::Stats cpuStats = app->getStats();
-            
+
             float total = platform->getGPUFrametime();
             float cpuTotal = platform->getCPUFrametime();
-            
+
             if (textTimer->resultAvailable())
             {
                 textTiming = textTimer->getResult() / (float)textTimer->getResultResolution();
             }
-            
+
             float sum = stats.gBufferTiming +
                         stats.ssaoTiming +
                         stats.ssaoBlurXTiming +
@@ -324,7 +325,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
                         stats.overlayTiming +
                         stats.debugDrawTiming +
                         textTiming;
-            
+
             extraTimings = String::format("GPU Timings:\n"
                                           "    GBuffer: %.2f ms (%.0f%)\n"
                                           "    SSAO: %.2f ms (%.0f%)\n"
@@ -410,30 +411,37 @@ BEGIN_INSTANCE(Main, InstanceBase)
                                           cpuStats.audio / cpuTotal * 100.0f);
         }
         String displayedText = timings.copy();
-        
+
         displayedText.append(String::format("Draw calls: %zu\n", stats.numDrawCalls));
-        
+
         if (showExtraTimings)
         {
             displayedText.append(extraTimings);
         }
-        
+
         Player *player = scene->findWithScript<Player>();
-        
+
         if (player != nullptr)
         {
             displayedText.append(String::format("Zoom: %f\n", 1.0f / player->zoom));
         }
-        
+
+        /*Projectile *proj = scene->findWithScript<Projectile>();
+
+        if (proj != nullptr)
+        {
+            proj->getEntity()->transform.lookAt(player->getEntity()->transform.position);
+        }*/
+
         textTimer->begin();
         uint64_t start = platform->getTime();
-        
+
         font->render(fontSize,
                      Float2(-1.0, y),
                      displayedText.getData(),
                      NULL,
                      Float3(1.0));
-        
+
         textCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
         textTimer->end();
     }
