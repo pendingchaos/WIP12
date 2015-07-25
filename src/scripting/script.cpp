@@ -21,6 +21,54 @@ void precompileScriptInclude()
            "-fabi-version=" STR(__GXX_ABI_VERSION));
 }
 
+void getIncludes(const String& dir, const String& source, List<String>& includes)
+{
+    List<String> lines = source.split('\n');
+
+    fileSys->pushSearchPaths();
+    fileSys->addSearchPath(dir);
+
+    for (size_t i = 0; i < lines.getCount(); ++i)
+    {
+        const String& line = lines[i];
+
+        try
+        {
+            if (line.startsWith("#include"))
+            {
+                List<String> parts = line.split('"');
+                String includedFile;
+
+                if (parts.getCount() == 1)
+                {
+                    parts = line.split('<');
+
+                    includedFile = parts[1].split('>')[0];
+                } else
+                {
+                    includedFile = parts[1];
+                }
+
+                includedFile = fileSys->getAbsolutePath(includedFile.getData());
+
+                if (includedFile.getLength() != 0)
+                {
+                    includes.append(includedFile);
+
+                    File f(includedFile.getData(), "r");
+
+                    String source2(f.getSize());
+                    f.read(source2.getLength(), source2.getData());
+
+                    getIncludes(dir, source2, includes);
+                }
+            }
+        } catch (BoundsException& e) {}
+    }
+
+    fileSys->popSearchPaths();
+}
+
 const void *getScriptFunctionStruct();
 
 class InstanceBase
@@ -364,44 +412,12 @@ void Script::_load()
               String("Unable to execute command: ").append(command));
     }
 
-    List<String> lines = source.split('\n');
+    getIncludes(dir, source, includes);
 
-    fileSys->pushSearchPaths();
-    fileSys->addSearchPath(dir);
-
-    for (size_t i = 0; i < lines.getCount(); ++i)
+    for (size_t i = 0; i < includes.getCount(); ++i)
     {
-        const String& line = lines[i];
-
-        try
-        {
-            if (line.startsWith("#include"))
-            {
-                List<String> parts = line.split('"');
-                String includedFile;
-
-                if (parts.getCount() == 1)
-                {
-                    parts = line.split('<');
-
-                    includedFile = parts[1].split('>')[0];
-                } else
-                {
-                    includedFile = parts[1];
-                }
-
-                includedFile = fileSys->getAbsolutePath(includedFile.getData());
-
-                if (includedFile.getLength() != 0)
-                {
-                    includes.append(includedFile);
-                    includesModifications.append(::getLastFileModification(includedFile.getData()));
-                }
-            }
-        } catch (BoundsException& e) {}
+        includesModifications.append(::getLastFileModification(includes[i].getData()));
     }
-
-    fileSys->popSearchPaths();
 }
 
 ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *scene)
