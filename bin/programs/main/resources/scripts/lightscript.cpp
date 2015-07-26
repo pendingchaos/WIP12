@@ -10,7 +10,7 @@ BEGIN_INSTANCE(PlayerLight, InstanceBase)
 
         light = renderer->addLight();
 
-        light->runtimeCreated = true;
+        light->scriptOwned = true;
         light->type = Light::Point;
         light->color = Float3(1.0, 0.5, 0.0);
         light->point.position = Position3D(0.0f);
