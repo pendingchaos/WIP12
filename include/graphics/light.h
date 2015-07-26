@@ -38,6 +38,7 @@ class Light
                   shadowMinBias(0.005f),
                   shadowBiasScale(0.05f),
                   shadowAutoBiasScale(1.0f),
+                  scriptOwned(false),
                   direction({Direction3D(0.0f, -1.0f, 0.0f)}),
                   shadowmap(nullptr),
                   shadowmapFramebuffer(nullptr) {point.singlePassShadowMap = true;}
@@ -52,6 +53,7 @@ class Light
         float shadowMinBias;
         float shadowBiasScale;
         float shadowAutoBiasScale;
+        bool scriptOwned;
 
         struct
         {

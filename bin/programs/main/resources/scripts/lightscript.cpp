@@ -5,21 +5,22 @@ BEGIN_INSTANCE(PlayerLight, InstanceBase)
     virtual void init()
     {
         on = false;
-        
+
         GfxRenderer *renderer = entity->getScene()->getRenderer();
-        
+
         light = renderer->addLight();
-        
+
+        light->runtimeCreated = true;
         light->type = Light::Point;
         light->color = Float3(1.0, 0.5, 0.0);
         light->point.position = Position3D(0.0f);
         light->point.radius = 5.0f;
     }
-    
+
     virtual void deinit()
     {
         GfxRenderer *renderer = entity->getScene()->getRenderer();
-        
+
         renderer->removeLight(renderer->getLights().find(light));
     }
 
@@ -27,11 +28,11 @@ BEGIN_INSTANCE(PlayerLight, InstanceBase)
     {
         on = platform->isKeyPressed(Platform::LeftShift);
     }
-    
+
     virtual void fixedUpdate(float timestep)
     {
         light->point.position = entity->transform.position;
-        
+
         if (on)
         {
             light->power += timestep;
@@ -41,7 +42,7 @@ BEGIN_INSTANCE(PlayerLight, InstanceBase)
             light->power -= timestep;
             light->power = std::max(light->power, 0.0f);
         }
-        
+
         if (light->power < 0.001f and light->getShadowmap() != nullptr)
         {
             light->removeShadowmap();
@@ -49,28 +50,28 @@ BEGIN_INSTANCE(PlayerLight, InstanceBase)
         {
             light->addShadowmap(1024, Light::Low);
         }
-        
+
         GfxRenderer *renderer = entity->getScene()->getRenderer();
-        
+
         for (size_t i = 0; i < renderer->getLights().getCount(); ++i)
         {
             Light *light2 = renderer->getLights()[i];
-            
+
             if (light2->type == Light::Directional)
             {
                 light2->power = 1.0f - light->power;
                 break;
             }
         }
-        
+
     }
-    
+
     virtual void serialize(Serializable& serialized)
     {
         serialized.set("on", on);
         serialized.set("power", light->power);
     }
-    
+
     virtual void deserialize(const Serializable& serialized)
     {
         serialized.get("on", on);

@@ -20,7 +20,6 @@
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
 - [ ] The tesselation test's normals seem incorrect.
-- [ ] The Scene::_copy is copying the light created by lightscript.cpp (disabled on resourceconverter.py line 1237).
 - [ ] Fix black borders around normal mapped metallic objects (http://marmosetco.tumblr.com/post/81245981087 ?):
 ![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/metallic border bug.png)
 

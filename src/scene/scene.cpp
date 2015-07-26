@@ -889,6 +889,11 @@ void Scene::save()
         {
             const Light *light = renderer->getLights()[i];
 
+            if (light->scriptOwned)
+            {
+                continue;
+            }
+
             file.writeUInt8((uint8_t)light->type);
             file.writeFloat32(light->power);
             file.writeFloat32(light->color.x);
@@ -1100,6 +1105,12 @@ Resource *Scene::_copy() const
     for (size_t i = 0; i < renderer->getLights().getCount(); ++i)
     {
         Light *light = renderer->getLights()[i];
+
+        if (light->scriptOwned)
+        {
+            continue;
+        }
+
         Light *light2 = scene->renderer->addLight();
 
         light2->type = light->type;
