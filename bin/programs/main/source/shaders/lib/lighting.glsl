@@ -1,26 +1,49 @@
+#include "uniform.glsl"
+
 #ifndef LIGHTING_INCLUDED
 #define LIGHTING_INCLUDED
 
 #define PI 3.14159265358979323846
 
-#define MAX_LIGHTS 64
-#define LIGHT_DIRECTIONAL 0u
-#define LIGHT_SPOT 1u
-#define LIGHT_POINT 2u
+#ifdef FORWARD_LIGHTING
+#define MAX_SPOT_LIGHTS 112
+#define MAX_POINT_LIGHTS 256
+#define MAX_DIRECTIONAL_LIGHTS 32
 
-struct Light
+struct SpotLight
 {
-    vec4 f0; //R, G, B, NegDirPosX
-    vec4 f1; //NegDirPosY, NegDirPosZ, NegSpotDirX, NegSpotDirY
-    vec4 f2; //NegSpotDirZ, InnerCosCut, OuterCosCut, type
-    vec4 f3; //Radius, AmbientStrength, unused, unused
+    vec4 negDir;
+    vec4 position;
+    vec4 color;
+    vec4 data; //x = cosInnerCutoff;
+               //y = cosOuterCutoff;
+               //z = radius;
+               //w = ambientStrength;
 };
 
-uniform uint numLights;
+struct PointLight
+{
+    vec4 positionAndRadius;
+    vec4 colorAndAmbientStrength;
+};
+
+struct DirectionalLight
+{
+    vec4 colorAndAmbientStrength;
+    vec4 negDir;
+};
+
+DECLUNIFORM(uint, numSpotLights)
+DECLUNIFORM(uint, numPointLights)
+DECLUNIFORM(uint, numDirectionalLights)
+
 layout (std140) uniform lights_
 {
-    Light lights[MAX_LIGHTS];
+    SpotLight spotLights[MAX_SPOT_LIGHTS];
+    PointLight pointLights[MAX_POINT_LIGHTS];
+    DirectionalLight directionalLights[MAX_DIRECTIONAL_LIGHTS];
 };
+#endif
 
 vec3 GGX(float nh, float roughness)
 {
@@ -372,110 +395,65 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
     return (diffuseResult + specular) * lightColor * intensity + mix(ambient, vec3(0.0), metallic);
 }
 
+#ifdef FORWARD_LIGHTING
 vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 viewDir, vec3 position)
 {
     vec3 result = vec3(0.0);
     
-    for (uint i = uint(0); i < numLights; ++i)
+    for (uint i = 0; i < U(numSpotLights); ++i)
     {
-        Light light = lights[i];
+        SpotLight light = spotLights[i];
         
-        result += albedo * light.f3.y * (1.0 - metallic);
+        result += spotLight(light.negDir.xyz,
+                            light.position.xyz,
+                            light.data.x,
+                            light.data.y,
+                            light.data.z,
+                            light.color.xyz,
+                            light.data.w,
+                            albedo,
+                            metallic,
+                            roughness,
+                            normal,
+                            viewDir,
+                            1.0,
+                            position);
+    }
+    
+    for (uint i = 0; i < U(numPointLights); ++i)
+    {
+        PointLight light = pointLights[i];
         
-        switch (uint(light.f2.w))
-        {
-        case LIGHT_DIRECTIONAL:
-        {
-            vec3 specular;
-            float diffuse;
-            
-            vec3 dir = vec3(light.f0.w, light.f1.x, light.f1.y);
-            
-            _lighting(dir,
-                      specular,
-                      diffuse,
-                      mix(vec3(1.0), albedo, metallic),
-                      roughness,
-                      metallic,
-                      normal,
-                      viewDir);
-            
-            vec3 diffuseResult = albedo/PI * diffuse;
-            
-            result += (diffuseResult + specular) * light.f0.rgb;
-            break;
-        }
-        case LIGHT_SPOT:
-        {
-            vec3 specular;
-            float diffuse;
-            
-            vec3 spotDir = vec3(light.f1.z, light.f1.w, light.f2.x);
-            
-            vec3 dir = vec3(light.f0.w, light.f1.x, light.f1.y) - position;
-            float dist = length(dir);
-            dir = normalize(dir);
-            
-            _lighting(spotDir,
-                      specular,
-                      diffuse,
-                      mix(vec3(1.0), albedo, metallic),
-                      roughness,
-                      metallic,
-                      normal,
-                      viewDir);
-            
-            float outer = light.f2.z;
-            float inner = clamp(light.f2.y, (1.0-outer)+0.0001, 1.0);
-            
-            vec3 diffuseResult = albedo/PI * diffuse;
-            
-            float epsilon = inner - outer;
-            float intensity = clamp((dot(dir, spotDir) - outer) / epsilon, 0.0, 1.0);
-            //float intensity = (dot(dir, spotDir) > outer) ? 1.0 : 0.0;
-            intensity *= 1.0 / pow(dist / light.f3.x + 1.0, 2.0);
-            
-            result += (diffuseResult + specular) * light.f0.rgb * intensity;
-            break;
-        }
-        case LIGHT_POINT:
-        {
-            vec3 specular;
-            float diffuse;
-            
-            vec3 dir = vec3(light.f0.w, light.f1.x, light.f1.y) - position;
-            float dist = length(dir);
-            dir = normalize(dir);
-            
-            _lighting(dir,
-                      specular,
-                      diffuse,
-                      mix(vec3(1.0), albedo/PI, metallic),
-                      roughness,
-                      metallic,
-                      normal,
-                      viewDir);
-            
-            vec3 diffuseResult = albedo/PI * diffuse;
-            
-            float intensity = 1.0 / pow(dist / light.f3.x + 1.0, 2.0);
-            //float intensity = clamp((light.f3.x - dist) / light.f3.x, 0.0, 1.0);
-            
-            //const float cutoff = 0.001;
-            
-            //float radius = light.f3.x / (sqrt(1.0 / cutoff) - 1.0);
-            //float intensity = 1.0 / pow(dist / radius + 1.0, 2.0);
-            //intensity = (intensity - cutoff) / (1.0 - cutoff);
-            //intensity = max(intensity, 0.0);
-            
-            result += (diffuseResult + specular) * light.f0.rgb * intensity;
-            //result += albedo * intensity > 0.00001 ? 1.0 : 0.0;
-            break;
-        }
-        }
+        result += pointLight(light.positionAndRadius.xyz,
+                             light.positionAndRadius.w,
+                             light.colorAndAmbientStrength.xyz,
+                             light.colorAndAmbientStrength.w,
+                             albedo,
+                             metallic,
+                             roughness,
+                             normal,
+                             viewDir,
+                             1.0,
+                             position);
+    }
+    
+    for (uint i = 0; i < U(numDirectionalLights); ++i)
+    {
+        DirectionalLight light = directionalLights[i];
+        
+        result += directionalLight(light.negDir.xyz,
+                                   light.colorAndAmbientStrength.xyz,
+                                   light.colorAndAmbientStrength.w,
+                                   albedo,
+                                   metallic,
+                                   roughness,
+                                   normal,
+                                   viewDir,
+                                   1.0);
     }
     
     return result;
 }
+#endif
 #endif
 

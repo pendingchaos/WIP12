@@ -1679,16 +1679,18 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
 {
     numLights = lights.getCount();
 
-    float *lightData = NEW_ARRAY(float, numLights * 16);
+    float *lightData = NEW_ARRAY(float, 4096);
+
+    static const size_t pointOffset = 1792;
+    static const size_t dirOffset = 3840;
+
+    numPointLights = 0;
+    numDirectionalLights = 0;
+    numSpotLights = 0;
 
     for (size_t i = 0; i < numLights; ++i)
     {
         const Light *light = lights[i];
-
-        lightData[i*16  ] = light->color.x * light->power;
-        lightData[i*16+1] = light->color.y * light->power;
-        lightData[i*16+2] = light->color.z * light->power;
-        lightData[i*16+13] = light->ambientStrength;
 
         switch (light->type)
         {
@@ -1696,41 +1698,56 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
         {
             Vector3D dir = -light->direction.direction.normalize();
 
-            lightData[i*16+3] = dir.x;
-            lightData[i*16+4] = dir.y;
-            lightData[i*16+5] = dir.z;
-            lightData[i*16+11] = 0.0;
+            lightData[dirOffset+numDirectionalLights*8+0] = light->color.x;
+            lightData[dirOffset+numDirectionalLights*8+1] = light->color.y;
+            lightData[dirOffset+numDirectionalLights*8+2] = light->color.z;
+            lightData[dirOffset+numDirectionalLights*8+3] = light->ambientStrength;
+            lightData[dirOffset+numDirectionalLights*8+4] = dir.x;
+            lightData[dirOffset+numDirectionalLights*8+5] = dir.y;
+            lightData[dirOffset+numDirectionalLights*8+6] = dir.z;
+
+            ++numDirectionalLights;
             break;
         }
         case Light::Spot:
         {
             Vector3D dir = -light->spot.direction.normalize();
 
-            lightData[i*16+3] = light->spot.position.x;
-            lightData[i*16+4] = light->spot.position.y;
-            lightData[i*16+5] = light->spot.position.z;
-            lightData[i*16+6] = dir.x;
-            lightData[i*16+7] = dir.y;
-            lightData[i*16+8] = dir.z;
-            lightData[i*16+9] = std::cos(RADIANS(light->spot.innerCutoff));
-            lightData[i*16+10] = std::cos(RADIANS(light->spot.outerCutoff));
-            lightData[i*16+11] = 1.0;
-            lightData[i*16+12] = light->spot.radius;
+            lightData[numSpotLights*16+0] = dir.x;
+            lightData[numSpotLights*16+1] = dir.y;
+            lightData[numSpotLights*16+2] = dir.z;
+            lightData[numSpotLights*16+4] = light->spot.position.x;
+            lightData[numSpotLights*16+5] = light->spot.position.y;
+            lightData[numSpotLights*16+6] = light->spot.position.z;
+            lightData[numSpotLights*16+8] = light->color.x;
+            lightData[numSpotLights*16+9] = light->color.y;
+            lightData[numSpotLights*16+10] = light->color.z;
+            lightData[numSpotLights*16+12] = std::cos(RADIANS(light->spot.innerCutoff));
+            lightData[numSpotLights*16+13] = std::cos(RADIANS(light->spot.outerCutoff));
+            lightData[numSpotLights*16+14] = light->spot.radius;
+            lightData[numSpotLights*16+15] = light->ambientStrength;
+
+            ++numSpotLights;
             break;
         }
         case Light::Point:
         {
-            lightData[i*16+3] = light->point.position.x;
-            lightData[i*16+4] = light->point.position.y;
-            lightData[i*16+5] = light->point.position.z;
-            lightData[i*16+11] = 2.0;
-            lightData[i*16+12] = light->point.radius;
+            lightData[pointOffset+numPointLights*8+0] = light->point.position.x;
+            lightData[pointOffset+numPointLights*8+1] = light->point.position.y;
+            lightData[pointOffset+numPointLights*8+2] = light->point.position.z;
+            lightData[pointOffset+numPointLights*8+3] = light->point.radius;
+            lightData[pointOffset+numPointLights*8+4] = light->color.x;
+            lightData[pointOffset+numPointLights*8+5] = light->color.x;
+            lightData[pointOffset+numPointLights*8+6] = light->color.x;
+            lightData[pointOffset+numPointLights*8+7] = light->ambientStrength;
+
+            ++numPointLights;
             break;
         }
         }
     }
 
-    lightBuffer->allocData(numLights*64, lightData, GfxBuffer::Dynamic);
+    lightBuffer->allocData(16384, lightData, GfxBuffer::Dynamic);
 
     DELETE_ARRAY(float, lightData);
 }
@@ -1910,7 +1927,9 @@ void GfxRenderer::renderBatches(bool forward)
 
             if (material->isForward())
             {
-                gfxApi->uniform(fragment, "numLights", (uint32_t)lights.getCount());
+                gfxApi->uniform(fragment, "numSpotLights", (uint32_t)numSpotLights);
+                gfxApi->uniform(fragment, "numPointLights", (uint32_t)numPointLights);
+                gfxApi->uniform(fragment, "numDirectionalLights", (uint32_t)numDirectionalLights);
                 gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
             }
 

@@ -1,4 +1,5 @@
 #include "lib/color.glsl"
+#define FORWARD_LIGHTING
 #include "lib/lighting.glsl"
 #include "lib/parallax.glsl"
 #include "lib/uniform.glsl"

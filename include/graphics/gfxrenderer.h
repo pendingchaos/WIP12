@@ -350,6 +350,9 @@ class GfxRenderer
 
         size_t numLights;
         GfxBuffer *lightBuffer;
+        size_t numPointLights;
+        size_t numDirectionalLights;
+        size_t numSpotLights;
 
         void fillLightBuffer(Scene *scene);
         void batchEntities(const List<Entity *>& entities);

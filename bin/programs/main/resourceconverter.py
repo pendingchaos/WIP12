@@ -1048,7 +1048,7 @@ if __name__ == "__main__":
     conv["platform.obj"] = Mesh(["source/platform.obj"], "resources/meshes/platform.bin")
     
     mat = Material([], "resources/materials/material.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedoMap = conv["texture2.png"]
@@ -1056,28 +1056,28 @@ if __name__ == "__main__":
     conv["material"] = mat
     
     mat = Material([], "resources/materials/clay.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["clay"] = mat
     
     mat = Material([], "resources/materials/gold.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.5
     mat.metalMask = 1.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["gold"] = mat
     
     mat = Material([], "resources/materials/plastic.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.875
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["plastic"] = mat
     
     mat = Material([], "resources/materials/projectile.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.5
     mat.metalMask = 1.0
     mat.albedo = [0.95349481, 0.806474433, 0.374256055, 1.0]
@@ -1085,27 +1085,27 @@ if __name__ == "__main__":
     conv["projectile material"] = mat
     
     mat = Material([], "resources/materials/floor.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedoMap = conv["floor.png"]
     conv["floor"] = mat
     
     mat = Material([], "resources/materials/fence.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.65
     mat.metalMask = 1.0
     conv["fence"] = mat
 
     mat = Material([], "resources/materials/ao test material.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["ao test material"] = mat
     
     mat = Material([], "resources/materials/parallax test material.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.875
     mat.metalMask = 0.0
     mat.albedoMap = conv["bricks2.jpg"]
@@ -1117,7 +1117,7 @@ if __name__ == "__main__":
     conv["parallax test material"] = mat
     
     mat = Material([], "resources/materials/tesselation test material.bin")
-    mat.forward = False
+    mat.forward = True
     mat.smoothness = 0.5
     mat.albedoMap = conv["bricks2.jpg"]
     mat.normalMap = conv["bricks2_normal.jpg"]
