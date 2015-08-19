@@ -26,19 +26,19 @@
 
 ## New rendering code
 ### Requirements
-Required:
-    OpenGL 3.3
-    GL_ARB_tessellation_shader
-    GL_ARB_texture_gather
-    GL_KHR_debug or similar extension
-Optional:
-    GL_ARB_separate_shader_objects
-    GL_ARB_get_program_binary
-    GL_ARB_internalformat_query
-    GL_ARB_multi_draw_indirect (still used if the below is not supported but not for GPU culling)
-    GL_ARB_indirect_parameters (only used when the below is supported) (for GPU culling)
-    GL_ARB_compute_shader with GL_ARB_shader_storage_buffer_object (for particle effects and GPU culling if the above is supported)
-    GL_ARB_buffer_storage (used when the above is not supported for persistent buffers)
+#### Required:
+- OpenGL 3.3
+- GL_ARB_tessellation_shader
+- GL_ARB_texture_gather
+- GL_KHR_debug or similar extension
+#### Optional:
+- GL_ARB_separate_shader_objects
+- GL_ARB_get_program_binary
+- GL_ARB_internalformat_query
+- GL_ARB_multi_draw_indirect (still used if the below is not supported but not for GPU culling)
+- GL_ARB_indirect_parameters (only used when the below is supported) (for GPU culling)
+- GL_ARB_compute_shader with GL_ARB_shader_storage_buffer_object (for particle effects and GPU culling if the above is supported)
+- GL_ARB_buffer_storage (used when the above is not supported for persistent buffers)
 ### API
 ```c++
 namespace gfx
