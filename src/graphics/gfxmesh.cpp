@@ -4,7 +4,6 @@
 #include "file.h"
 #include "globals.h"
 #include "containers/list.h"
-#include "containers/pair.h"
 
 GfxMesh::GfxMesh(const String& filename) : Resource(filename,
                                                     GfxMeshType),
@@ -95,7 +94,13 @@ void GfxMesh::save()
             file.writeUInt32LE(indexData.offset);
         }
 
-        List<Pair<GfxVertexAttribPurpose, VertexAttribute>> attributes;
+        struct Pair
+        {
+            GfxVertexAttribPurpose purpose;
+            VertexAttribute attrib;
+        };
+
+        List<Pair> attributes;
 
         for (size_t i = 0; i < GFX_VERTEX_ATTRIB_PURPOSE_COUNT; ++i)
         {
@@ -103,7 +108,12 @@ void GfxMesh::save()
 
             if (isVertexAttribEnabled(purpose))
             {
-                attributes.append(Pair<GfxVertexAttribPurpose, VertexAttribute>(purpose, getVertexAttrib(purpose)));
+                Pair pair;
+
+                pair.purpose = purpose;
+                pair.attrib = getVertexAttrib(purpose);
+
+                attributes.append(pair);
             }
         }
 
@@ -111,11 +121,11 @@ void GfxMesh::save()
 
         for (size_t i = 0; i < attributes.getCount(); ++i)
         {
-            const VertexAttribute& attribute = attributes[i].value2;
+            const VertexAttribute& attribute = attributes[i].attrib;
 
             file.writeUInt32LE(attribute.stride);
             file.writeUInt32LE(attribute.offset);
-            file.writeUInt8((uint8_t)attributes[i].value1);
+            file.writeUInt8((uint8_t)attributes[i].purpose);
             file.writeUInt8(attribute.numComponents);
             file.writeUInt8((uint8_t)attribute.type);
         }

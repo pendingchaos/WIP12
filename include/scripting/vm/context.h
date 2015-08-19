@@ -3,7 +3,6 @@
 
 #include "scripting/vm/types.h"
 #include "scripting/vm/bytecode.h"
-#include "containers/pair.h"
 #include <setjmp.h>
 
 #define SCRIPTING_MAX_CALLSTACK_SIZE 2048

@@ -3,7 +3,6 @@
 
 #include "containers/string.h"
 #include "containers/list.h"
-#include "containers/pair.h"
 #include "misc_macros.h"
 #include "memory.h"
 

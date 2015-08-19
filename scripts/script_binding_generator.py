@@ -39,7 +39,6 @@ files = [
 "../include/math/quaternion.h",
 "../include/math/aabb.h",
 "../include/containers/list.h",
-"../include/containers/pair.h",
 "../include/containers/string.h",
 "../include/containers/hashmap.h",
 "../include/containers/resizabledata.h",

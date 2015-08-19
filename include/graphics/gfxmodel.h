@@ -3,7 +3,6 @@
 
 #include "containers/string.h"
 #include "containers/list.h"
-#include "containers/pair.h"
 #include "graphics/gfxmesh.h"
 #include "graphics/gfxmaterial.h"
 #include "resource/resource.h"
