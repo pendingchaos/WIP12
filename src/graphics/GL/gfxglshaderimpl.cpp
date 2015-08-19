@@ -17,7 +17,7 @@ GfxGLShaderImpl::~GfxGLShaderImpl()
             glDeleteShader(compiledShaders.getValue(i)->getGLProgram());
         }
 
-        DELETE(CompiledShader, compiledShaders.getValue(i));
+        DELETE(GfxCompiledShader, compiledShaders.getValue(i));
     }
 }
 
@@ -267,8 +267,8 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     }
     }
 
-    DELETE_ARRAY(const char *, defineSources);
-    DELETE_ARRAY(String, sources);
+    DELETE_ARRAY(String, defineSources);
+    DELETE_ARRAY(const char *, sources);
 
     if (infoLog.getLength() != 0)
     {

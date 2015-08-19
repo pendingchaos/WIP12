@@ -427,7 +427,7 @@ void Serializable::readFromFile(File *file)
     {
         uint32_t length = file->readUInt32LE();
 
-        string = String(length);
+        string = String((size_t)length);
 
         file->read(string.getLength(), string.getData());
         break;
@@ -473,7 +473,7 @@ void Serializable::readFromFile(File *file)
 
         for (size_t i = 0; i < numEntries; ++i)
         {
-            String key(file->readUInt32LE());
+            String key((size_t)file->readUInt32LE());
             file->read(key.getLength(), key.getData());
 
             Serializable value;

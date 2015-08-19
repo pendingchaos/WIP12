@@ -22,7 +22,10 @@ class MemoryException : public Exception
 
 #define ALLOCATE(amount) std::malloc(amount)
 
-#define DEALLOCATE(pointer) std::free(pointer);
+#define DEALLOCATE(pointer) do\
+{\
+    std::free(pointer);\
+} while (0)
 
 #ifdef IN_SCRIPT
 #define NEW(type, ...) _new<type>::f(__VA_ARGS__)
@@ -32,8 +35,14 @@ class MemoryException : public Exception
 #define NEW_ARRAY(type, count) (new type[count])
 #endif
 
-#define DELETE(type, pointer) delete pointer;
-#define DELETE_ARRAY(type, pointer) delete [] pointer;
+#define DELETE(type, pointer) do\
+{\
+    delete (type *)pointer;\
+} while (0)
+#define DELETE_ARRAY(type, pointer) do\
+{\
+    delete [] (type *)pointer;\
+} while (0)
 
 void *_alloc(size_t amount);
 

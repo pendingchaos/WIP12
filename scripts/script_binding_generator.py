@@ -85,6 +85,7 @@ class Argument(object):
     def __init__(self, cursor, index):
         self.index = index
         self.type_ = Type(cursor.type)
+        self.doc = ""
 
         if len(cursor.spelling) == 0:
             self.name = "_param%d" % index
@@ -98,6 +99,12 @@ class Function(object):
         self.variadic = clang.cindex.conf.lib.clang_isFunctionTypeVariadic(cursor.type)
         self.definition = cursor.is_definition()
         self.args = []
+        self.doc = ""
+        self.exceptions = {}
+        self.getter = False
+        self.setter = False
+        self.template_types = {}
+        self.script_public = True
 
         i = 0
 
@@ -105,6 +112,32 @@ class Function(object):
             self.args.append(Argument(arg, i))
 
             i += 1
+        
+        for c in cursor.get_children():
+            if c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
+                if c.displayname.startswith("argdoc"):
+                    argname = c.displayname[6:].split(" ")[0]
+                    doc = c.displayname[6+len(argname)+1:]
+                    
+                    for arg in self.args:
+                        if arg.name == argname:
+                            arg.doc = doc
+                elif c.displayname.startswith("descdoc"):
+                    self.doc = c.displayname[7:]
+                elif c.displayname.startswith("excdoc"):
+                    exc_type = c.displayname[6:].split(" ")[0]
+                    reason = c.displayname[6+len(exc_type)+1:]
+                    
+                    self.exceptions[exc_type] = reason
+                elif c.displayname.startswith("getter"):
+                    self.getter = True
+                elif c.displayname.startswith("setter"):
+                    self.setter = True
+                elif c.displayname.startswith("templatetypes"):
+                    for type_, name in [tuple(v.split(":")) for v in c.displayname[13:].split(" ")]:
+                        self.template_types[type_] = name
+                elif c.displayname == "nobind":
+                    self.script_public = False
 
 class Method(Function):
     def __init__(self, class_, cursor):
@@ -129,6 +162,9 @@ class Class(object):
         self.destructors = []
         self.has_virtual_methods = False
         self.has_pure_virtual_methods = False
+        self.doc = ""
+        self.template_types = {}
+        self.script_public = True
 
         for child in cursor.get_children():
             if child.kind == clang.cindex.CursorKind.CXX_METHOD:
@@ -153,6 +189,23 @@ class Class(object):
             elif child.kind == clang.cindex.CursorKind.CLASS_DECL and\
                  child.spelling in class_names:
                 self.classes.append(Class(child))
+        
+        for c in cursor.get_children():
+            if c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
+                if c.displayname.startswith("argdoc"):
+                    argname = c.displayname[6:].split(" ")[0]
+                    doc = c.displayname[6+len(argname)+1:]
+                    
+                    for arg in self.args:
+                        if arg.name == argname:
+                            arg.doc = doc
+                elif c.displayname.startswith("descdoc"):
+                    self.doc = c.displayname[7:]
+                elif c.displayname.startswith("templatetypes"):
+                    for type_, name in [tuple(v.split(":")) for v in c.displayname[13:].split(" ")]:
+                        self.template_types[type_] = name
+                elif c.displayname == "nobind":
+                    self.script_public = False
 
 def get_classes(cursor):
     classes = {}

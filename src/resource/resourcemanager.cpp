@@ -75,7 +75,7 @@ void ResourceManager::cleanupResources()
 
         for (size_t j = 0; j < toDelete.getCount(); ++j)
         {
-            int index;
+            int index = -1;
 
             for (size_t i2 = 0; i2 < resources_.getEntryCount(); ++i2)
             {
@@ -86,7 +86,10 @@ void ResourceManager::cleanupResources()
                 }
             }
 
-            resources_.removeEntry(index);
+            if (index != -1)
+            {
+                resources_.removeEntry(index);
+            }
 
             toDelete[j]->release();
         }

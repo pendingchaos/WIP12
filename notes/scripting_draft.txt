@@ -1,0 +1,94 @@
+# Precedence:
+- With: 0
+- Call: 1
+- Index: 1
+- Dot: 1
+- Boolean not: 2 (unary)
+- Bitwise not: 2 (unary)
+- New: 2 (unary)
+- Multiply: 3
+- Divide: 3
+- Modulo: 3
+- Addition: 4
+- Subtraction: 4
+- Left shift: 5
+- Right shift: 5
+- Less than: 6
+- Less equal: 6
+- Greater: 6
+- Greater equal: 6
+- Equal: 7
+- Not equal: 7
+- Bitwise and: 8
+- Bitwise xor: 8
+- Bitwise or: 8
+- Boolean and: 8
+- Boolean or: 8
+- Assign: 9
+
+some_module = import("some_module.???")
+
+vec2 = class
+    __init__ = function(self, ...args)
+        if (args.len == 0)
+            self.x = 0.0
+            self.y = 0.0
+        } elif (args.len == 1)
+            self.x = float(args[0])
+            self.y = float(args[0])
+        } elif (args.len == 2)
+            self.x = float(args[0])
+            self.y = float(args[1])
+        } else
+            throw ValueException("vec2.__init__ takes 0, 1 or 2 arguments.")
+        }
+    }
+    
+    __add__ = function(self, other)
+        if (std.isInstance(other, vec2))
+            return vec2(self.x + other.x, self.y + other.y)
+        } else
+            return vec2(self.x + other, self.y + other)
+        }
+    }
+}
+
+scope
+    variable = 42
+}
+
+# Comment?
+
+some_module.some_function()
+
+adder = function(x, x2, x3, x4)
+    return function()
+        return x + inc + inc2 + x3 + x4
+    } with x->inc, x4, x2->inc2, x3
+}
+
+obj = {
+    member1 = 5
+    member1 += 1
+    
+    temp = "Hello world!"
+    member2 = temp
+    delvar temp
+}
+
+obj == {member1=6 temp="Hello world!"} == True
+
+counter_r = newref()
+vec2_1_r = newref()
+vec2_1_r := vec2() # Does not copy
+
+vec2_2_r = newref()
+vec2_2_r := vec2(*vec2_1_r) # Does not copy
+
+vec2_1_r.x = vec2_1_r.x + 1;
+
+counter_r := 5 # Does not copy # Returns nil unlike =
+
+delref(vec2_1_r)
+delref(vec2_2_r)
+delref(counter_r)

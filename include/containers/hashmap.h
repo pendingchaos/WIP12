@@ -72,12 +72,6 @@ size_t getHash(const T& value)
     return 0;
 }
 
-template <typename T>
-inline bool hashMapIsEqual(const T& v1, const T& v2)
-{
-    return v1 == v2;
-}
-
 class LookupException : public Exception
 {
     public:
@@ -91,19 +85,16 @@ class LookupException : public Exception
         }
 };
 
+//TODO: This could be improved.
 template <typename Key,
           typename Value,
-          size_t (*Hash)(const Key&)=getHash,
-          bool (*Equal)(const Key&, const Key&)=hashMapIsEqual,
-          bool (*ValueEqual)(const Value&, const Value&)=hashMapIsEqual>
+          size_t (*Hash)(const Key&)=getHash>
 class HashMap
 {
     public:
         bool operator == (const HashMap<Key,
                                         Value,
-                                        Hash,
-                                        Equal,
-                                        ValueEqual>& other) const
+                                        Hash>& other) const
         {
             if (entries.getCount() != other.getEntryCount())
             {
@@ -119,7 +110,7 @@ class HashMap
                     return false;
                 }
 
-                if (not ValueEqual(entries[i].value, other.entries[otherIndex].value))
+                if (not (entries[i].value == other.entries[otherIndex].value))
                 {
                     return false;
                 }
@@ -130,9 +121,7 @@ class HashMap
 
         bool operator != (const HashMap<Key,
                                         Value,
-                                        Hash,
-                                        Equal,
-                                        ValueEqual>& other) const
+                                        Hash>& other) const
         {
             return not (*this == other);
         }
@@ -228,9 +217,7 @@ class HashMap
 
         void append(const HashMap<Key,
                                   Value,
-                                  Hash,
-                                  Equal,
-                                  ValueEqual>& other)
+                                  Hash>& other)
         {
             for (size_t i = 0; i < other.getEntryCount(); ++i)
             {
@@ -246,7 +233,7 @@ class HashMap
             {
                 if (entries[i].keyHash == hash)
                 {
-                    if (Equal(entries[i].key, key))
+                    if (entries[i].key == key)
                     {
                         return i;
                     }

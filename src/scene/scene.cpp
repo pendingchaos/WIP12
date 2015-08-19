@@ -235,7 +235,7 @@ void loadEntity(Entity *entity, File *file)
     {
         uint32_t modelFileLen = file->readUInt32LE();
 
-        String modelFile(modelFileLen);
+        String modelFile((size_t)modelFileLen);
         file->read(modelFileLen, modelFile.getData());
 
         bool shadowCaster = file->readUInt8() != 0;
@@ -245,7 +245,7 @@ void loadEntity(Entity *entity, File *file)
     {
         uint32_t textureFileLen = file->readUInt32LE();
 
-        String textureFile(textureFileLen);
+        String textureFile((size_t)textureFileLen);
         file->read(textureFileLen, textureFile.getData());
 
         float red = file->readFloat32();
@@ -302,7 +302,7 @@ void loadEntity(Entity *entity, File *file)
         info.collisionMask = collisionMask;
 
         uint32_t length = file->readUInt32LE();
-        String shape(length);
+        String shape((size_t)length);
         file->read(length, shape.getData());
 
         entity->addRigidBody(info, resMgr->load<PhysicsShape>(shape));
@@ -313,11 +313,11 @@ void loadEntity(Entity *entity, File *file)
     for (size_t i = 0; i < numScripts; ++i)
     {
         uint32_t scriptFileLen = file->readUInt32LE();
-        String scriptFile(scriptFileLen);
+        String scriptFile((size_t)scriptFileLen);
         file->read(scriptFileLen, scriptFile.getData());
 
         uint32_t nameLen = file->readUInt32LE();
-        String name(nameLen);
+        String name((size_t)nameLen);
         file->read(nameLen, name.getData());
 
         entity->addScript(resMgr->load<Script>(scriptFile), name.getData());
@@ -328,7 +328,7 @@ void loadEntity(Entity *entity, File *file)
     for (size_t i = 0; i < numChildren; ++i)
     {
         uint32_t nameLen = file->readUInt32LE();
-        String name(nameLen);
+        String name((size_t)nameLen);
         file->read(nameLen, name.getData());
 
         Entity *child = entity->createEntity(name);
@@ -418,7 +418,7 @@ void Scene::_load()
         }
 
         uint32_t skyboxFileLen = file.readUInt32LE();
-        String skyboxFile(skyboxFileLen);
+        String skyboxFile((size_t)skyboxFileLen);
         file.read(skyboxFileLen, skyboxFile.getData());
 
         if (skyboxFileLen != 0)
@@ -526,7 +526,7 @@ void Scene::_load()
         for (uint32_t i = 0; i < numEntities; ++i)
         {
             uint32_t nameLen = file.readUInt32LE();
-            String name(nameLen);
+            String name((size_t)nameLen);
             file.read(nameLen, name.getData());
 
             Entity *entity = createEntity(name);
@@ -624,11 +624,11 @@ void Scene::_load()
         for (size_t i = 0; i < numScripts; ++i)
         {
             uint32_t scriptFileLen = file.readUInt32LE();
-            String scriptFile(scriptFileLen);
+            String scriptFile((size_t)scriptFileLen);
             file.read(scriptFileLen, scriptFile.getData());
 
             uint32_t nameLen = file.readUInt32LE();
-            String name(nameLen);
+            String name((size_t)nameLen);
             file.read(nameLen, name.getData());
 
             addScript(resMgr->load<Script>(scriptFile), name.getData());

@@ -338,7 +338,7 @@ void GfxMaterial::_load()
         uint32_t len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setAlbedoMap(resMgr->load<GfxTexture>(tex));
         }
@@ -346,7 +346,7 @@ void GfxMaterial::_load()
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setSmoothnessMap(resMgr->load<GfxTexture>(tex));
         }
@@ -354,7 +354,7 @@ void GfxMaterial::_load()
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setMetalMaskMap(resMgr->load<GfxTexture>(tex));
         }
@@ -362,7 +362,7 @@ void GfxMaterial::_load()
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setNormalMap(resMgr->load<GfxTexture>(tex));
         }
@@ -370,7 +370,7 @@ void GfxMaterial::_load()
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setParallaxHeightMap(resMgr->load<GfxTexture>(tex));
         }
@@ -378,7 +378,7 @@ void GfxMaterial::_load()
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setPOMHeightMap(resMgr->load<GfxTexture>(tex));
         }
@@ -386,7 +386,7 @@ void GfxMaterial::_load()
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex(len);
+            String tex((size_t)len);
             file.read(len, tex.getData());
             setDisplacementMap(resMgr->load<GfxTexture>(tex));
         }

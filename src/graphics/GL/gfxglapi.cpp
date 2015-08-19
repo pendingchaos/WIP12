@@ -984,6 +984,36 @@ void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const 
         return;
     }
 
+    /*GLuint program = dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram();
+
+    std::cout << name << ':' << std::endl;
+
+    GLint num = 0;
+    GLenum prop[] = {GL_NUM_ACTIVE_VARIABLES};
+    glGetProgramResourceiv(program, GL_UNIFORM_BLOCK, location, 1, prop, 1, NULL, &num);
+
+    GLint indices[num];
+    GLenum prop3[] = {GL_ACTIVE_VARIABLES};
+    glGetProgramResourceiv(program, GL_UNIFORM_BLOCK, location, 1, prop3, num, NULL, indices);
+
+    for (size_t i = 0; i < num; ++i)
+    {
+        GLint len;
+        GLenum prop2[] = {GL_NAME_LENGTH};
+
+        glGetProgramResourceiv(program, GL_UNIFORM, indices[i], 1, prop2, 1, NULL, &len);
+
+        char name[len+1];
+        name[len] = '\x00';
+        glGetProgramResourceName(program, GL_UNIFORM, indices[i], len, NULL, name);
+
+        GLint offset;
+        GLenum prop4[] = {GL_OFFSET};
+        glGetProgramResourceiv(program, GL_UNIFORM, indices[i], 1, prop4, 1, NULL, &offset);
+
+        std::cout << "    " << offset << ' ' << name << std::endl;
+    }*/
+
     if (uboBindingCount < sizeof(uboBindings)/sizeof(UBOBinding))
     {
         uboBindings[uboBindingCount++] = (UBOBinding){.buffer = buffer,

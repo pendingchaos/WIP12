@@ -8,7 +8,10 @@
 #include <cstring>
 #include <algorithm>
 
-#define THROW(type, ...) throw type(__FILE__, __LINE__, __PRETTY_FUNCTION__,##__VA_ARGS__);
+#define THROW(type, ...) do\
+{\
+throw type(__FILE__, __LINE__, __PRETTY_FUNCTION__,##__VA_ARGS__);\
+} while (0);
 
 class Exception
 {

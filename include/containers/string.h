@@ -36,6 +36,11 @@ class String
 
         String(const char *data_) : data(std::strlen(data_)+1, data_) {}
 
+        String(char c) : data(2, &c)
+        {
+            getData()[1] = '\x00';
+        }
+
         inline bool operator == (const String& other) const
         {
             return data == other.data;
@@ -285,7 +290,7 @@ class String
                 return "";
             }
 
-            String result(amount);
+            String result((size_t)amount);
             vsnprintf(result.getData(), result.getLength()+1, format, list);
 
             va_end(list);
@@ -318,16 +323,16 @@ class String
             return String::format("f", value);
         }
 
-        inline bool startsWith(const String& with) const
+        inline bool startsWith(const String& with, size_t offset=0) const
         {
-            if (getLength() < with.getLength())
+            if (getLength() < with.getLength()+offset)
             {
                 return false;
             }
 
             for (size_t i = 0; i < with.getLength(); ++i)
             {
-                if ((*this)[i] != with[i])
+                if ((*this)[i+offset] != with[i])
                 {
                     return false;
                 }

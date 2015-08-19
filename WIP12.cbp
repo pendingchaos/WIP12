@@ -121,9 +121,16 @@
 		<Unit filename="include/scene/entity.h" />
 		<Unit filename="include/scene/scene.h" />
 		<Unit filename="include/scene/transform.h" />
+		<Unit filename="include/scripting/parser/ast.h" />
+		<Unit filename="include/scripting/parser/tokenizer.h" />
 		<Unit filename="include/scripting/script.h" />
 		<Unit filename="include/scripting/scriptinclude.h" />
 		<Unit filename="include/scripting/scriptsidebindings.h" />
+		<Unit filename="include/scripting/vm/bytecode.h" />
+		<Unit filename="include/scripting/vm/context.h" />
+		<Unit filename="include/scripting/vm/engine.h" />
+		<Unit filename="include/scripting/vm/stdlib.h" />
+		<Unit filename="include/scripting/vm/types.h" />
 		<Unit filename="include/serialization.h" />
 		<Unit filename="scripts/genGLFL.py" />
 		<Unit filename="scripts/gen_misc_macros.py" />
@@ -186,7 +193,14 @@
 		<Unit filename="src/scene/scene.cpp" />
 		<Unit filename="src/scene/transform.cpp" />
 		<Unit filename="src/scripting/appsidebindings.cpp" />
+		<Unit filename="src/scripting/parser/ast.cpp" />
+		<Unit filename="src/scripting/parser/tokenizer.cpp" />
 		<Unit filename="src/scripting/script.cpp" />
+		<Unit filename="src/scripting/vm/bytecode.cpp" />
+		<Unit filename="src/scripting/vm/context.cpp" />
+		<Unit filename="src/scripting/vm/engine.cpp" />
+		<Unit filename="src/scripting/vm/stdlib.cpp" />
+		<Unit filename="src/scripting/vm/types.cpp" />
 		<Unit filename="src/serialization.cpp" />
 		<Extensions>
 			<code_completion />

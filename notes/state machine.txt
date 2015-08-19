@@ -1,0 +1,79 @@
+
+class StateMachine;
+
+class StateBase
+{
+    public:
+        StateBase(StateMachine *machine_) : machine(machine_)
+        virtual ~StateBase() {}
+
+        virtual void enter() {}
+        virtual void exit() {}
+        virtual void update() {}
+
+        inline StateMachine *getMachine() const
+        {
+            return machine;
+        }
+    protected:
+        StateMachine *machine;
+};
+
+class StateMachine
+{
+    public:
+        StateMachine()
+        {
+            state = nullptr;
+        }
+
+        ~StateMachine()
+        {
+            if (state != nullptr)
+            {
+                state->exit();
+                delete state;
+            }
+        }
+
+        void update()
+        {
+            if (state != nullptr)
+            {
+                state->update();
+            }
+
+            if (nextState != nullptr)
+            {
+                if (state != nullptr)
+                {
+                    state->exit();
+                    delete state;
+                }
+
+                state = nextState;
+                nextState = nullptr;
+                state->enter();
+            }
+        }
+
+        template <typename T, typename... Args>
+        void switch(Args... args)
+        {
+            if (nextState == nullptr)
+            {
+                delete nextState;
+            }
+
+            nextState = new T(args...);
+        }
+
+        StateBase *getState()
+        {
+            return state;
+        }
+    private:
+        StateBase *state;
+        StateBase *nextState;
+};
+

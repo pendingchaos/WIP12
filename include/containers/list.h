@@ -7,13 +7,6 @@
 #include <vector>
 
 template <typename T>
-inline bool listIsEqual(const T& v1, const T& v2)
-{
-    return v1 == v2;
-}
-
-template <typename T,
-          bool (*Equal)(const T&, const T&)=listIsEqual>
 class List
 {
     public:
@@ -36,7 +29,7 @@ class List
 
             for (std::size_t i = 0; i < getCount(); ++i)
             {
-                if (not Equal(data[i], other.data[i]))
+                if (not (data[i] == other.data[i]))
                 {
                     return false;
                 }
@@ -108,6 +101,11 @@ class List
             }
 
             data.insert(data.begin()+start, toInsert, toInsert+count);
+        }
+
+        void insert(std::size_t start, const T& toInsert)
+        {
+            insert(start, 1, &toInsert);
         }
 
         inline void insert(std::size_t start, const List& toInsert)

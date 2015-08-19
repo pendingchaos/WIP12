@@ -169,11 +169,11 @@ void GfxModel::_load()
                 float r3c3 = file.readFloat32();
 
                 uint32_t meshLen = file.readUInt32LE();
-                String mesh(meshLen);
+                String mesh((size_t)meshLen);
                 file.read(meshLen, mesh.getData());
 
                 uint32_t materialLen = file.readUInt32LE();
-                String material(materialLen);
+                String material((size_t)materialLen);
                 file.read(materialLen, material.getData());
 
                 subModel.append(LOD(minDistance,

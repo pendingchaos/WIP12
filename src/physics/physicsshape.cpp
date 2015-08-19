@@ -464,7 +464,7 @@ PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
     case 11:
     {
         uint32_t length = file->readUInt32LE();
-        String filename2(length);
+        String filename2((size_t)length);
         file->read(length, filename2.getData());
 
         dest = resMgr->load<PhysicsShape>(filename2);
