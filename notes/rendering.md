@@ -31,6 +31,7 @@
 - GL_ARB_tessellation_shader
 - GL_ARB_texture_gather
 - GL_KHR_debug or similar extension
+
 #### Optional:
 - GL_ARB_separate_shader_objects
 - GL_ARB_get_program_binary
