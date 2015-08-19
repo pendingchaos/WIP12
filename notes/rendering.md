@@ -40,6 +40,7 @@ Optional:
     GL_ARB_compute_shader with GL_ARB_shader_storage_buffer_object (for particle effects and GPU culling if the above is supported)
     GL_ARB_buffer_storage (used when the above is not supported for persistent buffers)
 ### API
+```c++
 namespace gfx
 {
 enum class ShaderType
@@ -506,3 +507,4 @@ class Context
         ShaderParams *createShaderParams() const;
 };
 }
+```
