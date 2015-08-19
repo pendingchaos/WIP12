@@ -34,14 +34,6 @@ class PhysicsWorld
                 RigidBody *body;
                 GhostObject *ghost;
             };
-
-            inline bool operator == (const RayCastResult& other) const
-            {
-                return distance == other.distance and
-                       normal == other.normal and
-                       objType == other.objType and
-                       body == other.body;
-            }
         };
 
         PhysicsWorld();

@@ -177,11 +177,6 @@ class Entity
             return render;
         }
 
-        inline bool operator == (const Entity& other) const
-        {
-            return this == &other;
-        }
-
         Scene *getScene() const;
 
         Entity *createEntity(const String& name);

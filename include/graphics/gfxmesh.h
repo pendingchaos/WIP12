@@ -38,14 +38,6 @@ class GfxMesh : public Resource
             GfxVertexAttribType type;
             uint32_t stride;
             uint32_t offset;
-
-            inline bool operator == (const VertexAttribute& other) const
-            {
-                return numComponents == other.numComponents and
-                       type == other.type and
-                       stride == other.stride and
-                       offset == other.offset;
-            }
         };
 
         void setVertexAttrib(GfxVertexAttribPurpose purpose,

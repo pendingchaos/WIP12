@@ -30,15 +30,6 @@ class GfxModel : public Resource
             GfxMesh *mesh;
             GfxMaterial *material;
             Matrix4x4 worldMatrix;
-
-            bool operator == (const GfxModel::LOD& other) const
-            {
-                return minDistance == other.minDistance and
-                       maxDistance == other.maxDistance and
-                       mesh == other.mesh and
-                       material == other.material and
-                       worldMatrix == other.worldMatrix;
-            }
         };
 
         typedef List<LOD> SubModel;

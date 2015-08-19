@@ -64,15 +64,6 @@ class Context
             List<List<Ref>> stacks;
             List<size_t> catchBlocks;
             size_t offset;
-
-            inline bool operator == (const CallstackEntry& other) const
-            {
-                return bytecode == other.bytecode and
-                       variables == other.variables and
-                       stacks == other.stacks and
-                       catchBlocks == other.catchBlocks and
-                       offset == other.offset;
-            }
         };
 
         Context(Engine *engine);

@@ -76,26 +76,12 @@ class Font : public Resource
             UInt2 bearing;
             float xAdvance;
             GfxTexture *texture;
-
-            inline bool operator == (const Glyph& other) const
-            {
-                return size == other.size and
-                       bearing == other.bearing and
-                       xAdvance == other.xAdvance and
-                       texture == other.texture;
-            }
         };
 
         struct Face
         {
             FT_Face face;
             HashMap<char, Glyph> glyphs;
-
-            inline bool operator == (const Face& other) const
-            {
-                return face == other.face and
-                       glyphs == other.glyphs;
-            }
         };
 
         void loadGlyph(Face& face, char character);

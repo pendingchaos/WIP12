@@ -88,63 +88,6 @@ class GfxRenderer
                     float brightness;
                 } brightnessReplace;
             };
-
-            bool operator == (const ColorModifier& other) const
-            {
-                if (type != other.type)
-                {
-                    return false;
-                }
-
-                switch (type)
-                {
-                case ReinhardTonemapping:
-                {
-                    return reinhardTonemap.brightnessOnly ==
-                           other.reinhardTonemap.brightnessOnly;
-                }
-                case Vignette:
-                {
-                    return vignette.radius == other.vignette.radius and
-                           vignette.softness == other.vignette.softness and
-                           vignette.intensity == other.vignette.intensity;
-                }
-                case HueShift:
-                {
-                    return hueShift.hue == other.hueShift.hue;
-                }
-                case SaturationShift:
-                {
-                    return saturationShift.saturation == other.saturationShift.saturation;
-                }
-                case BrightnessShift:
-                {
-                    return brightnessShift.brightness == other.brightnessShift.brightness;
-                }
-                case Contrast:
-                {
-                    return contrast.contrast == other.contrast.contrast;
-                }
-                case Multiply:
-                {
-                    return multiply.red == other.multiply.red and
-                           multiply.green == other.multiply.green and
-                           multiply.blue == other.multiply.blue;
-                }
-                case HueReplace:
-                {
-                    return hueReplace.hue == other.hueReplace.hue;
-                }
-                case SaturationReplace:
-                {
-                    return saturationReplace.saturation == other.saturationReplace.saturation;
-                }
-                case BrightnessReplace:
-                {
-                    return brightnessReplace.brightness == other.brightnessReplace.brightness;
-                }
-                }
-            }
         };
 
         struct RenderStats

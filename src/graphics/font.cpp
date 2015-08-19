@@ -115,12 +115,6 @@ void Font::render(size_t size,
     {
         Position2D position;
         Glyph glyph;
-
-        inline bool operator == (const Character& other) const
-        {
-            return position == other.position and
-                   glyph == other.glyph;
-        }
     };
 
     HashMap<char, List<Character>> characters;

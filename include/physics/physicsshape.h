@@ -369,13 +369,6 @@ class PhysicsCompoundShape : public PhysicsShapeImpl
                 Quaternion orientation;
                 Position3D position;
                 PhysicsShape *shape;
-
-                bool operator == (const PhysicsCompoundShape::Child& other) const
-                {
-                    return orientation == other.orientation and
-                           position == other.position and
-                           shape == other.shape;
-                }
         };
 
         PhysicsCompoundShape(PhysicsShape *physShape, size_t shapeCount, const Child *shapes);

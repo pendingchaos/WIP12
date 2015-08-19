@@ -33,14 +33,6 @@ class GfxDebugDrawer
             Position3D startPos;
             Float4 endColor;
             Position3D endPos;
-
-            inline bool operator == (const Line& other) const
-            {
-                return startColor == other.startColor and
-                       startPos == other.startPos and
-                       endColor == other.endColor and
-                       endPos == other.endPos;
-            }
         };
 
         List<Line> lines;

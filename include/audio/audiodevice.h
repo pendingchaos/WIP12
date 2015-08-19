@@ -13,12 +13,6 @@ class AudioDevice
         {
             void (*function)(float *, size_t, void *, AudioDevice *);
             void *data;
-
-            inline bool operator == (const Callback& other) const
-            {
-                return function == other.function and
-                       data == other.data;
-            }
         };
 
         AudioDevice(size_t index, size_t frequency, size_t samples);

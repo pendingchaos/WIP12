@@ -93,11 +93,6 @@ class Bytecode
         Bytecode() {}
         Bytecode(ResizableData& data);
 
-        inline bool operator == (const Bytecode& other) const
-        {
-            return data == other.data;
-        }
-
         inline int64_t getInt64(size_t offset) const
         {
             if (offset + 8 > data.getSize())

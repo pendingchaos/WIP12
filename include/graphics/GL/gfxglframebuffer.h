@@ -41,14 +41,6 @@ class GfxGLFramebuffer : public GfxFramebuffer
             GfxTexture *texture;
             size_t mipmapLevel;
             int layer;
-
-            inline bool operator == (const Attachment& other) const
-            {
-                return rtIndex == other.rtIndex and
-                       texture == other.texture and
-                       mipmapLevel == other.mipmapLevel and
-                       layer == other.layer;
-            }
         };
 
         GLuint fbo;
