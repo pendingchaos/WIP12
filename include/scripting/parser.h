@@ -1,7 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "scripting/parser/ast.h"
 #include "containers/string.h"
 
 namespace scripting
@@ -27,6 +26,93 @@ class ParseException : public Exception
         const char *message;
         size_t scriptLine;
         size_t scriptColumn;
+};
+
+class ASTNode
+{
+    public:
+        enum Type
+        {
+            Call,
+            Identifier, //Can be "true", "false" or "nil"
+            Integer,
+            Float,
+            String,
+            Statements
+        };
+
+        ASTNode(Type type_) : type(type_) {}
+        virtual ~ASTNode() {}
+
+        const Type type;
+};
+
+class FloatNode : public ASTNode
+{
+    public:
+        FloatNode(double value_) : ASTNode(ASTNode::Float), value(value_) {}
+
+        double value;
+};
+
+class IntegerNode : public ASTNode
+{
+    public:
+        IntegerNode(int64_t value_) : ASTNode(ASTNode::Integer), value(value_) {}
+
+        int64_t value;
+};
+
+class IdentifierNode : public ASTNode
+{
+    public:
+        IdentifierNode(const List<::String>& names_) : ASTNode(ASTNode::Identifier), names(names_) {}
+
+        const List<::String> names; //["obj", "member"] for obj.member
+};
+
+class StatementsNode : public ASTNode
+{
+    public:
+        StatementsNode() : ASTNode(ASTNode::Statements) {}
+
+        virtual ~StatementsNode()
+        {
+            for (size_t i = 0; i < statements.getCount(); ++i)
+            {
+                DELETE(ASTNode, statements[i]);
+            }
+        }
+
+        List<ASTNode *> statements;
+};
+
+class StringNode : public ASTNode
+{
+    public:
+        StringNode(const ::String& content_) : ASTNode(ASTNode::String), content(content_) {}
+
+        const ::String content;
+};
+
+class CallNode : public ASTNode
+{
+    public:
+        CallNode(ASTNode *callable_) : ASTNode(ASTNode::Call),
+                                       callable(callable_) {}
+
+        virtual ~CallNode()
+        {
+            DELETE(ASTNode, callable);
+
+            for (size_t i = 0; i < args.getCount(); ++i)
+            {
+                DELETE(ASTNode, args[i]);
+            }
+        }
+
+        ASTNode *callable;
+        List<ASTNode *> args;
 };
 
 ASTNode *parse(const String& source);

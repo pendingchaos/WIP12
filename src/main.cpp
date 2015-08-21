@@ -42,7 +42,6 @@ int unsafeMain(int argc, const char *argv[])
 #include "scripting/vm/context.h"
 #include "scripting/vm/bytecode.h"
 #include "scripting/vm/types.h"
-#include "scripting/parser/ast.h"
 #include "scripting/parser.h"
 
 #include <iostream>

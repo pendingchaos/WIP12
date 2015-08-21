@@ -454,25 +454,25 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
         {
             --offset;
 
-            result->addArg(_parse(source, offset, lastLineOffset, line));
+            result->args.append(_parse(source, offset, lastLineOffset, line));
         } else if (source.startsWith("0x", offset-1))
         {
             ++offset; //Skip the 'x'
 
-            result->addArg(parseBase16(source, offset, lastLineOffset, line));
+            result->args.append(parseBase16(source, offset, lastLineOffset, line));
         } else if (source.startsWith("0b", offset-1))
         {
             ++offset; //Skip the 'b'
 
-            result->addArg(parseBase2(source, offset, lastLineOffset, line));
+            result->args.append(parseBase2(source, offset, lastLineOffset, line));
         } else if ((c >= '0' and c <= '9') or c == '+' or c == '-')
         {
             --offset;
 
-            result->addArg(parseNumber(source, offset, lastLineOffset, line));
+            result->args.append(parseNumber(source, offset, lastLineOffset, line));
         } else if (c == '"')
         {
-            result->addArg(parseString(source, offset, lastLineOffset, line));
+            result->args.append(parseString(source, offset, lastLineOffset, line));
         } else if (c == ' ' or c == '\t')
         {
         } else if (c == '\n')
@@ -551,7 +551,7 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
 
             strs.append(str);
 
-            result->addArg((ASTNode *)NEW(IdentifierNode, strs));
+            result->args.append((ASTNode *)NEW(IdentifierNode, strs));
         }
     }
 
@@ -568,7 +568,7 @@ ASTNode *parse(const String& source)
 
     while (offset != source.getLength())
     {
-        result->addStatement(_parse(source, offset, lastLineOffset, line));
+        result->statements.append(_parse(source, offset, lastLineOffset, line));
     }
 
     return result;
