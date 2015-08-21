@@ -44,6 +44,7 @@ int unsafeMain(int argc, const char *argv[])
 #include "scripting/vm/types.h"
 #include "scripting/parser/tokenizer.h"
 #include "scripting/parser/ast.h"
+#include "scripting/parser.h"
 
 #include <iostream>
 
@@ -893,6 +894,72 @@ int main(int argc, const char *argv[])
     } catch (scripting::TokenException& e)
     {
         std::printf("Failed to tokenize input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
+    }
+    #elif 1
+    try
+    {
+        scripting::ASTNode *ast = scripting::parse(
+        #if 0
+        "(+ 30.5 (+ 0.5 2e+1) (+ 0b11 0x6))"
+        #elif 0
+        "(print \"\x48ullo World!\n\")"
+        #elif 0
+        "(+ 1 2) (+ 3 4)"
+        #else
+"(= some_module (import \"some_module.???\"))\n"
+"\n"
+"(= vec2 (class\n"
+"          (= __init__ (function (self ...args)\n"
+"                        (if (== args.len 0) ((= self.x 0.0)\n"
+"                                             (= self.y 0.0))\n"
+"                            (== args.len 1) ((= self.x (float (nth args 0)))\n"
+"                                             (= self.y (float (nth args 0))))\n"
+"                            (== args.len 2) ((= self.x (float (nth args 0)))\n"
+"                                             (= self.y (float (nth args 1))))\n"
+"                            (throw (ValueException \"vec2.__init__ takes 0, 1 or 2 arguments.\")))))\n"
+"\n"
+"          (= __add__ (function (self other)\n"
+"                       (if (isinstance other vec2) \n"
+"                           (vec2 (+ self.x other.x) (+ self.y other.y)))\n"
+"                           (vec2 (+ self.x other) (+ self.y other))))))\n"
+"\n"
+"(scope \n"
+"  (= variable 42))\n"
+"\n"
+"(some_module.some_function)\n"
+"\n"
+"(= adder (function (x x2 x3 x4)\n"
+"           (with (function () (+ inc inc2 x3 x4))\n"
+"                 (x inc) x4 (x2 inc2) x3)))\n"
+"\n"
+"(= obj (newobj (= member1 5)\n"
+"               (= member1 (+ member1 1))\n"
+"               (= temp \"Hello world!\")\n"
+"               (= member2 temp)\n"
+"               (delvar temp)))\n"
+"\n"
+"(= counter_r (newref))\n"
+"(= vec2_1_r (newref))\n"
+"(:= vec2_1_r (vec2))\n"
+"\n"
+"(= vec2_2_r (newref))\n"
+"(:= vec2_2_r (vec2 *vec2_1_r))\n"
+"\n"
+"(= vec_1_r.x (+ vec2_1_r.x 1))\n"
+"(:= counter_r 5)\n"
+"\n"
+"(delref vec2_1_r)\n"
+"(delref vec2_2_r)\n"
+"(delref counter_r)\n"
+        #endif
+        );
+
+        printAST(0, ast);
+
+        DELETE(scripting::ASTNode, ast);
+    } catch (scripting::ParseException& e)
+    {
+        std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
     }
     #else
     initBacktrace();

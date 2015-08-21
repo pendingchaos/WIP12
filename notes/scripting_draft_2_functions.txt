@@ -1,0 +1,40 @@
+# Functions
+(= dest_variable value) -> value
+(import filename) -> object
+(class form1 form2...) -> object
+(function (arg1 arg2...) form1 form2...) -> function
+(if cond1 form1 cond2 form2... else_form) -> nil
+(throw exception) -> nil
+(scope form1 form2...) -> nil
+(with function src1->dest1 src2...) -> function
+(newobj form1 form2...) -> object
+(delmem object member) -> nil
+(newref optional_inital_value) -> reference
+(delref ref) -> nil
+(:= dest_ref value) -> nil
+(+ a b...) -> anything
+(- a b...) -> anything
+(* a b...) -> anything
+(/ a b...) -> anything
+(< a b...) -> anything
+(> a b...) -> anything
+(== a b...) -> anything
+(<= a b...) -> anything
+(>= a b...) -> anything
+(and a b...) -> anything
+(or a b...) -> anything
+(not a) -> anything
+(&& a b...) -> anything
+(|| a b...) -> anything
+(^ a b...) -> anything
+(~ a) -> anything
+(<< a b) -> anything
+(>> a b) -> anything
+(try try_form except_form) -> nil
+(delvar variable) -> nil
+(return value) -> nil
+(int value) -> integer
+(float value) -> float
+(boolean value) -> boolean
+(nth sequence index) -> anything
+(isinstance object class) -> boolean

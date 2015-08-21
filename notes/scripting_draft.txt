@@ -76,8 +76,6 @@ obj = {
     delvar temp
 }
 
-obj == {member1=6 temp="Hello world!"} == True
-
 counter_r = newref()
 vec2_1_r = newref()
 vec2_1_r := vec2() # Does not copy

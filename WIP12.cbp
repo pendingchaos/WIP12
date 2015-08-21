@@ -70,7 +70,6 @@
 		<Unit filename="include/backtrace.h" />
 		<Unit filename="include/containers/hashmap.h" />
 		<Unit filename="include/containers/list.h" />
-		<Unit filename="include/containers/pair.h" />
 		<Unit filename="include/containers/resizabledata.h" />
 		<Unit filename="include/containers/string.h" />
 		<Unit filename="include/endian_utils.h" />
@@ -142,7 +141,6 @@
 		<Unit filename="src/backtrace.cpp" />
 		<Unit filename="src/containers/hashmap.cpp" />
 		<Unit filename="src/containers/list.cpp" />
-		<Unit filename="src/containers/pair.cpp" />
 		<Unit filename="src/containers/resizabledata.cpp" />
 		<Unit filename="src/containers/string.cpp" />
 		<Unit filename="src/error.cpp" />
