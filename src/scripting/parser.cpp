@@ -433,7 +433,10 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
         op.append(c);
     }
 
-    CallNode *result = NEW(CallNode, (ASTNode *)NEW(IdentifierNode, op));
+    List<String> opList;
+    opList.append(op);
+
+    CallNode *result = NEW(CallNode, (ASTNode *)NEW(IdentifierNode, opList));
 
     while (true)
     {
@@ -494,6 +497,7 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
             }
         } else
         {
+            List<String> strs;
             String str;
 
             --offset;
@@ -535,13 +539,19 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
 
                         ++offset;
                     }
+                } else if (c == '.')
+                {
+                    strs.append(str);
+                    str = "";
                 } else
                 {
                     str.append(c);
                 }
             }
 
-            result->addArg((ASTNode *)NEW(IdentifierNode, str));
+            strs.append(str);
+
+            result->addArg((ASTNode *)NEW(IdentifierNode, strs));
         }
     }
 

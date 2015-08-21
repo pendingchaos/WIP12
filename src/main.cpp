@@ -78,153 +78,6 @@ void printAST(size_t indent, scripting::ASTNode *node)
 
     switch (node->type)
     {
-    case scripting::ASTNode::Assign:
-    {
-        std::cout << "Assign:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::RefAssign:
-    {
-        std::cout << "RefAssign:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Add:
-    {
-        std::cout << "Add:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Subtract:
-    {
-        std::cout << "Subtract:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Multiply:
-    {
-        std::cout << "Multiply:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Divide:
-    {
-        std::cout << "Divide:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Modulo:
-    {
-        std::cout << "Modulo:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Less:
-    {
-        std::cout << "Less:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Greater:
-    {
-        std::cout << "Greater:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::Equal:
-    {
-        std::cout << "Equal:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::NotEqual:
-    {
-        std::cout << "NotEqual:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::LessEqual:
-    {
-        std::cout << "LessEqual:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::GreaterEqual:
-    {
-        std::cout << "GreaterEqual:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::BoolAnd:
-    {
-        std::cout << "BoolAnd:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::BoolOr:
-    {
-        std::cout << "BoolOr:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::BitAnd:
-    {
-        std::cout << "BitAnd:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::BitOr:
-    {
-        std::cout << "BitOr:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::BitXOr:
-    {
-        std::cout << "BitXOr:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::LeftShift:
-    {
-        std::cout << "LeftShift:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::RightShift:
-    {
-        std::cout << "RightShift:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
-    case scripting::ASTNode::GetMember:
-    {
-        std::cout << "GetMember:\n";
-        printAST(indent+1, ((scripting::LROpNode *)node)->left);
-        printAST(indent+1, ((scripting::LROpNode *)node)->right);
-        break;
-    }
     case scripting::ASTNode::Call:
     {
         scripting::CallNode *cnode = (scripting::CallNode *)node;
@@ -238,109 +91,6 @@ void printAST(size_t indent, scripting::ASTNode *node)
         }
         break;
     }
-    case scripting::ASTNode::BoolNot:
-    {
-        std::cout << "BoolNot:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::BitNot:
-    {
-        std::cout << "BitNot:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::Class:
-    {
-        std::cout << "Class:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::Throw:
-    {
-        std::cout << "Throw:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::DeleteVar:
-    {
-        std::cout << "DeleteVar:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::Scope:
-    {
-        std::cout << "Scope:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::Return:
-    {
-        std::cout << "Return:\n";
-        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
-        break;
-    }
-    case scripting::ASTNode::Function:
-    {
-        std::cout << "Function:\n";
-
-        scripting::FunctionNode *fnode = (scripting::FunctionNode *)node;
-
-        for (size_t i = 0; i < fnode->args.getCount(); ++i)
-        {
-            for (size_t j = 0; j <= indent; ++j)
-            {
-                std::cout << "    ";
-            }
-
-            std::cout << fnode->args[i].getData() << '\n';
-        }
-
-        printAST(indent+1, fnode->body);
-        break;
-    }
-    case scripting::ASTNode::FuncWith:
-    {
-        std::cout << "FuncWith:\n";
-
-        scripting::FuncWithNode *fnode = (scripting::FuncWithNode *)node;
-
-        for (size_t j = 0; j <= indent; ++j)
-        {
-            std::cout << "    ";
-        }
-
-        std::cout << fnode->var.getData() << "->" << fnode->as.getData() << '\n';
-
-        printAST(indent+1, fnode->func);
-        break;
-    }
-    case scripting::ASTNode::TryExcept:
-    {
-        std::cout << "TryExcept:\n";
-
-        scripting::TryExceptNode *tenode = (scripting::TryExceptNode *)node;
-
-        printAST(indent+1, tenode->try_);
-        printAST(indent+1, tenode->except);
-        break;
-    }
-    case scripting::ASTNode::If:
-    {
-        std::cout << "If:\n";
-
-        scripting::IfNode *inode = (scripting::IfNode *)node;
-
-        printAST(indent+1, inode->if_);
-
-        for (size_t i = 0; i < inode->elifs.getCount(); ++i)
-        {
-            printAST(indent+1, inode->elifs[i]);
-        }
-
-        printAST(indent+1, inode->else_);
-        break;
-    }
     case scripting::ASTNode::Identifier:
     {
         std::cout << "Identifier:\n";
@@ -350,7 +100,14 @@ void printAST(size_t indent, scripting::ASTNode *node)
             std::cout << "    ";
         }
 
-        std::cout << ((scripting::IdentifierNode *)node)->name.getData() << std::endl;
+        scripting::IdentifierNode *ids = (scripting::IdentifierNode *)node;
+
+        for (size_t j = 0; j < ids->names.getCount(); ++j)
+        {
+            std::cout << ids->names[j].getData() << ' ';
+        }
+
+        std::cout << '\n';
         break;
     }
     case scripting::ASTNode::Integer:
@@ -389,18 +146,6 @@ void printAST(size_t indent, scripting::ASTNode *node)
         std::cout << ((scripting::StringNode *)node)->content.getData() << std::endl;
         break;
     }
-    case scripting::ASTNode::Object:
-    {
-        std::cout << "Object:\n";
-
-        scripting::StatementsNode *snode = (scripting::StatementsNode *)node;
-
-        for (size_t i = 0; i < snode->statements.getCount(); ++i)
-        {
-            printAST(indent+1, snode->statements[i]);
-        }
-        break;
-    }
     case scripting::ASTNode::Statements:
     {
         std::cout << "Statements:\n";
@@ -411,21 +156,6 @@ void printAST(size_t indent, scripting::ASTNode *node)
         {
             printAST(indent+1, snode->statements[i]);
         }
-        break;
-    }
-    case scripting::ASTNode::True:
-    {
-        std::cout << "True\n";
-        break;
-    }
-    case scripting::ASTNode::False:
-    {
-        std::cout << "False\n";
-        break;
-    }
-    case scripting::ASTNode::Nil:
-    {
-        std::cout << "Nil\n";
         break;
     }
     }
