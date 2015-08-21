@@ -6,8 +6,6 @@
 
 namespace scripting
 {
-    struct Token;
-
     class ASTNode
     {
         public:
@@ -296,8 +294,6 @@ namespace scripting
             ASTNode *callable;
             List<ASTNode *> args;
     };
-
-    ASTNode *createAST(const List<Token>& tokens);
 };
 
 #endif // AST_H
