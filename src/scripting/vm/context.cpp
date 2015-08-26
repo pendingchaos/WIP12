@@ -130,85 +130,16 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
             stack->append(refMgr->createException(type, String(length, (const char *)data.getData())));
             break;
         }
-        case Opcode::StackMove:
+        case Opcode::StackPop:
         {
-            int32_t src = bytecode.getInt32(offset);
-            offset += 4;
-            if (src < 0)
-            {
-                src = src % (*stack).getCount();
-            }
-
-            int32_t dst = bytecode.getInt32(offset);
-            offset += 4;
-            if (dst < 0)
-            {
-                dst = dst % (*stack).getCount();
-            }
-
-            if ((uint32_t)src >= stack->getCount())
+            if (stack->getCount() == 0)
             {
                 THROW(StackBoundsException);
             }
 
-            if ((uint32_t)dst >= stack->getCount())
-            {
-                THROW(StackBoundsException);
-            }
+            refMgr->destroy(this, (*stack)[stack->getCount()-1]);
 
-            Ref value = (*stack)[src];
-
-            stack->remove(src);
-
-            stack->insert(dst, value);
-            break;
-        }
-        case Opcode::StackRemove:
-        {
-            int32_t src = bytecode.getInt32(offset);
-            offset += 4;
-            if (src < 0)
-            {
-                src = src % stack->getCount();
-            }
-
-            if ((uint32_t)src >= stack->getCount())
-            {
-                THROW(StackBoundsException);
-            }
-
-            refMgr->destroy(this, (*stack)[src]);
-
-            stack->remove(src);
-            break;
-        }
-        case Opcode::StackCopy:
-        {
-            int32_t src = bytecode.getInt32(offset);
-            offset += 4;
-            if (src < 0)
-            {
-                src = src % stack->getCount();
-            }
-
-            int32_t dst = bytecode.getInt32(offset);
-            offset += 4;
-            if (dst < 0)
-            {
-                dst = dst % stack->getCount();
-            }
-
-            if ((uint32_t)src >= stack->getCount())
-            {
-                THROW(StackBoundsException);
-            }
-
-            if ((uint32_t)dst > stack->getCount())
-            {
-                THROW(StackBoundsException);
-            }
-
-            stack->insert(dst, refMgr->createCopy(this, (*stack)[src]));
+            stack->remove(stack->getCount()-1);
             break;
         }
         case Opcode::LoadVar:
@@ -807,6 +738,53 @@ break;
             refMgr->destroy(this, func);
             break;
         }
+        case Opcode::CallMethod:
+        {
+            Ref object = popStack(*stack);
+            Value *head = refMgr->translate(object);
+
+            Ref name = popStack(*stack);
+            Value *nameHead = refMgr->translate(name);
+
+            if (nameHead->type != ValueType::String)
+            {
+                throwException(refMgr->createException(ExcType::TypeError, "Method name must be string."));
+            }
+
+            Ref argCountRef = popStack(*stack);
+            Value *argCountHead = refMgr->translate(argCountRef);
+
+            if (argCountHead->type != ValueType::Int)
+            {
+                throwException(refMgr->createException(ExcType::TypeError, "Arguments count must be an integer."));
+            }
+
+            int64_t argCount = ((IntValue *)argCountHead)->value;
+
+            if (argCount < 0)
+            {
+                throwException(refMgr->createException(ExcType::ValueError, "Argument count must not be negative."));
+            }
+
+            List<Ref> args;
+
+            for (int64_t i = 0; i < argCount; ++i)
+            {
+                args.append(popStack(*stack));
+            }
+
+            stack->append(callMethod(this, head, ((StringValue *)nameHead)->value, args));
+
+            for (size_t i = 0; i < args.getCount(); ++i)
+            {
+                refMgr->destroy(this, args[i]);
+            }
+
+            refMgr->destroy(this, argCountRef);
+            refMgr->destroy(this, name);
+            refMgr->destroy(this, object);
+            break;
+        }
         case Opcode::Return:
         {
             return popStack(*stack);
@@ -971,9 +949,7 @@ break;
 "PushString",
 "PushList",
 "PushException",
-"StackMove",
-"StackRemove",
-"StackCopy",
+"StackPop",
 "LoadVar",
 "StoreVar",
 "DelVar",
@@ -994,6 +970,9 @@ break;
 "BitAnd",
 "BitOr",
 "BitNot",
+"BitXOr",
+"LeftShift",
+"RightShift",
 "Less",
 "Greater",
 "Equal",
@@ -1001,13 +980,13 @@ break;
 "LessEqual",
 "GreaterEqual",
 "Call",
+"CallMethod",
 "Return",
 "GetArgCount",
 "GetArg",
 "IsRefValid",
 "Deref",
 "ReplaceRef",
-"GetRef",
 "JumpIf",
 "Jump",
 "Try",
@@ -1501,6 +1480,11 @@ Ref setMember(Context *ctx, Value *dest, Value *key, Value *value)
 
         String name = ((StringValue *)key)->value;
 
+        if (resultHead->members.findEntry(name) != -1)
+        {
+            refMgr->destroy(ctx, resultHead->members.get(name));
+        }
+
         resultHead->members.set(name, refMgr->createCopy(ctx, value));
 
         return result;
@@ -1590,17 +1574,7 @@ Ref call(Context *ctx, Value *value, const List<Ref>& args)
     case ValueType::Object:
     case ValueType::NativeObject:
     {
-        Ref name = refMgr->createString("__call__");
-        Value *nameHead = refMgr->translate(name);
-
-        Ref func = getMember(ctx, value, nameHead);
-        Value *funcHead = refMgr->translate(func);
-
-        Ref result = call(ctx, funcHead, args);
-
-        refMgr->destroy(ctx, func);
-        refMgr->destroy(ctx, name);
-
+        Ref result = callMethod(ctx, value, "__call__", args);
         return result;
     }
     default:
@@ -1627,7 +1601,7 @@ Ref callMethod(Context *ctx, Value *obj, const String& methName, const List<Ref>
     Ref func = getMember(ctx, obj, nameHead);
     Value *funcHead = refMgr->translate(func);
 
-    Ref result = call(ctx, funcHead, args);
+    Ref result = call(ctx, funcHead, args_);
 
     refMgr->destroy(ctx, func);
     refMgr->destroy(ctx, name);
@@ -1652,8 +1626,8 @@ bool isInstance(Context *ctx, Value *obj, Value *type)
         HashMap<String, Ref> objMembers = ((ObjectValue *)obj)->members;
         HashMap<String, Ref> typeMembers = ((ObjectValue *)type)->members;
 
-        int entry1 = objMembers.findEntry("__typeID__");
-        int entry2 = objMembers.findEntry("__typeID__");
+        int entry1 = objMembers.findEntry("__classTypeID__");
+        int entry2 = typeMembers.findEntry("__typeID__");
 
         if (entry1 == -1 or entry2 == -1)
         {

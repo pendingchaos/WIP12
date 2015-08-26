@@ -7,8 +7,8 @@
 (throw exception) -> nil
 (scope form1 form2...) -> nil
 (with function src1->dest1 src2...) -> function
-(newobj form1 form2...) -> object
-(delmem object member) -> nil
+(obj form1 form2...) -> object
+(delmem object_member_or_variable) -> nil
 (newref optional_inital_value) -> reference
 (delref ref) -> nil
 (:= dest_ref value) -> nil
@@ -30,9 +30,8 @@
 (~ a) -> anything
 (<< a b) -> anything
 (>> a b) -> anything
-(try try_form except_form) -> nil
-(delvar variable) -> nil
-(return value) -> nil
+(try try_form exception_variable_name except_form) -> nil
+(return value) -> nothing
 (int value) -> integer
 (float value) -> float
 (boolean value) -> boolean

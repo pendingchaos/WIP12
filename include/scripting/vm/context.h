@@ -115,7 +115,7 @@ class UnhandledExcException : public ExecutionException
 
         virtual const char *getString() const
         {
-            return "Callstack bounds exception.";
+            return "Unhandled script exception.";
         }
 
         inline Ref getException() const

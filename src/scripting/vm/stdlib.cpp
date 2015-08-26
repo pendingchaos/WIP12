@@ -5,7 +5,7 @@
 #include "scripting/vm/context.h"
 #include <cassert>
 
-//TODO: Test
+//TODO: Use the builtin exception type.
 namespace scripting
 {
 struct ExceptionData
@@ -201,108 +201,6 @@ void stdLibDestroy(Engine *engine, NativeObject *self)
     DELETE(Context, context);
 }
 
-Ref scriptIsInstance(Context *ctx, const List<Ref>& args)
-{
-    if (args.getCount() != 2)
-    {
-        ctx->throwException(createException(ctx, ExcType::ValueError, "isInstance takes 2 arguments."));
-    }
-
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
-    return refMgr->createBoolean(isInstance(ctx, refMgr->translate(args[0]), refMgr->translate(args[1])));
-}
-
-Ref createTypeID(Context *ctx, const List<Ref>& args)
-{
-    if (args.getCount() != 0)
-    {
-        ctx->throwException(createException(ctx, ExcType::ValueError, "createTypeID takes 0 arguments."));
-    }
-
-    return ctx->getEngine()->getRefMgr()->createInt(ctx->getEngine()->createNewTypeID());
-}
-
-Ref classNew(Context *ctx, const List<Ref>& args)
-{
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
-    if (args.getCount() < 1)
-    {
-        ctx->throwException(createException(ctx, ExcType::ValueError, "__new__ takes at least 1 argument."));
-    }
-
-    Value *class_ = refMgr->translate(args[1]);
-
-    Ref __base__ = refMgr->createString("__base__");
-    Value *base = refMgr->translate(getMember(ctx, class_, refMgr->translate(__base__)));
-    refMgr->destroy(ctx, __base__);
-
-    Ref __typeID__ = refMgr->createString("__typeID__");
-    Value *typeID = refMgr->translate(getMember(ctx, class_, refMgr->translate(__typeID__)));
-    refMgr->destroy(ctx, __typeID__);
-
-    if (base->type != ValueType::Object)
-    {
-        ctx->throwException(createException(ctx, ExcType::TypeError, "Class base must be an object."));
-    }
-
-    if (typeID->type != ValueType::Int)
-    {
-        ctx->throwException(createException(ctx, ExcType::TypeError, "Class tyoe ID must be an integer."));
-    }
-
-    Ref result = refMgr->createObject();
-    Value *resultHead = refMgr->translate(result);
-    HashMap<String, Ref> resultMembers = ((ObjectValue *)resultHead)->members;
-
-    resultMembers.append(((ObjectValue *)base)->members);
-    resultMembers.set("__typeID__", refMgr->createInt(((IntValue *)typeID)->value));
-
-    int entry = resultMembers.findEntry("__init__");
-
-    if (entry != -1)
-    {
-        callMethod(ctx, resultHead, "__init__", List<Ref>(args.getCount(), args.getData()+1));
-    } else
-    {
-        if (args.getCount() != 1)
-        {
-            ctx->throwException(createException(ctx, ExcType::ValueError, "__new__ takes 1 argument."));
-        }
-    }
-
-    return result;
-}
-
-Ref createClass(Context *ctx, const List<Ref>& args)
-{
-    if (args.getCount() != 1)
-    {
-        ctx->throwException(createException(ctx, ExcType::ValueError, "createClass takes 1 arguments."));
-    }
-
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
-    Value *base = refMgr->translate(args[1]);
-
-    if (base->type != ValueType::Object)
-    {
-        ctx->throwException(createException(ctx, ExcType::ValueError, "base must be an object."));
-    }
-
-    Ref result = refMgr->createObject();
-
-    HashMap<String, Ref> resultMembers = ((ObjectValue *)refMgr->translate(result))->members;
-
-    resultMembers.set("__base__", args[1]);
-    resultMembers.set("__new__", refMgr->createNativeFunction(classNew));
-    resultMembers.set("__typeID__", refMgr->createInt(ctx->getEngine()->createNewTypeID()));
-    resultMembers.set("__call__", refMgr->createNativeFunction(classNew));
-
-    return result;
-}
-
 void *initStdlib(Engine *engine, void *data)
 {
     RefManager *refMgr = engine->getRefMgr();
@@ -316,10 +214,6 @@ void *initStdlib(Engine *engine, void *data)
     HashMap<String, Ref> values = ((ObjectValue *)refMgr->translate(stdlib))->members;
 
     values.set("Exception", exc);
-    //TODO: This can be implemented as function isInstance(a, b) {return a.__typeID__ == b.__typeID__}
-    values.set("isInstance", refMgr->createNativeFunction(scriptIsInstance));
-    values.set("createTypeID", refMgr->createNativeFunction(createTypeID));
-    values.set("createClass", refMgr->createNativeFunction(createClass));
 
     engine->getGlobalVars().set("std", stdlib);
 

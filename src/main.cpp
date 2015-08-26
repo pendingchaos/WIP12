@@ -43,6 +43,7 @@ int unsafeMain(int argc, const char *argv[])
 #include "scripting/vm/bytecode.h"
 #include "scripting/vm/types.h"
 #include "scripting/parser.h"
+#include "scripting/bytecodegen.h"
 
 #include <iostream>
 
@@ -57,6 +58,12 @@ scripting::Ref print(scripting::Context *ctx, const List<scripting::Ref>& args)
         if (head->type == scripting::ValueType::String)
         {
             std::cout << ((scripting::StringValue *)head)->value.getData() << std::endl;
+        } else if (head->type == scripting::ValueType::Int)
+        {
+            std::cout << ((scripting::IntValue *)head)->value << std::endl;
+        } else if (head->type == scripting::ValueType::Float)
+        {
+            std::cout << ((scripting::FloatValue *)head)->value << std::endl;
         } else
         {
             ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Argument must be string."));
@@ -82,11 +89,9 @@ void printAST(size_t indent, scripting::ASTNode *node)
         scripting::CallNode *cnode = (scripting::CallNode *)node;
         std::cout << "Call:\n";
 
-        printAST(indent+1, cnode->callable);
-
-        for (size_t i = 0; i < cnode->args.getCount(); ++i)
+        for (size_t i = 0; i < cnode->nodes.getCount(); ++i)
         {
-            printAST(indent+1, cnode->args[i]);
+            printAST(indent+1, cnode->nodes[i]);
         }
         break;
     }
@@ -258,14 +263,14 @@ int main(int argc, const char *argv[])
     data.append(1, &opStoreVar);
 
     //Get the member.
-    data.append(1, &opPushS); //The name
-    data.append(4, &length);
-    data.append(4, "3.14");
-
     data.append(1, &opPushS); //Get the object.
     data.append(4, &length);
     data.append(4, "3.14");
     data.append(1, &opLoadVar);
+
+    data.append(1, &opPushS); //The name
+    data.append(4, &length);
+    data.append(4, "3.14");
 
     data.append(1, &opGetMem);*/
 
@@ -474,10 +479,62 @@ int main(int argc, const char *argv[])
         engine->getRefMgr()->destroy(context, result);
     }
 
-    DELETE(scripting::Engine, engine)
+    DELETE(scripting::Engine, engine);
     #elif 1
     try
     {
+        scripting::ASTNode *ast = scripting::parse("((class foo \"bar\" answer 42))");
+
+        printAST(0, ast);
+
+        ResizableData data = generateBytecode(ast);
+
+        std::cout << "Compiled program takes up " << data.getSize() << " bytes\n";
+
+        DELETE(scripting::ASTNode, ast);
+
+        scripting::Bytecode code(data);
+
+        scripting::Engine *engine = NEW(scripting::Engine);
+
+        engine->getGlobalVars().set("print", engine->getRefMgr()->createNativeFunction(print));
+
+        {
+            scripting::Context *context = NEW(scripting::Context, engine);
+
+            try
+            {
+                scripting::Ref result = context->run(code, List<scripting::Ref>());
+
+                engine->getRefMgr()->destroy(context, result);
+            } catch (scripting::UnhandledExcException& e)
+            {
+                scripting::Ref exc = e.getException();
+
+                scripting::Value *head = engine->getRefMgr()->translate(exc);
+
+                std::cout << "Unhandled script exception: ";
+
+                if (head->type == scripting::ValueType::Exception)
+                {
+                    std::cout << ((scripting::ExceptionValue *)head)->error.getData();
+                }
+            }
+        }
+
+        DELETE(scripting::Engine, engine);
+    } catch (scripting::ParseException& e)
+    {
+        std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
+    } catch (scripting::ByteCodeGenException& e)
+    {
+        std::printf("Failed to generate bytecode: %s\n", e.message);
+    }
+    #elif 0
+    try
+    {
+        //TODO: Better isinstance.
+
         scripting::ASTNode *ast = scripting::parse(
         #if 0
         "(+ 30.5 (+ 0.5 2e+1) (+ 0b11 0x6))"
@@ -492,16 +549,19 @@ int main(int argc, const char *argv[])
 "          (= __init__ (function (self ...args)\n"
 "                        (if (== args.len 0) ((= self.x 0.0)\n"
 "                                             (= self.y 0.0))\n"
-"                            (== args.len 1) ((= self.x (float (nth args 0)))\n"
-"                                             (= self.y (float (nth args 0))))\n"
-"                            (== args.len 2) ((= self.x (float (nth args 0)))\n"
-"                                             (= self.y (float (nth args 1))))\n"
+"                            (== args.len 1) ((= self.x (float (get args 0)))\n"
+"                                             (= self.y (float (get args 0))))\n"
+"                            (== args.len 2) ((= self.x (float (get args 0)))\n"
+"                                             (= self.y (float (get args 1))))\n"
 "                            (throw (ValueException \"vec2.__init__ takes 0, 1 or 2 arguments.\")))))\n"
 "\n"
 "          (= __add__ (function (self other)\n"
 "                       (if (isinstance other vec2) \n"
 "                           (vec2 (+ self.x other.x) (+ self.y other.y)))\n"
 "                           (vec2 (+ self.x other) (+ self.y other))))))\n"
+"          \n"
+"          hello (function (self)\n"
+"                  (print "Hello!")))))\n"
 "\n"
 "(scope \n"
 "  (= variable 42))\n"

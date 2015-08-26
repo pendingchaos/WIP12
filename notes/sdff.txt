@@ -1,0 +1,56 @@
+enum Format
+{
+    Uncompressed,
+    RedGreenCompressed,
+    ASTCCompressed_4x4,
+    ASTCCompressed_5x4,
+    ASTCCompressed_5x5,
+    ASTCCompressed_6x5,
+    ASTCCompressed_6x6,
+    ASTCCompressed_8x5,
+    ASTCCompressed_8x6,
+    ASTCCompressed_10x5,
+    ASTCCompressed_10x6,
+    ASTCCompressed_8x8,
+    ASTCCompressed_10x8,
+    ASTCCompressed_10x10,
+    ASTCCompressed_12x10,
+    ASTCCompressed_12x12,
+};
+
+struct Glyph
+{
+    uint32_t codepoint;
+    uint16_t width;
+    uint16_t height;
+    uint16_t left;
+    uint16_t top;
+    uint16_t bearingX;
+    uint16_t bearingY;
+    uint16_t xAdvance;
+    uint16_t padding;
+};
+
+struct Data
+{
+    Format format : 8;
+    uint8_t numChannels;
+    uint16_t width;
+    uint16_t height;
+    uint8_t threshold;
+    uint8_t padding;
+    uint32_t numGlyphs;
+    Glyph glyphs[numGlyphs];
+    uint8_t data[];
+    uint8_t padding[];
+};
+
+struct header
+{
+    char magic[4] = "sdff";
+    uint8_t majorVersion = 1;
+    uint8_t minorVersion = 0;
+    uint16_t numDatas;
+    
+    Data datas[numDatas];
+};

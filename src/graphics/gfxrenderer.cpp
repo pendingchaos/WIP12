@@ -382,6 +382,7 @@ GfxRenderer::~GfxRenderer()
 
 void GfxRenderer::updateStats()
 {
+    //TODO: Sometimes the results are never available.
     if (gBufferTimer->resultAvailable())
     {
         stats.gBufferTiming = gBufferTimer->getResult() / (float)gBufferTimer->getResultResolution();

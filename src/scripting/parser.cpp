@@ -394,7 +394,7 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
         }
     }
 
-    String op;
+    List<ASTNode *> nodes;
 
     while (true)
     {
@@ -405,47 +405,13 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
 
         char c = source[offset++];
 
-        if (c == ' ' or c == '\t')
-        {
-            break;
-        } else if (c == '\n')
-        {
-            ADVANCE_LINE;
-            break;
-        } else if (c == ')' or c == '(')
-        {
-            --offset;
-            break;
-        } else if (c == '#')
-        {
-            while (true)
-            {
-                if (source[offset] == '\n')
-                {
-                    ADVANCE_LINE;
-                    break;
-                }
+        bool isInt = c >= '0' and c <= '9';
 
-                ++offset;
-            }
+        if (offset+1 < source.getLength())
+        {
+            isInt = isInt or (c == '+' and source[offset+1] >= '0' and source[offset+1] <= '9');
+            isInt = isInt or (c == '-' and source[offset+1] >= '0' and source[offset+1] <= '9');
         }
-
-        op.append(c);
-    }
-
-    List<String> opList;
-    opList.append(op);
-
-    CallNode *result = NEW(CallNode, (ASTNode *)NEW(IdentifierNode, opList));
-
-    while (true)
-    {
-        if (offset == source.getLength())
-        {
-            THROW(ParseException, "Unexpected end of source code.", line, COLUMN);
-        }
-
-        char c = source[offset++];
 
         if (c == ')')
         {
@@ -454,25 +420,25 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
         {
             --offset;
 
-            result->args.append(_parse(source, offset, lastLineOffset, line));
+            nodes.append(_parse(source, offset, lastLineOffset, line));
         } else if (source.startsWith("0x", offset-1))
         {
             ++offset; //Skip the 'x'
 
-            result->args.append(parseBase16(source, offset, lastLineOffset, line));
+            nodes.append(parseBase16(source, offset, lastLineOffset, line));
         } else if (source.startsWith("0b", offset-1))
         {
             ++offset; //Skip the 'b'
 
-            result->args.append(parseBase2(source, offset, lastLineOffset, line));
-        } else if ((c >= '0' and c <= '9') or c == '+' or c == '-')
+            nodes.append(parseBase2(source, offset, lastLineOffset, line));
+        } else if (isInt)
         {
             --offset;
 
-            result->args.append(parseNumber(source, offset, lastLineOffset, line));
+            nodes.append(parseNumber(source, offset, lastLineOffset, line));
         } else if (c == '"')
         {
-            result->args.append(parseString(source, offset, lastLineOffset, line));
+            nodes.append(parseString(source, offset, lastLineOffset, line));
         } else if (c == ' ' or c == '\t')
         {
         } else if (c == '\n')
@@ -551,11 +517,11 @@ ASTNode *_parse(const String& source, size_t& offset, size_t& lastLineOffset, si
 
             strs.append(str);
 
-            result->args.append((ASTNode *)NEW(IdentifierNode, strs));
+            nodes.append((ASTNode *)NEW(IdentifierNode, strs));
         }
     }
 
-    return result;
+    return (ASTNode *)NEW(CallNode, nodes);
 }
 
 ASTNode *parse(const String& source)

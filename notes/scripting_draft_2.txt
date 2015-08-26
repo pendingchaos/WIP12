@@ -1,19 +1,22 @@
 (= some_module (import "some_module.???"))
 
 (= vec2 (class
-          (= __init__ (function (self ...args)
-                        (if (== args.len 0) ((= self.x 0.0)
-                                             (= self.y 0.0))
-                            (== args.len 1) ((= self.x (float (nth args 0)))
-                                             (= self.y (float (nth args 0))))
-                            (== args.len 2) ((= self.x (float (nth args 0)))
-                                             (= self.y (float (nth args 1))))
-                            (throw (ValueException "vec2.__init__ takes 0, 1 or 2 arguments.")))))
+          __init__ (function (self ...args)
+                     (if (== args.len 0) ((= self.x 0.0)
+                                          (= self.y 0.0))
+                         (== args.len 1) ((= self.x (float (get args 0)))
+                                          (= self.y (float (get args 0))))
+                         (== args.len 2) ((= self.x (float (get args 0)))
+                                          (= self.y (float (get args 1))))
+                         (throw (ValueException "vec2.__init__ takes 0, 1 or 2 arguments."))))
 
-          (= __add__ (function (self other)
-                       (if (isinstance other vec2) 
-                           (vec2 (+ self.x other.x) (+ self.y other.y)))
-                           (vec2 (+ self.x other) (+ self.y other))))))
+          __add__ (function (self other)
+                    (if (isinstance other vec2) 
+                        (vec2 (+ self.x other.x) (+ self.y other.y)))
+                        (vec2 (+ self.x other) (+ self.y other))
+          
+          hello (function (self)
+                  (print "Hello!")))))
 
 (scope 
   (= variable 42))
@@ -24,18 +27,17 @@
            (with (function () (+ inc inc2 x3 x4))
                  (x inc) x4 (x2 inc2) x3))))
 
-(= obj (newobj (= member1 5)
-               (= member1 (+ member1 1))
-               (= temp "Hello world!")
-               (= member2 temp)
-               (delvar temp)))
+(= obj (obj member1 (+ 5 1)
+            member2 "Hello world!"))
+
+(meth (vec2) hello)
 
 (= counter_r (newref))
 (= vec2_1_r (newref))
 (:= vec2_1_r (vec2))
 
 (= vec2_2_r (newref))
-(:= vec2_2_r (vec2 *vec2_1_r))
+(:= vec2_2_r *vec2_1_r)
 
 (= vec_1_r.x (+ vec2_1_r.x 1))
 (:= counter_r 5)

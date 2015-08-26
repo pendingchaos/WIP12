@@ -98,21 +98,18 @@ class StringNode : public ASTNode
 class CallNode : public ASTNode
 {
     public:
-        CallNode(ASTNode *callable_) : ASTNode(ASTNode::Call),
-                                       callable(callable_) {}
+        CallNode(List<ASTNode *> nodes_) : ASTNode(ASTNode::Call),
+                                           nodes(nodes_) {}
 
         virtual ~CallNode()
         {
-            DELETE(ASTNode, callable);
-
-            for (size_t i = 0; i < args.getCount(); ++i)
+            for (size_t i = 0; i < nodes.getCount(); ++i)
             {
-                DELETE(ASTNode, args[i]);
+                DELETE(ASTNode, nodes[i]);
             }
         }
 
-        ASTNode *callable;
-        List<ASTNode *> args;
+        List<ASTNode *> nodes;
 };
 
 ASTNode *parse(const String& source);

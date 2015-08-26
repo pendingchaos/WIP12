@@ -19,9 +19,7 @@ enum class Opcode
     PushString,
     PushList,
     PushException,
-    StackMove,
-    StackRemove,
-    StackCopy,
+    StackPop,
 
     LoadVar,
     StoreVar,
@@ -57,6 +55,7 @@ enum class Opcode
     GreaterEqual,
 
     Call,
+    CallMethod,
     Return,
     GetArgCount,
     GetArg,

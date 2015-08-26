@@ -243,9 +243,12 @@ void RefManager::destroy(Context *context, Value *value)
     }
     case ValueType::Object:
     {
-        callMethod(context, value, "__del__", List<Ref>());
-
         HashMap<String, Ref> members = ((ObjectValue *)value)->members;
+
+        if (members.findEntry("__del__") != -1)
+        {
+            callMethod(context, value, "__del__", List<Ref>());
+        }
 
         for (size_t i = 0; i < members.getEntryCount(); ++i)
         {

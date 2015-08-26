@@ -1,5 +1,3 @@
-- Don't forget to change the materials back to deferred.
-
 ## Features
 - [ ] Shadow mapping.
     - [ ] Directional
