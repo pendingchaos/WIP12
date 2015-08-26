@@ -480,7 +480,7 @@ int main(int argc, const char *argv[])
     }
 
     DELETE(scripting::Engine, engine);
-    #elif 1
+    #elif 0
     try
     {
         scripting::ASTNode *ast = scripting::parse("((class foo \"bar\" answer 42))");
