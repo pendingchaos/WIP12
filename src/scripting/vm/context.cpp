@@ -44,7 +44,6 @@ void Context::reset()
 }
 
 //TODO: More reference checking.
-//TODO: Make List and Exception types NativeObjects.
 Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 {
     RefManager *refMgr = engine->getRefMgr();
@@ -167,7 +166,7 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
                 if (entry != -1)
                 {
-                    stack->append(refMgr->createReference(vars.getValue(entry)));
+                    stack->append(refMgr->createCopy(this, vars.getValue(entry)));
                     found = true;
                     break;
                 }
@@ -181,7 +180,7 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
                 if (entry != -1)
                 {
-                    stack->append(refMgr->createReference(vars.getValue(entry)));
+                    stack->append(refMgr->createCopy(this, vars.getValue(entry)));
                 } else
                 {
                     throwException(refMgr->createException(ExcType::KeyError, "No such variable."));
@@ -313,30 +312,6 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
             refMgr->destroy(this, nameRef);
             break;
         }
-        case Opcode::CreateRef:
-        {
-            Ref value = popStack(*stack);
-
-            stack->append(refMgr->createReference(refMgr->createCopy(this, value)));
-            refMgr->destroy(this, value);
-            break;
-        }
-        case Opcode::DeleteRef:
-        {
-            Ref value = popStack(*stack);
-            Value *head = refMgr->translate(value);
-
-            if (head->type == ValueType::Reference)
-            {
-                refMgr->destroy(this, ((ReferenceValue *)head)->value);
-            } else
-            {
-                throwException(refMgr->createException(ExcType::TypeError, "DeleteRef only works with references."));
-            }
-
-            refMgr->destroy(this, value);
-            break;
-        }
         case Opcode::GetMember:
         {
             Ref value = popStack(*stack);
@@ -402,11 +377,6 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
                 stack->append(refMgr->createString("obj"));
                 break;
             }
-            case ValueType::Reference:
-            {
-                stack->append(refMgr->createString("ref"));
-                break;
-            }
             case ValueType::String:
             {
                 stack->append(refMgr->createString("str"));
@@ -435,45 +405,6 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
             }
 
             refMgr->destroy(this, value);
-            break;
-        }
-        case Opcode::New:
-        {
-            Ref creator = popStack(*stack);
-
-            Ref argCountRef = popStack(*stack);
-            Value *argCountHead = refMgr->translate(argCountRef);
-
-            if (argCountHead->type != ValueType::Int)
-            {
-                throwException(refMgr->createException(ExcType::TypeError, "Arguments count must be an integer."));
-            }
-
-            int64_t argCount = ((IntValue *)argCountHead)->value;
-
-            if (argCount < 0)
-            {
-                throwException(refMgr->createException(ExcType::ValueError, "Argument count must not be negative."));
-            }
-
-            List<Ref> args;
-
-            for (int64_t i = 0; i < argCount; ++i)
-            {
-                args.append(popStack(*stack));
-            }
-
-            Ref result = callMethod(this, refMgr->translate(creator), "__new__", args);
-
-            for (size_t i = 0; i < args.getCount(); ++i)
-            {
-                refMgr->destroy(this, args[i]);
-            }
-
-            refMgr->destroy(this, argCountRef);
-            refMgr->destroy(this, creator);
-
-            stack->append(refMgr->createReference(result));
             break;
         }
 
@@ -856,56 +787,6 @@ break;
             refMgr->destroy(this, indexRef);
             break;
         }
-        case Opcode::IsRefValid:
-        {
-            Ref value = popStack(*stack);
-            Value *head = refMgr->translate(value);
-
-            if (head->type != ValueType::Reference)
-            {
-                throwException(refMgr->createException(ExcType::TypeError, "Type is not a reference."));
-            }
-
-            Ref ref = ((ReferenceValue *)head)->value;
-
-            stack->append(refMgr->createBoolean(refMgr->valid(ref)));
-
-            refMgr->destroy(this, value);
-            break;
-        }
-        case Opcode::Deref:
-        {
-            Ref value = popStack(*stack);
-            Value *head = refMgr->translate(value);
-
-            if (head->type != ValueType::Reference)
-            {
-                throwException(refMgr->createException(ExcType::TypeError, "Type is not a reference."));
-            }
-
-            stack->append(refMgr->createCopy(this, ((ReferenceValue *)head)->value));
-
-            refMgr->destroy(this, value);
-            break;
-        }
-        case Opcode::ReplaceRef:
-        {
-            Ref dest = popStack(*stack);
-            Ref src = popStack(*stack);
-
-            Value *head = refMgr->translate(dest);
-
-            if (head->type != ValueType::Reference)
-            {
-                throwException(refMgr->createException(ExcType::TypeError, "Type is not a reference."));
-            }
-
-            refMgr->copyRef(this, ((ReferenceValue *)head)->value, src);
-
-            refMgr->destroy(this, src);
-            refMgr->destroy(this, dest);
-            break;
-        }
         case Opcode::JumpIf:
         {
             Ref cond = popStack(*stack);
@@ -996,12 +877,9 @@ break;
 "LoadVar",
 "StoreVar",
 "DelVar",
-"CreateRef",
-"DeleteRef",
 "GetMember",
 "SetMember",
 "GetType",
-"New",
 "Add",
 "Subtract",
 "Multiply",
@@ -1027,9 +905,6 @@ break;
 "Return",
 "GetArgCount",
 "GetArg",
-"IsRefValid",
-"Deref",
-"ReplaceRef",
 "JumpIf",
 "Jump",
 "Try",
@@ -1086,20 +961,6 @@ break;
                     case ValueType::Object:
                     {
                         std::cout << "object" << std::endl;
-                        break;
-                    }
-                    case ValueType::Reference:
-                    {
-                        Ref referenced = ((ReferenceValue *)head)->value;
-
-                        if (not refMgr->valid(referenced))
-                        {
-                            std::cout << "invalid" << std::endl;
-                            continue;
-                        } else
-                        {
-                            std::cout << "reference to " << int(refMgr->translate(referenced)->type) << std::endl;
-                        }
                         break;
                     }
                     case ValueType::String:
@@ -1171,20 +1032,6 @@ break;
                     case ValueType::Object:
                     {
                         std::cout << "object" << std::endl;
-                        break;
-                    }
-                    case ValueType::Reference:
-                    {
-                        Ref referenced = ((ReferenceValue *)head)->value;
-
-                        if (not refMgr->valid(referenced))
-                        {
-                            std::cout << "invalid" << std::endl;
-                            continue;
-                        } else
-                        {
-                            std::cout << "reference to " << int(refMgr->translate(referenced)->type) << std::endl;
-                        }
                         break;
                     }
                     case ValueType::String:
@@ -1446,14 +1293,6 @@ Ref getMember(Context *ctx, Value *val, Value *key)
 
         return obj->funcs.getMember(ctx, obj, key);
     }
-    case ValueType::Reference:
-    {
-        ReferenceValue *ref = (ReferenceValue *)val;
-
-        Value *dest = ctx->getEngine()->getRefMgr()->translate(ref->value);
-
-        return getMember(ctx, dest, key);
-    }
     case ValueType::Exception:
     {
         if (key->type != ValueType::String)
@@ -1582,14 +1421,6 @@ Ref setMember(Context *ctx, Value *dest, Value *key, Value *value)
         obj->funcs.setMember(ctx, obj, key, value);
 
         return result;
-    }
-    case ValueType::Reference:
-    {
-        ReferenceValue *ref = (ReferenceValue *)dest;
-
-        Value *referenced = ctx->getEngine()->getRefMgr()->translate(ref->value);
-
-        return setMember(ctx, referenced, key, value);
     }
     default:
     {

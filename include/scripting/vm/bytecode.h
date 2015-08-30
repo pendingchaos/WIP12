@@ -25,12 +25,9 @@ enum class Opcode
     StoreVar,
     DelVar,
 
-    CreateRef,
-    DeleteRef,
     GetMember,
     SetMember,
     GetType,
-    New,
 
     Add,
     Subtract,
@@ -59,10 +56,6 @@ enum class Opcode
     Return,
     GetArgCount,
     GetArg,
-
-    IsRefValid,
-    Deref,
-    ReplaceRef,
 
     JumpIf,
     Jump,

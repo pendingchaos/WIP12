@@ -25,8 +25,6 @@ static const uint8_t opBoolOr = (uint8_t)Opcode::BoolOr;
 static const uint8_t opBitAnd = (uint8_t)Opcode::BitAnd;
 static const uint8_t opBitOr = (uint8_t)Opcode::BitOr;
 static const uint8_t opBitXOr = (uint8_t)Opcode::BitXOr;
-static const uint8_t opNewRef = (uint8_t)Opcode::CreateRef;
-static const uint8_t opDeleteRef = (uint8_t)Opcode::DeleteRef;
 static const uint8_t opLess = (uint8_t)Opcode::Less;
 static const uint8_t opGreater = (uint8_t)Opcode::Greater;
 static const uint8_t opEqual = (uint8_t)Opcode::Equal;
@@ -38,13 +36,11 @@ static const uint8_t opBoolNot = (uint8_t)Opcode::BoolNot;
 static const uint8_t opBitNot = (uint8_t)Opcode::BitNot;
 static const uint8_t opReturn = (uint8_t)Opcode::Return;
 static const uint8_t opThrow = (uint8_t)Opcode::Throw;
-static const uint8_t opRefSet = (uint8_t)Opcode::ReplaceRef;
 static const uint8_t opDelVar = (uint8_t)Opcode::DelVar;
 static const uint8_t opJump = (uint8_t)Opcode::Jump;
 static const uint8_t opJumpIf = (uint8_t)Opcode::JumpIf;
 static const uint8_t opCall = (uint8_t)Opcode::Call;
 static const uint8_t opCallMethod = (uint8_t)Opcode::CallMethod;
-static const uint8_t opDeref = (uint8_t)Opcode::Deref;
 static const uint8_t opGetArg = (uint8_t)Opcode::GetArg;
 
 bool isBuiltin(ASTNode *node, const String& name)
@@ -237,8 +233,6 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
 
             data.append(1, &opLoadVar);
 
-            data.append(1, &opDeref);
-
             for (size_t i = 1; i < id->names.getCount(); ++i)
             {
                 str = id->names[i];
@@ -328,7 +322,6 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
             data.append(4, &length);
             data.append(10, "__classify");
             data.append(1, &opLoadVar);
-            data.append(1, &opDeref);
 
             data.append(1, &opCall);
 
@@ -528,85 +521,6 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
             data.append(str.getLength(), str.getData());
 
             data.append(1, &opDelVar);
-
-            return false;
-        } else if (isBuiltin(call, "newref"))
-        {
-            if (call->nodes.getCount() >= 2)
-            {
-                THROW(ByteCodeGenException, "newref expects 0 or 1 argument(s).")
-            }
-
-            if (call->nodes.getCount() == 1)
-            {
-                data.append(1, &opPushNil);
-            } else
-            {
-                if (not _generateBytecode(call->nodes[1], data))
-                {
-                    THROW(ByteCodeGenException, "Argument does not evaluate to anything");
-                }
-            }
-
-            data.append(1, &opNewRef);
-
-            return false;
-        } else if (isBuiltin(call, "delref"))
-        {
-            if (call->nodes.getCount() != 2)
-            {
-                THROW(ByteCodeGenException, "delref expects 1 argument.")
-            }
-
-            if (not _generateBytecode(call->nodes[1], data))
-            {
-                THROW(ByteCodeGenException, "Argument does not evaluate to anything");
-            }
-
-            data.append(1, &opDeleteRef);
-
-            return false;
-        } else if (isBuiltin(call, ":="))
-        {
-            if (call->nodes.getCount() != 3)
-            {
-                THROW(ByteCodeGenException, "= takes two arguments");
-            }
-
-            if (call->nodes[1]->type != ASTNode::Identifier)
-            {
-                THROW(ByteCodeGenException, "Only identifiers can be reference assigned to");
-            }
-
-            if (not _generateBytecode(call->nodes[2], data))
-            {
-                THROW(ByteCodeGenException, "New value for reference does not evaluate to anything");
-            }
-
-            IdentifierNode *id = (IdentifierNode *)call->nodes[1];
-
-            String str = id->names[0];
-            uint32_t length = TO_LE_U32(str.getLength());
-
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(str.getLength(), str.getData());
-
-            data.append(1, &opLoadVar);
-
-            for (size_t i = 1; i < id->names.getCount(); ++i)
-            {
-                str = id->names[i];
-                length = TO_LE_U32(str.getLength());
-
-                data.append(1, &opPushString);
-                data.append(4, &length);
-                data.append(str.getLength(), str.getData());
-
-                data.append(1, &opGetMember);
-            }
-
-            data.append(1, &opRefSet);
 
             return false;
         } else if (isBuiltin(call, "+"))

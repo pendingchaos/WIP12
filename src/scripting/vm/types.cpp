@@ -64,16 +64,6 @@ Ref RefManager::createObject()
     return create((Value *)value);
 }
 
-Ref RefManager::createReference(const Ref& ref)
-{
-    ReferenceValue *value = NEW(ReferenceValue);
-
-    value->head.type = ValueType::Reference;
-    value->value = ref;
-
-    return create((Value *)value);
-}
-
 Ref RefManager::createString(const String& str)
 {
     StringValue *value = NEW(StringValue);
@@ -167,10 +157,6 @@ Ref RefManager::createCopy(Context *context, Value *value)
 
         return objRef;
     }
-    case ValueType::Reference:
-    {
-        return createReference(((ReferenceValue *)value)->value);
-    }
     case ValueType::String:
     {
         return createString(((StringValue *)value)->value);
@@ -255,11 +241,6 @@ void RefManager::destroy(Context *context, Value *value)
 
             DELETE(ObjectValue, value);
         }
-        break;
-    }
-    case ValueType::Reference:
-    {
-        DELETE(ReferenceValue, value);
         break;
     }
     case ValueType::String:
@@ -373,15 +354,6 @@ void RefManager::copyRef(Context *context, const Ref& dest, const Ref& src)
     {
         instances[dest.index].value = head;
         ++((ObjectValue *)head)->refCount;
-        break;
-    }
-    case ValueType::Reference:
-    {
-        ReferenceValue *value = NEW(ReferenceValue);
-
-        value->value = ((ReferenceValue *)head)->value;
-
-        instances[dest.index].value = (Value *)value;
         break;
     }
     case ValueType::String:

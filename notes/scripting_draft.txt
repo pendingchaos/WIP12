@@ -76,17 +76,3 @@ obj = {
     delvar temp
 }
 
-counter_r = newref()
-vec2_1_r = newref()
-vec2_1_r := vec2() # Does not copy
-
-vec2_2_r = newref()
-vec2_2_r := vec2(*vec2_1_r) # Does not copy
-
-vec2_1_r.x = vec2_1_r.x + 1;
-
-counter_r := 5 # Does not copy # Returns nil unlike =
-
-delref(vec2_1_r)
-delref(vec2_2_r)
-delref(counter_r)

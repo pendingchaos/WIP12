@@ -15,7 +15,7 @@
 - [ ] Make physics shapes more lightweight.
 - [ ] Virtual Shadow mapping: http://advances.realtimerendering.com/s2015/aaltonenhaar_siggraph2015_combined_final_footer_220dpi.pdf
     - Low priority
-    - Claims to be faster than SDSM.
+    - Claims to be faster than SDSM in complex scenes.
 - [ ] Finish the script binding generator.
     - [ ] Operator overloading
         - Then bind T2, T3, T4 and finish binding AABB
@@ -25,6 +25,8 @@
     - [ ] Namespaces
     - [ ] Getters and Setters
     - [ ] Templated Functions
+- [ ] Get rid of references (scripting).
+- [ ] Explicit variable declaration (scripting).
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:

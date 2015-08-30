@@ -9,9 +9,6 @@
 (with function src1->dest1 src2...) -> function
 (obj form1 form2...) -> object
 (delmem object_member_or_variable) -> nil
-(newref optional_inital_value) -> reference
-(delref ref) -> nil
-(:= dest_ref value) -> nil
 (+ a b...) -> anything
 (- a b...) -> anything
 (* a b...) -> anything

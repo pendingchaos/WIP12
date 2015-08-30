@@ -32,17 +32,3 @@
 
 (meth (vec2) hello)
 
-(= counter_r (newref))
-(= vec2_1_r (newref))
-(:= vec2_1_r (vec2))
-
-(= vec2_2_r (newref))
-(:= vec2_2_r *vec2_1_r)
-
-(= vec_1_r.x (+ vec2_1_r.x 1))
-(:= counter_r 5)
-
-(delref vec2_1_r)
-(delref vec2_2_r)
-(delref counter_r)
-

@@ -121,7 +121,6 @@ enum class ValueType
     Nil,
     Function,
     Object,
-    Reference,
     String,
     List,
     NativeFunction,
@@ -172,12 +171,6 @@ struct ObjectValue
     Value head;
     HashMap<String, Ref> members;
     uint64_t refCount;
-};
-
-struct ReferenceValue
-{
-    Value head;
-    Ref value;
 };
 
 struct StringValue
