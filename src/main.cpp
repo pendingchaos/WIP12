@@ -536,8 +536,6 @@ int main(int argc, const char *argv[])
     #elif 0
     try
     {
-        //TODO: Better isinstance.
-
         scripting::ASTNode *ast = scripting::parse(
         #if 0
         "(+ 30.5 (+ 0.5 2e+1) (+ 0b11 0x6))"

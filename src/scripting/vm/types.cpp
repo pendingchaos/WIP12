@@ -59,6 +59,7 @@ Ref RefManager::createObject()
     ObjectValue *value = NEW(ObjectValue);
 
     value->head.type = ValueType::Object;
+    value->refCount = 1;
 
     return create((Value *)value);
 }
@@ -122,6 +123,7 @@ Ref RefManager::createNativeObject(const NativeObjectFuncs& funcs, void *data, u
     value->funcs = funcs;
     value->data = data;
     value->typeID = typeID;
+    value->refCount = 1;
 
     return create((Value *)value);
 }
@@ -159,15 +161,9 @@ Ref RefManager::createCopy(Context *context, Value *value)
     }
     case ValueType::Object:
     {
-        Ref objRef = createObject();
+        Ref objRef = create(value);
 
-        ObjectValue *obj = (ObjectValue *)translate(objRef);
-        HashMap<String, Ref> members = ((ObjectValue *)value)->members;
-
-        for (size_t i = 0; i < members.getEntryCount(); ++i)
-        {
-            obj->members.set(members.getKey(i), createCopy(context, members.getValue(i)));
-        }
+        ++((ObjectValue *)value)->refCount;
 
         return objRef;
     }
@@ -189,15 +185,11 @@ Ref RefManager::createCopy(Context *context, Value *value)
     }
     case ValueType::NativeObject:
     {
-        NativeObject *obj = (NativeObject *)value;
+        Ref objRef = create(value);
 
-        if (obj->funcs.copy != NULL)
-        {
-            return obj->funcs.copy(context, obj);
-        } else
-        {
-            context->throwException(createException(ExcType::ValueError, "Native object is not copyable."));
-        }
+        ++((NativeObject *)value)->refCount;
+
+        return objRef;
     }
     case ValueType::Exception:
     {
@@ -243,19 +235,26 @@ void RefManager::destroy(Context *context, Value *value)
     }
     case ValueType::Object:
     {
-        HashMap<String, Ref> members = ((ObjectValue *)value)->members;
+        ObjectValue *obj = (ObjectValue *)value;
 
-        if (members.findEntry("__del__") != -1)
+        --obj->refCount;
+
+        if (obj->refCount == 0)
         {
-            callMethod(context, value, "__del__", List<Ref>());
-        }
+            HashMap<String, Ref> members = ((ObjectValue *)value)->members;
 
-        for (size_t i = 0; i < members.getEntryCount(); ++i)
-        {
-            destroy(context, members.getValue(i));
-        }
+            if (members.findEntry("__del__") != -1)
+            {
+                callMethod(context, value, "__del__", List<Ref>());
+            }
 
-        DELETE(ObjectValue, value);
+            for (size_t i = 0; i < members.getEntryCount(); ++i)
+            {
+                destroy(context, members.getValue(i));
+            }
+
+            DELETE(ObjectValue, value);
+        }
         break;
     }
     case ValueType::Reference:
@@ -289,12 +288,17 @@ void RefManager::destroy(Context *context, Value *value)
     {
         NativeObject *obj = (NativeObject *)value;
 
-        if (obj->funcs.destroy != NULL)
-        {
-            obj->funcs.destroy(context, obj);
-        }
+        --obj->refCount;
 
-        DELETE(NativeObject, value);
+        if (obj->refCount == 0)
+        {
+            if (obj->funcs.destroy != NULL)
+            {
+                obj->funcs.destroy(context, obj);
+            }
+
+            DELETE(NativeObject, value);
+        }
         break;
     }
     case ValueType::Exception:
@@ -367,16 +371,8 @@ void RefManager::copyRef(Context *context, const Ref& dest, const Ref& src)
     }
     case ValueType::Object:
     {
-        ObjectValue *value = NEW(ObjectValue);
-
-        HashMap<String, Ref> members = ((ObjectValue *)head)->members;
-
-        for (size_t i = 0; i < members.getEntryCount(); ++i)
-        {
-            value->members.set(members.getKey(i), createCopy(context, translate(members.getValue(i))));
-        }
-
-        instances[dest.index].value = (Value *)value;
+        instances[dest.index].value = head;
+        ++((ObjectValue *)head)->refCount;
         break;
     }
     case ValueType::Reference:
@@ -417,7 +413,8 @@ void RefManager::copyRef(Context *context, const Ref& dest, const Ref& src)
     }
     case ValueType::NativeObject:
     {
-        //TODO
+        instances[dest.index].value = head;
+        ++((NativeObject *)head)->refCount;
         break;
     }
     case ValueType::Exception:

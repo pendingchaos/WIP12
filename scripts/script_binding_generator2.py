@@ -60,12 +60,6 @@ files = [
 "../include/audio/audioworld.h",
 "../include/audio/audiodevice.h"]
 
-#TODO: Operator overloading
-#TODO: Pointers
-#TODO: inheritance
-#TODO: Getters and setters
-#TODO: templated functions
-
 print "Running preprocessor"
 
 pipe = os.popen("g++ -E -o.script_includes.h -I../include `sdl2-config --cflags` `pkg-config bullet --cflags` `freetype-config --cflags` -std=gnu++11 -xc++ -", "w")
@@ -479,6 +473,15 @@ struct ref_to_c<String>
     }
 };
 
+template <>
+struct ref_to_c<scripting::Ref>
+{
+    static scripting::Ref f(scripting::Context *ctx, const scripting::Ref& ref)
+    {
+        return ctx->getEngine()->getRefMgr()->createCopy(ctx, ref);
+    }
+};
+
 template <typename T>
 struct ref_to_c<T&> {};
 
@@ -501,9 +504,17 @@ struct create_ref<T>\
 {\
     static scripting::Ref f(scripting::Context *ctx, const T& v)\
     {\
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();\
-        return refMgr->func(v);\
+        return ctx->getEngine()->getRefMgr()->func(v);\
     }\
+};
+
+template <>
+struct create_ref<scripting::Ref>
+{
+    static scripting::Ref f(scripting::Context *ctx, const scripting::Ref& ref)
+    {
+        return ctx->getEngine()->getRefMgr()->createCopy(ctx, ref);
+    }
 };
 
 CREATE_REF(uint8_t, createInt)
@@ -528,6 +539,15 @@ struct type_same<const T&>
     static bool f(scripting::Context *ctx, const scripting::Ref& ref)
     {
         return type_same<T>::f(ctx, ref);
+    }
+};
+
+template <>
+struct type_same<scripting::Ref>
+{
+    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    {
+        return true;
     }
 };
 

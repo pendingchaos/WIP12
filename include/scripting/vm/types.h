@@ -171,6 +171,7 @@ struct ObjectValue
 {
     Value head;
     HashMap<String, Ref> members;
+    uint64_t refCount;
 };
 
 struct ReferenceValue
@@ -209,6 +210,7 @@ struct NativeObject
     Value head;
     NativeObjectFuncs funcs;
     int64_t typeID;
+    uint64_t refCount;
     void *data;
 };
 }

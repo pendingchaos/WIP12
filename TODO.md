@@ -15,7 +15,16 @@
 - [ ] Make physics shapes more lightweight.
 - [ ] Virtual Shadow mapping: http://advances.realtimerendering.com/s2015/aaltonenhaar_siggraph2015_combined_final_footer_220dpi.pdf
     - Low priority
-        - But awesome
+    - Claims to be faster than SDSM.
+- [ ] Finish the script binding generator.
+    - [ ] Operator overloading
+        - Then bind T2, T3, T4 and finish binding AABB
+    - [ ] Pointers and References
+    - [ ] Enums
+    - [ ] Inheritance
+    - [ ] Namespaces
+    - [ ] Getters and Setters
+    - [ ] Templated Functions
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
@@ -25,6 +34,9 @@
 - [ ] The doppler effect (disabled) causes popping noise.
 - [ ] More tests should be created.
 - [ ] The tesselation test's normals seem incorrect.
+- [ ] Circular references will cause memory leaks (scripting).
+- [ ] TODOs in src/scripting.
+- [ ] Transform::lookAt does not work.
 - [ ] Fix black borders around normal mapped metallic objects (http://marmosetco.tumblr.com/post/81245981087 ?):
 ![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/metallic border bug.png)
 
