@@ -4,6 +4,7 @@
 #include "math/t2.h"
 #include "math/t3.h"
 #include "misc_macros.h"
+#include "scripting/bindings.h"
 
 #include <cmath>
 #include <stdint.h>
@@ -17,35 +18,31 @@ class T4
         inline T4(T xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) {}
         inline T4(T x_, T y_, T z_, T w_) : x(x_), y(y_), z(z_), w(w_) {}
 
-        template <typename OtherT>
-        inline T4(const T4<OtherT>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
+        inline T4(const T4<float>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
+        inline T4(const T4<int32_t>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
+        inline T4(const T4<uint32_t>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
 
-        template <typename OtherT>
-        inline T4 operator + (const T4<OtherT>& other) const
+        inline T4 operator + (const T4<T>& other) const
         {
             return T4(x + (T)other.x, y + (T)other.y, z + (T)other.z, w + (T)other.w);
         }
 
-        template <typename OtherT>
-        inline T4 operator - (const T4<OtherT>& other) const
+        inline T4 operator - (const T4<T>& other) const
         {
             return T4(x - (T)other.x, y - (T)other.y, z - (T)other.z, w - (T)other.w);
         }
 
-        template <typename OtherT>
-        inline T4 operator * (const T4<OtherT>& other) const
+        inline T4 operator * (const T4<T>& other) const
         {
             return T4(x * (T)other.x, y * (T)other.y, z * (T)other.z, w * (T)other.w);
         }
 
-        template <typename OtherT>
-        inline T4 operator / (const T4<OtherT>& other) const
+        inline T4 operator / (const T4<T>& other) const
         {
             return T4(x / (T)other.x, y / (T)other.y, z / (T)other.z, w / (T)other.w);
         }
 
-        template <typename OtherT>
-        inline T4& operator += (const T4<OtherT>& other)
+        inline T4& operator += (const T4<T>& other)
         {
             x += (T)other.x;
             y += (T)other.y;
@@ -55,8 +52,7 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4& operator -= (const T4<OtherT>& other)
+        inline T4& operator -= (const T4<T>& other)
         {
             x -= (T)other.x;
             y -= (T)other.y;
@@ -66,8 +62,7 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4& operator *= (const T4<OtherT>& other)
+        inline T4& operator *= (const T4<T>& other)
         {
             x *= (T)other.x;
             y *= (T)other.y;
@@ -77,8 +72,7 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4& operator /= (const T4<OtherT>& other)
+        inline T4& operator /= (const T4<T>& other)
         {
             x /= (T)other.x;
             y /= (T)other.y;
@@ -88,32 +82,27 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4 operator + (const OtherT& other) const
+        inline T4 operator + (const T& other) const
         {
             return T4(x + (T)other, y + (T)other, z + (T)other, w + (T)other);
         }
 
-        template <typename OtherT>
-        inline T4 operator - (const OtherT& other) const
+        inline T4 operator - (const T& other) const
         {
             return T4(x - (T)other, y - (T)other, z - (T)other, w - (T)other);
         }
 
-        template <typename OtherT>
-        inline T4 operator * (const OtherT& other) const
+        inline T4 operator * (const T& other) const
         {
             return T4(x * (T)other, y * (T)other, z * (T)other, w * (T)other);
         }
 
-        template <typename OtherT>
-        inline T4 operator / (const OtherT& other) const
+        inline T4 operator / (const T& other) const
         {
             return T4(x / (T)other, y / (T)other, z / (T)other, w / (T)other);
         }
 
-        template <typename OtherT>
-        inline T4& operator += (const OtherT& other)
+        inline T4& operator += (const T& other)
         {
             x += (T)other;
             y += (T)other;
@@ -123,8 +112,7 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4& operator -= (const OtherT& other)
+        inline T4& operator -= (const T& other)
         {
             x -= (T)other;
             y -= (T)other;
@@ -134,8 +122,7 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4& operator *= (const OtherT& other)
+        inline T4& operator *= (const T& other)
         {
             x *= (T)other;
             y *= (T)other;
@@ -145,8 +132,7 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline T4& operator /= (const OtherT& other)
+        inline T4& operator /= (const T& other)
         {
             x /= (T)other;
             y /= (T)other;
@@ -156,38 +142,32 @@ class T4
             return *this;
         }
 
-        template <typename OtherT>
-        inline bool operator == (const T4<OtherT>& other) const
+        inline bool operator == (const T4<T>& other) const
         {
             return x == (T)other.x and y == (T)other.y and z == (T)other.z and w == (T)other.w;
         }
 
-        template <typename OtherT>
-        inline bool operator != (const T4<OtherT>& other) const
+        inline bool operator != (const T4<T>& other) const
         {
             return x != (T)other.x or y != (T)other.y or z != (T)other.z or w != (T)other.w;
         }
 
-        template <typename OtherT>
-        inline bool operator < (const T4<OtherT>& other) const
+        inline bool operator < (const T4<T>& other) const
         {
             return x < (T)other.x and y < (T)other.y and z < (T)other.z and w < (T)other.w;
         }
 
-        template <typename OtherT>
-        inline bool operator > (const T4<OtherT>& other) const
+        inline bool operator > (const T4<T>& other) const
         {
             return x > (T)other.x and y > (T)other.y and z > (T)other.z and w > (T)other.w;
         }
 
-        template <typename OtherT>
-        inline bool operator <= (const T4<OtherT>& other) const
+        inline bool operator <= (const T4<T>& other) const
         {
             return x <= (T)other.x and y <= (T)other.y and z <= (T)other.z and w <= (T)other.w;
         }
 
-        template <typename OtherT>
-        inline bool operator >= (const T4<OtherT>& other) const
+        inline bool operator >= (const T4<T>& other) const
         {
             return x >= (T)other.x and y >= (T)other.y and z >= (T)other.z and w >= (T)other.w;
         }
@@ -212,8 +192,7 @@ class T4
             return x*x + y*y + z*z + w*w;
         }
 
-        template <typename OtherT>
-        inline T dot(const T4<OtherT>& other) const
+        inline T dot(const T4<T>& other) const
         {
             return x*(T)other.x + y*(T)other.y + z*(T)other.z + w*(T)other.w;
         }
@@ -223,14 +202,12 @@ class T4
             return x*x + y*y + z*z + w*w;
         }
 
-        template <typename OtherT>
-        inline T distance(const T4<OtherT>& other) const
+        inline T distance(const T4<T>& other) const
         {
             return (*this - other).length();
         }
 
-        template <typename OtherT>
-        inline T distanceSquared(const T4<OtherT>& other) const
+        inline T distanceSquared(const T4<T>& other) const
         {
             return (*this - other).lengthSquared();
         }
@@ -357,6 +334,9 @@ class T4
 
         T x, y, z, w;
 };
+
+//BIND_CLASS(T4)
+//TEMPLATE_TYPES(T4, <float>:Float4 <int32_t>:Int4 <uint32_t>:UInt4)
 
 typedef T4<float> Float4;
 typedef T4<int32_t> Int4;

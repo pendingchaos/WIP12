@@ -40,6 +40,13 @@ class GfxMesh : public Resource
             uint32_t offset;
         };
 
+        struct IndexData
+        {
+            GfxVertexAttribType type;
+            size_t numIndices;
+            size_t offset;
+        };
+
         void setVertexAttrib(GfxVertexAttribPurpose purpose,
                              const VertexAttribute& attribute);
         void disableVertexAttrib(GfxVertexAttribPurpose purpose);
@@ -61,12 +68,7 @@ class GfxMesh : public Resource
         GfxWinding winding;
 
         bool indexed;
-        struct
-        {
-            GfxVertexAttribType type;
-            size_t numIndices;
-            size_t offset;
-        } indexData;
+        IndexData indexData;
 
         AABB aabb;
 

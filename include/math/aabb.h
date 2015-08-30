@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "math/matrix4x4.h"
+#include "scripting/bindings.h"
 
 #include <algorithm>
 
@@ -10,10 +11,10 @@ class AABB
 {
     public:
         AABB() {}
-        AABB(const Position3D& min_, const Position3D& max_) : min(min_), max(max_) {}
+        AABB(const Position3D& min_, const Position3D& max_) NO_BIND : min(min_), max(max_) {}
 
         //Modified from https://github.com/horde3d/Horde3D/blob/master/Horde3D/Source/Horde3DEngine/egPrimitives.h#L63
-        AABB transform(const Matrix4x4& matrix) const
+        AABB transform(const Matrix4x4& matrix) const NO_BIND
         {
             AABB result;
 
@@ -35,7 +36,7 @@ class AABB
             return result;
         }
 
-        inline void extend(const Position3D& point)
+        inline void extend(const Position3D& point) NO_BIND
         {
             min.x = std::min(min.x, point.x);
             min.y = std::min(min.y, point.y);
@@ -52,14 +53,14 @@ class AABB
             extend(aabb.max);
         }
 
-        inline void grow(const Vector3D& amount)
+        inline void grow(const Vector3D& amount) NO_BIND
         {
             min -= amount;
             max += amount;
         }
 
-        Position3D min;
-        Position3D max;
-};
+        NO_BIND Position3D min;
+        NO_BIND Position3D max;
+} BIND;
 
 #endif // AABB_H

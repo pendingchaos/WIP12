@@ -3,6 +3,7 @@
 
 #include "math/t2.h"
 #include "misc_macros.h"
+#include "scripting/bindings.h"
 
 #include <cmath>
 #include <stdint.h>
@@ -16,35 +17,31 @@ class T3
         inline T3(T xyz) : x(xyz), y(xyz), z(xyz) {}
         inline T3(T x_, T y_, T z_) : x(x_), y(y_), z(z_) {}
 
-        template <typename OtherT>
-        inline T3(const T3<OtherT>& other) : x(other.x), y(other.y), z(other.z) {}
+        inline T3(const T3<float>& other) : x(other.x), y(other.y), z(other.z) {}
+        inline T3(const T3<int32_t>& other) : x(other.x), y(other.y), z(other.z) {}
+        inline T3(const T3<uint32_t>& other) : x(other.x), y(other.y), z(other.z) {}
 
-        template <typename OtherT>
-        inline T3 operator + (const T3<OtherT>& other) const
+        inline T3 operator + (const T3<T>& other) const
         {
             return T3(x + (T)other.x, y + (T)other.y, z + (T)other.z);
         }
 
-        template <typename OtherT>
-        inline T3 operator - (const T3<OtherT>& other) const
+        inline T3 operator - (const T3<T>& other) const
         {
             return T3(x - (T)other.x, y - (T)other.y, z - (T)other.z);
         }
 
-        template <typename OtherT>
-        inline T3 operator * (const T3<OtherT>& other) const
+        inline T3 operator * (const T3<T>& other) const
         {
             return T3(x * (T)other.x, y * (T)other.y, z * (T)other.z);
         }
 
-        template <typename OtherT>
-        inline T3 operator / (const T3<OtherT>& other) const
+        inline T3 operator / (const T3<T>& other) const
         {
             return T3(x / (T)other.x, y / (T)other.y, z / (T)other.z);
         }
 
-        template <typename OtherT>
-        inline T3& operator += (const T3<OtherT>& other)
+        inline T3& operator += (const T3<T>& other)
         {
             x += (T)other.x;
             y += (T)other.y;
@@ -53,8 +50,7 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3& operator -= (const T3<OtherT>& other)
+        inline T3& operator -= (const T3<T>& other)
         {
             x -= (T)other.x;
             y -= (T)other.y;
@@ -63,8 +59,7 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3& operator *= (const T3<OtherT>& other)
+        inline T3& operator *= (const T3<T>& other)
         {
             x *= (T)other.x;
             y *= (T)other.y;
@@ -73,8 +68,7 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3& operator /= (const T3<OtherT>& other)
+        inline T3& operator /= (const T3<T>& other)
         {
             x /= (T)other.x;
             y /= (T)other.y;
@@ -83,32 +77,27 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3 operator + (const OtherT& other) const
+        inline T3 operator + (const T& other) const
         {
             return T3(x + (T)other, y + (T)other, z + (T)other);
         }
 
-        template <typename OtherT>
-        inline T3 operator - (const OtherT& other) const
+        inline T3 operator - (const T& other) const
         {
             return T3(x - (T)other, y - (T)other, z - (T)other);
         }
 
-        template <typename OtherT>
-        inline T3 operator * (const OtherT& other) const
+        inline T3 operator * (const T& other) const
         {
             return T3(x * (T)other, y * (T)other, z * (T)other);
         }
 
-        template <typename OtherT>
-        inline T3 operator / (const OtherT& other) const
+        inline T3 operator / (const T& other) const
         {
             return T3(x / (T)other, y / (T)other, z / (T)other);
         }
 
-        template <typename OtherT>
-        inline T3& operator += (const OtherT& other)
+        inline T3& operator += (const T& other)
         {
             x += (T)other;
             y += (T)other;
@@ -117,8 +106,7 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3& operator -= (const OtherT& other)
+        inline T3& operator -= (const T& other)
         {
             x -= (T)other;
             y -= (T)other;
@@ -127,8 +115,7 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3& operator *= (const OtherT& other)
+        inline T3& operator *= (const T& other)
         {
             x *= (T)other;
             y *= (T)other;
@@ -137,8 +124,7 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline T3& operator /= (const OtherT& other)
+        inline T3& operator /= (const T& other)
         {
             x /= (T)other;
             y /= (T)other;
@@ -147,38 +133,32 @@ class T3
             return *this;
         }
 
-        template <typename OtherT>
-        inline bool operator == (const T3<OtherT>& other) const
+        inline bool operator == (const T3<T>& other) const
         {
             return x == (T)other.x and y == (T)other.y and z == (T)other.z;
         }
 
-        template <typename OtherT>
-        inline bool operator != (const T3<OtherT>& other) const
+        inline bool operator != (const T3<T>& other) const
         {
             return x != (T)other.x or y != (T)other.y or z != (T)other.z;
         }
 
-        template <typename OtherT>
-        inline bool operator < (const T3<OtherT>& other) const
+        inline bool operator < (const T3<T>& other) const
         {
             return x < (T)other.x and y < (T)other.y and z < (T)other.z;
         }
 
-        template <typename OtherT>
-        inline bool operator > (const T3<OtherT>& other) const
+        inline bool operator > (const T3<T>& other) const
         {
             return x > (T)other.x and y > (T)other.y and z > (T)other.z;
         }
 
-        template <typename OtherT>
-        inline bool operator <= (const T3<OtherT>& other) const
+        inline bool operator <= (const T3<T>& other) const
         {
             return x <= (T)other.x and y <= (T)other.y and z <= (T)other.z;
         }
 
-        template <typename OtherT>
-        inline bool operator >= (const T3<OtherT>& other) const
+        inline bool operator >= (const T3<T>& other) const
         {
             return x >= (T)other.x and y >= (T)other.y and z >= (T)other.z;
         }
@@ -203,8 +183,7 @@ class T3
             return x*x + y*y + z*z;
         }
 
-        template <typename OtherT>
-        inline T dot(const T3<OtherT>& other) const
+        inline T dot(const T3<T>& other) const
         {
             return x*(T)other.x + y*(T)other.y + z*(T)other.z;
         }
@@ -214,14 +193,12 @@ class T3
             return x*x + y*y + z*z;
         }
 
-        template <typename OtherT>
-        inline T distance(const T3<OtherT>& other) const
+        inline T distance(const T3<T>& other) const
         {
             return (*this - other).length();
         }
 
-        template <typename OtherT>
-        inline T distanceSquared(const T3<OtherT>& other) const
+        inline T distanceSquared(const T3<T>& other) const
         {
             return (*this - other).lengthSquared();
         }
@@ -233,8 +210,7 @@ class T3
             return length_ == T(0) ? *this : *this / T3(length_);
         }
 
-        template <typename OtherT>
-        inline T3 cross(const T3<OtherT>& other) const
+        inline T3 cross(const T3<T>& other) const
         {
             return T3(y * other.z - z * other.y,
                       z * other.x - x * other.z,
@@ -293,6 +269,9 @@ class T3
 
         T x, y, z;
 };
+
+//BIND_CLASS(T3)
+//TEMPLATE_TYPES(T3, <float>:Float3 <int32_t>:Int3 <uint32_t>:UInt3)
 
 typedef T3<float> Float3;
 typedef T3<int32_t> Int3;

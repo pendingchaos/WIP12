@@ -1,6 +1,8 @@
 #ifndef T2_H
 #define T2_H
 
+#include "scripting/bindings.h"
+
 #include <cmath>
 #include <stdint.h>
 #include <stddef.h>
@@ -13,35 +15,31 @@ class T2
         inline T2(T xy) : x(xy), y(xy) {}
         inline T2(T x_, T y_) : x(x_), y(y_) {}
 
-        template <typename OtherT>
-        inline T2(const T2<OtherT>& other) : x(other.x), y(other.y) {}
+        inline T2(const T2<float>& other) : x(other.x), y(other.y) {}
+        inline T2(const T2<int32_t>& other) : x(other.x), y(other.y) {}
+        inline T2(const T2<uint32_t>& other) : x(other.x), y(other.y) {}
 
-        template <typename OtherT>
-        inline T2 operator + (const T2<OtherT>& other) const
+        inline T2 operator + (const T2<T>& other) const
         {
             return T2(x + (T)other.x, y + (T)other.y);
         }
 
-        template <typename OtherT>
-        inline T2 operator - (const T2<OtherT>& other) const
+        inline T2 operator - (const T2<T>& other) const
         {
             return T2(x - (T)other.x, y - (T)other.y);
         }
 
-        template <typename OtherT>
-        inline T2 operator * (const T2<OtherT>& other) const
+        inline T2 operator * (const T2<T>& other) const
         {
             return T2(x * (T)other.x, y * (T)other.y);
         }
 
-        template <typename OtherT>
-        inline T2 operator / (const T2<OtherT>& other) const
+        inline T2 operator / (const T2<T>& other) const
         {
             return T2(x / (T)other.x, y / (T)other.y);
         }
 
-        template <typename OtherT>
-        inline T2& operator += (const T2<OtherT>& other)
+        inline T2& operator += (const T2<T>& other)
         {
             x += (T)other.x;
             y += (T)other.y;
@@ -49,8 +47,7 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2& operator -= (const T2<OtherT>& other)
+        inline T2& operator -= (const T2<T>& other)
         {
             x -= (T)other.x;
             y -= (T)other.y;
@@ -58,8 +55,7 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2& operator *= (const T2<OtherT>& other)
+        inline T2& operator *= (const T2<T>& other)
         {
             x *= (T)other.x;
             y *= (T)other.y;
@@ -67,8 +63,7 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2& operator /= (const T2<OtherT>& other)
+        inline T2& operator /= (const T2<T>& other)
         {
             x /= (T)other.x;
             y /= (T)other.y;
@@ -76,32 +71,27 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2 operator + (OtherT other) const
+        inline T2 operator + (T other) const
         {
             return T2(x + (T)other, y + (T)other);
         }
 
-        template <typename OtherT>
-        inline T2 operator - (OtherT other) const
+        inline T2 operator - (T other) const
         {
             return T2(x - (T)other, y - (T)other);
         }
 
-        template <typename OtherT>
-        inline T2 operator * (OtherT other) const
+        inline T2 operator * (T other) const
         {
             return T2(x * (T)other, y * (T)other);
         }
 
-        template <typename OtherT>
-        inline T2 operator / (OtherT other) const
+        inline T2 operator / (T other) const
         {
             return T2(x / (T)other, y / (T)other);
         }
 
-        template <typename OtherT>
-        inline T2& operator += (OtherT other)
+        inline T2& operator += (T other)
         {
             x += (T)other;
             y += (T)other;
@@ -109,8 +99,7 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2& operator -= (OtherT other)
+        inline T2& operator -= (T other)
         {
             x -= (T)other;
             y -= (T)other;
@@ -118,8 +107,7 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2& operator *= (OtherT other)
+        inline T2& operator *= (T other)
         {
             x *= (T)other;
             y *= (T)other;
@@ -127,8 +115,7 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline T2& operator /= (OtherT other)
+        inline T2& operator /= (T other)
         {
             x /= (T)other;
             y /= (T)other;
@@ -136,38 +123,32 @@ class T2
             return *this;
         }
 
-        template <typename OtherT>
-        inline bool operator == (const T2<OtherT>& other) const
+        inline bool operator == (const T2<T>& other) const
         {
             return x == (T)other.x and y == (T)other.y;
         }
 
-        template <typename OtherT>
-        inline bool operator != (const T2<OtherT>& other) const
+        inline bool operator != (const T2<T>& other) const
         {
             return x != (T)other.x or y != (T)other.y;
         }
 
-        template <typename OtherT>
-        inline bool operator < (const T2<OtherT>& other) const
+        inline bool operator < (const T2<T>& other) const
         {
             return x < (T)other.x and y < (T)other.y;
         }
 
-        template <typename OtherT>
-        inline bool operator > (const T2<OtherT>& other) const
+        inline bool operator > (const T2<T>& other) const
         {
             return x > (T)other.x and y > (T)other.y;
         }
 
-        template <typename OtherT>
-        inline bool operator <= (const T2<OtherT>& other) const
+        inline bool operator <= (const T2<T>& other) const
         {
             return x <= (T)other.x and y <= (T)other.y;
         }
 
-        template <typename OtherT>
-        inline bool operator >= (const T2<OtherT>& other) const
+        inline bool operator >= (const T2<T>& other) const
         {
             return x >= (T)other.x and y >= (T)other.y;
         }
@@ -192,8 +173,7 @@ class T2
             return x*x + y*y;
         }
 
-        template <typename OtherT>
-        inline T dot(const T2<OtherT>& other) const
+        inline T dot(const T2<T>& other) const
         {
             return x*(T)other.x + y*(T)other.y;
         }
@@ -203,14 +183,12 @@ class T2
             return x*x + y*y;
         }
 
-        template <typename OtherT>
-        inline T distance(const T2<OtherT>& other) const
+        inline T distance(const T2<T>& other) const
         {
             return (*this - other).length();
         }
 
-        template <typename OtherT>
-        inline T distanceSquared(const T2<OtherT>& other) const
+        inline T distanceSquared(const T2<T>& other) const
         {
             return (*this - other).lengthSquared();
         }
@@ -256,6 +234,9 @@ class T2
 
         T x, y;
 };
+
+//BIND_CLASS(T2)
+//TEMPLATE_TYPES(T2, <float>:Float2 <int32_t>:Int2 <uint32_t>:UInt2)
 
 typedef T2<float> Float2;
 typedef T2<int32_t> Int2;

@@ -98,6 +98,6 @@ class Matrix4x4
                                    const Direction3D& up);
 
         float data[4][4];
-};
+};// BIND;
 
 #endif // MATRIX4X4_H

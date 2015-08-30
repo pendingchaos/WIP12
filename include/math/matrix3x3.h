@@ -3,6 +3,7 @@
 
 #include "math/t2.h"
 #include "math/t3.h"
+#include "scripting/bindings.h"
 
 class Matrix4x4;
 
@@ -70,6 +71,6 @@ class Matrix3x3
         static Matrix3x3 rotatez(float rotation);
 
         float data[3][3];
-};
+};// BIND;
 
 #endif // MATRIX3X3_H

@@ -179,14 +179,13 @@ void _generateObject(CallNode *call, ResizableData& data)
 /*TODO:
 Reference dereferencing is not implemented.
 
-Implement these functions:
+Implement these:
     import
     int
     float
     boolean
     get
     while
-    for
 
 Finish some TODOs.*/
 bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it pushed something onto the stack.
@@ -734,12 +733,12 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 }
             }
 
-            int64_t argCount = TO_LE_S64(call->nodes.getCount()-1);
+            int64_t argCount = TO_LE_S64(call->nodes.getCount()-3);
 
             data.append(1, &opPushInteger);
             data.append(8, &argCount);
 
-            if (call->nodes[1]->type != ASTNode::Identifier)
+            if (call->nodes[2]->type != ASTNode::Identifier)
             {
                 THROW(ByteCodeGenException, "Method name must be a identifier.");
             }

@@ -10,6 +10,27 @@
 
 class GfxRenderer;
 
+struct LightDirectionalData
+{
+    Direction3D direction;
+};
+
+struct LightSpotData
+{
+    Position3D position;
+    Direction3D direction;
+    float innerCutoff;
+    float outerCutoff;
+    float radius;
+};
+
+struct LightPointData
+{
+    Position3D position;
+    float radius;
+    bool singlePassShadowMap;
+};
+
 class Light
 {
     NO_COPY(Light)
@@ -55,26 +76,9 @@ class Light
         float shadowAutoBiasScale;
         bool scriptOwned;
 
-        struct
-        {
-            Direction3D direction;
-        } direction;
-
-        struct
-        {
-            Position3D position;
-            Direction3D direction;
-            float innerCutoff;
-            float outerCutoff;
-            float radius;
-        } spot;
-
-        struct
-        {
-            Position3D position;
-            float radius;
-            bool singlePassShadowMap;
-        } point;
+        LightDirectionalData direction;
+        LightSpotData spot;
+        LightPointData point;
 
         void addShadowmap(size_t resolution, ShadowmapPrecision quality);
 

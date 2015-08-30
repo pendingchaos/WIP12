@@ -177,12 +177,17 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     }
 
     sources[1] = "#extension GL_ARB_separate_shader_objects : enable\n"
+"#extension GL_ARB_gpu_shader5 : enable\n"
 "#pragma optionNV(fastmath on)\n"
 "#pragma optionNV(fastprecision on)\n"
 "#pragma optionNV(ifcvt none)\n"
 "#pragma optionNV(inline all)\n"
 "#pragma optionNV(strict on)\n"
-"#pragma optionNV(unroll all)\n";
+"#pragma optionNV(unroll all)\n"
+"#if GL_ARB_gpu_shader5 || (__VERSION__ >= 400)\n"
+"#else\n"
+"#define fma(a, b, c) (a * b + c)\n"
+"#endif\n";
 
     for (size_t i = 0; i < defines.getEntryCount(); ++i)
     {

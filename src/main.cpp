@@ -44,6 +44,7 @@ int unsafeMain(int argc, const char *argv[])
 #include "scripting/vm/types.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
+#include "scripting/bindings.h"
 
 #include <iostream>
 
@@ -480,10 +481,10 @@ int main(int argc, const char *argv[])
     }
 
     DELETE(scripting::Engine, engine);
-    #elif 0
+    #elif 1
     try
     {
-        scripting::ASTNode *ast = scripting::parse("((class foo \"bar\" answer 42))");
+        scripting::ASTNode *ast = scripting::parse("(meth (AABB) extend (AABB))");
 
         printAST(0, ast);
 
@@ -496,6 +497,8 @@ int main(int argc, const char *argv[])
         scripting::Bytecode code(data);
 
         scripting::Engine *engine = NEW(scripting::Engine);
+
+        registerBindings(engine);
 
         engine->getGlobalVars().set("print", engine->getRefMgr()->createNativeFunction(print));
 

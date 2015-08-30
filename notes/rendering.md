@@ -157,6 +157,14 @@ enum class MeshAttribDataType
     Max
 };
 
+enum class MeshIndexDataType
+{
+    U8,
+    U16,
+    U24,
+    U32
+};
+
 enum class MeshAttribType
 {
     Position,
@@ -224,50 +232,89 @@ enum class TextureWrapMode
     Max
 };
 
+enum class ShaderParamType
+{
+    Int,
+    Int2,
+    Int3,
+    Int4,
+    UInt,
+    UInt2,
+    UInt3,
+    UInt4,
+    Float,
+    Float2,
+    Float3,
+    Float4,
+    Max
+};
+
+enum class ShaderParamBufferLayout
+{
+    GLSL_STD140 //https://www.opengl.org/registry/doc/glspec45.core.pdf#page=159
+};
+
+struct TextureSampler
+{
+    TextureFilter magFilter;
+    TextureFilter minFilter;
+    TextureMipmapMode mipmapMode;
+    TextureWrapMode wrapMode;
+    float maxAnisotropy;
+};
+
+struct TextureSamplerOverride
+{
+    bool overrideMinFilter:1;
+    bool overrideMagFilter:1;
+    bool overrideMipmapMode:1;
+    bool overrideWrapMode:1;
+    bool overrideMaxAnisotropy:1;
+    TextureSampler sampler;
+};
+
+struct MeshAttrib
+{
+    MeshAttribDataType type;
+    void *data;
+};
+
+struct PerInstanceData
+{
+    size_t stride;
+    ResizableData data;
+};
+
+class Context;
+
 class Texture2D
 {
     public:
-        struct Sampler
-        {
-            TextureFilter magFilter;
-            TextureFilter minFilter;
-            TextureMipmapMode mipmapMode;
-            TextureWrapMode XWrapMode;
-            TextureWrapMode YWrapMode;
-            float maxAnisotropy;
-        };
+        Texture2D(Context *context, TextureFormat format, UInt2 size);
+        ~Texture2D();
         
-        void init(TextureFormat format, UInt2 size);
         void setData(size_t mipmap, const void *data);
         void getData(size_t mipmap, void *data);
         
         TextureFormat getFormat();
         UInt2 getSize();
-        Sampler getSampler();
-        void setSampler(const Sampler& sampler);
+        TextureSamplerOverride getSamplerOverride();
+        void setSamplerOverride(const TextureSamplerOverride& sampler);
 };
 
 class Texture3D
 {
     public:
-        struct Sampler
-        {
-            TextureFilter magFilter;
-            TextureFilter minFilter;
-            TextureMipmapMode mipmapMode;
-            TextureWrapMode XWrapMode;
-            TextureWrapMode YWrapMode;
-            float maxAnisotropy;
-        };
+        Texture3D(Context *context, TextureFormat format, UInt3 size);
+        ~Texture3D();
         
-        void init(TextureFormat format, UInt3 size);
         void setData(size_t mipmap, const void *data);
         void getData(size_t mipmap, void *data);
         
         TextureFormat getFormat();
         UInt3 getSize();
-        Sampler getSampler();
-        void setSampler(const Sampler& sampler);
+        Sampler getSamplerOverride();
+        void setSamplerOverride(const TextureSamplerOverride& sampler);
 };
 
 class TextureCube
@@ -283,59 +330,92 @@ class TextureCube
             NegativeZ
         };
         
-        struct Sampler
-        {
-            TextureFilter magFilter;
-            TextureFilter minFilter;
-            TextureMipmapMode mipmapMode;
-            TextureWrapMode XWrapMode;
-            TextureWrapMode YWrapMode;
-            float maxAnisotropy;
-        };
+        TextureCube(Context *context, TextureFormat format, UInt2 size);
+        ~TextureCube();
         
-        void init(TextureFormat format, UInt2 size);
         void setData(Face face, size_t mipmap, const void *data);
         void getData(Face face, size_t mipmap, void *data);
         
         TextureFormat getFormat();
         UInt2 getSize();
-        Sampler getSampler();
-        void setSampler(const Sampler& sampler);
+        Sampler getSamplerOverride();
+        void setSamplerOverride(const TextureSamplerOverride& sampler);
 };
 
-class Buffer
+class ShaderParamBufferStruct
 {
     public:
-        void init(size_t size, const void *data);
-        void setData(size_t offset, size_t amount, const void *data);
-        void getData(size_t offset, size_t amount, void *data) const;
+        ShaderParamBufferStruct(Context *context);
+        ~ShaderParamBufferStruct();
+        
+        ShaderParamBufferStruct(ShaderParamBufferLayout layout);
+        void addMember(uint32_t id, ShaderParamType type, size_t count);
+        void finalizeMembers();
+};
 
-        inline size_t getSize() {...}
+class ShaderParamBuffer
+{
+    public:
+        ShaderParamBuffer(Context *context, ShaderParamBufferStruct struct_);
+        ~ShaderParamBuffer();
+        
+        void setInt(uint32_t id, size_t index, int32_t value);
+        void setInt2(uint32_t id, size_t index, const Int2& value);
+        void setInt3(uint32_t id, size_t index, const Int3& value);
+        void setInt4(uint32_t id, size_t index, const Int4& value);
+        void setUInt(uint32_t id, size_t index, uint32_t value);
+        void setUInt2(uint32_t id, size_t index, const UInt2& value);
+        void setUInt3(uint32_t id, size_t index, const UInt3& value);
+        void setUInt4(uint32_t id, size_t index, const UInt4& value);
+        void setFloat(uint32_t id, size_t index, float value);
+        void setFloat2(uint32_t id, size_t index, const Float2& value);
+        void setFloat3(uint32_t id, size_t index, const Float3& value);
+        void setFloat4(uint32_t id, size_t index, const Float4& value);
+        //TODO: Matrices
 };
 
 class Mesh
 {
     public:
-        struct Attrib
-        {
-            MeshAttribDataType type;
-            void *data;
-        };
+        Mesh(Context *context);
+        ~Mesh();
         
-        void init(size_t numIndices,
-                  IndexType indexType,
-                  size_t numAttribs,
-                  const Attrib attribMax[MeshAttribType::Max]
-                  CullMode cullMode,
-                  Winding winding,
-                  void *indices);
-
-        inline AABB getAABB() const {...}
+        void initIndex(size_t numIndices,
+                       MeshIndexDataType indexType,
+                       void *indices);
+        void removeIndexData();
+        bool hasIndexData() const;
+        
+        void initVertex(size_t numVertices,
+                        size_t numAttribs,
+                        const MeshAttrib *attribs);
+        
+        size_t getNumIndices() const;
+        size_t getNumVertices() const;
+        
+        IndexType getIndexType() const;
+        void *getIndices();
+        
+        size_t getNumAttribs() const;
+        MeshAttrib getAttrib(MeshAttribType type, bool data);
+        
+        void CullMode getCullMode() const;
+        void setCullMode(CullMode mode);
+        
+        void Winding getWinding() const;
+        void setWinding(Winding winding);
+        
+        AABB getAABB() const;
+    private:
+        AABB aabb;
 };
 
 class Shader
 {
     public:
+        Shader(Context *context);
+        ~Shader();
+        
         void setSource(size_t maxInstances, ShaderType type, const String& source);
         
         inline ShaderType getType() {...}
@@ -354,7 +434,8 @@ class CompiledShader
 class ShaderCombination
 {
     public:
-        ShaderCombination(const CompiledShader *shaders[ShaderType::Max]);
+        ShaderCombination(Context *context, const CompiledShader *shaders[ShaderType::Max]);
+        ~ShaderCombination();
         
         inline CompiledShader *getShader(ShaderType type) {...}
 };
@@ -362,6 +443,9 @@ class ShaderCombination
 class PipelineState
 {
     public:
+        PipelineState(Context *context);
+        ~PipelineState();
+        
         void setBlendingEnabled(bool enabled);
         bool isBlendingEnabled() const;
 
@@ -388,17 +472,13 @@ class PipelineState
         DepthFunc getDepthFunction() const;
 };
 
-class PerInstanceData
-{
-    public:
-        size_t stride;
-        ResizableData data;
-};
-
 //This can not be modified when it is used in a draw call.
 class ShaderParams
 {
     public:
+        ShaderParams(Context *context);
+        ~ShaderParams();
+    
         void setInt(const String& name, int32_t value);
         void setInt2(const String& name, const Int2& value);
         void setInt3(const String& name, const Int3& value);
@@ -411,6 +491,7 @@ class ShaderParams
         void setFloat2(const String& name, const Float2& value);
         void setFloat3(const String& name, const Float3& value);
         void setFloat4(const String& name, const Float4& value);
+        //TODO: Matrices
         
         void setIntArray(const String& name, const List<int32_t>& values);
         void setInt2Array(const String& name, const List<Int2>& values);
@@ -428,8 +509,8 @@ class ShaderParams
         void setTexture2D(const String& name, const Texture2D *texture);
         void setTexture3D(const String& name, const Texture3D *texture);
         void setTextureCube(const String& name, const TextureCube *texture);
-        void setUBO(const String& name, const Buffer *buffer);
-        void setSSBO(const String& name, const Buffer *buffer);
+        void setUBO(const String& name, const ShaderParamBuffer *buffer);
+        void setSSBO(const String& name, const ShaderParamBuffer *buffer, bool read, bool write);
         
         void setImage2D(const String& name, const Texture2D *texture, bool read, bool write);
         void setImage3D(const String& name, const Texture3D *texture, bool read, bool write);
@@ -441,6 +522,9 @@ class ShaderParams
 class DrawCalls
 {
     public:
+        DrawCalls(Context *context);
+        ~DrawCalls();
+    
         void clear();
         void addSetOrderedDraws(bool ordered);
         void addDraw(const PipelineState *state,
@@ -454,6 +538,11 @@ class DrawCalls
 class RenderPass
 {
     public:
+        RenderPass(Context *context,
+                   Texture2D *depth,
+                   const List<Texture2D *>& color)
+        ~RenderPass();
+        
         void clearDrawCalls();
         void addDrawCalls(const DrawCalls *drawCalls);
         void executeDrawCalls(size_t viewLeft,
@@ -493,20 +582,8 @@ class Context
     public:
         Caps *getCaps() const;
         
-        RenderPass *createRenderPass(Texture2D *depth,
-                                     const List<Texture2D *>& color) const;
-        
-        CommandBuffer *createCommandBuffer() const;
-        
-        Texture2D *createTexture2D() const;
-        Texture3D *createTexture3D() const;
-        TextureCube *createTextureCube() const;
-        Buffer *createBuffer() const;
-        Mesh *createMesh() const;
-        Shader *createShader() const;
-        ShaderCombination *createShaderCombination() const;
-        PipelineState *createPipelineState() const;
-        ShaderParams *createShaderParams() const;
+        Sampler getSampler() const;
+        void setSampler(const Sampler& sampler) const;
 };
 }
 ```

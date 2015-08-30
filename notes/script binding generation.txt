@@ -1,7 +1,8 @@
 #ifdef SCRIPT_BINDING_GENERATOR
 #define GETTER __attribute__((annotate("getter")))
 #define SETTER __attribute__((annotate("setter")))
-#define TEMPLATE_TYPES(...) __attribute__((annotate("templatetypes"STR(__VA_ARGS__))))
+#define TEMPLATE_TYPES(class, ...) __attribute__((annotate("templatetypes" STR(class) ";" STR(__VA_ARGS__)))) static int JOIN(_, __COUNTER__);
+#define BIND __attribute__((annotate("bind")))
 #define NO_BIND __attribute__((annotate("nobind")))
 #define DOC_ARG(arg, str) __attribute__((annotate("argdoc"arg" "str)))
 #define DOC_DESC(str) __attribute__((annotate("descdoc"str)))
@@ -9,7 +10,8 @@
 #else
 #define GETTER
 #define SETTER
-#define TEMPLATE_TYPES(...)
+#define TEMPLATE_TYPES(class, ...)
+#define BIND
 #define NO_BIND
 #define DOC_ARG(arg, str)
 #define DOC_DESC(str)
@@ -35,11 +37,12 @@ class List
         List<T> join(T *other) const NO_BIND
         DOC_ARG("other", "The list to add.")
         DOC_DESC("Copys this list and appends @other to it.")
-        DOC_EXCEPTION("NullPointer", "Throwes a NullPointer exception if @other is null.")
+        DOC_EXCEPTION("NullPointer", "Throws a NullPointer exception if @other is null.")
         {
             return List<T>()
         }
 
         void not_bound() NO_BIND {}
-} TEMPLATE_TYPES(int:IntList float:FloatList GfxMaterial:GfxMaterialList)
+} BIND;
 
+TEMPLATE_TYPES(List, <int>:IntList <float>:FloatList <GfxMaterial>:GfxMaterialList)

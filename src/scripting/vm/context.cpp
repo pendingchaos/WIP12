@@ -603,13 +603,58 @@ break;
         {
             TYPED_OP(ValueType::Int, IntValue, createInt, ^, "__btxor__")
         }
+
+#undef TYPED_OP
+
+#define SHIFT_OP(op, funcName) Ref a = popStack(*stack);\
+Ref b = popStack(*stack);\
+\
+Value *aHead = refMgr->translate(a);\
+Value *bHead = refMgr->translate(b);\
+\
+if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
+{\
+    List<Ref> args;\
+    args.append(b);\
+    stack->append(callMethod(this, aHead, funcName, args));\
+} else if (aHead->type != ValueType::Int or bHead->type != ValueType::Int)\
+{\
+    throwException(refMgr->createException(ExcType::TypeError, "Invalid operand types."));\
+} else\
+{\
+    union\
+    {\
+        uint64_t u;\
+        int64_t s;\
+    } u1;\
+    union\
+    {\
+        uint64_t u;\
+        int64_t s;\
+    } u2;\
+    union\
+    {\
+        uint64_t u;\
+        int64_t s;\
+    } u3;\
+    u1.s = ((IntValue *)aHead)->value;\
+    u2.s = ((IntValue *)bHead)->value;\
+    u3.u = u1.u op u2.u;\
+    stack->append(refMgr->createInt(u3.s));\
+}\
+\
+refMgr->destroy(this, a);\
+refMgr->destroy(this, b);\
+\
+break;
+
         case Opcode::LeftShift:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, <<, "__shl__")
+            SHIFT_OP(<<, "__shl__")
         }
         case Opcode::RightShift:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, >>, "__shr__")
+            SHIFT_OP(>>, "__shr__")
         }
         case Opcode::BitNot:
         {
@@ -630,8 +675,6 @@ break;
             refMgr->destroy(this, value);
             break;
         }
-
-#undef TYPED_OP
 
         #define COMPARE_OP(op, funcName) Ref a = popStack(*stack);\
 Ref b = popStack(*stack);\
