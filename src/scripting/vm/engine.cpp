@@ -5,89 +5,84 @@
 
 namespace scripting
 {
-Ref classNew(Context *ctx, const List<Ref>& args)
+Value *classNew(Context *ctx, const List<Value *>& args)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     if (args.getCount() < 1)
     {
-        ctx->throwException(refMgr->createException(ExcType::ValueError, "__new__/__call__ takes at least 1 argument."));
+        ctx->throwException(createException(ExcType::ValueError, "__new__/__call__ takes at least 1 argument."));
     }
 
-    Value *class_ = refMgr->translate(args[0]);
+    Value *class_ = args[0];
 
-    Ref __base__ = refMgr->createString("__base__");
-    Value *base = refMgr->translate(getMember(ctx, class_, refMgr->translate(__base__)));
-    refMgr->destroy(ctx, __base__);
+    Value *__base__ = createString("__base__");
+    Value *base = getMember(ctx, class_, __base__);
+    destroy(ctx, __base__);
 
-    Ref __typeID__ = refMgr->createString("__typeID__");
-    Value *typeID = refMgr->translate(getMember(ctx, class_, refMgr->translate(__typeID__)));
-    refMgr->destroy(ctx, __typeID__);
+    Value *__typeID__ = createString("__typeID__");
+    Value *typeID = getMember(ctx, class_, __typeID__);
+    destroy(ctx, __typeID__);
 
     if (base->type != ValueType::Object)
     {
-        ctx->throwException(refMgr->createException(ExcType::TypeError, "Class base must be an object."));
+        ctx->throwException(createException(ExcType::TypeError, "Class base must be an object."));
     }
 
     if (typeID->type != ValueType::Int)
     {
-        ctx->throwException(refMgr->createException(ExcType::TypeError, "Class type ID must be an integer."));
+        ctx->throwException(createException(ExcType::TypeError, "Class type ID must be an integer."));
     }
 
-    Ref result = refMgr->createObject();
-    Value *resultHead = refMgr->translate(result);
-    HashMap<String, Ref> resultMembers = ((ObjectValue *)resultHead)->members;
+    Value *resultHead = createObject();
+    HashMap<String, Value *> resultMembers = ((ObjectValue *)resultHead)->members;
 
     resultMembers.append(((ObjectValue *)base)->members);
-    resultMembers.set("__classTypeID__", refMgr->createInt(((IntValue *)typeID)->value));
+    resultMembers.set("__classTypeID__", createInt(((IntValue *)typeID)->value));
 
     int entry = resultMembers.findEntry("__init__");
 
     if (entry != -1)
     {
-        callMethod(ctx, resultHead, "__init__", List<Ref>(args.getCount(), args.getData()+1));
+        callMethod(ctx, resultHead, "__init__", List<Value *>(args.getCount(), args.getData()+1));
     } else
     {
         if (args.getCount() != 1)
         {
-            ctx->throwException(refMgr->createException(ExcType::ValueError, "__new__/__call__ takes 1 argument."));
+            ctx->throwException(createException(ExcType::ValueError, "__new__/__call__ takes 1 argument."));
         }
     }
 
-    return result;
+    return resultHead;
 }
 
-Ref createClass(Context *ctx, const List<Ref>& args)
+Value *createClass(Context *ctx, const List<Value *>& args)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     if (args.getCount() != 1)
     {
-        ctx->throwException(refMgr->createException(ExcType::ValueError, "__classify takes 1 arguments."));
+        ctx->throwException(createException(ExcType::ValueError, "__classify takes 1 arguments."));
     }
 
-    Value *base = refMgr->translate(args[0]);
+    Value *base = args[0];
 
     if (base->type != ValueType::Object)
     {
-        ctx->throwException(refMgr->createException(ExcType::ValueError, "base must be an object."));
+        ctx->throwException(createException(ExcType::ValueError, "base must be an object."));
     }
 
-    Ref result = refMgr->createObject();
+    Value *result = createObject();
 
-    HashMap<String, Ref>& resultMembers = ((ObjectValue *)refMgr->translate(result))->members;
+    HashMap<String, Value *>& resultMembers = ((ObjectValue *)result)->members;
 
-    resultMembers.set("__base__", refMgr->createCopy(ctx, args[0]));
-    resultMembers.set("__new__", refMgr->createNativeFunction(classNew));
-    resultMembers.set("__typeID__", refMgr->createInt(ctx->getEngine()->createNewTypeID()));
-    resultMembers.set("__call__", refMgr->createNativeFunction(classNew));
+    resultMembers.set("__base__", createCopy(ctx, args[0]));
+    resultMembers.set("__new__", createNativeFunction(classNew));
+    resultMembers.set("__typeID__", createInt(ctx->getEngine()->createNewTypeID()));
+    resultMembers.set("__call__", createNativeFunction(classNew));
 
     return result;
 }
 
 Engine::Engine() : debugOutput(true), nextTypeID(LONG_LONG_MIN)
 {
-    globalVars.set("__classify", refMgr.createNativeFunction(createClass));
+    globalVars.set("__classify", createNativeFunction(createClass));
 }
 
 Engine::~Engine()
@@ -96,7 +91,7 @@ Engine::~Engine()
 
     for (size_t i = 0; i < globalVars.getEntryCount(); ++i)
     {
-        refMgr.destroy(context, globalVars.getValue(i));
+        destroy(context, globalVars.getValue(i));
     }
 
     DELETE(Context, context);

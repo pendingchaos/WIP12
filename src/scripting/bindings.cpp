@@ -64,35 +64,32 @@ struct BindingsExt
 #include "scripting/bytecodegen.h"
 
 template <typename T>
-struct ref_to_c {};
+struct val_to_c {};
 
-#define REF_TO_C_INT(T, T2, min, max) template <>struct ref_to_c<T2>{    static T f(scripting::Context *ctx, const scripting::Ref& ref)    {        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();        scripting::Value *head = refMgr->translate(ref);                int64_t v;                if (head->type == scripting::ValueType::Int)        {            v = ((scripting::IntValue *)head)->value;        } else if (head->type == scripting::ValueType::Float)        {            v = ((scripting::FloatValue *)head)->value;        } else        {            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to int."));        }                if (v < min or v > max)        {            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value out of bounds."));        }                return v;    }};
+#define VAL_TO_C_INT(T, T2, min, max) template <>struct val_to_c<T2>{    static T f(scripting::Context *ctx, const scripting::Value *head)    {        int64_t v;                if (head->type == scripting::ValueType::Int)        {            v = ((scripting::IntValue *)head)->value;        } else if (head->type == scripting::ValueType::Float)        {            v = ((scripting::FloatValue *)head)->value;        } else        {            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to int."));        }                if (v < min or v > max)        {            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value out of bounds."));        }                return v;    }};
 
-REF_TO_C_INT(uint8_t, uint8_t, 0, UINT8_MAX)
-REF_TO_C_INT(int8_t, int8_t, INT8_MIN, INT8_MAX)
-REF_TO_C_INT(uint16_t, uint16_t, 0, UINT16_MAX)
-REF_TO_C_INT(int16_t, int16_t, INT16_MIN, INT16_MAX)
-REF_TO_C_INT(uint32_t, uint32_t, 0, UINT32_MAX)
-REF_TO_C_INT(int32_t, int32_t, INT32_MIN, INT32_MAX)
-REF_TO_C_INT(uint64_t, uint64_t, 0, UINT64_MAX)
-REF_TO_C_INT(int64_t, int64_t, INT64_MIN, INT64_MAX)
-REF_TO_C_INT(uint8_t, const uint8_t&, 0, UINT8_MAX)
-REF_TO_C_INT(int8_t, const int8_t&, INT8_MIN, INT8_MAX)
-REF_TO_C_INT(uint16_t, const uint16_t&, 0, UINT16_MAX)
-REF_TO_C_INT(int16_t, const int16_t&, INT16_MIN, INT16_MAX)
-REF_TO_C_INT(uint32_t, const uint32_t&, 0, UINT32_MAX)
-REF_TO_C_INT(int32_t, const int32_t&, INT32_MIN, INT32_MAX)
-REF_TO_C_INT(uint64_t, const uint64_t&, 0, UINT64_MAX)
-REF_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
+VAL_TO_C_INT(uint8_t, uint8_t, 0, UINT8_MAX)
+VAL_TO_C_INT(int8_t, int8_t, INT8_MIN, INT8_MAX)
+VAL_TO_C_INT(uint16_t, uint16_t, 0, UINT16_MAX)
+VAL_TO_C_INT(int16_t, int16_t, INT16_MIN, INT16_MAX)
+VAL_TO_C_INT(uint32_t, uint32_t, 0, UINT32_MAX)
+VAL_TO_C_INT(int32_t, int32_t, INT32_MIN, INT32_MAX)
+VAL_TO_C_INT(uint64_t, uint64_t, 0, UINT64_MAX)
+VAL_TO_C_INT(int64_t, int64_t, INT64_MIN, INT64_MAX)
+VAL_TO_C_INT(uint8_t, const uint8_t&, 0, UINT8_MAX)
+VAL_TO_C_INT(int8_t, const int8_t&, INT8_MIN, INT8_MAX)
+VAL_TO_C_INT(uint16_t, const uint16_t&, 0, UINT16_MAX)
+VAL_TO_C_INT(int16_t, const int16_t&, INT16_MIN, INT16_MAX)
+VAL_TO_C_INT(uint32_t, const uint32_t&, 0, UINT32_MAX)
+VAL_TO_C_INT(int32_t, const int32_t&, INT32_MIN, INT32_MAX)
+VAL_TO_C_INT(uint64_t, const uint64_t&, 0, UINT64_MAX)
+VAL_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
 
 template <>
-struct ref_to_c<float>
+struct val_to_c<float>
 {
-    static float f(scripting::Context *ctx, const scripting::Ref& ref)
+    static float f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         float v;
         
         if (head->type == scripting::ValueType::Int)
@@ -103,7 +100,7 @@ struct ref_to_c<float>
             v = ((scripting::FloatValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
         
         return v;
@@ -111,13 +108,10 @@ struct ref_to_c<float>
 };
 
 template <>
-struct ref_to_c<double>
+struct val_to_c<double>
 {
-    static double f(scripting::Context *ctx, const scripting::Ref& ref)
+    static double f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         double v;
         
         if (head->type == scripting::ValueType::Int)
@@ -128,7 +122,7 @@ struct ref_to_c<double>
             v = ((scripting::FloatValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
         
         return v;
@@ -136,90 +130,87 @@ struct ref_to_c<double>
 };
 
 template <>
-struct ref_to_c<bool>
+struct val_to_c<bool>
 {
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         if (head->type == scripting::ValueType::Boolean)
         {
             return ((scripting::BooleanValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to bool."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to bool."));
         }
     }
 };
 
 template <>
-struct ref_to_c<String>
+struct val_to_c<String>
 {
-    static String f(scripting::Context *ctx, const scripting::Ref& ref)
+    static String f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         if (head->type == scripting::ValueType::String)
         {
             return ((scripting::StringValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
         }
     }
 };
 
 template <>
-struct ref_to_c<scripting::Ref>
+struct val_to_c<scripting::Value *>
 {
-    static scripting::Ref f(scripting::Context *ctx, const scripting::Ref& ref)
+    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return ctx->getEngine()->getRefMgr()->createCopy(ctx, ref);
+        return scripting::createCopy(ctx, head);
     }
 };
-
-template <typename T>
-struct ref_to_c<T&> {};
-
-template <typename T>
-struct ref_to_c<const T&> {
-    static T f(scripting::Context *ctx, const scripting::Ref& ref)
-    {
-        return ref_to_c<T>::f(ctx, ref);
-    }
-};
-
-template <typename T>
-struct ref_to_c<T *> {};
-
-template <typename T>
-struct create_ref {};
-
-#define CREATE_REF(T, func) template <>struct create_ref<T>{    static scripting::Ref f(scripting::Context *ctx, const T& v)    {        return ctx->getEngine()->getRefMgr()->func(v);    }};
 
 template <>
-struct create_ref<scripting::Ref>
+struct val_to_c<const scripting::Value *>
 {
-    static scripting::Ref f(scripting::Context *ctx, const scripting::Ref& ref)
+    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return ctx->getEngine()->getRefMgr()->createCopy(ctx, ref);
+        return scripting::createCopy(ctx, head);
     }
 };
 
-CREATE_REF(uint8_t, createInt)
-CREATE_REF(int8_t, createInt)
-CREATE_REF(uint16_t, createInt)
-CREATE_REF(int16_t, createInt)
-CREATE_REF(uint32_t, createInt)
-CREATE_REF(int32_t, createInt)
-CREATE_REF(uint64_t, createInt)
-CREATE_REF(int64_t, createInt)
-CREATE_REF(float, createFloat)
-CREATE_REF(double, createFloat)
-CREATE_REF(bool, createBoolean)
-CREATE_REF(String, createString)
+template <typename T>
+struct val_to_c<const T&> {
+    static T f(scripting::Context *ctx, const scripting::Value *head)
+    {
+        return val_to_c<T>::f(ctx, head);
+    }
+};
+
+template <typename T>
+struct create_val {};
+
+#define CREATE_VAL(T, func) template <>struct create_val<T>{    static scripting::Value *f(scripting::Context *ctx, const T& v)    {        return scripting::func(v);    }};
+
+template <>
+struct create_val<scripting::Value *>
+{
+    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
+    {
+        return scripting::createCopy(ctx, head);
+    }
+};
+
+CREATE_VAL(uint8_t, createInt)
+CREATE_VAL(int8_t, createInt)
+CREATE_VAL(uint16_t, createInt)
+CREATE_VAL(int16_t, createInt)
+CREATE_VAL(uint32_t, createInt)
+CREATE_VAL(int32_t, createInt)
+CREATE_VAL(uint64_t, createInt)
+CREATE_VAL(int64_t, createInt)
+CREATE_VAL(float, createFloat)
+CREATE_VAL(double, createFloat)
+CREATE_VAL(bool, createBoolean)
+CREATE_VAL(String, createString)
 
 template <typename T>
 struct type_same;
@@ -227,22 +218,22 @@ struct type_same;
 template <typename T>
 struct type_same<const T&>
 {
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return type_same<T>::f(ctx, ref);
+        return type_same<T>::f(ctx, head);
     }
 };
 
 template <>
-struct type_same<scripting::Ref>
+struct type_same<scripting::Value *>
 {
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
     {
         return true;
     }
 };
 
-#define TYPE_SAME_HELPER(T, enumValue) template <>struct type_same<T>{    static bool f(scripting::Context *ctx, const scripting::Ref& ref)    {        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();        scripting::Value *head = refMgr->translate(ref);        return head->type == scripting::ValueType::enumValue;    }};
+#define TYPE_SAME_HELPER(T, enumValue) template <>struct type_same<T>{    static bool f(scripting::Context *ctx, const scripting::Value *head)    {        return head->type == scripting::ValueType::enumValue;    }};
 
 TYPE_SAME_HELPER(uint8_t, Int)
 TYPE_SAME_HELPER(int8_t, Int)
@@ -257,9 +248,9 @@ TYPE_SAME_HELPER(double, Float)
 TYPE_SAME_HELPER(bool, Boolean)
 TYPE_SAME_HELPER(String, String)
 
-scripting::Ref AABB_copy(scripting::Context*, scripting::NativeObject*);
+scripting::Value *AABB_copy(scripting::Context*, scripting::NativeObject*);
 void AABB_destroy(scripting::Context*,scripting::NativeObject*);
-scripting::Ref AABB_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+scripting::Value *AABB_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
 void AABB_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
 static const scripting::NativeObjectFuncs AABB_funcs={
     .copy = AABB_copy,
@@ -268,38 +259,34 @@ static const scripting::NativeObjectFuncs AABB_funcs={
     .setMember = AABB_set_member
 };
 template <>
-struct create_ref<AABB>
+struct create_val<AABB>
 {
-    static scripting::Ref f(scripting::Context*ctx,const AABB&obj)
+    static scripting::Value *f(scripting::Context*ctx,const AABB&obj)
     {
-        return ctx->getEngine()->getRefMgr()->createNativeObject(AABB_funcs,NEW(AABB, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->AABB_typeID);
+        return scripting::createNativeObject(AABB_funcs,NEW(AABB, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->AABB_typeID);
     }
 };
 template <>
-struct ref_to_c<AABB>
+struct val_to_c<AABB>
 {
-    static AABB f(scripting::Context*ctx,const scripting::Ref&ref)
+    static AABB f(scripting::Context*ctx,const scripting::Value*head)
     {
-        scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
-        scripting::Value*head=refMgr->translate(ref);
         if(head->type==scripting::ValueType::NativeObject)
         {
             scripting::NativeObject*obj=(scripting::NativeObject*)head;
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->AABB_typeID)
                 return *((AABB*)obj->data);
             else
-                ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Value can not be converted to AABB."));
+                ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to AABB."));
         } else
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Value can not be converted to AABB."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to AABB."));
     }
 };
 template <>
 struct type_same<AABB>
 {
-    static bool f(scripting::Context *ctx,const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
     {
-        scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
-        scripting::Value*head=refMgr->translate(ref);
         if(head->type==scripting::ValueType::NativeObject)
             return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->AABB_typeID;
         else
@@ -307,15 +294,15 @@ struct type_same<AABB>
     }
 };
 
-scripting::Ref AABB_transform(scripting::Context *ctx, const List<scripting::Ref>& args);
-scripting::Ref AABB_extend(scripting::Context *ctx, const List<scripting::Ref>& args);
-scripting::Ref AABB_grow(scripting::Context *ctx, const List<scripting::Ref>& args);
-scripting::Ref AABB_copy(scripting::Context*ctx,scripting::NativeObject*self)
+scripting::Value *AABB_transform(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *AABB_extend(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *AABB_grow(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *AABB_copy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(self->data==NULL)
-        return ctx->getEngine()->getRefMgr()->createNativeObject(AABB_funcs,NULL,self->typeID);
+        return scripting::createNativeObject(AABB_funcs,NULL,self->typeID);
     else
-        return ctx->getEngine()->getRefMgr()->createNativeObject(AABB_funcs,NEW(AABB,*((AABB*)self->data)),self->typeID);
+        return scripting::createNativeObject(AABB_funcs,NEW(AABB,*((AABB*)self->data)),self->typeID);
 }
 
 void AABB_destroy(scripting::Context*ctx,scripting::NativeObject*self)
@@ -323,135 +310,127 @@ void AABB_destroy(scripting::Context*ctx,scripting::NativeObject*self)
     DELETE(AABB,self->data);
 }
 
-scripting::Ref AABB_new(scripting::Context*ctx, const List<scripting::Ref>&args)
+scripting::Value *AABB_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
-    scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
     if(args.getCount()!=1)
-        ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"AABB's constructor expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB's constructor expects one argument."));
     if(!type_same<AABB>::f(ctx, args[0]))
-        ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"AABB's constructor expects AABB as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABB's constructor expects AABB as first argument."));
     if(args.getCount()==1)
         if(true)
-            return refMgr->createNativeObject(AABB_funcs,NEW(AABB),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->AABB_typeID);
-    ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for AABB's constructor."));
-    return refMgr->createNil();
+            return scripting::createNativeObject(AABB_funcs,NEW(AABB),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->AABB_typeID);
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for AABB's constructor."));
+    return scripting::createNil();
 }
 
-scripting::Ref AABB_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+scripting::Value *AABB_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
-    scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
     if (key->type==scripting::ValueType::String)
     {
         String keyStr=((scripting::StringValue *)key)->value;
         if(self->data==NULL)
         {
             if(keyStr=="__typeID__")
-                return refMgr->createInt(self->typeID);
+                return scripting::createInt(self->typeID);
             else if(keyStr=="__name__")
-                return refMgr->createString("AABB");
+                return scripting::createString("AABB");
             else if(keyStr=="__new__")
-                return refMgr->createNativeFunction(AABB_new);
+                return scripting::createNativeFunction(AABB_new);
             else if(keyStr=="__call__")
-                return refMgr->createNativeFunction(AABB_new);
+                return scripting::createNativeFunction(AABB_new);
             else
-                ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Unknown member."));
+                ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
         } else
         {
             if(keyStr=="__classTypeID__")
-                return refMgr->createInt(self->typeID);
+                return scripting::createInt(self->typeID);
             else if(keyStr=="__init__")
-                return refMgr->createNativeFunction(AABB_new);
+                return scripting::createNativeFunction(AABB_new);
              else if (keyStr == "transform")
-                return refMgr->createNativeFunction(AABB_transform);
+                return scripting::createNativeFunction(AABB_transform);
              else if (keyStr == "extend")
-                return refMgr->createNativeFunction(AABB_extend);
+                return scripting::createNativeFunction(AABB_extend);
              else if (keyStr == "grow")
-                return refMgr->createNativeFunction(AABB_grow);
+                return scripting::createNativeFunction(AABB_grow);
              else
-                ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Unknown member."));
+                ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
         }
     }
-    return refMgr->createNil();
+    return scripting::createNil();
 }
 
 void AABB_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
-    scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
     if (key->type==scripting::ValueType::String)
     {
         String keyStr=((scripting::StringValue*)key)->value;
         if(self->data==NULL)
-            ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Native classes are read-only."));
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Native classes are read-only."));
         else
         {
             if(0) {} else
-                ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+                ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
         }
     }
 }
 
-scripting::Ref AABB_transform(scripting::Context*ctx,const List<scripting::Ref>&args)
+scripting::Value *AABB_transform(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
-    scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
     if(args.getCount()<1)
-        ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"AABB::transform expects at least one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB::transform expects at least one argument."));
     AABB*self;
     if(!type_same<AABB>::f(ctx, args[0]))
-        ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"AABB::transform expects AABB as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABB::transform expects AABB as first argument."));
     else
-        self=(AABB*)((scripting::NativeObject*)refMgr->translate(args[0]))->data;
+        self=(AABB*)((scripting::NativeObject*)args[0])->data;
 
-    ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::transform."));
-    return refMgr->createNil();
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::transform."));
+    return scripting::createNil();
 }
 
-scripting::Ref AABB_extend(scripting::Context*ctx,const List<scripting::Ref>&args)
+scripting::Value *AABB_extend(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
-    scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
     if(args.getCount()<1)
-        ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"AABB::extend expects at least one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB::extend expects at least one argument."));
     AABB*self;
     if(!type_same<AABB>::f(ctx, args[0]))
-        ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"AABB::extend expects AABB as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABB::extend expects AABB as first argument."));
     else
-        self=(AABB*)((scripting::NativeObject*)refMgr->translate(args[0]))->data;
+        self=(AABB*)((scripting::NativeObject*)args[0])->data;
 
     if(args.getCount()==2)
         if(1&&type_same<const AABB &>::f(ctx,args[1]))
         {
-            ( self->extend(ref_to_c<const AABB &>::f(ctx,args[1])));
-            return refMgr->createNil();
+            ( self->extend(val_to_c<const AABB &>::f(ctx,args[1])));
+            return scripting::createNil();
         }
-    ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::extend."));
-    return refMgr->createNil();
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::extend."));
+    return scripting::createNil();
 }
 
-scripting::Ref AABB_grow(scripting::Context*ctx,const List<scripting::Ref>&args)
+scripting::Value *AABB_grow(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
-    scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
     if(args.getCount()<1)
-        ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"AABB::grow expects at least one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB::grow expects at least one argument."));
     AABB*self;
     if(!type_same<AABB>::f(ctx, args[0]))
-        ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"AABB::grow expects AABB as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABB::grow expects AABB as first argument."));
     else
-        self=(AABB*)((scripting::NativeObject*)refMgr->translate(args[0]))->data;
+        self=(AABB*)((scripting::NativeObject*)args[0])->data;
 
-    ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::grow."));
-    return refMgr->createNil();
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::grow."));
+    return scripting::createNil();
 }
 
 void *initBindings(scripting::Engine *engine, void *data)
 {
-    scripting::RefManager *refMgr = engine->getRefMgr();
-
     BindingsExt *ext = NEW(BindingsExt);
 
     int64_t typeID;
     
     typeID = engine->createNewTypeID();
     ext->AABB_typeID = typeID;
-    engine->getGlobalVars().set("AABB", refMgr->createNativeObject(AABB_funcs, NULL, typeID));
+    engine->getGlobalVars().set("AABB", scripting::createNativeObject(AABB_funcs, NULL, typeID));
     
     return ext;
 }

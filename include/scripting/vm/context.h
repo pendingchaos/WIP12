@@ -59,8 +59,8 @@ class Context
             CallstackEntry(Bytecode bytecode_) : bytecode(bytecode_), offset(0) {}
 
             Bytecode bytecode;
-            HashMap<String, Ref> variables;
-            List<List<Ref>> stacks;
+            HashMap<String, Value *> variables;
+            List<List<Value *>> stacks;
             List<size_t> catchBlocks;
             size_t offset;
         };
@@ -89,17 +89,17 @@ class Context
         }
 
         void reset();
-        Ref run(const Bytecode& bytecode, List<Ref> args);
-        void throwException(Ref exc);
+        Value *run(const Bytecode& bytecode, List<Value *> args);
+        void throwException(Value *exc);
     private:
-        Ref _run(const Bytecode& bytecode, List<Ref> args);
+        Value *_run(const Bytecode& bytecode, List<Value *> args);
         Engine *engine;
         size_t callStackSize;
         CallstackEntry callStack[SCRIPTING_MAX_CALLSTACK_SIZE];
-        Ref exception;
+        Value *exception;
         jmp_buf jumpBuf;
 
-        Ref popStack(List<Ref>& stack);
+        Value *popStack(List<Value *>& stack);
 };
 
 class UnhandledExcException : public ExecutionException
@@ -109,7 +109,7 @@ class UnhandledExcException : public ExecutionException
                               size_t line_,
                               const char *function_,
                               Context *ctx_,
-                              Ref exception_);
+                              Value *exception_);
         UnhandledExcException(const UnhandledExcException& other);
         virtual ~UnhandledExcException();
 
@@ -118,7 +118,7 @@ class UnhandledExcException : public ExecutionException
             return "Unhandled script exception.";
         }
 
-        inline Ref getException() const
+        inline Value *getException() const
         {
             return exception;
         }
@@ -129,14 +129,14 @@ class UnhandledExcException : public ExecutionException
         }
     private:
         Context *ctx;
-        Ref exception;
+        Value *exception;
 };
 
 size_t toIndex(Context *ctx, Value *value);
-Ref getMember(Context *ctx, Value *val, Value *key);
+Value *getMember(Context *ctx, Value *val, Value *key);
 void setMember(Context *ctx, Value *dest, Value *key, Value *value);
-Ref call(Context *ctx, Value *value, const List<Ref>& args);
-Ref callMethod(Context *ctx, Value *obj, const String& methName, const List<Ref>& args);
+Value *call(Context *ctx, Value *value, const List<Value *>& args);
+Value *callMethod(Context *ctx, Value *obj, const String& methName, const List<Value *>& args);
 bool isInstance(Context *ctx, Value *obj, Value *type);
 }
 

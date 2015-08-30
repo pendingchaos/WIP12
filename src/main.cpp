@@ -48,13 +48,11 @@ int unsafeMain(int argc, const char *argv[])
 
 #include <iostream>
 
-scripting::Ref print(scripting::Context *ctx, const List<scripting::Ref>& args)
+scripting::Value *print(scripting::Context *ctx, const List<scripting::Value *>& args)
 {
-    scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     for (size_t i = 0; i < args.getCount(); ++i)
     {
-        scripting::Value *head = refMgr->translate(args[i]);
+        scripting::Value *head = args[i];
 
         if (head->type == scripting::ValueType::String)
         {
@@ -67,11 +65,11 @@ scripting::Ref print(scripting::Context *ctx, const List<scripting::Ref>& args)
             std::cout << ((scripting::FloatValue *)head)->value << std::endl;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Argument must be string."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Argument must be string."));
         }
     }
 
-    return refMgr->createNil();
+    return scripting::createNil();
 }
 
 void printAST(size_t indent, scripting::ASTNode *node)
@@ -500,27 +498,25 @@ int main(int argc, const char *argv[])
 
         registerBindings(engine);
 
-        engine->getGlobalVars().set("print", engine->getRefMgr()->createNativeFunction(print));
+        engine->getGlobalVars().set("print", scripting::createNativeFunction(print));
 
         {
             scripting::Context *context = NEW(scripting::Context, engine);
 
             try
             {
-                scripting::Ref result = context->run(code, List<scripting::Ref>());
+                scripting::Value *result = context->run(code, List<scripting::Value *>());
 
-                engine->getRefMgr()->destroy(context, result);
+                scripting::destroy(context, result);
             } catch (scripting::UnhandledExcException& e)
             {
-                scripting::Ref exc = e.getException();
-
-                scripting::Value *head = engine->getRefMgr()->translate(exc);
+                scripting::Value *exc = e.getException();
 
                 std::cout << "Unhandled script exception: ";
 
-                if (head->type == scripting::ValueType::Exception)
+                if (exc->type == scripting::ValueType::Exception)
                 {
-                    std::cout << ((scripting::ExceptionValue *)head)->error.getData();
+                    std::cout << ((scripting::ExceptionValue *)exc)->error.getData();
                 }
             }
         }

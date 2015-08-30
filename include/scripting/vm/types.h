@@ -23,93 +23,30 @@ enum class ExcType
     IndexError
 };
 
-class Ref
-{
-    friend RefManager;
-
-    public:
-        inline bool operator == (const Ref& ref) const
-        {
-            return ref.index == index and ref.generation == generation;
-        }
-
-        inline bool operator != (const Ref& ref) const
-        {
-            return not (*this == ref);
-        }
-    private:
-        uint64_t index : 22;
-        uint64_t generation : 42;
-};
-
 struct NativeObject;
 
 struct NativeObjectFuncs
 {
-    Ref (*copy)(Context *ctx, NativeObject *self);
+    Value *(*copy)(Context *ctx, NativeObject *self);
     void (*destroy)(Context *ctx, NativeObject *self);
-    Ref (*getMember)(Context *ctx, NativeObject *self, Value *key);
+    Value *(*getMember)(Context *ctx, NativeObject *self, Value *key);
     void (*setMember)(Context *ctx, NativeObject *self, Value *key, Value *value);
 };
 
-class RefManager
-{
-    public:
-        static const size_t maxInstances = 100000;
-
-        RefManager() : next(0)
-        {
-            for (size_t i = 0; i < maxInstances-1; ++i)
-            {
-                instances[i].next = i + 1;
-                instances[i].generation = 0;
-            }
-
-            instances[maxInstances-1].next = -1;
-        }
-
-        Ref createInt(int64_t value);
-        Ref createFloat(double value);
-        Ref createBoolean(bool value);
-        Ref createNil();
-        Ref createFunction(Bytecode& bytecode);
-        Ref createObject();
-        Ref createReference(const Ref& value);
-        Ref createString(const String& value);
-        Ref createList(const List<Ref>& value);
-        Ref createNativeFunction(Ref (*func)(Context *ctx, const List<Ref>& args));
-        Ref createException(ExcType type, String error);
-        Ref createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID);
-        Ref createCopy(Context *context, const Ref& ref);
-        Ref createCopy(Context *context, Value *value);
-
-        inline Value *translate(const Ref& ref) const
-        {
-            return instances[ref.index].value;
-        }
-
-        inline bool valid(const Ref& ref) const
-        {
-            return ref.index < maxInstances ?
-                   (instances[ref.index].generation == ref.generation)
-                   : false;
-        }
-
-        void destroy(Context *context, const Ref& ref);
-    private:
-        Ref create(Value *value) const;
-        void destroy(Context *context, Value *value);
-
-        struct Instance
-        {
-            Value *value;
-            uint64_t generation : 42;
-            int64_t next : 23;
-        };
-
-        mutable Instance instances[maxInstances];
-        mutable int64_t next : 23;
-};
+Value *createInt(int64_t value);
+Value *createFloat(double value);
+Value *createBoolean(bool value);
+Value *createNil();
+Value *createFunction(Bytecode& bytecode);
+Value *createObject();
+Value *createReference(Value *value);
+Value *createString(const String& value);
+Value *createList(const List<Value *>& value);
+Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args));
+Value *createException(ExcType type, String error);
+Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID);
+Value *createCopy(Context *context, const Value *value);
+void destroy(Context *context, Value *value);
 
 enum class ValueType
 {
@@ -129,7 +66,6 @@ enum class ValueType
 struct Value
 {
     ValueType type;
-    Ref ref;
 };
 
 struct IntValue
@@ -167,7 +103,7 @@ struct FunctionValue
 struct ObjectValue
 {
     Value head;
-    HashMap<String, Ref> members;
+    HashMap<String, Value *> members;
     uint64_t refCount;
 };
 
@@ -180,13 +116,14 @@ struct StringValue
 struct ListValue
 {
     Value head;
-    List<Ref> value;
+    //TODO: Reference count this.
+    List<Value *> value;
 };
 
 struct NativeFunction
 {
     Value head;
-    Ref (*func)(Context *ctx, const List<Ref>& args);
+    Value *(*func)(Context *ctx, const List<Value *>& args);
 };
 
 struct ExceptionValue

@@ -338,16 +338,13 @@ bindings.write("""#include <stdint.h>
 #include "scripting/bytecodegen.h"
 
 template <typename T>
-struct ref_to_c {};
+struct val_to_c {};
 
-#define REF_TO_C_INT(T, T2, min, max) template <>\
-struct ref_to_c<T2>\
+#define VAL_TO_C_INT(T, T2, min, max) template <>\
+struct val_to_c<T2>\
 {\
-    static T f(scripting::Context *ctx, const scripting::Ref& ref)\
+    static T f(scripting::Context *ctx, const scripting::Value *head)\
     {\
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();\
-        scripting::Value *head = refMgr->translate(ref);\
-        \
         int64_t v;\
         \
         if (head->type == scripting::ValueType::Int)\
@@ -358,43 +355,40 @@ struct ref_to_c<T2>\
             v = ((scripting::FloatValue *)head)->value;\
         } else\
         {\
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to int."));\
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to int."));\
         }\
         \
         if (v < min or v > max)\
         {\
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value out of bounds."));\
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value out of bounds."));\
         }\
         \
         return v;\
     }\
 };
 
-REF_TO_C_INT(uint8_t, uint8_t, 0, UINT8_MAX)
-REF_TO_C_INT(int8_t, int8_t, INT8_MIN, INT8_MAX)
-REF_TO_C_INT(uint16_t, uint16_t, 0, UINT16_MAX)
-REF_TO_C_INT(int16_t, int16_t, INT16_MIN, INT16_MAX)
-REF_TO_C_INT(uint32_t, uint32_t, 0, UINT32_MAX)
-REF_TO_C_INT(int32_t, int32_t, INT32_MIN, INT32_MAX)
-REF_TO_C_INT(uint64_t, uint64_t, 0, UINT64_MAX)
-REF_TO_C_INT(int64_t, int64_t, INT64_MIN, INT64_MAX)
-REF_TO_C_INT(uint8_t, const uint8_t&, 0, UINT8_MAX)
-REF_TO_C_INT(int8_t, const int8_t&, INT8_MIN, INT8_MAX)
-REF_TO_C_INT(uint16_t, const uint16_t&, 0, UINT16_MAX)
-REF_TO_C_INT(int16_t, const int16_t&, INT16_MIN, INT16_MAX)
-REF_TO_C_INT(uint32_t, const uint32_t&, 0, UINT32_MAX)
-REF_TO_C_INT(int32_t, const int32_t&, INT32_MIN, INT32_MAX)
-REF_TO_C_INT(uint64_t, const uint64_t&, 0, UINT64_MAX)
-REF_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
+VAL_TO_C_INT(uint8_t, uint8_t, 0, UINT8_MAX)
+VAL_TO_C_INT(int8_t, int8_t, INT8_MIN, INT8_MAX)
+VAL_TO_C_INT(uint16_t, uint16_t, 0, UINT16_MAX)
+VAL_TO_C_INT(int16_t, int16_t, INT16_MIN, INT16_MAX)
+VAL_TO_C_INT(uint32_t, uint32_t, 0, UINT32_MAX)
+VAL_TO_C_INT(int32_t, int32_t, INT32_MIN, INT32_MAX)
+VAL_TO_C_INT(uint64_t, uint64_t, 0, UINT64_MAX)
+VAL_TO_C_INT(int64_t, int64_t, INT64_MIN, INT64_MAX)
+VAL_TO_C_INT(uint8_t, const uint8_t&, 0, UINT8_MAX)
+VAL_TO_C_INT(int8_t, const int8_t&, INT8_MIN, INT8_MAX)
+VAL_TO_C_INT(uint16_t, const uint16_t&, 0, UINT16_MAX)
+VAL_TO_C_INT(int16_t, const int16_t&, INT16_MIN, INT16_MAX)
+VAL_TO_C_INT(uint32_t, const uint32_t&, 0, UINT32_MAX)
+VAL_TO_C_INT(int32_t, const int32_t&, INT32_MIN, INT32_MAX)
+VAL_TO_C_INT(uint64_t, const uint64_t&, 0, UINT64_MAX)
+VAL_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
 
 template <>
-struct ref_to_c<float>
+struct val_to_c<float>
 {
-    static float f(scripting::Context *ctx, const scripting::Ref& ref)
+    static float f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         float v;
         
         if (head->type == scripting::ValueType::Int)
@@ -405,7 +399,7 @@ struct ref_to_c<float>
             v = ((scripting::FloatValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
         
         return v;
@@ -413,13 +407,10 @@ struct ref_to_c<float>
 };
 
 template <>
-struct ref_to_c<double>
+struct val_to_c<double>
 {
-    static double f(scripting::Context *ctx, const scripting::Ref& ref)
+    static double f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         double v;
         
         if (head->type == scripting::ValueType::Int)
@@ -430,7 +421,7 @@ struct ref_to_c<double>
             v = ((scripting::FloatValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
         
         return v;
@@ -438,97 +429,94 @@ struct ref_to_c<double>
 };
 
 template <>
-struct ref_to_c<bool>
+struct val_to_c<bool>
 {
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         if (head->type == scripting::ValueType::Boolean)
         {
             return ((scripting::BooleanValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to bool."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to bool."));
         }
     }
 };
 
 template <>
-struct ref_to_c<String>
+struct val_to_c<String>
 {
-    static String f(scripting::Context *ctx, const scripting::Ref& ref)
+    static String f(scripting::Context *ctx, const scripting::Value *head)
     {
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
-        scripting::Value *head = refMgr->translate(ref);
-        
         if (head->type == scripting::ValueType::String)
         {
             return ((scripting::StringValue *)head)->value;
         } else
         {
-            ctx->throwException(refMgr->createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
         }
     }
 };
 
 template <>
-struct ref_to_c<scripting::Ref>
+struct val_to_c<scripting::Value *>
 {
-    static scripting::Ref f(scripting::Context *ctx, const scripting::Ref& ref)
+    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return ctx->getEngine()->getRefMgr()->createCopy(ctx, ref);
+        return scripting::createCopy(ctx, head);
+    }
+};
+
+template <>
+struct val_to_c<const scripting::Value *>
+{
+    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
+    {
+        return scripting::createCopy(ctx, head);
     }
 };
 
 template <typename T>
-struct ref_to_c<T&> {};
-
-template <typename T>
-struct ref_to_c<const T&> {
-    static T f(scripting::Context *ctx, const scripting::Ref& ref)
+struct val_to_c<const T&> {
+    static T f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return ref_to_c<T>::f(ctx, ref);
+        return val_to_c<T>::f(ctx, head);
     }
 };
 
 template <typename T>
-struct ref_to_c<T *> {};
+struct create_val {};
 
-template <typename T>
-struct create_ref {};
-
-#define CREATE_REF(T, func) template <>\
-struct create_ref<T>\
+#define CREATE_VAL(T, func) template <>\
+struct create_val<T>\
 {\
-    static scripting::Ref f(scripting::Context *ctx, const T& v)\
+    static scripting::Value *f(scripting::Context *ctx, const T& v)\
     {\
-        return ctx->getEngine()->getRefMgr()->func(v);\
+        return scripting::func(v);\
     }\
 };
 
 template <>
-struct create_ref<scripting::Ref>
+struct create_val<scripting::Value *>
 {
-    static scripting::Ref f(scripting::Context *ctx, const scripting::Ref& ref)
+    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return ctx->getEngine()->getRefMgr()->createCopy(ctx, ref);
+        return scripting::createCopy(ctx, head);
     }
 };
 
-CREATE_REF(uint8_t, createInt)
-CREATE_REF(int8_t, createInt)
-CREATE_REF(uint16_t, createInt)
-CREATE_REF(int16_t, createInt)
-CREATE_REF(uint32_t, createInt)
-CREATE_REF(int32_t, createInt)
-CREATE_REF(uint64_t, createInt)
-CREATE_REF(int64_t, createInt)
-CREATE_REF(float, createFloat)
-CREATE_REF(double, createFloat)
-CREATE_REF(bool, createBoolean)
-CREATE_REF(String, createString)
+CREATE_VAL(uint8_t, createInt)
+CREATE_VAL(int8_t, createInt)
+CREATE_VAL(uint16_t, createInt)
+CREATE_VAL(int16_t, createInt)
+CREATE_VAL(uint32_t, createInt)
+CREATE_VAL(int32_t, createInt)
+CREATE_VAL(uint64_t, createInt)
+CREATE_VAL(int64_t, createInt)
+CREATE_VAL(float, createFloat)
+CREATE_VAL(double, createFloat)
+CREATE_VAL(bool, createBoolean)
+CREATE_VAL(String, createString)
 
 template <typename T>
 struct type_same;
@@ -536,16 +524,16 @@ struct type_same;
 template <typename T>
 struct type_same<const T&>
 {
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
     {
-        return type_same<T>::f(ctx, ref);
+        return type_same<T>::f(ctx, head);
     }
 };
 
 template <>
-struct type_same<scripting::Ref>
+struct type_same<scripting::Value *>
 {
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
     {
         return true;
     }
@@ -554,10 +542,8 @@ struct type_same<scripting::Ref>
 #define TYPE_SAME_HELPER(T, enumValue) template <>\
 struct type_same<T>\
 {\
-    static bool f(scripting::Context *ctx, const scripting::Ref& ref)\
+    static bool f(scripting::Context *ctx, const scripting::Value *head)\
     {\
-        scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();\
-        scripting::Value *head = refMgr->translate(ref);\
         return head->type == scripting::ValueType::enumValue;\
     }\
 };
@@ -584,9 +570,9 @@ for class_ in classes.values():
 
     print "Bindings will be generated for %s" % class_.name
 
-    bindings.write(s("""scripting::Ref %s_copy(scripting::Context*,?scripting::NativeObject*);
+    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*);
 void %s_destroy(scripting::Context*,scripting::NativeObject*);
-scripting::Ref %s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+scripting::Value *%s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
 void %s_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
 static const scripting::NativeObjectFuncs %s_funcs={
 ????.copy = %s_copy,
@@ -595,38 +581,34 @@ static const scripting::NativeObjectFuncs %s_funcs={
 ????.setMember = %s_set_member
 };
 template <>
-struct create_ref<%s>
+struct create_val<%s>
 {
-????static scripting::Ref f(scripting::Context*ctx,const %s&obj)
+????static scripting::Value *f(scripting::Context*ctx,const %s&obj)
 ????{
-????????return ctx->getEngine()->getRefMgr()->createNativeObject(%s_funcs,NEW(%s, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
+????????return scripting::createNativeObject(%s_funcs,NEW(%s, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
 ????}
 };
 template <>
-struct ref_to_c<%s>
+struct val_to_c<%s>
 {
-????static %s f(scripting::Context*ctx,const scripting::Ref&ref)
+????static %s f(scripting::Context*ctx,const scripting::Value*head)
 ????{
-????????scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
-????????scripting::Value*head=refMgr->translate(ref);
 ????????if(head->type==scripting::ValueType::NativeObject)
 ????????{
 ????????????scripting::NativeObject*obj=(scripting::NativeObject*)head;
 ????????????if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID)
 ????????????????return *((%s*)obj->data);
 ????????????else
-????????????????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
+????????????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
 ????????} else
-????????????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
+????????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
 ????}
 };
 template <>
 struct type_same<%s>
 {
-????static bool f(scripting::Context *ctx,const scripting::Ref& ref)
+????static bool f(scripting::Context *ctx,const scripting::Value *head)
 ????{
-????????scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
-????????scripting::Value*head=refMgr->translate(ref);
 ????????if(head->type==scripting::ValueType::NativeObject)
 ????????????return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
 ????????else
@@ -647,18 +629,18 @@ struct type_same<%s>
             continue
         methods_[method.name] = None
 
-        bindings.write("scripting::Ref %s_%s(scripting::Context *ctx, const List<scripting::Ref>& args);\n" % (class_.name, method.name))
+        bindings.write("scripting::Value *%s_%s(scripting::Context *ctx, const List<scripting::Value *>& args);\n" % (class_.name, method.name))
 
 for class_ in classes.values():
     if not class_.script_public:
         continue
 
-    bindings.write(s("""scripting::Ref %s_copy(scripting::Context*ctx,scripting::NativeObject*self)
+    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*ctx,scripting::NativeObject*self)
 {
 ????if(self->data==NULL)
-????????return ctx->getEngine()->getRefMgr()->createNativeObject(%s_funcs,NULL,self->typeID);
+????????return scripting::createNativeObject(%s_funcs,NULL,self->typeID);
 ????else
-????????return ctx->getEngine()->getRefMgr()->createNativeObject(%s_funcs,NEW(%s,*((%s*)self->data)),self->typeID);
+????????return scripting::createNativeObject(%s_funcs,NEW(%s,*((%s*)self->data)),self->typeID);
 }
 
 void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
@@ -670,31 +652,30 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
        class_.name, class_.code_name))
 
     if len(class_.constructors) == 0:
-        bindings.write(s("""scripting::Ref %s_new(scripting::Context*ctx,const List<scripting::Ref>&args)
+        bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=1)
-????????ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
 ????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
-????return ctx->getEngine()->getRefMgr()->createNativeObject(%s_funcs,NEW(%s),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
+????return scripting::createNativeObject(%s_funcs,NEW(%s),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
 }
 
 """) % (class_.name, class_.code_name, class_.name, class_.name, class_.name, class_.name, class_.code_name, class_.name))
     else:
-        bindings.write(s("""scripting::Ref %s_new(scripting::Context*ctx, const List<scripting::Ref>&args)
+        bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
-????scripting::RefManager *refMgr = ctx->getEngine()->getRefMgr();
 ????if(args.getCount()!=1)
-????????ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
 ????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
 """) % (class_.name, class_.name, class_.code_name, class_.name, class_.name))
 
         for constructor in class_.constructors:
             if not constructor.script_public:
                 continue
             
-            args = ["ref_to_c<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(), j) for j in xrange(len(constructor.args))]
+            args = ["val_to_c<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(), j) for j in xrange(len(constructor.args))]
 
             for i in xrange(len(constructor.args)):
                 if i in constructor.arg_convs:
@@ -708,39 +689,38 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 
             bindings.write(s("""????if(args.getCount()==%d)
 ????????if(%s)
-????????????return refMgr->createNativeObject(%s_funcs,NEW(%s),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
+????????????return scripting::createNativeObject(%s_funcs,NEW(%s),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
 """) % (len(constructor.args)+1, testStr, class_.name, constStr, class_.name))
 
-        bindings.write(s("""????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for %s's constructor."));
-????return refMgr->createNil();
+        bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s's constructor."));
+????return scripting::createNil();
 }
 
 """) % class_.name)
 
-    bindings.write(s("""scripting::Ref %s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+    bindings.write(s("""scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
-????scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
 ????if (key->type==scripting::ValueType::String)
 ????{
 ????????String keyStr=((scripting::StringValue *)key)->value;
 ????????if(self->data==NULL)
 ????????{
 ????????????if(keyStr=="__typeID__")
-????????????????return refMgr->createInt(self->typeID);
+????????????????return scripting::createInt(self->typeID);
 ????????????else if(keyStr=="__name__")
-????????????????return refMgr->createString("%s");
+????????????????return scripting::createString("%s");
 ????????????else if(keyStr=="__new__")
-????????????????return refMgr->createNativeFunction(%s_new);
+????????????????return scripting::createNativeFunction(%s_new);
 ????????????else if(keyStr=="__call__")
-????????????????return refMgr->createNativeFunction(%s_new);
+????????????????return scripting::createNativeFunction(%s_new);
 ????????????else
-????????????????ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Unknown member."));
+????????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
 ????????} else
 ????????{
 ????????????if(keyStr=="__classTypeID__")
-????????????????return refMgr->createInt(self->typeID);
+????????????????return scripting::createInt(self->typeID);
 ????????????else if(keyStr=="__init__")
-????????????????return refMgr->createNativeFunction(%s_new);
+????????????????return scripting::createNativeFunction(%s_new);
 ????????????""") % (class_.name, class_.name, class_.name, class_.name, class_.name))
 
     methods_ = {}
@@ -751,7 +731,7 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
         methods_[method.name] = None
 
         bindings.write(s(""" else if (keyStr == "%s")
-????????????????return refMgr->createNativeFunction(%s_%s);
+????????????????return scripting::createNativeFunction(%s_%s);
 ????????????""") % (method.name, class_.name, method.name))
 
     for property_ in class_.properties:
@@ -761,26 +741,25 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
         bindings.write(s(""" else if(keyStr=="%s")
 ????????????{
 ????????????????%s*obj=(%s*)self->data;
-????????????????return create_ref<decltype(obj->%s)>::f(obj->%s);
+????????????????return create_val<decltype(obj->%s)>::f(obj->%s);
 ????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
     
     bindings.write(s(""" else
-????????????????ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Unknown member."));
+????????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
 ????????}
 ????}
-????return refMgr->createNil();
+????return scripting::createNil();
 }
 
 """))
 
     bindings.write(s("""void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
-????scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
 ????if (key->type==scripting::ValueType::String)
 ????{
 ????????String keyStr=((scripting::StringValue*)key)->value;
 ????????if(self->data==NULL)
-????????????ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Native classes are read-only."));
+????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Native classes are read-only."));
 ????????else
 ????????{
 ????????????if(0) {}""") % (class_.name))
@@ -792,11 +771,11 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
         bindings.write(s(""" else if(keyStr=="%s")
 ????????????{
 ????????????????%s*obj=(%s*)self->data;
-????????????????obj->%s=ref_to_c<decltype(obj->%s)>::f(value->ref);
+????????????????obj->%s=val_to_c<decltype(obj->%s)>::f(value->ref);
 ????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
     
     bindings.write(s(""" else
-????????????????ctx->throwException(refMgr->createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+????????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
 ????????}
 ????}
 }
@@ -812,22 +791,21 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
             methods[method.name] = [method]
     
     for methods_ in methods.values():
-        bindings.write(s("""scripting::Ref %s_%s(scripting::Context*ctx,const List<scripting::Ref>&args)
+        bindings.write(s("""scripting::Value *%s_%s(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
-????scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
 ????if(args.getCount()<1)
-????????ctx->throwException(refMgr->createException(scripting::ExcType::ValueError,"%s::%s expects at least one argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::%s expects at least one argument."));
 ????%s*self;
 ????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"%s::%s expects %s as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::%s expects %s as first argument."));
 ????else
-????????self=(%s*)((scripting::NativeObject*)refMgr->translate(args[0]))->data;
+????????self=(%s*)((scripting::NativeObject*)args[0])->data;
 
 """) % (class_.name, methods_[0].name, class_.name, methods_[0].name, class_.code_name, class_.code_name, class_.name, methods_[0].name, class_.name, class_.code_name))
 
         for method in methods_:
             if method.script_public:
-                args = ["ref_to_c<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(), j+1) for j in xrange(len(method.args))]
+                args = ["val_to_c<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(), j+1) for j in xrange(len(method.args))]
 
                 for i in xrange(len(method.args)):
                     if i in method.arg_convs:
@@ -850,10 +828,10 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
         "(" if method.return_type.to_string() == "void" else "return create_ref<%s>::f(ctx, " % method.return_type.to_string(),
         method.name,
         argsStr,
-        "return refMgr->createNil()" if method.return_type.to_string() == "void" else ""))
+        "return scripting::createNil()" if method.return_type.to_string() == "void" else ""))
 
-        bindings.write(s("""????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for %s::%s."));
-????return refMgr->createNil();
+        bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s::%s."));
+????return scripting::createNil();
 }
 
 """) % (class_.name, methods_[0].name))
@@ -869,14 +847,13 @@ for functions_ in functions.values():
     else:
         continue
 
-    bindings.write(s("""Ref %s_binding(scripting::Context*ctx,const List<scripting::Ref>&args)
+    bindings.write(s("""Value *%s_binding(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
-????scripting::RefManager*refMgr=ctx->getEngine()->getRefMgr();
 """) % (functions_[0].name))
 
     for function in functions_:
         if function.script_public:
-            args = ["ref_to_c<%s>::f(ctx,args[%d])" % (function.args[j].type_.to_string(), j) for j in xrange(len(function.args))]
+            args = ["val_to_c<%s>::f(ctx,args[%d])" % (function.args[j].type_.to_string(), j) for j in xrange(len(function.args))]
 
             for i in xrange(len(function.args)):
                 if i in function.arg_convs:
@@ -899,18 +876,16 @@ for functions_ in functions.values():
        "(" if function.return_type.to_string() == "void" else "return create_ref<%s>::f(ctx," % function.return_type.to_string(),
        function.name,
        argsStr,
-       "return refMgr->createNil()" if function.return_type.to_string() == "void" else ""))
+       "return scripting::createNil()" if function.return_type.to_string() == "void" else ""))
 
-    bindings.write(s("""????ctx->throwException(refMgr->createException(scripting::ExcType::TypeError,"Unable to find overload for %s."));
-????return refMgr->createNil();
+    bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s."));
+????return scripting::createNil();
 }
 
 """) % (function.name))
 
 bindings.write("""void *initBindings(scripting::Engine *engine, void *data)
 {
-    scripting::RefManager *refMgr = engine->getRefMgr();
-
     BindingsExt *ext = NEW(BindingsExt);
 
     int64_t typeID;
@@ -923,7 +898,7 @@ for class_ in classes.values():
     
     bindings.write("""    typeID = engine->createNewTypeID();
     ext->%s_typeID = typeID;
-    engine->getGlobalVars().set("%s", refMgr->createNativeObject(%s_funcs, NULL, typeID));
+    engine->getGlobalVars().set("%s", scripting::createNativeObject(%s_funcs, NULL, typeID));
     
 """ % (class_.name, class_.name, class_.name))
 
@@ -932,7 +907,7 @@ for functions_ in functions.values():
         if not function.script_public:
             continue
         
-        bindings.write("""    engine->getGlobalVars().set("%s", refMgr->createNativeFunction(%s_binding));
+        bindings.write("""    engine->getGlobalVars().set("%s", scripting::createNativeFunction(%s_binding));
         """ % (function.name, function.name))
 
 bindings.write("""    return ext;

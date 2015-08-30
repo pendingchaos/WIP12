@@ -14,29 +14,18 @@ struct Extension
     void (*deinit)(Engine *engine, void *data);
 };
 
-//TODO: Destroy undeleted references when the Engine quits.
 class Engine
 {
     public:
         Engine();
         ~Engine();
 
-        inline const RefManager *getRefMgr() const
-        {
-            return &refMgr;
-        }
-
-        inline RefManager *getRefMgr()
-        {
-            return &refMgr;
-        }
-
-        inline const HashMap<String, Ref>& getGlobalVars() const
+        inline const HashMap<String, Value *>& getGlobalVars() const
         {
             return globalVars;
         }
 
-        inline HashMap<String, Ref>& getGlobalVars()
+        inline HashMap<String, Value *>& getGlobalVars()
         {
             return globalVars;
         }
@@ -55,8 +44,7 @@ class Engine
             return nextTypeID++;
         }
     private:
-        HashMap<String, Ref> globalVars;
-        RefManager refMgr;
+        HashMap<String, Value *> globalVars;
         HashMap<String, Extension> extensions;
         int64_t nextTypeID;
 };

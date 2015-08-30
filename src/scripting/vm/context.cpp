@@ -7,13 +7,13 @@
 
 namespace scripting
 {
-Context::Context(Engine *engine_) : engine(engine_), callStackSize(0), exception(engine->getRefMgr()->createNil()) {}
+Context::Context(Engine *engine_) : engine(engine_), callStackSize(0), exception(createNil()) {}
 
 Context::~Context()
 {
     reset();
 
-    engine->getRefMgr()->destroy(this, exception);
+    destroy(this, exception);
 }
 
 void Context::reset()
@@ -26,7 +26,7 @@ void Context::reset()
         {
             for (size_t k = 0; k < entry.stacks[j].getCount(); ++k)
             {
-                engine->getRefMgr()->destroy(this, entry.stacks[j][k]);
+                destroy(this, entry.stacks[j][k]);
             }
         }
 
@@ -34,7 +34,7 @@ void Context::reset()
 
         for (size_t j = 0; j < entry.variables.getEntryCount(); ++j)
         {
-            engine->getRefMgr()->destroy(this, entry.variables.getValue(j));
+            destroy(this, entry.variables.getValue(j));
         }
 
         entry.variables.clear();
@@ -44,13 +44,11 @@ void Context::reset()
 }
 
 //TODO: More reference checking.
-Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
+Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
 {
-    RefManager *refMgr = engine->getRefMgr();
-
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
     size_t& offset = callstackEntry.offset;
-    List<Ref> *stack = &callstackEntry.stacks[0];
+    List<Value *> *stack = &callstackEntry.stacks[0];
 
     while (offset < bytecode.data.getSize())
     {
@@ -60,25 +58,25 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
         {
         case Opcode::PushInt:
         {
-            stack->append(refMgr->createInt(bytecode.getInt64(offset)));
+            stack->append(createInt(bytecode.getInt64(offset)));
             offset += 8;
             break;
         }
         case Opcode::PushFloat:
         {
-            stack->append(refMgr->createFloat(bytecode.getDouble(offset)));
+            stack->append(createFloat(bytecode.getDouble(offset)));
             offset += 8;
             break;
         }
         case Opcode::PushBoolean:
         {
-            stack->append(refMgr->createBoolean(bytecode.getBoolean(offset)));
+            stack->append(createBoolean(bytecode.getBoolean(offset)));
             offset += 1;
             break;
         }
         case Opcode::PushNil:
         {
-            stack->append(refMgr->createNil());
+            stack->append(createNil());
             break;
         }
         case Opcode::PushFunc:
@@ -91,12 +89,12 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
             Bytecode code(data);
 
-            stack->append(refMgr->createFunction(code));
+            stack->append(createFunction(code));
             break;
         }
         case Opcode::PushObject:
         {
-            stack->append(refMgr->createObject());
+            stack->append(createObject());
             break;
         }
         case Opcode::PushString:
@@ -107,12 +105,12 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
             ResizableData data = bytecode.getData(offset, length);
             offset += length;
 
-            stack->append(refMgr->createString(String(length, (const char *)data.getData())));
+            stack->append(createString(String(length, (const char *)data.getData())));
             break;
         }
         case Opcode::PushList:
         {
-            stack->append(refMgr->createList(List<Ref>()));
+            stack->append(createList(List<Value *>()));
             break;
         }
         case Opcode::PushException:
@@ -126,7 +124,7 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
             ResizableData data = bytecode.getData(offset, length);
             offset += length;
 
-            stack->append(refMgr->createException(type, String(length, (const char *)data.getData())));
+            stack->append(createException(type, String(length, (const char *)data.getData())));
             break;
         }
         case Opcode::StackPop:
@@ -136,37 +134,36 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
                 THROW(StackBoundsException);
             }
 
-            refMgr->destroy(this, (*stack)[stack->getCount()-1]);
+            destroy(this, (*stack)[stack->getCount()-1]);
 
             stack->remove(stack->getCount()-1);
             break;
         }
         case Opcode::LoadVar:
         {
-            Ref nameRef = popStack(*stack);
-            Value *head = refMgr->translate(nameRef);
+            Value *nameHead = popStack(*stack);
 
-            if (head->type != ValueType::String)
+            if (nameHead->type != ValueType::String)
             {
-                refMgr->destroy(this, nameRef);
+                destroy(this, nameHead);
 
-                throwException(refMgr->createException(ExcType::TypeError, "Variable name must be String."));
+                throwException(createException(ExcType::TypeError, "Variable name must be String."));
                 break;
             }
 
-            String name = ((StringValue *)head)->value;
+            String name = ((StringValue *)nameHead)->value;
 
             bool found = false;
 
             for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
             {
-                HashMap<String, Ref>& vars = callStack[i].variables;
+                HashMap<String, Value *>& vars = callStack[i].variables;
 
                 int entry = vars.findEntry(name);
 
                 if (entry != -1)
                 {
-                    stack->append(refMgr->createCopy(this, vars.getValue(entry)));
+                    stack->append(createCopy(this, vars.getValue(entry)));
                     found = true;
                     break;
                 }
@@ -174,50 +171,49 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
             if (not found)
             {
-                HashMap<String, Ref>& vars = engine->getGlobalVars();
+                HashMap<String, Value *>& vars = engine->getGlobalVars();
 
                 int entry = vars.findEntry(name);
 
                 if (entry != -1)
                 {
-                    stack->append(refMgr->createCopy(this, vars.getValue(entry)));
+                    stack->append(createCopy(this, vars.getValue(entry)));
                 } else
                 {
-                    throwException(refMgr->createException(ExcType::KeyError, "No such variable."));
+                    throwException(createException(ExcType::KeyError, "No such variable."));
                 }
                 break;
             }
 
-            refMgr->destroy(this, nameRef);
+            destroy(this, nameHead);
             break;
         }
         case Opcode::StoreVar:
         {
-            Ref nameRef = popStack(*stack);
-            Value *head = refMgr->translate(nameRef);
+            Value *nameHead = popStack(*stack);
 
-            if (head->type != ValueType::String)
+            if (nameHead->type != ValueType::String)
             {
-                refMgr->destroy(this, nameRef);
+                destroy(this, nameHead);
 
-                throwException(refMgr->createException(ExcType::TypeError, "Variable name must be String."));
+                throwException(createException(ExcType::TypeError, "Variable name must be String."));
                 break;
             }
 
-            Ref value = popStack(*stack);
+            Value *value = popStack(*stack);
 
-            String name = ((StringValue *)head)->value;
+            String name = ((StringValue *)nameHead)->value;
             bool found = false;
 
             for (ptrdiff_t i = callStackSize-1; i >= 0; --i)
             {
-                HashMap<String, Ref>& vars = callStack[i].variables;
+                HashMap<String, Value *>& vars = callStack[i].variables;
 
                 int entry = vars.findEntry(name);
 
                 if (entry != -1)
                 {
-                    refMgr->destroy(this, vars.getValue(entry));
+                    destroy(this, vars.getValue(entry));
                     vars.set(name, value);
 
                     found = true;
@@ -227,13 +223,13 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
             if (not found)
             {
-                HashMap<String, Ref>& vars = engine->getGlobalVars();
+                HashMap<String, Value *>& vars = engine->getGlobalVars();
 
                 int entry = vars.findEntry(name);
 
                 if (entry != -1)
                 {
-                    refMgr->destroy(this, vars.getValue(entry));
+                    destroy(this, vars.getValue(entry));
                     vars.set(name, value);
                 } else
                 {
@@ -241,35 +237,34 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
                 }
             }
 
-            refMgr->destroy(this, nameRef);
+            destroy(this, nameHead);
             break;
         }
         case Opcode::DelVar:
         {
-            Ref nameRef = popStack(*stack);
-            Value *head = refMgr->translate(nameRef);
+            Value *nameHead = popStack(*stack);
 
-            if (head->type != ValueType::String)
+            if (nameHead->type != ValueType::String)
             {
-                refMgr->destroy(this, nameRef);
+                destroy(this, nameHead);
 
-                throwException(refMgr->createException(ExcType::TypeError, "Variable name must be String."));
+                throwException(createException(ExcType::TypeError, "Variable name must be String."));
                 break;
             }
 
-            String name = ((StringValue *)head)->value;
+            String name = ((StringValue *)nameHead)->value;
 
             bool found = false;
 
             for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
             {
-                HashMap<String, Ref>& vars = callStack[i].variables;
+                HashMap<String, Value *>& vars = callStack[i].variables;
 
                 int entry = vars.findEntry(name);
 
                 if (entry != -1)
                 {
-                    refMgr->destroy(this, vars.getValue(entry));
+                    destroy(this, vars.getValue(entry));
 
                     vars.remove(name);
                     found = true;
@@ -279,158 +274,155 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
             if (not found)
             {
-                HashMap<String, Ref>& vars = engine->getGlobalVars();
+                HashMap<String, Value *>& vars = engine->getGlobalVars();
 
                 int entry = vars.findEntry(name);
 
                 if (entry != -1)
                 {
-                    refMgr->destroy(this, vars.getValue(entry));
+                    destroy(this, vars.getValue(entry));
 
                     vars.remove(name);
                 } else
                 {
-                    throwException(refMgr->createException(ExcType::KeyError, "No such variable."));
+                    throwException(createException(ExcType::KeyError, "No such variable."));
                 }
                 break;
             }
 
-            refMgr->destroy(this, nameRef);
+            destroy(this, nameHead);
             break;
         }
         case Opcode::GetMember:
         {
-            Ref value = popStack(*stack);
-            Ref key = popStack(*stack);
+            Value *value = popStack(*stack);
+            Value *key = popStack(*stack);
 
             stack->append(getMember(this,
-                                    refMgr->translate(value),
-                                    refMgr->translate(key)));
+                                    value,
+                                    key));
 
-            refMgr->destroy(this, key);
-            refMgr->destroy(this, value);
+            destroy(this, key);
+            destroy(this, value);
             break;
         }
         case Opcode::SetMember:
         {
-            Ref value = popStack(*stack);
-            Ref key = popStack(*stack);
-            Ref newValue = popStack(*stack);
+            Value *value = popStack(*stack);
+            Value *key = popStack(*stack);
+            Value *newValue = popStack(*stack);
 
             setMember(this,
-                      refMgr->translate(value),
-                      refMgr->translate(key),
-                      refMgr->translate(newValue));
+                      value,
+                      key,
+                      newValue);
 
-            refMgr->destroy(this, newValue);
-            refMgr->destroy(this, key);
-            refMgr->destroy(this, value);
+            destroy(this, newValue);
+            destroy(this, key);
+            destroy(this, value);
             break;
         }
         case Opcode::GetType:
         {
-            Ref value = popStack(*stack);
+            Value *value = popStack(*stack);
 
-            switch (refMgr->translate(value)->type)
+            switch (value->type)
             {
             case ValueType::Int:
             {
-                stack->append(refMgr->createString("int"));
+                stack->append(createString("int"));
                 break;
             }
             case ValueType::Float:
             {
-                stack->append(refMgr->createString("float"));
+                stack->append(createString("float"));
                 break;
             }
             case ValueType::Boolean:
             {
-                stack->append(refMgr->createString("bool"));
+                stack->append(createString("bool"));
                 break;
             }
             case ValueType::Nil:
             {
-                stack->append(refMgr->createString("nil"));
+                stack->append(createString("nil"));
                 break;
             }
             case ValueType::Function:
             {
-                stack->append(refMgr->createString("func"));
+                stack->append(createString("func"));
                 break;
             }
             case ValueType::Object:
             {
-                stack->append(refMgr->createString("obj"));
+                stack->append(createString("obj"));
                 break;
             }
             case ValueType::String:
             {
-                stack->append(refMgr->createString("str"));
+                stack->append(createString("str"));
                 break;
             }
             case ValueType::List:
             {
-                stack->append(refMgr->createString("list"));
+                stack->append(createString("list"));
                 break;
             }
             case ValueType::NativeFunction:
             {
-                stack->append(refMgr->createString("native_func"));
+                stack->append(createString("native_func"));
                 break;
             }
             case ValueType::NativeObject:
             {
-                stack->append(refMgr->createString("native_obj"));
+                stack->append(createString("native_obj"));
                 break;
             }
             case ValueType::Exception:
             {
-                stack->append(refMgr->createString("exception"));
+                stack->append(createString("exception"));
                 break;
             }
             }
 
-            refMgr->destroy(this, value);
+            destroy(this, value);
             break;
         }
 
-        #define ARITHMATIC_OP(iop, fop, funcName) Ref a = popStack(*stack);\
-Ref b = popStack(*stack);\
-\
-Value *aHead = refMgr->translate(a);\
-Value *bHead = refMgr->translate(b);\
+        #define ARITHMATIC_OP(iop, fop, funcName) Value *aHead = popStack(*stack);\
+Value *bHead = popStack(*stack);\
 \
 if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject or\
     bHead->type == ValueType::Object or bHead->type == ValueType::NativeObject)\
 {\
-    List<Ref> args;\
-    args.append(b);\
+    List<Value *> args;\
+    args.append(bHead);\
     stack->append(callMethod(this, aHead, funcName, args));\
 } else if ((aHead->type == ValueType::Float or bHead->type == ValueType::Float) and (aHead->type == ValueType::Int or bHead->type == ValueType::Int))\
 {\
     double a = aHead->type == ValueType::Float ? ((FloatValue *)aHead)->value : ((IntValue *)aHead)->value;\
     double b = bHead->type == ValueType::Float ? ((FloatValue *)bHead)->value : ((IntValue *)bHead)->value;\
     \
-    stack->append(refMgr->createFloat(fop));\
+    stack->append(createFloat(fop));\
 } else if (aHead->type == ValueType::Int and bHead->type == ValueType::Int)\
 {\
     int64_t a = ((IntValue *)aHead)->value;\
     int64_t b = ((IntValue *)bHead)->value;\
     \
-    stack->append(refMgr->createInt(iop));\
+    stack->append(createInt(iop));\
 } else if (aHead->type == ValueType::Float and bHead->type == ValueType::Float)\
 {\
     double a = ((FloatValue *)aHead)->value;\
     double b = ((FloatValue *)bHead)->value;\
     \
-    stack->append(refMgr->createFloat(fop));\
+    stack->append(createFloat(fop));\
 } else\
 {\
-    throwException(refMgr->createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
 }\
 \
-refMgr->destroy(this, a);\
-refMgr->destroy(this, b);\
+destroy(this, aHead);\
+destroy(this, bHead);\
 \
 break;
 
@@ -457,27 +449,24 @@ break;
 
 #undef ARITHMATIC_OP
 
-#define TYPED_OP(type_, typeStruct, createFunc, op, funcName) Ref a = popStack(*stack);\
-Ref b = popStack(*stack);\
-\
-Value *aHead = refMgr->translate(a);\
-Value *bHead = refMgr->translate(b);\
+#define TYPED_OP(type_, typeStruct, createFunc, op, funcName) Value *aHead = popStack(*stack);\
+Value *bHead = popStack(*stack);\
 \
 if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
 {\
-    List<Ref> args;\
-    args.append(b);\
+    List<Value *> args;\
+    args.append(bHead);\
     stack->append(callMethod(this, aHead, funcName, args));\
 } else if (aHead->type != type_ or bHead->type != type_)\
 {\
-    throwException(refMgr->createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
 } else\
 {\
-stack->append(refMgr->createFunc(((typeStruct *)aHead)->value op ((typeStruct *)bHead)->value));\
+stack->append(createFunc(((typeStruct *)aHead)->value op ((typeStruct *)bHead)->value));\
 }\
 \
-refMgr->destroy(this, a);\
-refMgr->destroy(this, b);\
+destroy(this, aHead);\
+destroy(this, bHead);\
 \
 break;
 
@@ -491,21 +480,20 @@ break;
         }
         case Opcode::BoolNot:
         {
-            Ref value = popStack(*stack);
-            Value *head = refMgr->translate(value);
+            Value *head = popStack(*stack);
 
             if (head->type == ValueType::Object or head->type == ValueType::NativeObject)
             {
-                stack->append(callMethod(this, head, "__blnot__", List<Ref>()));
+                stack->append(callMethod(this, head, "__blnot__", List<Value *>()));
             } else if (head->type == ValueType::Boolean)
             {
-                stack->append(refMgr->createBoolean(not ((BooleanValue *)head)->value));
+                stack->append(createBoolean(not ((BooleanValue *)head)->value));
             } else
             {
-                throwException(refMgr->createException(ExcType::TypeError, "Invalid operand type. Must be Boolean."));
+                throwException(createException(ExcType::TypeError, "Invalid operand type. Must be Boolean."));
             }
 
-            refMgr->destroy(this, value);
+            destroy(this, head);
             break;
         }
         case Opcode::BitAnd:
@@ -523,20 +511,17 @@ break;
 
 #undef TYPED_OP
 
-#define SHIFT_OP(op, funcName) Ref a = popStack(*stack);\
-Ref b = popStack(*stack);\
-\
-Value *aHead = refMgr->translate(a);\
-Value *bHead = refMgr->translate(b);\
+#define SHIFT_OP(op, funcName) Value *aHead = popStack(*stack);\
+Value *bHead = popStack(*stack);\
 \
 if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
 {\
-    List<Ref> args;\
-    args.append(b);\
+    List<Value *> args;\
+    args.append(bHead);\
     stack->append(callMethod(this, aHead, funcName, args));\
 } else if (aHead->type != ValueType::Int or bHead->type != ValueType::Int)\
 {\
-    throwException(refMgr->createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
 } else\
 {\
     union\
@@ -557,11 +542,11 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
     u1.s = ((IntValue *)aHead)->value;\
     u2.s = ((IntValue *)bHead)->value;\
     u3.u = u1.u op u2.u;\
-    stack->append(refMgr->createInt(u3.s));\
+    stack->append(createInt(u3.s));\
 }\
 \
-refMgr->destroy(this, a);\
-refMgr->destroy(this, b);\
+destroy(this, aHead);\
+destroy(this, bHead);\
 \
 break;
 
@@ -575,61 +560,57 @@ break;
         }
         case Opcode::BitNot:
         {
-            Ref value = popStack(*stack);
-            Value *head = refMgr->translate(value);
+            Value *head = popStack(*stack);
 
             if (head->type == ValueType::Object or head->type == ValueType::NativeObject)
             {
-                stack->append(callMethod(this, head, "__btnot__", List<Ref>()));
+                stack->append(callMethod(this, head, "__btnot__", List<Value *>()));
             } else if (head->type == ValueType::Int)
             {
-                stack->append(refMgr->createInt(~((BooleanValue *)head)->value));
+                stack->append(createInt(~((BooleanValue *)head)->value));
             } else
             {
-                throwException(refMgr->createException(ExcType::TypeError, "Invalid operand type. Must be Int."));
+                throwException(createException(ExcType::TypeError, "Invalid operand type. Must be Int."));
             }
 
-            refMgr->destroy(this, value);
+            destroy(this, head);
             break;
         }
 
-        #define COMPARE_OP(op, funcName) Ref a = popStack(*stack);\
-Ref b = popStack(*stack);\
-\
-Value *aHead = refMgr->translate(a);\
-Value *bHead = refMgr->translate(b);\
+        #define COMPARE_OP(op, funcName) Value *aHead = popStack(*stack);\
+Value *bHead = popStack(*stack);\
 \
 if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject or\
     bHead->type == ValueType::Object or bHead->type == ValueType::NativeObject)\
 {\
-    List<Ref> args;\
-    args.append(b);\
+    List<Value *> args;\
+    args.append(bHead);\
     stack->append(callMethod(this, aHead, funcName, args));\
 } else if ((aHead->type == ValueType::Float or bHead->type == ValueType::Float) and (aHead->type == ValueType::Int or bHead->type == ValueType::Int))\
 {\
     double a = aHead->type == ValueType::Float ? ((FloatValue *)aHead)->value : ((IntValue *)aHead)->value;\
     double b = bHead->type == ValueType::Float ? ((FloatValue *)bHead)->value : ((IntValue *)bHead)->value;\
     \
-    stack->append(refMgr->createBoolean(a op b));\
+    stack->append(createBoolean(a op b));\
 } else if (aHead->type == ValueType::Int and bHead->type == ValueType::Int)\
 {\
     int64_t a = ((IntValue *)aHead)->value;\
     int64_t b = ((IntValue *)bHead)->value;\
     \
-    stack->append(refMgr->createBoolean(a op b));\
+    stack->append(createBoolean(a op b));\
 } else if (aHead->type == ValueType::Float and bHead->type == ValueType::Float)\
 {\
     double a = ((FloatValue *)aHead)->value;\
     double b = ((FloatValue *)bHead)->value;\
     \
-    stack->append(refMgr->createBoolean(a op b));\
+    stack->append(createBoolean(a op b));\
 } else\
 {\
-    throwException(refMgr->createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
 }\
 \
-refMgr->destroy(this, a);\
-refMgr->destroy(this, b);\
+destroy(this, aHead);\
+destroy(this, bHead);\
 \
 break;
 
@@ -662,25 +643,22 @@ break;
 
         case Opcode::Call:
         {
-            Ref func = popStack(*stack);
-            Value *head = refMgr->translate(func);
-
-            Ref argCountRef = popStack(*stack);
-            Value *argCountHead = refMgr->translate(argCountRef);
+            Value *head = popStack(*stack);
+            Value *argCountHead = popStack(*stack);
 
             if (argCountHead->type != ValueType::Int)
             {
-                throwException(refMgr->createException(ExcType::TypeError, "Arguments count must be an integer."));
+                throwException(createException(ExcType::TypeError, "Arguments count must be an integer."));
             }
 
             int64_t argCount = ((IntValue *)argCountHead)->value;
 
             if (argCount < 0)
             {
-                throwException(refMgr->createException(ExcType::ValueError, "Argument count must not be negative."));
+                throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
             }
 
-            List<Ref> args;
+            List<Value *> args;
 
             for (int64_t i = 0; i < argCount; ++i)
             {
@@ -691,42 +669,38 @@ break;
 
             for (size_t i = 0; i < args.getCount(); ++i)
             {
-                refMgr->destroy(this, args[i]);
+                destroy(this, args[i]);
             }
 
-            refMgr->destroy(this, argCountRef);
-            refMgr->destroy(this, func);
+            destroy(this, argCountHead);
+            destroy(this, head);
             break;
         }
         case Opcode::CallMethod:
         {
-            Ref object = popStack(*stack);
-            Value *head = refMgr->translate(object);
-
-            Ref name = popStack(*stack);
-            Value *nameHead = refMgr->translate(name);
+            Value *head = popStack(*stack);
+            Value *nameHead = popStack(*stack);
 
             if (nameHead->type != ValueType::String)
             {
-                throwException(refMgr->createException(ExcType::TypeError, "Method name must be string."));
+                throwException(createException(ExcType::TypeError, "Method name must be string."));
             }
 
-            Ref argCountRef = popStack(*stack);
-            Value *argCountHead = refMgr->translate(argCountRef);
+            Value *argCountHead = popStack(*stack);
 
             if (argCountHead->type != ValueType::Int)
             {
-                throwException(refMgr->createException(ExcType::TypeError, "Arguments count must be an integer."));
+                throwException(createException(ExcType::TypeError, "Arguments count must be an integer."));
             }
 
             int64_t argCount = ((IntValue *)argCountHead)->value;
 
             if (argCount < 0)
             {
-                throwException(refMgr->createException(ExcType::ValueError, "Argument count must not be negative."));
+                throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
             }
 
-            List<Ref> args;
+            List<Value *> args;
 
             for (int64_t i = 0; i < argCount; ++i)
             {
@@ -737,12 +711,12 @@ break;
 
             for (size_t i = 0; i < args.getCount(); ++i)
             {
-                refMgr->destroy(this, args[i]);
+                destroy(this, args[i]);
             }
 
-            refMgr->destroy(this, argCountRef);
-            refMgr->destroy(this, name);
-            refMgr->destroy(this, object);
+            destroy(this, argCountHead);
+            destroy(this, nameHead);
+            destroy(this, head);
             break;
         }
         case Opcode::Return:
@@ -751,36 +725,32 @@ break;
         }
         case Opcode::GetArgCount:
         {
-            stack->append(refMgr->createInt(args.getCount()));
-
-            stack->append(refMgr->createList(args));
+            stack->append(createInt(args.getCount()));
             break;
         }
         case Opcode::GetArg:
         {
-            Ref indexRef = popStack(*stack);
-            Value *head = refMgr->translate(indexRef);
+            Value *head = popStack(*stack);
 
             size_t index = toIndex(this, head);
 
             if (index >= args.getCount())
             {
-                throwException(refMgr->createException(ExcType::IndexError, "Arg index is out of bounds."));
+                throwException(createException(ExcType::IndexError, "Arg index is out of bounds."));
             }
 
-            stack->append(refMgr->createCopy(this, args[index]));
+            stack->append(createCopy(this, args[index]));
 
-            refMgr->destroy(this, indexRef);
+            destroy(this, head);
             break;
         }
         case Opcode::JumpIf:
         {
-            Ref cond = popStack(*stack);
-            Value *head = refMgr->translate(cond);
+            Value *head = popStack(*stack);
 
             if (head->type != ValueType::Boolean)
             {
-                throwException(refMgr->createException(ExcType::TypeError, "Jump condition is not a Boolean."));
+                throwException(createException(ExcType::TypeError, "Jump condition is not a Boolean."));
             }
 
             int32_t success = bytecode.getInt32(offset);
@@ -797,7 +767,7 @@ break;
                 offset += failure;
             }
 
-            refMgr->destroy(this, cond);
+            destroy(this, head);
             break;
         }
         case Opcode::Jump:
@@ -813,7 +783,7 @@ break;
             int32_t by = bytecode.getInt32(offset);
             offset += 4;
 
-            callstackEntry.stacks.append(List<Ref>());
+            callstackEntry.stacks.append(List<Value *>());
             callstackEntry.catchBlocks.append(offset + by);
 
             stack = &callstackEntry.stacks[callstackEntry.stacks.getCount()-1];
@@ -840,7 +810,7 @@ break;
         }
         case Opcode::GetException:
         {
-            stack->append(refMgr->createCopy(this, exception));
+            stack->append(createCopy(this, exception));
             break;
         }
         }
@@ -911,11 +881,9 @@ break;
 
                 for (size_t j = 0; j < entry.variables.getEntryCount(); ++j)
                 {
-                    Ref value = entry.variables.getValue(j);
+                    Value *head = entry.variables.getValue(j);
 
                     std::cout << "        " << entry.variables.getKey(j).getData() << ": ";
-
-                    Value *head = refMgr->translate(value);
 
                     switch (head->type)
                     {
@@ -982,11 +950,9 @@ break;
 
                 for (size_t j = 0; j < entry.stacks[entry.stacks.getCount()-1].getCount(); ++j)
                 {
-                    Ref value = entry.stacks[entry.stacks.getCount()-1][j];
+                    Value *head = entry.stacks[entry.stacks.getCount()-1][j];
 
                     std::cout << "        ";
-
-                    Value *head = refMgr->translate(value);
 
                     switch (head->type)
                     {
@@ -1052,10 +1018,10 @@ break;
         }
     }
 
-    return refMgr->createNil();
+    return createNil();
 }
 
-Ref Context::run(const Bytecode& bytecode, List<Ref> args)
+Value *Context::run(const Bytecode& bytecode, List<Value *> args)
 {
     //This may not be safe.
     if (!setjmp(jumpBuf))
@@ -1068,15 +1034,15 @@ Ref Context::run(const Bytecode& bytecode, List<Ref> args)
         callStack[callStackSize++] = CallstackEntry(bytecode);
         CallstackEntry& callstackEntry = callStack[callStackSize-1];
 
-        callstackEntry.stacks.append(List<Ref>());
+        callstackEntry.stacks.append(List<Value *>());
 
-        Ref result = _run(bytecode, args);
+        Value *result = _run(bytecode, args);
 
         for (size_t i = 0; i < callstackEntry.stacks.getCount(); ++i)
         {
             for (size_t j = 0; j < callstackEntry.stacks[i].getCount(); ++j)
             {
-                engine->getRefMgr()->destroy(this, callstackEntry.stacks[i][j]);
+                destroy(this, callstackEntry.stacks[i][j]);
             }
         }
 
@@ -1084,7 +1050,7 @@ Ref Context::run(const Bytecode& bytecode, List<Ref> args)
 
         for (size_t i = 0; i < callstackEntry.variables.getEntryCount(); ++i)
         {
-            engine->getRefMgr()->destroy(this, callstackEntry.variables.getValue(i));
+            destroy(this, callstackEntry.variables.getValue(i));
         }
 
         callstackEntry.variables.clear();
@@ -1114,37 +1080,37 @@ Ref Context::run(const Bytecode& bytecode, List<Ref> args)
 
             entry->catchBlocks.remove(entry->catchBlocks.getCount()-1);
 
-            List<Ref>& stack = entry->stacks[entry->stacks.getCount()-1];
+            List<Value *>& stack = entry->stacks[entry->stacks.getCount()-1];
 
             for (size_t i = 0; i < stack.getCount(); ++i)
             {
-                engine->getRefMgr()->destroy(this, stack[i]);
+                destroy(this, stack[i]);
             }
 
             entry->stacks.remove(entry->stacks.getCount()-1);
             entry->offset = offset;
 
-            Ref result = _run(entry->bytecode, List<Ref>());
+            Value *result = _run(entry->bytecode, List<Value *>());
 
-            engine->getRefMgr()->destroy(this, exception);
-            exception = engine->getRefMgr()->createNil();
+            destroy(this, exception);
+            exception = createNil();
 
             return result;
         }
 
-        Ref exc = exception;
+        Value *exc = exception;
 
-        exception = engine->getRefMgr()->createNil();
+        exception = createNil();
 
         THROW(UnhandledExcException, this, exc);
     }
 }
 
-void Context::throwException(Ref exc)
+void Context::throwException(Value *exc)
 {
     if (callStackSize > 0)
     {
-        engine->getRefMgr()->destroy(this, exception);
+        destroy(this, exception);
         exception = exc;
 
         longjmp(jumpBuf, 1);
@@ -1154,14 +1120,14 @@ void Context::throwException(Ref exc)
     }
 }
 
-Ref Context::popStack(List<Ref>& stack)
+Value *Context::popStack(List<Value *>& stack)
 {
     if (stack.getCount() == 0)
     {
         THROW(StackBoundsException);
     } else
     {
-        Ref result = stack[stack.getCount() - 1];
+        Value *result = stack[stack.getCount() - 1];
         stack.remove(stack.getCount() - 1);
 
         return result;
@@ -1172,7 +1138,7 @@ UnhandledExcException::UnhandledExcException(const char *file_,
                                              size_t line_,
                                              const char *function_,
                                              Context *ctx_,
-                                             Ref exception_)
+                                             Value *exception_)
  : ExecutionException(file_, line_, function_),
    ctx(ctx_),
    exception(exception_) {}
@@ -1182,24 +1148,22 @@ UnhandledExcException::UnhandledExcException(const UnhandledExcException& other)
                       other.getLine(),
                       other.getFunction()),
    ctx(other.ctx),
-   exception(ctx->getEngine()->getRefMgr()->createCopy(ctx, other.exception)) {}
+   exception(createCopy(ctx, other.exception)) {}
 
 UnhandledExcException::~UnhandledExcException()
 {
-    ctx->getEngine()->getRefMgr()->destroy(ctx, exception);
+    destroy(ctx, exception);
 }
 
 size_t toIndex(Context *ctx, Value *value)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     if (value->type == ValueType::Int)
     {
         int64_t i = ((IntValue *)value)->value;
 
         if (i < 0)
         {
-            ctx->throwException(refMgr->createException(ExcType::ValueError, "Index should not be below zero."));
+            ctx->throwException(createException(ExcType::ValueError, "Index should not be below zero."));
         } else
         {
             return i;
@@ -1210,42 +1174,40 @@ size_t toIndex(Context *ctx, Value *value)
 
         if ((size_t)i < 0)
         {
-            ctx->throwException(refMgr->createException(ExcType::ValueError, "Index should not be below zero."));
+            ctx->throwException(createException(ExcType::ValueError, "Index should not be below zero."));
         } else
         {
             return (size_t)i;
         }
     } else
     {
-        ctx->throwException(refMgr->createException(ExcType::TypeError, "Invalid index type."));
+        ctx->throwException(createException(ExcType::TypeError, "Invalid index type."));
     }
 
     assert(false);
 }
 
-Ref getMember(Context *ctx, Value *val, Value *key)
+Value *getMember(Context *ctx, Value *val, Value *key)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     switch (val->type)
     {
     case ValueType::Object:
     {
         if (key->type != ValueType::String)
         {
-            ctx->throwException(refMgr->createException(ExcType::TypeError, "Member name must be String."));
+            ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
 
-        HashMap<String, Ref> members = ((ObjectValue *)val)->members;
+        HashMap<String, Value *> members = ((ObjectValue *)val)->members;
 
         int index = members.findEntry(((StringValue *)key)->value);
 
         if (index == -1)
         {
-            ctx->throwException(refMgr->createException(ExcType::KeyError, "Unknown member."));
+            ctx->throwException(createException(ExcType::KeyError, "Unknown member."));
         }
 
-        return refMgr->createCopy(ctx, members.getValue(index));
+        return createCopy(ctx, members.getValue(index));
     }
     case ValueType::String:
     {
@@ -1255,23 +1217,23 @@ Ref getMember(Context *ctx, Value *val, Value *key)
 
         if (index >= str.getLength())
         {
-            ctx->throwException(refMgr->createException(ExcType::IndexError, "String index is out of bounds."));
+            ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
         }
 
-        return refMgr->createString(String(str[index]));
+        return createString(String(str[index]));
     }
     case ValueType::List:
     {
-        List<Ref> list = ((ListValue *)val)->value;
+        List<Value *> list = ((ListValue *)val)->value;
 
         size_t index = toIndex(ctx, key);
 
         if (index >= list.getCount())
         {
-            ctx->throwException(refMgr->createException(ExcType::IndexError, "List index is out of bounds."));
+            ctx->throwException(createException(ExcType::IndexError, "List index is out of bounds."));
         }
 
-        return refMgr->createCopy(ctx, list[index]);
+        return createCopy(ctx, list[index]);
     }
     case ValueType::NativeObject:
     {
@@ -1283,7 +1245,7 @@ Ref getMember(Context *ctx, Value *val, Value *key)
     {
         if (key->type != ValueType::String)
         {
-            ctx->throwException(refMgr->createException(ExcType::TypeError, "Member name must be String."));
+            ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
 
         String name = ((StringValue *)key)->value;
@@ -1295,32 +1257,32 @@ Ref getMember(Context *ctx, Value *val, Value *key)
             {
             case ExcType::ValueError:
             {
-                return refMgr->createString("value");
+                return createString("value");
             }
             case ExcType::TypeError:
             {
-                return refMgr->createString("type");
+                return createString("type");
             }
             case ExcType::KeyError:
             {
-                return refMgr->createString("key");
+                return createString("key");
             }
             case ExcType::IndexError:
             {
-                return refMgr->createString("index");
+                return createString("index");
             }
             }
         } else if (name == "error")
         {
-            return refMgr->createString(exc->error);
+            return createString(exc->error);
         } else
         {
-            ctx->throwException(refMgr->createException(ExcType::KeyError, "Unknown member for Exception."));
+            ctx->throwException(createException(ExcType::KeyError, "Unknown member for Exception."));
         }
     }
     default:
     {
-        ctx->throwException(refMgr->createException(ExcType::TypeError, "Type does not have members."));
+        ctx->throwException(createException(ExcType::TypeError, "Type does not have members."));
     }
     }
 
@@ -1329,38 +1291,36 @@ Ref getMember(Context *ctx, Value *val, Value *key)
 
 void setMember(Context *ctx, Value *dest, Value *key, Value *value)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     switch (dest->type)
     {
     case ValueType::Object:
     {
         if (key->type != ValueType::String)
         {
-            ctx->throwException(refMgr->createException(ExcType::TypeError, "Member names must be String."));
+            ctx->throwException(createException(ExcType::TypeError, "Member names must be String."));
         }
 
-        HashMap<String, Ref> members = ((ObjectValue *)dest)->members;
+        HashMap<String, Value *> members = ((ObjectValue *)dest)->members;
 
         String name = ((StringValue *)key)->value;
 
         if (members.findEntry(name) != -1)
         {
-            refMgr->destroy(ctx, members.get(name));
+            destroy(ctx, members.get(name));
         }
 
-        members.set(name, refMgr->createCopy(ctx, value));
+        members.set(name, createCopy(ctx, value));
     }
     case ValueType::String:
     {
         if (value->type != ValueType::String)
         {
-            ctx->throwException(refMgr->createException(ExcType::TypeError, "A string's character can only be set as a String."));
+            ctx->throwException(createException(ExcType::TypeError, "A string's character can only be set as a String."));
         } else
         {
             if (((StringValue *)value)->value.getLength() != 1)
             {
-                ctx->throwException(refMgr->createException(ExcType::ValueError, "String must of length 1."));
+                ctx->throwException(createException(ExcType::ValueError, "String must of length 1."));
             }
         }
 
@@ -1370,23 +1330,23 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
 
         if (index >= str.getLength())
         {
-            ctx->throwException(refMgr->createException(ExcType::IndexError, "String index is out of bounds."));
+            ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
         }
 
         str[index] = ((StringValue *)value)->value[0];
     }
     case ValueType::List:
     {
-        List<Ref> list = ((ListValue *)dest)->value;
+        List<Value *> list = ((ListValue *)dest)->value;
 
         size_t index = toIndex(ctx, key);
 
         if (index >= list.getCount())
         {
-            ctx->throwException(refMgr->createException(ExcType::IndexError, "List index is out of bounds."));
+            ctx->throwException(createException(ExcType::IndexError, "List index is out of bounds."));
         }
 
-        list[index] = refMgr->createCopy(ctx, value);
+        list[index] = createCopy(ctx, value);
     }
     case ValueType::NativeObject:
     {
@@ -1396,17 +1356,15 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
     }
     default:
     {
-        ctx->throwException(refMgr->createException(ExcType::TypeError, "Type does not have members."));
+        ctx->throwException(createException(ExcType::TypeError, "Type does not have members."));
     }
     }
 
     assert(false);
 }
 
-Ref call(Context *ctx, Value *value, const List<Ref>& args)
+Value *call(Context *ctx, Value *value, const List<Value *>& args)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     switch (value->type)
     {
     case ValueType::Function:
@@ -1420,45 +1378,39 @@ Ref call(Context *ctx, Value *value, const List<Ref>& args)
     case ValueType::Object:
     case ValueType::NativeObject:
     {
-        Ref result = callMethod(ctx, value, "__call__", args);
+        Value *result = callMethod(ctx, value, "__call__", args);
         return result;
     }
     default:
     {
-        ctx->throwException(refMgr->createException(ExcType::TypeError, "Type is not callable."));
+        ctx->throwException(createException(ExcType::TypeError, "Type is not callable."));
     }
     }
 
     assert(false);
 }
 
-Ref callMethod(Context *ctx, Value *obj, const String& methName, const List<Ref>& args)
+Value *callMethod(Context *ctx, Value *obj, const String& methName, const List<Value *>& args)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
+    List<Value *> args_;
 
-    List<Ref> args_;
-
-    args_.append(obj->ref);
+    args_.append(obj);
     args_.append(args);
 
-    Ref name = refMgr->createString(methName);
-    Value *nameHead = refMgr->translate(name);
+    Value *nameHead = createString(methName);
 
-    Ref func = getMember(ctx, obj, nameHead);
-    Value *funcHead = refMgr->translate(func);
+    Value *funcHead = getMember(ctx, obj, nameHead);
 
-    Ref result = call(ctx, funcHead, args_);
+    Value *result = call(ctx, funcHead, args_);
 
-    refMgr->destroy(ctx, func);
-    refMgr->destroy(ctx, name);
+    destroy(ctx, funcHead);
+    destroy(ctx, nameHead);
 
     return result;
 }
 
 bool isInstance(Context *ctx, Value *obj, Value *type)
 {
-    RefManager *refMgr = ctx->getEngine()->getRefMgr();
-
     if (obj->type != type->type)
     {
         return false;
@@ -1469,8 +1421,8 @@ bool isInstance(Context *ctx, Value *obj, Value *type)
         return ((NativeObject *)obj)->typeID == ((NativeObject *)type)->typeID;
     } else if (obj->type == ValueType::Object)
     {
-        HashMap<String, Ref> objMembers = ((ObjectValue *)obj)->members;
-        HashMap<String, Ref> typeMembers = ((ObjectValue *)type)->members;
+        HashMap<String, Value *> objMembers = ((ObjectValue *)obj)->members;
+        HashMap<String, Value *> typeMembers = ((ObjectValue *)type)->members;
 
         int entry1 = objMembers.findEntry("__classTypeID__");
         int entry2 = typeMembers.findEntry("__typeID__");
@@ -1480,12 +1432,12 @@ bool isInstance(Context *ctx, Value *obj, Value *type)
             return false;
         }
 
-        Value *id1 = refMgr->translate(objMembers.getValue(entry1));
-        Value *id2 = refMgr->translate(objMembers.getValue(entry2));
+        Value *id1 = objMembers.getValue(entry1);
+        Value *id2 = objMembers.getValue(entry2);
 
         if (id1->type != ValueType::Int or id2->type != ValueType::Int)
         {
-            ctx->throwException(refMgr->createException(ExcType::TypeError, "Type IDs must be integers."));
+            ctx->throwException(createException(ExcType::TypeError, "Type IDs must be integers."));
         }
 
         return ((IntValue *)id1) == ((IntValue *)id2);

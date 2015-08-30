@@ -6,95 +6,95 @@
 
 namespace scripting
 {
-Ref RefManager::createInt(int64_t num)
+Value *createInt(int64_t num)
 {
     IntValue *value = NEW(IntValue);
 
     value->head.type = ValueType::Int;
     value->value = num;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createFloat(double num)
+Value *createFloat(double num)
 {
     FloatValue *value = NEW(FloatValue);
 
     value->head.type = ValueType::Float;
     value->value = num;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createBoolean(bool b)
+Value *createBoolean(bool b)
 {
     BooleanValue *value = NEW(BooleanValue);
 
     value->head.type = ValueType::Boolean;
     value->value = b;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createNil()
+Value *createNil()
 {
     NilValue *value = NEW(NilValue);
 
     value->head.type = ValueType::Nil;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createFunction(Bytecode& bytecode)
+Value *createFunction(Bytecode& bytecode)
 {
     FunctionValue *value = NEW(FunctionValue, bytecode);
 
     value->head.type = ValueType::Function;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createObject()
+Value *createObject()
 {
     ObjectValue *value = NEW(ObjectValue);
 
     value->head.type = ValueType::Object;
     value->refCount = 1;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createString(const String& str)
+Value *createString(const String& str)
 {
     StringValue *value = NEW(StringValue);
 
     value->head.type = ValueType::String;
     value->value = str;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createList(const List<Ref>& values)
+Value *createList(const List<Value *>& values)
 {
     ListValue *value = NEW(ListValue);
 
     value->head.type = ValueType::List;
     value->value = values;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createNativeFunction(Ref (*func)(Context *ctx, const List<Ref>& args))
+Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args))
 {
     NativeFunction *value = NEW(NativeFunction);
 
     value->head.type = ValueType::NativeFunction;
     value->func = func;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createException(ExcType type, String error)
+Value *createException(ExcType type, String error)
 {
     ExceptionValue *value = NEW(ExceptionValue);
 
@@ -102,10 +102,10 @@ Ref RefManager::createException(ExcType type, String error)
     value->type = type;
     value->error = error;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID)
+Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID)
 {
     NativeObject *value = NEW(NativeObject);
 
@@ -115,17 +115,10 @@ Ref RefManager::createNativeObject(const NativeObjectFuncs& funcs, void *data, u
     value->typeID = typeID;
     value->refCount = 1;
 
-    return create((Value *)value);
+    return (Value *)value;
 }
 
-Ref RefManager::createCopy(Context *context, const Ref& ref)
-{
-    Value *head = translate(ref);
-
-    return createCopy(context, head);
-}
-
-Ref RefManager::createCopy(Context *context, Value *value)
+Value *createCopy(Context *context, const Value *value)
 {
     switch (value->type)
     {
@@ -151,11 +144,11 @@ Ref RefManager::createCopy(Context *context, Value *value)
     }
     case ValueType::Object:
     {
-        Ref objRef = create(value);
+        ObjectValue *obj = NEW(ObjectValue, *(ObjectValue *)value);
 
-        ++((ObjectValue *)value)->refCount;
+        ++obj->refCount;
 
-        return objRef;
+        return (Value *)obj;
     }
     case ValueType::String:
     {
@@ -171,11 +164,11 @@ Ref RefManager::createCopy(Context *context, Value *value)
     }
     case ValueType::NativeObject:
     {
-        Ref objRef = create(value);
+        NativeObject *obj = NEW(NativeObject, *(NativeObject *)value);
 
-        ++((NativeObject *)value)->refCount;
+        ++obj->refCount;
 
-        return objRef;
+        return (Value *)obj;
     }
     case ValueType::Exception:
     {
@@ -190,7 +183,7 @@ Ref RefManager::createCopy(Context *context, Value *value)
     return createNil();
 }
 
-void RefManager::destroy(Context *context, Value *value)
+void destroy(Context *context, Value *value)
 {
     switch (value->type)
     {
@@ -227,11 +220,11 @@ void RefManager::destroy(Context *context, Value *value)
 
         if (obj->refCount == 0)
         {
-            HashMap<String, Ref> members = ((ObjectValue *)value)->members;
+            HashMap<String, Value *> members = ((ObjectValue *)value)->members;
 
             if (members.findEntry("__del__") != -1)
             {
-                callMethod(context, value, "__del__", List<Ref>());
+                callMethod(context, value, "__del__", List<Value *>());
             }
 
             for (size_t i = 0; i < members.getEntryCount(); ++i)
@@ -250,7 +243,7 @@ void RefManager::destroy(Context *context, Value *value)
     }
     case ValueType::List:
     {
-        List<Ref> list = ((ListValue *)value)->value;
+        List<Value *> list = ((ListValue *)value)->value;
 
         for (size_t i = 0; i < list.getCount(); ++i)
         {
@@ -288,42 +281,5 @@ void RefManager::destroy(Context *context, Value *value)
         break;
     }
     }
-}
-
-void RefManager::destroy(Context *context, const Ref& ref)
-{
-    if (not valid(ref))
-    {
-        return;
-    }
-
-    Value *head = translate(ref);
-
-    destroy(context, head);
-
-    instances[ref.index].next = next;
-    ++instances[ref.index].generation;
-    next = ref.index;
-}
-
-//TODO: Use per-type pools.
-Ref RefManager::create(Value *value) const
-{
-    assert(next != -1); //TODO: Have a fallback.
-    assert(instances[next].generation+1 < ((uint64_t)1 << 42));
-
-    uint64_t index = next;
-    instances[next].value = value;
-    uint64_t generation = instances[next].generation;
-    next = instances[next].next;
-
-    Ref ref;
-
-    ref.index = index;
-    ref.generation = generation;
-
-    value->ref = ref;
-
-    return ref;
 }
 }
