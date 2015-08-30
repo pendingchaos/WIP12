@@ -25,7 +25,6 @@
     - [ ] Namespaces
     - [ ] Getters and Setters
     - [ ] Templated Functions
-- [ ] Get rid of references (scripting).
 - [ ] Explicit variable declaration (scripting).
 - [ ] Make functions builtin functions like + and *.
 - [ ] === function (scripting).
