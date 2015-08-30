@@ -83,8 +83,6 @@ class RefManager
         Ref createCopy(Context *context, const Ref& ref);
         Ref createCopy(Context *context, Value *value);
 
-        void copyRef(Context *context, const Ref& dest, const Ref& src);
-
         inline Value *translate(const Ref& ref) const
         {
             return instances[ref.index].value;

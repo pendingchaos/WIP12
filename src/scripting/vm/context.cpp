@@ -204,6 +204,8 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
                 break;
             }
 
+            Ref value = popStack(*stack);
+
             String name = ((StringValue *)head)->value;
             bool found = false;
 
@@ -215,14 +217,8 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
                 if (entry != -1)
                 {
-                    Ref value = popStack(*stack);
-
-                    if (value != vars.getValue(entry))
-                    {
-                        refMgr->copyRef(this, vars.getValue(entry), value);
-
-                        refMgr->destroy(this, value);
-                    }
+                    refMgr->destroy(this, vars.getValue(entry));
+                    vars.set(name, value);
 
                     found = true;
                     break;
@@ -237,21 +233,11 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
 
                 if (entry != -1)
                 {
-                    Ref value = popStack(*stack);
-
-                    if (value != vars.getValue(entry))
-                    {
-                        refMgr->copyRef(this, vars.getValue(entry), value);
-
-                        refMgr->destroy(this, value);
-                    }
+                    refMgr->destroy(this, vars.getValue(entry));
+                    vars.set(name, value);
                 } else
                 {
-                    Ref value = popStack(*stack);
-
-                    callstackEntry.variables.set(name, refMgr->createCopy(this, value));
-
-                    refMgr->destroy(this, value);
+                    callstackEntry.variables.set(name, value);
                 }
             }
 
