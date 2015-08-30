@@ -134,7 +134,7 @@ class UnhandledExcException : public ExecutionException
 
 size_t toIndex(Context *ctx, Value *value);
 Ref getMember(Context *ctx, Value *val, Value *key);
-Ref setMember(Context *ctx, Value *dest, Value *key, Value *value);
+void setMember(Context *ctx, Value *dest, Value *key, Value *value);
 Ref call(Context *ctx, Value *value, const List<Ref>& args);
 Ref callMethod(Context *ctx, Value *obj, const String& methName, const List<Ref>& args);
 bool isInstance(Context *ctx, Value *obj, Value *type);

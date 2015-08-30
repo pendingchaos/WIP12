@@ -331,10 +331,10 @@ Ref Context::_run(const Bytecode& bytecode, List<Ref> args)
             Ref key = popStack(*stack);
             Ref newValue = popStack(*stack);
 
-            stack->append(setMember(this,
-                                    refMgr->translate(value),
-                                    refMgr->translate(key),
-                                    refMgr->translate(newValue)));
+            setMember(this,
+                      refMgr->translate(value),
+                      refMgr->translate(key),
+                      refMgr->translate(newValue));
 
             refMgr->destroy(this, newValue);
             refMgr->destroy(this, key);
@@ -1341,7 +1341,7 @@ Ref getMember(Context *ctx, Value *val, Value *key)
     assert(false);
 }
 
-Ref setMember(Context *ctx, Value *dest, Value *key, Value *value)
+void setMember(Context *ctx, Value *dest, Value *key, Value *value)
 {
     RefManager *refMgr = ctx->getEngine()->getRefMgr();
 
@@ -1356,20 +1356,14 @@ Ref setMember(Context *ctx, Value *dest, Value *key, Value *value)
 
         HashMap<String, Ref> members = ((ObjectValue *)dest)->members;
 
-        Ref result = refMgr->createCopy(ctx, dest);
-
-        ObjectValue *resultHead = (ObjectValue *)refMgr->translate(result);
-
         String name = ((StringValue *)key)->value;
 
-        if (resultHead->members.findEntry(name) != -1)
+        if (members.findEntry(name) != -1)
         {
-            refMgr->destroy(ctx, resultHead->members.get(name));
+            refMgr->destroy(ctx, members.get(name));
         }
 
-        resultHead->members.set(name, refMgr->createCopy(ctx, value));
-
-        return result;
+        members.set(name, refMgr->createCopy(ctx, value));
     }
     case ValueType::String:
     {
@@ -1394,8 +1388,6 @@ Ref setMember(Context *ctx, Value *dest, Value *key, Value *value)
         }
 
         str[index] = ((StringValue *)value)->value[0];
-
-        return refMgr->createCopy(ctx, dest);
     }
     case ValueType::List:
     {
@@ -1409,18 +1401,12 @@ Ref setMember(Context *ctx, Value *dest, Value *key, Value *value)
         }
 
         list[index] = refMgr->createCopy(ctx, value);
-
-        return refMgr->createCopy(ctx, dest);
     }
     case ValueType::NativeObject:
     {
-        Ref result = refMgr->createCopy(ctx, dest);
-
-        NativeObject *obj = (NativeObject *)refMgr->translate(result);
+        NativeObject *obj = (NativeObject *)dest;
 
         obj->funcs.setMember(ctx, obj, key, value);
-
-        return result;
     }
     default:
     {

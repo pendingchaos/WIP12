@@ -27,6 +27,7 @@
     - [ ] Templated Functions
 - [ ] Get rid of references (scripting).
 - [ ] Explicit variable declaration (scripting).
+- [ ] Make functions builtin functions like + and *.
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
