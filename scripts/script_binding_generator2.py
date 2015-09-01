@@ -2,7 +2,7 @@ import clang.cindex
 import os
 import copy
 
-minimize = False
+minimize = True
 
 def s(v):
     if minimize:
@@ -60,6 +60,29 @@ files = [
 "../include/audio/audioworld.h",
 "../include/audio/audiodevice.h"]
 
+operators = {"operator+": "__add__",
+             "operator-": "__sub__",
+             "operator*": "__mul__",
+             "operator/": "__div__",
+             "operator%": "__mod__",
+             "operator&&": "__bland__",
+             "operator||": "__bor__",
+             "operator!": "__blnot__",
+             "operator&": "__btand__",
+             "operator|": "__btor__",
+             "operator^": "__btxor__",
+             "operator<<": "__shl__",
+             "operator>>": "__shr__",
+             "operator~": "__btnot__",
+             "operator<": "__less__",
+             "operator>": "__grtr__",
+             "operator==": "__eq__",
+             "operator!=": "__neq__",
+             "operator<=": "__leq__",
+             "operator>=": "__geq__",
+             "operator()": "__call__"}
+             #TODO: operator[]
+
 print "Running preprocessor"
 
 pipe = os.popen("g++ -E -o.script_includes.h -I../include `sdl2-config --cflags` `pkg-config bullet --cflags` `freetype-config --cflags` -std=gnu++11 -xc++ -", "w")
@@ -72,9 +95,52 @@ class Type(object):
         self.pod = type_.is_pod()
         self.const = type_.is_const_qualified()
         self.type_ = type_.spelling
+        
+        if self.type_.startswith("const"):
+            self.type_ = self.type_[5:]
+            self.type_ = self.type_.lstrip()
+            self.const = True
     
-    def to_string(self):
-        return ("const" if self.const else "") + self.type_
+    def to_string(self, template_types={}):
+        offsets = []
+        offset = 0
+        
+        parts = []
+        
+        if self.type_.find("<") != -1:
+            parts.append(self.type_[:self.type_.find("<")])
+        
+        while True:
+            start = self.type_.find("<", offset+1)
+            
+            if start != -1:
+                offset = self.type_.find(">", start+1)+1
+                
+                parts.append(self.type_[start:offset])
+            else:
+                parts.append(self.type_[offset:])
+                break
+        
+        s = ""
+        
+        for part in parts:
+            if part.startswith("<"):
+                s2 = part
+                
+                for k, v in template_types.iteritems():
+                    s2 = s2.replace(k, v[1:-1])
+                
+                s += s2
+            else:
+                s += part
+        
+        #Awful hack
+        if s.replace(" ", "") in template_types:
+            s = template_types[s.replace(" ", "")][1:-1]
+        if s.replace("&", "").replace(" ", "") in template_types:
+            s = template_types[s.replace("&", "").replace(" ", "")][1:-1] + "&"
+        
+        return ("const " if self.const else "") + s
 
 class Argument(object):
     def __init__(self, cursor, index):
@@ -146,6 +212,9 @@ class Method(Function):
     def __init__(self, class_, cursor):
         Function.__init__(self, cursor)
 
+        if self.name in operators:
+            self.name = operators[self.name]
+
         self.class_ = class_
         self.static = cursor.is_static_method()
         self.const = clang.cindex.conf.lib.clang_CXXMethod_isConst(cursor) != 0
@@ -154,9 +223,9 @@ class Method(Function):
 
         self.constructor = self.name == self.class_.name
         self.destructor = self.name == "~"+self.class_.name
-        
+
         self.script_public = True
-        
+
         for c in cursor.get_children():
             if c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
                 if c.displayname == "nobind":
@@ -187,6 +256,7 @@ class Class(object):
         self.doc = ""
         self.script_public = False
         self.properties = []
+        self.template_types = {}
         
         for child in cursor.get_children():
             if not child.access_specifier in [clang.cindex.AccessSpecifier.PUBLIC,
@@ -194,6 +264,12 @@ class Class(object):
                 continue
 
             if child.kind == clang.cindex.CursorKind.CXX_METHOD:
+                if child.spelling.startswith("operator") and not child.spelling in operators:
+                    continue
+                
+                if child.spelling.startswith("operator") and len([v for v in child.get_arguments()]) != 1:
+                    continue
+                
                 self.methods.append(Method(self, child))
             elif child.kind == clang.cindex.CursorKind.FUNCTION_TEMPLATE:
                 if Function(child).script_public:
@@ -256,13 +332,22 @@ def get_classes(cursor):
                 if c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
                     if c.displayname.startswith("templatetypes"):
                         a, b = c.displayname[13:].split(";")
+                        class_ = a.split(":")[0]
+                        
+                        types = [v.split(":")[0] for v in b.split(" ")]
+                        
                         for type_, name in [tuple(v.split(":")) for v in b.split(" ")]:
-                            c = copy.copy(template_classes[a])
+                            c = copy.copy(template_classes[class_])
                             
                             c.name = name
-                            c.code_name = a + type_
+                            c.code_name = class_ + type_
                             
                             classes[name] = c
+                            
+                            i = 0
+                            for name in a.split(":")[1:]:
+                                c.template_types[name] = types[i]
+                                i += 1
                     elif c.displayname.startswith("classbind"):
                         name = c.displayname[9:]
                         
@@ -599,9 +684,9 @@ struct val_to_c<%s>
 ????????????if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID)
 ????????????????return *((%s*)obj->data);
 ????????????else
-????????????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
+???????????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
 ????????} else
-????????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
+???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
 ????}
 };
 template <>
@@ -612,7 +697,7 @@ struct type_same<%s>
 ????????if(head->type==scripting::ValueType::NativeObject)
 ????????????return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
 ????????else
-????????????return false;
+???????????? return false;
 ????}
 };
 
@@ -640,7 +725,7 @@ for class_ in classes.values():
 ????if(self->data==NULL)
 ????????return scripting::createNativeObject(%s_funcs,NULL,self->typeID);
 ????else
-????????return scripting::createNativeObject(%s_funcs,NEW(%s,*((%s*)self->data)),self->typeID);
+???????? return scripting::createNativeObject(%s_funcs,NEW(%s,*((%s*)self->data)),self->typeID);
 }
 
 void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
@@ -665,8 +750,8 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
     else:
         bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
-????if(args.getCount()!=1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
+????if(args.getCount()<1)
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects at least one argument."));
 ????if(!type_same<%s>::f(ctx, args[0]))
 ????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
 """) % (class_.name, class_.name, class_.code_name, class_.name, class_.name))
@@ -675,15 +760,15 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
             if not constructor.script_public:
                 continue
             
-            args = ["val_to_c<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(), j) for j in xrange(len(constructor.args))]
+            args = ["val_to_c<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
 
             for i in xrange(len(constructor.args)):
                 if i in constructor.arg_convs:
-                    args[i] = "%s(ctx,args[%d])" % (constructor.arg_convs[i], i)
+                    args[i] = "%s(ctx,args[%d])" % (constructor.arg_convs[i], i+1)
 
             constStr = ",".join([class_.name] + args)
             
-            args = ["type_same<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(), j) for j in xrange(len(constructor.args))]
+            args = ["type_same<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
             
             testStr = "&&".join(["true"] + args)
 
@@ -714,7 +799,7 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 ????????????else if(keyStr=="__call__")
 ????????????????return scripting::createNativeFunction(%s_new);
 ????????????else
-????????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+???????????????? ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
 ????????} else
 ????????{
 ????????????if(keyStr=="__classTypeID__")
@@ -741,11 +826,11 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
         bindings.write(s(""" else if(keyStr=="%s")
 ????????????{
 ????????????????%s*obj=(%s*)self->data;
-????????????????return create_val<decltype(obj->%s)>::f(obj->%s);
+????????????????return create_val<decltype(obj->%s)>::f(ctx,obj->%s);
 ????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
     
     bindings.write(s(""" else
-????????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+???????????????? ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
 ????????}
 ????}
 ????return scripting::createNil();
@@ -771,11 +856,11 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
         bindings.write(s(""" else if(keyStr=="%s")
 ????????????{
 ????????????????%s*obj=(%s*)self->data;
-????????????????obj->%s=val_to_c<decltype(obj->%s)>::f(value->ref);
+????????????????obj->%s=val_to_c<decltype(obj->%s)>::f(ctx,value);
 ????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
     
     bindings.write(s(""" else
-????????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+???????????????? ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
 ????????}
 ????}
 }
@@ -799,13 +884,13 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 ????if(!type_same<%s>::f(ctx, args[0]))
 ????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::%s expects %s as first argument."));
 ????else
-????????self=(%s*)((scripting::NativeObject*)args[0])->data;
+???????? self=(%s*)((scripting::NativeObject*)args[0])->data;
 
 """) % (class_.name, methods_[0].name, class_.name, methods_[0].name, class_.code_name, class_.code_name, class_.name, methods_[0].name, class_.name, class_.code_name))
 
         for method in methods_:
             if method.script_public:
-                args = ["val_to_c<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(), j+1) for j in xrange(len(method.args))]
+                args = ["val_to_c<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
 
                 for i in xrange(len(method.args)):
                     if i in method.arg_convs:
@@ -813,22 +898,39 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 
                 argsStr = ", ".join(args)
 
-                args = ["type_same<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(), j+1) for j in xrange(len(method.args))]
+                args = ["type_same<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
 
                 testStr = "&&".join(["1"] + args)
 
-                bindings.write(s("""????if(args.getCount()==%d)
+                if method.name in operators.values():
+                    for k, v in operators.iteritems():
+                        if v == method.name:
+                            operator = k[len("operator"):]
+                    
+                    bindings.write(s("""????if(args.getCount()==%d)
+????????if(%s)
+????????{
+????????????return create_val<%s>::f(ctx, *self %s %s);
+????????}
+""") % (len(method.args)+1,
+            testStr,
+            method.return_type.to_string(class_.template_types),
+            operator,
+            argsStr))
+
+                else:
+                    bindings.write(s("""????if(args.getCount()==%d)
 ????????if(%s)
 ????????{
 ????????????%s self->%s(%s));
 ????????????%s;
 ????????}
 """) % (len(method.args)+1,
-        testStr,
-        "(" if method.return_type.to_string() == "void" else "return create_ref<%s>::f(ctx, " % method.return_type.to_string(),
-        method.name,
-        argsStr,
-        "return scripting::createNil()" if method.return_type.to_string() == "void" else ""))
+            testStr,
+            "(" if method.return_type.to_string(class_.template_types) == "void" else "return create_val<%s>::f(ctx, " % method.return_type.to_string(class_.template_types),
+            method.name,
+            argsStr,
+            "return scripting::createNil()" if method.return_type.to_string(class_.template_types) == "void" else ""))
 
         bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s::%s."));
 ????return scripting::createNil();
@@ -873,7 +975,7 @@ for functions_ in functions.values():
 ????????}
 """) % (len(function.args),
        testStr,
-       "(" if function.return_type.to_string() == "void" else "return create_ref<%s>::f(ctx," % function.return_type.to_string(),
+       "(" if function.return_type.to_string() == "void" else "return create_val<%s>::f(ctx," % function.return_type.to_string(),
        function.name,
        argsStr,
        "return scripting::createNil()" if function.return_type.to_string() == "void" else ""))

@@ -235,8 +235,8 @@ class T2
         T x, y;
 };
 
-//BIND_CLASS(T2)
-//TEMPLATE_TYPES(T2, <float>:Float2 <int32_t>:Int2 <uint32_t>:UInt2)
+BIND_CLASS(T2)
+TEMPLATE_TYPES(T2:T, <float>:Float2 <int32_t>:Int2 <uint32_t>:UInt2)
 
 typedef T2<float> Float2;
 typedef T2<int32_t> Int2;

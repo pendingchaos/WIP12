@@ -17,14 +17,15 @@
     - Low priority
     - Claims to be faster than SDSM in complex scenes.
 - [ ] Finish the script binding generator.
-    - [ ] Operator overloading
-        - Then bind T2, T3, T4 and finish binding AABB
+    - [ ] Bind AABB::transform
     - [ ] Pointers and References
     - [ ] Enums
+    - [ ] Static methods
     - [ ] Inheritance
     - [ ] Namespaces
     - [ ] Getters and Setters
     - [ ] Templated Functions
+    - [ ] Bind lots of stuff
 - [ ] Explicit variable declaration (scripting).
 - [ ] Make functions builtin functions like + and *.
 - [ ] === function (scripting).

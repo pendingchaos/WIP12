@@ -498,11 +498,11 @@ break;
         }
         case Opcode::BitAnd:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, &&, "__btand__")
+            TYPED_OP(ValueType::Int, IntValue, createInt, &, "__btand__")
         }
         case Opcode::BitOr:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, ||, "__btor__")
+            TYPED_OP(ValueType::Int, IntValue, createInt, |, "__btor__")
         }
         case Opcode::BitXOr:
         {
@@ -524,25 +524,17 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
     throwException(createException(ExcType::TypeError, "Invalid operand types."));\
 } else\
 {\
-    union\
+    if (((IntValue *)aHead)->value < 0)\
     {\
-        uint64_t u;\
-        int64_t s;\
-    } u1;\
-    union\
+        throwException(createException(ExcType::ValueError, "Operand of shift can not be negative."));\
+    }\
+    \
+    if (((IntValue *)bHead)->value < 0)\
     {\
-        uint64_t u;\
-        int64_t s;\
-    } u2;\
-    union\
-    {\
-        uint64_t u;\
-        int64_t s;\
-    } u3;\
-    u1.s = ((IntValue *)aHead)->value;\
-    u2.s = ((IntValue *)bHead)->value;\
-    u3.u = u1.u op u2.u;\
-    stack->append(createInt(u3.s));\
+        throwException(createException(ExcType::ValueError, "Operand of shift can not be negative."));\
+    }\
+    uint64_t result = uint64_t(((IntValue *)aHead)->value) op uint64_t(((IntValue *)bHead)->value);\
+    stack->append(createInt(result));\
 }\
 \
 destroy(this, aHead);\

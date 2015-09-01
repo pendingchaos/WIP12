@@ -335,8 +335,8 @@ class T4
         T x, y, z, w;
 };
 
-//BIND_CLASS(T4)
-//TEMPLATE_TYPES(T4, <float>:Float4 <int32_t>:Int4 <uint32_t>:UInt4)
+BIND_CLASS(T4)
+TEMPLATE_TYPES(T4:T, <float>:Float4 <int32_t>:Int4 <uint32_t>:UInt4)
 
 typedef T4<float> Float4;
 typedef T4<int32_t> Int4;

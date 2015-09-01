@@ -11,7 +11,7 @@ class AABB
 {
     public:
         AABB() {}
-        AABB(const Position3D& min_, const Position3D& max_) NO_BIND : min(min_), max(max_) {}
+        AABB(const Position3D& min_, const Position3D& max_) : min(min_), max(max_) {}
 
         //Modified from https://github.com/horde3d/Horde3D/blob/master/Horde3D/Source/Horde3DEngine/egPrimitives.h#L63
         AABB transform(const Matrix4x4& matrix) const NO_BIND
@@ -36,7 +36,7 @@ class AABB
             return result;
         }
 
-        inline void extend(const Position3D& point) NO_BIND
+        inline void extend(const Position3D& point)
         {
             min.x = std::min(min.x, point.x);
             min.y = std::min(min.y, point.y);
@@ -53,14 +53,14 @@ class AABB
             extend(aabb.max);
         }
 
-        inline void grow(const Vector3D& amount) NO_BIND
+        inline void grow(const Vector3D& amount)
         {
             min -= amount;
             max += amount;
         }
 
-        NO_BIND Position3D min;
-        NO_BIND Position3D max;
+        Position3D min;
+        Position3D max;
 } BIND;
 
 #endif // AABB_H

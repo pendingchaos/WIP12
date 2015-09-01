@@ -283,6 +283,7 @@ struct PerInstanceData
 {
     size_t stride;
     ResizableData data;
+    //TODO: Store format as an integer for better batching.
 };
 
 class Context;

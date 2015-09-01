@@ -482,7 +482,7 @@ int main(int argc, const char *argv[])
     #elif 1
     try
     {
-        scripting::ASTNode *ast = scripting::parse("(meth (AABB) extend (AABB))");
+        scripting::ASTNode *ast = scripting::parse("(+ (Float2 5.0 2.0) (Float2 3.0 4.0))");
 
         printAST(0, ast);
 
