@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "math/matrix4x4.h"
+#include "scripting/bindings.h"
 
 #include <cmath>
 
@@ -90,6 +91,6 @@ class Quaternion
         Float3 getEulerAngles();
 
         float x, y, z, w;
-};
+} BIND;
 
 #endif // QUATERNION_H

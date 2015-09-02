@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "math/matrix4x4.h"
+#include "scripting/bindings.h"
 
 class Camera
 {
@@ -15,7 +16,7 @@ class Camera
 
         Camera();
 
-        void setType(Camera::Type type);
+        void setType(Camera::Type type) NO_BIND;
 
         void setPosition(const Position3D& position);
         void setDirection(const Direction3D& direction);
@@ -33,7 +34,7 @@ class Camera
         void setNear(float near);
         void setFar(float far);
 
-        inline Camera::Type getType() const
+        inline Camera::Type getType() const NO_BIND
         {
             return type;
         }
@@ -98,12 +99,12 @@ class Camera
             return far;
         }
 
-        inline const Matrix4x4& getViewMatrix() const
+        inline Matrix4x4 getViewMatrix() const
         {
             return viewMatrix;
         }
 
-        inline const Matrix4x4& getProjectionMatrix() const
+        inline Matrix4x4 getProjectionMatrix() const
         {
             return projectionMatrix;
         }
@@ -139,6 +140,6 @@ class Camera
 
         void createViewMatrix();
         void createProjectionMatrix();
-};
+} BIND;
 
 #endif // CAMERA_H

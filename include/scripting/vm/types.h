@@ -27,7 +27,6 @@ struct NativeObject;
 
 struct NativeObjectFuncs
 {
-    Value *(*copy)(Context *ctx, NativeObject *self);
     void (*destroy)(Context *ctx, NativeObject *self);
     Value *(*getMember)(Context *ctx, NativeObject *self, Value *key);
     void (*setMember)(Context *ctx, NativeObject *self, Value *key, Value *value);

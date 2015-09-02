@@ -2,7 +2,7 @@ import clang.cindex
 import os
 import copy
 
-minimize = False
+minimize = True
 
 def s(v):
     if minimize:
@@ -570,6 +570,42 @@ struct val_to_c<String>
 };
 
 template <>
+struct val_to_c<const char *>
+{
+    static const char *f(scripting::Context *ctx, const scripting::Value *head)
+    {
+        if (head->type == scripting::ValueType::StringType)
+        {
+            return ((scripting::StringValue *)head)->value.getData();
+        } else
+        {
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
+        }
+    }
+};
+
+template <>
+struct val_to_c<char>
+{
+    static char f(scripting::Context *ctx, const scripting::Value *head)
+    {
+        if (head->type == scripting::ValueType::StringType)
+        {
+            if (((scripting::StringValue *)head)->value.getLength() == 1)
+            {
+                return ((scripting::StringValue *)head)->value[0];
+            } else
+            {
+                ctx->throwException(scripting::createException(scripting::ExcType::ValueError, "Value can not be converted to character."));
+            }
+        } else
+        {
+            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to character."));
+        }
+    }
+};
+
+template <>
 struct val_to_c<scripting::Value *>
 {
     static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
@@ -616,6 +652,24 @@ struct create_val<scripting::Value *>
     }
 };
 
+template <>
+struct create_val<const char *>
+{
+    static scripting::Value *f(scripting::Context *ctx, const char *data)
+    {
+        return scripting::createString(String(data));
+    }
+};
+
+template <>
+struct create_val<char>
+{
+    static scripting::Value *f(scripting::Context *ctx, char data)
+    {
+        return scripting::createString(String(data));
+    }
+};
+
 CREATE_VAL(uint8_t, createInt)
 CREATE_VAL(int8_t, createInt)
 CREATE_VAL(uint16_t, createInt)
@@ -650,6 +704,21 @@ struct type_same<scripting::Value *>
     }
 };
 
+template <>
+struct type_same<char>
+{
+    static bool f(scripting::Context *ctx, const scripting::Value *head)
+    {
+        if (head->type == scripting::ValueType::StringType)
+        {
+            return ((const scripting::StringValue *)head)->value.getLength() == 1;
+        } else
+        {
+            return false;
+        }
+    }
+};
+
 #define TYPE_SAME_HELPER(T, enumValue) template <>\
 struct type_same<T>\
 {\
@@ -671,6 +740,7 @@ TYPE_SAME_HELPER(float, Float)
 TYPE_SAME_HELPER(double, Float)
 TYPE_SAME_HELPER(bool, Boolean)
 TYPE_SAME_HELPER(String, StringType)
+TYPE_SAME_HELPER(const char *, StringType)
 
 template <typename T>
 T *own(scripting::Context *ctx, scripting::Value *value)
@@ -700,11 +770,14 @@ void %s_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *%s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
 void %s_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
 static const scripting::NativeObjectFuncs %s_funcs={
-????.copy = %s_copy,
 ????.destroy = %s_destroy,
 ????.getMember = %s_get_member,
 ????.setMember = %s_set_member
-};
+};""" % (class_.name, class_.name, class_.name, class_.name, class_.name,
+         class_.name, class_.name, class_.name)))
+
+    if class_.copyable:
+        bindings.write(s("""
 template <>
 struct create_val<%s>
 {
@@ -712,12 +785,7 @@ struct create_val<%s>
 ????{
 ????????return scripting::createNativeObject(%s_funcs,NEW(%s, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
 ????}
-};""" % (class_.name, class_.name, class_.name, class_.name, class_.name,
-         class_.name, class_.name, class_.name, class_.name, class_.code_name,
-         class_.code_name, class_.name, class_.code_name, class_.name)))
-
-    if class_.copyable:
-        bindings.write(s("""
+};
 template <>
 struct val_to_c<%s>
 {
@@ -733,7 +801,9 @@ struct val_to_c<%s>
 ????????} else
 ???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
 ????}
-};""" % (class_.code_name, class_.code_name, class_.name, class_.code_name, class_.name, class_.name,)))
+};""" % (class_.code_name, class_.code_name, class_.name, class_.code_name,
+         class_.name, class_.code_name, class_.code_name, class_.name,
+         class_.code_name, class_.name, class_.name, )))
 
     bindings.write(s("""
 template <>
@@ -770,12 +840,11 @@ void %s_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *%s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
 void %s_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
 static const scripting::NativeObjectFuncs %s_funcs={
-????.copy = %s_copy,
 ????.destroy = %s_destroy,
 ????.getMember = %s_get_member,
 ????.setMember = %s_set_member
 };
-""" % (name, name, name, name, name, name, name, name, name)))
+""" % (name, name, name, name, name, name, name, name)))
 
     bindings.write(s("""template <>
 struct create_val<%s *>
@@ -823,21 +892,12 @@ for class_ in classes.values():
     if not class_.script_public:
         continue
 
-    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*ctx,scripting::NativeObject*self)
-{
-????if(self->data==NULL)
-????????return scripting::createNativeObject(%s_funcs,NULL,self->typeID);
-????else
-???????? return scripting::createNativeObject(%s_funcs,NEW(%s,*((%s*)self->data)),self->typeID);
-}
-
-void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+    bindings.write(s("""void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
 ????if(!type_same<%s>::f(ctx, (scripting::Value *)self))
 ????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::__del__ expects %s as first argument."));
 
-""") % (class_.name, class_.name, class_.name, class_.code_name, class_.code_name,
-       class_.name, class_.code_name, class_.name, class_.name))
+""") % (class_.name, class_.code_name, class_.name, class_.name))
 
     if class_.destructable:
         bindings.write(s("""????DELETE(%s,(%s *)self->data);
@@ -1124,7 +1184,8 @@ for class_ in classes.values():
 }
 """ % (class_.name, class_.name, class_.name, class_.name, class_.name)))
 
-    bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+    if class_.copyable:
+        bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=1)
 ????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%sRef::deref expects one argument."));
@@ -1135,7 +1196,6 @@ for class_ in classes.values():
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
 
-    if class_.copyable:
         bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=2)
@@ -1148,6 +1208,17 @@ for class_ in classes.values():
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
     else:
+        bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+????if(args.getCount()!=1)
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%sRef::deref expects one argument."));
+????scripting::Value*self=args[0];
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::deref expects %sRef as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s objects are not copyable."));
+}
+""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
+
         bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=2)
@@ -1159,14 +1230,6 @@ for class_ in classes.values():
 ????return scripting::createNil();
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
-
-    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*self)
-{
-????if(self->data==NULL)
-????????return scripting::createNativeObject(%s_funcs,NULL,self->typeID);
-????else
-???????? return scripting::createNativeObject(%s_funcs,self->data,self->typeID);
-}""" % (name, name, name)))
 
     if not class_.destructable:
         #Let's hope it is freed.

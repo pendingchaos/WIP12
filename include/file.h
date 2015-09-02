@@ -4,6 +4,7 @@
 #include "misc_macros.h"
 #include "containers/list.h"
 #include "containers/string.h"
+#include "scripting/bindings.h"
 
 #include <exception>
 #include <stdint.h>
@@ -71,11 +72,11 @@ class File
         File(const char *filename, const char *mode);
         ~File();
 
-        void read(size_t amount, void *destination);
+        void read(size_t amount, void *destination) NO_BIND;
 
-        void write(size_t amount, const void *data);
+        void write(size_t amount, const void *data) NO_BIND;
 
-        void seek(long int offset, File::Origin origin);
+        void seek(long int offset, File::Origin origin) NO_BIND;
 
         long int tell();
 
@@ -147,14 +148,14 @@ class File
 
         void writeFloat32(float value);
 
-        void printf(const char *format, ...);
+        void printf(const char *format, ...) NO_BIND;
 
-        void vprintf(const char *format, va_list list);
+        void vprintf(const char *format, va_list list) NO_BIND;
 
         void writeChar(char value);
     private:
         FILE *file;
         String filename;
-};
+} BIND NOT_COPYABLE;
 
 #endif // FILE_H

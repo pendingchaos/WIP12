@@ -5,6 +5,7 @@
 #include "math/matrix4x4.h"
 #include "physics/physicsshape.h"
 #include "scripting/script.h"
+#include "scripting/bindings.h"
 
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"

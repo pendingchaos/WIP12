@@ -24,10 +24,10 @@
     - [ ] Namespaces
     - [ ] Getters and Setters
     - [ ] Templated Functions
+    - [ ] C++ exceptions -> script exceptions
     - [ ] Bind lots of stuff
     - [ ] Pointer return value ownership.
-    - [ ] Finish binding Matrix3x3 and Matrix4x4.
-    - [ ] Finish binding RigidBody
+    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, Camera and File.
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
 - [ ] Get rid of the builtin List type (scripting).
