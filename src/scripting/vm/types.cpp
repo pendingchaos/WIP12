@@ -74,16 +74,6 @@ Value *createString(const String& str)
     return (Value *)value;
 }
 
-Value *createList(const List<Value *>& values)
-{
-    ListValue *value = NEW(ListValue);
-
-    value->head.type = ValueType::List;
-    value->value = values;
-
-    return (Value *)value;
-}
-
 Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args))
 {
     NativeFunction *value = NEW(NativeFunction);
@@ -153,10 +143,6 @@ Value *createCopy(Context *context, const Value *value)
     case ValueType::StringType:
     {
         return createString(((StringValue *)value)->value);
-    }
-    case ValueType::List:
-    {
-        return createList(((ListValue *)value)->value);
     }
     case ValueType::NativeFunction:
     {
@@ -239,18 +225,6 @@ void destroy(Context *context, Value *value)
     case ValueType::StringType:
     {
         DELETE(StringValue, (StringValue *)value);
-        break;
-    }
-    case ValueType::List:
-    {
-        List<Value *> list = ((ListValue *)value)->value;
-
-        for (size_t i = 0; i < list.getCount(); ++i)
-        {
-            destroy(context, list[i]);
-        }
-
-        DELETE(ListValue, (ListValue *)value);
         break;
     }
     case ValueType::NativeFunction:

@@ -107,11 +107,6 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             stack->append(createString(String(length, (const char *)data.getData())));
             break;
         }
-        case Opcode::PushList:
-        {
-            stack->append(createList(List<Value *>()));
-            break;
-        }
         case Opcode::PushException:
         {
             ExcType type = (ExcType)bytecode.getUInt8(offset);
@@ -359,11 +354,6 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             case ValueType::StringType:
             {
                 stack->append(createString("str"));
-                break;
-            }
-            case ValueType::List:
-            {
-                stack->append(createString("list"));
                 break;
             }
             case ValueType::NativeFunction:
@@ -912,11 +902,6 @@ break;
                         std::cout << '"' << ((StringValue *)head)->value.getData() << '"' << std::endl;
                         break;
                     }
-                    case ValueType::List:
-                    {
-                        std::cout << "list" << std::endl;
-                        break;
-                    }
                     case ValueType::NativeFunction:
                     {
                         std::cout << "native_function" << std::endl;
@@ -979,11 +964,6 @@ break;
                     case ValueType::StringType:
                     {
                         std::cout << '"' << ((StringValue *)head)->value.getData() << '"' << std::endl;
-                        break;
-                    }
-                    case ValueType::List:
-                    {
-                        std::cout << "list" << std::endl;
                         break;
                     }
                     case ValueType::NativeFunction:
@@ -1212,19 +1192,6 @@ Value *getMember(Context *ctx, Value *val, Value *key)
 
         return createString(String(str[index]));
     }
-    case ValueType::List:
-    {
-        List<Value *> list = ((ListValue *)val)->value;
-
-        size_t index = toIndex(ctx, key);
-
-        if (index >= list.getCount())
-        {
-            ctx->throwException(createException(ExcType::IndexError, "List index is out of bounds."));
-        }
-
-        return createCopy(ctx, list[index]);
-    }
     case ValueType::NativeObject:
     {
         NativeObject *obj = (NativeObject *)val;
@@ -1324,19 +1291,6 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
         }
 
         str[index] = ((StringValue *)value)->value[0];
-    }
-    case ValueType::List:
-    {
-        List<Value *> list = ((ListValue *)dest)->value;
-
-        size_t index = toIndex(ctx, key);
-
-        if (index >= list.getCount())
-        {
-            ctx->throwException(createException(ExcType::IndexError, "List index is out of bounds."));
-        }
-
-        list[index] = createCopy(ctx, value);
     }
     case ValueType::NativeObject:
     {

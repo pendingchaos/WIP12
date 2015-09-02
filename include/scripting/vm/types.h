@@ -41,7 +41,6 @@ Value *createFunction(Bytecode& bytecode);
 Value *createObject();
 Value *createReference(Value *value);
 Value *createString(const String& value);
-Value *createList(const List<Value *>& value);
 Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args));
 Value *createException(ExcType type, String error);
 Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID);
@@ -57,7 +56,6 @@ enum class ValueType
     Function,
     Object,
     StringType,
-    List,
     NativeFunction,
     NativeObject,
     Exception
@@ -111,13 +109,6 @@ struct StringValue
 {
     Value head;
     String value;
-};
-
-struct ListValue
-{
-    Value head;
-    //TODO: Reference count this.
-    List<Value *> value;
 };
 
 struct NativeFunction

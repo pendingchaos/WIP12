@@ -17,7 +17,6 @@ enum class Opcode
     PushFunc,
     PushObject,
     PushString,
-    PushList,
     PushException,
     StackPop,
 
