@@ -38,12 +38,12 @@ class Matrix4x4
 
         Matrix4x4 operator / (float other) const;
 
-        inline const float *operator [] (unsigned int row) const
+        inline const float *operator [] (unsigned int row) const NO_BIND
         {
             return data[row];
         }
 
-        inline float *operator [] (unsigned int row)
+        inline float *operator [] (unsigned int row) NO_BIND
         {
             return data[row];
         }
@@ -97,7 +97,7 @@ class Matrix4x4
                                    const Direction3D& dir,
                                    const Direction3D& up);
 
-        float data[4][4];
-};// BIND;
+        NO_BIND float data[4][4];
+} BIND;
 
 #endif // MATRIX4X4_H

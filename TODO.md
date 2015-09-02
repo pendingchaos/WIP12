@@ -18,7 +18,6 @@
     - Claims to be faster than SDSM in complex scenes.
 - [ ] Finish the script binding generator.
     - [ ] NULL <-> nil conversion
-    - [ ] Bind AABB::transform
     - [ ] Enums
     - [ ] Static methods
     - [ ] Inheritance
@@ -26,6 +25,7 @@
     - [ ] Getters and Setters
     - [ ] Templated Functions
     - [ ] Bind lots of stuff
+    - [ ] Finish binding Matrix3x3 and Matrix4x4.
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
 - [ ] Get rid of the builtin List type (scripting).

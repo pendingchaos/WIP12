@@ -36,12 +36,12 @@ class Matrix3x3
 
         Matrix3x3 operator / (float other) const;
 
-        inline const float *operator [] (unsigned int row) const
+        inline const float *operator [] (unsigned int row) const NO_BIND
         {
             return data[row];
         }
 
-        inline float *operator [] (unsigned int row)
+        inline float *operator [] (unsigned int row) NO_BIND
         {
             return data[row];
         }
@@ -70,7 +70,7 @@ class Matrix3x3
         static Matrix3x3 rotatey(float rotation);
         static Matrix3x3 rotatez(float rotation);
 
-        float data[3][3];
-};// BIND;
+        NO_BIND float data[3][3];
+} BIND;
 
 #endif // MATRIX3X3_H

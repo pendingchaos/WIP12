@@ -58,8 +58,8 @@
 
 struct BindingsExt
 {
-    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID;
-    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *Int3, *Int3_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr;
+    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID;
+    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *Int3, *Int3_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr;
 };
 
 
@@ -1094,6 +1094,67 @@ scripting::Value *Float4_getWXZY(scripting::Context *ctx, const List<scripting::
 scripting::Value *Float4_setWXZY(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *Float4_getWXYZ(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *Float4_setWXYZ(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_copy(scripting::Context*, scripting::NativeObject*);
+void Matrix4x4_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *Matrix4x4_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void Matrix4x4_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs Matrix4x4_funcs={
+    .copy = Matrix4x4_copy,
+    .destroy = Matrix4x4_destroy,
+    .getMember = Matrix4x4_get_member,
+    .setMember = Matrix4x4_set_member
+};
+template <>
+struct create_val<Matrix4x4>
+{
+    static scripting::Value *f(scripting::Context*ctx,const Matrix4x4&obj)
+    {
+        return scripting::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID);
+    }
+};
+template <>
+struct val_to_c<Matrix4x4>
+{
+    static Matrix4x4 f(scripting::Context*ctx,const scripting::Value*head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+        {
+            scripting::NativeObject*obj=(scripting::NativeObject*)head;
+            if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID)
+                return *((Matrix4x4*)obj->data);
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to Matrix4x4."));
+        } else
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to Matrix4x4."));
+    }
+};
+template <>
+struct type_same<Matrix4x4>
+{
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+            return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID;
+        else
+             return false;
+    }
+};
+
+scripting::Value *Matrix4x4___mul__(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4___div__(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4___eq__(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_transpose(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_inverse(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_translate(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_scale(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_rotate(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_rotatex(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_rotatey(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_rotatez(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_perspective(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_orthographic(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_lookAt(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix4x4_lookAtDir(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *UInt4_copy(scripting::Context*, scripting::NativeObject*);
 void UInt4_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *UInt4_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
@@ -1326,6 +1387,63 @@ struct type_same<AABB>
 scripting::Value *AABB_transform(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *AABB_extend(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *AABB_grow(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_copy(scripting::Context*, scripting::NativeObject*);
+void Matrix3x3_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *Matrix3x3_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void Matrix3x3_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs Matrix3x3_funcs={
+    .copy = Matrix3x3_copy,
+    .destroy = Matrix3x3_destroy,
+    .getMember = Matrix3x3_get_member,
+    .setMember = Matrix3x3_set_member
+};
+template <>
+struct create_val<Matrix3x3>
+{
+    static scripting::Value *f(scripting::Context*ctx,const Matrix3x3&obj)
+    {
+        return scripting::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID);
+    }
+};
+template <>
+struct val_to_c<Matrix3x3>
+{
+    static Matrix3x3 f(scripting::Context*ctx,const scripting::Value*head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+        {
+            scripting::NativeObject*obj=(scripting::NativeObject*)head;
+            if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID)
+                return *((Matrix3x3*)obj->data);
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to Matrix3x3."));
+        } else
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to Matrix3x3."));
+    }
+};
+template <>
+struct type_same<Matrix3x3>
+{
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+            return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID;
+        else
+             return false;
+    }
+};
+
+scripting::Value *Matrix3x3___mul__(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3___div__(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3___eq__(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_transpose(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_inverse(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_translate(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_scale(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_rotate(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_rotatex(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_rotatey(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *Matrix3x3_rotatez(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *UInt3_ptr_copy(scripting::Context*, scripting::NativeObject*);
 void UInt3_ptr_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *UInt3_ptr_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
@@ -1726,6 +1844,56 @@ struct type_same<T4<float> *>
     }
 };
 
+scripting::Value *Matrix4x4_ptr_copy(scripting::Context*, scripting::NativeObject*);
+void Matrix4x4_ptr_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *Matrix4x4_ptr_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void Matrix4x4_ptr_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs Matrix4x4_ptr_funcs={
+    .copy = Matrix4x4_ptr_copy,
+    .destroy = Matrix4x4_ptr_destroy,
+    .getMember = Matrix4x4_ptr_get_member,
+    .setMember = Matrix4x4_ptr_set_member
+};
+template <>
+struct create_val<Matrix4x4 *>
+{
+    static scripting::Value *f(scripting::Context*ctx,Matrix4x4*obj)
+    {
+        AllocInfo i=getAllocInfo((void*)obj);
+        i.cppRef = false;
+        i.scriptRef = true;
+        setAllocInfo((void *)obj, i);
+        return scripting::createNativeObject(Matrix4x4_ptr_funcs,obj,((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_ptr_typeID);
+    }
+};
+template <>
+struct val_to_c<Matrix4x4 *>
+{
+    static Matrix4x4 *f(scripting::Context*ctx,const scripting::Value*head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+        {
+            scripting::NativeObject*obj=(scripting::NativeObject*)head;
+            if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_ptr_typeID)
+                return (Matrix4x4*)obj->data;
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Matrix4x4Ref."));
+        } else
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Matrix4x4Ref."));
+    }
+};
+template <>
+struct type_same<Matrix4x4 *>
+{
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+            return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_ptr_typeID;
+        else
+             return false;
+    }
+};
+
 scripting::Value *UInt4_ptr_copy(scripting::Context*, scripting::NativeObject*);
 void UInt4_ptr_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *UInt4_ptr_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
@@ -1821,6 +1989,56 @@ struct type_same<AABB *>
     {
         if(head->type==scripting::ValueType::NativeObject)
             return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->AABB_ptr_typeID;
+        else
+             return false;
+    }
+};
+
+scripting::Value *Matrix3x3_ptr_copy(scripting::Context*, scripting::NativeObject*);
+void Matrix3x3_ptr_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *Matrix3x3_ptr_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void Matrix3x3_ptr_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs Matrix3x3_ptr_funcs={
+    .copy = Matrix3x3_ptr_copy,
+    .destroy = Matrix3x3_ptr_destroy,
+    .getMember = Matrix3x3_ptr_get_member,
+    .setMember = Matrix3x3_ptr_set_member
+};
+template <>
+struct create_val<Matrix3x3 *>
+{
+    static scripting::Value *f(scripting::Context*ctx,Matrix3x3*obj)
+    {
+        AllocInfo i=getAllocInfo((void*)obj);
+        i.cppRef = false;
+        i.scriptRef = true;
+        setAllocInfo((void *)obj, i);
+        return scripting::createNativeObject(Matrix3x3_ptr_funcs,obj,((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_ptr_typeID);
+    }
+};
+template <>
+struct val_to_c<Matrix3x3 *>
+{
+    static Matrix3x3 *f(scripting::Context*ctx,const scripting::Value*head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+        {
+            scripting::NativeObject*obj=(scripting::NativeObject*)head;
+            if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_ptr_typeID)
+                return (Matrix3x3*)obj->data;
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Matrix3x3Ref."));
+        } else
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Matrix3x3Ref."));
+    }
+};
+template <>
+struct type_same<Matrix3x3 *>
+{
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+            return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_ptr_typeID;
         else
              return false;
     }
@@ -13028,6 +13246,417 @@ scripting::Value *Float4_dot(scripting::Context*ctx,const List<scripting::Value*
     return scripting::createNil();
 }
 
+scripting::Value *Matrix4x4_copy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(self->data==NULL)
+        return scripting::createNativeObject(Matrix4x4_funcs,NULL,self->typeID);
+    else
+         return scripting::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,*((Matrix4x4*)self->data)),self->typeID);
+}
+
+void Matrix4x4_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(!type_same<Matrix4x4>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::__del__ expects Matrix4x4 as first argument."));
+    DELETE(Matrix4x4,(Matrix4x4 *)self->data);
+}
+
+scripting::Value *Matrix4x4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4's constructor expects at least one argument."));
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4's constructor expects Matrix4x4 as first argument."));
+    if(args.getCount()==1)
+        if(true)
+            return scripting::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID);
+    if(args.getCount()==2)
+        if(true&&type_same<const Matrix3x3 &>::f(ctx,args[1]))
+            return scripting::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,val_to_c<const Matrix3x3 &>::f(ctx,args[1])),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID);
+    if(args.getCount()==5)
+        if(true&&type_same<const Float4 &>::f(ctx,args[1])&&type_same<const Float4 &>::f(ctx,args[2])&&type_same<const Float4 &>::f(ctx,args[3])&&type_same<const Float4 &>::f(ctx,args[4]))
+            return scripting::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,val_to_c<const Float4 &>::f(ctx,args[1]),val_to_c<const Float4 &>::f(ctx,args[2]),val_to_c<const Float4 &>::f(ctx,args[3]),val_to_c<const Float4 &>::f(ctx,args[4])),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID);
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4's constructor."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue *)key)->value;
+        if(self->data==NULL)
+        {
+            if(keyStr=="__typeID__")
+                return scripting::createInt(self->typeID);
+            else if(keyStr=="__name__")
+                return scripting::createString("Matrix4x4");
+            else if(keyStr=="__new__")
+                return scripting::createNativeFunction(Matrix4x4_new);
+            else if(keyStr=="__call__")
+                return scripting::createNativeFunction(Matrix4x4_new);
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        } else
+        {
+            if(keyStr=="__classTypeID__")
+                return scripting::createInt(self->typeID);
+            else if(keyStr=="__init__")
+                return scripting::createNativeFunction(Matrix4x4_new);
+             else if (keyStr == "__mul__")
+                return scripting::createNativeFunction(Matrix4x4___mul__);
+             else if (keyStr == "__div__")
+                return scripting::createNativeFunction(Matrix4x4___div__);
+             else if (keyStr == "__eq__")
+                return scripting::createNativeFunction(Matrix4x4___eq__);
+             else if (keyStr == "transpose")
+                return scripting::createNativeFunction(Matrix4x4_transpose);
+             else if (keyStr == "inverse")
+                return scripting::createNativeFunction(Matrix4x4_inverse);
+             else if (keyStr == "translate")
+                return scripting::createNativeFunction(Matrix4x4_translate);
+             else if (keyStr == "scale")
+                return scripting::createNativeFunction(Matrix4x4_scale);
+             else if (keyStr == "rotate")
+                return scripting::createNativeFunction(Matrix4x4_rotate);
+             else if (keyStr == "rotatex")
+                return scripting::createNativeFunction(Matrix4x4_rotatex);
+             else if (keyStr == "rotatey")
+                return scripting::createNativeFunction(Matrix4x4_rotatey);
+             else if (keyStr == "rotatez")
+                return scripting::createNativeFunction(Matrix4x4_rotatez);
+             else if (keyStr == "perspective")
+                return scripting::createNativeFunction(Matrix4x4_perspective);
+             else if (keyStr == "orthographic")
+                return scripting::createNativeFunction(Matrix4x4_orthographic);
+             else if (keyStr == "lookAt")
+                return scripting::createNativeFunction(Matrix4x4_lookAt);
+             else if (keyStr == "lookAtDir")
+                return scripting::createNativeFunction(Matrix4x4_lookAtDir);
+             else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        }
+    }
+    return scripting::createNil();
+}
+
+void Matrix4x4_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue*)key)->value;
+        if(self->data==NULL)
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Native classes are read-only."));
+        else
+        {
+            if(0) {} else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+        }
+    }
+}
+
+scripting::Value *Matrix4x4_inverse(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::inverse expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::inverse expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->inverse());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::inverse."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_lookAtDir(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::lookAtDir expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::lookAtDir expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==4)
+        if(1&&type_same<const Position3D &>::f(ctx,args[1])&&type_same<const Direction3D &>::f(ctx,args[2])&&type_same<const Direction3D &>::f(ctx,args[3]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->lookAtDir(val_to_c<const Position3D &>::f(ctx,args[1]), val_to_c<const Direction3D &>::f(ctx,args[2]), val_to_c<const Direction3D &>::f(ctx,args[3])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::lookAtDir."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_transpose(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::transpose expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::transpose expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->transpose());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::transpose."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_rotatez(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::rotatez expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::rotatez expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->rotatez(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::rotatez."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_rotatex(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::rotatex expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::rotatex expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->rotatex(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::rotatex."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_rotatey(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::rotatey expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::rotatey expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->rotatey(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::rotatey."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4___div__(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::__div__ expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::__div__ expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx, *self / val_to_c<float>::f(ctx,args[1]));
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::__div__."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_scale(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::scale expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::scale expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Float3 &>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->scale(val_to_c<const Float3 &>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::scale."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_lookAt(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::lookAt expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::lookAt expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==4)
+        if(1&&type_same<const Position3D &>::f(ctx,args[1])&&type_same<const Position3D &>::f(ctx,args[2])&&type_same<const Direction3D &>::f(ctx,args[3]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->lookAt(val_to_c<const Position3D &>::f(ctx,args[1]), val_to_c<const Position3D &>::f(ctx,args[2]), val_to_c<const Direction3D &>::f(ctx,args[3])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::lookAt."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4___mul__(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::__mul__ expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::__mul__ expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Matrix4x4 &>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx, *self * val_to_c<const Matrix4x4 &>::f(ctx,args[1]));
+        }
+    if(args.getCount()==2)
+        if(1&&type_same<const Float4 &>::f(ctx,args[1]))
+        {
+            return create_val<Float4>::f(ctx, *self * val_to_c<const Float4 &>::f(ctx,args[1]));
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::__mul__."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_orthographic(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::orthographic expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::orthographic expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==7)
+        if(1&&type_same<float>::f(ctx,args[1])&&type_same<float>::f(ctx,args[2])&&type_same<float>::f(ctx,args[3])&&type_same<float>::f(ctx,args[4])&&type_same<float>::f(ctx,args[5])&&type_same<float>::f(ctx,args[6]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->orthographic(val_to_c<float>::f(ctx,args[1]), val_to_c<float>::f(ctx,args[2]), val_to_c<float>::f(ctx,args[3]), val_to_c<float>::f(ctx,args[4]), val_to_c<float>::f(ctx,args[5]), val_to_c<float>::f(ctx,args[6])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::orthographic."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_translate(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::translate expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::translate expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Float3 &>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->translate(val_to_c<const Float3 &>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::translate."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4___eq__(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::__eq__ expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::__eq__ expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Matrix4x4 &>::f(ctx,args[1]))
+        {
+            return create_val<bool>::f(ctx, *self == val_to_c<const Matrix4x4 &>::f(ctx,args[1]));
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::__eq__."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_rotate(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::rotate expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::rotate expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->rotate(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::rotate."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix4x4_perspective(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::perspective expects at least one argument."));
+    Matrix4x4*self;
+    if(!type_same<Matrix4x4>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::perspective expects Matrix4x4 as first argument."));
+    else
+         self=(Matrix4x4*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==5)
+        if(1&&type_same<float>::f(ctx,args[1])&&type_same<float>::f(ctx,args[2])&&type_same<float>::f(ctx,args[3])&&type_same<float>::f(ctx,args[4]))
+        {
+            return create_val<Matrix4x4>::f(ctx,  self->perspective(val_to_c<float>::f(ctx,args[1]), val_to_c<float>::f(ctx,args[2]), val_to_c<float>::f(ctx,args[3]), val_to_c<float>::f(ctx,args[4])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix4x4::perspective."));
+    return scripting::createNil();
+}
+
 scripting::Value *UInt4_copy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(self->data==NULL)
@@ -16286,6 +16915,12 @@ scripting::Value *AABB_transform(scripting::Context*ctx,const List<scripting::Va
     else
          self=(AABB*)((scripting::NativeObject*)args[0])->data;
 
+    if(args.getCount()==2)
+        if(1&&type_same<const Matrix4x4 &>::f(ctx,args[1]))
+        {
+            return create_val<AABB>::f(ctx,  self->transform(val_to_c<const Matrix4x4 &>::f(ctx,args[1])));
+            ;
+        }
     ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::transform."));
     return scripting::createNil();
 }
@@ -16333,6 +16968,329 @@ scripting::Value *AABB_grow(scripting::Context*ctx,const List<scripting::Value*>
             return scripting::createNil();
         }
     ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for AABB::grow."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_copy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(self->data==NULL)
+        return scripting::createNativeObject(Matrix3x3_funcs,NULL,self->typeID);
+    else
+         return scripting::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,*((Matrix3x3*)self->data)),self->typeID);
+}
+
+void Matrix3x3_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(!type_same<Matrix3x3>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::__del__ expects Matrix3x3 as first argument."));
+    DELETE(Matrix3x3,(Matrix3x3 *)self->data);
+}
+
+scripting::Value *Matrix3x3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3's constructor expects at least one argument."));
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3's constructor expects Matrix3x3 as first argument."));
+    if(args.getCount()==1)
+        if(true)
+            return scripting::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID);
+    if(args.getCount()==2)
+        if(true&&type_same<const Matrix4x4 &>::f(ctx,args[1]))
+            return scripting::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,val_to_c<const Matrix4x4 &>::f(ctx,args[1])),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID);
+    if(args.getCount()==4)
+        if(true&&type_same<const Float3 &>::f(ctx,args[1])&&type_same<const Float3 &>::f(ctx,args[2])&&type_same<const Float3 &>::f(ctx,args[3]))
+            return scripting::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,val_to_c<const Float3 &>::f(ctx,args[1]),val_to_c<const Float3 &>::f(ctx,args[2]),val_to_c<const Float3 &>::f(ctx,args[3])),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID);
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3's constructor."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue *)key)->value;
+        if(self->data==NULL)
+        {
+            if(keyStr=="__typeID__")
+                return scripting::createInt(self->typeID);
+            else if(keyStr=="__name__")
+                return scripting::createString("Matrix3x3");
+            else if(keyStr=="__new__")
+                return scripting::createNativeFunction(Matrix3x3_new);
+            else if(keyStr=="__call__")
+                return scripting::createNativeFunction(Matrix3x3_new);
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        } else
+        {
+            if(keyStr=="__classTypeID__")
+                return scripting::createInt(self->typeID);
+            else if(keyStr=="__init__")
+                return scripting::createNativeFunction(Matrix3x3_new);
+             else if (keyStr == "__mul__")
+                return scripting::createNativeFunction(Matrix3x3___mul__);
+             else if (keyStr == "__div__")
+                return scripting::createNativeFunction(Matrix3x3___div__);
+             else if (keyStr == "__eq__")
+                return scripting::createNativeFunction(Matrix3x3___eq__);
+             else if (keyStr == "transpose")
+                return scripting::createNativeFunction(Matrix3x3_transpose);
+             else if (keyStr == "inverse")
+                return scripting::createNativeFunction(Matrix3x3_inverse);
+             else if (keyStr == "translate")
+                return scripting::createNativeFunction(Matrix3x3_translate);
+             else if (keyStr == "scale")
+                return scripting::createNativeFunction(Matrix3x3_scale);
+             else if (keyStr == "rotate")
+                return scripting::createNativeFunction(Matrix3x3_rotate);
+             else if (keyStr == "rotatex")
+                return scripting::createNativeFunction(Matrix3x3_rotatex);
+             else if (keyStr == "rotatey")
+                return scripting::createNativeFunction(Matrix3x3_rotatey);
+             else if (keyStr == "rotatez")
+                return scripting::createNativeFunction(Matrix3x3_rotatez);
+             else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        }
+    }
+    return scripting::createNil();
+}
+
+void Matrix3x3_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue*)key)->value;
+        if(self->data==NULL)
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Native classes are read-only."));
+        else
+        {
+            if(0) {} else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+        }
+    }
+}
+
+scripting::Value *Matrix3x3_inverse(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::inverse expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::inverse expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->inverse());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::inverse."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_transpose(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::transpose expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::transpose expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->transpose());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::transpose."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_rotatez(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::rotatez expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::rotatez expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->rotatez(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::rotatez."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_rotatex(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::rotatex expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::rotatex expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->rotatex(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::rotatex."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_rotatey(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::rotatey expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::rotatey expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->rotatey(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::rotatey."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3___div__(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::__div__ expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::__div__ expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx, *self / val_to_c<float>::f(ctx,args[1]));
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::__div__."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_scale(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::scale expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::scale expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Float3 &>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->scale(val_to_c<const Float3 &>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::scale."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3___mul__(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::__mul__ expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::__mul__ expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Matrix3x3 &>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx, *self * val_to_c<const Matrix3x3 &>::f(ctx,args[1]));
+        }
+    if(args.getCount()==2)
+        if(1&&type_same<const Float3 &>::f(ctx,args[1]))
+        {
+            return create_val<Float3>::f(ctx, *self * val_to_c<const Float3 &>::f(ctx,args[1]));
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::__mul__."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_translate(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::translate expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::translate expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Float2 &>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->translate(val_to_c<const Float2 &>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::translate."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3___eq__(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::__eq__ expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::__eq__ expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Matrix3x3 &>::f(ctx,args[1]))
+        {
+            return create_val<bool>::f(ctx, *self == val_to_c<const Matrix3x3 &>::f(ctx,args[1]));
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::__eq__."));
+    return scripting::createNil();
+}
+
+scripting::Value *Matrix3x3_rotate(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::rotate expects at least one argument."));
+    Matrix3x3*self;
+    if(!type_same<Matrix3x3>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::rotate expects Matrix3x3 as first argument."));
+    else
+         self=(Matrix3x3*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            return create_val<Matrix3x3>::f(ctx,  self->rotate(val_to_c<float>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for Matrix3x3::rotate."));
     return scripting::createNil();
 }
 
@@ -17032,6 +17990,93 @@ void Float4_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,s
     obj.data=self->data;
     Float4_set_member(ctx, &obj, key, value);
 }
+scripting::Value *Matrix4x4_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    List<scripting::Value *> args2 = args.copy();
+    args2[0]=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4;
+    scripting::NativeObject *obj=(scripting::NativeObject*)Matrix4x4_new(ctx, args2);
+    obj->funcs=Matrix4x4_ptr_funcs;
+    obj->typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_ptr_typeID;
+    setAllocInfo(obj->data, AllocInfo(true, false));
+    return (scripting::Value*)obj;
+}
+scripting::Value *Matrix4x4_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4Ref::deref expects one argument."));
+    scripting::Value*self=args[0];
+    if(!type_same<Matrix4x4 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4Ref::deref expects Matrix4x4Ref as first argument."));
+    return create_val<Matrix4x4>::f(ctx, *(Matrix4x4 *)((scripting::NativeObject *)self)->data);
+}
+scripting::Value *Matrix4x4_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=2)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4::refset expects two arguments."));
+    scripting::Value*self=args[0];
+    if(!type_same<Matrix4x4 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4Ref::refset expects Matrix4x4Ref as first argument."));
+    *((Matrix4x4 *)((scripting::NativeObject *)self)->data) = val_to_c<Matrix4x4>::f(ctx,args[1]);
+    return scripting::createNil();
+}
+scripting::Value *Matrix4x4_ptr_copy(scripting::Context*, scripting::NativeObject*self)
+{
+    if(self->data==NULL)
+        return scripting::createNativeObject(Matrix4x4_ptr_funcs,NULL,self->typeID);
+    else
+         return scripting::createNativeObject(Matrix4x4_ptr_funcs,self->data,self->typeID);
+}
+void Matrix4x4_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(!type_same<Matrix4x4 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4Ref::__del__ expects Matrix4x4Ref as first argument."));
+    SCRIPT_DELETE(Matrix4x4, (Matrix4x4 *)self->data);
+}
+scripting::Value *Matrix4x4_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+    if(!type_same<Matrix4x4 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4Ref's get method expects Matrix4x4Ref as first argument."));
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue *)key)->value;
+        if(self->data==NULL)
+        {
+        if(keyStr=="__typeID__")
+            return scripting::createInt(self->typeID);
+        else if(keyStr=="__name__")
+            return scripting::createString("Matrix4x4Ptr");
+        else if(keyStr=="__new__")
+            return scripting::createNativeFunction(Matrix4x4_ptr_new);
+        else if(keyStr=="__call__")
+            return scripting::createNativeFunction(Matrix4x4_ptr_new);
+        else
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        } else
+        {
+        if(keyStr=="deref") return scripting::createNativeFunction(Matrix4x4_ptr_deref);
+        if(keyStr=="refset") return scripting::createNativeFunction(Matrix4x4_ptr_set);
+        }
+    }
+    scripting::NativeObject obj;
+    obj.head.type=scripting::ValueType::NativeObject;
+    obj.funcs=Matrix4x4_funcs;
+    obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID;
+    obj.refCount=1;
+    obj.data=self->data;
+    return Matrix4x4_get_member(ctx, &obj, key);
+}
+void Matrix4x4_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+    if(!type_same<Matrix4x4 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4Ref's get method expects Matrix4x4Ref as first argument."));
+    scripting::NativeObject obj;
+    obj.head.type=scripting::ValueType::NativeObject;
+    obj.funcs=Matrix4x4_funcs;
+    obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix4x4_typeID;
+    obj.refCount=1;
+    obj.data=self->data;
+    Matrix4x4_set_member(ctx, &obj, key, value);
+}
 scripting::Value *UInt4_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     List<scripting::Value *> args2 = args.copy();
@@ -17206,6 +18251,93 @@ void AABB_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scr
     obj.data=self->data;
     AABB_set_member(ctx, &obj, key, value);
 }
+scripting::Value *Matrix3x3_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    List<scripting::Value *> args2 = args.copy();
+    args2[0]=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3;
+    scripting::NativeObject *obj=(scripting::NativeObject*)Matrix3x3_new(ctx, args2);
+    obj->funcs=Matrix3x3_ptr_funcs;
+    obj->typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_ptr_typeID;
+    setAllocInfo(obj->data, AllocInfo(true, false));
+    return (scripting::Value*)obj;
+}
+scripting::Value *Matrix3x3_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3Ref::deref expects one argument."));
+    scripting::Value*self=args[0];
+    if(!type_same<Matrix3x3 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3Ref::deref expects Matrix3x3Ref as first argument."));
+    return create_val<Matrix3x3>::f(ctx, *(Matrix3x3 *)((scripting::NativeObject *)self)->data);
+}
+scripting::Value *Matrix3x3_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=2)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3::refset expects two arguments."));
+    scripting::Value*self=args[0];
+    if(!type_same<Matrix3x3 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3Ref::refset expects Matrix3x3Ref as first argument."));
+    *((Matrix3x3 *)((scripting::NativeObject *)self)->data) = val_to_c<Matrix3x3>::f(ctx,args[1]);
+    return scripting::createNil();
+}
+scripting::Value *Matrix3x3_ptr_copy(scripting::Context*, scripting::NativeObject*self)
+{
+    if(self->data==NULL)
+        return scripting::createNativeObject(Matrix3x3_ptr_funcs,NULL,self->typeID);
+    else
+         return scripting::createNativeObject(Matrix3x3_ptr_funcs,self->data,self->typeID);
+}
+void Matrix3x3_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(!type_same<Matrix3x3 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3Ref::__del__ expects Matrix3x3Ref as first argument."));
+    SCRIPT_DELETE(Matrix3x3, (Matrix3x3 *)self->data);
+}
+scripting::Value *Matrix3x3_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+    if(!type_same<Matrix3x3 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3Ref's get method expects Matrix3x3Ref as first argument."));
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue *)key)->value;
+        if(self->data==NULL)
+        {
+        if(keyStr=="__typeID__")
+            return scripting::createInt(self->typeID);
+        else if(keyStr=="__name__")
+            return scripting::createString("Matrix3x3Ptr");
+        else if(keyStr=="__new__")
+            return scripting::createNativeFunction(Matrix3x3_ptr_new);
+        else if(keyStr=="__call__")
+            return scripting::createNativeFunction(Matrix3x3_ptr_new);
+        else
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        } else
+        {
+        if(keyStr=="deref") return scripting::createNativeFunction(Matrix3x3_ptr_deref);
+        if(keyStr=="refset") return scripting::createNativeFunction(Matrix3x3_ptr_set);
+        }
+    }
+    scripting::NativeObject obj;
+    obj.head.type=scripting::ValueType::NativeObject;
+    obj.funcs=Matrix3x3_funcs;
+    obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID;
+    obj.refCount=1;
+    obj.data=self->data;
+    return Matrix3x3_get_member(ctx, &obj, key);
+}
+void Matrix3x3_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+    if(!type_same<Matrix3x3 *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3Ref's get method expects Matrix3x3Ref as first argument."));
+    scripting::NativeObject obj;
+    obj.head.type=scripting::ValueType::NativeObject;
+    obj.funcs=Matrix3x3_funcs;
+    obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Matrix3x3_typeID;
+    obj.refCount=1;
+    obj.data=self->data;
+    Matrix3x3_set_member(ctx, &obj, key, value);
+}
 void *initBindings(scripting::Engine *engine, void *data)
 {
     BindingsExt *ext = NEW(BindingsExt);
@@ -17293,6 +18425,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Float4Ref", ext->Float4_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->Matrix4x4_typeID = typeID;
+    ext->Matrix4x4 = scripting::createNativeObject(Matrix4x4_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Matrix4x4", ext->Matrix4x4);
+    
+    typeID = engine->createNewTypeID();
+    ext->Matrix4x4_ptr_typeID = typeID;
+    ext->Matrix4x4_ptr = scripting::createNativeObject(Matrix4x4_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Matrix4x4Ref", ext->Matrix4x4_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->UInt4_typeID = typeID;
     ext->UInt4 = scripting::createNativeObject(UInt4_funcs, NULL, typeID);
     engine->getGlobalVars().set("UInt4", ext->UInt4);
@@ -17311,6 +18453,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->AABB_ptr_typeID = typeID;
     ext->AABB_ptr = scripting::createNativeObject(AABB_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("AABBRef", ext->AABB_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->Matrix3x3_typeID = typeID;
+    ext->Matrix3x3 = scripting::createNativeObject(Matrix3x3_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Matrix3x3", ext->Matrix3x3);
+    
+    typeID = engine->createNewTypeID();
+    ext->Matrix3x3_ptr_typeID = typeID;
+    ext->Matrix3x3_ptr = scripting::createNativeObject(Matrix3x3_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Matrix3x3Ref", ext->Matrix3x3_ptr);
     
     return ext;
 }
