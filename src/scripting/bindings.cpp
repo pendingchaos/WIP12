@@ -1359,9 +1359,9 @@ struct val_to_c<T3<uint32_t> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->UInt3_ptr_typeID)
                 return (T3<uint32_t>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt3Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt3Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt3Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt3Ref."));
     }
 };
 template <>
@@ -1409,9 +1409,9 @@ struct val_to_c<T2<uint32_t> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->UInt2_ptr_typeID)
                 return (T2<uint32_t>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt2Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt2Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt2Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt2Ref."));
     }
 };
 template <>
@@ -1459,9 +1459,9 @@ struct val_to_c<T3<int32_t> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Int3_ptr_typeID)
                 return (T3<int32_t>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int3Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int3Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int3Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int3Ref."));
     }
 };
 template <>
@@ -1509,9 +1509,9 @@ struct val_to_c<T2<float> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Float2_ptr_typeID)
                 return (T2<float>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float2Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float2Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float2Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float2Ref."));
     }
 };
 template <>
@@ -1559,9 +1559,9 @@ struct val_to_c<T4<int32_t> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Int4_ptr_typeID)
                 return (T4<int32_t>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int4Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int4Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int4Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int4Ref."));
     }
 };
 template <>
@@ -1609,9 +1609,9 @@ struct val_to_c<T3<float> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Float3_ptr_typeID)
                 return (T3<float>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float3Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float3Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float3Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float3Ref."));
     }
 };
 template <>
@@ -1659,9 +1659,9 @@ struct val_to_c<T2<int32_t> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Int2_ptr_typeID)
                 return (T2<int32_t>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int2Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int2Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int2Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Int2Ref."));
     }
 };
 template <>
@@ -1709,9 +1709,9 @@ struct val_to_c<T4<float> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->Float4_ptr_typeID)
                 return (T4<float>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float4Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float4Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float4Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a Float4Ref."));
     }
 };
 template <>
@@ -1759,9 +1759,9 @@ struct val_to_c<T4<uint32_t> *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->UInt4_ptr_typeID)
                 return (T4<uint32_t>*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt4Ptr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt4Ref."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt4Ptr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a UInt4Ref."));
     }
 };
 template <>
@@ -1809,9 +1809,9 @@ struct val_to_c<AABB *>
             if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->AABB_ptr_typeID)
                 return (AABB*)obj->data;
             else
-                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a AABBPtr."));
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a AABBRef."));
         } else
-             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a AABBPtr."));
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a AABBRef."));
     }
 };
 template <>
@@ -16349,19 +16349,19 @@ scripting::Value *UInt3_ptr_new(scripting::Context*ctx,const List<scripting::Val
 scripting::Value *UInt3_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt3::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt3Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T3<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ptr::deref expects UInt3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ref::deref expects UInt3Ref as first argument."));
     return create_val<T3<uint32_t>>::f(ctx, *(T3<uint32_t> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *UInt3_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt3::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt3::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T3<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ptr::deref expects UInt3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ref::refset expects UInt3Ref as first argument."));
     *((T3<uint32_t> *)((scripting::NativeObject *)self)->data) = val_to_c<T3<uint32_t>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16375,13 +16375,13 @@ scripting::Value *UInt3_ptr_copy(scripting::Context*, scripting::NativeObject*se
 void UInt3_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T3<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ptr::__del__ expects UInt3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ref::__del__ expects UInt3Ref as first argument."));
     SCRIPT_DELETE(T3<uint32_t>, (T3<uint32_t> *)self->data);
 }
 scripting::Value *UInt3_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T3<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ptr's get method expects UInt3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ref's get method expects UInt3Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16414,7 +16414,7 @@ scripting::Value *UInt3_ptr_get_member(scripting::Context*ctx,scripting::NativeO
 void UInt3_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T3<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ptr's get method expects UInt3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3Ref's get method expects UInt3Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=UInt3_funcs;
@@ -16436,19 +16436,19 @@ scripting::Value *UInt2_ptr_new(scripting::Context*ctx,const List<scripting::Val
 scripting::Value *UInt2_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt2::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt2Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T2<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ptr::deref expects UInt2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ref::deref expects UInt2Ref as first argument."));
     return create_val<T2<uint32_t>>::f(ctx, *(T2<uint32_t> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *UInt2_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt2::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt2::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T2<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ptr::deref expects UInt2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ref::refset expects UInt2Ref as first argument."));
     *((T2<uint32_t> *)((scripting::NativeObject *)self)->data) = val_to_c<T2<uint32_t>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16462,13 +16462,13 @@ scripting::Value *UInt2_ptr_copy(scripting::Context*, scripting::NativeObject*se
 void UInt2_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T2<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ptr::__del__ expects UInt2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ref::__del__ expects UInt2Ref as first argument."));
     SCRIPT_DELETE(T2<uint32_t>, (T2<uint32_t> *)self->data);
 }
 scripting::Value *UInt2_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T2<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ptr's get method expects UInt2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ref's get method expects UInt2Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16501,7 +16501,7 @@ scripting::Value *UInt2_ptr_get_member(scripting::Context*ctx,scripting::NativeO
 void UInt2_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T2<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ptr's get method expects UInt2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2Ref's get method expects UInt2Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=UInt2_funcs;
@@ -16523,19 +16523,19 @@ scripting::Value *Int3_ptr_new(scripting::Context*ctx,const List<scripting::Valu
 scripting::Value *Int3_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int3::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int3Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T3<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ptr::deref expects Int3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ref::deref expects Int3Ref as first argument."));
     return create_val<T3<int32_t>>::f(ctx, *(T3<int32_t> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *Int3_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int3::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int3::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T3<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ptr::deref expects Int3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ref::refset expects Int3Ref as first argument."));
     *((T3<int32_t> *)((scripting::NativeObject *)self)->data) = val_to_c<T3<int32_t>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16549,13 +16549,13 @@ scripting::Value *Int3_ptr_copy(scripting::Context*, scripting::NativeObject*sel
 void Int3_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T3<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ptr::__del__ expects Int3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ref::__del__ expects Int3Ref as first argument."));
     SCRIPT_DELETE(T3<int32_t>, (T3<int32_t> *)self->data);
 }
 scripting::Value *Int3_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T3<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ptr's get method expects Int3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ref's get method expects Int3Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16588,7 +16588,7 @@ scripting::Value *Int3_ptr_get_member(scripting::Context*ctx,scripting::NativeOb
 void Int3_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T3<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ptr's get method expects Int3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3Ref's get method expects Int3Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=Int3_funcs;
@@ -16610,19 +16610,19 @@ scripting::Value *Float2_ptr_new(scripting::Context*ctx,const List<scripting::Va
 scripting::Value *Float2_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float2::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float2Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T2<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ptr::deref expects Float2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ref::deref expects Float2Ref as first argument."));
     return create_val<T2<float>>::f(ctx, *(T2<float> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *Float2_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float2::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float2::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T2<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ptr::deref expects Float2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ref::refset expects Float2Ref as first argument."));
     *((T2<float> *)((scripting::NativeObject *)self)->data) = val_to_c<T2<float>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16636,13 +16636,13 @@ scripting::Value *Float2_ptr_copy(scripting::Context*, scripting::NativeObject*s
 void Float2_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T2<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ptr::__del__ expects Float2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ref::__del__ expects Float2Ref as first argument."));
     SCRIPT_DELETE(T2<float>, (T2<float> *)self->data);
 }
 scripting::Value *Float2_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T2<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ptr's get method expects Float2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ref's get method expects Float2Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16675,7 +16675,7 @@ scripting::Value *Float2_ptr_get_member(scripting::Context*ctx,scripting::Native
 void Float2_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T2<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ptr's get method expects Float2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2Ref's get method expects Float2Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=Float2_funcs;
@@ -16697,19 +16697,19 @@ scripting::Value *Int4_ptr_new(scripting::Context*ctx,const List<scripting::Valu
 scripting::Value *Int4_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int4::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int4Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T4<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ptr::deref expects Int4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ref::deref expects Int4Ref as first argument."));
     return create_val<T4<int32_t>>::f(ctx, *(T4<int32_t> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *Int4_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int4::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int4::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T4<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ptr::deref expects Int4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ref::refset expects Int4Ref as first argument."));
     *((T4<int32_t> *)((scripting::NativeObject *)self)->data) = val_to_c<T4<int32_t>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16723,13 +16723,13 @@ scripting::Value *Int4_ptr_copy(scripting::Context*, scripting::NativeObject*sel
 void Int4_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T4<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ptr::__del__ expects Int4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ref::__del__ expects Int4Ref as first argument."));
     SCRIPT_DELETE(T4<int32_t>, (T4<int32_t> *)self->data);
 }
 scripting::Value *Int4_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T4<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ptr's get method expects Int4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ref's get method expects Int4Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16762,7 +16762,7 @@ scripting::Value *Int4_ptr_get_member(scripting::Context*ctx,scripting::NativeOb
 void Int4_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T4<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ptr's get method expects Int4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4Ref's get method expects Int4Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=Int4_funcs;
@@ -16784,19 +16784,19 @@ scripting::Value *Float3_ptr_new(scripting::Context*ctx,const List<scripting::Va
 scripting::Value *Float3_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float3::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float3Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T3<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ptr::deref expects Float3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ref::deref expects Float3Ref as first argument."));
     return create_val<T3<float>>::f(ctx, *(T3<float> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *Float3_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float3::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float3::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T3<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ptr::deref expects Float3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ref::refset expects Float3Ref as first argument."));
     *((T3<float> *)((scripting::NativeObject *)self)->data) = val_to_c<T3<float>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16810,13 +16810,13 @@ scripting::Value *Float3_ptr_copy(scripting::Context*, scripting::NativeObject*s
 void Float3_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T3<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ptr::__del__ expects Float3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ref::__del__ expects Float3Ref as first argument."));
     SCRIPT_DELETE(T3<float>, (T3<float> *)self->data);
 }
 scripting::Value *Float3_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T3<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ptr's get method expects Float3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ref's get method expects Float3Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16849,7 +16849,7 @@ scripting::Value *Float3_ptr_get_member(scripting::Context*ctx,scripting::Native
 void Float3_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T3<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ptr's get method expects Float3Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3Ref's get method expects Float3Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=Float3_funcs;
@@ -16871,19 +16871,19 @@ scripting::Value *Int2_ptr_new(scripting::Context*ctx,const List<scripting::Valu
 scripting::Value *Int2_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int2::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int2Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T2<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ptr::deref expects Int2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ref::deref expects Int2Ref as first argument."));
     return create_val<T2<int32_t>>::f(ctx, *(T2<int32_t> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *Int2_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int2::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int2::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T2<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ptr::deref expects Int2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ref::refset expects Int2Ref as first argument."));
     *((T2<int32_t> *)((scripting::NativeObject *)self)->data) = val_to_c<T2<int32_t>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16897,13 +16897,13 @@ scripting::Value *Int2_ptr_copy(scripting::Context*, scripting::NativeObject*sel
 void Int2_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T2<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ptr::__del__ expects Int2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ref::__del__ expects Int2Ref as first argument."));
     SCRIPT_DELETE(T2<int32_t>, (T2<int32_t> *)self->data);
 }
 scripting::Value *Int2_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T2<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ptr's get method expects Int2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ref's get method expects Int2Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -16936,7 +16936,7 @@ scripting::Value *Int2_ptr_get_member(scripting::Context*ctx,scripting::NativeOb
 void Int2_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T2<int32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ptr's get method expects Int2Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2Ref's get method expects Int2Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=Int2_funcs;
@@ -16958,19 +16958,19 @@ scripting::Value *Float4_ptr_new(scripting::Context*ctx,const List<scripting::Va
 scripting::Value *Float4_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float4::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float4Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T4<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ptr::deref expects Float4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ref::deref expects Float4Ref as first argument."));
     return create_val<T4<float>>::f(ctx, *(T4<float> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *Float4_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float4::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float4::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T4<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ptr::deref expects Float4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ref::refset expects Float4Ref as first argument."));
     *((T4<float> *)((scripting::NativeObject *)self)->data) = val_to_c<T4<float>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -16984,13 +16984,13 @@ scripting::Value *Float4_ptr_copy(scripting::Context*, scripting::NativeObject*s
 void Float4_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T4<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ptr::__del__ expects Float4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ref::__del__ expects Float4Ref as first argument."));
     SCRIPT_DELETE(T4<float>, (T4<float> *)self->data);
 }
 scripting::Value *Float4_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T4<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ptr's get method expects Float4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ref's get method expects Float4Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -17023,7 +17023,7 @@ scripting::Value *Float4_ptr_get_member(scripting::Context*ctx,scripting::Native
 void Float4_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T4<float> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ptr's get method expects Float4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4Ref's get method expects Float4Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=Float4_funcs;
@@ -17045,19 +17045,19 @@ scripting::Value *UInt4_ptr_new(scripting::Context*ctx,const List<scripting::Val
 scripting::Value *UInt4_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt4::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt4Ref::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<T4<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ptr::deref expects UInt4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ref::deref expects UInt4Ref as first argument."));
     return create_val<T4<uint32_t>>::f(ctx, *(T4<uint32_t> *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *UInt4_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt4::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt4::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<T4<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ptr::deref expects UInt4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ref::refset expects UInt4Ref as first argument."));
     *((T4<uint32_t> *)((scripting::NativeObject *)self)->data) = val_to_c<T4<uint32_t>>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -17071,13 +17071,13 @@ scripting::Value *UInt4_ptr_copy(scripting::Context*, scripting::NativeObject*se
 void UInt4_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T4<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ptr::__del__ expects UInt4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
     SCRIPT_DELETE(T4<uint32_t>, (T4<uint32_t> *)self->data);
 }
 scripting::Value *UInt4_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<T4<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ptr's get method expects UInt4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ref's get method expects UInt4Ref as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -17110,7 +17110,7 @@ scripting::Value *UInt4_ptr_get_member(scripting::Context*ctx,scripting::NativeO
 void UInt4_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<T4<uint32_t> *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ptr's get method expects UInt4Ptr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4Ref's get method expects UInt4Ref as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=UInt4_funcs;
@@ -17132,19 +17132,19 @@ scripting::Value *AABB_ptr_new(scripting::Context*ctx,const List<scripting::Valu
 scripting::Value *AABB_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=1)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB::deref expects one argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABBRef::deref expects one argument."));
     scripting::Value*self=args[0];
     if(!type_same<AABB *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBPtr::deref expects AABBPtr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBRef::deref expects AABBRef as first argument."));
     return create_val<AABB>::f(ctx, *(AABB *)((scripting::NativeObject *)self)->data);
 }
 scripting::Value *AABB_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
     if(args.getCount()!=2)
-        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB::deref expects two arguments."));
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB::refset expects two arguments."));
     scripting::Value*self=args[0];
     if(!type_same<AABB *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBPtr::deref expects AABBPtr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBRef::refset expects AABBRef as first argument."));
     *((AABB *)((scripting::NativeObject *)self)->data) = val_to_c<AABB>::f(ctx,args[1]);
     return scripting::createNil();
 }
@@ -17158,13 +17158,13 @@ scripting::Value *AABB_ptr_copy(scripting::Context*, scripting::NativeObject*sel
 void AABB_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<AABB *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBPtr::__del__ expects AABBPtr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBRef::__del__ expects AABBRef as first argument."));
     SCRIPT_DELETE(AABB, (AABB *)self->data);
 }
 scripting::Value *AABB_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
     if(!type_same<AABB *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBPtr's get method expects AABBPtr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBRef's get method expects AABBRef as first argument."));
     if (key->type==scripting::ValueType::StringType)
     {
         String keyStr=((scripting::StringValue *)key)->value;
@@ -17197,7 +17197,7 @@ scripting::Value *AABB_ptr_get_member(scripting::Context*ctx,scripting::NativeOb
 void AABB_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
     if(!type_same<AABB *>::f(ctx, (scripting::Value *)self))
-        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBPtr's get method expects AABBPtr as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABBRef's get method expects AABBRef as first argument."));
     scripting::NativeObject obj;
     obj.head.type=scripting::ValueType::NativeObject;
     obj.funcs=AABB_funcs;
@@ -17220,7 +17220,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->UInt3_ptr_typeID = typeID;
     ext->UInt3_ptr = scripting::createNativeObject(UInt3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt3Ptr", ext->UInt3_ptr);
+    engine->getGlobalVars().set("UInt3Ref", ext->UInt3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt2_typeID = typeID;
@@ -17230,7 +17230,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->UInt2_ptr_typeID = typeID;
     ext->UInt2_ptr = scripting::createNativeObject(UInt2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt2Ptr", ext->UInt2_ptr);
+    engine->getGlobalVars().set("UInt2Ref", ext->UInt2_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int3_typeID = typeID;
@@ -17240,7 +17240,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->Int3_ptr_typeID = typeID;
     ext->Int3_ptr = scripting::createNativeObject(Int3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int3Ptr", ext->Int3_ptr);
+    engine->getGlobalVars().set("Int3Ref", ext->Int3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Float2_typeID = typeID;
@@ -17250,7 +17250,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->Float2_ptr_typeID = typeID;
     ext->Float2_ptr = scripting::createNativeObject(Float2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float2Ptr", ext->Float2_ptr);
+    engine->getGlobalVars().set("Float2Ref", ext->Float2_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int4_typeID = typeID;
@@ -17260,7 +17260,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->Int4_ptr_typeID = typeID;
     ext->Int4_ptr = scripting::createNativeObject(Int4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int4Ptr", ext->Int4_ptr);
+    engine->getGlobalVars().set("Int4Ref", ext->Int4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Float3_typeID = typeID;
@@ -17270,7 +17270,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->Float3_ptr_typeID = typeID;
     ext->Float3_ptr = scripting::createNativeObject(Float3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float3Ptr", ext->Float3_ptr);
+    engine->getGlobalVars().set("Float3Ref", ext->Float3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int2_typeID = typeID;
@@ -17280,7 +17280,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->Int2_ptr_typeID = typeID;
     ext->Int2_ptr = scripting::createNativeObject(Int2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int2Ptr", ext->Int2_ptr);
+    engine->getGlobalVars().set("Int2Ref", ext->Int2_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Float4_typeID = typeID;
@@ -17290,7 +17290,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->Float4_ptr_typeID = typeID;
     ext->Float4_ptr = scripting::createNativeObject(Float4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float4Ptr", ext->Float4_ptr);
+    engine->getGlobalVars().set("Float4Ref", ext->Float4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt4_typeID = typeID;
@@ -17300,7 +17300,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->UInt4_ptr_typeID = typeID;
     ext->UInt4_ptr = scripting::createNativeObject(UInt4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt4Ptr", ext->UInt4_ptr);
+    engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->AABB_typeID = typeID;
@@ -17310,7 +17310,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     typeID = engine->createNewTypeID();
     ext->AABB_ptr_typeID = typeID;
     ext->AABB_ptr = scripting::createNativeObject(AABB_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AABBPtr", ext->AABB_ptr);
+    engine->getGlobalVars().set("AABBRef", ext->AABB_ptr);
     
     return ext;
 }

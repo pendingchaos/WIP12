@@ -782,9 +782,9 @@ struct val_to_c<%s *>
 ????????????if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID)
 ????????????????return (%s*)obj->data;
 ????????????else
-???????????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sPtr."));
+???????????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sRef."));
 ????????} else
-???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sPtr."));
+???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sRef."));
 ????}
 };
 template <>
@@ -1094,10 +1094,10 @@ for class_ in classes.values():
     bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::deref expects one argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%sRef::deref expects one argument."));
 ????scripting::Value*self=args[0];
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr::deref expects %sPtr as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::deref expects %sRef as first argument."));
 ????return create_val<%s>::f(ctx, *(%s *)((scripting::NativeObject *)self)->data);
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
@@ -1105,10 +1105,10 @@ for class_ in classes.values():
     bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=2)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::deref expects two arguments."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::refset expects two arguments."));
 ????scripting::Value*self=args[0];
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr::deref expects %sPtr as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::refset expects %sRef as first argument."));
 ????*((%s *)((scripting::NativeObject *)self)->data) = val_to_c<%s>::f(ctx,args[1]);
 ????return scripting::createNil();
 }
@@ -1124,13 +1124,13 @@ for class_ in classes.values():
 void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr::__del__ expects %sPtr as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::__del__ expects %sRef as first argument."));
 ????SCRIPT_DELETE(%s, (%s *)self->data);
 }
 scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr's get method expects %sPtr as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef's get method expects %sRef as first argument."));
 ????if (key->type==scripting::ValueType::StringType)
 ????{
 ????????String keyStr=((scripting::StringValue *)key)->value;
@@ -1163,7 +1163,7 @@ scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*s
 void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr's get method expects %sPtr as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef's get method expects %sRef as first argument."));
 ????scripting::NativeObject obj;
 ????obj.head.type=scripting::ValueType::NativeObject;
 ????obj.funcs=%s_funcs;
@@ -1200,7 +1200,7 @@ for class_ in classes.values():
     bindings.write("""    typeID = engine->createNewTypeID();
     ext->%s_ptr_typeID = typeID;
     ext->%s_ptr = scripting::createNativeObject(%s_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("%sPtr", ext->%s_ptr);
+    engine->getGlobalVars().set("%sRef", ext->%s_ptr);
     
 """ % (class_.name, class_.name, class_.name, class_.name, class_.name))
 
