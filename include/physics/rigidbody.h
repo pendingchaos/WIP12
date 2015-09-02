@@ -53,12 +53,12 @@ class RigidBody
                 short collisionMask;
         };
 
-        inline btRigidBody *getBulletRigidBody() const
+        inline btRigidBody *getBulletRigidBody() const NO_BIND
         {
             return rigidBody;
         }
 
-        inline RigidBody::Type getType() const
+        inline RigidBody::Type getType() const NO_BIND
         {
             return type;
         }
@@ -132,7 +132,7 @@ class RigidBody
 
         void setTransform(const Matrix4x4& transform) const;
 
-        inline PhysicsWorld *getWorld() const
+        inline PhysicsWorld *getWorld() const NO_BIND
         {
             return world;
         }
@@ -142,14 +142,14 @@ class RigidBody
             return collisionMask;
         }
 
-        void setShape(PhysicsShape *shape);
+        void setShape(PhysicsShape *shape) NO_BIND;
 
-        inline PhysicsShape *getShape() const
+        inline PhysicsShape *getShape() const NO_BIND
         {
             return shape;
         }
 
-        inline Entity *getEntity() const
+        inline Entity *getEntity() const NO_BIND
         {
             return entity;
         }
@@ -165,6 +165,6 @@ class RigidBody
         Entity *entity;
         RigidBody::Type type;
         short collisionMask;
-};
+} BIND NOT_COPYABLE;
 
 #endif // RIGIDBODY_H

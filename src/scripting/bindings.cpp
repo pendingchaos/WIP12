@@ -58,8 +58,8 @@
 
 struct BindingsExt
 {
-    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID;
-    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *Int3, *Int3_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr;
+    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID;
+    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *RigidBody, *RigidBody_ptr, *Int3, *Int3_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr;
 };
 
 
@@ -418,6 +418,77 @@ scripting::Value *UInt2_getXY(scripting::Context *ctx, const List<scripting::Val
 scripting::Value *UInt2_setXY(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *UInt2_getYX(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *UInt2_setYX(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_copy(scripting::Context*, scripting::NativeObject*);
+void RigidBody_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *RigidBody_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void RigidBody_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs RigidBody_funcs={
+    .copy = RigidBody_copy,
+    .destroy = RigidBody_destroy,
+    .getMember = RigidBody_get_member,
+    .setMember = RigidBody_set_member
+};
+template <>
+struct create_val<RigidBody>
+{
+    static scripting::Value *f(scripting::Context*ctx,const RigidBody&obj)
+    {
+        return scripting::createNativeObject(RigidBody_funcs,NEW(RigidBody, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody_typeID);
+    }
+};
+template <>
+struct type_same<RigidBody>
+{
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+            return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->RigidBody_typeID;
+        else
+             return false;
+    }
+};
+
+scripting::Value *RigidBody_getBulletRigidBody(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getType(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getGravity(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setGravity(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setLinearDamping(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getLinearDamping(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setAngularDamping(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getAngularDamping(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setMass(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getMass(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getLinearSleepingThreshold(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setLinearSleepingThreshold(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getAngularSleepingThreshold(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setAngularSleepingThreshold(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_applyTorque(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_applyForce(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_applyCentralImpulse(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_applyTorqueImpulse(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_applyImpulse(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_clearForces(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getLinearVelocity(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setLinearVelocity(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getAngularVelocity(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setAngularVelocity(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getVelocityOfPoint(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getRestitution(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setRestitution(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getFriction(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setFriction(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getRollingFriction(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setRollingFriction(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getLinearFactor(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setLinearFactor(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getAngularFactor(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setAngularFactor(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setTransform(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getWorld(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getCollisionMask(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_setShape(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getShape(scripting::Context *ctx, const List<scripting::Value *>& args);
+scripting::Value *RigidBody_getEntity(scripting::Context *ctx, const List<scripting::Value *>& args);
 scripting::Value *Int3_copy(scripting::Context*, scripting::NativeObject*);
 void Int3_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *Int3_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
@@ -1544,6 +1615,56 @@ struct type_same<T2<uint32_t> *>
     }
 };
 
+scripting::Value *RigidBody_ptr_copy(scripting::Context*, scripting::NativeObject*);
+void RigidBody_ptr_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *RigidBody_ptr_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void RigidBody_ptr_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs RigidBody_ptr_funcs={
+    .copy = RigidBody_ptr_copy,
+    .destroy = RigidBody_ptr_destroy,
+    .getMember = RigidBody_ptr_get_member,
+    .setMember = RigidBody_ptr_set_member
+};
+template <>
+struct create_val<RigidBody *>
+{
+    static scripting::Value *f(scripting::Context*ctx,RigidBody*obj)
+    {
+        AllocInfo i=getAllocInfo((void*)obj);
+        i.cppRef = false;
+        i.scriptRef = true;
+        setAllocInfo((void *)obj, i);
+        return scripting::createNativeObject(RigidBody_ptr_funcs,obj,((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody_ptr_typeID);
+    }
+};
+template <>
+struct val_to_c<RigidBody *>
+{
+    static RigidBody *f(scripting::Context*ctx,const scripting::Value*head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+        {
+            scripting::NativeObject*obj=(scripting::NativeObject*)head;
+            if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody_ptr_typeID)
+                return (RigidBody*)obj->data;
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a RigidBodyRef."));
+        } else
+             ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a RigidBodyRef."));
+    }
+};
+template <>
+struct type_same<RigidBody *>
+{
+    static bool f(scripting::Context *ctx,const scripting::Value *head)
+    {
+        if(head->type==scripting::ValueType::NativeObject)
+            return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->RigidBody_ptr_typeID;
+        else
+             return false;
+    }
+};
+
 scripting::Value *Int3_ptr_copy(scripting::Context*, scripting::NativeObject*);
 void Int3_ptr_destroy(scripting::Context*,scripting::NativeObject*);
 scripting::Value *Int3_ptr_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
@@ -2056,10 +2177,9 @@ void UInt3_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T3<uint32_t>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt3::__del__ expects UInt3 as first argument."));
-    DELETE(T3<uint32_t>,(T3<uint32_t> *)self->data);
-}
 
-scripting::Value *UInt3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T3<uint32_t>,(T3<uint32_t> *)self->data);
+}scripting::Value *UInt3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt3's constructor expects at least one argument."));
@@ -3108,10 +3228,9 @@ void UInt2_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T2<uint32_t>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt2::__del__ expects UInt2 as first argument."));
-    DELETE(T2<uint32_t>,(T2<uint32_t> *)self->data);
-}
 
-scripting::Value *UInt2_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T2<uint32_t>,(T2<uint32_t> *)self->data);
+}scripting::Value *UInt2_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt2's constructor expects at least one argument."));
@@ -3678,6 +3797,939 @@ scripting::Value *UInt2___neq__(scripting::Context*ctx,const List<scripting::Val
     return scripting::createNil();
 }
 
+scripting::Value *RigidBody_copy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(self->data==NULL)
+        return scripting::createNativeObject(RigidBody_funcs,NULL,self->typeID);
+    else
+         return scripting::createNativeObject(RigidBody_funcs,NEW(RigidBody,*((RigidBody*)self->data)),self->typeID);
+}
+
+void RigidBody_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(!type_same<RigidBody>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::__del__ expects RigidBody as first argument."));
+
+}scripting::Value *RigidBody_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody's constructor expects one argument."));
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody's constructor expects RigidBody as first argument."));
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody's constructor."));
+}
+
+scripting::Value *RigidBody_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue *)key)->value;
+        if(self->data==NULL)
+        {
+            if(keyStr=="__typeID__")
+                return scripting::createInt(self->typeID);
+            else if(keyStr=="__name__")
+                return scripting::createString("RigidBody");
+            else if(keyStr=="__new__")
+                return scripting::createNativeFunction(RigidBody_new);
+            else if(keyStr=="__call__")
+                return scripting::createNativeFunction(RigidBody_new);
+            else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        } else
+        {
+            if(keyStr=="__classTypeID__")
+                return scripting::createInt(self->typeID);
+            else if(keyStr=="__init__")
+                return scripting::createNativeFunction(RigidBody_new);
+             else if (keyStr == "getBulletRigidBody")
+                return scripting::createNativeFunction(RigidBody_getBulletRigidBody);
+             else if (keyStr == "getType")
+                return scripting::createNativeFunction(RigidBody_getType);
+             else if (keyStr == "getGravity")
+                return scripting::createNativeFunction(RigidBody_getGravity);
+             else if (keyStr == "setGravity")
+                return scripting::createNativeFunction(RigidBody_setGravity);
+             else if (keyStr == "setLinearDamping")
+                return scripting::createNativeFunction(RigidBody_setLinearDamping);
+             else if (keyStr == "getLinearDamping")
+                return scripting::createNativeFunction(RigidBody_getLinearDamping);
+             else if (keyStr == "setAngularDamping")
+                return scripting::createNativeFunction(RigidBody_setAngularDamping);
+             else if (keyStr == "getAngularDamping")
+                return scripting::createNativeFunction(RigidBody_getAngularDamping);
+             else if (keyStr == "setMass")
+                return scripting::createNativeFunction(RigidBody_setMass);
+             else if (keyStr == "getMass")
+                return scripting::createNativeFunction(RigidBody_getMass);
+             else if (keyStr == "getLinearSleepingThreshold")
+                return scripting::createNativeFunction(RigidBody_getLinearSleepingThreshold);
+             else if (keyStr == "setLinearSleepingThreshold")
+                return scripting::createNativeFunction(RigidBody_setLinearSleepingThreshold);
+             else if (keyStr == "getAngularSleepingThreshold")
+                return scripting::createNativeFunction(RigidBody_getAngularSleepingThreshold);
+             else if (keyStr == "setAngularSleepingThreshold")
+                return scripting::createNativeFunction(RigidBody_setAngularSleepingThreshold);
+             else if (keyStr == "applyTorque")
+                return scripting::createNativeFunction(RigidBody_applyTorque);
+             else if (keyStr == "applyForce")
+                return scripting::createNativeFunction(RigidBody_applyForce);
+             else if (keyStr == "applyCentralImpulse")
+                return scripting::createNativeFunction(RigidBody_applyCentralImpulse);
+             else if (keyStr == "applyTorqueImpulse")
+                return scripting::createNativeFunction(RigidBody_applyTorqueImpulse);
+             else if (keyStr == "applyImpulse")
+                return scripting::createNativeFunction(RigidBody_applyImpulse);
+             else if (keyStr == "clearForces")
+                return scripting::createNativeFunction(RigidBody_clearForces);
+             else if (keyStr == "getLinearVelocity")
+                return scripting::createNativeFunction(RigidBody_getLinearVelocity);
+             else if (keyStr == "setLinearVelocity")
+                return scripting::createNativeFunction(RigidBody_setLinearVelocity);
+             else if (keyStr == "getAngularVelocity")
+                return scripting::createNativeFunction(RigidBody_getAngularVelocity);
+             else if (keyStr == "setAngularVelocity")
+                return scripting::createNativeFunction(RigidBody_setAngularVelocity);
+             else if (keyStr == "getVelocityOfPoint")
+                return scripting::createNativeFunction(RigidBody_getVelocityOfPoint);
+             else if (keyStr == "getRestitution")
+                return scripting::createNativeFunction(RigidBody_getRestitution);
+             else if (keyStr == "setRestitution")
+                return scripting::createNativeFunction(RigidBody_setRestitution);
+             else if (keyStr == "getFriction")
+                return scripting::createNativeFunction(RigidBody_getFriction);
+             else if (keyStr == "setFriction")
+                return scripting::createNativeFunction(RigidBody_setFriction);
+             else if (keyStr == "getRollingFriction")
+                return scripting::createNativeFunction(RigidBody_getRollingFriction);
+             else if (keyStr == "setRollingFriction")
+                return scripting::createNativeFunction(RigidBody_setRollingFriction);
+             else if (keyStr == "getLinearFactor")
+                return scripting::createNativeFunction(RigidBody_getLinearFactor);
+             else if (keyStr == "setLinearFactor")
+                return scripting::createNativeFunction(RigidBody_setLinearFactor);
+             else if (keyStr == "getAngularFactor")
+                return scripting::createNativeFunction(RigidBody_getAngularFactor);
+             else if (keyStr == "setAngularFactor")
+                return scripting::createNativeFunction(RigidBody_setAngularFactor);
+             else if (keyStr == "setTransform")
+                return scripting::createNativeFunction(RigidBody_setTransform);
+             else if (keyStr == "getWorld")
+                return scripting::createNativeFunction(RigidBody_getWorld);
+             else if (keyStr == "getCollisionMask")
+                return scripting::createNativeFunction(RigidBody_getCollisionMask);
+             else if (keyStr == "setShape")
+                return scripting::createNativeFunction(RigidBody_setShape);
+             else if (keyStr == "getShape")
+                return scripting::createNativeFunction(RigidBody_getShape);
+             else if (keyStr == "getEntity")
+                return scripting::createNativeFunction(RigidBody_getEntity);
+             else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        }
+    }
+    return scripting::createNil();
+}
+
+void RigidBody_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue*)key)->value;
+        if(self->data==NULL)
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Native classes are read-only."));
+        else
+        {
+            if(0) {} else
+                 ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+        }
+    }
+}
+
+scripting::Value *RigidBody_setGravity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setGravity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setGravity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1]))
+        {
+            ( self->setGravity(val_to_c<const Vector3D &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setGravity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getFriction(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getFriction expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getFriction expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getFriction());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getFriction."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getRollingFriction(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getRollingFriction expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getRollingFriction expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getRollingFriction());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getRollingFriction."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setAngularFactor(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setAngularFactor expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setAngularFactor expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Float3 &>::f(ctx,args[1]))
+        {
+            ( self->setAngularFactor(val_to_c<const Float3 &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setAngularFactor."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getVelocityOfPoint(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getVelocityOfPoint expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getVelocityOfPoint expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Position3D &>::f(ctx,args[1]))
+        {
+            return create_val<Vector3D>::f(ctx,  self->getVelocityOfPoint(val_to_c<const Position3D &>::f(ctx,args[1])));
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getVelocityOfPoint."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setTransform(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setTransform expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setTransform expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Matrix4x4 &>::f(ctx,args[1]))
+        {
+            ( self->setTransform(val_to_c<const Matrix4x4 &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setTransform."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getMass(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getMass expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getMass expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getMass());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getMass."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setFriction(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setFriction expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setFriction expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setFriction(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setFriction."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_clearForces(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::clearForces expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::clearForces expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            ( self->clearForces());
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::clearForces."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_applyImpulse(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::applyImpulse expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::applyImpulse expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==3)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1])&&type_same<const Position3D &>::f(ctx,args[2]))
+        {
+            ( self->applyImpulse(val_to_c<const Vector3D &>::f(ctx,args[1]), val_to_c<const Position3D &>::f(ctx,args[2])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::applyImpulse."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_applyTorque(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::applyTorque expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::applyTorque expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1]))
+        {
+            ( self->applyTorque(val_to_c<const Vector3D &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::applyTorque."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setLinearFactor(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setLinearFactor expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setLinearFactor expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Float3 &>::f(ctx,args[1]))
+        {
+            ( self->setLinearFactor(val_to_c<const Float3 &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setLinearFactor."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setLinearDamping(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setLinearDamping expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setLinearDamping expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setLinearDamping(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setLinearDamping."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getLinearFactor(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getLinearFactor expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getLinearFactor expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Float3>::f(ctx,  self->getLinearFactor());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getLinearFactor."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setAngularDamping(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setAngularDamping expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setAngularDamping expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setAngularDamping(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setAngularDamping."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getWorld(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getWorld expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getWorld expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getWorld."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getAngularVelocity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getAngularVelocity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getAngularVelocity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Vector3D>::f(ctx,  self->getAngularVelocity());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getAngularVelocity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getShape(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getShape expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getShape expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getShape."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setAngularSleepingThreshold(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setAngularSleepingThreshold expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setAngularSleepingThreshold expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setAngularSleepingThreshold(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setAngularSleepingThreshold."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_applyTorqueImpulse(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::applyTorqueImpulse expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::applyTorqueImpulse expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1]))
+        {
+            ( self->applyTorqueImpulse(val_to_c<const Vector3D &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::applyTorqueImpulse."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setLinearVelocity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setLinearVelocity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setLinearVelocity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1]))
+        {
+            ( self->setLinearVelocity(val_to_c<const Vector3D &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setLinearVelocity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getCollisionMask(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getCollisionMask expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getCollisionMask expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<short>::f(ctx,  self->getCollisionMask());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getCollisionMask."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getLinearVelocity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getLinearVelocity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getLinearVelocity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Vector3D>::f(ctx,  self->getLinearVelocity());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getLinearVelocity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setAngularVelocity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setAngularVelocity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setAngularVelocity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1]))
+        {
+            ( self->setAngularVelocity(val_to_c<const Vector3D &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setAngularVelocity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getType(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getType expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getType expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getType."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getAngularSleepingThreshold(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getAngularSleepingThreshold expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getAngularSleepingThreshold expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getAngularSleepingThreshold());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getAngularSleepingThreshold."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setLinearSleepingThreshold(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setLinearSleepingThreshold expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setLinearSleepingThreshold expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setLinearSleepingThreshold(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setLinearSleepingThreshold."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setRollingFriction(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setRollingFriction expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setRollingFriction expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setRollingFriction(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setRollingFriction."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getGravity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getGravity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getGravity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Vector3D>::f(ctx,  self->getGravity());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getGravity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setMass(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setMass expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setMass expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setMass(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setMass."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_applyCentralImpulse(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::applyCentralImpulse expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::applyCentralImpulse expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1]))
+        {
+            ( self->applyCentralImpulse(val_to_c<const Vector3D &>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::applyCentralImpulse."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getBulletRigidBody(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getBulletRigidBody expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getBulletRigidBody expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getBulletRigidBody."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getRestitution(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getRestitution expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getRestitution expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getRestitution());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getRestitution."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getAngularFactor(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getAngularFactor expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getAngularFactor expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<Float3>::f(ctx,  self->getAngularFactor());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getAngularFactor."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getAngularDamping(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getAngularDamping expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getAngularDamping expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getAngularDamping());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getAngularDamping."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getLinearSleepingThreshold(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getLinearSleepingThreshold expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getLinearSleepingThreshold expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getLinearSleepingThreshold());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getLinearSleepingThreshold."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_applyForce(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::applyForce expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::applyForce expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==3)
+        if(1&&type_same<const Vector3D &>::f(ctx,args[1])&&type_same<const Position3D &>::f(ctx,args[2]))
+        {
+            ( self->applyForce(val_to_c<const Vector3D &>::f(ctx,args[1]), val_to_c<const Position3D &>::f(ctx,args[2])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::applyForce."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getEntity(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getEntity expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getEntity expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getEntity."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setRestitution(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setRestitution expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setRestitution expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==2)
+        if(1&&type_same<float>::f(ctx,args[1]))
+        {
+            ( self->setRestitution(val_to_c<float>::f(ctx,args[1])));
+            return scripting::createNil();
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setRestitution."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_setShape(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::setShape expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::setShape expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::setShape."));
+    return scripting::createNil();
+}
+
+scripting::Value *RigidBody_getLinearDamping(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()<1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::getLinearDamping expects at least one argument."));
+    RigidBody*self;
+    if(!type_same<RigidBody>::f(ctx, args[0]))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody::getLinearDamping expects RigidBody as first argument."));
+    else
+         self=(RigidBody*)((scripting::NativeObject*)args[0])->data;
+
+    if(args.getCount()==1)
+        if(1)
+        {
+            return create_val<float>::f(ctx,  self->getLinearDamping());
+            ;
+        }
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for RigidBody::getLinearDamping."));
+    return scripting::createNil();
+}
+
 scripting::Value *Int3_copy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(self->data==NULL)
@@ -3690,10 +4742,9 @@ void Int3_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T3<int32_t>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int3::__del__ expects Int3 as first argument."));
-    DELETE(T3<int32_t>,(T3<int32_t> *)self->data);
-}
 
-scripting::Value *Int3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T3<int32_t>,(T3<int32_t> *)self->data);
+}scripting::Value *Int3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int3's constructor expects at least one argument."));
@@ -4742,10 +5793,9 @@ void Float2_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T2<float>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float2::__del__ expects Float2 as first argument."));
-    DELETE(T2<float>,(T2<float> *)self->data);
-}
 
-scripting::Value *Float2_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T2<float>,(T2<float> *)self->data);
+}scripting::Value *Float2_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float2's constructor expects at least one argument."));
@@ -5324,10 +6374,9 @@ void Int4_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T4<int32_t>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int4::__del__ expects Int4 as first argument."));
-    DELETE(T4<int32_t>,(T4<int32_t> *)self->data);
-}
 
-scripting::Value *Int4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T4<int32_t>,(T4<int32_t> *)self->data);
+}scripting::Value *Int4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int4's constructor expects at least one argument."));
@@ -8474,10 +9523,9 @@ void Float3_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T3<float>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float3::__del__ expects Float3 as first argument."));
-    DELETE(T3<float>,(T3<float> *)self->data);
-}
 
-scripting::Value *Float3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T3<float>,(T3<float> *)self->data);
+}scripting::Value *Float3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float3's constructor expects at least one argument."));
@@ -9526,10 +10574,9 @@ void Int2_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T2<int32_t>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Int2::__del__ expects Int2 as first argument."));
-    DELETE(T2<int32_t>,(T2<int32_t> *)self->data);
-}
 
-scripting::Value *Int2_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T2<int32_t>,(T2<int32_t> *)self->data);
+}scripting::Value *Int2_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Int2's constructor expects at least one argument."));
@@ -10108,10 +11155,9 @@ void Float4_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T4<float>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Float4::__del__ expects Float4 as first argument."));
-    DELETE(T4<float>,(T4<float> *)self->data);
-}
 
-scripting::Value *Float4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T4<float>,(T4<float> *)self->data);
+}scripting::Value *Float4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Float4's constructor expects at least one argument."));
@@ -13258,10 +14304,9 @@ void Matrix4x4_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<Matrix4x4>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix4x4::__del__ expects Matrix4x4 as first argument."));
-    DELETE(Matrix4x4,(Matrix4x4 *)self->data);
-}
 
-scripting::Value *Matrix4x4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(Matrix4x4,(Matrix4x4 *)self->data);
+}scripting::Value *Matrix4x4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix4x4's constructor expects at least one argument."));
@@ -13669,10 +14714,9 @@ void UInt4_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<T4<uint32_t>>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"UInt4::__del__ expects UInt4 as first argument."));
-    DELETE(T4<uint32_t>,(T4<uint32_t> *)self->data);
-}
 
-scripting::Value *UInt4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(T4<uint32_t>,(T4<uint32_t> *)self->data);
+}scripting::Value *UInt4_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"UInt4's constructor expects at least one argument."));
@@ -16819,10 +17863,9 @@ void AABB_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<AABB>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"AABB::__del__ expects AABB as first argument."));
-    DELETE(AABB,(AABB *)self->data);
-}
 
-scripting::Value *AABB_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(AABB,(AABB *)self->data);
+}scripting::Value *AABB_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"AABB's constructor expects at least one argument."));
@@ -16983,10 +18026,9 @@ void Matrix3x3_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
     if(!type_same<Matrix3x3>::f(ctx, (scripting::Value *)self))
         ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Matrix3x3::__del__ expects Matrix3x3 as first argument."));
-    DELETE(Matrix3x3,(Matrix3x3 *)self->data);
-}
 
-scripting::Value *Matrix3x3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+    DELETE(Matrix3x3,(Matrix3x3 *)self->data);
+}scripting::Value *Matrix3x3_new(scripting::Context*ctx,const List<scripting::Value *>&args)
 {
     if(args.getCount()<1)
         ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"Matrix3x3's constructor expects at least one argument."));
@@ -17467,6 +18509,92 @@ void UInt2_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,sc
     obj.refCount=1;
     obj.data=self->data;
     UInt2_set_member(ctx, &obj, key, value);
+}
+scripting::Value *RigidBody_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    List<scripting::Value *> args2 = args.copy();
+    args2[0]=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody;
+    scripting::NativeObject *obj=(scripting::NativeObject*)RigidBody_new(ctx, args2);
+    obj->funcs=RigidBody_ptr_funcs;
+    obj->typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody_ptr_typeID;
+    setAllocInfo(obj->data, AllocInfo(true, false));
+    return (scripting::Value*)obj;
+}
+scripting::Value *RigidBody_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=1)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBodyRef::deref expects one argument."));
+    scripting::Value*self=args[0];
+    if(!type_same<RigidBody *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBodyRef::deref expects RigidBodyRef as first argument."));
+    return create_val<RigidBody>::f(ctx, *(RigidBody *)((scripting::NativeObject *)self)->data);
+}
+scripting::Value *RigidBody_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+    if(args.getCount()!=2)
+        ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"RigidBody::refset expects two arguments."));
+    scripting::Value*self=args[0];
+    if(!type_same<RigidBody *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBodyRef::refset expects RigidBodyRef as first argument."));
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBody objects are not copyable."));
+    return scripting::createNil();
+}
+scripting::Value *RigidBody_ptr_copy(scripting::Context*, scripting::NativeObject*self)
+{
+    if(self->data==NULL)
+        return scripting::createNativeObject(RigidBody_ptr_funcs,NULL,self->typeID);
+    else
+         return scripting::createNativeObject(RigidBody_ptr_funcs,self->data,self->typeID);
+}
+void RigidBody_ptr_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+    if(!type_same<RigidBody *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBodyRef::__del__ expects RigidBodyRef as first argument."));
+}
+scripting::Value *RigidBody_ptr_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+    if(!type_same<RigidBody *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBodyRef's get method expects RigidBodyRef as first argument."));
+    if (key->type==scripting::ValueType::StringType)
+    {
+        String keyStr=((scripting::StringValue *)key)->value;
+        if(self->data==NULL)
+        {
+        if(keyStr=="__typeID__")
+            return scripting::createInt(self->typeID);
+        else if(keyStr=="__name__")
+            return scripting::createString("RigidBodyPtr");
+        else if(keyStr=="__new__")
+            return scripting::createNativeFunction(RigidBody_ptr_new);
+        else if(keyStr=="__call__")
+            return scripting::createNativeFunction(RigidBody_ptr_new);
+        else
+            ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+        } else
+        {
+        if(keyStr=="deref") return scripting::createNativeFunction(RigidBody_ptr_deref);
+        if(keyStr=="refset") return scripting::createNativeFunction(RigidBody_ptr_set);
+        }
+    }
+    scripting::NativeObject obj;
+    obj.head.type=scripting::ValueType::NativeObject;
+    obj.funcs=RigidBody_funcs;
+    obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody_typeID;
+    obj.refCount=1;
+    obj.data=self->data;
+    return RigidBody_get_member(ctx, &obj, key);
+}
+void RigidBody_ptr_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+    if(!type_same<RigidBody *>::f(ctx, (scripting::Value *)self))
+        ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"RigidBodyRef's get method expects RigidBodyRef as first argument."));
+    scripting::NativeObject obj;
+    obj.head.type=scripting::ValueType::NativeObject;
+    obj.funcs=RigidBody_funcs;
+    obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->RigidBody_typeID;
+    obj.refCount=1;
+    obj.data=self->data;
+    RigidBody_set_member(ctx, &obj, key, value);
 }
 scripting::Value *Int3_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
@@ -18363,6 +19491,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->UInt2_ptr_typeID = typeID;
     ext->UInt2_ptr = scripting::createNativeObject(UInt2_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("UInt2Ref", ext->UInt2_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->RigidBody_typeID = typeID;
+    ext->RigidBody = scripting::createNativeObject(RigidBody_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RigidBody", ext->RigidBody);
+    
+    typeID = engine->createNewTypeID();
+    ext->RigidBody_ptr_typeID = typeID;
+    ext->RigidBody_ptr = scripting::createNativeObject(RigidBody_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RigidBodyRef", ext->RigidBody_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int3_typeID = typeID;

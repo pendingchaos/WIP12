@@ -16,6 +16,7 @@
 #define DOC_EXCEPTION(type, reason) __attribute__((annotate("excdoc"type" "reason)))
 //Example: ARG_CONV(0, own<Float2>) so the C++ code can free argument 2 (which is a Float2 *).
 #define ARG_CONV(index, func) __attribute__((annotate("argconv" STR(index) ":" STR(func))))
+#define NOT_COPYABLE __attribute__((annotate("nocopy")))
 #else
 #define GETTER
 #define SETTER
@@ -26,6 +27,7 @@
 #define DOC_ARG(arg, str)
 #define DOC_DESC(str)
 #define ARG_CONV(index, func)
+#define NOT_COPYABLE
 #endif
 
 namespace scripting

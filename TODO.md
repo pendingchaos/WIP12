@@ -25,7 +25,9 @@
     - [ ] Getters and Setters
     - [ ] Templated Functions
     - [ ] Bind lots of stuff
+    - [ ] Pointer return value ownership.
     - [ ] Finish binding Matrix3x3 and Matrix4x4.
+    - [ ] Finish binding RigidBody
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
 - [ ] Get rid of the builtin List type (scripting).

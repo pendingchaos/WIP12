@@ -257,10 +257,20 @@ class Class(object):
         self.script_public = False
         self.properties = []
         self.template_types = {}
+        self.copyable = True
+        self.destructable = True
+        self.constructable = True
+        
+        num_private_cons = 0
         
         for child in cursor.get_children():
             if not child.access_specifier in [clang.cindex.AccessSpecifier.PUBLIC,
                                               clang.cindex.AccessSpecifier.INVALID]:
+                if child.kind == clang.cindex.CursorKind.DESTRUCTOR:
+                    self.destructable = False
+                elif child.kind == clang.cindex.CursorKind.CONSTRUCTOR:
+                    num_private_cons += 1
+                
                 continue
 
             if child.kind == clang.cindex.CursorKind.CXX_METHOD:
@@ -284,6 +294,9 @@ class Class(object):
                  child.is_definition():
                 self.classes.append(Class(child))
 
+        if num_private_cons != 0 and len(self.constructors) == 0:
+            self.constructable = False
+
         for c in cursor.get_children():
             if c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
                 if c.displayname.startswith("argdoc"):
@@ -297,6 +310,8 @@ class Class(object):
                     self.doc = c.displayname[7:]
                 elif c.displayname == "bind":
                     self.script_public = True
+                elif c.displayname == "nocopy":
+                    self.copyable = False
 
 def _get_classes(class_, classes):
     for class2 in class_.classes:
@@ -697,7 +712,12 @@ struct create_val<%s>
 ????{
 ????????return scripting::createNativeObject(%s_funcs,NEW(%s, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
 ????}
-};
+};""" % (class_.name, class_.name, class_.name, class_.name, class_.name,
+         class_.name, class_.name, class_.name, class_.name, class_.code_name,
+         class_.code_name, class_.name, class_.code_name, class_.name)))
+
+    if class_.copyable:
+        bindings.write(s("""
 template <>
 struct val_to_c<%s>
 {
@@ -713,7 +733,9 @@ struct val_to_c<%s>
 ????????} else
 ???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
 ????}
-};
+};""" % (class_.code_name, class_.code_name, class_.name, class_.code_name, class_.name, class_.name,)))
+
+    bindings.write(s("""
 template <>
 struct type_same<%s>
 {
@@ -726,11 +748,7 @@ struct type_same<%s>
 ????}
 };
 
-""") % (class_.name, class_.name, class_.name, class_.name, class_.name,
-       class_.name, class_.name, class_.name, class_.name, class_.code_name,
-       class_.code_name, class_.name, class_.code_name, class_.name, class_.code_name,
-       class_.code_name, class_.name, class_.code_name, class_.name, class_.name,
-       class_.code_name, class_.name))
+""") % (class_.code_name, class_.name))
 
     methods_ = {}
 
@@ -817,13 +835,28 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
 ????if(!type_same<%s>::f(ctx, (scripting::Value *)self))
 ????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::__del__ expects %s as first argument."));
-????DELETE(%s,(%s *)self->data);
-}
 
 """) % (class_.name, class_.name, class_.name, class_.code_name, class_.code_name,
-       class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name))
+       class_.name, class_.code_name, class_.name, class_.name))
 
-    if len(class_.constructors) == 0:
+    if class_.destructable:
+        bindings.write(s("""????DELETE(%s,(%s *)self->data);
+}""") % (class_.code_name, class_.code_name))
+    else:
+        bindings.write("}")
+
+    if not class_.constructable:
+        bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+????if(args.getCount()!=1)
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
+????if(!type_same<%s>::f(ctx, args[0]))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
+????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s's constructor."));
+}
+
+""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
+    elif len(class_.constructors) == 0:
         bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=1)
@@ -1102,7 +1135,8 @@ for class_ in classes.values():
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
 
-    bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+    if class_.copyable:
+        bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 ????if(args.getCount()!=2)
 ????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::refset expects two arguments."));
@@ -1113,6 +1147,18 @@ for class_ in classes.values():
 ????return scripting::createNil();
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
+    else:
+        bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+????if(args.getCount()!=2)
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::refset expects two arguments."));
+????scripting::Value*self=args[0];
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::refset expects %sRef as first argument."));
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s objects are not copyable."));
+????return scripting::createNil();
+}
+""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
 
     bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*self)
 {
@@ -1120,13 +1166,27 @@ for class_ in classes.values():
 ????????return scripting::createNativeObject(%s_funcs,NULL,self->typeID);
 ????else
 ???????? return scripting::createNativeObject(%s_funcs,self->data,self->typeID);
-}
+}""" % (name, name, name)))
+
+    if not class_.destructable:
+        #Let's hope it is freed.
+        bindings.write(s("""
+void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::__del__ expects %sRef as first argument."));
+}""" % (name, class_.code_name, class_.name, class_.name)))
+    else:
+        bindings.write(s("""
 void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
 ????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::__del__ expects %sRef as first argument."));
 ????SCRIPT_DELETE(%s, (%s *)self->data);
-}
+}""" % (name, class_.code_name, class_.name, class_.name,
+        class_.code_name, class_.code_name)))
+
+    bindings.write(s("""
 scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
 ????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
@@ -1172,8 +1232,7 @@ void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting
 ????obj.data=self->data;
 ????%s_set_member(ctx, &obj, key, value);
 }
-""") % (name, name, name, name, class_.code_name, class_.name, class_.name,
-        class_.code_name, class_.code_name, name, class_.code_name, class_.name,
+""") % (name, class_.code_name, class_.name,
         class_.name, class_.name, class_.name, class_.name,
         class_.name, class_.name, class_.name, class_.name, class_.name, name, class_.code_name,
         class_.name, class_.name, class_.name, class_.name, class_.name))
