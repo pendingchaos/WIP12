@@ -5,7 +5,7 @@
 #include "scripting/vm/bytecode.h"
 #include <setjmp.h>
 
-#define SCRIPTING_MAX_CALLSTACK_SIZE 2048
+#define SCRIPTING_MAX_CALLSTACK_SIZE 256
 
 namespace scripting
 {

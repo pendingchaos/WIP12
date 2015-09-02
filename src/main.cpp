@@ -54,7 +54,7 @@ scripting::Value *print(scripting::Context *ctx, const List<scripting::Value *>&
     {
         scripting::Value *head = args[i];
 
-        if (head->type == scripting::ValueType::String)
+        if (head->type == scripting::ValueType::StringType)
         {
             std::cout << ((scripting::StringValue *)head)->value.getData() << std::endl;
         } else if (head->type == scripting::ValueType::Int)
@@ -482,7 +482,7 @@ int main(int argc, const char *argv[])
     #elif 1
     try
     {
-        scripting::ASTNode *ast = scripting::parse("(+ (Float2 5.0 2.0) (Float2 3.0 4.0))");
+        scripting::ASTNode *ast = scripting::parse(/*"(+ (Float2 5.0 2.0) (Float2 3.0 4.0))"*/"(meth (Float2Ptr 5.0 2.0) refset (Float2))");
 
         printAST(0, ast);
 
@@ -519,6 +519,8 @@ int main(int argc, const char *argv[])
                     std::cout << ((scripting::ExceptionValue *)exc)->error.getData();
                 }
             }
+
+            DELETE(scripting::Context, context);
         }
 
         DELETE(scripting::Engine, engine);

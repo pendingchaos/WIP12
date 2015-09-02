@@ -2,11 +2,11 @@ import clang.cindex
 import os
 import copy
 
-minimize = True
+minimize = False
 
 def s(v):
     if minimize:
-        return v.replace("?", "").replace("\n", "")
+        return v.replace("?", "") #.replace("\n", "") #Seems to freeze GCC for a bit
     else:
         return v.replace("?", " ")
 
@@ -397,7 +397,14 @@ bindings.write("//Generated from script_binding_generator2.py. Do not edit. Edit
 for file_ in files:
     bindings.write("#include \"%s\"\n" % (file_[11:]))
 
-bindings.write("""
+bindings.write("""#include <stdint.h>
+
+#include "scripting/vm/engine.h"
+#include "scripting/vm/context.h"
+#include "scripting/vm/bytecode.h"
+#include "scripting/vm/types.h"
+#include "scripting/parser.h"
+#include "scripting/bytecodegen.h"
 
 struct BindingsExt
 {
@@ -408,20 +415,24 @@ names = []
 for class_ in classes.keys():
     if classes[class_].script_public:
         names.append(class_+"_typeID")
+        names.append(class_+"_ptr"+"_typeID")
+
+bindings.write(", ".join(names))
+
+bindings.write(";\n    scripting::Value ")
+
+names = []
+
+for class_ in classes.keys():
+    if classes[class_].script_public:
+        names.append("*"+class_)
+        names.append("*"+class_+"_ptr")
 
 bindings.write(", ".join(names))
 
 bindings.write(";\n};\n\n")
 
-bindings.write("""#include <stdint.h>
-
-#include "scripting/vm/engine.h"
-#include "scripting/vm/context.h"
-#include "scripting/vm/bytecode.h"
-#include "scripting/vm/types.h"
-#include "scripting/parser.h"
-#include "scripting/bytecodegen.h"
-
+bindings.write("""
 template <typename T>
 struct val_to_c {};
 
@@ -533,7 +544,7 @@ struct val_to_c<String>
 {
     static String f(scripting::Context *ctx, const scripting::Value *head)
     {
-        if (head->type == scripting::ValueType::String)
+        if (head->type == scripting::ValueType::StringType)
         {
             return ((scripting::StringValue *)head)->value;
         } else
@@ -644,11 +655,25 @@ TYPE_SAME_HELPER(int64_t, Int)
 TYPE_SAME_HELPER(float, Float)
 TYPE_SAME_HELPER(double, Float)
 TYPE_SAME_HELPER(bool, Boolean)
-TYPE_SAME_HELPER(String, String)
+TYPE_SAME_HELPER(String, StringType)
 
+template <typename T>
+T *own(scripting::Context *ctx, scripting::Value *value)
+{
+    if (type_same<T *>::f(ctx, value))
+    {
+        void *ptr = ((scripting::NativeObject *)value)->data;
+        AllocInfo i = getAllocInfo(ptr);
+        i.cppRef = true;
+        setAllocInfo(ptr, i);
+
+        return (T *)ptr;
+    }
+
+    ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Argument's value can not be converted."));
+}
 """)
 
-#TODO: Inheritance
 for class_ in classes.values():
     if not class_.script_public:
         continue
@@ -720,6 +745,66 @@ for class_ in classes.values():
     if not class_.script_public:
         continue
 
+    name = class_.name + "_ptr"
+
+    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*);
+void %s_destroy(scripting::Context*,scripting::NativeObject*);
+scripting::Value *%s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
+void %s_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
+static const scripting::NativeObjectFuncs %s_funcs={
+????.copy = %s_copy,
+????.destroy = %s_destroy,
+????.getMember = %s_get_member,
+????.setMember = %s_set_member
+};
+""" % (name, name, name, name, name, name, name, name, name)))
+
+    bindings.write(s("""template <>
+struct create_val<%s *>
+{
+????static scripting::Value *f(scripting::Context*ctx,%s*obj)
+????{
+????????AllocInfo i=getAllocInfo((void*)obj);
+????????i.cppRef = false;
+????????i.scriptRef = true;
+????????setAllocInfo((void *)obj, i);
+????????return scripting::createNativeObject(%s_funcs,obj,((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID);
+????}
+};
+template <>
+struct val_to_c<%s *>
+{
+????static %s *f(scripting::Context*ctx,const scripting::Value*head)
+????{
+????????if(head->type==scripting::ValueType::NativeObject)
+????????{
+????????????scripting::NativeObject*obj=(scripting::NativeObject*)head;
+????????????if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID)
+????????????????return (%s*)obj->data;
+????????????else
+???????????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sPtr."));
+????????} else
+???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sPtr."));
+????}
+};
+template <>
+struct type_same<%s *>
+{
+????static bool f(scripting::Context *ctx,const scripting::Value *head)
+????{
+????????if(head->type==scripting::ValueType::NativeObject)
+????????????return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID;
+????????else
+???????????? return false;
+????}
+};
+
+""") % (class_.code_name, class_.code_name, name, class_.name, class_.code_name, class_.code_name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.name))
+
+for class_ in classes.values():
+    if not class_.script_public:
+        continue
+
     bindings.write(s("""scripting::Value *%s_copy(scripting::Context*ctx,scripting::NativeObject*self)
 {
 ????if(self->data==NULL)
@@ -730,11 +815,13 @@ for class_ in classes.values():
 
 void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 {
-????DELETE(%s,self->data);
+????if(!type_same<%s>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::__del__ expects %s as first argument."));
+????DELETE(%s,(%s *)self->data);
 }
 
 """) % (class_.name, class_.name, class_.name, class_.code_name, class_.code_name,
-       class_.name, class_.code_name))
+       class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name))
 
     if len(class_.constructors) == 0:
         bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value*>&args)
@@ -785,7 +872,7 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 
     bindings.write(s("""scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
 {
-????if (key->type==scripting::ValueType::String)
+????if (key->type==scripting::ValueType::StringType)
 ????{
 ????????String keyStr=((scripting::StringValue *)key)->value;
 ????????if(self->data==NULL)
@@ -840,7 +927,7 @@ void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
 
     bindings.write(s("""void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
 {
-????if (key->type==scripting::ValueType::String)
+????if (key->type==scripting::ValueType::StringType)
 ????{
 ????????String keyStr=((scripting::StringValue*)key)->value;
 ????????if(self->data==NULL)
@@ -949,7 +1036,7 @@ for functions_ in functions.values():
     else:
         continue
 
-    bindings.write(s("""Value *%s_binding(scripting::Context*ctx,const List<scripting::Value*>&args)
+    bindings.write(s("""scripting::Value *%s_binding(scripting::Context*ctx,const List<scripting::Value*>&args)
 {
 """) % (functions_[0].name))
 
@@ -986,6 +1073,111 @@ for functions_ in functions.values():
 
 """) % (function.name))
 
+for class_ in classes.values():
+    if not class_.script_public:
+        continue
+    
+    name = class_.name + "_ptr"
+    
+    bindings.write(s("""scripting::Value *%s_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+????List<scripting::Value *> args2 = args.copy();
+????args2[0]=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s;
+????scripting::NativeObject *obj=(scripting::NativeObject*)%s_new(ctx, args2);
+????obj->funcs=%s_ptr_funcs;
+????obj->typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID;
+????setAllocInfo(obj->data, AllocInfo(true, false));
+????return (scripting::Value*)obj;
+}
+""" % (class_.name, class_.name, class_.name, class_.name, class_.name)))
+
+    bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+????if(args.getCount()!=1)
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::deref expects one argument."));
+????scripting::Value*self=args[0];
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr::deref expects %sPtr as first argument."));
+????return create_val<%s>::f(ctx, *(%s *)((scripting::NativeObject *)self)->data);
+}
+""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
+
+    bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+{
+????if(args.getCount()!=2)
+????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::deref expects two arguments."));
+????scripting::Value*self=args[0];
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr::deref expects %sPtr as first argument."));
+????*((%s *)((scripting::NativeObject *)self)->data) = val_to_c<%s>::f(ctx,args[1]);
+????return scripting::createNil();
+}
+""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
+
+    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*self)
+{
+????if(self->data==NULL)
+????????return scripting::createNativeObject(%s_funcs,NULL,self->typeID);
+????else
+???????? return scripting::createNativeObject(%s_funcs,self->data,self->typeID);
+}
+void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+{
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr::__del__ expects %sPtr as first argument."));
+????SCRIPT_DELETE(%s, (%s *)self->data);
+}
+scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+{
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr's get method expects %sPtr as first argument."));
+????if (key->type==scripting::ValueType::StringType)
+????{
+????????String keyStr=((scripting::StringValue *)key)->value;
+????????if(self->data==NULL)
+????????{
+????????if(keyStr=="__typeID__")
+????????????return scripting::createInt(self->typeID);
+????????else if(keyStr=="__name__")
+????????????return scripting::createString("%sPtr");
+????????else if(keyStr=="__new__")
+????????????return scripting::createNativeFunction(%s_ptr_new);
+????????else if(keyStr=="__call__")
+????????????return scripting::createNativeFunction(%s_ptr_new);
+????????else
+????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+????????} else
+????????{
+????????if(keyStr=="deref") return scripting::createNativeFunction(%s_ptr_deref);
+????????if(keyStr=="refset") return scripting::createNativeFunction(%s_ptr_set);
+????????}
+????}
+????scripting::NativeObject obj;
+????obj.head.type=scripting::ValueType::NativeObject;
+????obj.funcs=%s_funcs;
+????obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
+????obj.refCount=1;
+????obj.data=self->data;
+????return %s_get_member(ctx, &obj, key);
+}
+void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+{
+????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
+????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sPtr's get method expects %sPtr as first argument."));
+????scripting::NativeObject obj;
+????obj.head.type=scripting::ValueType::NativeObject;
+????obj.funcs=%s_funcs;
+????obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
+????obj.refCount=1;
+????obj.data=self->data;
+????%s_set_member(ctx, &obj, key, value);
+}
+""") % (name, name, name, name, class_.code_name, class_.name, class_.name,
+        class_.code_name, class_.code_name, name, class_.code_name, class_.name,
+        class_.name, class_.name, class_.name, class_.name,
+        class_.name, class_.name, class_.name, class_.name, class_.name, name, class_.code_name,
+        class_.name, class_.name, class_.name, class_.name, class_.name))
+
 bindings.write("""void *initBindings(scripting::Engine *engine, void *data)
 {
     BindingsExt *ext = NEW(BindingsExt);
@@ -1000,9 +1192,17 @@ for class_ in classes.values():
     
     bindings.write("""    typeID = engine->createNewTypeID();
     ext->%s_typeID = typeID;
-    engine->getGlobalVars().set("%s", scripting::createNativeObject(%s_funcs, NULL, typeID));
+    ext->%s = scripting::createNativeObject(%s_funcs, NULL, typeID);
+    engine->getGlobalVars().set("%s", ext->%s);
     
-""" % (class_.name, class_.name, class_.name))
+""" % (class_.name, class_.name, class_.name, class_.name, class_.name))
+
+    bindings.write("""    typeID = engine->createNewTypeID();
+    ext->%s_ptr_typeID = typeID;
+    ext->%s_ptr = scripting::createNativeObject(%s_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("%sPtr", ext->%s_ptr);
+    
+""" % (class_.name, class_.name, class_.name, class_.name, class_.name))
 
 for functions_ in functions.values():
     for function in functions_:
@@ -1017,9 +1217,11 @@ bindings.write("""    return ext;
 
 void deinitBindings(scripting::Engine *engine, void *data)
 {
-    DELETE(BindingsExt, data);
+    DELETE(BindingsExt, (BindingsExt *)data);
 }
 
+namespace scripting
+{
 void registerBindings(scripting::Engine *engine)
 {
     scripting::Extension ext;
@@ -1028,6 +1230,7 @@ void registerBindings(scripting::Engine *engine)
     ext.deinit = deinitBindings;
 
     engine->addExtension("bindings", ext);
+}
 }
 """)
 

@@ -56,7 +56,7 @@ enum class ValueType
     Nil,
     Function,
     Object,
-    String,
+    StringType,
     List,
     NativeFunction,
     NativeObject,

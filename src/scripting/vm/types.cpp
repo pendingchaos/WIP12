@@ -68,7 +68,7 @@ Value *createString(const String& str)
 {
     StringValue *value = NEW(StringValue);
 
-    value->head.type = ValueType::String;
+    value->head.type = ValueType::StringType;
     value->value = str;
 
     return (Value *)value;
@@ -146,11 +146,11 @@ Value *createCopy(Context *context, const Value *value)
     {
         ObjectValue *obj = NEW(ObjectValue, *(ObjectValue *)value);
 
-        ++obj->refCount;
+        obj->refCount = 1;
 
         return (Value *)obj;
     }
-    case ValueType::String:
+    case ValueType::StringType:
     {
         return createString(((StringValue *)value)->value);
     }
@@ -166,7 +166,7 @@ Value *createCopy(Context *context, const Value *value)
     {
         NativeObject *obj = NEW(NativeObject, *(NativeObject *)value);
 
-        ++obj->refCount;
+        obj->refCount = 1;
 
         return (Value *)obj;
     }
@@ -189,27 +189,27 @@ void destroy(Context *context, Value *value)
     {
     case ValueType::Int:
     {
-        DELETE(IntValue, value);
+        DELETE(IntValue, (IntValue *)value);
         break;
     }
     case ValueType::Float:
     {
-        DELETE(FloatValue, value);
+        DELETE(FloatValue, (FloatValue *)value);
         break;
     }
     case ValueType::Boolean:
     {
-        DELETE(BooleanValue, value);
+        DELETE(BooleanValue, (BooleanValue *)value);
         break;
     }
     case ValueType::Nil:
     {
-        DELETE(NilValue, value);
+        DELETE(NilValue, (NilValue *)value);
         break;
     }
     case ValueType::Function:
     {
-        DELETE(FunctionValue, value);
+        DELETE(FunctionValue, (FunctionValue *)value);
         break;
     }
     case ValueType::Object:
@@ -232,13 +232,13 @@ void destroy(Context *context, Value *value)
                 destroy(context, members.getValue(i));
             }
 
-            DELETE(ObjectValue, value);
+            DELETE(ObjectValue, obj);
         }
         break;
     }
-    case ValueType::String:
+    case ValueType::StringType:
     {
-        DELETE(StringValue, value);
+        DELETE(StringValue, (StringValue *)value);
         break;
     }
     case ValueType::List:
@@ -250,12 +250,12 @@ void destroy(Context *context, Value *value)
             destroy(context, list[i]);
         }
 
-        DELETE(ListValue, value);
+        DELETE(ListValue, (ListValue *)value);
         break;
     }
     case ValueType::NativeFunction:
     {
-        DELETE(NativeFunction, value);
+        DELETE(NativeFunction, (NativeFunction *)value);
         break;
     }
     case ValueType::NativeObject:
@@ -271,14 +271,18 @@ void destroy(Context *context, Value *value)
                 obj->funcs.destroy(context, obj);
             }
 
-            DELETE(NativeObject, value);
+            DELETE(NativeObject, (NativeObject *)value);
         }
         break;
     }
     case ValueType::Exception:
     {
-        DELETE(ExceptionValue, value);
+        DELETE(ExceptionValue, (ExceptionValue *)value);
         break;
+    }
+    default:
+    {
+        assert(false);
     }
     }
 }

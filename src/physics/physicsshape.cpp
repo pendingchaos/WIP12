@@ -546,7 +546,7 @@ void PhysicsSphereShape::setRadius(float radius_)
 {
     radius = radius_;
 
-    DELETE(btSphereShape, shape);
+    DELETE(btCollisionShape, shape);
 
     create();
 }
@@ -568,7 +568,7 @@ void PhysicsBoxShape::setHalfExtents(const Vector3D& halfExtents_)
 {
     halfExtents = halfExtents_;
 
-    DELETE(btBoxShape, shape);
+    DELETE(btCollisionShape, shape);
 
     create();
 }
@@ -931,7 +931,7 @@ void PhysicsPlaneShape::setNormal(const Vector3D& normal_)
 {
     normal = normal_;
 
-    DELETE(btStaticPlaneShape, shape);
+    DELETE(btCollisionShape, shape);
 
     create();
 }
@@ -940,7 +940,7 @@ void PhysicsPlaneShape::setDistance(float distance_)
 {
     distance = distance_;
 
-    DELETE(btStaticPlaneShape, shape);
+    DELETE(btCollisionShape, shape);
 
     create();
 }
@@ -1002,7 +1002,7 @@ void PhysicsCompoundShape::setChildren(size_t count, const Child *children)
 {
     shapeCount = count;
 
-    DELETE(btCompoundShape, shape);
+    DELETE(btCollisionShape, shape);
 
     create(children);
 }

@@ -6,6 +6,7 @@
 
 #include <cstdlib>
 #include <stddef.h>
+#include <stdint.h>
 
 class MemoryException : public Exception
 {
@@ -37,13 +38,44 @@ class MemoryException : public Exception
 
 #define DELETE(type, pointer) do\
 {\
-    delete (type *)pointer;\
+    type *p = pointer;\
+    if (_allocDelete((void *)p))\
+    {\
+        delete p;\
+    }\
 } while (0)
 #define DELETE_ARRAY(type, pointer) do\
 {\
-    delete [] (type *)pointer;\
+    type *p = pointer;\
+    if (_allocDelete((void *)p))\
+    {\
+        delete [] p;\
+    }\
 } while (0)
 
+#define SCRIPT_DELETE(type, pointer) do\
+{\
+    type *p = pointer;\
+    if (_scriptDelete((void *)p))\
+    {\
+        delete p;\
+    }\
+} while (0)
+
+struct AllocInfo
+{
+    AllocInfo() : scriptRef(false), cppRef(true) {}
+    AllocInfo(bool script, bool cpp) : scriptRef(script), cppRef(cpp) {}
+
+    bool scriptRef:1;
+    bool cppRef:1;
+};
+
 void *_alloc(size_t amount);
+bool _allocDelete(void *ptr);
+bool _scriptDelete(void *ptr);
+
+void setAllocInfo(void *ptr, AllocInfo info);
+AllocInfo getAllocInfo(void *ptr);
 
 #endif // MEMORY_H

@@ -17,8 +17,8 @@
     - Low priority
     - Claims to be faster than SDSM in complex scenes.
 - [ ] Finish the script binding generator.
+    - [ ] NULL <-> nil conversion
     - [ ] Bind AABB::transform
-    - [ ] Pointers and References
     - [ ] Enums
     - [ ] Static methods
     - [ ] Inheritance
@@ -26,9 +26,9 @@
     - [ ] Getters and Setters
     - [ ] Templated Functions
     - [ ] Bind lots of stuff
-- [ ] Explicit variable declaration (scripting).
-- [ ] Make functions builtin functions like + and *.
+- [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
+- [ ] Get rid of the builtin List type (scripting).
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:

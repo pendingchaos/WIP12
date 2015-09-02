@@ -43,7 +43,6 @@ void Context::reset()
     callStackSize = 0;
 }
 
-//TODO: More reference checking.
 Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
 {
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
@@ -143,7 +142,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         {
             Value *nameHead = popStack(*stack);
 
-            if (nameHead->type != ValueType::String)
+            if (nameHead->type != ValueType::StringType)
             {
                 destroy(this, nameHead);
 
@@ -182,7 +181,6 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
                 {
                     throwException(createException(ExcType::KeyError, "No such variable."));
                 }
-                break;
             }
 
             destroy(this, nameHead);
@@ -192,7 +190,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         {
             Value *nameHead = popStack(*stack);
 
-            if (nameHead->type != ValueType::String)
+            if (nameHead->type != ValueType::StringType)
             {
                 destroy(this, nameHead);
 
@@ -244,7 +242,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         {
             Value *nameHead = popStack(*stack);
 
-            if (nameHead->type != ValueType::String)
+            if (nameHead->type != ValueType::StringType)
             {
                 destroy(this, nameHead);
 
@@ -358,7 +356,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
                 stack->append(createString("obj"));
                 break;
             }
-            case ValueType::String:
+            case ValueType::StringType:
             {
                 stack->append(createString("str"));
                 break;
@@ -673,7 +671,7 @@ break;
             Value *head = popStack(*stack);
             Value *nameHead = popStack(*stack);
 
-            if (nameHead->type != ValueType::String)
+            if (nameHead->type != ValueType::StringType)
             {
                 throwException(createException(ExcType::TypeError, "Method name must be string."));
             }
@@ -909,7 +907,7 @@ break;
                         std::cout << "object" << std::endl;
                         break;
                     }
-                    case ValueType::String:
+                    case ValueType::StringType:
                     {
                         std::cout << '"' << ((StringValue *)head)->value.getData() << '"' << std::endl;
                         break;
@@ -978,7 +976,7 @@ break;
                         std::cout << "object" << std::endl;
                         break;
                     }
-                    case ValueType::String:
+                    case ValueType::StringType:
                     {
                         std::cout << '"' << ((StringValue *)head)->value.getData() << '"' << std::endl;
                         break;
@@ -1185,7 +1183,7 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     {
     case ValueType::Object:
     {
-        if (key->type != ValueType::String)
+        if (key->type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
@@ -1201,7 +1199,7 @@ Value *getMember(Context *ctx, Value *val, Value *key)
 
         return createCopy(ctx, members.getValue(index));
     }
-    case ValueType::String:
+    case ValueType::StringType:
     {
         String str = ((StringValue *)val)->value;
 
@@ -1235,7 +1233,7 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     }
     case ValueType::Exception:
     {
-        if (key->type != ValueType::String)
+        if (key->type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
@@ -1287,7 +1285,7 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
     {
     case ValueType::Object:
     {
-        if (key->type != ValueType::String)
+        if (key->type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "Member names must be String."));
         }
@@ -1303,9 +1301,9 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
 
         members.set(name, createCopy(ctx, value));
     }
-    case ValueType::String:
+    case ValueType::StringType:
     {
-        if (value->type != ValueType::String)
+        if (value->type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "A string's character can only be set as a String."));
         } else
