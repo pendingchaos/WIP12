@@ -420,6 +420,7 @@ bindings.write("""#include <stdint.h>
 #include "scripting/vm/types.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
+#include <type_traits>
 
 struct BindingsExt
 {
@@ -448,13 +449,33 @@ bindings.write(", ".join(names))
 bindings.write(";\n};\n\n")
 
 bindings.write("""
+#define CATE ctx->throwException(scripting::createException
+#define SV scripting::Value*
+#define NO scripting::NativeObject*
+#define CV(expr) create_val<std::remove_reference<decltype(expr)>::type>::f(ctx, expr)
+#define TS(T, expr) type_same<T>::f(ctx, expr)
+#define VE scripting::ExcType::ValueError
+#define TE scripting::ExcType::TypeError
+#define KE scripting::ExcType::KeyError
+#define CTX scripting::Context*
+#define EXT ((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)
+#define S scripting
+#define EI else if
+#define R return
+#define UFOF(cm) "Unable to find overload for " cm
+#define FAE(meth, cls) meth " expects " cls "as first argument."
+#define EAOE " expects at least one argument."
+#define CN S::createNil()
+#define CNF S::createNativeFunction
+#define F self
+
 template <typename T>
 struct val_to_c {};
 
 #define VAL_TO_C_INT(T, T2, min, max) template <>\
 struct val_to_c<T2>\
 {\
-    static T f(scripting::Context *ctx, const scripting::Value *head)\
+    static T f(scripting::Context *ctx, const SV head)\
     {\
         int64_t v;\
         \
@@ -466,12 +487,12 @@ struct val_to_c<T2>\
             v = ((scripting::FloatValue *)head)->value;\
         } else\
         {\
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to int."));\
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to int."));\
         }\
         \
         if (v < min or v > max)\
         {\
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value out of bounds."));\
+            CATE(scripting::ExcType::TypeError, "Value out of bounds."));\
         }\
         \
         return v;\
@@ -498,7 +519,7 @@ VAL_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
 template <>
 struct val_to_c<float>
 {
-    static float f(scripting::Context *ctx, const scripting::Value *head)
+    static float f(scripting::Context *ctx, const SV head)
     {
         float v;
         
@@ -510,7 +531,7 @@ struct val_to_c<float>
             v = ((scripting::FloatValue *)head)->value;
         } else
         {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
         
         return v;
@@ -520,7 +541,7 @@ struct val_to_c<float>
 template <>
 struct val_to_c<double>
 {
-    static double f(scripting::Context *ctx, const scripting::Value *head)
+    static double f(scripting::Context *ctx, const SV head)
     {
         double v;
         
@@ -532,7 +553,7 @@ struct val_to_c<double>
             v = ((scripting::FloatValue *)head)->value;
         } else
         {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to float."));
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
         
         return v;
@@ -542,14 +563,14 @@ struct val_to_c<double>
 template <>
 struct val_to_c<bool>
 {
-    static bool f(scripting::Context *ctx, const scripting::Value *head)
+    static bool f(scripting::Context *ctx, const SV head)
     {
         if (head->type == scripting::ValueType::Boolean)
         {
             return ((scripting::BooleanValue *)head)->value;
         } else
         {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to bool."));
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to bool."));
         }
     }
 };
@@ -557,14 +578,14 @@ struct val_to_c<bool>
 template <>
 struct val_to_c<String>
 {
-    static String f(scripting::Context *ctx, const scripting::Value *head)
+    static String f(scripting::Context *ctx, const SV head)
     {
         if (head->type == scripting::ValueType::StringType)
         {
             return ((scripting::StringValue *)head)->value;
         } else
         {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
         }
     }
 };
@@ -572,14 +593,14 @@ struct val_to_c<String>
 template <>
 struct val_to_c<const char *>
 {
-    static const char *f(scripting::Context *ctx, const scripting::Value *head)
+    static const char *f(scripting::Context *ctx, const SV head)
     {
         if (head->type == scripting::ValueType::StringType)
         {
             return ((scripting::StringValue *)head)->value.getData();
         } else
         {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to string."));
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
         }
     }
 };
@@ -587,7 +608,7 @@ struct val_to_c<const char *>
 template <>
 struct val_to_c<char>
 {
-    static char f(scripting::Context *ctx, const scripting::Value *head)
+    static char f(scripting::Context *ctx, const SV head)
     {
         if (head->type == scripting::ValueType::StringType)
         {
@@ -596,28 +617,28 @@ struct val_to_c<char>
                 return ((scripting::StringValue *)head)->value[0];
             } else
             {
-                ctx->throwException(scripting::createException(scripting::ExcType::ValueError, "Value can not be converted to character."));
+                CATE(scripting::ExcType::ValueError, "Value can not be converted to character."));
             }
         } else
         {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Value can not be converted to character."));
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to character."));
         }
     }
 };
 
 template <>
-struct val_to_c<scripting::Value *>
+struct val_to_c<SV>
 {
-    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
+    static SV f(scripting::Context *ctx, const SV head)
     {
         return scripting::createCopy(ctx, head);
     }
 };
 
 template <>
-struct val_to_c<const scripting::Value *>
+struct val_to_c<const SV>
 {
-    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
+    static SV f(scripting::Context *ctx, const SV head)
     {
         return scripting::createCopy(ctx, head);
     }
@@ -625,7 +646,7 @@ struct val_to_c<const scripting::Value *>
 
 template <typename T>
 struct val_to_c<const T&> {
-    static T f(scripting::Context *ctx, const scripting::Value *head)
+    static T f(scripting::Context *ctx, const SV head)
     {
         return val_to_c<T>::f(ctx, head);
     }
@@ -637,16 +658,16 @@ struct create_val {};
 #define CREATE_VAL(T, func) template <>\
 struct create_val<T>\
 {\
-    static scripting::Value *f(scripting::Context *ctx, const T& v)\
+    static SV f(scripting::Context *ctx, const T& v)\
     {\
         return scripting::func(v);\
     }\
 };
 
 template <>
-struct create_val<scripting::Value *>
+struct create_val<SV>
 {
-    static scripting::Value *f(scripting::Context *ctx, const scripting::Value *head)
+    static scripting::Value *f(scripting::Context *ctx, const SV head)
     {
         return scripting::createCopy(ctx, head);
     }
@@ -655,7 +676,7 @@ struct create_val<scripting::Value *>
 template <>
 struct create_val<const char *>
 {
-    static scripting::Value *f(scripting::Context *ctx, const char *data)
+    static SV f(scripting::Context *ctx, const char *data)
     {
         return scripting::createString(String(data));
     }
@@ -664,7 +685,7 @@ struct create_val<const char *>
 template <>
 struct create_val<char>
 {
-    static scripting::Value *f(scripting::Context *ctx, char data)
+    static SV f(scripting::Context *ctx, char data)
     {
         return scripting::createString(String(data));
     }
@@ -689,16 +710,16 @@ struct type_same;
 template <typename T>
 struct type_same<const T&>
 {
-    static bool f(scripting::Context *ctx, const scripting::Value *head)
+    static bool f(scripting::Context *ctx, const SV head)
     {
         return type_same<T>::f(ctx, head);
     }
 };
 
 template <>
-struct type_same<scripting::Value *>
+struct type_same<SV>
 {
-    static bool f(scripting::Context *ctx, const scripting::Value *head)
+    static bool f(scripting::Context *ctx, const SV head)
     {
         return true;
     }
@@ -707,7 +728,7 @@ struct type_same<scripting::Value *>
 template <>
 struct type_same<char>
 {
-    static bool f(scripting::Context *ctx, const scripting::Value *head)
+    static bool f(scripting::Context *ctx, const SV head)
     {
         if (head->type == scripting::ValueType::StringType)
         {
@@ -722,7 +743,7 @@ struct type_same<char>
 #define TYPE_SAME_HELPER(T, enumValue) template <>\
 struct type_same<T>\
 {\
-    static bool f(scripting::Context *ctx, const scripting::Value *head)\
+    static bool f(scripting::Context *ctx, const SV head)\
     {\
         return head->type == scripting::ValueType::enumValue;\
     }\
@@ -743,11 +764,11 @@ TYPE_SAME_HELPER(String, StringType)
 TYPE_SAME_HELPER(const char *, StringType)
 
 template <typename T>
-T *own(scripting::Context *ctx, scripting::Value *value)
+T *own(scripting::Context *ctx, SV value)
 {
     if (type_same<T *>::f(ctx, value))
     {
-        void *ptr = ((scripting::NativeObject *)value)->data;
+        void *ptr = ((NO)value)->data;
         AllocInfo i = getAllocInfo(ptr);
         i.cppRef = true;
         setAllocInfo(ptr, i);
@@ -755,7 +776,7 @@ T *own(scripting::Context *ctx, scripting::Value *value)
         return (T *)ptr;
     }
 
-    ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Argument's value can not be converted."));
+    CATE(scripting::ExcType::TypeError, "Argument's value can not be converted."));
 }
 """)
 
@@ -765,41 +786,39 @@ for class_ in classes.values():
 
     print "Bindings will be generated for %s" % class_.name
 
-    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*);
-void %s_destroy(scripting::Context*,scripting::NativeObject*);
-scripting::Value *%s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
-void %s_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
-static const scripting::NativeObjectFuncs %s_funcs={
+    bindings.write(s("""void %s_destroy(CTX,NO);
+SV %s_get_member(CTX,NO,SV);
+void %s_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs %s_funcs={
 ????.destroy = %s_destroy,
 ????.getMember = %s_get_member,
 ????.setMember = %s_set_member
-};""" % (class_.name, class_.name, class_.name, class_.name, class_.name,
-         class_.name, class_.name, class_.name)))
+};""" % (class_.name, class_.name, class_.name, class_.name, class_.name, class_.name, class_.name)))
 
     if class_.copyable:
         bindings.write(s("""
 template <>
 struct create_val<%s>
 {
-????static scripting::Value *f(scripting::Context*ctx,const %s&obj)
+????static SV f(CTX ctx,const %s&obj)
 ????{
-????????return scripting::createNativeObject(%s_funcs,NEW(%s, obj),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
+????????R S::createNativeObject(%s_funcs,NEW(%s, obj),EXT->%s_typeID);
 ????}
 };
 template <>
 struct val_to_c<%s>
 {
-????static %s f(scripting::Context*ctx,const scripting::Value*head)
+????static %s f(CTX ctx,const SV head)
 ????{
-????????if(head->type==scripting::ValueType::NativeObject)
+????????if(head->type==S::ValueType::NativeObject)
 ????????{
-????????????scripting::NativeObject*obj=(scripting::NativeObject*)head;
-????????????if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID)
-????????????????return *((%s*)obj->data);
+????????????NO obj=(NO)head;
+????????????if(obj->typeID==EXT->%s_typeID)
+????????????????R*((%s*)obj->data);
 ????????????else
-???????????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
+???????????????? CATE(TE,"Value can not be converted to %s."));
 ????????} else
-???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value can not be converted to %s."));
+???????????? CATE(TE,"Value can not be converted to %s."));
 ????}
 };""" % (class_.code_name, class_.code_name, class_.name, class_.code_name,
          class_.name, class_.code_name, class_.code_name, class_.name,
@@ -809,12 +828,12 @@ struct val_to_c<%s>
 template <>
 struct type_same<%s>
 {
-????static bool f(scripting::Context *ctx,const scripting::Value *head)
+????static bool f(CTX ctx,const SV head)
 ????{
-????????if(head->type==scripting::ValueType::NativeObject)
-????????????return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
+????????if(head->type==S::ValueType::NativeObject)
+????????????R((NO)head)->typeID==EXT->%s_typeID;
 ????????else
-???????????? return false;
+???????????? R false;
 ????}
 };
 
@@ -827,7 +846,7 @@ struct type_same<%s>
             continue
         methods_[method.name] = None
 
-        bindings.write("scripting::Value *%s_%s(scripting::Context *ctx, const List<scripting::Value *>& args);\n" % (class_.name, method.name))
+        bindings.write("SV %s_%s(CTX ctx,const List<SV>&a);\n" % (class_.name, method.name))
 
 for class_ in classes.values():
     if not class_.script_public:
@@ -835,11 +854,11 @@ for class_ in classes.values():
 
     name = class_.name + "_ptr"
 
-    bindings.write(s("""scripting::Value *%s_copy(scripting::Context*,?scripting::NativeObject*);
-void %s_destroy(scripting::Context*,scripting::NativeObject*);
-scripting::Value *%s_get_member(scripting::Context*,scripting::NativeObject*,scripting::Value *);
-void %s_set_member(scripting::Context*,scripting::NativeObject*,scripting::Value*,scripting::Value*);
-static const scripting::NativeObjectFuncs %s_funcs={
+    bindings.write(s("""SV %s_copy(CTX,?NO);
+void %s_destroy(CTX,NO);
+SV %s_get_member(CTX,NO,SV);
+void %s_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs %s_funcs={
 ????.destroy = %s_destroy,
 ????.getMember = %s_get_member,
 ????.setMember = %s_set_member
@@ -849,40 +868,40 @@ static const scripting::NativeObjectFuncs %s_funcs={
     bindings.write(s("""template <>
 struct create_val<%s *>
 {
-????static scripting::Value *f(scripting::Context*ctx,%s*obj)
+????static SV f(CTX ctx,%s*obj)
 ????{
 ????????AllocInfo i=getAllocInfo((void*)obj);
 ????????i.cppRef = false;
 ????????i.scriptRef = true;
 ????????setAllocInfo((void *)obj, i);
-????????return scripting::createNativeObject(%s_funcs,obj,((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID);
+????????R S::createNativeObject(%s_funcs,obj,EXT->%s_ptr_typeID);
 ????}
 };
 template <>
 struct val_to_c<%s *>
 {
-????static %s *f(scripting::Context*ctx,const scripting::Value*head)
+????static %s *f(CTX ctx,const SV head)
 ????{
-????????if(head->type==scripting::ValueType::NativeObject)
+????????if(head->type==S::ValueType::NativeObject)
 ????????{
-????????????scripting::NativeObject*obj=(scripting::NativeObject*)head;
-????????????if(obj->typeID==((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID)
-????????????????return (%s*)obj->data;
+????????????NO obj=(NO)head;
+????????????if(obj->typeID==EXT->%s_ptr_typeID)
+????????????????R(%s*)obj->data;
 ????????????else
-???????????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sRef."));
+???????????????? CATE(TE,"Value is not a %sRef."));
 ????????} else
-???????????? ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Value is not a %sRef."));
+???????????? CATE(TE,"Value is not a %sRef."));
 ????}
 };
 template <>
 struct type_same<%s *>
 {
-????static bool f(scripting::Context *ctx,const scripting::Value *head)
+????static bool f(CTX ctx,const SV head)
 ????{
-????????if(head->type==scripting::ValueType::NativeObject)
-????????????return((scripting::NativeObject*)head)->typeID==((BindingsExt*)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID;
+????????if(head->type==S::ValueType::NativeObject)
+????????????R((NO)head)->typeID==EXT->%s_ptr_typeID;
 ????????else
-???????????? return false;
+???????????? R false;
 ????}
 };
 
@@ -892,100 +911,100 @@ for class_ in classes.values():
     if not class_.script_public:
         continue
 
-    bindings.write(s("""void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+    bindings.write(s("""void %s_destroy(CTX ctx,NO F)
 {
-????if(!type_same<%s>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::__del__ expects %s as first argument."));
+????if(!TS(%s, (SV)F))
+????????CATE(TE,"%s::__del__ expects %s as first argument."));
 
 """) % (class_.name, class_.code_name, class_.name, class_.name))
 
     if class_.destructable:
-        bindings.write(s("""????DELETE(%s,(%s *)self->data);
+        bindings.write(s("""????DELETE(%s,(%s *)F->data);
 }""") % (class_.code_name, class_.code_name))
     else:
         bindings.write("}")
 
     if not class_.constructable:
-        bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_new(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()!=1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
-????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
-????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s's constructor."));
+????if(a.getCount()!=1)
+????????CATE(VE,"%s's constructor" EAOE));
+????if(!TS(%s,a[0]))
+????????CATE(TE,"%s's constructor expects %s as first argument."));
+????CATE(TE,UFOF("%s's constructor.")));
 }
 
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
     elif len(class_.constructors) == 0:
-        bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_new(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()!=1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects one argument."));
-????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
-????return scripting::createNativeObject(%s_funcs,NEW(%s),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
+????if(a.getCount()!=1)
+????????CATE(VE,"%s's constructor" EAOE));
+????if(!TS(%s,a[0]))
+????????CATE(TE,"%s's constructor expects %s as first argument."));
+????R S::createNativeObject(%s_funcs,NEW(%s),EXT->%s_typeID);
 }
 
 """) % (class_.name, class_.code_name, class_.name, class_.name, class_.name, class_.name, class_.code_name, class_.name))
     else:
-        bindings.write(s("""scripting::Value *%s_new(scripting::Context*ctx,const List<scripting::Value *>&args)
+        bindings.write(s("""SV %s_new(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()<1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s's constructor expects at least one argument."));
-????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s's constructor expects %s as first argument."));
+????if(a.getCount()<1)
+????????CATE(VE,"%s's constructor" EAOE));
+????if(!TS(%s,a[0]))
+????????CATE(TE,"%s's constructor expects %s as first argument."));
 """) % (class_.name, class_.name, class_.code_name, class_.name, class_.name))
 
         for constructor in class_.constructors:
             if not constructor.script_public:
                 continue
             
-            args = ["val_to_c<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
+            args = ["val_to_c<%s>::f(ctx,a[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
 
             for i in xrange(len(constructor.args)):
                 if i in constructor.arg_convs:
-                    args[i] = "%s(ctx,args[%d])" % (constructor.arg_convs[i], i+1)
+                    args[i] = "%s(ctx,a[%d])" % (constructor.arg_convs[i], i+1)
 
             constStr = ",".join([class_.name] + args)
             
-            args = ["type_same<%s>::f(ctx,args[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
+            args = ["TS(%s,a[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
             
             testStr = "&&".join(["true"] + args)
 
-            bindings.write(s("""????if(args.getCount()==%d)
+            bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
-????????????return scripting::createNativeObject(%s_funcs,NEW(%s),((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID);
+????????????R S::createNativeObject(%s_funcs,NEW(%s),EXT->%s_typeID);
 """) % (len(constructor.args)+1, testStr, class_.name, constStr, class_.name))
 
-        bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s's constructor."));
-????return scripting::createNil();
+        bindings.write(s("""????CATE(TE,UFOF("%s's constructor.")));
+????R CN;
 }
 
 """) % class_.name)
 
-    bindings.write(s("""scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+    bindings.write(s("""SV %s_get_member(CTX ctx,NO F,SV key)
 {
-????if (key->type==scripting::ValueType::StringType)
+????if (key->type==S::ValueType::StringType)
 ????{
-????????String keyStr=((scripting::StringValue *)key)->value;
-????????if(self->data==NULL)
+????????String keyStr=((S::StringValue *)key)->value;
+????????if(F->data==NULL)
 ????????{
 ????????????if(keyStr=="__typeID__")
-????????????????return scripting::createInt(self->typeID);
-????????????else if(keyStr=="__name__")
-????????????????return scripting::createString("%s");
-????????????else if(keyStr=="__new__")
-????????????????return scripting::createNativeFunction(%s_new);
-????????????else if(keyStr=="__call__")
-????????????????return scripting::createNativeFunction(%s_new);
+????????????????R S::createInt(F->typeID);
+????????????EI(keyStr=="__name__")
+????????????????R S::createString("%s");
+????????????EI(keyStr=="__new__")
+????????????????R CNF(%s_new);
+????????????EI(keyStr=="__call__")
+????????????????R CNF(%s_new);
 ????????????else
-???????????????? ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+???????????????? CATE(KE,"Unknown member."));
 ????????} else
 ????????{
 ????????????if(keyStr=="__classTypeID__")
-????????????????return scripting::createInt(self->typeID);
-????????????else if(keyStr=="__init__")
-????????????????return scripting::createNativeFunction(%s_new);
+????????????????R S::createInt(F->typeID);
+????????????EI(keyStr=="__init__")
+????????????????R CNF(%s_new);
 ????????????""") % (class_.name, class_.name, class_.name, class_.name, class_.name))
 
     methods_ = {}
@@ -995,36 +1014,36 @@ for class_ in classes.values():
             continue
         methods_[method.name] = None
 
-        bindings.write(s(""" else if (keyStr == "%s")
-????????????????return scripting::createNativeFunction(%s_%s);
+        bindings.write(s(""" EI(keyStr == "%s")
+????????????????R CNF(%s_%s);
 ????????????""") % (method.name, class_.name, method.name))
 
     for property_ in class_.properties:
         if not property_.script_public:
             continue
         
-        bindings.write(s(""" else if(keyStr=="%s")
+        bindings.write(s(""" EI(keyStr=="%s")
 ????????????{
-????????????????%s*obj=(%s*)self->data;
-????????????????return create_val<decltype(obj->%s)>::f(ctx,obj->%s);
-????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
+????????????????%s*obj=(%s*)F->data;
+????????????????R CV(obj->%s);
+????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name))
     
     bindings.write(s(""" else
-???????????????? ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+???????????????? CATE(KE,"Unknown member."));
 ????????}
 ????}
-????return scripting::createNil();
+????R CN;
 }
 
 """))
 
-    bindings.write(s("""void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+    bindings.write(s("""void %s_set_member(CTX ctx,NO F,SV key,SV value)
 {
-????if (key->type==scripting::ValueType::StringType)
+????if (key->type==S::ValueType::StringType)
 ????{
-????????String keyStr=((scripting::StringValue*)key)->value;
-????????if(self->data==NULL)
-????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Native classes are read-only."));
+????????String keyStr=((S::StringValue*)key)->value;
+????????if(F->data==NULL)
+????????????CATE(KE,"Native classes are read-only."));
 ????????else
 ????????{
 ????????????if(0) {}""") % (class_.name))
@@ -1033,14 +1052,14 @@ for class_ in classes.values():
         if not property_.script_public:
             continue
         
-        bindings.write(s(""" else if(keyStr=="%s")
+        bindings.write(s(""" EI(keyStr=="%s")
 ????????????{
-????????????????%s*obj=(%s*)self->data;
+????????????????%s*obj=(%s*)F->data;
 ????????????????obj->%s=val_to_c<decltype(obj->%s)>::f(ctx,value);
 ????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
     
     bindings.write(s(""" else
-???????????????? ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member or member if read-only."));
+???????????????? CATE(KE,"Unknown member or member if read-only."));
 ????????}
 ????}
 }
@@ -1056,29 +1075,29 @@ for class_ in classes.values():
             methods[method.name] = [method]
     
     for methods_ in methods.values():
-        bindings.write(s("""scripting::Value *%s_%s(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_%s(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()<1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::%s expects at least one argument."));
-????%s*self;
-????if(!type_same<%s>::f(ctx, args[0]))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s::%s expects %s as first argument."));
+????if(a.getCount()<1)
+????????CATE(VE,"%s::%s" EAOE));
+????%s*F;
+????if(!TS(%s,a[0]))
+????????CATE(TE,FAE("%s::%s","%s")));
 ????else
-???????? self=(%s*)((scripting::NativeObject*)args[0])->data;
+???????? F=(%s*)((NO)a[0])->data;
 
 """) % (class_.name, methods_[0].name, class_.name, methods_[0].name, class_.code_name, class_.code_name, class_.name, methods_[0].name, class_.name, class_.code_name))
 
         for method in methods_:
             if method.script_public:
-                args = ["val_to_c<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
+                args = ["val_to_c<%s>::f(ctx,a[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
 
                 for i in xrange(len(method.args)):
                     if i in method.arg_convs:
-                        args[i] = "%s(ctx,args[%d])" % (method.arg_convs[i], i+1)
+                        args[i] = "%s(ctx,a[%d])" % (method.arg_convs[i], i+1)
 
                 argsStr = ", ".join(args)
 
-                args = ["type_same<%s>::f(ctx,args[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
+                args = ["TS(%s,a[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
 
                 testStr = "&&".join(["1"] + args)
 
@@ -1087,33 +1106,32 @@ for class_ in classes.values():
                         if v == method.name:
                             operator = k[len("operator"):]
                     
-                    bindings.write(s("""????if(args.getCount()==%d)
+                    bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
 ????????{
-????????????return create_val<%s>::f(ctx, *self %s %s);
+????????????R CV(*F %s %s);
 ????????}
 """) % (len(method.args)+1,
             testStr,
-            method.return_type.to_string(class_.template_types),
             operator,
             argsStr))
 
                 else:
-                    bindings.write(s("""????if(args.getCount()==%d)
+                    bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
 ????????{
-????????????%s self->%s(%s));
+????????????%s F->%s(%s));
 ????????????%s;
 ????????}
 """) % (len(method.args)+1,
             testStr,
-            "(" if method.return_type.to_string(class_.template_types) == "void" else "return create_val<%s>::f(ctx, " % method.return_type.to_string(class_.template_types),
+            "(" if method.return_type.to_string(class_.template_types) == "void" else "R CV(",
             method.name,
             argsStr,
-            "return scripting::createNil()" if method.return_type.to_string(class_.template_types) == "void" else ""))
+            "R CN" if method.return_type.to_string(class_.template_types) == "void" else ""))
 
-        bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s::%s."));
-????return scripting::createNil();
+        bindings.write(s("""????CATE(TE,UFOF("%s::%s.")));
+????R CN;
 }
 
 """) % (class_.name, methods_[0].name))
@@ -1129,25 +1147,25 @@ for functions_ in functions.values():
     else:
         continue
 
-    bindings.write(s("""scripting::Value *%s_binding(scripting::Context*ctx,const List<scripting::Value*>&args)
+    bindings.write(s("""SV %s_binding(CTX ctx,const List<SV>&a)
 {
 """) % (functions_[0].name))
 
     for function in functions_:
         if function.script_public:
-            args = ["val_to_c<%s>::f(ctx,args[%d])" % (function.args[j].type_.to_string(), j) for j in xrange(len(function.args))]
+            args = ["val_to_c<%s>::f(ctx,a[%d])" % (function.args[j].type_.to_string(), j) for j in xrange(len(function.args))]
 
             for i in xrange(len(function.args)):
                 if i in function.arg_convs:
-                    args[i] = "%s(ctx,args[%d])" % (function.arg_convs[i], i)
+                    args[i] = "%s(ctx,a[%d])" % (function.arg_convs[i], i)
 
             argsStr = ", ".join(args)
 
-            args = ["type_same<%s>::f(ctx,args[%d])" % (function.args[j].type_.to_string(), j) for j in xrange(len(function.args))]
+            args = ["TS(%s,a[%d])" % (function.args[j].type_.to_string(), j) for j in xrange(len(function.args))]
 
             testStr = "&&".join(["1"] + args)
 
-            bindings.write(s("""????if(args.getCount()==%d)
+            bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
 ????????{
 ????????????%s %s(%s));
@@ -1155,13 +1173,13 @@ for functions_ in functions.values():
 ????????}
 """) % (len(function.args),
        testStr,
-       "(" if function.return_type.to_string() == "void" else "return create_val<%s>::f(ctx," % function.return_type.to_string(),
+       "(" if function.return_type.to_string() == "void" else "return CV(" % function.return_type.to_string(),
        function.name,
        argsStr,
-       "return scripting::createNil()" if function.return_type.to_string() == "void" else ""))
+       "R CN" if function.return_type.to_string() == "void" else ""))
 
-    bindings.write(s("""????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"Unable to find overload for %s."));
-????return scripting::createNil();
+    bindings.write(s("""????CATE(TE,UFOF("%s")));
+????R CN;
 }
 
 """) % (function.name))
@@ -1172,127 +1190,127 @@ for class_ in classes.values():
     
     name = class_.name + "_ptr"
     
-    bindings.write(s("""scripting::Value *%s_ptr_new(scripting::Context*ctx,const List<scripting::Value*>&args)
+    bindings.write(s("""SV %s_ptr_new(CTX ctx,const List<SV>&a)
 {
-????List<scripting::Value *> args2 = args.copy();
-????args2[0]=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s;
-????scripting::NativeObject *obj=(scripting::NativeObject*)%s_new(ctx, args2);
+????List<SV> args2 = a.copy();
+????args2[0]=EXT->%s;
+????NO obj=(NO)%s_new(ctx, args2);
 ????obj->funcs=%s_ptr_funcs;
-????obj->typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_ptr_typeID;
+????obj->typeID=EXT->%s_ptr_typeID;
 ????setAllocInfo(obj->data, AllocInfo(true, false));
-????return (scripting::Value*)obj;
+????R(SV)obj;
 }
 """ % (class_.name, class_.name, class_.name, class_.name, class_.name)))
 
     if class_.copyable:
-        bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_ptr_deref(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()!=1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%sRef::deref expects one argument."));
-????scripting::Value*self=args[0];
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::deref expects %sRef as first argument."));
-????return create_val<%s>::f(ctx, *(%s *)((scripting::NativeObject *)self)->data);
+????if(a.getCount()!=1)
+????????CATE(VE,"%sRef::deref" EAOE));
+????SV F=a[0];
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::deref expects %sRef as first argument."));
+????R CV(*(%s *)((NO)F)->data);
 }
-""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
+""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name)))
 
-        bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_ptr_set(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()!=2)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::refset expects two arguments."));
-????scripting::Value*self=args[0];
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::refset expects %sRef as first argument."));
-????*((%s *)((scripting::NativeObject *)self)->data) = val_to_c<%s>::f(ctx,args[1]);
-????return scripting::createNil();
+????if(a.getCount()!=2)
+????????CATE(VE,"%s::refset expects two arguments."));
+????SV F=a[0];
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::refset expects %sRef as first argument."));
+????*((%s *)((NO)F)->data) = val_to_c<%s>::f(ctx,a[1]);
+????R CN;
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
     else:
-        bindings.write(s("""scripting::Value *%s_ptr_deref(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_ptr_deref(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()!=1)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%sRef::deref expects one argument."));
-????scripting::Value*self=args[0];
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::deref expects %sRef as first argument."));
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s objects are not copyable."));
+????if(a.getCount()!=1)
+????????CATE(VE,"%sRef::deref" EAOE));
+????SV F=a[0];
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::deref expects %sRef as first argument."));
+????????CATE(TE,"%s objects are not copyable."));
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
 
-        bindings.write(s("""scripting::Value *%s_ptr_set(scripting::Context*ctx,const List<scripting::Value*>&args)
+        bindings.write(s("""SV %s_ptr_set(CTX ctx,const List<SV>&a)
 {
-????if(args.getCount()!=2)
-????????ctx->throwException(scripting::createException(scripting::ExcType::ValueError,"%s::refset expects two arguments."));
-????scripting::Value*self=args[0];
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::refset expects %sRef as first argument."));
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%s objects are not copyable."));
-????return scripting::createNil();
+????if(a.getCount()!=2)
+????????CATE(VE,"%s::refset expects two arguments."));
+????SV F=a[0];
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::refset expects %sRef as first argument."));
+????????CATE(TE,"%s objects are not copyable."));
+????R CN;
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
 
     if not class_.destructable:
         #Let's hope it is freed.
         bindings.write(s("""
-void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+void %s_destroy(CTX ctx,NO F)
 {
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::__del__ expects %sRef as first argument."));
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::__del__ expects %sRef as first argument."));
 }""" % (name, class_.code_name, class_.name, class_.name)))
     else:
         bindings.write(s("""
-void %s_destroy(scripting::Context*ctx,scripting::NativeObject*self)
+void %s_destroy(CTX ctx,NO F)
 {
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef::__del__ expects %sRef as first argument."));
-????SCRIPT_DELETE(%s, (%s *)self->data);
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::__del__ expects %sRef as first argument."));
+????SCRIPT_DELETE(%s, (%s *)F->data);
 }""" % (name, class_.code_name, class_.name, class_.name,
         class_.code_name, class_.code_name)))
 
     bindings.write(s("""
-scripting::Value *%s_get_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key)
+SV %s_get_member(CTX ctx,NO F,SV key)
 {
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef's get method expects %sRef as first argument."));
-????if (key->type==scripting::ValueType::StringType)
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,FAE("%sRef's get method","%sRef")));
+????if (key->type==S::ValueType::StringType)
 ????{
-????????String keyStr=((scripting::StringValue *)key)->value;
-????????if(self->data==NULL)
+????????String keyStr=((S::StringValue *)key)->value;
+????????if(F->data==NULL)
 ????????{
 ????????if(keyStr=="__typeID__")
-????????????return scripting::createInt(self->typeID);
-????????else if(keyStr=="__name__")
-????????????return scripting::createString("%sPtr");
-????????else if(keyStr=="__new__")
-????????????return scripting::createNativeFunction(%s_ptr_new);
-????????else if(keyStr=="__call__")
-????????????return scripting::createNativeFunction(%s_ptr_new);
+????????????R S::createInt(F->typeID);
+????????EI(keyStr=="__name__")
+????????????R S::createString("%sPtr");
+????????EI(keyStr=="__new__")
+????????????R CNF(%s_ptr_new);
+????????EI(keyStr=="__call__")
+????????????R CNF(%s_ptr_new);
 ????????else
-????????????ctx->throwException(scripting::createException(scripting::ExcType::KeyError,"Unknown member."));
+????????????CATE(KE,"Unknown member."));
 ????????} else
 ????????{
-????????if(keyStr=="deref") return scripting::createNativeFunction(%s_ptr_deref);
-????????if(keyStr=="refset") return scripting::createNativeFunction(%s_ptr_set);
+????????if(keyStr=="deref")R CNF(%s_ptr_deref);
+????????if(keyStr=="refset")R CNF(%s_ptr_set);
 ????????}
 ????}
-????scripting::NativeObject obj;
-????obj.head.type=scripting::ValueType::NativeObject;
+????S::NativeObject obj;
+????obj.head.type=S::ValueType::NativeObject;
 ????obj.funcs=%s_funcs;
-????obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
+????obj.typeID=EXT->%s_typeID;
 ????obj.refCount=1;
-????obj.data=self->data;
-????return %s_get_member(ctx, &obj, key);
+????obj.data=F->data;
+????R %s_get_member(ctx, &obj, key);
 }
-void %s_set_member(scripting::Context*ctx,scripting::NativeObject*self,scripting::Value*key,scripting::Value*value)
+void %s_set_member(CTX ctx,NO F,SV key,SV value)
 {
-????if(!type_same<%s *>::f(ctx, (scripting::Value *)self))
-????????ctx->throwException(scripting::createException(scripting::ExcType::TypeError,"%sRef's get method expects %sRef as first argument."));
-????scripting::NativeObject obj;
-????obj.head.type=scripting::ValueType::NativeObject;
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,FAE("%sRef's set method","%sRef")));
+????S::NativeObject obj;
+????obj.head.type=S::ValueType::NativeObject;
 ????obj.funcs=%s_funcs;
-????obj.typeID=((BindingsExt *)ctx->getEngine()->getExtension("bindings").data)->%s_typeID;
+????obj.typeID=EXT->%s_typeID;
 ????obj.refCount=1;
-????obj.data=self->data;
+????obj.data=F->data;
 ????%s_set_member(ctx, &obj, key, value);
 }
 """) % (name, class_.code_name, class_.name,

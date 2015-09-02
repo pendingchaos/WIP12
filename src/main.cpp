@@ -496,7 +496,7 @@ int main(int argc, const char *argv[])
 
         scripting::Engine *engine = NEW(scripting::Engine);
 
-        registerBindings(engine);
+        scripting::registerBindings(engine);
 
         engine->getGlobalVars().set("print", scripting::createNativeFunction(print));
 
