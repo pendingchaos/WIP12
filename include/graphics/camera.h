@@ -9,7 +9,7 @@ enum class CameraType
 {
     Perspective,
     Orthographic
-};
+} BIND ENUM_CLASS;
 
 class Camera
 {
