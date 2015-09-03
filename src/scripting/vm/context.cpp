@@ -288,15 +288,15 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         }
         case Opcode::GetMember:
         {
-            Value *value = popStack(*stack);
             Value *key = popStack(*stack);
+            Value *value = popStack(*stack);
 
             stack->append(getMember(this,
                                     value,
                                     key));
 
-            destroy(this, key);
             destroy(this, value);
+            destroy(this, key);
             break;
         }
         case Opcode::SetMember:
@@ -807,7 +807,6 @@ break;
 "PushFunc",
 "PushObject",
 "PushString",
-"PushList",
 "PushException",
 "StackPop",
 "LoadVar",

@@ -2,6 +2,7 @@
 #define GFXDEFS_H
 
 #include "containers/string.h"
+#include "scripting/bindings.h"
 
 class GfxBuffer;
 
@@ -15,7 +16,7 @@ enum GfxPrimitive
     GfxTriangleFan,
     GfxTriangles,
     GfxPatches
-};
+} BIND;
 
 enum GfxDepthFunction
 {
@@ -27,14 +28,14 @@ enum GfxDepthFunction
     GfxNotEqual,
     GfxGreaterEqual,
     GfxAlways
-};
+} BIND;
 
 enum GfxBlendMode
 {
     GfxAdd,
     GfxSubtract,
     GfxReverseSubtract
-};
+} BIND;
 
 enum GfxBlendFactor
 {
@@ -52,22 +53,22 @@ enum GfxBlendFactor
     GfxOneMinusConstantColor,
     GfxConstantAlpha,
     GfxOneMinusConstantAlpha
-};
+} BIND;
 
 enum GfxCullMode
 {
     GfxCullNone,
     GfxCullFront,
     GfxCullBack
-};
+} BIND;
 
 enum GfxWinding
 {
     GfxCW,
     GfxCCW
-};
+} BIND;
 
-#define GFX_VERTEX_ATTRIB_PURPOSE_COUNT 6
+#define GFX_VERTEX_ATTRIB_PURPOSE_COUNT 5
 
 enum GfxVertexAttribPurpose
 {
@@ -76,7 +77,7 @@ enum GfxVertexAttribPurpose
     GfxTangent = 2,
     GfxColor = 3,
     GfxTexCoord = 4,
-};
+} BIND;
 
 enum GfxVertexAttribType
 {
@@ -95,6 +96,6 @@ enum GfxVertexAttribType
     GfxNormalizedUnsignedShort,
     GfxNormalizedInteger,
     GfxNormalizedUnsignedInteger
-};
+} BIND;
 
 #endif // GFXDEFS_H

@@ -17,6 +17,7 @@
 //Example: ARG_CONV(0, own<Float2>) so the C++ code can free argument 2 (which is a Float2 *).
 #define ARG_CONV(index, func) __attribute__((annotate("argconv" STR(index) ":" STR(func))))
 #define NOT_COPYABLE __attribute__((annotate("nocopy")))
+#define ENUM_CLASS __attribute__((annotate("enumclass")))
 #else
 #define GETTER
 #define SETTER
@@ -28,6 +29,7 @@
 #define DOC_DESC(str)
 #define ARG_CONV(index, func)
 #define NOT_COPYABLE
+#define ENUM_CLASS
 #endif
 
 namespace scripting

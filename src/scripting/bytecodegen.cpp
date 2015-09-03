@@ -173,8 +173,6 @@ void _generateObject(CallNode *call, ResizableData& data)
 }
 
 /*TODO:
-Reference dereferencing is not implemented.
-
 Implement these:
     import
     int

@@ -725,7 +725,7 @@ void GfxRenderer::resize(const UInt2& size)
         width = size.x;
         height = size.y;
 
-        if (camera.getType() == Camera::Perspective)
+        if (camera.getType() == CameraType::Perspective)
         {
             camera.setWidth(width);
             camera.setHeight(height);

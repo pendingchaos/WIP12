@@ -313,6 +313,23 @@ class Class(object):
                 elif c.displayname == "nocopy":
                     self.copyable = False
 
+class Enum(object):
+    def __init__(self, cursor):
+        self.name = cursor.spelling
+        
+        self.values = {}
+        self.enum_class = False
+        self.script_public = False
+        
+        for c in cursor.get_children():
+            if c.kind == clang.cindex.CursorKind.ENUM_CONSTANT_DECL:
+                self.values[c.spelling] = c.enum_value
+            elif c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
+                if c.displayname == "enumclass":
+                    self.enum_class = True
+                elif c.displayname == "bind":
+                    self.script_public = True
+
 def _get_classes(class_, classes):
     for class2 in class_.classes:
         classes["%s_%s" % (class_.name, class2.name)] = class2
@@ -392,6 +409,15 @@ def get_functions(cursor):
 
     return functions
 
+def get_enums(cursor):
+    enums = []
+
+    for child in cursor.get_children():
+        if child.kind == clang.cindex.CursorKind.ENUM_DECL and child.spelling != "":
+            enums.append(Enum(child))
+
+    return enums
+
 print "Parsing preprocessed file."
 
 index = clang.cindex.Index.create()
@@ -404,6 +430,7 @@ print "Generating the bindings."
 
 classes = get_classes(trans_unit.cursor)
 functions = get_functions(trans_unit.cursor)
+enums = get_enums(trans_unit.cursor)
 
 bindings = open("../src/scripting/bindings.cpp", "w")
 
@@ -433,6 +460,10 @@ for class_ in classes.keys():
         names.append(class_+"_typeID")
         names.append(class_+"_ptr"+"_typeID")
 
+for enum in enums:
+    if enum.script_public:
+        names.append(enum.name + "_typeID")
+
 bindings.write(", ".join(names))
 
 bindings.write(";\n    scripting::Value ")
@@ -443,6 +474,10 @@ for class_ in classes.keys():
     if classes[class_].script_public:
         names.append("*"+class_)
         names.append("*"+class_+"_ptr")
+
+for enum in enums:
+    if enum.script_public:
+        names.append("*"+enum.name)
 
 bindings.write(", ".join(names))
 
@@ -780,6 +815,67 @@ T *own(scripting::Context *ctx, SV value)
 }
 """)
 
+for enum in enums:
+    if not enum.script_public:
+        continue
+    
+    print "Bindings will be generated for %s" % enum.name
+    
+    bindings.write(s("""void %s_destroy(CTX,NO) {}
+SV %s_get_member(CTX,NO,SV);
+void %s_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs %s_funcs={
+????.destroy = %s_destroy,
+????.getMember = %s_get_member,
+????.setMember = %s_set_member
+};""" % (enum.name, enum.name, enum.name, enum.name, enum.name, enum.name, enum.name)))
+
+    bindings.write(s("""
+template <>
+struct create_val<%s>
+{
+????static SV f(CTX ctx,%s v)
+????{
+????????R S::createNativeObject(%s_funcs,(void *)v,EXT->%s_typeID);
+????}
+};""" % (enum.name, enum.name, enum.name, enum.name)))
+
+    bindings.write(s("""
+template <>
+struct val_to_c<%s>
+{
+????static %s f(CTX ctx,const SV head)
+????{
+????????if(head->type!=S::ValueType::NativeObject)
+????????????CATE(TE,"Value can not be converted to %s."));
+????????
+????????NO obj=(NO)head;
+????????if(obj->typeID!=EXT->%s_typeID)
+????????????CATE(TE,"Value can not be converted to %s."));
+????????????size_t v=size_t(obj->data);
+""" % (enum.name, enum.name, enum.name, enum.name, enum.name)))
+
+    if enum.enum_class:
+        for k,v in enum.values.iteritems():
+            bindings.write(s("????????if(v==%d)return %s::%s;\n" % (v, enum.name, k)))
+    else:
+        for k,v in enum.values.iteritems():
+            bindings.write(s("????????if(v==%d)return %s;\n" % (v, k)))
+    
+    bindings.write(s("????}\n};\n"))
+    
+    bindings.write(s("""template <>
+struct type_same<%s>
+{
+????static bool f(CTX ctx,const SV head)
+????{
+????????if(head->type==S::ValueType::NativeObject)
+????????????R((NO)head)->typeID==EXT->%s_typeID;
+????????else
+???????????? R false;
+????}
+};""" % (enum.name, enum.name)))
+
 for class_ in classes.values():
     if not class_.script_public:
         continue
@@ -906,6 +1002,66 @@ struct type_same<%s *>
 };
 
 """) % (class_.code_name, class_.code_name, name, class_.name, class_.code_name, class_.code_name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.name))
+
+for enum in enums:
+    if not enum.script_public:
+        continue
+    
+    ev = ""
+    
+    for k,v in enum.values.iteritems():
+        ev += "EI(keyStr==\"%s\")R S::createNativeObject(%s_funcs,(void *)%d,EXT->%s_typeID);\n" % (k, enum.name, v, enum.name)
+
+    bindings.write(s("""SV %s___eq__(CTX ctx,const List<SV>&a)
+{
+????if(a.getCount()!=2)
+????????CATE(VE,UFOF("%s::__eq__")));
+????size_t F;
+????if(!TS(%s,a[0]))
+????????CATE(TE,FAE("%s::%s","%s")));
+????else
+???????? F=(size_t)((NO)a[0])->data;
+????size_t other;
+????if(!TS(%s,a[1]))
+????????CATE(VE,UFOF("%s::__eq__")));
+????else
+???????? other=(size_t)((NO)a[1])->data;
+????return S::createBoolean(F == other);
+}""") % (enum.name, enum.name, enum.name, enum.name, enum.name, enum.name, enum.name, enum.name))
+
+    bindings.write(s("""SV %s_get_member(CTX ctx,NO F,SV key)
+{
+????if (key->type==S::ValueType::StringType)
+????{
+????????String keyStr=((S::StringValue *)key)->value;
+????????if(F->data==NULL)
+????????{
+????????????if(keyStr=="__typeID__")
+????????????????R S::createInt(F->typeID);
+????????????EI(keyStr=="__name__")
+????????????????R S::createString("%s");
+????????????EI(keyStr=="__eq__")
+????????????????R CNF(%s___eq__);
+%s
+????????????else
+???????????????? CATE(KE,"Unknown member."));
+????????} else
+????????{
+????????????if(keyStr=="__classTypeID__")
+????????????????R S::createInt(F->typeID);
+????????????EI(keyStr=="__name__")
+????????????????R S::createString("%s");
+????????????EI(keyStr=="__eq__")
+????????????????R CNF(%s___eq__);
+%s
+????????????else
+???????????????? CATE(KE,"Unknown member."));
+????????}
+????}
+}
+""" % (enum.name, enum.name, enum.name, ev, enum.name, enum.name, ev)))
+
+    bindings.write(s("""void %s_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}\n""" % (enum.name)))
 
 for class_ in classes.values():
     if not class_.script_public:
@@ -1351,6 +1507,17 @@ for functions_ in functions.values():
         
         bindings.write("""    engine->getGlobalVars().set("%s", scripting::createNativeFunction(%s_binding));
         """ % (function.name, function.name))
+
+for enum in enums:
+    if not enum.script_public:
+        continue
+    
+    bindings.write("""    typeID = engine->createNewTypeID();
+    ext->%s_typeID = typeID;
+    ext->%s = scripting::createNativeObject(%s_funcs, NULL, typeID);
+    engine->getGlobalVars().set("%s", ext->%s);
+    
+""" % (enum.name, enum.name, enum.name, enum.name, enum.name))
 
 bindings.write("""    return ext;
 }

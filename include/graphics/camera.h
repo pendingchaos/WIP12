@@ -5,18 +5,18 @@
 #include "math/matrix4x4.h"
 #include "scripting/bindings.h"
 
+enum class CameraType
+{
+    Perspective,
+    Orthographic
+};
+
 class Camera
 {
     public:
-        enum Type
-        {
-            Perspective,
-            Orthographic
-        };
-
         Camera();
 
-        void setType(Camera::Type type) NO_BIND;
+        void setType(CameraType type);
 
         void setPosition(const Position3D& position);
         void setDirection(const Direction3D& direction);
@@ -34,7 +34,7 @@ class Camera
         void setNear(float near);
         void setFar(float far);
 
-        inline Camera::Type getType() const NO_BIND
+        inline CameraType getType() const
         {
             return type;
         }
@@ -112,7 +112,7 @@ class Camera
         Matrix4x4 viewMatrix;
         Matrix4x4 projectionMatrix;
 
-        Type type;
+        CameraType type;
 
         Position3D position;
         Direction3D direction;

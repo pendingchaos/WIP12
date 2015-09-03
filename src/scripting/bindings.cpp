@@ -59,8 +59,8 @@
 
 struct BindingsExt
 {
-    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, File_typeID, File_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Camera_typeID, Camera_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID;
-    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *RigidBody, *RigidBody_ptr, *File, *File_ptr, *Int3, *Int3_ptr, *Camera, *Camera_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr;
+    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, File_typeID, File_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Camera_typeID, Camera_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxPrimitive_typeID;
+    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *RigidBody, *RigidBody_ptr, *File, *File_ptr, *Int3, *Int3_ptr, *Camera, *Camera_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxPrimitive;
 };
 
 
@@ -354,7 +354,55 @@ T *own(scripting::Context *ctx, SV value)
 
     CATE(scripting::ExcType::TypeError, "Argument's value can not be converted."));
 }
-void UInt3_destroy(CTX,NO);
+void GfxPrimitive_destroy(CTX,NO) {}
+SV GfxPrimitive_get_member(CTX,NO,SV);
+void GfxPrimitive_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxPrimitive_funcs={
+.destroy = GfxPrimitive_destroy,
+.getMember = GfxPrimitive_get_member,
+.setMember = GfxPrimitive_set_member
+};
+template <>
+struct create_val<GfxPrimitive>
+{
+static SV f(CTX ctx,GfxPrimitive v)
+{
+R S::createNativeObject(GfxPrimitive_funcs,(void *)v,EXT->GfxPrimitive_typeID);
+}
+};
+template <>
+struct val_to_c<GfxPrimitive>
+{
+static GfxPrimitive f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxPrimitive."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxPrimitive_typeID)
+CATE(TE,"Value can not be converted to GfxPrimitive."));
+size_t v=size_t(obj->data);
+if(v==1)return GfxLineStrip;
+if(v==5)return GfxTriangleFan;
+if(v==6)return GfxTriangles;
+if(v==0)return GfxPoints;
+if(v==3)return GfxLines;
+if(v==2)return GfxLineLoop;
+if(v==4)return GfxTriangleStrip;
+if(v==7)return GfxPatches;
+}
+};
+template <>
+struct type_same<GfxPrimitive>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxPrimitive_typeID;
+else
+ R false;
+}
+};void UInt3_destroy(CTX,NO);
 SV UInt3_get_member(CTX,NO,SV);
 void UInt3_set_member(CTX,NO,SV,SV);
 static const S::NativeObjectFuncs UInt3_funcs={
@@ -2645,6 +2693,68 @@ else
 }
 };
 
+SV GfxPrimitive___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxPrimitive::__eq__")));
+size_t F;
+if(!TS(GfxPrimitive,a[0]))
+CATE(TE,FAE("GfxPrimitive::GfxPrimitive","GfxPrimitive")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(GfxPrimitive,a[1]))
+CATE(VE,UFOF("GfxPrimitive::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxPrimitive_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxPrimitive");
+EI(keyStr=="__eq__")
+R CNF(GfxPrimitive___eq__);
+EI(keyStr=="GfxLineStrip")R S::createNativeObject(GfxPrimitive_funcs,(void *)1,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxTriangleFan")R S::createNativeObject(GfxPrimitive_funcs,(void *)5,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxTriangles")R S::createNativeObject(GfxPrimitive_funcs,(void *)6,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxPoints")R S::createNativeObject(GfxPrimitive_funcs,(void *)0,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxLines")R S::createNativeObject(GfxPrimitive_funcs,(void *)3,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxLineLoop")R S::createNativeObject(GfxPrimitive_funcs,(void *)2,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxTriangleStrip")R S::createNativeObject(GfxPrimitive_funcs,(void *)4,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxPatches")R S::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxPrimitive");
+EI(keyStr=="__eq__")
+R CNF(GfxPrimitive___eq__);
+EI(keyStr=="GfxLineStrip")R S::createNativeObject(GfxPrimitive_funcs,(void *)1,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxTriangleFan")R S::createNativeObject(GfxPrimitive_funcs,(void *)5,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxTriangles")R S::createNativeObject(GfxPrimitive_funcs,(void *)6,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxPoints")R S::createNativeObject(GfxPrimitive_funcs,(void *)0,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxLines")R S::createNativeObject(GfxPrimitive_funcs,(void *)3,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxLineLoop")R S::createNativeObject(GfxPrimitive_funcs,(void *)2,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxTriangleStrip")R S::createNativeObject(GfxPrimitive_funcs,(void *)4,EXT->GfxPrimitive_typeID);
+EI(keyStr=="GfxPatches")R S::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxPrimitive_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 void UInt3_destroy(CTX ctx,NO F)
 {
 if(!TS(T3<uint32_t>, (SV)F))
@@ -22476,6 +22586,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Matrix3x3_ptr_typeID = typeID;
     ext->Matrix3x3_ptr = scripting::createNativeObject(Matrix3x3_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("Matrix3x3Ref", ext->Matrix3x3_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxPrimitive_typeID = typeID;
+    ext->GfxPrimitive = scripting::createNativeObject(GfxPrimitive_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxPrimitive", ext->GfxPrimitive);
     
     return ext;
 }

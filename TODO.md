@@ -18,7 +18,6 @@
     - Claims to be faster than SDSM in complex scenes.
 - [ ] Finish the script binding generator.
     - [ ] NULL <-> nil conversion
-    - [ ] Enums
     - [ ] Static methods
     - [ ] Inheritance
     - [ ] Namespaces
@@ -27,7 +26,7 @@
     - [ ] C++ exceptions -> script exceptions
     - [ ] Bind lots of stuff
     - [ ] Pointer return value ownership.
-    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, Camera and File.
+    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody and File.
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
 - [ ] Get rid of the builtin List type (scripting).

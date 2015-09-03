@@ -8,26 +8,26 @@ Camera::Camera() : position(0.0f),
                    near(0.1f),
                    far(100.0f)
 {
-    setType(Perspective);
+    setType(CameraType::Perspective);
 
     createViewMatrix();
     createProjectionMatrix();
 }
 
-void Camera::setType(Type type_)
+void Camera::setType(CameraType type_)
 {
     type = type_;
 
     switch (type)
     {
-    case Perspective:
+    case CameraType::Perspective:
     {
         perspective.width = 1.0f;
         perspective.height = 1.0f;
         perspective.fov = 60.0f;
         break;
     }
-    case Orthographic:
+    case CameraType::Orthographic:
     {
         orthographic.left = -1.0f;
         orthographic.right = 1.0f;
@@ -63,7 +63,7 @@ void Camera::setUp(const Direction3D& up_)
 
 void Camera::setWidth(float width)
 {
-    if (type == Perspective)
+    if (type == CameraType::Perspective)
     {
         perspective.width = width;
 
@@ -73,7 +73,7 @@ void Camera::setWidth(float width)
 
 void Camera::setHeight(float height)
 {
-    if (type == Perspective)
+    if (type == CameraType::Perspective)
     {
         perspective.height = height;
 
@@ -83,7 +83,7 @@ void Camera::setHeight(float height)
 
 void Camera::setFieldOfView(float fov)
 {
-    if (type == Perspective)
+    if (type == CameraType::Perspective)
     {
         perspective.fov = fov;
 
@@ -93,7 +93,7 @@ void Camera::setFieldOfView(float fov)
 
 void Camera::setLeft(float left)
 {
-    if (type == Orthographic)
+    if (type == CameraType::Orthographic)
     {
         orthographic.left = left;
 
@@ -103,7 +103,7 @@ void Camera::setLeft(float left)
 
 void Camera::setRight(float right)
 {
-    if (type == Orthographic)
+    if (type == CameraType::Orthographic)
     {
         orthographic.right = right;
 
@@ -113,7 +113,7 @@ void Camera::setRight(float right)
 
 void Camera::setBottom(float bottom)
 {
-    if (type == Orthographic)
+    if (type == CameraType::Orthographic)
     {
         orthographic.bottom = bottom;
 
@@ -123,7 +123,7 @@ void Camera::setBottom(float bottom)
 
 void Camera::setTop(float top)
 {
-    if (type == Orthographic)
+    if (type == CameraType::Orthographic)
     {
         orthographic.top = top;
 
@@ -156,7 +156,7 @@ void Camera::createProjectionMatrix()
 {
     switch (type)
     {
-    case Perspective:
+    case CameraType::Perspective:
     {
         projectionMatrix = Matrix4x4::perspective(RADIANS(perspective.fov),
                                                   perspective.width/perspective.height,
@@ -164,7 +164,7 @@ void Camera::createProjectionMatrix()
                                                   far);
         break;
     }
-    case Orthographic:
+    case CameraType::Orthographic:
     {
         projectionMatrix = Matrix4x4::orthographic(orthographic.left,
                                                    orthographic.right,

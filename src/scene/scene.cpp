@@ -396,14 +396,14 @@ void Scene::_load()
 
         if (camType == 0)
         {
-            camera.setType(Camera::Perspective);
+            camera.setType(CameraType::Perspective);
 
             camera.setFieldOfView(file.readFloat32());
             camera.setWidth(file.readFloat32());
             camera.setHeight(file.readFloat32());
         } else if (camType == 1)
         {
-            camera.setType(Camera::Orthographic);
+            camera.setType(CameraType::Orthographic);
 
             camera.setLeft(file.readFloat32());
             camera.setRight(file.readFloat32());
@@ -752,7 +752,7 @@ void Scene::save()
 
         const Camera& camera = renderer->camera;
 
-        file.writeUInt8(camera.getType() == Camera::Perspective ? 0 : 1);
+        file.writeUInt8(camera.getType() == CameraType::Perspective ? 0 : 1);
         file.writeFloat32(camera.getPosition().x);
         file.writeFloat32(camera.getPosition().y);
         file.writeFloat32(camera.getPosition().z);
@@ -765,12 +765,12 @@ void Scene::save()
         file.writeFloat32(camera.getNear());
         file.writeFloat32(camera.getFar());
 
-        if (camera.getType() == Camera::Perspective)
+        if (camera.getType() == CameraType::Perspective)
         {
             file.writeFloat32(camera.getFieldOfView());
             file.writeFloat32(camera.getWidth());
             file.writeFloat32(camera.getHeight());
-        } else if (camera.getType() == Camera::Orthographic)
+        } else if (camera.getType() == CameraType::Orthographic)
         {
             file.writeFloat32(camera.getLeft());
             file.writeFloat32(camera.getRight());
