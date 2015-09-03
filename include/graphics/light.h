@@ -13,7 +13,7 @@ class GfxRenderer;
 struct LightDirectionalData
 {
     Direction3D direction;
-};
+} BIND;
 
 struct LightSpotData
 {
@@ -22,35 +22,35 @@ struct LightSpotData
     float innerCutoff;
     float outerCutoff;
     float radius;
-};
+} BIND;
 
 struct LightPointData
 {
     Position3D position;
     float radius;
     bool singlePassShadowMap;
-};
+} BIND;
+
+enum class GfxShadowmapPrecision
+{
+    Low,
+    Medium,
+    High
+} BIND ENUM_CLASS;
+
+enum class GfxLightType
+{
+    Directional,
+    Spot,
+    Point
+} BIND ENUM_CLASS;
 
 class Light
 {
     NO_COPY(Light)
 
     public:
-        enum Type
-        {
-            Directional,
-            Spot,
-            Point
-        };
-
-        enum ShadowmapPrecision
-        {
-            Low,
-            Medium,
-            High
-        };
-
-        Light() : type(Directional),
+        Light() : type(GfxLightType::Directional),
                   power(1.0f),
                   color(1.0f),
                   ambientStrength(0.05f),
@@ -65,7 +65,7 @@ class Light
                   shadowmapFramebuffer(nullptr) {point.singlePassShadowMap = true;}
         ~Light() {removeShadowmap();}
 
-        Type type;
+        GfxLightType type;
         float power;
         Float3 color;
         float ambientStrength;
@@ -80,7 +80,7 @@ class Light
         LightSpotData spot;
         LightPointData point;
 
-        void addShadowmap(size_t resolution, ShadowmapPrecision quality);
+        void addShadowmap(size_t resolution, GfxShadowmapPrecision quality);
 
         inline void removeShadowmap()
         {
@@ -91,7 +91,7 @@ class Light
                 shadowmap->release();
                 shadowmap = nullptr;
 
-                if (type == Point)
+                if (type == GfxLightType::Point)
                 {
                     DELETE(GfxFramebuffer, pointLightFramebuffers[0]);
                     DELETE(GfxFramebuffer, pointLightFramebuffers[1]);
@@ -109,17 +109,17 @@ class Light
             }
         }
 
-        inline GfxTexture *getShadowmap() const
+        inline GfxTexture *getShadowmap() const NO_BIND
         {
             return shadowmap;
         }
 
-        inline GfxFramebuffer *getShadowmapFramebuffer() const
+        inline GfxFramebuffer *getShadowmapFramebuffer() const NO_BIND
         {
             return shadowmapFramebuffer;
         }
 
-        inline GfxFramebuffer *const *getPointLightFramebuffers() const
+        inline GfxFramebuffer *const *getPointLightFramebuffers() const NO_BIND
         {
             return pointLightFramebuffers;
         }
@@ -129,12 +129,12 @@ class Light
             return shadowmapResolution;
         }
 
-        inline ShadowmapPrecision getShadowmapPrecision() const
+        inline GfxShadowmapPrecision getShadowmapPrecision() const
         {
             return shadowmapPrecision;
         }
 
-        void updateMatrices(GfxRenderer *renderer);
+        void updateMatrices(GfxRenderer *renderer) NO_BIND;
 
         //These two functions only work with spot and directional lights.
         inline Matrix4x4 getViewMatrix() const
@@ -151,10 +151,10 @@ class Light
         GfxFramebuffer *shadowmapFramebuffer;
         GfxFramebuffer *pointLightFramebuffers[6];
         size_t shadowmapResolution;
-        ShadowmapPrecision shadowmapPrecision;
+        GfxShadowmapPrecision shadowmapPrecision;
 
         Matrix4x4 viewMatrix;
         Matrix4x4 projectionMatrix;
-};
+} BIND NOT_COPYABLE;
 
 #endif // LIGHT_H

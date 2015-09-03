@@ -115,6 +115,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     updateColorModifierShader();
 
     lightBuffer = gfxApi->createBuffer();
+    lightBuffer->allocData(16384, nullptr, GfxBufferUsage::Dynamic);
 
     static const float positionData[] = {-1.0f,  1.0f,
                                          -1.0f, -1.0f,
@@ -125,7 +126,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     quadMesh = NEW(GfxMesh);
 
-    quadMesh->getBuffer()->allocData(sizeof(positionData), positionData, GfxBuffer::Static);
+    quadMesh->getBuffer()->allocData(sizeof(positionData), positionData, GfxBufferUsage::Static);
 
     quadMesh->primitive = GfxTriangles;
     quadMesh->numVertices = 6;
@@ -272,7 +273,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     //matrixTexture = NEW(GfxTexture);
     instanceBuffer = gfxApi->createBuffer();
-    instanceBuffer->allocData(16384, NULL, GfxBuffer::Dynamic);
+    instanceBuffer->allocData(16384, NULL, GfxBufferUsage::Dynamic);
 }
 
 GfxRenderer::~GfxRenderer()
@@ -1151,7 +1152,7 @@ void GfxRenderer::render()
 
         switch (light->type)
         {
-        case Light::Directional:
+        case GfxLightType::Directional:
         {
             if (light->getShadowmap() != nullptr)
             {
@@ -1162,7 +1163,7 @@ void GfxRenderer::render()
             }
             break;
         }
-        case Light::Point:
+        case GfxLightType::Point:
         {
             if (light->getShadowmap() != nullptr)
             {
@@ -1173,7 +1174,7 @@ void GfxRenderer::render()
             }
             break;
         }
-        case Light::Spot:
+        case GfxLightType::Spot:
         {
             if (light->getShadowmap() != nullptr)
             {
@@ -1215,12 +1216,12 @@ void GfxRenderer::render()
 
         switch (light->type)
         {
-        case Light::Directional:
+        case GfxLightType::Directional:
         {
             gfxApi->uniform(fragmentShader, "lightNegDir", -light->direction.direction.normalize());
             break;
         }
-        case Light::Spot:
+        case GfxLightType::Spot:
         {
             gfxApi->uniform(fragmentShader, "lightNegDir", -light->spot.direction.normalize());
             gfxApi->uniform(fragmentShader, "lightPos", light->spot.position);
@@ -1229,7 +1230,7 @@ void GfxRenderer::render()
             gfxApi->uniform(fragmentShader, "lightRadius", light->spot.radius);
             break;
         }
-        case Light::Point:
+        case GfxLightType::Point:
         {
             gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
             gfxApi->uniform(fragmentShader, "lightRadius", light->point.radius);
@@ -1695,7 +1696,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
 
         switch (light->type)
         {
-        case Light::Directional:
+        case GfxLightType::Directional:
         {
             Vector3D dir = -light->direction.direction.normalize();
 
@@ -1710,7 +1711,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
             ++numDirectionalLights;
             break;
         }
-        case Light::Spot:
+        case GfxLightType::Spot:
         {
             Vector3D dir = -light->spot.direction.normalize();
 
@@ -1731,7 +1732,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
             ++numSpotLights;
             break;
         }
-        case Light::Point:
+        case GfxLightType::Point:
         {
             lightData[pointOffset+numPointLights*8+0] = light->point.position.x;
             lightData[pointOffset+numPointLights*8+1] = light->point.position.y;
@@ -1748,7 +1749,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
         }
     }
 
-    lightBuffer->allocData(16384, lightData, GfxBuffer::Dynamic);
+    lightBuffer->setData(0, 16384, lightData);
 
     DELETE_ARRAY(float, lightData);
 }
@@ -2132,7 +2133,7 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
             tessEvalShader = compiledShadowmapTessEval;
         }
 
-        if (light->type == Light::Point)
+        if (light->type == GfxLightType::Point)
         {
             fragmentShader = compiledPointShadowmapFragment;
 
@@ -2149,7 +2150,7 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                       fragmentShader,
                       mesh);
 
-        if (light->type == Light::Point)
+        if (light->type == GfxLightType::Point)
         {
             Position3D pos = light->point.position;
 
@@ -2221,7 +2222,7 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
         if (useTesselation)
         {
-            if (light->type != Light::Point)
+            if (light->type != GfxLightType::Point)
             {
                 gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
                 gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
@@ -2283,7 +2284,7 @@ void GfxRenderer::renderShadowmap(Light *light)
 
     gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
 
-    bool singlePass = light->type == Light::Point ? light->point.singlePassShadowMap : true;
+    bool singlePass = light->type == GfxLightType::Point ? light->point.singlePassShadowMap : true;
 
     for (size_t i = 0; i < (singlePass ? 1 : 6); ++i)
     {

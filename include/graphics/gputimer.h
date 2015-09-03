@@ -1,6 +1,8 @@
 #ifndef GPUTIMER_H
 #define GPUTIMER_H
 
+#include "scripting/bindings.h"
+
 #include <stdint.h>
 
 class GPUTimer
@@ -14,6 +16,6 @@ class GPUTimer
 
         virtual void begin()=0;
         virtual void end()=0;
-};
+} BIND;
 
 #endif // GPUTIMER_H

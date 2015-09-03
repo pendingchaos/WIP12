@@ -6,6 +6,7 @@
 #include "graphics/gfxshader.h"
 #include "math/t3.h"
 #include "math/t4.h"
+#include "scripting/bindings.h"
 
 class GfxApi;
 class GfxBuffer;
@@ -14,7 +15,7 @@ class Camera;
 class GfxDebugDrawer
 {
     public:
-        GfxDebugDrawer(GfxApi *gfxApi);
+        GfxDebugDrawer(GfxApi *gfxApi) NO_BIND;
         ~GfxDebugDrawer();
 
         inline void addLine(const Position3D& startPos,
@@ -46,6 +47,6 @@ class GfxDebugDrawer
         GfxCompiledShader *compiledFragment;
 
     NO_COPY(GfxDebugDrawer)
-};
+} BIND NOT_COPYABLE;
 
 #endif // GFXDEBUGDRAWER_H

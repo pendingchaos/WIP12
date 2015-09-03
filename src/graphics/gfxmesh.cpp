@@ -64,7 +64,7 @@ void GfxMesh::removeContent()
         impl->disableVertexAttrib((GfxVertexAttribPurpose)i);
     }
 
-    buffer->allocData(0, NULL, GfxBuffer::Static);
+    buffer->allocData(0, NULL, GfxBufferUsage::Static);
 }
 
 void GfxMesh::save()
@@ -256,7 +256,7 @@ void GfxMesh::_load()
 
     file.read(size, data);
 
-    buffer->allocData(size, data, GfxBuffer::Static);
+    buffer->allocData(size, data, GfxBufferUsage::Static);
 
     DEALLOCATE(data);
 }
@@ -278,7 +278,7 @@ Resource *GfxMesh::_copy() const
     void *data = ALLOCATE(buffer->getSize());
 
     mesh->getBuffer()->getData(0, buffer->getSize(), data);
-    mesh->getBuffer()->allocData(buffer->getSize(), data, GfxBuffer::Static);
+    mesh->getBuffer()->allocData(buffer->getSize(), data, GfxBufferUsage::Static);
 
     DEALLOCATE(data);
 

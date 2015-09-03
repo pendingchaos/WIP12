@@ -556,7 +556,7 @@ void Scene::_load()
                 float dirY = file.readFloat32();
                 float dirZ = file.readFloat32();
 
-                light->type = Light::Directional;
+                light->type = GfxLightType::Directional;
 
                 light->direction.direction = Vector3D(dirX, dirY, dirZ);
             } else if (type == 1)
@@ -571,7 +571,7 @@ void Scene::_load()
                 float outerCutoff = file.readFloat32();
                 float radius = file.readFloat32();
 
-                light->type = Light::Spot;
+                light->type = GfxLightType::Spot;
 
                 light->spot.position = Position3D(posX, posY, posZ);
                 light->spot.direction = Vector3D(dirX, dirY, dirZ);
@@ -585,7 +585,7 @@ void Scene::_load()
                 float posZ = file.readFloat32();
                 float radius = file.readFloat32();
 
-                light->type = Light::Point;
+                light->type = GfxLightType::Point;
 
                 light->point.position = Position3D(posX, posY, posZ);
                 light->point.radius = radius;
@@ -607,7 +607,7 @@ void Scene::_load()
                 float biasScale = file.readFloat32();
                 float autoBiasScale = file.readFloat32();
                 size_t resolution = file.readUInt16LE();
-                Light::ShadowmapPrecision precision = (Light::ShadowmapPrecision)file.readUInt8();
+                GfxShadowmapPrecision precision = (GfxShadowmapPrecision)file.readUInt8();
 
                 light->addShadowmap(resolution, precision);
 
@@ -903,14 +903,14 @@ void Scene::save()
 
             switch (light->type)
             {
-            case Light::Directional:
+            case GfxLightType::Directional:
             {
                 file.writeFloat32(light->direction.direction.x);
                 file.writeFloat32(light->direction.direction.y);
                 file.writeFloat32(light->direction.direction.z);
                 break;
             }
-            case Light::Spot:
+            case GfxLightType::Spot:
             {
                 file.writeFloat32(light->spot.position.x);
                 file.writeFloat32(light->spot.position.y);
@@ -923,7 +923,7 @@ void Scene::save()
                 file.writeFloat32(light->spot.radius);
                 break;
             }
-            case Light::Point:
+            case GfxLightType::Point:
             {
                 file.writeFloat32(light->point.position.x);
                 file.writeFloat32(light->point.position.y);

@@ -19,23 +19,23 @@ GfxGLBuffer::~GfxGLBuffer()
     glDeleteBuffers(1, &buffer);
 }
 
-void GfxGLBuffer::allocData(size_t size, const void *data, GfxGLBuffer::Usage usage)
+void GfxGLBuffer::allocData(size_t size, const void *data, GfxBufferUsage usage)
 {
     BEGIN_BUFFER_BINDING
 
     switch (usage)
     {
-    case GfxGLBuffer::Stream:
+    case GfxBufferUsage::Stream:
     {
         glBufferData(GL_ARRAY_BUFFER, size, data, GL_STREAM_DRAW);
         break;
     }
-    case GfxGLBuffer::Static:
+    case GfxBufferUsage::Static:
     {
         glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
         break;
     }
-    case GfxGLBuffer::Dynamic:
+    case GfxBufferUsage::Dynamic:
     {
         glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
         break;

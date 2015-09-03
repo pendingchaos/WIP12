@@ -46,7 +46,7 @@ GfxDebugDrawer::~GfxDebugDrawer()
 
 void GfxDebugDrawer::render(const Camera& camera)
 {
-    mesh->getBuffer()->allocData(lines.getCount()*sizeof(Line), lines.getData(), GfxBuffer::Dynamic);
+    mesh->getBuffer()->allocData(lines.getCount()*sizeof(Line), lines.getData(), GfxBufferUsage::Static);
 
     mesh->numVertices = lines.getCount() * 2;
 

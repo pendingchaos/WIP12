@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cmath>
 
-void Light::addShadowmap(size_t resolution, ShadowmapPrecision precision)
+void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
 {
     removeShadowmap();
 
@@ -17,7 +17,7 @@ void Light::addShadowmap(size_t resolution, ShadowmapPrecision precision)
 
     shadowmap = NEW(GfxTexture);
 
-    if (type == Spot or type == Directional)
+    if (type == GfxLightType::Spot or type == GfxLightType::Directional)
     {
         shadowmap->startCreation(GfxTexture::Texture2D,
                                  false,
@@ -75,7 +75,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
 {
     switch (type)
     {
-    case Spot:
+    case GfxLightType::Spot:
     {
         Direction3D dir = spot.direction.normalize();
 
@@ -100,7 +100,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                                   shadowmapFar);
         break;
     }
-    case Directional:
+    case GfxLightType::Directional:
     {
         //This creates a projection matrix where the top and bottom is too high if line 110 is set to Float3(0.0f).
         /*Direction3D dir = direction.direction.normalize();
@@ -190,7 +190,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
         projectionMatrix[2][3] = shift.z * scale.z;
         break;
     }
-    case Point:
+    case GfxLightType::Point:
     {
         projectionMatrix = Matrix4x4::perspective(RADIANS(90.0f),
                                                   1.0f,

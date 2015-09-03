@@ -18,15 +18,15 @@
     - Claims to be faster than SDSM in complex scenes.
 - [ ] Finish the script binding generator.
     - [ ] NULL <-> nil conversion
-    - [ ] Static methods
+    - [ ] Templated Functions
     - [ ] Inheritance
     - [ ] Namespaces
     - [ ] Getters and Setters
-    - [ ] Templated Functions
     - [ ] C++ exceptions -> script exceptions
     - [ ] Bind lots of stuff
     - [ ] Pointer return value ownership.
-    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody and File.
+    - [ ] Static methods and properties
+    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, File, GfxBuffer, GfxDebugDrawer and Light.
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
 

@@ -1,5 +1,6 @@
 import clang.cindex
 import os
+import fnmatch
 import copy
 
 minimize = True
@@ -10,55 +11,14 @@ def s(v):
     else:
         return v.replace("?", " ")
 
-files = [
-"../include/file.h",
-"../include/error.h",
-"../include/memory.h",
-"../include/globals.h",
-"../include/logging.h",
-"../include/backtrace.h",
-"../include/filesystem.h",
-"../include/application.h",
-"../include/misc_macros.h",
-"../include/endian_utils.h",
-"../include/scene/scene.h",
-"../include/scene/entity.h",
-"../include/scene/transform.h",
-"../include/graphics/gfxapi.h",
-"../include/graphics/gfxmesh.h",
-"../include/graphics/gfxmodel.h",
-"../include/graphics/gfxshader.h",
-"../include/graphics/gfxtexture.h",
-"../include/graphics/gfxmaterial.h",
-"../include/graphics/gfxbuffer.h",
-"../include/graphics/gfxdefs.h",
-"../include/graphics/gfxrenderer.h",
-"../include/graphics/camera.h",
-"../include/graphics/gfxdebugdrawer.h",
-"../include/graphics/font.h",
-"../include/graphics/gputimer.h",
-"../include/scripting/script.h",
-"../include/resource/resource.h",
-"../include/resource/resourcemanager.h",
-"../include/math/t2.h",
-"../include/math/t3.h",
-"../include/math/t4.h",
-"../include/math/matrix3x3.h",
-"../include/math/matrix4x4.h",
-"../include/math/quaternion.h",
-"../include/math/aabb.h",
-"../include/containers/list.h",
-"../include/containers/string.h",
-"../include/containers/hashmap.h",
-"../include/containers/resizabledata.h",
-"../include/physics/physicsworld.h",
-"../include/physics/rigidbody.h",
-"../include/physics/physicsshape.h",
-"../include/physics/physicsdebugdrawer.h",
-"../include/platform.h",
-"../include/audio/audio.h",
-"../include/audio/audioworld.h",
-"../include/audio/audiodevice.h"]
+files = []
+
+for root, dirnames, filenames in os.walk("../include"):
+    for filename in fnmatch.filter(filenames, "*.h"):
+        files.append(os.path.join(root, filename))
+
+files.remove("../include/scripting/scriptsidebindings.h")
+files.remove("../include/scripting/scriptinclude.h")
 
 operators = {"operator+": "__add__",
              "operator-": "__sub__",
@@ -280,14 +240,25 @@ class Class(object):
                 if child.spelling.startswith("operator") and len([v for v in child.get_arguments()]) != 1:
                     continue
                 
-                self.methods.append(Method(self, child))
+                m = Method(self, child)
+                self.methods.append(m)
+                if m.pure_virtual:
+                    self.constructable = False
+                
+                if m.virtual or m.pure_virtual:
+                    self.copyable = False
             elif child.kind == clang.cindex.CursorKind.FUNCTION_TEMPLATE:
                 if Function(child).script_public:
                     print "Warning: Ignoring %s::%s" % (self.name, child.spelling)
             elif child.kind == clang.cindex.CursorKind.CONSTRUCTOR:
                 self.constructors.append(Method(self, child))
             elif child.kind == clang.cindex.CursorKind.DESTRUCTOR:
-                self.destructors.append(Method(self, child))
+                m = Method(self, child)
+                
+                self.destructors.append(m)
+                
+                if m.virtual or m.pure_virtual:
+                    self.copyable = False
             elif child.kind == clang.cindex.CursorKind.FIELD_DECL:
                 self.properties.append(Property(self, child))
             elif child.kind == clang.cindex.CursorKind.CLASS_DECL and\
@@ -339,7 +310,8 @@ def get_classes(cursor):
     template_classes = {}
 
     for child in cursor.get_children():
-        if child.kind == clang.cindex.CursorKind.CLASS_DECL:
+        if child.kind == clang.cindex.CursorKind.CLASS_DECL or\
+           child.kind == clang.cindex.CursorKind.STRUCT_DECL:
             if child.is_definition() and\
                child.access_specifier in [clang.cindex.AccessSpecifier.PUBLIC,
                                           clang.cindex.AccessSpecifier.INVALID]:

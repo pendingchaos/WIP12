@@ -12,7 +12,7 @@ class GfxGLBuffer : public GfxBuffer
         GfxGLBuffer();
         virtual ~GfxGLBuffer();
 
-        virtual void allocData(size_t size, const void *data, GfxGLBuffer::Usage usage);
+        virtual void allocData(size_t size, const void *data, GfxBufferUsage usage);
         virtual void setData(size_t start, size_t size, const void *data);
         virtual void getData(size_t start, size_t amount, void *data);
         virtual size_t getSize() const;

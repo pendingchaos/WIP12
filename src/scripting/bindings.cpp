@@ -1,52 +1,71 @@
 //Generated from script_binding_generator2.py. Do not edit. Edit script_binding_generator2.py instead.
-#include "file.h"
+#include "platform.h"
+#include "filesystem.h"
+#include "serialization.h"
+#include "misc_macros.h"
 #include "error.h"
-#include "memory.h"
 #include "globals.h"
+#include "memory.h"
+#include "application.h"
+#include "endian_utils.h"
 #include "logging.h"
 #include "backtrace.h"
-#include "filesystem.h"
-#include "application.h"
-#include "misc_macros.h"
-#include "endian_utils.h"
-#include "scene/scene.h"
-#include "scene/entity.h"
-#include "scene/transform.h"
-#include "graphics/gfxapi.h"
-#include "graphics/gfxmesh.h"
-#include "graphics/gfxmodel.h"
-#include "graphics/gfxshader.h"
-#include "graphics/gfxtexture.h"
-#include "graphics/gfxmaterial.h"
-#include "graphics/gfxbuffer.h"
+#include "file.h"
 #include "graphics/gfxdefs.h"
-#include "graphics/gfxrenderer.h"
-#include "graphics/camera.h"
+#include "graphics/gfxmaterial.h"
 #include "graphics/gfxdebugdrawer.h"
-#include "graphics/font.h"
+#include "graphics/light.h"
 #include "graphics/gputimer.h"
-#include "scripting/script.h"
-#include "resource/resource.h"
+#include "graphics/gfxbuffer.h"
+#include "graphics/gfxframebuffer.h"
+#include "graphics/gfxapi.h"
+#include "graphics/font.h"
+#include "graphics/gfxtexture.h"
+#include "graphics/gfxmesh.h"
+#include "graphics/gfxrenderer.h"
+#include "graphics/gfxshader.h"
+#include "graphics/camera.h"
+#include "graphics/gfxmodel.h"
+#include "graphics/GL/gfxglmeshimpl.h"
+#include "graphics/GL/gfxglshaderimpl.h"
+#include "graphics/GL/gfxglframebuffer.h"
+#include "graphics/GL/glfl.h"
+#include "graphics/GL/glgputimer.h"
+#include "graphics/GL/gfxglbuffer.h"
+#include "graphics/GL/gfxglapi.h"
+#include "graphics/GL/gfxgltextureimpl.h"
+#include "audio/audioworld.h"
+#include "audio/audio.h"
+#include "audio/audiodevice.h"
 #include "resource/resourcemanager.h"
+#include "resource/resource.h"
+#include "physics/ghostobject.h"
+#include "physics/physicsshape.h"
+#include "physics/rigidbody.h"
+#include "physics/physicsworld.h"
+#include "physics/physicsdebugdrawer.h"
+#include "math/quaternion.h"
+#include "math/aabb.h"
 #include "math/t2.h"
 #include "math/t3.h"
 #include "math/t4.h"
-#include "math/matrix3x3.h"
 #include "math/matrix4x4.h"
-#include "math/quaternion.h"
-#include "math/aabb.h"
+#include "math/matrix3x3.h"
+#include "scene/entity.h"
+#include "scene/scene.h"
+#include "scene/transform.h"
+#include "containers/resizabledata.h"
+#include "containers/hashmap.h"
 #include "containers/list.h"
 #include "containers/string.h"
-#include "containers/hashmap.h"
-#include "containers/resizabledata.h"
-#include "physics/physicsworld.h"
-#include "physics/rigidbody.h"
-#include "physics/physicsshape.h"
-#include "physics/physicsdebugdrawer.h"
-#include "platform.h"
-#include "audio/audio.h"
-#include "audio/audioworld.h"
-#include "audio/audiodevice.h"
+#include "scripting/parser.h"
+#include "scripting/bytecodegen.h"
+#include "scripting/bindings.h"
+#include "scripting/script.h"
+#include "scripting/vm/engine.h"
+#include "scripting/vm/context.h"
+#include "scripting/vm/bytecode.h"
+#include "scripting/vm/types.h"
 #include <stdint.h>
 
 #include "scripting/vm/engine.h"
@@ -59,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t UInt3_typeID, UInt3_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, File_typeID, File_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Camera_typeID, Camera_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Float4_typeID, Float4_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, CameraType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID;
-    scripting::Value *UInt3, *UInt3_ptr, *UInt2, *UInt2_ptr, *RigidBody, *RigidBody_ptr, *File, *File_ptr, *Int3, *Int3_ptr, *Camera, *Camera_ptr, *Float2, *Float2_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *Float4, *Float4_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt4, *UInt4_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr, *CameraType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType;
+    int64_t UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Camera_typeID, Camera_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, CameraType_typeID;
+    scripting::Value *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *Float2, *Float2_ptr, *Camera, *Camera_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *CameraType;
 };
 
 
@@ -354,49 +373,7 @@ T *own(scripting::Context *ctx, SV value)
 
     CATE(scripting::ExcType::TypeError, "Argument's value can not be converted."));
 }
-void CameraType_destroy(CTX,NO) {}
-SV CameraType_get_member(CTX,NO,SV);
-void CameraType_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs CameraType_funcs={
-.destroy = CameraType_destroy,
-.getMember = CameraType_get_member,
-.setMember = CameraType_set_member
-};
-template <>
-struct create_val<CameraType>
-{
-static SV f(CTX ctx,CameraType v)
-{
-R S::createNativeObject(CameraType_funcs,(void *)v,EXT->CameraType_typeID);
-}
-};
-template <>
-struct val_to_c<CameraType>
-{
-static CameraType f(CTX ctx,const SV head)
-{
-if(head->type!=S::ValueType::NativeObject)
-CATE(TE,"Value can not be converted to CameraType."));
-
-NO obj=(NO)head;
-if(obj->typeID!=EXT->CameraType_typeID)
-CATE(TE,"Value can not be converted to CameraType."));
-size_t v=size_t(obj->data);
-if(v==0)return CameraType::Perspective;
-if(v==1)return CameraType::Orthographic;
-}
-};
-template <>
-struct type_same<CameraType>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->CameraType_typeID;
-else
- R false;
-}
-};void GfxPrimitive_destroy(CTX,NO) {}
+void GfxPrimitive_destroy(CTX,NO) {}
 SV GfxPrimitive_get_member(CTX,NO,SV);
 void GfxPrimitive_set_member(CTX,NO,SV,SV);
 static const S::NativeObjectFuncs GfxPrimitive_funcs={
@@ -774,93 +751,178 @@ R((NO)head)->typeID==EXT->GfxVertexAttribType_typeID;
 else
  R false;
 }
-};void UInt3_destroy(CTX,NO);
-SV UInt3_get_member(CTX,NO,SV);
-void UInt3_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs UInt3_funcs={
-.destroy = UInt3_destroy,
-.getMember = UInt3_get_member,
-.setMember = UInt3_set_member
+};void GfxBufferUsage_destroy(CTX,NO) {}
+SV GfxBufferUsage_get_member(CTX,NO,SV);
+void GfxBufferUsage_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxBufferUsage_funcs={
+.destroy = GfxBufferUsage_destroy,
+.getMember = GfxBufferUsage_get_member,
+.setMember = GfxBufferUsage_set_member
 };
 template <>
-struct create_val<T3<uint32_t>>
+struct create_val<GfxBufferUsage>
 {
-static SV f(CTX ctx,const T3<uint32_t>&obj)
+static SV f(CTX ctx,GfxBufferUsage v)
 {
-R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>, obj),EXT->UInt3_typeID);
+R S::createNativeObject(GfxBufferUsage_funcs,(void *)v,EXT->GfxBufferUsage_typeID);
 }
 };
 template <>
-struct val_to_c<T3<uint32_t>>
+struct val_to_c<GfxBufferUsage>
 {
-static T3<uint32_t> f(CTX ctx,const SV head)
+static GfxBufferUsage f(CTX ctx,const SV head)
 {
-if(head->type==S::ValueType::NativeObject)
-{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxBufferUsage."));
+
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt3_typeID)
-R*((T3<uint32_t>*)obj->data);
-else
- CATE(TE,"Value can not be converted to UInt3."));
-} else
- CATE(TE,"Value can not be converted to UInt3."));
+if(obj->typeID!=EXT->GfxBufferUsage_typeID)
+CATE(TE,"Value can not be converted to GfxBufferUsage."));
+size_t v=size_t(obj->data);
+if(v==2)return GfxBufferUsage::Dynamic;
+if(v==1)return GfxBufferUsage::Static;
+if(v==0)return GfxBufferUsage::Stream;
 }
 };
 template <>
-struct type_same<T3<uint32_t>>
+struct type_same<GfxBufferUsage>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->UInt3_typeID;
+R((NO)head)->typeID==EXT->GfxBufferUsage_typeID;
 else
  R false;
 }
+};void GfxShadowmapPrecision_destroy(CTX,NO) {}
+SV GfxShadowmapPrecision_get_member(CTX,NO,SV);
+void GfxShadowmapPrecision_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxShadowmapPrecision_funcs={
+.destroy = GfxShadowmapPrecision_destroy,
+.getMember = GfxShadowmapPrecision_get_member,
+.setMember = GfxShadowmapPrecision_set_member
 };
+template <>
+struct create_val<GfxShadowmapPrecision>
+{
+static SV f(CTX ctx,GfxShadowmapPrecision v)
+{
+R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)v,EXT->GfxShadowmapPrecision_typeID);
+}
+};
+template <>
+struct val_to_c<GfxShadowmapPrecision>
+{
+static GfxShadowmapPrecision f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxShadowmapPrecision."));
 
-SV UInt3___add__(CTX ctx,const List<SV>&a);
-SV UInt3___sub__(CTX ctx,const List<SV>&a);
-SV UInt3___mul__(CTX ctx,const List<SV>&a);
-SV UInt3___div__(CTX ctx,const List<SV>&a);
-SV UInt3___eq__(CTX ctx,const List<SV>&a);
-SV UInt3___neq__(CTX ctx,const List<SV>&a);
-SV UInt3___less__(CTX ctx,const List<SV>&a);
-SV UInt3___grtr__(CTX ctx,const List<SV>&a);
-SV UInt3___leq__(CTX ctx,const List<SV>&a);
-SV UInt3___geq__(CTX ctx,const List<SV>&a);
-SV UInt3_sum(CTX ctx,const List<SV>&a);
-SV UInt3_length(CTX ctx,const List<SV>&a);
-SV UInt3_lengthSquared(CTX ctx,const List<SV>&a);
-SV UInt3_dot(CTX ctx,const List<SV>&a);
-SV UInt3_distance(CTX ctx,const List<SV>&a);
-SV UInt3_distanceSquared(CTX ctx,const List<SV>&a);
-SV UInt3_normalize(CTX ctx,const List<SV>&a);
-SV UInt3_cross(CTX ctx,const List<SV>&a);
-SV UInt3_getXY(CTX ctx,const List<SV>&a);
-SV UInt3_setXY(CTX ctx,const List<SV>&a);
-SV UInt3_getXZ(CTX ctx,const List<SV>&a);
-SV UInt3_setXZ(CTX ctx,const List<SV>&a);
-SV UInt3_getYX(CTX ctx,const List<SV>&a);
-SV UInt3_setYX(CTX ctx,const List<SV>&a);
-SV UInt3_getYZ(CTX ctx,const List<SV>&a);
-SV UInt3_setYZ(CTX ctx,const List<SV>&a);
-SV UInt3_getZX(CTX ctx,const List<SV>&a);
-SV UInt3_setZX(CTX ctx,const List<SV>&a);
-SV UInt3_getZY(CTX ctx,const List<SV>&a);
-SV UInt3_setZY(CTX ctx,const List<SV>&a);
-SV UInt3_getXYZ(CTX ctx,const List<SV>&a);
-SV UInt3_setXYZ(CTX ctx,const List<SV>&a);
-SV UInt3_getXZY(CTX ctx,const List<SV>&a);
-SV UInt3_setXZY(CTX ctx,const List<SV>&a);
-SV UInt3_getYXZ(CTX ctx,const List<SV>&a);
-SV UInt3_setYXZ(CTX ctx,const List<SV>&a);
-SV UInt3_getYZX(CTX ctx,const List<SV>&a);
-SV UInt3_setYZX(CTX ctx,const List<SV>&a);
-SV UInt3_getZXY(CTX ctx,const List<SV>&a);
-SV UInt3_setZXY(CTX ctx,const List<SV>&a);
-SV UInt3_getZYX(CTX ctx,const List<SV>&a);
-SV UInt3_setZYX(CTX ctx,const List<SV>&a);
-void UInt2_destroy(CTX,NO);
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxShadowmapPrecision_typeID)
+CATE(TE,"Value can not be converted to GfxShadowmapPrecision."));
+size_t v=size_t(obj->data);
+if(v==2)return GfxShadowmapPrecision::High;
+if(v==1)return GfxShadowmapPrecision::Medium;
+if(v==0)return GfxShadowmapPrecision::Low;
+}
+};
+template <>
+struct type_same<GfxShadowmapPrecision>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxShadowmapPrecision_typeID;
+else
+ R false;
+}
+};void GfxLightType_destroy(CTX,NO) {}
+SV GfxLightType_get_member(CTX,NO,SV);
+void GfxLightType_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxLightType_funcs={
+.destroy = GfxLightType_destroy,
+.getMember = GfxLightType_get_member,
+.setMember = GfxLightType_set_member
+};
+template <>
+struct create_val<GfxLightType>
+{
+static SV f(CTX ctx,GfxLightType v)
+{
+R S::createNativeObject(GfxLightType_funcs,(void *)v,EXT->GfxLightType_typeID);
+}
+};
+template <>
+struct val_to_c<GfxLightType>
+{
+static GfxLightType f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxLightType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxLightType_typeID)
+CATE(TE,"Value can not be converted to GfxLightType."));
+size_t v=size_t(obj->data);
+if(v==2)return GfxLightType::Point;
+if(v==1)return GfxLightType::Spot;
+if(v==0)return GfxLightType::Directional;
+}
+};
+template <>
+struct type_same<GfxLightType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxLightType_typeID;
+else
+ R false;
+}
+};void CameraType_destroy(CTX,NO) {}
+SV CameraType_get_member(CTX,NO,SV);
+void CameraType_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs CameraType_funcs={
+.destroy = CameraType_destroy,
+.getMember = CameraType_get_member,
+.setMember = CameraType_set_member
+};
+template <>
+struct create_val<CameraType>
+{
+static SV f(CTX ctx,CameraType v)
+{
+R S::createNativeObject(CameraType_funcs,(void *)v,EXT->CameraType_typeID);
+}
+};
+template <>
+struct val_to_c<CameraType>
+{
+static CameraType f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to CameraType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->CameraType_typeID)
+CATE(TE,"Value can not be converted to CameraType."));
+size_t v=size_t(obj->data);
+if(v==0)return CameraType::Perspective;
+if(v==1)return CameraType::Orthographic;
+}
+};
+template <>
+struct type_same<CameraType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->CameraType_typeID;
+else
+ R false;
+}
+};void UInt2_destroy(CTX,NO);
 SV UInt2_get_member(CTX,NO,SV);
 void UInt2_set_member(CTX,NO,SV,SV);
 static const S::NativeObjectFuncs UInt2_funcs={
@@ -925,6 +987,31 @@ SV UInt2_getXY(CTX ctx,const List<SV>&a);
 SV UInt2_setXY(CTX ctx,const List<SV>&a);
 SV UInt2_getYX(CTX ctx,const List<SV>&a);
 SV UInt2_setYX(CTX ctx,const List<SV>&a);
+void GPUTimer_destroy(CTX,NO);
+SV GPUTimer_get_member(CTX,NO,SV);
+void GPUTimer_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GPUTimer_funcs={
+.destroy = GPUTimer_destroy,
+.getMember = GPUTimer_get_member,
+.setMember = GPUTimer_set_member
+};
+template <>
+struct type_same<GPUTimer>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GPUTimer_typeID;
+else
+ R false;
+}
+};
+
+SV GPUTimer_resultAvailable(CTX ctx,const List<SV>&a);
+SV GPUTimer_getResult(CTX ctx,const List<SV>&a);
+SV GPUTimer_getResultResolution(CTX ctx,const List<SV>&a);
+SV GPUTimer_begin(CTX ctx,const List<SV>&a);
+SV GPUTimer_end(CTX ctx,const List<SV>&a);
 void RigidBody_destroy(CTX,NO);
 SV RigidBody_get_member(CTX,NO,SV);
 void RigidBody_set_member(CTX,NO,SV,SV);
@@ -986,67 +1073,324 @@ SV RigidBody_getCollisionMask(CTX ctx,const List<SV>&a);
 SV RigidBody_setShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getEntity(CTX ctx,const List<SV>&a);
-void File_destroy(CTX,NO);
-SV File_get_member(CTX,NO,SV);
-void File_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs File_funcs={
-.destroy = File_destroy,
-.getMember = File_get_member,
-.setMember = File_set_member
+void Float2_destroy(CTX,NO);
+SV Float2_get_member(CTX,NO,SV);
+void Float2_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Float2_funcs={
+.destroy = Float2_destroy,
+.getMember = Float2_get_member,
+.setMember = Float2_set_member
 };
 template <>
-struct type_same<File>
+struct create_val<T2<float>>
+{
+static SV f(CTX ctx,const T2<float>&obj)
+{
+R S::createNativeObject(Float2_funcs,NEW(T2<float>, obj),EXT->Float2_typeID);
+}
+};
+template <>
+struct val_to_c<T2<float>>
+{
+static T2<float> f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Float2_typeID)
+R*((T2<float>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to Float2."));
+} else
+ CATE(TE,"Value can not be converted to Float2."));
+}
+};
+template <>
+struct type_same<T2<float>>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->File_typeID;
+R((NO)head)->typeID==EXT->Float2_typeID;
 else
  R false;
 }
 };
 
-SV File_read(CTX ctx,const List<SV>&a);
-SV File_write(CTX ctx,const List<SV>&a);
-SV File_seek(CTX ctx,const List<SV>&a);
-SV File_tell(CTX ctx,const List<SV>&a);
-SV File_flush(CTX ctx,const List<SV>&a);
-SV File_isAtEndOfFile(CTX ctx,const List<SV>&a);
-SV File_getSize(CTX ctx,const List<SV>&a);
-SV File_readUInt8(CTX ctx,const List<SV>&a);
-SV File_readInt8(CTX ctx,const List<SV>&a);
-SV File_readUInt16LE(CTX ctx,const List<SV>&a);
-SV File_readInt16LE(CTX ctx,const List<SV>&a);
-SV File_readUInt32LE(CTX ctx,const List<SV>&a);
-SV File_readInt32LE(CTX ctx,const List<SV>&a);
-SV File_readUInt64LE(CTX ctx,const List<SV>&a);
-SV File_readInt64LE(CTX ctx,const List<SV>&a);
-SV File_readUInt16BE(CTX ctx,const List<SV>&a);
-SV File_readInt16BE(CTX ctx,const List<SV>&a);
-SV File_readUInt32BE(CTX ctx,const List<SV>&a);
-SV File_readInt32BE(CTX ctx,const List<SV>&a);
-SV File_readUInt64BE(CTX ctx,const List<SV>&a);
-SV File_readInt64BE(CTX ctx,const List<SV>&a);
-SV File_readFloat32(CTX ctx,const List<SV>&a);
-SV File_readChar(CTX ctx,const List<SV>&a);
-SV File_writeUInt8(CTX ctx,const List<SV>&a);
-SV File_writeInt8(CTX ctx,const List<SV>&a);
-SV File_writeUInt16LE(CTX ctx,const List<SV>&a);
-SV File_writeInt16LE(CTX ctx,const List<SV>&a);
-SV File_writeUInt32LE(CTX ctx,const List<SV>&a);
-SV File_writeInt32LE(CTX ctx,const List<SV>&a);
-SV File_writeUInt64LE(CTX ctx,const List<SV>&a);
-SV File_writeInt64LE(CTX ctx,const List<SV>&a);
-SV File_writeUInt16BE(CTX ctx,const List<SV>&a);
-SV File_writeInt16BE(CTX ctx,const List<SV>&a);
-SV File_writeUInt32BE(CTX ctx,const List<SV>&a);
-SV File_writeInt32BE(CTX ctx,const List<SV>&a);
-SV File_writeUInt64BE(CTX ctx,const List<SV>&a);
-SV File_writeInt64BE(CTX ctx,const List<SV>&a);
-SV File_writeFloat32(CTX ctx,const List<SV>&a);
-SV File_printf(CTX ctx,const List<SV>&a);
-SV File_vprintf(CTX ctx,const List<SV>&a);
-SV File_writeChar(CTX ctx,const List<SV>&a);
+SV Float2___add__(CTX ctx,const List<SV>&a);
+SV Float2___sub__(CTX ctx,const List<SV>&a);
+SV Float2___mul__(CTX ctx,const List<SV>&a);
+SV Float2___div__(CTX ctx,const List<SV>&a);
+SV Float2___eq__(CTX ctx,const List<SV>&a);
+SV Float2___neq__(CTX ctx,const List<SV>&a);
+SV Float2___less__(CTX ctx,const List<SV>&a);
+SV Float2___grtr__(CTX ctx,const List<SV>&a);
+SV Float2___leq__(CTX ctx,const List<SV>&a);
+SV Float2___geq__(CTX ctx,const List<SV>&a);
+SV Float2_sum(CTX ctx,const List<SV>&a);
+SV Float2_length(CTX ctx,const List<SV>&a);
+SV Float2_lengthSquared(CTX ctx,const List<SV>&a);
+SV Float2_dot(CTX ctx,const List<SV>&a);
+SV Float2_distance(CTX ctx,const List<SV>&a);
+SV Float2_distanceSquared(CTX ctx,const List<SV>&a);
+SV Float2_normalize(CTX ctx,const List<SV>&a);
+SV Float2_getXY(CTX ctx,const List<SV>&a);
+SV Float2_setXY(CTX ctx,const List<SV>&a);
+SV Float2_getYX(CTX ctx,const List<SV>&a);
+SV Float2_setYX(CTX ctx,const List<SV>&a);
+void Camera_destroy(CTX,NO);
+SV Camera_get_member(CTX,NO,SV);
+void Camera_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Camera_funcs={
+.destroy = Camera_destroy,
+.getMember = Camera_get_member,
+.setMember = Camera_set_member
+};
+template <>
+struct create_val<Camera>
+{
+static SV f(CTX ctx,const Camera&obj)
+{
+R S::createNativeObject(Camera_funcs,NEW(Camera, obj),EXT->Camera_typeID);
+}
+};
+template <>
+struct val_to_c<Camera>
+{
+static Camera f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Camera_typeID)
+R*((Camera*)obj->data);
+else
+ CATE(TE,"Value can not be converted to Camera."));
+} else
+ CATE(TE,"Value can not be converted to Camera."));
+}
+};
+template <>
+struct type_same<Camera>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Camera_typeID;
+else
+ R false;
+}
+};
+
+SV Camera_setType(CTX ctx,const List<SV>&a);
+SV Camera_setPosition(CTX ctx,const List<SV>&a);
+SV Camera_setDirection(CTX ctx,const List<SV>&a);
+SV Camera_setUp(CTX ctx,const List<SV>&a);
+SV Camera_setWidth(CTX ctx,const List<SV>&a);
+SV Camera_setHeight(CTX ctx,const List<SV>&a);
+SV Camera_setFieldOfView(CTX ctx,const List<SV>&a);
+SV Camera_setLeft(CTX ctx,const List<SV>&a);
+SV Camera_setRight(CTX ctx,const List<SV>&a);
+SV Camera_setBottom(CTX ctx,const List<SV>&a);
+SV Camera_setTop(CTX ctx,const List<SV>&a);
+SV Camera_setNear(CTX ctx,const List<SV>&a);
+SV Camera_setFar(CTX ctx,const List<SV>&a);
+SV Camera_getType(CTX ctx,const List<SV>&a);
+SV Camera_getPosition(CTX ctx,const List<SV>&a);
+SV Camera_getDirection(CTX ctx,const List<SV>&a);
+SV Camera_getUp(CTX ctx,const List<SV>&a);
+SV Camera_getWidth(CTX ctx,const List<SV>&a);
+SV Camera_getHeight(CTX ctx,const List<SV>&a);
+SV Camera_getFieldOfView(CTX ctx,const List<SV>&a);
+SV Camera_getLeft(CTX ctx,const List<SV>&a);
+SV Camera_getRight(CTX ctx,const List<SV>&a);
+SV Camera_getBottom(CTX ctx,const List<SV>&a);
+SV Camera_getTop(CTX ctx,const List<SV>&a);
+SV Camera_getNear(CTX ctx,const List<SV>&a);
+SV Camera_getFar(CTX ctx,const List<SV>&a);
+SV Camera_getViewMatrix(CTX ctx,const List<SV>&a);
+SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a);
+void UInt4_destroy(CTX,NO);
+SV UInt4_get_member(CTX,NO,SV);
+void UInt4_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs UInt4_funcs={
+.destroy = UInt4_destroy,
+.getMember = UInt4_get_member,
+.setMember = UInt4_set_member
+};
+template <>
+struct create_val<T4<uint32_t>>
+{
+static SV f(CTX ctx,const T4<uint32_t>&obj)
+{
+R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>, obj),EXT->UInt4_typeID);
+}
+};
+template <>
+struct val_to_c<T4<uint32_t>>
+{
+static T4<uint32_t> f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt4_typeID)
+R*((T4<uint32_t>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to UInt4."));
+} else
+ CATE(TE,"Value can not be converted to UInt4."));
+}
+};
+template <>
+struct type_same<T4<uint32_t>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->UInt4_typeID;
+else
+ R false;
+}
+};
+
+SV UInt4___add__(CTX ctx,const List<SV>&a);
+SV UInt4___sub__(CTX ctx,const List<SV>&a);
+SV UInt4___mul__(CTX ctx,const List<SV>&a);
+SV UInt4___div__(CTX ctx,const List<SV>&a);
+SV UInt4___eq__(CTX ctx,const List<SV>&a);
+SV UInt4___neq__(CTX ctx,const List<SV>&a);
+SV UInt4___less__(CTX ctx,const List<SV>&a);
+SV UInt4___grtr__(CTX ctx,const List<SV>&a);
+SV UInt4___leq__(CTX ctx,const List<SV>&a);
+SV UInt4___geq__(CTX ctx,const List<SV>&a);
+SV UInt4_sum(CTX ctx,const List<SV>&a);
+SV UInt4_length(CTX ctx,const List<SV>&a);
+SV UInt4_lengthSquared(CTX ctx,const List<SV>&a);
+SV UInt4_dot(CTX ctx,const List<SV>&a);
+SV UInt4_distance(CTX ctx,const List<SV>&a);
+SV UInt4_distanceSquared(CTX ctx,const List<SV>&a);
+SV UInt4_normalize(CTX ctx,const List<SV>&a);
+SV UInt4_getXY(CTX ctx,const List<SV>&a);
+SV UInt4_setXY(CTX ctx,const List<SV>&a);
+SV UInt4_getXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXW(CTX ctx,const List<SV>&a);
+SV UInt4_setXW(CTX ctx,const List<SV>&a);
+SV UInt4_getYX(CTX ctx,const List<SV>&a);
+SV UInt4_setYX(CTX ctx,const List<SV>&a);
+SV UInt4_getYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYW(CTX ctx,const List<SV>&a);
+SV UInt4_setYW(CTX ctx,const List<SV>&a);
+SV UInt4_getZX(CTX ctx,const List<SV>&a);
+SV UInt4_setZX(CTX ctx,const List<SV>&a);
+SV UInt4_getZY(CTX ctx,const List<SV>&a);
+SV UInt4_setZY(CTX ctx,const List<SV>&a);
+SV UInt4_getZW(CTX ctx,const List<SV>&a);
+SV UInt4_setZW(CTX ctx,const List<SV>&a);
+SV UInt4_getWX(CTX ctx,const List<SV>&a);
+SV UInt4_setWX(CTX ctx,const List<SV>&a);
+SV UInt4_getWY(CTX ctx,const List<SV>&a);
+SV UInt4_setWY(CTX ctx,const List<SV>&a);
+SV UInt4_getWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXYW(CTX ctx,const List<SV>&a);
+SV UInt4_setXYW(CTX ctx,const List<SV>&a);
+SV UInt4_getXZY(CTX ctx,const List<SV>&a);
+SV UInt4_setXZY(CTX ctx,const List<SV>&a);
+SV UInt4_getXZW(CTX ctx,const List<SV>&a);
+SV UInt4_setXZW(CTX ctx,const List<SV>&a);
+SV UInt4_getXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXWY(CTX ctx,const List<SV>&a);
+SV UInt4_setXWY(CTX ctx,const List<SV>&a);
+SV UInt4_getYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYXW(CTX ctx,const List<SV>&a);
+SV UInt4_setYXW(CTX ctx,const List<SV>&a);
+SV UInt4_getYZX(CTX ctx,const List<SV>&a);
+SV UInt4_setYZX(CTX ctx,const List<SV>&a);
+SV UInt4_getYZW(CTX ctx,const List<SV>&a);
+SV UInt4_setYZW(CTX ctx,const List<SV>&a);
+SV UInt4_getYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYWX(CTX ctx,const List<SV>&a);
+SV UInt4_setYWX(CTX ctx,const List<SV>&a);
+SV UInt4_getZXY(CTX ctx,const List<SV>&a);
+SV UInt4_setZXY(CTX ctx,const List<SV>&a);
+SV UInt4_getZXW(CTX ctx,const List<SV>&a);
+SV UInt4_setZXW(CTX ctx,const List<SV>&a);
+SV UInt4_getZYX(CTX ctx,const List<SV>&a);
+SV UInt4_setZYX(CTX ctx,const List<SV>&a);
+SV UInt4_getZYW(CTX ctx,const List<SV>&a);
+SV UInt4_setZYW(CTX ctx,const List<SV>&a);
+SV UInt4_getZWY(CTX ctx,const List<SV>&a);
+SV UInt4_setZWY(CTX ctx,const List<SV>&a);
+SV UInt4_getZWX(CTX ctx,const List<SV>&a);
+SV UInt4_setZWX(CTX ctx,const List<SV>&a);
+SV UInt4_getWXY(CTX ctx,const List<SV>&a);
+SV UInt4_setWXY(CTX ctx,const List<SV>&a);
+SV UInt4_getWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getWYX(CTX ctx,const List<SV>&a);
+SV UInt4_setWYX(CTX ctx,const List<SV>&a);
+SV UInt4_getWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getWZY(CTX ctx,const List<SV>&a);
+SV UInt4_setWZY(CTX ctx,const List<SV>&a);
+SV UInt4_getWZX(CTX ctx,const List<SV>&a);
+SV UInt4_setWZX(CTX ctx,const List<SV>&a);
+SV UInt4_getXYZW(CTX ctx,const List<SV>&a);
+SV UInt4_setXYZW(CTX ctx,const List<SV>&a);
+SV UInt4_getXYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXZYW(CTX ctx,const List<SV>&a);
+SV UInt4_setXZYW(CTX ctx,const List<SV>&a);
+SV UInt4_getXZWY(CTX ctx,const List<SV>&a);
+SV UInt4_setXZWY(CTX ctx,const List<SV>&a);
+SV UInt4_getXWZY(CTX ctx,const List<SV>&a);
+SV UInt4_setXWZY(CTX ctx,const List<SV>&a);
+SV UInt4_getXWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYXZW(CTX ctx,const List<SV>&a);
+SV UInt4_setYXZW(CTX ctx,const List<SV>&a);
+SV UInt4_getYXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYZXW(CTX ctx,const List<SV>&a);
+SV UInt4_setYZXW(CTX ctx,const List<SV>&a);
+SV UInt4_getYZWX(CTX ctx,const List<SV>&a);
+SV UInt4_setYZWX(CTX ctx,const List<SV>&a);
+SV UInt4_getYWZX(CTX ctx,const List<SV>&a);
+SV UInt4_setYWZX(CTX ctx,const List<SV>&a);
+SV UInt4_getYWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getZYXW(CTX ctx,const List<SV>&a);
+SV UInt4_setZYXW(CTX ctx,const List<SV>&a);
+SV UInt4_getZYWX(CTX ctx,const List<SV>&a);
+SV UInt4_setZYWX(CTX ctx,const List<SV>&a);
+SV UInt4_getZXYW(CTX ctx,const List<SV>&a);
+SV UInt4_setZXYW(CTX ctx,const List<SV>&a);
+SV UInt4_getZXWY(CTX ctx,const List<SV>&a);
+SV UInt4_setZXWY(CTX ctx,const List<SV>&a);
+SV UInt4_getZWXY(CTX ctx,const List<SV>&a);
+SV UInt4_setZWXY(CTX ctx,const List<SV>&a);
+SV UInt4_getZWYX(CTX ctx,const List<SV>&a);
+SV UInt4_setZWYX(CTX ctx,const List<SV>&a);
+SV UInt4_getWYZX(CTX ctx,const List<SV>&a);
+SV UInt4_setWYZX(CTX ctx,const List<SV>&a);
+SV UInt4_getWYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getWZYX(CTX ctx,const List<SV>&a);
+SV UInt4_setWZYX(CTX ctx,const List<SV>&a);
+SV UInt4_getWZXY(CTX ctx,const List<SV>&a);
+SV UInt4_setWZXY(CTX ctx,const List<SV>&a);
+SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
+SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
+SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
 void Int3_destroy(CTX,NO);
 SV Int3_get_member(CTX,NO,SV);
 void Int3_set_member(CTX,NO,SV,SV);
@@ -1133,143 +1477,6 @@ SV Int3_getZXY(CTX ctx,const List<SV>&a);
 SV Int3_setZXY(CTX ctx,const List<SV>&a);
 SV Int3_getZYX(CTX ctx,const List<SV>&a);
 SV Int3_setZYX(CTX ctx,const List<SV>&a);
-void Camera_destroy(CTX,NO);
-SV Camera_get_member(CTX,NO,SV);
-void Camera_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs Camera_funcs={
-.destroy = Camera_destroy,
-.getMember = Camera_get_member,
-.setMember = Camera_set_member
-};
-template <>
-struct create_val<Camera>
-{
-static SV f(CTX ctx,const Camera&obj)
-{
-R S::createNativeObject(Camera_funcs,NEW(Camera, obj),EXT->Camera_typeID);
-}
-};
-template <>
-struct val_to_c<Camera>
-{
-static Camera f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Camera_typeID)
-R*((Camera*)obj->data);
-else
- CATE(TE,"Value can not be converted to Camera."));
-} else
- CATE(TE,"Value can not be converted to Camera."));
-}
-};
-template <>
-struct type_same<Camera>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->Camera_typeID;
-else
- R false;
-}
-};
-
-SV Camera_setType(CTX ctx,const List<SV>&a);
-SV Camera_setPosition(CTX ctx,const List<SV>&a);
-SV Camera_setDirection(CTX ctx,const List<SV>&a);
-SV Camera_setUp(CTX ctx,const List<SV>&a);
-SV Camera_setWidth(CTX ctx,const List<SV>&a);
-SV Camera_setHeight(CTX ctx,const List<SV>&a);
-SV Camera_setFieldOfView(CTX ctx,const List<SV>&a);
-SV Camera_setLeft(CTX ctx,const List<SV>&a);
-SV Camera_setRight(CTX ctx,const List<SV>&a);
-SV Camera_setBottom(CTX ctx,const List<SV>&a);
-SV Camera_setTop(CTX ctx,const List<SV>&a);
-SV Camera_setNear(CTX ctx,const List<SV>&a);
-SV Camera_setFar(CTX ctx,const List<SV>&a);
-SV Camera_getType(CTX ctx,const List<SV>&a);
-SV Camera_getPosition(CTX ctx,const List<SV>&a);
-SV Camera_getDirection(CTX ctx,const List<SV>&a);
-SV Camera_getUp(CTX ctx,const List<SV>&a);
-SV Camera_getWidth(CTX ctx,const List<SV>&a);
-SV Camera_getHeight(CTX ctx,const List<SV>&a);
-SV Camera_getFieldOfView(CTX ctx,const List<SV>&a);
-SV Camera_getLeft(CTX ctx,const List<SV>&a);
-SV Camera_getRight(CTX ctx,const List<SV>&a);
-SV Camera_getBottom(CTX ctx,const List<SV>&a);
-SV Camera_getTop(CTX ctx,const List<SV>&a);
-SV Camera_getNear(CTX ctx,const List<SV>&a);
-SV Camera_getFar(CTX ctx,const List<SV>&a);
-SV Camera_getViewMatrix(CTX ctx,const List<SV>&a);
-SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a);
-void Float2_destroy(CTX,NO);
-SV Float2_get_member(CTX,NO,SV);
-void Float2_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs Float2_funcs={
-.destroy = Float2_destroy,
-.getMember = Float2_get_member,
-.setMember = Float2_set_member
-};
-template <>
-struct create_val<T2<float>>
-{
-static SV f(CTX ctx,const T2<float>&obj)
-{
-R S::createNativeObject(Float2_funcs,NEW(T2<float>, obj),EXT->Float2_typeID);
-}
-};
-template <>
-struct val_to_c<T2<float>>
-{
-static T2<float> f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Float2_typeID)
-R*((T2<float>*)obj->data);
-else
- CATE(TE,"Value can not be converted to Float2."));
-} else
- CATE(TE,"Value can not be converted to Float2."));
-}
-};
-template <>
-struct type_same<T2<float>>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->Float2_typeID;
-else
- R false;
-}
-};
-
-SV Float2___add__(CTX ctx,const List<SV>&a);
-SV Float2___sub__(CTX ctx,const List<SV>&a);
-SV Float2___mul__(CTX ctx,const List<SV>&a);
-SV Float2___div__(CTX ctx,const List<SV>&a);
-SV Float2___eq__(CTX ctx,const List<SV>&a);
-SV Float2___neq__(CTX ctx,const List<SV>&a);
-SV Float2___less__(CTX ctx,const List<SV>&a);
-SV Float2___grtr__(CTX ctx,const List<SV>&a);
-SV Float2___leq__(CTX ctx,const List<SV>&a);
-SV Float2___geq__(CTX ctx,const List<SV>&a);
-SV Float2_sum(CTX ctx,const List<SV>&a);
-SV Float2_length(CTX ctx,const List<SV>&a);
-SV Float2_lengthSquared(CTX ctx,const List<SV>&a);
-SV Float2_dot(CTX ctx,const List<SV>&a);
-SV Float2_distance(CTX ctx,const List<SV>&a);
-SV Float2_distanceSquared(CTX ctx,const List<SV>&a);
-SV Float2_normalize(CTX ctx,const List<SV>&a);
-SV Float2_getXY(CTX ctx,const List<SV>&a);
-SV Float2_setXY(CTX ctx,const List<SV>&a);
-SV Float2_getYX(CTX ctx,const List<SV>&a);
-SV Float2_setYX(CTX ctx,const List<SV>&a);
 void Int4_destroy(CTX,NO);
 SV Int4_get_member(CTX,NO,SV);
 void Int4_set_member(CTX,NO,SV,SV);
@@ -1537,6 +1744,30 @@ SV Float3_getZXY(CTX ctx,const List<SV>&a);
 SV Float3_setZXY(CTX ctx,const List<SV>&a);
 SV Float3_getZYX(CTX ctx,const List<SV>&a);
 SV Float3_setZYX(CTX ctx,const List<SV>&a);
+void GfxBuffer_destroy(CTX,NO);
+SV GfxBuffer_get_member(CTX,NO,SV);
+void GfxBuffer_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxBuffer_funcs={
+.destroy = GfxBuffer_destroy,
+.getMember = GfxBuffer_get_member,
+.setMember = GfxBuffer_set_member
+};
+template <>
+struct type_same<GfxBuffer>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxBuffer_typeID;
+else
+ R false;
+}
+};
+
+SV GfxBuffer_allocData(CTX ctx,const List<SV>&a);
+SV GfxBuffer_setData(CTX ctx,const List<SV>&a);
+SV GfxBuffer_getData(CTX ctx,const List<SV>&a);
+SV GfxBuffer_getSize(CTX ctx,const List<SV>&a);
 void Transform_destroy(CTX,NO);
 SV Transform_get_member(CTX,NO,SV);
 void Transform_set_member(CTX,NO,SV,SV);
@@ -1709,6 +1940,80 @@ SV Int2_getXY(CTX ctx,const List<SV>&a);
 SV Int2_setXY(CTX ctx,const List<SV>&a);
 SV Int2_getYX(CTX ctx,const List<SV>&a);
 SV Int2_setYX(CTX ctx,const List<SV>&a);
+void Light_destroy(CTX,NO);
+SV Light_get_member(CTX,NO,SV);
+void Light_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Light_funcs={
+.destroy = Light_destroy,
+.getMember = Light_get_member,
+.setMember = Light_set_member
+};
+template <>
+struct type_same<Light>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Light_typeID;
+else
+ R false;
+}
+};
+
+SV Light_addShadowmap(CTX ctx,const List<SV>&a);
+SV Light_removeShadowmap(CTX ctx,const List<SV>&a);
+SV Light_getShadowmap(CTX ctx,const List<SV>&a);
+SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a);
+SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a);
+SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a);
+SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a);
+SV Light_updateMatrices(CTX ctx,const List<SV>&a);
+SV Light_getViewMatrix(CTX ctx,const List<SV>&a);
+SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a);
+void LightPointData_destroy(CTX,NO);
+SV LightPointData_get_member(CTX,NO,SV);
+void LightPointData_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs LightPointData_funcs={
+.destroy = LightPointData_destroy,
+.getMember = LightPointData_get_member,
+.setMember = LightPointData_set_member
+};
+template <>
+struct create_val<LightPointData>
+{
+static SV f(CTX ctx,const LightPointData&obj)
+{
+R S::createNativeObject(LightPointData_funcs,NEW(LightPointData, obj),EXT->LightPointData_typeID);
+}
+};
+template <>
+struct val_to_c<LightPointData>
+{
+static LightPointData f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightPointData_typeID)
+R*((LightPointData*)obj->data);
+else
+ CATE(TE,"Value can not be converted to LightPointData."));
+} else
+ CATE(TE,"Value can not be converted to LightPointData."));
+}
+};
+template <>
+struct type_same<LightPointData>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightPointData_typeID;
+else
+ R false;
+}
+};
+
 void Float4_destroy(CTX,NO);
 SV Float4_get_member(CTX,NO,SV);
 void Float4_set_member(CTX,NO,SV,SV);
@@ -1890,6 +2195,50 @@ SV Float4_getWXZY(CTX ctx,const List<SV>&a);
 SV Float4_setWXZY(CTX ctx,const List<SV>&a);
 SV Float4_getWXYZ(CTX ctx,const List<SV>&a);
 SV Float4_setWXYZ(CTX ctx,const List<SV>&a);
+void LightDirectionalData_destroy(CTX,NO);
+SV LightDirectionalData_get_member(CTX,NO,SV);
+void LightDirectionalData_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs LightDirectionalData_funcs={
+.destroy = LightDirectionalData_destroy,
+.getMember = LightDirectionalData_get_member,
+.setMember = LightDirectionalData_set_member
+};
+template <>
+struct create_val<LightDirectionalData>
+{
+static SV f(CTX ctx,const LightDirectionalData&obj)
+{
+R S::createNativeObject(LightDirectionalData_funcs,NEW(LightDirectionalData, obj),EXT->LightDirectionalData_typeID);
+}
+};
+template <>
+struct val_to_c<LightDirectionalData>
+{
+static LightDirectionalData f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightDirectionalData_typeID)
+R*((LightDirectionalData*)obj->data);
+else
+ CATE(TE,"Value can not be converted to LightDirectionalData."));
+} else
+ CATE(TE,"Value can not be converted to LightDirectionalData."));
+}
+};
+template <>
+struct type_same<LightDirectionalData>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightDirectionalData_typeID;
+else
+ R false;
+}
+};
+
 void Matrix4x4_destroy(CTX,NO);
 SV Matrix4x4_get_member(CTX,NO,SV);
 void Matrix4x4_set_member(CTX,NO,SV,SV);
@@ -1949,187 +2298,197 @@ SV Matrix4x4_perspective(CTX ctx,const List<SV>&a);
 SV Matrix4x4_orthographic(CTX ctx,const List<SV>&a);
 SV Matrix4x4_lookAt(CTX ctx,const List<SV>&a);
 SV Matrix4x4_lookAtDir(CTX ctx,const List<SV>&a);
-void UInt4_destroy(CTX,NO);
-SV UInt4_get_member(CTX,NO,SV);
-void UInt4_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs UInt4_funcs={
-.destroy = UInt4_destroy,
-.getMember = UInt4_get_member,
-.setMember = UInt4_set_member
+void UInt3_destroy(CTX,NO);
+SV UInt3_get_member(CTX,NO,SV);
+void UInt3_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs UInt3_funcs={
+.destroy = UInt3_destroy,
+.getMember = UInt3_get_member,
+.setMember = UInt3_set_member
 };
 template <>
-struct create_val<T4<uint32_t>>
+struct create_val<T3<uint32_t>>
 {
-static SV f(CTX ctx,const T4<uint32_t>&obj)
+static SV f(CTX ctx,const T3<uint32_t>&obj)
 {
-R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>, obj),EXT->UInt4_typeID);
+R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>, obj),EXT->UInt3_typeID);
 }
 };
 template <>
-struct val_to_c<T4<uint32_t>>
+struct val_to_c<T3<uint32_t>>
 {
-static T4<uint32_t> f(CTX ctx,const SV head)
+static T3<uint32_t> f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_typeID)
-R*((T4<uint32_t>*)obj->data);
+if(obj->typeID==EXT->UInt3_typeID)
+R*((T3<uint32_t>*)obj->data);
 else
- CATE(TE,"Value can not be converted to UInt4."));
+ CATE(TE,"Value can not be converted to UInt3."));
 } else
- CATE(TE,"Value can not be converted to UInt4."));
+ CATE(TE,"Value can not be converted to UInt3."));
 }
 };
 template <>
-struct type_same<T4<uint32_t>>
+struct type_same<T3<uint32_t>>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->UInt4_typeID;
+R((NO)head)->typeID==EXT->UInt3_typeID;
 else
  R false;
 }
 };
 
-SV UInt4___add__(CTX ctx,const List<SV>&a);
-SV UInt4___sub__(CTX ctx,const List<SV>&a);
-SV UInt4___mul__(CTX ctx,const List<SV>&a);
-SV UInt4___div__(CTX ctx,const List<SV>&a);
-SV UInt4___eq__(CTX ctx,const List<SV>&a);
-SV UInt4___neq__(CTX ctx,const List<SV>&a);
-SV UInt4___less__(CTX ctx,const List<SV>&a);
-SV UInt4___grtr__(CTX ctx,const List<SV>&a);
-SV UInt4___leq__(CTX ctx,const List<SV>&a);
-SV UInt4___geq__(CTX ctx,const List<SV>&a);
-SV UInt4_sum(CTX ctx,const List<SV>&a);
-SV UInt4_length(CTX ctx,const List<SV>&a);
-SV UInt4_lengthSquared(CTX ctx,const List<SV>&a);
-SV UInt4_dot(CTX ctx,const List<SV>&a);
-SV UInt4_distance(CTX ctx,const List<SV>&a);
-SV UInt4_distanceSquared(CTX ctx,const List<SV>&a);
-SV UInt4_normalize(CTX ctx,const List<SV>&a);
-SV UInt4_getXY(CTX ctx,const List<SV>&a);
-SV UInt4_setXY(CTX ctx,const List<SV>&a);
-SV UInt4_getXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXW(CTX ctx,const List<SV>&a);
-SV UInt4_setXW(CTX ctx,const List<SV>&a);
-SV UInt4_getYX(CTX ctx,const List<SV>&a);
-SV UInt4_setYX(CTX ctx,const List<SV>&a);
-SV UInt4_getYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYW(CTX ctx,const List<SV>&a);
-SV UInt4_setYW(CTX ctx,const List<SV>&a);
-SV UInt4_getZX(CTX ctx,const List<SV>&a);
-SV UInt4_setZX(CTX ctx,const List<SV>&a);
-SV UInt4_getZY(CTX ctx,const List<SV>&a);
-SV UInt4_setZY(CTX ctx,const List<SV>&a);
-SV UInt4_getZW(CTX ctx,const List<SV>&a);
-SV UInt4_setZW(CTX ctx,const List<SV>&a);
-SV UInt4_getWX(CTX ctx,const List<SV>&a);
-SV UInt4_setWX(CTX ctx,const List<SV>&a);
-SV UInt4_getWY(CTX ctx,const List<SV>&a);
-SV UInt4_setWY(CTX ctx,const List<SV>&a);
-SV UInt4_getWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXYW(CTX ctx,const List<SV>&a);
-SV UInt4_setXYW(CTX ctx,const List<SV>&a);
-SV UInt4_getXZY(CTX ctx,const List<SV>&a);
-SV UInt4_setXZY(CTX ctx,const List<SV>&a);
-SV UInt4_getXZW(CTX ctx,const List<SV>&a);
-SV UInt4_setXZW(CTX ctx,const List<SV>&a);
-SV UInt4_getXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXWY(CTX ctx,const List<SV>&a);
-SV UInt4_setXWY(CTX ctx,const List<SV>&a);
-SV UInt4_getYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYXW(CTX ctx,const List<SV>&a);
-SV UInt4_setYXW(CTX ctx,const List<SV>&a);
-SV UInt4_getYZX(CTX ctx,const List<SV>&a);
-SV UInt4_setYZX(CTX ctx,const List<SV>&a);
-SV UInt4_getYZW(CTX ctx,const List<SV>&a);
-SV UInt4_setYZW(CTX ctx,const List<SV>&a);
-SV UInt4_getYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYWX(CTX ctx,const List<SV>&a);
-SV UInt4_setYWX(CTX ctx,const List<SV>&a);
-SV UInt4_getZXY(CTX ctx,const List<SV>&a);
-SV UInt4_setZXY(CTX ctx,const List<SV>&a);
-SV UInt4_getZXW(CTX ctx,const List<SV>&a);
-SV UInt4_setZXW(CTX ctx,const List<SV>&a);
-SV UInt4_getZYX(CTX ctx,const List<SV>&a);
-SV UInt4_setZYX(CTX ctx,const List<SV>&a);
-SV UInt4_getZYW(CTX ctx,const List<SV>&a);
-SV UInt4_setZYW(CTX ctx,const List<SV>&a);
-SV UInt4_getZWY(CTX ctx,const List<SV>&a);
-SV UInt4_setZWY(CTX ctx,const List<SV>&a);
-SV UInt4_getZWX(CTX ctx,const List<SV>&a);
-SV UInt4_setZWX(CTX ctx,const List<SV>&a);
-SV UInt4_getWXY(CTX ctx,const List<SV>&a);
-SV UInt4_setWXY(CTX ctx,const List<SV>&a);
-SV UInt4_getWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getWYX(CTX ctx,const List<SV>&a);
-SV UInt4_setWYX(CTX ctx,const List<SV>&a);
-SV UInt4_getWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getWZY(CTX ctx,const List<SV>&a);
-SV UInt4_setWZY(CTX ctx,const List<SV>&a);
-SV UInt4_getWZX(CTX ctx,const List<SV>&a);
-SV UInt4_setWZX(CTX ctx,const List<SV>&a);
-SV UInt4_getXYZW(CTX ctx,const List<SV>&a);
-SV UInt4_setXYZW(CTX ctx,const List<SV>&a);
-SV UInt4_getXYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXZYW(CTX ctx,const List<SV>&a);
-SV UInt4_setXZYW(CTX ctx,const List<SV>&a);
-SV UInt4_getXZWY(CTX ctx,const List<SV>&a);
-SV UInt4_setXZWY(CTX ctx,const List<SV>&a);
-SV UInt4_getXWZY(CTX ctx,const List<SV>&a);
-SV UInt4_setXWZY(CTX ctx,const List<SV>&a);
-SV UInt4_getXWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYXZW(CTX ctx,const List<SV>&a);
-SV UInt4_setYXZW(CTX ctx,const List<SV>&a);
-SV UInt4_getYXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYZXW(CTX ctx,const List<SV>&a);
-SV UInt4_setYZXW(CTX ctx,const List<SV>&a);
-SV UInt4_getYZWX(CTX ctx,const List<SV>&a);
-SV UInt4_setYZWX(CTX ctx,const List<SV>&a);
-SV UInt4_getYWZX(CTX ctx,const List<SV>&a);
-SV UInt4_setYWZX(CTX ctx,const List<SV>&a);
-SV UInt4_getYWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getZYXW(CTX ctx,const List<SV>&a);
-SV UInt4_setZYXW(CTX ctx,const List<SV>&a);
-SV UInt4_getZYWX(CTX ctx,const List<SV>&a);
-SV UInt4_setZYWX(CTX ctx,const List<SV>&a);
-SV UInt4_getZXYW(CTX ctx,const List<SV>&a);
-SV UInt4_setZXYW(CTX ctx,const List<SV>&a);
-SV UInt4_getZXWY(CTX ctx,const List<SV>&a);
-SV UInt4_setZXWY(CTX ctx,const List<SV>&a);
-SV UInt4_getZWXY(CTX ctx,const List<SV>&a);
-SV UInt4_setZWXY(CTX ctx,const List<SV>&a);
-SV UInt4_getZWYX(CTX ctx,const List<SV>&a);
-SV UInt4_setZWYX(CTX ctx,const List<SV>&a);
-SV UInt4_getWYZX(CTX ctx,const List<SV>&a);
-SV UInt4_setWYZX(CTX ctx,const List<SV>&a);
-SV UInt4_getWYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getWZYX(CTX ctx,const List<SV>&a);
-SV UInt4_setWZYX(CTX ctx,const List<SV>&a);
-SV UInt4_getWZXY(CTX ctx,const List<SV>&a);
-SV UInt4_setWZXY(CTX ctx,const List<SV>&a);
-SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
-SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
-SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
+SV UInt3___add__(CTX ctx,const List<SV>&a);
+SV UInt3___sub__(CTX ctx,const List<SV>&a);
+SV UInt3___mul__(CTX ctx,const List<SV>&a);
+SV UInt3___div__(CTX ctx,const List<SV>&a);
+SV UInt3___eq__(CTX ctx,const List<SV>&a);
+SV UInt3___neq__(CTX ctx,const List<SV>&a);
+SV UInt3___less__(CTX ctx,const List<SV>&a);
+SV UInt3___grtr__(CTX ctx,const List<SV>&a);
+SV UInt3___leq__(CTX ctx,const List<SV>&a);
+SV UInt3___geq__(CTX ctx,const List<SV>&a);
+SV UInt3_sum(CTX ctx,const List<SV>&a);
+SV UInt3_length(CTX ctx,const List<SV>&a);
+SV UInt3_lengthSquared(CTX ctx,const List<SV>&a);
+SV UInt3_dot(CTX ctx,const List<SV>&a);
+SV UInt3_distance(CTX ctx,const List<SV>&a);
+SV UInt3_distanceSquared(CTX ctx,const List<SV>&a);
+SV UInt3_normalize(CTX ctx,const List<SV>&a);
+SV UInt3_cross(CTX ctx,const List<SV>&a);
+SV UInt3_getXY(CTX ctx,const List<SV>&a);
+SV UInt3_setXY(CTX ctx,const List<SV>&a);
+SV UInt3_getXZ(CTX ctx,const List<SV>&a);
+SV UInt3_setXZ(CTX ctx,const List<SV>&a);
+SV UInt3_getYX(CTX ctx,const List<SV>&a);
+SV UInt3_setYX(CTX ctx,const List<SV>&a);
+SV UInt3_getYZ(CTX ctx,const List<SV>&a);
+SV UInt3_setYZ(CTX ctx,const List<SV>&a);
+SV UInt3_getZX(CTX ctx,const List<SV>&a);
+SV UInt3_setZX(CTX ctx,const List<SV>&a);
+SV UInt3_getZY(CTX ctx,const List<SV>&a);
+SV UInt3_setZY(CTX ctx,const List<SV>&a);
+SV UInt3_getXYZ(CTX ctx,const List<SV>&a);
+SV UInt3_setXYZ(CTX ctx,const List<SV>&a);
+SV UInt3_getXZY(CTX ctx,const List<SV>&a);
+SV UInt3_setXZY(CTX ctx,const List<SV>&a);
+SV UInt3_getYXZ(CTX ctx,const List<SV>&a);
+SV UInt3_setYXZ(CTX ctx,const List<SV>&a);
+SV UInt3_getYZX(CTX ctx,const List<SV>&a);
+SV UInt3_setYZX(CTX ctx,const List<SV>&a);
+SV UInt3_getZXY(CTX ctx,const List<SV>&a);
+SV UInt3_setZXY(CTX ctx,const List<SV>&a);
+SV UInt3_getZYX(CTX ctx,const List<SV>&a);
+SV UInt3_setZYX(CTX ctx,const List<SV>&a);
+void LightSpotData_destroy(CTX,NO);
+SV LightSpotData_get_member(CTX,NO,SV);
+void LightSpotData_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs LightSpotData_funcs={
+.destroy = LightSpotData_destroy,
+.getMember = LightSpotData_get_member,
+.setMember = LightSpotData_set_member
+};
+template <>
+struct create_val<LightSpotData>
+{
+static SV f(CTX ctx,const LightSpotData&obj)
+{
+R S::createNativeObject(LightSpotData_funcs,NEW(LightSpotData, obj),EXT->LightSpotData_typeID);
+}
+};
+template <>
+struct val_to_c<LightSpotData>
+{
+static LightSpotData f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightSpotData_typeID)
+R*((LightSpotData*)obj->data);
+else
+ CATE(TE,"Value can not be converted to LightSpotData."));
+} else
+ CATE(TE,"Value can not be converted to LightSpotData."));
+}
+};
+template <>
+struct type_same<LightSpotData>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightSpotData_typeID;
+else
+ R false;
+}
+};
+
+void File_destroy(CTX,NO);
+SV File_get_member(CTX,NO,SV);
+void File_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs File_funcs={
+.destroy = File_destroy,
+.getMember = File_get_member,
+.setMember = File_set_member
+};
+template <>
+struct type_same<File>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->File_typeID;
+else
+ R false;
+}
+};
+
+SV File_read(CTX ctx,const List<SV>&a);
+SV File_write(CTX ctx,const List<SV>&a);
+SV File_seek(CTX ctx,const List<SV>&a);
+SV File_tell(CTX ctx,const List<SV>&a);
+SV File_flush(CTX ctx,const List<SV>&a);
+SV File_isAtEndOfFile(CTX ctx,const List<SV>&a);
+SV File_getSize(CTX ctx,const List<SV>&a);
+SV File_readUInt8(CTX ctx,const List<SV>&a);
+SV File_readInt8(CTX ctx,const List<SV>&a);
+SV File_readUInt16LE(CTX ctx,const List<SV>&a);
+SV File_readInt16LE(CTX ctx,const List<SV>&a);
+SV File_readUInt32LE(CTX ctx,const List<SV>&a);
+SV File_readInt32LE(CTX ctx,const List<SV>&a);
+SV File_readUInt64LE(CTX ctx,const List<SV>&a);
+SV File_readInt64LE(CTX ctx,const List<SV>&a);
+SV File_readUInt16BE(CTX ctx,const List<SV>&a);
+SV File_readInt16BE(CTX ctx,const List<SV>&a);
+SV File_readUInt32BE(CTX ctx,const List<SV>&a);
+SV File_readInt32BE(CTX ctx,const List<SV>&a);
+SV File_readUInt64BE(CTX ctx,const List<SV>&a);
+SV File_readInt64BE(CTX ctx,const List<SV>&a);
+SV File_readFloat32(CTX ctx,const List<SV>&a);
+SV File_readChar(CTX ctx,const List<SV>&a);
+SV File_writeUInt8(CTX ctx,const List<SV>&a);
+SV File_writeInt8(CTX ctx,const List<SV>&a);
+SV File_writeUInt16LE(CTX ctx,const List<SV>&a);
+SV File_writeInt16LE(CTX ctx,const List<SV>&a);
+SV File_writeUInt32LE(CTX ctx,const List<SV>&a);
+SV File_writeInt32LE(CTX ctx,const List<SV>&a);
+SV File_writeUInt64LE(CTX ctx,const List<SV>&a);
+SV File_writeInt64LE(CTX ctx,const List<SV>&a);
+SV File_writeUInt16BE(CTX ctx,const List<SV>&a);
+SV File_writeInt16BE(CTX ctx,const List<SV>&a);
+SV File_writeUInt32BE(CTX ctx,const List<SV>&a);
+SV File_writeInt32BE(CTX ctx,const List<SV>&a);
+SV File_writeUInt64BE(CTX ctx,const List<SV>&a);
+SV File_writeInt64BE(CTX ctx,const List<SV>&a);
+SV File_writeFloat32(CTX ctx,const List<SV>&a);
+SV File_printf(CTX ctx,const List<SV>&a);
+SV File_vprintf(CTX ctx,const List<SV>&a);
+SV File_writeChar(CTX ctx,const List<SV>&a);
 void AABB_destroy(CTX,NO);
 SV AABB_get_member(CTX,NO,SV);
 void AABB_set_member(CTX,NO,SV,SV);
@@ -2232,55 +2591,28 @@ SV Matrix3x3_rotate(CTX ctx,const List<SV>&a);
 SV Matrix3x3_rotatex(CTX ctx,const List<SV>&a);
 SV Matrix3x3_rotatey(CTX ctx,const List<SV>&a);
 SV Matrix3x3_rotatez(CTX ctx,const List<SV>&a);
-SV UInt3_ptr_copy(CTX,NO);
-void UInt3_ptr_destroy(CTX,NO);
-SV UInt3_ptr_get_member(CTX,NO,SV);
-void UInt3_ptr_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs UInt3_ptr_funcs={
-.destroy = UInt3_ptr_destroy,
-.getMember = UInt3_ptr_get_member,
-.setMember = UInt3_ptr_set_member
+void GfxDebugDrawer_destroy(CTX,NO);
+SV GfxDebugDrawer_get_member(CTX,NO,SV);
+void GfxDebugDrawer_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxDebugDrawer_funcs={
+.destroy = GfxDebugDrawer_destroy,
+.getMember = GfxDebugDrawer_get_member,
+.setMember = GfxDebugDrawer_set_member
 };
 template <>
-struct create_val<T3<uint32_t> *>
-{
-static SV f(CTX ctx,T3<uint32_t>*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-R S::createNativeObject(UInt3_ptr_funcs,obj,EXT->UInt3_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<T3<uint32_t> *>
-{
-static T3<uint32_t> *f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->UInt3_ptr_typeID)
-R(T3<uint32_t>*)obj->data;
-else
- CATE(TE,"Value is not a UInt3Ref."));
-} else
- CATE(TE,"Value is not a UInt3Ref."));
-}
-};
-template <>
-struct type_same<T3<uint32_t> *>
+struct type_same<GfxDebugDrawer>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->UInt3_ptr_typeID;
+R((NO)head)->typeID==EXT->GfxDebugDrawer_typeID;
 else
  R false;
 }
 };
 
+SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a);
+SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a);
 SV UInt2_ptr_copy(CTX,NO);
 void UInt2_ptr_destroy(CTX,NO);
 SV UInt2_ptr_get_member(CTX,NO,SV);
@@ -2325,6 +2657,55 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV GPUTimer_ptr_copy(CTX,NO);
+void GPUTimer_ptr_destroy(CTX,NO);
+SV GPUTimer_ptr_get_member(CTX,NO,SV);
+void GPUTimer_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GPUTimer_ptr_funcs={
+.destroy = GPUTimer_ptr_destroy,
+.getMember = GPUTimer_ptr_get_member,
+.setMember = GPUTimer_ptr_set_member
+};
+template <>
+struct create_val<GPUTimer *>
+{
+static SV f(CTX ctx,GPUTimer*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GPUTimer_ptr_funcs,obj,EXT->GPUTimer_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GPUTimer *>
+{
+static GPUTimer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GPUTimer_ptr_typeID)
+R(GPUTimer*)obj->data;
+else
+ CATE(TE,"Value is not a GPUTimerRef."));
+} else
+ CATE(TE,"Value is not a GPUTimerRef."));
+}
+};
+template <>
+struct type_same<GPUTimer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GPUTimer_ptr_typeID;
 else
  R false;
 }
@@ -2379,99 +2760,50 @@ else
 }
 };
 
-SV File_ptr_copy(CTX,NO);
-void File_ptr_destroy(CTX,NO);
-SV File_ptr_get_member(CTX,NO,SV);
-void File_ptr_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs File_ptr_funcs={
-.destroy = File_ptr_destroy,
-.getMember = File_ptr_get_member,
-.setMember = File_ptr_set_member
+SV Float2_ptr_copy(CTX,NO);
+void Float2_ptr_destroy(CTX,NO);
+SV Float2_ptr_get_member(CTX,NO,SV);
+void Float2_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Float2_ptr_funcs={
+.destroy = Float2_ptr_destroy,
+.getMember = Float2_ptr_get_member,
+.setMember = Float2_ptr_set_member
 };
 template <>
-struct create_val<File *>
+struct create_val<T2<float> *>
 {
-static SV f(CTX ctx,File*obj)
+static SV f(CTX ctx,T2<float>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-R S::createNativeObject(File_ptr_funcs,obj,EXT->File_ptr_typeID);
+R S::createNativeObject(Float2_ptr_funcs,obj,EXT->Float2_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<File *>
+struct val_to_c<T2<float> *>
 {
-static File *f(CTX ctx,const SV head)
+static T2<float> *f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->File_ptr_typeID)
-R(File*)obj->data;
+if(obj->typeID==EXT->Float2_ptr_typeID)
+R(T2<float>*)obj->data;
 else
- CATE(TE,"Value is not a FileRef."));
+ CATE(TE,"Value is not a Float2Ref."));
 } else
- CATE(TE,"Value is not a FileRef."));
+ CATE(TE,"Value is not a Float2Ref."));
 }
 };
 template <>
-struct type_same<File *>
+struct type_same<T2<float> *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->File_ptr_typeID;
-else
- R false;
-}
-};
-
-SV Int3_ptr_copy(CTX,NO);
-void Int3_ptr_destroy(CTX,NO);
-SV Int3_ptr_get_member(CTX,NO,SV);
-void Int3_ptr_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs Int3_ptr_funcs={
-.destroy = Int3_ptr_destroy,
-.getMember = Int3_ptr_get_member,
-.setMember = Int3_ptr_set_member
-};
-template <>
-struct create_val<T3<int32_t> *>
-{
-static SV f(CTX ctx,T3<int32_t>*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-R S::createNativeObject(Int3_ptr_funcs,obj,EXT->Int3_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<T3<int32_t> *>
-{
-static T3<int32_t> *f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Int3_ptr_typeID)
-R(T3<int32_t>*)obj->data;
-else
- CATE(TE,"Value is not a Int3Ref."));
-} else
- CATE(TE,"Value is not a Int3Ref."));
-}
-};
-template <>
-struct type_same<T3<int32_t> *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->Int3_ptr_typeID;
+R((NO)head)->typeID==EXT->Float2_ptr_typeID;
 else
  R false;
 }
@@ -2526,50 +2858,99 @@ else
 }
 };
 
-SV Float2_ptr_copy(CTX,NO);
-void Float2_ptr_destroy(CTX,NO);
-SV Float2_ptr_get_member(CTX,NO,SV);
-void Float2_ptr_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs Float2_ptr_funcs={
-.destroy = Float2_ptr_destroy,
-.getMember = Float2_ptr_get_member,
-.setMember = Float2_ptr_set_member
+SV UInt4_ptr_copy(CTX,NO);
+void UInt4_ptr_destroy(CTX,NO);
+SV UInt4_ptr_get_member(CTX,NO,SV);
+void UInt4_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs UInt4_ptr_funcs={
+.destroy = UInt4_ptr_destroy,
+.getMember = UInt4_ptr_get_member,
+.setMember = UInt4_ptr_set_member
 };
 template <>
-struct create_val<T2<float> *>
+struct create_val<T4<uint32_t> *>
 {
-static SV f(CTX ctx,T2<float>*obj)
+static SV f(CTX ctx,T4<uint32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-R S::createNativeObject(Float2_ptr_funcs,obj,EXT->Float2_ptr_typeID);
+R S::createNativeObject(UInt4_ptr_funcs,obj,EXT->UInt4_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<T2<float> *>
+struct val_to_c<T4<uint32_t> *>
 {
-static T2<float> *f(CTX ctx,const SV head)
+static T4<uint32_t> *f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float2_ptr_typeID)
-R(T2<float>*)obj->data;
+if(obj->typeID==EXT->UInt4_ptr_typeID)
+R(T4<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Float2Ref."));
+ CATE(TE,"Value is not a UInt4Ref."));
 } else
- CATE(TE,"Value is not a Float2Ref."));
+ CATE(TE,"Value is not a UInt4Ref."));
 }
 };
 template <>
-struct type_same<T2<float> *>
+struct type_same<T4<uint32_t> *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->Float2_ptr_typeID;
+R((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV Int3_ptr_copy(CTX,NO);
+void Int3_ptr_destroy(CTX,NO);
+SV Int3_ptr_get_member(CTX,NO,SV);
+void Int3_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Int3_ptr_funcs={
+.destroy = Int3_ptr_destroy,
+.getMember = Int3_ptr_get_member,
+.setMember = Int3_ptr_set_member
+};
+template <>
+struct create_val<T3<int32_t> *>
+{
+static SV f(CTX ctx,T3<int32_t>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(Int3_ptr_funcs,obj,EXT->Int3_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<T3<int32_t> *>
+{
+static T3<int32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Int3_ptr_typeID)
+R(T3<int32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a Int3Ref."));
+} else
+ CATE(TE,"Value is not a Int3Ref."));
+}
+};
+template <>
+struct type_same<T3<int32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Int3_ptr_typeID;
 else
  R false;
 }
@@ -2668,6 +3049,55 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Float3_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV GfxBuffer_ptr_copy(CTX,NO);
+void GfxBuffer_ptr_destroy(CTX,NO);
+SV GfxBuffer_ptr_get_member(CTX,NO,SV);
+void GfxBuffer_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxBuffer_ptr_funcs={
+.destroy = GfxBuffer_ptr_destroy,
+.getMember = GfxBuffer_ptr_get_member,
+.setMember = GfxBuffer_ptr_set_member
+};
+template <>
+struct create_val<GfxBuffer *>
+{
+static SV f(CTX ctx,GfxBuffer*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxBuffer_ptr_funcs,obj,EXT->GfxBuffer_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxBuffer *>
+{
+static GfxBuffer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxBuffer_ptr_typeID)
+R(GfxBuffer*)obj->data;
+else
+ CATE(TE,"Value is not a GfxBufferRef."));
+} else
+ CATE(TE,"Value is not a GfxBufferRef."));
+}
+};
+template <>
+struct type_same<GfxBuffer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxBuffer_ptr_typeID;
 else
  R false;
 }
@@ -2820,6 +3250,104 @@ else
 }
 };
 
+SV Light_ptr_copy(CTX,NO);
+void Light_ptr_destroy(CTX,NO);
+SV Light_ptr_get_member(CTX,NO,SV);
+void Light_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Light_ptr_funcs={
+.destroy = Light_ptr_destroy,
+.getMember = Light_ptr_get_member,
+.setMember = Light_ptr_set_member
+};
+template <>
+struct create_val<Light *>
+{
+static SV f(CTX ctx,Light*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(Light_ptr_funcs,obj,EXT->Light_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Light *>
+{
+static Light *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Light_ptr_typeID)
+R(Light*)obj->data;
+else
+ CATE(TE,"Value is not a LightRef."));
+} else
+ CATE(TE,"Value is not a LightRef."));
+}
+};
+template <>
+struct type_same<Light *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Light_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV LightPointData_ptr_copy(CTX,NO);
+void LightPointData_ptr_destroy(CTX,NO);
+SV LightPointData_ptr_get_member(CTX,NO,SV);
+void LightPointData_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs LightPointData_ptr_funcs={
+.destroy = LightPointData_ptr_destroy,
+.getMember = LightPointData_ptr_get_member,
+.setMember = LightPointData_ptr_set_member
+};
+template <>
+struct create_val<LightPointData *>
+{
+static SV f(CTX ctx,LightPointData*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(LightPointData_ptr_funcs,obj,EXT->LightPointData_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<LightPointData *>
+{
+static LightPointData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightPointData_ptr_typeID)
+R(LightPointData*)obj->data;
+else
+ CATE(TE,"Value is not a LightPointDataRef."));
+} else
+ CATE(TE,"Value is not a LightPointDataRef."));
+}
+};
+template <>
+struct type_same<LightPointData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightPointData_ptr_typeID;
+else
+ R false;
+}
+};
+
 SV Float4_ptr_copy(CTX,NO);
 void Float4_ptr_destroy(CTX,NO);
 SV Float4_ptr_get_member(CTX,NO,SV);
@@ -2864,6 +3392,55 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Float4_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV LightDirectionalData_ptr_copy(CTX,NO);
+void LightDirectionalData_ptr_destroy(CTX,NO);
+SV LightDirectionalData_ptr_get_member(CTX,NO,SV);
+void LightDirectionalData_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs LightDirectionalData_ptr_funcs={
+.destroy = LightDirectionalData_ptr_destroy,
+.getMember = LightDirectionalData_ptr_get_member,
+.setMember = LightDirectionalData_ptr_set_member
+};
+template <>
+struct create_val<LightDirectionalData *>
+{
+static SV f(CTX ctx,LightDirectionalData*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(LightDirectionalData_ptr_funcs,obj,EXT->LightDirectionalData_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<LightDirectionalData *>
+{
+static LightDirectionalData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightDirectionalData_ptr_typeID)
+R(LightDirectionalData*)obj->data;
+else
+ CATE(TE,"Value is not a LightDirectionalDataRef."));
+} else
+ CATE(TE,"Value is not a LightDirectionalDataRef."));
+}
+};
+template <>
+struct type_same<LightDirectionalData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightDirectionalData_ptr_typeID;
 else
  R false;
 }
@@ -2918,50 +3495,148 @@ else
 }
 };
 
-SV UInt4_ptr_copy(CTX,NO);
-void UInt4_ptr_destroy(CTX,NO);
-SV UInt4_ptr_get_member(CTX,NO,SV);
-void UInt4_ptr_set_member(CTX,NO,SV,SV);
-static const S::NativeObjectFuncs UInt4_ptr_funcs={
-.destroy = UInt4_ptr_destroy,
-.getMember = UInt4_ptr_get_member,
-.setMember = UInt4_ptr_set_member
+SV UInt3_ptr_copy(CTX,NO);
+void UInt3_ptr_destroy(CTX,NO);
+SV UInt3_ptr_get_member(CTX,NO,SV);
+void UInt3_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs UInt3_ptr_funcs={
+.destroy = UInt3_ptr_destroy,
+.getMember = UInt3_ptr_get_member,
+.setMember = UInt3_ptr_set_member
 };
 template <>
-struct create_val<T4<uint32_t> *>
+struct create_val<T3<uint32_t> *>
 {
-static SV f(CTX ctx,T4<uint32_t>*obj)
+static SV f(CTX ctx,T3<uint32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-R S::createNativeObject(UInt4_ptr_funcs,obj,EXT->UInt4_ptr_typeID);
+R S::createNativeObject(UInt3_ptr_funcs,obj,EXT->UInt3_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<T4<uint32_t> *>
+struct val_to_c<T3<uint32_t> *>
 {
-static T4<uint32_t> *f(CTX ctx,const SV head)
+static T3<uint32_t> *f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_ptr_typeID)
-R(T4<uint32_t>*)obj->data;
+if(obj->typeID==EXT->UInt3_ptr_typeID)
+R(T3<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt4Ref."));
+ CATE(TE,"Value is not a UInt3Ref."));
 } else
- CATE(TE,"Value is not a UInt4Ref."));
+ CATE(TE,"Value is not a UInt3Ref."));
 }
 };
 template <>
-struct type_same<T4<uint32_t> *>
+struct type_same<T3<uint32_t> *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
-R((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+R((NO)head)->typeID==EXT->UInt3_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV LightSpotData_ptr_copy(CTX,NO);
+void LightSpotData_ptr_destroy(CTX,NO);
+SV LightSpotData_ptr_get_member(CTX,NO,SV);
+void LightSpotData_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs LightSpotData_ptr_funcs={
+.destroy = LightSpotData_ptr_destroy,
+.getMember = LightSpotData_ptr_get_member,
+.setMember = LightSpotData_ptr_set_member
+};
+template <>
+struct create_val<LightSpotData *>
+{
+static SV f(CTX ctx,LightSpotData*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(LightSpotData_ptr_funcs,obj,EXT->LightSpotData_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<LightSpotData *>
+{
+static LightSpotData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightSpotData_ptr_typeID)
+R(LightSpotData*)obj->data;
+else
+ CATE(TE,"Value is not a LightSpotDataRef."));
+} else
+ CATE(TE,"Value is not a LightSpotDataRef."));
+}
+};
+template <>
+struct type_same<LightSpotData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightSpotData_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV File_ptr_copy(CTX,NO);
+void File_ptr_destroy(CTX,NO);
+SV File_ptr_get_member(CTX,NO,SV);
+void File_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs File_ptr_funcs={
+.destroy = File_ptr_destroy,
+.getMember = File_ptr_get_member,
+.setMember = File_ptr_set_member
+};
+template <>
+struct create_val<File *>
+{
+static SV f(CTX ctx,File*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(File_ptr_funcs,obj,EXT->File_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<File *>
+{
+static File *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->File_ptr_typeID)
+R(File*)obj->data;
+else
+ CATE(TE,"Value is not a FileRef."));
+} else
+ CATE(TE,"Value is not a FileRef."));
+}
+};
+template <>
+struct type_same<File *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->File_ptr_typeID;
 else
  R false;
 }
@@ -3065,56 +3740,55 @@ else
 }
 };
 
-SV CameraType___eq__(CTX ctx,const List<SV>&a)
+SV GfxDebugDrawer_ptr_copy(CTX,NO);
+void GfxDebugDrawer_ptr_destroy(CTX,NO);
+SV GfxDebugDrawer_ptr_get_member(CTX,NO,SV);
+void GfxDebugDrawer_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxDebugDrawer_ptr_funcs={
+.destroy = GfxDebugDrawer_ptr_destroy,
+.getMember = GfxDebugDrawer_ptr_get_member,
+.setMember = GfxDebugDrawer_ptr_set_member
+};
+template <>
+struct create_val<GfxDebugDrawer *>
 {
-if(a.getCount()!=2)
-CATE(VE,UFOF("CameraType::__eq__")));
-size_t F;
-if(!TS(CameraType,a[0]))
-CATE(TE,FAE("CameraType::CameraType","CameraType")));
+static SV f(CTX ctx,GfxDebugDrawer*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxDebugDrawer_ptr_funcs,obj,EXT->GfxDebugDrawer_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxDebugDrawer *>
+{
+static GfxDebugDrawer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxDebugDrawer_ptr_typeID)
+R(GfxDebugDrawer*)obj->data;
 else
- F=(size_t)((NO)a[0])->data;
-size_t other;
-if(!TS(CameraType,a[1]))
-CATE(VE,UFOF("CameraType::__eq__")));
-else
- other=(size_t)((NO)a[1])->data;
-return S::createBoolean(F == other);
-}SV CameraType_get_member(CTX ctx,NO F,SV key)
-{
-if (key->type==S::ValueType::StringType)
-{
-String keyStr=((S::StringValue *)key)->value;
-if(F->data==NULL)
-{
-if(keyStr=="__typeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__name__")
-R S::createString("CameraType");
-EI(keyStr=="__eq__")
-R CNF(CameraType___eq__);
-EI(keyStr=="Perspective")R S::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
-EI(keyStr=="Orthographic")R S::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
-
-else
- CATE(KE,"Unknown member."));
+ CATE(TE,"Value is not a GfxDebugDrawerRef."));
 } else
+ CATE(TE,"Value is not a GfxDebugDrawerRef."));
+}
+};
+template <>
+struct type_same<GfxDebugDrawer *>
 {
-if(keyStr=="__classTypeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__name__")
-R S::createString("CameraType");
-EI(keyStr=="__eq__")
-R CNF(CameraType___eq__);
-EI(keyStr=="Perspective")R S::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
-EI(keyStr=="Orthographic")R S::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
-
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxDebugDrawer_ptr_typeID;
 else
- CATE(KE,"Unknown member."));
+ R false;
 }
-}
-}
-void CameraType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+};
+
 SV GfxPrimitive___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -3599,41 +4273,22 @@ else
 }
 }
 void GfxVertexAttribType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
-void UInt3_destroy(CTX ctx,NO F)
+SV GfxBufferUsage___eq__(CTX ctx,const List<SV>&a)
 {
-if(!TS(T3<uint32_t>, (SV)F))
-CATE(TE,"UInt3::__del__ expects UInt3 as first argument."));
-
-DELETE(T3<uint32_t>,(T3<uint32_t> *)F->data);
-}SV UInt3_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3's constructor" EAOE));
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,"UInt3's constructor expects UInt3 as first argument."));
-if(a.getCount()==1)
-if(true)
-R S::createNativeObject(UInt3_funcs,NEW(UInt3),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(float,a[1]))
-R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<float>::f(ctx,a[1])),EXT->UInt3_typeID);
-if(a.getCount()==4)
-if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3]))
-R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3])),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(const T3<float> &,a[1]))
-R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(const T3<int32_t> &,a[1]))
-R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(const T3<uint32_t> &,a[1]))
-R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
-CATE(TE,UFOF("UInt3's constructor.")));
-R CN;
-}
-
-SV UInt3_get_member(CTX ctx,NO F,SV key)
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxBufferUsage::__eq__")));
+size_t F;
+if(!TS(GfxBufferUsage,a[0]))
+CATE(TE,FAE("GfxBufferUsage::GfxBufferUsage","GfxBufferUsage")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(GfxBufferUsage,a[1]))
+CATE(VE,UFOF("GfxBufferUsage::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxBufferUsage_get_member(CTX ctx,NO F,SV key)
 {
 if (key->type==S::ValueType::StringType)
 {
@@ -3643,1005 +4298,187 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("UInt3");
-EI(keyStr=="__new__")
-R CNF(UInt3_new);
-EI(keyStr=="__call__")
-R CNF(UInt3_new);
+R S::createString("GfxBufferUsage");
+EI(keyStr=="__eq__")
+R CNF(GfxBufferUsage___eq__);
+EI(keyStr=="Dynamic")R S::createNativeObject(GfxBufferUsage_funcs,(void *)2,EXT->GfxBufferUsage_typeID);
+EI(keyStr=="Static")R S::createNativeObject(GfxBufferUsage_funcs,(void *)1,EXT->GfxBufferUsage_typeID);
+EI(keyStr=="Stream")R S::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
+
 else
  CATE(KE,"Unknown member."));
 } else
 {
 if(keyStr=="__classTypeID__")
 R S::createInt(F->typeID);
-EI(keyStr=="__init__")
-R CNF(UInt3_new);
- EI(keyStr == "__add__")
-R CNF(UInt3___add__);
- EI(keyStr == "__sub__")
-R CNF(UInt3___sub__);
- EI(keyStr == "__mul__")
-R CNF(UInt3___mul__);
- EI(keyStr == "__div__")
-R CNF(UInt3___div__);
- EI(keyStr == "__eq__")
-R CNF(UInt3___eq__);
- EI(keyStr == "__neq__")
-R CNF(UInt3___neq__);
- EI(keyStr == "__less__")
-R CNF(UInt3___less__);
- EI(keyStr == "__grtr__")
-R CNF(UInt3___grtr__);
- EI(keyStr == "__leq__")
-R CNF(UInt3___leq__);
- EI(keyStr == "__geq__")
-R CNF(UInt3___geq__);
- EI(keyStr == "sum")
-R CNF(UInt3_sum);
- EI(keyStr == "length")
-R CNF(UInt3_length);
- EI(keyStr == "lengthSquared")
-R CNF(UInt3_lengthSquared);
- EI(keyStr == "dot")
-R CNF(UInt3_dot);
- EI(keyStr == "distance")
-R CNF(UInt3_distance);
- EI(keyStr == "distanceSquared")
-R CNF(UInt3_distanceSquared);
- EI(keyStr == "normalize")
-R CNF(UInt3_normalize);
- EI(keyStr == "cross")
-R CNF(UInt3_cross);
- EI(keyStr == "getXY")
-R CNF(UInt3_getXY);
- EI(keyStr == "setXY")
-R CNF(UInt3_setXY);
- EI(keyStr == "getXZ")
-R CNF(UInt3_getXZ);
- EI(keyStr == "setXZ")
-R CNF(UInt3_setXZ);
- EI(keyStr == "getYX")
-R CNF(UInt3_getYX);
- EI(keyStr == "setYX")
-R CNF(UInt3_setYX);
- EI(keyStr == "getYZ")
-R CNF(UInt3_getYZ);
- EI(keyStr == "setYZ")
-R CNF(UInt3_setYZ);
- EI(keyStr == "getZX")
-R CNF(UInt3_getZX);
- EI(keyStr == "setZX")
-R CNF(UInt3_setZX);
- EI(keyStr == "getZY")
-R CNF(UInt3_getZY);
- EI(keyStr == "setZY")
-R CNF(UInt3_setZY);
- EI(keyStr == "getXYZ")
-R CNF(UInt3_getXYZ);
- EI(keyStr == "setXYZ")
-R CNF(UInt3_setXYZ);
- EI(keyStr == "getXZY")
-R CNF(UInt3_getXZY);
- EI(keyStr == "setXZY")
-R CNF(UInt3_setXZY);
- EI(keyStr == "getYXZ")
-R CNF(UInt3_getYXZ);
- EI(keyStr == "setYXZ")
-R CNF(UInt3_setYXZ);
- EI(keyStr == "getYZX")
-R CNF(UInt3_getYZX);
- EI(keyStr == "setYZX")
-R CNF(UInt3_setYZX);
- EI(keyStr == "getZXY")
-R CNF(UInt3_getZXY);
- EI(keyStr == "setZXY")
-R CNF(UInt3_setZXY);
- EI(keyStr == "getZYX")
-R CNF(UInt3_getZYX);
- EI(keyStr == "setZYX")
-R CNF(UInt3_setZYX);
- EI(keyStr=="x")
-{
-T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
-R CV(obj->x);
-} EI(keyStr=="y")
-{
-T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
-R CV(obj->y);
-} EI(keyStr=="z")
-{
-T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
-R CV(obj->z);
-} else
+EI(keyStr=="__name__")
+R S::createString("GfxBufferUsage");
+EI(keyStr=="__eq__")
+R CNF(GfxBufferUsage___eq__);
+EI(keyStr=="Dynamic")R S::createNativeObject(GfxBufferUsage_funcs,(void *)2,EXT->GfxBufferUsage_typeID);
+EI(keyStr=="Static")R S::createNativeObject(GfxBufferUsage_funcs,(void *)1,EXT->GfxBufferUsage_typeID);
+EI(keyStr=="Stream")R S::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
+
+else
  CATE(KE,"Unknown member."));
 }
 }
-R CN;
 }
-
-void UInt3_set_member(CTX ctx,NO F,SV key,SV value)
+void GfxBufferUsage_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxShadowmapPrecision___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxShadowmapPrecision::__eq__")));
+size_t F;
+if(!TS(GfxShadowmapPrecision,a[0]))
+CATE(TE,FAE("GfxShadowmapPrecision::GfxShadowmapPrecision","GfxShadowmapPrecision")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(GfxShadowmapPrecision,a[1]))
+CATE(VE,UFOF("GfxShadowmapPrecision::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxShadowmapPrecision_get_member(CTX ctx,NO F,SV key)
 {
 if (key->type==S::ValueType::StringType)
 {
-String keyStr=((S::StringValue*)key)->value;
+String keyStr=((S::StringValue *)key)->value;
 if(F->data==NULL)
-CATE(KE,"Native classes are read-only."));
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxShadowmapPrecision");
+EI(keyStr=="__eq__")
+R CNF(GfxShadowmapPrecision___eq__);
+EI(keyStr=="High")R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)2,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr=="Medium")R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)1,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr=="Low")R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
+
 else
-{
-if(0) {} EI(keyStr=="x")
-{
-T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
-obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
-{
-T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
-obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
-{
-T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
-obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
+ CATE(KE,"Unknown member."));
 } else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV UInt3_setYZX(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()<1)
-CATE(VE,"UInt3::setYZX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setYZX","UInt3")));
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxShadowmapPrecision");
+EI(keyStr=="__eq__")
+R CNF(GfxShadowmapPrecision___eq__);
+EI(keyStr=="High")R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)2,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr=="Medium")R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)1,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr=="Low")R S::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
+
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
+ CATE(KE,"Unknown member."));
 }
-CATE(TE,UFOF("UInt3::setYZX.")));
-R CN;
 }
-
-SV UInt3_getZXY(CTX ctx,const List<SV>&a)
+}
+void GfxShadowmapPrecision_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxLightType___eq__(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()<1)
-CATE(VE,"UInt3::getZXY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getZXY","UInt3")));
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxLightType::__eq__")));
+size_t F;
+if(!TS(GfxLightType,a[0]))
+CATE(TE,FAE("GfxLightType::GfxLightType","GfxLightType")));
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZXY());
-;
-}
-CATE(TE,UFOF("UInt3::getZXY.")));
-R CN;
-}
-
-SV UInt3_setYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setYZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setYZ","UInt3")));
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(GfxLightType,a[1]))
+CATE(VE,UFOF("GfxLightType::__eq__")));
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxLightType_get_member(CTX ctx,NO F,SV key)
 {
-( F->setYZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setYZ.")));
-R CN;
-}
-
-SV UInt3_setYX(CTX ctx,const List<SV>&a)
+if (key->type==S::ValueType::StringType)
 {
-if(a.getCount()<1)
-CATE(VE,"UInt3::setYX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setYX","UInt3")));
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxLightType");
+EI(keyStr=="__eq__")
+R CNF(GfxLightType___eq__);
+EI(keyStr=="Point")R S::createNativeObject(GfxLightType_funcs,(void *)2,EXT->GfxLightType_typeID);
+EI(keyStr=="Spot")R S::createNativeObject(GfxLightType_funcs,(void *)1,EXT->GfxLightType_typeID);
+EI(keyStr=="Directional")R S::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
+
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+ CATE(KE,"Unknown member."));
+} else
 {
-( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setYX.")));
-R CN;
-}
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxLightType");
+EI(keyStr=="__eq__")
+R CNF(GfxLightType___eq__);
+EI(keyStr=="Point")R S::createNativeObject(GfxLightType_funcs,(void *)2,EXT->GfxLightType_typeID);
+EI(keyStr=="Spot")R S::createNativeObject(GfxLightType_funcs,(void *)1,EXT->GfxLightType_typeID);
+EI(keyStr=="Directional")R S::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
 
-SV UInt3_setZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setZYX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setZYX","UInt3")));
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
+ CATE(KE,"Unknown member."));
 }
-CATE(TE,UFOF("UInt3::setZYX.")));
-R CN;
 }
-
-SV UInt3_getZY(CTX ctx,const List<SV>&a)
+}
+void GfxLightType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV CameraType___eq__(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()<1)
-CATE(VE,"UInt3::getZY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getZY","UInt3")));
+if(a.getCount()!=2)
+CATE(VE,UFOF("CameraType::__eq__")));
+size_t F;
+if(!TS(CameraType,a[0]))
+CATE(TE,FAE("CameraType::CameraType","CameraType")));
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZY());
-;
-}
-CATE(TE,UFOF("UInt3::getZY.")));
-R CN;
-}
-
-SV UInt3_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::distanceSquared" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::distanceSquared","UInt3")));
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(CameraType,a[1]))
+CATE(VE,UFOF("CameraType::__eq__")));
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV CameraType_get_member(CTX ctx,NO F,SV key)
 {
-R CV( F->distanceSquared(val_to_c<const T3<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt3::distanceSquared.")));
-R CN;
-}
-
-SV UInt3_normalize(CTX ctx,const List<SV>&a)
+if (key->type==S::ValueType::StringType)
 {
-if(a.getCount()<1)
-CATE(VE,"UInt3::normalize" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::normalize","UInt3")));
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("CameraType");
+EI(keyStr=="__eq__")
+R CNF(CameraType___eq__);
+EI(keyStr=="Perspective")R S::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
+EI(keyStr=="Orthographic")R S::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
+
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
+ CATE(KE,"Unknown member."));
+} else
 {
-R CV( F->normalize());
-;
-}
-CATE(TE,UFOF("UInt3::normalize.")));
-R CN;
-}
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("CameraType");
+EI(keyStr=="__eq__")
+R CNF(CameraType___eq__);
+EI(keyStr=="Perspective")R S::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
+EI(keyStr=="Orthographic")R S::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
-SV UInt3_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getYX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getYX","UInt3")));
 else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYX());
-;
+ CATE(KE,"Unknown member."));
 }
-CATE(TE,UFOF("UInt3::getYX.")));
-R CN;
 }
-
-SV UInt3___leq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__leq__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__leq__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F <= val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt3::__leq__.")));
-R CN;
-}
-
-SV UInt3_setXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setXZY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setXZY","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setXZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setXZY.")));
-R CN;
-}
-
-SV UInt3_sum(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::sum" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::sum","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->sum());
-;
-}
-CATE(TE,UFOF("UInt3::sum.")));
-R CN;
-}
-
-SV UInt3_cross(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::cross" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::cross","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV( F->cross(val_to_c<const T3<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt3::cross.")));
-R CN;
-}
-
-SV UInt3_getXYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getXYZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getXYZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXYZ());
-;
-}
-CATE(TE,UFOF("UInt3::getXYZ.")));
-R CN;
-}
-
-SV UInt3___less__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__less__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__less__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F < val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__less__.")));
-R CN;
-}
-
-SV UInt3___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__neq__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__neq__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F != val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__neq__.")));
-R CN;
-}
-
-SV UInt3_getYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getYZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getYZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYZ());
-;
-}
-CATE(TE,UFOF("UInt3::getYZ.")));
-R CN;
-}
-
-SV UInt3_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::lengthSquared" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::lengthSquared","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->lengthSquared());
-;
-}
-CATE(TE,UFOF("UInt3::lengthSquared.")));
-R CN;
-}
-
-SV UInt3_getZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getZYX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getZYX","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZYX());
-;
-}
-CATE(TE,UFOF("UInt3::getZYX.")));
-R CN;
-}
-
-SV UInt3___div__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__div__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__div__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F / val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
-{
-R CV(*F / val_to_c<const float&>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__div__.")));
-R CN;
-}
-
-SV UInt3_setZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setZY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setZY","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setZY(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setZY.")));
-R CN;
-}
-
-SV UInt3_setZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setZX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setZX","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setZX(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setZX.")));
-R CN;
-}
-
-SV UInt3_setXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setXY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setXY","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setXY.")));
-R CN;
-}
-
-SV UInt3___add__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__add__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__add__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F + val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
-{
-R CV(*F + val_to_c<const float&>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__add__.")));
-R CN;
-}
-
-SV UInt3_setXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setXZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setXZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setXZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setXZ.")));
-R CN;
-}
-
-SV UInt3___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__eq__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__eq__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F == val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__eq__.")));
-R CN;
-}
-
-SV UInt3_setZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setZXY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setZXY","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setZXY.")));
-R CN;
-}
-
-SV UInt3_setYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setYXZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setYXZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setYXZ.")));
-R CN;
-}
-
-SV UInt3_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getXY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getXY","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXY());
-;
-}
-CATE(TE,UFOF("UInt3::getXY.")));
-R CN;
-}
-
-SV UInt3_distance(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::distance" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::distance","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV( F->distance(val_to_c<const T3<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt3::distance.")));
-R CN;
-}
-
-SV UInt3_getXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getXZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getXZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXZ());
-;
-}
-CATE(TE,UFOF("UInt3::getXZ.")));
-R CN;
-}
-
-SV UInt3___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__grtr__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__grtr__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F > val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__grtr__.")));
-R CN;
-}
-
-SV UInt3_getXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getXZY" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getXZY","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXZY());
-;
-}
-CATE(TE,UFOF("UInt3::getXZY.")));
-R CN;
-}
-
-SV UInt3_setXYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::setXYZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::setXYZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setXYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt3::setXYZ.")));
-R CN;
-}
-
-SV UInt3_getYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getYZX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getYZX","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYZX());
-;
-}
-CATE(TE,UFOF("UInt3::getYZX.")));
-R CN;
-}
-
-SV UInt3_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::length" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::length","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->length());
-;
-}
-CATE(TE,UFOF("UInt3::length.")));
-R CN;
-}
-
-SV UInt3___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__mul__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__mul__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F * val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
-{
-R CV(*F * val_to_c<const float&>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__mul__.")));
-R CN;
-}
-
-SV UInt3_getYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getYXZ" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getYXZ","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYXZ());
-;
-}
-CATE(TE,UFOF("UInt3::getYXZ.")));
-R CN;
-}
-
-SV UInt3_getZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::getZX" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::getZX","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZX());
-;
-}
-CATE(TE,UFOF("UInt3::getZX.")));
-R CN;
-}
-
-SV UInt3___sub__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__sub__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__sub__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F - val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
-{
-R CV(*F - val_to_c<const float&>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__sub__.")));
-R CN;
-}
-
-SV UInt3___geq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::__geq__" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::__geq__","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV(*F >= val_to_c<const T3<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt3::__geq__.")));
-R CN;
-}
-
-SV UInt3_dot(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt3::dot" EAOE));
-T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
-CATE(TE,FAE("UInt3::dot","UInt3")));
-else
- F=(T3<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-R CV( F->dot(val_to_c<const T3<float> &>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->dot());
-;
-}
-CATE(TE,UFOF("UInt3::dot.")));
-R CN;
-}
-
+void CameraType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 void UInt2_destroy(CTX ctx,NO F)
 {
 if(!TS(T2<uint32_t>, (SV)F))
@@ -5212,6 +5049,176 @@ if(1&&TS(const T2<float> &,a[1]))
 R CV(*F != val_to_c<const T2<float> &>::f(ctx,a[1]));
 }
 CATE(TE,UFOF("UInt2::__neq__.")));
+R CN;
+}
+
+void GPUTimer_destroy(CTX ctx,NO F)
+{
+if(!TS(GPUTimer, (SV)F))
+CATE(TE,"GPUTimer::__del__ expects GPUTimer as first argument."));
+
+DELETE(GPUTimer,(GPUTimer *)F->data);
+}SV GPUTimer_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GPUTimer's constructor" EAOE));
+if(!TS(GPUTimer,a[0]))
+CATE(TE,"GPUTimer's constructor expects GPUTimer as first argument."));
+CATE(TE,UFOF("GPUTimer's constructor.")));
+}
+
+SV GPUTimer_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GPUTimer");
+EI(keyStr=="__new__")
+R CNF(GPUTimer_new);
+EI(keyStr=="__call__")
+R CNF(GPUTimer_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GPUTimer_new);
+ EI(keyStr == "resultAvailable")
+R CNF(GPUTimer_resultAvailable);
+ EI(keyStr == "getResult")
+R CNF(GPUTimer_getResult);
+ EI(keyStr == "getResultResolution")
+R CNF(GPUTimer_getResultResolution);
+ EI(keyStr == "begin")
+R CNF(GPUTimer_begin);
+ EI(keyStr == "end")
+R CNF(GPUTimer_end);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GPUTimer_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GPUTimer_begin(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GPUTimer::begin" EAOE));
+GPUTimer*F;
+if(!TS(GPUTimer,a[0]))
+CATE(TE,FAE("GPUTimer::begin","GPUTimer")));
+else
+ F=(GPUTimer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->begin());
+R CN;
+}
+CATE(TE,UFOF("GPUTimer::begin.")));
+R CN;
+}
+
+SV GPUTimer_resultAvailable(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GPUTimer::resultAvailable" EAOE));
+GPUTimer*F;
+if(!TS(GPUTimer,a[0]))
+CATE(TE,FAE("GPUTimer::resultAvailable","GPUTimer")));
+else
+ F=(GPUTimer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->resultAvailable());
+;
+}
+CATE(TE,UFOF("GPUTimer::resultAvailable.")));
+R CN;
+}
+
+SV GPUTimer_end(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GPUTimer::end" EAOE));
+GPUTimer*F;
+if(!TS(GPUTimer,a[0]))
+CATE(TE,FAE("GPUTimer::end","GPUTimer")));
+else
+ F=(GPUTimer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->end());
+R CN;
+}
+CATE(TE,UFOF("GPUTimer::end.")));
+R CN;
+}
+
+SV GPUTimer_getResultResolution(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GPUTimer::getResultResolution" EAOE));
+GPUTimer*F;
+if(!TS(GPUTimer,a[0]))
+CATE(TE,FAE("GPUTimer::getResultResolution","GPUTimer")));
+else
+ F=(GPUTimer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getResultResolution());
+;
+}
+CATE(TE,UFOF("GPUTimer::getResultResolution.")));
+R CN;
+}
+
+SV GPUTimer_getResult(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GPUTimer::getResult" EAOE));
+GPUTimer*F;
+if(!TS(GPUTimer,a[0]))
+CATE(TE,FAE("GPUTimer::getResult","GPUTimer")));
+else
+ F=(GPUTimer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getResult());
+;
+}
+CATE(TE,UFOF("GPUTimer::getResult.")));
 R CN;
 }
 
@@ -6140,26 +6147,41 @@ CATE(TE,UFOF("RigidBody::getLinearDamping.")));
 R CN;
 }
 
-void File_destroy(CTX ctx,NO F)
+void Float2_destroy(CTX ctx,NO F)
 {
-if(!TS(File, (SV)F))
-CATE(TE,"File::__del__ expects File as first argument."));
+if(!TS(T2<float>, (SV)F))
+CATE(TE,"Float2::__del__ expects Float2 as first argument."));
 
-DELETE(File,(File *)F->data);
-}SV File_new(CTX ctx,const List<SV>&a)
+DELETE(T2<float>,(T2<float> *)F->data);
+}SV Float2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File's constructor" EAOE));
-if(!TS(File,a[0]))
-CATE(TE,"File's constructor expects File as first argument."));
+CATE(VE,"Float2's constructor" EAOE));
+if(!TS(T2<float>,a[0]))
+CATE(TE,"Float2's constructor expects Float2 as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(Float2_funcs,NEW(Float2),EXT->Float2_typeID);
+if(a.getCount()==2)
+if(true&&TS(float,a[1]))
+R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<float>::f(ctx,a[1])),EXT->Float2_typeID);
 if(a.getCount()==3)
-if(true&&TS(const char *,a[1])&&TS(const char *,a[2]))
-R S::createNativeObject(File_funcs,NEW(File,val_to_c<const char *>::f(ctx,a[1]),val_to_c<const char *>::f(ctx,a[2])),EXT->File_typeID);
-CATE(TE,UFOF("File's constructor.")));
+if(true&&TS(float,a[1])&&TS(float,a[2]))
+R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2])),EXT->Float2_typeID);
+if(a.getCount()==2)
+if(true&&TS(const T2<float> &,a[1]))
+R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->Float2_typeID);
+if(a.getCount()==2)
+if(true&&TS(const T2<int32_t> &,a[1]))
+R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
+if(a.getCount()==2)
+if(true&&TS(const T2<uint32_t> &,a[1]))
+R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
+CATE(TE,UFOF("Float2's constructor.")));
 R CN;
 }
 
-SV File_get_member(CTX ctx,NO F,SV key)
+SV Float2_get_member(CTX ctx,NO F,SV key)
 {
 if (key->type==S::ValueType::StringType)
 {
@@ -6169,11 +6191,11 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("File");
+R S::createString("Float2");
 EI(keyStr=="__new__")
-R CNF(File_new);
+R CNF(Float2_new);
 EI(keyStr=="__call__")
-R CNF(File_new);
+R CNF(Float2_new);
 else
  CATE(KE,"Unknown member."));
 } else
@@ -6181,89 +6203,621 @@ else
 if(keyStr=="__classTypeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__init__")
-R CNF(File_new);
- EI(keyStr == "read")
-R CNF(File_read);
- EI(keyStr == "write")
-R CNF(File_write);
- EI(keyStr == "seek")
-R CNF(File_seek);
- EI(keyStr == "tell")
-R CNF(File_tell);
- EI(keyStr == "flush")
-R CNF(File_flush);
- EI(keyStr == "isAtEndOfFile")
-R CNF(File_isAtEndOfFile);
- EI(keyStr == "getSize")
-R CNF(File_getSize);
- EI(keyStr == "readUInt8")
-R CNF(File_readUInt8);
- EI(keyStr == "readInt8")
-R CNF(File_readInt8);
- EI(keyStr == "readUInt16LE")
-R CNF(File_readUInt16LE);
- EI(keyStr == "readInt16LE")
-R CNF(File_readInt16LE);
- EI(keyStr == "readUInt32LE")
-R CNF(File_readUInt32LE);
- EI(keyStr == "readInt32LE")
-R CNF(File_readInt32LE);
- EI(keyStr == "readUInt64LE")
-R CNF(File_readUInt64LE);
- EI(keyStr == "readInt64LE")
-R CNF(File_readInt64LE);
- EI(keyStr == "readUInt16BE")
-R CNF(File_readUInt16BE);
- EI(keyStr == "readInt16BE")
-R CNF(File_readInt16BE);
- EI(keyStr == "readUInt32BE")
-R CNF(File_readUInt32BE);
- EI(keyStr == "readInt32BE")
-R CNF(File_readInt32BE);
- EI(keyStr == "readUInt64BE")
-R CNF(File_readUInt64BE);
- EI(keyStr == "readInt64BE")
-R CNF(File_readInt64BE);
- EI(keyStr == "readFloat32")
-R CNF(File_readFloat32);
- EI(keyStr == "readChar")
-R CNF(File_readChar);
- EI(keyStr == "writeUInt8")
-R CNF(File_writeUInt8);
- EI(keyStr == "writeInt8")
-R CNF(File_writeInt8);
- EI(keyStr == "writeUInt16LE")
-R CNF(File_writeUInt16LE);
- EI(keyStr == "writeInt16LE")
-R CNF(File_writeInt16LE);
- EI(keyStr == "writeUInt32LE")
-R CNF(File_writeUInt32LE);
- EI(keyStr == "writeInt32LE")
-R CNF(File_writeInt32LE);
- EI(keyStr == "writeUInt64LE")
-R CNF(File_writeUInt64LE);
- EI(keyStr == "writeInt64LE")
-R CNF(File_writeInt64LE);
- EI(keyStr == "writeUInt16BE")
-R CNF(File_writeUInt16BE);
- EI(keyStr == "writeInt16BE")
-R CNF(File_writeInt16BE);
- EI(keyStr == "writeUInt32BE")
-R CNF(File_writeUInt32BE);
- EI(keyStr == "writeInt32BE")
-R CNF(File_writeInt32BE);
- EI(keyStr == "writeUInt64BE")
-R CNF(File_writeUInt64BE);
- EI(keyStr == "writeInt64BE")
-R CNF(File_writeInt64BE);
- EI(keyStr == "writeFloat32")
-R CNF(File_writeFloat32);
- EI(keyStr == "printf")
-R CNF(File_printf);
- EI(keyStr == "vprintf")
-R CNF(File_vprintf);
- EI(keyStr == "writeChar")
-R CNF(File_writeChar);
+R CNF(Float2_new);
+ EI(keyStr == "__add__")
+R CNF(Float2___add__);
+ EI(keyStr == "__sub__")
+R CNF(Float2___sub__);
+ EI(keyStr == "__mul__")
+R CNF(Float2___mul__);
+ EI(keyStr == "__div__")
+R CNF(Float2___div__);
+ EI(keyStr == "__eq__")
+R CNF(Float2___eq__);
+ EI(keyStr == "__neq__")
+R CNF(Float2___neq__);
+ EI(keyStr == "__less__")
+R CNF(Float2___less__);
+ EI(keyStr == "__grtr__")
+R CNF(Float2___grtr__);
+ EI(keyStr == "__leq__")
+R CNF(Float2___leq__);
+ EI(keyStr == "__geq__")
+R CNF(Float2___geq__);
+ EI(keyStr == "sum")
+R CNF(Float2_sum);
+ EI(keyStr == "length")
+R CNF(Float2_length);
+ EI(keyStr == "lengthSquared")
+R CNF(Float2_lengthSquared);
+ EI(keyStr == "dot")
+R CNF(Float2_dot);
+ EI(keyStr == "distance")
+R CNF(Float2_distance);
+ EI(keyStr == "distanceSquared")
+R CNF(Float2_distanceSquared);
+ EI(keyStr == "normalize")
+R CNF(Float2_normalize);
+ EI(keyStr == "getXY")
+R CNF(Float2_getXY);
+ EI(keyStr == "setXY")
+R CNF(Float2_setXY);
+ EI(keyStr == "getYX")
+R CNF(Float2_getYX);
+ EI(keyStr == "setYX")
+R CNF(Float2_setYX);
+ EI(keyStr=="x")
+{
+T2<float>*obj=(T2<float>*)F->data;
+R CV(obj->x);
+} EI(keyStr=="y")
+{
+T2<float>*obj=(T2<float>*)F->data;
+R CV(obj->y);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void Float2_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="x")
+{
+T2<float>*obj=(T2<float>*)F->data;
+obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
+} EI(keyStr=="y")
+{
+T2<float>*obj=(T2<float>*)F->data;
+obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV Float2_normalize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::normalize" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::normalize","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->normalize());
+;
+}
+CATE(TE,UFOF("Float2::normalize.")));
+R CN;
+}
+
+SV Float2_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::distance" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::distance","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV( F->distance(val_to_c<const T2<float> &>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Float2::distance.")));
+R CN;
+}
+
+SV Float2_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::lengthSquared" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::lengthSquared","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->lengthSquared());
+;
+}
+CATE(TE,UFOF("Float2::lengthSquared.")));
+R CN;
+}
+
+SV Float2___leq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__leq__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__leq__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F <= val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__leq__.")));
+R CN;
+}
+
+SV Float2_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::setYX" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::setYX","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Float2::setYX.")));
+R CN;
+}
+
+SV Float2___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__grtr__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__grtr__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F > val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__grtr__.")));
+R CN;
+}
+
+SV Float2_sum(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::sum" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::sum","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->sum());
+;
+}
+CATE(TE,UFOF("Float2::sum.")));
+R CN;
+}
+
+SV Float2_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::getXY" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::getXY","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXY());
+;
+}
+CATE(TE,UFOF("Float2::getXY.")));
+R CN;
+}
+
+SV Float2_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::length" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::length","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->length());
+;
+}
+CATE(TE,UFOF("Float2::length.")));
+R CN;
+}
+
+SV Float2_getYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::getYX" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::getYX","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYX());
+;
+}
+CATE(TE,UFOF("Float2::getYX.")));
+R CN;
+}
+
+SV Float2___div__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__div__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__div__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F / val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+R CV(*F / val_to_c<float>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__div__.")));
+R CN;
+}
+
+SV Float2_setXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::setXY" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::setXY","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Float2::setXY.")));
+R CN;
+}
+
+SV Float2___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__mul__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__mul__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F * val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+R CV(*F * val_to_c<float>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__mul__.")));
+R CN;
+}
+
+SV Float2___add__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__add__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__add__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F + val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+R CV(*F + val_to_c<float>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__add__.")));
+R CN;
+}
+
+SV Float2___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__less__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__less__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F < val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__less__.")));
+R CN;
+}
+
+SV Float2___sub__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__sub__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__sub__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F - val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+R CV(*F - val_to_c<float>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__sub__.")));
+R CN;
+}
+
+SV Float2___geq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__geq__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__geq__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F >= val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__geq__.")));
+R CN;
+}
+
+SV Float2_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::distanceSquared" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::distanceSquared","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV( F->distanceSquared(val_to_c<const T2<float> &>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Float2::distanceSquared.")));
+R CN;
+}
+
+SV Float2___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__eq__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__eq__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F == val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__eq__.")));
+R CN;
+}
+
+SV Float2_dot(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::dot" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::dot","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV( F->dot(val_to_c<const T2<float> &>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->dot());
+;
+}
+CATE(TE,UFOF("Float2::dot.")));
+R CN;
+}
+
+SV Float2___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__neq__" EAOE));
+T2<float>*F;
+if(!TS(T2<float>,a[0]))
+CATE(TE,FAE("Float2::__neq__","Float2")));
+else
+ F=(T2<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+R CV(*F != val_to_c<const T2<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("Float2::__neq__.")));
+R CN;
+}
+
+void Camera_destroy(CTX ctx,NO F)
+{
+if(!TS(Camera, (SV)F))
+CATE(TE,"Camera::__del__ expects Camera as first argument."));
+
+DELETE(Camera,(Camera *)F->data);
+}SV Camera_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera's constructor" EAOE));
+if(!TS(Camera,a[0]))
+CATE(TE,"Camera's constructor expects Camera as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(Camera_funcs,NEW(Camera),EXT->Camera_typeID);
+CATE(TE,UFOF("Camera's constructor.")));
+R CN;
+}
+
+SV Camera_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("Camera");
+EI(keyStr=="__new__")
+R CNF(Camera_new);
+EI(keyStr=="__call__")
+R CNF(Camera_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(Camera_new);
+ EI(keyStr == "setType")
+R CNF(Camera_setType);
+ EI(keyStr == "setPosition")
+R CNF(Camera_setPosition);
+ EI(keyStr == "setDirection")
+R CNF(Camera_setDirection);
+ EI(keyStr == "setUp")
+R CNF(Camera_setUp);
+ EI(keyStr == "setWidth")
+R CNF(Camera_setWidth);
+ EI(keyStr == "setHeight")
+R CNF(Camera_setHeight);
+ EI(keyStr == "setFieldOfView")
+R CNF(Camera_setFieldOfView);
+ EI(keyStr == "setLeft")
+R CNF(Camera_setLeft);
+ EI(keyStr == "setRight")
+R CNF(Camera_setRight);
+ EI(keyStr == "setBottom")
+R CNF(Camera_setBottom);
+ EI(keyStr == "setTop")
+R CNF(Camera_setTop);
+ EI(keyStr == "setNear")
+R CNF(Camera_setNear);
+ EI(keyStr == "setFar")
+R CNF(Camera_setFar);
+ EI(keyStr == "getType")
+R CNF(Camera_getType);
+ EI(keyStr == "getPosition")
+R CNF(Camera_getPosition);
+ EI(keyStr == "getDirection")
+R CNF(Camera_getDirection);
+ EI(keyStr == "getUp")
+R CNF(Camera_getUp);
+ EI(keyStr == "getWidth")
+R CNF(Camera_getWidth);
+ EI(keyStr == "getHeight")
+R CNF(Camera_getHeight);
+ EI(keyStr == "getFieldOfView")
+R CNF(Camera_getFieldOfView);
+ EI(keyStr == "getLeft")
+R CNF(Camera_getLeft);
+ EI(keyStr == "getRight")
+R CNF(Camera_getRight);
+ EI(keyStr == "getBottom")
+R CNF(Camera_getBottom);
+ EI(keyStr == "getTop")
+R CNF(Camera_getTop);
+ EI(keyStr == "getNear")
+R CNF(Camera_getNear);
+ EI(keyStr == "getFar")
+R CNF(Camera_getFar);
+ EI(keyStr == "getViewMatrix")
+R CNF(Camera_getViewMatrix);
+ EI(keyStr == "getProjectionMatrix")
+R CNF(Camera_getProjectionMatrix);
  else
  CATE(KE,"Unknown member."));
 }
@@ -6271,7 +6825,7 @@ R CNF(File_writeChar);
 R CN;
 }
 
-void File_set_member(CTX ctx,NO F,SV key,SV value)
+void Camera_set_member(CTX ctx,NO F,SV key,SV value)
 {
 if (key->type==S::ValueType::StringType)
 {
@@ -6286,793 +6840,3704 @@ if(0) {} else
 }
 }
 
-SV File_readFloat32(CTX ctx,const List<SV>&a)
+SV Camera_setBottom(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::readFloat32" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readFloat32","File")));
+CATE(VE,"Camera::setBottom" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setBottom","Camera")));
 else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readFloat32());
-;
-}
-CATE(TE,UFOF("File::readFloat32.")));
-R CN;
-}
-
-SV File_printf(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::printf" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::printf","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-CATE(TE,UFOF("File::printf.")));
-R CN;
-}
-
-SV File_readUInt8(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readUInt8" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt8","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readUInt8());
-;
-}
-CATE(TE,UFOF("File::readUInt8.")));
-R CN;
-}
-
-SV File_getSize(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::getSize" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::getSize","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getSize());
-;
-}
-CATE(TE,UFOF("File::getSize.")));
-R CN;
-}
-
-SV File_readInt32LE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt32LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt32LE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readInt32LE());
-;
-}
-CATE(TE,UFOF("File::readInt32LE.")));
-R CN;
-}
-
-SV File_flush(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::flush" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::flush","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( F->flush());
-R CN;
-}
-CATE(TE,UFOF("File::flush.")));
-R CN;
-}
-
-SV File_writeChar(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeChar" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeChar","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(char,a[1]))
-{
-( F->writeChar(val_to_c<char>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeChar.")));
-R CN;
-}
-
-SV File_seek(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::seek" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::seek","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-CATE(TE,UFOF("File::seek.")));
-R CN;
-}
-
-SV File_readInt8(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt8" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt8","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readInt8());
-;
-}
-CATE(TE,UFOF("File::readInt8.")));
-R CN;
-}
-
-SV File_readInt32BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt32BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt32BE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readInt32BE());
-;
-}
-CATE(TE,UFOF("File::readInt32BE.")));
-R CN;
-}
-
-SV File_writeInt32BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeInt32BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt32BE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
-{
-( F->writeInt32BE(val_to_c<int32_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeInt32BE.")));
-R CN;
-}
-
-SV File_readInt64LE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt64LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt64LE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readInt64LE());
-;
-}
-CATE(TE,UFOF("File::readInt64LE.")));
-R CN;
-}
-
-SV File_writeUInt32BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeUInt32BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt32BE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
-{
-( F->writeUInt32BE(val_to_c<uint32_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeUInt32BE.")));
-R CN;
-}
-
-SV File_writeUInt64LE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeUInt64LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt64LE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(uint64_t,a[1]))
-{
-( F->writeUInt64LE(val_to_c<uint64_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeUInt64LE.")));
-R CN;
-}
-
-SV File_write(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::write" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::write","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-CATE(TE,UFOF("File::write.")));
-R CN;
-}
-
-SV File_writeFloat32(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeFloat32" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeFloat32","File")));
-else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(float,a[1]))
 {
-( F->writeFloat32(val_to_c<float>::f(ctx,a[1])));
+( F->setBottom(val_to_c<float>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeFloat32.")));
+CATE(TE,UFOF("Camera::setBottom.")));
 R CN;
 }
 
-SV File_writeInt64BE(CTX ctx,const List<SV>&a)
+SV Camera_getRight(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::writeInt64BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt64BE","File")));
+CATE(VE,"Camera::getRight" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getRight","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRight());
+;
+}
+CATE(TE,UFOF("Camera::getRight.")));
+R CN;
+}
+
+SV Camera_setTop(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setTop" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setTop","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int64_t,a[1]))
+if(1&&TS(float,a[1]))
 {
-( F->writeInt64BE(val_to_c<int64_t>::f(ctx,a[1])));
+( F->setTop(val_to_c<float>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeInt64BE.")));
+CATE(TE,UFOF("Camera::setTop.")));
 R CN;
 }
 
-SV File_readUInt32LE(CTX ctx,const List<SV>&a)
+SV Camera_getWidth(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::readUInt32LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt32LE","File")));
+CATE(VE,"Camera::getWidth" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getWidth","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->readUInt32LE());
+R CV( F->getWidth());
 ;
 }
-CATE(TE,UFOF("File::readUInt32LE.")));
+CATE(TE,UFOF("Camera::getWidth.")));
 R CN;
 }
 
-SV File_tell(CTX ctx,const List<SV>&a)
+SV Camera_getDirection(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::tell" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::tell","File")));
+CATE(VE,"Camera::getDirection" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getDirection","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->tell());
+R CV( F->getDirection());
 ;
 }
-CATE(TE,UFOF("File::tell.")));
+CATE(TE,UFOF("Camera::getDirection.")));
 R CN;
 }
 
-SV File_writeUInt32LE(CTX ctx,const List<SV>&a)
+SV Camera_getFieldOfView(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::writeUInt32LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt32LE","File")));
+CATE(VE,"Camera::getFieldOfView" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getFieldOfView","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFieldOfView());
+;
+}
+CATE(TE,UFOF("Camera::getFieldOfView.")));
+R CN;
+}
+
+SV Camera_setWidth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setWidth" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setWidth","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(float,a[1]))
 {
-( F->writeUInt32LE(val_to_c<uint32_t>::f(ctx,a[1])));
+( F->setWidth(val_to_c<float>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeUInt32LE.")));
-R CN;
-}
-
-SV File_vprintf(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::vprintf" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::vprintf","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-CATE(TE,UFOF("File::vprintf.")));
+CATE(TE,UFOF("Camera::setWidth.")));
 R CN;
 }
 
-SV File_writeUInt64BE(CTX ctx,const List<SV>&a)
+SV Camera_setType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::writeUInt64BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt64BE","File")));
+CATE(VE,"Camera::setType" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setType","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint64_t,a[1]))
+if(1&&TS(CameraType,a[1]))
 {
-( F->writeUInt64BE(val_to_c<uint64_t>::f(ctx,a[1])));
+( F->setType(val_to_c<CameraType>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeUInt64BE.")));
+CATE(TE,UFOF("Camera::setType.")));
 R CN;
 }
 
-SV File_read(CTX ctx,const List<SV>&a)
+SV Camera_setDirection(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::read" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::read","File")));
+CATE(VE,"Camera::setDirection" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setDirection","Camera")));
 else
- F=(File*)((NO)a[0])->data;
-
-CATE(TE,UFOF("File::read.")));
-R CN;
-}
-
-SV File_readInt64BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt64BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt64BE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readInt64BE());
-;
-}
-CATE(TE,UFOF("File::readInt64BE.")));
-R CN;
-}
-
-SV File_writeInt16LE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeInt16LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt16LE","File")));
-else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int16_t,a[1]))
+if(1&&TS(const Direction3D &,a[1]))
 {
-( F->writeInt16LE(val_to_c<int16_t>::f(ctx,a[1])));
+( F->setDirection(val_to_c<const Direction3D &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeInt16LE.")));
+CATE(TE,UFOF("Camera::setDirection.")));
 R CN;
 }
 
-SV File_isAtEndOfFile(CTX ctx,const List<SV>&a)
+SV Camera_getLeft(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::isAtEndOfFile" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::isAtEndOfFile","File")));
+CATE(VE,"Camera::getLeft" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getLeft","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->isAtEndOfFile());
+R CV( F->getLeft());
 ;
 }
-CATE(TE,UFOF("File::isAtEndOfFile.")));
+CATE(TE,UFOF("Camera::getLeft.")));
 R CN;
 }
 
-SV File_writeInt64LE(CTX ctx,const List<SV>&a)
+SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::writeInt64LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt64LE","File")));
+CATE(VE,"Camera::getProjectionMatrix" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getProjectionMatrix","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getProjectionMatrix());
+;
+}
+CATE(TE,UFOF("Camera::getProjectionMatrix.")));
+R CN;
+}
+
+SV Camera_getHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getHeight" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getHeight","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getHeight());
+;
+}
+CATE(TE,UFOF("Camera::getHeight.")));
+R CN;
+}
+
+SV Camera_setFar(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setFar" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setFar","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int64_t,a[1]))
+if(1&&TS(float,a[1]))
 {
-( F->writeInt64LE(val_to_c<int64_t>::f(ctx,a[1])));
+( F->setFar(val_to_c<float>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeInt64LE.")));
+CATE(TE,UFOF("Camera::setFar.")));
 R CN;
 }
 
-SV File_readUInt32BE(CTX ctx,const List<SV>&a)
+SV Camera_setFieldOfView(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::readUInt32BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt32BE","File")));
+CATE(VE,"Camera::setFieldOfView" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setFieldOfView","Camera")));
 else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readUInt32BE());
-;
-}
-CATE(TE,UFOF("File::readUInt32BE.")));
-R CN;
-}
-
-SV File_readChar(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readChar" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readChar","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readChar());
-;
-}
-CATE(TE,UFOF("File::readChar.")));
-R CN;
-}
-
-SV File_readUInt16BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readUInt16BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt16BE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readUInt16BE());
-;
-}
-CATE(TE,UFOF("File::readUInt16BE.")));
-R CN;
-}
-
-SV File_writeInt32LE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeInt32LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt32LE","File")));
-else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(float,a[1]))
 {
-( F->writeInt32LE(val_to_c<int32_t>::f(ctx,a[1])));
+( F->setFieldOfView(val_to_c<float>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeInt32LE.")));
+CATE(TE,UFOF("Camera::setFieldOfView.")));
 R CN;
 }
 
-SV File_readUInt64LE(CTX ctx,const List<SV>&a)
+SV Camera_getTop(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::readUInt64LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt64LE","File")));
+CATE(VE,"Camera::getTop" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getTop","Camera")));
 else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->readUInt64LE());
+R CV( F->getTop());
 ;
 }
-CATE(TE,UFOF("File::readUInt64LE.")));
+CATE(TE,UFOF("Camera::getTop.")));
 R CN;
 }
 
-SV File_writeUInt16LE(CTX ctx,const List<SV>&a)
+SV Camera_getBottom(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::writeUInt16LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt16LE","File")));
+CATE(VE,"Camera::getBottom" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getBottom","Camera")));
 else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(uint16_t,a[1]))
-{
-( F->writeUInt16LE(val_to_c<uint16_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeUInt16LE.")));
-R CN;
-}
-
-SV File_writeInt8(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeInt8" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt8","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(int8_t,a[1]))
-{
-( F->writeInt8(val_to_c<int8_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeInt8.")));
-R CN;
-}
-
-SV File_readInt16BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt16BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt16BE","File")));
-else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->readInt16BE());
+R CV( F->getBottom());
 ;
 }
-CATE(TE,UFOF("File::readInt16BE.")));
+CATE(TE,UFOF("Camera::getBottom.")));
 R CN;
 }
 
-SV File_writeUInt16BE(CTX ctx,const List<SV>&a)
+SV Camera_getFar(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::writeUInt16BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt16BE","File")));
+CATE(VE,"Camera::getFar" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getFar","Camera")));
 else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(uint16_t,a[1]))
-{
-( F->writeUInt16BE(val_to_c<uint16_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeUInt16BE.")));
-R CN;
-}
-
-SV File_writeUInt8(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeUInt8" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeUInt8","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(uint8_t,a[1]))
-{
-( F->writeUInt8(val_to_c<uint8_t>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("File::writeUInt8.")));
-R CN;
-}
-
-SV File_readInt16LE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readInt16LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readInt16LE","File")));
-else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->readInt16LE());
+R CV( F->getFar());
 ;
 }
-CATE(TE,UFOF("File::readInt16LE.")));
+CATE(TE,UFOF("Camera::getFar.")));
 R CN;
 }
 
-SV File_readUInt16LE(CTX ctx,const List<SV>&a)
+SV Camera_setUp(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"File::readUInt16LE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt16LE","File")));
+CATE(VE,"Camera::setUp" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setUp","Camera")));
 else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readUInt16LE());
-;
-}
-CATE(TE,UFOF("File::readUInt16LE.")));
-R CN;
-}
-
-SV File_readUInt64BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::readUInt64BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::readUInt64BE","File")));
-else
- F=(File*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->readUInt64BE());
-;
-}
-CATE(TE,UFOF("File::readUInt64BE.")));
-R CN;
-}
-
-SV File_writeInt16BE(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"File::writeInt16BE" EAOE));
-File*F;
-if(!TS(File,a[0]))
-CATE(TE,FAE("File::writeInt16BE","File")));
-else
- F=(File*)((NO)a[0])->data;
+ F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int16_t,a[1]))
+if(1&&TS(const Direction3D &,a[1]))
 {
-( F->writeInt16BE(val_to_c<int16_t>::f(ctx,a[1])));
+( F->setUp(val_to_c<const Direction3D &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("File::writeInt16BE.")));
+CATE(TE,UFOF("Camera::setUp.")));
+R CN;
+}
+
+SV Camera_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getType" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getType","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("Camera::getType.")));
+R CN;
+}
+
+SV Camera_setNear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setNear" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setNear","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+( F->setNear(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Camera::setNear.")));
+R CN;
+}
+
+SV Camera_setPosition(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setPosition" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setPosition","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const Position3D &,a[1]))
+{
+( F->setPosition(val_to_c<const Position3D &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Camera::setPosition.")));
+R CN;
+}
+
+SV Camera_setLeft(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setLeft" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setLeft","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+( F->setLeft(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Camera::setLeft.")));
+R CN;
+}
+
+SV Camera_getPosition(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getPosition" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getPosition","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getPosition());
+;
+}
+CATE(TE,UFOF("Camera::getPosition.")));
+R CN;
+}
+
+SV Camera_setHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setHeight" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setHeight","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+( F->setHeight(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Camera::setHeight.")));
+R CN;
+}
+
+SV Camera_getViewMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getViewMatrix" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getViewMatrix","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getViewMatrix());
+;
+}
+CATE(TE,UFOF("Camera::getViewMatrix.")));
+R CN;
+}
+
+SV Camera_getNear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getNear" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getNear","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getNear());
+;
+}
+CATE(TE,UFOF("Camera::getNear.")));
+R CN;
+}
+
+SV Camera_setRight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setRight" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::setRight","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+( F->setRight(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Camera::setRight.")));
+R CN;
+}
+
+SV Camera_getUp(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getUp" EAOE));
+Camera*F;
+if(!TS(Camera,a[0]))
+CATE(TE,FAE("Camera::getUp","Camera")));
+else
+ F=(Camera*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getUp());
+;
+}
+CATE(TE,UFOF("Camera::getUp.")));
+R CN;
+}
+
+void UInt4_destroy(CTX ctx,NO F)
+{
+if(!TS(T4<uint32_t>, (SV)F))
+CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
+
+DELETE(T4<uint32_t>,(T4<uint32_t> *)F->data);
+}SV UInt4_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4's constructor" EAOE));
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,"UInt4's constructor expects UInt4 as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(UInt4_funcs,NEW(UInt4),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(float,a[1]))
+R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<float>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(a.getCount()==5)
+if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3])&&TS(float,a[4]))
+R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4])),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(const T4<float> &,a[1]))
+R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(const T4<int32_t> &,a[1]))
+R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(const T4<uint32_t> &,a[1]))
+R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+CATE(TE,UFOF("UInt4's constructor.")));
+R CN;
+}
+
+SV UInt4_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("UInt4");
+EI(keyStr=="__new__")
+R CNF(UInt4_new);
+EI(keyStr=="__call__")
+R CNF(UInt4_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(UInt4_new);
+ EI(keyStr == "__add__")
+R CNF(UInt4___add__);
+ EI(keyStr == "__sub__")
+R CNF(UInt4___sub__);
+ EI(keyStr == "__mul__")
+R CNF(UInt4___mul__);
+ EI(keyStr == "__div__")
+R CNF(UInt4___div__);
+ EI(keyStr == "__eq__")
+R CNF(UInt4___eq__);
+ EI(keyStr == "__neq__")
+R CNF(UInt4___neq__);
+ EI(keyStr == "__less__")
+R CNF(UInt4___less__);
+ EI(keyStr == "__grtr__")
+R CNF(UInt4___grtr__);
+ EI(keyStr == "__leq__")
+R CNF(UInt4___leq__);
+ EI(keyStr == "__geq__")
+R CNF(UInt4___geq__);
+ EI(keyStr == "sum")
+R CNF(UInt4_sum);
+ EI(keyStr == "length")
+R CNF(UInt4_length);
+ EI(keyStr == "lengthSquared")
+R CNF(UInt4_lengthSquared);
+ EI(keyStr == "dot")
+R CNF(UInt4_dot);
+ EI(keyStr == "distance")
+R CNF(UInt4_distance);
+ EI(keyStr == "distanceSquared")
+R CNF(UInt4_distanceSquared);
+ EI(keyStr == "normalize")
+R CNF(UInt4_normalize);
+ EI(keyStr == "getXY")
+R CNF(UInt4_getXY);
+ EI(keyStr == "setXY")
+R CNF(UInt4_setXY);
+ EI(keyStr == "getXZ")
+R CNF(UInt4_getXZ);
+ EI(keyStr == "setXZ")
+R CNF(UInt4_setXZ);
+ EI(keyStr == "getXW")
+R CNF(UInt4_getXW);
+ EI(keyStr == "setXW")
+R CNF(UInt4_setXW);
+ EI(keyStr == "getYX")
+R CNF(UInt4_getYX);
+ EI(keyStr == "setYX")
+R CNF(UInt4_setYX);
+ EI(keyStr == "getYZ")
+R CNF(UInt4_getYZ);
+ EI(keyStr == "setYZ")
+R CNF(UInt4_setYZ);
+ EI(keyStr == "getYW")
+R CNF(UInt4_getYW);
+ EI(keyStr == "setYW")
+R CNF(UInt4_setYW);
+ EI(keyStr == "getZX")
+R CNF(UInt4_getZX);
+ EI(keyStr == "setZX")
+R CNF(UInt4_setZX);
+ EI(keyStr == "getZY")
+R CNF(UInt4_getZY);
+ EI(keyStr == "setZY")
+R CNF(UInt4_setZY);
+ EI(keyStr == "getZW")
+R CNF(UInt4_getZW);
+ EI(keyStr == "setZW")
+R CNF(UInt4_setZW);
+ EI(keyStr == "getWX")
+R CNF(UInt4_getWX);
+ EI(keyStr == "setWX")
+R CNF(UInt4_setWX);
+ EI(keyStr == "getWY")
+R CNF(UInt4_getWY);
+ EI(keyStr == "setWY")
+R CNF(UInt4_setWY);
+ EI(keyStr == "getWZ")
+R CNF(UInt4_getWZ);
+ EI(keyStr == "setWZ")
+R CNF(UInt4_setWZ);
+ EI(keyStr == "getXYZ")
+R CNF(UInt4_getXYZ);
+ EI(keyStr == "setXYZ")
+R CNF(UInt4_setXYZ);
+ EI(keyStr == "getXYW")
+R CNF(UInt4_getXYW);
+ EI(keyStr == "setXYW")
+R CNF(UInt4_setXYW);
+ EI(keyStr == "getXZY")
+R CNF(UInt4_getXZY);
+ EI(keyStr == "setXZY")
+R CNF(UInt4_setXZY);
+ EI(keyStr == "getXZW")
+R CNF(UInt4_getXZW);
+ EI(keyStr == "setXZW")
+R CNF(UInt4_setXZW);
+ EI(keyStr == "getXWZ")
+R CNF(UInt4_getXWZ);
+ EI(keyStr == "setXWZ")
+R CNF(UInt4_setXWZ);
+ EI(keyStr == "getXWY")
+R CNF(UInt4_getXWY);
+ EI(keyStr == "setXWY")
+R CNF(UInt4_setXWY);
+ EI(keyStr == "getYXZ")
+R CNF(UInt4_getYXZ);
+ EI(keyStr == "setYXZ")
+R CNF(UInt4_setYXZ);
+ EI(keyStr == "getYXW")
+R CNF(UInt4_getYXW);
+ EI(keyStr == "setYXW")
+R CNF(UInt4_setYXW);
+ EI(keyStr == "getYZX")
+R CNF(UInt4_getYZX);
+ EI(keyStr == "setYZX")
+R CNF(UInt4_setYZX);
+ EI(keyStr == "getYZW")
+R CNF(UInt4_getYZW);
+ EI(keyStr == "setYZW")
+R CNF(UInt4_setYZW);
+ EI(keyStr == "getYWZ")
+R CNF(UInt4_getYWZ);
+ EI(keyStr == "setYWZ")
+R CNF(UInt4_setYWZ);
+ EI(keyStr == "getYWX")
+R CNF(UInt4_getYWX);
+ EI(keyStr == "setYWX")
+R CNF(UInt4_setYWX);
+ EI(keyStr == "getZXY")
+R CNF(UInt4_getZXY);
+ EI(keyStr == "setZXY")
+R CNF(UInt4_setZXY);
+ EI(keyStr == "getZXW")
+R CNF(UInt4_getZXW);
+ EI(keyStr == "setZXW")
+R CNF(UInt4_setZXW);
+ EI(keyStr == "getZYX")
+R CNF(UInt4_getZYX);
+ EI(keyStr == "setZYX")
+R CNF(UInt4_setZYX);
+ EI(keyStr == "getZYW")
+R CNF(UInt4_getZYW);
+ EI(keyStr == "setZYW")
+R CNF(UInt4_setZYW);
+ EI(keyStr == "getZWY")
+R CNF(UInt4_getZWY);
+ EI(keyStr == "setZWY")
+R CNF(UInt4_setZWY);
+ EI(keyStr == "getZWX")
+R CNF(UInt4_getZWX);
+ EI(keyStr == "setZWX")
+R CNF(UInt4_setZWX);
+ EI(keyStr == "getWXY")
+R CNF(UInt4_getWXY);
+ EI(keyStr == "setWXY")
+R CNF(UInt4_setWXY);
+ EI(keyStr == "getWXZ")
+R CNF(UInt4_getWXZ);
+ EI(keyStr == "setWXZ")
+R CNF(UInt4_setWXZ);
+ EI(keyStr == "getWYX")
+R CNF(UInt4_getWYX);
+ EI(keyStr == "setWYX")
+R CNF(UInt4_setWYX);
+ EI(keyStr == "getWYZ")
+R CNF(UInt4_getWYZ);
+ EI(keyStr == "setWYZ")
+R CNF(UInt4_setWYZ);
+ EI(keyStr == "getWZY")
+R CNF(UInt4_getWZY);
+ EI(keyStr == "setWZY")
+R CNF(UInt4_setWZY);
+ EI(keyStr == "getWZX")
+R CNF(UInt4_getWZX);
+ EI(keyStr == "setWZX")
+R CNF(UInt4_setWZX);
+ EI(keyStr == "getXYZW")
+R CNF(UInt4_getXYZW);
+ EI(keyStr == "setXYZW")
+R CNF(UInt4_setXYZW);
+ EI(keyStr == "getXYWZ")
+R CNF(UInt4_getXYWZ);
+ EI(keyStr == "setXYWZ")
+R CNF(UInt4_setXYWZ);
+ EI(keyStr == "getXZYW")
+R CNF(UInt4_getXZYW);
+ EI(keyStr == "setXZYW")
+R CNF(UInt4_setXZYW);
+ EI(keyStr == "getXZWY")
+R CNF(UInt4_getXZWY);
+ EI(keyStr == "setXZWY")
+R CNF(UInt4_setXZWY);
+ EI(keyStr == "getXWZY")
+R CNF(UInt4_getXWZY);
+ EI(keyStr == "setXWZY")
+R CNF(UInt4_setXWZY);
+ EI(keyStr == "getXWYZ")
+R CNF(UInt4_getXWYZ);
+ EI(keyStr == "setXWYZ")
+R CNF(UInt4_setXWYZ);
+ EI(keyStr == "getYXZW")
+R CNF(UInt4_getYXZW);
+ EI(keyStr == "setYXZW")
+R CNF(UInt4_setYXZW);
+ EI(keyStr == "getYXWZ")
+R CNF(UInt4_getYXWZ);
+ EI(keyStr == "setYXWZ")
+R CNF(UInt4_setYXWZ);
+ EI(keyStr == "getYZXW")
+R CNF(UInt4_getYZXW);
+ EI(keyStr == "setYZXW")
+R CNF(UInt4_setYZXW);
+ EI(keyStr == "getYZWX")
+R CNF(UInt4_getYZWX);
+ EI(keyStr == "setYZWX")
+R CNF(UInt4_setYZWX);
+ EI(keyStr == "getYWZX")
+R CNF(UInt4_getYWZX);
+ EI(keyStr == "setYWZX")
+R CNF(UInt4_setYWZX);
+ EI(keyStr == "getYWXZ")
+R CNF(UInt4_getYWXZ);
+ EI(keyStr == "setYWXZ")
+R CNF(UInt4_setYWXZ);
+ EI(keyStr == "getZYXW")
+R CNF(UInt4_getZYXW);
+ EI(keyStr == "setZYXW")
+R CNF(UInt4_setZYXW);
+ EI(keyStr == "getZYWX")
+R CNF(UInt4_getZYWX);
+ EI(keyStr == "setZYWX")
+R CNF(UInt4_setZYWX);
+ EI(keyStr == "getZXYW")
+R CNF(UInt4_getZXYW);
+ EI(keyStr == "setZXYW")
+R CNF(UInt4_setZXYW);
+ EI(keyStr == "getZXWY")
+R CNF(UInt4_getZXWY);
+ EI(keyStr == "setZXWY")
+R CNF(UInt4_setZXWY);
+ EI(keyStr == "getZWXY")
+R CNF(UInt4_getZWXY);
+ EI(keyStr == "setZWXY")
+R CNF(UInt4_setZWXY);
+ EI(keyStr == "getZWYX")
+R CNF(UInt4_getZWYX);
+ EI(keyStr == "setZWYX")
+R CNF(UInt4_setZWYX);
+ EI(keyStr == "getWYZX")
+R CNF(UInt4_getWYZX);
+ EI(keyStr == "setWYZX")
+R CNF(UInt4_setWYZX);
+ EI(keyStr == "getWYXZ")
+R CNF(UInt4_getWYXZ);
+ EI(keyStr == "setWYXZ")
+R CNF(UInt4_setWYXZ);
+ EI(keyStr == "getWZYX")
+R CNF(UInt4_getWZYX);
+ EI(keyStr == "setWZYX")
+R CNF(UInt4_setWZYX);
+ EI(keyStr == "getWZXY")
+R CNF(UInt4_getWZXY);
+ EI(keyStr == "setWZXY")
+R CNF(UInt4_setWZXY);
+ EI(keyStr == "getWXZY")
+R CNF(UInt4_getWXZY);
+ EI(keyStr == "setWXZY")
+R CNF(UInt4_setWXZY);
+ EI(keyStr == "getWXYZ")
+R CNF(UInt4_getWXYZ);
+ EI(keyStr == "setWXYZ")
+R CNF(UInt4_setWXYZ);
+ EI(keyStr=="x")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+R CV(obj->x);
+} EI(keyStr=="y")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+R CV(obj->y);
+} EI(keyStr=="z")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+R CV(obj->z);
+} EI(keyStr=="w")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+R CV(obj->w);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void UInt4_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="x")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
+} EI(keyStr=="y")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
+} EI(keyStr=="z")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
+} EI(keyStr=="w")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV UInt4_setZXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZXYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setZXYW(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZXYW.")));
+R CN;
+}
+
+SV UInt4_setWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setWYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWYZ.")));
+R CN;
+}
+
+SV UInt4_setWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setWYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWYX.")));
+R CN;
+}
+
+SV UInt4_getZWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZWYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZWYX());
+;
+}
+CATE(TE,UFOF("UInt4::getZWYX.")));
+R CN;
+}
+
+SV UInt4_getZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZW());
+;
+}
+CATE(TE,UFOF("UInt4::getZW.")));
+R CN;
+}
+
+SV UInt4_getZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZY());
+;
+}
+CATE(TE,UFOF("UInt4::getZY.")));
+R CN;
+}
+
+SV UInt4_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::distanceSquared" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::distanceSquared","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV( F->distanceSquared(val_to_c<const T4<float> &>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt4::distanceSquared.")));
+R CN;
+}
+
+SV UInt4_getYXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYXZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYXZW());
+;
+}
+CATE(TE,UFOF("UInt4::getYXZW.")));
+R CN;
+}
+
+SV UInt4_setYZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYZWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setYZWX(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYZWX.")));
+R CN;
+}
+
+SV UInt4_getYWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYWZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYWZX());
+;
+}
+CATE(TE,UFOF("UInt4::getYWZX.")));
+R CN;
+}
+
+SV UInt4_getWZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWZXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWZXY());
+;
+}
+CATE(TE,UFOF("UInt4::getWZXY.")));
+R CN;
+}
+
+SV UInt4_getZYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZYXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZYXW());
+;
+}
+CATE(TE,UFOF("UInt4::getZYXW.")));
+R CN;
+}
+
+SV UInt4_setXWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXWYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setXWYZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXWYZ.")));
+R CN;
+}
+
+SV UInt4_setZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setZY(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZY.")));
+R CN;
+}
+
+SV UInt4_setZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setZX(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZX.")));
+R CN;
+}
+
+SV UInt4_getZXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZXWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZXWY());
+;
+}
+CATE(TE,UFOF("UInt4::getZXWY.")));
+R CN;
+}
+
+SV UInt4_getXWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXWZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXWZY());
+;
+}
+CATE(TE,UFOF("UInt4::getXWZY.")));
+R CN;
+}
+
+SV UInt4_setZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setZW(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZW.")));
+R CN;
+}
+
+SV UInt4_setZYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZYWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setZYWX(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZYWX.")));
+R CN;
+}
+
+SV UInt4_getYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYZX());
+;
+}
+CATE(TE,UFOF("UInt4::getYZX.")));
+R CN;
+}
+
+SV UInt4_getXYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXYWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXYWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXYWZ.")));
+R CN;
+}
+
+SV UInt4_setYXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYXZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setYXZW(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYXZW.")));
+R CN;
+}
+
+SV UInt4_getWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWZY());
+;
+}
+CATE(TE,UFOF("UInt4::getWZY.")));
+R CN;
+}
+
+SV UInt4_getWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWZX());
+;
+}
+CATE(TE,UFOF("UInt4::getWZX.")));
+R CN;
+}
+
+SV UInt4_getWZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWZYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWZYX());
+;
+}
+CATE(TE,UFOF("UInt4::getWZYX.")));
+R CN;
+}
+
+SV UInt4_setXWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXWZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setXWZY(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXWZY.")));
+R CN;
+}
+
+SV UInt4_getZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZXY());
+;
+}
+CATE(TE,UFOF("UInt4::getZXY.")));
+R CN;
+}
+
+SV UInt4_setWZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWZYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setWZYX(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWZYX.")));
+R CN;
+}
+
+SV UInt4_setZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setZYW(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZYW.")));
+R CN;
+}
+
+SV UInt4_setZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setZYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZYX.")));
+R CN;
+}
+
+SV UInt4_setXZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXZYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setXZYW(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXZYW.")));
+R CN;
+}
+
+SV UInt4_getZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZXW());
+;
+}
+CATE(TE,UFOF("UInt4::getZXW.")));
+R CN;
+}
+
+SV UInt4_setYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYZW(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYZW.")));
+R CN;
+}
+
+SV UInt4_getYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYWZ.")));
+R CN;
+}
+
+SV UInt4___leq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__leq__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__leq__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F <= val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__leq__.")));
+R CN;
+}
+
+SV UInt4_getYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYWX());
+;
+}
+CATE(TE,UFOF("UInt4::getYWX.")));
+R CN;
+}
+
+SV UInt4_sum(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::sum" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::sum","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->sum());
+;
+}
+CATE(TE,UFOF("UInt4::sum.")));
+R CN;
+}
+
+SV UInt4_setYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYZX.")));
+R CN;
+}
+
+SV UInt4_getXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXYZ.")));
+R CN;
+}
+
+SV UInt4_getZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZX());
+;
+}
+CATE(TE,UFOF("UInt4::getZX.")));
+R CN;
+}
+
+SV UInt4_getXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXYW());
+;
+}
+CATE(TE,UFOF("UInt4::getXYW.")));
+R CN;
+}
+
+SV UInt4_setYWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYWZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setYWZX(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYWZX.")));
+R CN;
+}
+
+SV UInt4_setWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setWXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWXY.")));
+R CN;
+}
+
+SV UInt4_setWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setWXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWXZ.")));
+R CN;
+}
+
+SV UInt4_setZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setZXW(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZXW.")));
+R CN;
+}
+
+SV UInt4_getXWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXWYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXWYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXWYZ.")));
+R CN;
+}
+
+SV UInt4_setWYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWYXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setWYXZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWYXZ.")));
+R CN;
+}
+
+SV UInt4_setZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setZXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZXY.")));
+R CN;
+}
+
+SV UInt4_getXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXWY());
+;
+}
+CATE(TE,UFOF("UInt4::getXWY.")));
+R CN;
+}
+
+SV UInt4_getYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYXW());
+;
+}
+CATE(TE,UFOF("UInt4::getYXW.")));
+R CN;
+}
+
+SV UInt4_getYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYXZ.")));
+R CN;
+}
+
+SV UInt4_setXYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXYWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setXYWZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXYWZ.")));
+R CN;
+}
+
+SV UInt4_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::length" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::length","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->length());
+;
+}
+CATE(TE,UFOF("UInt4::length.")));
+R CN;
+}
+
+SV UInt4_setWXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWXZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setWXZY(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWXZY.")));
+R CN;
+}
+
+SV UInt4_getYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYZW());
+;
+}
+CATE(TE,UFOF("UInt4::getYZW.")));
+R CN;
+}
+
+SV UInt4_setXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setXWZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXWZ.")));
+R CN;
+}
+
+SV UInt4_setXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setXWY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXWY.")));
+R CN;
+}
+
+SV UInt4_getWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWYZ.")));
+R CN;
+}
+
+SV UInt4_getWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWYX());
+;
+}
+CATE(TE,UFOF("UInt4::getWYX.")));
+R CN;
+}
+
+SV UInt4_getZYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZYWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZYWX());
+;
+}
+CATE(TE,UFOF("UInt4::getZYWX.")));
+R CN;
+}
+
+SV UInt4_getXYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXYZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXYZW());
+;
+}
+CATE(TE,UFOF("UInt4::getXYZW.")));
+R CN;
+}
+
+SV UInt4_setZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setZWY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZWY.")));
+R CN;
+}
+
+SV UInt4_setZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setZWX(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZWX.")));
+R CN;
+}
+
+SV UInt4_setWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setWX(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWX.")));
+R CN;
+}
+
+SV UInt4_setWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setWY(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWY.")));
+R CN;
+}
+
+SV UInt4_setWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setWZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWZ.")));
+R CN;
+}
+
+SV UInt4_getZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZWY());
+;
+}
+CATE(TE,UFOF("UInt4::getZWY.")));
+R CN;
+}
+
+SV UInt4_getZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZWX());
+;
+}
+CATE(TE,UFOF("UInt4::getZWX.")));
+R CN;
+}
+
+SV UInt4_setYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYXZ.")));
+R CN;
+}
+
+SV UInt4_setYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYXW(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYXW.")));
+R CN;
+}
+
+SV UInt4_getXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXWZ.")));
+R CN;
+}
+
+SV UInt4_getXZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXZWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXZWY());
+;
+}
+CATE(TE,UFOF("UInt4::getXZWY.")));
+R CN;
+}
+
+SV UInt4___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__less__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__less__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F < val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__less__.")));
+R CN;
+}
+
+SV UInt4_getZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZYW());
+;
+}
+CATE(TE,UFOF("UInt4::getZYW.")));
+R CN;
+}
+
+SV UInt4_setWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setWZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWZY.")));
+R CN;
+}
+
+SV UInt4_setWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setWZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWZX.")));
+R CN;
+}
+
+SV UInt4_setZYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZYXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setZYXW(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZYXW.")));
+R CN;
+}
+
+SV UInt4_getYZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYZWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYZWX());
+;
+}
+CATE(TE,UFOF("UInt4::getYZWX.")));
+R CN;
+}
+
+SV UInt4_getZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZYX());
+;
+}
+CATE(TE,UFOF("UInt4::getZYX.")));
+R CN;
+}
+
+SV UInt4_getXZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXZYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXZYW());
+;
+}
+CATE(TE,UFOF("UInt4::getXZYW.")));
+R CN;
+}
+
+SV UInt4_setYXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYXWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setYXWZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYXWZ.")));
+R CN;
+}
+
+SV UInt4___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__eq__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__eq__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F == val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__eq__.")));
+R CN;
+}
+
+SV UInt4_getWYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWYXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWYXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWYXZ.")));
+R CN;
+}
+
+SV UInt4_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::distance" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::distance","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV( F->distance(val_to_c<const T4<float> &>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt4::distance.")));
+R CN;
+}
+
+SV UInt4_getXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXZW());
+;
+}
+CATE(TE,UFOF("UInt4::getXZW.")));
+R CN;
+}
+
+SV UInt4_setYZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYZXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setYZXW(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYZXW.")));
+R CN;
+}
+
+SV UInt4_getZWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZWXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZWXY());
+;
+}
+CATE(TE,UFOF("UInt4::getZWXY.")));
+R CN;
+}
+
+SV UInt4_getXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXZY());
+;
+}
+CATE(TE,UFOF("UInt4::getXZY.")));
+R CN;
+}
+
+SV UInt4_getYZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYZXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYZXW());
+;
+}
+CATE(TE,UFOF("UInt4::getYZXW.")));
+R CN;
+}
+
+SV UInt4_setZWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZWYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setZWYX(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZWYX.")));
+R CN;
+}
+
+SV UInt4___sub__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__sub__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__sub__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F - val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(const float&,a[1]))
+{
+R CV(*F - val_to_c<const float&>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__sub__.")));
+R CN;
+}
+
+SV UInt4_getYXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYXWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYXWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYXWZ.")));
+R CN;
+}
+
+SV UInt4_setXZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXZWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setXZWY(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXZWY.")));
+R CN;
+}
+
+SV UInt4_setYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYWZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYWZ.")));
+R CN;
+}
+
+SV UInt4_setYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYWX(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYWX.")));
+R CN;
+}
+
+SV UInt4_setYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setYZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYZ.")));
+R CN;
+}
+
+SV UInt4_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYX.")));
+R CN;
+}
+
+SV UInt4_setYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setYW(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYW.")));
+R CN;
+}
+
+SV UInt4_getWXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWXYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWXYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWXYZ.")));
+R CN;
+}
+
+SV UInt4___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__neq__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__neq__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F != val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__neq__.")));
+R CN;
+}
+
+SV UInt4_normalize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::normalize" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::normalize","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->normalize());
+;
+}
+CATE(TE,UFOF("UInt4::normalize.")));
+R CN;
+}
+
+SV UInt4_getYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYX());
+;
+}
+CATE(TE,UFOF("UInt4::getYX.")));
+R CN;
+}
+
+SV UInt4_setXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setXZW(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXZW.")));
+R CN;
+}
+
+SV UInt4_setXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setXZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXZY.")));
+R CN;
+}
+
+SV UInt4_setXYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYZW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXYZW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setXYZW(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXYZW.")));
+R CN;
+}
+
+SV UInt4_getYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYW());
+;
+}
+CATE(TE,UFOF("UInt4::getYW.")));
+R CN;
+}
+
+SV UInt4_setWXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWXYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setWXYZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWXYZ.")));
+R CN;
+}
+
+SV UInt4_getYWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYWXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYWXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYWXZ.")));
+R CN;
+}
+
+SV UInt4___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__mul__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__mul__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F * val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(const float&,a[1]))
+{
+R CV(*F * val_to_c<const float&>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__mul__.")));
+R CN;
+}
+
+SV UInt4_getYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYZ.")));
+R CN;
+}
+
+SV UInt4_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::lengthSquared" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::lengthSquared","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->lengthSquared());
+;
+}
+CATE(TE,UFOF("UInt4::lengthSquared.")));
+R CN;
+}
+
+SV UInt4_getWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWXY());
+;
+}
+CATE(TE,UFOF("UInt4::getWXY.")));
+R CN;
+}
+
+SV UInt4_getWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWXZ.")));
+R CN;
+}
+
+SV UInt4_getWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWX());
+;
+}
+CATE(TE,UFOF("UInt4::getWX.")));
+R CN;
+}
+
+SV UInt4_getWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWY());
+;
+}
+CATE(TE,UFOF("UInt4::getWY.")));
+R CN;
+}
+
+SV UInt4_getWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWZ.")));
+R CN;
+}
+
+SV UInt4_setXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXY.")));
+R CN;
+}
+
+SV UInt4_getZXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getZXYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getZXYW());
+;
+}
+CATE(TE,UFOF("UInt4::getZXYW.")));
+R CN;
+}
+
+SV UInt4___add__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__add__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__add__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F + val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(const float&,a[1]))
+{
+R CV(*F + val_to_c<const float&>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__add__.")));
+R CN;
+}
+
+SV UInt4_setXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setXZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXZ.")));
+R CN;
+}
+
+SV UInt4_getWYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWYZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWYZX());
+;
+}
+CATE(TE,UFOF("UInt4::getWYZX.")));
+R CN;
+}
+
+SV UInt4_setXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
+{
+( F->setXW(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXW.")));
+R CN;
+}
+
+SV UInt4_getWXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXZY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getWXZY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWXZY());
+;
+}
+CATE(TE,UFOF("UInt4::getWXZY.")));
+R CN;
+}
+
+SV UInt4_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXY());
+;
+}
+CATE(TE,UFOF("UInt4::getXY.")));
+R CN;
+}
+
+SV UInt4_setZXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXWY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZXWY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setZXWY(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZXWY.")));
+R CN;
+}
+
+SV UInt4_setXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXYW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setXYW(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXYW.")));
+R CN;
+}
+
+SV UInt4_getXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXZ.")));
+R CN;
+}
+
+SV UInt4_setWZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWZXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setWZXY(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWZXY.")));
+R CN;
+}
+
+SV UInt4___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__grtr__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__grtr__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F > val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__grtr__.")));
+R CN;
+}
+
+SV UInt4_setZWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWXY" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setZWXY","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setZWXY(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setZWXY.")));
+R CN;
+}
+
+SV UInt4_getXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXW" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::getXW","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getXW());
+;
+}
+CATE(TE,UFOF("UInt4::getXW.")));
+R CN;
+}
+
+SV UInt4_setXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setXYZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setXYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setXYZ.")));
+R CN;
+}
+
+SV UInt4___div__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__div__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__div__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F / val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+if(a.getCount()==2)
+if(1&&TS(const float&,a[1]))
+{
+R CV(*F / val_to_c<const float&>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__div__.")));
+R CN;
+}
+
+SV UInt4_setWYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYZX" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setWYZX","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setWYZX(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setWYZX.")));
+R CN;
+}
+
+SV UInt4_setYWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWXZ" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::setYWXZ","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+( F->setYWXZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt4::setYWXZ.")));
+R CN;
+}
+
+SV UInt4___geq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__geq__" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::__geq__","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV(*F >= val_to_c<const T4<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt4::__geq__.")));
+R CN;
+}
+
+SV UInt4_dot(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::dot" EAOE));
+T4<uint32_t>*F;
+if(!TS(T4<uint32_t>,a[0]))
+CATE(TE,FAE("UInt4::dot","UInt4")));
+else
+ F=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T4<float> &,a[1]))
+{
+R CV( F->dot(val_to_c<const T4<float> &>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->dot());
+;
+}
+CATE(TE,UFOF("UInt4::dot.")));
 R CN;
 }
 
@@ -8116,1259 +11581,6 @@ R CV( F->dot());
 ;
 }
 CATE(TE,UFOF("Int3::dot.")));
-R CN;
-}
-
-void Camera_destroy(CTX ctx,NO F)
-{
-if(!TS(Camera, (SV)F))
-CATE(TE,"Camera::__del__ expects Camera as first argument."));
-
-DELETE(Camera,(Camera *)F->data);
-}SV Camera_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera's constructor" EAOE));
-if(!TS(Camera,a[0]))
-CATE(TE,"Camera's constructor expects Camera as first argument."));
-if(a.getCount()==1)
-if(true)
-R S::createNativeObject(Camera_funcs,NEW(Camera),EXT->Camera_typeID);
-CATE(TE,UFOF("Camera's constructor.")));
-R CN;
-}
-
-SV Camera_get_member(CTX ctx,NO F,SV key)
-{
-if (key->type==S::ValueType::StringType)
-{
-String keyStr=((S::StringValue *)key)->value;
-if(F->data==NULL)
-{
-if(keyStr=="__typeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__name__")
-R S::createString("Camera");
-EI(keyStr=="__new__")
-R CNF(Camera_new);
-EI(keyStr=="__call__")
-R CNF(Camera_new);
-else
- CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="__classTypeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__init__")
-R CNF(Camera_new);
- EI(keyStr == "setType")
-R CNF(Camera_setType);
- EI(keyStr == "setPosition")
-R CNF(Camera_setPosition);
- EI(keyStr == "setDirection")
-R CNF(Camera_setDirection);
- EI(keyStr == "setUp")
-R CNF(Camera_setUp);
- EI(keyStr == "setWidth")
-R CNF(Camera_setWidth);
- EI(keyStr == "setHeight")
-R CNF(Camera_setHeight);
- EI(keyStr == "setFieldOfView")
-R CNF(Camera_setFieldOfView);
- EI(keyStr == "setLeft")
-R CNF(Camera_setLeft);
- EI(keyStr == "setRight")
-R CNF(Camera_setRight);
- EI(keyStr == "setBottom")
-R CNF(Camera_setBottom);
- EI(keyStr == "setTop")
-R CNF(Camera_setTop);
- EI(keyStr == "setNear")
-R CNF(Camera_setNear);
- EI(keyStr == "setFar")
-R CNF(Camera_setFar);
- EI(keyStr == "getType")
-R CNF(Camera_getType);
- EI(keyStr == "getPosition")
-R CNF(Camera_getPosition);
- EI(keyStr == "getDirection")
-R CNF(Camera_getDirection);
- EI(keyStr == "getUp")
-R CNF(Camera_getUp);
- EI(keyStr == "getWidth")
-R CNF(Camera_getWidth);
- EI(keyStr == "getHeight")
-R CNF(Camera_getHeight);
- EI(keyStr == "getFieldOfView")
-R CNF(Camera_getFieldOfView);
- EI(keyStr == "getLeft")
-R CNF(Camera_getLeft);
- EI(keyStr == "getRight")
-R CNF(Camera_getRight);
- EI(keyStr == "getBottom")
-R CNF(Camera_getBottom);
- EI(keyStr == "getTop")
-R CNF(Camera_getTop);
- EI(keyStr == "getNear")
-R CNF(Camera_getNear);
- EI(keyStr == "getFar")
-R CNF(Camera_getFar);
- EI(keyStr == "getViewMatrix")
-R CNF(Camera_getViewMatrix);
- EI(keyStr == "getProjectionMatrix")
-R CNF(Camera_getProjectionMatrix);
- else
- CATE(KE,"Unknown member."));
-}
-}
-R CN;
-}
-
-void Camera_set_member(CTX ctx,NO F,SV key,SV value)
-{
-if (key->type==S::ValueType::StringType)
-{
-String keyStr=((S::StringValue*)key)->value;
-if(F->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV Camera_setBottom(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setBottom" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setBottom","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setBottom(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setBottom.")));
-R CN;
-}
-
-SV Camera_getRight(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getRight" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getRight","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getRight());
-;
-}
-CATE(TE,UFOF("Camera::getRight.")));
-R CN;
-}
-
-SV Camera_setTop(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setTop" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setTop","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setTop(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setTop.")));
-R CN;
-}
-
-SV Camera_getWidth(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getWidth" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getWidth","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWidth());
-;
-}
-CATE(TE,UFOF("Camera::getWidth.")));
-R CN;
-}
-
-SV Camera_getDirection(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getDirection" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getDirection","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getDirection());
-;
-}
-CATE(TE,UFOF("Camera::getDirection.")));
-R CN;
-}
-
-SV Camera_getFieldOfView(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getFieldOfView" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getFieldOfView","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getFieldOfView());
-;
-}
-CATE(TE,UFOF("Camera::getFieldOfView.")));
-R CN;
-}
-
-SV Camera_setWidth(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setWidth" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setWidth","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setWidth(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setWidth.")));
-R CN;
-}
-
-SV Camera_setType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setType" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setType","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(CameraType,a[1]))
-{
-( F->setType(val_to_c<CameraType>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setType.")));
-R CN;
-}
-
-SV Camera_setDirection(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setDirection" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setDirection","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const Direction3D &,a[1]))
-{
-( F->setDirection(val_to_c<const Direction3D &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setDirection.")));
-R CN;
-}
-
-SV Camera_getLeft(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getLeft" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getLeft","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getLeft());
-;
-}
-CATE(TE,UFOF("Camera::getLeft.")));
-R CN;
-}
-
-SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getProjectionMatrix" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getProjectionMatrix","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getProjectionMatrix());
-;
-}
-CATE(TE,UFOF("Camera::getProjectionMatrix.")));
-R CN;
-}
-
-SV Camera_getHeight(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getHeight" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getHeight","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getHeight());
-;
-}
-CATE(TE,UFOF("Camera::getHeight.")));
-R CN;
-}
-
-SV Camera_setFar(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setFar" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setFar","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setFar(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setFar.")));
-R CN;
-}
-
-SV Camera_setFieldOfView(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setFieldOfView" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setFieldOfView","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setFieldOfView(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setFieldOfView.")));
-R CN;
-}
-
-SV Camera_getTop(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getTop" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getTop","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getTop());
-;
-}
-CATE(TE,UFOF("Camera::getTop.")));
-R CN;
-}
-
-SV Camera_getBottom(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getBottom" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getBottom","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getBottom());
-;
-}
-CATE(TE,UFOF("Camera::getBottom.")));
-R CN;
-}
-
-SV Camera_getFar(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getFar" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getFar","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getFar());
-;
-}
-CATE(TE,UFOF("Camera::getFar.")));
-R CN;
-}
-
-SV Camera_setUp(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setUp" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setUp","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const Direction3D &,a[1]))
-{
-( F->setUp(val_to_c<const Direction3D &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setUp.")));
-R CN;
-}
-
-SV Camera_getType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getType" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getType","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getType());
-;
-}
-CATE(TE,UFOF("Camera::getType.")));
-R CN;
-}
-
-SV Camera_setNear(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setNear" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setNear","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setNear(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setNear.")));
-R CN;
-}
-
-SV Camera_setPosition(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setPosition" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setPosition","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const Position3D &,a[1]))
-{
-( F->setPosition(val_to_c<const Position3D &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setPosition.")));
-R CN;
-}
-
-SV Camera_setLeft(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setLeft" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setLeft","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setLeft(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setLeft.")));
-R CN;
-}
-
-SV Camera_getPosition(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getPosition" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getPosition","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getPosition());
-;
-}
-CATE(TE,UFOF("Camera::getPosition.")));
-R CN;
-}
-
-SV Camera_setHeight(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setHeight" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setHeight","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setHeight(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setHeight.")));
-R CN;
-}
-
-SV Camera_getViewMatrix(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getViewMatrix" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getViewMatrix","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getViewMatrix());
-;
-}
-CATE(TE,UFOF("Camera::getViewMatrix.")));
-R CN;
-}
-
-SV Camera_getNear(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getNear" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getNear","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getNear());
-;
-}
-CATE(TE,UFOF("Camera::getNear.")));
-R CN;
-}
-
-SV Camera_setRight(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::setRight" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::setRight","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-( F->setRight(val_to_c<float>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Camera::setRight.")));
-R CN;
-}
-
-SV Camera_getUp(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Camera::getUp" EAOE));
-Camera*F;
-if(!TS(Camera,a[0]))
-CATE(TE,FAE("Camera::getUp","Camera")));
-else
- F=(Camera*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getUp());
-;
-}
-CATE(TE,UFOF("Camera::getUp.")));
-R CN;
-}
-
-void Float2_destroy(CTX ctx,NO F)
-{
-if(!TS(T2<float>, (SV)F))
-CATE(TE,"Float2::__del__ expects Float2 as first argument."));
-
-DELETE(T2<float>,(T2<float> *)F->data);
-}SV Float2_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2's constructor" EAOE));
-if(!TS(T2<float>,a[0]))
-CATE(TE,"Float2's constructor expects Float2 as first argument."));
-if(a.getCount()==1)
-if(true)
-R S::createNativeObject(Float2_funcs,NEW(Float2),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(float,a[1]))
-R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<float>::f(ctx,a[1])),EXT->Float2_typeID);
-if(a.getCount()==3)
-if(true&&TS(float,a[1])&&TS(float,a[2]))
-R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2])),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(const T2<float> &,a[1]))
-R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(const T2<int32_t> &,a[1]))
-R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(const T2<uint32_t> &,a[1]))
-R S::createNativeObject(Float2_funcs,NEW(Float2,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
-CATE(TE,UFOF("Float2's constructor.")));
-R CN;
-}
-
-SV Float2_get_member(CTX ctx,NO F,SV key)
-{
-if (key->type==S::ValueType::StringType)
-{
-String keyStr=((S::StringValue *)key)->value;
-if(F->data==NULL)
-{
-if(keyStr=="__typeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__name__")
-R S::createString("Float2");
-EI(keyStr=="__new__")
-R CNF(Float2_new);
-EI(keyStr=="__call__")
-R CNF(Float2_new);
-else
- CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="__classTypeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__init__")
-R CNF(Float2_new);
- EI(keyStr == "__add__")
-R CNF(Float2___add__);
- EI(keyStr == "__sub__")
-R CNF(Float2___sub__);
- EI(keyStr == "__mul__")
-R CNF(Float2___mul__);
- EI(keyStr == "__div__")
-R CNF(Float2___div__);
- EI(keyStr == "__eq__")
-R CNF(Float2___eq__);
- EI(keyStr == "__neq__")
-R CNF(Float2___neq__);
- EI(keyStr == "__less__")
-R CNF(Float2___less__);
- EI(keyStr == "__grtr__")
-R CNF(Float2___grtr__);
- EI(keyStr == "__leq__")
-R CNF(Float2___leq__);
- EI(keyStr == "__geq__")
-R CNF(Float2___geq__);
- EI(keyStr == "sum")
-R CNF(Float2_sum);
- EI(keyStr == "length")
-R CNF(Float2_length);
- EI(keyStr == "lengthSquared")
-R CNF(Float2_lengthSquared);
- EI(keyStr == "dot")
-R CNF(Float2_dot);
- EI(keyStr == "distance")
-R CNF(Float2_distance);
- EI(keyStr == "distanceSquared")
-R CNF(Float2_distanceSquared);
- EI(keyStr == "normalize")
-R CNF(Float2_normalize);
- EI(keyStr == "getXY")
-R CNF(Float2_getXY);
- EI(keyStr == "setXY")
-R CNF(Float2_setXY);
- EI(keyStr == "getYX")
-R CNF(Float2_getYX);
- EI(keyStr == "setYX")
-R CNF(Float2_setYX);
- EI(keyStr=="x")
-{
-T2<float>*obj=(T2<float>*)F->data;
-R CV(obj->x);
-} EI(keyStr=="y")
-{
-T2<float>*obj=(T2<float>*)F->data;
-R CV(obj->y);
-} else
- CATE(KE,"Unknown member."));
-}
-}
-R CN;
-}
-
-void Float2_set_member(CTX ctx,NO F,SV key,SV value)
-{
-if (key->type==S::ValueType::StringType)
-{
-String keyStr=((S::StringValue*)key)->value;
-if(F->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} EI(keyStr=="x")
-{
-T2<float>*obj=(T2<float>*)F->data;
-obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
-{
-T2<float>*obj=(T2<float>*)F->data;
-obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV Float2_normalize(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::normalize" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::normalize","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->normalize());
-;
-}
-CATE(TE,UFOF("Float2::normalize.")));
-R CN;
-}
-
-SV Float2_distance(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::distance" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::distance","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV( F->distance(val_to_c<const T2<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Float2::distance.")));
-R CN;
-}
-
-SV Float2_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::lengthSquared" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::lengthSquared","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->lengthSquared());
-;
-}
-CATE(TE,UFOF("Float2::lengthSquared.")));
-R CN;
-}
-
-SV Float2___leq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__leq__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__leq__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F <= val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__leq__.")));
-R CN;
-}
-
-SV Float2_setYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::setYX" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::setYX","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Float2::setYX.")));
-R CN;
-}
-
-SV Float2___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__grtr__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__grtr__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F > val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__grtr__.")));
-R CN;
-}
-
-SV Float2_sum(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::sum" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::sum","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->sum());
-;
-}
-CATE(TE,UFOF("Float2::sum.")));
-R CN;
-}
-
-SV Float2_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::getXY" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::getXY","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXY());
-;
-}
-CATE(TE,UFOF("Float2::getXY.")));
-R CN;
-}
-
-SV Float2_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::length" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::length","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->length());
-;
-}
-CATE(TE,UFOF("Float2::length.")));
-R CN;
-}
-
-SV Float2_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::getYX" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::getYX","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYX());
-;
-}
-CATE(TE,UFOF("Float2::getYX.")));
-R CN;
-}
-
-SV Float2___div__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__div__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__div__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F / val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-R CV(*F / val_to_c<float>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__div__.")));
-R CN;
-}
-
-SV Float2_setXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::setXY" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::setXY","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("Float2::setXY.")));
-R CN;
-}
-
-SV Float2___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__mul__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__mul__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F * val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-R CV(*F * val_to_c<float>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__mul__.")));
-R CN;
-}
-
-SV Float2___add__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__add__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__add__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F + val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-R CV(*F + val_to_c<float>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__add__.")));
-R CN;
-}
-
-SV Float2___less__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__less__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__less__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F < val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__less__.")));
-R CN;
-}
-
-SV Float2___sub__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__sub__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__sub__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F - val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(float,a[1]))
-{
-R CV(*F - val_to_c<float>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__sub__.")));
-R CN;
-}
-
-SV Float2___geq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__geq__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__geq__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F >= val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__geq__.")));
-R CN;
-}
-
-SV Float2_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::distanceSquared" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::distanceSquared","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV( F->distanceSquared(val_to_c<const T2<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Float2::distanceSquared.")));
-R CN;
-}
-
-SV Float2___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__eq__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__eq__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F == val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__eq__.")));
-R CN;
-}
-
-SV Float2_dot(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::dot" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::dot","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV( F->dot(val_to_c<const T2<float> &>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->dot());
-;
-}
-CATE(TE,UFOF("Float2::dot.")));
-R CN;
-}
-
-SV Float2___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__neq__" EAOE));
-T2<float>*F;
-if(!TS(T2<float>,a[0]))
-CATE(TE,FAE("Float2::__neq__","Float2")));
-else
- F=(T2<float>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-R CV(*F != val_to_c<const T2<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("Float2::__neq__.")));
 R CN;
 }
 
@@ -13556,6 +15768,136 @@ CATE(TE,UFOF("Float3::dot.")));
 R CN;
 }
 
+void GfxBuffer_destroy(CTX ctx,NO F)
+{
+if(!TS(GfxBuffer, (SV)F))
+CATE(TE,"GfxBuffer::__del__ expects GfxBuffer as first argument."));
+
+DELETE(GfxBuffer,(GfxBuffer *)F->data);
+}SV GfxBuffer_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxBuffer's constructor" EAOE));
+if(!TS(GfxBuffer,a[0]))
+CATE(TE,"GfxBuffer's constructor expects GfxBuffer as first argument."));
+CATE(TE,UFOF("GfxBuffer's constructor.")));
+}
+
+SV GfxBuffer_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxBuffer");
+EI(keyStr=="__new__")
+R CNF(GfxBuffer_new);
+EI(keyStr=="__call__")
+R CNF(GfxBuffer_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxBuffer_new);
+ EI(keyStr == "allocData")
+R CNF(GfxBuffer_allocData);
+ EI(keyStr == "setData")
+R CNF(GfxBuffer_setData);
+ EI(keyStr == "getData")
+R CNF(GfxBuffer_getData);
+ EI(keyStr == "getSize")
+R CNF(GfxBuffer_getSize);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxBuffer_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxBuffer_getSize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxBuffer::getSize" EAOE));
+GfxBuffer*F;
+if(!TS(GfxBuffer,a[0]))
+CATE(TE,FAE("GfxBuffer::getSize","GfxBuffer")));
+else
+ F=(GfxBuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getSize());
+;
+}
+CATE(TE,UFOF("GfxBuffer::getSize.")));
+R CN;
+}
+
+SV GfxBuffer_getData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxBuffer::getData" EAOE));
+GfxBuffer*F;
+if(!TS(GfxBuffer,a[0]))
+CATE(TE,FAE("GfxBuffer::getData","GfxBuffer")));
+else
+ F=(GfxBuffer*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxBuffer::getData.")));
+R CN;
+}
+
+SV GfxBuffer_allocData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxBuffer::allocData" EAOE));
+GfxBuffer*F;
+if(!TS(GfxBuffer,a[0]))
+CATE(TE,FAE("GfxBuffer::allocData","GfxBuffer")));
+else
+ F=(GfxBuffer*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxBuffer::allocData.")));
+R CN;
+}
+
+SV GfxBuffer_setData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxBuffer::setData" EAOE));
+GfxBuffer*F;
+if(!TS(GfxBuffer,a[0]))
+CATE(TE,FAE("GfxBuffer::setData","GfxBuffer")));
+else
+ F=(GfxBuffer*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxBuffer::setData.")));
+R CN;
+}
+
 void Transform_destroy(CTX ctx,NO F)
 {
 if(!TS(Transform, (SV)F))
@@ -14736,6 +17078,454 @@ R CV(*F != val_to_c<const T2<float> &>::f(ctx,a[1]));
 }
 CATE(TE,UFOF("Int2::__neq__.")));
 R CN;
+}
+
+void Light_destroy(CTX ctx,NO F)
+{
+if(!TS(Light, (SV)F))
+CATE(TE,"Light::__del__ expects Light as first argument."));
+
+DELETE(Light,(Light *)F->data);
+}SV Light_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light's constructor" EAOE));
+if(!TS(Light,a[0]))
+CATE(TE,"Light's constructor expects Light as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(Light_funcs,NEW(Light),EXT->Light_typeID);
+CATE(TE,UFOF("Light's constructor.")));
+R CN;
+}
+
+SV Light_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("Light");
+EI(keyStr=="__new__")
+R CNF(Light_new);
+EI(keyStr=="__call__")
+R CNF(Light_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(Light_new);
+ EI(keyStr == "addShadowmap")
+R CNF(Light_addShadowmap);
+ EI(keyStr == "removeShadowmap")
+R CNF(Light_removeShadowmap);
+ EI(keyStr == "getShadowmap")
+R CNF(Light_getShadowmap);
+ EI(keyStr == "getShadowmapFramebuffer")
+R CNF(Light_getShadowmapFramebuffer);
+ EI(keyStr == "getPointLightFramebuffers")
+R CNF(Light_getPointLightFramebuffers);
+ EI(keyStr == "getShadowmapResolution")
+R CNF(Light_getShadowmapResolution);
+ EI(keyStr == "getShadowmapPrecision")
+R CNF(Light_getShadowmapPrecision);
+ EI(keyStr == "updateMatrices")
+R CNF(Light_updateMatrices);
+ EI(keyStr == "getViewMatrix")
+R CNF(Light_getViewMatrix);
+ EI(keyStr == "getProjectionMatrix")
+R CNF(Light_getProjectionMatrix);
+ EI(keyStr=="type")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->type);
+} EI(keyStr=="power")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->power);
+} EI(keyStr=="color")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->color);
+} EI(keyStr=="ambientStrength")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->ambientStrength);
+} EI(keyStr=="shadowmapNear")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->shadowmapNear);
+} EI(keyStr=="shadowmapFar")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->shadowmapFar);
+} EI(keyStr=="shadowMinBias")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->shadowMinBias);
+} EI(keyStr=="shadowBiasScale")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->shadowBiasScale);
+} EI(keyStr=="shadowAutoBiasScale")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->shadowAutoBiasScale);
+} EI(keyStr=="scriptOwned")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->scriptOwned);
+} EI(keyStr=="direction")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->direction);
+} EI(keyStr=="spot")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->spot);
+} EI(keyStr=="point")
+{
+Light*obj=(Light*)F->data;
+R CV(obj->point);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void Light_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="type")
+{
+Light*obj=(Light*)F->data;
+obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
+} EI(keyStr=="power")
+{
+Light*obj=(Light*)F->data;
+obj->power=val_to_c<decltype(obj->power)>::f(ctx,value);
+} EI(keyStr=="color")
+{
+Light*obj=(Light*)F->data;
+obj->color=val_to_c<decltype(obj->color)>::f(ctx,value);
+} EI(keyStr=="ambientStrength")
+{
+Light*obj=(Light*)F->data;
+obj->ambientStrength=val_to_c<decltype(obj->ambientStrength)>::f(ctx,value);
+} EI(keyStr=="shadowmapNear")
+{
+Light*obj=(Light*)F->data;
+obj->shadowmapNear=val_to_c<decltype(obj->shadowmapNear)>::f(ctx,value);
+} EI(keyStr=="shadowmapFar")
+{
+Light*obj=(Light*)F->data;
+obj->shadowmapFar=val_to_c<decltype(obj->shadowmapFar)>::f(ctx,value);
+} EI(keyStr=="shadowMinBias")
+{
+Light*obj=(Light*)F->data;
+obj->shadowMinBias=val_to_c<decltype(obj->shadowMinBias)>::f(ctx,value);
+} EI(keyStr=="shadowBiasScale")
+{
+Light*obj=(Light*)F->data;
+obj->shadowBiasScale=val_to_c<decltype(obj->shadowBiasScale)>::f(ctx,value);
+} EI(keyStr=="shadowAutoBiasScale")
+{
+Light*obj=(Light*)F->data;
+obj->shadowAutoBiasScale=val_to_c<decltype(obj->shadowAutoBiasScale)>::f(ctx,value);
+} EI(keyStr=="scriptOwned")
+{
+Light*obj=(Light*)F->data;
+obj->scriptOwned=val_to_c<decltype(obj->scriptOwned)>::f(ctx,value);
+} EI(keyStr=="direction")
+{
+Light*obj=(Light*)F->data;
+obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
+} EI(keyStr=="spot")
+{
+Light*obj=(Light*)F->data;
+obj->spot=val_to_c<decltype(obj->spot)>::f(ctx,value);
+} EI(keyStr=="point")
+{
+Light*obj=(Light*)F->data;
+obj->point=val_to_c<decltype(obj->point)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmapResolution" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getShadowmapResolution","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getShadowmapResolution());
+;
+}
+CATE(TE,UFOF("Light::getShadowmapResolution.")));
+R CN;
+}
+
+SV Light_updateMatrices(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::updateMatrices" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::updateMatrices","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Light::updateMatrices.")));
+R CN;
+}
+
+SV Light_getShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmap" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getShadowmap","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Light::getShadowmap.")));
+R CN;
+}
+
+SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getViewMatrix" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getViewMatrix","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getViewMatrix());
+;
+}
+CATE(TE,UFOF("Light::getViewMatrix.")));
+R CN;
+}
+
+SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getProjectionMatrix" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getProjectionMatrix","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getProjectionMatrix());
+;
+}
+CATE(TE,UFOF("Light::getProjectionMatrix.")));
+R CN;
+}
+
+SV Light_addShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::addShadowmap" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::addShadowmap","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(size_t,a[1])&&TS(GfxShadowmapPrecision,a[2]))
+{
+( F->addShadowmap(val_to_c<size_t>::f(ctx,a[1]), val_to_c<GfxShadowmapPrecision>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("Light::addShadowmap.")));
+R CN;
+}
+
+SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmapFramebuffer" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getShadowmapFramebuffer","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Light::getShadowmapFramebuffer.")));
+R CN;
+}
+
+SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmapPrecision" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getShadowmapPrecision","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getShadowmapPrecision());
+;
+}
+CATE(TE,UFOF("Light::getShadowmapPrecision.")));
+R CN;
+}
+
+SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getPointLightFramebuffers" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::getPointLightFramebuffers","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Light::getPointLightFramebuffers.")));
+R CN;
+}
+
+SV Light_removeShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::removeShadowmap" EAOE));
+Light*F;
+if(!TS(Light,a[0]))
+CATE(TE,FAE("Light::removeShadowmap","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeShadowmap());
+R CN;
+}
+CATE(TE,UFOF("Light::removeShadowmap.")));
+R CN;
+}
+
+void LightPointData_destroy(CTX ctx,NO F)
+{
+if(!TS(LightPointData, (SV)F))
+CATE(TE,"LightPointData::__del__ expects LightPointData as first argument."));
+
+DELETE(LightPointData,(LightPointData *)F->data);
+}SV LightPointData_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightPointData's constructor" EAOE));
+if(!TS(LightPointData,a[0]))
+CATE(TE,"LightPointData's constructor expects LightPointData as first argument."));
+R S::createNativeObject(LightPointData_funcs,NEW(LightPointData),EXT->LightPointData_typeID);
+}
+
+SV LightPointData_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightPointData");
+EI(keyStr=="__new__")
+R CNF(LightPointData_new);
+EI(keyStr=="__call__")
+R CNF(LightPointData_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(LightPointData_new);
+ EI(keyStr=="position")
+{
+LightPointData*obj=(LightPointData*)F->data;
+R CV(obj->position);
+} EI(keyStr=="radius")
+{
+LightPointData*obj=(LightPointData*)F->data;
+R CV(obj->radius);
+} EI(keyStr=="singlePassShadowMap")
+{
+LightPointData*obj=(LightPointData*)F->data;
+R CV(obj->singlePassShadowMap);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void LightPointData_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="position")
+{
+LightPointData*obj=(LightPointData*)F->data;
+obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
+} EI(keyStr=="radius")
+{
+LightPointData*obj=(LightPointData*)F->data;
+obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
+} EI(keyStr=="singlePassShadowMap")
+{
+LightPointData*obj=(LightPointData*)F->data;
+obj->singlePassShadowMap=val_to_c<decltype(obj->singlePassShadowMap)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
 }
 
 void Float4_destroy(CTX ctx,NO F)
@@ -17879,6 +20669,74 @@ CATE(TE,UFOF("Float4::dot.")));
 R CN;
 }
 
+void LightDirectionalData_destroy(CTX ctx,NO F)
+{
+if(!TS(LightDirectionalData, (SV)F))
+CATE(TE,"LightDirectionalData::__del__ expects LightDirectionalData as first argument."));
+
+DELETE(LightDirectionalData,(LightDirectionalData *)F->data);
+}SV LightDirectionalData_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightDirectionalData's constructor" EAOE));
+if(!TS(LightDirectionalData,a[0]))
+CATE(TE,"LightDirectionalData's constructor expects LightDirectionalData as first argument."));
+R S::createNativeObject(LightDirectionalData_funcs,NEW(LightDirectionalData),EXT->LightDirectionalData_typeID);
+}
+
+SV LightDirectionalData_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightDirectionalData");
+EI(keyStr=="__new__")
+R CNF(LightDirectionalData_new);
+EI(keyStr=="__call__")
+R CNF(LightDirectionalData_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(LightDirectionalData_new);
+ EI(keyStr=="direction")
+{
+LightDirectionalData*obj=(LightDirectionalData*)F->data;
+R CV(obj->direction);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void LightDirectionalData_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="direction")
+{
+LightDirectionalData*obj=(LightDirectionalData*)F->data;
+obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
 void Matrix4x4_destroy(CTX ctx,NO F)
 {
 if(!TS(Matrix4x4, (SV)F))
@@ -18281,41 +21139,41 @@ CATE(TE,UFOF("Matrix4x4::perspective.")));
 R CN;
 }
 
-void UInt4_destroy(CTX ctx,NO F)
+void UInt3_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<uint32_t>, (SV)F))
-CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
+if(!TS(T3<uint32_t>, (SV)F))
+CATE(TE,"UInt3::__del__ expects UInt3 as first argument."));
 
-DELETE(T4<uint32_t>,(T4<uint32_t> *)F->data);
-}SV UInt4_new(CTX ctx,const List<SV>&a)
+DELETE(T3<uint32_t>,(T3<uint32_t> *)F->data);
+}SV UInt3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4's constructor" EAOE));
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,"UInt4's constructor expects UInt4 as first argument."));
+CATE(VE,"UInt3's constructor" EAOE));
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,"UInt3's constructor expects UInt3 as first argument."));
 if(a.getCount()==1)
 if(true)
-R S::createNativeObject(UInt4_funcs,NEW(UInt4),EXT->UInt4_typeID);
+R S::createNativeObject(UInt3_funcs,NEW(UInt3),EXT->UInt3_typeID);
 if(a.getCount()==2)
 if(true&&TS(float,a[1]))
-R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<float>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==5)
-if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3])&&TS(float,a[4]))
-R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4])),EXT->UInt4_typeID);
+R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<float>::f(ctx,a[1])),EXT->UInt3_typeID);
+if(a.getCount()==4)
+if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3]))
+R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3])),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<float> &,a[1]))
-R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(true&&TS(const T3<float> &,a[1]))
+R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<int32_t> &,a[1]))
-R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(true&&TS(const T3<int32_t> &,a[1]))
+R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<uint32_t> &,a[1]))
-R S::createNativeObject(UInt4_funcs,NEW(UInt4,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-CATE(TE,UFOF("UInt4's constructor.")));
+if(true&&TS(const T3<uint32_t> &,a[1]))
+R S::createNativeObject(UInt3_funcs,NEW(UInt3,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
+CATE(TE,UFOF("UInt3's constructor.")));
 R CN;
 }
 
-SV UInt4_get_member(CTX ctx,NO F,SV key)
+SV UInt3_get_member(CTX ctx,NO F,SV key)
 {
 if (key->type==S::ValueType::StringType)
 {
@@ -18325,11 +21183,11 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("UInt4");
+R S::createString("UInt3");
 EI(keyStr=="__new__")
-R CNF(UInt4_new);
+R CNF(UInt3_new);
 EI(keyStr=="__call__")
-R CNF(UInt4_new);
+R CNF(UInt3_new);
 else
  CATE(KE,"Unknown member."));
 } else
@@ -18337,297 +21195,103 @@ else
 if(keyStr=="__classTypeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__init__")
-R CNF(UInt4_new);
+R CNF(UInt3_new);
  EI(keyStr == "__add__")
-R CNF(UInt4___add__);
+R CNF(UInt3___add__);
  EI(keyStr == "__sub__")
-R CNF(UInt4___sub__);
+R CNF(UInt3___sub__);
  EI(keyStr == "__mul__")
-R CNF(UInt4___mul__);
+R CNF(UInt3___mul__);
  EI(keyStr == "__div__")
-R CNF(UInt4___div__);
+R CNF(UInt3___div__);
  EI(keyStr == "__eq__")
-R CNF(UInt4___eq__);
+R CNF(UInt3___eq__);
  EI(keyStr == "__neq__")
-R CNF(UInt4___neq__);
+R CNF(UInt3___neq__);
  EI(keyStr == "__less__")
-R CNF(UInt4___less__);
+R CNF(UInt3___less__);
  EI(keyStr == "__grtr__")
-R CNF(UInt4___grtr__);
+R CNF(UInt3___grtr__);
  EI(keyStr == "__leq__")
-R CNF(UInt4___leq__);
+R CNF(UInt3___leq__);
  EI(keyStr == "__geq__")
-R CNF(UInt4___geq__);
+R CNF(UInt3___geq__);
  EI(keyStr == "sum")
-R CNF(UInt4_sum);
+R CNF(UInt3_sum);
  EI(keyStr == "length")
-R CNF(UInt4_length);
+R CNF(UInt3_length);
  EI(keyStr == "lengthSquared")
-R CNF(UInt4_lengthSquared);
+R CNF(UInt3_lengthSquared);
  EI(keyStr == "dot")
-R CNF(UInt4_dot);
+R CNF(UInt3_dot);
  EI(keyStr == "distance")
-R CNF(UInt4_distance);
+R CNF(UInt3_distance);
  EI(keyStr == "distanceSquared")
-R CNF(UInt4_distanceSquared);
+R CNF(UInt3_distanceSquared);
  EI(keyStr == "normalize")
-R CNF(UInt4_normalize);
+R CNF(UInt3_normalize);
+ EI(keyStr == "cross")
+R CNF(UInt3_cross);
  EI(keyStr == "getXY")
-R CNF(UInt4_getXY);
+R CNF(UInt3_getXY);
  EI(keyStr == "setXY")
-R CNF(UInt4_setXY);
+R CNF(UInt3_setXY);
  EI(keyStr == "getXZ")
-R CNF(UInt4_getXZ);
+R CNF(UInt3_getXZ);
  EI(keyStr == "setXZ")
-R CNF(UInt4_setXZ);
- EI(keyStr == "getXW")
-R CNF(UInt4_getXW);
- EI(keyStr == "setXW")
-R CNF(UInt4_setXW);
+R CNF(UInt3_setXZ);
  EI(keyStr == "getYX")
-R CNF(UInt4_getYX);
+R CNF(UInt3_getYX);
  EI(keyStr == "setYX")
-R CNF(UInt4_setYX);
+R CNF(UInt3_setYX);
  EI(keyStr == "getYZ")
-R CNF(UInt4_getYZ);
+R CNF(UInt3_getYZ);
  EI(keyStr == "setYZ")
-R CNF(UInt4_setYZ);
- EI(keyStr == "getYW")
-R CNF(UInt4_getYW);
- EI(keyStr == "setYW")
-R CNF(UInt4_setYW);
+R CNF(UInt3_setYZ);
  EI(keyStr == "getZX")
-R CNF(UInt4_getZX);
+R CNF(UInt3_getZX);
  EI(keyStr == "setZX")
-R CNF(UInt4_setZX);
+R CNF(UInt3_setZX);
  EI(keyStr == "getZY")
-R CNF(UInt4_getZY);
+R CNF(UInt3_getZY);
  EI(keyStr == "setZY")
-R CNF(UInt4_setZY);
- EI(keyStr == "getZW")
-R CNF(UInt4_getZW);
- EI(keyStr == "setZW")
-R CNF(UInt4_setZW);
- EI(keyStr == "getWX")
-R CNF(UInt4_getWX);
- EI(keyStr == "setWX")
-R CNF(UInt4_setWX);
- EI(keyStr == "getWY")
-R CNF(UInt4_getWY);
- EI(keyStr == "setWY")
-R CNF(UInt4_setWY);
- EI(keyStr == "getWZ")
-R CNF(UInt4_getWZ);
- EI(keyStr == "setWZ")
-R CNF(UInt4_setWZ);
+R CNF(UInt3_setZY);
  EI(keyStr == "getXYZ")
-R CNF(UInt4_getXYZ);
+R CNF(UInt3_getXYZ);
  EI(keyStr == "setXYZ")
-R CNF(UInt4_setXYZ);
- EI(keyStr == "getXYW")
-R CNF(UInt4_getXYW);
- EI(keyStr == "setXYW")
-R CNF(UInt4_setXYW);
+R CNF(UInt3_setXYZ);
  EI(keyStr == "getXZY")
-R CNF(UInt4_getXZY);
+R CNF(UInt3_getXZY);
  EI(keyStr == "setXZY")
-R CNF(UInt4_setXZY);
- EI(keyStr == "getXZW")
-R CNF(UInt4_getXZW);
- EI(keyStr == "setXZW")
-R CNF(UInt4_setXZW);
- EI(keyStr == "getXWZ")
-R CNF(UInt4_getXWZ);
- EI(keyStr == "setXWZ")
-R CNF(UInt4_setXWZ);
- EI(keyStr == "getXWY")
-R CNF(UInt4_getXWY);
- EI(keyStr == "setXWY")
-R CNF(UInt4_setXWY);
+R CNF(UInt3_setXZY);
  EI(keyStr == "getYXZ")
-R CNF(UInt4_getYXZ);
+R CNF(UInt3_getYXZ);
  EI(keyStr == "setYXZ")
-R CNF(UInt4_setYXZ);
- EI(keyStr == "getYXW")
-R CNF(UInt4_getYXW);
- EI(keyStr == "setYXW")
-R CNF(UInt4_setYXW);
+R CNF(UInt3_setYXZ);
  EI(keyStr == "getYZX")
-R CNF(UInt4_getYZX);
+R CNF(UInt3_getYZX);
  EI(keyStr == "setYZX")
-R CNF(UInt4_setYZX);
- EI(keyStr == "getYZW")
-R CNF(UInt4_getYZW);
- EI(keyStr == "setYZW")
-R CNF(UInt4_setYZW);
- EI(keyStr == "getYWZ")
-R CNF(UInt4_getYWZ);
- EI(keyStr == "setYWZ")
-R CNF(UInt4_setYWZ);
- EI(keyStr == "getYWX")
-R CNF(UInt4_getYWX);
- EI(keyStr == "setYWX")
-R CNF(UInt4_setYWX);
+R CNF(UInt3_setYZX);
  EI(keyStr == "getZXY")
-R CNF(UInt4_getZXY);
+R CNF(UInt3_getZXY);
  EI(keyStr == "setZXY")
-R CNF(UInt4_setZXY);
- EI(keyStr == "getZXW")
-R CNF(UInt4_getZXW);
- EI(keyStr == "setZXW")
-R CNF(UInt4_setZXW);
+R CNF(UInt3_setZXY);
  EI(keyStr == "getZYX")
-R CNF(UInt4_getZYX);
+R CNF(UInt3_getZYX);
  EI(keyStr == "setZYX")
-R CNF(UInt4_setZYX);
- EI(keyStr == "getZYW")
-R CNF(UInt4_getZYW);
- EI(keyStr == "setZYW")
-R CNF(UInt4_setZYW);
- EI(keyStr == "getZWY")
-R CNF(UInt4_getZWY);
- EI(keyStr == "setZWY")
-R CNF(UInt4_setZWY);
- EI(keyStr == "getZWX")
-R CNF(UInt4_getZWX);
- EI(keyStr == "setZWX")
-R CNF(UInt4_setZWX);
- EI(keyStr == "getWXY")
-R CNF(UInt4_getWXY);
- EI(keyStr == "setWXY")
-R CNF(UInt4_setWXY);
- EI(keyStr == "getWXZ")
-R CNF(UInt4_getWXZ);
- EI(keyStr == "setWXZ")
-R CNF(UInt4_setWXZ);
- EI(keyStr == "getWYX")
-R CNF(UInt4_getWYX);
- EI(keyStr == "setWYX")
-R CNF(UInt4_setWYX);
- EI(keyStr == "getWYZ")
-R CNF(UInt4_getWYZ);
- EI(keyStr == "setWYZ")
-R CNF(UInt4_setWYZ);
- EI(keyStr == "getWZY")
-R CNF(UInt4_getWZY);
- EI(keyStr == "setWZY")
-R CNF(UInt4_setWZY);
- EI(keyStr == "getWZX")
-R CNF(UInt4_getWZX);
- EI(keyStr == "setWZX")
-R CNF(UInt4_setWZX);
- EI(keyStr == "getXYZW")
-R CNF(UInt4_getXYZW);
- EI(keyStr == "setXYZW")
-R CNF(UInt4_setXYZW);
- EI(keyStr == "getXYWZ")
-R CNF(UInt4_getXYWZ);
- EI(keyStr == "setXYWZ")
-R CNF(UInt4_setXYWZ);
- EI(keyStr == "getXZYW")
-R CNF(UInt4_getXZYW);
- EI(keyStr == "setXZYW")
-R CNF(UInt4_setXZYW);
- EI(keyStr == "getXZWY")
-R CNF(UInt4_getXZWY);
- EI(keyStr == "setXZWY")
-R CNF(UInt4_setXZWY);
- EI(keyStr == "getXWZY")
-R CNF(UInt4_getXWZY);
- EI(keyStr == "setXWZY")
-R CNF(UInt4_setXWZY);
- EI(keyStr == "getXWYZ")
-R CNF(UInt4_getXWYZ);
- EI(keyStr == "setXWYZ")
-R CNF(UInt4_setXWYZ);
- EI(keyStr == "getYXZW")
-R CNF(UInt4_getYXZW);
- EI(keyStr == "setYXZW")
-R CNF(UInt4_setYXZW);
- EI(keyStr == "getYXWZ")
-R CNF(UInt4_getYXWZ);
- EI(keyStr == "setYXWZ")
-R CNF(UInt4_setYXWZ);
- EI(keyStr == "getYZXW")
-R CNF(UInt4_getYZXW);
- EI(keyStr == "setYZXW")
-R CNF(UInt4_setYZXW);
- EI(keyStr == "getYZWX")
-R CNF(UInt4_getYZWX);
- EI(keyStr == "setYZWX")
-R CNF(UInt4_setYZWX);
- EI(keyStr == "getYWZX")
-R CNF(UInt4_getYWZX);
- EI(keyStr == "setYWZX")
-R CNF(UInt4_setYWZX);
- EI(keyStr == "getYWXZ")
-R CNF(UInt4_getYWXZ);
- EI(keyStr == "setYWXZ")
-R CNF(UInt4_setYWXZ);
- EI(keyStr == "getZYXW")
-R CNF(UInt4_getZYXW);
- EI(keyStr == "setZYXW")
-R CNF(UInt4_setZYXW);
- EI(keyStr == "getZYWX")
-R CNF(UInt4_getZYWX);
- EI(keyStr == "setZYWX")
-R CNF(UInt4_setZYWX);
- EI(keyStr == "getZXYW")
-R CNF(UInt4_getZXYW);
- EI(keyStr == "setZXYW")
-R CNF(UInt4_setZXYW);
- EI(keyStr == "getZXWY")
-R CNF(UInt4_getZXWY);
- EI(keyStr == "setZXWY")
-R CNF(UInt4_setZXWY);
- EI(keyStr == "getZWXY")
-R CNF(UInt4_getZWXY);
- EI(keyStr == "setZWXY")
-R CNF(UInt4_setZWXY);
- EI(keyStr == "getZWYX")
-R CNF(UInt4_getZWYX);
- EI(keyStr == "setZWYX")
-R CNF(UInt4_setZWYX);
- EI(keyStr == "getWYZX")
-R CNF(UInt4_getWYZX);
- EI(keyStr == "setWYZX")
-R CNF(UInt4_setWYZX);
- EI(keyStr == "getWYXZ")
-R CNF(UInt4_getWYXZ);
- EI(keyStr == "setWYXZ")
-R CNF(UInt4_setWYXZ);
- EI(keyStr == "getWZYX")
-R CNF(UInt4_getWZYX);
- EI(keyStr == "setWZYX")
-R CNF(UInt4_setWZYX);
- EI(keyStr == "getWZXY")
-R CNF(UInt4_getWZXY);
- EI(keyStr == "setWZXY")
-R CNF(UInt4_setWZXY);
- EI(keyStr == "getWXZY")
-R CNF(UInt4_getWXZY);
- EI(keyStr == "setWXZY")
-R CNF(UInt4_setWXZY);
- EI(keyStr == "getWXYZ")
-R CNF(UInt4_getWXYZ);
- EI(keyStr == "setWXYZ")
-R CNF(UInt4_setWXYZ);
+R CNF(UInt3_setZYX);
  EI(keyStr=="x")
 {
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
 R CV(obj->x);
 } EI(keyStr=="y")
 {
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
 R CV(obj->y);
 } EI(keyStr=="z")
 {
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
 R CV(obj->z);
-} EI(keyStr=="w")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
-R CV(obj->w);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -18635,7 +21299,7 @@ R CV(obj->w);
 R CN;
 }
 
-void UInt4_set_member(CTX ctx,NO F,SV key,SV value)
+void UInt3_set_member(CTX ctx,NO F,SV key,SV value)
 {
 if (key->type==S::ValueType::StringType)
 {
@@ -18646,774 +21310,31 @@ else
 {
 if(0) {} EI(keyStr=="x")
 {
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
 } EI(keyStr=="y")
 {
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 } EI(keyStr=="z")
 {
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
+T3<uint32_t>*obj=(T3<uint32_t>*)F->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
-} EI(keyStr=="w")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)F->data;
-obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
 }
 
-SV UInt4_setZXYW(CTX ctx,const List<SV>&a)
+SV UInt3_setYZX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setZXYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZXYW","UInt4")));
+CATE(VE,"UInt3::setYZX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setYZX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setZXYW(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZXYW.")));
-R CN;
-}
-
-SV UInt4_setWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWYZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setWYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWYZ.")));
-R CN;
-}
-
-SV UInt4_setWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setWYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWYX.")));
-R CN;
-}
-
-SV UInt4_getZWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZWYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZWYX());
-;
-}
-CATE(TE,UFOF("UInt4::getZWYX.")));
-R CN;
-}
-
-SV UInt4_getZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZW());
-;
-}
-CATE(TE,UFOF("UInt4::getZW.")));
-R CN;
-}
-
-SV UInt4_getZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZY());
-;
-}
-CATE(TE,UFOF("UInt4::getZY.")));
-R CN;
-}
-
-SV UInt4_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::distanceSquared" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::distanceSquared","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV( F->distanceSquared(val_to_c<const T4<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt4::distanceSquared.")));
-R CN;
-}
-
-SV UInt4_getYXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYXZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYXZW());
-;
-}
-CATE(TE,UFOF("UInt4::getYXZW.")));
-R CN;
-}
-
-SV UInt4_setYZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYZWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setYZWX(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYZWX.")));
-R CN;
-}
-
-SV UInt4_getYWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYWZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYWZX());
-;
-}
-CATE(TE,UFOF("UInt4::getYWZX.")));
-R CN;
-}
-
-SV UInt4_getWZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWZXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWZXY());
-;
-}
-CATE(TE,UFOF("UInt4::getWZXY.")));
-R CN;
-}
-
-SV UInt4_getZYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZYXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZYXW());
-;
-}
-CATE(TE,UFOF("UInt4::getZYXW.")));
-R CN;
-}
-
-SV UInt4_setXWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXWYZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setXWYZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXWYZ.")));
-R CN;
-}
-
-SV UInt4_setZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setZY(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZY.")));
-R CN;
-}
-
-SV UInt4_setZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setZX(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZX.")));
-R CN;
-}
-
-SV UInt4_getZXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZXWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZXWY());
-;
-}
-CATE(TE,UFOF("UInt4::getZXWY.")));
-R CN;
-}
-
-SV UInt4_getXWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXWZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXWZY());
-;
-}
-CATE(TE,UFOF("UInt4::getXWZY.")));
-R CN;
-}
-
-SV UInt4_setZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setZW(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZW.")));
-R CN;
-}
-
-SV UInt4_setZYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZYWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setZYWX(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZYWX.")));
-R CN;
-}
-
-SV UInt4_getYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYZX());
-;
-}
-CATE(TE,UFOF("UInt4::getYZX.")));
-R CN;
-}
-
-SV UInt4_getXYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXYWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXYWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXYWZ.")));
-R CN;
-}
-
-SV UInt4_setYXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYXZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setYXZW(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYXZW.")));
-R CN;
-}
-
-SV UInt4_getWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWZY());
-;
-}
-CATE(TE,UFOF("UInt4::getWZY.")));
-R CN;
-}
-
-SV UInt4_getWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWZX());
-;
-}
-CATE(TE,UFOF("UInt4::getWZX.")));
-R CN;
-}
-
-SV UInt4_getWZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWZYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWZYX());
-;
-}
-CATE(TE,UFOF("UInt4::getWZYX.")));
-R CN;
-}
-
-SV UInt4_setXWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXWZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setXWZY(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXWZY.")));
-R CN;
-}
-
-SV UInt4_getZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZXY());
-;
-}
-CATE(TE,UFOF("UInt4::getZXY.")));
-R CN;
-}
-
-SV UInt4_setWZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWZYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setWZYX(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWZYX.")));
-R CN;
-}
-
-SV UInt4_setZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZYW(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZYW.")));
-R CN;
-}
-
-SV UInt4_setZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZYX.")));
-R CN;
-}
-
-SV UInt4_setXZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXZYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setXZYW(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXZYW.")));
-R CN;
-}
-
-SV UInt4_getZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZXW());
-;
-}
-CATE(TE,UFOF("UInt4::getZXW.")));
-R CN;
-}
-
-SV UInt4_setYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYZW(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYZW.")));
-R CN;
-}
-
-SV UInt4_getYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYWZ.")));
-R CN;
-}
-
-SV UInt4___leq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__leq__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__leq__","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV(*F <= val_to_c<const T4<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt4::__leq__.")));
-R CN;
-}
-
-SV UInt4_getYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYWX());
-;
-}
-CATE(TE,UFOF("UInt4::getYWX.")));
-R CN;
-}
-
-SV UInt4_sum(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::sum" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::sum","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->sum());
-;
-}
-CATE(TE,UFOF("UInt4::sum.")));
-R CN;
-}
-
-SV UInt4_setYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T3<float> &,a[1]))
@@ -19421,1161 +21342,39 @@ if(1&&TS(const T3<float> &,a[1]))
 ( F->setYZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setYZX.")));
+CATE(TE,UFOF("UInt3::setYZX.")));
 R CN;
 }
 
-SV UInt4_getXYZ(CTX ctx,const List<SV>&a)
+SV UInt3_getZXY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getXYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXYZ","UInt4")));
+CATE(VE,"UInt3::getZXY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getZXY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->getXYZ());
+R CV( F->getZXY());
 ;
 }
-CATE(TE,UFOF("UInt4::getXYZ.")));
+CATE(TE,UFOF("UInt3::getZXY.")));
 R CN;
 }
 
-SV UInt4_getZX(CTX ctx,const List<SV>&a)
+SV UInt3_setYZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZX","UInt4")));
+CATE(VE,"UInt3::setYZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setYZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZX());
-;
-}
-CATE(TE,UFOF("UInt4::getZX.")));
-R CN;
-}
-
-SV UInt4_getXYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXYW());
-;
-}
-CATE(TE,UFOF("UInt4::getXYW.")));
-R CN;
-}
-
-SV UInt4_setYWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYWZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setYWZX(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYWZX.")));
-R CN;
-}
-
-SV UInt4_setWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setWXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWXY.")));
-R CN;
-}
-
-SV UInt4_setWXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWXZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setWXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWXZ.")));
-R CN;
-}
-
-SV UInt4_setZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZXW(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZXW.")));
-R CN;
-}
-
-SV UInt4_getXWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXWYZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXWYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXWYZ.")));
-R CN;
-}
-
-SV UInt4_setWYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWYXZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setWYXZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWYXZ.")));
-R CN;
-}
-
-SV UInt4_setZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZXY.")));
-R CN;
-}
-
-SV UInt4_getXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXWY());
-;
-}
-CATE(TE,UFOF("UInt4::getXWY.")));
-R CN;
-}
-
-SV UInt4_getYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYXW());
-;
-}
-CATE(TE,UFOF("UInt4::getYXW.")));
-R CN;
-}
-
-SV UInt4_getYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYXZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYXZ.")));
-R CN;
-}
-
-SV UInt4_setXYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXYWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXYWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setXYWZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXYWZ.")));
-R CN;
-}
-
-SV UInt4_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::length" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::length","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->length());
-;
-}
-CATE(TE,UFOF("UInt4::length.")));
-R CN;
-}
-
-SV UInt4_setWXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWXZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setWXZY(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWXZY.")));
-R CN;
-}
-
-SV UInt4_getYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYZW());
-;
-}
-CATE(TE,UFOF("UInt4::getYZW.")));
-R CN;
-}
-
-SV UInt4_setXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setXWZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXWZ.")));
-R CN;
-}
-
-SV UInt4_setXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setXWY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXWY.")));
-R CN;
-}
-
-SV UInt4_getWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWYZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWYZ.")));
-R CN;
-}
-
-SV UInt4_getWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWYX());
-;
-}
-CATE(TE,UFOF("UInt4::getWYX.")));
-R CN;
-}
-
-SV UInt4_getZYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZYWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZYWX());
-;
-}
-CATE(TE,UFOF("UInt4::getZYWX.")));
-R CN;
-}
-
-SV UInt4_getXYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXYZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXYZW());
-;
-}
-CATE(TE,UFOF("UInt4::getXYZW.")));
-R CN;
-}
-
-SV UInt4_setZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZWY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZWY.")));
-R CN;
-}
-
-SV UInt4_setZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setZWX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZWX.")));
-R CN;
-}
-
-SV UInt4_setWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setWX(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWX.")));
-R CN;
-}
-
-SV UInt4_setWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setWY(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWY.")));
-R CN;
-}
-
-SV UInt4_setWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
-{
-( F->setWZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWZ.")));
-R CN;
-}
-
-SV UInt4_getZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZWY());
-;
-}
-CATE(TE,UFOF("UInt4::getZWY.")));
-R CN;
-}
-
-SV UInt4_getZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZWX());
-;
-}
-CATE(TE,UFOF("UInt4::getZWX.")));
-R CN;
-}
-
-SV UInt4_setYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYXZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYXZ.")));
-R CN;
-}
-
-SV UInt4_setYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYXW(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYXW.")));
-R CN;
-}
-
-SV UInt4_getXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXWZ.")));
-R CN;
-}
-
-SV UInt4_getXZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXZWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXZWY());
-;
-}
-CATE(TE,UFOF("UInt4::getXZWY.")));
-R CN;
-}
-
-SV UInt4___less__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__less__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__less__","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV(*F < val_to_c<const T4<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt4::__less__.")));
-R CN;
-}
-
-SV UInt4_getZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZYW());
-;
-}
-CATE(TE,UFOF("UInt4::getZYW.")));
-R CN;
-}
-
-SV UInt4_setWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setWZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWZY.")));
-R CN;
-}
-
-SV UInt4_setWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWZX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setWZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setWZX.")));
-R CN;
-}
-
-SV UInt4_setZYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZYXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setZYXW(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZYXW.")));
-R CN;
-}
-
-SV UInt4_getYZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYZWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYZWX());
-;
-}
-CATE(TE,UFOF("UInt4::getYZWX.")));
-R CN;
-}
-
-SV UInt4_getZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZYX());
-;
-}
-CATE(TE,UFOF("UInt4::getZYX.")));
-R CN;
-}
-
-SV UInt4_getXZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXZYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXZYW());
-;
-}
-CATE(TE,UFOF("UInt4::getXZYW.")));
-R CN;
-}
-
-SV UInt4_setYXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYXWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setYXWZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYXWZ.")));
-R CN;
-}
-
-SV UInt4___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__eq__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__eq__","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV(*F == val_to_c<const T4<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt4::__eq__.")));
-R CN;
-}
-
-SV UInt4_getWYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWYXZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWYXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWYXZ.")));
-R CN;
-}
-
-SV UInt4_distance(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::distance" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::distance","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV( F->distance(val_to_c<const T4<float> &>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt4::distance.")));
-R CN;
-}
-
-SV UInt4_getXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXZW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXZW());
-;
-}
-CATE(TE,UFOF("UInt4::getXZW.")));
-R CN;
-}
-
-SV UInt4_setYZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYZXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setYZXW(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYZXW.")));
-R CN;
-}
-
-SV UInt4_getZWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZWXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZWXY());
-;
-}
-CATE(TE,UFOF("UInt4::getZWXY.")));
-R CN;
-}
-
-SV UInt4_getXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXZY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getXZY());
-;
-}
-CATE(TE,UFOF("UInt4::getXZY.")));
-R CN;
-}
-
-SV UInt4_getYZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYZXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYZXW());
-;
-}
-CATE(TE,UFOF("UInt4::getYZXW.")));
-R CN;
-}
-
-SV UInt4_setZWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZWYX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setZWYX(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZWYX.")));
-R CN;
-}
-
-SV UInt4___sub__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__sub__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__sub__","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV(*F - val_to_c<const T4<float> &>::f(ctx,a[1]));
-}
-if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
-{
-R CV(*F - val_to_c<const float&>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt4::__sub__.")));
-R CN;
-}
-
-SV UInt4_getYXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYXWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getYXWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYXWZ.")));
-R CN;
-}
-
-SV UInt4_setXZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXZWY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setXZWY(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXZWY.")));
-R CN;
-}
-
-SV UInt4_setYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYWZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYWZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYWZ.")));
-R CN;
-}
-
-SV UInt4_setYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYWX","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
-{
-( F->setYWX(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setYWX.")));
-R CN;
-}
-
-SV UInt4_setYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYZ","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T2<float> &,a[1]))
@@ -20583,19 +21382,19 @@ if(1&&TS(const T2<float> &,a[1]))
 ( F->setYZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setYZ.")));
+CATE(TE,UFOF("UInt3::setYZ.")));
 R CN;
 }
 
-SV UInt4_setYX(CTX ctx,const List<SV>&a)
+SV UInt3_setYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYX","UInt4")));
+CATE(VE,"UInt3::setYX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setYX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T2<float> &,a[1]))
@@ -20603,78 +21402,79 @@ if(1&&TS(const T2<float> &,a[1]))
 ( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setYX.")));
+CATE(TE,UFOF("UInt3::setYX.")));
 R CN;
 }
 
-SV UInt4_setYW(CTX ctx,const List<SV>&a)
+SV UInt3_setZYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYW","UInt4")));
+CATE(VE,"UInt3::setZYX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setZYX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-( F->setYW(val_to_c<const T2<float> &>::f(ctx,a[1])));
+( F->setZYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setYW.")));
+CATE(TE,UFOF("UInt3::setZYX.")));
 R CN;
 }
 
-SV UInt4_getWXYZ(CTX ctx,const List<SV>&a)
+SV UInt3_getZY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWXYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWXYZ","UInt4")));
+CATE(VE,"UInt3::getZY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getZY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->getWXYZ());
+R CV( F->getZY());
 ;
 }
-CATE(TE,UFOF("UInt4::getWXYZ.")));
+CATE(TE,UFOF("UInt3::getZY.")));
 R CN;
 }
 
-SV UInt4___neq__(CTX ctx,const List<SV>&a)
+SV UInt3_distanceSquared(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::__neq__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__neq__","UInt4")));
+CATE(VE,"UInt3::distanceSquared" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::distanceSquared","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV(*F != val_to_c<const T4<float> &>::f(ctx,a[1]));
+R CV( F->distanceSquared(val_to_c<const T3<float> &>::f(ctx,a[1])));
+;
 }
-CATE(TE,UFOF("UInt4::__neq__.")));
+CATE(TE,UFOF("UInt3::distanceSquared.")));
 R CN;
 }
 
-SV UInt4_normalize(CTX ctx,const List<SV>&a)
+SV UInt3_normalize(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::normalize" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::normalize","UInt4")));
+CATE(VE,"UInt3::normalize" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::normalize","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20682,19 +21482,19 @@ if(1)
 R CV( F->normalize());
 ;
 }
-CATE(TE,UFOF("UInt4::normalize.")));
+CATE(TE,UFOF("UInt3::normalize.")));
 R CN;
 }
 
-SV UInt4_getYX(CTX ctx,const List<SV>&a)
+SV UInt3_getYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getYX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYX","UInt4")));
+CATE(VE,"UInt3::getYX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getYX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20702,39 +21502,38 @@ if(1)
 R CV( F->getYX());
 ;
 }
-CATE(TE,UFOF("UInt4::getYX.")));
+CATE(TE,UFOF("UInt3::getYX.")));
 R CN;
 }
 
-SV UInt4_setXZW(CTX ctx,const List<SV>&a)
+SV UInt3___leq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setXZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXZW","UInt4")));
+CATE(VE,"UInt3::__leq__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__leq__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T3<float> &,a[1]))
 {
-( F->setXZW(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
+R CV(*F <= val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::setXZW.")));
+CATE(TE,UFOF("UInt3::__leq__.")));
 R CN;
 }
 
-SV UInt4_setXZY(CTX ctx,const List<SV>&a)
+SV UInt3_setXZY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setXZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXZY","UInt4")));
+CATE(VE,"UInt3::setXZY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setXZY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T3<float> &,a[1]))
@@ -20742,123 +21541,117 @@ if(1&&TS(const T3<float> &,a[1]))
 ( F->setXZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setXZY.")));
+CATE(TE,UFOF("UInt3::setXZY.")));
 R CN;
 }
 
-SV UInt4_setXYZW(CTX ctx,const List<SV>&a)
+SV UInt3_sum(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setXYZW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXYZW","UInt4")));
+CATE(VE,"UInt3::sum" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::sum","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setXYZW(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setXYZW.")));
-R CN;
-}
-
-SV UInt4_getYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->getYW());
+R CV( F->sum());
 ;
 }
-CATE(TE,UFOF("UInt4::getYW.")));
+CATE(TE,UFOF("UInt3::sum.")));
 R CN;
 }
 
-SV UInt4_setWXYZ(CTX ctx,const List<SV>&a)
+SV UInt3_cross(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setWXYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWXYZ","UInt4")));
+CATE(VE,"UInt3::cross" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::cross","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-( F->setWXYZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
+R CV( F->cross(val_to_c<const T3<float> &>::f(ctx,a[1])));
+;
 }
-CATE(TE,UFOF("UInt4::setWXYZ.")));
+CATE(TE,UFOF("UInt3::cross.")));
 R CN;
 }
 
-SV UInt4_getYWXZ(CTX ctx,const List<SV>&a)
+SV UInt3_getXYZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getYWXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYWXZ","UInt4")));
+CATE(VE,"UInt3::getXYZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getXYZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->getYWXZ());
+R CV( F->getXYZ());
 ;
 }
-CATE(TE,UFOF("UInt4::getYWXZ.")));
+CATE(TE,UFOF("UInt3::getXYZ.")));
 R CN;
 }
 
-SV UInt4___mul__(CTX ctx,const List<SV>&a)
+SV UInt3___less__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::__mul__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__mul__","UInt4")));
+CATE(VE,"UInt3::__less__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__less__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV(*F * val_to_c<const T4<float> &>::f(ctx,a[1]));
+R CV(*F < val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
-{
-R CV(*F * val_to_c<const float&>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt4::__mul__.")));
+CATE(TE,UFOF("UInt3::__less__.")));
 R CN;
 }
 
-SV UInt4_getYZ(CTX ctx,const List<SV>&a)
+SV UInt3___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getYZ","UInt4")));
+CATE(VE,"UInt3::__neq__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__neq__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+R CV(*F != val_to_c<const T3<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt3::__neq__.")));
+R CN;
+}
+
+SV UInt3_getYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt3::getYZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getYZ","UInt3")));
+else
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20866,19 +21659,19 @@ if(1)
 R CV( F->getYZ());
 ;
 }
-CATE(TE,UFOF("UInt4::getYZ.")));
+CATE(TE,UFOF("UInt3::getYZ.")));
 R CN;
 }
 
-SV UInt4_lengthSquared(CTX ctx,const List<SV>&a)
+SV UInt3_lengthSquared(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::lengthSquared" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::lengthSquared","UInt4")));
+CATE(VE,"UInt3::lengthSquared" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::lengthSquared","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20886,119 +21679,103 @@ if(1)
 R CV( F->lengthSquared());
 ;
 }
-CATE(TE,UFOF("UInt4::lengthSquared.")));
+CATE(TE,UFOF("UInt3::lengthSquared.")));
 R CN;
 }
 
-SV UInt4_getWXY(CTX ctx,const List<SV>&a)
+SV UInt3_getZYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWXY","UInt4")));
+CATE(VE,"UInt3::getZYX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getZYX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->getWXY());
+R CV( F->getZYX());
 ;
 }
-CATE(TE,UFOF("UInt4::getWXY.")));
+CATE(TE,UFOF("UInt3::getZYX.")));
 R CN;
 }
 
-SV UInt4_getWXZ(CTX ctx,const List<SV>&a)
+SV UInt3___div__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWXZ","UInt4")));
+CATE(VE,"UInt3::__div__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__div__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV( F->getWXZ());
-;
+R CV(*F / val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::getWXZ.")));
+if(a.getCount()==2)
+if(1&&TS(const float&,a[1]))
+{
+R CV(*F / val_to_c<const float&>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt3::__div__.")));
 R CN;
 }
 
-SV UInt4_getWX(CTX ctx,const List<SV>&a)
+SV UInt3_setZY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWX","UInt4")));
+CATE(VE,"UInt3::setZY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setZY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
 {
-R CV( F->getWX());
-;
+( F->setZY(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
 }
-CATE(TE,UFOF("UInt4::getWX.")));
+CATE(TE,UFOF("UInt3::setZY.")));
 R CN;
 }
 
-SV UInt4_getWY(CTX ctx,const List<SV>&a)
+SV UInt3_setZX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWY","UInt4")));
+CATE(VE,"UInt3::setZX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setZX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(const T2<float> &,a[1]))
 {
-R CV( F->getWY());
-;
+( F->setZX(val_to_c<const T2<float> &>::f(ctx,a[1])));
+R CN;
 }
-CATE(TE,UFOF("UInt4::getWY.")));
+CATE(TE,UFOF("UInt3::setZX.")));
 R CN;
 }
 
-SV UInt4_getWZ(CTX ctx,const List<SV>&a)
+SV UInt3_setXY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWZ","UInt4")));
+CATE(VE,"UInt3::setXY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setXY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWZ.")));
-R CN;
-}
-
-SV UInt4_setXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T2<float> &,a[1]))
@@ -21006,63 +21783,43 @@ if(1&&TS(const T2<float> &,a[1]))
 ( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setXY.")));
+CATE(TE,UFOF("UInt3::setXY.")));
 R CN;
 }
 
-SV UInt4_getZXYW(CTX ctx,const List<SV>&a)
+SV UInt3___add__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getZXYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getZXYW","UInt4")));
+CATE(VE,"UInt3::__add__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__add__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getZXYW());
-;
-}
-CATE(TE,UFOF("UInt4::getZXYW.")));
-R CN;
-}
-
-SV UInt4___add__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__add__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__add__","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV(*F + val_to_c<const T4<float> &>::f(ctx,a[1]));
+R CV(*F + val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
 if(a.getCount()==2)
 if(1&&TS(const float&,a[1]))
 {
 R CV(*F + val_to_c<const float&>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::__add__.")));
+CATE(TE,UFOF("UInt3::__add__.")));
 R CN;
 }
 
-SV UInt4_setXZ(CTX ctx,const List<SV>&a)
+SV UInt3_setXZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXZ","UInt4")));
+CATE(VE,"UInt3::setXZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setXZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T2<float> &,a[1]))
@@ -21070,79 +21827,78 @@ if(1&&TS(const T2<float> &,a[1]))
 ( F->setXZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setXZ.")));
+CATE(TE,UFOF("UInt3::setXZ.")));
 R CN;
 }
 
-SV UInt4_getWYZX(CTX ctx,const List<SV>&a)
+SV UInt3___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWYZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWYZX","UInt4")));
+CATE(VE,"UInt3::__eq__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__eq__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-R CV( F->getWYZX());
-;
-}
-CATE(TE,UFOF("UInt4::getWYZX.")));
-R CN;
-}
-
-SV UInt4_setXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-( F->setXW(val_to_c<const T2<float> &>::f(ctx,a[1])));
-R CN;
+R CV(*F == val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::setXW.")));
+CATE(TE,UFOF("UInt3::__eq__.")));
 R CN;
 }
 
-SV UInt4_getWXZY(CTX ctx,const List<SV>&a)
+SV UInt3_setZXY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getWXZY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getWXZY","UInt4")));
+CATE(VE,"UInt3::setZXY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setZXY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV( F->getWXZY());
-;
+( F->setZXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
 }
-CATE(TE,UFOF("UInt4::getWXZY.")));
+CATE(TE,UFOF("UInt3::setZXY.")));
 R CN;
 }
 
-SV UInt4_getXY(CTX ctx,const List<SV>&a)
+SV UInt3_setYXZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXY","UInt4")));
+CATE(VE,"UInt3::setYXZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setYXZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+( F->setYXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("UInt3::setYXZ.")));
+R CN;
+}
+
+SV UInt3_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt3::getXY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getXY","UInt3")));
+else
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21150,59 +21906,39 @@ if(1)
 R CV( F->getXY());
 ;
 }
-CATE(TE,UFOF("UInt4::getXY.")));
+CATE(TE,UFOF("UInt3::getXY.")));
 R CN;
 }
 
-SV UInt4_setZXWY(CTX ctx,const List<SV>&a)
+SV UInt3_distance(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setZXWY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZXWY","UInt4")));
+CATE(VE,"UInt3::distance" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::distance","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setZXWY(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZXWY.")));
-R CN;
-}
-
-SV UInt4_setXYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXYW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXYW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T3<float> &,a[1]))
 {
-( F->setXYW(val_to_c<const T3<float> &>::f(ctx,a[1])));
-R CN;
+R CV( F->distance(val_to_c<const T3<float> &>::f(ctx,a[1])));
+;
 }
-CATE(TE,UFOF("UInt4::setXYW.")));
+CATE(TE,UFOF("UInt3::distance.")));
 R CN;
 }
 
-SV UInt4_getXZ(CTX ctx,const List<SV>&a)
+SV UInt3_getXZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::getXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXZ","UInt4")));
+CATE(VE,"UInt3::getXZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getXZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21210,98 +21946,58 @@ if(1)
 R CV( F->getXZ());
 ;
 }
-CATE(TE,UFOF("UInt4::getXZ.")));
+CATE(TE,UFOF("UInt3::getXZ.")));
 R CN;
 }
 
-SV UInt4_setWZXY(CTX ctx,const List<SV>&a)
+SV UInt3___grtr__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setWZXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWZXY","UInt4")));
+CATE(VE,"UInt3::__grtr__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__grtr__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-( F->setWZXY(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
+R CV(*F > val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::setWZXY.")));
+CATE(TE,UFOF("UInt3::__grtr__.")));
 R CN;
 }
 
-SV UInt4___grtr__(CTX ctx,const List<SV>&a)
+SV UInt3_getXZY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::__grtr__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__grtr__","UInt4")));
+CATE(VE,"UInt3::getXZY" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getXZY","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-R CV(*F > val_to_c<const T4<float> &>::f(ctx,a[1]));
-}
-CATE(TE,UFOF("UInt4::__grtr__.")));
-R CN;
-}
-
-SV UInt4_setZWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWXY" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setZWXY","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
-{
-( F->setZWXY(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
-}
-CATE(TE,UFOF("UInt4::setZWXY.")));
-R CN;
-}
-
-SV UInt4_getXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXW" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::getXW","UInt4")));
-else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-R CV( F->getXW());
+R CV( F->getXZY());
 ;
 }
-CATE(TE,UFOF("UInt4::getXW.")));
+CATE(TE,UFOF("UInt3::getXZY.")));
 R CN;
 }
 
-SV UInt4_setXYZ(CTX ctx,const List<SV>&a)
+SV UInt3_setXYZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setXYZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setXYZ","UInt4")));
+CATE(VE,"UInt3::setXYZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::setXYZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
 if(1&&TS(const T3<float> &,a[1]))
@@ -21309,107 +22005,171 @@ if(1&&TS(const T3<float> &,a[1]))
 ( F->setXYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
 }
-CATE(TE,UFOF("UInt4::setXYZ.")));
+CATE(TE,UFOF("UInt3::setXYZ.")));
 R CN;
 }
 
-SV UInt4___div__(CTX ctx,const List<SV>&a)
+SV UInt3_getYZX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::__div__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__div__","UInt4")));
+CATE(VE,"UInt3::getYZX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getYZX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getYZX());
+;
+}
+CATE(TE,UFOF("UInt3::getYZX.")));
+R CN;
+}
+
+SV UInt3_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt3::length" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::length","UInt3")));
+else
+ F=(T3<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->length());
+;
+}
+CATE(TE,UFOF("UInt3::length.")));
+R CN;
+}
+
+SV UInt3___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt3::__mul__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__mul__","UInt3")));
+else
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV(*F / val_to_c<const T4<float> &>::f(ctx,a[1]));
+R CV(*F * val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
 if(a.getCount()==2)
 if(1&&TS(const float&,a[1]))
 {
-R CV(*F / val_to_c<const float&>::f(ctx,a[1]));
+R CV(*F * val_to_c<const float&>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::__div__.")));
+CATE(TE,UFOF("UInt3::__mul__.")));
 R CN;
 }
 
-SV UInt4_setWYZX(CTX ctx,const List<SV>&a)
+SV UInt3_getYXZ(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setWYZX" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setWYZX","UInt4")));
+CATE(VE,"UInt3::getYXZ" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getYXZ","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(a.getCount()==1)
+if(1)
 {
-( F->setWYZX(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
+R CV( F->getYXZ());
+;
 }
-CATE(TE,UFOF("UInt4::setWYZX.")));
+CATE(TE,UFOF("UInt3::getYXZ.")));
 R CN;
 }
 
-SV UInt4_setYWXZ(CTX ctx,const List<SV>&a)
+SV UInt3_getZX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::setYWXZ" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::setYWXZ","UInt4")));
+CATE(VE,"UInt3::getZX" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::getZX","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(a.getCount()==1)
+if(1)
 {
-( F->setYWXZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
-R CN;
+R CV( F->getZX());
+;
 }
-CATE(TE,UFOF("UInt4::setYWXZ.")));
+CATE(TE,UFOF("UInt3::getZX.")));
 R CN;
 }
 
-SV UInt4___geq__(CTX ctx,const List<SV>&a)
+SV UInt3___sub__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::__geq__" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::__geq__","UInt4")));
+CATE(VE,"UInt3::__sub__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__sub__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV(*F >= val_to_c<const T4<float> &>::f(ctx,a[1]));
+R CV(*F - val_to_c<const T3<float> &>::f(ctx,a[1]));
 }
-CATE(TE,UFOF("UInt4::__geq__.")));
+if(a.getCount()==2)
+if(1&&TS(const float&,a[1]))
+{
+R CV(*F - val_to_c<const float&>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt3::__sub__.")));
 R CN;
 }
 
-SV UInt4_dot(CTX ctx,const List<SV>&a)
+SV UInt3___geq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt4::dot" EAOE));
-T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
-CATE(TE,FAE("UInt4::dot","UInt4")));
+CATE(VE,"UInt3::__geq__" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::__geq__","UInt3")));
 else
- F=(T4<uint32_t>*)((NO)a[0])->data;
+ F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(const T3<float> &,a[1]))
 {
-R CV( F->dot(val_to_c<const T4<float> &>::f(ctx,a[1])));
+R CV(*F >= val_to_c<const T3<float> &>::f(ctx,a[1]));
+}
+CATE(TE,UFOF("UInt3::__geq__.")));
+R CN;
+}
+
+SV UInt3_dot(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt3::dot" EAOE));
+T3<uint32_t>*F;
+if(!TS(T3<uint32_t>,a[0]))
+CATE(TE,FAE("UInt3::dot","UInt3")));
+else
+ F=(T3<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const T3<float> &,a[1]))
+{
+R CV( F->dot(val_to_c<const T3<float> &>::f(ctx,a[1])));
 ;
 }
 if(a.getCount()==1)
@@ -21418,7 +22178,1043 @@ if(1)
 R CV( F->dot());
 ;
 }
-CATE(TE,UFOF("UInt4::dot.")));
+CATE(TE,UFOF("UInt3::dot.")));
+R CN;
+}
+
+void LightSpotData_destroy(CTX ctx,NO F)
+{
+if(!TS(LightSpotData, (SV)F))
+CATE(TE,"LightSpotData::__del__ expects LightSpotData as first argument."));
+
+DELETE(LightSpotData,(LightSpotData *)F->data);
+}SV LightSpotData_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightSpotData's constructor" EAOE));
+if(!TS(LightSpotData,a[0]))
+CATE(TE,"LightSpotData's constructor expects LightSpotData as first argument."));
+R S::createNativeObject(LightSpotData_funcs,NEW(LightSpotData),EXT->LightSpotData_typeID);
+}
+
+SV LightSpotData_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightSpotData");
+EI(keyStr=="__new__")
+R CNF(LightSpotData_new);
+EI(keyStr=="__call__")
+R CNF(LightSpotData_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(LightSpotData_new);
+ EI(keyStr=="position")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+R CV(obj->position);
+} EI(keyStr=="direction")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+R CV(obj->direction);
+} EI(keyStr=="innerCutoff")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+R CV(obj->innerCutoff);
+} EI(keyStr=="outerCutoff")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+R CV(obj->outerCutoff);
+} EI(keyStr=="radius")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+R CV(obj->radius);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void LightSpotData_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="position")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
+} EI(keyStr=="direction")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
+} EI(keyStr=="innerCutoff")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+obj->innerCutoff=val_to_c<decltype(obj->innerCutoff)>::f(ctx,value);
+} EI(keyStr=="outerCutoff")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+obj->outerCutoff=val_to_c<decltype(obj->outerCutoff)>::f(ctx,value);
+} EI(keyStr=="radius")
+{
+LightSpotData*obj=(LightSpotData*)F->data;
+obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+void File_destroy(CTX ctx,NO F)
+{
+if(!TS(File, (SV)F))
+CATE(TE,"File::__del__ expects File as first argument."));
+
+DELETE(File,(File *)F->data);
+}SV File_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File's constructor" EAOE));
+if(!TS(File,a[0]))
+CATE(TE,"File's constructor expects File as first argument."));
+if(a.getCount()==3)
+if(true&&TS(const char *,a[1])&&TS(const char *,a[2]))
+R S::createNativeObject(File_funcs,NEW(File,val_to_c<const char *>::f(ctx,a[1]),val_to_c<const char *>::f(ctx,a[2])),EXT->File_typeID);
+CATE(TE,UFOF("File's constructor.")));
+R CN;
+}
+
+SV File_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("File");
+EI(keyStr=="__new__")
+R CNF(File_new);
+EI(keyStr=="__call__")
+R CNF(File_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(File_new);
+ EI(keyStr == "read")
+R CNF(File_read);
+ EI(keyStr == "write")
+R CNF(File_write);
+ EI(keyStr == "seek")
+R CNF(File_seek);
+ EI(keyStr == "tell")
+R CNF(File_tell);
+ EI(keyStr == "flush")
+R CNF(File_flush);
+ EI(keyStr == "isAtEndOfFile")
+R CNF(File_isAtEndOfFile);
+ EI(keyStr == "getSize")
+R CNF(File_getSize);
+ EI(keyStr == "readUInt8")
+R CNF(File_readUInt8);
+ EI(keyStr == "readInt8")
+R CNF(File_readInt8);
+ EI(keyStr == "readUInt16LE")
+R CNF(File_readUInt16LE);
+ EI(keyStr == "readInt16LE")
+R CNF(File_readInt16LE);
+ EI(keyStr == "readUInt32LE")
+R CNF(File_readUInt32LE);
+ EI(keyStr == "readInt32LE")
+R CNF(File_readInt32LE);
+ EI(keyStr == "readUInt64LE")
+R CNF(File_readUInt64LE);
+ EI(keyStr == "readInt64LE")
+R CNF(File_readInt64LE);
+ EI(keyStr == "readUInt16BE")
+R CNF(File_readUInt16BE);
+ EI(keyStr == "readInt16BE")
+R CNF(File_readInt16BE);
+ EI(keyStr == "readUInt32BE")
+R CNF(File_readUInt32BE);
+ EI(keyStr == "readInt32BE")
+R CNF(File_readInt32BE);
+ EI(keyStr == "readUInt64BE")
+R CNF(File_readUInt64BE);
+ EI(keyStr == "readInt64BE")
+R CNF(File_readInt64BE);
+ EI(keyStr == "readFloat32")
+R CNF(File_readFloat32);
+ EI(keyStr == "readChar")
+R CNF(File_readChar);
+ EI(keyStr == "writeUInt8")
+R CNF(File_writeUInt8);
+ EI(keyStr == "writeInt8")
+R CNF(File_writeInt8);
+ EI(keyStr == "writeUInt16LE")
+R CNF(File_writeUInt16LE);
+ EI(keyStr == "writeInt16LE")
+R CNF(File_writeInt16LE);
+ EI(keyStr == "writeUInt32LE")
+R CNF(File_writeUInt32LE);
+ EI(keyStr == "writeInt32LE")
+R CNF(File_writeInt32LE);
+ EI(keyStr == "writeUInt64LE")
+R CNF(File_writeUInt64LE);
+ EI(keyStr == "writeInt64LE")
+R CNF(File_writeInt64LE);
+ EI(keyStr == "writeUInt16BE")
+R CNF(File_writeUInt16BE);
+ EI(keyStr == "writeInt16BE")
+R CNF(File_writeInt16BE);
+ EI(keyStr == "writeUInt32BE")
+R CNF(File_writeUInt32BE);
+ EI(keyStr == "writeInt32BE")
+R CNF(File_writeInt32BE);
+ EI(keyStr == "writeUInt64BE")
+R CNF(File_writeUInt64BE);
+ EI(keyStr == "writeInt64BE")
+R CNF(File_writeInt64BE);
+ EI(keyStr == "writeFloat32")
+R CNF(File_writeFloat32);
+ EI(keyStr == "printf")
+R CNF(File_printf);
+ EI(keyStr == "vprintf")
+R CNF(File_vprintf);
+ EI(keyStr == "writeChar")
+R CNF(File_writeChar);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void File_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV File_readFloat32(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readFloat32" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readFloat32","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readFloat32());
+;
+}
+CATE(TE,UFOF("File::readFloat32.")));
+R CN;
+}
+
+SV File_printf(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::printf" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::printf","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+CATE(TE,UFOF("File::printf.")));
+R CN;
+}
+
+SV File_readUInt8(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt8" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt8","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt8());
+;
+}
+CATE(TE,UFOF("File::readUInt8.")));
+R CN;
+}
+
+SV File_getSize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::getSize" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::getSize","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getSize());
+;
+}
+CATE(TE,UFOF("File::getSize.")));
+R CN;
+}
+
+SV File_readInt32LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt32LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt32LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt32LE());
+;
+}
+CATE(TE,UFOF("File::readInt32LE.")));
+R CN;
+}
+
+SV File_flush(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::flush" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::flush","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->flush());
+R CN;
+}
+CATE(TE,UFOF("File::flush.")));
+R CN;
+}
+
+SV File_writeChar(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeChar" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeChar","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(char,a[1]))
+{
+( F->writeChar(val_to_c<char>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeChar.")));
+R CN;
+}
+
+SV File_seek(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::seek" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::seek","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+CATE(TE,UFOF("File::seek.")));
+R CN;
+}
+
+SV File_readInt8(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt8" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt8","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt8());
+;
+}
+CATE(TE,UFOF("File::readInt8.")));
+R CN;
+}
+
+SV File_readInt32BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt32BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt32BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt32BE());
+;
+}
+CATE(TE,UFOF("File::readInt32BE.")));
+R CN;
+}
+
+SV File_writeInt32BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt32BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt32BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int32_t,a[1]))
+{
+( F->writeInt32BE(val_to_c<int32_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt32BE.")));
+R CN;
+}
+
+SV File_readInt64LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt64LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt64LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt64LE());
+;
+}
+CATE(TE,UFOF("File::readInt64LE.")));
+R CN;
+}
+
+SV File_writeUInt32BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt32BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt32BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint32_t,a[1]))
+{
+( F->writeUInt32BE(val_to_c<uint32_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt32BE.")));
+R CN;
+}
+
+SV File_writeUInt64LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt64LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt64LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint64_t,a[1]))
+{
+( F->writeUInt64LE(val_to_c<uint64_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt64LE.")));
+R CN;
+}
+
+SV File_write(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::write" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::write","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+CATE(TE,UFOF("File::write.")));
+R CN;
+}
+
+SV File_writeFloat32(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeFloat32" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeFloat32","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+( F->writeFloat32(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeFloat32.")));
+R CN;
+}
+
+SV File_writeInt64BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt64BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt64BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int64_t,a[1]))
+{
+( F->writeInt64BE(val_to_c<int64_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt64BE.")));
+R CN;
+}
+
+SV File_readUInt32LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt32LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt32LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt32LE());
+;
+}
+CATE(TE,UFOF("File::readUInt32LE.")));
+R CN;
+}
+
+SV File_tell(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::tell" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::tell","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->tell());
+;
+}
+CATE(TE,UFOF("File::tell.")));
+R CN;
+}
+
+SV File_writeUInt32LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt32LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt32LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint32_t,a[1]))
+{
+( F->writeUInt32LE(val_to_c<uint32_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt32LE.")));
+R CN;
+}
+
+SV File_vprintf(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::vprintf" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::vprintf","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+CATE(TE,UFOF("File::vprintf.")));
+R CN;
+}
+
+SV File_writeUInt64BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt64BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt64BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint64_t,a[1]))
+{
+( F->writeUInt64BE(val_to_c<uint64_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt64BE.")));
+R CN;
+}
+
+SV File_read(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::read" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::read","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+CATE(TE,UFOF("File::read.")));
+R CN;
+}
+
+SV File_readInt64BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt64BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt64BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt64BE());
+;
+}
+CATE(TE,UFOF("File::readInt64BE.")));
+R CN;
+}
+
+SV File_writeInt16LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt16LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt16LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int16_t,a[1]))
+{
+( F->writeInt16LE(val_to_c<int16_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt16LE.")));
+R CN;
+}
+
+SV File_isAtEndOfFile(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::isAtEndOfFile" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::isAtEndOfFile","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isAtEndOfFile());
+;
+}
+CATE(TE,UFOF("File::isAtEndOfFile.")));
+R CN;
+}
+
+SV File_writeInt64LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt64LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt64LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int64_t,a[1]))
+{
+( F->writeInt64LE(val_to_c<int64_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt64LE.")));
+R CN;
+}
+
+SV File_readUInt32BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt32BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt32BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt32BE());
+;
+}
+CATE(TE,UFOF("File::readUInt32BE.")));
+R CN;
+}
+
+SV File_readChar(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readChar" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readChar","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readChar());
+;
+}
+CATE(TE,UFOF("File::readChar.")));
+R CN;
+}
+
+SV File_readUInt16BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt16BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt16BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt16BE());
+;
+}
+CATE(TE,UFOF("File::readUInt16BE.")));
+R CN;
+}
+
+SV File_writeInt32LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt32LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt32LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int32_t,a[1]))
+{
+( F->writeInt32LE(val_to_c<int32_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt32LE.")));
+R CN;
+}
+
+SV File_readUInt64LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt64LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt64LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt64LE());
+;
+}
+CATE(TE,UFOF("File::readUInt64LE.")));
+R CN;
+}
+
+SV File_writeUInt16LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt16LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt16LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint16_t,a[1]))
+{
+( F->writeUInt16LE(val_to_c<uint16_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt16LE.")));
+R CN;
+}
+
+SV File_writeInt8(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt8" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt8","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int8_t,a[1]))
+{
+( F->writeInt8(val_to_c<int8_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt8.")));
+R CN;
+}
+
+SV File_readInt16BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt16BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt16BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt16BE());
+;
+}
+CATE(TE,UFOF("File::readInt16BE.")));
+R CN;
+}
+
+SV File_writeUInt16BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt16BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt16BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint16_t,a[1]))
+{
+( F->writeUInt16BE(val_to_c<uint16_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt16BE.")));
+R CN;
+}
+
+SV File_writeUInt8(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeUInt8" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeUInt8","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(uint8_t,a[1]))
+{
+( F->writeUInt8(val_to_c<uint8_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeUInt8.")));
+R CN;
+}
+
+SV File_readInt16LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readInt16LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readInt16LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readInt16LE());
+;
+}
+CATE(TE,UFOF("File::readInt16LE.")));
+R CN;
+}
+
+SV File_readUInt16LE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt16LE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt16LE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt16LE());
+;
+}
+CATE(TE,UFOF("File::readUInt16LE.")));
+R CN;
+}
+
+SV File_readUInt64BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readUInt64BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::readUInt64BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->readUInt64BE());
+;
+}
+CATE(TE,UFOF("File::readUInt64BE.")));
+R CN;
+}
+
+SV File_writeInt16BE(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeInt16BE" EAOE));
+File*F;
+if(!TS(File,a[0]))
+CATE(TE,FAE("File::writeInt16BE","File")));
+else
+ F=(File*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(int16_t,a[1]))
+{
+( F->writeInt16BE(val_to_c<int16_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("File::writeInt16BE.")));
 R CN;
 }
 
@@ -21891,46 +23687,24 @@ CATE(TE,UFOF("Matrix3x3::rotate.")));
 R CN;
 }
 
-SV UInt3_ptr_new(CTX ctx,const List<SV>&a)
+void GfxDebugDrawer_destroy(CTX ctx,NO F)
 {
-List<SV> args2 = a.copy();
-args2[0]=EXT->UInt3;
-NO obj=(NO)UInt3_new(ctx, args2);
-obj->funcs=UInt3_ptr_funcs;
-obj->typeID=EXT->UInt3_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-R(SV)obj;
-}
-SV UInt3_ptr_deref(CTX ctx,const List<SV>&a)
+if(!TS(GfxDebugDrawer, (SV)F))
+CATE(TE,"GfxDebugDrawer::__del__ expects GfxDebugDrawer as first argument."));
+
+DELETE(GfxDebugDrawer,(GfxDebugDrawer *)F->data);
+}SV GfxDebugDrawer_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
-CATE(VE,"UInt3Ref::deref" EAOE));
-SV F=a[0];
-if(!TS(T3<uint32_t>*,(SV)F))
-CATE(TE,"UInt3Ref::deref expects UInt3Ref as first argument."));
-R CV(*(T3<uint32_t> *)((NO)F)->data);
-}
-SV UInt3_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"UInt3::refset expects two arguments."));
-SV F=a[0];
-if(!TS(T3<uint32_t>*,(SV)F))
-CATE(TE,"UInt3Ref::refset expects UInt3Ref as first argument."));
-*((T3<uint32_t> *)((NO)F)->data) = val_to_c<T3<uint32_t>>::f(ctx,a[1]);
+if(a.getCount()<1)
+CATE(VE,"GfxDebugDrawer's constructor" EAOE));
+if(!TS(GfxDebugDrawer,a[0]))
+CATE(TE,"GfxDebugDrawer's constructor expects GfxDebugDrawer as first argument."));
+CATE(TE,UFOF("GfxDebugDrawer's constructor.")));
 R CN;
 }
 
-void UInt3_ptr_destroy(CTX ctx,NO F)
+SV GfxDebugDrawer_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T3<uint32_t>*,(SV)F))
-CATE(TE,"UInt3Ref::__del__ expects UInt3Ref as first argument."));
-SCRIPT_DELETE(T3<uint32_t>, (T3<uint32_t> *)F->data);
-}
-SV UInt3_ptr_get_member(CTX ctx,NO F,SV key)
-{
-if(!TS(T3<uint32_t>*,(SV)F))
-CATE(TE,FAE("UInt3Ref's get method","UInt3Ref")));
 if (key->type==S::ValueType::StringType)
 {
 String keyStr=((S::StringValue *)key)->value;
@@ -21939,39 +23713,85 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("UInt3Ptr");
+R S::createString("GfxDebugDrawer");
 EI(keyStr=="__new__")
-R CNF(UInt3_ptr_new);
+R CNF(GfxDebugDrawer_new);
 EI(keyStr=="__call__")
-R CNF(UInt3_ptr_new);
+R CNF(GfxDebugDrawer_new);
 else
-CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")R CNF(UInt3_ptr_deref);
-if(keyStr=="refset")R CNF(UInt3_ptr_set);
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxDebugDrawer_new);
+ EI(keyStr == "addLine")
+R CNF(GfxDebugDrawer_addLine);
+ EI(keyStr == "render")
+R CNF(GfxDebugDrawer_render);
+ else
+ CATE(KE,"Unknown member."));
 }
 }
-S::NativeObject obj;
-obj.head.type=S::ValueType::NativeObject;
-obj.funcs=UInt3_funcs;
-obj.typeID=EXT->UInt3_typeID;
-obj.refCount=1;
-obj.data=F->data;
-R UInt3_get_member(ctx, &obj, key);
+R CN;
 }
-void UInt3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+
+void GfxDebugDrawer_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T3<uint32_t>*,(SV)F))
-CATE(TE,FAE("UInt3Ref's set method","UInt3Ref")));
-S::NativeObject obj;
-obj.head.type=S::ValueType::NativeObject;
-obj.funcs=UInt3_funcs;
-obj.typeID=EXT->UInt3_typeID;
-obj.refCount=1;
-obj.data=F->data;
-UInt3_set_member(ctx, &obj, key, value);
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
 }
+}
+}
+
+SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxDebugDrawer::addLine" EAOE));
+GfxDebugDrawer*F;
+if(!TS(GfxDebugDrawer,a[0]))
+CATE(TE,FAE("GfxDebugDrawer::addLine","GfxDebugDrawer")));
+else
+ F=(GfxDebugDrawer*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(const Position3D &,a[1])&&TS(const Position3D &,a[2])&&TS(const Float4 &,a[3])&&TS(const Float4 &,a[4]))
+{
+( F->addLine(val_to_c<const Position3D &>::f(ctx,a[1]), val_to_c<const Position3D &>::f(ctx,a[2]), val_to_c<const Float4 &>::f(ctx,a[3]), val_to_c<const Float4 &>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxDebugDrawer::addLine.")));
+R CN;
+}
+
+SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxDebugDrawer::render" EAOE));
+GfxDebugDrawer*F;
+if(!TS(GfxDebugDrawer,a[0]))
+CATE(TE,FAE("GfxDebugDrawer::render","GfxDebugDrawer")));
+else
+ F=(GfxDebugDrawer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const Camera &,a[1]))
+{
+( F->render(val_to_c<const Camera &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxDebugDrawer::render.")));
+R CN;
+}
+
 SV UInt2_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -22053,6 +23873,87 @@ obj.refCount=1;
 obj.data=F->data;
 UInt2_set_member(ctx, &obj, key, value);
 }
+SV GPUTimer_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GPUTimer;
+NO obj=(NO)GPUTimer_new(ctx, args2);
+obj->funcs=GPUTimer_ptr_funcs;
+obj->typeID=EXT->GPUTimer_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GPUTimer_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GPUTimerRef::deref" EAOE));
+SV F=a[0];
+if(!TS(GPUTimer*,(SV)F))
+CATE(TE,"GPUTimerRef::deref expects GPUTimerRef as first argument."));
+CATE(TE,"GPUTimer objects are not copyable."));
+}
+SV GPUTimer_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GPUTimer::refset expects two arguments."));
+SV F=a[0];
+if(!TS(GPUTimer*,(SV)F))
+CATE(TE,"GPUTimerRef::refset expects GPUTimerRef as first argument."));
+CATE(TE,"GPUTimer objects are not copyable."));
+R CN;
+}
+
+void GPUTimer_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(GPUTimer*,(SV)F))
+CATE(TE,"GPUTimerRef::__del__ expects GPUTimerRef as first argument."));
+SCRIPT_DELETE(GPUTimer, (GPUTimer *)F->data);
+}
+SV GPUTimer_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(GPUTimer*,(SV)F))
+CATE(TE,FAE("GPUTimerRef's get method","GPUTimerRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GPUTimerPtr");
+EI(keyStr=="__new__")
+R CNF(GPUTimer_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GPUTimer_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GPUTimer_ptr_deref);
+if(keyStr=="refset")R CNF(GPUTimer_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GPUTimer_funcs;
+obj.typeID=EXT->GPUTimer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GPUTimer_get_member(ctx, &obj, key);
+}
+void GPUTimer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(GPUTimer*,(SV)F))
+CATE(TE,FAE("GPUTimerRef's set method","GPUTimerRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GPUTimer_funcs;
+obj.typeID=EXT->GPUTimer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GPUTimer_set_member(ctx, &obj, key, value);
+}
 SV RigidBody_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -22133,46 +24034,46 @@ obj.refCount=1;
 obj.data=F->data;
 RigidBody_set_member(ctx, &obj, key, value);
 }
-SV File_ptr_new(CTX ctx,const List<SV>&a)
+SV Float2_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->File;
-NO obj=(NO)File_new(ctx, args2);
-obj->funcs=File_ptr_funcs;
-obj->typeID=EXT->File_ptr_typeID;
+args2[0]=EXT->Float2;
+NO obj=(NO)Float2_new(ctx, args2);
+obj->funcs=Float2_ptr_funcs;
+obj->typeID=EXT->Float2_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 R(SV)obj;
 }
-SV File_ptr_deref(CTX ctx,const List<SV>&a)
+SV Float2_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"FileRef::deref" EAOE));
+CATE(VE,"Float2Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(File*,(SV)F))
-CATE(TE,"FileRef::deref expects FileRef as first argument."));
-CATE(TE,"File objects are not copyable."));
+if(!TS(T2<float>*,(SV)F))
+CATE(TE,"Float2Ref::deref expects Float2Ref as first argument."));
+R CV(*(T2<float> *)((NO)F)->data);
 }
-SV File_ptr_set(CTX ctx,const List<SV>&a)
+SV Float2_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"File::refset expects two arguments."));
+CATE(VE,"Float2::refset expects two arguments."));
 SV F=a[0];
-if(!TS(File*,(SV)F))
-CATE(TE,"FileRef::refset expects FileRef as first argument."));
-CATE(TE,"File objects are not copyable."));
+if(!TS(T2<float>*,(SV)F))
+CATE(TE,"Float2Ref::refset expects Float2Ref as first argument."));
+*((T2<float> *)((NO)F)->data) = val_to_c<T2<float>>::f(ctx,a[1]);
 R CN;
 }
 
-void File_ptr_destroy(CTX ctx,NO F)
+void Float2_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(File*,(SV)F))
-CATE(TE,"FileRef::__del__ expects FileRef as first argument."));
-SCRIPT_DELETE(File, (File *)F->data);
+if(!TS(T2<float>*,(SV)F))
+CATE(TE,"Float2Ref::__del__ expects Float2Ref as first argument."));
+SCRIPT_DELETE(T2<float>, (T2<float> *)F->data);
 }
-SV File_ptr_get_member(CTX ctx,NO F,SV key)
+SV Float2_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(File*,(SV)F))
-CATE(TE,FAE("FileRef's get method","FileRef")));
+if(!TS(T2<float>*,(SV)F))
+CATE(TE,FAE("Float2Ref's get method","Float2Ref")));
 if (key->type==S::ValueType::StringType)
 {
 String keyStr=((S::StringValue *)key)->value;
@@ -22181,119 +24082,38 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("FilePtr");
+R S::createString("Float2Ptr");
 EI(keyStr=="__new__")
-R CNF(File_ptr_new);
+R CNF(Float2_ptr_new);
 EI(keyStr=="__call__")
-R CNF(File_ptr_new);
+R CNF(Float2_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")R CNF(File_ptr_deref);
-if(keyStr=="refset")R CNF(File_ptr_set);
+if(keyStr=="deref")R CNF(Float2_ptr_deref);
+if(keyStr=="refset")R CNF(Float2_ptr_set);
 }
 }
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
-obj.funcs=File_funcs;
-obj.typeID=EXT->File_typeID;
+obj.funcs=Float2_funcs;
+obj.typeID=EXT->Float2_typeID;
 obj.refCount=1;
 obj.data=F->data;
-R File_get_member(ctx, &obj, key);
+R Float2_get_member(ctx, &obj, key);
 }
-void File_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+void Float2_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(File*,(SV)F))
-CATE(TE,FAE("FileRef's set method","FileRef")));
+if(!TS(T2<float>*,(SV)F))
+CATE(TE,FAE("Float2Ref's set method","Float2Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
-obj.funcs=File_funcs;
-obj.typeID=EXT->File_typeID;
+obj.funcs=Float2_funcs;
+obj.typeID=EXT->Float2_typeID;
 obj.refCount=1;
 obj.data=F->data;
-File_set_member(ctx, &obj, key, value);
-}
-SV Int3_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Int3;
-NO obj=(NO)Int3_new(ctx, args2);
-obj->funcs=Int3_ptr_funcs;
-obj->typeID=EXT->Int3_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-R(SV)obj;
-}
-SV Int3_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Int3Ref::deref" EAOE));
-SV F=a[0];
-if(!TS(T3<int32_t>*,(SV)F))
-CATE(TE,"Int3Ref::deref expects Int3Ref as first argument."));
-R CV(*(T3<int32_t> *)((NO)F)->data);
-}
-SV Int3_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Int3::refset expects two arguments."));
-SV F=a[0];
-if(!TS(T3<int32_t>*,(SV)F))
-CATE(TE,"Int3Ref::refset expects Int3Ref as first argument."));
-*((T3<int32_t> *)((NO)F)->data) = val_to_c<T3<int32_t>>::f(ctx,a[1]);
-R CN;
-}
-
-void Int3_ptr_destroy(CTX ctx,NO F)
-{
-if(!TS(T3<int32_t>*,(SV)F))
-CATE(TE,"Int3Ref::__del__ expects Int3Ref as first argument."));
-SCRIPT_DELETE(T3<int32_t>, (T3<int32_t> *)F->data);
-}
-SV Int3_ptr_get_member(CTX ctx,NO F,SV key)
-{
-if(!TS(T3<int32_t>*,(SV)F))
-CATE(TE,FAE("Int3Ref's get method","Int3Ref")));
-if (key->type==S::ValueType::StringType)
-{
-String keyStr=((S::StringValue *)key)->value;
-if(F->data==NULL)
-{
-if(keyStr=="__typeID__")
-R S::createInt(F->typeID);
-EI(keyStr=="__name__")
-R S::createString("Int3Ptr");
-EI(keyStr=="__new__")
-R CNF(Int3_ptr_new);
-EI(keyStr=="__call__")
-R CNF(Int3_ptr_new);
-else
-CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="deref")R CNF(Int3_ptr_deref);
-if(keyStr=="refset")R CNF(Int3_ptr_set);
-}
-}
-S::NativeObject obj;
-obj.head.type=S::ValueType::NativeObject;
-obj.funcs=Int3_funcs;
-obj.typeID=EXT->Int3_typeID;
-obj.refCount=1;
-obj.data=F->data;
-R Int3_get_member(ctx, &obj, key);
-}
-void Int3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
-{
-if(!TS(T3<int32_t>*,(SV)F))
-CATE(TE,FAE("Int3Ref's set method","Int3Ref")));
-S::NativeObject obj;
-obj.head.type=S::ValueType::NativeObject;
-obj.funcs=Int3_funcs;
-obj.typeID=EXT->Int3_typeID;
-obj.refCount=1;
-obj.data=F->data;
-Int3_set_member(ctx, &obj, key, value);
+Float2_set_member(ctx, &obj, key, value);
 }
 SV Camera_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -22376,46 +24196,46 @@ obj.refCount=1;
 obj.data=F->data;
 Camera_set_member(ctx, &obj, key, value);
 }
-SV Float2_ptr_new(CTX ctx,const List<SV>&a)
+SV UInt4_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->Float2;
-NO obj=(NO)Float2_new(ctx, args2);
-obj->funcs=Float2_ptr_funcs;
-obj->typeID=EXT->Float2_ptr_typeID;
+args2[0]=EXT->UInt4;
+NO obj=(NO)UInt4_new(ctx, args2);
+obj->funcs=UInt4_ptr_funcs;
+obj->typeID=EXT->UInt4_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 R(SV)obj;
 }
-SV Float2_ptr_deref(CTX ctx,const List<SV>&a)
+SV UInt4_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"Float2Ref::deref" EAOE));
+CATE(VE,"UInt4Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T2<float>*,(SV)F))
-CATE(TE,"Float2Ref::deref expects Float2Ref as first argument."));
-R CV(*(T2<float> *)((NO)F)->data);
+if(!TS(T4<uint32_t>*,(SV)F))
+CATE(TE,"UInt4Ref::deref expects UInt4Ref as first argument."));
+R CV(*(T4<uint32_t> *)((NO)F)->data);
 }
-SV Float2_ptr_set(CTX ctx,const List<SV>&a)
+SV UInt4_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"Float2::refset expects two arguments."));
+CATE(VE,"UInt4::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T2<float>*,(SV)F))
-CATE(TE,"Float2Ref::refset expects Float2Ref as first argument."));
-*((T2<float> *)((NO)F)->data) = val_to_c<T2<float>>::f(ctx,a[1]);
+if(!TS(T4<uint32_t>*,(SV)F))
+CATE(TE,"UInt4Ref::refset expects UInt4Ref as first argument."));
+*((T4<uint32_t> *)((NO)F)->data) = val_to_c<T4<uint32_t>>::f(ctx,a[1]);
 R CN;
 }
 
-void Float2_ptr_destroy(CTX ctx,NO F)
+void UInt4_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<float>*,(SV)F))
-CATE(TE,"Float2Ref::__del__ expects Float2Ref as first argument."));
-SCRIPT_DELETE(T2<float>, (T2<float> *)F->data);
+if(!TS(T4<uint32_t>*,(SV)F))
+CATE(TE,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
+SCRIPT_DELETE(T4<uint32_t>, (T4<uint32_t> *)F->data);
 }
-SV Float2_ptr_get_member(CTX ctx,NO F,SV key)
+SV UInt4_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T2<float>*,(SV)F))
-CATE(TE,FAE("Float2Ref's get method","Float2Ref")));
+if(!TS(T4<uint32_t>*,(SV)F))
+CATE(TE,FAE("UInt4Ref's get method","UInt4Ref")));
 if (key->type==S::ValueType::StringType)
 {
 String keyStr=((S::StringValue *)key)->value;
@@ -22424,38 +24244,119 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("Float2Ptr");
+R S::createString("UInt4Ptr");
 EI(keyStr=="__new__")
-R CNF(Float2_ptr_new);
+R CNF(UInt4_ptr_new);
 EI(keyStr=="__call__")
-R CNF(Float2_ptr_new);
+R CNF(UInt4_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")R CNF(Float2_ptr_deref);
-if(keyStr=="refset")R CNF(Float2_ptr_set);
+if(keyStr=="deref")R CNF(UInt4_ptr_deref);
+if(keyStr=="refset")R CNF(UInt4_ptr_set);
 }
 }
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
-obj.funcs=Float2_funcs;
-obj.typeID=EXT->Float2_typeID;
+obj.funcs=UInt4_funcs;
+obj.typeID=EXT->UInt4_typeID;
 obj.refCount=1;
 obj.data=F->data;
-R Float2_get_member(ctx, &obj, key);
+R UInt4_get_member(ctx, &obj, key);
 }
-void Float2_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+void UInt4_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T2<float>*,(SV)F))
-CATE(TE,FAE("Float2Ref's set method","Float2Ref")));
+if(!TS(T4<uint32_t>*,(SV)F))
+CATE(TE,FAE("UInt4Ref's set method","UInt4Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
-obj.funcs=Float2_funcs;
-obj.typeID=EXT->Float2_typeID;
+obj.funcs=UInt4_funcs;
+obj.typeID=EXT->UInt4_typeID;
 obj.refCount=1;
 obj.data=F->data;
-Float2_set_member(ctx, &obj, key, value);
+UInt4_set_member(ctx, &obj, key, value);
+}
+SV Int3_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Int3;
+NO obj=(NO)Int3_new(ctx, args2);
+obj->funcs=Int3_ptr_funcs;
+obj->typeID=EXT->Int3_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV Int3_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"Int3Ref::deref" EAOE));
+SV F=a[0];
+if(!TS(T3<int32_t>*,(SV)F))
+CATE(TE,"Int3Ref::deref expects Int3Ref as first argument."));
+R CV(*(T3<int32_t> *)((NO)F)->data);
+}
+SV Int3_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Int3::refset expects two arguments."));
+SV F=a[0];
+if(!TS(T3<int32_t>*,(SV)F))
+CATE(TE,"Int3Ref::refset expects Int3Ref as first argument."));
+*((T3<int32_t> *)((NO)F)->data) = val_to_c<T3<int32_t>>::f(ctx,a[1]);
+R CN;
+}
+
+void Int3_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(T3<int32_t>*,(SV)F))
+CATE(TE,"Int3Ref::__del__ expects Int3Ref as first argument."));
+SCRIPT_DELETE(T3<int32_t>, (T3<int32_t> *)F->data);
+}
+SV Int3_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(T3<int32_t>*,(SV)F))
+CATE(TE,FAE("Int3Ref's get method","Int3Ref")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("Int3Ptr");
+EI(keyStr=="__new__")
+R CNF(Int3_ptr_new);
+EI(keyStr=="__call__")
+R CNF(Int3_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(Int3_ptr_deref);
+if(keyStr=="refset")R CNF(Int3_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Int3_funcs;
+obj.typeID=EXT->Int3_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R Int3_get_member(ctx, &obj, key);
+}
+void Int3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(T3<int32_t>*,(SV)F))
+CATE(TE,FAE("Int3Ref's set method","Int3Ref")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Int3_funcs;
+obj.typeID=EXT->Int3_typeID;
+obj.refCount=1;
+obj.data=F->data;
+Int3_set_member(ctx, &obj, key, value);
 }
 SV Int4_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -22618,6 +24519,87 @@ obj.typeID=EXT->Float3_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Float3_set_member(ctx, &obj, key, value);
+}
+SV GfxBuffer_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxBuffer;
+NO obj=(NO)GfxBuffer_new(ctx, args2);
+obj->funcs=GfxBuffer_ptr_funcs;
+obj->typeID=EXT->GfxBuffer_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxBuffer_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxBufferRef::deref" EAOE));
+SV F=a[0];
+if(!TS(GfxBuffer*,(SV)F))
+CATE(TE,"GfxBufferRef::deref expects GfxBufferRef as first argument."));
+CATE(TE,"GfxBuffer objects are not copyable."));
+}
+SV GfxBuffer_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxBuffer::refset expects two arguments."));
+SV F=a[0];
+if(!TS(GfxBuffer*,(SV)F))
+CATE(TE,"GfxBufferRef::refset expects GfxBufferRef as first argument."));
+CATE(TE,"GfxBuffer objects are not copyable."));
+R CN;
+}
+
+void GfxBuffer_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(GfxBuffer*,(SV)F))
+CATE(TE,"GfxBufferRef::__del__ expects GfxBufferRef as first argument."));
+SCRIPT_DELETE(GfxBuffer, (GfxBuffer *)F->data);
+}
+SV GfxBuffer_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(GfxBuffer*,(SV)F))
+CATE(TE,FAE("GfxBufferRef's get method","GfxBufferRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxBufferPtr");
+EI(keyStr=="__new__")
+R CNF(GfxBuffer_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxBuffer_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxBuffer_ptr_deref);
+if(keyStr=="refset")R CNF(GfxBuffer_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxBuffer_funcs;
+obj.typeID=EXT->GfxBuffer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxBuffer_get_member(ctx, &obj, key);
+}
+void GfxBuffer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(GfxBuffer*,(SV)F))
+CATE(TE,FAE("GfxBufferRef's set method","GfxBufferRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxBuffer_funcs;
+obj.typeID=EXT->GfxBuffer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxBuffer_set_member(ctx, &obj, key, value);
 }
 SV Transform_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -22862,6 +24844,168 @@ obj.refCount=1;
 obj.data=F->data;
 Int2_set_member(ctx, &obj, key, value);
 }
+SV Light_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Light;
+NO obj=(NO)Light_new(ctx, args2);
+obj->funcs=Light_ptr_funcs;
+obj->typeID=EXT->Light_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV Light_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightRef::deref" EAOE));
+SV F=a[0];
+if(!TS(Light*,(SV)F))
+CATE(TE,"LightRef::deref expects LightRef as first argument."));
+CATE(TE,"Light objects are not copyable."));
+}
+SV Light_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Light::refset expects two arguments."));
+SV F=a[0];
+if(!TS(Light*,(SV)F))
+CATE(TE,"LightRef::refset expects LightRef as first argument."));
+CATE(TE,"Light objects are not copyable."));
+R CN;
+}
+
+void Light_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(Light*,(SV)F))
+CATE(TE,"LightRef::__del__ expects LightRef as first argument."));
+SCRIPT_DELETE(Light, (Light *)F->data);
+}
+SV Light_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(Light*,(SV)F))
+CATE(TE,FAE("LightRef's get method","LightRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightPtr");
+EI(keyStr=="__new__")
+R CNF(Light_ptr_new);
+EI(keyStr=="__call__")
+R CNF(Light_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(Light_ptr_deref);
+if(keyStr=="refset")R CNF(Light_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Light_funcs;
+obj.typeID=EXT->Light_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R Light_get_member(ctx, &obj, key);
+}
+void Light_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(Light*,(SV)F))
+CATE(TE,FAE("LightRef's set method","LightRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Light_funcs;
+obj.typeID=EXT->Light_typeID;
+obj.refCount=1;
+obj.data=F->data;
+Light_set_member(ctx, &obj, key, value);
+}
+SV LightPointData_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->LightPointData;
+NO obj=(NO)LightPointData_new(ctx, args2);
+obj->funcs=LightPointData_ptr_funcs;
+obj->typeID=EXT->LightPointData_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV LightPointData_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightPointDataRef::deref" EAOE));
+SV F=a[0];
+if(!TS(LightPointData*,(SV)F))
+CATE(TE,"LightPointDataRef::deref expects LightPointDataRef as first argument."));
+R CV(*(LightPointData *)((NO)F)->data);
+}
+SV LightPointData_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"LightPointData::refset expects two arguments."));
+SV F=a[0];
+if(!TS(LightPointData*,(SV)F))
+CATE(TE,"LightPointDataRef::refset expects LightPointDataRef as first argument."));
+*((LightPointData *)((NO)F)->data) = val_to_c<LightPointData>::f(ctx,a[1]);
+R CN;
+}
+
+void LightPointData_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(LightPointData*,(SV)F))
+CATE(TE,"LightPointDataRef::__del__ expects LightPointDataRef as first argument."));
+SCRIPT_DELETE(LightPointData, (LightPointData *)F->data);
+}
+SV LightPointData_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(LightPointData*,(SV)F))
+CATE(TE,FAE("LightPointDataRef's get method","LightPointDataRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightPointDataPtr");
+EI(keyStr=="__new__")
+R CNF(LightPointData_ptr_new);
+EI(keyStr=="__call__")
+R CNF(LightPointData_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(LightPointData_ptr_deref);
+if(keyStr=="refset")R CNF(LightPointData_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=LightPointData_funcs;
+obj.typeID=EXT->LightPointData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R LightPointData_get_member(ctx, &obj, key);
+}
+void LightPointData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(LightPointData*,(SV)F))
+CATE(TE,FAE("LightPointDataRef's set method","LightPointDataRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=LightPointData_funcs;
+obj.typeID=EXT->LightPointData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+LightPointData_set_member(ctx, &obj, key, value);
+}
 SV Float4_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -22942,6 +25086,87 @@ obj.typeID=EXT->Float4_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Float4_set_member(ctx, &obj, key, value);
+}
+SV LightDirectionalData_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->LightDirectionalData;
+NO obj=(NO)LightDirectionalData_new(ctx, args2);
+obj->funcs=LightDirectionalData_ptr_funcs;
+obj->typeID=EXT->LightDirectionalData_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV LightDirectionalData_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightDirectionalDataRef::deref" EAOE));
+SV F=a[0];
+if(!TS(LightDirectionalData*,(SV)F))
+CATE(TE,"LightDirectionalDataRef::deref expects LightDirectionalDataRef as first argument."));
+R CV(*(LightDirectionalData *)((NO)F)->data);
+}
+SV LightDirectionalData_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"LightDirectionalData::refset expects two arguments."));
+SV F=a[0];
+if(!TS(LightDirectionalData*,(SV)F))
+CATE(TE,"LightDirectionalDataRef::refset expects LightDirectionalDataRef as first argument."));
+*((LightDirectionalData *)((NO)F)->data) = val_to_c<LightDirectionalData>::f(ctx,a[1]);
+R CN;
+}
+
+void LightDirectionalData_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(LightDirectionalData*,(SV)F))
+CATE(TE,"LightDirectionalDataRef::__del__ expects LightDirectionalDataRef as first argument."));
+SCRIPT_DELETE(LightDirectionalData, (LightDirectionalData *)F->data);
+}
+SV LightDirectionalData_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(LightDirectionalData*,(SV)F))
+CATE(TE,FAE("LightDirectionalDataRef's get method","LightDirectionalDataRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightDirectionalDataPtr");
+EI(keyStr=="__new__")
+R CNF(LightDirectionalData_ptr_new);
+EI(keyStr=="__call__")
+R CNF(LightDirectionalData_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(LightDirectionalData_ptr_deref);
+if(keyStr=="refset")R CNF(LightDirectionalData_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=LightDirectionalData_funcs;
+obj.typeID=EXT->LightDirectionalData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R LightDirectionalData_get_member(ctx, &obj, key);
+}
+void LightDirectionalData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(LightDirectionalData*,(SV)F))
+CATE(TE,FAE("LightDirectionalDataRef's set method","LightDirectionalDataRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=LightDirectionalData_funcs;
+obj.typeID=EXT->LightDirectionalData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+LightDirectionalData_set_member(ctx, &obj, key, value);
 }
 SV Matrix4x4_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -23024,46 +25249,46 @@ obj.refCount=1;
 obj.data=F->data;
 Matrix4x4_set_member(ctx, &obj, key, value);
 }
-SV UInt4_ptr_new(CTX ctx,const List<SV>&a)
+SV UInt3_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->UInt4;
-NO obj=(NO)UInt4_new(ctx, args2);
-obj->funcs=UInt4_ptr_funcs;
-obj->typeID=EXT->UInt4_ptr_typeID;
+args2[0]=EXT->UInt3;
+NO obj=(NO)UInt3_new(ctx, args2);
+obj->funcs=UInt3_ptr_funcs;
+obj->typeID=EXT->UInt3_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 R(SV)obj;
 }
-SV UInt4_ptr_deref(CTX ctx,const List<SV>&a)
+SV UInt3_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"UInt4Ref::deref" EAOE));
+CATE(VE,"UInt3Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T4<uint32_t>*,(SV)F))
-CATE(TE,"UInt4Ref::deref expects UInt4Ref as first argument."));
-R CV(*(T4<uint32_t> *)((NO)F)->data);
+if(!TS(T3<uint32_t>*,(SV)F))
+CATE(TE,"UInt3Ref::deref expects UInt3Ref as first argument."));
+R CV(*(T3<uint32_t> *)((NO)F)->data);
 }
-SV UInt4_ptr_set(CTX ctx,const List<SV>&a)
+SV UInt3_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"UInt4::refset expects two arguments."));
+CATE(VE,"UInt3::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T4<uint32_t>*,(SV)F))
-CATE(TE,"UInt4Ref::refset expects UInt4Ref as first argument."));
-*((T4<uint32_t> *)((NO)F)->data) = val_to_c<T4<uint32_t>>::f(ctx,a[1]);
+if(!TS(T3<uint32_t>*,(SV)F))
+CATE(TE,"UInt3Ref::refset expects UInt3Ref as first argument."));
+*((T3<uint32_t> *)((NO)F)->data) = val_to_c<T3<uint32_t>>::f(ctx,a[1]);
 R CN;
 }
 
-void UInt4_ptr_destroy(CTX ctx,NO F)
+void UInt3_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<uint32_t>*,(SV)F))
-CATE(TE,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
-SCRIPT_DELETE(T4<uint32_t>, (T4<uint32_t> *)F->data);
+if(!TS(T3<uint32_t>*,(SV)F))
+CATE(TE,"UInt3Ref::__del__ expects UInt3Ref as first argument."));
+SCRIPT_DELETE(T3<uint32_t>, (T3<uint32_t> *)F->data);
 }
-SV UInt4_ptr_get_member(CTX ctx,NO F,SV key)
+SV UInt3_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T4<uint32_t>*,(SV)F))
-CATE(TE,FAE("UInt4Ref's get method","UInt4Ref")));
+if(!TS(T3<uint32_t>*,(SV)F))
+CATE(TE,FAE("UInt3Ref's get method","UInt3Ref")));
 if (key->type==S::ValueType::StringType)
 {
 String keyStr=((S::StringValue *)key)->value;
@@ -23072,38 +25297,200 @@ if(F->data==NULL)
 if(keyStr=="__typeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__name__")
-R S::createString("UInt4Ptr");
+R S::createString("UInt3Ptr");
 EI(keyStr=="__new__")
-R CNF(UInt4_ptr_new);
+R CNF(UInt3_ptr_new);
 EI(keyStr=="__call__")
-R CNF(UInt4_ptr_new);
+R CNF(UInt3_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")R CNF(UInt4_ptr_deref);
-if(keyStr=="refset")R CNF(UInt4_ptr_set);
+if(keyStr=="deref")R CNF(UInt3_ptr_deref);
+if(keyStr=="refset")R CNF(UInt3_ptr_set);
 }
 }
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
-obj.funcs=UInt4_funcs;
-obj.typeID=EXT->UInt4_typeID;
+obj.funcs=UInt3_funcs;
+obj.typeID=EXT->UInt3_typeID;
 obj.refCount=1;
 obj.data=F->data;
-R UInt4_get_member(ctx, &obj, key);
+R UInt3_get_member(ctx, &obj, key);
 }
-void UInt4_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+void UInt3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T4<uint32_t>*,(SV)F))
-CATE(TE,FAE("UInt4Ref's set method","UInt4Ref")));
+if(!TS(T3<uint32_t>*,(SV)F))
+CATE(TE,FAE("UInt3Ref's set method","UInt3Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
-obj.funcs=UInt4_funcs;
-obj.typeID=EXT->UInt4_typeID;
+obj.funcs=UInt3_funcs;
+obj.typeID=EXT->UInt3_typeID;
 obj.refCount=1;
 obj.data=F->data;
-UInt4_set_member(ctx, &obj, key, value);
+UInt3_set_member(ctx, &obj, key, value);
+}
+SV LightSpotData_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->LightSpotData;
+NO obj=(NO)LightSpotData_new(ctx, args2);
+obj->funcs=LightSpotData_ptr_funcs;
+obj->typeID=EXT->LightSpotData_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV LightSpotData_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightSpotDataRef::deref" EAOE));
+SV F=a[0];
+if(!TS(LightSpotData*,(SV)F))
+CATE(TE,"LightSpotDataRef::deref expects LightSpotDataRef as first argument."));
+R CV(*(LightSpotData *)((NO)F)->data);
+}
+SV LightSpotData_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"LightSpotData::refset expects two arguments."));
+SV F=a[0];
+if(!TS(LightSpotData*,(SV)F))
+CATE(TE,"LightSpotDataRef::refset expects LightSpotDataRef as first argument."));
+*((LightSpotData *)((NO)F)->data) = val_to_c<LightSpotData>::f(ctx,a[1]);
+R CN;
+}
+
+void LightSpotData_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(LightSpotData*,(SV)F))
+CATE(TE,"LightSpotDataRef::__del__ expects LightSpotDataRef as first argument."));
+SCRIPT_DELETE(LightSpotData, (LightSpotData *)F->data);
+}
+SV LightSpotData_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(LightSpotData*,(SV)F))
+CATE(TE,FAE("LightSpotDataRef's get method","LightSpotDataRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("LightSpotDataPtr");
+EI(keyStr=="__new__")
+R CNF(LightSpotData_ptr_new);
+EI(keyStr=="__call__")
+R CNF(LightSpotData_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(LightSpotData_ptr_deref);
+if(keyStr=="refset")R CNF(LightSpotData_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=LightSpotData_funcs;
+obj.typeID=EXT->LightSpotData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R LightSpotData_get_member(ctx, &obj, key);
+}
+void LightSpotData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(LightSpotData*,(SV)F))
+CATE(TE,FAE("LightSpotDataRef's set method","LightSpotDataRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=LightSpotData_funcs;
+obj.typeID=EXT->LightSpotData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+LightSpotData_set_member(ctx, &obj, key, value);
+}
+SV File_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->File;
+NO obj=(NO)File_new(ctx, args2);
+obj->funcs=File_ptr_funcs;
+obj->typeID=EXT->File_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV File_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"FileRef::deref" EAOE));
+SV F=a[0];
+if(!TS(File*,(SV)F))
+CATE(TE,"FileRef::deref expects FileRef as first argument."));
+CATE(TE,"File objects are not copyable."));
+}
+SV File_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"File::refset expects two arguments."));
+SV F=a[0];
+if(!TS(File*,(SV)F))
+CATE(TE,"FileRef::refset expects FileRef as first argument."));
+CATE(TE,"File objects are not copyable."));
+R CN;
+}
+
+void File_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(File*,(SV)F))
+CATE(TE,"FileRef::__del__ expects FileRef as first argument."));
+SCRIPT_DELETE(File, (File *)F->data);
+}
+SV File_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(File*,(SV)F))
+CATE(TE,FAE("FileRef's get method","FileRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("FilePtr");
+EI(keyStr=="__new__")
+R CNF(File_ptr_new);
+EI(keyStr=="__call__")
+R CNF(File_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(File_ptr_deref);
+if(keyStr=="refset")R CNF(File_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=File_funcs;
+obj.typeID=EXT->File_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R File_get_member(ctx, &obj, key);
+}
+void File_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(File*,(SV)F))
+CATE(TE,FAE("FileRef's set method","FileRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=File_funcs;
+obj.typeID=EXT->File_typeID;
+obj.refCount=1;
+obj.data=F->data;
+File_set_member(ctx, &obj, key, value);
 }
 SV AABB_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -23267,21 +25654,92 @@ obj.refCount=1;
 obj.data=F->data;
 Matrix3x3_set_member(ctx, &obj, key, value);
 }
+SV GfxDebugDrawer_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxDebugDrawer;
+NO obj=(NO)GfxDebugDrawer_new(ctx, args2);
+obj->funcs=GfxDebugDrawer_ptr_funcs;
+obj->typeID=EXT->GfxDebugDrawer_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxDebugDrawer_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxDebugDrawerRef::deref" EAOE));
+SV F=a[0];
+if(!TS(GfxDebugDrawer*,(SV)F))
+CATE(TE,"GfxDebugDrawerRef::deref expects GfxDebugDrawerRef as first argument."));
+CATE(TE,"GfxDebugDrawer objects are not copyable."));
+}
+SV GfxDebugDrawer_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxDebugDrawer::refset expects two arguments."));
+SV F=a[0];
+if(!TS(GfxDebugDrawer*,(SV)F))
+CATE(TE,"GfxDebugDrawerRef::refset expects GfxDebugDrawerRef as first argument."));
+CATE(TE,"GfxDebugDrawer objects are not copyable."));
+R CN;
+}
+
+void GfxDebugDrawer_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(GfxDebugDrawer*,(SV)F))
+CATE(TE,"GfxDebugDrawerRef::__del__ expects GfxDebugDrawerRef as first argument."));
+SCRIPT_DELETE(GfxDebugDrawer, (GfxDebugDrawer *)F->data);
+}
+SV GfxDebugDrawer_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(GfxDebugDrawer*,(SV)F))
+CATE(TE,FAE("GfxDebugDrawerRef's get method","GfxDebugDrawerRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxDebugDrawerPtr");
+EI(keyStr=="__new__")
+R CNF(GfxDebugDrawer_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxDebugDrawer_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxDebugDrawer_ptr_deref);
+if(keyStr=="refset")R CNF(GfxDebugDrawer_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxDebugDrawer_funcs;
+obj.typeID=EXT->GfxDebugDrawer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxDebugDrawer_get_member(ctx, &obj, key);
+}
+void GfxDebugDrawer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(GfxDebugDrawer*,(SV)F))
+CATE(TE,FAE("GfxDebugDrawerRef's set method","GfxDebugDrawerRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxDebugDrawer_funcs;
+obj.typeID=EXT->GfxDebugDrawer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxDebugDrawer_set_member(ctx, &obj, key, value);
+}
 void *initBindings(scripting::Engine *engine, void *data)
 {
     BindingsExt *ext = NEW(BindingsExt);
 
     int64_t typeID;
-    
-    typeID = engine->createNewTypeID();
-    ext->UInt3_typeID = typeID;
-    ext->UInt3 = scripting::createNativeObject(UInt3_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt3", ext->UInt3);
-    
-    typeID = engine->createNewTypeID();
-    ext->UInt3_ptr_typeID = typeID;
-    ext->UInt3_ptr = scripting::createNativeObject(UInt3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt3Ref", ext->UInt3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt2_typeID = typeID;
@@ -23294,6 +25752,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("UInt2Ref", ext->UInt2_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->GPUTimer_typeID = typeID;
+    ext->GPUTimer = scripting::createNativeObject(GPUTimer_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GPUTimer", ext->GPUTimer);
+    
+    typeID = engine->createNewTypeID();
+    ext->GPUTimer_ptr_typeID = typeID;
+    ext->GPUTimer_ptr = scripting::createNativeObject(GPUTimer_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GPUTimerRef", ext->GPUTimer_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->RigidBody_typeID = typeID;
     ext->RigidBody = scripting::createNativeObject(RigidBody_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBody", ext->RigidBody);
@@ -23304,24 +25772,14 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("RigidBodyRef", ext->RigidBody_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->File_typeID = typeID;
-    ext->File = scripting::createNativeObject(File_funcs, NULL, typeID);
-    engine->getGlobalVars().set("File", ext->File);
+    ext->Float2_typeID = typeID;
+    ext->Float2 = scripting::createNativeObject(Float2_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Float2", ext->Float2);
     
     typeID = engine->createNewTypeID();
-    ext->File_ptr_typeID = typeID;
-    ext->File_ptr = scripting::createNativeObject(File_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("FileRef", ext->File_ptr);
-    
-    typeID = engine->createNewTypeID();
-    ext->Int3_typeID = typeID;
-    ext->Int3 = scripting::createNativeObject(Int3_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int3", ext->Int3);
-    
-    typeID = engine->createNewTypeID();
-    ext->Int3_ptr_typeID = typeID;
-    ext->Int3_ptr = scripting::createNativeObject(Int3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int3Ref", ext->Int3_ptr);
+    ext->Float2_ptr_typeID = typeID;
+    ext->Float2_ptr = scripting::createNativeObject(Float2_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Float2Ref", ext->Float2_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Camera_typeID = typeID;
@@ -23334,14 +25792,24 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("CameraRef", ext->Camera_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->Float2_typeID = typeID;
-    ext->Float2 = scripting::createNativeObject(Float2_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float2", ext->Float2);
+    ext->UInt4_typeID = typeID;
+    ext->UInt4 = scripting::createNativeObject(UInt4_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt4", ext->UInt4);
     
     typeID = engine->createNewTypeID();
-    ext->Float2_ptr_typeID = typeID;
-    ext->Float2_ptr = scripting::createNativeObject(Float2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float2Ref", ext->Float2_ptr);
+    ext->UInt4_ptr_typeID = typeID;
+    ext->UInt4_ptr = scripting::createNativeObject(UInt4_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->Int3_typeID = typeID;
+    ext->Int3 = scripting::createNativeObject(Int3_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Int3", ext->Int3);
+    
+    typeID = engine->createNewTypeID();
+    ext->Int3_ptr_typeID = typeID;
+    ext->Int3_ptr = scripting::createNativeObject(Int3_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Int3Ref", ext->Int3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int4_typeID = typeID;
@@ -23362,6 +25830,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Float3_ptr_typeID = typeID;
     ext->Float3_ptr = scripting::createNativeObject(Float3_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float3Ref", ext->Float3_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxBuffer_typeID = typeID;
+    ext->GfxBuffer = scripting::createNativeObject(GfxBuffer_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxBuffer", ext->GfxBuffer);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxBuffer_ptr_typeID = typeID;
+    ext->GfxBuffer_ptr = scripting::createNativeObject(GfxBuffer_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxBufferRef", ext->GfxBuffer_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Transform_typeID = typeID;
@@ -23394,6 +25872,26 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Int2Ref", ext->Int2_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->Light_typeID = typeID;
+    ext->Light = scripting::createNativeObject(Light_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Light", ext->Light);
+    
+    typeID = engine->createNewTypeID();
+    ext->Light_ptr_typeID = typeID;
+    ext->Light_ptr = scripting::createNativeObject(Light_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightRef", ext->Light_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->LightPointData_typeID = typeID;
+    ext->LightPointData = scripting::createNativeObject(LightPointData_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightPointData", ext->LightPointData);
+    
+    typeID = engine->createNewTypeID();
+    ext->LightPointData_ptr_typeID = typeID;
+    ext->LightPointData_ptr = scripting::createNativeObject(LightPointData_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightPointDataRef", ext->LightPointData_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Float4_typeID = typeID;
     ext->Float4 = scripting::createNativeObject(Float4_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float4", ext->Float4);
@@ -23402,6 +25900,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Float4_ptr_typeID = typeID;
     ext->Float4_ptr = scripting::createNativeObject(Float4_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float4Ref", ext->Float4_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->LightDirectionalData_typeID = typeID;
+    ext->LightDirectionalData = scripting::createNativeObject(LightDirectionalData_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightDirectionalData", ext->LightDirectionalData);
+    
+    typeID = engine->createNewTypeID();
+    ext->LightDirectionalData_ptr_typeID = typeID;
+    ext->LightDirectionalData_ptr = scripting::createNativeObject(LightDirectionalData_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightDirectionalDataRef", ext->LightDirectionalData_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Matrix4x4_typeID = typeID;
@@ -23414,14 +25922,34 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Matrix4x4Ref", ext->Matrix4x4_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->UInt4_typeID = typeID;
-    ext->UInt4 = scripting::createNativeObject(UInt4_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt4", ext->UInt4);
+    ext->UInt3_typeID = typeID;
+    ext->UInt3 = scripting::createNativeObject(UInt3_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt3", ext->UInt3);
     
     typeID = engine->createNewTypeID();
-    ext->UInt4_ptr_typeID = typeID;
-    ext->UInt4_ptr = scripting::createNativeObject(UInt4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
+    ext->UInt3_ptr_typeID = typeID;
+    ext->UInt3_ptr = scripting::createNativeObject(UInt3_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt3Ref", ext->UInt3_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->LightSpotData_typeID = typeID;
+    ext->LightSpotData = scripting::createNativeObject(LightSpotData_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightSpotData", ext->LightSpotData);
+    
+    typeID = engine->createNewTypeID();
+    ext->LightSpotData_ptr_typeID = typeID;
+    ext->LightSpotData_ptr = scripting::createNativeObject(LightSpotData_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightSpotDataRef", ext->LightSpotData_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->File_typeID = typeID;
+    ext->File = scripting::createNativeObject(File_funcs, NULL, typeID);
+    engine->getGlobalVars().set("File", ext->File);
+    
+    typeID = engine->createNewTypeID();
+    ext->File_ptr_typeID = typeID;
+    ext->File_ptr = scripting::createNativeObject(File_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("FileRef", ext->File_ptr);
     
     typeID = engine->createNewTypeID();
     ext->AABB_typeID = typeID;
@@ -23444,9 +25972,14 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Matrix3x3Ref", ext->Matrix3x3_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->CameraType_typeID = typeID;
-    ext->CameraType = scripting::createNativeObject(CameraType_funcs, NULL, typeID);
-    engine->getGlobalVars().set("CameraType", ext->CameraType);
+    ext->GfxDebugDrawer_typeID = typeID;
+    ext->GfxDebugDrawer = scripting::createNativeObject(GfxDebugDrawer_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxDebugDrawer", ext->GfxDebugDrawer);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxDebugDrawer_ptr_typeID = typeID;
+    ext->GfxDebugDrawer_ptr = scripting::createNativeObject(GfxDebugDrawer_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxDebugDrawerRef", ext->GfxDebugDrawer_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxPrimitive_typeID = typeID;
@@ -23487,6 +26020,26 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GfxVertexAttribType_typeID = typeID;
     ext->GfxVertexAttribType = scripting::createNativeObject(GfxVertexAttribType_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxVertexAttribType", ext->GfxVertexAttribType);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxBufferUsage_typeID = typeID;
+    ext->GfxBufferUsage = scripting::createNativeObject(GfxBufferUsage_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxBufferUsage", ext->GfxBufferUsage);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxShadowmapPrecision_typeID = typeID;
+    ext->GfxShadowmapPrecision = scripting::createNativeObject(GfxShadowmapPrecision_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxShadowmapPrecision", ext->GfxShadowmapPrecision);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxLightType_typeID = typeID;
+    ext->GfxLightType = scripting::createNativeObject(GfxLightType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxLightType", ext->GfxLightType);
+    
+    typeID = engine->createNewTypeID();
+    ext->CameraType_typeID = typeID;
+    ext->CameraType = scripting::createNativeObject(CameraType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("CameraType", ext->CameraType);
     
     return ext;
 }
