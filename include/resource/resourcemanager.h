@@ -28,7 +28,7 @@ class ResourceManager
 
             HashMap<String, Resource *> *resources_;
 
-            Resource::Type type = resource->getType();
+            ResType type = resource->getType();
 
             try
             {
@@ -56,15 +56,15 @@ class ResourceManager
             return (T *)res->copy();
         }
 
-        bool isResource(Resource::Type type, const String& filename) const;
+        bool isResource(ResType type, const String& filename) const;
 
         void autoReloadResources() const;
         void cleanupResources();
     private:
-        HashMap<Resource::Type, HashMap<String, Resource *>> resources;
+        HashMap<ResType, HashMap<String, Resource *>> resources;
 
         template <typename T>
-        inline Resource::Type getType() const
+        inline ResType getType() const
         {
             return T::resource_type;
         }

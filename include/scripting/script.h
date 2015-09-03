@@ -147,7 +147,7 @@ class Script : public Resource
     NO_COPY_INHERITED(Script, Resource);
 
     public:
-        static const Type resource_type = ScriptType;
+        static const ResType resource_type = ResType::ScriptType;
 
         Script();
         Script(const String& filename);

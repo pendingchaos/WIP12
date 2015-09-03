@@ -175,11 +175,11 @@ void ScriptInstance::handleMessage(BaseMessage *message)
     }
 }
 
-Script::Script() : Resource(ScriptType),
+Script::Script() : Resource(ResType::ScriptType),
                    dl(nullptr) {}
 
 Script::Script(const String& filename) : Resource(filename,
-                                                  ScriptType),
+                                                  ResType::ScriptType),
                                          dl(nullptr) {}
 
 Script::~Script()

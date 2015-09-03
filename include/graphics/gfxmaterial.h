@@ -17,7 +17,7 @@
 class GfxMaterial : public Resource
 {
     public:
-        static const Resource::Type resource_type = GfxMaterialType;
+        static const ResType resource_type = ResType::GfxMaterialType;
 
         GfxMaterial();
         GfxMaterial(const String& filename);

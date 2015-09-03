@@ -3,11 +3,12 @@
 
 #include "containers/list.h"
 #include "resource/resource.h"
+#include "scripting/bindings.h"
 
 class Audio : public Resource
 {
     public:
-        static const Type resource_type = Resource::AudioType;
+        static const ResType resource_type = ResType::AudioType;
 
         Audio();
         Audio(const String& filename);
@@ -16,7 +17,7 @@ class Audio : public Resource
         virtual void removeContent();
 
         size_t frequency;
-        List<float> data;
+        NO_BIND List<float> data;
 
         static inline size_t changeSampleFrequency(size_t sample, size_t old, size_t new_)
         {
@@ -66,6 +67,6 @@ class Audio : public Resource
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-};
+} BIND;
 
 #endif // AUDIO_H

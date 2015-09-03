@@ -6,7 +6,7 @@
 #include "containers/list.h"
 
 GfxMesh::GfxMesh(const String& filename) : Resource(filename,
-                                                    GfxMeshType),
+                                                    ResType::GfxMeshType),
                                            primitive(GfxTriangles),
                                            numVertices(0),
                                            cullMode(GfxCullNone),
@@ -17,7 +17,7 @@ GfxMesh::GfxMesh(const String& filename) : Resource(filename,
     buffer = gfxApi->createBuffer();
 }
 
-GfxMesh::GfxMesh() : Resource(GfxMeshType),
+GfxMesh::GfxMesh() : Resource(ResType::GfxMeshType),
                      primitive(GfxTriangles),
                      numVertices(0),
                      cullMode(GfxCullNone),

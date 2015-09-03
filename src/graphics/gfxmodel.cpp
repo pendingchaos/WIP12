@@ -13,10 +13,10 @@ GfxModel::LOD::LOD(float minDistance_,
                                               material(material_),
                                               worldMatrix(matrix) {}
 
-GfxModel::GfxModel() : Resource(Resource::GfxModelType) {}
+GfxModel::GfxModel() : Resource(ResType::GfxModelType) {}
 
 GfxModel::GfxModel(const String& filename) : Resource(filename,
-                                                      Resource::GfxModelType) {}
+                                                      ResType::GfxModelType) {}
 
 GfxModel::~GfxModel()
 {

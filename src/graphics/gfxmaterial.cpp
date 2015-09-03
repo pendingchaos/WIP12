@@ -5,7 +5,7 @@
 #include "graphics/gfxrenderer.h"
 #include "file.h"
 
-GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
+GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
                              smoothness(0.5f),
                              metalMask(0.0f),
                              parallaxStrength(0.0F),
@@ -29,7 +29,7 @@ GfxMaterial::GfxMaterial() : Resource(GfxMaterialType),
 }
 
 GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
-                                                            GfxMaterialType),
+                                                            ResType::GfxMaterialType),
                                                    smoothness(0.5f),
                                                    metalMask(0.0f),
                                                    parallaxStrength(0.0F),

@@ -10,10 +10,10 @@
 #include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 #include <cstring>
 
-PhysicsShape::PhysicsShape() : Resource(Resource::PhysicsShapeType),
+PhysicsShape::PhysicsShape() : Resource(ResType::PhysicsShapeType),
                                impl(NEW(PhysicsShapeImpl, this, PhysicsShapeImpl::Empty, NEW(btEmptyShape))) {}
 
-PhysicsShape::PhysicsShape(const String& filename) : Resource(filename, Resource::PhysicsShapeType),
+PhysicsShape::PhysicsShape(const String& filename) : Resource(filename, ResType::PhysicsShapeType),
                                                      impl(NEW(PhysicsShapeImpl, this, PhysicsShapeImpl::Empty, NEW(btEmptyShape))) {}
 
 PhysicsShape::~PhysicsShape()

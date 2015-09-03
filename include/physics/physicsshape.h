@@ -408,7 +408,7 @@ class PhysicsShape : public Resource
     friend GhostObject;
 
     public:
-        static const Resource::Type resource_type = Resource::PhysicsShapeType;
+        static const ResType resource_type = ResType::PhysicsShapeType;
 
         PhysicsShape();
         PhysicsShape(const String& filename);

@@ -220,10 +220,15 @@ class Class(object):
         self.copyable = True
         self.destructable = True
         self.constructable = True
+        self.parent = None
         
         num_private_cons = 0
         
         for child in cursor.get_children():
+            if child.kind == clang.cindex.CursorKind.CXX_BASE_SPECIFIER:
+                if len(child.spelling.split(" ")) == 2:
+                    self.parent = child.spelling.split(" ")[1]
+
             if not child.access_specifier in [clang.cindex.AccessSpecifier.PUBLIC,
                                               clang.cindex.AccessSpecifier.INVALID]:
                 if child.kind == clang.cindex.CursorKind.DESTRUCTOR:
@@ -283,6 +288,13 @@ class Class(object):
                     self.script_public = True
                 elif c.displayname == "nocopy":
                     self.copyable = False
+        
+    def add_parent(self, parent):
+        self.methods += parent.methods
+        self.properties += parent.properties
+        self.copyable = self.copyable and parent.copyable
+        self.destructable = self.destructable and parent.destructable
+        self.constructable = self.constructable and parent.constructable
 
 class Enum(object):
     def __init__(self, cursor):
@@ -359,6 +371,15 @@ def get_classes(cursor):
                             classes[name].script_public = True
                         except KeyError:
                             template_classes[name].script_public = True
+
+    for class_ in classes.values():
+        if class_.parent != None:
+            try:
+                class_.add_parent(classes[class_.parent])
+            except KeyError:
+                pass
+
+        del class_.parent
 
     return classes
 
@@ -695,6 +716,15 @@ struct create_val<char>
     static SV f(scripting::Context *ctx, char data)
     {
         return scripting::createString(String(data));
+    }
+};
+
+template <>
+struct create_val<const String>
+{
+    static SV f(scripting::Context *ctx, const String& data)
+    {
+        return scripting::createString(data);
     }
 };
 

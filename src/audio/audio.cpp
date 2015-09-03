@@ -5,9 +5,9 @@
 
 #include <vorbis/vorbisfile.h>
 
-Audio::Audio() : Resource(Resource::AudioType), frequency(11025) {}
+Audio::Audio() : Resource(ResType::AudioType), frequency(11025) {}
 
-Audio::Audio(const String& filename_) : Resource(filename_, Resource::AudioType),
+Audio::Audio(const String& filename_) : Resource(filename_, ResType::AudioType),
                                         frequency(11025) {}
 
 Audio::~Audio() {}

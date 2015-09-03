@@ -21,7 +21,7 @@ class GfxMeshImpl;
 class GfxMesh : public Resource
 {
     public:
-        static const Resource::Type resource_type = GfxMeshType;
+        static const ResType resource_type = ResType::GfxMeshType;
 
         GfxMesh(const String& filename);
         GfxMesh();

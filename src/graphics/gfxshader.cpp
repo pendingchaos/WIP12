@@ -9,10 +9,10 @@
 #include <unistd.h>
 
 GfxShader::GfxShader(const String& filename) : Resource(filename,
-                                                        GfxShaderType),
+                                                        ResType::GfxShaderType),
                                                impl(gfxApi->createShaderImpl()) {}
 
-GfxShader::GfxShader() : Resource(GfxShaderType),
+GfxShader::GfxShader() : Resource(ResType::GfxShaderType),
                          impl(gfxApi->createShaderImpl()) {}
 
 GfxShader::~GfxShader()

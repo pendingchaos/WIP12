@@ -41,7 +41,7 @@ class GfxShader : public Resource
     friend class GfxCompiledShader;
 
     public:
-        static const Resource::Type resource_type = GfxShaderType;
+        static const ResType resource_type = ResType::GfxShaderType;
 
         enum Stage
         {

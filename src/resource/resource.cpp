@@ -5,18 +5,18 @@
 #include "filesystem.h"
 #include "globals.h"
 
-Resource::Resource(Type type_) : autoReload(true),
-                                 filename(""),
-                                 type(type_),
-                                 loaded(true),
-                                 refCount(1) {}
+Resource::Resource(ResType type_) : autoReload(true),
+                                    filename(""),
+                                    type(type_),
+                                    loaded(true),
+                                    refCount(1) {}
 
 Resource::Resource(const String& filename_,
-                   Type type_) : autoReload(true),
-                                 filename(filename_),
-                                 type(type_),
-                                 loaded(false),
-                                 refCount(1)
+                   ResType type_) : autoReload(true),
+                                    filename(filename_),
+                                    type(type_),
+                                    loaded(false),
+                                    refCount(1)
 {
     refreshModification();
 }

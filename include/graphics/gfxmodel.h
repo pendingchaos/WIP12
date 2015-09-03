@@ -14,7 +14,7 @@ class GfxModel : public Resource
     NO_COPY_INHERITED(GfxModel, Resource)
 
     public:
-        static const Resource::Type resource_type = GfxModelType;
+        static const ResType resource_type = ResType::GfxModelType;
 
         struct LOD
         {

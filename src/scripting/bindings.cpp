@@ -78,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Camera_typeID, Camera_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, CameraType_typeID;
-    scripting::Value *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *Float2, *Float2_ptr, *Camera, *Camera_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *CameraType;
+    int64_t UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Float2_typeID, Float2_ptr_typeID, Camera_typeID, Camera_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, Resource_typeID, Resource_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, Audio_typeID, Audio_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, CameraType_typeID;
+    scripting::Value *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *Float2, *Float2_ptr, *Camera, *Camera_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *Resource, *Resource_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *Audio, *Audio_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *CameraType;
 };
 
 
@@ -293,6 +293,15 @@ struct create_val<char>
     }
 };
 
+template <>
+struct create_val<const String>
+{
+    static SV f(scripting::Context *ctx, const String& data)
+    {
+        return scripting::createString(data);
+    }
+};
+
 CREATE_VAL(uint8_t, createInt)
 CREATE_VAL(int8_t, createInt)
 CREATE_VAL(uint16_t, createInt)
@@ -373,7 +382,57 @@ T *own(scripting::Context *ctx, SV value)
 
     CATE(scripting::ExcType::TypeError, "Argument's value can not be converted."));
 }
-void GfxPrimitive_destroy(CTX,NO) {}
+void ResType_destroy(CTX,NO) {}
+SV ResType_get_member(CTX,NO,SV);
+void ResType_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs ResType_funcs={
+.destroy = ResType_destroy,
+.getMember = ResType_get_member,
+.setMember = ResType_set_member
+};
+template <>
+struct create_val<ResType>
+{
+static SV f(CTX ctx,ResType v)
+{
+R S::createNativeObject(ResType_funcs,(void *)v,EXT->ResType_typeID);
+}
+};
+template <>
+struct val_to_c<ResType>
+{
+static ResType f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to ResType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->ResType_typeID)
+CATE(TE,"Value can not be converted to ResType."));
+size_t v=size_t(obj->data);
+if(v==3)return ResType::GfxMaterialType;
+if(v==6)return ResType::ScriptType;
+if(v==1)return ResType::GfxTextureType;
+if(v==2)return ResType::GfxMeshType;
+if(v==8)return ResType::AudioType;
+if(v==9)return ResType::FontType;
+if(v==4)return ResType::GfxModelType;
+if(v==7)return ResType::PhysicsShapeType;
+if(v==0)return ResType::GfxShaderType;
+if(v==5)return ResType::SceneType;
+}
+};
+template <>
+struct type_same<ResType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->ResType_typeID;
+else
+ R false;
+}
+};void GfxPrimitive_destroy(CTX,NO) {}
 SV GfxPrimitive_get_member(CTX,NO,SV);
 void GfxPrimitive_set_member(CTX,NO,SV,SV);
 static const S::NativeObjectFuncs GfxPrimitive_funcs={
@@ -2428,6 +2487,40 @@ else
 }
 };
 
+void Resource_destroy(CTX,NO);
+SV Resource_get_member(CTX,NO,SV);
+void Resource_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Resource_funcs={
+.destroy = Resource_destroy,
+.getMember = Resource_get_member,
+.setMember = Resource_set_member
+};
+template <>
+struct type_same<Resource>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Resource_typeID;
+else
+ R false;
+}
+};
+
+SV Resource_removeContent(CTX ctx,const List<SV>&a);
+SV Resource_load(CTX ctx,const List<SV>&a);
+SV Resource_reload(CTX ctx,const List<SV>&a);
+SV Resource_save(CTX ctx,const List<SV>&a);
+SV Resource_copy(CTX ctx,const List<SV>&a);
+SV Resource_getType(CTX ctx,const List<SV>&a);
+SV Resource_isLoaded(CTX ctx,const List<SV>&a);
+SV Resource_getLastFileModification(CTX ctx,const List<SV>&a);
+SV Resource_shouldReload(CTX ctx,const List<SV>&a);
+SV Resource_possiblyReload(CTX ctx,const List<SV>&a);
+SV Resource_release(CTX ctx,const List<SV>&a);
+SV Resource_getRefCount(CTX ctx,const List<SV>&a);
+SV Resource_getFilename(CTX ctx,const List<SV>&a);
+SV Resource_setFilename(CTX ctx,const List<SV>&a);
 void File_destroy(CTX,NO);
 SV File_get_member(CTX,NO,SV);
 void File_set_member(CTX,NO,SV,SV);
@@ -2536,6 +2629,48 @@ else
 SV AABB_transform(CTX ctx,const List<SV>&a);
 SV AABB_extend(CTX ctx,const List<SV>&a);
 SV AABB_grow(CTX ctx,const List<SV>&a);
+void Audio_destroy(CTX,NO);
+SV Audio_get_member(CTX,NO,SV);
+void Audio_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Audio_funcs={
+.destroy = Audio_destroy,
+.getMember = Audio_get_member,
+.setMember = Audio_set_member
+};
+template <>
+struct type_same<Audio>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Audio_typeID;
+else
+ R false;
+}
+};
+
+SV Audio_removeContent(CTX ctx,const List<SV>&a);
+SV Audio_changeSampleFrequency(CTX ctx,const List<SV>&a);
+SV Audio_getNumSamples(CTX ctx,const List<SV>&a);
+SV Audio_getSample(CTX ctx,const List<SV>&a);
+SV Audio_getMonoSample(CTX ctx,const List<SV>&a);
+SV Audio_setSample(CTX ctx,const List<SV>&a);
+SV Audio_setMonoSample(CTX ctx,const List<SV>&a);
+SV Audio_getDuration(CTX ctx,const List<SV>&a);
+SV Audio_getSampleIndex(CTX ctx,const List<SV>&a);
+SV Audio_load(CTX ctx,const List<SV>&a);
+SV Audio_reload(CTX ctx,const List<SV>&a);
+SV Audio_save(CTX ctx,const List<SV>&a);
+SV Audio_copy(CTX ctx,const List<SV>&a);
+SV Audio_getType(CTX ctx,const List<SV>&a);
+SV Audio_isLoaded(CTX ctx,const List<SV>&a);
+SV Audio_getLastFileModification(CTX ctx,const List<SV>&a);
+SV Audio_shouldReload(CTX ctx,const List<SV>&a);
+SV Audio_possiblyReload(CTX ctx,const List<SV>&a);
+SV Audio_release(CTX ctx,const List<SV>&a);
+SV Audio_getRefCount(CTX ctx,const List<SV>&a);
+SV Audio_getFilename(CTX ctx,const List<SV>&a);
+SV Audio_setFilename(CTX ctx,const List<SV>&a);
 void Matrix3x3_destroy(CTX,NO);
 SV Matrix3x3_get_member(CTX,NO,SV);
 void Matrix3x3_set_member(CTX,NO,SV,SV);
@@ -3593,6 +3728,55 @@ else
 }
 };
 
+SV Resource_ptr_copy(CTX,NO);
+void Resource_ptr_destroy(CTX,NO);
+SV Resource_ptr_get_member(CTX,NO,SV);
+void Resource_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Resource_ptr_funcs={
+.destroy = Resource_ptr_destroy,
+.getMember = Resource_ptr_get_member,
+.setMember = Resource_ptr_set_member
+};
+template <>
+struct create_val<Resource *>
+{
+static SV f(CTX ctx,Resource*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(Resource_ptr_funcs,obj,EXT->Resource_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Resource *>
+{
+static Resource *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Resource_ptr_typeID)
+R(Resource*)obj->data;
+else
+ CATE(TE,"Value is not a ResourceRef."));
+} else
+ CATE(TE,"Value is not a ResourceRef."));
+}
+};
+template <>
+struct type_same<Resource *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Resource_ptr_typeID;
+else
+ R false;
+}
+};
+
 SV File_ptr_copy(CTX,NO);
 void File_ptr_destroy(CTX,NO);
 SV File_ptr_get_member(CTX,NO,SV);
@@ -3686,6 +3870,55 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->AABB_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV Audio_ptr_copy(CTX,NO);
+void Audio_ptr_destroy(CTX,NO);
+SV Audio_ptr_get_member(CTX,NO,SV);
+void Audio_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Audio_ptr_funcs={
+.destroy = Audio_ptr_destroy,
+.getMember = Audio_ptr_get_member,
+.setMember = Audio_ptr_set_member
+};
+template <>
+struct create_val<Audio *>
+{
+static SV f(CTX ctx,Audio*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.cppRef = false;
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(Audio_ptr_funcs,obj,EXT->Audio_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Audio *>
+{
+static Audio *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Audio_ptr_typeID)
+R(Audio*)obj->data;
+else
+ CATE(TE,"Value is not a AudioRef."));
+} else
+ CATE(TE,"Value is not a AudioRef."));
+}
+};
+template <>
+struct type_same<Audio *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Audio_ptr_typeID;
 else
  R false;
 }
@@ -3789,6 +4022,72 @@ else
 }
 };
 
+SV ResType___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("ResType::__eq__")));
+size_t F;
+if(!TS(ResType,a[0]))
+CATE(TE,FAE("ResType::ResType","ResType")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(ResType,a[1]))
+CATE(VE,UFOF("ResType::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV ResType_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("ResType");
+EI(keyStr=="__eq__")
+R CNF(ResType___eq__);
+EI(keyStr=="GfxMaterialType")R S::createNativeObject(ResType_funcs,(void *)3,EXT->ResType_typeID);
+EI(keyStr=="ScriptType")R S::createNativeObject(ResType_funcs,(void *)6,EXT->ResType_typeID);
+EI(keyStr=="GfxTextureType")R S::createNativeObject(ResType_funcs,(void *)1,EXT->ResType_typeID);
+EI(keyStr=="GfxMeshType")R S::createNativeObject(ResType_funcs,(void *)2,EXT->ResType_typeID);
+EI(keyStr=="AudioType")R S::createNativeObject(ResType_funcs,(void *)8,EXT->ResType_typeID);
+EI(keyStr=="FontType")R S::createNativeObject(ResType_funcs,(void *)9,EXT->ResType_typeID);
+EI(keyStr=="GfxModelType")R S::createNativeObject(ResType_funcs,(void *)4,EXT->ResType_typeID);
+EI(keyStr=="PhysicsShapeType")R S::createNativeObject(ResType_funcs,(void *)7,EXT->ResType_typeID);
+EI(keyStr=="GfxShaderType")R S::createNativeObject(ResType_funcs,(void *)0,EXT->ResType_typeID);
+EI(keyStr=="SceneType")R S::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("ResType");
+EI(keyStr=="__eq__")
+R CNF(ResType___eq__);
+EI(keyStr=="GfxMaterialType")R S::createNativeObject(ResType_funcs,(void *)3,EXT->ResType_typeID);
+EI(keyStr=="ScriptType")R S::createNativeObject(ResType_funcs,(void *)6,EXT->ResType_typeID);
+EI(keyStr=="GfxTextureType")R S::createNativeObject(ResType_funcs,(void *)1,EXT->ResType_typeID);
+EI(keyStr=="GfxMeshType")R S::createNativeObject(ResType_funcs,(void *)2,EXT->ResType_typeID);
+EI(keyStr=="AudioType")R S::createNativeObject(ResType_funcs,(void *)8,EXT->ResType_typeID);
+EI(keyStr=="FontType")R S::createNativeObject(ResType_funcs,(void *)9,EXT->ResType_typeID);
+EI(keyStr=="GfxModelType")R S::createNativeObject(ResType_funcs,(void *)4,EXT->ResType_typeID);
+EI(keyStr=="PhysicsShapeType")R S::createNativeObject(ResType_funcs,(void *)7,EXT->ResType_typeID);
+EI(keyStr=="GfxShaderType")R S::createNativeObject(ResType_funcs,(void *)0,EXT->ResType_typeID);
+EI(keyStr=="SceneType")R S::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void ResType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV GfxPrimitive___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -22282,6 +22581,382 @@ obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
 }
 }
 
+void Resource_destroy(CTX ctx,NO F)
+{
+if(!TS(Resource, (SV)F))
+CATE(TE,"Resource::__del__ expects Resource as first argument."));
+
+DELETE(Resource,(Resource *)F->data);
+}SV Resource_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"Resource's constructor" EAOE));
+if(!TS(Resource,a[0]))
+CATE(TE,"Resource's constructor expects Resource as first argument."));
+CATE(TE,UFOF("Resource's constructor.")));
+}
+
+SV Resource_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("Resource");
+EI(keyStr=="__new__")
+R CNF(Resource_new);
+EI(keyStr=="__call__")
+R CNF(Resource_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(Resource_new);
+ EI(keyStr == "removeContent")
+R CNF(Resource_removeContent);
+ EI(keyStr == "load")
+R CNF(Resource_load);
+ EI(keyStr == "reload")
+R CNF(Resource_reload);
+ EI(keyStr == "save")
+R CNF(Resource_save);
+ EI(keyStr == "copy")
+R CNF(Resource_copy);
+ EI(keyStr == "getType")
+R CNF(Resource_getType);
+ EI(keyStr == "isLoaded")
+R CNF(Resource_isLoaded);
+ EI(keyStr == "getLastFileModification")
+R CNF(Resource_getLastFileModification);
+ EI(keyStr == "shouldReload")
+R CNF(Resource_shouldReload);
+ EI(keyStr == "possiblyReload")
+R CNF(Resource_possiblyReload);
+ EI(keyStr == "release")
+R CNF(Resource_release);
+ EI(keyStr == "getRefCount")
+R CNF(Resource_getRefCount);
+ EI(keyStr == "getFilename")
+R CNF(Resource_getFilename);
+ EI(keyStr == "setFilename")
+R CNF(Resource_setFilename);
+ EI(keyStr=="autoReload")
+{
+Resource*obj=(Resource*)F->data;
+R CV(obj->autoReload);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void Resource_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="autoReload")
+{
+Resource*obj=(Resource*)F->data;
+obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV Resource_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::load" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::load","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->load());
+R CN;
+}
+CATE(TE,UFOF("Resource::load.")));
+R CN;
+}
+
+SV Resource_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::getFilename" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::getFilename","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFilename());
+;
+}
+CATE(TE,UFOF("Resource::getFilename.")));
+R CN;
+}
+
+SV Resource_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::copy" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::copy","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("Resource::copy.")));
+R CN;
+}
+
+SV Resource_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::getLastFileModification" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::getLastFileModification","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getLastFileModification());
+;
+}
+CATE(TE,UFOF("Resource::getLastFileModification.")));
+R CN;
+}
+
+SV Resource_possiblyReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::possiblyReload" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::possiblyReload","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+CATE(TE,UFOF("Resource::possiblyReload.")));
+R CN;
+}
+
+SV Resource_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::getType" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::getType","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("Resource::getType.")));
+R CN;
+}
+
+SV Resource_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::setFilename" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::setFilename","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const String &,a[1]))
+{
+( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Resource::setFilename.")));
+R CN;
+}
+
+SV Resource_isLoaded(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::isLoaded" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::isLoaded","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isLoaded());
+;
+}
+CATE(TE,UFOF("Resource::isLoaded.")));
+R CN;
+}
+
+SV Resource_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::reload" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::reload","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->reload());
+R CN;
+}
+CATE(TE,UFOF("Resource::reload.")));
+R CN;
+}
+
+SV Resource_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::removeContent" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::removeContent","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+CATE(TE,UFOF("Resource::removeContent.")));
+R CN;
+}
+
+SV Resource_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::getRefCount" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::getRefCount","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRefCount());
+;
+}
+CATE(TE,UFOF("Resource::getRefCount.")));
+R CN;
+}
+
+SV Resource_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::release" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::release","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->release());
+R CN;
+}
+CATE(TE,UFOF("Resource::release.")));
+R CN;
+}
+
+SV Resource_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::shouldReload" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::shouldReload","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldReload());
+;
+}
+CATE(TE,UFOF("Resource::shouldReload.")));
+R CN;
+}
+
+SV Resource_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Resource::save" EAOE));
+Resource*F;
+if(!TS(Resource,a[0]))
+CATE(TE,FAE("Resource::save","Resource")));
+else
+ F=(Resource*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+CATE(TE,UFOF("Resource::save.")));
+R CN;
+}
+
 void File_destroy(CTX ctx,NO F)
 {
 if(!TS(File, (SV)F))
@@ -23370,6 +24045,578 @@ if(1&&TS(const Vector3D &,a[1]))
 R CN;
 }
 CATE(TE,UFOF("AABB::grow.")));
+R CN;
+}
+
+void Audio_destroy(CTX ctx,NO F)
+{
+if(!TS(Audio, (SV)F))
+CATE(TE,"Audio::__del__ expects Audio as first argument."));
+
+DELETE(Audio,(Audio *)F->data);
+}SV Audio_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"Audio's constructor" EAOE));
+if(!TS(Audio,a[0]))
+CATE(TE,"Audio's constructor expects Audio as first argument."));
+CATE(TE,UFOF("Audio's constructor.")));
+}
+
+SV Audio_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("Audio");
+EI(keyStr=="__new__")
+R CNF(Audio_new);
+EI(keyStr=="__call__")
+R CNF(Audio_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(Audio_new);
+ EI(keyStr == "removeContent")
+R CNF(Audio_removeContent);
+ EI(keyStr == "changeSampleFrequency")
+R CNF(Audio_changeSampleFrequency);
+ EI(keyStr == "getNumSamples")
+R CNF(Audio_getNumSamples);
+ EI(keyStr == "getSample")
+R CNF(Audio_getSample);
+ EI(keyStr == "getMonoSample")
+R CNF(Audio_getMonoSample);
+ EI(keyStr == "setSample")
+R CNF(Audio_setSample);
+ EI(keyStr == "setMonoSample")
+R CNF(Audio_setMonoSample);
+ EI(keyStr == "getDuration")
+R CNF(Audio_getDuration);
+ EI(keyStr == "getSampleIndex")
+R CNF(Audio_getSampleIndex);
+ EI(keyStr == "load")
+R CNF(Audio_load);
+ EI(keyStr == "reload")
+R CNF(Audio_reload);
+ EI(keyStr == "save")
+R CNF(Audio_save);
+ EI(keyStr == "copy")
+R CNF(Audio_copy);
+ EI(keyStr == "getType")
+R CNF(Audio_getType);
+ EI(keyStr == "isLoaded")
+R CNF(Audio_isLoaded);
+ EI(keyStr == "getLastFileModification")
+R CNF(Audio_getLastFileModification);
+ EI(keyStr == "shouldReload")
+R CNF(Audio_shouldReload);
+ EI(keyStr == "possiblyReload")
+R CNF(Audio_possiblyReload);
+ EI(keyStr == "release")
+R CNF(Audio_release);
+ EI(keyStr == "getRefCount")
+R CNF(Audio_getRefCount);
+ EI(keyStr == "getFilename")
+R CNF(Audio_getFilename);
+ EI(keyStr == "setFilename")
+R CNF(Audio_setFilename);
+ EI(keyStr=="frequency")
+{
+Audio*obj=(Audio*)F->data;
+R CV(obj->frequency);
+} EI(keyStr=="autoReload")
+{
+Audio*obj=(Audio*)F->data;
+R CV(obj->autoReload);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void Audio_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="frequency")
+{
+Audio*obj=(Audio*)F->data;
+obj->frequency=val_to_c<decltype(obj->frequency)>::f(ctx,value);
+} EI(keyStr=="autoReload")
+{
+Audio*obj=(Audio*)F->data;
+obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV Audio_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::load" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::load","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->load());
+R CN;
+}
+CATE(TE,UFOF("Audio::load.")));
+R CN;
+}
+
+SV Audio_changeSampleFrequency(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::changeSampleFrequency" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::changeSampleFrequency","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(size_t,a[3]))
+{
+R CV( F->changeSampleFrequency(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<size_t>::f(ctx,a[3])));
+;
+}
+CATE(TE,UFOF("Audio::changeSampleFrequency.")));
+R CN;
+}
+
+SV Audio_possiblyReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::possiblyReload" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::possiblyReload","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+CATE(TE,UFOF("Audio::possiblyReload.")));
+R CN;
+}
+
+SV Audio_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::setFilename" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::setFilename","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(const String &,a[1]))
+{
+( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Audio::setFilename.")));
+R CN;
+}
+
+SV Audio_isLoaded(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::isLoaded" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::isLoaded","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isLoaded());
+;
+}
+CATE(TE,UFOF("Audio::isLoaded.")));
+R CN;
+}
+
+SV Audio_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getFilename" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getFilename","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFilename());
+;
+}
+CATE(TE,UFOF("Audio::getFilename.")));
+R CN;
+}
+
+SV Audio_getMonoSample(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getMonoSample" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getMonoSample","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(size_t,a[1]))
+{
+R CV( F->getMonoSample(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Audio::getMonoSample.")));
+R CN;
+}
+
+SV Audio_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getLastFileModification" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getLastFileModification","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getLastFileModification());
+;
+}
+CATE(TE,UFOF("Audio::getLastFileModification.")));
+R CN;
+}
+
+SV Audio_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::shouldReload" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::shouldReload","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldReload());
+;
+}
+CATE(TE,UFOF("Audio::shouldReload.")));
+R CN;
+}
+
+SV Audio_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::save" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::save","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+CATE(TE,UFOF("Audio::save.")));
+R CN;
+}
+
+SV Audio_getSampleIndex(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getSampleIndex" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getSampleIndex","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(float,a[1]))
+{
+R CV( F->getSampleIndex(val_to_c<float>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==4)
+if(1&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(float,a[3]))
+{
+R CV( F->getSampleIndex(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3])));
+;
+}
+CATE(TE,UFOF("Audio::getSampleIndex.")));
+R CN;
+}
+
+SV Audio_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getRefCount" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getRefCount","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRefCount());
+;
+}
+CATE(TE,UFOF("Audio::getRefCount.")));
+R CN;
+}
+
+SV Audio_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getType" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getType","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("Audio::getType.")));
+R CN;
+}
+
+SV Audio_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::removeContent" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::removeContent","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+CATE(TE,UFOF("Audio::removeContent.")));
+R CN;
+}
+
+SV Audio_getDuration(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getDuration" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getDuration","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getDuration());
+;
+}
+CATE(TE,UFOF("Audio::getDuration.")));
+R CN;
+}
+
+SV Audio_getNumSamples(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getNumSamples" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getNumSamples","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getNumSamples());
+;
+}
+CATE(TE,UFOF("Audio::getNumSamples.")));
+R CN;
+}
+
+SV Audio_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::copy" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::copy","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("Audio::copy.")));
+R CN;
+}
+
+SV Audio_getSample(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getSample" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::getSample","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(size_t,a[1])&&TS(size_t,a[2]))
+{
+R CV( F->getSample(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("Audio::getSample.")));
+R CN;
+}
+
+SV Audio_setMonoSample(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::setMonoSample" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::setMonoSample","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(size_t,a[1])&&TS(float,a[2]))
+{
+( F->setMonoSample(val_to_c<size_t>::f(ctx,a[1]), val_to_c<float>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("Audio::setMonoSample.")));
+R CN;
+}
+
+SV Audio_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::reload" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::reload","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->reload());
+R CN;
+}
+CATE(TE,UFOF("Audio::reload.")));
+R CN;
+}
+
+SV Audio_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::release" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::release","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->release());
+R CN;
+}
+CATE(TE,UFOF("Audio::release.")));
+R CN;
+}
+
+SV Audio_setSample(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::setSample" EAOE));
+Audio*F;
+if(!TS(Audio,a[0]))
+CATE(TE,FAE("Audio::setSample","Audio")));
+else
+ F=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(float,a[3]))
+{
+( F->setSample(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3])));
+R CN;
+}
+CATE(TE,UFOF("Audio::setSample.")));
 R CN;
 }
 
@@ -25411,6 +26658,87 @@ obj.refCount=1;
 obj.data=F->data;
 LightSpotData_set_member(ctx, &obj, key, value);
 }
+SV Resource_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Resource;
+NO obj=(NO)Resource_new(ctx, args2);
+obj->funcs=Resource_ptr_funcs;
+obj->typeID=EXT->Resource_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV Resource_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"ResourceRef::deref" EAOE));
+SV F=a[0];
+if(!TS(Resource*,(SV)F))
+CATE(TE,"ResourceRef::deref expects ResourceRef as first argument."));
+CATE(TE,"Resource objects are not copyable."));
+}
+SV Resource_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Resource::refset expects two arguments."));
+SV F=a[0];
+if(!TS(Resource*,(SV)F))
+CATE(TE,"ResourceRef::refset expects ResourceRef as first argument."));
+CATE(TE,"Resource objects are not copyable."));
+R CN;
+}
+
+void Resource_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(Resource*,(SV)F))
+CATE(TE,"ResourceRef::__del__ expects ResourceRef as first argument."));
+SCRIPT_DELETE(Resource, (Resource *)F->data);
+}
+SV Resource_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(Resource*,(SV)F))
+CATE(TE,FAE("ResourceRef's get method","ResourceRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("ResourcePtr");
+EI(keyStr=="__new__")
+R CNF(Resource_ptr_new);
+EI(keyStr=="__call__")
+R CNF(Resource_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(Resource_ptr_deref);
+if(keyStr=="refset")R CNF(Resource_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Resource_funcs;
+obj.typeID=EXT->Resource_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R Resource_get_member(ctx, &obj, key);
+}
+void Resource_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(Resource*,(SV)F))
+CATE(TE,FAE("ResourceRef's set method","ResourceRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Resource_funcs;
+obj.typeID=EXT->Resource_typeID;
+obj.refCount=1;
+obj.data=F->data;
+Resource_set_member(ctx, &obj, key, value);
+}
 SV File_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -25572,6 +26900,87 @@ obj.typeID=EXT->AABB_typeID;
 obj.refCount=1;
 obj.data=F->data;
 AABB_set_member(ctx, &obj, key, value);
+}
+SV Audio_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Audio;
+NO obj=(NO)Audio_new(ctx, args2);
+obj->funcs=Audio_ptr_funcs;
+obj->typeID=EXT->Audio_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV Audio_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"AudioRef::deref" EAOE));
+SV F=a[0];
+if(!TS(Audio*,(SV)F))
+CATE(TE,"AudioRef::deref expects AudioRef as first argument."));
+CATE(TE,"Audio objects are not copyable."));
+}
+SV Audio_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Audio::refset expects two arguments."));
+SV F=a[0];
+if(!TS(Audio*,(SV)F))
+CATE(TE,"AudioRef::refset expects AudioRef as first argument."));
+CATE(TE,"Audio objects are not copyable."));
+R CN;
+}
+
+void Audio_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS(Audio*,(SV)F))
+CATE(TE,"AudioRef::__del__ expects AudioRef as first argument."));
+SCRIPT_DELETE(Audio, (Audio *)F->data);
+}
+SV Audio_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS(Audio*,(SV)F))
+CATE(TE,FAE("AudioRef's get method","AudioRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("AudioPtr");
+EI(keyStr=="__new__")
+R CNF(Audio_ptr_new);
+EI(keyStr=="__call__")
+R CNF(Audio_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(Audio_ptr_deref);
+if(keyStr=="refset")R CNF(Audio_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Audio_funcs;
+obj.typeID=EXT->Audio_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R Audio_get_member(ctx, &obj, key);
+}
+void Audio_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS(Audio*,(SV)F))
+CATE(TE,FAE("AudioRef's set method","AudioRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Audio_funcs;
+obj.typeID=EXT->Audio_typeID;
+obj.refCount=1;
+obj.data=F->data;
+Audio_set_member(ctx, &obj, key, value);
 }
 SV Matrix3x3_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -25942,6 +27351,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("LightSpotDataRef", ext->LightSpotData_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->Resource_typeID = typeID;
+    ext->Resource = scripting::createNativeObject(Resource_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Resource", ext->Resource);
+    
+    typeID = engine->createNewTypeID();
+    ext->Resource_ptr_typeID = typeID;
+    ext->Resource_ptr = scripting::createNativeObject(Resource_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ResourceRef", ext->Resource_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->File_typeID = typeID;
     ext->File = scripting::createNativeObject(File_funcs, NULL, typeID);
     engine->getGlobalVars().set("File", ext->File);
@@ -25962,6 +27381,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AABBRef", ext->AABB_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->Audio_typeID = typeID;
+    ext->Audio = scripting::createNativeObject(Audio_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Audio", ext->Audio);
+    
+    typeID = engine->createNewTypeID();
+    ext->Audio_ptr_typeID = typeID;
+    ext->Audio_ptr = scripting::createNativeObject(Audio_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("AudioRef", ext->Audio_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Matrix3x3_typeID = typeID;
     ext->Matrix3x3 = scripting::createNativeObject(Matrix3x3_funcs, NULL, typeID);
     engine->getGlobalVars().set("Matrix3x3", ext->Matrix3x3);
@@ -25980,6 +27409,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GfxDebugDrawer_ptr_typeID = typeID;
     ext->GfxDebugDrawer_ptr = scripting::createNativeObject(GfxDebugDrawer_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxDebugDrawerRef", ext->GfxDebugDrawer_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->ResType_typeID = typeID;
+    ext->ResType = scripting::createNativeObject(ResType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ResType", ext->ResType);
     
     typeID = engine->createNewTypeID();
     ext->GfxPrimitive_typeID = typeID;

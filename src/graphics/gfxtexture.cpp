@@ -170,7 +170,7 @@ static const size_t formatSizes[] = {1,
                                      4};
 
 GfxTexture::GfxTexture(const String& filename) : Resource(filename,
-                                                          GfxTextureType),
+                                                          ResType::GfxTextureType),
                                                  impl(gfxApi->createTextureImpl())
 {
     textureType = Texture2D;
@@ -188,7 +188,7 @@ GfxTexture::GfxTexture(const String& filename) : Resource(filename,
     shadowmap = false;
 }
 
-GfxTexture::GfxTexture() : Resource(GfxTextureType),
+GfxTexture::GfxTexture() : Resource(ResType::GfxTextureType),
                            impl(gfxApi->createTextureImpl())
 {
     textureType = Texture2D;

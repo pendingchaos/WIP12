@@ -12,7 +12,7 @@
 #include "file.h"
 #include "logging.h"
 
-Scene::Scene() : Resource(SceneType)
+Scene::Scene() : Resource(ResType::SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
     renderer = NEW(GfxRenderer, this);
@@ -22,7 +22,7 @@ Scene::Scene() : Resource(SceneType)
 }
 
 Scene::Scene(const String& filename) : Resource(filename,
-                                                SceneType)
+                                                ResType::SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
     renderer = NEW(GfxRenderer, this);

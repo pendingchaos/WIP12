@@ -56,7 +56,7 @@ class FontException : public Exception
 class Font : public Resource
 {
     public:
-        static const Resource::Type resource_type = FontType;
+        static const ResType resource_type = ResType::FontType;
 
         Font();
         Font(const String& filename);

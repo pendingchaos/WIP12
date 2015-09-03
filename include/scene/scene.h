@@ -21,7 +21,7 @@ class Scene : public Resource
     NO_COPY_INHERITED(Scene, Resource);
 
     public:
-        static const Resource::Type resource_type = Resource::SceneType;
+        static const ResType resource_type = ResType::SceneType;
 
         Scene();
         Scene(const String& filename);

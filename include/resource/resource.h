@@ -5,6 +5,7 @@
 #include "containers/list.h"
 #include "misc_macros.h"
 #include "memory.h"
+#include "scripting/bindings.h"
 
 #include <ctime>
 
@@ -68,23 +69,23 @@ class ResourceIOException : public Exception
 #undef _RES_INC_REF_COUNT
 #undef _RES_RELEASE
 
+enum class ResType
+{
+    GfxShaderType,
+    GfxTextureType,
+    GfxMeshType,
+    GfxMaterialType,
+    GfxModelType,
+    SceneType,
+    ScriptType,
+    PhysicsShapeType,
+    AudioType,
+    FontType
+} BIND ENUM_CLASS;
+
 class Resource
 {
     public:
-        enum Type
-        {
-            GfxShaderType,
-            GfxTextureType,
-            GfxMeshType,
-            GfxMaterialType,
-            GfxModelType,
-            SceneType,
-            ScriptType,
-            PhysicsShapeType,
-            AudioType,
-            FontType
-        };
-
         virtual ~Resource();
 
         virtual void removeContent()=0;
@@ -98,7 +99,7 @@ class Resource
             return _copy();
         }
 
-        inline Type getType() const
+        inline ResType getType() const
         {
             return type;
         }
@@ -139,7 +140,7 @@ class Resource
         }
 
         template <typename T>
-        inline T *copyRef()
+        inline T *copyRef() NO_BIND
         {
             ++refCount;
 
@@ -147,7 +148,7 @@ class Resource
         }
 
         template <typename T>
-        inline T *copyRef() const
+        inline T *copyRef() const NO_BIND
         {
             ++refCount;
 
@@ -173,7 +174,7 @@ class Resource
         String filename;
         void refreshModification();
 
-        Type type;
+        ResType type;
         bool loaded;
         time_t lastFileModification;
         mutable uint32_t refCount;
@@ -181,11 +182,11 @@ class Resource
         virtual void _load() {}
         virtual Resource *_copy() const {return nullptr;}
 
-        Resource(Type type);
+        Resource(ResType type);
         Resource(const String& filename,
-                 Type type);
+                 ResType type);
 
     NO_COPY(Resource)
-};
+} BIND;
 
 #endif // RESOURCE_H

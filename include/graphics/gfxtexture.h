@@ -19,7 +19,7 @@ class GfxGLApi;
 class GfxTexture : public Resource
 {
     public:
-        static const Resource::Type resource_type = GfxTextureType;
+        static const ResType resource_type = ResType::GfxTextureType;
 
         enum TextureType
         {

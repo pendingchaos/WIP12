@@ -17,7 +17,7 @@ ResourceManager::~ResourceManager()
     }
 }
 
-bool ResourceManager::isResource(Resource::Type type, const String& filename) const
+bool ResourceManager::isResource(ResType type, const String& filename) const
 {
     int entry = resources.findEntry(type);
 
