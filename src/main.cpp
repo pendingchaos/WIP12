@@ -479,7 +479,7 @@ int main(int argc, const char *argv[])
     }
 
     DELETE(scripting::Engine, engine);
-    #elif 1
+    #elif 0
     try
     {
         scripting::ASTNode *ast = scripting::parse("(+ (Float2 5.0 2.0) (Float2 3.0 4.0))"/*"(meth (Float2Ref 5.0 2.0) refset (Float2))"*/);

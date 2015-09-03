@@ -16,5 +16,5 @@ lazy:
 	cd bin; ./run_main
 
 install_deps:
-    yum install SDL2-devel bullet-devel gcc-c++ freetype-devel
-    pip2 install Pillow
+	yum install SDL2-devel bullet-devel gcc-c++ freetype-devel
+	pip2 install Pillow
