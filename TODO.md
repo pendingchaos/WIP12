@@ -1,14 +1,5 @@
 ## Features
-- [ ] Shadow mapping.
-    - [ ] Directional
-        - [x] Deferred
-        - [ ] Forward
-    - [ ] Point
-        - [x] Deferred
-        - [ ] Forward
-    - [ ] Spot
-        - [x] Deferred
-        - [ ] Forward
+- [ ] Forward shadow mapping.
 - [ ] Skeletal animation.
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
 - [ ] Transformation for a PhysicsShape.
