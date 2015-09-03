@@ -29,7 +29,6 @@
     - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody and File.
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
-- [ ] Get rid of the builtin List type (scripting).
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
