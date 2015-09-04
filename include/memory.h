@@ -21,7 +21,7 @@ class MemoryException : public Exception
         }
 };
 
-#define ALLOCATE(amount) std::malloc(amount)
+#define ALLOCATE(amount) _alloc(amount)
 
 #define DEALLOCATE(pointer) do\
 {\
@@ -36,26 +36,26 @@ class MemoryException : public Exception
 #define NEW_ARRAY(type, count) (new type[count])
 #endif
 
-#define DELETE(type, pointer) do\
+#define DELETE(pointer) do\
 {\
-    type *p = pointer;\
+    auto p = pointer;\
     if (_allocDelete((void *)p))\
     {\
         delete p;\
     }\
 } while (0)
-#define DELETE_ARRAY(type, pointer) do\
+#define DELETE_ARRAY(pointer) do\
 {\
-    type *p = pointer;\
+    auto p = pointer;\
     if (_allocDelete((void *)p))\
     {\
         delete [] p;\
     }\
 } while (0)
 
-#define SCRIPT_DELETE(type, pointer) do\
+#define SCRIPT_DELETE(pointer) do\
 {\
-    type *p = pointer;\
+    auto p = pointer;\
     if (shouldScriptDelete((void *)p))\
     {\
         delete p;\

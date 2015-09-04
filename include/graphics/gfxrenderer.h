@@ -150,7 +150,7 @@ class GfxRenderer
 
         inline void removeLight(size_t index)
         {
-            DELETE(Light, lights[index]);
+            DELETE(lights[index]);
 
             lights.remove(index);
         }

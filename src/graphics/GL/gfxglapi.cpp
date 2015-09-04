@@ -28,32 +28,32 @@ if (GLFL_GL_ARB_separate_shader_objects)\
 \
     switch (shader->getStage())\
     {\
-    case GfxShader::Vertex:\
+    case GfxStage::Vertex:\
     {\
         newName = String::format("_%s_vertex", name);\
         break;\
     }\
-    case GfxShader::TessControl:\
+    case GfxStage::TessControl:\
     {\
         newName = String::format("_%s_tessControl", name);\
         break;\
     }\
-    case GfxShader::TessEval:\
+    case GfxStage::TessEval:\
     {\
         newName = String::format("_%s_tessEval", name);\
         break;\
     }\
-    case GfxShader::Geometry:\
+    case GfxStage::Geometry:\
     {\
         newName = String::format("_%s_geometry", name);\
         break;\
     }\
-    case GfxShader::Fragment:\
+    case GfxStage::Fragment:\
     {\
         newName = String::format("_%s_fragment", name);\
         break;\
     }\
-    case GfxShader::Compute:\
+    case GfxStage::Compute:\
     {\
         newName = String::format("_%s_compute", name);\
         break;\

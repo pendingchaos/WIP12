@@ -17,12 +17,12 @@ GfxShader::GfxShader() : Resource(ResType::GfxShaderType),
 
 GfxShader::~GfxShader()
 {
-    DELETE(GfxShaderImpl, impl);
+    DELETE(impl);
 }
 
 void GfxShader::removeContent()
 {
-    DELETE(GfxShaderImpl, impl);
+    DELETE(impl);
     impl = gfxApi->createShaderImpl();
 }
 
@@ -34,32 +34,32 @@ void GfxShader::save()
 
     switch (getStage())
     {
-    case Vertex:
+    case GfxStage::Vertex:
     {
         file.writeUInt8(0);
         break;
     }
-    case TessControl:
+    case GfxStage::TessControl:
     {
         file.writeUInt8(1);
         break;
     }
-    case TessEval:
+    case GfxStage::TessEval:
     {
         file.writeUInt8(2);
         break;
     }
-    case Geometry:
+    case GfxStage::Geometry:
     {
         file.writeUInt8(3);
         break;
     }
-    case Fragment:
+    case GfxStage::Fragment:
     {
         file.writeUInt8(4);
         break;
     }
-    case Compute:
+    case GfxStage::Compute:
     {
         file.writeUInt8(5);
         break;
@@ -97,38 +97,38 @@ void GfxShader::_load()
             THROW(ResourceIOException, "shader", getFilename(), "Unsupported version.");
         }
 
-        Stage stage = GfxShader::Vertex;
+        GfxStage stage = GfxStage::Vertex;
 
         switch (file.readUInt8())
         {
         case 0:
         {
-            stage = Vertex;
+            stage = GfxStage::Vertex;
             break;
         }
         case 1:
         {
-            stage = TessControl;
+            stage = GfxStage::TessControl;
             break;
         }
         case 2:
         {
-            stage = TessEval;
+            stage = GfxStage::TessEval;
             break;
         }
         case 3:
         {
-            stage = Geometry;
+            stage = GfxStage::Geometry;
             break;
         }
         case 4:
         {
-            stage = Fragment;
+            stage = GfxStage::Fragment;
             break;
         }
         case 5:
         {
-            stage = Compute;
+            stage = GfxStage::Compute;
             break;
         }
         default:
@@ -169,7 +169,7 @@ void GfxShader::possiblyReload()
     }
 }
 
-void GfxShader::setSource(Stage stage, const String& source)
+void GfxShader::setSource(GfxStage stage, const String& source)
 {
     impl->setSource(stage, source.copy());
 }
@@ -196,7 +196,7 @@ void GfxShader::recompile()
     impl->recompile();
 }
 
-GfxShader::Stage GfxShader::getStage() const
+GfxStage GfxShader::getStage() const
 {
     return impl->getStage();
 }

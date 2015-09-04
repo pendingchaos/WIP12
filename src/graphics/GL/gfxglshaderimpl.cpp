@@ -3,7 +3,7 @@
 #include "graphics/GL/gfxglapi.h"
 #include "globals.h"
 
-GfxGLShaderImpl::GfxGLShaderImpl() : stage(GfxShader::Vertex) {}
+GfxGLShaderImpl::GfxGLShaderImpl() : stage(GfxStage::Vertex) {}
 
 GfxGLShaderImpl::~GfxGLShaderImpl()
 {
@@ -17,7 +17,7 @@ GfxGLShaderImpl::~GfxGLShaderImpl()
             glDeleteShader(compiledShaders.getValue(i)->getGLProgram());
         }
 
-        DELETE(GfxCompiledShader, compiledShaders.getValue(i));
+        DELETE(compiledShaders.getValue(i));
     }
 }
 
@@ -199,32 +199,32 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
 
     switch (stage)
     {
-    case GfxShader::Vertex:
+    case GfxStage::Vertex:
     {
         sources[defines.getEntryCount()+2] = "#define VERTEX 1\n";
         break;
     }
-    case GfxShader::TessControl:
+    case GfxStage::TessControl:
     {
         sources[defines.getEntryCount()+2] = "#define TESS_CONTROL 1\n";
         break;
     }
-    case GfxShader::TessEval:
+    case GfxStage::TessEval:
     {
         sources[defines.getEntryCount()+2] = "#define TESS_EVAL 1\n";
         break;
     }
-    case GfxShader::Geometry:
+    case GfxStage::Geometry:
     {
         sources[defines.getEntryCount()+2] = "#define GEOMETRY 1\n";
         break;
     }
-    case GfxShader::Fragment:
+    case GfxStage::Fragment:
     {
         sources[defines.getEntryCount()+2] = "#define FRAGMENT 1\n";
         break;
     }
-    case GfxShader::Compute:
+    case GfxStage::Compute:
     {
         sources[defines.getEntryCount()+2] = "#define __COMPUTE__ 1\n";
         break;
@@ -240,40 +240,40 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
 
     switch (stage)
     {
-    case GfxShader::Vertex:
+    case GfxStage::Vertex:
     {
         result = _compile(GL_VERTEX_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxShader::TessControl:
+    case GfxStage::TessControl:
     {
         result = _compile(GL_TESS_CONTROL_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxShader::TessEval:
+    case GfxStage::TessEval:
     {
         result = _compile(GL_TESS_EVALUATION_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxShader::Geometry:
+    case GfxStage::Geometry:
     {
         result = _compile(GL_GEOMETRY_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxShader::Fragment:
+    case GfxStage::Fragment:
     {
         result = _compile(GL_FRAGMENT_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxShader::Compute:
+    case GfxStage::Compute:
     {
         result = _compile(GL_COMPUTE_SHADER, numSources, sources, infoLog);
         break;
     }
     }
 
-    DELETE_ARRAY(String, defineSources);
-    DELETE_ARRAY(const char *, sources);
+    DELETE_ARRAY(defineSources);
+    DELETE_ARRAY(sources);
 
     if (infoLog.getLength() != 0)
     {
@@ -283,7 +283,7 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     return result;
 }
 
-void GfxGLShaderImpl::setSource(GfxShader::Stage stage_, const String& source_)
+void GfxGLShaderImpl::setSource(GfxStage stage_, const String& source_)
 {
     stage = stage_;
     source = source_;

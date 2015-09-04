@@ -109,7 +109,7 @@ GfxMaterial::~GfxMaterial()
         shaderComb->getTessEvalShader()->release();
     }
 
-    DELETE(GfxShaderCombination, shaderComb);
+    DELETE(shaderComb);
 }
 
 void GfxMaterial::removeContent()
@@ -261,7 +261,7 @@ void GfxMaterial::setForward(bool forward_)
         shaderComb->getTessEvalShader()->release();
     }
 
-    DELETE(GfxShaderCombination, shaderComb);
+    DELETE(shaderComb);
 
     if (forward)
     {

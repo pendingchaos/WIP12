@@ -25,7 +25,7 @@ GhostObject::~GhostObject()
 
     world->getBulletWorld()->removeCollisionObject(ghostObject);
 
-    DELETE(btPairCachingGhostObject, ghostObject);
+    DELETE(ghostObject);
 }
 
 Transform GhostObject::getTransform()

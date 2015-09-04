@@ -3,6 +3,7 @@
 
 #include "containers/list.h"
 #include "error.h"
+#include "scripting/bindings.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -85,16 +86,14 @@ class LookupException : public Exception
         }
 };
 
-//TODO: This could be improved.
+//TODO: This could be improved (performance-wise).
 template <typename Key,
-          typename Value,
-          size_t (*Hash)(const Key&)=getHash>
+          typename Value>
 class HashMap
 {
     public:
         bool operator == (const HashMap<Key,
-                                        Value,
-                                        Hash>& other) const
+                                        Value>& other) const
         {
             if (entries.getCount() != other.getEntryCount())
             {
@@ -120,8 +119,7 @@ class HashMap
         }
 
         bool operator != (const HashMap<Key,
-                                        Value,
-                                        Hash>& other) const
+                                        Value>& other) const
         {
             return not (*this == other);
         }
@@ -216,8 +214,7 @@ class HashMap
         }
 
         void append(const HashMap<Key,
-                                  Value,
-                                  Hash>& other)
+                                  Value>& other)
         {
             for (size_t i = 0; i < other.getEntryCount(); ++i)
             {
@@ -284,6 +281,9 @@ class HashMap
 
         List<Entry> entries;
 };
+
+BIND_CLASS(HashMap)
+TEMPLATE_TYPES(HashMap:Key:Value, <String,String>@StrStrMap)
 
 template <typename Key, typename Value>
 class HashMapBuilder

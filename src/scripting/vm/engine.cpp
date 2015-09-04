@@ -94,7 +94,7 @@ Engine::~Engine()
         destroy(context, globalVars.getValue(i));
     }
 
-    DELETE(Context, context);
+    DELETE(context);
 
     for (size_t i = 0; i < extensions.getEntryCount(); ++i)
     {

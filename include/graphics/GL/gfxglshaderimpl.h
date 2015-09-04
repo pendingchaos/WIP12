@@ -33,7 +33,7 @@ class GfxGLCompiledShader : public GfxCompiledShader
             return program == 0;
         }
     private:
-        GfxGLCompiledShader(GfxShader::Stage stage, GLuint program_) : GfxCompiledShader(stage), program(program_) {}
+        GfxGLCompiledShader(GfxStage stage, GLuint program_) : GfxCompiledShader(stage), program(program_) {}
 
         GLuint program;
 };
@@ -46,7 +46,7 @@ class GfxGLShaderImpl : public GfxShaderImpl
         GfxGLShaderImpl();
         virtual ~GfxGLShaderImpl();
 
-        virtual void setSource(GfxShader::Stage stage, const String& source);
+        virtual void setSource(GfxStage stage, const String& source);
         virtual String getSource() const;
 
         virtual GfxCompiledShader *getCompiled(const HashMap<String, String >& defines=
@@ -55,7 +55,7 @@ class GfxGLShaderImpl : public GfxShaderImpl
         virtual void recompile();
 
 
-        virtual GfxShader::Stage getStage() const
+        virtual GfxStage getStage() const
         {
             return stage;
         }
@@ -64,7 +64,7 @@ class GfxGLShaderImpl : public GfxShaderImpl
         void _compile();
         GLuint _compile(const HashMap<String, String >& defines) const;
     private:
-        GfxShader::Stage stage;
+        GfxStage stage;
 
         String source;
 

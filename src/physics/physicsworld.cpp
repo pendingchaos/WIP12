@@ -23,22 +23,22 @@ PhysicsWorld::~PhysicsWorld()
 {
     for (size_t i = 0; i < rigidBodies.getCount(); ++i)
     {
-        DELETE(RigidBody, rigidBodies[i]);
+        DELETE(rigidBodies[i]);
     }
 
     for (size_t i = 0; i < ghostObjects.getCount(); ++i)
     {
-        DELETE(GhostObject, ghostObjects[i]);
+        DELETE(ghostObjects[i]);
     }
 
     world->setDebugDrawer(nullptr);
-    DELETE(PhysicsDebugDrawer, debugDrawer);
-    DELETE(btDynamicsWorld, world);
-    DELETE(btConstraintSolver, solver);
-    DELETE(btBroadphaseInterface, broadphase);
-    DELETE(btGhostPairCallback, ghostCallback);
-    DELETE(btCollisionDispatcher, dispatcher);
-    DELETE(btCollisionConfiguration, configuration);
+    DELETE(debugDrawer);
+    DELETE(world);
+    DELETE(solver);
+    DELETE(broadphase);
+    DELETE(ghostCallback);
+    DELETE(dispatcher);
+    DELETE(configuration);
 }
 
 void PhysicsWorld::addDebugDrawer()
@@ -61,7 +61,7 @@ void PhysicsWorld::destroyRigidBody(RigidBody *rigidBody)
 {
     rigidBodies.remove(rigidBodies.find(rigidBody));
 
-    DELETE(RigidBody, rigidBody);
+    DELETE(rigidBody);
 }
 
 GhostObject *PhysicsWorld::createGhostObject(PhysicsShape *shape, unsigned short collisionMask)
@@ -77,7 +77,7 @@ void PhysicsWorld::destroyGhostObject(GhostObject *ghostObject)
 {
     ghostObjects.remove(ghostObjects.find(ghostObject));
 
-    DELETE(GhostObject, ghostObject);
+    DELETE(ghostObject);
 }
 
 void PhysicsWorld::stepSimulation(float timeStep,

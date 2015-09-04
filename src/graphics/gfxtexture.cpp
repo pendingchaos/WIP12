@@ -208,7 +208,7 @@ GfxTexture::GfxTexture() : Resource(ResType::GfxTextureType),
 
 GfxTexture::~GfxTexture()
 {
-    DELETE(GfxTextureImpl, impl);
+    DELETE(impl);
 }
 
 void GfxTexture::removeContent()
@@ -227,7 +227,7 @@ void GfxTexture::removeContent()
     purpose = Other;
     shadowmap = false;
 
-    DELETE(GfxTextureImpl, impl);
+    DELETE(impl);
     impl = gfxApi->createTextureImpl();
 }
 

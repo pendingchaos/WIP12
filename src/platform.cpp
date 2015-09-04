@@ -297,7 +297,7 @@ void Platform::run(void (*updateFunction)(Platform *platform))
         SDL_SetWindowTitle(window, title);
     }
 
-    DELETE(GPUTimer, gpuTimer);
+    DELETE(gpuTimer);
 }
 
 bool Platform::pollEvent(Event& event)

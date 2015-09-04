@@ -86,19 +86,19 @@ class Light
         {
             if (shadowmap != nullptr)
             {
-                DELETE(GfxFramebuffer, shadowmapFramebuffer);
+                DELETE(shadowmapFramebuffer);
                 shadowmapFramebuffer = nullptr;
                 shadowmap->release();
                 shadowmap = nullptr;
 
                 if (type == GfxLightType::Point)
                 {
-                    DELETE(GfxFramebuffer, pointLightFramebuffers[0]);
-                    DELETE(GfxFramebuffer, pointLightFramebuffers[1]);
-                    DELETE(GfxFramebuffer, pointLightFramebuffers[2]);
-                    DELETE(GfxFramebuffer, pointLightFramebuffers[3]);
-                    DELETE(GfxFramebuffer, pointLightFramebuffers[4]);
-                    DELETE(GfxFramebuffer, pointLightFramebuffers[5]);
+                    DELETE(pointLightFramebuffers[0]);
+                    DELETE(pointLightFramebuffers[1]);
+                    DELETE(pointLightFramebuffers[2]);
+                    DELETE(pointLightFramebuffers[3]);
+                    DELETE(pointLightFramebuffers[4]);
+                    DELETE(pointLightFramebuffers[5]);
                     pointLightFramebuffers[0] = nullptr;
                     pointLightFramebuffers[1] = nullptr;
                     pointLightFramebuffers[2] = nullptr;

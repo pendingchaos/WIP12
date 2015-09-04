@@ -7,6 +7,7 @@
 #include "graphics/GL/glfl.h"
 #include "resource/resource.h"
 #include "error.h"
+#include "scripting/bindings.h"
 
 #include <stddef.h>
 #include <exception>
@@ -36,22 +37,22 @@ class ShaderCompileException : public Exception
 
 class GfxCompiledShader;
 
+enum class GfxStage
+{
+    Vertex,
+    TessControl,
+    TessEval,
+    Geometry,
+    Fragment,
+    Compute
+} BIND ENUM_CLASS;
+
 class GfxShader : public Resource
 {
     friend class GfxCompiledShader;
 
     public:
         static const ResType resource_type = ResType::GfxShaderType;
-
-        enum Stage
-        {
-            Vertex,
-            TessControl,
-            TessEval,
-            Geometry,
-            Fragment,
-            Compute
-        };
 
         GfxShader(const String& filename);
         GfxShader();
@@ -62,7 +63,7 @@ class GfxShader : public Resource
 
         virtual void save();
 
-        void setSource(GfxShader::Stage stage, const String& source);
+        void setSource(GfxStage stage, const String& source);
         const String getSource() const;
 
         inline GfxCompiledShader *getCompiled(const HashMap<String, String >& defines
@@ -84,9 +85,9 @@ class GfxShader : public Resource
 
         void recompile();
 
-        GfxShader::Stage getStage() const;
+        GfxStage getStage() const;
 
-        inline GfxShaderImpl *getImpl() const
+        inline GfxShaderImpl *getImpl() const NO_BIND
         {
             return impl;
         }
@@ -101,7 +102,7 @@ class GfxShader : public Resource
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxShader, Resource)
-} DESTROY(obj->release());
+} DESTROY(obj->release()) BIND;
 
 class GfxCompiledShader
 {
@@ -112,15 +113,15 @@ class GfxCompiledShader
 
         virtual bool isInvalid() const=0;
 
-        inline GfxShader::Stage getStage() const
+        inline GfxStage getStage() const
         {
             return stage;
         }
     protected:
-        GfxCompiledShader(GfxShader::Stage stage_) : stage(stage_) {}
+        GfxCompiledShader(GfxStage stage_) : stage(stage_) {}
     private:
-        GfxShader::Stage stage;
-};
+        GfxStage stage;
+} BIND;
 
 class GfxShaderImpl
 {
@@ -131,7 +132,7 @@ class GfxShaderImpl
         GfxShaderImpl() {}
         virtual ~GfxShaderImpl() {}
 
-        virtual void setSource(GfxShader::Stage stage, const String& source)=0;
+        virtual void setSource(GfxStage stage, const String& source)=0;
         virtual String getSource() const=0;
 
         virtual GfxCompiledShader *getCompiled(const HashMap<String, String >& defines=
@@ -139,7 +140,7 @@ class GfxShaderImpl
 
         virtual void recompile()=0;
 
-        virtual GfxShader::Stage getStage() const=0;
+        virtual GfxStage getStage() const=0;
 
     NO_COPY(GfxShaderImpl)
 };

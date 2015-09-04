@@ -35,7 +35,7 @@ Scene::~Scene()
 {
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
-        DELETE(Entity, entities[i]);
+        DELETE(entities[i]);
     }
 
     List<Script *> scripts_;
@@ -44,7 +44,7 @@ Scene::~Scene()
     {
         scripts_.append(scripts[i]->getScript());
 
-        DELETE(ScriptInstance, scripts[i]);
+        DELETE(scripts[i]);
     }
 
     for (size_t i = 0; i < scripts_.getCount(); ++i)
@@ -54,16 +54,16 @@ Scene::~Scene()
 
     audioWorld->removeFromAudioDevice(audioDevice);
 
-    DELETE(AudioWorld, audioWorld);
-    DELETE(GfxRenderer, renderer);
-    DELETE(PhysicsWorld, physicsWorld);
+    DELETE(audioWorld);
+    DELETE(renderer);
+    DELETE(physicsWorld);
 }
 
 void Scene::removeContent()
 {
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
-        DELETE(Entity, entities[i]);
+        DELETE(entities[i]);
     }
 
     entities.clear();
@@ -74,7 +74,7 @@ void Scene::removeContent()
     {
         scripts_.append(scripts[i]->getScript());
 
-        DELETE(ScriptInstance, scripts[i]);
+        DELETE(scripts[i]);
     }
 
     for (size_t i = 0; i < scripts_.getCount(); ++i)
@@ -972,7 +972,7 @@ Entity *Scene::createEntity(const String& name)
 
 void Scene::removeEntity(size_t index)
 {
-    DELETE(Entity, entities[index]);
+    DELETE(entities[index]);
 
     entities.remove(index);
 }

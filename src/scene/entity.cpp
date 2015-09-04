@@ -14,7 +14,7 @@ Entity::~Entity()
 {
     for (size_t i = 0; i < entities.getCount(); ++i)
     {
-        DELETE(Entity, entities[i]);
+        DELETE(entities[i]);
     }
 
     List<Script *> scripts_;
@@ -23,7 +23,7 @@ Entity::~Entity()
     {
         scripts_.append(scripts[i]->getScript());
 
-        DELETE(ScriptInstance, scripts[i]);
+        DELETE(scripts[i]);
     }
 
     for (size_t i = 0; i < scripts_.getCount(); ++i)
@@ -77,7 +77,7 @@ Entity *Entity::createEntity(const String& name)
 
 void Entity::removeEntity(size_t index)
 {
-    DELETE(Entity, entities[index]);
+    DELETE(entities[index]);
 
     entities.remove(index);
 }

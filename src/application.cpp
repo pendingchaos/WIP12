@@ -61,7 +61,7 @@ Application::~Application()
     {
         Script *script_ = script->getScript();
 
-        DELETE(ScriptInstance, script);
+        DELETE(script);
 
         script_->release();
     }
@@ -71,17 +71,17 @@ Application::~Application()
         nextScript->release();
     }
 
-    DELETE(ResourceManager, resMgr_);
+    DELETE(resMgr_);
 
-    DELETE(AudioDevice, audioDevice_);
-    DELETE(GfxDebugDrawer, debugDrawer_);
-    DELETE(GfxApi, gfxApi_);
+    DELETE(audioDevice_);
+    DELETE(debugDrawer_);
+    DELETE(gfxApi_);
 
     platform_->destroyWindow();
 
-    DELETE(Filesystem, fileSystem_);
+    DELETE(fileSystem_);
 
-    DELETE(Platform, platform_);
+    DELETE(platform_);
 
     FT_Done_FreeType(freeType);
 }
@@ -183,7 +183,7 @@ void Application::_switchScripts()
 {
     if (nextScript != nullptr)
     {
-        DELETE(ScriptInstance, script);
+        DELETE(script);
 
         script = nextScript->createInstance(nextScriptName.getData());
 

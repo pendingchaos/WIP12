@@ -80,7 +80,7 @@ class StatementsNode : public ASTNode
         {
             for (size_t i = 0; i < statements.getCount(); ++i)
             {
-                DELETE(ASTNode, statements[i]);
+                DELETE(statements[i]);
             }
         }
 
@@ -105,7 +105,7 @@ class CallNode : public ASTNode
         {
             for (size_t i = 0; i < nodes.getCount(); ++i)
             {
-                DELETE(ASTNode, nodes[i]);
+                DELETE(nodes[i]);
             }
         }
 

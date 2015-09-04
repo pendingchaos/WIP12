@@ -79,7 +79,7 @@ class AudioWorld
 
             if (index != -1)
             {
-                DELETE(AudioSource, sources[index]);
+                DELETE(sources[index]);
 
                 sources.remove(index);
             }
@@ -89,7 +89,7 @@ class AudioWorld
         {
             for (size_t i = 0; i < sources.getCount(); ++i)
             {
-                DELETE(AudioSource, sources[i]);
+                DELETE(sources[i]);
             }
 
             sources.clear();

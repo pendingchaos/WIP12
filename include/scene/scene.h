@@ -83,7 +83,7 @@ class Scene : public Resource
             {
                 scripts.remove(index);
 
-                DELETE(ScriptInstance, instance);
+                DELETE(instance);
             }
         }
 

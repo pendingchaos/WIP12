@@ -279,11 +279,11 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 GfxRenderer::~GfxRenderer()
 {
     //matrixTexture->release();
-    DELETE(GfxBuffer, instanceBuffer);
+    DELETE(instanceBuffer);
 
     for (size_t i = 0; i < lights.getCount(); ++i)
     {
-        DELETE(Light, lights[i]);
+        DELETE(lights[i]);
     }
 
     if (skybox != nullptr)
@@ -291,37 +291,37 @@ GfxRenderer::~GfxRenderer()
         skybox->release();
     }
 
-    DELETE(GPUTimer, gBufferTimer);
-    DELETE(GPUTimer, ssaoTimer);
-    DELETE(GPUTimer, ssaoBlurXTimer);
-    DELETE(GPUTimer, ssaoBlurYTimer);
-    DELETE(GPUTimer, deferredShadingTimer);
-    DELETE(GPUTimer, forwardTimer);
-    DELETE(GPUTimer, gammaCorrectionTimer);
-    DELETE(GPUTimer, fxaaTimer);
-    DELETE(GPUTimer, colorModifierTimer);
-    DELETE(GPUTimer, bloomTimer);
-    //DELETE(GPUTimer, luminanceCalcTimer);
-    DELETE(GPUTimer, shadowmapTimer);
-    DELETE(GPUTimer, overlayTimer);
-    DELETE(GPUTimer, debugDrawTimer);
+    DELETE(gBufferTimer);
+    DELETE(ssaoTimer);
+    DELETE(ssaoBlurXTimer);
+    DELETE(ssaoBlurYTimer);
+    DELETE(deferredShadingTimer);
+    DELETE(forwardTimer);
+    DELETE(gammaCorrectionTimer);
+    DELETE(fxaaTimer);
+    DELETE(colorModifierTimer);
+    DELETE(bloomTimer);
+    //DELETE(luminanceCalcTimer);
+    DELETE(shadowmapTimer);
+    DELETE(overlayTimer);
+    DELETE(debugDrawTimer);
 
-    DELETE(GfxFramebuffer, readFramebuffer);
-    DELETE(GfxFramebuffer, writeFramebuffer);
-    DELETE(GfxFramebuffer, gBufferFramebuffer);
-    DELETE(GfxFramebuffer, ssaoFramebuffer);
-    DELETE(GfxFramebuffer, ssaoBlurXFramebuffer);
-    DELETE(GfxFramebuffer, bloomblurXFramebuffer);
-    DELETE(GfxFramebuffer, bloom1Framebuffer);
-    DELETE(GfxFramebuffer, bloom2Framebuffer);
-    DELETE(GfxFramebuffer, bloom3Framebuffer);
-    DELETE(GfxFramebuffer, bloom4Framebuffer);
-    DELETE(GfxFramebuffer, bloomDownsampleFramebuffer);
-    DELETE(GfxFramebuffer, ssaoDeinterleavedFramebuffer);
-    DELETE(GfxFramebuffer, ssaoDepthDeinterleaveFramebuffer);
-    //DELETE(GfxFramebuffer, luminanceFramebuffer);
+    DELETE(readFramebuffer);
+    DELETE(writeFramebuffer);
+    DELETE(gBufferFramebuffer);
+    DELETE(ssaoFramebuffer);
+    DELETE(ssaoBlurXFramebuffer);
+    DELETE(bloomblurXFramebuffer);
+    DELETE(bloom1Framebuffer);
+    DELETE(bloom2Framebuffer);
+    DELETE(bloom3Framebuffer);
+    DELETE(bloom4Framebuffer);
+    DELETE(bloomDownsampleFramebuffer);
+    DELETE(ssaoDeinterleavedFramebuffer);
+    DELETE(ssaoDepthDeinterleaveFramebuffer);
+    //DELETE(luminanceFramebuffer);
 
-    DELETE(GfxBuffer, lightBuffer);
+    DELETE(lightBuffer);
 
     geomNormalTexture->release();
     deinterleavedDepthTexture->release();
@@ -714,7 +714,7 @@ void main()
 
     source.append("}");
 
-    colorModifierFragment->setSource(GfxShader::Fragment, source);
+    colorModifierFragment->setSource(GfxStage::Fragment, source);
 
     compiledColorModifier = colorModifierFragment->getCompiled();
 }
@@ -1329,7 +1329,7 @@ void GfxRenderer::render()
         }
     }
 
-    DELETE_ARRAY(float, lums);
+    DELETE_ARRAY(lums);
 
     averageLuminance /= lumWidth * lumHeight;
 
@@ -1751,7 +1751,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
 
     lightBuffer->setData(0, 16384, lightData);
 
-    DELETE_ARRAY(float, lightData);
+    DELETE_ARRAY(lightData);
 }
 
 void GfxRenderer::batchEntities(const List<Entity *>& entities)

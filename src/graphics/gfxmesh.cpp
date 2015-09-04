@@ -30,9 +30,9 @@ GfxMesh::GfxMesh() : Resource(ResType::GfxMeshType),
 
 GfxMesh::~GfxMesh()
 {
-    DELETE(GfxMeshImpl, impl);
+    DELETE(impl);
 
-    DELETE(GfxBuffer, buffer);
+    DELETE(buffer);
 }
 
 void GfxMesh::init(GfxPrimitive primitive_,
@@ -222,7 +222,7 @@ void GfxMesh::_load()
 
     uint8_t numVertexAttribs = file.readUInt8();
 
-    DELETE(GfxBuffer, buffer);
+    DELETE(buffer);
     buffer = gfxApi->createBuffer();
 
     if (indexed)

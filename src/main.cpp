@@ -478,7 +478,7 @@ int main(int argc, const char *argv[])
         engine->getRefMgr()->destroy(context, result);
     }
 
-    DELETE(scripting::Engine, engine);
+    DELETE(engine);
     #elif 0
     try
     {
@@ -490,7 +490,7 @@ int main(int argc, const char *argv[])
 
         std::cout << "Compiled program takes up " << data.getSize() << " bytes\n";
 
-        DELETE(scripting::ASTNode, ast);
+        DELETE(ast);
 
         scripting::Bytecode code(data);
 
@@ -520,10 +520,10 @@ int main(int argc, const char *argv[])
                 }
             }
 
-            DELETE(scripting::Context, context);
+            DELETE(context);
         }
 
-        DELETE(scripting::Engine, engine);
+        DELETE(engine);
     } catch (scripting::ParseException& e)
     {
         std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
@@ -595,7 +595,7 @@ int main(int argc, const char *argv[])
 
         printAST(0, ast);
 
-        DELETE(scripting::ASTNode, ast);
+        DELETE(ast);
     } catch (scripting::ParseException& e)
     {
         std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);

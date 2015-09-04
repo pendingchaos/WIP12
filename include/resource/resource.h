@@ -130,7 +130,7 @@ class Resource
 
             if (refCount == 0)
             {
-                DELETE(Resource, this);
+                DELETE(this);
             }
         }
 

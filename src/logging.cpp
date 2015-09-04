@@ -19,7 +19,7 @@ void initLoggingSystem()
 
 void deinitLoggingSystem()
 {
-    DELETE(File, textLog);
+    DELETE(textLog);
 }
 
 void log(const char *format, ...)

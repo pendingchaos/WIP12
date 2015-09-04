@@ -78,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Float2_typeID, Float2_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, Resource_typeID, Resource_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, CameraType_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *Float2, *Float2_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *Resource, *Resource_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *AudioDevice, *AudioDevice_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *CameraType;
+    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Float2_typeID, Float2_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, CameraType_typeID;
+    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *Float2, *Float2_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *AudioDevice, *AudioDevice_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *CameraType;
 };
 
 
@@ -87,7 +87,7 @@ struct BindingsExt
 #define SV scripting::Value*
 #define NO scripting::NativeObject*
 #define CV(expr) create_val<std::remove_reference<decltype(expr)>::type>::f(ctx, expr)
-#define TS(T, expr) type_same<T>::f(ctx, expr)
+#define TS(expr, ...) type_same<__VA_ARGS__>::f(ctx, expr)
 #define VE scripting::ExcType::ValueError
 #define TE scripting::ExcType::TypeError
 #define KE scripting::ExcType::KeyError
@@ -846,6 +846,52 @@ R((NO)head)->typeID==EXT->GfxVertexAttribType_typeID;
 else
  R false;
 }
+};void GfxStage_destroy(CTX,NO) {}
+SV GfxStage_get_member(CTX,NO,SV);
+void GfxStage_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxStage_funcs={
+.destroy = GfxStage_destroy,
+.getMember = GfxStage_get_member,
+.setMember = GfxStage_set_member
+};
+template <>
+struct create_val<GfxStage>
+{
+static SV f(CTX ctx,GfxStage v)
+{
+R S::createNativeObject(GfxStage_funcs,(void *)v,EXT->GfxStage_typeID);
+}
+};
+template <>
+struct val_to_c<GfxStage>
+{
+static GfxStage f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxStage."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxStage_typeID)
+CATE(TE,"Value can not be converted to GfxStage."));
+size_t v=size_t(obj->data);
+if(v==5)return GfxStage::Compute;
+if(v==3)return GfxStage::Geometry;
+if(v==0)return GfxStage::Vertex;
+if(v==4)return GfxStage::Fragment;
+if(v==1)return GfxStage::TessControl;
+if(v==2)return GfxStage::TessEval;
+}
+};
+template <>
+struct type_same<GfxStage>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxStage_typeID;
+else
+ R false;
+}
 };void GfxBufferUsage_destroy(CTX,NO) {}
 SV GfxBufferUsage_get_member(CTX,NO,SV);
 void GfxBufferUsage_set_member(CTX,NO,SV,SV);
@@ -1030,7 +1076,8 @@ struct create_val<Filesystem>
 {
 static SV f(CTX ctx,const Filesystem&obj)
 {
-R S::createNativeObject(Filesystem_funcs,NEW(Filesystem, obj),EXT->Filesystem_typeID);
+#define ghfj Filesystem
+R S::createNativeObject(Filesystem_funcs,NEW(ghfj, obj),EXT->Filesystem_typeID);
 }
 };
 template <>
@@ -1065,6 +1112,28 @@ SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a);
 SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a);
 SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a);
 SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a);
+void GfxCompiledShader_destroy(CTX,NO);
+SV GfxCompiledShader_get_member(CTX,NO,SV);
+void GfxCompiledShader_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxCompiledShader_funcs={
+.destroy = GfxCompiledShader_destroy,
+.getMember = GfxCompiledShader_get_member,
+.setMember = GfxCompiledShader_set_member
+};
+template <>
+struct type_same<GfxCompiledShader>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxCompiledShader_typeID;
+else
+ R false;
+}
+};
+
+SV GfxCompiledShader_isInvalid(CTX ctx,const List<SV>&a);
+SV GfxCompiledShader_getStage(CTX ctx,const List<SV>&a);
 void UInt2_destroy(CTX,NO);
 SV UInt2_get_member(CTX,NO,SV);
 void UInt2_set_member(CTX,NO,SV,SV);
@@ -1078,7 +1147,8 @@ struct create_val<T2<uint32_t>>
 {
 static SV f(CTX ctx,const T2<uint32_t>&obj)
 {
-R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>, obj),EXT->UInt2_typeID);
+#define ghfj T2<uint32_t>
+R S::createNativeObject(UInt2_funcs,NEW(ghfj, obj),EXT->UInt2_typeID);
 }
 };
 template <>
@@ -1229,7 +1299,8 @@ struct create_val<T2<float>>
 {
 static SV f(CTX ctx,const T2<float>&obj)
 {
-R S::createNativeObject(Float2_funcs,NEW(T2<float>, obj),EXT->Float2_typeID);
+#define ghfj T2<float>
+R S::createNativeObject(Float2_funcs,NEW(ghfj, obj),EXT->Float2_typeID);
 }
 };
 template <>
@@ -1294,7 +1365,8 @@ struct create_val<AudioSource>
 {
 static SV f(CTX ctx,const AudioSource&obj)
 {
-R S::createNativeObject(AudioSource_funcs,NEW(AudioSource, obj),EXT->AudioSource_typeID);
+#define ghfj AudioSource
+R S::createNativeObject(AudioSource_funcs,NEW(ghfj, obj),EXT->AudioSource_typeID);
 }
 };
 template <>
@@ -1340,7 +1412,8 @@ struct create_val<Camera>
 {
 static SV f(CTX ctx,const Camera&obj)
 {
-R S::createNativeObject(Camera_funcs,NEW(Camera, obj),EXT->Camera_typeID);
+#define ghfj Camera
+R S::createNativeObject(Camera_funcs,NEW(ghfj, obj),EXT->Camera_typeID);
 }
 };
 template <>
@@ -1433,6 +1506,46 @@ SV Resource_release(CTX ctx,const List<SV>&a);
 SV Resource_getRefCount(CTX ctx,const List<SV>&a);
 SV Resource_getFilename(CTX ctx,const List<SV>&a);
 SV Resource_setFilename(CTX ctx,const List<SV>&a);
+void GfxShader_destroy(CTX,NO);
+SV GfxShader_get_member(CTX,NO,SV);
+void GfxShader_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxShader_funcs={
+.destroy = GfxShader_destroy,
+.getMember = GfxShader_get_member,
+.setMember = GfxShader_set_member
+};
+template <>
+struct type_same<GfxShader>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxShader_typeID;
+else
+ R false;
+}
+};
+
+SV GfxShader_removeContent(CTX ctx,const List<SV>&a);
+SV GfxShader_save(CTX ctx,const List<SV>&a);
+SV GfxShader_setSource(CTX ctx,const List<SV>&a);
+SV GfxShader_getSource(CTX ctx,const List<SV>&a);
+SV GfxShader_getCompiled(CTX ctx,const List<SV>&a);
+SV GfxShader_recompile(CTX ctx,const List<SV>&a);
+SV GfxShader_getStage(CTX ctx,const List<SV>&a);
+SV GfxShader_getImpl(CTX ctx,const List<SV>&a);
+SV GfxShader_possiblyReload(CTX ctx,const List<SV>&a);
+SV GfxShader_load(CTX ctx,const List<SV>&a);
+SV GfxShader_reload(CTX ctx,const List<SV>&a);
+SV GfxShader_copy(CTX ctx,const List<SV>&a);
+SV GfxShader_getType(CTX ctx,const List<SV>&a);
+SV GfxShader_isLoaded(CTX ctx,const List<SV>&a);
+SV GfxShader_getLastFileModification(CTX ctx,const List<SV>&a);
+SV GfxShader_shouldReload(CTX ctx,const List<SV>&a);
+SV GfxShader_release(CTX ctx,const List<SV>&a);
+SV GfxShader_getRefCount(CTX ctx,const List<SV>&a);
+SV GfxShader_getFilename(CTX ctx,const List<SV>&a);
+SV GfxShader_setFilename(CTX ctx,const List<SV>&a);
 void UInt4_destroy(CTX,NO);
 SV UInt4_get_member(CTX,NO,SV);
 void UInt4_set_member(CTX,NO,SV,SV);
@@ -1446,7 +1559,8 @@ struct create_val<T4<uint32_t>>
 {
 static SV f(CTX ctx,const T4<uint32_t>&obj)
 {
-R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>, obj),EXT->UInt4_typeID);
+#define ghfj T4<uint32_t>
+R S::createNativeObject(UInt4_funcs,NEW(ghfj, obj),EXT->UInt4_typeID);
 }
 };
 template <>
@@ -1627,7 +1741,8 @@ struct create_val<T3<int32_t>>
 {
 static SV f(CTX ctx,const T3<int32_t>&obj)
 {
-R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>, obj),EXT->Int3_typeID);
+#define ghfj T3<int32_t>
+R S::createNativeObject(Int3_funcs,NEW(ghfj, obj),EXT->Int3_typeID);
 }
 };
 template <>
@@ -1713,7 +1828,8 @@ struct create_val<ResizableData>
 {
 static SV f(CTX ctx,const ResizableData&obj)
 {
-R S::createNativeObject(ResizableData_funcs,NEW(ResizableData, obj),EXT->ResizableData_typeID);
+#define ghfj ResizableData
+R S::createNativeObject(ResizableData_funcs,NEW(ghfj, obj),EXT->ResizableData_typeID);
 }
 };
 template <>
@@ -1809,7 +1925,8 @@ struct create_val<T4<int32_t>>
 {
 static SV f(CTX ctx,const T4<int32_t>&obj)
 {
-R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>, obj),EXT->Int4_typeID);
+#define ghfj T4<int32_t>
+R S::createNativeObject(Int4_funcs,NEW(ghfj, obj),EXT->Int4_typeID);
 }
 };
 template <>
@@ -1990,7 +2107,8 @@ struct create_val<T3<float>>
 {
 static SV f(CTX ctx,const T3<float>&obj)
 {
-R S::createNativeObject(Float3_funcs,NEW(T3<float>, obj),EXT->Float3_typeID);
+#define ghfj T3<float>
+R S::createNativeObject(Float3_funcs,NEW(ghfj, obj),EXT->Float3_typeID);
 }
 };
 template <>
@@ -2076,7 +2194,8 @@ struct create_val<List<GfxLOD>>
 {
 static SV f(CTX ctx,const List<GfxLOD>&obj)
 {
-R S::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>, obj),EXT->GfxLODList_typeID);
+#define ghfj List<GfxLOD>
+R S::createNativeObject(GfxLODList_funcs,NEW(ghfj, obj),EXT->GfxLODList_typeID);
 }
 };
 template <>
@@ -2155,7 +2274,8 @@ struct create_val<Transform>
 {
 static SV f(CTX ctx,const Transform&obj)
 {
-R S::createNativeObject(Transform_funcs,NEW(Transform, obj),EXT->Transform_typeID);
+#define ghfj Transform
+R S::createNativeObject(Transform_funcs,NEW(ghfj, obj),EXT->Transform_typeID);
 }
 };
 template <>
@@ -2200,7 +2320,8 @@ struct create_val<Quaternion>
 {
 static SV f(CTX ctx,const Quaternion&obj)
 {
-R S::createNativeObject(Quaternion_funcs,NEW(Quaternion, obj),EXT->Quaternion_typeID);
+#define ghfj Quaternion
+R S::createNativeObject(Quaternion_funcs,NEW(ghfj, obj),EXT->Quaternion_typeID);
 }
 };
 template <>
@@ -2262,7 +2383,8 @@ struct create_val<T2<int32_t>>
 {
 static SV f(CTX ctx,const T2<int32_t>&obj)
 {
-R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>, obj),EXT->Int2_typeID);
+#define ghfj T2<int32_t>
+R S::createNativeObject(Int2_funcs,NEW(ghfj, obj),EXT->Int2_typeID);
 }
 };
 template <>
@@ -2327,7 +2449,8 @@ struct create_val<AudioWorld>
 {
 static SV f(CTX ctx,const AudioWorld&obj)
 {
-R S::createNativeObject(AudioWorld_funcs,NEW(AudioWorld, obj),EXT->AudioWorld_typeID);
+#define ghfj AudioWorld
+R S::createNativeObject(AudioWorld_funcs,NEW(ghfj, obj),EXT->AudioWorld_typeID);
 }
 };
 template <>
@@ -2364,6 +2487,64 @@ SV AudioWorld_clearSources(CTX ctx,const List<SV>&a);
 SV AudioWorld_getSources(CTX ctx,const List<SV>&a);
 SV AudioWorld_addToAudioDevice(CTX ctx,const List<SV>&a);
 SV AudioWorld_removeFromAudioDevice(CTX ctx,const List<SV>&a);
+void StrStrMap_destroy(CTX,NO);
+SV StrStrMap_get_member(CTX,NO,SV);
+void StrStrMap_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs StrStrMap_funcs={
+.destroy = StrStrMap_destroy,
+.getMember = StrStrMap_get_member,
+.setMember = StrStrMap_set_member
+};
+template <>
+struct create_val<HashMap<String,String>>
+{
+static SV f(CTX ctx,const HashMap<String,String>&obj)
+{
+#define ghfj HashMap<String,String>
+R S::createNativeObject(StrStrMap_funcs,NEW(ghfj, obj),EXT->StrStrMap_typeID);
+}
+};
+template <>
+struct val_to_c<HashMap<String,String>>
+{
+static HashMap<String,String> f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->StrStrMap_typeID)
+R*((HashMap<String,String>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to StrStrMap."));
+} else
+ CATE(TE,"Value can not be converted to StrStrMap."));
+}
+};
+template <>
+struct type_same<HashMap<String,String>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->StrStrMap_typeID;
+else
+ R false;
+}
+};
+
+SV StrStrMap___eq__(CTX ctx,const List<SV>&a);
+SV StrStrMap___neq__(CTX ctx,const List<SV>&a);
+SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a);
+SV StrStrMap_findEntry(CTX ctx,const List<SV>&a);
+SV StrStrMap_getKey(CTX ctx,const List<SV>&a);
+SV StrStrMap_getValue(CTX ctx,const List<SV>&a);
+SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a);
+SV StrStrMap_get(CTX ctx,const List<SV>&a);
+SV StrStrMap_set(CTX ctx,const List<SV>&a);
+SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a);
+SV StrStrMap_remove(CTX ctx,const List<SV>&a);
+SV StrStrMap_clear(CTX ctx,const List<SV>&a);
+SV StrStrMap_append(CTX ctx,const List<SV>&a);
 void Light_destroy(CTX,NO);
 SV Light_get_member(CTX,NO,SV);
 void Light_set_member(CTX,NO,SV,SV);
@@ -2407,7 +2588,8 @@ struct create_val<LightPointData>
 {
 static SV f(CTX ctx,const LightPointData&obj)
 {
-R S::createNativeObject(LightPointData_funcs,NEW(LightPointData, obj),EXT->LightPointData_typeID);
+#define ghfj LightPointData
+R S::createNativeObject(LightPointData_funcs,NEW(ghfj, obj),EXT->LightPointData_typeID);
 }
 };
 template <>
@@ -2451,7 +2633,8 @@ struct create_val<T4<float>>
 {
 static SV f(CTX ctx,const T4<float>&obj)
 {
-R S::createNativeObject(Float4_funcs,NEW(T4<float>, obj),EXT->Float4_typeID);
+#define ghfj T4<float>
+R S::createNativeObject(Float4_funcs,NEW(ghfj, obj),EXT->Float4_typeID);
 }
 };
 template <>
@@ -2632,7 +2815,8 @@ struct create_val<LightDirectionalData>
 {
 static SV f(CTX ctx,const LightDirectionalData&obj)
 {
-R S::createNativeObject(LightDirectionalData_funcs,NEW(LightDirectionalData, obj),EXT->LightDirectionalData_typeID);
+#define ghfj LightDirectionalData
+R S::createNativeObject(LightDirectionalData_funcs,NEW(ghfj, obj),EXT->LightDirectionalData_typeID);
 }
 };
 template <>
@@ -2676,7 +2860,8 @@ struct create_val<Matrix4x4>
 {
 static SV f(CTX ctx,const Matrix4x4&obj)
 {
-R S::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4, obj),EXT->Matrix4x4_typeID);
+#define ghfj Matrix4x4
+R S::createNativeObject(Matrix4x4_funcs,NEW(ghfj, obj),EXT->Matrix4x4_typeID);
 }
 };
 template <>
@@ -2735,7 +2920,8 @@ struct create_val<T3<uint32_t>>
 {
 static SV f(CTX ctx,const T3<uint32_t>&obj)
 {
-R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>, obj),EXT->UInt3_typeID);
+#define ghfj T3<uint32_t>
+R S::createNativeObject(UInt3_funcs,NEW(ghfj, obj),EXT->UInt3_typeID);
 }
 };
 template <>
@@ -2821,7 +3007,8 @@ struct create_val<LightSpotData>
 {
 static SV f(CTX ctx,const LightSpotData&obj)
 {
-R S::createNativeObject(LightSpotData_funcs,NEW(LightSpotData, obj),EXT->LightSpotData_typeID);
+#define ghfj LightSpotData
+R S::createNativeObject(LightSpotData_funcs,NEW(ghfj, obj),EXT->LightSpotData_typeID);
 }
 };
 template <>
@@ -2865,7 +3052,8 @@ struct create_val<AudioDevice>
 {
 static SV f(CTX ctx,const AudioDevice&obj)
 {
-R S::createNativeObject(AudioDevice_funcs,NEW(AudioDevice, obj),EXT->AudioDevice_typeID);
+#define ghfj AudioDevice
+R S::createNativeObject(AudioDevice_funcs,NEW(ghfj, obj),EXT->AudioDevice_typeID);
 }
 };
 template <>
@@ -2922,7 +3110,8 @@ struct create_val<GfxLOD>
 {
 static SV f(CTX ctx,const GfxLOD&obj)
 {
-R S::createNativeObject(GfxLOD_funcs,NEW(GfxLOD, obj),EXT->GfxLOD_typeID);
+#define ghfj GfxLOD
+R S::createNativeObject(GfxLOD_funcs,NEW(ghfj, obj),EXT->GfxLOD_typeID);
 }
 };
 template <>
@@ -3028,7 +3217,8 @@ struct create_val<AABB>
 {
 static SV f(CTX ctx,const AABB&obj)
 {
-R S::createNativeObject(AABB_funcs,NEW(AABB, obj),EXT->AABB_typeID);
+#define ghfj AABB
+R S::createNativeObject(AABB_funcs,NEW(ghfj, obj),EXT->AABB_typeID);
 }
 };
 template <>
@@ -3075,7 +3265,8 @@ struct create_val<List<scripting::Value*>>
 {
 static SV f(CTX ctx,const List<scripting::Value*>&obj)
 {
-R S::createNativeObject(List_funcs,NEW(List<scripting::Value*>, obj),EXT->List_typeID);
+#define ghfj List<scripting::Value*>
+R S::createNativeObject(List_funcs,NEW(ghfj, obj),EXT->List_typeID);
 }
 };
 template <>
@@ -3172,7 +3363,8 @@ struct create_val<List<GfxModel::SubModel>>
 {
 static SV f(CTX ctx,const List<GfxModel::SubModel>&obj)
 {
-R S::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>, obj),EXT->GfxSubModelList_typeID);
+#define ghfj List<GfxModel::SubModel>
+R S::createNativeObject(GfxSubModelList_funcs,NEW(ghfj, obj),EXT->GfxSubModelList_typeID);
 }
 };
 template <>
@@ -3261,7 +3453,8 @@ struct create_val<Matrix3x3>
 {
 static SV f(CTX ctx,const Matrix3x3&obj)
 {
-R S::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3, obj),EXT->Matrix3x3_typeID);
+#define ghfj Matrix3x3
+R S::createNativeObject(Matrix3x3_funcs,NEW(ghfj, obj),EXT->Matrix3x3_typeID);
 }
 };
 template <>
@@ -3368,6 +3561,54 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV GfxCompiledShader_ptr_copy(CTX,NO);
+void GfxCompiledShader_ptr_destroy(CTX,NO);
+SV GfxCompiledShader_ptr_get_member(CTX,NO,SV);
+void GfxCompiledShader_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxCompiledShader_ptr_funcs={
+.destroy = GfxCompiledShader_ptr_destroy,
+.getMember = GfxCompiledShader_ptr_get_member,
+.setMember = GfxCompiledShader_ptr_set_member
+};
+template <>
+struct create_val<GfxCompiledShader *>
+{
+static SV f(CTX ctx,GfxCompiledShader*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxCompiledShader_ptr_funcs,obj,EXT->GfxCompiledShader_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxCompiledShader *>
+{
+static GfxCompiledShader *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxCompiledShader_ptr_typeID)
+R(GfxCompiledShader*)obj->data;
+else
+ CATE(TE,"Value is not a GfxCompiledShaderRef."));
+} else
+ CATE(TE,"Value is not a GfxCompiledShaderRef."));
+}
+};
+template <>
+struct type_same<GfxCompiledShader *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxCompiledShader_ptr_typeID;
 else
  R false;
 }
@@ -3704,6 +3945,54 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Resource_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV GfxShader_ptr_copy(CTX,NO);
+void GfxShader_ptr_destroy(CTX,NO);
+SV GfxShader_ptr_get_member(CTX,NO,SV);
+void GfxShader_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxShader_ptr_funcs={
+.destroy = GfxShader_ptr_destroy,
+.getMember = GfxShader_ptr_get_member,
+.setMember = GfxShader_ptr_set_member
+};
+template <>
+struct create_val<GfxShader *>
+{
+static SV f(CTX ctx,GfxShader*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxShader_ptr_funcs,obj,EXT->GfxShader_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxShader *>
+{
+static GfxShader *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxShader_ptr_typeID)
+R(GfxShader*)obj->data;
+else
+ CATE(TE,"Value is not a GfxShaderRef."));
+} else
+ CATE(TE,"Value is not a GfxShaderRef."));
+}
+};
+template <>
+struct type_same<GfxShader *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxShader_ptr_typeID;
 else
  R false;
 }
@@ -4232,6 +4521,54 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->AudioWorld_ptr_typeID;
+else
+ R false;
+}
+};
+
+SV StrStrMap_ptr_copy(CTX,NO);
+void StrStrMap_ptr_destroy(CTX,NO);
+SV StrStrMap_ptr_get_member(CTX,NO,SV);
+void StrStrMap_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs StrStrMap_ptr_funcs={
+.destroy = StrStrMap_ptr_destroy,
+.getMember = StrStrMap_ptr_get_member,
+.setMember = StrStrMap_ptr_set_member
+};
+template <>
+struct create_val<HashMap<String,String> *>
+{
+static SV f(CTX ctx,HashMap<String,String>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(StrStrMap_ptr_funcs,obj,EXT->StrStrMap_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<HashMap<String,String> *>
+{
+static HashMap<String,String> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->StrStrMap_ptr_typeID)
+R(HashMap<String,String>*)obj->data;
+else
+ CATE(TE,"Value is not a StrStrMapRef."));
+} else
+ CATE(TE,"Value is not a StrStrMapRef."));
+}
+};
+template <>
+struct type_same<HashMap<String,String> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
 else
  R false;
 }
@@ -5058,12 +5395,12 @@ SV ResType___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("ResType::__eq__")));
 size_t F;
-if(!TS(ResType,a[0]))
+if(!TS(a[0],ResType))
 CATE(TE,FAE("ResType::ResType","ResType")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(ResType,a[1]))
+if(!TS(a[1],ResType))
 CATE(VE,UFOF("ResType::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5124,12 +5461,12 @@ SV GfxPrimitive___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxPrimitive::__eq__")));
 size_t F;
-if(!TS(GfxPrimitive,a[0]))
+if(!TS(a[0],GfxPrimitive))
 CATE(TE,FAE("GfxPrimitive::GfxPrimitive","GfxPrimitive")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxPrimitive,a[1]))
+if(!TS(a[1],GfxPrimitive))
 CATE(VE,UFOF("GfxPrimitive::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5186,12 +5523,12 @@ SV GfxDepthFunction___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxDepthFunction::__eq__")));
 size_t F;
-if(!TS(GfxDepthFunction,a[0]))
+if(!TS(a[0],GfxDepthFunction))
 CATE(TE,FAE("GfxDepthFunction::GfxDepthFunction","GfxDepthFunction")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxDepthFunction,a[1]))
+if(!TS(a[1],GfxDepthFunction))
 CATE(VE,UFOF("GfxDepthFunction::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5248,12 +5585,12 @@ SV GfxBlendMode___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxBlendMode::__eq__")));
 size_t F;
-if(!TS(GfxBlendMode,a[0]))
+if(!TS(a[0],GfxBlendMode))
 CATE(TE,FAE("GfxBlendMode::GfxBlendMode","GfxBlendMode")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxBlendMode,a[1]))
+if(!TS(a[1],GfxBlendMode))
 CATE(VE,UFOF("GfxBlendMode::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5300,12 +5637,12 @@ SV GfxBlendFactor___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxBlendFactor::__eq__")));
 size_t F;
-if(!TS(GfxBlendFactor,a[0]))
+if(!TS(a[0],GfxBlendFactor))
 CATE(TE,FAE("GfxBlendFactor::GfxBlendFactor","GfxBlendFactor")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxBlendFactor,a[1]))
+if(!TS(a[1],GfxBlendFactor))
 CATE(VE,UFOF("GfxBlendFactor::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5374,12 +5711,12 @@ SV GfxCullMode___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxCullMode::__eq__")));
 size_t F;
-if(!TS(GfxCullMode,a[0]))
+if(!TS(a[0],GfxCullMode))
 CATE(TE,FAE("GfxCullMode::GfxCullMode","GfxCullMode")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxCullMode,a[1]))
+if(!TS(a[1],GfxCullMode))
 CATE(VE,UFOF("GfxCullMode::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5426,12 +5763,12 @@ SV GfxWinding___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxWinding::__eq__")));
 size_t F;
-if(!TS(GfxWinding,a[0]))
+if(!TS(a[0],GfxWinding))
 CATE(TE,FAE("GfxWinding::GfxWinding","GfxWinding")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxWinding,a[1]))
+if(!TS(a[1],GfxWinding))
 CATE(VE,UFOF("GfxWinding::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5476,12 +5813,12 @@ SV GfxVertexAttribPurpose___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxVertexAttribPurpose::__eq__")));
 size_t F;
-if(!TS(GfxVertexAttribPurpose,a[0]))
+if(!TS(a[0],GfxVertexAttribPurpose))
 CATE(TE,FAE("GfxVertexAttribPurpose::GfxVertexAttribPurpose","GfxVertexAttribPurpose")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxVertexAttribPurpose,a[1]))
+if(!TS(a[1],GfxVertexAttribPurpose))
 CATE(VE,UFOF("GfxVertexAttribPurpose::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5532,12 +5869,12 @@ SV GfxVertexAttribType___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxVertexAttribType::__eq__")));
 size_t F;
-if(!TS(GfxVertexAttribType,a[0]))
+if(!TS(a[0],GfxVertexAttribType))
 CATE(TE,FAE("GfxVertexAttribType::GfxVertexAttribType","GfxVertexAttribType")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxVertexAttribType,a[1]))
+if(!TS(a[1],GfxVertexAttribType))
 CATE(VE,UFOF("GfxVertexAttribType::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5603,17 +5940,75 @@ else
 }
 }
 void GfxVertexAttribType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxStage___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxStage::__eq__")));
+size_t F;
+if(!TS(a[0],GfxStage))
+CATE(TE,FAE("GfxStage::GfxStage","GfxStage")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxStage))
+CATE(VE,UFOF("GfxStage::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxStage_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxStage");
+EI(keyStr=="__eq__")
+R CNF(GfxStage___eq__);
+EI(keyStr=="Compute")R S::createNativeObject(GfxStage_funcs,(void *)5,EXT->GfxStage_typeID);
+EI(keyStr=="Geometry")R S::createNativeObject(GfxStage_funcs,(void *)3,EXT->GfxStage_typeID);
+EI(keyStr=="Vertex")R S::createNativeObject(GfxStage_funcs,(void *)0,EXT->GfxStage_typeID);
+EI(keyStr=="Fragment")R S::createNativeObject(GfxStage_funcs,(void *)4,EXT->GfxStage_typeID);
+EI(keyStr=="TessControl")R S::createNativeObject(GfxStage_funcs,(void *)1,EXT->GfxStage_typeID);
+EI(keyStr=="TessEval")R S::createNativeObject(GfxStage_funcs,(void *)2,EXT->GfxStage_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxStage");
+EI(keyStr=="__eq__")
+R CNF(GfxStage___eq__);
+EI(keyStr=="Compute")R S::createNativeObject(GfxStage_funcs,(void *)5,EXT->GfxStage_typeID);
+EI(keyStr=="Geometry")R S::createNativeObject(GfxStage_funcs,(void *)3,EXT->GfxStage_typeID);
+EI(keyStr=="Vertex")R S::createNativeObject(GfxStage_funcs,(void *)0,EXT->GfxStage_typeID);
+EI(keyStr=="Fragment")R S::createNativeObject(GfxStage_funcs,(void *)4,EXT->GfxStage_typeID);
+EI(keyStr=="TessControl")R S::createNativeObject(GfxStage_funcs,(void *)1,EXT->GfxStage_typeID);
+EI(keyStr=="TessEval")R S::createNativeObject(GfxStage_funcs,(void *)2,EXT->GfxStage_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxStage_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV GfxBufferUsage___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxBufferUsage::__eq__")));
 size_t F;
-if(!TS(GfxBufferUsage,a[0]))
+if(!TS(a[0],GfxBufferUsage))
 CATE(TE,FAE("GfxBufferUsage::GfxBufferUsage","GfxBufferUsage")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxBufferUsage,a[1]))
+if(!TS(a[1],GfxBufferUsage))
 CATE(VE,UFOF("GfxBufferUsage::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5660,12 +6055,12 @@ SV GfxShadowmapPrecision___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxShadowmapPrecision::__eq__")));
 size_t F;
-if(!TS(GfxShadowmapPrecision,a[0]))
+if(!TS(a[0],GfxShadowmapPrecision))
 CATE(TE,FAE("GfxShadowmapPrecision::GfxShadowmapPrecision","GfxShadowmapPrecision")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxShadowmapPrecision,a[1]))
+if(!TS(a[1],GfxShadowmapPrecision))
 CATE(VE,UFOF("GfxShadowmapPrecision::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5712,12 +6107,12 @@ SV GfxLightType___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("GfxLightType::__eq__")));
 size_t F;
-if(!TS(GfxLightType,a[0]))
+if(!TS(a[0],GfxLightType))
 CATE(TE,FAE("GfxLightType::GfxLightType","GfxLightType")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(GfxLightType,a[1]))
+if(!TS(a[1],GfxLightType))
 CATE(VE,UFOF("GfxLightType::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5764,12 +6159,12 @@ SV CameraType___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,UFOF("CameraType::__eq__")));
 size_t F;
-if(!TS(CameraType,a[0]))
+if(!TS(a[0],CameraType))
 CATE(TE,FAE("CameraType::CameraType","CameraType")));
 else
  F=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(CameraType,a[1]))
+if(!TS(a[1],CameraType))
 CATE(VE,UFOF("CameraType::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
@@ -5811,15 +6206,15 @@ else
 void CameraType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 void Filesystem_destroy(CTX ctx,NO F)
 {
-if(!TS(Filesystem, (SV)F))
+if(!TS((SV)F,Filesystem))
 CATE(TE,"Filesystem::__del__ expects Filesystem as first argument."));
 
-DELETE(Filesystem,(Filesystem*)F->data);
+DELETE((Filesystem*)F->data);
 }SV Filesystem_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Filesystem's constructor" EAOE));
-if(!TS(Filesystem,a[0]))
+if(!TS(a[0],Filesystem))
 CATE(TE,"Filesystem's constructor expects Filesystem as first argument."));
 if(a.getCount()==1)
 if(true)
@@ -5886,13 +6281,13 @@ SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::addSearchPath" EAOE));
 Filesystem*F;
-if(!TS(Filesystem,a[0]))
+if(!TS(a[0],Filesystem))
 CATE(TE,FAE("Filesystem::addSearchPath","Filesystem")));
 else
  F=(Filesystem*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const String &,a[1]))
+if(1&&TS(a[1],const String &))
 {
 ( F->addSearchPath(val_to_c<const String &>::f(ctx,a[1])));
 R CN;
@@ -5906,7 +6301,7 @@ SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::pushSearchPaths" EAOE));
 Filesystem*F;
-if(!TS(Filesystem,a[0]))
+if(!TS(a[0],Filesystem))
 CATE(TE,FAE("Filesystem::pushSearchPaths","Filesystem")));
 else
  F=(Filesystem*)((NO)a[0])->data;
@@ -5926,7 +6321,7 @@ SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::popSearchPaths" EAOE));
 Filesystem*F;
-if(!TS(Filesystem,a[0]))
+if(!TS(a[0],Filesystem))
 CATE(TE,FAE("Filesystem::popSearchPaths","Filesystem")));
 else
  F=(Filesystem*)((NO)a[0])->data;
@@ -5946,13 +6341,13 @@ SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::getAbsolutePath" EAOE));
 Filesystem*F;
-if(!TS(Filesystem,a[0]))
+if(!TS(a[0],Filesystem))
 CATE(TE,FAE("Filesystem::getAbsolutePath","Filesystem")));
 else
  F=(Filesystem*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const char *,a[1]))
+if(1&&TS(a[1],const char *))
 {
 R CV( F->getAbsolutePath(val_to_c<const char *>::f(ctx,a[1])));
 ;
@@ -5961,35 +6356,139 @@ CATE(TE,UFOF("Filesystem::getAbsolutePath.")));
 R CN;
 }
 
+void GfxCompiledShader_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxCompiledShader))
+CATE(TE,"GfxCompiledShader::__del__ expects GfxCompiledShader as first argument."));
+
+DELETE((GfxCompiledShader*)F->data);
+}SV GfxCompiledShader_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxCompiledShader's constructor" EAOE));
+if(!TS(a[0],GfxCompiledShader))
+CATE(TE,"GfxCompiledShader's constructor expects GfxCompiledShader as first argument."));
+CATE(TE,UFOF("GfxCompiledShader's constructor.")));
+}
+
+SV GfxCompiledShader_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxCompiledShader");
+EI(keyStr=="__new__")
+R CNF(GfxCompiledShader_new);
+EI(keyStr=="__call__")
+R CNF(GfxCompiledShader_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxCompiledShader_new);
+ EI(keyStr == "isInvalid")
+R CNF(GfxCompiledShader_isInvalid);
+ EI(keyStr == "getStage")
+R CNF(GfxCompiledShader_getStage);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxCompiledShader_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxCompiledShader_isInvalid(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxCompiledShader::isInvalid" EAOE));
+GfxCompiledShader*F;
+if(!TS(a[0],GfxCompiledShader))
+CATE(TE,FAE("GfxCompiledShader::isInvalid","GfxCompiledShader")));
+else
+ F=(GfxCompiledShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isInvalid());
+;
+}
+CATE(TE,UFOF("GfxCompiledShader::isInvalid.")));
+R CN;
+}
+
+SV GfxCompiledShader_getStage(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxCompiledShader::getStage" EAOE));
+GfxCompiledShader*F;
+if(!TS(a[0],GfxCompiledShader))
+CATE(TE,FAE("GfxCompiledShader::getStage","GfxCompiledShader")));
+else
+ F=(GfxCompiledShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getStage());
+;
+}
+CATE(TE,UFOF("GfxCompiledShader::getStage.")));
+R CN;
+}
+
 void UInt2_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<uint32_t>, (SV)F))
+if(!TS((SV)F,T2<uint32_t>))
 CATE(TE,"UInt2::__del__ expects UInt2 as first argument."));
 
-DELETE(T2<uint32_t>,(T2<uint32_t>*)F->data);
+DELETE((T2<uint32_t>*)F->data);
 }SV UInt2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"UInt2's constructor" EAOE));
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,"UInt2's constructor expects UInt2 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>),EXT->UInt2_typeID);
 if(a.getCount()==2)
-if(true&&TS(uint32_t,a[1]))
+if(true&&TS(a[1],uint32_t))
 R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt2_typeID);
 if(a.getCount()==3)
-if(true&&TS(uint32_t,a[1])&&TS(uint32_t,a[2]))
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t))
 R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2])),EXT->UInt2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<float> &,a[1]))
+if(true&&TS(a[1],const T2<float> &))
 R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->UInt2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<int32_t> &,a[1]))
+if(true&&TS(a[1],const T2<int32_t> &))
 R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T2<uint32_t> &))
 R S::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
 CATE(TE,UFOF("UInt2's constructor.")));
 R CN;
@@ -6103,7 +6602,7 @@ SV UInt2_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::normalize" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::normalize","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
@@ -6123,13 +6622,13 @@ SV UInt2_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::distance" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::distance","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 R CV( F->distance(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -6143,7 +6642,7 @@ SV UInt2_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::lengthSquared" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::lengthSquared","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
@@ -6163,15 +6662,16 @@ SV UInt2___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__leq__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__leq__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F <= val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("UInt2::__leq__.")));
 R CN;
@@ -6182,13 +6682,13 @@ SV UInt2_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::setYX" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::setYX","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setYX(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -6202,15 +6702,16 @@ SV UInt2___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__grtr__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__grtr__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F > val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("UInt2::__grtr__.")));
 R CN;
@@ -6221,7 +6722,7 @@ SV UInt2_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::sum" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::sum","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
@@ -6241,7 +6742,7 @@ SV UInt2_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::getXY" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::getXY","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
@@ -6261,7 +6762,7 @@ SV UInt2_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::length" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::length","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
@@ -6281,7 +6782,7 @@ SV UInt2_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::getYX" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::getYX","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
@@ -6301,20 +6802,22 @@ SV UInt2___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__div__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__div__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F / val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(a[1],uint32_t))
 {
-R CV(*F / val_to_c<uint32_t>::f(ctx,a[1]));
+auto v=val_to_c<uint32_t>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("UInt2::__div__.")));
 R CN;
@@ -6325,13 +6828,13 @@ SV UInt2_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::setXY" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::setXY","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setXY(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -6345,20 +6848,22 @@ SV UInt2___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__mul__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__mul__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F * val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(a[1],uint32_t))
 {
-R CV(*F * val_to_c<uint32_t>::f(ctx,a[1]));
+auto v=val_to_c<uint32_t>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("UInt2::__mul__.")));
 R CN;
@@ -6369,20 +6874,22 @@ SV UInt2___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__add__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__add__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F + val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(a[1],uint32_t))
 {
-R CV(*F + val_to_c<uint32_t>::f(ctx,a[1]));
+auto v=val_to_c<uint32_t>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("UInt2::__add__.")));
 R CN;
@@ -6393,15 +6900,16 @@ SV UInt2___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__less__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__less__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F < val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("UInt2::__less__.")));
 R CN;
@@ -6412,20 +6920,22 @@ SV UInt2___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__sub__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__sub__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F - val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(a[1],uint32_t))
 {
-R CV(*F - val_to_c<uint32_t>::f(ctx,a[1]));
+auto v=val_to_c<uint32_t>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("UInt2::__sub__.")));
 R CN;
@@ -6436,15 +6946,16 @@ SV UInt2___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__geq__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__geq__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F >= val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("UInt2::__geq__.")));
 R CN;
@@ -6455,13 +6966,13 @@ SV UInt2_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::distanceSquared" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::distanceSquared","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 R CV( F->distanceSquared(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -6475,15 +6986,16 @@ SV UInt2___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__eq__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__eq__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F == val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("UInt2::__eq__.")));
 R CN;
@@ -6494,13 +7006,13 @@ SV UInt2_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::dot" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::dot","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 R CV( F->dot(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -6520,15 +7032,16 @@ SV UInt2___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__neq__" EAOE));
 T2<uint32_t>*F;
-if(!TS(T2<uint32_t>,a[0]))
+if(!TS(a[0],T2<uint32_t>))
 CATE(TE,FAE("UInt2::__neq__","UInt2")));
 else
  F=(T2<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
-R CV(*F != val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<uint32_t> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("UInt2::__neq__.")));
 R CN;
@@ -6536,15 +7049,15 @@ R CN;
 
 void GPUTimer_destroy(CTX ctx,NO F)
 {
-if(!TS(GPUTimer, (SV)F))
+if(!TS((SV)F,GPUTimer))
 CATE(TE,"GPUTimer::__del__ expects GPUTimer as first argument."));
 
-DELETE(GPUTimer,(GPUTimer*)F->data);
+DELETE((GPUTimer*)F->data);
 }SV GPUTimer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"GPUTimer's constructor" EAOE));
-if(!TS(GPUTimer,a[0]))
+if(!TS(a[0],GPUTimer))
 CATE(TE,"GPUTimer's constructor expects GPUTimer as first argument."));
 CATE(TE,UFOF("GPUTimer's constructor.")));
 }
@@ -6609,7 +7122,7 @@ SV GPUTimer_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::begin" EAOE));
 GPUTimer*F;
-if(!TS(GPUTimer,a[0]))
+if(!TS(a[0],GPUTimer))
 CATE(TE,FAE("GPUTimer::begin","GPUTimer")));
 else
  F=(GPUTimer*)((NO)a[0])->data;
@@ -6629,7 +7142,7 @@ SV GPUTimer_resultAvailable(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::resultAvailable" EAOE));
 GPUTimer*F;
-if(!TS(GPUTimer,a[0]))
+if(!TS(a[0],GPUTimer))
 CATE(TE,FAE("GPUTimer::resultAvailable","GPUTimer")));
 else
  F=(GPUTimer*)((NO)a[0])->data;
@@ -6649,7 +7162,7 @@ SV GPUTimer_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::end" EAOE));
 GPUTimer*F;
-if(!TS(GPUTimer,a[0]))
+if(!TS(a[0],GPUTimer))
 CATE(TE,FAE("GPUTimer::end","GPUTimer")));
 else
  F=(GPUTimer*)((NO)a[0])->data;
@@ -6669,7 +7182,7 @@ SV GPUTimer_getResultResolution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::getResultResolution" EAOE));
 GPUTimer*F;
-if(!TS(GPUTimer,a[0]))
+if(!TS(a[0],GPUTimer))
 CATE(TE,FAE("GPUTimer::getResultResolution","GPUTimer")));
 else
  F=(GPUTimer*)((NO)a[0])->data;
@@ -6689,7 +7202,7 @@ SV GPUTimer_getResult(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::getResult" EAOE));
 GPUTimer*F;
-if(!TS(GPUTimer,a[0]))
+if(!TS(a[0],GPUTimer))
 CATE(TE,FAE("GPUTimer::getResult","GPUTimer")));
 else
  F=(GPUTimer*)((NO)a[0])->data;
@@ -6706,14 +7219,14 @@ R CN;
 
 void RigidBody_destroy(CTX ctx,NO F)
 {
-if(!TS(RigidBody, (SV)F))
+if(!TS((SV)F,RigidBody))
 CATE(TE,"RigidBody::__del__ expects RigidBody as first argument."));
 
 }SV RigidBody_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"RigidBody's constructor" EAOE));
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,"RigidBody's constructor expects RigidBody as first argument."));
 CATE(TE,UFOF("RigidBody's constructor.")));
 }
@@ -6850,13 +7363,13 @@ SV RigidBody_setGravity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setGravity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setGravity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->setGravity(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -6870,7 +7383,7 @@ SV RigidBody_getFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getFriction" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getFriction","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -6890,7 +7403,7 @@ SV RigidBody_getRollingFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getRollingFriction" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getRollingFriction","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -6910,13 +7423,13 @@ SV RigidBody_setAngularFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularFactor" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setAngularFactor","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
 ( F->setAngularFactor(val_to_c<const Float3 &>::f(ctx,a[1])));
 R CN;
@@ -6930,13 +7443,13 @@ SV RigidBody_getVelocityOfPoint(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getVelocityOfPoint" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getVelocityOfPoint","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Position3D &,a[1]))
+if(1&&TS(a[1],const Position3D &))
 {
 R CV( F->getVelocityOfPoint(val_to_c<const Position3D &>::f(ctx,a[1])));
 ;
@@ -6950,13 +7463,13 @@ SV RigidBody_setTransform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setTransform" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setTransform","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Matrix4x4 &,a[1]))
+if(1&&TS(a[1],const Matrix4x4 &))
 {
 ( F->setTransform(val_to_c<const Matrix4x4 &>::f(ctx,a[1])));
 R CN;
@@ -6970,7 +7483,7 @@ SV RigidBody_getMass(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getMass" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getMass","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -6990,13 +7503,13 @@ SV RigidBody_setFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setFriction" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setFriction","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setFriction(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7010,7 +7523,7 @@ SV RigidBody_clearForces(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::clearForces" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::clearForces","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7030,13 +7543,13 @@ SV RigidBody_applyImpulse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyImpulse" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::applyImpulse","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(const Vector3D &,a[1])&&TS(const Position3D &,a[2]))
+if(1&&TS(a[1],const Vector3D &)&&TS(a[2],const Position3D &))
 {
 ( F->applyImpulse(val_to_c<const Vector3D &>::f(ctx,a[1]), val_to_c<const Position3D &>::f(ctx,a[2])));
 R CN;
@@ -7050,13 +7563,13 @@ SV RigidBody_applyTorque(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyTorque" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::applyTorque","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->applyTorque(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -7070,13 +7583,13 @@ SV RigidBody_setLinearFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearFactor" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setLinearFactor","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
 ( F->setLinearFactor(val_to_c<const Float3 &>::f(ctx,a[1])));
 R CN;
@@ -7090,13 +7603,13 @@ SV RigidBody_setLinearDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearDamping" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setLinearDamping","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setLinearDamping(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7110,7 +7623,7 @@ SV RigidBody_getLinearFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearFactor" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getLinearFactor","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7130,13 +7643,13 @@ SV RigidBody_setAngularDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularDamping" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setAngularDamping","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setAngularDamping(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7150,7 +7663,7 @@ SV RigidBody_getWorld(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getWorld" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getWorld","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7164,7 +7677,7 @@ SV RigidBody_getAngularVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularVelocity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getAngularVelocity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7184,7 +7697,7 @@ SV RigidBody_getShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getShape" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getShape","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7198,13 +7711,13 @@ SV RigidBody_setAngularSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularSleepingThreshold" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setAngularSleepingThreshold","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setAngularSleepingThreshold(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7218,13 +7731,13 @@ SV RigidBody_applyTorqueImpulse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyTorqueImpulse" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::applyTorqueImpulse","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->applyTorqueImpulse(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -7238,13 +7751,13 @@ SV RigidBody_setLinearVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearVelocity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setLinearVelocity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->setLinearVelocity(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -7258,7 +7771,7 @@ SV RigidBody_getCollisionMask(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getCollisionMask" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getCollisionMask","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7278,7 +7791,7 @@ SV RigidBody_getLinearVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearVelocity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getLinearVelocity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7298,13 +7811,13 @@ SV RigidBody_setAngularVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularVelocity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setAngularVelocity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->setAngularVelocity(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -7318,7 +7831,7 @@ SV RigidBody_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getType" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getType","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7332,7 +7845,7 @@ SV RigidBody_getAngularSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularSleepingThreshold" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getAngularSleepingThreshold","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7352,13 +7865,13 @@ SV RigidBody_setLinearSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearSleepingThreshold" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setLinearSleepingThreshold","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setLinearSleepingThreshold(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7372,13 +7885,13 @@ SV RigidBody_setRollingFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setRollingFriction" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setRollingFriction","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setRollingFriction(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7392,7 +7905,7 @@ SV RigidBody_getGravity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getGravity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getGravity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7412,13 +7925,13 @@ SV RigidBody_setMass(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setMass" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setMass","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setMass(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7432,13 +7945,13 @@ SV RigidBody_applyCentralImpulse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyCentralImpulse" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::applyCentralImpulse","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->applyCentralImpulse(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -7452,7 +7965,7 @@ SV RigidBody_getBulletRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getBulletRigidBody" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getBulletRigidBody","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7466,7 +7979,7 @@ SV RigidBody_getRestitution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getRestitution" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getRestitution","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7486,7 +7999,7 @@ SV RigidBody_getAngularFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularFactor" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getAngularFactor","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7506,7 +8019,7 @@ SV RigidBody_getAngularDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularDamping" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getAngularDamping","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7526,7 +8039,7 @@ SV RigidBody_getLinearSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearSleepingThreshold" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getLinearSleepingThreshold","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7546,13 +8059,13 @@ SV RigidBody_applyForce(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyForce" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::applyForce","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(const Vector3D &,a[1])&&TS(const Position3D &,a[2]))
+if(1&&TS(a[1],const Vector3D &)&&TS(a[2],const Position3D &))
 {
 ( F->applyForce(val_to_c<const Vector3D &>::f(ctx,a[1]), val_to_c<const Position3D &>::f(ctx,a[2])));
 R CN;
@@ -7566,7 +8079,7 @@ SV RigidBody_getEntity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getEntity" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getEntity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7580,13 +8093,13 @@ SV RigidBody_setRestitution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setRestitution" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setRestitution","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setRestitution(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -7600,7 +8113,7 @@ SV RigidBody_setShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setShape" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::setShape","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7614,7 +8127,7 @@ SV RigidBody_getLinearDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearDamping" EAOE));
 RigidBody*F;
-if(!TS(RigidBody,a[0]))
+if(!TS(a[0],RigidBody))
 CATE(TE,FAE("RigidBody::getLinearDamping","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
@@ -7631,33 +8144,33 @@ R CN;
 
 void Float2_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<float>, (SV)F))
+if(!TS((SV)F,T2<float>))
 CATE(TE,"Float2::__del__ expects Float2 as first argument."));
 
-DELETE(T2<float>,(T2<float>*)F->data);
+DELETE((T2<float>*)F->data);
 }SV Float2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Float2's constructor" EAOE));
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,"Float2's constructor expects Float2 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Float2_funcs,NEW(T2<float>),EXT->Float2_typeID);
 if(a.getCount()==2)
-if(true&&TS(float,a[1]))
+if(true&&TS(a[1],float))
 R S::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<float>::f(ctx,a[1])),EXT->Float2_typeID);
 if(a.getCount()==3)
-if(true&&TS(float,a[1])&&TS(float,a[2]))
+if(true&&TS(a[1],float)&&TS(a[2],float))
 R S::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2])),EXT->Float2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<float> &,a[1]))
+if(true&&TS(a[1],const T2<float> &))
 R S::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->Float2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<int32_t> &,a[1]))
+if(true&&TS(a[1],const T2<int32_t> &))
 R S::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T2<uint32_t> &))
 R S::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
 CATE(TE,UFOF("Float2's constructor.")));
 R CN;
@@ -7771,7 +8284,7 @@ SV Float2_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::normalize" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::normalize","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
@@ -7791,13 +8304,13 @@ SV Float2_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::distance" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::distance","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 R CV( F->distance(val_to_c<const T2<float> &>::f(ctx,a[1])));
 ;
@@ -7811,7 +8324,7 @@ SV Float2_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::lengthSquared" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::lengthSquared","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
@@ -7831,15 +8344,16 @@ SV Float2___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__leq__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__leq__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F <= val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("Float2::__leq__.")));
 R CN;
@@ -7850,13 +8364,13 @@ SV Float2_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::setYX" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::setYX","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -7870,15 +8384,16 @@ SV Float2___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__grtr__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__grtr__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F > val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("Float2::__grtr__.")));
 R CN;
@@ -7889,7 +8404,7 @@ SV Float2_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::sum" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::sum","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
@@ -7909,7 +8424,7 @@ SV Float2_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::getXY" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::getXY","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
@@ -7929,7 +8444,7 @@ SV Float2_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::length" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::length","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
@@ -7949,7 +8464,7 @@ SV Float2_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::getYX" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::getYX","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
@@ -7969,20 +8484,22 @@ SV Float2___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__div__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__div__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F / val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
-R CV(*F / val_to_c<float>::f(ctx,a[1]));
+auto v=val_to_c<float>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Float2::__div__.")));
 R CN;
@@ -7993,13 +8510,13 @@ SV Float2_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::setXY" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::setXY","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -8013,20 +8530,22 @@ SV Float2___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__mul__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__mul__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F * val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
-R CV(*F * val_to_c<float>::f(ctx,a[1]));
+auto v=val_to_c<float>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Float2::__mul__.")));
 R CN;
@@ -8037,20 +8556,22 @@ SV Float2___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__add__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__add__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F + val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
-R CV(*F + val_to_c<float>::f(ctx,a[1]));
+auto v=val_to_c<float>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("Float2::__add__.")));
 R CN;
@@ -8061,15 +8582,16 @@ SV Float2___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__less__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__less__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F < val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("Float2::__less__.")));
 R CN;
@@ -8080,20 +8602,22 @@ SV Float2___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__sub__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__sub__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F - val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
-R CV(*F - val_to_c<float>::f(ctx,a[1]));
+auto v=val_to_c<float>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("Float2::__sub__.")));
 R CN;
@@ -8104,15 +8628,16 @@ SV Float2___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__geq__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__geq__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F >= val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("Float2::__geq__.")));
 R CN;
@@ -8123,13 +8648,13 @@ SV Float2_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::distanceSquared" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::distanceSquared","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 R CV( F->distanceSquared(val_to_c<const T2<float> &>::f(ctx,a[1])));
 ;
@@ -8143,15 +8668,16 @@ SV Float2___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__eq__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__eq__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F == val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Float2::__eq__.")));
 R CN;
@@ -8162,13 +8688,13 @@ SV Float2_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::dot" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::dot","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 R CV( F->dot(val_to_c<const T2<float> &>::f(ctx,a[1])));
 ;
@@ -8188,15 +8714,16 @@ SV Float2___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__neq__" EAOE));
 T2<float>*F;
-if(!TS(T2<float>,a[0]))
+if(!TS(a[0],T2<float>))
 CATE(TE,FAE("Float2::__neq__","Float2")));
 else
  F=(T2<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
-R CV(*F != val_to_c<const T2<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("Float2::__neq__.")));
 R CN;
@@ -8204,18 +8731,18 @@ R CN;
 
 void AudioSource_destroy(CTX ctx,NO F)
 {
-if(!TS(AudioSource, (SV)F))
+if(!TS((SV)F,AudioSource))
 CATE(TE,"AudioSource::__del__ expects AudioSource as first argument."));
 
-DELETE(AudioSource,(AudioSource*)F->data);
+DELETE((AudioSource*)F->data);
 }SV AudioSource_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"AudioSource's constructor" EAOE));
-if(!TS(AudioSource,a[0]))
+if(!TS(a[0],AudioSource))
 CATE(TE,"AudioSource's constructor expects AudioSource as first argument."));
 if(a.getCount()==2)
-if(true&&TS(Audio *,a[1]))
+if(true&&TS(a[1],Audio *))
 R S::createNativeObject(AudioSource_funcs,NEW(AudioSource,val_to_c<Audio *>::f(ctx,a[1])),EXT->AudioSource_typeID);
 CATE(TE,UFOF("AudioSource's constructor.")));
 R CN;
@@ -8363,7 +8890,7 @@ SV AudioSource_getAudio(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSource::getAudio" EAOE));
 AudioSource*F;
-if(!TS(AudioSource,a[0]))
+if(!TS(a[0],AudioSource))
 CATE(TE,FAE("AudioSource::getAudio","AudioSource")));
 else
  F=(AudioSource*)((NO)a[0])->data;
@@ -8383,13 +8910,13 @@ SV AudioSource_setAudio(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSource::setAudio" EAOE));
 AudioSource*F;
-if(!TS(AudioSource,a[0]))
+if(!TS(a[0],AudioSource))
 CATE(TE,FAE("AudioSource::setAudio","AudioSource")));
 else
  F=(AudioSource*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(Audio *,a[1]))
+if(1&&TS(a[1],Audio *))
 {
 ( F->setAudio(val_to_c<Audio *>::f(ctx,a[1])));
 R CN;
@@ -8400,15 +8927,15 @@ R CN;
 
 void Camera_destroy(CTX ctx,NO F)
 {
-if(!TS(Camera, (SV)F))
+if(!TS((SV)F,Camera))
 CATE(TE,"Camera::__del__ expects Camera as first argument."));
 
-DELETE(Camera,(Camera*)F->data);
+DELETE((Camera*)F->data);
 }SV Camera_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Camera's constructor" EAOE));
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,"Camera's constructor expects Camera as first argument."));
 if(a.getCount()==1)
 if(true)
@@ -8523,13 +9050,13 @@ SV Camera_setBottom(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setBottom" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setBottom","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setBottom(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8543,7 +9070,7 @@ SV Camera_getRight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getRight" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getRight","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8563,13 +9090,13 @@ SV Camera_setTop(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setTop" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setTop","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setTop(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8583,7 +9110,7 @@ SV Camera_getWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getWidth" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getWidth","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8603,7 +9130,7 @@ SV Camera_getDirection(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getDirection" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getDirection","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8623,7 +9150,7 @@ SV Camera_getFieldOfView(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getFieldOfView" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getFieldOfView","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8643,13 +9170,13 @@ SV Camera_setWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setWidth" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setWidth","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setWidth(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8663,13 +9190,13 @@ SV Camera_setType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setType" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setType","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(CameraType,a[1]))
+if(1&&TS(a[1],CameraType))
 {
 ( F->setType(val_to_c<CameraType>::f(ctx,a[1])));
 R CN;
@@ -8683,13 +9210,13 @@ SV Camera_setDirection(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setDirection" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setDirection","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Direction3D &,a[1]))
+if(1&&TS(a[1],const Direction3D &))
 {
 ( F->setDirection(val_to_c<const Direction3D &>::f(ctx,a[1])));
 R CN;
@@ -8703,7 +9230,7 @@ SV Camera_getLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getLeft" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getLeft","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8723,7 +9250,7 @@ SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getProjectionMatrix" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getProjectionMatrix","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8743,7 +9270,7 @@ SV Camera_getHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getHeight" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getHeight","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8763,13 +9290,13 @@ SV Camera_setFar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setFar" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setFar","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setFar(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8783,13 +9310,13 @@ SV Camera_setFieldOfView(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setFieldOfView" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setFieldOfView","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setFieldOfView(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8803,7 +9330,7 @@ SV Camera_getTop(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getTop" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getTop","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8823,7 +9350,7 @@ SV Camera_getBottom(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getBottom" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getBottom","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8843,7 +9370,7 @@ SV Camera_getFar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getFar" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getFar","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8863,13 +9390,13 @@ SV Camera_setUp(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setUp" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setUp","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Direction3D &,a[1]))
+if(1&&TS(a[1],const Direction3D &))
 {
 ( F->setUp(val_to_c<const Direction3D &>::f(ctx,a[1])));
 R CN;
@@ -8883,7 +9410,7 @@ SV Camera_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getType" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getType","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8903,13 +9430,13 @@ SV Camera_setNear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setNear" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setNear","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setNear(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8923,13 +9450,13 @@ SV Camera_setPosition(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setPosition" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setPosition","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Position3D &,a[1]))
+if(1&&TS(a[1],const Position3D &))
 {
 ( F->setPosition(val_to_c<const Position3D &>::f(ctx,a[1])));
 R CN;
@@ -8943,13 +9470,13 @@ SV Camera_setLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setLeft" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setLeft","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setLeft(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -8963,7 +9490,7 @@ SV Camera_getPosition(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getPosition" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getPosition","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -8983,13 +9510,13 @@ SV Camera_setHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setHeight" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setHeight","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setHeight(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -9003,7 +9530,7 @@ SV Camera_getViewMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getViewMatrix" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getViewMatrix","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -9023,7 +9550,7 @@ SV Camera_getNear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getNear" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getNear","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -9043,13 +9570,13 @@ SV Camera_setRight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setRight" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::setRight","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setRight(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -9063,7 +9590,7 @@ SV Camera_getUp(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getUp" EAOE));
 Camera*F;
-if(!TS(Camera,a[0]))
+if(!TS(a[0],Camera))
 CATE(TE,FAE("Camera::getUp","Camera")));
 else
  F=(Camera*)((NO)a[0])->data;
@@ -9080,7 +9607,7 @@ R CN;
 
 void Resource_destroy(CTX ctx,NO F)
 {
-if(!TS(Resource, (SV)F))
+if(!TS((SV)F,Resource))
 CATE(TE,"Resource::__del__ expects Resource as first argument."));
 
 Resource*obj=(Resource*)F->data;
@@ -9089,7 +9616,7 @@ obj->release();
 {
 if(a.getCount()!=1)
 CATE(VE,"Resource's constructor" EAOE));
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,"Resource's constructor expects Resource as first argument."));
 CATE(TE,UFOF("Resource's constructor.")));
 }
@@ -9180,7 +9707,7 @@ SV Resource_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::load" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::load","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9200,7 +9727,7 @@ SV Resource_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getFilename" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::getFilename","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9220,7 +9747,7 @@ SV Resource_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::copy" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::copy","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9240,7 +9767,7 @@ SV Resource_getLastFileModification(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getLastFileModification" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::getLastFileModification","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9260,7 +9787,7 @@ SV Resource_possiblyReload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::possiblyReload" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::possiblyReload","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9280,7 +9807,7 @@ SV Resource_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getType" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::getType","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9300,13 +9827,13 @@ SV Resource_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::setFilename" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::setFilename","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const String &,a[1]))
+if(1&&TS(a[1],const String &))
 {
 ( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
 R CN;
@@ -9320,7 +9847,7 @@ SV Resource_isLoaded(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::isLoaded" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::isLoaded","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9340,7 +9867,7 @@ SV Resource_reload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::reload" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::reload","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9360,7 +9887,7 @@ SV Resource_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::removeContent" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::removeContent","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9380,7 +9907,7 @@ SV Resource_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getRefCount" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::getRefCount","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9400,7 +9927,7 @@ SV Resource_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::release" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::release","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9420,7 +9947,7 @@ SV Resource_shouldReload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::shouldReload" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::shouldReload","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9440,7 +9967,7 @@ SV Resource_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::save" EAOE));
 Resource*F;
-if(!TS(Resource,a[0]))
+if(!TS(a[0],Resource))
 CATE(TE,FAE("Resource::save","Resource")));
 else
  F=(Resource*)((NO)a[0])->data;
@@ -9455,35 +9982,556 @@ CATE(TE,UFOF("Resource::save.")));
 R CN;
 }
 
+void GfxShader_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxShader))
+CATE(TE,"GfxShader::__del__ expects GfxShader as first argument."));
+
+GfxShader*obj=(GfxShader*)F->data;
+obj->release();
+}SV GfxShader_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxShader's constructor" EAOE));
+if(!TS(a[0],GfxShader))
+CATE(TE,"GfxShader's constructor expects GfxShader as first argument."));
+CATE(TE,UFOF("GfxShader's constructor.")));
+}
+
+SV GfxShader_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxShader");
+EI(keyStr=="__new__")
+R CNF(GfxShader_new);
+EI(keyStr=="__call__")
+R CNF(GfxShader_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxShader_new);
+ EI(keyStr == "removeContent")
+R CNF(GfxShader_removeContent);
+ EI(keyStr == "save")
+R CNF(GfxShader_save);
+ EI(keyStr == "setSource")
+R CNF(GfxShader_setSource);
+ EI(keyStr == "getSource")
+R CNF(GfxShader_getSource);
+ EI(keyStr == "getCompiled")
+R CNF(GfxShader_getCompiled);
+ EI(keyStr == "recompile")
+R CNF(GfxShader_recompile);
+ EI(keyStr == "getStage")
+R CNF(GfxShader_getStage);
+ EI(keyStr == "getImpl")
+R CNF(GfxShader_getImpl);
+ EI(keyStr == "possiblyReload")
+R CNF(GfxShader_possiblyReload);
+ EI(keyStr == "load")
+R CNF(GfxShader_load);
+ EI(keyStr == "reload")
+R CNF(GfxShader_reload);
+ EI(keyStr == "copy")
+R CNF(GfxShader_copy);
+ EI(keyStr == "getType")
+R CNF(GfxShader_getType);
+ EI(keyStr == "isLoaded")
+R CNF(GfxShader_isLoaded);
+ EI(keyStr == "getLastFileModification")
+R CNF(GfxShader_getLastFileModification);
+ EI(keyStr == "shouldReload")
+R CNF(GfxShader_shouldReload);
+ EI(keyStr == "release")
+R CNF(GfxShader_release);
+ EI(keyStr == "getRefCount")
+R CNF(GfxShader_getRefCount);
+ EI(keyStr == "getFilename")
+R CNF(GfxShader_getFilename);
+ EI(keyStr == "setFilename")
+R CNF(GfxShader_setFilename);
+ EI(keyStr=="autoReload")
+{
+GfxShader*obj=(GfxShader*)F->data;
+R CV(obj->autoReload);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxShader_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="autoReload")
+{
+GfxShader*obj=(GfxShader*)F->data;
+obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxShader_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::load" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::load","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->load());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::load.")));
+R CN;
+}
+
+SV GfxShader_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getFilename" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getFilename","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFilename());
+;
+}
+CATE(TE,UFOF("GfxShader::getFilename.")));
+R CN;
+}
+
+SV GfxShader_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::copy" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::copy","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("GfxShader::copy.")));
+R CN;
+}
+
+SV GfxShader_getCompiled(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getCompiled" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getCompiled","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+R CV( F->getCompiled(val_to_c<const HashMap<String, String> &>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxShader::getCompiled.")));
+R CN;
+}
+
+SV GfxShader_recompile(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::recompile" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::recompile","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->recompile());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::recompile.")));
+R CN;
+}
+
+SV GfxShader_possiblyReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::possiblyReload" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::possiblyReload","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::possiblyReload.")));
+R CN;
+}
+
+SV GfxShader_getImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getImpl" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getImpl","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxShader::getImpl.")));
+R CN;
+}
+
+SV GfxShader_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getType" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getType","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("GfxShader::getType.")));
+R CN;
+}
+
+SV GfxShader_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::setFilename" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::setFilename","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxShader::setFilename.")));
+R CN;
+}
+
+SV GfxShader_isLoaded(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::isLoaded" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::isLoaded","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isLoaded());
+;
+}
+CATE(TE,UFOF("GfxShader::isLoaded.")));
+R CN;
+}
+
+SV GfxShader_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::reload" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::reload","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->reload());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::reload.")));
+R CN;
+}
+
+SV GfxShader_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::removeContent" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::removeContent","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::removeContent.")));
+R CN;
+}
+
+SV GfxShader_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getRefCount" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getRefCount","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRefCount());
+;
+}
+CATE(TE,UFOF("GfxShader::getRefCount.")));
+R CN;
+}
+
+SV GfxShader_getStage(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getStage" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getStage","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getStage());
+;
+}
+CATE(TE,UFOF("GfxShader::getStage.")));
+R CN;
+}
+
+SV GfxShader_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::release" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::release","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->release());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::release.")));
+R CN;
+}
+
+SV GfxShader_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getLastFileModification" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getLastFileModification","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getLastFileModification());
+;
+}
+CATE(TE,UFOF("GfxShader::getLastFileModification.")));
+R CN;
+}
+
+SV GfxShader_getSource(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::getSource" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::getSource","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getSource());
+;
+}
+CATE(TE,UFOF("GfxShader::getSource.")));
+R CN;
+}
+
+SV GfxShader_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::save" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::save","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+CATE(TE,UFOF("GfxShader::save.")));
+R CN;
+}
+
+SV GfxShader_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::shouldReload" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::shouldReload","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldReload());
+;
+}
+CATE(TE,UFOF("GfxShader::shouldReload.")));
+R CN;
+}
+
+SV GfxShader_setSource(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::setSource" EAOE));
+GfxShader*F;
+if(!TS(a[0],GfxShader))
+CATE(TE,FAE("GfxShader::setSource","GfxShader")));
+else
+ F=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxStage)&&TS(a[2],const String &))
+{
+( F->setSource(val_to_c<GfxStage>::f(ctx,a[1]), val_to_c<const String &>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GfxShader::setSource.")));
+R CN;
+}
+
 void UInt4_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<uint32_t>, (SV)F))
+if(!TS((SV)F,T4<uint32_t>))
 CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
 
-DELETE(T4<uint32_t>,(T4<uint32_t>*)F->data);
+DELETE((T4<uint32_t>*)F->data);
 }SV UInt4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"UInt4's constructor" EAOE));
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,"UInt4's constructor expects UInt4 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>),EXT->UInt4_typeID);
 if(a.getCount()==2)
-if(true&&TS(uint32_t,a[1]))
+if(true&&TS(a[1],uint32_t))
 R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt4_typeID);
 if(a.getCount()==5)
-if(true&&TS(uint32_t,a[1])&&TS(uint32_t,a[2])&&TS(uint32_t,a[3])&&TS(uint32_t,a[4]))
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t)&&TS(a[4],uint32_t))
 R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3]),val_to_c<uint32_t>::f(ctx,a[4])),EXT->UInt4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<float> &,a[1]))
+if(true&&TS(a[1],const T4<float> &))
 R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->UInt4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<int32_t> &,a[1]))
+if(true&&TS(a[1],const T4<int32_t> &))
 R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T4<uint32_t> &))
 R S::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
 CATE(TE,UFOF("UInt4's constructor.")));
 R CN;
@@ -9845,13 +10893,13 @@ SV UInt4_setZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZXYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setZXYW(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -9865,13 +10913,13 @@ SV UInt4_setWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setWYZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -9885,13 +10933,13 @@ SV UInt4_setWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setWYX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -9905,7 +10953,7 @@ SV UInt4_getZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZWYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -9925,7 +10973,7 @@ SV UInt4_getZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -9945,7 +10993,7 @@ SV UInt4_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -9965,13 +11013,13 @@ SV UInt4_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::distanceSquared" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::distanceSquared","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 R CV( F->distanceSquared(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -9985,7 +11033,7 @@ SV UInt4_getYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYXZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10005,13 +11053,13 @@ SV UInt4_setYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYZWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setYZWX(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10025,7 +11073,7 @@ SV UInt4_getYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYWZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10045,7 +11093,7 @@ SV UInt4_getWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWZXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10065,7 +11113,7 @@ SV UInt4_getZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZYXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10085,13 +11133,13 @@ SV UInt4_setXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXWYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setXWYZ(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10105,13 +11153,13 @@ SV UInt4_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setZY(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10125,13 +11173,13 @@ SV UInt4_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setZX(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10145,7 +11193,7 @@ SV UInt4_getZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZXWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10165,7 +11213,7 @@ SV UInt4_getXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXWZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10185,13 +11233,13 @@ SV UInt4_setZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setZW(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10205,13 +11253,13 @@ SV UInt4_setZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZYWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setZYWX(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10225,7 +11273,7 @@ SV UInt4_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10245,7 +11293,7 @@ SV UInt4_getXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXYWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10265,13 +11313,13 @@ SV UInt4_setYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYXZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setYXZW(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10285,7 +11333,7 @@ SV UInt4_getWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10305,7 +11353,7 @@ SV UInt4_getWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10325,7 +11373,7 @@ SV UInt4_getWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWZYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10345,13 +11393,13 @@ SV UInt4_setXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXWZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setXWZY(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10365,7 +11413,7 @@ SV UInt4_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10385,13 +11433,13 @@ SV UInt4_setWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWZYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setWZYX(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10405,13 +11453,13 @@ SV UInt4_setZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZYW(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10425,13 +11473,13 @@ SV UInt4_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZYX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10445,13 +11493,13 @@ SV UInt4_setXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXZYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setXZYW(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10465,7 +11513,7 @@ SV UInt4_getZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10485,13 +11533,13 @@ SV UInt4_setYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYZW(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10505,7 +11553,7 @@ SV UInt4_getYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10525,15 +11573,16 @@ SV UInt4___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__leq__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__leq__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F <= val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("UInt4::__leq__.")));
 R CN;
@@ -10544,7 +11593,7 @@ SV UInt4_getYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10564,7 +11613,7 @@ SV UInt4_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::sum" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::sum","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10584,13 +11633,13 @@ SV UInt4_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYZX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10604,7 +11653,7 @@ SV UInt4_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10624,7 +11673,7 @@ SV UInt4_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10644,7 +11693,7 @@ SV UInt4_getXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10664,13 +11713,13 @@ SV UInt4_setYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYWZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setYWZX(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10684,13 +11733,13 @@ SV UInt4_setWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setWXY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10704,13 +11753,13 @@ SV UInt4_setWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setWXZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10724,13 +11773,13 @@ SV UInt4_setZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZXW(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10744,7 +11793,7 @@ SV UInt4_getXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXWYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10764,13 +11813,13 @@ SV UInt4_setWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWYXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setWYXZ(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10784,13 +11833,13 @@ SV UInt4_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZXY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10804,7 +11853,7 @@ SV UInt4_getXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10824,7 +11873,7 @@ SV UInt4_getYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10844,7 +11893,7 @@ SV UInt4_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10864,13 +11913,13 @@ SV UInt4_setXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXYWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setXYWZ(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10884,7 +11933,7 @@ SV UInt4_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::length" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::length","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10904,13 +11953,13 @@ SV UInt4_setWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWXZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setWXZY(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10924,7 +11973,7 @@ SV UInt4_getYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -10944,13 +11993,13 @@ SV UInt4_setXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXWZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10964,13 +12013,13 @@ SV UInt4_setXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXWY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -10984,7 +12033,7 @@ SV UInt4_getWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11004,7 +12053,7 @@ SV UInt4_getWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11024,7 +12073,7 @@ SV UInt4_getZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZYWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11044,7 +12093,7 @@ SV UInt4_getXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXYZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11064,13 +12113,13 @@ SV UInt4_setZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZWY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11084,13 +12133,13 @@ SV UInt4_setZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZWX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11104,13 +12153,13 @@ SV UInt4_setWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setWX(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11124,13 +12173,13 @@ SV UInt4_setWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setWY(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11144,13 +12193,13 @@ SV UInt4_setWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setWZ(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11164,7 +12213,7 @@ SV UInt4_getZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11184,7 +12233,7 @@ SV UInt4_getZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11204,13 +12253,13 @@ SV UInt4_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYXZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11224,13 +12273,13 @@ SV UInt4_setYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYXW(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11244,7 +12293,7 @@ SV UInt4_getXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11264,7 +12313,7 @@ SV UInt4_getXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXZWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11284,15 +12333,16 @@ SV UInt4___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__less__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__less__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F < val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("UInt4::__less__.")));
 R CN;
@@ -11303,7 +12353,7 @@ SV UInt4_getZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11323,13 +12373,13 @@ SV UInt4_setWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setWZY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11343,13 +12393,13 @@ SV UInt4_setWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setWZX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11363,13 +12413,13 @@ SV UInt4_setZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZYXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setZYXW(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11383,7 +12433,7 @@ SV UInt4_getYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYZWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11403,7 +12453,7 @@ SV UInt4_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11423,7 +12473,7 @@ SV UInt4_getXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXZYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11443,13 +12493,13 @@ SV UInt4_setYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYXWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setYXWZ(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11463,15 +12513,16 @@ SV UInt4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__eq__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__eq__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F == val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("UInt4::__eq__.")));
 R CN;
@@ -11482,7 +12533,7 @@ SV UInt4_getWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWYXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11502,13 +12553,13 @@ SV UInt4_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::distance" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::distance","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 R CV( F->distance(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -11522,7 +12573,7 @@ SV UInt4_getXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11542,13 +12593,13 @@ SV UInt4_setYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYZXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setYZXW(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11562,7 +12613,7 @@ SV UInt4_getZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZWXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11582,7 +12633,7 @@ SV UInt4_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11602,7 +12653,7 @@ SV UInt4_getYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYZXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11622,13 +12673,13 @@ SV UInt4_setZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZWYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setZWYX(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11642,20 +12693,22 @@ SV UInt4___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__sub__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__sub__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F - val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F - val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("UInt4::__sub__.")));
 R CN;
@@ -11666,7 +12719,7 @@ SV UInt4_getYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYXWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11686,13 +12739,13 @@ SV UInt4_setXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXZWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setXZWY(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11706,13 +12759,13 @@ SV UInt4_setYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYWZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11726,13 +12779,13 @@ SV UInt4_setYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYWX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11746,13 +12799,13 @@ SV UInt4_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setYZ(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11766,13 +12819,13 @@ SV UInt4_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setYX(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11786,13 +12839,13 @@ SV UInt4_setYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setYW(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11806,7 +12859,7 @@ SV UInt4_getWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWXYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11826,15 +12879,16 @@ SV UInt4___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__neq__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__neq__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F != val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("UInt4::__neq__.")));
 R CN;
@@ -11845,7 +12899,7 @@ SV UInt4_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::normalize" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::normalize","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11865,7 +12919,7 @@ SV UInt4_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11885,13 +12939,13 @@ SV UInt4_setXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXZW(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11905,13 +12959,13 @@ SV UInt4_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXZY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11925,13 +12979,13 @@ SV UInt4_setXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYZW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXYZW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setXYZW(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11945,7 +12999,7 @@ SV UInt4_getYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -11965,13 +13019,13 @@ SV UInt4_setWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWXYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setWXYZ(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -11985,7 +13039,7 @@ SV UInt4_getYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYWXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12005,20 +13059,22 @@ SV UInt4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__mul__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__mul__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F * val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F * val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("UInt4::__mul__.")));
 R CN;
@@ -12029,7 +13085,7 @@ SV UInt4_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12049,7 +13105,7 @@ SV UInt4_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::lengthSquared" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::lengthSquared","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12069,7 +13125,7 @@ SV UInt4_getWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12089,7 +13145,7 @@ SV UInt4_getWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12109,7 +13165,7 @@ SV UInt4_getWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12129,7 +13185,7 @@ SV UInt4_getWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12149,7 +13205,7 @@ SV UInt4_getWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12169,13 +13225,13 @@ SV UInt4_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setXY(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12189,7 +13245,7 @@ SV UInt4_getZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getZXYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12209,20 +13265,22 @@ SV UInt4___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__add__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__add__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F + val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F + val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("UInt4::__add__.")));
 R CN;
@@ -12233,13 +13291,13 @@ SV UInt4_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setXZ(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12253,7 +13311,7 @@ SV UInt4_getWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWYZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12273,13 +13331,13 @@ SV UInt4_setXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setXW(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12293,7 +13351,7 @@ SV UInt4_getWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXZY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getWXZY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12313,7 +13371,7 @@ SV UInt4_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12333,13 +13391,13 @@ SV UInt4_setZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXWY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZXWY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setZXWY(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12353,13 +13411,13 @@ SV UInt4_setXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXYW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXYW(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12373,7 +13431,7 @@ SV UInt4_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12393,13 +13451,13 @@ SV UInt4_setWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWZXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setWZXY(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12413,15 +13471,16 @@ SV UInt4___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__grtr__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__grtr__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F > val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("UInt4::__grtr__.")));
 R CN;
@@ -12432,13 +13491,13 @@ SV UInt4_setZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWXY" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setZWXY","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setZWXY(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12452,7 +13511,7 @@ SV UInt4_getXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXW" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::getXW","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
@@ -12472,13 +13531,13 @@ SV UInt4_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setXYZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXYZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12492,20 +13551,22 @@ SV UInt4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__div__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__div__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F / val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F / val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("UInt4::__div__.")));
 R CN;
@@ -12516,13 +13577,13 @@ SV UInt4_setWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYZX" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setWYZX","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setWYZX(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12536,13 +13597,13 @@ SV UInt4_setYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWXZ" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::setYWXZ","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 ( F->setYWXZ(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12556,15 +13617,16 @@ SV UInt4___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__geq__" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::__geq__","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
-R CV(*F >= val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<uint32_t> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("UInt4::__geq__.")));
 R CN;
@@ -12575,13 +13637,13 @@ SV UInt4_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::dot" EAOE));
 T4<uint32_t>*F;
-if(!TS(T4<uint32_t>,a[0]))
+if(!TS(a[0],T4<uint32_t>))
 CATE(TE,FAE("UInt4::dot","UInt4")));
 else
  F=(T4<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T4<uint32_t> &))
 {
 R CV( F->dot(val_to_c<const T4<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -12598,33 +13660,33 @@ R CN;
 
 void Int3_destroy(CTX ctx,NO F)
 {
-if(!TS(T3<int32_t>, (SV)F))
+if(!TS((SV)F,T3<int32_t>))
 CATE(TE,"Int3::__del__ expects Int3 as first argument."));
 
-DELETE(T3<int32_t>,(T3<int32_t>*)F->data);
+DELETE((T3<int32_t>*)F->data);
 }SV Int3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Int3's constructor" EAOE));
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,"Int3's constructor expects Int3 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>),EXT->Int3_typeID);
 if(a.getCount()==2)
-if(true&&TS(int32_t,a[1]))
+if(true&&TS(a[1],int32_t))
 R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<int32_t>::f(ctx,a[1])),EXT->Int3_typeID);
 if(a.getCount()==4)
-if(true&&TS(int32_t,a[1])&&TS(int32_t,a[2])&&TS(int32_t,a[3]))
+if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)&&TS(a[3],int32_t))
 R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]),val_to_c<int32_t>::f(ctx,a[3])),EXT->Int3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<float> &,a[1]))
+if(true&&TS(a[1],const T3<float> &))
 R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->Int3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<int32_t> &,a[1]))
+if(true&&TS(a[1],const T3<int32_t> &))
 R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->Int3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T3<uint32_t> &))
 R S::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->Int3_typeID);
 CATE(TE,UFOF("Int3's constructor.")));
 R CN;
@@ -12788,13 +13850,13 @@ SV Int3_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYZX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setYZX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYZX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12808,7 +13870,7 @@ SV Int3_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZXY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getZXY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -12828,13 +13890,13 @@ SV Int3_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setYZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setYZ(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12848,13 +13910,13 @@ SV Int3_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setYX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setYX(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12868,13 +13930,13 @@ SV Int3_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZYX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setZYX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZYX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -12888,7 +13950,7 @@ SV Int3_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getZY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -12908,13 +13970,13 @@ SV Int3_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::distanceSquared" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::distanceSquared","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 R CV( F->distanceSquared(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 ;
@@ -12928,7 +13990,7 @@ SV Int3_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::normalize" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::normalize","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -12948,7 +14010,7 @@ SV Int3_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getYX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -12968,15 +14030,16 @@ SV Int3___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__leq__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__leq__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F <= val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("Int3::__leq__.")));
 R CN;
@@ -12987,13 +14050,13 @@ SV Int3_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXZY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setXZY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXZY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13007,7 +14070,7 @@ SV Int3_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::sum" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::sum","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13027,13 +14090,13 @@ SV Int3_cross(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::cross" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::cross","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 R CV( F->cross(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 ;
@@ -13047,7 +14110,7 @@ SV Int3_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXYZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getXYZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13067,15 +14130,16 @@ SV Int3___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__less__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__less__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F < val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("Int3::__less__.")));
 R CN;
@@ -13086,15 +14150,16 @@ SV Int3___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__neq__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__neq__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F != val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("Int3::__neq__.")));
 R CN;
@@ -13105,7 +14170,7 @@ SV Int3_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getYZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13125,7 +14190,7 @@ SV Int3_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::lengthSquared" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::lengthSquared","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13145,7 +14210,7 @@ SV Int3_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZYX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getZYX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13165,20 +14230,22 @@ SV Int3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__div__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__div__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F / val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F / val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Int3::__div__.")));
 R CN;
@@ -13189,13 +14256,13 @@ SV Int3_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setZY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setZY(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13209,13 +14276,13 @@ SV Int3_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setZX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setZX(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13229,13 +14296,13 @@ SV Int3_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setXY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setXY(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13249,20 +14316,22 @@ SV Int3___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__add__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__add__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F + val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F + val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("Int3::__add__.")));
 R CN;
@@ -13273,13 +14342,13 @@ SV Int3_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setXZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setXZ(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13293,15 +14362,16 @@ SV Int3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__eq__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__eq__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F == val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Int3::__eq__.")));
 R CN;
@@ -13312,13 +14382,13 @@ SV Int3_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZXY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setZXY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZXY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13332,13 +14402,13 @@ SV Int3_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYXZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setYXZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYXZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13352,7 +14422,7 @@ SV Int3_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getXY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13372,13 +14442,13 @@ SV Int3_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::distance" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::distance","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 R CV( F->distance(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 ;
@@ -13392,7 +14462,7 @@ SV Int3_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getXZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13412,15 +14482,16 @@ SV Int3___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__grtr__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__grtr__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F > val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("Int3::__grtr__.")));
 R CN;
@@ -13431,7 +14502,7 @@ SV Int3_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXZY" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getXZY","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13451,13 +14522,13 @@ SV Int3_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXYZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::setXYZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXYZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -13471,7 +14542,7 @@ SV Int3_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYZX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getYZX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13491,7 +14562,7 @@ SV Int3_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::length" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::length","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13511,20 +14582,22 @@ SV Int3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__mul__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__mul__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F * val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F * val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Int3::__mul__.")));
 R CN;
@@ -13535,7 +14608,7 @@ SV Int3_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYXZ" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getYXZ","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13555,7 +14628,7 @@ SV Int3_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZX" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::getZX","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
@@ -13575,20 +14648,22 @@ SV Int3___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__sub__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__sub__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F - val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F - val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("Int3::__sub__.")));
 R CN;
@@ -13599,15 +14674,16 @@ SV Int3___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__geq__" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::__geq__","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
-R CV(*F >= val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<int32_t> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("Int3::__geq__.")));
 R CN;
@@ -13618,13 +14694,13 @@ SV Int3_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::dot" EAOE));
 T3<int32_t>*F;
-if(!TS(T3<int32_t>,a[0]))
+if(!TS(a[0],T3<int32_t>))
 CATE(TE,FAE("Int3::dot","Int3")));
 else
  F=(T3<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 R CV( F->dot(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 ;
@@ -13641,21 +14717,21 @@ R CN;
 
 void ResizableData_destroy(CTX ctx,NO F)
 {
-if(!TS(ResizableData, (SV)F))
+if(!TS((SV)F,ResizableData))
 CATE(TE,"ResizableData::__del__ expects ResizableData as first argument."));
 
-DELETE(ResizableData,(ResizableData*)F->data);
+DELETE((ResizableData*)F->data);
 }SV ResizableData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"ResizableData's constructor" EAOE));
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,"ResizableData's constructor expects ResizableData as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(ResizableData_funcs,NEW(ResizableData),EXT->ResizableData_typeID);
 if(a.getCount()==2)
-if(true&&TS(std::size_t,a[1]))
+if(true&&TS(a[1],std::size_t))
 R S::createNativeObject(ResizableData_funcs,NEW(ResizableData,val_to_c<std::size_t>::f(ctx,a[1])),EXT->ResizableData_typeID);
 CATE(TE,UFOF("ResizableData's constructor.")));
 R CN;
@@ -13815,13 +14891,13 @@ SV ResizableData_getInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt64BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt64BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt64BE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -13835,13 +14911,13 @@ SV ResizableData_setUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt8" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt8","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint8_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint8_t))
 {
 ( F->setUInt8(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint8_t>::f(ctx,a[2])));
 R CN;
@@ -13855,13 +14931,13 @@ SV ResizableData_getUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt64BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt64BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt64BE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -13875,13 +14951,13 @@ SV ResizableData_getUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt16BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt16BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt16BE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -13895,13 +14971,13 @@ SV ResizableData_getUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt16LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt16LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt16LE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -13915,7 +14991,7 @@ SV ResizableData_getSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getSize" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getSize","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
@@ -13935,13 +15011,13 @@ SV ResizableData_setUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt16BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt16BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint16_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint16_t))
 {
 ( F->setUInt16BE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint16_t>::f(ctx,a[2])));
 R CN;
@@ -13955,13 +15031,13 @@ SV ResizableData_getUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt8" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt8","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt8(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -13975,13 +15051,13 @@ SV ResizableData_setInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt16" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt16","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int16_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int16_t))
 {
 ( F->setInt16(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int16_t>::f(ctx,a[2])));
 R CN;
@@ -13995,13 +15071,13 @@ SV ResizableData_setInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt64" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt64","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int64_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int64_t))
 {
 ( F->setInt64(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int64_t>::f(ctx,a[2])));
 R CN;
@@ -14015,13 +15091,13 @@ SV ResizableData_getInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt16LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt16LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt16LE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14035,13 +15111,13 @@ SV ResizableData_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::append" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::append","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const ResizableData &,a[1]))
+if(1&&TS(a[1],const ResizableData &))
 {
 ( F->append(val_to_c<const ResizableData &>::f(ctx,a[1])));
 R CN;
@@ -14055,15 +15131,16 @@ SV ResizableData___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::__neq__" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::__neq__","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const ResizableData &,a[1]))
+if(1&&TS(a[1],const ResizableData &))
 {
-R CV(*F != val_to_c<const ResizableData &>::f(ctx,a[1]));
+auto v=val_to_c<const ResizableData &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("ResizableData::__neq__.")));
 R CN;
@@ -14074,13 +15151,13 @@ SV ResizableData_getInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt64" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt64","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt64(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14094,13 +15171,13 @@ SV ResizableData_setInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt64BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt64BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int64_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int64_t))
 {
 ( F->setInt64BE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int64_t>::f(ctx,a[2])));
 R CN;
@@ -14114,13 +15191,13 @@ SV ResizableData_setInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt32" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt32","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int32_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int32_t))
 {
 ( F->setInt32(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int32_t>::f(ctx,a[2])));
 R CN;
@@ -14134,13 +15211,13 @@ SV ResizableData_getInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt64LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt64LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt64LE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14154,13 +15231,13 @@ SV ResizableData_setInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt32LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt32LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int32_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int32_t))
 {
 ( F->setInt32LE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int32_t>::f(ctx,a[2])));
 R CN;
@@ -14174,13 +15251,13 @@ SV ResizableData_setUInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt32" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt32","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint32_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint32_t))
 {
 ( F->setUInt32(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint32_t>::f(ctx,a[2])));
 R CN;
@@ -14194,13 +15271,13 @@ SV ResizableData_setChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setChar" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setChar","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(char,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],char))
 {
 ( F->setChar(val_to_c<size_t>::f(ctx,a[1]), val_to_c<char>::f(ctx,a[2])));
 R CN;
@@ -14214,13 +15291,13 @@ SV ResizableData_setUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt64LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt64LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint64_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint64_t))
 {
 ( F->setUInt64LE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint64_t>::f(ctx,a[2])));
 R CN;
@@ -14234,13 +15311,13 @@ SV ResizableData_setUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt64BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt64BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint64_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint64_t))
 {
 ( F->setUInt64BE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint64_t>::f(ctx,a[2])));
 R CN;
@@ -14254,13 +15331,13 @@ SV ResizableData_setUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt16LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt16LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint16_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint16_t))
 {
 ( F->setUInt16LE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint16_t>::f(ctx,a[2])));
 R CN;
@@ -14274,13 +15351,13 @@ SV ResizableData_setUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt32LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt32LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint32_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint32_t))
 {
 ( F->setUInt32LE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint32_t>::f(ctx,a[2])));
 R CN;
@@ -14294,7 +15371,7 @@ SV ResizableData_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getData" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getData","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
@@ -14308,13 +15385,13 @@ SV ResizableData_setUInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt16" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt16","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint16_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint16_t))
 {
 ( F->setUInt16(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint16_t>::f(ctx,a[2])));
 R CN;
@@ -14328,13 +15405,13 @@ SV ResizableData_getUInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt32" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt32","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt32(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14348,13 +15425,13 @@ SV ResizableData_setInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt16LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt16LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int16_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int16_t))
 {
 ( F->setInt16LE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int16_t>::f(ctx,a[2])));
 R CN;
@@ -14368,13 +15445,13 @@ SV ResizableData_getUInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt16" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt16","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt16(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14388,13 +15465,13 @@ SV ResizableData_getUInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt64" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt64","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt64(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14408,13 +15485,13 @@ SV ResizableData_setInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt32BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt32BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int32_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int32_t))
 {
 ( F->setInt32BE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int32_t>::f(ctx,a[2])));
 R CN;
@@ -14428,13 +15505,13 @@ SV ResizableData_getUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt64LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt64LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt64LE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14448,13 +15525,13 @@ SV ResizableData_getUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt32BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt32BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt32BE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14468,13 +15545,13 @@ SV ResizableData_getInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt32" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt32","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt32(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14488,13 +15565,13 @@ SV ResizableData_getInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt32BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt32BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt32BE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14508,7 +15585,7 @@ SV ResizableData_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::copy" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::copy","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
@@ -14528,15 +15605,16 @@ SV ResizableData___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::__eq__" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::__eq__","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const ResizableData &,a[1]))
+if(1&&TS(a[1],const ResizableData &))
 {
-R CV(*F == val_to_c<const ResizableData &>::f(ctx,a[1]));
+auto v=val_to_c<const ResizableData &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("ResizableData::__eq__.")));
 R CN;
@@ -14547,13 +15625,13 @@ SV ResizableData_resize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::resize" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::resize","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(std::size_t,a[1]))
+if(1&&TS(a[1],std::size_t))
 {
 ( F->resize(val_to_c<std::size_t>::f(ctx,a[1])));
 R CN;
@@ -14567,13 +15645,13 @@ SV ResizableData_setInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt16BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt16BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int16_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int16_t))
 {
 ( F->setInt16BE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int16_t>::f(ctx,a[2])));
 R CN;
@@ -14587,13 +15665,13 @@ SV ResizableData_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::insert" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::insert","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const ResizableData &,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const ResizableData &))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const ResizableData &>::f(ctx,a[2])));
 R CN;
@@ -14607,13 +15685,13 @@ SV ResizableData_getInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt16" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt16","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt16(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14627,13 +15705,13 @@ SV ResizableData_getInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt16BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt16BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt16BE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14647,13 +15725,13 @@ SV ResizableData_setUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt32BE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt32BE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint32_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint32_t))
 {
 ( F->setUInt32BE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint32_t>::f(ctx,a[2])));
 R CN;
@@ -14667,7 +15745,7 @@ SV ResizableData_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::clear" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::clear","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
@@ -14687,13 +15765,13 @@ SV ResizableData_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::remove" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::remove","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(std::size_t,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
 {
 ( F->remove(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<std::size_t>::f(ctx,a[2])));
 R CN;
@@ -14707,13 +15785,13 @@ SV ResizableData_setUInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt64" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setUInt64","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(uint64_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],uint64_t))
 {
 ( F->setUInt64(val_to_c<size_t>::f(ctx,a[1]), val_to_c<uint64_t>::f(ctx,a[2])));
 R CN;
@@ -14727,13 +15805,13 @@ SV ResizableData_setInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt64LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt64LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int64_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int64_t))
 {
 ( F->setInt64LE(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int64_t>::f(ctx,a[2])));
 R CN;
@@ -14747,13 +15825,13 @@ SV ResizableData_setInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt8" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::setInt8","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(int8_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],int8_t))
 {
 ( F->setInt8(val_to_c<size_t>::f(ctx,a[1]), val_to_c<int8_t>::f(ctx,a[2])));
 R CN;
@@ -14767,13 +15845,13 @@ SV ResizableData_getUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt32LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getUInt32LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getUInt32LE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14787,13 +15865,13 @@ SV ResizableData_getInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt8" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt8","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt8(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14807,13 +15885,13 @@ SV ResizableData_getInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt32LE" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getInt32LE","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getInt32LE(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14827,13 +15905,13 @@ SV ResizableData_getChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getChar" EAOE));
 ResizableData*F;
-if(!TS(ResizableData,a[0]))
+if(!TS(a[0],ResizableData))
 CATE(TE,FAE("ResizableData::getChar","ResizableData")));
 else
  F=(ResizableData*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getChar(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -14844,33 +15922,33 @@ R CN;
 
 void Int4_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<int32_t>, (SV)F))
+if(!TS((SV)F,T4<int32_t>))
 CATE(TE,"Int4::__del__ expects Int4 as first argument."));
 
-DELETE(T4<int32_t>,(T4<int32_t>*)F->data);
+DELETE((T4<int32_t>*)F->data);
 }SV Int4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Int4's constructor" EAOE));
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,"Int4's constructor expects Int4 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>),EXT->Int4_typeID);
 if(a.getCount()==2)
-if(true&&TS(int32_t,a[1]))
+if(true&&TS(a[1],int32_t))
 R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<int32_t>::f(ctx,a[1])),EXT->Int4_typeID);
 if(a.getCount()==5)
-if(true&&TS(int32_t,a[1])&&TS(int32_t,a[2])&&TS(int32_t,a[3])&&TS(int32_t,a[4]))
+if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)&&TS(a[3],int32_t)&&TS(a[4],int32_t))
 R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]),val_to_c<int32_t>::f(ctx,a[3]),val_to_c<int32_t>::f(ctx,a[4])),EXT->Int4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<float> &,a[1]))
+if(true&&TS(a[1],const T4<float> &))
 R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->Int4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<int32_t> &,a[1]))
+if(true&&TS(a[1],const T4<int32_t> &))
 R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->Int4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T4<uint32_t> &))
 R S::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->Int4_typeID);
 CATE(TE,UFOF("Int4's constructor.")));
 R CN;
@@ -15232,13 +16310,13 @@ SV Int4_setZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZXYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setZXYW(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15252,13 +16330,13 @@ SV Int4_setWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setWYZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15272,13 +16350,13 @@ SV Int4_setWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setWYX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15292,7 +16370,7 @@ SV Int4_getZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZWYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15312,7 +16390,7 @@ SV Int4_getZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15332,7 +16410,7 @@ SV Int4_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15352,13 +16430,13 @@ SV Int4_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::distanceSquared" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::distanceSquared","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 R CV( F->distanceSquared(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 ;
@@ -15372,7 +16450,7 @@ SV Int4_getYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYXZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15392,13 +16470,13 @@ SV Int4_setYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYZWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setYZWX(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15412,7 +16490,7 @@ SV Int4_getYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYWZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15432,7 +16510,7 @@ SV Int4_getWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWZXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15452,7 +16530,7 @@ SV Int4_getZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZYXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15472,13 +16550,13 @@ SV Int4_setXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXWYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setXWYZ(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15492,13 +16570,13 @@ SV Int4_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setZY(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15512,13 +16590,13 @@ SV Int4_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setZX(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15532,7 +16610,7 @@ SV Int4_getZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZXWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15552,7 +16630,7 @@ SV Int4_getXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXWZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15572,13 +16650,13 @@ SV Int4_setZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setZW(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15592,13 +16670,13 @@ SV Int4_setZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZYWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setZYWX(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15612,7 +16690,7 @@ SV Int4_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15632,7 +16710,7 @@ SV Int4_getXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXYWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15652,13 +16730,13 @@ SV Int4_setYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYXZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setYXZW(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15672,7 +16750,7 @@ SV Int4_getWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15692,7 +16770,7 @@ SV Int4_getWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15712,7 +16790,7 @@ SV Int4_getWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWZYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15732,13 +16810,13 @@ SV Int4_setXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXWZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setXWZY(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15752,7 +16830,7 @@ SV Int4_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15772,13 +16850,13 @@ SV Int4_setWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWZYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setWZYX(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15792,13 +16870,13 @@ SV Int4_setZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZYW(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15812,13 +16890,13 @@ SV Int4_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZYX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15832,13 +16910,13 @@ SV Int4_setXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXZYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setXZYW(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15852,7 +16930,7 @@ SV Int4_getZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15872,13 +16950,13 @@ SV Int4_setYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYZW(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15892,7 +16970,7 @@ SV Int4_getYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15912,15 +16990,16 @@ SV Int4___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__leq__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__leq__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F <= val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("Int4::__leq__.")));
 R CN;
@@ -15931,7 +17010,7 @@ SV Int4_getYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15951,7 +17030,7 @@ SV Int4_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::sum" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::sum","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -15971,13 +17050,13 @@ SV Int4_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYZX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -15991,7 +17070,7 @@ SV Int4_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16011,7 +17090,7 @@ SV Int4_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16031,7 +17110,7 @@ SV Int4_getXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16051,13 +17130,13 @@ SV Int4_setYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYWZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setYWZX(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16071,13 +17150,13 @@ SV Int4_setWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setWXY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16091,13 +17170,13 @@ SV Int4_setWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setWXZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16111,13 +17190,13 @@ SV Int4_setZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZXW(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16131,7 +17210,7 @@ SV Int4_getXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXWYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16151,13 +17230,13 @@ SV Int4_setWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWYXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setWYXZ(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16171,13 +17250,13 @@ SV Int4_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZXY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16191,7 +17270,7 @@ SV Int4_getXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16211,7 +17290,7 @@ SV Int4_getYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16231,7 +17310,7 @@ SV Int4_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16251,13 +17330,13 @@ SV Int4_setXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXYWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setXYWZ(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16271,7 +17350,7 @@ SV Int4_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::length" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::length","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16291,13 +17370,13 @@ SV Int4_setWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWXZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setWXZY(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16311,7 +17390,7 @@ SV Int4_getYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16331,13 +17410,13 @@ SV Int4_setXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXWZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16351,13 +17430,13 @@ SV Int4_setXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXWY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16371,7 +17450,7 @@ SV Int4_getWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16391,7 +17470,7 @@ SV Int4_getWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16411,7 +17490,7 @@ SV Int4_getZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZYWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16431,7 +17510,7 @@ SV Int4_getXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXYZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16451,13 +17530,13 @@ SV Int4_setZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZWY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16471,13 +17550,13 @@ SV Int4_setZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setZWX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16491,13 +17570,13 @@ SV Int4_setWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setWX(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16511,13 +17590,13 @@ SV Int4_setWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setWY(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16531,13 +17610,13 @@ SV Int4_setWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setWZ(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16551,7 +17630,7 @@ SV Int4_getZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16571,7 +17650,7 @@ SV Int4_getZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16591,13 +17670,13 @@ SV Int4_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYXZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16611,13 +17690,13 @@ SV Int4_setYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYXW(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16631,7 +17710,7 @@ SV Int4_getXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16651,7 +17730,7 @@ SV Int4_getXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXZWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16671,15 +17750,16 @@ SV Int4___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__less__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__less__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F < val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("Int4::__less__.")));
 R CN;
@@ -16690,7 +17770,7 @@ SV Int4_getZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16710,13 +17790,13 @@ SV Int4_setWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setWZY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16730,13 +17810,13 @@ SV Int4_setWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setWZX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16750,13 +17830,13 @@ SV Int4_setZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZYXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setZYXW(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16770,7 +17850,7 @@ SV Int4_getYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYZWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16790,7 +17870,7 @@ SV Int4_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16810,7 +17890,7 @@ SV Int4_getXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXZYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16830,13 +17910,13 @@ SV Int4_setYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYXWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setYXWZ(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16850,15 +17930,16 @@ SV Int4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__eq__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__eq__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F == val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Int4::__eq__.")));
 R CN;
@@ -16869,7 +17950,7 @@ SV Int4_getWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWYXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16889,13 +17970,13 @@ SV Int4_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::distance" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::distance","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 R CV( F->distance(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 ;
@@ -16909,7 +17990,7 @@ SV Int4_getXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16929,13 +18010,13 @@ SV Int4_setYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYZXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setYZXW(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -16949,7 +18030,7 @@ SV Int4_getZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZWXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16969,7 +18050,7 @@ SV Int4_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -16989,7 +18070,7 @@ SV Int4_getYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYZXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17009,13 +18090,13 @@ SV Int4_setZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZWYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setZWYX(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17029,20 +18110,22 @@ SV Int4___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__sub__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__sub__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F - val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F - val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("Int4::__sub__.")));
 R CN;
@@ -17053,7 +18136,7 @@ SV Int4_getYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYXWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17073,13 +18156,13 @@ SV Int4_setXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXZWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setXZWY(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17093,13 +18176,13 @@ SV Int4_setYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYWZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17113,13 +18196,13 @@ SV Int4_setYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setYWX(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17133,13 +18216,13 @@ SV Int4_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setYZ(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17153,13 +18236,13 @@ SV Int4_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setYX(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17173,13 +18256,13 @@ SV Int4_setYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setYW(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17193,7 +18276,7 @@ SV Int4_getWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWXYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17213,15 +18296,16 @@ SV Int4___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__neq__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__neq__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F != val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("Int4::__neq__.")));
 R CN;
@@ -17232,7 +18316,7 @@ SV Int4_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::normalize" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::normalize","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17252,7 +18336,7 @@ SV Int4_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17272,13 +18356,13 @@ SV Int4_setXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXZW(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17292,13 +18376,13 @@ SV Int4_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXZY(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17312,13 +18396,13 @@ SV Int4_setXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYZW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXYZW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setXYZW(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17332,7 +18416,7 @@ SV Int4_getYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17352,13 +18436,13 @@ SV Int4_setWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWXYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setWXYZ(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17372,7 +18456,7 @@ SV Int4_getYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYWXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17392,20 +18476,22 @@ SV Int4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__mul__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__mul__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F * val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F * val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Int4::__mul__.")));
 R CN;
@@ -17416,7 +18502,7 @@ SV Int4_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17436,7 +18522,7 @@ SV Int4_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::lengthSquared" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::lengthSquared","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17456,7 +18542,7 @@ SV Int4_getWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17476,7 +18562,7 @@ SV Int4_getWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17496,7 +18582,7 @@ SV Int4_getWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17516,7 +18602,7 @@ SV Int4_getWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17536,7 +18622,7 @@ SV Int4_getWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17556,13 +18642,13 @@ SV Int4_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setXY(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17576,7 +18662,7 @@ SV Int4_getZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getZXYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17596,20 +18682,22 @@ SV Int4___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__add__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__add__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F + val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F + val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("Int4::__add__.")));
 R CN;
@@ -17620,13 +18708,13 @@ SV Int4_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setXZ(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17640,7 +18728,7 @@ SV Int4_getWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWYZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17660,13 +18748,13 @@ SV Int4_setXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setXW(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17680,7 +18768,7 @@ SV Int4_getWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXZY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getWXZY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17700,7 +18788,7 @@ SV Int4_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17720,13 +18808,13 @@ SV Int4_setZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXWY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZXWY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setZXWY(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17740,13 +18828,13 @@ SV Int4_setXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXYW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXYW(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17760,7 +18848,7 @@ SV Int4_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17780,13 +18868,13 @@ SV Int4_setWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWZXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setWZXY(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17800,15 +18888,16 @@ SV Int4___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__grtr__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__grtr__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F > val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("Int4::__grtr__.")));
 R CN;
@@ -17819,13 +18908,13 @@ SV Int4_setZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWXY" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setZWXY","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setZWXY(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17839,7 +18928,7 @@ SV Int4_getXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXW" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::getXW","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
@@ -17859,13 +18948,13 @@ SV Int4_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setXYZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<int32_t> &,a[1]))
+if(1&&TS(a[1],const T3<int32_t> &))
 {
 ( F->setXYZ(val_to_c<const T3<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17879,20 +18968,22 @@ SV Int4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__div__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__div__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F / val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(const int32_t&,a[1]))
+if(1&&TS(a[1],const int32_t&))
 {
-R CV(*F / val_to_c<const int32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const int32_t&>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Int4::__div__.")));
 R CN;
@@ -17903,13 +18994,13 @@ SV Int4_setWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYZX" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setWYZX","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setWYZX(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17923,13 +19014,13 @@ SV Int4_setYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWXZ" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::setYWXZ","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 ( F->setYWXZ(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -17943,15 +19034,16 @@ SV Int4___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__geq__" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::__geq__","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
-R CV(*F >= val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<int32_t> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("Int4::__geq__.")));
 R CN;
@@ -17962,13 +19054,13 @@ SV Int4_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::dot" EAOE));
 T4<int32_t>*F;
-if(!TS(T4<int32_t>,a[0]))
+if(!TS(a[0],T4<int32_t>))
 CATE(TE,FAE("Int4::dot","Int4")));
 else
  F=(T4<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<int32_t> &,a[1]))
+if(1&&TS(a[1],const T4<int32_t> &))
 {
 R CV( F->dot(val_to_c<const T4<int32_t> &>::f(ctx,a[1])));
 ;
@@ -17985,33 +19077,33 @@ R CN;
 
 void Float3_destroy(CTX ctx,NO F)
 {
-if(!TS(T3<float>, (SV)F))
+if(!TS((SV)F,T3<float>))
 CATE(TE,"Float3::__del__ expects Float3 as first argument."));
 
-DELETE(T3<float>,(T3<float>*)F->data);
+DELETE((T3<float>*)F->data);
 }SV Float3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Float3's constructor" EAOE));
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,"Float3's constructor expects Float3 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Float3_funcs,NEW(T3<float>),EXT->Float3_typeID);
 if(a.getCount()==2)
-if(true&&TS(float,a[1]))
+if(true&&TS(a[1],float))
 R S::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<float>::f(ctx,a[1])),EXT->Float3_typeID);
 if(a.getCount()==4)
-if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3]))
+if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float))
 R S::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3])),EXT->Float3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<float> &,a[1]))
+if(true&&TS(a[1],const T3<float> &))
 R S::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->Float3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<int32_t> &,a[1]))
+if(true&&TS(a[1],const T3<int32_t> &))
 R S::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->Float3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T3<uint32_t> &))
 R S::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->Float3_typeID);
 CATE(TE,UFOF("Float3's constructor.")));
 R CN;
@@ -18175,13 +19267,13 @@ SV Float3_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYZX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setYZX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -18195,7 +19287,7 @@ SV Float3_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZXY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getZXY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18215,13 +19307,13 @@ SV Float3_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setYZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setYZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -18235,13 +19327,13 @@ SV Float3_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setYX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -18255,13 +19347,13 @@ SV Float3_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZYX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setZYX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -18275,7 +19367,7 @@ SV Float3_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getZY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18295,13 +19387,13 @@ SV Float3_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::distanceSquared" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::distanceSquared","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 R CV( F->distanceSquared(val_to_c<const T3<float> &>::f(ctx,a[1])));
 ;
@@ -18315,7 +19407,7 @@ SV Float3_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::normalize" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::normalize","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18335,7 +19427,7 @@ SV Float3_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getYX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18355,15 +19447,16 @@ SV Float3___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__leq__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__leq__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F <= val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("Float3::__leq__.")));
 R CN;
@@ -18374,13 +19467,13 @@ SV Float3_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXZY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setXZY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -18394,7 +19487,7 @@ SV Float3_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::sum" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::sum","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18414,13 +19507,13 @@ SV Float3_cross(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::cross" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::cross","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 R CV( F->cross(val_to_c<const T3<float> &>::f(ctx,a[1])));
 ;
@@ -18434,7 +19527,7 @@ SV Float3_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXYZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getXYZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18454,15 +19547,16 @@ SV Float3___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__less__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__less__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F < val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("Float3::__less__.")));
 R CN;
@@ -18473,15 +19567,16 @@ SV Float3___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__neq__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__neq__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F != val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("Float3::__neq__.")));
 R CN;
@@ -18492,7 +19587,7 @@ SV Float3_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getYZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18512,7 +19607,7 @@ SV Float3_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::lengthSquared" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::lengthSquared","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18532,7 +19627,7 @@ SV Float3_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZYX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getZYX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18552,20 +19647,22 @@ SV Float3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__div__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__div__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F / val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F / val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Float3::__div__.")));
 R CN;
@@ -18576,13 +19673,13 @@ SV Float3_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setZY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setZY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -18596,13 +19693,13 @@ SV Float3_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setZX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setZX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -18616,13 +19713,13 @@ SV Float3_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setXY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -18636,20 +19733,22 @@ SV Float3___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__add__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__add__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F + val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F + val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("Float3::__add__.")));
 R CN;
@@ -18660,13 +19759,13 @@ SV Float3_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setXZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setXZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -18680,15 +19779,16 @@ SV Float3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__eq__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__eq__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F == val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Float3::__eq__.")));
 R CN;
@@ -18699,13 +19799,13 @@ SV Float3_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZXY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setZXY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -18719,13 +19819,13 @@ SV Float3_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYXZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setYXZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -18739,7 +19839,7 @@ SV Float3_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getXY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18759,13 +19859,13 @@ SV Float3_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::distance" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::distance","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 R CV( F->distance(val_to_c<const T3<float> &>::f(ctx,a[1])));
 ;
@@ -18779,7 +19879,7 @@ SV Float3_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getXZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18799,15 +19899,16 @@ SV Float3___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__grtr__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__grtr__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F > val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("Float3::__grtr__.")));
 R CN;
@@ -18818,7 +19919,7 @@ SV Float3_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXZY" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getXZY","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18838,13 +19939,13 @@ SV Float3_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXYZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::setXYZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -18858,7 +19959,7 @@ SV Float3_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYZX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getYZX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18878,7 +19979,7 @@ SV Float3_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::length" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::length","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18898,20 +19999,22 @@ SV Float3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__mul__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__mul__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F * val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F * val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Float3::__mul__.")));
 R CN;
@@ -18922,7 +20025,7 @@ SV Float3_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYXZ" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getYXZ","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18942,7 +20045,7 @@ SV Float3_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZX" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::getZX","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
@@ -18962,20 +20065,22 @@ SV Float3___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__sub__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__sub__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F - val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F - val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("Float3::__sub__.")));
 R CN;
@@ -18986,15 +20091,16 @@ SV Float3___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__geq__" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::__geq__","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
-R CV(*F >= val_to_c<const T3<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<float> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("Float3::__geq__.")));
 R CN;
@@ -19005,13 +20111,13 @@ SV Float3_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::dot" EAOE));
 T3<float>*F;
-if(!TS(T3<float>,a[0]))
+if(!TS(a[0],T3<float>))
 CATE(TE,FAE("Float3::dot","Float3")));
 else
  F=(T3<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 R CV( F->dot(val_to_c<const T3<float> &>::f(ctx,a[1])));
 ;
@@ -19028,24 +20134,24 @@ R CN;
 
 void GfxLODList_destroy(CTX ctx,NO F)
 {
-if(!TS(List<GfxLOD>, (SV)F))
+if(!TS((SV)F,List<GfxLOD>))
 CATE(TE,"GfxLODList::__del__ expects GfxLODList as first argument."));
 
-DELETE(List<GfxLOD>,(List<GfxLOD>*)F->data);
+DELETE((List<GfxLOD>*)F->data);
 }SV GfxLODList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"GfxLODList's constructor" EAOE));
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,"GfxLODList's constructor expects GfxLODList as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>),EXT->GfxLODList_typeID);
 if(a.getCount()==2)
-if(true&&TS(std::size_t,a[1]))
+if(true&&TS(a[1],std::size_t))
 R S::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->GfxLODList_typeID);
 if(a.getCount()==2)
-if(true&&TS(const List<GfxLOD> &,a[1]))
+if(true&&TS(a[1],const List<GfxLOD> &))
 R S::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>,val_to_c<const List<GfxLOD> &>::f(ctx,a[1])),EXT->GfxLODList_typeID);
 CATE(TE,UFOF("GfxLODList's constructor.")));
 R CN;
@@ -19123,19 +20229,19 @@ SV GfxLODList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::insert" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::insert","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const GfxLOD&,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const GfxLOD&))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const GfxLOD&>::f(ctx,a[2])));
 R CN;
 }
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const List<GfxLOD> &,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<GfxLOD> &))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const List<GfxLOD> &>::f(ctx,a[2])));
 R CN;
@@ -19149,7 +20255,7 @@ SV GfxLODList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::copy" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::copy","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
@@ -19169,7 +20275,7 @@ SV GfxLODList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::clear" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::clear","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
@@ -19189,13 +20295,13 @@ SV GfxLODList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::remove" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::remove","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(std::size_t,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
 {
 ( F->remove(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<std::size_t>::f(ctx,a[2])));
 R CN;
@@ -19209,13 +20315,13 @@ SV GfxLODList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::in" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::in","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxLOD&,a[1]))
+if(1&&TS(a[1],const GfxLOD&))
 {
 R CV( F->in(val_to_c<const GfxLOD&>::f(ctx,a[1])));
 ;
@@ -19229,7 +20335,7 @@ SV GfxLODList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::getCount" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::getCount","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
@@ -19249,7 +20355,7 @@ SV GfxLODList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::getData" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::getData","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
@@ -19263,15 +20369,16 @@ SV GfxLODList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::__eq__" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::__eq__","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const List<GfxLOD> &,a[1]))
+if(1&&TS(a[1],const List<GfxLOD> &))
 {
-R CV(*F == val_to_c<const List<GfxLOD> &>::f(ctx,a[1]));
+auto v=val_to_c<const List<GfxLOD> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("GfxLODList::__eq__.")));
 R CN;
@@ -19282,13 +20389,13 @@ SV GfxLODList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::find" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::find","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxLOD&,a[1]))
+if(1&&TS(a[1],const GfxLOD&))
 {
 R CV( F->find(val_to_c<const GfxLOD&>::f(ctx,a[1])));
 ;
@@ -19302,19 +20409,19 @@ SV GfxLODList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::append" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::append","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxLOD&,a[1]))
+if(1&&TS(a[1],const GfxLOD&))
 {
 ( F->append(val_to_c<const GfxLOD&>::f(ctx,a[1])));
 R CN;
 }
 if(a.getCount()==2)
-if(1&&TS(const List<GfxLOD> &,a[1]))
+if(1&&TS(a[1],const List<GfxLOD> &))
 {
 ( F->append(val_to_c<const List<GfxLOD> &>::f(ctx,a[1])));
 R CN;
@@ -19328,15 +20435,16 @@ SV GfxLODList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::__neq__" EAOE));
 List<GfxLOD>*F;
-if(!TS(List<GfxLOD>,a[0]))
+if(!TS(a[0],List<GfxLOD>))
 CATE(TE,FAE("GfxLODList::__neq__","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const List<GfxLOD> &,a[1]))
+if(1&&TS(a[1],const List<GfxLOD> &))
 {
-R CV(*F != val_to_c<const List<GfxLOD> &>::f(ctx,a[1]));
+auto v=val_to_c<const List<GfxLOD> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("GfxLODList::__neq__.")));
 R CN;
@@ -19344,15 +20452,15 @@ R CN;
 
 void GfxBuffer_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxBuffer, (SV)F))
+if(!TS((SV)F,GfxBuffer))
 CATE(TE,"GfxBuffer::__del__ expects GfxBuffer as first argument."));
 
-DELETE(GfxBuffer,(GfxBuffer*)F->data);
+DELETE((GfxBuffer*)F->data);
 }SV GfxBuffer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"GfxBuffer's constructor" EAOE));
-if(!TS(GfxBuffer,a[0]))
+if(!TS(a[0],GfxBuffer))
 CATE(TE,"GfxBuffer's constructor expects GfxBuffer as first argument."));
 CATE(TE,UFOF("GfxBuffer's constructor.")));
 }
@@ -19415,7 +20523,7 @@ SV GfxBuffer_getSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::getSize" EAOE));
 GfxBuffer*F;
-if(!TS(GfxBuffer,a[0]))
+if(!TS(a[0],GfxBuffer))
 CATE(TE,FAE("GfxBuffer::getSize","GfxBuffer")));
 else
  F=(GfxBuffer*)((NO)a[0])->data;
@@ -19435,7 +20543,7 @@ SV GfxBuffer_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::getData" EAOE));
 GfxBuffer*F;
-if(!TS(GfxBuffer,a[0]))
+if(!TS(a[0],GfxBuffer))
 CATE(TE,FAE("GfxBuffer::getData","GfxBuffer")));
 else
  F=(GfxBuffer*)((NO)a[0])->data;
@@ -19449,7 +20557,7 @@ SV GfxBuffer_allocData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::allocData" EAOE));
 GfxBuffer*F;
-if(!TS(GfxBuffer,a[0]))
+if(!TS(a[0],GfxBuffer))
 CATE(TE,FAE("GfxBuffer::allocData","GfxBuffer")));
 else
  F=(GfxBuffer*)((NO)a[0])->data;
@@ -19463,7 +20571,7 @@ SV GfxBuffer_setData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::setData" EAOE));
 GfxBuffer*F;
-if(!TS(GfxBuffer,a[0]))
+if(!TS(a[0],GfxBuffer))
 CATE(TE,FAE("GfxBuffer::setData","GfxBuffer")));
 else
  F=(GfxBuffer*)((NO)a[0])->data;
@@ -19474,15 +20582,15 @@ R CN;
 
 void Transform_destroy(CTX ctx,NO F)
 {
-if(!TS(Transform, (SV)F))
+if(!TS((SV)F,Transform))
 CATE(TE,"Transform::__del__ expects Transform as first argument."));
 
-DELETE(Transform,(Transform*)F->data);
+DELETE((Transform*)F->data);
 }SV Transform_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Transform's constructor" EAOE));
-if(!TS(Transform,a[0]))
+if(!TS(a[0],Transform))
 CATE(TE,"Transform's constructor expects Transform as first argument."));
 if(a.getCount()==1)
 if(true)
@@ -19567,7 +20675,7 @@ SV Transform_createMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Transform::createMatrix" EAOE));
 Transform*F;
-if(!TS(Transform,a[0]))
+if(!TS(a[0],Transform))
 CATE(TE,FAE("Transform::createMatrix","Transform")));
 else
  F=(Transform*)((NO)a[0])->data;
@@ -19584,27 +20692,27 @@ R CN;
 
 void Quaternion_destroy(CTX ctx,NO F)
 {
-if(!TS(Quaternion, (SV)F))
+if(!TS((SV)F,Quaternion))
 CATE(TE,"Quaternion::__del__ expects Quaternion as first argument."));
 
-DELETE(Quaternion,(Quaternion*)F->data);
+DELETE((Quaternion*)F->data);
 }SV Quaternion_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Quaternion's constructor" EAOE));
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,"Quaternion's constructor expects Quaternion as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Quaternion_funcs,NEW(Quaternion),EXT->Quaternion_typeID);
 if(a.getCount()==3)
-if(true&&TS(const Direction3D &,a[1])&&TS(float,a[2]))
+if(true&&TS(a[1],const Direction3D &)&&TS(a[2],float))
 R S::createNativeObject(Quaternion_funcs,NEW(Quaternion,val_to_c<const Direction3D &>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2])),EXT->Quaternion_typeID);
 if(a.getCount()==5)
-if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3])&&TS(float,a[4]))
+if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float))
 R S::createNativeObject(Quaternion_funcs,NEW(Quaternion,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4])),EXT->Quaternion_typeID);
 if(a.getCount()==2)
-if(true&&TS(const Float3 &,a[1]))
+if(true&&TS(a[1],const Float3 &))
 R S::createNativeObject(Quaternion_funcs,NEW(Quaternion,val_to_c<const Float3 &>::f(ctx,a[1])),EXT->Quaternion_typeID);
 CATE(TE,UFOF("Quaternion's constructor.")));
 R CN;
@@ -19728,7 +20836,7 @@ SV Quaternion_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::normalize" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::normalize","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19748,13 +20856,13 @@ SV Quaternion_setEulerAngles(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setEulerAngles" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setEulerAngles","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
 ( F->setEulerAngles(val_to_c<const Float3 &>::f(ctx,a[1])));
 R CN;
@@ -19768,7 +20876,7 @@ SV Quaternion_getAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getAngle" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getAngle","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19788,7 +20896,7 @@ SV Quaternion_getAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19808,13 +20916,13 @@ SV Quaternion_setAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setAngle" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setAngle","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setAngle(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -19828,13 +20936,13 @@ SV Quaternion_setYAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setYAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setYAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setYAxis(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -19848,7 +20956,7 @@ SV Quaternion_getEulerAngles(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getEulerAngles" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getEulerAngles","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19868,13 +20976,13 @@ SV Quaternion_setAxisAndAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setAxisAndAngle" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setAxisAndAngle","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(const Direction3D &,a[1])&&TS(float,a[2]))
+if(1&&TS(a[1],const Direction3D &)&&TS(a[2],float))
 {
 ( F->setAxisAndAngle(val_to_c<const Direction3D &>::f(ctx,a[1]), val_to_c<float>::f(ctx,a[2])));
 R CN;
@@ -19888,7 +20996,7 @@ SV Quaternion_getAxisAndAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getAxisAndAngle" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getAxisAndAngle","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19908,13 +21016,13 @@ SV Quaternion_setAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Direction3D &,a[1]))
+if(1&&TS(a[1],const Direction3D &))
 {
 ( F->setAxis(val_to_c<const Direction3D &>::f(ctx,a[1])));
 R CN;
@@ -19928,15 +21036,16 @@ SV Quaternion___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::__mul__" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::__mul__","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Quaternion &,a[1]))
+if(1&&TS(a[1],const Quaternion &))
 {
-R CV(*F * val_to_c<const Quaternion &>::f(ctx,a[1]));
+auto v=val_to_c<const Quaternion &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Quaternion::__mul__.")));
 R CN;
@@ -19947,7 +21056,7 @@ SV Quaternion_getYAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getYAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getYAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19967,7 +21076,7 @@ SV Quaternion_getXAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getXAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getXAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -19987,7 +21096,7 @@ SV Quaternion_toMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::toMatrix" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::toMatrix","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -20007,13 +21116,13 @@ SV Quaternion_setZAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setZAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setZAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setZAxis(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -20027,13 +21136,13 @@ SV Quaternion_setXAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setXAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::setXAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->setXAxis(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -20047,15 +21156,16 @@ SV Quaternion___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::__eq__" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::__eq__","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Quaternion &,a[1]))
+if(1&&TS(a[1],const Quaternion &))
 {
-R CV(*F == val_to_c<const Quaternion &>::f(ctx,a[1]));
+auto v=val_to_c<const Quaternion &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Quaternion::__eq__.")));
 R CN;
@@ -20066,7 +21176,7 @@ SV Quaternion_getZAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getZAxis" EAOE));
 Quaternion*F;
-if(!TS(Quaternion,a[0]))
+if(!TS(a[0],Quaternion))
 CATE(TE,FAE("Quaternion::getZAxis","Quaternion")));
 else
  F=(Quaternion*)((NO)a[0])->data;
@@ -20083,33 +21193,33 @@ R CN;
 
 void Int2_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<int32_t>, (SV)F))
+if(!TS((SV)F,T2<int32_t>))
 CATE(TE,"Int2::__del__ expects Int2 as first argument."));
 
-DELETE(T2<int32_t>,(T2<int32_t>*)F->data);
+DELETE((T2<int32_t>*)F->data);
 }SV Int2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Int2's constructor" EAOE));
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,"Int2's constructor expects Int2 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>),EXT->Int2_typeID);
 if(a.getCount()==2)
-if(true&&TS(int32_t,a[1]))
+if(true&&TS(a[1],int32_t))
 R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<int32_t>::f(ctx,a[1])),EXT->Int2_typeID);
 if(a.getCount()==3)
-if(true&&TS(int32_t,a[1])&&TS(int32_t,a[2]))
+if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t))
 R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2])),EXT->Int2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<float> &,a[1]))
+if(true&&TS(a[1],const T2<float> &))
 R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->Int2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<int32_t> &,a[1]))
+if(true&&TS(a[1],const T2<int32_t> &))
 R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->Int2_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T2<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T2<uint32_t> &))
 R S::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->Int2_typeID);
 CATE(TE,UFOF("Int2's constructor.")));
 R CN;
@@ -20223,7 +21333,7 @@ SV Int2_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::normalize" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::normalize","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
@@ -20243,13 +21353,13 @@ SV Int2_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::distance" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::distance","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 R CV( F->distance(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 ;
@@ -20263,7 +21373,7 @@ SV Int2_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::lengthSquared" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::lengthSquared","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
@@ -20283,15 +21393,16 @@ SV Int2___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__leq__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__leq__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F <= val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("Int2::__leq__.")));
 R CN;
@@ -20302,13 +21413,13 @@ SV Int2_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::setYX" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::setYX","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setYX(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -20322,15 +21433,16 @@ SV Int2___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__grtr__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__grtr__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F > val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("Int2::__grtr__.")));
 R CN;
@@ -20341,7 +21453,7 @@ SV Int2_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::sum" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::sum","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
@@ -20361,7 +21473,7 @@ SV Int2_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::getXY" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::getXY","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
@@ -20381,7 +21493,7 @@ SV Int2_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::length" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::length","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
@@ -20401,7 +21513,7 @@ SV Int2_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::getYX" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::getYX","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
@@ -20421,20 +21533,22 @@ SV Int2___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__div__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__div__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F / val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(a[1],int32_t))
 {
-R CV(*F / val_to_c<int32_t>::f(ctx,a[1]));
+auto v=val_to_c<int32_t>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Int2::__div__.")));
 R CN;
@@ -20445,13 +21559,13 @@ SV Int2_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::setXY" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::setXY","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 ( F->setXY(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 R CN;
@@ -20465,20 +21579,22 @@ SV Int2___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__mul__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__mul__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F * val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(a[1],int32_t))
 {
-R CV(*F * val_to_c<int32_t>::f(ctx,a[1]));
+auto v=val_to_c<int32_t>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Int2::__mul__.")));
 R CN;
@@ -20489,20 +21605,22 @@ SV Int2___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__add__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__add__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F + val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(a[1],int32_t))
 {
-R CV(*F + val_to_c<int32_t>::f(ctx,a[1]));
+auto v=val_to_c<int32_t>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("Int2::__add__.")));
 R CN;
@@ -20513,15 +21631,16 @@ SV Int2___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__less__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__less__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F < val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("Int2::__less__.")));
 R CN;
@@ -20532,20 +21651,22 @@ SV Int2___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__sub__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__sub__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F - val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(a[1],int32_t))
 {
-R CV(*F - val_to_c<int32_t>::f(ctx,a[1]));
+auto v=val_to_c<int32_t>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("Int2::__sub__.")));
 R CN;
@@ -20556,15 +21677,16 @@ SV Int2___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__geq__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__geq__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F >= val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("Int2::__geq__.")));
 R CN;
@@ -20575,13 +21697,13 @@ SV Int2_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::distanceSquared" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::distanceSquared","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 R CV( F->distanceSquared(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 ;
@@ -20595,15 +21717,16 @@ SV Int2___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__eq__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__eq__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F == val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Int2::__eq__.")));
 R CN;
@@ -20614,13 +21737,13 @@ SV Int2_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::dot" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::dot","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
 R CV( F->dot(val_to_c<const T2<int32_t> &>::f(ctx,a[1])));
 ;
@@ -20640,15 +21763,16 @@ SV Int2___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__neq__" EAOE));
 T2<int32_t>*F;
-if(!TS(T2<int32_t>,a[0]))
+if(!TS(a[0],T2<int32_t>))
 CATE(TE,FAE("Int2::__neq__","Int2")));
 else
  F=(T2<int32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<int32_t> &,a[1]))
+if(1&&TS(a[1],const T2<int32_t> &))
 {
-R CV(*F != val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T2<int32_t> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("Int2::__neq__.")));
 R CN;
@@ -20656,15 +21780,15 @@ R CN;
 
 void AudioWorld_destroy(CTX ctx,NO F)
 {
-if(!TS(AudioWorld, (SV)F))
+if(!TS((SV)F,AudioWorld))
 CATE(TE,"AudioWorld::__del__ expects AudioWorld as first argument."));
 
-DELETE(AudioWorld,(AudioWorld*)F->data);
+DELETE((AudioWorld*)F->data);
 }SV AudioWorld_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"AudioWorld's constructor" EAOE));
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,"AudioWorld's constructor expects AudioWorld as first argument."));
 if(a.getCount()==1)
 if(true)
@@ -20767,13 +21891,13 @@ SV AudioWorld_destroySource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::destroySource" EAOE));
 AudioWorld*F;
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,FAE("AudioWorld::destroySource","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(AudioSource *,a[1]))
+if(1&&TS(a[1],AudioSource *))
 {
 ( F->destroySource(val_to_c<AudioSource *>::f(ctx,a[1])));
 R CN;
@@ -20787,7 +21911,7 @@ SV AudioWorld_getSources(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::getSources" EAOE));
 AudioWorld*F;
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,FAE("AudioWorld::getSources","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
@@ -20801,13 +21925,13 @@ SV AudioWorld_addToAudioDevice(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::addToAudioDevice" EAOE));
 AudioWorld*F;
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,FAE("AudioWorld::addToAudioDevice","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(AudioDevice *,a[1]))
+if(1&&TS(a[1],AudioDevice *))
 {
 ( F->addToAudioDevice(val_to_c<AudioDevice *>::f(ctx,a[1])));
 R CN;
@@ -20821,13 +21945,13 @@ SV AudioWorld_createSource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::createSource" EAOE));
 AudioWorld*F;
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,FAE("AudioWorld::createSource","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(Audio *,a[1]))
+if(1&&TS(a[1],Audio *))
 {
 R CV( F->createSource(val_to_c<Audio *>::f(ctx,a[1])));
 ;
@@ -20841,13 +21965,13 @@ SV AudioWorld_removeFromAudioDevice(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::removeFromAudioDevice" EAOE));
 AudioWorld*F;
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,FAE("AudioWorld::removeFromAudioDevice","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(AudioDevice *,a[1]))
+if(1&&TS(a[1],AudioDevice *))
 {
 ( F->removeFromAudioDevice(val_to_c<AudioDevice *>::f(ctx,a[1])));
 R CN;
@@ -20861,7 +21985,7 @@ SV AudioWorld_clearSources(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::clearSources" EAOE));
 AudioWorld*F;
-if(!TS(AudioWorld,a[0]))
+if(!TS(a[0],AudioWorld))
 CATE(TE,FAE("AudioWorld::clearSources","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
@@ -20876,17 +22000,382 @@ CATE(TE,UFOF("AudioWorld::clearSources.")));
 R CN;
 }
 
+void StrStrMap_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,HashMap<String,String>))
+CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
+
+DELETE((HashMap<String,String>*)F->data);
+}SV StrStrMap_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"StrStrMap's constructor" EAOE));
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
+#define fjis HashMap<String,String>
+R S::createNativeObject(StrStrMap_funcs,NEW(fjis),EXT->StrStrMap_typeID);
+}
+
+SV StrStrMap_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("StrStrMap");
+EI(keyStr=="__new__")
+R CNF(StrStrMap_new);
+EI(keyStr=="__call__")
+R CNF(StrStrMap_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(StrStrMap_new);
+ EI(keyStr == "__eq__")
+R CNF(StrStrMap___eq__);
+ EI(keyStr == "__neq__")
+R CNF(StrStrMap___neq__);
+ EI(keyStr == "getEntryCount")
+R CNF(StrStrMap_getEntryCount);
+ EI(keyStr == "findEntry")
+R CNF(StrStrMap_findEntry);
+ EI(keyStr == "getKey")
+R CNF(StrStrMap_getKey);
+ EI(keyStr == "getValue")
+R CNF(StrStrMap_getValue);
+ EI(keyStr == "getKeyHash")
+R CNF(StrStrMap_getKeyHash);
+ EI(keyStr == "get")
+R CNF(StrStrMap_get);
+ EI(keyStr == "set")
+R CNF(StrStrMap_set);
+ EI(keyStr == "removeEntry")
+R CNF(StrStrMap_removeEntry);
+ EI(keyStr == "remove")
+R CNF(StrStrMap_remove);
+ EI(keyStr == "clear")
+R CNF(StrStrMap_clear);
+ EI(keyStr == "append")
+R CNF(StrStrMap_append);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void StrStrMap_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::removeEntry" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::removeEntry","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],int))
+{
+( F->removeEntry(val_to_c<int>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("StrStrMap::removeEntry.")));
+R CN;
+}
+
+SV StrStrMap_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::set" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::set","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],const String&)&&TS(a[2],const String&))
+{
+R CV( F->set(val_to_c<const String&>::f(ctx,a[1]), val_to_c<const String&>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("StrStrMap::set.")));
+R CN;
+}
+
+SV StrStrMap_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::get" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::get","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String&))
+{
+R CV( F->get(val_to_c<const String&>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],const String&))
+{
+R CV( F->get(val_to_c<const String&>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::get.")));
+R CN;
+}
+
+SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getEntryCount" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::getEntryCount","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getEntryCount());
+;
+}
+CATE(TE,UFOF("StrStrMap::getEntryCount.")));
+R CN;
+}
+
+SV StrStrMap_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::clear" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::clear","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->clear());
+R CN;
+}
+CATE(TE,UFOF("StrStrMap::clear.")));
+R CN;
+}
+
+SV StrStrMap_remove(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::remove" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::remove","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String&))
+{
+( F->remove(val_to_c<const String&>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("StrStrMap::remove.")));
+R CN;
+}
+
+SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getValue" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::getValue","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getValue(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getValue(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::getValue.")));
+R CN;
+}
+
+SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getKeyHash" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::getKeyHash","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getKeyHash(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::getKeyHash.")));
+R CN;
+}
+
+SV StrStrMap_append(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::append" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::append","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+( F->append(val_to_c<const HashMap<String, String> &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("StrStrMap::append.")));
+R CN;
+}
+
+SV StrStrMap_getKey(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getKey" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::getKey","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getKey(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getKey(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::getKey.")));
+R CN;
+}
+
+SV StrStrMap___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::__eq__" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::__eq__","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+auto v=val_to_c<const HashMap<String, String> &>::f(ctx,a[1]);
+R CV(*F == v);
+}
+CATE(TE,UFOF("StrStrMap::__eq__.")));
+R CN;
+}
+
+SV StrStrMap_findEntry(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::findEntry" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::findEntry","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String&))
+{
+R CV( F->findEntry(val_to_c<const String&>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::findEntry.")));
+R CN;
+}
+
+SV StrStrMap___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::__neq__" EAOE));
+HashMap<String,String>*F;
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,FAE("StrStrMap::__neq__","StrStrMap")));
+else
+ F=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+auto v=val_to_c<const HashMap<String, String> &>::f(ctx,a[1]);
+R CV(*F != v);
+}
+CATE(TE,UFOF("StrStrMap::__neq__.")));
+R CN;
+}
+
 void Light_destroy(CTX ctx,NO F)
 {
-if(!TS(Light, (SV)F))
+if(!TS((SV)F,Light))
 CATE(TE,"Light::__del__ expects Light as first argument."));
 
-DELETE(Light,(Light*)F->data);
+DELETE((Light*)F->data);
 }SV Light_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Light's constructor" EAOE));
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,"Light's constructor expects Light as first argument."));
 if(a.getCount()==1)
 if(true)
@@ -21069,7 +22558,7 @@ SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmapResolution" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getShadowmapResolution","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21089,7 +22578,7 @@ SV Light_updateMatrices(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::updateMatrices" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::updateMatrices","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21103,7 +22592,7 @@ SV Light_getShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmap" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getShadowmap","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21117,7 +22606,7 @@ SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getViewMatrix" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getViewMatrix","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21137,7 +22626,7 @@ SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getProjectionMatrix" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getProjectionMatrix","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21157,13 +22646,13 @@ SV Light_addShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::addShadowmap" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::addShadowmap","Light")));
 else
  F=(Light*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(GfxShadowmapPrecision,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],GfxShadowmapPrecision))
 {
 ( F->addShadowmap(val_to_c<size_t>::f(ctx,a[1]), val_to_c<GfxShadowmapPrecision>::f(ctx,a[2])));
 R CN;
@@ -21177,7 +22666,7 @@ SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmapFramebuffer" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getShadowmapFramebuffer","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21191,7 +22680,7 @@ SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmapPrecision" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getShadowmapPrecision","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21211,7 +22700,7 @@ SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getPointLightFramebuffers" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::getPointLightFramebuffers","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21225,7 +22714,7 @@ SV Light_removeShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::removeShadowmap" EAOE));
 Light*F;
-if(!TS(Light,a[0]))
+if(!TS(a[0],Light))
 CATE(TE,FAE("Light::removeShadowmap","Light")));
 else
  F=(Light*)((NO)a[0])->data;
@@ -21242,17 +22731,18 @@ R CN;
 
 void LightPointData_destroy(CTX ctx,NO F)
 {
-if(!TS(LightPointData, (SV)F))
+if(!TS((SV)F,LightPointData))
 CATE(TE,"LightPointData::__del__ expects LightPointData as first argument."));
 
-DELETE(LightPointData,(LightPointData*)F->data);
+DELETE((LightPointData*)F->data);
 }SV LightPointData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"LightPointData's constructor" EAOE));
-if(!TS(LightPointData,a[0]))
+if(!TS(a[0],LightPointData))
 CATE(TE,"LightPointData's constructor expects LightPointData as first argument."));
-R S::createNativeObject(LightPointData_funcs,NEW(LightPointData),EXT->LightPointData_typeID);
+#define fjis LightPointData
+R S::createNativeObject(LightPointData_funcs,NEW(fjis),EXT->LightPointData_typeID);
 }
 
 SV LightPointData_get_member(CTX ctx,NO F,SV key)
@@ -21326,33 +22816,33 @@ obj->singlePassShadowMap=val_to_c<decltype(obj->singlePassShadowMap)>::f(ctx,val
 
 void Float4_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<float>, (SV)F))
+if(!TS((SV)F,T4<float>))
 CATE(TE,"Float4::__del__ expects Float4 as first argument."));
 
-DELETE(T4<float>,(T4<float>*)F->data);
+DELETE((T4<float>*)F->data);
 }SV Float4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Float4's constructor" EAOE));
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,"Float4's constructor expects Float4 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Float4_funcs,NEW(T4<float>),EXT->Float4_typeID);
 if(a.getCount()==2)
-if(true&&TS(float,a[1]))
+if(true&&TS(a[1],float))
 R S::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<float>::f(ctx,a[1])),EXT->Float4_typeID);
 if(a.getCount()==5)
-if(true&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3])&&TS(float,a[4]))
+if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float))
 R S::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4])),EXT->Float4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<float> &,a[1]))
+if(true&&TS(a[1],const T4<float> &))
 R S::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->Float4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<int32_t> &,a[1]))
+if(true&&TS(a[1],const T4<int32_t> &))
 R S::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->Float4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T4<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T4<uint32_t> &))
 R S::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->Float4_typeID);
 CATE(TE,UFOF("Float4's constructor.")));
 R CN;
@@ -21714,13 +23204,13 @@ SV Float4_setZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZXYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setZXYW(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -21734,13 +23224,13 @@ SV Float4_setWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setWYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -21754,13 +23244,13 @@ SV Float4_setWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setWYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -21774,7 +23264,7 @@ SV Float4_getZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZWYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21794,7 +23284,7 @@ SV Float4_getZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21814,7 +23304,7 @@ SV Float4_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21834,13 +23324,13 @@ SV Float4_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::distanceSquared" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::distanceSquared","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 R CV( F->distanceSquared(val_to_c<const T4<float> &>::f(ctx,a[1])));
 ;
@@ -21854,7 +23344,7 @@ SV Float4_getYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYXZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21874,13 +23364,13 @@ SV Float4_setYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYZWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setYZWX(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -21894,7 +23384,7 @@ SV Float4_getYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYWZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21914,7 +23404,7 @@ SV Float4_getWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWZXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21934,7 +23424,7 @@ SV Float4_getZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZYXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -21954,13 +23444,13 @@ SV Float4_setXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXWYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setXWYZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -21974,13 +23464,13 @@ SV Float4_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setZY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -21994,13 +23484,13 @@ SV Float4_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setZX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -22014,7 +23504,7 @@ SV Float4_getZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZXWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22034,7 +23524,7 @@ SV Float4_getXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXWZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22054,13 +23544,13 @@ SV Float4_setZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setZW(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -22074,13 +23564,13 @@ SV Float4_setZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZYWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setZYWX(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22094,7 +23584,7 @@ SV Float4_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22114,7 +23604,7 @@ SV Float4_getXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXYWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22134,13 +23624,13 @@ SV Float4_setYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYXZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setYXZW(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22154,7 +23644,7 @@ SV Float4_getWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22174,7 +23664,7 @@ SV Float4_getWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22194,7 +23684,7 @@ SV Float4_getWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWZYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22214,13 +23704,13 @@ SV Float4_setXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXWZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setXWZY(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22234,7 +23724,7 @@ SV Float4_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22254,13 +23744,13 @@ SV Float4_setWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWZYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setWZYX(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22274,13 +23764,13 @@ SV Float4_setZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZYW(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22294,13 +23784,13 @@ SV Float4_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZYX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22314,13 +23804,13 @@ SV Float4_setXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXZYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setXZYW(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22334,7 +23824,7 @@ SV Float4_getZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22354,13 +23844,13 @@ SV Float4_setYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYZW(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22374,7 +23864,7 @@ SV Float4_getYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22394,15 +23884,16 @@ SV Float4___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__leq__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__leq__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F <= val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("Float4::__leq__.")));
 R CN;
@@ -22413,7 +23904,7 @@ SV Float4_getYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22433,7 +23924,7 @@ SV Float4_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::sum" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::sum","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22453,13 +23944,13 @@ SV Float4_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22473,7 +23964,7 @@ SV Float4_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22493,7 +23984,7 @@ SV Float4_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22513,7 +24004,7 @@ SV Float4_getXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22533,13 +24024,13 @@ SV Float4_setYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYWZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setYWZX(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22553,13 +24044,13 @@ SV Float4_setWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setWXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22573,13 +24064,13 @@ SV Float4_setWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setWXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22593,13 +24084,13 @@ SV Float4_setZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZXW(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22613,7 +24104,7 @@ SV Float4_getXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXWYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22633,13 +24124,13 @@ SV Float4_setWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWYXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setWYXZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22653,13 +24144,13 @@ SV Float4_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZXY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22673,7 +24164,7 @@ SV Float4_getXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22693,7 +24184,7 @@ SV Float4_getYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22713,7 +24204,7 @@ SV Float4_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22733,13 +24224,13 @@ SV Float4_setXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXYWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setXYWZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22753,7 +24244,7 @@ SV Float4_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::length" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::length","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22773,13 +24264,13 @@ SV Float4_setWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWXZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setWXZY(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -22793,7 +24284,7 @@ SV Float4_getYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22813,13 +24304,13 @@ SV Float4_setXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXWZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22833,13 +24324,13 @@ SV Float4_setXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXWY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22853,7 +24344,7 @@ SV Float4_getWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22873,7 +24364,7 @@ SV Float4_getWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22893,7 +24384,7 @@ SV Float4_getZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZYWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22913,7 +24404,7 @@ SV Float4_getXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXYZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -22933,13 +24424,13 @@ SV Float4_setZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZWY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22953,13 +24444,13 @@ SV Float4_setZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setZWX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -22973,13 +24464,13 @@ SV Float4_setWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setWX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -22993,13 +24484,13 @@ SV Float4_setWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setWY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -23013,13 +24504,13 @@ SV Float4_setWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setWZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -23033,7 +24524,7 @@ SV Float4_getZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23053,7 +24544,7 @@ SV Float4_getZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23073,13 +24564,13 @@ SV Float4_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYXZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23093,13 +24584,13 @@ SV Float4_setYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYXW(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23113,7 +24604,7 @@ SV Float4_getXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23133,7 +24624,7 @@ SV Float4_getXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXZWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23153,15 +24644,16 @@ SV Float4___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__less__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__less__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F < val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("Float4::__less__.")));
 R CN;
@@ -23172,7 +24664,7 @@ SV Float4_getZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23192,13 +24684,13 @@ SV Float4_setWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setWZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23212,13 +24704,13 @@ SV Float4_setWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setWZX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23232,13 +24724,13 @@ SV Float4_setZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZYXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setZYXW(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23252,7 +24744,7 @@ SV Float4_getYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYZWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23272,7 +24764,7 @@ SV Float4_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23292,7 +24784,7 @@ SV Float4_getXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXZYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23312,13 +24804,13 @@ SV Float4_setYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYXWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setYXWZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23332,15 +24824,16 @@ SV Float4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__eq__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__eq__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F == val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Float4::__eq__.")));
 R CN;
@@ -23351,7 +24844,7 @@ SV Float4_getWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWYXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23371,13 +24864,13 @@ SV Float4_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::distance" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::distance","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 R CV( F->distance(val_to_c<const T4<float> &>::f(ctx,a[1])));
 ;
@@ -23391,7 +24884,7 @@ SV Float4_getXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23411,13 +24904,13 @@ SV Float4_setYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYZXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setYZXW(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23431,7 +24924,7 @@ SV Float4_getZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZWXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23451,7 +24944,7 @@ SV Float4_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23471,7 +24964,7 @@ SV Float4_getYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYZXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23491,13 +24984,13 @@ SV Float4_setZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZWYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setZWYX(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23511,20 +25004,22 @@ SV Float4___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__sub__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__sub__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F - val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F - val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("Float4::__sub__.")));
 R CN;
@@ -23535,7 +25030,7 @@ SV Float4_getYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYXWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23555,13 +25050,13 @@ SV Float4_setXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXZWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setXZWY(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23575,13 +25070,13 @@ SV Float4_setYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYWZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23595,13 +25090,13 @@ SV Float4_setYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setYWX(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23615,13 +25110,13 @@ SV Float4_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setYZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -23635,13 +25130,13 @@ SV Float4_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setYX(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -23655,13 +25150,13 @@ SV Float4_setYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setYW(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -23675,7 +25170,7 @@ SV Float4_getWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWXYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23695,15 +25190,16 @@ SV Float4___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__neq__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__neq__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F != val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("Float4::__neq__.")));
 R CN;
@@ -23714,7 +25210,7 @@ SV Float4_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::normalize" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::normalize","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23734,7 +25230,7 @@ SV Float4_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23754,13 +25250,13 @@ SV Float4_setXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXZW(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23774,13 +25270,13 @@ SV Float4_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXZY(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -23794,13 +25290,13 @@ SV Float4_setXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYZW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXYZW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setXYZW(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23814,7 +25310,7 @@ SV Float4_getYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23834,13 +25330,13 @@ SV Float4_setWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWXYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setWXYZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -23854,7 +25350,7 @@ SV Float4_getYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYWXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23874,20 +25370,22 @@ SV Float4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__mul__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__mul__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F * val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F * val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Float4::__mul__.")));
 R CN;
@@ -23898,7 +25396,7 @@ SV Float4_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23918,7 +25416,7 @@ SV Float4_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::lengthSquared" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::lengthSquared","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23938,7 +25436,7 @@ SV Float4_getWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23958,7 +25456,7 @@ SV Float4_getWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23978,7 +25476,7 @@ SV Float4_getWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -23998,7 +25496,7 @@ SV Float4_getWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24018,7 +25516,7 @@ SV Float4_getWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24038,13 +25536,13 @@ SV Float4_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setXY(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -24058,7 +25556,7 @@ SV Float4_getZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getZXYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24078,20 +25576,22 @@ SV Float4___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__add__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__add__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F + val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F + val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("Float4::__add__.")));
 R CN;
@@ -24102,13 +25602,13 @@ SV Float4_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setXZ(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -24122,7 +25622,7 @@ SV Float4_getWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWYZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24142,13 +25642,13 @@ SV Float4_setXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<float> &,a[1]))
+if(1&&TS(a[1],const T2<float> &))
 {
 ( F->setXW(val_to_c<const T2<float> &>::f(ctx,a[1])));
 R CN;
@@ -24162,7 +25662,7 @@ SV Float4_getWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXZY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getWXZY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24182,7 +25682,7 @@ SV Float4_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24202,13 +25702,13 @@ SV Float4_setZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXWY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZXWY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setZXWY(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -24222,13 +25722,13 @@ SV Float4_setXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXYW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXYW(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -24242,7 +25742,7 @@ SV Float4_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24262,13 +25762,13 @@ SV Float4_setWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWZXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setWZXY(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -24282,15 +25782,16 @@ SV Float4___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__grtr__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__grtr__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F > val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("Float4::__grtr__.")));
 R CN;
@@ -24301,13 +25802,13 @@ SV Float4_setZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWXY" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setZWXY","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setZWXY(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -24321,7 +25822,7 @@ SV Float4_getXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXW" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::getXW","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
@@ -24341,13 +25842,13 @@ SV Float4_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setXYZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<float> &,a[1]))
+if(1&&TS(a[1],const T3<float> &))
 {
 ( F->setXYZ(val_to_c<const T3<float> &>::f(ctx,a[1])));
 R CN;
@@ -24361,20 +25862,22 @@ SV Float4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__div__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__div__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F / val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(const float&,a[1]))
+if(1&&TS(a[1],const float&))
 {
-R CV(*F / val_to_c<const float&>::f(ctx,a[1]));
+auto v=val_to_c<const float&>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Float4::__div__.")));
 R CN;
@@ -24385,13 +25888,13 @@ SV Float4_setWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYZX" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setWYZX","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setWYZX(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -24405,13 +25908,13 @@ SV Float4_setYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWXZ" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::setYWXZ","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 ( F->setYWXZ(val_to_c<const T4<float> &>::f(ctx,a[1])));
 R CN;
@@ -24425,15 +25928,16 @@ SV Float4___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__geq__" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::__geq__","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
-R CV(*F >= val_to_c<const T4<float> &>::f(ctx,a[1]));
+auto v=val_to_c<const T4<float> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("Float4::__geq__.")));
 R CN;
@@ -24444,13 +25948,13 @@ SV Float4_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::dot" EAOE));
 T4<float>*F;
-if(!TS(T4<float>,a[0]))
+if(!TS(a[0],T4<float>))
 CATE(TE,FAE("Float4::dot","Float4")));
 else
  F=(T4<float>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T4<float> &,a[1]))
+if(1&&TS(a[1],const T4<float> &))
 {
 R CV( F->dot(val_to_c<const T4<float> &>::f(ctx,a[1])));
 ;
@@ -24467,17 +25971,18 @@ R CN;
 
 void LightDirectionalData_destroy(CTX ctx,NO F)
 {
-if(!TS(LightDirectionalData, (SV)F))
+if(!TS((SV)F,LightDirectionalData))
 CATE(TE,"LightDirectionalData::__del__ expects LightDirectionalData as first argument."));
 
-DELETE(LightDirectionalData,(LightDirectionalData*)F->data);
+DELETE((LightDirectionalData*)F->data);
 }SV LightDirectionalData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"LightDirectionalData's constructor" EAOE));
-if(!TS(LightDirectionalData,a[0]))
+if(!TS(a[0],LightDirectionalData))
 CATE(TE,"LightDirectionalData's constructor expects LightDirectionalData as first argument."));
-R S::createNativeObject(LightDirectionalData_funcs,NEW(LightDirectionalData),EXT->LightDirectionalData_typeID);
+#define fjis LightDirectionalData
+R S::createNativeObject(LightDirectionalData_funcs,NEW(fjis),EXT->LightDirectionalData_typeID);
 }
 
 SV LightDirectionalData_get_member(CTX ctx,NO F,SV key)
@@ -24535,24 +26040,24 @@ obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
 
 void Matrix4x4_destroy(CTX ctx,NO F)
 {
-if(!TS(Matrix4x4, (SV)F))
+if(!TS((SV)F,Matrix4x4))
 CATE(TE,"Matrix4x4::__del__ expects Matrix4x4 as first argument."));
 
-DELETE(Matrix4x4,(Matrix4x4*)F->data);
+DELETE((Matrix4x4*)F->data);
 }SV Matrix4x4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4's constructor" EAOE));
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,"Matrix4x4's constructor expects Matrix4x4 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4),EXT->Matrix4x4_typeID);
 if(a.getCount()==2)
-if(true&&TS(const Matrix3x3 &,a[1]))
+if(true&&TS(a[1],const Matrix3x3 &))
 R S::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,val_to_c<const Matrix3x3 &>::f(ctx,a[1])),EXT->Matrix4x4_typeID);
 if(a.getCount()==5)
-if(true&&TS(const Float4 &,a[1])&&TS(const Float4 &,a[2])&&TS(const Float4 &,a[3])&&TS(const Float4 &,a[4]))
+if(true&&TS(a[1],const Float4 &)&&TS(a[2],const Float4 &)&&TS(a[3],const Float4 &)&&TS(a[4],const Float4 &))
 R S::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,val_to_c<const Float4 &>::f(ctx,a[1]),val_to_c<const Float4 &>::f(ctx,a[2]),val_to_c<const Float4 &>::f(ctx,a[3]),val_to_c<const Float4 &>::f(ctx,a[4])),EXT->Matrix4x4_typeID);
 CATE(TE,UFOF("Matrix4x4's constructor.")));
 R CN;
@@ -24638,7 +26143,7 @@ SV Matrix4x4_inverse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::inverse" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::inverse","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
@@ -24658,13 +26163,13 @@ SV Matrix4x4_lookAtDir(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::lookAtDir" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::lookAtDir","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==4)
-if(1&&TS(const Position3D &,a[1])&&TS(const Direction3D &,a[2])&&TS(const Direction3D &,a[3]))
+if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Direction3D &)&&TS(a[3],const Direction3D &))
 {
 R CV( F->lookAtDir(val_to_c<const Position3D &>::f(ctx,a[1]), val_to_c<const Direction3D &>::f(ctx,a[2]), val_to_c<const Direction3D &>::f(ctx,a[3])));
 ;
@@ -24678,7 +26183,7 @@ SV Matrix4x4_transpose(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::transpose" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::transpose","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
@@ -24698,13 +26203,13 @@ SV Matrix4x4_rotatez(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotatez" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::rotatez","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotatez(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -24718,13 +26223,13 @@ SV Matrix4x4_rotatex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotatex" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::rotatex","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotatex(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -24738,13 +26243,13 @@ SV Matrix4x4_rotatey(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotatey" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::rotatey","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotatey(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -24758,15 +26263,16 @@ SV Matrix4x4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::__div__" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::__div__","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
-R CV(*F / val_to_c<float>::f(ctx,a[1]));
+auto v=val_to_c<float>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Matrix4x4::__div__.")));
 R CN;
@@ -24777,13 +26283,13 @@ SV Matrix4x4_scale(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::scale" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::scale","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
 R CV( F->scale(val_to_c<const Float3 &>::f(ctx,a[1])));
 ;
@@ -24797,13 +26303,13 @@ SV Matrix4x4_lookAt(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::lookAt" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::lookAt","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==4)
-if(1&&TS(const Position3D &,a[1])&&TS(const Position3D &,a[2])&&TS(const Direction3D &,a[3]))
+if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &)&&TS(a[3],const Direction3D &))
 {
 R CV( F->lookAt(val_to_c<const Position3D &>::f(ctx,a[1]), val_to_c<const Position3D &>::f(ctx,a[2]), val_to_c<const Direction3D &>::f(ctx,a[3])));
 ;
@@ -24817,20 +26323,22 @@ SV Matrix4x4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::__mul__" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::__mul__","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Matrix4x4 &,a[1]))
+if(1&&TS(a[1],const Matrix4x4 &))
 {
-R CV(*F * val_to_c<const Matrix4x4 &>::f(ctx,a[1]));
+auto v=val_to_c<const Matrix4x4 &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const Float4 &,a[1]))
+if(1&&TS(a[1],const Float4 &))
 {
-R CV(*F * val_to_c<const Float4 &>::f(ctx,a[1]));
+auto v=val_to_c<const Float4 &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Matrix4x4::__mul__.")));
 R CN;
@@ -24841,13 +26349,13 @@ SV Matrix4x4_orthographic(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::orthographic" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::orthographic","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==7)
-if(1&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3])&&TS(float,a[4])&&TS(float,a[5])&&TS(float,a[6]))
+if(1&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)&&TS(a[5],float)&&TS(a[6],float))
 {
 R CV( F->orthographic(val_to_c<float>::f(ctx,a[1]), val_to_c<float>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3]), val_to_c<float>::f(ctx,a[4]), val_to_c<float>::f(ctx,a[5]), val_to_c<float>::f(ctx,a[6])));
 ;
@@ -24861,13 +26369,13 @@ SV Matrix4x4_translate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::translate" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::translate","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
 R CV( F->translate(val_to_c<const Float3 &>::f(ctx,a[1])));
 ;
@@ -24881,15 +26389,16 @@ SV Matrix4x4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::__eq__" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::__eq__","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Matrix4x4 &,a[1]))
+if(1&&TS(a[1],const Matrix4x4 &))
 {
-R CV(*F == val_to_c<const Matrix4x4 &>::f(ctx,a[1]));
+auto v=val_to_c<const Matrix4x4 &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Matrix4x4::__eq__.")));
 R CN;
@@ -24900,13 +26409,13 @@ SV Matrix4x4_rotate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotate" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::rotate","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotate(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -24920,13 +26429,13 @@ SV Matrix4x4_perspective(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::perspective" EAOE));
 Matrix4x4*F;
-if(!TS(Matrix4x4,a[0]))
+if(!TS(a[0],Matrix4x4))
 CATE(TE,FAE("Matrix4x4::perspective","Matrix4x4")));
 else
  F=(Matrix4x4*)((NO)a[0])->data;
 
 if(a.getCount()==5)
-if(1&&TS(float,a[1])&&TS(float,a[2])&&TS(float,a[3])&&TS(float,a[4]))
+if(1&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float))
 {
 R CV( F->perspective(val_to_c<float>::f(ctx,a[1]), val_to_c<float>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3]), val_to_c<float>::f(ctx,a[4])));
 ;
@@ -24937,33 +26446,33 @@ R CN;
 
 void UInt3_destroy(CTX ctx,NO F)
 {
-if(!TS(T3<uint32_t>, (SV)F))
+if(!TS((SV)F,T3<uint32_t>))
 CATE(TE,"UInt3::__del__ expects UInt3 as first argument."));
 
-DELETE(T3<uint32_t>,(T3<uint32_t>*)F->data);
+DELETE((T3<uint32_t>*)F->data);
 }SV UInt3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"UInt3's constructor" EAOE));
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,"UInt3's constructor expects UInt3 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(uint32_t,a[1]))
+if(true&&TS(a[1],uint32_t))
 R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt3_typeID);
 if(a.getCount()==4)
-if(true&&TS(uint32_t,a[1])&&TS(uint32_t,a[2])&&TS(uint32_t,a[3]))
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t))
 R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3])),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<float> &,a[1]))
+if(true&&TS(a[1],const T3<float> &))
 R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<int32_t> &,a[1]))
+if(true&&TS(a[1],const T3<int32_t> &))
 R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const T3<uint32_t> &,a[1]))
+if(true&&TS(a[1],const T3<uint32_t> &))
 R S::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
 CATE(TE,UFOF("UInt3's constructor.")));
 R CN;
@@ -25127,13 +26636,13 @@ SV UInt3_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYZX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setYZX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYZX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25147,7 +26656,7 @@ SV UInt3_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZXY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getZXY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25167,13 +26676,13 @@ SV UInt3_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setYZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setYZ(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25187,13 +26696,13 @@ SV UInt3_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setYX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setYX(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25207,13 +26716,13 @@ SV UInt3_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZYX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setZYX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZYX(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25227,7 +26736,7 @@ SV UInt3_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getZY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25247,13 +26756,13 @@ SV UInt3_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::distanceSquared" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::distanceSquared","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 R CV( F->distanceSquared(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -25267,7 +26776,7 @@ SV UInt3_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::normalize" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::normalize","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25287,7 +26796,7 @@ SV UInt3_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getYX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25307,15 +26816,16 @@ SV UInt3___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__leq__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__leq__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F <= val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F <= v);
 }
 CATE(TE,UFOF("UInt3::__leq__.")));
 R CN;
@@ -25326,13 +26836,13 @@ SV UInt3_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXZY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setXZY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXZY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25346,7 +26856,7 @@ SV UInt3_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::sum" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::sum","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25366,13 +26876,13 @@ SV UInt3_cross(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::cross" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::cross","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 R CV( F->cross(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -25386,7 +26896,7 @@ SV UInt3_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXYZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getXYZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25406,15 +26916,16 @@ SV UInt3___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__less__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__less__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F < val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F < v);
 }
 CATE(TE,UFOF("UInt3::__less__.")));
 R CN;
@@ -25425,15 +26936,16 @@ SV UInt3___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__neq__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__neq__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F != val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("UInt3::__neq__.")));
 R CN;
@@ -25444,7 +26956,7 @@ SV UInt3_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getYZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25464,7 +26976,7 @@ SV UInt3_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::lengthSquared" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::lengthSquared","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25484,7 +26996,7 @@ SV UInt3_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZYX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getZYX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25504,20 +27016,22 @@ SV UInt3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__div__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__div__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F / val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F / v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F / val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("UInt3::__div__.")));
 R CN;
@@ -25528,13 +27042,13 @@ SV UInt3_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setZY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setZY(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25548,13 +27062,13 @@ SV UInt3_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setZX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setZX(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25568,13 +27082,13 @@ SV UInt3_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setXY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setXY(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25588,20 +27102,22 @@ SV UInt3___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__add__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__add__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F + val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F + v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F + val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F + v);
 }
 CATE(TE,UFOF("UInt3::__add__.")));
 R CN;
@@ -25612,13 +27128,13 @@ SV UInt3_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setXZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T2<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T2<uint32_t> &))
 {
 ( F->setXZ(val_to_c<const T2<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25632,15 +27148,16 @@ SV UInt3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__eq__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__eq__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F == val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("UInt3::__eq__.")));
 R CN;
@@ -25651,13 +27168,13 @@ SV UInt3_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZXY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setZXY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setZXY(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25671,13 +27188,13 @@ SV UInt3_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYXZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setYXZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setYXZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25691,7 +27208,7 @@ SV UInt3_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getXY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25711,13 +27228,13 @@ SV UInt3_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::distance" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::distance","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 R CV( F->distance(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -25731,7 +27248,7 @@ SV UInt3_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getXZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25751,15 +27268,16 @@ SV UInt3___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__grtr__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__grtr__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F > val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F > v);
 }
 CATE(TE,UFOF("UInt3::__grtr__.")));
 R CN;
@@ -25770,7 +27288,7 @@ SV UInt3_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXZY" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getXZY","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25790,13 +27308,13 @@ SV UInt3_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXYZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::setXYZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 ( F->setXYZ(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 R CN;
@@ -25810,7 +27328,7 @@ SV UInt3_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYZX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getYZX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25830,7 +27348,7 @@ SV UInt3_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::length" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::length","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25850,20 +27368,22 @@ SV UInt3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__mul__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__mul__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F * val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F * val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("UInt3::__mul__.")));
 R CN;
@@ -25874,7 +27394,7 @@ SV UInt3_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYXZ" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getYXZ","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25894,7 +27414,7 @@ SV UInt3_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZX" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::getZX","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
@@ -25914,20 +27434,22 @@ SV UInt3___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__sub__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__sub__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F - val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F - v);
 }
 if(a.getCount()==2)
-if(1&&TS(const uint32_t&,a[1]))
+if(1&&TS(a[1],const uint32_t&))
 {
-R CV(*F - val_to_c<const uint32_t&>::f(ctx,a[1]));
+auto v=val_to_c<const uint32_t&>::f(ctx,a[1]);
+R CV(*F - v);
 }
 CATE(TE,UFOF("UInt3::__sub__.")));
 R CN;
@@ -25938,15 +27460,16 @@ SV UInt3___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__geq__" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::__geq__","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
-R CV(*F >= val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+auto v=val_to_c<const T3<uint32_t> &>::f(ctx,a[1]);
+R CV(*F >= v);
 }
 CATE(TE,UFOF("UInt3::__geq__.")));
 R CN;
@@ -25957,13 +27480,13 @@ SV UInt3_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::dot" EAOE));
 T3<uint32_t>*F;
-if(!TS(T3<uint32_t>,a[0]))
+if(!TS(a[0],T3<uint32_t>))
 CATE(TE,FAE("UInt3::dot","UInt3")));
 else
  F=(T3<uint32_t>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const T3<uint32_t> &,a[1]))
+if(1&&TS(a[1],const T3<uint32_t> &))
 {
 R CV( F->dot(val_to_c<const T3<uint32_t> &>::f(ctx,a[1])));
 ;
@@ -25980,17 +27503,18 @@ R CN;
 
 void LightSpotData_destroy(CTX ctx,NO F)
 {
-if(!TS(LightSpotData, (SV)F))
+if(!TS((SV)F,LightSpotData))
 CATE(TE,"LightSpotData::__del__ expects LightSpotData as first argument."));
 
-DELETE(LightSpotData,(LightSpotData*)F->data);
+DELETE((LightSpotData*)F->data);
 }SV LightSpotData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"LightSpotData's constructor" EAOE));
-if(!TS(LightSpotData,a[0]))
+if(!TS(a[0],LightSpotData))
 CATE(TE,"LightSpotData's constructor expects LightSpotData as first argument."));
-R S::createNativeObject(LightSpotData_funcs,NEW(LightSpotData),EXT->LightSpotData_typeID);
+#define fjis LightSpotData
+R S::createNativeObject(LightSpotData_funcs,NEW(fjis),EXT->LightSpotData_typeID);
 }
 
 SV LightSpotData_get_member(CTX ctx,NO F,SV key)
@@ -26080,18 +27604,18 @@ obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
 
 void AudioDevice_destroy(CTX ctx,NO F)
 {
-if(!TS(AudioDevice, (SV)F))
+if(!TS((SV)F,AudioDevice))
 CATE(TE,"AudioDevice::__del__ expects AudioDevice as first argument."));
 
-DELETE(AudioDevice,(AudioDevice*)F->data);
+DELETE((AudioDevice*)F->data);
 }SV AudioDevice_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"AudioDevice's constructor" EAOE));
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,"AudioDevice's constructor expects AudioDevice as first argument."));
 if(a.getCount()==4)
-if(true&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(size_t,a[3]))
+if(true&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t))
 R S::createNativeObject(AudioDevice_funcs,NEW(AudioDevice,val_to_c<size_t>::f(ctx,a[1]),val_to_c<size_t>::f(ctx,a[2]),val_to_c<size_t>::f(ctx,a[3])),EXT->AudioDevice_typeID);
 CATE(TE,UFOF("AudioDevice's constructor.")));
 R CN;
@@ -26181,7 +27705,7 @@ SV AudioDevice_getIndex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getIndex" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getIndex","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26201,7 +27725,7 @@ SV AudioDevice_getFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getFrequency" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getFrequency","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26221,7 +27745,7 @@ SV AudioDevice_pause(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::pause" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::pause","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26241,13 +27765,13 @@ SV AudioDevice_runCallbacks(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::runCallbacks" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::runCallbacks","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 ( F->runCallbacks(val_to_c<size_t>::f(ctx,a[1])));
 R CN;
@@ -26261,7 +27785,7 @@ SV AudioDevice_getName(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getName" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getName","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26273,7 +27797,7 @@ R CV( F->getName());
 ;
 }
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getName(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -26287,7 +27811,7 @@ SV AudioDevice_getPaused(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getPaused" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getPaused","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26307,13 +27831,13 @@ SV AudioDevice_setIndex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::setIndex" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::setIndex","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 ( F->setIndex(val_to_c<size_t>::f(ctx,a[1])));
 R CN;
@@ -26327,7 +27851,7 @@ SV AudioDevice_play(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::play" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::play","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26347,7 +27871,7 @@ SV AudioDevice_getSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getSamples" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getSamples","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26367,13 +27891,13 @@ SV AudioDevice_setFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::setFrequency" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::setFrequency","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 ( F->setFrequency(val_to_c<size_t>::f(ctx,a[1])));
 R CN;
@@ -26387,7 +27911,7 @@ SV AudioDevice_getNumQueuedSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getNumQueuedSamples" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getNumQueuedSamples","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26407,7 +27931,7 @@ SV AudioDevice_getDeviceCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getDeviceCount" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::getDeviceCount","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
@@ -26427,13 +27951,13 @@ SV AudioDevice_setSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::setSamples" EAOE));
 AudioDevice*F;
-if(!TS(AudioDevice,a[0]))
+if(!TS(a[0],AudioDevice))
 CATE(TE,FAE("AudioDevice::setSamples","AudioDevice")));
 else
  F=(AudioDevice*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 ( F->setSamples(val_to_c<size_t>::f(ctx,a[1])));
 R CN;
@@ -26444,15 +27968,15 @@ R CN;
 
 void GfxLOD_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxLOD, (SV)F))
+if(!TS((SV)F,GfxLOD))
 CATE(TE,"GfxLOD::__del__ expects GfxLOD as first argument."));
 
-DELETE(GfxLOD,(GfxLOD*)F->data);
+DELETE((GfxLOD*)F->data);
 }SV GfxLOD_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"GfxLOD's constructor" EAOE));
-if(!TS(GfxLOD,a[0]))
+if(!TS(a[0],GfxLOD))
 CATE(TE,"GfxLOD's constructor expects GfxLOD as first argument."));
 if(a.getCount()==1)
 if(true)
@@ -26537,15 +28061,16 @@ SV GfxLOD___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLOD::__eq__" EAOE));
 GfxLOD*F;
-if(!TS(GfxLOD,a[0]))
+if(!TS(a[0],GfxLOD))
 CATE(TE,FAE("GfxLOD::__eq__","GfxLOD")));
 else
  F=(GfxLOD*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxLOD &,a[1]))
+if(1&&TS(a[1],const GfxLOD &))
 {
-R CV(*F == val_to_c<const GfxLOD &>::f(ctx,a[1]));
+auto v=val_to_c<const GfxLOD &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("GfxLOD::__eq__.")));
 R CN;
@@ -26553,18 +28078,18 @@ R CN;
 
 void File_destroy(CTX ctx,NO F)
 {
-if(!TS(File, (SV)F))
+if(!TS((SV)F,File))
 CATE(TE,"File::__del__ expects File as first argument."));
 
-DELETE(File,(File*)F->data);
+DELETE((File*)F->data);
 }SV File_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"File's constructor" EAOE));
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,"File's constructor expects File as first argument."));
 if(a.getCount()==3)
-if(true&&TS(const char *,a[1])&&TS(const char *,a[2]))
+if(true&&TS(a[1],const char *)&&TS(a[2],const char *))
 R S::createNativeObject(File_funcs,NEW(File,val_to_c<const char *>::f(ctx,a[1]),val_to_c<const char *>::f(ctx,a[2])),EXT->File_typeID);
 CATE(TE,UFOF("File's constructor.")));
 R CN;
@@ -26702,7 +28227,7 @@ SV File_readFloat32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readFloat32" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readFloat32","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26722,7 +28247,7 @@ SV File_printf(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::printf" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::printf","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26736,7 +28261,7 @@ SV File_readUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt8" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt8","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26756,7 +28281,7 @@ SV File_getSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::getSize" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::getSize","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26776,7 +28301,7 @@ SV File_readInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt32LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt32LE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26796,7 +28321,7 @@ SV File_flush(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::flush" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::flush","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26816,13 +28341,13 @@ SV File_writeChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeChar" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeChar","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(char,a[1]))
+if(1&&TS(a[1],char))
 {
 ( F->writeChar(val_to_c<char>::f(ctx,a[1])));
 R CN;
@@ -26836,7 +28361,7 @@ SV File_seek(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::seek" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::seek","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26850,7 +28375,7 @@ SV File_readInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt8" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt8","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26870,7 +28395,7 @@ SV File_readInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt32BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt32BE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26890,13 +28415,13 @@ SV File_writeInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt32BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt32BE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(a[1],int32_t))
 {
 ( F->writeInt32BE(val_to_c<int32_t>::f(ctx,a[1])));
 R CN;
@@ -26910,7 +28435,7 @@ SV File_readInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt64LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt64LE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26930,13 +28455,13 @@ SV File_writeUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt32BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt32BE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(a[1],uint32_t))
 {
 ( F->writeUInt32BE(val_to_c<uint32_t>::f(ctx,a[1])));
 R CN;
@@ -26950,13 +28475,13 @@ SV File_writeUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt64LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt64LE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint64_t,a[1]))
+if(1&&TS(a[1],uint64_t))
 {
 ( F->writeUInt64LE(val_to_c<uint64_t>::f(ctx,a[1])));
 R CN;
@@ -26970,7 +28495,7 @@ SV File_write(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::write" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::write","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -26984,13 +28509,13 @@ SV File_writeFloat32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeFloat32" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeFloat32","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 ( F->writeFloat32(val_to_c<float>::f(ctx,a[1])));
 R CN;
@@ -27004,13 +28529,13 @@ SV File_writeInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt64BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt64BE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int64_t,a[1]))
+if(1&&TS(a[1],int64_t))
 {
 ( F->writeInt64BE(val_to_c<int64_t>::f(ctx,a[1])));
 R CN;
@@ -27024,7 +28549,7 @@ SV File_readUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt32LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt32LE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27044,7 +28569,7 @@ SV File_tell(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::tell" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::tell","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27064,13 +28589,13 @@ SV File_writeUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt32LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt32LE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint32_t,a[1]))
+if(1&&TS(a[1],uint32_t))
 {
 ( F->writeUInt32LE(val_to_c<uint32_t>::f(ctx,a[1])));
 R CN;
@@ -27084,7 +28609,7 @@ SV File_vprintf(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::vprintf" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::vprintf","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27098,13 +28623,13 @@ SV File_writeUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt64BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt64BE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint64_t,a[1]))
+if(1&&TS(a[1],uint64_t))
 {
 ( F->writeUInt64BE(val_to_c<uint64_t>::f(ctx,a[1])));
 R CN;
@@ -27118,7 +28643,7 @@ SV File_read(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::read" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::read","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27132,7 +28657,7 @@ SV File_readInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt64BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt64BE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27152,13 +28677,13 @@ SV File_writeInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt16LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt16LE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int16_t,a[1]))
+if(1&&TS(a[1],int16_t))
 {
 ( F->writeInt16LE(val_to_c<int16_t>::f(ctx,a[1])));
 R CN;
@@ -27172,7 +28697,7 @@ SV File_isAtEndOfFile(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::isAtEndOfFile" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::isAtEndOfFile","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27192,13 +28717,13 @@ SV File_writeInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt64LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt64LE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int64_t,a[1]))
+if(1&&TS(a[1],int64_t))
 {
 ( F->writeInt64LE(val_to_c<int64_t>::f(ctx,a[1])));
 R CN;
@@ -27212,7 +28737,7 @@ SV File_readUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt32BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt32BE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27232,7 +28757,7 @@ SV File_readChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readChar" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readChar","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27252,7 +28777,7 @@ SV File_readUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt16BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt16BE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27272,13 +28797,13 @@ SV File_writeInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt32LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt32LE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int32_t,a[1]))
+if(1&&TS(a[1],int32_t))
 {
 ( F->writeInt32LE(val_to_c<int32_t>::f(ctx,a[1])));
 R CN;
@@ -27292,7 +28817,7 @@ SV File_readUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt64LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt64LE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27312,13 +28837,13 @@ SV File_writeUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt16LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt16LE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint16_t,a[1]))
+if(1&&TS(a[1],uint16_t))
 {
 ( F->writeUInt16LE(val_to_c<uint16_t>::f(ctx,a[1])));
 R CN;
@@ -27332,13 +28857,13 @@ SV File_writeInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt8" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt8","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int8_t,a[1]))
+if(1&&TS(a[1],int8_t))
 {
 ( F->writeInt8(val_to_c<int8_t>::f(ctx,a[1])));
 R CN;
@@ -27352,7 +28877,7 @@ SV File_readInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt16BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt16BE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27372,13 +28897,13 @@ SV File_writeUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt16BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt16BE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint16_t,a[1]))
+if(1&&TS(a[1],uint16_t))
 {
 ( F->writeUInt16BE(val_to_c<uint16_t>::f(ctx,a[1])));
 R CN;
@@ -27392,13 +28917,13 @@ SV File_writeUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt8" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeUInt8","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(uint8_t,a[1]))
+if(1&&TS(a[1],uint8_t))
 {
 ( F->writeUInt8(val_to_c<uint8_t>::f(ctx,a[1])));
 R CN;
@@ -27412,7 +28937,7 @@ SV File_readInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt16LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readInt16LE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27432,7 +28957,7 @@ SV File_readUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt16LE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt16LE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27452,7 +28977,7 @@ SV File_readUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt64BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::readUInt64BE","File")));
 else
  F=(File*)((NO)a[0])->data;
@@ -27472,13 +28997,13 @@ SV File_writeInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt16BE" EAOE));
 File*F;
-if(!TS(File,a[0]))
+if(!TS(a[0],File))
 CATE(TE,FAE("File::writeInt16BE","File")));
 else
  F=(File*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(int16_t,a[1]))
+if(1&&TS(a[1],int16_t))
 {
 ( F->writeInt16BE(val_to_c<int16_t>::f(ctx,a[1])));
 R CN;
@@ -27489,21 +29014,21 @@ R CN;
 
 void AABB_destroy(CTX ctx,NO F)
 {
-if(!TS(AABB, (SV)F))
+if(!TS((SV)F,AABB))
 CATE(TE,"AABB::__del__ expects AABB as first argument."));
 
-DELETE(AABB,(AABB*)F->data);
+DELETE((AABB*)F->data);
 }SV AABB_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"AABB's constructor" EAOE));
-if(!TS(AABB,a[0]))
+if(!TS(a[0],AABB))
 CATE(TE,"AABB's constructor expects AABB as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(AABB_funcs,NEW(AABB),EXT->AABB_typeID);
 if(a.getCount()==3)
-if(true&&TS(const Position3D &,a[1])&&TS(const Position3D &,a[2]))
+if(true&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &))
 R S::createNativeObject(AABB_funcs,NEW(AABB,val_to_c<const Position3D &>::f(ctx,a[1]),val_to_c<const Position3D &>::f(ctx,a[2])),EXT->AABB_typeID);
 CATE(TE,UFOF("AABB's constructor.")));
 R CN;
@@ -27581,13 +29106,13 @@ SV AABB_transform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::transform" EAOE));
 AABB*F;
-if(!TS(AABB,a[0]))
+if(!TS(a[0],AABB))
 CATE(TE,FAE("AABB::transform","AABB")));
 else
  F=(AABB*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Matrix4x4 &,a[1]))
+if(1&&TS(a[1],const Matrix4x4 &))
 {
 R CV( F->transform(val_to_c<const Matrix4x4 &>::f(ctx,a[1])));
 ;
@@ -27601,19 +29126,19 @@ SV AABB_extend(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::extend" EAOE));
 AABB*F;
-if(!TS(AABB,a[0]))
+if(!TS(a[0],AABB))
 CATE(TE,FAE("AABB::extend","AABB")));
 else
  F=(AABB*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Position3D &,a[1]))
+if(1&&TS(a[1],const Position3D &))
 {
 ( F->extend(val_to_c<const Position3D &>::f(ctx,a[1])));
 R CN;
 }
 if(a.getCount()==2)
-if(1&&TS(const AABB &,a[1]))
+if(1&&TS(a[1],const AABB &))
 {
 ( F->extend(val_to_c<const AABB &>::f(ctx,a[1])));
 R CN;
@@ -27627,13 +29152,13 @@ SV AABB_grow(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::grow" EAOE));
 AABB*F;
-if(!TS(AABB,a[0]))
+if(!TS(a[0],AABB))
 CATE(TE,FAE("AABB::grow","AABB")));
 else
  F=(AABB*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Vector3D &,a[1]))
+if(1&&TS(a[1],const Vector3D &))
 {
 ( F->grow(val_to_c<const Vector3D &>::f(ctx,a[1])));
 R CN;
@@ -27644,24 +29169,24 @@ R CN;
 
 void List_destroy(CTX ctx,NO F)
 {
-if(!TS(List<scripting::Value*>, (SV)F))
+if(!TS((SV)F,List<scripting::Value*>))
 CATE(TE,"List::__del__ expects List as first argument."));
 
-DELETE(List<scripting::Value*>,(List<scripting::Value*>*)F->data);
+DELETE((List<scripting::Value*>*)F->data);
 }SV List_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List's constructor" EAOE));
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,"List's constructor expects List as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(List_funcs,NEW(List<scripting::Value*>),EXT->List_typeID);
 if(a.getCount()==2)
-if(true&&TS(std::size_t,a[1]))
+if(true&&TS(a[1],std::size_t))
 R S::createNativeObject(List_funcs,NEW(List<scripting::Value*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->List_typeID);
 if(a.getCount()==2)
-if(true&&TS(const List<scripting::Value*> &,a[1]))
+if(true&&TS(a[1],const List<scripting::Value*> &))
 R S::createNativeObject(List_funcs,NEW(List<scripting::Value*>,val_to_c<const List<scripting::Value*> &>::f(ctx,a[1])),EXT->List_typeID);
 CATE(TE,UFOF("List's constructor.")));
 R CN;
@@ -27739,19 +29264,19 @@ SV List_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::insert" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::insert","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const scripting::Value*&,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const scripting::Value*&))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const scripting::Value*&>::f(ctx,a[2])));
 R CN;
 }
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const List<scripting::Value*> &,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<scripting::Value*> &))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const List<scripting::Value*> &>::f(ctx,a[2])));
 R CN;
@@ -27765,7 +29290,7 @@ SV List_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::copy" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::copy","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
@@ -27785,7 +29310,7 @@ SV List_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::clear" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::clear","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
@@ -27805,13 +29330,13 @@ SV List_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::remove" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::remove","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(std::size_t,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
 {
 ( F->remove(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<std::size_t>::f(ctx,a[2])));
 R CN;
@@ -27825,13 +29350,13 @@ SV List_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::in" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::in","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const scripting::Value*&,a[1]))
+if(1&&TS(a[1],const scripting::Value*&))
 {
 R CV( F->in(val_to_c<const scripting::Value*&>::f(ctx,a[1])));
 ;
@@ -27845,7 +29370,7 @@ SV List_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::getCount" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::getCount","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
@@ -27865,7 +29390,7 @@ SV List_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::getData" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::getData","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
@@ -27879,15 +29404,16 @@ SV List___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::__eq__" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::__eq__","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const List<scripting::Value*> &,a[1]))
+if(1&&TS(a[1],const List<scripting::Value*> &))
 {
-R CV(*F == val_to_c<const List<scripting::Value*> &>::f(ctx,a[1]));
+auto v=val_to_c<const List<scripting::Value*> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("List::__eq__.")));
 R CN;
@@ -27898,13 +29424,13 @@ SV List_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::find" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::find","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const scripting::Value*&,a[1]))
+if(1&&TS(a[1],const scripting::Value*&))
 {
 R CV( F->find(val_to_c<const scripting::Value*&>::f(ctx,a[1])));
 ;
@@ -27918,19 +29444,19 @@ SV List_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::append" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::append","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const scripting::Value*&,a[1]))
+if(1&&TS(a[1],const scripting::Value*&))
 {
 ( F->append(val_to_c<const scripting::Value*&>::f(ctx,a[1])));
 R CN;
 }
 if(a.getCount()==2)
-if(1&&TS(const List<scripting::Value*> &,a[1]))
+if(1&&TS(a[1],const List<scripting::Value*> &))
 {
 ( F->append(val_to_c<const List<scripting::Value*> &>::f(ctx,a[1])));
 R CN;
@@ -27944,15 +29470,16 @@ SV List___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"List::__neq__" EAOE));
 List<scripting::Value*>*F;
-if(!TS(List<scripting::Value*>,a[0]))
+if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,FAE("List::__neq__","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const List<scripting::Value*> &,a[1]))
+if(1&&TS(a[1],const List<scripting::Value*> &))
 {
-R CV(*F != val_to_c<const List<scripting::Value*> &>::f(ctx,a[1]));
+auto v=val_to_c<const List<scripting::Value*> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("List::__neq__.")));
 R CN;
@@ -27960,7 +29487,7 @@ R CN;
 
 void Audio_destroy(CTX ctx,NO F)
 {
-if(!TS(Audio, (SV)F))
+if(!TS((SV)F,Audio))
 CATE(TE,"Audio::__del__ expects Audio as first argument."));
 
 Audio*obj=(Audio*)F->data;
@@ -27969,7 +29496,7 @@ obj->release();
 {
 if(a.getCount()!=1)
 CATE(VE,"Audio's constructor" EAOE));
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,"Audio's constructor expects Audio as first argument."));
 CATE(TE,UFOF("Audio's constructor.")));
 }
@@ -28084,7 +29611,7 @@ SV Audio_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::load" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::load","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28104,13 +29631,13 @@ SV Audio_changeSampleFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::changeSampleFrequency" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::changeSampleFrequency","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==4)
-if(1&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(size_t,a[3]))
+if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t))
 {
 R CV( F->changeSampleFrequency(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<size_t>::f(ctx,a[3])));
 ;
@@ -28124,7 +29651,7 @@ SV Audio_possiblyReload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::possiblyReload" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::possiblyReload","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28144,13 +29671,13 @@ SV Audio_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::setFilename" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::setFilename","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const String &,a[1]))
+if(1&&TS(a[1],const String &))
 {
 ( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
 R CN;
@@ -28164,7 +29691,7 @@ SV Audio_isLoaded(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::isLoaded" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::isLoaded","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28184,7 +29711,7 @@ SV Audio_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getFilename" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getFilename","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28204,13 +29731,13 @@ SV Audio_getMonoSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getMonoSample" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getMonoSample","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(size_t,a[1]))
+if(1&&TS(a[1],size_t))
 {
 R CV( F->getMonoSample(val_to_c<size_t>::f(ctx,a[1])));
 ;
@@ -28224,7 +29751,7 @@ SV Audio_getLastFileModification(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getLastFileModification" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getLastFileModification","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28244,7 +29771,7 @@ SV Audio_shouldReload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::shouldReload" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::shouldReload","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28264,7 +29791,7 @@ SV Audio_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::save" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::save","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28284,19 +29811,19 @@ SV Audio_getSampleIndex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getSampleIndex" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getSampleIndex","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->getSampleIndex(val_to_c<float>::f(ctx,a[1])));
 ;
 }
 if(a.getCount()==4)
-if(1&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(float,a[3]))
+if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],float))
 {
 R CV( F->getSampleIndex(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3])));
 ;
@@ -28310,7 +29837,7 @@ SV Audio_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getRefCount" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getRefCount","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28330,7 +29857,7 @@ SV Audio_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getType" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getType","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28350,7 +29877,7 @@ SV Audio_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::removeContent" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::removeContent","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28376,7 +29903,7 @@ SV Audio_getDuration(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getDuration" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getDuration","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28396,7 +29923,7 @@ SV Audio_getNumSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getNumSamples" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getNumSamples","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28416,7 +29943,7 @@ SV Audio_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::copy" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::copy","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28436,13 +29963,13 @@ SV Audio_getSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getSample" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::getSample","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(size_t,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
 {
 R CV( F->getSample(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2])));
 ;
@@ -28456,13 +29983,13 @@ SV Audio_setMonoSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::setMonoSample" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::setMonoSample","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(size_t,a[1])&&TS(float,a[2]))
+if(1&&TS(a[1],size_t)&&TS(a[2],float))
 {
 ( F->setMonoSample(val_to_c<size_t>::f(ctx,a[1]), val_to_c<float>::f(ctx,a[2])));
 R CN;
@@ -28476,7 +30003,7 @@ SV Audio_reload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::reload" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::reload","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28496,7 +30023,7 @@ SV Audio_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::release" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::release","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
@@ -28516,13 +30043,13 @@ SV Audio_setSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::setSample" EAOE));
 Audio*F;
-if(!TS(Audio,a[0]))
+if(!TS(a[0],Audio))
 CATE(TE,FAE("Audio::setSample","Audio")));
 else
  F=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==4)
-if(1&&TS(size_t,a[1])&&TS(size_t,a[2])&&TS(float,a[3]))
+if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],float))
 {
 ( F->setSample(val_to_c<size_t>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3])));
 R CN;
@@ -28533,24 +30060,24 @@ R CN;
 
 void GfxSubModelList_destroy(CTX ctx,NO F)
 {
-if(!TS(List<GfxModel::SubModel>, (SV)F))
+if(!TS((SV)F,List<GfxModel::SubModel>))
 CATE(TE,"GfxSubModelList::__del__ expects GfxSubModelList as first argument."));
 
-DELETE(List<GfxModel::SubModel>,(List<GfxModel::SubModel>*)F->data);
+DELETE((List<GfxModel::SubModel>*)F->data);
 }SV GfxSubModelList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList's constructor" EAOE));
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,"GfxSubModelList's constructor expects GfxSubModelList as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>),EXT->GfxSubModelList_typeID);
 if(a.getCount()==2)
-if(true&&TS(std::size_t,a[1]))
+if(true&&TS(a[1],std::size_t))
 R S::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->GfxSubModelList_typeID);
 if(a.getCount()==2)
-if(true&&TS(const List<GfxModel::SubModel> &,a[1]))
+if(true&&TS(a[1],const List<GfxModel::SubModel> &))
 R S::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>,val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1])),EXT->GfxSubModelList_typeID);
 CATE(TE,UFOF("GfxSubModelList's constructor.")));
 R CN;
@@ -28628,19 +30155,19 @@ SV GfxSubModelList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::insert" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::insert","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const GfxModel::SubModel&,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const GfxModel::SubModel&))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const GfxModel::SubModel&>::f(ctx,a[2])));
 R CN;
 }
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(const List<GfxModel::SubModel> &,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<GfxModel::SubModel> &))
 {
 ( F->insert(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[2])));
 R CN;
@@ -28654,7 +30181,7 @@ SV GfxSubModelList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::copy" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::copy","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
@@ -28674,7 +30201,7 @@ SV GfxSubModelList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::clear" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::clear","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
@@ -28694,13 +30221,13 @@ SV GfxSubModelList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::remove" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::remove","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(std::size_t,a[1])&&TS(std::size_t,a[2]))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
 {
 ( F->remove(val_to_c<std::size_t>::f(ctx,a[1]), val_to_c<std::size_t>::f(ctx,a[2])));
 R CN;
@@ -28714,13 +30241,13 @@ SV GfxSubModelList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::in" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::in","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxModel::SubModel&,a[1]))
+if(1&&TS(a[1],const GfxModel::SubModel&))
 {
 R CV( F->in(val_to_c<const GfxModel::SubModel&>::f(ctx,a[1])));
 ;
@@ -28734,7 +30261,7 @@ SV GfxSubModelList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::getCount" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::getCount","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
@@ -28754,7 +30281,7 @@ SV GfxSubModelList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::getData" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::getData","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
@@ -28768,15 +30295,16 @@ SV GfxSubModelList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::__eq__" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::__eq__","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const List<GfxModel::SubModel> &,a[1]))
+if(1&&TS(a[1],const List<GfxModel::SubModel> &))
 {
-R CV(*F == val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1]));
+auto v=val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("GfxSubModelList::__eq__.")));
 R CN;
@@ -28787,13 +30315,13 @@ SV GfxSubModelList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::find" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::find","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxModel::SubModel&,a[1]))
+if(1&&TS(a[1],const GfxModel::SubModel&))
 {
 R CV( F->find(val_to_c<const GfxModel::SubModel&>::f(ctx,a[1])));
 ;
@@ -28807,19 +30335,19 @@ SV GfxSubModelList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::append" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::append","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const GfxModel::SubModel&,a[1]))
+if(1&&TS(a[1],const GfxModel::SubModel&))
 {
 ( F->append(val_to_c<const GfxModel::SubModel&>::f(ctx,a[1])));
 R CN;
 }
 if(a.getCount()==2)
-if(1&&TS(const List<GfxModel::SubModel> &,a[1]))
+if(1&&TS(a[1],const List<GfxModel::SubModel> &))
 {
 ( F->append(val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1])));
 R CN;
@@ -28833,15 +30361,16 @@ SV GfxSubModelList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::__neq__" EAOE));
 List<GfxModel::SubModel>*F;
-if(!TS(List<GfxModel::SubModel>,a[0]))
+if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,FAE("GfxSubModelList::__neq__","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const List<GfxModel::SubModel> &,a[1]))
+if(1&&TS(a[1],const List<GfxModel::SubModel> &))
 {
-R CV(*F != val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1]));
+auto v=val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1]);
+R CV(*F != v);
 }
 CATE(TE,UFOF("GfxSubModelList::__neq__.")));
 R CN;
@@ -28849,7 +30378,7 @@ R CN;
 
 void GfxModel_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxModel, (SV)F))
+if(!TS((SV)F,GfxModel))
 CATE(TE,"GfxModel::__del__ expects GfxModel as first argument."));
 
 GfxModel*obj=(GfxModel*)F->data;
@@ -28858,7 +30387,7 @@ obj->release();
 {
 if(a.getCount()!=1)
 CATE(VE,"GfxModel's constructor" EAOE));
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,"GfxModel's constructor expects GfxModel as first argument."));
 CATE(TE,UFOF("GfxModel's constructor.")));
 }
@@ -28957,7 +30486,7 @@ SV GfxModel_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::load" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::load","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -28977,7 +30506,7 @@ SV GfxModel_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getFilename" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::getFilename","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -28997,7 +30526,7 @@ SV GfxModel_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::copy" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::copy","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29017,7 +30546,7 @@ SV GfxModel_getLastFileModification(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getLastFileModification" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::getLastFileModification","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29037,7 +30566,7 @@ SV GfxModel_possiblyReload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::possiblyReload" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::possiblyReload","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29057,7 +30586,7 @@ SV GfxModel_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getType" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::getType","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29077,13 +30606,13 @@ SV GfxModel_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::setFilename" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::setFilename","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const String &,a[1]))
+if(1&&TS(a[1],const String &))
 {
 ( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
 R CN;
@@ -29097,7 +30626,7 @@ SV GfxModel_isLoaded(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::isLoaded" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::isLoaded","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29117,7 +30646,7 @@ SV GfxModel_reload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::reload" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::reload","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29137,7 +30666,7 @@ SV GfxModel_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::removeContent" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::removeContent","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29163,7 +30692,7 @@ SV GfxModel_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getRefCount" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::getRefCount","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29183,7 +30712,7 @@ SV GfxModel_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::release" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::release","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29203,7 +30732,7 @@ SV GfxModel_shouldReload(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::shouldReload" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::shouldReload","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29223,7 +30752,7 @@ SV GfxModel_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::save" EAOE));
 GfxModel*F;
-if(!TS(GfxModel,a[0]))
+if(!TS(a[0],GfxModel))
 CATE(TE,FAE("GfxModel::save","GfxModel")));
 else
  F=(GfxModel*)((NO)a[0])->data;
@@ -29246,24 +30775,24 @@ R CN;
 
 void Matrix3x3_destroy(CTX ctx,NO F)
 {
-if(!TS(Matrix3x3, (SV)F))
+if(!TS((SV)F,Matrix3x3))
 CATE(TE,"Matrix3x3::__del__ expects Matrix3x3 as first argument."));
 
-DELETE(Matrix3x3,(Matrix3x3*)F->data);
+DELETE((Matrix3x3*)F->data);
 }SV Matrix3x3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3's constructor" EAOE));
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,"Matrix3x3's constructor expects Matrix3x3 as first argument."));
 if(a.getCount()==1)
 if(true)
 R S::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3),EXT->Matrix3x3_typeID);
 if(a.getCount()==2)
-if(true&&TS(const Matrix4x4 &,a[1]))
+if(true&&TS(a[1],const Matrix4x4 &))
 R S::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,val_to_c<const Matrix4x4 &>::f(ctx,a[1])),EXT->Matrix3x3_typeID);
 if(a.getCount()==4)
-if(true&&TS(const Float3 &,a[1])&&TS(const Float3 &,a[2])&&TS(const Float3 &,a[3]))
+if(true&&TS(a[1],const Float3 &)&&TS(a[2],const Float3 &)&&TS(a[3],const Float3 &))
 R S::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,val_to_c<const Float3 &>::f(ctx,a[1]),val_to_c<const Float3 &>::f(ctx,a[2]),val_to_c<const Float3 &>::f(ctx,a[3])),EXT->Matrix3x3_typeID);
 CATE(TE,UFOF("Matrix3x3's constructor.")));
 R CN;
@@ -29341,7 +30870,7 @@ SV Matrix3x3_inverse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::inverse" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::inverse","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
@@ -29361,7 +30890,7 @@ SV Matrix3x3_transpose(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::transpose" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::transpose","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
@@ -29381,13 +30910,13 @@ SV Matrix3x3_rotatez(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotatez" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::rotatez","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotatez(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -29401,13 +30930,13 @@ SV Matrix3x3_rotatex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotatex" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::rotatex","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotatex(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -29421,13 +30950,13 @@ SV Matrix3x3_rotatey(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotatey" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::rotatey","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotatey(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -29441,15 +30970,16 @@ SV Matrix3x3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::__div__" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::__div__","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
-R CV(*F / val_to_c<float>::f(ctx,a[1]));
+auto v=val_to_c<float>::f(ctx,a[1]);
+R CV(*F / v);
 }
 CATE(TE,UFOF("Matrix3x3::__div__.")));
 R CN;
@@ -29460,13 +30990,13 @@ SV Matrix3x3_scale(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::scale" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::scale","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
 R CV( F->scale(val_to_c<const Float3 &>::f(ctx,a[1])));
 ;
@@ -29480,20 +31010,22 @@ SV Matrix3x3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::__mul__" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::__mul__","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Matrix3x3 &,a[1]))
+if(1&&TS(a[1],const Matrix3x3 &))
 {
-R CV(*F * val_to_c<const Matrix3x3 &>::f(ctx,a[1]));
+auto v=val_to_c<const Matrix3x3 &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 if(a.getCount()==2)
-if(1&&TS(const Float3 &,a[1]))
+if(1&&TS(a[1],const Float3 &))
 {
-R CV(*F * val_to_c<const Float3 &>::f(ctx,a[1]));
+auto v=val_to_c<const Float3 &>::f(ctx,a[1]);
+R CV(*F * v);
 }
 CATE(TE,UFOF("Matrix3x3::__mul__.")));
 R CN;
@@ -29504,13 +31036,13 @@ SV Matrix3x3_translate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::translate" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::translate","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Float2 &,a[1]))
+if(1&&TS(a[1],const Float2 &))
 {
 R CV( F->translate(val_to_c<const Float2 &>::f(ctx,a[1])));
 ;
@@ -29524,15 +31056,16 @@ SV Matrix3x3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::__eq__" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::__eq__","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Matrix3x3 &,a[1]))
+if(1&&TS(a[1],const Matrix3x3 &))
 {
-R CV(*F == val_to_c<const Matrix3x3 &>::f(ctx,a[1]));
+auto v=val_to_c<const Matrix3x3 &>::f(ctx,a[1]);
+R CV(*F == v);
 }
 CATE(TE,UFOF("Matrix3x3::__eq__.")));
 R CN;
@@ -29543,13 +31076,13 @@ SV Matrix3x3_rotate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotate" EAOE));
 Matrix3x3*F;
-if(!TS(Matrix3x3,a[0]))
+if(!TS(a[0],Matrix3x3))
 CATE(TE,FAE("Matrix3x3::rotate","Matrix3x3")));
 else
  F=(Matrix3x3*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(float,a[1]))
+if(1&&TS(a[1],float))
 {
 R CV( F->rotate(val_to_c<float>::f(ctx,a[1])));
 ;
@@ -29560,15 +31093,15 @@ R CN;
 
 void GfxDebugDrawer_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxDebugDrawer, (SV)F))
+if(!TS((SV)F,GfxDebugDrawer))
 CATE(TE,"GfxDebugDrawer::__del__ expects GfxDebugDrawer as first argument."));
 
-DELETE(GfxDebugDrawer,(GfxDebugDrawer*)F->data);
+DELETE((GfxDebugDrawer*)F->data);
 }SV GfxDebugDrawer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"GfxDebugDrawer's constructor" EAOE));
-if(!TS(GfxDebugDrawer,a[0]))
+if(!TS(a[0],GfxDebugDrawer))
 CATE(TE,"GfxDebugDrawer's constructor expects GfxDebugDrawer as first argument."));
 CATE(TE,UFOF("GfxDebugDrawer's constructor.")));
 R CN;
@@ -29628,13 +31161,13 @@ SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxDebugDrawer::addLine" EAOE));
 GfxDebugDrawer*F;
-if(!TS(GfxDebugDrawer,a[0]))
+if(!TS(a[0],GfxDebugDrawer))
 CATE(TE,FAE("GfxDebugDrawer::addLine","GfxDebugDrawer")));
 else
  F=(GfxDebugDrawer*)((NO)a[0])->data;
 
 if(a.getCount()==5)
-if(1&&TS(const Position3D &,a[1])&&TS(const Position3D &,a[2])&&TS(const Float4 &,a[3])&&TS(const Float4 &,a[4]))
+if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &)&&TS(a[3],const Float4 &)&&TS(a[4],const Float4 &))
 {
 ( F->addLine(val_to_c<const Position3D &>::f(ctx,a[1]), val_to_c<const Position3D &>::f(ctx,a[2]), val_to_c<const Float4 &>::f(ctx,a[3]), val_to_c<const Float4 &>::f(ctx,a[4])));
 R CN;
@@ -29648,13 +31181,13 @@ SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxDebugDrawer::render" EAOE));
 GfxDebugDrawer*F;
-if(!TS(GfxDebugDrawer,a[0]))
+if(!TS(a[0],GfxDebugDrawer))
 CATE(TE,FAE("GfxDebugDrawer::render","GfxDebugDrawer")));
 else
  F=(GfxDebugDrawer*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(const Camera &,a[1]))
+if(1&&TS(a[1],const Camera &))
 {
 ( F->render(val_to_c<const Camera &>::f(ctx,a[1])));
 R CN;
@@ -29678,7 +31211,7 @@ SV Filesystem_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"FilesystemRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Filesystem*,(SV)F))
+if(!TS((SV)F,Filesystem*))
 CATE(TE,"FilesystemRef::deref expects FilesystemRef as first argument."));
 R CV(*(Filesystem *)((NO)F)->data);
 }
@@ -29687,7 +31220,7 @@ SV Filesystem_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Filesystem::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Filesystem*,(SV)F))
+if(!TS((SV)F,Filesystem*))
 CATE(TE,"FilesystemRef::refset expects FilesystemRef as first argument."));
 *((Filesystem *)((NO)F)->data) = val_to_c<Filesystem>::f(ctx,a[1]);
 R CN;
@@ -29695,13 +31228,13 @@ R CN;
 
 void Filesystem_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Filesystem*,(SV)F))
+if(!TS((SV)F,Filesystem*))
 CATE(TE,"FilesystemRef::__del__ expects FilesystemRef as first argument."));
-SCRIPT_DELETE(Filesystem, (Filesystem *)F->data);
+SCRIPT_DELETE((Filesystem *)F->data);
 }
 SV Filesystem_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Filesystem*,(SV)F))
+if(!TS((SV)F,Filesystem*))
 CATE(TE,FAE("FilesystemRef's get method","FilesystemRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -29734,7 +31267,7 @@ R Filesystem_get_member(ctx, &obj, key);
 }
 void Filesystem_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Filesystem*,(SV)F))
+if(!TS((SV)F,Filesystem*))
 CATE(TE,FAE("FilesystemRef's set method","FilesystemRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -29743,6 +31276,87 @@ obj.typeID=EXT->Filesystem_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Filesystem_set_member(ctx, &obj, key, value);
+}
+SV GfxCompiledShader_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxCompiledShader;
+NO obj=(NO)GfxCompiledShader_new(ctx, args2);
+obj->funcs=GfxCompiledShader_ptr_funcs;
+obj->typeID=EXT->GfxCompiledShader_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxCompiledShader_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxCompiledShaderRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxCompiledShader*))
+CATE(TE,"GfxCompiledShaderRef::deref expects GfxCompiledShaderRef as first argument."));
+CATE(TE,"GfxCompiledShader objects are not copyable."));
+}
+SV GfxCompiledShader_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxCompiledShader::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxCompiledShader*))
+CATE(TE,"GfxCompiledShaderRef::refset expects GfxCompiledShaderRef as first argument."));
+CATE(TE,"GfxCompiledShader objects are not copyable."));
+R CN;
+}
+
+void GfxCompiledShader_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxCompiledShader*))
+CATE(TE,"GfxCompiledShaderRef::__del__ expects GfxCompiledShaderRef as first argument."));
+SCRIPT_DELETE((GfxCompiledShader *)F->data);
+}
+SV GfxCompiledShader_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxCompiledShader*))
+CATE(TE,FAE("GfxCompiledShaderRef's get method","GfxCompiledShaderRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxCompiledShaderPtr");
+EI(keyStr=="__new__")
+R CNF(GfxCompiledShader_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxCompiledShader_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxCompiledShader_ptr_deref);
+if(keyStr=="refset")R CNF(GfxCompiledShader_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxCompiledShader_funcs;
+obj.typeID=EXT->GfxCompiledShader_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxCompiledShader_get_member(ctx, &obj, key);
+}
+void GfxCompiledShader_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxCompiledShader*))
+CATE(TE,FAE("GfxCompiledShaderRef's set method","GfxCompiledShaderRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxCompiledShader_funcs;
+obj.typeID=EXT->GfxCompiledShader_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxCompiledShader_set_member(ctx, &obj, key, value);
 }
 SV UInt2_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -29759,7 +31373,7 @@ SV UInt2_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"UInt2Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T2<uint32_t>*,(SV)F))
+if(!TS((SV)F,T2<uint32_t>*))
 CATE(TE,"UInt2Ref::deref expects UInt2Ref as first argument."));
 R CV(*(T2<uint32_t> *)((NO)F)->data);
 }
@@ -29768,7 +31382,7 @@ SV UInt2_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"UInt2::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T2<uint32_t>*,(SV)F))
+if(!TS((SV)F,T2<uint32_t>*))
 CATE(TE,"UInt2Ref::refset expects UInt2Ref as first argument."));
 *((T2<uint32_t> *)((NO)F)->data) = val_to_c<T2<uint32_t>>::f(ctx,a[1]);
 R CN;
@@ -29776,13 +31390,13 @@ R CN;
 
 void UInt2_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<uint32_t>*,(SV)F))
+if(!TS((SV)F,T2<uint32_t>*))
 CATE(TE,"UInt2Ref::__del__ expects UInt2Ref as first argument."));
-SCRIPT_DELETE(T2<uint32_t>, (T2<uint32_t> *)F->data);
+SCRIPT_DELETE((T2<uint32_t> *)F->data);
 }
 SV UInt2_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T2<uint32_t>*,(SV)F))
+if(!TS((SV)F,T2<uint32_t>*))
 CATE(TE,FAE("UInt2Ref's get method","UInt2Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -29815,7 +31429,7 @@ R UInt2_get_member(ctx, &obj, key);
 }
 void UInt2_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T2<uint32_t>*,(SV)F))
+if(!TS((SV)F,T2<uint32_t>*))
 CATE(TE,FAE("UInt2Ref's set method","UInt2Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -29840,7 +31454,7 @@ SV GPUTimer_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GPUTimerRef::deref" EAOE));
 SV F=a[0];
-if(!TS(GPUTimer*,(SV)F))
+if(!TS((SV)F,GPUTimer*))
 CATE(TE,"GPUTimerRef::deref expects GPUTimerRef as first argument."));
 CATE(TE,"GPUTimer objects are not copyable."));
 }
@@ -29849,7 +31463,7 @@ SV GPUTimer_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GPUTimer::refset expects two arguments."));
 SV F=a[0];
-if(!TS(GPUTimer*,(SV)F))
+if(!TS((SV)F,GPUTimer*))
 CATE(TE,"GPUTimerRef::refset expects GPUTimerRef as first argument."));
 CATE(TE,"GPUTimer objects are not copyable."));
 R CN;
@@ -29857,13 +31471,13 @@ R CN;
 
 void GPUTimer_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(GPUTimer*,(SV)F))
+if(!TS((SV)F,GPUTimer*))
 CATE(TE,"GPUTimerRef::__del__ expects GPUTimerRef as first argument."));
-SCRIPT_DELETE(GPUTimer, (GPUTimer *)F->data);
+SCRIPT_DELETE((GPUTimer *)F->data);
 }
 SV GPUTimer_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(GPUTimer*,(SV)F))
+if(!TS((SV)F,GPUTimer*))
 CATE(TE,FAE("GPUTimerRef's get method","GPUTimerRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -29896,7 +31510,7 @@ R GPUTimer_get_member(ctx, &obj, key);
 }
 void GPUTimer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(GPUTimer*,(SV)F))
+if(!TS((SV)F,GPUTimer*))
 CATE(TE,FAE("GPUTimerRef's set method","GPUTimerRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -29921,7 +31535,7 @@ SV RigidBody_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"RigidBodyRef::deref" EAOE));
 SV F=a[0];
-if(!TS(RigidBody*,(SV)F))
+if(!TS((SV)F,RigidBody*))
 CATE(TE,"RigidBodyRef::deref expects RigidBodyRef as first argument."));
 CATE(TE,"RigidBody objects are not copyable."));
 }
@@ -29930,7 +31544,7 @@ SV RigidBody_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"RigidBody::refset expects two arguments."));
 SV F=a[0];
-if(!TS(RigidBody*,(SV)F))
+if(!TS((SV)F,RigidBody*))
 CATE(TE,"RigidBodyRef::refset expects RigidBodyRef as first argument."));
 CATE(TE,"RigidBody objects are not copyable."));
 R CN;
@@ -29938,12 +31552,12 @@ R CN;
 
 void RigidBody_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(RigidBody*,(SV)F))
+if(!TS((SV)F,RigidBody*))
 CATE(TE,"RigidBodyRef::__del__ expects RigidBodyRef as first argument."));
 }
 SV RigidBody_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(RigidBody*,(SV)F))
+if(!TS((SV)F,RigidBody*))
 CATE(TE,FAE("RigidBodyRef's get method","RigidBodyRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -29976,7 +31590,7 @@ R RigidBody_get_member(ctx, &obj, key);
 }
 void RigidBody_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(RigidBody*,(SV)F))
+if(!TS((SV)F,RigidBody*))
 CATE(TE,FAE("RigidBodyRef's set method","RigidBodyRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30001,7 +31615,7 @@ SV Float2_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Float2Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T2<float>*,(SV)F))
+if(!TS((SV)F,T2<float>*))
 CATE(TE,"Float2Ref::deref expects Float2Ref as first argument."));
 R CV(*(T2<float> *)((NO)F)->data);
 }
@@ -30010,7 +31624,7 @@ SV Float2_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Float2::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T2<float>*,(SV)F))
+if(!TS((SV)F,T2<float>*))
 CATE(TE,"Float2Ref::refset expects Float2Ref as first argument."));
 *((T2<float> *)((NO)F)->data) = val_to_c<T2<float>>::f(ctx,a[1]);
 R CN;
@@ -30018,13 +31632,13 @@ R CN;
 
 void Float2_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<float>*,(SV)F))
+if(!TS((SV)F,T2<float>*))
 CATE(TE,"Float2Ref::__del__ expects Float2Ref as first argument."));
-SCRIPT_DELETE(T2<float>, (T2<float> *)F->data);
+SCRIPT_DELETE((T2<float> *)F->data);
 }
 SV Float2_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T2<float>*,(SV)F))
+if(!TS((SV)F,T2<float>*))
 CATE(TE,FAE("Float2Ref's get method","Float2Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30057,7 +31671,7 @@ R Float2_get_member(ctx, &obj, key);
 }
 void Float2_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T2<float>*,(SV)F))
+if(!TS((SV)F,T2<float>*))
 CATE(TE,FAE("Float2Ref's set method","Float2Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30082,7 +31696,7 @@ SV AudioSource_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"AudioSourceRef::deref" EAOE));
 SV F=a[0];
-if(!TS(AudioSource*,(SV)F))
+if(!TS((SV)F,AudioSource*))
 CATE(TE,"AudioSourceRef::deref expects AudioSourceRef as first argument."));
 R CV(*(AudioSource *)((NO)F)->data);
 }
@@ -30091,7 +31705,7 @@ SV AudioSource_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"AudioSource::refset expects two arguments."));
 SV F=a[0];
-if(!TS(AudioSource*,(SV)F))
+if(!TS((SV)F,AudioSource*))
 CATE(TE,"AudioSourceRef::refset expects AudioSourceRef as first argument."));
 *((AudioSource *)((NO)F)->data) = val_to_c<AudioSource>::f(ctx,a[1]);
 R CN;
@@ -30099,13 +31713,13 @@ R CN;
 
 void AudioSource_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(AudioSource*,(SV)F))
+if(!TS((SV)F,AudioSource*))
 CATE(TE,"AudioSourceRef::__del__ expects AudioSourceRef as first argument."));
-SCRIPT_DELETE(AudioSource, (AudioSource *)F->data);
+SCRIPT_DELETE((AudioSource *)F->data);
 }
 SV AudioSource_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(AudioSource*,(SV)F))
+if(!TS((SV)F,AudioSource*))
 CATE(TE,FAE("AudioSourceRef's get method","AudioSourceRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30138,7 +31752,7 @@ R AudioSource_get_member(ctx, &obj, key);
 }
 void AudioSource_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(AudioSource*,(SV)F))
+if(!TS((SV)F,AudioSource*))
 CATE(TE,FAE("AudioSourceRef's set method","AudioSourceRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30163,7 +31777,7 @@ SV Camera_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"CameraRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Camera*,(SV)F))
+if(!TS((SV)F,Camera*))
 CATE(TE,"CameraRef::deref expects CameraRef as first argument."));
 R CV(*(Camera *)((NO)F)->data);
 }
@@ -30172,7 +31786,7 @@ SV Camera_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Camera::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Camera*,(SV)F))
+if(!TS((SV)F,Camera*))
 CATE(TE,"CameraRef::refset expects CameraRef as first argument."));
 *((Camera *)((NO)F)->data) = val_to_c<Camera>::f(ctx,a[1]);
 R CN;
@@ -30180,13 +31794,13 @@ R CN;
 
 void Camera_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Camera*,(SV)F))
+if(!TS((SV)F,Camera*))
 CATE(TE,"CameraRef::__del__ expects CameraRef as first argument."));
-SCRIPT_DELETE(Camera, (Camera *)F->data);
+SCRIPT_DELETE((Camera *)F->data);
 }
 SV Camera_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Camera*,(SV)F))
+if(!TS((SV)F,Camera*))
 CATE(TE,FAE("CameraRef's get method","CameraRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30219,7 +31833,7 @@ R Camera_get_member(ctx, &obj, key);
 }
 void Camera_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Camera*,(SV)F))
+if(!TS((SV)F,Camera*))
 CATE(TE,FAE("CameraRef's set method","CameraRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30244,7 +31858,7 @@ SV Resource_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"ResourceRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Resource*,(SV)F))
+if(!TS((SV)F,Resource*))
 CATE(TE,"ResourceRef::deref expects ResourceRef as first argument."));
 CATE(TE,"Resource objects are not copyable."));
 }
@@ -30253,7 +31867,7 @@ SV Resource_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Resource::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Resource*,(SV)F))
+if(!TS((SV)F,Resource*))
 CATE(TE,"ResourceRef::refset expects ResourceRef as first argument."));
 CATE(TE,"Resource objects are not copyable."));
 R CN;
@@ -30261,14 +31875,14 @@ R CN;
 
 void Resource_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Resource*,(SV)F))
+if(!TS((SV)F,Resource*))
 CATE(TE,"ResourceRef::__del__ expects ResourceRef as first argument."));
 Resource*obj=(Resource*)F->data;
 if(shouldScriptDelete(F->data)) {obj->release();}
 }
 SV Resource_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Resource*,(SV)F))
+if(!TS((SV)F,Resource*))
 CATE(TE,FAE("ResourceRef's get method","ResourceRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30301,7 +31915,7 @@ R Resource_get_member(ctx, &obj, key);
 }
 void Resource_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Resource*,(SV)F))
+if(!TS((SV)F,Resource*))
 CATE(TE,FAE("ResourceRef's set method","ResourceRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30310,6 +31924,88 @@ obj.typeID=EXT->Resource_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Resource_set_member(ctx, &obj, key, value);
+}
+SV GfxShader_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxShader;
+NO obj=(NO)GfxShader_new(ctx, args2);
+obj->funcs=GfxShader_ptr_funcs;
+obj->typeID=EXT->GfxShader_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxShader_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxShaderRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxShader*))
+CATE(TE,"GfxShaderRef::deref expects GfxShaderRef as first argument."));
+CATE(TE,"GfxShader objects are not copyable."));
+}
+SV GfxShader_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxShader::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxShader*))
+CATE(TE,"GfxShaderRef::refset expects GfxShaderRef as first argument."));
+CATE(TE,"GfxShader objects are not copyable."));
+R CN;
+}
+
+void GfxShader_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxShader*))
+CATE(TE,"GfxShaderRef::__del__ expects GfxShaderRef as first argument."));
+GfxShader*obj=(GfxShader*)F->data;
+if(shouldScriptDelete(F->data)) {obj->release();}
+}
+SV GfxShader_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxShader*))
+CATE(TE,FAE("GfxShaderRef's get method","GfxShaderRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxShaderPtr");
+EI(keyStr=="__new__")
+R CNF(GfxShader_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxShader_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxShader_ptr_deref);
+if(keyStr=="refset")R CNF(GfxShader_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxShader_funcs;
+obj.typeID=EXT->GfxShader_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxShader_get_member(ctx, &obj, key);
+}
+void GfxShader_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxShader*))
+CATE(TE,FAE("GfxShaderRef's set method","GfxShaderRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxShader_funcs;
+obj.typeID=EXT->GfxShader_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxShader_set_member(ctx, &obj, key, value);
 }
 SV UInt4_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -30326,7 +32022,7 @@ SV UInt4_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"UInt4Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T4<uint32_t>*,(SV)F))
+if(!TS((SV)F,T4<uint32_t>*))
 CATE(TE,"UInt4Ref::deref expects UInt4Ref as first argument."));
 R CV(*(T4<uint32_t> *)((NO)F)->data);
 }
@@ -30335,7 +32031,7 @@ SV UInt4_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"UInt4::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T4<uint32_t>*,(SV)F))
+if(!TS((SV)F,T4<uint32_t>*))
 CATE(TE,"UInt4Ref::refset expects UInt4Ref as first argument."));
 *((T4<uint32_t> *)((NO)F)->data) = val_to_c<T4<uint32_t>>::f(ctx,a[1]);
 R CN;
@@ -30343,13 +32039,13 @@ R CN;
 
 void UInt4_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<uint32_t>*,(SV)F))
+if(!TS((SV)F,T4<uint32_t>*))
 CATE(TE,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
-SCRIPT_DELETE(T4<uint32_t>, (T4<uint32_t> *)F->data);
+SCRIPT_DELETE((T4<uint32_t> *)F->data);
 }
 SV UInt4_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T4<uint32_t>*,(SV)F))
+if(!TS((SV)F,T4<uint32_t>*))
 CATE(TE,FAE("UInt4Ref's get method","UInt4Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30382,7 +32078,7 @@ R UInt4_get_member(ctx, &obj, key);
 }
 void UInt4_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T4<uint32_t>*,(SV)F))
+if(!TS((SV)F,T4<uint32_t>*))
 CATE(TE,FAE("UInt4Ref's set method","UInt4Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30407,7 +32103,7 @@ SV Int3_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Int3Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T3<int32_t>*,(SV)F))
+if(!TS((SV)F,T3<int32_t>*))
 CATE(TE,"Int3Ref::deref expects Int3Ref as first argument."));
 R CV(*(T3<int32_t> *)((NO)F)->data);
 }
@@ -30416,7 +32112,7 @@ SV Int3_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Int3::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T3<int32_t>*,(SV)F))
+if(!TS((SV)F,T3<int32_t>*))
 CATE(TE,"Int3Ref::refset expects Int3Ref as first argument."));
 *((T3<int32_t> *)((NO)F)->data) = val_to_c<T3<int32_t>>::f(ctx,a[1]);
 R CN;
@@ -30424,13 +32120,13 @@ R CN;
 
 void Int3_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T3<int32_t>*,(SV)F))
+if(!TS((SV)F,T3<int32_t>*))
 CATE(TE,"Int3Ref::__del__ expects Int3Ref as first argument."));
-SCRIPT_DELETE(T3<int32_t>, (T3<int32_t> *)F->data);
+SCRIPT_DELETE((T3<int32_t> *)F->data);
 }
 SV Int3_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T3<int32_t>*,(SV)F))
+if(!TS((SV)F,T3<int32_t>*))
 CATE(TE,FAE("Int3Ref's get method","Int3Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30463,7 +32159,7 @@ R Int3_get_member(ctx, &obj, key);
 }
 void Int3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T3<int32_t>*,(SV)F))
+if(!TS((SV)F,T3<int32_t>*))
 CATE(TE,FAE("Int3Ref's set method","Int3Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30488,7 +32184,7 @@ SV ResizableData_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"ResizableDataRef::deref" EAOE));
 SV F=a[0];
-if(!TS(ResizableData*,(SV)F))
+if(!TS((SV)F,ResizableData*))
 CATE(TE,"ResizableDataRef::deref expects ResizableDataRef as first argument."));
 R CV(*(ResizableData *)((NO)F)->data);
 }
@@ -30497,7 +32193,7 @@ SV ResizableData_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"ResizableData::refset expects two arguments."));
 SV F=a[0];
-if(!TS(ResizableData*,(SV)F))
+if(!TS((SV)F,ResizableData*))
 CATE(TE,"ResizableDataRef::refset expects ResizableDataRef as first argument."));
 *((ResizableData *)((NO)F)->data) = val_to_c<ResizableData>::f(ctx,a[1]);
 R CN;
@@ -30505,13 +32201,13 @@ R CN;
 
 void ResizableData_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(ResizableData*,(SV)F))
+if(!TS((SV)F,ResizableData*))
 CATE(TE,"ResizableDataRef::__del__ expects ResizableDataRef as first argument."));
-SCRIPT_DELETE(ResizableData, (ResizableData *)F->data);
+SCRIPT_DELETE((ResizableData *)F->data);
 }
 SV ResizableData_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(ResizableData*,(SV)F))
+if(!TS((SV)F,ResizableData*))
 CATE(TE,FAE("ResizableDataRef's get method","ResizableDataRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30544,7 +32240,7 @@ R ResizableData_get_member(ctx, &obj, key);
 }
 void ResizableData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(ResizableData*,(SV)F))
+if(!TS((SV)F,ResizableData*))
 CATE(TE,FAE("ResizableDataRef's set method","ResizableDataRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30569,7 +32265,7 @@ SV Int4_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Int4Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T4<int32_t>*,(SV)F))
+if(!TS((SV)F,T4<int32_t>*))
 CATE(TE,"Int4Ref::deref expects Int4Ref as first argument."));
 R CV(*(T4<int32_t> *)((NO)F)->data);
 }
@@ -30578,7 +32274,7 @@ SV Int4_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Int4::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T4<int32_t>*,(SV)F))
+if(!TS((SV)F,T4<int32_t>*))
 CATE(TE,"Int4Ref::refset expects Int4Ref as first argument."));
 *((T4<int32_t> *)((NO)F)->data) = val_to_c<T4<int32_t>>::f(ctx,a[1]);
 R CN;
@@ -30586,13 +32282,13 @@ R CN;
 
 void Int4_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<int32_t>*,(SV)F))
+if(!TS((SV)F,T4<int32_t>*))
 CATE(TE,"Int4Ref::__del__ expects Int4Ref as first argument."));
-SCRIPT_DELETE(T4<int32_t>, (T4<int32_t> *)F->data);
+SCRIPT_DELETE((T4<int32_t> *)F->data);
 }
 SV Int4_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T4<int32_t>*,(SV)F))
+if(!TS((SV)F,T4<int32_t>*))
 CATE(TE,FAE("Int4Ref's get method","Int4Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30625,7 +32321,7 @@ R Int4_get_member(ctx, &obj, key);
 }
 void Int4_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T4<int32_t>*,(SV)F))
+if(!TS((SV)F,T4<int32_t>*))
 CATE(TE,FAE("Int4Ref's set method","Int4Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30650,7 +32346,7 @@ SV Float3_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Float3Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T3<float>*,(SV)F))
+if(!TS((SV)F,T3<float>*))
 CATE(TE,"Float3Ref::deref expects Float3Ref as first argument."));
 R CV(*(T3<float> *)((NO)F)->data);
 }
@@ -30659,7 +32355,7 @@ SV Float3_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Float3::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T3<float>*,(SV)F))
+if(!TS((SV)F,T3<float>*))
 CATE(TE,"Float3Ref::refset expects Float3Ref as first argument."));
 *((T3<float> *)((NO)F)->data) = val_to_c<T3<float>>::f(ctx,a[1]);
 R CN;
@@ -30667,13 +32363,13 @@ R CN;
 
 void Float3_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T3<float>*,(SV)F))
+if(!TS((SV)F,T3<float>*))
 CATE(TE,"Float3Ref::__del__ expects Float3Ref as first argument."));
-SCRIPT_DELETE(T3<float>, (T3<float> *)F->data);
+SCRIPT_DELETE((T3<float> *)F->data);
 }
 SV Float3_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T3<float>*,(SV)F))
+if(!TS((SV)F,T3<float>*))
 CATE(TE,FAE("Float3Ref's get method","Float3Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30706,7 +32402,7 @@ R Float3_get_member(ctx, &obj, key);
 }
 void Float3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T3<float>*,(SV)F))
+if(!TS((SV)F,T3<float>*))
 CATE(TE,FAE("Float3Ref's set method","Float3Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30731,7 +32427,7 @@ SV GfxLODList_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GfxLODListRef::deref" EAOE));
 SV F=a[0];
-if(!TS(List<GfxLOD>*,(SV)F))
+if(!TS((SV)F,List<GfxLOD>*))
 CATE(TE,"GfxLODListRef::deref expects GfxLODListRef as first argument."));
 R CV(*(List<GfxLOD> *)((NO)F)->data);
 }
@@ -30740,7 +32436,7 @@ SV GfxLODList_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GfxLODList::refset expects two arguments."));
 SV F=a[0];
-if(!TS(List<GfxLOD>*,(SV)F))
+if(!TS((SV)F,List<GfxLOD>*))
 CATE(TE,"GfxLODListRef::refset expects GfxLODListRef as first argument."));
 *((List<GfxLOD> *)((NO)F)->data) = val_to_c<List<GfxLOD>>::f(ctx,a[1]);
 R CN;
@@ -30748,13 +32444,13 @@ R CN;
 
 void GfxLODList_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(List<GfxLOD>*,(SV)F))
+if(!TS((SV)F,List<GfxLOD>*))
 CATE(TE,"GfxLODListRef::__del__ expects GfxLODListRef as first argument."));
-SCRIPT_DELETE(List<GfxLOD>, (List<GfxLOD> *)F->data);
+SCRIPT_DELETE((List<GfxLOD> *)F->data);
 }
 SV GfxLODList_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(List<GfxLOD>*,(SV)F))
+if(!TS((SV)F,List<GfxLOD>*))
 CATE(TE,FAE("GfxLODListRef's get method","GfxLODListRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30787,7 +32483,7 @@ R GfxLODList_get_member(ctx, &obj, key);
 }
 void GfxLODList_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(List<GfxLOD>*,(SV)F))
+if(!TS((SV)F,List<GfxLOD>*))
 CATE(TE,FAE("GfxLODListRef's set method","GfxLODListRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30812,7 +32508,7 @@ SV GfxBuffer_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GfxBufferRef::deref" EAOE));
 SV F=a[0];
-if(!TS(GfxBuffer*,(SV)F))
+if(!TS((SV)F,GfxBuffer*))
 CATE(TE,"GfxBufferRef::deref expects GfxBufferRef as first argument."));
 CATE(TE,"GfxBuffer objects are not copyable."));
 }
@@ -30821,7 +32517,7 @@ SV GfxBuffer_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GfxBuffer::refset expects two arguments."));
 SV F=a[0];
-if(!TS(GfxBuffer*,(SV)F))
+if(!TS((SV)F,GfxBuffer*))
 CATE(TE,"GfxBufferRef::refset expects GfxBufferRef as first argument."));
 CATE(TE,"GfxBuffer objects are not copyable."));
 R CN;
@@ -30829,13 +32525,13 @@ R CN;
 
 void GfxBuffer_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxBuffer*,(SV)F))
+if(!TS((SV)F,GfxBuffer*))
 CATE(TE,"GfxBufferRef::__del__ expects GfxBufferRef as first argument."));
-SCRIPT_DELETE(GfxBuffer, (GfxBuffer *)F->data);
+SCRIPT_DELETE((GfxBuffer *)F->data);
 }
 SV GfxBuffer_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(GfxBuffer*,(SV)F))
+if(!TS((SV)F,GfxBuffer*))
 CATE(TE,FAE("GfxBufferRef's get method","GfxBufferRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30868,7 +32564,7 @@ R GfxBuffer_get_member(ctx, &obj, key);
 }
 void GfxBuffer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(GfxBuffer*,(SV)F))
+if(!TS((SV)F,GfxBuffer*))
 CATE(TE,FAE("GfxBufferRef's set method","GfxBufferRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30893,7 +32589,7 @@ SV Transform_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"TransformRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Transform*,(SV)F))
+if(!TS((SV)F,Transform*))
 CATE(TE,"TransformRef::deref expects TransformRef as first argument."));
 R CV(*(Transform *)((NO)F)->data);
 }
@@ -30902,7 +32598,7 @@ SV Transform_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Transform::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Transform*,(SV)F))
+if(!TS((SV)F,Transform*))
 CATE(TE,"TransformRef::refset expects TransformRef as first argument."));
 *((Transform *)((NO)F)->data) = val_to_c<Transform>::f(ctx,a[1]);
 R CN;
@@ -30910,13 +32606,13 @@ R CN;
 
 void Transform_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Transform*,(SV)F))
+if(!TS((SV)F,Transform*))
 CATE(TE,"TransformRef::__del__ expects TransformRef as first argument."));
-SCRIPT_DELETE(Transform, (Transform *)F->data);
+SCRIPT_DELETE((Transform *)F->data);
 }
 SV Transform_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Transform*,(SV)F))
+if(!TS((SV)F,Transform*))
 CATE(TE,FAE("TransformRef's get method","TransformRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -30949,7 +32645,7 @@ R Transform_get_member(ctx, &obj, key);
 }
 void Transform_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Transform*,(SV)F))
+if(!TS((SV)F,Transform*))
 CATE(TE,FAE("TransformRef's set method","TransformRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -30974,7 +32670,7 @@ SV Quaternion_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"QuaternionRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Quaternion*,(SV)F))
+if(!TS((SV)F,Quaternion*))
 CATE(TE,"QuaternionRef::deref expects QuaternionRef as first argument."));
 R CV(*(Quaternion *)((NO)F)->data);
 }
@@ -30983,7 +32679,7 @@ SV Quaternion_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Quaternion::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Quaternion*,(SV)F))
+if(!TS((SV)F,Quaternion*))
 CATE(TE,"QuaternionRef::refset expects QuaternionRef as first argument."));
 *((Quaternion *)((NO)F)->data) = val_to_c<Quaternion>::f(ctx,a[1]);
 R CN;
@@ -30991,13 +32687,13 @@ R CN;
 
 void Quaternion_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Quaternion*,(SV)F))
+if(!TS((SV)F,Quaternion*))
 CATE(TE,"QuaternionRef::__del__ expects QuaternionRef as first argument."));
-SCRIPT_DELETE(Quaternion, (Quaternion *)F->data);
+SCRIPT_DELETE((Quaternion *)F->data);
 }
 SV Quaternion_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Quaternion*,(SV)F))
+if(!TS((SV)F,Quaternion*))
 CATE(TE,FAE("QuaternionRef's get method","QuaternionRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31030,7 +32726,7 @@ R Quaternion_get_member(ctx, &obj, key);
 }
 void Quaternion_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Quaternion*,(SV)F))
+if(!TS((SV)F,Quaternion*))
 CATE(TE,FAE("QuaternionRef's set method","QuaternionRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31055,7 +32751,7 @@ SV Int2_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Int2Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T2<int32_t>*,(SV)F))
+if(!TS((SV)F,T2<int32_t>*))
 CATE(TE,"Int2Ref::deref expects Int2Ref as first argument."));
 R CV(*(T2<int32_t> *)((NO)F)->data);
 }
@@ -31064,7 +32760,7 @@ SV Int2_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Int2::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T2<int32_t>*,(SV)F))
+if(!TS((SV)F,T2<int32_t>*))
 CATE(TE,"Int2Ref::refset expects Int2Ref as first argument."));
 *((T2<int32_t> *)((NO)F)->data) = val_to_c<T2<int32_t>>::f(ctx,a[1]);
 R CN;
@@ -31072,13 +32768,13 @@ R CN;
 
 void Int2_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T2<int32_t>*,(SV)F))
+if(!TS((SV)F,T2<int32_t>*))
 CATE(TE,"Int2Ref::__del__ expects Int2Ref as first argument."));
-SCRIPT_DELETE(T2<int32_t>, (T2<int32_t> *)F->data);
+SCRIPT_DELETE((T2<int32_t> *)F->data);
 }
 SV Int2_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T2<int32_t>*,(SV)F))
+if(!TS((SV)F,T2<int32_t>*))
 CATE(TE,FAE("Int2Ref's get method","Int2Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31111,7 +32807,7 @@ R Int2_get_member(ctx, &obj, key);
 }
 void Int2_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T2<int32_t>*,(SV)F))
+if(!TS((SV)F,T2<int32_t>*))
 CATE(TE,FAE("Int2Ref's set method","Int2Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31136,7 +32832,7 @@ SV AudioWorld_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"AudioWorldRef::deref" EAOE));
 SV F=a[0];
-if(!TS(AudioWorld*,(SV)F))
+if(!TS((SV)F,AudioWorld*))
 CATE(TE,"AudioWorldRef::deref expects AudioWorldRef as first argument."));
 R CV(*(AudioWorld *)((NO)F)->data);
 }
@@ -31145,7 +32841,7 @@ SV AudioWorld_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"AudioWorld::refset expects two arguments."));
 SV F=a[0];
-if(!TS(AudioWorld*,(SV)F))
+if(!TS((SV)F,AudioWorld*))
 CATE(TE,"AudioWorldRef::refset expects AudioWorldRef as first argument."));
 *((AudioWorld *)((NO)F)->data) = val_to_c<AudioWorld>::f(ctx,a[1]);
 R CN;
@@ -31153,13 +32849,13 @@ R CN;
 
 void AudioWorld_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(AudioWorld*,(SV)F))
+if(!TS((SV)F,AudioWorld*))
 CATE(TE,"AudioWorldRef::__del__ expects AudioWorldRef as first argument."));
-SCRIPT_DELETE(AudioWorld, (AudioWorld *)F->data);
+SCRIPT_DELETE((AudioWorld *)F->data);
 }
 SV AudioWorld_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(AudioWorld*,(SV)F))
+if(!TS((SV)F,AudioWorld*))
 CATE(TE,FAE("AudioWorldRef's get method","AudioWorldRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31192,7 +32888,7 @@ R AudioWorld_get_member(ctx, &obj, key);
 }
 void AudioWorld_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(AudioWorld*,(SV)F))
+if(!TS((SV)F,AudioWorld*))
 CATE(TE,FAE("AudioWorldRef's set method","AudioWorldRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31201,6 +32897,87 @@ obj.typeID=EXT->AudioWorld_typeID;
 obj.refCount=1;
 obj.data=F->data;
 AudioWorld_set_member(ctx, &obj, key, value);
+}
+SV StrStrMap_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->StrStrMap;
+NO obj=(NO)StrStrMap_new(ctx, args2);
+obj->funcs=StrStrMap_ptr_funcs;
+obj->typeID=EXT->StrStrMap_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV StrStrMap_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"StrStrMapRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,HashMap<String,String>*))
+CATE(TE,"StrStrMapRef::deref expects StrStrMapRef as first argument."));
+R CV(*(HashMap<String,String> *)((NO)F)->data);
+}
+SV StrStrMap_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"StrStrMap::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,HashMap<String,String>*))
+CATE(TE,"StrStrMapRef::refset expects StrStrMapRef as first argument."));
+*((HashMap<String,String> *)((NO)F)->data) = val_to_c<HashMap<String,String>>::f(ctx,a[1]);
+R CN;
+}
+
+void StrStrMap_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,HashMap<String,String>*))
+CATE(TE,"StrStrMapRef::__del__ expects StrStrMapRef as first argument."));
+SCRIPT_DELETE((HashMap<String,String> *)F->data);
+}
+SV StrStrMap_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,HashMap<String,String>*))
+CATE(TE,FAE("StrStrMapRef's get method","StrStrMapRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("StrStrMapPtr");
+EI(keyStr=="__new__")
+R CNF(StrStrMap_ptr_new);
+EI(keyStr=="__call__")
+R CNF(StrStrMap_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(StrStrMap_ptr_deref);
+if(keyStr=="refset")R CNF(StrStrMap_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=StrStrMap_funcs;
+obj.typeID=EXT->StrStrMap_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R StrStrMap_get_member(ctx, &obj, key);
+}
+void StrStrMap_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,HashMap<String,String>*))
+CATE(TE,FAE("StrStrMapRef's set method","StrStrMapRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=StrStrMap_funcs;
+obj.typeID=EXT->StrStrMap_typeID;
+obj.refCount=1;
+obj.data=F->data;
+StrStrMap_set_member(ctx, &obj, key, value);
 }
 SV Light_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -31217,7 +32994,7 @@ SV Light_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"LightRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Light*,(SV)F))
+if(!TS((SV)F,Light*))
 CATE(TE,"LightRef::deref expects LightRef as first argument."));
 CATE(TE,"Light objects are not copyable."));
 }
@@ -31226,7 +33003,7 @@ SV Light_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Light::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Light*,(SV)F))
+if(!TS((SV)F,Light*))
 CATE(TE,"LightRef::refset expects LightRef as first argument."));
 CATE(TE,"Light objects are not copyable."));
 R CN;
@@ -31234,13 +33011,13 @@ R CN;
 
 void Light_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Light*,(SV)F))
+if(!TS((SV)F,Light*))
 CATE(TE,"LightRef::__del__ expects LightRef as first argument."));
-SCRIPT_DELETE(Light, (Light *)F->data);
+SCRIPT_DELETE((Light *)F->data);
 }
 SV Light_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Light*,(SV)F))
+if(!TS((SV)F,Light*))
 CATE(TE,FAE("LightRef's get method","LightRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31273,7 +33050,7 @@ R Light_get_member(ctx, &obj, key);
 }
 void Light_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Light*,(SV)F))
+if(!TS((SV)F,Light*))
 CATE(TE,FAE("LightRef's set method","LightRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31298,7 +33075,7 @@ SV LightPointData_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"LightPointDataRef::deref" EAOE));
 SV F=a[0];
-if(!TS(LightPointData*,(SV)F))
+if(!TS((SV)F,LightPointData*))
 CATE(TE,"LightPointDataRef::deref expects LightPointDataRef as first argument."));
 R CV(*(LightPointData *)((NO)F)->data);
 }
@@ -31307,7 +33084,7 @@ SV LightPointData_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"LightPointData::refset expects two arguments."));
 SV F=a[0];
-if(!TS(LightPointData*,(SV)F))
+if(!TS((SV)F,LightPointData*))
 CATE(TE,"LightPointDataRef::refset expects LightPointDataRef as first argument."));
 *((LightPointData *)((NO)F)->data) = val_to_c<LightPointData>::f(ctx,a[1]);
 R CN;
@@ -31315,13 +33092,13 @@ R CN;
 
 void LightPointData_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(LightPointData*,(SV)F))
+if(!TS((SV)F,LightPointData*))
 CATE(TE,"LightPointDataRef::__del__ expects LightPointDataRef as first argument."));
-SCRIPT_DELETE(LightPointData, (LightPointData *)F->data);
+SCRIPT_DELETE((LightPointData *)F->data);
 }
 SV LightPointData_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(LightPointData*,(SV)F))
+if(!TS((SV)F,LightPointData*))
 CATE(TE,FAE("LightPointDataRef's get method","LightPointDataRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31354,7 +33131,7 @@ R LightPointData_get_member(ctx, &obj, key);
 }
 void LightPointData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(LightPointData*,(SV)F))
+if(!TS((SV)F,LightPointData*))
 CATE(TE,FAE("LightPointDataRef's set method","LightPointDataRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31379,7 +33156,7 @@ SV Float4_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Float4Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T4<float>*,(SV)F))
+if(!TS((SV)F,T4<float>*))
 CATE(TE,"Float4Ref::deref expects Float4Ref as first argument."));
 R CV(*(T4<float> *)((NO)F)->data);
 }
@@ -31388,7 +33165,7 @@ SV Float4_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Float4::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T4<float>*,(SV)F))
+if(!TS((SV)F,T4<float>*))
 CATE(TE,"Float4Ref::refset expects Float4Ref as first argument."));
 *((T4<float> *)((NO)F)->data) = val_to_c<T4<float>>::f(ctx,a[1]);
 R CN;
@@ -31396,13 +33173,13 @@ R CN;
 
 void Float4_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T4<float>*,(SV)F))
+if(!TS((SV)F,T4<float>*))
 CATE(TE,"Float4Ref::__del__ expects Float4Ref as first argument."));
-SCRIPT_DELETE(T4<float>, (T4<float> *)F->data);
+SCRIPT_DELETE((T4<float> *)F->data);
 }
 SV Float4_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T4<float>*,(SV)F))
+if(!TS((SV)F,T4<float>*))
 CATE(TE,FAE("Float4Ref's get method","Float4Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31435,7 +33212,7 @@ R Float4_get_member(ctx, &obj, key);
 }
 void Float4_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T4<float>*,(SV)F))
+if(!TS((SV)F,T4<float>*))
 CATE(TE,FAE("Float4Ref's set method","Float4Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31460,7 +33237,7 @@ SV LightDirectionalData_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"LightDirectionalDataRef::deref" EAOE));
 SV F=a[0];
-if(!TS(LightDirectionalData*,(SV)F))
+if(!TS((SV)F,LightDirectionalData*))
 CATE(TE,"LightDirectionalDataRef::deref expects LightDirectionalDataRef as first argument."));
 R CV(*(LightDirectionalData *)((NO)F)->data);
 }
@@ -31469,7 +33246,7 @@ SV LightDirectionalData_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"LightDirectionalData::refset expects two arguments."));
 SV F=a[0];
-if(!TS(LightDirectionalData*,(SV)F))
+if(!TS((SV)F,LightDirectionalData*))
 CATE(TE,"LightDirectionalDataRef::refset expects LightDirectionalDataRef as first argument."));
 *((LightDirectionalData *)((NO)F)->data) = val_to_c<LightDirectionalData>::f(ctx,a[1]);
 R CN;
@@ -31477,13 +33254,13 @@ R CN;
 
 void LightDirectionalData_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(LightDirectionalData*,(SV)F))
+if(!TS((SV)F,LightDirectionalData*))
 CATE(TE,"LightDirectionalDataRef::__del__ expects LightDirectionalDataRef as first argument."));
-SCRIPT_DELETE(LightDirectionalData, (LightDirectionalData *)F->data);
+SCRIPT_DELETE((LightDirectionalData *)F->data);
 }
 SV LightDirectionalData_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(LightDirectionalData*,(SV)F))
+if(!TS((SV)F,LightDirectionalData*))
 CATE(TE,FAE("LightDirectionalDataRef's get method","LightDirectionalDataRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31516,7 +33293,7 @@ R LightDirectionalData_get_member(ctx, &obj, key);
 }
 void LightDirectionalData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(LightDirectionalData*,(SV)F))
+if(!TS((SV)F,LightDirectionalData*))
 CATE(TE,FAE("LightDirectionalDataRef's set method","LightDirectionalDataRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31541,7 +33318,7 @@ SV Matrix4x4_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Matrix4x4Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(Matrix4x4*,(SV)F))
+if(!TS((SV)F,Matrix4x4*))
 CATE(TE,"Matrix4x4Ref::deref expects Matrix4x4Ref as first argument."));
 R CV(*(Matrix4x4 *)((NO)F)->data);
 }
@@ -31550,7 +33327,7 @@ SV Matrix4x4_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Matrix4x4::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Matrix4x4*,(SV)F))
+if(!TS((SV)F,Matrix4x4*))
 CATE(TE,"Matrix4x4Ref::refset expects Matrix4x4Ref as first argument."));
 *((Matrix4x4 *)((NO)F)->data) = val_to_c<Matrix4x4>::f(ctx,a[1]);
 R CN;
@@ -31558,13 +33335,13 @@ R CN;
 
 void Matrix4x4_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Matrix4x4*,(SV)F))
+if(!TS((SV)F,Matrix4x4*))
 CATE(TE,"Matrix4x4Ref::__del__ expects Matrix4x4Ref as first argument."));
-SCRIPT_DELETE(Matrix4x4, (Matrix4x4 *)F->data);
+SCRIPT_DELETE((Matrix4x4 *)F->data);
 }
 SV Matrix4x4_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Matrix4x4*,(SV)F))
+if(!TS((SV)F,Matrix4x4*))
 CATE(TE,FAE("Matrix4x4Ref's get method","Matrix4x4Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31597,7 +33374,7 @@ R Matrix4x4_get_member(ctx, &obj, key);
 }
 void Matrix4x4_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Matrix4x4*,(SV)F))
+if(!TS((SV)F,Matrix4x4*))
 CATE(TE,FAE("Matrix4x4Ref's set method","Matrix4x4Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31622,7 +33399,7 @@ SV UInt3_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"UInt3Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(T3<uint32_t>*,(SV)F))
+if(!TS((SV)F,T3<uint32_t>*))
 CATE(TE,"UInt3Ref::deref expects UInt3Ref as first argument."));
 R CV(*(T3<uint32_t> *)((NO)F)->data);
 }
@@ -31631,7 +33408,7 @@ SV UInt3_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"UInt3::refset expects two arguments."));
 SV F=a[0];
-if(!TS(T3<uint32_t>*,(SV)F))
+if(!TS((SV)F,T3<uint32_t>*))
 CATE(TE,"UInt3Ref::refset expects UInt3Ref as first argument."));
 *((T3<uint32_t> *)((NO)F)->data) = val_to_c<T3<uint32_t>>::f(ctx,a[1]);
 R CN;
@@ -31639,13 +33416,13 @@ R CN;
 
 void UInt3_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(T3<uint32_t>*,(SV)F))
+if(!TS((SV)F,T3<uint32_t>*))
 CATE(TE,"UInt3Ref::__del__ expects UInt3Ref as first argument."));
-SCRIPT_DELETE(T3<uint32_t>, (T3<uint32_t> *)F->data);
+SCRIPT_DELETE((T3<uint32_t> *)F->data);
 }
 SV UInt3_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(T3<uint32_t>*,(SV)F))
+if(!TS((SV)F,T3<uint32_t>*))
 CATE(TE,FAE("UInt3Ref's get method","UInt3Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31678,7 +33455,7 @@ R UInt3_get_member(ctx, &obj, key);
 }
 void UInt3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(T3<uint32_t>*,(SV)F))
+if(!TS((SV)F,T3<uint32_t>*))
 CATE(TE,FAE("UInt3Ref's set method","UInt3Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31703,7 +33480,7 @@ SV LightSpotData_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"LightSpotDataRef::deref" EAOE));
 SV F=a[0];
-if(!TS(LightSpotData*,(SV)F))
+if(!TS((SV)F,LightSpotData*))
 CATE(TE,"LightSpotDataRef::deref expects LightSpotDataRef as first argument."));
 R CV(*(LightSpotData *)((NO)F)->data);
 }
@@ -31712,7 +33489,7 @@ SV LightSpotData_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"LightSpotData::refset expects two arguments."));
 SV F=a[0];
-if(!TS(LightSpotData*,(SV)F))
+if(!TS((SV)F,LightSpotData*))
 CATE(TE,"LightSpotDataRef::refset expects LightSpotDataRef as first argument."));
 *((LightSpotData *)((NO)F)->data) = val_to_c<LightSpotData>::f(ctx,a[1]);
 R CN;
@@ -31720,13 +33497,13 @@ R CN;
 
 void LightSpotData_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(LightSpotData*,(SV)F))
+if(!TS((SV)F,LightSpotData*))
 CATE(TE,"LightSpotDataRef::__del__ expects LightSpotDataRef as first argument."));
-SCRIPT_DELETE(LightSpotData, (LightSpotData *)F->data);
+SCRIPT_DELETE((LightSpotData *)F->data);
 }
 SV LightSpotData_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(LightSpotData*,(SV)F))
+if(!TS((SV)F,LightSpotData*))
 CATE(TE,FAE("LightSpotDataRef's get method","LightSpotDataRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31759,7 +33536,7 @@ R LightSpotData_get_member(ctx, &obj, key);
 }
 void LightSpotData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(LightSpotData*,(SV)F))
+if(!TS((SV)F,LightSpotData*))
 CATE(TE,FAE("LightSpotDataRef's set method","LightSpotDataRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31784,7 +33561,7 @@ SV AudioDevice_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"AudioDeviceRef::deref" EAOE));
 SV F=a[0];
-if(!TS(AudioDevice*,(SV)F))
+if(!TS((SV)F,AudioDevice*))
 CATE(TE,"AudioDeviceRef::deref expects AudioDeviceRef as first argument."));
 R CV(*(AudioDevice *)((NO)F)->data);
 }
@@ -31793,7 +33570,7 @@ SV AudioDevice_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"AudioDevice::refset expects two arguments."));
 SV F=a[0];
-if(!TS(AudioDevice*,(SV)F))
+if(!TS((SV)F,AudioDevice*))
 CATE(TE,"AudioDeviceRef::refset expects AudioDeviceRef as first argument."));
 *((AudioDevice *)((NO)F)->data) = val_to_c<AudioDevice>::f(ctx,a[1]);
 R CN;
@@ -31801,13 +33578,13 @@ R CN;
 
 void AudioDevice_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(AudioDevice*,(SV)F))
+if(!TS((SV)F,AudioDevice*))
 CATE(TE,"AudioDeviceRef::__del__ expects AudioDeviceRef as first argument."));
-SCRIPT_DELETE(AudioDevice, (AudioDevice *)F->data);
+SCRIPT_DELETE((AudioDevice *)F->data);
 }
 SV AudioDevice_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(AudioDevice*,(SV)F))
+if(!TS((SV)F,AudioDevice*))
 CATE(TE,FAE("AudioDeviceRef's get method","AudioDeviceRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31840,7 +33617,7 @@ R AudioDevice_get_member(ctx, &obj, key);
 }
 void AudioDevice_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(AudioDevice*,(SV)F))
+if(!TS((SV)F,AudioDevice*))
 CATE(TE,FAE("AudioDeviceRef's set method","AudioDeviceRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31865,7 +33642,7 @@ SV GfxLOD_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GfxLODRef::deref" EAOE));
 SV F=a[0];
-if(!TS(GfxLOD*,(SV)F))
+if(!TS((SV)F,GfxLOD*))
 CATE(TE,"GfxLODRef::deref expects GfxLODRef as first argument."));
 R CV(*(GfxLOD *)((NO)F)->data);
 }
@@ -31874,7 +33651,7 @@ SV GfxLOD_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GfxLOD::refset expects two arguments."));
 SV F=a[0];
-if(!TS(GfxLOD*,(SV)F))
+if(!TS((SV)F,GfxLOD*))
 CATE(TE,"GfxLODRef::refset expects GfxLODRef as first argument."));
 *((GfxLOD *)((NO)F)->data) = val_to_c<GfxLOD>::f(ctx,a[1]);
 R CN;
@@ -31882,13 +33659,13 @@ R CN;
 
 void GfxLOD_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxLOD*,(SV)F))
+if(!TS((SV)F,GfxLOD*))
 CATE(TE,"GfxLODRef::__del__ expects GfxLODRef as first argument."));
-SCRIPT_DELETE(GfxLOD, (GfxLOD *)F->data);
+SCRIPT_DELETE((GfxLOD *)F->data);
 }
 SV GfxLOD_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(GfxLOD*,(SV)F))
+if(!TS((SV)F,GfxLOD*))
 CATE(TE,FAE("GfxLODRef's get method","GfxLODRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -31921,7 +33698,7 @@ R GfxLOD_get_member(ctx, &obj, key);
 }
 void GfxLOD_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(GfxLOD*,(SV)F))
+if(!TS((SV)F,GfxLOD*))
 CATE(TE,FAE("GfxLODRef's set method","GfxLODRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -31946,7 +33723,7 @@ SV File_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"FileRef::deref" EAOE));
 SV F=a[0];
-if(!TS(File*,(SV)F))
+if(!TS((SV)F,File*))
 CATE(TE,"FileRef::deref expects FileRef as first argument."));
 CATE(TE,"File objects are not copyable."));
 }
@@ -31955,7 +33732,7 @@ SV File_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"File::refset expects two arguments."));
 SV F=a[0];
-if(!TS(File*,(SV)F))
+if(!TS((SV)F,File*))
 CATE(TE,"FileRef::refset expects FileRef as first argument."));
 CATE(TE,"File objects are not copyable."));
 R CN;
@@ -31963,13 +33740,13 @@ R CN;
 
 void File_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(File*,(SV)F))
+if(!TS((SV)F,File*))
 CATE(TE,"FileRef::__del__ expects FileRef as first argument."));
-SCRIPT_DELETE(File, (File *)F->data);
+SCRIPT_DELETE((File *)F->data);
 }
 SV File_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(File*,(SV)F))
+if(!TS((SV)F,File*))
 CATE(TE,FAE("FileRef's get method","FileRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32002,7 +33779,7 @@ R File_get_member(ctx, &obj, key);
 }
 void File_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(File*,(SV)F))
+if(!TS((SV)F,File*))
 CATE(TE,FAE("FileRef's set method","FileRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32027,7 +33804,7 @@ SV AABB_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"AABBRef::deref" EAOE));
 SV F=a[0];
-if(!TS(AABB*,(SV)F))
+if(!TS((SV)F,AABB*))
 CATE(TE,"AABBRef::deref expects AABBRef as first argument."));
 R CV(*(AABB *)((NO)F)->data);
 }
@@ -32036,7 +33813,7 @@ SV AABB_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"AABB::refset expects two arguments."));
 SV F=a[0];
-if(!TS(AABB*,(SV)F))
+if(!TS((SV)F,AABB*))
 CATE(TE,"AABBRef::refset expects AABBRef as first argument."));
 *((AABB *)((NO)F)->data) = val_to_c<AABB>::f(ctx,a[1]);
 R CN;
@@ -32044,13 +33821,13 @@ R CN;
 
 void AABB_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(AABB*,(SV)F))
+if(!TS((SV)F,AABB*))
 CATE(TE,"AABBRef::__del__ expects AABBRef as first argument."));
-SCRIPT_DELETE(AABB, (AABB *)F->data);
+SCRIPT_DELETE((AABB *)F->data);
 }
 SV AABB_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(AABB*,(SV)F))
+if(!TS((SV)F,AABB*))
 CATE(TE,FAE("AABBRef's get method","AABBRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32083,7 +33860,7 @@ R AABB_get_member(ctx, &obj, key);
 }
 void AABB_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(AABB*,(SV)F))
+if(!TS((SV)F,AABB*))
 CATE(TE,FAE("AABBRef's set method","AABBRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32108,7 +33885,7 @@ SV List_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"ListRef::deref" EAOE));
 SV F=a[0];
-if(!TS(List<scripting::Value*>*,(SV)F))
+if(!TS((SV)F,List<scripting::Value*>*))
 CATE(TE,"ListRef::deref expects ListRef as first argument."));
 R CV(*(List<scripting::Value*> *)((NO)F)->data);
 }
@@ -32117,7 +33894,7 @@ SV List_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"List::refset expects two arguments."));
 SV F=a[0];
-if(!TS(List<scripting::Value*>*,(SV)F))
+if(!TS((SV)F,List<scripting::Value*>*))
 CATE(TE,"ListRef::refset expects ListRef as first argument."));
 *((List<scripting::Value*> *)((NO)F)->data) = val_to_c<List<scripting::Value*>>::f(ctx,a[1]);
 R CN;
@@ -32125,13 +33902,13 @@ R CN;
 
 void List_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(List<scripting::Value*>*,(SV)F))
+if(!TS((SV)F,List<scripting::Value*>*))
 CATE(TE,"ListRef::__del__ expects ListRef as first argument."));
-SCRIPT_DELETE(List<scripting::Value*>, (List<scripting::Value*> *)F->data);
+SCRIPT_DELETE((List<scripting::Value*> *)F->data);
 }
 SV List_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(List<scripting::Value*>*,(SV)F))
+if(!TS((SV)F,List<scripting::Value*>*))
 CATE(TE,FAE("ListRef's get method","ListRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32164,7 +33941,7 @@ R List_get_member(ctx, &obj, key);
 }
 void List_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(List<scripting::Value*>*,(SV)F))
+if(!TS((SV)F,List<scripting::Value*>*))
 CATE(TE,FAE("ListRef's set method","ListRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32189,7 +33966,7 @@ SV Audio_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"AudioRef::deref" EAOE));
 SV F=a[0];
-if(!TS(Audio*,(SV)F))
+if(!TS((SV)F,Audio*))
 CATE(TE,"AudioRef::deref expects AudioRef as first argument."));
 CATE(TE,"Audio objects are not copyable."));
 }
@@ -32198,7 +33975,7 @@ SV Audio_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Audio::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Audio*,(SV)F))
+if(!TS((SV)F,Audio*))
 CATE(TE,"AudioRef::refset expects AudioRef as first argument."));
 CATE(TE,"Audio objects are not copyable."));
 R CN;
@@ -32206,14 +33983,14 @@ R CN;
 
 void Audio_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Audio*,(SV)F))
+if(!TS((SV)F,Audio*))
 CATE(TE,"AudioRef::__del__ expects AudioRef as first argument."));
 Audio*obj=(Audio*)F->data;
 if(shouldScriptDelete(F->data)) {obj->release();}
 }
 SV Audio_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Audio*,(SV)F))
+if(!TS((SV)F,Audio*))
 CATE(TE,FAE("AudioRef's get method","AudioRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32246,7 +34023,7 @@ R Audio_get_member(ctx, &obj, key);
 }
 void Audio_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Audio*,(SV)F))
+if(!TS((SV)F,Audio*))
 CATE(TE,FAE("AudioRef's set method","AudioRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32271,7 +34048,7 @@ SV GfxSubModelList_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GfxSubModelListRef::deref" EAOE));
 SV F=a[0];
-if(!TS(List<GfxModel::SubModel>*,(SV)F))
+if(!TS((SV)F,List<GfxModel::SubModel>*))
 CATE(TE,"GfxSubModelListRef::deref expects GfxSubModelListRef as first argument."));
 R CV(*(List<GfxModel::SubModel> *)((NO)F)->data);
 }
@@ -32280,7 +34057,7 @@ SV GfxSubModelList_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GfxSubModelList::refset expects two arguments."));
 SV F=a[0];
-if(!TS(List<GfxModel::SubModel>*,(SV)F))
+if(!TS((SV)F,List<GfxModel::SubModel>*))
 CATE(TE,"GfxSubModelListRef::refset expects GfxSubModelListRef as first argument."));
 *((List<GfxModel::SubModel> *)((NO)F)->data) = val_to_c<List<GfxModel::SubModel>>::f(ctx,a[1]);
 R CN;
@@ -32288,13 +34065,13 @@ R CN;
 
 void GfxSubModelList_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(List<GfxModel::SubModel>*,(SV)F))
+if(!TS((SV)F,List<GfxModel::SubModel>*))
 CATE(TE,"GfxSubModelListRef::__del__ expects GfxSubModelListRef as first argument."));
-SCRIPT_DELETE(List<GfxModel::SubModel>, (List<GfxModel::SubModel> *)F->data);
+SCRIPT_DELETE((List<GfxModel::SubModel> *)F->data);
 }
 SV GfxSubModelList_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(List<GfxModel::SubModel>*,(SV)F))
+if(!TS((SV)F,List<GfxModel::SubModel>*))
 CATE(TE,FAE("GfxSubModelListRef's get method","GfxSubModelListRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32327,7 +34104,7 @@ R GfxSubModelList_get_member(ctx, &obj, key);
 }
 void GfxSubModelList_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(List<GfxModel::SubModel>*,(SV)F))
+if(!TS((SV)F,List<GfxModel::SubModel>*))
 CATE(TE,FAE("GfxSubModelListRef's set method","GfxSubModelListRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32352,7 +34129,7 @@ SV GfxModel_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GfxModelRef::deref" EAOE));
 SV F=a[0];
-if(!TS(GfxModel*,(SV)F))
+if(!TS((SV)F,GfxModel*))
 CATE(TE,"GfxModelRef::deref expects GfxModelRef as first argument."));
 CATE(TE,"GfxModel objects are not copyable."));
 }
@@ -32361,7 +34138,7 @@ SV GfxModel_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GfxModel::refset expects two arguments."));
 SV F=a[0];
-if(!TS(GfxModel*,(SV)F))
+if(!TS((SV)F,GfxModel*))
 CATE(TE,"GfxModelRef::refset expects GfxModelRef as first argument."));
 CATE(TE,"GfxModel objects are not copyable."));
 R CN;
@@ -32369,14 +34146,14 @@ R CN;
 
 void GfxModel_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxModel*,(SV)F))
+if(!TS((SV)F,GfxModel*))
 CATE(TE,"GfxModelRef::__del__ expects GfxModelRef as first argument."));
 GfxModel*obj=(GfxModel*)F->data;
 if(shouldScriptDelete(F->data)) {obj->release();}
 }
 SV GfxModel_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(GfxModel*,(SV)F))
+if(!TS((SV)F,GfxModel*))
 CATE(TE,FAE("GfxModelRef's get method","GfxModelRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32409,7 +34186,7 @@ R GfxModel_get_member(ctx, &obj, key);
 }
 void GfxModel_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(GfxModel*,(SV)F))
+if(!TS((SV)F,GfxModel*))
 CATE(TE,FAE("GfxModelRef's set method","GfxModelRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32434,7 +34211,7 @@ SV Matrix3x3_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"Matrix3x3Ref::deref" EAOE));
 SV F=a[0];
-if(!TS(Matrix3x3*,(SV)F))
+if(!TS((SV)F,Matrix3x3*))
 CATE(TE,"Matrix3x3Ref::deref expects Matrix3x3Ref as first argument."));
 R CV(*(Matrix3x3 *)((NO)F)->data);
 }
@@ -32443,7 +34220,7 @@ SV Matrix3x3_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"Matrix3x3::refset expects two arguments."));
 SV F=a[0];
-if(!TS(Matrix3x3*,(SV)F))
+if(!TS((SV)F,Matrix3x3*))
 CATE(TE,"Matrix3x3Ref::refset expects Matrix3x3Ref as first argument."));
 *((Matrix3x3 *)((NO)F)->data) = val_to_c<Matrix3x3>::f(ctx,a[1]);
 R CN;
@@ -32451,13 +34228,13 @@ R CN;
 
 void Matrix3x3_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(Matrix3x3*,(SV)F))
+if(!TS((SV)F,Matrix3x3*))
 CATE(TE,"Matrix3x3Ref::__del__ expects Matrix3x3Ref as first argument."));
-SCRIPT_DELETE(Matrix3x3, (Matrix3x3 *)F->data);
+SCRIPT_DELETE((Matrix3x3 *)F->data);
 }
 SV Matrix3x3_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(Matrix3x3*,(SV)F))
+if(!TS((SV)F,Matrix3x3*))
 CATE(TE,FAE("Matrix3x3Ref's get method","Matrix3x3Ref")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32490,7 +34267,7 @@ R Matrix3x3_get_member(ctx, &obj, key);
 }
 void Matrix3x3_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(Matrix3x3*,(SV)F))
+if(!TS((SV)F,Matrix3x3*))
 CATE(TE,FAE("Matrix3x3Ref's set method","Matrix3x3Ref")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32515,7 +34292,7 @@ SV GfxDebugDrawer_ptr_deref(CTX ctx,const List<SV>&a)
 if(a.getCount()!=1)
 CATE(VE,"GfxDebugDrawerRef::deref" EAOE));
 SV F=a[0];
-if(!TS(GfxDebugDrawer*,(SV)F))
+if(!TS((SV)F,GfxDebugDrawer*))
 CATE(TE,"GfxDebugDrawerRef::deref expects GfxDebugDrawerRef as first argument."));
 CATE(TE,"GfxDebugDrawer objects are not copyable."));
 }
@@ -32524,7 +34301,7 @@ SV GfxDebugDrawer_ptr_set(CTX ctx,const List<SV>&a)
 if(a.getCount()!=2)
 CATE(VE,"GfxDebugDrawer::refset expects two arguments."));
 SV F=a[0];
-if(!TS(GfxDebugDrawer*,(SV)F))
+if(!TS((SV)F,GfxDebugDrawer*))
 CATE(TE,"GfxDebugDrawerRef::refset expects GfxDebugDrawerRef as first argument."));
 CATE(TE,"GfxDebugDrawer objects are not copyable."));
 R CN;
@@ -32532,13 +34309,13 @@ R CN;
 
 void GfxDebugDrawer_ptr_destroy(CTX ctx,NO F)
 {
-if(!TS(GfxDebugDrawer*,(SV)F))
+if(!TS((SV)F,GfxDebugDrawer*))
 CATE(TE,"GfxDebugDrawerRef::__del__ expects GfxDebugDrawerRef as first argument."));
-SCRIPT_DELETE(GfxDebugDrawer, (GfxDebugDrawer *)F->data);
+SCRIPT_DELETE((GfxDebugDrawer *)F->data);
 }
 SV GfxDebugDrawer_ptr_get_member(CTX ctx,NO F,SV key)
 {
-if(!TS(GfxDebugDrawer*,(SV)F))
+if(!TS((SV)F,GfxDebugDrawer*))
 CATE(TE,FAE("GfxDebugDrawerRef's get method","GfxDebugDrawerRef")));
 if (key->type==S::ValueType::StringType)
 {
@@ -32571,7 +34348,7 @@ R GfxDebugDrawer_get_member(ctx, &obj, key);
 }
 void GfxDebugDrawer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
 {
-if(!TS(GfxDebugDrawer*,(SV)F))
+if(!TS((SV)F,GfxDebugDrawer*))
 CATE(TE,FAE("GfxDebugDrawerRef's set method","GfxDebugDrawerRef")));
 S::NativeObject obj;
 obj.head.type=S::ValueType::NativeObject;
@@ -32596,6 +34373,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Filesystem_ptr_typeID = typeID;
     ext->Filesystem_ptr = scripting::createNativeObject(Filesystem_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("FilesystemRef", ext->Filesystem_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxCompiledShader_typeID = typeID;
+    ext->GfxCompiledShader = scripting::createNativeObject(GfxCompiledShader_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxCompiledShader", ext->GfxCompiledShader);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxCompiledShader_ptr_typeID = typeID;
+    ext->GfxCompiledShader_ptr = scripting::createNativeObject(GfxCompiledShader_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxCompiledShaderRef", ext->GfxCompiledShader_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt2_typeID = typeID;
@@ -32666,6 +34453,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Resource_ptr_typeID = typeID;
     ext->Resource_ptr = scripting::createNativeObject(Resource_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("ResourceRef", ext->Resource_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxShader_typeID = typeID;
+    ext->GfxShader = scripting::createNativeObject(GfxShader_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxShader", ext->GfxShader);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxShader_ptr_typeID = typeID;
+    ext->GfxShader_ptr = scripting::createNativeObject(GfxShader_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxShaderRef", ext->GfxShader_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt4_typeID = typeID;
@@ -32776,6 +34573,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->AudioWorld_ptr_typeID = typeID;
     ext->AudioWorld_ptr = scripting::createNativeObject(AudioWorld_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("AudioWorldRef", ext->AudioWorld_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->StrStrMap_typeID = typeID;
+    ext->StrStrMap = scripting::createNativeObject(StrStrMap_funcs, NULL, typeID);
+    engine->getGlobalVars().set("StrStrMap", ext->StrStrMap);
+    
+    typeID = engine->createNewTypeID();
+    ext->StrStrMap_ptr_typeID = typeID;
+    ext->StrStrMap_ptr = scripting::createNativeObject(StrStrMap_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("StrStrMapRef", ext->StrStrMap_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Light_typeID = typeID;
@@ -32993,6 +34800,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxVertexAttribType", ext->GfxVertexAttribType);
     
     typeID = engine->createNewTypeID();
+    ext->GfxStage_typeID = typeID;
+    ext->GfxStage = scripting::createNativeObject(GfxStage_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxStage", ext->GfxStage);
+    
+    typeID = engine->createNewTypeID();
     ext->GfxBufferUsage_typeID = typeID;
     ext->GfxBufferUsage = scripting::createNativeObject(GfxBufferUsage_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxBufferUsage", ext->GfxBufferUsage);
@@ -33017,7 +34829,7 @@ void *initBindings(scripting::Engine *engine, void *data)
 
 void deinitBindings(scripting::Engine *engine, void *data)
 {
-    DELETE(BindingsExt, (BindingsExt *)data);
+    DELETE((BindingsExt *)data);
 }
 
 namespace scripting

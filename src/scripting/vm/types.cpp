@@ -175,27 +175,27 @@ void destroy(Context *context, Value *value)
     {
     case ValueType::Int:
     {
-        DELETE(IntValue, (IntValue *)value);
+        DELETE((IntValue *)value);
         break;
     }
     case ValueType::Float:
     {
-        DELETE(FloatValue, (FloatValue *)value);
+        DELETE((FloatValue *)value);
         break;
     }
     case ValueType::Boolean:
     {
-        DELETE(BooleanValue, (BooleanValue *)value);
+        DELETE((BooleanValue *)value);
         break;
     }
     case ValueType::Nil:
     {
-        DELETE(NilValue, (NilValue *)value);
+        DELETE((NilValue *)value);
         break;
     }
     case ValueType::Function:
     {
-        DELETE(FunctionValue, (FunctionValue *)value);
+        DELETE((FunctionValue *)value);
         break;
     }
     case ValueType::Object:
@@ -218,18 +218,18 @@ void destroy(Context *context, Value *value)
                 destroy(context, members.getValue(i));
             }
 
-            DELETE(ObjectValue, obj);
+            DELETE(obj);
         }
         break;
     }
     case ValueType::StringType:
     {
-        DELETE(StringValue, (StringValue *)value);
+        DELETE((StringValue *)value);
         break;
     }
     case ValueType::NativeFunction:
     {
-        DELETE(NativeFunction, (NativeFunction *)value);
+        DELETE((NativeFunction *)value);
         break;
     }
     case ValueType::NativeObject:
@@ -245,13 +245,13 @@ void destroy(Context *context, Value *value)
                 obj->funcs.destroy(context, obj);
             }
 
-            DELETE(NativeObject, (NativeObject *)value);
+            DELETE((NativeObject *)value);
         }
         break;
     }
     case ValueType::Exception:
     {
-        DELETE(ExceptionValue, (ExceptionValue *)value);
+        DELETE((ExceptionValue *)value);
         break;
     }
     default:

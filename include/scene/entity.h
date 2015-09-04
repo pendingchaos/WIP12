@@ -80,7 +80,7 @@ class Entity
             {
                 scripts.remove(index);
 
-                DELETE(ScriptInstance, instance);
+                DELETE(instance);
             }
         }
 

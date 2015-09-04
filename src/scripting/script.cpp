@@ -368,32 +368,33 @@ void Script::_load()
                 if (createFunc == nullptr)
                 {
                     instance->ptr = nullptr;
-                }
-
-                instance->ptr = createFunc(app, instance->entity, instance->scene, this);
-
-                if (serialized.getCount() != 0)
+                } else
                 {
-                    try
-                    {
-                        instance->deserialize(serialized[i]);
-                    } catch (SerializeException& e)
-                    {
-                        log("Serialization exception");
-                        log("    File: %s\n", e.getFile());
-                        log("    Line: %d\n", e.getLine());
-                        log("    Function: %s\n", e.getFunction());
-                        log("    Script: %s\n", getFilename().getData());
+                    instance->ptr = createFunc(app, instance->entity, instance->scene, this);
 
-                        void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
+                    if (serialized.getCount() != 0)
+                    {
+                        try
+                        {
+                            instance->deserialize(serialized[i]);
+                        } catch (SerializeException& e)
+                        {
+                            log("Serialization exception");
+                            log("    File: %s\n", e.getFile());
+                            log("    Line: %d\n", e.getLine());
+                            log("    Function: %s\n", e.getFunction());
+                            log("    Script: %s\n", getFilename().getData());
 
-                        if (destroyFunc != nullptr)
-                        {
-                            destroyFunc(instance->ptr);
-                            instance->ptr = createFunc(app, instance->entity, instance->scene, this);
-                        } else
-                        {
-                            instance->ptr = nullptr;
+                            void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
+
+                            if (destroyFunc != nullptr)
+                            {
+                                destroyFunc(instance->ptr);
+                                instance->ptr = createFunc(app, instance->entity, instance->scene, this);
+                            } else
+                            {
+                                instance->ptr = nullptr;
+                            }
                         }
                     }
                 }

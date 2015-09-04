@@ -147,8 +147,8 @@ RigidBody::~RigidBody()
 
     btMotionState *motionState = rigidBody->getMotionState();
 
-    DELETE(btRigidBody, rigidBody);
-    DELETE(btMotionState, motionState);
+    DELETE(rigidBody);
+    DELETE(motionState);
 }
 
 Vector3D RigidBody::getGravity() const
