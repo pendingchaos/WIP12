@@ -97,6 +97,8 @@ class Type(object):
         #Awful hack
         if s.replace(" ", "") in template_types:
             s = template_types[s.replace(" ", "")]
+        if s.replace("&", "").replace(" ", "") in template_types and self.const:
+            return template_types[s.replace("&", "").replace(" ", "")]
         if s.replace("&", "").replace(" ", "") in template_types:
             s = template_types[s.replace("&", "").replace(" ", "")] + "&"
         
@@ -247,6 +249,7 @@ class Class(object):
                                               clang.cindex.AccessSpecifier.INVALID]:
                 if child.kind == clang.cindex.CursorKind.DESTRUCTOR:
                     self.destructable = False
+                    self.copyable = False
                 elif child.kind == clang.cindex.CursorKind.CONSTRUCTOR:
                     num_private_cons += 1
 
@@ -500,7 +503,7 @@ bindings.write("""
 #define SV scripting::Value*
 #define NO scripting::NativeObject*
 #define CV(expr) create_val<std::remove_reference<decltype(expr)>::type>::f(ctx, expr)
-#define TS(expr, ...) type_same<__VA_ARGS__>::f(ctx, expr)
+#define TS(expr, ...) type_same<std::remove_reference<__VA_ARGS__>::type>::f(ctx, expr)
 #define VE scripting::ExcType::ValueError
 #define TE scripting::ExcType::TypeError
 #define KE scripting::ExcType::KeyError
@@ -626,6 +629,21 @@ template <>
 struct val_to_c<String>
 {
     static String f(scripting::Context *ctx, const SV head)
+    {
+        if (head->type == scripting::ValueType::StringType)
+        {
+            return ((scripting::StringValue *)head)->value;
+        } else
+        {
+            CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
+        }
+    }
+};
+
+template <>
+struct val_to_c<const String>
+{
+    static const String f(scripting::Context *ctx, const SV head)
     {
         if (head->type == scripting::ValueType::StringType)
         {
@@ -975,9 +993,24 @@ struct val_to_c<%s>
 ????????} else
 ???????????? CATE(TE,"Value can not be converted to %s."));
 ????}
-};""" % (class_.code_name, class_.code_name, class_.code_name, class_.name,
-         class_.name, class_.code_name, class_.code_name, class_.name,
-         class_.code_name, class_.name, class_.name, )))
+};
+
+template <>
+struct val_to_c<const %s>
+{
+????static %s f(CTX ctx,const SV head) {return val_to_c<%s>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const %s>
+{
+????static SV f(CTX ctx,const %s&obj) {return create_val<%s>::f(ctx,obj);}
+};
+""" % (class_.code_name, class_.code_name, class_.code_name, class_.name,
+       class_.name, class_.code_name, class_.code_name, class_.name,
+       class_.code_name, class_.name, class_.name, class_.code_name,
+       class_.code_name, class_.code_name, class_.code_name, class_.code_name,
+       class_.code_name)))
 
     bindings.write(s("""
 template <>
@@ -1347,7 +1380,7 @@ for class_ in classes.values():
 
         for method in methods_:
             if method.script_public:
-                args = ["val_to_c<%s>::f(ctx,a[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
+                args = ["val_to_c<std::remove_reference<%s>::type>::f(ctx,a[%d])" % (method.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(method.args))]
 
                 for i in xrange(len(method.args)):
                     if i in method.arg_convs:
@@ -1693,5 +1726,5 @@ void registerBindings(scripting::Engine *engine)
 }
 }
 """)
-
+asdasdasd
 bindings.close()

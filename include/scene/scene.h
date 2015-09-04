@@ -8,6 +8,7 @@
 #include "resource/resource.h"
 #include "scene/entity.h"
 #include "memory.h"
+#include "scripting/bindings.h"
 
 class PhysicsWorld;
 class GfxShader;
@@ -59,7 +60,7 @@ class Scene : public Resource
             return entities;
         }
 
-        inline ScriptInstance *addScript(Script *script, const char *name)
+        inline ScriptInstance *addScript(Script *script, const char *name) NO_BIND
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 
@@ -75,7 +76,7 @@ class Scene : public Resource
             return nullptr;
         }
 
-        inline void removeScript(ScriptInstance *instance)
+        inline void removeScript(ScriptInstance *instance) NO_BIND
         {
             int index = scripts.find(instance);
 
@@ -87,12 +88,12 @@ class Scene : public Resource
             }
         }
 
-        inline const List<ScriptInstance *>& getScripts() const
+        inline const List<ScriptInstance *>& getScripts() const NO_BIND
         {
             return scripts;
         }
 
-        inline ScriptInstance *findScriptInstanceByName(const char *name) const
+        inline ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
         {
             for (size_t i = 0; i < scripts.getCount(); ++i)
             {
@@ -165,6 +166,6 @@ class Scene : public Resource
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-} DESTROY(obj->release());
+} DESTROY(obj->release()) BIND;
 
 #endif // SCENE_H

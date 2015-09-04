@@ -10,6 +10,7 @@
 #include "graphics/camera.h"
 #include "graphics/light.h"
 #include "scene/scene.h"
+#include "scripting/bindings.h"
 
 class Matrix4x4;
 class String;
@@ -124,12 +125,12 @@ class GfxRenderer
             return numLights;
         }
 
-        inline GfxBuffer *getLightBuffer() const
+        inline GfxBuffer *getLightBuffer() const NO_BIND
         {
             return lightBuffer;
         }
 
-        inline RenderStats getStats() const
+        inline RenderStats getStats() const NO_BIND
         {
             return stats;
         }
@@ -180,7 +181,7 @@ class GfxRenderer
         float bloom4Strength;
         bool bloomEnabled;
         float ssaoRadius;
-        List<ColorModifier> colorModifiers;
+        NO_BIND List<ColorModifier> colorModifiers;
 
         void updateColorModifierShader();
 
@@ -361,6 +362,6 @@ class GfxRenderer
         GfxBuffer *instanceBuffer;
 
         void swapFramebuffers();
-};
+} BIND;
 
 #endif // GFXRENDERER_H

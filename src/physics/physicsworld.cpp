@@ -48,7 +48,7 @@ void PhysicsWorld::addDebugDrawer()
     world->setDebugDrawer(debugDrawer);
 }
 
-RigidBody *PhysicsWorld::createRigidBody(const RigidBody::ConstructionInfo& info, PhysicsShape *shape)
+RigidBody *PhysicsWorld::createRigidBody(const RigidBodyConstructionInfo& info, PhysicsShape *shape)
 {
     RigidBody *body = NEW(RigidBody, info, shape, this);
 

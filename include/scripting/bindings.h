@@ -1,9 +1,9 @@
 #ifndef BINDING_H
 #define BINDING_H
 
-#ifdef SCRIPT_BINDING_GENERATOR
 #include "misc_macros.h"
 
+#ifdef SCRIPT_BINDING_GENERATOR
 #define GETTER __attribute__((annotate("getter")))
 #define SETTER __attribute__((annotate("setter")))
 #define TEMPLATE_TYPES(class, ...) __attribute__((annotate("templatetypes" STR(class) ";" STR(__VA_ARGS__)))) static int JOIN(_, __COUNTER__);

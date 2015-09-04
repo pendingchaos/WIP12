@@ -5,6 +5,7 @@
 #include "containers/string.h"
 #include "resource.h"
 #include "memory.h"
+#include "scripting/bindings.h"
 
 class ResourceManager
 {
@@ -13,7 +14,7 @@ class ResourceManager
         ~ResourceManager();
 
         template <typename T>
-        T *load(const String& filename)
+        T *load(const String& filename) NO_BIND
         {
             if (isResource(getType<T>(), filename))
             {
@@ -48,7 +49,7 @@ class ResourceManager
         }
 
         template <typename T>
-        T *loadAndCopy(const String& filename)
+        T *loadAndCopy(const String& filename) NO_BIND
         {
             T *res = load<T>(filename);
             res->release();
@@ -68,6 +69,6 @@ class ResourceManager
         {
             return T::resource_type;
         }
-};
+} NO_BIND NOT_COPYABLE;
 
 #endif // RESOURCEMANAGER_H

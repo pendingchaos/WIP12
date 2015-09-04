@@ -13,53 +13,53 @@
 class PhysicsWorld;
 class Entity;
 
+enum class RigidBodyType
+{
+    Static,
+    Dynamic,
+    Kinematic
+} BIND ENUM_CLASS;
+
+class RigidBodyConstructionInfo
+{
+    public:
+        RigidBodyConstructionInfo() : type(RigidBodyType::Dynamic),
+                                      mass(1.0f),
+                                      entity(nullptr),
+                                      linearDamping(0.04f),
+                                      angularDamping(0.1f),
+                                      friction(0.5f),
+                                      rollingFriction(0.0f),
+                                      restitution(0.0f),
+                                      linearSleepingThreshold(0.8f),
+                                      angularSleepingThreshold(1.0f),
+                                      collisionMask(0xFFFF) {}
+
+        RigidBodyType type;
+        float mass;
+        NO_BIND Entity *entity;
+        float linearDamping;
+        float angularDamping;
+        float friction;
+        float rollingFriction;
+        float restitution;
+        float linearSleepingThreshold;
+        float angularSleepingThreshold;
+        short collisionMask;
+} BIND;
+
 class RigidBody
 {
     friend PhysicsWorld;
     friend PhysicsShapeImpl;
 
     public:
-        enum Type
-        {
-            Static,
-            Dynamic,
-            Kinematic
-        };
-
-        class ConstructionInfo
-        {
-            public:
-                ConstructionInfo() : type(RigidBody::Dynamic),
-                                     mass(1.0f),
-                                     entity(nullptr),
-                                     linearDamping(0.04f),
-                                     angularDamping(0.1f),
-                                     friction(0.5f),
-                                     rollingFriction(0.0f),
-                                     restitution(0.0f),
-                                     linearSleepingThreshold(0.8f),
-                                     angularSleepingThreshold(1.0f),
-                                     collisionMask(0xFFFF) {}
-
-                RigidBody::Type type;
-                float mass;
-                Entity *entity;
-                float linearDamping;
-                float angularDamping;
-                float friction;
-                float rollingFriction;
-                float restitution;
-                float linearSleepingThreshold;
-                float angularSleepingThreshold;
-                short collisionMask;
-        };
-
         inline btRigidBody *getBulletRigidBody() const NO_BIND
         {
             return rigidBody;
         }
 
-        inline RigidBody::Type getType() const NO_BIND
+        inline RigidBodyType getType() const
         {
             return type;
         }
@@ -133,7 +133,7 @@ class RigidBody
 
         void setTransform(const Matrix4x4& transform) const;
 
-        inline PhysicsWorld *getWorld() const NO_BIND
+        inline PhysicsWorld *getWorld() const
         {
             return world;
         }
@@ -143,9 +143,9 @@ class RigidBody
             return collisionMask;
         }
 
-        void setShape(PhysicsShape *shape) NO_BIND;
+        void setShape(PhysicsShape *shape);
 
-        inline PhysicsShape *getShape() const NO_BIND
+        inline PhysicsShape *getShape() const
         {
             return shape;
         }
@@ -155,7 +155,7 @@ class RigidBody
             return entity;
         }
     private:
-        RigidBody(const ConstructionInfo& info, PhysicsShape *shape, PhysicsWorld *world);
+        RigidBody(const RigidBodyConstructionInfo& info, PhysicsShape *shape, PhysicsWorld *world);
         virtual ~RigidBody();
 
         void updateShape();
@@ -164,7 +164,7 @@ class RigidBody
         btRigidBody *rigidBody;
         PhysicsWorld *world;
         Entity *entity;
-        RigidBody::Type type;
+        RigidBodyType type;
         short collisionMask;
 } BIND NOT_COPYABLE;
 

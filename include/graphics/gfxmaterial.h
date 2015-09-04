@@ -13,6 +13,7 @@
 #include "math/t4.h"
 #include "misc_macros.h"
 #include "memory.h"
+#include "scripting/bindings.h"
 
 class GfxMaterial : public Resource
 {
@@ -110,6 +111,6 @@ class GfxMaterial : public Resource
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxMaterial, Resource)
-} DESTROY(obj->release());
+} DESTROY(obj->release()) BIND;
 
 #endif // MATERIAL_H

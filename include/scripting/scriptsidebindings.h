@@ -122,7 +122,7 @@ struct _functionStruct
     void (*f117)( Scene *obj);
     Entity * (*f118)( Scene *obj, const String & arg0);
     void (*f119)( Scene *obj, size_t arg0);
-    RigidBody * (*f120)( Entity *obj, const RigidBody::ConstructionInfo & arg0, PhysicsShape * arg1);
+    RigidBody * (*f120)( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1);
     Scene * (*f121)(const Entity *obj);
     Entity * (*f122)( Entity *obj, const String & arg0);
     void (*f123)( Entity *obj, size_t arg0);
@@ -389,7 +389,7 @@ void Scene::fixedUpdate(float arg0)  { _functions->f116(this, arg0);}
 void Scene::render()  { _functions->f117(this);}
 Entity * Scene::createEntity(const String & arg0)  {return _functions->f118(this, arg0);}
 void Scene::removeEntity(size_t arg0)  { _functions->f119(this, arg0);}
-RigidBody * Entity::addRigidBody(const RigidBody::ConstructionInfo & arg0, PhysicsShape * arg1)  {return _functions->f120(this, arg0, arg1);}
+RigidBody * Entity::addRigidBody(const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1)  {return _functions->f120(this, arg0, arg1);}
 Scene * Entity::getScene() const {return _functions->f121(this);}
 Entity * Entity::createEntity(const String & arg0)  {return _functions->f122(this, arg0);}
 void Entity::removeEntity(size_t arg0)  { _functions->f123(this, arg0);}

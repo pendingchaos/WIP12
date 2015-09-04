@@ -11,6 +11,7 @@
 #include "graphics/gfxmodel.h"
 #include "scripting/script.h"
 #include "audio/audioworld.h"
+#include "scripting/bindings.h"
 
 class Scene;
 class Entity;
@@ -27,26 +28,26 @@ class RenderComponent
             Overlay
         };
 
-        Type type;
+        NO_BIND Type type;
 
         GfxModel *model;
         GfxTexture *overlayTexture;
 
         union
         {
-            struct
+            NO_BIND struct
             {
                 bool shadowCaster;
             } modelData;
-            struct
+            NO_BIND struct
             {
                 Float3 color;
             } overlayData;
-        };
+        } NO_BIND;
     private:
         RenderComponent() : type(Nothing) {}
         ~RenderComponent() {}
-};
+} BIND;
 
 class Entity
 {
@@ -56,7 +57,7 @@ class Entity
         Entity(const String& name, Scene *scene);
         ~Entity();
     public:
-        inline ScriptInstance *addScript(Script *script, const char *name)
+        inline ScriptInstance *addScript(Script *script, const char *name) NO_BIND
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 
@@ -72,7 +73,7 @@ class Entity
             return nullptr;
         }
 
-        inline void removeScript(ScriptInstance *instance)
+        inline void removeScript(ScriptInstance *instance) NO_BIND
         {
             int index = scripts.find(instance);
 
@@ -84,12 +85,12 @@ class Entity
             }
         }
 
-        inline const List<ScriptInstance *>& getScripts() const
+        inline const List<ScriptInstance *>& getScripts() const NO_BIND
         {
             return scripts;
         }
 
-        inline ScriptInstance *findScriptInstanceByName(const char *name) const
+        inline ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
         {
             for (size_t i = 0; i < scripts.getCount(); ++i)
             {
@@ -117,7 +118,7 @@ class Entity
         }
         #endif
 
-        RigidBody *addRigidBody(const RigidBody::ConstructionInfo& info,
+        RigidBody *addRigidBody(const RigidBodyConstructionInfo& info,
                                 PhysicsShape *shape);
 
         inline RigidBody *getRigidBody() const
@@ -221,6 +222,6 @@ class Entity
         List<AudioSource *> audioSources;
 
     NO_COPY(Entity);
-};
+} BIND NOT_COPYABLE;
 
 #endif // ENTITY_H

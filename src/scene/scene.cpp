@@ -270,23 +270,23 @@ void loadEntity(Entity *entity, File *file)
         float angularSleepingThreshold = file->readFloat32();
         uint16_t collisionMask = file->readUInt16LE();
 
-        RigidBody::ConstructionInfo info;
+        RigidBodyConstructionInfo info;
 
         switch (type)
         {
         case 0:
         {
-            info.type = RigidBody::Static;
+            info.type = RigidBodyType::Static;
             break;
         }
         case 1:
         {
-            info.type = RigidBody::Dynamic;
+            info.type = RigidBodyType::Dynamic;
             break;
         }
         case 2:
         {
-            info.type = RigidBody::Kinematic;
+            info.type = RigidBodyType::Kinematic;
             break;
         }
         }
@@ -985,7 +985,7 @@ void copyEntity(Entity *dest, Entity *source)
     if (source->hasRigidBody())
     {
         RigidBody *body = source->getRigidBody();
-        RigidBody::ConstructionInfo info;
+        RigidBodyConstructionInfo info;
 
         info.type = body->getType();
         info.mass = body->getMass();

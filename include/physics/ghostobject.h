@@ -2,8 +2,8 @@
 #define GHOSTOBJECT_H
 
 #include "physics/physicsshape.h"
-#include "scripting/script.h"
 #include "scene/transform.h"
+#include "scripting/bindings.h"
 
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
@@ -18,7 +18,7 @@ class GhostObject
     friend PhysicsShapeImpl;
 
     public:
-        inline btGhostObject *getBulletGhostObject() const
+        inline btGhostObject *getBulletGhostObject() const NO_BIND
         {
             return ghostObject;
         }
@@ -38,7 +38,23 @@ class GhostObject
 
         void setShape(PhysicsShape *shape);
 
-        void getCollisions(List<RigidBody *>& rigidBodies, List<GhostObject *>& ghostObjects) const;
+        void getCollisions(List<RigidBody *>& rigidBodies, List<GhostObject *>& ghostObjects) const NO_BIND;
+
+        List<RigidBody *> getRigidBodyCollisions() const
+        {
+            List<RigidBody *> bodies;
+            List<GhostObject *> ghosts;
+            getCollisions(bodies, ghosts);
+            return bodies;
+        }
+
+        List<GhostObject *> getGhostCollisions() const
+        {
+            List<RigidBody *> bodies;
+            List<GhostObject *> ghosts;
+            getCollisions(bodies, ghosts);
+            return ghosts;
+        }
 
         inline PhysicsShape *getShape() const
         {
@@ -52,6 +68,6 @@ class GhostObject
         btPairCachingGhostObject *ghostObject;
         PhysicsWorld *world;
         unsigned short collisionMask;
-};
+} BIND;
 
 #endif // GHOSTOBJECT_H

@@ -384,6 +384,6 @@ class GfxShaderCombination
         GfxCompiledShader *compiledFragment;
 
     NO_COPY(GfxShaderCombination)
-};
+} NOT_COPYABLE BIND;
 
 #endif // GFXSHADER_H

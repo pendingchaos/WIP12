@@ -63,7 +63,7 @@ class PhysicsWorld
             return ghostObjects;
         }
 
-        RigidBody *createRigidBody(const RigidBody::ConstructionInfo& info, PhysicsShape *shape);
+        RigidBody *createRigidBody(const RigidBodyConstructionInfo& info, PhysicsShape *shape);
         void destroyRigidBody(RigidBody *rigidBody);
 
         GhostObject *createGhostObject(PhysicsShape *shape, unsigned short collisionMask=0xFFFF);
@@ -77,9 +77,9 @@ class PhysicsWorld
 
         List<RayCastResult> castRay(const Position3D& start,
                                     const Direction3D& direction,
-                                    float distance=9999.0f);
+                                    float distance=9999.0f) NO_BIND;
 
-        inline btDynamicsWorld *getBulletWorld()
+        inline btDynamicsWorld *getBulletWorld() const NO_BIND
         {
             return world;
         }
@@ -93,6 +93,6 @@ class PhysicsWorld
         List<RigidBody *> rigidBodies;
         List<GhostObject *> ghostObjects;
         PhysicsDebugDrawer *debugDrawer;
-};
+} BIND;
 
 #endif // PHYSICSWORLD_H

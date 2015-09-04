@@ -45,12 +45,12 @@ Entity::~Entity()
     removeRigidBody();
 }
 
-RigidBody *Entity::addRigidBody(const RigidBody::ConstructionInfo& info,
+RigidBody *Entity::addRigidBody(const RigidBodyConstructionInfo& info,
                                 PhysicsShape *shape)
 {
     updateFinalTransform();
 
-    RigidBody::ConstructionInfo newInfo = info;
+    RigidBodyConstructionInfo newInfo = info;
 
     newInfo.entity = this;
 

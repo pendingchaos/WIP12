@@ -77,7 +77,7 @@ class MotionState : public btMotionState
         Entity *entity;
 };
 
-RigidBody::RigidBody(const ConstructionInfo& info,
+RigidBody::RigidBody(const RigidBodyConstructionInfo& info,
                      PhysicsShape *shape_,
                      PhysicsWorld *world_) : shape(shape_),
                                              world(world_),
@@ -87,7 +87,7 @@ RigidBody::RigidBody(const ConstructionInfo& info,
 {
     shape->rigidBodies.append(this);
 
-    float mass = info.type == Dynamic ? info.mass : 0.0f;
+    float mass = info.type == RigidBodyType::Dynamic ? std::max(info.mass, 0.0001f) : 0.0f;
 
     btRigidBody::btRigidBodyConstructionInfo btInfo(mass,
                                                     NEW(MotionState, entity),
@@ -115,17 +115,17 @@ RigidBody::RigidBody(const ConstructionInfo& info,
 
     switch (info.type)
     {
-    case Static:
+    case RigidBodyType::Static:
     {
         rigidBody->setCollisionFlags(rigidBody->getCollisionFlags()
                                       | btCollisionObject::CF_STATIC_OBJECT);
         break;
     }
-    case Dynamic:
+    case RigidBodyType::Dynamic:
     {
         break;
     }
-    case Kinematic:
+    case RigidBodyType::Kinematic:
     {
         rigidBody->setCollisionFlags(rigidBody->getCollisionFlags()
                                       | btCollisionObject::CF_KINEMATIC_OBJECT);

@@ -419,12 +419,12 @@ class PhysicsShape : public Resource
             setEmpty();
         }
 
-        inline PhysicsShapeImpl *getImpl() const
+        inline PhysicsShapeImpl *getImpl() const NO_BIND
         {
             return impl;
         }
 
-        inline PhysicsShapeImpl::Type getShapeType() const
+        inline PhysicsShapeImpl::Type getShapeType() const NO_BIND
         {
             return impl->getType();
         }
@@ -449,7 +449,7 @@ class PhysicsShape : public Resource
             impl->setScale(scale);
         }
 
-        inline btCollisionShape *getBulletShape() const
+        inline btCollisionShape *getBulletShape() const NO_BIND
         {
             return impl->getBulletShape();
         }
@@ -457,14 +457,14 @@ class PhysicsShape : public Resource
         void setEmpty();
         void setSphere(float radius);
         void setBox(const Vector3D& halfExtents);
-        void setCylinder(PhysicsCylinderShape::Axis axis, float height, float radius);
-        void setCapsule(PhysicsCapsuleShape::Axis axis, float height, float radius);
-        void setCone(PhysicsConeShape::Axis axis, float height, float radius);
-        void setConvexHull(size_t pointCount, const Position3D *points);
-        void setStaticTriangleMesh(size_t numVertices, const Position3D *vertices);
-        void setHeightfield(uint32_t width, uint32_t height, const float *data);
+        void setCylinder(PhysicsCylinderShape::Axis axis, float height, float radius) NO_BIND;
+        void setCapsule(PhysicsCapsuleShape::Axis axis, float height, float radius) NO_BIND;
+        void setCone(PhysicsConeShape::Axis axis, float height, float radius) NO_BIND;
+        void setConvexHull(size_t pointCount, const Position3D *points) NO_BIND;
+        void setStaticTriangleMesh(size_t numVertices, const Position3D *vertices) NO_BIND;
+        void setHeightfield(uint32_t width, uint32_t height, const float *data) NO_BIND;
         void setPlane(const Vector3D& normal, float distance);
-        void setCompound(size_t childCount, const PhysicsCompoundShape::Child *children);
+        void setCompound(size_t childCount, const PhysicsCompoundShape::Child *children) NO_BIND;
 
         virtual void save();
     private:
@@ -474,6 +474,6 @@ class PhysicsShape : public Resource
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-} DESTROY(obj->release());
+} DESTROY(obj->release()) BIND;
 
 #endif // PHYSICSSHAPE_H

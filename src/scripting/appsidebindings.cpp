@@ -169,7 +169,7 @@ struct _functionStruct
     void (*f117)( Scene *obj);
     Entity * (*f118)( Scene *obj, const String & arg0);
     void (*f119)( Scene *obj, size_t arg0);
-    RigidBody * (*f120)( Entity *obj, const RigidBody::ConstructionInfo & arg0, PhysicsShape * arg1);
+    RigidBody * (*f120)( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1);
     Scene * (*f121)(const Entity *obj);
     Entity * (*f122)( Entity *obj, const String & arg0);
     void (*f123)( Entity *obj, size_t arg0);
@@ -435,7 +435,7 @@ void f116( Scene *obj, float arg0) { obj->fixedUpdate(arg0);}
 void f117( Scene *obj) { obj->render();}
 Entity * f118( Scene *obj, const String & arg0) {return obj->createEntity(arg0);}
 void f119( Scene *obj, size_t arg0) { obj->removeEntity(arg0);}
-RigidBody * f120( Entity *obj, const RigidBody::ConstructionInfo & arg0, PhysicsShape * arg1) {return obj->addRigidBody(arg0, arg1);}
+RigidBody * f120( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1) {return obj->addRigidBody(arg0, arg1);}
 Scene * f121(const Entity *obj) {return obj->getScene();}
 Entity * f122( Entity *obj, const String & arg0) {return obj->createEntity(arg0);}
 void f123( Entity *obj, size_t arg0) { obj->removeEntity(arg0);}
