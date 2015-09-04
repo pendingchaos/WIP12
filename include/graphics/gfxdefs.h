@@ -4,8 +4,6 @@
 #include "containers/string.h"
 #include "scripting/bindings.h"
 
-class GfxBuffer;
-
 enum GfxPrimitive
 {
     GfxPoints,

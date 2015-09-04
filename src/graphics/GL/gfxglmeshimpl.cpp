@@ -13,7 +13,7 @@ GfxGLMeshImpl::~GfxGLMeshImpl()
 }
 
 void GfxGLMeshImpl::setVertexAttrib(GfxVertexAttribPurpose purpose,
-                                  const GfxMesh::VertexAttribute& attribute)
+                                  const GfxVertexAttribute& attribute)
 {
     GLint lastVAO;
     glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &lastVAO);
@@ -146,7 +146,7 @@ bool GfxGLMeshImpl::isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const
     return enabled;
 }
 
-GfxMesh::VertexAttribute GfxGLMeshImpl::getVertexAttrib(GfxVertexAttribPurpose purpose) const
+GfxVertexAttribute GfxGLMeshImpl::getVertexAttrib(GfxVertexAttribPurpose purpose) const
 {
     return attributes[(int)purpose];
 }

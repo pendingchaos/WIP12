@@ -7,7 +7,7 @@ GLGPUTimer::GLGPUTimer()
 {
     glGenQueries(2, queries);
 
-    if (gfxApi->getDriver() == GfxApi::Nvidia)
+    if (gfxApi->getDriver() == GfxDriver::Nvidia)
     {
         glBeginQuery(GL_TIME_ELAPSED, queries[0]);
         glEndQuery(GL_TIME_ELAPSED);

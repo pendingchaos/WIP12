@@ -4,6 +4,7 @@
 #include "containers/string.h"
 #include "resource/resource.h"
 #include "graphics/GL/glfl.h"
+#include "scripting/bindings.h"
 
 #include <stdint.h>
 #include <cmath>
@@ -16,148 +17,149 @@
 class GfxTextureImpl;
 class GfxGLApi;
 
+enum class GfxTextureType
+{
+    Texture2D,
+    CubeMap,
+    Texture3D
+} BIND ENUM_CLASS;
+
+enum class GfxFilter
+{
+    Nearest,
+        Bilinear
+} BIND ENUM_CLASS;
+
+enum class GfxMipmapMode
+{
+    None,
+    Nearest,
+    Linear
+} BIND ENUM_CLASS;
+
+enum class GfxWrapMode
+{
+    Stretch,
+    Repeat,
+    Mirror
+} BIND ENUM_CLASS;
+
+/**
+ *F32_F16 means the data is stored as 32 bit floats but is converted to
+ *16 bit floats.
+ *
+ *The Int* And UInt* means that the texture is meant to be sampled with GLSL's
+ *usampler* and uisampler* types.
+ */
+enum class GfxTexFormat
+{
+    AlphaU8,
+    AlphaI8,
+    AlphaU16,
+    AlphaI16,
+    AlphaF32,
+    AlphaF32_F16,
+
+    LuminanceU8,
+    LuminanceI8,
+    LuminanceU16,
+    LuminanceI16,
+    LuminanceF32,
+    LuminanceF32_F16,
+
+    LuminanceAlphaU8,
+    LuminanceAlphaI8,
+    LuminanceAlphaU16,
+    LuminanceAlphaI16,
+    LuminanceAlphaF32,
+    LuminanceAlphaF32_F16,
+
+    RGBU8,
+    RGBI8,
+    RGBU16,
+    RGBI16,
+    RGBF32,
+    RGBF32_F16,
+
+    RGBAU8,
+    RGBAI8,
+    RGBAU16,
+    RGBAI16,
+    RGBAF32,
+    RGBAF32_F16,
+
+    Int_8,
+    UInt_8,
+    Int_16,
+    UInt_16,
+    Int_32,
+    UInt_32,
+
+    Int2_8,
+    UInt2_8,
+    Int2_16,
+    UInt2_16,
+    Int2_32,
+    UInt2_32,
+
+    Int3_8,
+    UInt3_8,
+    Int3_16,
+    UInt3_16,
+    Int3_32,
+    UInt3_32,
+
+    Int4_8,
+    UInt4_8,
+    Int4_16,
+    UInt4_16,
+    Int4_32,
+    UInt4_32,
+
+    SRGBU8,
+    SRGBAU8,
+
+    DepthF32_F16,
+    DepthF32_F24,
+    DepthF32,
+
+    RedGreenU8,
+    RedGreenI8,
+    RedGreenU16,
+    RedGreenI16,
+    RedGreenF32,
+    RedGreenF32_F16,
+
+    RedU8,
+    RedI8,
+    RedU16,
+    RedI16,
+    RedF32,
+    RedF32_F16
+} BIND ENUM_CLASS;
+
+//TODO: Get rid of this and the quality parameter.
+enum class GfxTexPurpose
+{
+    Color,
+    Normal,
+    Other
+} BIND ENUM_CLASS;
+
+enum class GfxFace
+{
+    PositiveX,
+    NegativeX,
+    PositiveY,
+    NegativeY,
+    PositiveZ,
+    NegativeZ
+} BIND ENUM_CLASS;
+
 class GfxTexture : public Resource
 {
     public:
         static const ResType resource_type = ResType::GfxTextureType;
-
-        enum TextureType
-        {
-            Texture2D,
-            CubeMap,
-            Texture3D
-        };
-
-        enum Filter
-        {
-            Nearest,
-            Bilinear
-        };
-
-        enum MipmapMode
-        {
-            None,
-            NearestMipmap,
-            LinearMipmap
-        };
-
-        enum WrapMode
-        {
-            Stretch,
-            Repeat,
-            Mirror
-        };
-
-        /**
-         *F32_F16 means the data is stored as 32 bit floats but is converted to
-         *16 bit floats.
-         *
-         *The Int* And UInt* means that the texture is meant to be sampled with GLSL's
-         *usampler* and uisampler* types.
-         */
-        enum Format
-        {
-            AlphaU8,
-            AlphaI8,
-            AlphaU16,
-            AlphaI16,
-            AlphaF32,
-            AlphaF32_F16,
-
-            LuminanceU8,
-            LuminanceI8,
-            LuminanceU16,
-            LuminanceI16,
-            LuminanceF32,
-            LuminanceF32_F16,
-
-            LuminanceAlphaU8,
-            LuminanceAlphaI8,
-            LuminanceAlphaU16,
-            LuminanceAlphaI16,
-            LuminanceAlphaF32,
-            LuminanceAlphaF32_F16,
-
-            RGBU8,
-            RGBI8,
-            RGBU16,
-            RGBI16,
-            RGBF32,
-            RGBF32_F16,
-
-            RGBAU8,
-            RGBAI8,
-            RGBAU16,
-            RGBAI16,
-            RGBAF32,
-            RGBAF32_F16,
-
-            Int_8,
-            UInt_8,
-            Int_16,
-            UInt_16,
-            Int_32,
-            UInt_32,
-
-            Int2_8,
-            UInt2_8,
-            Int2_16,
-            UInt2_16,
-            Int2_32,
-            UInt2_32,
-
-            Int3_8,
-            UInt3_8,
-            Int3_16,
-            UInt3_16,
-            Int3_32,
-            UInt3_32,
-
-            Int4_8,
-            UInt4_8,
-            Int4_16,
-            UInt4_16,
-            Int4_32,
-            UInt4_32,
-
-            SRGBU8,
-            SRGBAU8,
-
-            DepthF32_F16,
-            DepthF32_F24,
-            DepthF32,
-
-            RedGreenU8,
-            RedGreenI8,
-            RedGreenU16,
-            RedGreenI16,
-            RedGreenF32,
-            RedGreenF32_F16,
-
-            RedU8,
-            RedI8,
-            RedU16,
-            RedI16,
-            RedF32,
-            RedF32_F16
-        };
-
-        enum Purpose
-        {
-            Color,
-            Normal,
-            Other
-        };
-
-        enum Face
-        {
-            PositiveX,
-            NegativeX,
-            PositiveY,
-            NegativeY,
-            PositiveZ,
-            NegativeZ
-        };
 
         GfxTexture(const String& filename);
         GfxTexture();
@@ -165,36 +167,36 @@ class GfxTexture : public Resource
 
         virtual void removeContent();
 
-        void startCreation(GfxTexture::TextureType type,
+        void startCreation(GfxTextureType type,
                            bool compress,
                            unsigned int baseWidth,
                            unsigned int baseHeight,
                            unsigned int baseDepth,
                            uint8_t compressionQuality,
-                           GfxTexture::Purpose purpose,
-                           GfxTexture::Format format);
+                           GfxTexPurpose purpose,
+                           GfxTexFormat format);
 
         void allocMipmapFace(unsigned int level,
                              unsigned int pixelAlignment,
-                             GfxTexture::Face face,
-                             const void *data);
+                             GfxFace face,
+                             const void *data) NO_BIND;
 
         void allocMipmap(unsigned int level,
                          unsigned int pixelAlignment,
-                         const void *data);
+                         const void *data) NO_BIND;
 
         void getMipmapFace(unsigned int level,
                            unsigned int pixelAlignment,
-                           GfxTexture::Face face,
-                           void *data) const;
+                           GfxFace face,
+                           void *data) const NO_BIND;
 
         void getMipmap(unsigned int level,
                        unsigned int pixelAlignment,
-                       void *data) const;
+                       void *data) const NO_BIND;
 
         void generateMipmaps();
 
-        inline GfxTexture::TextureType getTextureType() const
+        inline GfxTextureType getTextureType() const
         {
             return textureType;
         }
@@ -209,22 +211,22 @@ class GfxTexture : public Resource
             return maximumAnisotropy;
         }
 
-        inline GfxTexture::Filter getMinFilter() const
+        inline GfxFilter getMinFilter() const
         {
             return minFilter;
         }
 
-        inline GfxTexture::Filter getMagFilter() const
+        inline GfxFilter getMagFilter() const
         {
             return magFilter;
         }
 
-        inline GfxTexture::MipmapMode getMipmapMode() const
+        inline GfxMipmapMode getMipmapMode() const
         {
             return mipmapMode;
         }
 
-        inline GfxTexture::WrapMode getWrapMode() const
+        inline GfxWrapMode getWrapMode() const
         {
             return wrapMode;
         }
@@ -249,12 +251,12 @@ class GfxTexture : public Resource
             return compressionQuality;
         }
 
-        inline GfxTexture::Purpose getPurpose() const
+        inline GfxTexPurpose getPurpose() const
         {
             return purpose;
         }
 
-        inline GfxTexture::Format getFormat() const
+        inline GfxTexFormat getFormat() const
         {
             return format;
         }
@@ -265,13 +267,13 @@ class GfxTexture : public Resource
         }
 
         void setMaximumAnisotropy(float maxAnisotropy);
-        void setMinFilter(GfxTexture::Filter minFilter);
-        void setMagFilter(GfxTexture::Filter magFilter);
-        void setMipmapMode(GfxTexture::MipmapMode mode);
-        void setWrapMode(GfxTexture::WrapMode mode);
+        void setMinFilter(GfxFilter minFilter);
+        void setMagFilter(GfxFilter magFilter);
+        void setMipmapMode(GfxMipmapMode mode);
+        void setWrapMode(GfxWrapMode mode);
         void setShadowmap(bool shadowmap);
 
-        inline GfxTextureImpl *getImpl() const
+        inline GfxTextureImpl *getImpl() const NO_BIND
         {
             return impl;
         }
@@ -279,26 +281,26 @@ class GfxTexture : public Resource
         virtual void save();
     private:
         GfxTextureImpl *impl;
-        TextureType textureType;
+        GfxTextureType textureType;
         bool compress;
         float maximumAnisotropy;
-        Filter minFilter;
-        Filter magFilter;
-        MipmapMode mipmapMode;
-        WrapMode wrapMode;
+        GfxFilter minFilter;
+        GfxFilter magFilter;
+        GfxMipmapMode mipmapMode;
+        GfxWrapMode wrapMode;
         unsigned int baseWidth;
         unsigned int baseHeight;
         unsigned int baseDepth;
         uint8_t compressionQuality;
-        Purpose purpose;
-        Format format;
+        GfxTexPurpose purpose;
+        GfxTexFormat format;
         bool shadowmap;
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxTexture, Resource)
-} DESTROY(obj->release());
+} BIND DESTROY(obj->release());
 
 class GfxTextureImpl
 {
@@ -308,18 +310,18 @@ class GfxTextureImpl
         GfxTextureImpl() {}
         virtual ~GfxTextureImpl() {}
 
-        virtual void startCreation(GfxTexture::TextureType type,
+        virtual void startCreation(GfxTextureType type,
                                    bool compress,
                                    unsigned int baseWidth,
                                    unsigned int baseHeight,
                                    unsigned int baseDepth,
                                    uint8_t compressionQuality,
-                                   GfxTexture::Purpose purpose,
-                                   GfxTexture::Format format)=0;
+                                   GfxTexPurpose purpose,
+                                   GfxTexFormat format)=0;
 
         virtual void allocMipmapFace(unsigned int level,
                                      unsigned int pixelAlignment,
-                                     GfxTexture::Face face,
+                                     GfxFace face,
                                      const void *data)=0;
 
         virtual void allocMipmap(unsigned int level,
@@ -328,7 +330,7 @@ class GfxTextureImpl
 
         virtual void getMipmapFace(unsigned int level,
                                    unsigned int pixelAlignment,
-                                   GfxTexture::Face face,
+                                   GfxFace face,
                                    void *data)=0;
 
         virtual void getMipmap(unsigned int level,
@@ -338,10 +340,10 @@ class GfxTextureImpl
         virtual void generateMipmaps()=0;
 
         virtual void setMaximumAnisotropy(float maxAnisotropy)=0;
-        virtual void setMinFilter(GfxTexture::Filter minFilter)=0;
-        virtual void setMagFilter(GfxTexture::Filter magFilter)=0;
-        virtual void setMipmapMode(GfxTexture::MipmapMode mode)=0;
-        virtual void setWrapMode(GfxTexture::WrapMode mode)=0;
+        virtual void setMinFilter(GfxFilter minFilter)=0;
+        virtual void setMagFilter(GfxFilter magFilter)=0;
+        virtual void setMipmapMode(GfxMipmapMode mode)=0;
+        virtual void setWrapMode(GfxWrapMode mode)=0;
         virtual void setShadowmap(bool shadowmap)=0;
 
     NO_COPY(GfxTextureImpl)

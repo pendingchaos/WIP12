@@ -204,16 +204,16 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 
     if (vendor == "NVIDIA Corporation")
     {
-        driver = Nvidia;
+        driver = GfxDriver::Nvidia;
     } else if (vendor.find("nouveau") != -1)
     {
-        driver = Mesa;
+        driver = GfxDriver::Mesa;
     } else if (vendor.find("mesa") != -1)
     {
-        driver = Mesa;
+        driver = GfxDriver::Mesa;
     } else
     {
-        driver = Unknown;
+        driver = GfxDriver::Unknown;
     }
 
     resetState();
@@ -252,7 +252,7 @@ GfxGLApi::~GfxGLApi()
     }
 }
 
-GfxApi::Driver GfxGLApi::getDriver() const
+GfxDriver GfxGLApi::getDriver() const
 {
     return driver;
 }

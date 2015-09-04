@@ -97,17 +97,17 @@ struct _functionStruct
     void (*f92)( Serializable *obj, File * arg0);
     void (*f93)( Resource *obj);
     bool (*f94)(const Resource *obj);
-    void (*f95)( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7);
-    void (*f96)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3);
+    void (*f95)( GfxTexture *obj, GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7);
+    void (*f96)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3);
     void (*f97)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2);
-    void (*f98)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3);
+    void (*f98)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3);
     void (*f99)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, void * arg2);
     void (*f100)( GfxTexture *obj);
     void (*f101)( GfxTexture *obj, float arg0);
-    void (*f102)( GfxTexture *obj, GfxTexture::Filter arg0);
-    void (*f103)( GfxTexture *obj, GfxTexture::Filter arg0);
-    void (*f104)( GfxTexture *obj, GfxTexture::MipmapMode arg0);
-    void (*f105)( GfxTexture *obj, GfxTexture::WrapMode arg0);
+    void (*f102)( GfxTexture *obj, GfxFilter arg0);
+    void (*f103)( GfxTexture *obj, GfxFilter arg0);
+    void (*f104)( GfxTexture *obj, GfxMipmapMode arg0);
+    void (*f105)( GfxTexture *obj, GfxWrapMode arg0);
     void (*f106)( GfxTexture *obj, bool arg0);
     Transform (*f107)( GhostObject *obj);
     void (*f108)(const GhostObject *obj, const Transform & arg0);
@@ -364,17 +364,17 @@ void Serializable::writeToFile(File * arg0)  { _functions->f91(this, arg0);}
 void Serializable::readFromFile(File * arg0)  { _functions->f92(this, arg0);}
 void Resource::load()  { _functions->f93(this);}
 bool Resource::shouldReload() const {return _functions->f94(this);}
-void GfxTexture::startCreation(GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7)  { _functions->f95(this, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
-void GfxTexture::allocMipmapFace(unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3)  { _functions->f96(this, arg0, arg1, arg2, arg3);}
+void GfxTexture::startCreation(GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7)  { _functions->f95(this, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
+void GfxTexture::allocMipmapFace(unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3)  { _functions->f96(this, arg0, arg1, arg2, arg3);}
 void GfxTexture::allocMipmap(unsigned int arg0, unsigned int arg1, const void * arg2)  { _functions->f97(this, arg0, arg1, arg2);}
-void GfxTexture::getMipmapFace(unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3) const { _functions->f98(this, arg0, arg1, arg2, arg3);}
+void GfxTexture::getMipmapFace(unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3) const { _functions->f98(this, arg0, arg1, arg2, arg3);}
 void GfxTexture::getMipmap(unsigned int arg0, unsigned int arg1, void * arg2) const { _functions->f99(this, arg0, arg1, arg2);}
 void GfxTexture::generateMipmaps()  { _functions->f100(this);}
 void GfxTexture::setMaximumAnisotropy(float arg0)  { _functions->f101(this, arg0);}
-void GfxTexture::setMinFilter(GfxTexture::Filter arg0)  { _functions->f102(this, arg0);}
-void GfxTexture::setMagFilter(GfxTexture::Filter arg0)  { _functions->f103(this, arg0);}
-void GfxTexture::setMipmapMode(GfxTexture::MipmapMode arg0)  { _functions->f104(this, arg0);}
-void GfxTexture::setWrapMode(GfxTexture::WrapMode arg0)  { _functions->f105(this, arg0);}
+void GfxTexture::setMinFilter(GfxFilter arg0)  { _functions->f102(this, arg0);}
+void GfxTexture::setMagFilter(GfxFilter arg0)  { _functions->f103(this, arg0);}
+void GfxTexture::setMipmapMode(GfxMipmapMode arg0)  { _functions->f104(this, arg0);}
+void GfxTexture::setWrapMode(GfxWrapMode arg0)  { _functions->f105(this, arg0);}
 void GfxTexture::setShadowmap(bool arg0)  { _functions->f106(this, arg0);}
 Transform GhostObject::getTransform()  {return _functions->f107(this);}
 void GhostObject::setTransform(const Transform & arg0) const { _functions->f108(this, arg0);}

@@ -12,10 +12,10 @@ class GfxGLMeshImpl : public GfxMeshImpl
         virtual ~GfxGLMeshImpl();
 
         virtual void setVertexAttrib(GfxVertexAttribPurpose purpose,
-                                     const GfxMesh::VertexAttribute& attribute);
+                                     const GfxVertexAttribute& attribute);
         virtual void disableVertexAttrib(GfxVertexAttribPurpose purpose);
         virtual bool isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const;
-        virtual GfxMesh::VertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const;
+        virtual GfxVertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const;
 
         inline GLuint getGLVAO() const
         {
@@ -23,7 +23,7 @@ class GfxGLMeshImpl : public GfxMeshImpl
         }
     private:
         GLuint vao;
-        GfxMesh::VertexAttribute attributes[GFX_VERTEX_ATTRIB_PURPOSE_COUNT];
+        GfxVertexAttribute attributes[GFX_VERTEX_ATTRIB_PURPOSE_COUNT];
 };
 
 #endif // GFXGLMESHIMPL_H

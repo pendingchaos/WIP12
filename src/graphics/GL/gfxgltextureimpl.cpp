@@ -369,7 +369,7 @@ glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 glPixelStorei(GL_UNPACK_ALIGNMENT, pixelAlignment);\
 unsigned int width = TEX_COMPUTE_MIPMAP_SIZE(baseWidth, level);\
 unsigned int height = TEX_COMPUTE_MIPMAP_SIZE(baseHeight, level);\
-if (textureType == GfxTexture::Texture2D or textureType == GfxTexture::CubeMap)\
+if (textureType == GfxTextureType::Texture2D or textureType == GfxTextureType::CubeMap)\
 {\
     glTexImage2D(target,\
                  level,\
@@ -397,7 +397,7 @@ if (textureType == GfxTexture::Texture2D or textureType == GfxTexture::CubeMap)\
 
 GfxGLTextureImpl::GfxGLTextureImpl()
 {
-    textureType = GfxTexture::Texture2D;
+    textureType = GfxTextureType::Texture2D;
 
     glGenTextures(1, &texture);
 
@@ -406,10 +406,10 @@ GfxGLTextureImpl::GfxGLTextureImpl()
     END_TEXTURE_BINDING
 
     maximumAnisotropy = 1.0f;
-    minFilter = GfxTexture::Bilinear;
-    magFilter = GfxTexture::Bilinear;
-    mipmapMode = GfxTexture::None;
-    wrapMode = GfxTexture::Repeat;
+    minFilter = GfxFilter::Bilinear;
+    magFilter = GfxFilter::Bilinear;
+    mipmapMode = GfxMipmapMode::None;
+    wrapMode = GfxWrapMode::Repeat;
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
@@ -423,14 +423,14 @@ GfxGLTextureImpl::~GfxGLTextureImpl()
     glDeleteTextures(1, &texture);
 }
 
-void GfxGLTextureImpl::startCreation(GfxTexture::TextureType type_,
+void GfxGLTextureImpl::startCreation(GfxTextureType type_,
                                      bool compress_,
                                      unsigned int baseWidth_,
                                      unsigned int baseHeight_,
                                      unsigned int baseDepth_,
                                      uint8_t compressionQuality_,
-                                     GfxTexture::Purpose purpose_,
-                                     GfxTexture::Format format_)
+                                     GfxTexPurpose purpose_,
+                                     GfxTexFormat format_)
 {
     glDeleteTextures(1, &texture);
     glGenTextures(1, &texture);
@@ -455,22 +455,22 @@ void GfxGLTextureImpl::startCreation(GfxTexture::TextureType type_,
 
 void GfxGLTextureImpl::allocMipmapFace(unsigned int level,
                                        unsigned int pixelAlignment,
-                                       GfxTexture::Face face,
+                                       GfxFace face,
                                        const void *data)
 {
     WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTexture::CubeMap,
+                  textureType == GfxTextureType::CubeMap,
                   "Trying to allocate data for a cubemap "
                   "face for a texture that is not a cubemap.")();
 
-    if (textureType != GfxTexture::CubeMap)
+    if (textureType != GfxTextureType::CubeMap)
     {
         return;
     }
 
     GLint lastTexture;
 
-    GLenum target = GL_TEXTURE_CUBE_MAP_POSITIVE_X + face;
+    GLenum target = GL_TEXTURE_CUBE_MAP_POSITIVE_X + (int)face;
 
     glGetIntegerv(GL_TEXTURE_BINDING_CUBE_MAP, &lastTexture);
 
@@ -486,11 +486,11 @@ void GfxGLTextureImpl::allocMipmap(unsigned int level,
                                    const void *data)
 {
     WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTexture::Texture2D,
+                  textureType == GfxTextureType::Texture2D,
                   "Trying to allocate data for a 2d texture "
                   "for a texture that is not 2d.")();
 
-    if (textureType != GfxTexture::Texture2D)
+    if (textureType != GfxTextureType::Texture2D)
     {
         return;
     }
@@ -502,22 +502,22 @@ void GfxGLTextureImpl::allocMipmap(unsigned int level,
 
 void GfxGLTextureImpl::getMipmapFace(unsigned int level,
                                      unsigned int pixelAlignment,
-                                     GfxTexture::Face face,
+                                     GfxFace face,
                                      void *data)
 {
     WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTexture::CubeMap,
+                  textureType == GfxTextureType::CubeMap,
                   "Trying to allocate data for a cubemap "
                   "face for a texture that is not a cubemap.")();
 
-    if (textureType != GfxTexture::CubeMap)
+    if (textureType != GfxTextureType::CubeMap)
     {
         return;
     }
 
     GLint lastTexture;
 
-    GLenum target = GL_TEXTURE_CUBE_MAP_POSITIVE_X + face;
+    GLenum target = GL_TEXTURE_CUBE_MAP_POSITIVE_X + (int)face;
 
     glGetIntegerv(GL_TEXTURE_BINDING_CUBE_MAP, &lastTexture);
 
@@ -537,11 +537,11 @@ void GfxGLTextureImpl::getMipmap(unsigned int level,
                                  void *data)
 {
     WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTexture::Texture2D,
+                  textureType == GfxTextureType::Texture2D,
                   "Trying to allocate data for a 2d texture "
                   "for a texture that is not 2d.")();
 
-    if (textureType != GfxTexture::Texture2D)
+    if (textureType != GfxTextureType::Texture2D)
     {
         return;
     }
@@ -613,25 +613,25 @@ void GfxGLTextureImpl::setMaximumAnisotropy(float maxAnisotropy)
     }
 }
 
-void GfxGLTextureImpl::setMinFilter(GfxTexture::Filter minFilter_)
+void GfxGLTextureImpl::setMinFilter(GfxFilter minFilter_)
 {
     minFilter = minFilter_;
 
     setMinFiltering();
 }
 
-void GfxGLTextureImpl::setMagFilter(GfxTexture::Filter magFilter)
+void GfxGLTextureImpl::setMagFilter(GfxFilter magFilter)
 {
     BEGIN_TEXTURE_BINDING
 
     switch (magFilter)
     {
-    case GfxTexture::Bilinear:
+    case GfxFilter::Bilinear:
     {
         glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         break;
     }
-    case GfxTexture::Nearest:
+    case GfxFilter::Nearest:
     {
         glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         break;
@@ -641,7 +641,7 @@ void GfxGLTextureImpl::setMagFilter(GfxTexture::Filter magFilter)
     END_TEXTURE_BINDING
 }
 
-void GfxGLTextureImpl::setMipmapMode(GfxTexture::MipmapMode mode)
+void GfxGLTextureImpl::setMipmapMode(GfxMipmapMode mode)
 {
     if (mode == mipmapMode)
     {
@@ -653,25 +653,25 @@ void GfxGLTextureImpl::setMipmapMode(GfxTexture::MipmapMode mode)
     setMinFiltering();
 }
 
-void GfxGLTextureImpl::setWrapMode(GfxTexture::WrapMode mode)
+void GfxGLTextureImpl::setWrapMode(GfxWrapMode mode)
 {
     BEGIN_TEXTURE_BINDING
 
     switch (mode)
     {
-    case GfxTexture::Stretch:
+    case GfxWrapMode::Stretch:
     {
         glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         break;
     }
-    case GfxTexture::Repeat:
+    case GfxWrapMode::Repeat:
     {
         glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_REPEAT);
         break;
     }
-    case GfxTexture::Mirror:
+    case GfxWrapMode::Mirror:
     {
         glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
         glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
@@ -690,16 +690,16 @@ void GfxGLTextureImpl::setMinFiltering()
 
     switch (mipmapMode)
     {
-    case GfxTexture::None:
+    case GfxMipmapMode::None:
     {
         switch (minFilter)
         {
-        case GfxTexture::Bilinear:
+        case GfxFilter::Bilinear:
         {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             break;
         }
-        case GfxTexture::Nearest:
+        case GfxFilter::Nearest:
         {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             break;
@@ -707,16 +707,16 @@ void GfxGLTextureImpl::setMinFiltering()
         }
         break;
     }
-    case GfxTexture::NearestMipmap:
+    case GfxMipmapMode::Nearest:
     {
         switch (minFilter)
         {
-        case GfxTexture::Bilinear:
+        case GfxFilter::Bilinear:
         {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
             break;
         }
-        case GfxTexture::Nearest:
+        case GfxFilter::Nearest:
         {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
             break;
@@ -724,16 +724,16 @@ void GfxGLTextureImpl::setMinFiltering()
         }
         break;
     }
-    case GfxTexture::LinearMipmap:
+    case GfxMipmapMode::Linear:
     {
         switch (minFilter)
         {
-        case GfxTexture::Bilinear:
+        case GfxFilter::Bilinear:
         {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
             break;
         }
-        case GfxTexture::Nearest:
+        case GfxFilter::Nearest:
         {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
             break;

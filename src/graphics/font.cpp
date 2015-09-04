@@ -234,17 +234,17 @@ void Font::loadGlyph(Face& face, char character)
 
     glyph.texture = NEW(GfxTexture);
 
-    glyph.texture->startCreation(GfxTexture::Texture2D,
+    glyph.texture->startCreation(GfxTextureType::Texture2D,
                                  false,
                                  glyph.size.x,
                                  glyph.size.y,
                                  1,
                                  255,
-                                 GfxTexture::Color,
-                                 GfxTexture::LuminanceU8);
+                                 GfxTexPurpose::Color,
+                                 GfxTexFormat::LuminanceU8);
 
     glyph.texture->allocMipmap(0, 1, face.face->glyph->bitmap.buffer);
-    glyph.texture->setWrapMode(GfxTexture::Stretch);
+    glyph.texture->setWrapMode(GfxWrapMode::Stretch);
 
     face.glyphs.set(character, glyph);
 }

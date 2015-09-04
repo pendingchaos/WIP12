@@ -10,7 +10,7 @@ class GfxGLApi : public GfxApi
         GfxGLApi();
         virtual ~GfxGLApi();
 
-        virtual Driver getDriver() const;
+        virtual GfxDriver getDriver() const;
 
         inline unsigned int getOpenGLMinorVersion() const
         {
@@ -176,7 +176,7 @@ class GfxGLApi : public GfxApi
 
         unsigned int glMajor;
         unsigned int glMinor;
-        Driver driver;
+        GfxDriver driver;
 
         GLuint pipeline;
         State currentState;

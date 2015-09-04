@@ -11,18 +11,18 @@ class GfxGLTextureImpl : public GfxTextureImpl
         GfxGLTextureImpl();
         virtual ~GfxGLTextureImpl();
 
-        virtual void startCreation(GfxTexture::TextureType type,
+        virtual void startCreation(GfxTextureType type,
                                    bool compress,
                                    unsigned int baseWidth,
                                    unsigned int baseHeight,
                                    unsigned int baseDepth,
                                    uint8_t compressionQuality,
-                                   GfxTexture::Purpose purpose,
-                                   GfxTexture::Format format);
+                                   GfxTexPurpose purpose,
+                                   GfxTexFormat format);
 
         virtual void allocMipmapFace(unsigned int level,
                                      unsigned int pixelAlignment,
-                                     GfxTexture::Face face,
+                                     GfxFace face,
                                      const void *data);
 
         virtual void allocMipmap(unsigned int level,
@@ -31,7 +31,7 @@ class GfxGLTextureImpl : public GfxTextureImpl
 
         virtual void getMipmapFace(unsigned int level,
                                    unsigned int pixelAlignment,
-                                   GfxTexture::Face face,
+                                   GfxFace face,
                                    void *data);
 
         virtual void getMipmap(unsigned int level,
@@ -50,25 +50,25 @@ class GfxGLTextureImpl : public GfxTextureImpl
         GLenum getGLInternalFormat() const;
 
         virtual void setMaximumAnisotropy(float maxAnisotropy);
-        virtual void setMinFilter(GfxTexture::Filter minFilter);
-        virtual void setMagFilter(GfxTexture::Filter magFilter);
-        virtual void setMipmapMode(GfxTexture::MipmapMode mode);
-        virtual void setWrapMode(GfxTexture::WrapMode mode);
+        virtual void setMinFilter(GfxFilter minFilter);
+        virtual void setMagFilter(GfxFilter magFilter);
+        virtual void setMipmapMode(GfxMipmapMode mode);
+        virtual void setWrapMode(GfxWrapMode mode);
         virtual void setShadowmap(bool shadowmap);
     private:
         GLuint texture;
-        GfxTexture::TextureType textureType;
+        GfxTextureType textureType;
 
-        GfxTexture::Filter minFilter;
-        GfxTexture::MipmapMode mipmapMode;
+        GfxFilter minFilter;
+        GfxMipmapMode mipmapMode;
         unsigned int baseWidth;
         unsigned int baseHeight;
         unsigned int baseDepth;
-        GfxTexture::Format format;
+        GfxTexFormat format;
         float maximumAnisotropy;
-        GfxTexture::WrapMode wrapMode;
+        GfxWrapMode wrapMode;
         bool shadowmap;
-        GfxTexture::Filter magFilter;
+        GfxFilter magFilter;
 
         void setMinFiltering();
 };

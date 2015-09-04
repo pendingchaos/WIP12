@@ -2,6 +2,8 @@
 #define GFXFRAMEBUFFER_H
 
 #include "graphics/gfxtexture.h"
+#include "scripting/bindings.h"
+
 #include <stddef.h>
 
 class GfxFramebuffer
@@ -28,6 +30,6 @@ class GfxFramebuffer
         virtual GfxTexture *getDepthTexture()=0;
         virtual size_t getDepthTextureMipmapLevel()=0;
         virtual int getDepthAttachmentLayer()=0;
-};
+} BIND;
 
 #endif // GFXFRAMEBUFFER_H

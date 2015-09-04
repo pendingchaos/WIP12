@@ -11,41 +11,41 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
 {
     removeShadowmap();
 
-    static const GfxTexture::Format formats[] = {GfxTexture::DepthF32_F16,
-                                                 GfxTexture::DepthF32_F24,
-                                                 GfxTexture::DepthF32};
+    static const GfxTexFormat formats[] = {GfxTexFormat::DepthF32_F16,
+                                           GfxTexFormat::DepthF32_F24,
+                                           GfxTexFormat::DepthF32};
 
     shadowmap = NEW(GfxTexture);
 
     if (type == GfxLightType::Spot or type == GfxLightType::Directional)
     {
-        shadowmap->startCreation(GfxTexture::Texture2D,
+        shadowmap->startCreation(GfxTextureType::Texture2D,
                                  false,
                                  resolution,
                                  resolution,
                                  1,
                                  0,
-                                 GfxTexture::Other,
+                                 GfxTexPurpose::Other,
                                  formats[(int)precision]);
 
         shadowmap->allocMipmap(0, 1, nullptr);
     } else
     {
-        shadowmap->startCreation(GfxTexture::CubeMap,
+        shadowmap->startCreation(GfxTextureType::CubeMap,
                                  false,
                                  resolution,
                                  resolution,
                                  1,
                                  0,
-                                 GfxTexture::Other,
+                                 GfxTexPurpose::Other,
                                  formats[(int)precision]);
 
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveX, nullptr);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeX, nullptr);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveY, nullptr);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeY, nullptr);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::PositiveZ, nullptr);
-        shadowmap->allocMipmapFace(0, 1, GfxTexture::NegativeZ, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxFace::PositiveX, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxFace::NegativeX, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxFace::PositiveY, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxFace::NegativeY, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxFace::PositiveZ, nullptr);
+        shadowmap->allocMipmapFace(0, 1, GfxFace::NegativeZ, nullptr);
 
         pointLightFramebuffers[0] = gfxApi->createFramebuffer();
         pointLightFramebuffers[1] = gfxApi->createFramebuffer();

@@ -10,6 +10,7 @@
 #include "graphics/gfxdefs.h"
 #include "graphics/gfxtexture.h"
 #include "graphics/gfxmesh.h"
+#include "scripting/bindings.h"
 
 class GfxShaderImpl;
 class GfxCompiledShader;
@@ -17,27 +18,27 @@ class GfxBuffer;
 class GfxFramebuffer;
 class GPUTimer;
 
+enum class GfxDriver
+{
+    Nvidia,
+    Mesa,
+    Unknown
+} BIND ENUM_CLASS;
+
 class GfxApi
 {
     public:
-        enum Driver
-        {
-            Nvidia,
-            Mesa,
-            Unknown
-        };
-
         GfxApi() {}
         virtual ~GfxApi();
 
-        virtual Driver getDriver() const=0;
+        virtual GfxDriver getDriver() const=0;
 
         virtual bool tesselationSupported()=0;
 
-        virtual GfxShaderImpl *createShaderImpl()=0;
+        virtual GfxShaderImpl *createShaderImpl() NO_BIND=0;
         virtual GfxBuffer *createBuffer()=0;
-        virtual GfxTextureImpl *createTextureImpl()=0;
-        virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh)=0;
+        virtual GfxTextureImpl *createTextureImpl() NO_BIND=0;
+        virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh) NO_BIND=0;
         virtual GfxFramebuffer *createFramebuffer()=0;
         virtual GPUTimer *createTimer()=0;
 
@@ -78,29 +79,29 @@ class GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt3& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt4& value)=0;
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float3 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float4 *values)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float4 *values) NO_BIND=0;
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const int32_t *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int2 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int3 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int4 *values)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const int32_t *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int2 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int4 *values) NO_BIND=0;
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const uint32_t *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt2 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt3 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const uint32_t *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt2 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values) NO_BIND=0;
 
         virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer)=0;
         virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)=0;
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value) NO_BIND=0;
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *values)=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *values)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *values) NO_BIND=0;
 
         virtual void pushState()=0;
         virtual void popState()=0;
@@ -109,9 +110,19 @@ class GfxApi
         virtual void setBlendingEnabled(bool enabled)=0;
         virtual bool isBlendingEnabled() const=0;
 
-        virtual void setBlendConstantColor(const uint8_t constantColor[4])=0;
-        virtual const uint8_t *getBlendConstantColor() const=0;
-        virtual uint8_t *getBlendConstantColor()=0;
+        virtual void setBlendConstantColor(const uint8_t constantColor[4]) NO_BIND=0;
+        virtual const uint8_t *getBlendConstantColor() NO_BIND const=0;
+
+        inline void setBlendConstantColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+        {
+            uint8_t c[] = {r, g, b, a};
+            setBlendConstantColor(c);
+        }
+
+        inline uint8_t getBlendConstantColorR() const {return getBlendConstantColor()[0];}
+        inline uint8_t getBlendConstantColorG() const {return getBlendConstantColor()[1];}
+        inline uint8_t getBlendConstantColorB() const {return getBlendConstantColor()[2];}
+        inline uint8_t getBlendConstantColorA() const {return getBlendConstantColor()[3];}
 
         virtual void setBlendFactors(GfxBlendFactor srcFactorRGB,
                                      GfxBlendFactor srcFactorAlpha,
@@ -160,6 +171,6 @@ class GfxApi
         virtual size_t getTessPatchSize()=0;
 
     NO_COPY(GfxApi)
-};
+} BIND;
 
 #endif // GFXAPI_H

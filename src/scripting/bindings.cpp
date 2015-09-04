@@ -78,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, Float2_typeID, Float2_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, CameraType_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *Float2, *Float2_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *Quaternion, *Quaternion_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *AudioDevice, *AudioDevice_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *CameraType;
+    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID;
+    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *GfxIndexData, *GfxIndexData_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *Quaternion, *Quaternion_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *AudioDevice, *AudioDevice_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType;
 };
 
 
@@ -846,6 +846,377 @@ R((NO)head)->typeID==EXT->GfxVertexAttribType_typeID;
 else
  R false;
 }
+};void GfxTextureType_destroy(CTX,NO) {}
+SV GfxTextureType_get_member(CTX,NO,SV);
+void GfxTextureType_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxTextureType_funcs={
+.destroy = GfxTextureType_destroy,
+.getMember = GfxTextureType_get_member,
+.setMember = GfxTextureType_set_member
+};
+template <>
+struct create_val<GfxTextureType>
+{
+static SV f(CTX ctx,GfxTextureType v)
+{
+R S::createNativeObject(GfxTextureType_funcs,(void *)v,EXT->GfxTextureType_typeID);
+}
+};
+template <>
+struct val_to_c<GfxTextureType>
+{
+static GfxTextureType f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxTextureType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxTextureType_typeID)
+CATE(TE,"Value can not be converted to GfxTextureType."));
+size_t v=size_t(obj->data);
+if(v==1)return GfxTextureType::CubeMap;
+if(v==2)return GfxTextureType::Texture3D;
+if(v==0)return GfxTextureType::Texture2D;
+}
+};
+template <>
+struct type_same<GfxTextureType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxTextureType_typeID;
+else
+ R false;
+}
+};void GfxFilter_destroy(CTX,NO) {}
+SV GfxFilter_get_member(CTX,NO,SV);
+void GfxFilter_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxFilter_funcs={
+.destroy = GfxFilter_destroy,
+.getMember = GfxFilter_get_member,
+.setMember = GfxFilter_set_member
+};
+template <>
+struct create_val<GfxFilter>
+{
+static SV f(CTX ctx,GfxFilter v)
+{
+R S::createNativeObject(GfxFilter_funcs,(void *)v,EXT->GfxFilter_typeID);
+}
+};
+template <>
+struct val_to_c<GfxFilter>
+{
+static GfxFilter f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxFilter."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxFilter_typeID)
+CATE(TE,"Value can not be converted to GfxFilter."));
+size_t v=size_t(obj->data);
+if(v==1)return GfxFilter::Bilinear;
+if(v==0)return GfxFilter::Nearest;
+}
+};
+template <>
+struct type_same<GfxFilter>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxFilter_typeID;
+else
+ R false;
+}
+};void GfxMipmapMode_destroy(CTX,NO) {}
+SV GfxMipmapMode_get_member(CTX,NO,SV);
+void GfxMipmapMode_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxMipmapMode_funcs={
+.destroy = GfxMipmapMode_destroy,
+.getMember = GfxMipmapMode_get_member,
+.setMember = GfxMipmapMode_set_member
+};
+template <>
+struct create_val<GfxMipmapMode>
+{
+static SV f(CTX ctx,GfxMipmapMode v)
+{
+R S::createNativeObject(GfxMipmapMode_funcs,(void *)v,EXT->GfxMipmapMode_typeID);
+}
+};
+template <>
+struct val_to_c<GfxMipmapMode>
+{
+static GfxMipmapMode f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxMipmapMode."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxMipmapMode_typeID)
+CATE(TE,"Value can not be converted to GfxMipmapMode."));
+size_t v=size_t(obj->data);
+if(v==1)return GfxMipmapMode::Nearest;
+if(v==0)return GfxMipmapMode::None;
+if(v==2)return GfxMipmapMode::Linear;
+}
+};
+template <>
+struct type_same<GfxMipmapMode>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxMipmapMode_typeID;
+else
+ R false;
+}
+};void GfxWrapMode_destroy(CTX,NO) {}
+SV GfxWrapMode_get_member(CTX,NO,SV);
+void GfxWrapMode_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxWrapMode_funcs={
+.destroy = GfxWrapMode_destroy,
+.getMember = GfxWrapMode_get_member,
+.setMember = GfxWrapMode_set_member
+};
+template <>
+struct create_val<GfxWrapMode>
+{
+static SV f(CTX ctx,GfxWrapMode v)
+{
+R S::createNativeObject(GfxWrapMode_funcs,(void *)v,EXT->GfxWrapMode_typeID);
+}
+};
+template <>
+struct val_to_c<GfxWrapMode>
+{
+static GfxWrapMode f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxWrapMode."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxWrapMode_typeID)
+CATE(TE,"Value can not be converted to GfxWrapMode."));
+size_t v=size_t(obj->data);
+if(v==0)return GfxWrapMode::Stretch;
+if(v==1)return GfxWrapMode::Repeat;
+if(v==2)return GfxWrapMode::Mirror;
+}
+};
+template <>
+struct type_same<GfxWrapMode>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxWrapMode_typeID;
+else
+ R false;
+}
+};void GfxTexFormat_destroy(CTX,NO) {}
+SV GfxTexFormat_get_member(CTX,NO,SV);
+void GfxTexFormat_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxTexFormat_funcs={
+.destroy = GfxTexFormat_destroy,
+.getMember = GfxTexFormat_get_member,
+.setMember = GfxTexFormat_set_member
+};
+template <>
+struct create_val<GfxTexFormat>
+{
+static SV f(CTX ctx,GfxTexFormat v)
+{
+R S::createNativeObject(GfxTexFormat_funcs,(void *)v,EXT->GfxTexFormat_typeID);
+}
+};
+template <>
+struct val_to_c<GfxTexFormat>
+{
+static GfxTexFormat f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxTexFormat."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxTexFormat_typeID)
+CATE(TE,"Value can not be converted to GfxTexFormat."));
+size_t v=size_t(obj->data);
+if(v==29)return GfxTexFormat::RGBAF32_F16;
+if(v==13)return GfxTexFormat::LuminanceAlphaI8;
+if(v==9)return GfxTexFormat::LuminanceI16;
+if(v==1)return GfxTexFormat::AlphaI8;
+if(v==36)return GfxTexFormat::Int2_8;
+if(v==70)return GfxTexFormat::RedF32_F16;
+if(v==34)return GfxTexFormat::Int_32;
+if(v==39)return GfxTexFormat::UInt2_16;
+if(v==12)return GfxTexFormat::LuminanceAlphaU8;
+if(v==41)return GfxTexFormat::UInt2_32;
+if(v==19)return GfxTexFormat::RGBI8;
+if(v==68)return GfxTexFormat::RedI16;
+if(v==67)return GfxTexFormat::RedU16;
+if(v==7)return GfxTexFormat::LuminanceI8;
+if(v==38)return GfxTexFormat::Int2_16;
+if(v==26)return GfxTexFormat::RGBAU16;
+if(v==23)return GfxTexFormat::RGBF32_F16;
+if(v==62)return GfxTexFormat::RedGreenI16;
+if(v==65)return GfxTexFormat::RedU8;
+if(v==42)return GfxTexFormat::Int3_8;
+if(v==30)return GfxTexFormat::Int_8;
+if(v==8)return GfxTexFormat::LuminanceU16;
+if(v==3)return GfxTexFormat::AlphaI16;
+if(v==21)return GfxTexFormat::RGBI16;
+if(v==11)return GfxTexFormat::LuminanceF32_F16;
+if(v==6)return GfxTexFormat::LuminanceU8;
+if(v==31)return GfxTexFormat::UInt_8;
+if(v==37)return GfxTexFormat::UInt2_8;
+if(v==44)return GfxTexFormat::Int3_16;
+if(v==24)return GfxTexFormat::RGBAU8;
+if(v==20)return GfxTexFormat::RGBU16;
+if(v==16)return GfxTexFormat::LuminanceAlphaF32;
+if(v==28)return GfxTexFormat::RGBAF32;
+if(v==43)return GfxTexFormat::UInt3_8;
+if(v==48)return GfxTexFormat::Int4_8;
+if(v==14)return GfxTexFormat::LuminanceAlphaU16;
+if(v==40)return GfxTexFormat::Int2_32;
+if(v==33)return GfxTexFormat::UInt_16;
+if(v==49)return GfxTexFormat::UInt4_8;
+if(v==2)return GfxTexFormat::AlphaU16;
+if(v==60)return GfxTexFormat::RedGreenI8;
+if(v==17)return GfxTexFormat::LuminanceAlphaF32_F16;
+if(v==46)return GfxTexFormat::Int3_32;
+if(v==64)return GfxTexFormat::RedGreenF32_F16;
+if(v==18)return GfxTexFormat::RGBU8;
+if(v==54)return GfxTexFormat::SRGBU8;
+if(v==59)return GfxTexFormat::RedGreenU8;
+if(v==58)return GfxTexFormat::DepthF32;
+if(v==4)return GfxTexFormat::AlphaF32;
+if(v==35)return GfxTexFormat::UInt_32;
+if(v==0)return GfxTexFormat::AlphaU8;
+if(v==57)return GfxTexFormat::DepthF32_F24;
+if(v==69)return GfxTexFormat::RedF32;
+if(v==63)return GfxTexFormat::RedGreenF32;
+if(v==50)return GfxTexFormat::Int4_16;
+if(v==25)return GfxTexFormat::RGBAI8;
+if(v==53)return GfxTexFormat::UInt4_32;
+if(v==51)return GfxTexFormat::UInt4_16;
+if(v==45)return GfxTexFormat::UInt3_16;
+if(v==47)return GfxTexFormat::UInt3_32;
+if(v==66)return GfxTexFormat::RedI8;
+if(v==52)return GfxTexFormat::Int4_32;
+if(v==55)return GfxTexFormat::SRGBAU8;
+if(v==10)return GfxTexFormat::LuminanceF32;
+if(v==22)return GfxTexFormat::RGBF32;
+if(v==32)return GfxTexFormat::Int_16;
+if(v==61)return GfxTexFormat::RedGreenU16;
+if(v==15)return GfxTexFormat::LuminanceAlphaI16;
+if(v==27)return GfxTexFormat::RGBAI16;
+if(v==56)return GfxTexFormat::DepthF32_F16;
+if(v==5)return GfxTexFormat::AlphaF32_F16;
+}
+};
+template <>
+struct type_same<GfxTexFormat>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxTexFormat_typeID;
+else
+ R false;
+}
+};void GfxTexPurpose_destroy(CTX,NO) {}
+SV GfxTexPurpose_get_member(CTX,NO,SV);
+void GfxTexPurpose_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxTexPurpose_funcs={
+.destroy = GfxTexPurpose_destroy,
+.getMember = GfxTexPurpose_get_member,
+.setMember = GfxTexPurpose_set_member
+};
+template <>
+struct create_val<GfxTexPurpose>
+{
+static SV f(CTX ctx,GfxTexPurpose v)
+{
+R S::createNativeObject(GfxTexPurpose_funcs,(void *)v,EXT->GfxTexPurpose_typeID);
+}
+};
+template <>
+struct val_to_c<GfxTexPurpose>
+{
+static GfxTexPurpose f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxTexPurpose."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxTexPurpose_typeID)
+CATE(TE,"Value can not be converted to GfxTexPurpose."));
+size_t v=size_t(obj->data);
+if(v==0)return GfxTexPurpose::Color;
+if(v==2)return GfxTexPurpose::Other;
+if(v==1)return GfxTexPurpose::Normal;
+}
+};
+template <>
+struct type_same<GfxTexPurpose>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxTexPurpose_typeID;
+else
+ R false;
+}
+};void GfxFace_destroy(CTX,NO) {}
+SV GfxFace_get_member(CTX,NO,SV);
+void GfxFace_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxFace_funcs={
+.destroy = GfxFace_destroy,
+.getMember = GfxFace_get_member,
+.setMember = GfxFace_set_member
+};
+template <>
+struct create_val<GfxFace>
+{
+static SV f(CTX ctx,GfxFace v)
+{
+R S::createNativeObject(GfxFace_funcs,(void *)v,EXT->GfxFace_typeID);
+}
+};
+template <>
+struct val_to_c<GfxFace>
+{
+static GfxFace f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxFace."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxFace_typeID)
+CATE(TE,"Value can not be converted to GfxFace."));
+size_t v=size_t(obj->data);
+if(v==4)return GfxFace::PositiveZ;
+if(v==0)return GfxFace::PositiveX;
+if(v==2)return GfxFace::PositiveY;
+if(v==5)return GfxFace::NegativeZ;
+if(v==1)return GfxFace::NegativeX;
+if(v==3)return GfxFace::NegativeY;
+}
+};
+template <>
+struct type_same<GfxFace>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxFace_typeID;
+else
+ R false;
+}
 };void GfxStage_destroy(CTX,NO) {}
 SV GfxStage_get_member(CTX,NO,SV);
 void GfxStage_set_member(CTX,NO,SV,SV);
@@ -1018,6 +1389,49 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GfxLightType_typeID;
+else
+ R false;
+}
+};void GfxDriver_destroy(CTX,NO) {}
+SV GfxDriver_get_member(CTX,NO,SV);
+void GfxDriver_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxDriver_funcs={
+.destroy = GfxDriver_destroy,
+.getMember = GfxDriver_get_member,
+.setMember = GfxDriver_set_member
+};
+template <>
+struct create_val<GfxDriver>
+{
+static SV f(CTX ctx,GfxDriver v)
+{
+R S::createNativeObject(GfxDriver_funcs,(void *)v,EXT->GfxDriver_typeID);
+}
+};
+template <>
+struct val_to_c<GfxDriver>
+{
+static GfxDriver f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxDriver."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxDriver_typeID)
+CATE(TE,"Value can not be converted to GfxDriver."));
+size_t v=size_t(obj->data);
+if(v==2)return GfxDriver::Unknown;
+if(v==1)return GfxDriver::Mesa;
+if(v==0)return GfxDriver::Nvidia;
+}
+};
+template <>
+struct type_same<GfxDriver>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxDriver_typeID;
 else
  R false;
 }
@@ -1286,6 +1700,51 @@ SV RigidBody_getCollisionMask(CTX ctx,const List<SV>&a);
 SV RigidBody_setShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getEntity(CTX ctx,const List<SV>&a);
+void GfxIndexData_destroy(CTX,NO);
+SV GfxIndexData_get_member(CTX,NO,SV);
+void GfxIndexData_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxIndexData_funcs={
+.destroy = GfxIndexData_destroy,
+.getMember = GfxIndexData_get_member,
+.setMember = GfxIndexData_set_member
+};
+template <>
+struct create_val<GfxIndexData>
+{
+static SV f(CTX ctx,const GfxIndexData&obj)
+{
+#define ghfj GfxIndexData
+R S::createNativeObject(GfxIndexData_funcs,NEW(ghfj, obj),EXT->GfxIndexData_typeID);
+}
+};
+template <>
+struct val_to_c<GfxIndexData>
+{
+static GfxIndexData f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxIndexData_typeID)
+R*((GfxIndexData*)obj->data);
+else
+ CATE(TE,"Value can not be converted to GfxIndexData."));
+} else
+ CATE(TE,"Value can not be converted to GfxIndexData."));
+}
+};
+template <>
+struct type_same<GfxIndexData>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxIndexData_typeID;
+else
+ R false;
+}
+};
+
 void Float2_destroy(CTX,NO);
 SV Float2_get_member(CTX,NO,SV);
 void Float2_set_member(CTX,NO,SV,SV);
@@ -1352,6 +1811,74 @@ SV Float2_getXY(CTX ctx,const List<SV>&a);
 SV Float2_setXY(CTX ctx,const List<SV>&a);
 SV Float2_getYX(CTX ctx,const List<SV>&a);
 SV Float2_setYX(CTX ctx,const List<SV>&a);
+void GfxFramebuffer_destroy(CTX,NO);
+SV GfxFramebuffer_get_member(CTX,NO,SV);
+void GfxFramebuffer_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxFramebuffer_funcs={
+.destroy = GfxFramebuffer_destroy,
+.getMember = GfxFramebuffer_get_member,
+.setMember = GfxFramebuffer_set_member
+};
+template <>
+struct type_same<GfxFramebuffer>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxFramebuffer_typeID;
+else
+ R false;
+}
+};
+
+SV GfxFramebuffer_addColorAttachment(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_removeColorAttachment(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getNumColorAttachments(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getColorRT(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getColorAttachment(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getColorAttachmentMipmapLevel(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getColorAttachmentLayer(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_setDepthAttachment(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_removeDepthAttachment(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_hasDepthAttachment(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getDepthTexture(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getDepthTextureMipmapLevel(CTX ctx,const List<SV>&a);
+SV GfxFramebuffer_getDepthAttachmentLayer(CTX ctx,const List<SV>&a);
+void Font_destroy(CTX,NO);
+SV Font_get_member(CTX,NO,SV);
+void Font_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Font_funcs={
+.destroy = Font_destroy,
+.getMember = Font_get_member,
+.setMember = Font_set_member
+};
+template <>
+struct type_same<Font>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Font_typeID;
+else
+ R false;
+}
+};
+
+SV Font_removeContent(CTX ctx,const List<SV>&a);
+SV Font_render(CTX ctx,const List<SV>&a);
+SV Font_load(CTX ctx,const List<SV>&a);
+SV Font_reload(CTX ctx,const List<SV>&a);
+SV Font_save(CTX ctx,const List<SV>&a);
+SV Font_copy(CTX ctx,const List<SV>&a);
+SV Font_getType(CTX ctx,const List<SV>&a);
+SV Font_isLoaded(CTX ctx,const List<SV>&a);
+SV Font_getLastFileModification(CTX ctx,const List<SV>&a);
+SV Font_shouldReload(CTX ctx,const List<SV>&a);
+SV Font_possiblyReload(CTX ctx,const List<SV>&a);
+SV Font_release(CTX ctx,const List<SV>&a);
+SV Font_getRefCount(CTX ctx,const List<SV>&a);
+SV Font_getFilename(CTX ctx,const List<SV>&a);
+SV Font_setFilename(CTX ctx,const List<SV>&a);
 void AudioSource_destroy(CTX,NO);
 SV AudioSource_get_member(CTX,NO,SV);
 void AudioSource_set_member(CTX,NO,SV,SV);
@@ -1472,6 +1999,47 @@ SV Camera_getNear(CTX ctx,const List<SV>&a);
 SV Camera_getFar(CTX ctx,const List<SV>&a);
 SV Camera_getViewMatrix(CTX ctx,const List<SV>&a);
 SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a);
+void GfxMesh_destroy(CTX,NO);
+SV GfxMesh_get_member(CTX,NO,SV);
+void GfxMesh_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxMesh_funcs={
+.destroy = GfxMesh_destroy,
+.getMember = GfxMesh_get_member,
+.setMember = GfxMesh_set_member
+};
+template <>
+struct type_same<GfxMesh>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxMesh_typeID;
+else
+ R false;
+}
+};
+
+SV GfxMesh_init(CTX ctx,const List<SV>&a);
+SV GfxMesh_setVertexAttrib(CTX ctx,const List<SV>&a);
+SV GfxMesh_disableVertexAttrib(CTX ctx,const List<SV>&a);
+SV GfxMesh_isVertexAttribEnabled(CTX ctx,const List<SV>&a);
+SV GfxMesh_getVertexAttrib(CTX ctx,const List<SV>&a);
+SV GfxMesh_removeContent(CTX ctx,const List<SV>&a);
+SV GfxMesh_save(CTX ctx,const List<SV>&a);
+SV GfxMesh_getImpl(CTX ctx,const List<SV>&a);
+SV GfxMesh_getBuffer(CTX ctx,const List<SV>&a);
+SV GfxMesh_load(CTX ctx,const List<SV>&a);
+SV GfxMesh_reload(CTX ctx,const List<SV>&a);
+SV GfxMesh_copy(CTX ctx,const List<SV>&a);
+SV GfxMesh_getType(CTX ctx,const List<SV>&a);
+SV GfxMesh_isLoaded(CTX ctx,const List<SV>&a);
+SV GfxMesh_getLastFileModification(CTX ctx,const List<SV>&a);
+SV GfxMesh_shouldReload(CTX ctx,const List<SV>&a);
+SV GfxMesh_possiblyReload(CTX ctx,const List<SV>&a);
+SV GfxMesh_release(CTX ctx,const List<SV>&a);
+SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a);
+SV GfxMesh_getFilename(CTX ctx,const List<SV>&a);
+SV GfxMesh_setFilename(CTX ctx,const List<SV>&a);
 void Resource_destroy(CTX,NO);
 SV Resource_get_member(CTX,NO,SV);
 void Resource_set_member(CTX,NO,SV,SV);
@@ -2307,6 +2875,82 @@ else
 };
 
 SV Transform_createMatrix(CTX ctx,const List<SV>&a);
+void GfxApi_destroy(CTX,NO);
+SV GfxApi_get_member(CTX,NO,SV);
+void GfxApi_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxApi_funcs={
+.destroy = GfxApi_destroy,
+.getMember = GfxApi_get_member,
+.setMember = GfxApi_set_member
+};
+template <>
+struct type_same<GfxApi>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxApi_typeID;
+else
+ R false;
+}
+};
+
+SV GfxApi_getDriver(CTX ctx,const List<SV>&a);
+SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a);
+SV GfxApi_createShaderImpl(CTX ctx,const List<SV>&a);
+SV GfxApi_createBuffer(CTX ctx,const List<SV>&a);
+SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a);
+SV GfxApi_createMeshImpl(CTX ctx,const List<SV>&a);
+SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a);
+SV GfxApi_createTimer(CTX ctx,const List<SV>&a);
+SV GfxApi_setCurrentFramebuffer(CTX ctx,const List<SV>&a);
+SV GfxApi_clearDepth(CTX ctx,const List<SV>&a);
+SV GfxApi_clearColor(CTX ctx,const List<SV>&a);
+SV GfxApi_begin(CTX ctx,const List<SV>&a);
+SV GfxApi_end(CTX ctx,const List<SV>&a);
+SV GfxApi_endIndexed(CTX ctx,const List<SV>&a);
+SV GfxApi_uniform(CTX ctx,const List<SV>&a);
+SV GfxApi_addUBOBinding(CTX ctx,const List<SV>&a);
+SV GfxApi_addTextureBinding(CTX ctx,const List<SV>&a);
+SV GfxApi_pushState(CTX ctx,const List<SV>&a);
+SV GfxApi_popState(CTX ctx,const List<SV>&a);
+SV GfxApi_resetState(CTX ctx,const List<SV>&a);
+SV GfxApi_setBlendingEnabled(CTX ctx,const List<SV>&a);
+SV GfxApi_isBlendingEnabled(CTX ctx,const List<SV>&a);
+SV GfxApi_setBlendConstantColor(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendConstantColorR(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendConstantColorG(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendConstantColorB(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendConstantColorA(CTX ctx,const List<SV>&a);
+SV GfxApi_setBlendFactors(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendSrcFactorRGB(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendSrcFactorAlpha(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendDstFactorRGB(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendDstFactorAlpha(CTX ctx,const List<SV>&a);
+SV GfxApi_setBlendMode(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendModeRGB(CTX ctx,const List<SV>&a);
+SV GfxApi_getBlendModeAlpha(CTX ctx,const List<SV>&a);
+SV GfxApi_setWriteDepth(CTX ctx,const List<SV>&a);
+SV GfxApi_getWriteDepth(CTX ctx,const List<SV>&a);
+SV GfxApi_setDepthFunction(CTX ctx,const List<SV>&a);
+SV GfxApi_getDepthFunction(CTX ctx,const List<SV>&a);
+SV GfxApi_setCullMode(CTX ctx,const List<SV>&a);
+SV GfxApi_getCullMode(CTX ctx,const List<SV>&a);
+SV GfxApi_setViewport(CTX ctx,const List<SV>&a);
+SV GfxApi_getViewportLeft(CTX ctx,const List<SV>&a);
+SV GfxApi_getViewportBottom(CTX ctx,const List<SV>&a);
+SV GfxApi_getViewportWidth(CTX ctx,const List<SV>&a);
+SV GfxApi_getViewportHeight(CTX ctx,const List<SV>&a);
+SV GfxApi_setScissor(CTX ctx,const List<SV>&a);
+SV GfxApi_getScissorLeft(CTX ctx,const List<SV>&a);
+SV GfxApi_getScissorBottom(CTX ctx,const List<SV>&a);
+SV GfxApi_getScissorWidth(CTX ctx,const List<SV>&a);
+SV GfxApi_getScissorHeight(CTX ctx,const List<SV>&a);
+SV GfxApi_setScissorEnabled(CTX ctx,const List<SV>&a);
+SV GfxApi_getScissorEnabled(CTX ctx,const List<SV>&a);
+SV GfxApi_setTessPatchSize(CTX ctx,const List<SV>&a);
+SV GfxApi_getTessPatchSize(CTX ctx,const List<SV>&a);
 void Quaternion_destroy(CTX,NO);
 SV Quaternion_get_member(CTX,NO,SV);
 void Quaternion_set_member(CTX,NO,SV,SV);
@@ -2370,6 +3014,51 @@ SV Quaternion_setAxis(CTX ctx,const List<SV>&a);
 SV Quaternion_setAxisAndAngle(CTX ctx,const List<SV>&a);
 SV Quaternion_setEulerAngles(CTX ctx,const List<SV>&a);
 SV Quaternion_getEulerAngles(CTX ctx,const List<SV>&a);
+void GfxVertexAttribute_destroy(CTX,NO);
+SV GfxVertexAttribute_get_member(CTX,NO,SV);
+void GfxVertexAttribute_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxVertexAttribute_funcs={
+.destroy = GfxVertexAttribute_destroy,
+.getMember = GfxVertexAttribute_get_member,
+.setMember = GfxVertexAttribute_set_member
+};
+template <>
+struct create_val<GfxVertexAttribute>
+{
+static SV f(CTX ctx,const GfxVertexAttribute&obj)
+{
+#define ghfj GfxVertexAttribute
+R S::createNativeObject(GfxVertexAttribute_funcs,NEW(ghfj, obj),EXT->GfxVertexAttribute_typeID);
+}
+};
+template <>
+struct val_to_c<GfxVertexAttribute>
+{
+static GfxVertexAttribute f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxVertexAttribute_typeID)
+R*((GfxVertexAttribute*)obj->data);
+else
+ CATE(TE,"Value can not be converted to GfxVertexAttribute."));
+} else
+ CATE(TE,"Value can not be converted to GfxVertexAttribute."));
+}
+};
+template <>
+struct type_same<GfxVertexAttribute>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxVertexAttribute_typeID;
+else
+ R false;
+}
+};
+
 void Int2_destroy(CTX,NO);
 SV Int2_get_member(CTX,NO,SV);
 void Int2_set_member(CTX,NO,SV,SV);
@@ -3350,6 +4039,67 @@ SV Audio_release(CTX ctx,const List<SV>&a);
 SV Audio_getRefCount(CTX ctx,const List<SV>&a);
 SV Audio_getFilename(CTX ctx,const List<SV>&a);
 SV Audio_setFilename(CTX ctx,const List<SV>&a);
+void GfxTexture_destroy(CTX,NO);
+SV GfxTexture_get_member(CTX,NO,SV);
+void GfxTexture_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxTexture_funcs={
+.destroy = GfxTexture_destroy,
+.getMember = GfxTexture_get_member,
+.setMember = GfxTexture_set_member
+};
+template <>
+struct type_same<GfxTexture>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxTexture_typeID;
+else
+ R false;
+}
+};
+
+SV GfxTexture_removeContent(CTX ctx,const List<SV>&a);
+SV GfxTexture_startCreation(CTX ctx,const List<SV>&a);
+SV GfxTexture_allocMipmapFace(CTX ctx,const List<SV>&a);
+SV GfxTexture_allocMipmap(CTX ctx,const List<SV>&a);
+SV GfxTexture_getMipmapFace(CTX ctx,const List<SV>&a);
+SV GfxTexture_getMipmap(CTX ctx,const List<SV>&a);
+SV GfxTexture_generateMipmaps(CTX ctx,const List<SV>&a);
+SV GfxTexture_getTextureType(CTX ctx,const List<SV>&a);
+SV GfxTexture_shouldCompress(CTX ctx,const List<SV>&a);
+SV GfxTexture_getMaximumAnisotropy(CTX ctx,const List<SV>&a);
+SV GfxTexture_getMinFilter(CTX ctx,const List<SV>&a);
+SV GfxTexture_getMagFilter(CTX ctx,const List<SV>&a);
+SV GfxTexture_getMipmapMode(CTX ctx,const List<SV>&a);
+SV GfxTexture_getWrapMode(CTX ctx,const List<SV>&a);
+SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a);
+SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a);
+SV GfxTexture_getBaseDepth(CTX ctx,const List<SV>&a);
+SV GfxTexture_getCompressionQuality(CTX ctx,const List<SV>&a);
+SV GfxTexture_getPurpose(CTX ctx,const List<SV>&a);
+SV GfxTexture_getFormat(CTX ctx,const List<SV>&a);
+SV GfxTexture_getShadowmap(CTX ctx,const List<SV>&a);
+SV GfxTexture_setMaximumAnisotropy(CTX ctx,const List<SV>&a);
+SV GfxTexture_setMinFilter(CTX ctx,const List<SV>&a);
+SV GfxTexture_setMagFilter(CTX ctx,const List<SV>&a);
+SV GfxTexture_setMipmapMode(CTX ctx,const List<SV>&a);
+SV GfxTexture_setWrapMode(CTX ctx,const List<SV>&a);
+SV GfxTexture_setShadowmap(CTX ctx,const List<SV>&a);
+SV GfxTexture_getImpl(CTX ctx,const List<SV>&a);
+SV GfxTexture_save(CTX ctx,const List<SV>&a);
+SV GfxTexture_load(CTX ctx,const List<SV>&a);
+SV GfxTexture_reload(CTX ctx,const List<SV>&a);
+SV GfxTexture_copy(CTX ctx,const List<SV>&a);
+SV GfxTexture_getType(CTX ctx,const List<SV>&a);
+SV GfxTexture_isLoaded(CTX ctx,const List<SV>&a);
+SV GfxTexture_getLastFileModification(CTX ctx,const List<SV>&a);
+SV GfxTexture_shouldReload(CTX ctx,const List<SV>&a);
+SV GfxTexture_possiblyReload(CTX ctx,const List<SV>&a);
+SV GfxTexture_release(CTX ctx,const List<SV>&a);
+SV GfxTexture_getRefCount(CTX ctx,const List<SV>&a);
+SV GfxTexture_getFilename(CTX ctx,const List<SV>&a);
+SV GfxTexture_setFilename(CTX ctx,const List<SV>&a);
 void GfxSubModelList_destroy(CTX,NO);
 SV GfxSubModelList_get_member(CTX,NO,SV);
 void GfxSubModelList_set_member(CTX,NO,SV,SV);
@@ -3565,6 +4315,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Filesystem *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Filesystem *>
+{
+static const Filesystem *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Filesystem_ptr_typeID)
+R(Filesystem*)obj->data;
+else
+ CATE(TE,"Value is not a FilesystemRef."));
+} else
+ CATE(TE,"Value is not a FilesystemRef."));
+}
+};
 
 SV GfxCompiledShader_ptr_copy(CTX,NO);
 void GfxCompiledShader_ptr_destroy(CTX,NO);
@@ -3611,6 +4388,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GfxCompiledShader_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const GfxCompiledShader *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxCompiledShader_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxCompiledShader *>
+{
+static const GfxCompiledShader *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxCompiledShader_ptr_typeID)
+R(GfxCompiledShader*)obj->data;
+else
+ CATE(TE,"Value is not a GfxCompiledShaderRef."));
+} else
+ CATE(TE,"Value is not a GfxCompiledShaderRef."));
 }
 };
 
@@ -3661,6 +4465,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const T2<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T2<uint32_t> *>
+{
+static const T2<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt2_ptr_typeID)
+R(T2<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt2Ref."));
+} else
+ CATE(TE,"Value is not a UInt2Ref."));
+}
+};
 
 SV GPUTimer_ptr_copy(CTX,NO);
 void GPUTimer_ptr_destroy(CTX,NO);
@@ -3707,6 +4538,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GPUTimer_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const GPUTimer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GPUTimer_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GPUTimer *>
+{
+static const GPUTimer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GPUTimer_ptr_typeID)
+R(GPUTimer*)obj->data;
+else
+ CATE(TE,"Value is not a GPUTimerRef."));
+} else
+ CATE(TE,"Value is not a GPUTimerRef."));
 }
 };
 
@@ -3757,6 +4615,108 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const RigidBody *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RigidBody_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const RigidBody *>
+{
+static const RigidBody *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RigidBody_ptr_typeID)
+R(RigidBody*)obj->data;
+else
+ CATE(TE,"Value is not a RigidBodyRef."));
+} else
+ CATE(TE,"Value is not a RigidBodyRef."));
+}
+};
+
+SV GfxIndexData_ptr_copy(CTX,NO);
+void GfxIndexData_ptr_destroy(CTX,NO);
+SV GfxIndexData_ptr_get_member(CTX,NO,SV);
+void GfxIndexData_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxIndexData_ptr_funcs={
+.destroy = GfxIndexData_ptr_destroy,
+.getMember = GfxIndexData_ptr_get_member,
+.setMember = GfxIndexData_ptr_set_member
+};
+template <>
+struct create_val<GfxIndexData *>
+{
+static SV f(CTX ctx,GfxIndexData*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxIndexData_ptr_funcs,obj,EXT->GfxIndexData_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxIndexData *>
+{
+static GfxIndexData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxIndexData_ptr_typeID)
+R(GfxIndexData*)obj->data;
+else
+ CATE(TE,"Value is not a GfxIndexDataRef."));
+} else
+ CATE(TE,"Value is not a GfxIndexDataRef."));
+}
+};
+template <>
+struct type_same<GfxIndexData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxIndexData_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const GfxIndexData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxIndexData_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxIndexData *>
+{
+static const GfxIndexData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxIndexData_ptr_typeID)
+R(GfxIndexData*)obj->data;
+else
+ CATE(TE,"Value is not a GfxIndexDataRef."));
+} else
+ CATE(TE,"Value is not a GfxIndexDataRef."));
+}
+};
 
 SV Float2_ptr_copy(CTX,NO);
 void Float2_ptr_destroy(CTX,NO);
@@ -3803,6 +4763,183 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Float2_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const T2<float> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Float2_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T2<float> *>
+{
+static const T2<float> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Float2_ptr_typeID)
+R(T2<float>*)obj->data;
+else
+ CATE(TE,"Value is not a Float2Ref."));
+} else
+ CATE(TE,"Value is not a Float2Ref."));
+}
+};
+
+SV GfxFramebuffer_ptr_copy(CTX,NO);
+void GfxFramebuffer_ptr_destroy(CTX,NO);
+SV GfxFramebuffer_ptr_get_member(CTX,NO,SV);
+void GfxFramebuffer_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxFramebuffer_ptr_funcs={
+.destroy = GfxFramebuffer_ptr_destroy,
+.getMember = GfxFramebuffer_ptr_get_member,
+.setMember = GfxFramebuffer_ptr_set_member
+};
+template <>
+struct create_val<GfxFramebuffer *>
+{
+static SV f(CTX ctx,GfxFramebuffer*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxFramebuffer_ptr_funcs,obj,EXT->GfxFramebuffer_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxFramebuffer *>
+{
+static GfxFramebuffer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxFramebuffer_ptr_typeID)
+R(GfxFramebuffer*)obj->data;
+else
+ CATE(TE,"Value is not a GfxFramebufferRef."));
+} else
+ CATE(TE,"Value is not a GfxFramebufferRef."));
+}
+};
+template <>
+struct type_same<GfxFramebuffer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxFramebuffer_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const GfxFramebuffer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxFramebuffer_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxFramebuffer *>
+{
+static const GfxFramebuffer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxFramebuffer_ptr_typeID)
+R(GfxFramebuffer*)obj->data;
+else
+ CATE(TE,"Value is not a GfxFramebufferRef."));
+} else
+ CATE(TE,"Value is not a GfxFramebufferRef."));
+}
+};
+
+SV Font_ptr_copy(CTX,NO);
+void Font_ptr_destroy(CTX,NO);
+SV Font_ptr_get_member(CTX,NO,SV);
+void Font_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs Font_ptr_funcs={
+.destroy = Font_ptr_destroy,
+.getMember = Font_ptr_get_member,
+.setMember = Font_ptr_set_member
+};
+template <>
+struct create_val<Font *>
+{
+static SV f(CTX ctx,Font*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(Font_ptr_funcs,obj,EXT->Font_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Font *>
+{
+static Font *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Font_ptr_typeID)
+R(Font*)obj->data;
+else
+ CATE(TE,"Value is not a FontRef."));
+} else
+ CATE(TE,"Value is not a FontRef."));
+}
+};
+template <>
+struct type_same<Font *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Font_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const Font *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Font_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Font *>
+{
+static const Font *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Font_ptr_typeID)
+R(Font*)obj->data;
+else
+ CATE(TE,"Value is not a FontRef."));
+} else
+ CATE(TE,"Value is not a FontRef."));
 }
 };
 
@@ -3853,6 +4990,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const AudioSource *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->AudioSource_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const AudioSource *>
+{
+static const AudioSource *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->AudioSource_ptr_typeID)
+R(AudioSource*)obj->data;
+else
+ CATE(TE,"Value is not a AudioSourceRef."));
+} else
+ CATE(TE,"Value is not a AudioSourceRef."));
+}
+};
 
 SV Camera_ptr_copy(CTX,NO);
 void Camera_ptr_destroy(CTX,NO);
@@ -3899,6 +5063,108 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Camera_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const Camera *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Camera_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Camera *>
+{
+static const Camera *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Camera_ptr_typeID)
+R(Camera*)obj->data;
+else
+ CATE(TE,"Value is not a CameraRef."));
+} else
+ CATE(TE,"Value is not a CameraRef."));
+}
+};
+
+SV GfxMesh_ptr_copy(CTX,NO);
+void GfxMesh_ptr_destroy(CTX,NO);
+SV GfxMesh_ptr_get_member(CTX,NO,SV);
+void GfxMesh_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxMesh_ptr_funcs={
+.destroy = GfxMesh_ptr_destroy,
+.getMember = GfxMesh_ptr_get_member,
+.setMember = GfxMesh_ptr_set_member
+};
+template <>
+struct create_val<GfxMesh *>
+{
+static SV f(CTX ctx,GfxMesh*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxMesh_ptr_funcs,obj,EXT->GfxMesh_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxMesh *>
+{
+static GfxMesh *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxMesh_ptr_typeID)
+R(GfxMesh*)obj->data;
+else
+ CATE(TE,"Value is not a GfxMeshRef."));
+} else
+ CATE(TE,"Value is not a GfxMeshRef."));
+}
+};
+template <>
+struct type_same<GfxMesh *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxMesh_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const GfxMesh *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxMesh_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxMesh *>
+{
+static const GfxMesh *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxMesh_ptr_typeID)
+R(GfxMesh*)obj->data;
+else
+ CATE(TE,"Value is not a GfxMeshRef."));
+} else
+ CATE(TE,"Value is not a GfxMeshRef."));
 }
 };
 
@@ -3949,6 +5215,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Resource *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Resource_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Resource *>
+{
+static const Resource *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Resource_ptr_typeID)
+R(Resource*)obj->data;
+else
+ CATE(TE,"Value is not a ResourceRef."));
+} else
+ CATE(TE,"Value is not a ResourceRef."));
+}
+};
 
 SV GfxShader_ptr_copy(CTX,NO);
 void GfxShader_ptr_destroy(CTX,NO);
@@ -3995,6 +5288,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GfxShader_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const GfxShader *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxShader_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxShader *>
+{
+static const GfxShader *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxShader_ptr_typeID)
+R(GfxShader*)obj->data;
+else
+ CATE(TE,"Value is not a GfxShaderRef."));
+} else
+ CATE(TE,"Value is not a GfxShaderRef."));
 }
 };
 
@@ -4045,6 +5365,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const T4<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T4<uint32_t> *>
+{
+static const T4<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt4_ptr_typeID)
+R(T4<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt4Ref."));
+} else
+ CATE(TE,"Value is not a UInt4Ref."));
+}
+};
 
 SV Int3_ptr_copy(CTX,NO);
 void Int3_ptr_destroy(CTX,NO);
@@ -4091,6 +5438,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Int3_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const T3<int32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Int3_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T3<int32_t> *>
+{
+static const T3<int32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Int3_ptr_typeID)
+R(T3<int32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a Int3Ref."));
+} else
+ CATE(TE,"Value is not a Int3Ref."));
 }
 };
 
@@ -4141,6 +5515,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const ResizableData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->ResizableData_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const ResizableData *>
+{
+static const ResizableData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ResizableData_ptr_typeID)
+R(ResizableData*)obj->data;
+else
+ CATE(TE,"Value is not a ResizableDataRef."));
+} else
+ CATE(TE,"Value is not a ResizableDataRef."));
+}
+};
 
 SV Int4_ptr_copy(CTX,NO);
 void Int4_ptr_destroy(CTX,NO);
@@ -4187,6 +5588,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Int4_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const T4<int32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Int4_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T4<int32_t> *>
+{
+static const T4<int32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Int4_ptr_typeID)
+R(T4<int32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a Int4Ref."));
+} else
+ CATE(TE,"Value is not a Int4Ref."));
 }
 };
 
@@ -4237,6 +5665,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const T3<float> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Float3_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T3<float> *>
+{
+static const T3<float> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Float3_ptr_typeID)
+R(T3<float>*)obj->data;
+else
+ CATE(TE,"Value is not a Float3Ref."));
+} else
+ CATE(TE,"Value is not a Float3Ref."));
+}
+};
 
 SV GfxLODList_ptr_copy(CTX,NO);
 void GfxLODList_ptr_destroy(CTX,NO);
@@ -4283,6 +5738,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GfxLODList_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const List<GfxLOD> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxLODList_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const List<GfxLOD> *>
+{
+static const List<GfxLOD> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxLODList_ptr_typeID)
+R(List<GfxLOD>*)obj->data;
+else
+ CATE(TE,"Value is not a GfxLODListRef."));
+} else
+ CATE(TE,"Value is not a GfxLODListRef."));
 }
 };
 
@@ -4333,6 +5815,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const GfxBuffer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxBuffer_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxBuffer *>
+{
+static const GfxBuffer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxBuffer_ptr_typeID)
+R(GfxBuffer*)obj->data;
+else
+ CATE(TE,"Value is not a GfxBufferRef."));
+} else
+ CATE(TE,"Value is not a GfxBufferRef."));
+}
+};
 
 SV Transform_ptr_copy(CTX,NO);
 void Transform_ptr_destroy(CTX,NO);
@@ -4379,6 +5888,108 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Transform_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const Transform *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Transform_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Transform *>
+{
+static const Transform *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Transform_ptr_typeID)
+R(Transform*)obj->data;
+else
+ CATE(TE,"Value is not a TransformRef."));
+} else
+ CATE(TE,"Value is not a TransformRef."));
+}
+};
+
+SV GfxApi_ptr_copy(CTX,NO);
+void GfxApi_ptr_destroy(CTX,NO);
+SV GfxApi_ptr_get_member(CTX,NO,SV);
+void GfxApi_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxApi_ptr_funcs={
+.destroy = GfxApi_ptr_destroy,
+.getMember = GfxApi_ptr_get_member,
+.setMember = GfxApi_ptr_set_member
+};
+template <>
+struct create_val<GfxApi *>
+{
+static SV f(CTX ctx,GfxApi*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxApi_ptr_funcs,obj,EXT->GfxApi_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxApi *>
+{
+static GfxApi *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxApi_ptr_typeID)
+R(GfxApi*)obj->data;
+else
+ CATE(TE,"Value is not a GfxApiRef."));
+} else
+ CATE(TE,"Value is not a GfxApiRef."));
+}
+};
+template <>
+struct type_same<GfxApi *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxApi_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const GfxApi *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxApi_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxApi *>
+{
+static const GfxApi *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxApi_ptr_typeID)
+R(GfxApi*)obj->data;
+else
+ CATE(TE,"Value is not a GfxApiRef."));
+} else
+ CATE(TE,"Value is not a GfxApiRef."));
 }
 };
 
@@ -4429,6 +6040,108 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Quaternion *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Quaternion_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Quaternion *>
+{
+static const Quaternion *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Quaternion_ptr_typeID)
+R(Quaternion*)obj->data;
+else
+ CATE(TE,"Value is not a QuaternionRef."));
+} else
+ CATE(TE,"Value is not a QuaternionRef."));
+}
+};
+
+SV GfxVertexAttribute_ptr_copy(CTX,NO);
+void GfxVertexAttribute_ptr_destroy(CTX,NO);
+SV GfxVertexAttribute_ptr_get_member(CTX,NO,SV);
+void GfxVertexAttribute_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxVertexAttribute_ptr_funcs={
+.destroy = GfxVertexAttribute_ptr_destroy,
+.getMember = GfxVertexAttribute_ptr_get_member,
+.setMember = GfxVertexAttribute_ptr_set_member
+};
+template <>
+struct create_val<GfxVertexAttribute *>
+{
+static SV f(CTX ctx,GfxVertexAttribute*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxVertexAttribute_ptr_funcs,obj,EXT->GfxVertexAttribute_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxVertexAttribute *>
+{
+static GfxVertexAttribute *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxVertexAttribute_ptr_typeID)
+R(GfxVertexAttribute*)obj->data;
+else
+ CATE(TE,"Value is not a GfxVertexAttributeRef."));
+} else
+ CATE(TE,"Value is not a GfxVertexAttributeRef."));
+}
+};
+template <>
+struct type_same<GfxVertexAttribute *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxVertexAttribute_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const GfxVertexAttribute *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxVertexAttribute_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxVertexAttribute *>
+{
+static const GfxVertexAttribute *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxVertexAttribute_ptr_typeID)
+R(GfxVertexAttribute*)obj->data;
+else
+ CATE(TE,"Value is not a GfxVertexAttributeRef."));
+} else
+ CATE(TE,"Value is not a GfxVertexAttributeRef."));
+}
+};
 
 SV Int2_ptr_copy(CTX,NO);
 void Int2_ptr_destroy(CTX,NO);
@@ -4475,6 +6188,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->Int2_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const T2<int32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Int2_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T2<int32_t> *>
+{
+static const T2<int32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Int2_ptr_typeID)
+R(T2<int32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a Int2Ref."));
+} else
+ CATE(TE,"Value is not a Int2Ref."));
 }
 };
 
@@ -4525,6 +6265,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const AudioWorld *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->AudioWorld_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const AudioWorld *>
+{
+static const AudioWorld *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->AudioWorld_ptr_typeID)
+R(AudioWorld*)obj->data;
+else
+ CATE(TE,"Value is not a AudioWorldRef."));
+} else
+ CATE(TE,"Value is not a AudioWorldRef."));
+}
+};
 
 SV StrStrMap_ptr_copy(CTX,NO);
 void StrStrMap_ptr_destroy(CTX,NO);
@@ -4571,6 +6338,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const HashMap<String,String> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const HashMap<String,String> *>
+{
+static const HashMap<String,String> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->StrStrMap_ptr_typeID)
+R(HashMap<String,String>*)obj->data;
+else
+ CATE(TE,"Value is not a StrStrMapRef."));
+} else
+ CATE(TE,"Value is not a StrStrMapRef."));
 }
 };
 
@@ -4621,6 +6415,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Light *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Light_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Light *>
+{
+static const Light *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Light_ptr_typeID)
+R(Light*)obj->data;
+else
+ CATE(TE,"Value is not a LightRef."));
+} else
+ CATE(TE,"Value is not a LightRef."));
+}
+};
 
 SV LightPointData_ptr_copy(CTX,NO);
 void LightPointData_ptr_destroy(CTX,NO);
@@ -4667,6 +6488,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->LightPointData_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const LightPointData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightPointData_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const LightPointData *>
+{
+static const LightPointData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightPointData_ptr_typeID)
+R(LightPointData*)obj->data;
+else
+ CATE(TE,"Value is not a LightPointDataRef."));
+} else
+ CATE(TE,"Value is not a LightPointDataRef."));
 }
 };
 
@@ -4717,6 +6565,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const T4<float> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Float4_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T4<float> *>
+{
+static const T4<float> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Float4_ptr_typeID)
+R(T4<float>*)obj->data;
+else
+ CATE(TE,"Value is not a Float4Ref."));
+} else
+ CATE(TE,"Value is not a Float4Ref."));
+}
+};
 
 SV LightDirectionalData_ptr_copy(CTX,NO);
 void LightDirectionalData_ptr_destroy(CTX,NO);
@@ -4763,6 +6638,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->LightDirectionalData_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const LightDirectionalData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightDirectionalData_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const LightDirectionalData *>
+{
+static const LightDirectionalData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightDirectionalData_ptr_typeID)
+R(LightDirectionalData*)obj->data;
+else
+ CATE(TE,"Value is not a LightDirectionalDataRef."));
+} else
+ CATE(TE,"Value is not a LightDirectionalDataRef."));
 }
 };
 
@@ -4813,6 +6715,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Matrix4x4 *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Matrix4x4_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Matrix4x4 *>
+{
+static const Matrix4x4 *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Matrix4x4_ptr_typeID)
+R(Matrix4x4*)obj->data;
+else
+ CATE(TE,"Value is not a Matrix4x4Ref."));
+} else
+ CATE(TE,"Value is not a Matrix4x4Ref."));
+}
+};
 
 SV UInt3_ptr_copy(CTX,NO);
 void UInt3_ptr_destroy(CTX,NO);
@@ -4859,6 +6788,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->UInt3_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const T3<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->UInt3_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const T3<uint32_t> *>
+{
+static const T3<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt3_ptr_typeID)
+R(T3<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt3Ref."));
+} else
+ CATE(TE,"Value is not a UInt3Ref."));
 }
 };
 
@@ -4909,6 +6865,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const LightSpotData *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->LightSpotData_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const LightSpotData *>
+{
+static const LightSpotData *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->LightSpotData_ptr_typeID)
+R(LightSpotData*)obj->data;
+else
+ CATE(TE,"Value is not a LightSpotDataRef."));
+} else
+ CATE(TE,"Value is not a LightSpotDataRef."));
+}
+};
 
 SV AudioDevice_ptr_copy(CTX,NO);
 void AudioDevice_ptr_destroy(CTX,NO);
@@ -4955,6 +6938,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->AudioDevice_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const AudioDevice *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->AudioDevice_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const AudioDevice *>
+{
+static const AudioDevice *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->AudioDevice_ptr_typeID)
+R(AudioDevice*)obj->data;
+else
+ CATE(TE,"Value is not a AudioDeviceRef."));
+} else
+ CATE(TE,"Value is not a AudioDeviceRef."));
 }
 };
 
@@ -5005,6 +7015,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const GfxLOD *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxLOD_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxLOD *>
+{
+static const GfxLOD *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxLOD_ptr_typeID)
+R(GfxLOD*)obj->data;
+else
+ CATE(TE,"Value is not a GfxLODRef."));
+} else
+ CATE(TE,"Value is not a GfxLODRef."));
+}
+};
 
 SV File_ptr_copy(CTX,NO);
 void File_ptr_destroy(CTX,NO);
@@ -5051,6 +7088,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->File_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const File *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->File_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const File *>
+{
+static const File *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->File_ptr_typeID)
+R(File*)obj->data;
+else
+ CATE(TE,"Value is not a FileRef."));
+} else
+ CATE(TE,"Value is not a FileRef."));
 }
 };
 
@@ -5101,6 +7165,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const AABB *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->AABB_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const AABB *>
+{
+static const AABB *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->AABB_ptr_typeID)
+R(AABB*)obj->data;
+else
+ CATE(TE,"Value is not a AABBRef."));
+} else
+ CATE(TE,"Value is not a AABBRef."));
+}
+};
 
 SV List_ptr_copy(CTX,NO);
 void List_ptr_destroy(CTX,NO);
@@ -5147,6 +7238,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->List_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const List<scripting::Value*> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->List_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const List<scripting::Value*> *>
+{
+static const List<scripting::Value*> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->List_ptr_typeID)
+R(List<scripting::Value*>*)obj->data;
+else
+ CATE(TE,"Value is not a ListRef."));
+} else
+ CATE(TE,"Value is not a ListRef."));
 }
 };
 
@@ -5197,6 +7315,108 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Audio *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Audio_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Audio *>
+{
+static const Audio *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Audio_ptr_typeID)
+R(Audio*)obj->data;
+else
+ CATE(TE,"Value is not a AudioRef."));
+} else
+ CATE(TE,"Value is not a AudioRef."));
+}
+};
+
+SV GfxTexture_ptr_copy(CTX,NO);
+void GfxTexture_ptr_destroy(CTX,NO);
+SV GfxTexture_ptr_get_member(CTX,NO,SV);
+void GfxTexture_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs GfxTexture_ptr_funcs={
+.destroy = GfxTexture_ptr_destroy,
+.getMember = GfxTexture_ptr_get_member,
+.setMember = GfxTexture_ptr_set_member
+};
+template <>
+struct create_val<GfxTexture *>
+{
+static SV f(CTX ctx,GfxTexture*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(GfxTexture_ptr_funcs,obj,EXT->GfxTexture_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GfxTexture *>
+{
+static GfxTexture *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxTexture_ptr_typeID)
+R(GfxTexture*)obj->data;
+else
+ CATE(TE,"Value is not a GfxTextureRef."));
+} else
+ CATE(TE,"Value is not a GfxTextureRef."));
+}
+};
+template <>
+struct type_same<GfxTexture *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxTexture_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const GfxTexture *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxTexture_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxTexture *>
+{
+static const GfxTexture *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxTexture_ptr_typeID)
+R(GfxTexture*)obj->data;
+else
+ CATE(TE,"Value is not a GfxTextureRef."));
+} else
+ CATE(TE,"Value is not a GfxTextureRef."));
+}
+};
 
 SV GfxSubModelList_ptr_copy(CTX,NO);
 void GfxSubModelList_ptr_destroy(CTX,NO);
@@ -5243,6 +7463,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GfxSubModelList_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const List<GfxModel::SubModel> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxSubModelList_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const List<GfxModel::SubModel> *>
+{
+static const List<GfxModel::SubModel> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxSubModelList_ptr_typeID)
+R(List<GfxModel::SubModel>*)obj->data;
+else
+ CATE(TE,"Value is not a GfxSubModelListRef."));
+} else
+ CATE(TE,"Value is not a GfxSubModelListRef."));
 }
 };
 
@@ -5293,6 +7540,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const GfxModel *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxModel_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxModel *>
+{
+static const GfxModel *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxModel_ptr_typeID)
+R(GfxModel*)obj->data;
+else
+ CATE(TE,"Value is not a GfxModelRef."));
+} else
+ CATE(TE,"Value is not a GfxModelRef."));
+}
+};
 
 SV Matrix3x3_ptr_copy(CTX,NO);
 void Matrix3x3_ptr_destroy(CTX,NO);
@@ -5341,6 +7615,33 @@ else
  R false;
 }
 };
+template <>
+struct type_same<const Matrix3x3 *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->Matrix3x3_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const Matrix3x3 *>
+{
+static const Matrix3x3 *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Matrix3x3_ptr_typeID)
+R(Matrix3x3*)obj->data;
+else
+ CATE(TE,"Value is not a Matrix3x3Ref."));
+} else
+ CATE(TE,"Value is not a Matrix3x3Ref."));
+}
+};
 
 SV GfxDebugDrawer_ptr_copy(CTX,NO);
 void GfxDebugDrawer_ptr_destroy(CTX,NO);
@@ -5387,6 +7688,33 @@ if(head->type==S::ValueType::NativeObject)
 R((NO)head)->typeID==EXT->GfxDebugDrawer_ptr_typeID;
 else
  R false;
+}
+};
+template <>
+struct type_same<const GfxDebugDrawer *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->GfxDebugDrawer_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const GfxDebugDrawer *>
+{
+static const GfxDebugDrawer *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxDebugDrawer_ptr_typeID)
+R(GfxDebugDrawer*)obj->data;
+else
+ CATE(TE,"Value is not a GfxDebugDrawerRef."));
+} else
+ CATE(TE,"Value is not a GfxDebugDrawerRef."));
 }
 };
 
@@ -5940,6 +8268,510 @@ else
 }
 }
 void GfxVertexAttribType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxTextureType___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxTextureType::__eq__")));
+size_t F;
+if(!TS(a[0],GfxTextureType))
+CATE(TE,FAE("GfxTextureType::GfxTextureType","GfxTextureType")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxTextureType))
+CATE(VE,UFOF("GfxTextureType::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxTextureType_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTextureType");
+EI(keyStr=="__eq__")
+R CNF(GfxTextureType___eq__);
+EI(keyStr=="CubeMap")R S::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
+EI(keyStr=="Texture3D")R S::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
+EI(keyStr=="Texture2D")R S::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTextureType");
+EI(keyStr=="__eq__")
+R CNF(GfxTextureType___eq__);
+EI(keyStr=="CubeMap")R S::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
+EI(keyStr=="Texture3D")R S::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
+EI(keyStr=="Texture2D")R S::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxTextureType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxFilter___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxFilter::__eq__")));
+size_t F;
+if(!TS(a[0],GfxFilter))
+CATE(TE,FAE("GfxFilter::GfxFilter","GfxFilter")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxFilter))
+CATE(VE,UFOF("GfxFilter::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxFilter_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxFilter");
+EI(keyStr=="__eq__")
+R CNF(GfxFilter___eq__);
+EI(keyStr=="Bilinear")R S::createNativeObject(GfxFilter_funcs,(void *)1,EXT->GfxFilter_typeID);
+EI(keyStr=="Nearest")R S::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxFilter");
+EI(keyStr=="__eq__")
+R CNF(GfxFilter___eq__);
+EI(keyStr=="Bilinear")R S::createNativeObject(GfxFilter_funcs,(void *)1,EXT->GfxFilter_typeID);
+EI(keyStr=="Nearest")R S::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxFilter_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxMipmapMode___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxMipmapMode::__eq__")));
+size_t F;
+if(!TS(a[0],GfxMipmapMode))
+CATE(TE,FAE("GfxMipmapMode::GfxMipmapMode","GfxMipmapMode")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxMipmapMode))
+CATE(VE,UFOF("GfxMipmapMode::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxMipmapMode_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxMipmapMode");
+EI(keyStr=="__eq__")
+R CNF(GfxMipmapMode___eq__);
+EI(keyStr=="Nearest")R S::createNativeObject(GfxMipmapMode_funcs,(void *)1,EXT->GfxMipmapMode_typeID);
+EI(keyStr=="None")R S::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT->GfxMipmapMode_typeID);
+EI(keyStr=="Linear")R S::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxMipmapMode");
+EI(keyStr=="__eq__")
+R CNF(GfxMipmapMode___eq__);
+EI(keyStr=="Nearest")R S::createNativeObject(GfxMipmapMode_funcs,(void *)1,EXT->GfxMipmapMode_typeID);
+EI(keyStr=="None")R S::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT->GfxMipmapMode_typeID);
+EI(keyStr=="Linear")R S::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxMipmapMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxWrapMode___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxWrapMode::__eq__")));
+size_t F;
+if(!TS(a[0],GfxWrapMode))
+CATE(TE,FAE("GfxWrapMode::GfxWrapMode","GfxWrapMode")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxWrapMode))
+CATE(VE,UFOF("GfxWrapMode::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxWrapMode_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxWrapMode");
+EI(keyStr=="__eq__")
+R CNF(GfxWrapMode___eq__);
+EI(keyStr=="Stretch")R S::createNativeObject(GfxWrapMode_funcs,(void *)0,EXT->GfxWrapMode_typeID);
+EI(keyStr=="Repeat")R S::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT->GfxWrapMode_typeID);
+EI(keyStr=="Mirror")R S::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxWrapMode");
+EI(keyStr=="__eq__")
+R CNF(GfxWrapMode___eq__);
+EI(keyStr=="Stretch")R S::createNativeObject(GfxWrapMode_funcs,(void *)0,EXT->GfxWrapMode_typeID);
+EI(keyStr=="Repeat")R S::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT->GfxWrapMode_typeID);
+EI(keyStr=="Mirror")R S::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxWrapMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxTexFormat___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxTexFormat::__eq__")));
+size_t F;
+if(!TS(a[0],GfxTexFormat))
+CATE(TE,FAE("GfxTexFormat::GfxTexFormat","GfxTexFormat")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxTexFormat))
+CATE(VE,UFOF("GfxTexFormat::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxTexFormat_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTexFormat");
+EI(keyStr=="__eq__")
+R CNF(GfxTexFormat___eq__);
+EI(keyStr=="RGBAF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)29,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)13,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)9,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)1,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int2_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)36,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)70,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)34,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt2_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)39,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)12,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt2_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)41,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)19,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)68,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)67,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)7,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int2_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)38,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)26,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)23,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)62,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)65,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int3_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)42,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)30,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)8,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)3,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)21,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)11,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)6,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)31,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt2_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)37,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int3_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)44,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)24,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)20,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)16,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)28,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt3_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)43,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int4_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)48,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)14,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int2_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)40,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)33,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt4_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)49,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)2,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)60,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)17,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int3_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)46,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)64,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)18,EXT->GfxTexFormat_typeID);
+EI(keyStr=="SRGBU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)54,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)59,EXT->GfxTexFormat_typeID);
+EI(keyStr=="DepthF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)58,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)4,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)35,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)0,EXT->GfxTexFormat_typeID);
+EI(keyStr=="DepthF32_F24")R S::createNativeObject(GfxTexFormat_funcs,(void *)57,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)69,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)63,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int4_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)50,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)25,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt4_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)53,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt4_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)51,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt3_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)45,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt3_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)47,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)66,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int4_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)52,EXT->GfxTexFormat_typeID);
+EI(keyStr=="SRGBAU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)55,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)10,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)22,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)32,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)61,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)15,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)27,EXT->GfxTexFormat_typeID);
+EI(keyStr=="DepthF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)56,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTexFormat");
+EI(keyStr=="__eq__")
+R CNF(GfxTexFormat___eq__);
+EI(keyStr=="RGBAF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)29,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)13,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)9,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)1,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int2_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)36,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)70,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)34,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt2_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)39,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)12,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt2_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)41,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)19,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)68,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)67,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)7,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int2_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)38,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)26,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)23,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)62,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)65,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int3_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)42,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)30,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)8,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)3,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)21,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)11,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)6,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)31,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt2_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)37,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int3_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)44,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)24,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)20,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)16,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)28,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt3_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)43,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int4_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)48,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)14,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int2_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)40,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)33,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt4_8")R S::createNativeObject(GfxTexFormat_funcs,(void *)49,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)2,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)60,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)17,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int3_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)46,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)64,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)18,EXT->GfxTexFormat_typeID);
+EI(keyStr=="SRGBU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)54,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)59,EXT->GfxTexFormat_typeID);
+EI(keyStr=="DepthF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)58,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)4,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)35,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)0,EXT->GfxTexFormat_typeID);
+EI(keyStr=="DepthF32_F24")R S::createNativeObject(GfxTexFormat_funcs,(void *)57,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)69,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)63,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int4_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)50,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)25,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt4_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)53,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt4_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)51,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt3_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)45,EXT->GfxTexFormat_typeID);
+EI(keyStr=="UInt3_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)47,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedI8")R S::createNativeObject(GfxTexFormat_funcs,(void *)66,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int4_32")R S::createNativeObject(GfxTexFormat_funcs,(void *)52,EXT->GfxTexFormat_typeID);
+EI(keyStr=="SRGBAU8")R S::createNativeObject(GfxTexFormat_funcs,(void *)55,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)10,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBF32")R S::createNativeObject(GfxTexFormat_funcs,(void *)22,EXT->GfxTexFormat_typeID);
+EI(keyStr=="Int_16")R S::createNativeObject(GfxTexFormat_funcs,(void *)32,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RedGreenU16")R S::createNativeObject(GfxTexFormat_funcs,(void *)61,EXT->GfxTexFormat_typeID);
+EI(keyStr=="LuminanceAlphaI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)15,EXT->GfxTexFormat_typeID);
+EI(keyStr=="RGBAI16")R S::createNativeObject(GfxTexFormat_funcs,(void *)27,EXT->GfxTexFormat_typeID);
+EI(keyStr=="DepthF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)56,EXT->GfxTexFormat_typeID);
+EI(keyStr=="AlphaF32_F16")R S::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxTexFormat_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxTexPurpose___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxTexPurpose::__eq__")));
+size_t F;
+if(!TS(a[0],GfxTexPurpose))
+CATE(TE,FAE("GfxTexPurpose::GfxTexPurpose","GfxTexPurpose")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxTexPurpose))
+CATE(VE,UFOF("GfxTexPurpose::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxTexPurpose_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTexPurpose");
+EI(keyStr=="__eq__")
+R CNF(GfxTexPurpose___eq__);
+EI(keyStr=="Color")R S::createNativeObject(GfxTexPurpose_funcs,(void *)0,EXT->GfxTexPurpose_typeID);
+EI(keyStr=="Other")R S::createNativeObject(GfxTexPurpose_funcs,(void *)2,EXT->GfxTexPurpose_typeID);
+EI(keyStr=="Normal")R S::createNativeObject(GfxTexPurpose_funcs,(void *)1,EXT->GfxTexPurpose_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTexPurpose");
+EI(keyStr=="__eq__")
+R CNF(GfxTexPurpose___eq__);
+EI(keyStr=="Color")R S::createNativeObject(GfxTexPurpose_funcs,(void *)0,EXT->GfxTexPurpose_typeID);
+EI(keyStr=="Other")R S::createNativeObject(GfxTexPurpose_funcs,(void *)2,EXT->GfxTexPurpose_typeID);
+EI(keyStr=="Normal")R S::createNativeObject(GfxTexPurpose_funcs,(void *)1,EXT->GfxTexPurpose_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxTexPurpose_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxFace___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxFace::__eq__")));
+size_t F;
+if(!TS(a[0],GfxFace))
+CATE(TE,FAE("GfxFace::GfxFace","GfxFace")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxFace))
+CATE(VE,UFOF("GfxFace::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxFace_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxFace");
+EI(keyStr=="__eq__")
+R CNF(GfxFace___eq__);
+EI(keyStr=="PositiveZ")R S::createNativeObject(GfxFace_funcs,(void *)4,EXT->GfxFace_typeID);
+EI(keyStr=="PositiveX")R S::createNativeObject(GfxFace_funcs,(void *)0,EXT->GfxFace_typeID);
+EI(keyStr=="PositiveY")R S::createNativeObject(GfxFace_funcs,(void *)2,EXT->GfxFace_typeID);
+EI(keyStr=="NegativeZ")R S::createNativeObject(GfxFace_funcs,(void *)5,EXT->GfxFace_typeID);
+EI(keyStr=="NegativeX")R S::createNativeObject(GfxFace_funcs,(void *)1,EXT->GfxFace_typeID);
+EI(keyStr=="NegativeY")R S::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxFace");
+EI(keyStr=="__eq__")
+R CNF(GfxFace___eq__);
+EI(keyStr=="PositiveZ")R S::createNativeObject(GfxFace_funcs,(void *)4,EXT->GfxFace_typeID);
+EI(keyStr=="PositiveX")R S::createNativeObject(GfxFace_funcs,(void *)0,EXT->GfxFace_typeID);
+EI(keyStr=="PositiveY")R S::createNativeObject(GfxFace_funcs,(void *)2,EXT->GfxFace_typeID);
+EI(keyStr=="NegativeZ")R S::createNativeObject(GfxFace_funcs,(void *)5,EXT->GfxFace_typeID);
+EI(keyStr=="NegativeX")R S::createNativeObject(GfxFace_funcs,(void *)1,EXT->GfxFace_typeID);
+EI(keyStr=="NegativeY")R S::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxFace_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV GfxStage___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -6154,6 +8986,58 @@ else
 }
 }
 void GfxLightType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxDriver___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxDriver::__eq__")));
+size_t F;
+if(!TS(a[0],GfxDriver))
+CATE(TE,FAE("GfxDriver::GfxDriver","GfxDriver")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxDriver))
+CATE(VE,UFOF("GfxDriver::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV GfxDriver_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxDriver");
+EI(keyStr=="__eq__")
+R CNF(GfxDriver___eq__);
+EI(keyStr=="Unknown")R S::createNativeObject(GfxDriver_funcs,(void *)2,EXT->GfxDriver_typeID);
+EI(keyStr=="Mesa")R S::createNativeObject(GfxDriver_funcs,(void *)1,EXT->GfxDriver_typeID);
+EI(keyStr=="Nvidia")R S::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxDriver");
+EI(keyStr=="__eq__")
+R CNF(GfxDriver___eq__);
+EI(keyStr=="Unknown")R S::createNativeObject(GfxDriver_funcs,(void *)2,EXT->GfxDriver_typeID);
+EI(keyStr=="Mesa")R S::createNativeObject(GfxDriver_funcs,(void *)1,EXT->GfxDriver_typeID);
+EI(keyStr=="Nvidia")R S::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxDriver_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV CameraType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -8142,6 +11026,91 @@ CATE(TE,UFOF("RigidBody::getLinearDamping.")));
 R CN;
 }
 
+void GfxIndexData_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxIndexData))
+CATE(TE,"GfxIndexData::__del__ expects GfxIndexData as first argument."));
+
+DELETE((GfxIndexData*)F->data);
+}SV GfxIndexData_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxIndexData's constructor" EAOE));
+if(!TS(a[0],GfxIndexData))
+CATE(TE,"GfxIndexData's constructor expects GfxIndexData as first argument."));
+#define fjis GfxIndexData
+R S::createNativeObject(GfxIndexData_funcs,NEW(fjis),EXT->GfxIndexData_typeID);
+}
+
+SV GfxIndexData_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxIndexData");
+EI(keyStr=="__new__")
+R CNF(GfxIndexData_new);
+EI(keyStr=="__call__")
+R CNF(GfxIndexData_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxIndexData_new);
+ EI(keyStr=="type")
+{
+GfxIndexData*obj=(GfxIndexData*)F->data;
+R CV(obj->type);
+} EI(keyStr=="numIndices")
+{
+GfxIndexData*obj=(GfxIndexData*)F->data;
+R CV(obj->numIndices);
+} EI(keyStr=="offset")
+{
+GfxIndexData*obj=(GfxIndexData*)F->data;
+R CV(obj->offset);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxIndexData_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="type")
+{
+GfxIndexData*obj=(GfxIndexData*)F->data;
+obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
+} EI(keyStr=="numIndices")
+{
+GfxIndexData*obj=(GfxIndexData*)F->data;
+obj->numIndices=val_to_c<decltype(obj->numIndices)>::f(ctx,value);
+} EI(keyStr=="offset")
+{
+GfxIndexData*obj=(GfxIndexData*)F->data;
+obj->offset=val_to_c<decltype(obj->offset)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
 void Float2_destroy(CTX ctx,NO F)
 {
 if(!TS((SV)F,T2<float>))
@@ -8726,6 +11695,757 @@ auto v=val_to_c<const T2<float> &>::f(ctx,a[1]);
 R CV(*F != v);
 }
 CATE(TE,UFOF("Float2::__neq__.")));
+R CN;
+}
+
+void GfxFramebuffer_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxFramebuffer))
+CATE(TE,"GfxFramebuffer::__del__ expects GfxFramebuffer as first argument."));
+
+DELETE((GfxFramebuffer*)F->data);
+}SV GfxFramebuffer_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxFramebuffer's constructor" EAOE));
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,"GfxFramebuffer's constructor expects GfxFramebuffer as first argument."));
+CATE(TE,UFOF("GfxFramebuffer's constructor.")));
+}
+
+SV GfxFramebuffer_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxFramebuffer");
+EI(keyStr=="__new__")
+R CNF(GfxFramebuffer_new);
+EI(keyStr=="__call__")
+R CNF(GfxFramebuffer_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxFramebuffer_new);
+ EI(keyStr == "addColorAttachment")
+R CNF(GfxFramebuffer_addColorAttachment);
+ EI(keyStr == "removeColorAttachment")
+R CNF(GfxFramebuffer_removeColorAttachment);
+ EI(keyStr == "getNumColorAttachments")
+R CNF(GfxFramebuffer_getNumColorAttachments);
+ EI(keyStr == "getColorRT")
+R CNF(GfxFramebuffer_getColorRT);
+ EI(keyStr == "getColorAttachment")
+R CNF(GfxFramebuffer_getColorAttachment);
+ EI(keyStr == "getColorAttachmentMipmapLevel")
+R CNF(GfxFramebuffer_getColorAttachmentMipmapLevel);
+ EI(keyStr == "getColorAttachmentLayer")
+R CNF(GfxFramebuffer_getColorAttachmentLayer);
+ EI(keyStr == "setDepthAttachment")
+R CNF(GfxFramebuffer_setDepthAttachment);
+ EI(keyStr == "removeDepthAttachment")
+R CNF(GfxFramebuffer_removeDepthAttachment);
+ EI(keyStr == "hasDepthAttachment")
+R CNF(GfxFramebuffer_hasDepthAttachment);
+ EI(keyStr == "getDepthTexture")
+R CNF(GfxFramebuffer_getDepthTexture);
+ EI(keyStr == "getDepthTextureMipmapLevel")
+R CNF(GfxFramebuffer_getDepthTextureMipmapLevel);
+ EI(keyStr == "getDepthAttachmentLayer")
+R CNF(GfxFramebuffer_getDepthAttachmentLayer);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxFramebuffer_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxFramebuffer_getDepthTextureMipmapLevel(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getDepthTextureMipmapLevel" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getDepthTextureMipmapLevel","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getDepthTextureMipmapLevel());
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getDepthTextureMipmapLevel.")));
+R CN;
+}
+
+SV GfxFramebuffer_removeDepthAttachment(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::removeDepthAttachment" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::removeDepthAttachment","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeDepthAttachment());
+R CN;
+}
+CATE(TE,UFOF("GfxFramebuffer::removeDepthAttachment.")));
+R CN;
+}
+
+SV GfxFramebuffer_getColorAttachmentLayer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getColorAttachmentLayer" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getColorAttachmentLayer","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getColorAttachmentLayer(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getColorAttachmentLayer.")));
+R CN;
+}
+
+SV GfxFramebuffer_getColorAttachment(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getColorAttachment" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getColorAttachment","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getColorAttachment(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getColorAttachment.")));
+R CN;
+}
+
+SV GfxFramebuffer_setDepthAttachment(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::setDepthAttachment" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::setDepthAttachment","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxTexture *)&&TS(a[2],size_t)&&TS(a[3],int))
+{
+( F->setDepthAttachment(val_to_c<GfxTexture *>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<int>::f(ctx,a[3])));
+R CN;
+}
+CATE(TE,UFOF("GfxFramebuffer::setDepthAttachment.")));
+R CN;
+}
+
+SV GfxFramebuffer_removeColorAttachment(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::removeColorAttachment" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::removeColorAttachment","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( F->removeColorAttachment(val_to_c<size_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxFramebuffer::removeColorAttachment.")));
+R CN;
+}
+
+SV GfxFramebuffer_getDepthAttachmentLayer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getDepthAttachmentLayer" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getDepthAttachmentLayer","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getDepthAttachmentLayer());
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getDepthAttachmentLayer.")));
+R CN;
+}
+
+SV GfxFramebuffer_getColorRT(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getColorRT" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getColorRT","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getColorRT(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getColorRT.")));
+R CN;
+}
+
+SV GfxFramebuffer_getDepthTexture(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getDepthTexture" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getDepthTexture","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getDepthTexture());
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getDepthTexture.")));
+R CN;
+}
+
+SV GfxFramebuffer_getColorAttachmentMipmapLevel(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getColorAttachmentMipmapLevel" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getColorAttachmentMipmapLevel","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->getColorAttachmentMipmapLevel(val_to_c<size_t>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getColorAttachmentMipmapLevel.")));
+R CN;
+}
+
+SV GfxFramebuffer_hasDepthAttachment(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::hasDepthAttachment" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::hasDepthAttachment","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->hasDepthAttachment());
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::hasDepthAttachment.")));
+R CN;
+}
+
+SV GfxFramebuffer_addColorAttachment(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::addColorAttachment" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::addColorAttachment","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],size_t)&&TS(a[2],GfxTexture *)&&TS(a[3],size_t)&&TS(a[4],int))
+{
+( F->addColorAttachment(val_to_c<size_t>::f(ctx,a[1]), val_to_c<GfxTexture *>::f(ctx,a[2]), val_to_c<size_t>::f(ctx,a[3]), val_to_c<int>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxFramebuffer::addColorAttachment.")));
+R CN;
+}
+
+SV GfxFramebuffer_getNumColorAttachments(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxFramebuffer::getNumColorAttachments" EAOE));
+GfxFramebuffer*F;
+if(!TS(a[0],GfxFramebuffer))
+CATE(TE,FAE("GfxFramebuffer::getNumColorAttachments","GfxFramebuffer")));
+else
+ F=(GfxFramebuffer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getNumColorAttachments());
+;
+}
+CATE(TE,UFOF("GfxFramebuffer::getNumColorAttachments.")));
+R CN;
+}
+
+void Font_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,Font))
+CATE(TE,"Font::__del__ expects Font as first argument."));
+
+Font*obj=(Font*)F->data;
+obj->release();
+}SV Font_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"Font's constructor" EAOE));
+if(!TS(a[0],Font))
+CATE(TE,"Font's constructor expects Font as first argument."));
+CATE(TE,UFOF("Font's constructor.")));
+}
+
+SV Font_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("Font");
+EI(keyStr=="__new__")
+R CNF(Font_new);
+EI(keyStr=="__call__")
+R CNF(Font_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(Font_new);
+ EI(keyStr == "removeContent")
+R CNF(Font_removeContent);
+ EI(keyStr == "render")
+R CNF(Font_render);
+ EI(keyStr == "load")
+R CNF(Font_load);
+ EI(keyStr == "reload")
+R CNF(Font_reload);
+ EI(keyStr == "save")
+R CNF(Font_save);
+ EI(keyStr == "copy")
+R CNF(Font_copy);
+ EI(keyStr == "getType")
+R CNF(Font_getType);
+ EI(keyStr == "isLoaded")
+R CNF(Font_isLoaded);
+ EI(keyStr == "getLastFileModification")
+R CNF(Font_getLastFileModification);
+ EI(keyStr == "shouldReload")
+R CNF(Font_shouldReload);
+ EI(keyStr == "possiblyReload")
+R CNF(Font_possiblyReload);
+ EI(keyStr == "release")
+R CNF(Font_release);
+ EI(keyStr == "getRefCount")
+R CNF(Font_getRefCount);
+ EI(keyStr == "getFilename")
+R CNF(Font_getFilename);
+ EI(keyStr == "setFilename")
+R CNF(Font_setFilename);
+ EI(keyStr=="autoReload")
+{
+Font*obj=(Font*)F->data;
+R CV(obj->autoReload);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void Font_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="autoReload")
+{
+Font*obj=(Font*)F->data;
+obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV Font_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::load" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::load","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->load());
+R CN;
+}
+CATE(TE,UFOF("Font::load.")));
+R CN;
+}
+
+SV Font_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::getFilename" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::getFilename","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFilename());
+;
+}
+CATE(TE,UFOF("Font::getFilename.")));
+R CN;
+}
+
+SV Font_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::copy" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::copy","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("Font::copy.")));
+R CN;
+}
+
+SV Font_render(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::render" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::render","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==6)
+if(1&&TS(a[1],size_t)&&TS(a[2],const Float2 &)&&TS(a[3],const char *)&&TS(a[4],GfxFramebuffer *)&&TS(a[5],const Float3 &))
+{
+( F->render(val_to_c<size_t>::f(ctx,a[1]), val_to_c<const Float2 &>::f(ctx,a[2]), val_to_c<const char *>::f(ctx,a[3]), val_to_c<GfxFramebuffer *>::f(ctx,a[4]), val_to_c<const Float3 &>::f(ctx,a[5])));
+R CN;
+}
+CATE(TE,UFOF("Font::render.")));
+R CN;
+}
+
+SV Font_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::getLastFileModification" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::getLastFileModification","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getLastFileModification());
+;
+}
+CATE(TE,UFOF("Font::getLastFileModification.")));
+R CN;
+}
+
+SV Font_possiblyReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::possiblyReload" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::possiblyReload","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+CATE(TE,UFOF("Font::possiblyReload.")));
+R CN;
+}
+
+SV Font_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::getType" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::getType","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("Font::getType.")));
+R CN;
+}
+
+SV Font_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::setFilename" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::setFilename","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("Font::setFilename.")));
+R CN;
+}
+
+SV Font_isLoaded(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::isLoaded" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::isLoaded","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isLoaded());
+;
+}
+CATE(TE,UFOF("Font::isLoaded.")));
+R CN;
+}
+
+SV Font_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::reload" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::reload","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->reload());
+R CN;
+}
+CATE(TE,UFOF("Font::reload.")));
+R CN;
+}
+
+SV Font_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::removeContent" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::removeContent","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+CATE(TE,UFOF("Font::removeContent.")));
+R CN;
+}
+
+SV Font_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::getRefCount" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::getRefCount","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRefCount());
+;
+}
+CATE(TE,UFOF("Font::getRefCount.")));
+R CN;
+}
+
+SV Font_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::release" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::release","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->release());
+R CN;
+}
+CATE(TE,UFOF("Font::release.")));
+R CN;
+}
+
+SV Font_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::shouldReload" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::shouldReload","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldReload());
+;
+}
+CATE(TE,UFOF("Font::shouldReload.")));
+R CN;
+}
+
+SV Font_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::save" EAOE));
+Font*F;
+if(!TS(a[0],Font))
+CATE(TE,FAE("Font::save","Font")));
+else
+ F=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+CATE(TE,UFOF("Font::save.")));
 R CN;
 }
 
@@ -9602,6 +13322,599 @@ R CV( F->getUp());
 ;
 }
 CATE(TE,UFOF("Camera::getUp.")));
+R CN;
+}
+
+void GfxMesh_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxMesh))
+CATE(TE,"GfxMesh::__del__ expects GfxMesh as first argument."));
+
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->release();
+}SV GfxMesh_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxMesh's constructor" EAOE));
+if(!TS(a[0],GfxMesh))
+CATE(TE,"GfxMesh's constructor expects GfxMesh as first argument."));
+CATE(TE,UFOF("GfxMesh's constructor.")));
+}
+
+SV GfxMesh_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxMesh");
+EI(keyStr=="__new__")
+R CNF(GfxMesh_new);
+EI(keyStr=="__call__")
+R CNF(GfxMesh_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxMesh_new);
+ EI(keyStr == "init")
+R CNF(GfxMesh_init);
+ EI(keyStr == "setVertexAttrib")
+R CNF(GfxMesh_setVertexAttrib);
+ EI(keyStr == "disableVertexAttrib")
+R CNF(GfxMesh_disableVertexAttrib);
+ EI(keyStr == "isVertexAttribEnabled")
+R CNF(GfxMesh_isVertexAttribEnabled);
+ EI(keyStr == "getVertexAttrib")
+R CNF(GfxMesh_getVertexAttrib);
+ EI(keyStr == "removeContent")
+R CNF(GfxMesh_removeContent);
+ EI(keyStr == "save")
+R CNF(GfxMesh_save);
+ EI(keyStr == "getImpl")
+R CNF(GfxMesh_getImpl);
+ EI(keyStr == "getBuffer")
+R CNF(GfxMesh_getBuffer);
+ EI(keyStr == "load")
+R CNF(GfxMesh_load);
+ EI(keyStr == "reload")
+R CNF(GfxMesh_reload);
+ EI(keyStr == "copy")
+R CNF(GfxMesh_copy);
+ EI(keyStr == "getType")
+R CNF(GfxMesh_getType);
+ EI(keyStr == "isLoaded")
+R CNF(GfxMesh_isLoaded);
+ EI(keyStr == "getLastFileModification")
+R CNF(GfxMesh_getLastFileModification);
+ EI(keyStr == "shouldReload")
+R CNF(GfxMesh_shouldReload);
+ EI(keyStr == "possiblyReload")
+R CNF(GfxMesh_possiblyReload);
+ EI(keyStr == "release")
+R CNF(GfxMesh_release);
+ EI(keyStr == "getRefCount")
+R CNF(GfxMesh_getRefCount);
+ EI(keyStr == "getFilename")
+R CNF(GfxMesh_getFilename);
+ EI(keyStr == "setFilename")
+R CNF(GfxMesh_setFilename);
+ EI(keyStr=="primitive")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->primitive);
+} EI(keyStr=="numVertices")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->numVertices);
+} EI(keyStr=="cullMode")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->cullMode);
+} EI(keyStr=="winding")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->winding);
+} EI(keyStr=="indexed")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->indexed);
+} EI(keyStr=="indexData")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->indexData);
+} EI(keyStr=="aabb")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->aabb);
+} EI(keyStr=="autoReload")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+R CV(obj->autoReload);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxMesh_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="primitive")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->primitive=val_to_c<decltype(obj->primitive)>::f(ctx,value);
+} EI(keyStr=="numVertices")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->numVertices=val_to_c<decltype(obj->numVertices)>::f(ctx,value);
+} EI(keyStr=="cullMode")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->cullMode=val_to_c<decltype(obj->cullMode)>::f(ctx,value);
+} EI(keyStr=="winding")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->winding=val_to_c<decltype(obj->winding)>::f(ctx,value);
+} EI(keyStr=="indexed")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->indexed=val_to_c<decltype(obj->indexed)>::f(ctx,value);
+} EI(keyStr=="indexData")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->indexData=val_to_c<decltype(obj->indexData)>::f(ctx,value);
+} EI(keyStr=="aabb")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->aabb=val_to_c<decltype(obj->aabb)>::f(ctx,value);
+} EI(keyStr=="autoReload")
+{
+GfxMesh*obj=(GfxMesh*)F->data;
+obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxMesh_isVertexAttribEnabled(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::isVertexAttribEnabled" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::isVertexAttribEnabled","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxVertexAttribPurpose))
+{
+R CV( F->isVertexAttribEnabled(val_to_c<GfxVertexAttribPurpose>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxMesh::isVertexAttribEnabled.")));
+R CN;
+}
+
+SV GfxMesh_disableVertexAttrib(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::disableVertexAttrib" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::disableVertexAttrib","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxVertexAttribPurpose))
+{
+( F->disableVertexAttrib(val_to_c<GfxVertexAttribPurpose>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::disableVertexAttrib.")));
+R CN;
+}
+
+SV GfxMesh_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::setFilename" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::setFilename","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::setFilename.")));
+R CN;
+}
+
+SV GfxMesh_getBuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getBuffer" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getBuffer","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBuffer());
+;
+}
+CATE(TE,UFOF("GfxMesh::getBuffer.")));
+R CN;
+}
+
+SV GfxMesh_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::reload" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::reload","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->reload());
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::reload.")));
+R CN;
+}
+
+SV GfxMesh_isLoaded(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::isLoaded" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::isLoaded","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isLoaded());
+;
+}
+CATE(TE,UFOF("GfxMesh::isLoaded.")));
+R CN;
+}
+
+SV GfxMesh_getImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getImpl" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getImpl","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxMesh::getImpl.")));
+R CN;
+}
+
+SV GfxMesh_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::copy" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::copy","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("GfxMesh::copy.")));
+R CN;
+}
+
+SV GfxMesh_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getType" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getType","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("GfxMesh::getType.")));
+R CN;
+}
+
+SV GfxMesh_possiblyReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::possiblyReload" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::possiblyReload","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::possiblyReload.")));
+R CN;
+}
+
+SV GfxMesh_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::removeContent" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::removeContent","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::removeContent.")));
+R CN;
+}
+
+SV GfxMesh_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::load" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::load","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->load());
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::load.")));
+R CN;
+}
+
+SV GfxMesh_getVertexAttrib(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getVertexAttrib" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getVertexAttrib","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxVertexAttribPurpose))
+{
+R CV( F->getVertexAttrib(val_to_c<GfxVertexAttribPurpose>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxMesh::getVertexAttrib.")));
+R CN;
+}
+
+SV GfxMesh_setVertexAttrib(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::setVertexAttrib" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::setVertexAttrib","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxVertexAttribPurpose)&&TS(a[2],const GfxVertexAttribute &))
+{
+( F->setVertexAttrib(val_to_c<GfxVertexAttribPurpose>::f(ctx,a[1]), val_to_c<const GfxVertexAttribute &>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::setVertexAttrib.")));
+R CN;
+}
+
+SV GfxMesh_init(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::init" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::init","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],GfxPrimitive)&&TS(a[2],size_t)&&TS(a[3],GfxCullMode)&&TS(a[4],GfxWinding))
+{
+( F->init(val_to_c<GfxPrimitive>::f(ctx,a[1]), val_to_c<size_t>::f(ctx,a[2]), val_to_c<GfxCullMode>::f(ctx,a[3]), val_to_c<GfxWinding>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::init.")));
+R CN;
+}
+
+SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getRefCount" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getRefCount","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRefCount());
+;
+}
+CATE(TE,UFOF("GfxMesh::getRefCount.")));
+R CN;
+}
+
+SV GfxMesh_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::release" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::release","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->release());
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::release.")));
+R CN;
+}
+
+SV GfxMesh_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getLastFileModification" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getLastFileModification","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getLastFileModification());
+;
+}
+CATE(TE,UFOF("GfxMesh::getLastFileModification.")));
+R CN;
+}
+
+SV GfxMesh_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::shouldReload" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::shouldReload","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldReload());
+;
+}
+CATE(TE,UFOF("GfxMesh::shouldReload.")));
+R CN;
+}
+
+SV GfxMesh_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::save" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::save","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+CATE(TE,UFOF("GfxMesh::save.")));
+R CN;
+}
+
+SV GfxMesh_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getFilename" EAOE));
+GfxMesh*F;
+if(!TS(a[0],GfxMesh))
+CATE(TE,FAE("GfxMesh::getFilename","GfxMesh")));
+else
+ F=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFilename());
+;
+}
+CATE(TE,UFOF("GfxMesh::getFilename.")));
 R CN;
 }
 
@@ -20690,6 +25003,1352 @@ CATE(TE,UFOF("Transform::createMatrix.")));
 R CN;
 }
 
+void GfxApi_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxApi))
+CATE(TE,"GfxApi::__del__ expects GfxApi as first argument."));
+
+DELETE((GfxApi*)F->data);
+}SV GfxApi_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxApi's constructor" EAOE));
+if(!TS(a[0],GfxApi))
+CATE(TE,"GfxApi's constructor expects GfxApi as first argument."));
+CATE(TE,UFOF("GfxApi's constructor.")));
+}
+
+SV GfxApi_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxApi");
+EI(keyStr=="__new__")
+R CNF(GfxApi_new);
+EI(keyStr=="__call__")
+R CNF(GfxApi_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxApi_new);
+ EI(keyStr == "getDriver")
+R CNF(GfxApi_getDriver);
+ EI(keyStr == "tesselationSupported")
+R CNF(GfxApi_tesselationSupported);
+ EI(keyStr == "createShaderImpl")
+R CNF(GfxApi_createShaderImpl);
+ EI(keyStr == "createBuffer")
+R CNF(GfxApi_createBuffer);
+ EI(keyStr == "createTextureImpl")
+R CNF(GfxApi_createTextureImpl);
+ EI(keyStr == "createMeshImpl")
+R CNF(GfxApi_createMeshImpl);
+ EI(keyStr == "createFramebuffer")
+R CNF(GfxApi_createFramebuffer);
+ EI(keyStr == "createTimer")
+R CNF(GfxApi_createTimer);
+ EI(keyStr == "setCurrentFramebuffer")
+R CNF(GfxApi_setCurrentFramebuffer);
+ EI(keyStr == "clearDepth")
+R CNF(GfxApi_clearDepth);
+ EI(keyStr == "clearColor")
+R CNF(GfxApi_clearColor);
+ EI(keyStr == "begin")
+R CNF(GfxApi_begin);
+ EI(keyStr == "end")
+R CNF(GfxApi_end);
+ EI(keyStr == "endIndexed")
+R CNF(GfxApi_endIndexed);
+ EI(keyStr == "uniform")
+R CNF(GfxApi_uniform);
+ EI(keyStr == "addUBOBinding")
+R CNF(GfxApi_addUBOBinding);
+ EI(keyStr == "addTextureBinding")
+R CNF(GfxApi_addTextureBinding);
+ EI(keyStr == "pushState")
+R CNF(GfxApi_pushState);
+ EI(keyStr == "popState")
+R CNF(GfxApi_popState);
+ EI(keyStr == "resetState")
+R CNF(GfxApi_resetState);
+ EI(keyStr == "setBlendingEnabled")
+R CNF(GfxApi_setBlendingEnabled);
+ EI(keyStr == "isBlendingEnabled")
+R CNF(GfxApi_isBlendingEnabled);
+ EI(keyStr == "setBlendConstantColor")
+R CNF(GfxApi_setBlendConstantColor);
+ EI(keyStr == "getBlendConstantColor")
+R CNF(GfxApi_getBlendConstantColor);
+ EI(keyStr == "getBlendConstantColorR")
+R CNF(GfxApi_getBlendConstantColorR);
+ EI(keyStr == "getBlendConstantColorG")
+R CNF(GfxApi_getBlendConstantColorG);
+ EI(keyStr == "getBlendConstantColorB")
+R CNF(GfxApi_getBlendConstantColorB);
+ EI(keyStr == "getBlendConstantColorA")
+R CNF(GfxApi_getBlendConstantColorA);
+ EI(keyStr == "setBlendFactors")
+R CNF(GfxApi_setBlendFactors);
+ EI(keyStr == "getBlendSrcFactorRGB")
+R CNF(GfxApi_getBlendSrcFactorRGB);
+ EI(keyStr == "getBlendSrcFactorAlpha")
+R CNF(GfxApi_getBlendSrcFactorAlpha);
+ EI(keyStr == "getBlendDstFactorRGB")
+R CNF(GfxApi_getBlendDstFactorRGB);
+ EI(keyStr == "getBlendDstFactorAlpha")
+R CNF(GfxApi_getBlendDstFactorAlpha);
+ EI(keyStr == "setBlendMode")
+R CNF(GfxApi_setBlendMode);
+ EI(keyStr == "getBlendModeRGB")
+R CNF(GfxApi_getBlendModeRGB);
+ EI(keyStr == "getBlendModeAlpha")
+R CNF(GfxApi_getBlendModeAlpha);
+ EI(keyStr == "setWriteDepth")
+R CNF(GfxApi_setWriteDepth);
+ EI(keyStr == "getWriteDepth")
+R CNF(GfxApi_getWriteDepth);
+ EI(keyStr == "setDepthFunction")
+R CNF(GfxApi_setDepthFunction);
+ EI(keyStr == "getDepthFunction")
+R CNF(GfxApi_getDepthFunction);
+ EI(keyStr == "setCullMode")
+R CNF(GfxApi_setCullMode);
+ EI(keyStr == "getCullMode")
+R CNF(GfxApi_getCullMode);
+ EI(keyStr == "setViewport")
+R CNF(GfxApi_setViewport);
+ EI(keyStr == "getViewportLeft")
+R CNF(GfxApi_getViewportLeft);
+ EI(keyStr == "getViewportBottom")
+R CNF(GfxApi_getViewportBottom);
+ EI(keyStr == "getViewportWidth")
+R CNF(GfxApi_getViewportWidth);
+ EI(keyStr == "getViewportHeight")
+R CNF(GfxApi_getViewportHeight);
+ EI(keyStr == "setScissor")
+R CNF(GfxApi_setScissor);
+ EI(keyStr == "getScissorLeft")
+R CNF(GfxApi_getScissorLeft);
+ EI(keyStr == "getScissorBottom")
+R CNF(GfxApi_getScissorBottom);
+ EI(keyStr == "getScissorWidth")
+R CNF(GfxApi_getScissorWidth);
+ EI(keyStr == "getScissorHeight")
+R CNF(GfxApi_getScissorHeight);
+ EI(keyStr == "setScissorEnabled")
+R CNF(GfxApi_setScissorEnabled);
+ EI(keyStr == "getScissorEnabled")
+R CNF(GfxApi_getScissorEnabled);
+ EI(keyStr == "setTessPatchSize")
+R CNF(GfxApi_setTessPatchSize);
+ EI(keyStr == "getTessPatchSize")
+R CNF(GfxApi_getTessPatchSize);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxApi_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxApi_getScissorWidth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getScissorWidth" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getScissorWidth","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getScissorWidth());
+;
+}
+CATE(TE,UFOF("GfxApi::getScissorWidth.")));
+R CN;
+}
+
+SV GfxApi_setDepthFunction(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setDepthFunction" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setDepthFunction","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxDepthFunction))
+{
+( F->setDepthFunction(val_to_c<GfxDepthFunction>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setDepthFunction.")));
+R CN;
+}
+
+SV GfxApi_setCurrentFramebuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setCurrentFramebuffer" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setCurrentFramebuffer","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxFramebuffer *))
+{
+( F->setCurrentFramebuffer(val_to_c<GfxFramebuffer *>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setCurrentFramebuffer.")));
+R CN;
+}
+
+SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::createTextureImpl" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::createTextureImpl","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxApi::createTextureImpl.")));
+R CN;
+}
+
+SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::tesselationSupported" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::tesselationSupported","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->tesselationSupported());
+;
+}
+CATE(TE,UFOF("GfxApi::tesselationSupported.")));
+R CN;
+}
+
+SV GfxApi_popState(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::popState" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::popState","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->popState());
+R CN;
+}
+CATE(TE,UFOF("GfxApi::popState.")));
+R CN;
+}
+
+SV GfxApi_getBlendModeAlpha(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendModeAlpha" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendModeAlpha","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendModeAlpha());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendModeAlpha.")));
+R CN;
+}
+
+SV GfxApi_getDepthFunction(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getDepthFunction" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getDepthFunction","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getDepthFunction());
+;
+}
+CATE(TE,UFOF("GfxApi::getDepthFunction.")));
+R CN;
+}
+
+SV GfxApi_pushState(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::pushState" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::pushState","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->pushState());
+R CN;
+}
+CATE(TE,UFOF("GfxApi::pushState.")));
+R CN;
+}
+
+SV GfxApi_getViewportLeft(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getViewportLeft" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getViewportLeft","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getViewportLeft());
+;
+}
+CATE(TE,UFOF("GfxApi::getViewportLeft.")));
+R CN;
+}
+
+SV GfxApi_getWriteDepth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getWriteDepth" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getWriteDepth","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWriteDepth());
+;
+}
+CATE(TE,UFOF("GfxApi::getWriteDepth.")));
+R CN;
+}
+
+SV GfxApi_end(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::end" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::end","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],GfxPrimitive)&&TS(a[2],uint32_t)&&TS(a[3],GfxWinding)&&TS(a[4],size_t))
+{
+( F->end(val_to_c<GfxPrimitive>::f(ctx,a[1]), val_to_c<uint32_t>::f(ctx,a[2]), val_to_c<GfxWinding>::f(ctx,a[3]), val_to_c<size_t>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::end.")));
+R CN;
+}
+
+SV GfxApi_getScissorLeft(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getScissorLeft" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getScissorLeft","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getScissorLeft());
+;
+}
+CATE(TE,UFOF("GfxApi::getScissorLeft.")));
+R CN;
+}
+
+SV GfxApi_setScissor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setScissor" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setScissor","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],uint16_t)&&TS(a[2],uint16_t)&&TS(a[3],uint16_t)&&TS(a[4],uint16_t))
+{
+( F->setScissor(val_to_c<uint16_t>::f(ctx,a[1]), val_to_c<uint16_t>::f(ctx,a[2]), val_to_c<uint16_t>::f(ctx,a[3]), val_to_c<uint16_t>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setScissor.")));
+R CN;
+}
+
+SV GfxApi_resetState(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::resetState" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::resetState","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->resetState());
+R CN;
+}
+CATE(TE,UFOF("GfxApi::resetState.")));
+R CN;
+}
+
+SV GfxApi_getBlendDstFactorAlpha(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendDstFactorAlpha" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendDstFactorAlpha","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendDstFactorAlpha());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendDstFactorAlpha.")));
+R CN;
+}
+
+SV GfxApi_createShaderImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::createShaderImpl" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::createShaderImpl","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxApi::createShaderImpl.")));
+R CN;
+}
+
+SV GfxApi_getBlendConstantColorR(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendConstantColorR" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendConstantColorR","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendConstantColorR());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendConstantColorR.")));
+R CN;
+}
+
+SV GfxApi_uniform(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::uniform" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::uniform","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],float))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<float>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Float2 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const Float2 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Float3 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const Float3 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Float4 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const Float4 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],int32_t))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<int32_t>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Int2 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const Int2 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Int3 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const Int3 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Int4 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const Int4 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],uint32_t))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<uint32_t>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt2 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const UInt2 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt3 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const UInt3 &>::f(ctx,a[3])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt4 &))
+{
+( F->uniform(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const UInt4 &>::f(ctx,a[3])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::uniform.")));
+R CN;
+}
+
+SV GfxApi_getTessPatchSize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getTessPatchSize" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getTessPatchSize","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getTessPatchSize());
+;
+}
+CATE(TE,UFOF("GfxApi::getTessPatchSize.")));
+R CN;
+}
+
+SV GfxApi_addUBOBinding(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::addUBOBinding" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::addUBOBinding","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const GfxBuffer *))
+{
+( F->addUBOBinding(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<const GfxBuffer *>::f(ctx,a[3])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::addUBOBinding.")));
+R CN;
+}
+
+SV GfxApi_endIndexed(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::endIndexed" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::endIndexed","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==8)
+if(1&&TS(a[1],GfxPrimitive)&&TS(a[2],GfxVertexAttribType)&&TS(a[3],uint32_t)&&TS(a[4],size_t)&&TS(a[5],GfxBuffer *)&&TS(a[6],GfxWinding)&&TS(a[7],size_t))
+{
+( F->endIndexed(val_to_c<GfxPrimitive>::f(ctx,a[1]), val_to_c<GfxVertexAttribType>::f(ctx,a[2]), val_to_c<uint32_t>::f(ctx,a[3]), val_to_c<size_t>::f(ctx,a[4]), val_to_c<GfxBuffer *>::f(ctx,a[5]), val_to_c<GfxWinding>::f(ctx,a[6]), val_to_c<size_t>::f(ctx,a[7])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::endIndexed.")));
+R CN;
+}
+
+SV GfxApi_getBlendModeRGB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendModeRGB" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendModeRGB","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendModeRGB());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendModeRGB.")));
+R CN;
+}
+
+SV GfxApi_setScissorEnabled(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setScissorEnabled" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setScissorEnabled","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],bool))
+{
+( F->setScissorEnabled(val_to_c<bool>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setScissorEnabled.")));
+R CN;
+}
+
+SV GfxApi_getBlendConstantColorG(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendConstantColorG" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendConstantColorG","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendConstantColorG());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendConstantColorG.")));
+R CN;
+}
+
+SV GfxApi_createTimer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::createTimer" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::createTimer","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->createTimer());
+;
+}
+CATE(TE,UFOF("GfxApi::createTimer.")));
+R CN;
+}
+
+SV GfxApi_getBlendConstantColorA(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendConstantColorA" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendConstantColorA","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendConstantColorA());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendConstantColorA.")));
+R CN;
+}
+
+SV GfxApi_getBlendConstantColorB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendConstantColorB" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendConstantColorB","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendConstantColorB());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendConstantColorB.")));
+R CN;
+}
+
+SV GfxApi_getBlendSrcFactorRGB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendSrcFactorRGB" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendSrcFactorRGB","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendSrcFactorRGB());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendSrcFactorRGB.")));
+R CN;
+}
+
+SV GfxApi_begin(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::begin" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::begin","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==7)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *)&&TS(a[4],GfxCompiledShader *)&&TS(a[5],GfxCompiledShader *)&&TS(a[6],GfxMesh *))
+{
+( F->begin(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<GfxCompiledShader *>::f(ctx,a[2]), val_to_c<GfxCompiledShader *>::f(ctx,a[3]), val_to_c<GfxCompiledShader *>::f(ctx,a[4]), val_to_c<GfxCompiledShader *>::f(ctx,a[5]), val_to_c<GfxMesh *>::f(ctx,a[6])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::begin.")));
+R CN;
+}
+
+SV GfxApi_setTessPatchSize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setTessPatchSize" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setTessPatchSize","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( F->setTessPatchSize(val_to_c<size_t>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setTessPatchSize.")));
+R CN;
+}
+
+SV GfxApi_getViewportWidth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getViewportWidth" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getViewportWidth","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getViewportWidth());
+;
+}
+CATE(TE,UFOF("GfxApi::getViewportWidth.")));
+R CN;
+}
+
+SV GfxApi_setBlendFactors(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setBlendFactors" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setBlendFactors","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],GfxBlendFactor)&&TS(a[2],GfxBlendFactor)&&TS(a[3],GfxBlendFactor)&&TS(a[4],GfxBlendFactor))
+{
+( F->setBlendFactors(val_to_c<GfxBlendFactor>::f(ctx,a[1]), val_to_c<GfxBlendFactor>::f(ctx,a[2]), val_to_c<GfxBlendFactor>::f(ctx,a[3]), val_to_c<GfxBlendFactor>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setBlendFactors.")));
+R CN;
+}
+
+SV GfxApi_getViewportBottom(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getViewportBottom" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getViewportBottom","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getViewportBottom());
+;
+}
+CATE(TE,UFOF("GfxApi::getViewportBottom.")));
+R CN;
+}
+
+SV GfxApi_getDriver(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getDriver" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getDriver","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getDriver());
+;
+}
+CATE(TE,UFOF("GfxApi::getDriver.")));
+R CN;
+}
+
+SV GfxApi_setBlendMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setBlendMode" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setBlendMode","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxBlendMode)&&TS(a[2],GfxBlendMode))
+{
+( F->setBlendMode(val_to_c<GfxBlendMode>::f(ctx,a[1]), val_to_c<GfxBlendMode>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setBlendMode.")));
+R CN;
+}
+
+SV GfxApi_setWriteDepth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setWriteDepth" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setWriteDepth","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],bool))
+{
+( F->setWriteDepth(val_to_c<bool>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setWriteDepth.")));
+R CN;
+}
+
+SV GfxApi_createBuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::createBuffer" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::createBuffer","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->createBuffer());
+;
+}
+CATE(TE,UFOF("GfxApi::createBuffer.")));
+R CN;
+}
+
+SV GfxApi_createMeshImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::createMeshImpl" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::createMeshImpl","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxApi::createMeshImpl.")));
+R CN;
+}
+
+SV GfxApi_getScissorEnabled(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getScissorEnabled" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getScissorEnabled","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getScissorEnabled());
+;
+}
+CATE(TE,UFOF("GfxApi::getScissorEnabled.")));
+R CN;
+}
+
+SV GfxApi_getCullMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getCullMode" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getCullMode","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getCullMode());
+;
+}
+CATE(TE,UFOF("GfxApi::getCullMode.")));
+R CN;
+}
+
+SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendConstantColor" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendConstantColor","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxApi::getBlendConstantColor.")));
+R CN;
+}
+
+SV GfxApi_clearDepth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::clearDepth" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::clearDepth","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+( F->clearDepth(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::clearDepth.")));
+R CN;
+}
+
+SV GfxApi_setBlendConstantColor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setBlendConstantColor" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setBlendConstantColor","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],uint8_t)&&TS(a[2],uint8_t)&&TS(a[3],uint8_t)&&TS(a[4],uint8_t))
+{
+( F->setBlendConstantColor(val_to_c<uint8_t>::f(ctx,a[1]), val_to_c<uint8_t>::f(ctx,a[2]), val_to_c<uint8_t>::f(ctx,a[3]), val_to_c<uint8_t>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setBlendConstantColor.")));
+R CN;
+}
+
+SV GfxApi_setBlendingEnabled(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setBlendingEnabled" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setBlendingEnabled","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],bool))
+{
+( F->setBlendingEnabled(val_to_c<bool>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setBlendingEnabled.")));
+R CN;
+}
+
+SV GfxApi_getBlendSrcFactorAlpha(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendSrcFactorAlpha" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendSrcFactorAlpha","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendSrcFactorAlpha());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendSrcFactorAlpha.")));
+R CN;
+}
+
+SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::createFramebuffer" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::createFramebuffer","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->createFramebuffer());
+;
+}
+CATE(TE,UFOF("GfxApi::createFramebuffer.")));
+R CN;
+}
+
+SV GfxApi_getScissorBottom(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getScissorBottom" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getScissorBottom","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getScissorBottom());
+;
+}
+CATE(TE,UFOF("GfxApi::getScissorBottom.")));
+R CN;
+}
+
+SV GfxApi_getBlendDstFactorRGB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendDstFactorRGB" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getBlendDstFactorRGB","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBlendDstFactorRGB());
+;
+}
+CATE(TE,UFOF("GfxApi::getBlendDstFactorRGB.")));
+R CN;
+}
+
+SV GfxApi_setCullMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setCullMode" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setCullMode","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxCullMode))
+{
+( F->setCullMode(val_to_c<GfxCullMode>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setCullMode.")));
+R CN;
+}
+
+SV GfxApi_setViewport(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setViewport" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::setViewport","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],uint16_t)&&TS(a[2],uint16_t)&&TS(a[3],uint16_t)&&TS(a[4],uint16_t))
+{
+( F->setViewport(val_to_c<uint16_t>::f(ctx,a[1]), val_to_c<uint16_t>::f(ctx,a[2]), val_to_c<uint16_t>::f(ctx,a[3]), val_to_c<uint16_t>::f(ctx,a[4])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::setViewport.")));
+R CN;
+}
+
+SV GfxApi_addTextureBinding(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::addTextureBinding" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::addTextureBinding","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *))
+{
+( F->addTextureBinding(val_to_c<GfxCompiledShader *>::f(ctx,a[1]), val_to_c<const char *>::f(ctx,a[2]), val_to_c<GfxTexture *>::f(ctx,a[3])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::addTextureBinding.")));
+R CN;
+}
+
+SV GfxApi_getViewportHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getViewportHeight" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getViewportHeight","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getViewportHeight());
+;
+}
+CATE(TE,UFOF("GfxApi::getViewportHeight.")));
+R CN;
+}
+
+SV GfxApi_getScissorHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getScissorHeight" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::getScissorHeight","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getScissorHeight());
+;
+}
+CATE(TE,UFOF("GfxApi::getScissorHeight.")));
+R CN;
+}
+
+SV GfxApi_isBlendingEnabled(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::isBlendingEnabled" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::isBlendingEnabled","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isBlendingEnabled());
+;
+}
+CATE(TE,UFOF("GfxApi::isBlendingEnabled.")));
+R CN;
+}
+
+SV GfxApi_clearColor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::clearColor" EAOE));
+GfxApi*F;
+if(!TS(a[0],GfxApi))
+CATE(TE,FAE("GfxApi::clearColor","GfxApi")));
+else
+ F=(GfxApi*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],Float4))
+{
+( F->clearColor(val_to_c<size_t>::f(ctx,a[1]), val_to_c<Float4>::f(ctx,a[2])));
+R CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],Int4))
+{
+( F->clearColor(val_to_c<size_t>::f(ctx,a[1]), val_to_c<Int4>::f(ctx,a[2])));
+R CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],UInt4))
+{
+( F->clearColor(val_to_c<size_t>::f(ctx,a[1]), val_to_c<UInt4>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GfxApi::clearColor.")));
+R CN;
+}
+
 void Quaternion_destroy(CTX ctx,NO F)
 {
 if(!TS((SV)F,Quaternion))
@@ -21189,6 +26848,99 @@ R CV( F->getZAxis());
 }
 CATE(TE,UFOF("Quaternion::getZAxis.")));
 R CN;
+}
+
+void GfxVertexAttribute_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxVertexAttribute))
+CATE(TE,"GfxVertexAttribute::__del__ expects GfxVertexAttribute as first argument."));
+
+DELETE((GfxVertexAttribute*)F->data);
+}SV GfxVertexAttribute_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxVertexAttribute's constructor" EAOE));
+if(!TS(a[0],GfxVertexAttribute))
+CATE(TE,"GfxVertexAttribute's constructor expects GfxVertexAttribute as first argument."));
+#define fjis GfxVertexAttribute
+R S::createNativeObject(GfxVertexAttribute_funcs,NEW(fjis),EXT->GfxVertexAttribute_typeID);
+}
+
+SV GfxVertexAttribute_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxVertexAttribute");
+EI(keyStr=="__new__")
+R CNF(GfxVertexAttribute_new);
+EI(keyStr=="__call__")
+R CNF(GfxVertexAttribute_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxVertexAttribute_new);
+ EI(keyStr=="numComponents")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+R CV(obj->numComponents);
+} EI(keyStr=="type")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+R CV(obj->type);
+} EI(keyStr=="stride")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+R CV(obj->stride);
+} EI(keyStr=="offset")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+R CV(obj->offset);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxVertexAttribute_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="numComponents")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+obj->numComponents=val_to_c<decltype(obj->numComponents)>::f(ctx,value);
+} EI(keyStr=="type")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
+} EI(keyStr=="stride")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+obj->stride=val_to_c<decltype(obj->stride)>::f(ctx,value);
+} EI(keyStr=="offset")
+{
+GfxVertexAttribute*obj=(GfxVertexAttribute*)F->data;
+obj->offset=val_to_c<decltype(obj->offset)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
 }
 
 void Int2_destroy(CTX ctx,NO F)
@@ -30058,6 +35810,959 @@ CATE(TE,UFOF("Audio::setSample.")));
 R CN;
 }
 
+void GfxTexture_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxTexture))
+CATE(TE,"GfxTexture::__del__ expects GfxTexture as first argument."));
+
+GfxTexture*obj=(GfxTexture*)F->data;
+obj->release();
+}SV GfxTexture_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxTexture's constructor" EAOE));
+if(!TS(a[0],GfxTexture))
+CATE(TE,"GfxTexture's constructor expects GfxTexture as first argument."));
+CATE(TE,UFOF("GfxTexture's constructor.")));
+}
+
+SV GfxTexture_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTexture");
+EI(keyStr=="__new__")
+R CNF(GfxTexture_new);
+EI(keyStr=="__call__")
+R CNF(GfxTexture_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(GfxTexture_new);
+ EI(keyStr == "removeContent")
+R CNF(GfxTexture_removeContent);
+ EI(keyStr == "startCreation")
+R CNF(GfxTexture_startCreation);
+ EI(keyStr == "allocMipmapFace")
+R CNF(GfxTexture_allocMipmapFace);
+ EI(keyStr == "allocMipmap")
+R CNF(GfxTexture_allocMipmap);
+ EI(keyStr == "getMipmapFace")
+R CNF(GfxTexture_getMipmapFace);
+ EI(keyStr == "getMipmap")
+R CNF(GfxTexture_getMipmap);
+ EI(keyStr == "generateMipmaps")
+R CNF(GfxTexture_generateMipmaps);
+ EI(keyStr == "getTextureType")
+R CNF(GfxTexture_getTextureType);
+ EI(keyStr == "shouldCompress")
+R CNF(GfxTexture_shouldCompress);
+ EI(keyStr == "getMaximumAnisotropy")
+R CNF(GfxTexture_getMaximumAnisotropy);
+ EI(keyStr == "getMinFilter")
+R CNF(GfxTexture_getMinFilter);
+ EI(keyStr == "getMagFilter")
+R CNF(GfxTexture_getMagFilter);
+ EI(keyStr == "getMipmapMode")
+R CNF(GfxTexture_getMipmapMode);
+ EI(keyStr == "getWrapMode")
+R CNF(GfxTexture_getWrapMode);
+ EI(keyStr == "getBaseWidth")
+R CNF(GfxTexture_getBaseWidth);
+ EI(keyStr == "getBaseHeight")
+R CNF(GfxTexture_getBaseHeight);
+ EI(keyStr == "getBaseDepth")
+R CNF(GfxTexture_getBaseDepth);
+ EI(keyStr == "getCompressionQuality")
+R CNF(GfxTexture_getCompressionQuality);
+ EI(keyStr == "getPurpose")
+R CNF(GfxTexture_getPurpose);
+ EI(keyStr == "getFormat")
+R CNF(GfxTexture_getFormat);
+ EI(keyStr == "getShadowmap")
+R CNF(GfxTexture_getShadowmap);
+ EI(keyStr == "setMaximumAnisotropy")
+R CNF(GfxTexture_setMaximumAnisotropy);
+ EI(keyStr == "setMinFilter")
+R CNF(GfxTexture_setMinFilter);
+ EI(keyStr == "setMagFilter")
+R CNF(GfxTexture_setMagFilter);
+ EI(keyStr == "setMipmapMode")
+R CNF(GfxTexture_setMipmapMode);
+ EI(keyStr == "setWrapMode")
+R CNF(GfxTexture_setWrapMode);
+ EI(keyStr == "setShadowmap")
+R CNF(GfxTexture_setShadowmap);
+ EI(keyStr == "getImpl")
+R CNF(GfxTexture_getImpl);
+ EI(keyStr == "save")
+R CNF(GfxTexture_save);
+ EI(keyStr == "load")
+R CNF(GfxTexture_load);
+ EI(keyStr == "reload")
+R CNF(GfxTexture_reload);
+ EI(keyStr == "copy")
+R CNF(GfxTexture_copy);
+ EI(keyStr == "getType")
+R CNF(GfxTexture_getType);
+ EI(keyStr == "isLoaded")
+R CNF(GfxTexture_isLoaded);
+ EI(keyStr == "getLastFileModification")
+R CNF(GfxTexture_getLastFileModification);
+ EI(keyStr == "shouldReload")
+R CNF(GfxTexture_shouldReload);
+ EI(keyStr == "possiblyReload")
+R CNF(GfxTexture_possiblyReload);
+ EI(keyStr == "release")
+R CNF(GfxTexture_release);
+ EI(keyStr == "getRefCount")
+R CNF(GfxTexture_getRefCount);
+ EI(keyStr == "getFilename")
+R CNF(GfxTexture_getFilename);
+ EI(keyStr == "setFilename")
+R CNF(GfxTexture_setFilename);
+ EI(keyStr=="autoReload")
+{
+GfxTexture*obj=(GfxTexture*)F->data;
+R CV(obj->autoReload);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void GfxTexture_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="autoReload")
+{
+GfxTexture*obj=(GfxTexture*)F->data;
+obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GfxTexture_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::load" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::load","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->load());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::load.")));
+R CN;
+}
+
+SV GfxTexture_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getFilename" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getFilename","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFilename());
+;
+}
+CATE(TE,UFOF("GfxTexture::getFilename.")));
+R CN;
+}
+
+SV GfxTexture_setShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setShadowmap" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setShadowmap","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],bool))
+{
+( F->setShadowmap(val_to_c<bool>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setShadowmap.")));
+R CN;
+}
+
+SV GfxTexture_setMinFilter(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setMinFilter" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setMinFilter","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxFilter))
+{
+( F->setMinFilter(val_to_c<GfxFilter>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setMinFilter.")));
+R CN;
+}
+
+SV GfxTexture_possiblyReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::possiblyReload" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::possiblyReload","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->possiblyReload());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::possiblyReload.")));
+R CN;
+}
+
+SV GfxTexture_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::copy" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::copy","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("GfxTexture::copy.")));
+R CN;
+}
+
+SV GfxTexture_allocMipmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::allocMipmap" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::allocMipmap","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxTexture::allocMipmap.")));
+R CN;
+}
+
+SV GfxTexture_isLoaded(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::isLoaded" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::isLoaded","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->isLoaded());
+;
+}
+CATE(TE,UFOF("GfxTexture::isLoaded.")));
+R CN;
+}
+
+SV GfxTexture_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getRefCount" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getRefCount","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRefCount());
+;
+}
+CATE(TE,UFOF("GfxTexture::getRefCount.")));
+R CN;
+}
+
+SV GfxTexture_getBaseDepth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getBaseDepth" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getBaseDepth","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBaseDepth());
+;
+}
+CATE(TE,UFOF("GfxTexture::getBaseDepth.")));
+R CN;
+}
+
+SV GfxTexture_startCreation(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::startCreation" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::startCreation","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==9)
+if(1&&TS(a[1],GfxTextureType)&&TS(a[2],bool)&&TS(a[3],unsigned int)&&TS(a[4],unsigned int)&&TS(a[5],unsigned int)&&TS(a[6],uint8_t)&&TS(a[7],GfxTexPurpose)&&TS(a[8],GfxTexFormat))
+{
+( F->startCreation(val_to_c<GfxTextureType>::f(ctx,a[1]), val_to_c<bool>::f(ctx,a[2]), val_to_c<unsigned int>::f(ctx,a[3]), val_to_c<unsigned int>::f(ctx,a[4]), val_to_c<unsigned int>::f(ctx,a[5]), val_to_c<uint8_t>::f(ctx,a[6]), val_to_c<GfxTexPurpose>::f(ctx,a[7]), val_to_c<GfxTexFormat>::f(ctx,a[8])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::startCreation.")));
+R CN;
+}
+
+SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getBaseWidth" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getBaseWidth","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBaseWidth());
+;
+}
+CATE(TE,UFOF("GfxTexture::getBaseWidth.")));
+R CN;
+}
+
+SV GfxTexture_generateMipmaps(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::generateMipmaps" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::generateMipmaps","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->generateMipmaps());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::generateMipmaps.")));
+R CN;
+}
+
+SV GfxTexture_getMipmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMipmap" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getMipmap","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxTexture::getMipmap.")));
+R CN;
+}
+
+SV GfxTexture_getShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getShadowmap" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getShadowmap","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getShadowmap());
+;
+}
+CATE(TE,UFOF("GfxTexture::getShadowmap.")));
+R CN;
+}
+
+SV GfxTexture_getImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getImpl" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getImpl","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxTexture::getImpl.")));
+R CN;
+}
+
+SV GfxTexture_getMinFilter(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMinFilter" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getMinFilter","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getMinFilter());
+;
+}
+CATE(TE,UFOF("GfxTexture::getMinFilter.")));
+R CN;
+}
+
+SV GfxTexture_allocMipmapFace(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::allocMipmapFace" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::allocMipmapFace","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxTexture::allocMipmapFace.")));
+R CN;
+}
+
+SV GfxTexture_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getLastFileModification" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getLastFileModification","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getLastFileModification());
+;
+}
+CATE(TE,UFOF("GfxTexture::getLastFileModification.")));
+R CN;
+}
+
+SV GfxTexture_setMipmapMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setMipmapMode" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setMipmapMode","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxMipmapMode))
+{
+( F->setMipmapMode(val_to_c<GfxMipmapMode>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setMipmapMode.")));
+R CN;
+}
+
+SV GfxTexture_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::shouldReload" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::shouldReload","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldReload());
+;
+}
+CATE(TE,UFOF("GfxTexture::shouldReload.")));
+R CN;
+}
+
+SV GfxTexture_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::save" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::save","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->save());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::save.")));
+R CN;
+}
+
+SV GfxTexture_getMipmapMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMipmapMode" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getMipmapMode","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getMipmapMode());
+;
+}
+CATE(TE,UFOF("GfxTexture::getMipmapMode.")));
+R CN;
+}
+
+SV GfxTexture_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getType" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getType","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getType());
+;
+}
+CATE(TE,UFOF("GfxTexture::getType.")));
+R CN;
+}
+
+SV GfxTexture_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setFilename" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setFilename","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( F->setFilename(val_to_c<const String &>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setFilename.")));
+R CN;
+}
+
+SV GfxTexture_shouldCompress(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::shouldCompress" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::shouldCompress","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->shouldCompress());
+;
+}
+CATE(TE,UFOF("GfxTexture::shouldCompress.")));
+R CN;
+}
+
+SV GfxTexture_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::removeContent" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::removeContent","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( F->removeContent());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::removeContent.")));
+R CN;
+}
+
+SV GfxTexture_setWrapMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setWrapMode" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setWrapMode","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxWrapMode))
+{
+( F->setWrapMode(val_to_c<GfxWrapMode>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setWrapMode.")));
+R CN;
+}
+
+SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getBaseHeight" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getBaseHeight","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getBaseHeight());
+;
+}
+CATE(TE,UFOF("GfxTexture::getBaseHeight.")));
+R CN;
+}
+
+SV GfxTexture_setMaximumAnisotropy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setMaximumAnisotropy" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setMaximumAnisotropy","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+( F->setMaximumAnisotropy(val_to_c<float>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setMaximumAnisotropy.")));
+R CN;
+}
+
+SV GfxTexture_getTextureType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getTextureType" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getTextureType","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getTextureType());
+;
+}
+CATE(TE,UFOF("GfxTexture::getTextureType.")));
+R CN;
+}
+
+SV GfxTexture_getFormat(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getFormat" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getFormat","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getFormat());
+;
+}
+CATE(TE,UFOF("GfxTexture::getFormat.")));
+R CN;
+}
+
+SV GfxTexture_getMipmapFace(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMipmapFace" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getMipmapFace","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxTexture::getMipmapFace.")));
+R CN;
+}
+
+SV GfxTexture_getPurpose(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getPurpose" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getPurpose","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getPurpose());
+;
+}
+CATE(TE,UFOF("GfxTexture::getPurpose.")));
+R CN;
+}
+
+SV GfxTexture_getMaximumAnisotropy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMaximumAnisotropy" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getMaximumAnisotropy","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getMaximumAnisotropy());
+;
+}
+CATE(TE,UFOF("GfxTexture::getMaximumAnisotropy.")));
+R CN;
+}
+
+SV GfxTexture_setMagFilter(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setMagFilter" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::setMagFilter","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxFilter))
+{
+( F->setMagFilter(val_to_c<GfxFilter>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::setMagFilter.")));
+R CN;
+}
+
+SV GfxTexture_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::reload" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::reload","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->reload());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::reload.")));
+R CN;
+}
+
+SV GfxTexture_getWrapMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getWrapMode" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getWrapMode","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getWrapMode());
+;
+}
+CATE(TE,UFOF("GfxTexture::getWrapMode.")));
+R CN;
+}
+
+SV GfxTexture_getMagFilter(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMagFilter" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getMagFilter","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getMagFilter());
+;
+}
+CATE(TE,UFOF("GfxTexture::getMagFilter.")));
+R CN;
+}
+
+SV GfxTexture_getCompressionQuality(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getCompressionQuality" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::getCompressionQuality","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getCompressionQuality());
+;
+}
+CATE(TE,UFOF("GfxTexture::getCompressionQuality.")));
+R CN;
+}
+
+SV GfxTexture_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::release" EAOE));
+GfxTexture*F;
+if(!TS(a[0],GfxTexture))
+CATE(TE,FAE("GfxTexture::release","GfxTexture")));
+else
+ F=(GfxTexture*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->release());
+R CN;
+}
+CATE(TE,UFOF("GfxTexture::release.")));
+R CN;
+}
+
 void GfxSubModelList_destroy(CTX ctx,NO F)
 {
 if(!TS((SV)F,List<GfxModel::SubModel>))
@@ -31600,6 +38305,87 @@ obj.refCount=1;
 obj.data=F->data;
 RigidBody_set_member(ctx, &obj, key, value);
 }
+SV GfxIndexData_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxIndexData;
+NO obj=(NO)GfxIndexData_new(ctx, args2);
+obj->funcs=GfxIndexData_ptr_funcs;
+obj->typeID=EXT->GfxIndexData_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxIndexData_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxIndexDataRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxIndexData*))
+CATE(TE,"GfxIndexDataRef::deref expects GfxIndexDataRef as first argument."));
+R CV(*(GfxIndexData *)((NO)F)->data);
+}
+SV GfxIndexData_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxIndexData::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxIndexData*))
+CATE(TE,"GfxIndexDataRef::refset expects GfxIndexDataRef as first argument."));
+*((GfxIndexData *)((NO)F)->data) = val_to_c<GfxIndexData>::f(ctx,a[1]);
+R CN;
+}
+
+void GfxIndexData_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxIndexData*))
+CATE(TE,"GfxIndexDataRef::__del__ expects GfxIndexDataRef as first argument."));
+SCRIPT_DELETE((GfxIndexData *)F->data);
+}
+SV GfxIndexData_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxIndexData*))
+CATE(TE,FAE("GfxIndexDataRef's get method","GfxIndexDataRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxIndexDataPtr");
+EI(keyStr=="__new__")
+R CNF(GfxIndexData_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxIndexData_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxIndexData_ptr_deref);
+if(keyStr=="refset")R CNF(GfxIndexData_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxIndexData_funcs;
+obj.typeID=EXT->GfxIndexData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxIndexData_get_member(ctx, &obj, key);
+}
+void GfxIndexData_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxIndexData*))
+CATE(TE,FAE("GfxIndexDataRef's set method","GfxIndexDataRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxIndexData_funcs;
+obj.typeID=EXT->GfxIndexData_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxIndexData_set_member(ctx, &obj, key, value);
+}
 SV Float2_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -31680,6 +38466,169 @@ obj.typeID=EXT->Float2_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Float2_set_member(ctx, &obj, key, value);
+}
+SV GfxFramebuffer_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxFramebuffer;
+NO obj=(NO)GfxFramebuffer_new(ctx, args2);
+obj->funcs=GfxFramebuffer_ptr_funcs;
+obj->typeID=EXT->GfxFramebuffer_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxFramebuffer_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxFramebufferRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxFramebuffer*))
+CATE(TE,"GfxFramebufferRef::deref expects GfxFramebufferRef as first argument."));
+CATE(TE,"GfxFramebuffer objects are not copyable."));
+}
+SV GfxFramebuffer_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxFramebuffer::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxFramebuffer*))
+CATE(TE,"GfxFramebufferRef::refset expects GfxFramebufferRef as first argument."));
+CATE(TE,"GfxFramebuffer objects are not copyable."));
+R CN;
+}
+
+void GfxFramebuffer_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxFramebuffer*))
+CATE(TE,"GfxFramebufferRef::__del__ expects GfxFramebufferRef as first argument."));
+SCRIPT_DELETE((GfxFramebuffer *)F->data);
+}
+SV GfxFramebuffer_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxFramebuffer*))
+CATE(TE,FAE("GfxFramebufferRef's get method","GfxFramebufferRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxFramebufferPtr");
+EI(keyStr=="__new__")
+R CNF(GfxFramebuffer_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxFramebuffer_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxFramebuffer_ptr_deref);
+if(keyStr=="refset")R CNF(GfxFramebuffer_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxFramebuffer_funcs;
+obj.typeID=EXT->GfxFramebuffer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxFramebuffer_get_member(ctx, &obj, key);
+}
+void GfxFramebuffer_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxFramebuffer*))
+CATE(TE,FAE("GfxFramebufferRef's set method","GfxFramebufferRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxFramebuffer_funcs;
+obj.typeID=EXT->GfxFramebuffer_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxFramebuffer_set_member(ctx, &obj, key, value);
+}
+SV Font_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Font;
+NO obj=(NO)Font_new(ctx, args2);
+obj->funcs=Font_ptr_funcs;
+obj->typeID=EXT->Font_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV Font_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"FontRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,Font*))
+CATE(TE,"FontRef::deref expects FontRef as first argument."));
+CATE(TE,"Font objects are not copyable."));
+}
+SV Font_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Font::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,Font*))
+CATE(TE,"FontRef::refset expects FontRef as first argument."));
+CATE(TE,"Font objects are not copyable."));
+R CN;
+}
+
+void Font_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,Font*))
+CATE(TE,"FontRef::__del__ expects FontRef as first argument."));
+Font*obj=(Font*)F->data;
+if(shouldScriptDelete(F->data)) {obj->release();}
+}
+SV Font_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,Font*))
+CATE(TE,FAE("FontRef's get method","FontRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("FontPtr");
+EI(keyStr=="__new__")
+R CNF(Font_ptr_new);
+EI(keyStr=="__call__")
+R CNF(Font_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(Font_ptr_deref);
+if(keyStr=="refset")R CNF(Font_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Font_funcs;
+obj.typeID=EXT->Font_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R Font_get_member(ctx, &obj, key);
+}
+void Font_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,Font*))
+CATE(TE,FAE("FontRef's set method","FontRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=Font_funcs;
+obj.typeID=EXT->Font_typeID;
+obj.refCount=1;
+obj.data=F->data;
+Font_set_member(ctx, &obj, key, value);
 }
 SV AudioSource_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -31842,6 +38791,88 @@ obj.typeID=EXT->Camera_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Camera_set_member(ctx, &obj, key, value);
+}
+SV GfxMesh_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxMesh;
+NO obj=(NO)GfxMesh_new(ctx, args2);
+obj->funcs=GfxMesh_ptr_funcs;
+obj->typeID=EXT->GfxMesh_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxMesh_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxMeshRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxMesh*))
+CATE(TE,"GfxMeshRef::deref expects GfxMeshRef as first argument."));
+CATE(TE,"GfxMesh objects are not copyable."));
+}
+SV GfxMesh_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxMesh::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxMesh*))
+CATE(TE,"GfxMeshRef::refset expects GfxMeshRef as first argument."));
+CATE(TE,"GfxMesh objects are not copyable."));
+R CN;
+}
+
+void GfxMesh_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxMesh*))
+CATE(TE,"GfxMeshRef::__del__ expects GfxMeshRef as first argument."));
+GfxMesh*obj=(GfxMesh*)F->data;
+if(shouldScriptDelete(F->data)) {obj->release();}
+}
+SV GfxMesh_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxMesh*))
+CATE(TE,FAE("GfxMeshRef's get method","GfxMeshRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxMeshPtr");
+EI(keyStr=="__new__")
+R CNF(GfxMesh_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxMesh_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxMesh_ptr_deref);
+if(keyStr=="refset")R CNF(GfxMesh_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxMesh_funcs;
+obj.typeID=EXT->GfxMesh_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxMesh_get_member(ctx, &obj, key);
+}
+void GfxMesh_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxMesh*))
+CATE(TE,FAE("GfxMeshRef's set method","GfxMeshRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxMesh_funcs;
+obj.typeID=EXT->GfxMesh_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxMesh_set_member(ctx, &obj, key, value);
 }
 SV Resource_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -32655,6 +39686,87 @@ obj.refCount=1;
 obj.data=F->data;
 Transform_set_member(ctx, &obj, key, value);
 }
+SV GfxApi_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxApi;
+NO obj=(NO)GfxApi_new(ctx, args2);
+obj->funcs=GfxApi_ptr_funcs;
+obj->typeID=EXT->GfxApi_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxApi_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxApiRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxApi*))
+CATE(TE,"GfxApiRef::deref expects GfxApiRef as first argument."));
+CATE(TE,"GfxApi objects are not copyable."));
+}
+SV GfxApi_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxApi::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxApi*))
+CATE(TE,"GfxApiRef::refset expects GfxApiRef as first argument."));
+CATE(TE,"GfxApi objects are not copyable."));
+R CN;
+}
+
+void GfxApi_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxApi*))
+CATE(TE,"GfxApiRef::__del__ expects GfxApiRef as first argument."));
+SCRIPT_DELETE((GfxApi *)F->data);
+}
+SV GfxApi_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxApi*))
+CATE(TE,FAE("GfxApiRef's get method","GfxApiRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxApiPtr");
+EI(keyStr=="__new__")
+R CNF(GfxApi_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxApi_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxApi_ptr_deref);
+if(keyStr=="refset")R CNF(GfxApi_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxApi_funcs;
+obj.typeID=EXT->GfxApi_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxApi_get_member(ctx, &obj, key);
+}
+void GfxApi_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxApi*))
+CATE(TE,FAE("GfxApiRef's set method","GfxApiRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxApi_funcs;
+obj.typeID=EXT->GfxApi_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxApi_set_member(ctx, &obj, key, value);
+}
 SV Quaternion_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -32735,6 +39847,87 @@ obj.typeID=EXT->Quaternion_typeID;
 obj.refCount=1;
 obj.data=F->data;
 Quaternion_set_member(ctx, &obj, key, value);
+}
+SV GfxVertexAttribute_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxVertexAttribute;
+NO obj=(NO)GfxVertexAttribute_new(ctx, args2);
+obj->funcs=GfxVertexAttribute_ptr_funcs;
+obj->typeID=EXT->GfxVertexAttribute_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxVertexAttribute_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxVertexAttributeRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxVertexAttribute*))
+CATE(TE,"GfxVertexAttributeRef::deref expects GfxVertexAttributeRef as first argument."));
+R CV(*(GfxVertexAttribute *)((NO)F)->data);
+}
+SV GfxVertexAttribute_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxVertexAttribute::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxVertexAttribute*))
+CATE(TE,"GfxVertexAttributeRef::refset expects GfxVertexAttributeRef as first argument."));
+*((GfxVertexAttribute *)((NO)F)->data) = val_to_c<GfxVertexAttribute>::f(ctx,a[1]);
+R CN;
+}
+
+void GfxVertexAttribute_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxVertexAttribute*))
+CATE(TE,"GfxVertexAttributeRef::__del__ expects GfxVertexAttributeRef as first argument."));
+SCRIPT_DELETE((GfxVertexAttribute *)F->data);
+}
+SV GfxVertexAttribute_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxVertexAttribute*))
+CATE(TE,FAE("GfxVertexAttributeRef's get method","GfxVertexAttributeRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxVertexAttributePtr");
+EI(keyStr=="__new__")
+R CNF(GfxVertexAttribute_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxVertexAttribute_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxVertexAttribute_ptr_deref);
+if(keyStr=="refset")R CNF(GfxVertexAttribute_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxVertexAttribute_funcs;
+obj.typeID=EXT->GfxVertexAttribute_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxVertexAttribute_get_member(ctx, &obj, key);
+}
+void GfxVertexAttribute_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxVertexAttribute*))
+CATE(TE,FAE("GfxVertexAttributeRef's set method","GfxVertexAttributeRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxVertexAttribute_funcs;
+obj.typeID=EXT->GfxVertexAttribute_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxVertexAttribute_set_member(ctx, &obj, key, value);
 }
 SV Int2_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -34033,6 +41226,88 @@ obj.refCount=1;
 obj.data=F->data;
 Audio_set_member(ctx, &obj, key, value);
 }
+SV GfxTexture_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GfxTexture;
+NO obj=(NO)GfxTexture_new(ctx, args2);
+obj->funcs=GfxTexture_ptr_funcs;
+obj->typeID=EXT->GfxTexture_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV GfxTexture_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GfxTextureRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,GfxTexture*))
+CATE(TE,"GfxTextureRef::deref expects GfxTextureRef as first argument."));
+CATE(TE,"GfxTexture objects are not copyable."));
+}
+SV GfxTexture_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GfxTexture::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,GfxTexture*))
+CATE(TE,"GfxTextureRef::refset expects GfxTextureRef as first argument."));
+CATE(TE,"GfxTexture objects are not copyable."));
+R CN;
+}
+
+void GfxTexture_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,GfxTexture*))
+CATE(TE,"GfxTextureRef::__del__ expects GfxTextureRef as first argument."));
+GfxTexture*obj=(GfxTexture*)F->data;
+if(shouldScriptDelete(F->data)) {obj->release();}
+}
+SV GfxTexture_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,GfxTexture*))
+CATE(TE,FAE("GfxTextureRef's get method","GfxTextureRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("GfxTexturePtr");
+EI(keyStr=="__new__")
+R CNF(GfxTexture_ptr_new);
+EI(keyStr=="__call__")
+R CNF(GfxTexture_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(GfxTexture_ptr_deref);
+if(keyStr=="refset")R CNF(GfxTexture_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxTexture_funcs;
+obj.typeID=EXT->GfxTexture_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R GfxTexture_get_member(ctx, &obj, key);
+}
+void GfxTexture_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,GfxTexture*))
+CATE(TE,FAE("GfxTextureRef's set method","GfxTextureRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=GfxTexture_funcs;
+obj.typeID=EXT->GfxTexture_typeID;
+obj.refCount=1;
+obj.data=F->data;
+GfxTexture_set_member(ctx, &obj, key, value);
+}
 SV GfxSubModelList_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -34415,6 +41690,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("RigidBodyRef", ext->RigidBody_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->GfxIndexData_typeID = typeID;
+    ext->GfxIndexData = scripting::createNativeObject(GfxIndexData_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxIndexData", ext->GfxIndexData);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxIndexData_ptr_typeID = typeID;
+    ext->GfxIndexData_ptr = scripting::createNativeObject(GfxIndexData_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxIndexDataRef", ext->GfxIndexData_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Float2_typeID = typeID;
     ext->Float2 = scripting::createNativeObject(Float2_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float2", ext->Float2);
@@ -34423,6 +41708,26 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Float2_ptr_typeID = typeID;
     ext->Float2_ptr = scripting::createNativeObject(Float2_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float2Ref", ext->Float2_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxFramebuffer_typeID = typeID;
+    ext->GfxFramebuffer = scripting::createNativeObject(GfxFramebuffer_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxFramebuffer", ext->GfxFramebuffer);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxFramebuffer_ptr_typeID = typeID;
+    ext->GfxFramebuffer_ptr = scripting::createNativeObject(GfxFramebuffer_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxFramebufferRef", ext->GfxFramebuffer_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->Font_typeID = typeID;
+    ext->Font = scripting::createNativeObject(Font_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Font", ext->Font);
+    
+    typeID = engine->createNewTypeID();
+    ext->Font_ptr_typeID = typeID;
+    ext->Font_ptr = scripting::createNativeObject(Font_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("FontRef", ext->Font_ptr);
     
     typeID = engine->createNewTypeID();
     ext->AudioSource_typeID = typeID;
@@ -34443,6 +41748,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Camera_ptr_typeID = typeID;
     ext->Camera_ptr = scripting::createNativeObject(Camera_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("CameraRef", ext->Camera_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxMesh_typeID = typeID;
+    ext->GfxMesh = scripting::createNativeObject(GfxMesh_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMesh", ext->GfxMesh);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxMesh_ptr_typeID = typeID;
+    ext->GfxMesh_ptr = scripting::createNativeObject(GfxMesh_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMeshRef", ext->GfxMesh_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Resource_typeID = typeID;
@@ -34545,6 +41860,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("TransformRef", ext->Transform_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->GfxApi_typeID = typeID;
+    ext->GfxApi = scripting::createNativeObject(GfxApi_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxApi", ext->GfxApi);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxApi_ptr_typeID = typeID;
+    ext->GfxApi_ptr = scripting::createNativeObject(GfxApi_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxApiRef", ext->GfxApi_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Quaternion_typeID = typeID;
     ext->Quaternion = scripting::createNativeObject(Quaternion_funcs, NULL, typeID);
     engine->getGlobalVars().set("Quaternion", ext->Quaternion);
@@ -34553,6 +41878,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Quaternion_ptr_typeID = typeID;
     ext->Quaternion_ptr = scripting::createNativeObject(Quaternion_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("QuaternionRef", ext->Quaternion_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxVertexAttribute_typeID = typeID;
+    ext->GfxVertexAttribute = scripting::createNativeObject(GfxVertexAttribute_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxVertexAttribute", ext->GfxVertexAttribute);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxVertexAttribute_ptr_typeID = typeID;
+    ext->GfxVertexAttribute_ptr = scripting::createNativeObject(GfxVertexAttribute_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxVertexAttributeRef", ext->GfxVertexAttribute_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int2_typeID = typeID;
@@ -34715,6 +42050,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AudioRef", ext->Audio_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->GfxTexture_typeID = typeID;
+    ext->GfxTexture = scripting::createNativeObject(GfxTexture_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxTexture", ext->GfxTexture);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxTexture_ptr_typeID = typeID;
+    ext->GfxTexture_ptr = scripting::createNativeObject(GfxTexture_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxTextureRef", ext->GfxTexture_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->GfxSubModelList_typeID = typeID;
     ext->GfxSubModelList = scripting::createNativeObject(GfxSubModelList_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxSubModelList", ext->GfxSubModelList);
@@ -34800,6 +42145,41 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxVertexAttribType", ext->GfxVertexAttribType);
     
     typeID = engine->createNewTypeID();
+    ext->GfxTextureType_typeID = typeID;
+    ext->GfxTextureType = scripting::createNativeObject(GfxTextureType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxTextureType", ext->GfxTextureType);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxFilter_typeID = typeID;
+    ext->GfxFilter = scripting::createNativeObject(GfxFilter_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxFilter", ext->GfxFilter);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxMipmapMode_typeID = typeID;
+    ext->GfxMipmapMode = scripting::createNativeObject(GfxMipmapMode_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMipmapMode", ext->GfxMipmapMode);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxWrapMode_typeID = typeID;
+    ext->GfxWrapMode = scripting::createNativeObject(GfxWrapMode_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxWrapMode", ext->GfxWrapMode);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxTexFormat_typeID = typeID;
+    ext->GfxTexFormat = scripting::createNativeObject(GfxTexFormat_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxTexFormat", ext->GfxTexFormat);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxTexPurpose_typeID = typeID;
+    ext->GfxTexPurpose = scripting::createNativeObject(GfxTexPurpose_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxTexPurpose", ext->GfxTexPurpose);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxFace_typeID = typeID;
+    ext->GfxFace = scripting::createNativeObject(GfxFace_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxFace", ext->GfxFace);
+    
+    typeID = engine->createNewTypeID();
     ext->GfxStage_typeID = typeID;
     ext->GfxStage = scripting::createNativeObject(GfxStage_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxStage", ext->GfxStage);
@@ -34818,6 +42198,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GfxLightType_typeID = typeID;
     ext->GfxLightType = scripting::createNativeObject(GfxLightType_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxLightType", ext->GfxLightType);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxDriver_typeID = typeID;
+    ext->GfxDriver = scripting::createNativeObject(GfxDriver_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxDriver", ext->GfxDriver);
     
     typeID = engine->createNewTypeID();
     ext->CameraType_typeID = typeID;

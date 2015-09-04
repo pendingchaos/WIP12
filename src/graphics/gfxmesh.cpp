@@ -97,7 +97,7 @@ void GfxMesh::save()
         struct Pair
         {
             GfxVertexAttribPurpose purpose;
-            VertexAttribute attrib;
+            GfxVertexAttribute attrib;
         };
 
         List<Pair> attributes;
@@ -121,7 +121,7 @@ void GfxMesh::save()
 
         for (size_t i = 0; i < attributes.getCount(); ++i)
         {
-            const VertexAttribute& attribute = attributes[i].attrib;
+            const GfxVertexAttribute& attribute = attributes[i].attrib;
 
             file.writeUInt32LE(attribute.stride);
             file.writeUInt32LE(attribute.offset);
@@ -150,7 +150,7 @@ void GfxMesh::save()
     }
 }
 
-void GfxMesh::setVertexAttrib(GfxVertexAttribPurpose purpose, const VertexAttribute& attribute)
+void GfxMesh::setVertexAttrib(GfxVertexAttribPurpose purpose, const GfxVertexAttribute& attribute)
 {
     impl->setVertexAttrib(purpose, attribute);
 }
@@ -165,7 +165,7 @@ bool GfxMesh::isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const
     return impl->isVertexAttribEnabled(purpose);
 }
 
-GfxMesh::VertexAttribute GfxMesh::getVertexAttrib(GfxVertexAttribPurpose purpose) const
+GfxVertexAttribute GfxMesh::getVertexAttrib(GfxVertexAttribPurpose purpose) const
 {
     return impl->getVertexAttrib(purpose);
 }
@@ -240,7 +240,7 @@ void GfxMesh::_load()
         uint8_t numComponents = file.readUInt8();
         GfxVertexAttribType type = (GfxVertexAttribType)file.readUInt8();
 
-        GfxMesh::VertexAttribute attribute;
+        GfxVertexAttribute attribute;
 
         attribute.numComponents = numComponents;
         attribute.offset = offset;
@@ -288,7 +288,7 @@ Resource *GfxMesh::_copy() const
 
         if (isVertexAttribEnabled(purpose))
         {
-            VertexAttribute attrib = getVertexAttrib(purpose);
+            GfxVertexAttribute attrib = getVertexAttrib(purpose);
 
             mesh->setVertexAttrib(purpose, attrib);
         }

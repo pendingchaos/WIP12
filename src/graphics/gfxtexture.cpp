@@ -7,98 +7,98 @@
 
 #include <cmath>
 
-static const GfxTexture::Filter filters[] = {GfxTexture::Nearest, GfxTexture::Bilinear};
+static const GfxFilter filters[] = {GfxFilter::Nearest, GfxFilter::Bilinear};
 
-static const GfxTexture::MipmapMode mipmapModes[] = {GfxTexture::None,
-                                                     GfxTexture::NearestMipmap,
-                                                     GfxTexture::LinearMipmap};
+static const GfxMipmapMode mipmapModes[] = {GfxMipmapMode::None,
+                                            GfxMipmapMode::Nearest,
+                                            GfxMipmapMode::Linear};
 
-static const GfxTexture::WrapMode wrapModes[] = {GfxTexture::Stretch,
-                                                 GfxTexture::Repeat,
-                                                 GfxTexture::Mirror};
+static const GfxWrapMode wrapModes[] = {GfxWrapMode::Stretch,
+                                        GfxWrapMode::Repeat,
+                                        GfxWrapMode::Mirror};
 
-static const GfxTexture::Purpose purposes[] = {GfxTexture::Color,
-                                               GfxTexture::Normal,
-                                               GfxTexture::Other};
+static const GfxTexPurpose purposes[] = {GfxTexPurpose::Color,
+                                         GfxTexPurpose::Normal,
+                                         GfxTexPurpose::Other};
 
-static const GfxTexture::Format formats[] = {GfxTexture::AlphaU8,
-                                             GfxTexture::AlphaI8,
-                                             GfxTexture::AlphaU16,
-                                             GfxTexture::AlphaI16,
-                                             GfxTexture::AlphaF32,
-                                             GfxTexture::AlphaF32_F16,
-                                             GfxTexture::LuminanceU8,
-                                             GfxTexture::LuminanceI8,
-                                             GfxTexture::LuminanceU16,
-                                             GfxTexture::LuminanceI16,
-                                             GfxTexture::LuminanceF32,
-                                             GfxTexture::LuminanceF32_F16,
-                                             GfxTexture::LuminanceAlphaU8,
-                                             GfxTexture::LuminanceAlphaI8,
-                                             GfxTexture::LuminanceAlphaU16,
-                                             GfxTexture::LuminanceAlphaI16,
-                                             GfxTexture::LuminanceAlphaF32,
-                                             GfxTexture::LuminanceAlphaF32_F16,
-                                             GfxTexture::RGBU8,
-                                             GfxTexture::RGBI8,
-                                             GfxTexture::RGBU16,
-                                             GfxTexture::RGBI16,
-                                             GfxTexture::RGBF32,
-                                             GfxTexture::RGBF32_F16,
-                                             GfxTexture::RGBAU8,
-                                             GfxTexture::RGBAI8,
-                                             GfxTexture::RGBAU16,
-                                             GfxTexture::RGBAI16,
-                                             GfxTexture::RGBAF32,
-                                             GfxTexture::RGBAF32_F16,
-                                             GfxTexture::Int_8,
-                                             GfxTexture::UInt_8,
-                                             GfxTexture::Int_16,
-                                             GfxTexture::UInt_16,
-                                             GfxTexture::Int_32,
-                                             GfxTexture::UInt_32,
-                                             GfxTexture::Int2_8,
-                                             GfxTexture::UInt2_8,
-                                             GfxTexture::Int2_16,
-                                             GfxTexture::UInt2_16,
-                                             GfxTexture::Int2_32,
-                                             GfxTexture::UInt2_32,
-                                             GfxTexture::Int3_8,
-                                             GfxTexture::UInt3_8,
-                                             GfxTexture::Int3_16,
-                                             GfxTexture::UInt3_16,
-                                             GfxTexture::Int3_32,
-                                             GfxTexture::UInt3_32,
-                                             GfxTexture::Int4_8,
-                                             GfxTexture::UInt4_8,
-                                             GfxTexture::Int4_16,
-                                             GfxTexture::UInt4_16,
-                                             GfxTexture::Int4_32,
-                                             GfxTexture::UInt4_32,
-                                             GfxTexture::SRGBU8,
-                                             GfxTexture::SRGBAU8,
-                                             GfxTexture::DepthF32_F16,
-                                             GfxTexture::DepthF32_F24,
-                                             GfxTexture::DepthF32,
-                                             GfxTexture::RedGreenU8,
-                                             GfxTexture::RedGreenI8,
-                                             GfxTexture::RedGreenU16,
-                                             GfxTexture::RedGreenI16,
-                                             GfxTexture::RedGreenF32,
-                                             GfxTexture::RedGreenF32_F16,
-                                             GfxTexture::RedU8,
-                                             GfxTexture::RedI8,
-                                             GfxTexture::RedU16,
-                                             GfxTexture::RedI16,
-                                             GfxTexture::RedF32,
-                                             GfxTexture::RedF32_F16};
+static const GfxTexFormat formats[] = {GfxTexFormat::AlphaU8,
+                                       GfxTexFormat::AlphaI8,
+                                       GfxTexFormat::AlphaU16,
+                                       GfxTexFormat::AlphaI16,
+                                       GfxTexFormat::AlphaF32,
+                                       GfxTexFormat::AlphaF32_F16,
+                                       GfxTexFormat::LuminanceU8,
+                                       GfxTexFormat::LuminanceI8,
+                                       GfxTexFormat::LuminanceU16,
+                                       GfxTexFormat::LuminanceI16,
+                                       GfxTexFormat::LuminanceF32,
+                                       GfxTexFormat::LuminanceF32_F16,
+                                       GfxTexFormat::LuminanceAlphaU8,
+                                       GfxTexFormat::LuminanceAlphaI8,
+                                       GfxTexFormat::LuminanceAlphaU16,
+                                       GfxTexFormat::LuminanceAlphaI16,
+                                       GfxTexFormat::LuminanceAlphaF32,
+                                       GfxTexFormat::LuminanceAlphaF32_F16,
+                                       GfxTexFormat::RGBU8,
+                                       GfxTexFormat::RGBI8,
+                                       GfxTexFormat::RGBU16,
+                                       GfxTexFormat::RGBI16,
+                                       GfxTexFormat::RGBF32,
+                                       GfxTexFormat::RGBF32_F16,
+                                       GfxTexFormat::RGBAU8,
+                                       GfxTexFormat::RGBAI8,
+                                       GfxTexFormat::RGBAU16,
+                                       GfxTexFormat::RGBAI16,
+                                       GfxTexFormat::RGBAF32,
+                                       GfxTexFormat::RGBAF32_F16,
+                                       GfxTexFormat::Int_8,
+                                       GfxTexFormat::UInt_8,
+                                       GfxTexFormat::Int_16,
+                                       GfxTexFormat::UInt_16,
+                                       GfxTexFormat::Int_32,
+                                       GfxTexFormat::UInt_32,
+                                       GfxTexFormat::Int2_8,
+                                       GfxTexFormat::UInt2_8,
+                                       GfxTexFormat::Int2_16,
+                                       GfxTexFormat::UInt2_16,
+                                       GfxTexFormat::Int2_32,
+                                       GfxTexFormat::UInt2_32,
+                                       GfxTexFormat::Int3_8,
+                                       GfxTexFormat::UInt3_8,
+                                       GfxTexFormat::Int3_16,
+                                       GfxTexFormat::UInt3_16,
+                                       GfxTexFormat::Int3_32,
+                                       GfxTexFormat::UInt3_32,
+                                       GfxTexFormat::Int4_8,
+                                       GfxTexFormat::UInt4_8,
+                                       GfxTexFormat::Int4_16,
+                                       GfxTexFormat::UInt4_16,
+                                       GfxTexFormat::Int4_32,
+                                       GfxTexFormat::UInt4_32,
+                                       GfxTexFormat::SRGBU8,
+                                       GfxTexFormat::SRGBAU8,
+                                       GfxTexFormat::DepthF32_F16,
+                                       GfxTexFormat::DepthF32_F24,
+                                       GfxTexFormat::DepthF32,
+                                       GfxTexFormat::RedGreenU8,
+                                       GfxTexFormat::RedGreenI8,
+                                       GfxTexFormat::RedGreenU16,
+                                       GfxTexFormat::RedGreenI16,
+                                       GfxTexFormat::RedGreenF32,
+                                       GfxTexFormat::RedGreenF32_F16,
+                                       GfxTexFormat::RedU8,
+                                       GfxTexFormat::RedI8,
+                                       GfxTexFormat::RedU16,
+                                       GfxTexFormat::RedI16,
+                                       GfxTexFormat::RedF32,
+                                       GfxTexFormat::RedF32_F16};
 
-static const GfxTexture::Face faces[] = {GfxTexture::PositiveX,
-                                         GfxTexture::NegativeX,
-                                         GfxTexture::PositiveY,
-                                         GfxTexture::NegativeY,
-                                         GfxTexture::PositiveZ,
-                                         GfxTexture::NegativeZ};
+static const GfxFace faces[] = {GfxFace::PositiveX,
+                                GfxFace::NegativeX,
+                                GfxFace::PositiveY,
+                                GfxFace::NegativeY,
+                                GfxFace::PositiveZ,
+                                GfxFace::NegativeZ};
 
 static const size_t formatSizes[] = {1,
                                      1,
@@ -173,36 +173,36 @@ GfxTexture::GfxTexture(const String& filename) : Resource(filename,
                                                           ResType::GfxTextureType),
                                                  impl(gfxApi->createTextureImpl())
 {
-    textureType = Texture2D;
+    textureType = GfxTextureType::Texture2D;
     compress = false;
     setMaximumAnisotropy(1.0f);
-    setMinFilter(Bilinear);
-    setMagFilter(Bilinear);
-    setMipmapMode(None);
-    setWrapMode(Repeat);
+    setMinFilter(GfxFilter::Bilinear);
+    setMagFilter(GfxFilter::Bilinear);
+    setMipmapMode(GfxMipmapMode::None);
+    setWrapMode(GfxWrapMode::Repeat);
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
     compressionQuality = 255;
-    purpose = Other;
+    purpose = GfxTexPurpose::Other;
     shadowmap = false;
 }
 
 GfxTexture::GfxTexture() : Resource(ResType::GfxTextureType),
                            impl(gfxApi->createTextureImpl())
 {
-    textureType = Texture2D;
+    textureType = GfxTextureType::Texture2D;
     compress = false;
     setMaximumAnisotropy(1.0f);
-    setMinFilter(Bilinear);
-    setMagFilter(Bilinear);
-    setMipmapMode(None);
-    setWrapMode(Repeat);
+    setMinFilter(GfxFilter::Bilinear);
+    setMagFilter(GfxFilter::Bilinear);
+    setMipmapMode(GfxMipmapMode::None);
+    setWrapMode(GfxWrapMode::Repeat);
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
     compressionQuality = 255;
-    purpose = Other;
+    purpose = GfxTexPurpose::Other;
     shadowmap = false;
 }
 
@@ -213,38 +213,38 @@ GfxTexture::~GfxTexture()
 
 void GfxTexture::removeContent()
 {
-    textureType = Texture2D;
+    textureType = GfxTextureType::Texture2D;
     compress = false;
     setMaximumAnisotropy(1.0f);
-    setMinFilter(Bilinear);
-    setMagFilter(Bilinear);
-    setMipmapMode(None);
-    setWrapMode(Repeat);
+    setMinFilter(GfxFilter::Bilinear);
+    setMagFilter(GfxFilter::Bilinear);
+    setMipmapMode(GfxMipmapMode::None);
+    setWrapMode(GfxWrapMode::Repeat);
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
     compressionQuality = 255;
-    purpose = Other;
+    purpose = GfxTexPurpose::Other;
     shadowmap = false;
 
     DELETE(impl);
     impl = gfxApi->createTextureImpl();
 }
 
-void GfxTexture::startCreation(TextureType type_,
+void GfxTexture::startCreation(GfxTextureType type_,
                                bool compress_,
                                unsigned int baseWidth_,
                                unsigned int baseHeight_,
                                unsigned int baseDepth_,
                                uint8_t compressionQuality_,
-                               Purpose purpose_,
-                               Format format_)
+                               GfxTexPurpose purpose_,
+                               GfxTexFormat format_)
 {
     textureType = type_;
     compress = compress_;
     baseWidth = baseWidth_;
     baseHeight = baseHeight_;
-    baseDepth = type_ == Texture3D ? baseDepth_ : 1;
+    baseDepth = type_ == GfxTextureType::Texture3D ? baseDepth_ : 1;
     compressionQuality = compressionQuality_;
     purpose = purpose_;
     format = format_;
@@ -261,7 +261,7 @@ void GfxTexture::startCreation(TextureType type_,
 
 void GfxTexture::allocMipmapFace(unsigned int level,
                                  unsigned int pixelAlignment,
-                                 Face face,
+                                 GfxFace face,
                                  const void *data)
 {
     impl->allocMipmapFace(level, pixelAlignment, face, data);
@@ -276,7 +276,7 @@ void GfxTexture::allocMipmap(unsigned int level,
 
 void GfxTexture::getMipmapFace(unsigned int level,
                                unsigned int pixelAlignment,
-                               Face face,
+                               GfxFace face,
                                void *data) const
 {
     impl->getMipmapFace(level, pixelAlignment, face, data);
@@ -301,28 +301,28 @@ void GfxTexture::setMaximumAnisotropy(float maxAnisotropy)
     impl->setMaximumAnisotropy(maxAnisotropy);
 }
 
-void GfxTexture::setMinFilter(Filter minFilter_)
+void GfxTexture::setMinFilter(GfxFilter minFilter_)
 {
     minFilter = minFilter_;
 
     impl->setMinFilter(minFilter_);
 }
 
-void GfxTexture::setMagFilter(Filter magFilter_)
+void GfxTexture::setMagFilter(GfxFilter magFilter_)
 {
     magFilter = magFilter_;
 
     impl->setMagFilter(magFilter_);
 }
 
-void GfxTexture::setMipmapMode(MipmapMode mode)
+void GfxTexture::setMipmapMode(GfxMipmapMode mode)
 {
     mipmapMode = mode;
 
     impl->setMipmapMode(mode);
 }
 
-void GfxTexture::setWrapMode(WrapMode mode)
+void GfxTexture::setWrapMode(GfxWrapMode mode)
 {
     wrapMode = mode;
 
@@ -372,15 +372,15 @@ void GfxTexture::_load()
 
         bool compress = file.readUInt8() != 0;
         uint8_t compressionQuality = file.readUInt8();
-        GfxTexture::Filter minFilter = filters[file.readUInt8()];
-        GfxTexture::Filter magFilter = filters[file.readUInt8()];
+        GfxFilter minFilter = filters[file.readUInt8()];
+        GfxFilter magFilter = filters[file.readUInt8()];
         float maxAnisotropy = file.readFloat32();
-        GfxTexture::MipmapMode mipmapMode = mipmapModes[file.readUInt8()];
-        GfxTexture::WrapMode wrapMode = wrapModes[file.readUInt8()];
-        GfxTexture::Purpose purpose = purposes[file.readUInt8()];
-        GfxTexture::Format format = formats[file.readUInt8()];
+        GfxMipmapMode mipmapMode = mipmapModes[file.readUInt8()];
+        GfxWrapMode wrapMode = wrapModes[file.readUInt8()];
+        GfxTexPurpose purpose = purposes[file.readUInt8()];
+        GfxTexFormat format = formats[file.readUInt8()];
 
-        TextureType type = (TextureType)file.readUInt8();
+        GfxTextureType type = (GfxTextureType)file.readUInt8();
         uint32_t numMipmaps = file.readUInt32LE();
         uint32_t baseWidth = file.readUInt32LE();
         uint32_t baseHeight = file.readUInt32LE();
@@ -401,9 +401,9 @@ void GfxTexture::_load()
         setWrapMode(wrapMode);
         setMaximumAnisotropy(maxAnisotropy);
 
-        for (size_t i = 0; i < (type == CubeMap ? 6 : 1); ++i)
+        for (size_t i = 0; i < (type == GfxTextureType::CubeMap ? 6 : 1); ++i)
         {
-            GfxTexture::Face face = faces[i];
+            GfxFace face = faces[i];
 
             for (size_t j = 0; j < numMipmaps; ++j)
             {
@@ -413,7 +413,7 @@ void GfxTexture::_load()
 
                 file.read(size, data);
 
-                if (type == CubeMap)
+                if (type == GfxTextureType::CubeMap)
                 {
                     allocMipmapFace(j, 1, face, data);
                 } else
@@ -458,7 +458,7 @@ void GfxTexture::save()
         file.writeUInt32LE(baseHeight);
         file.writeUInt32LE(baseDepth);
 
-        if (textureType == GfxTexture::Texture2D)
+        if (textureType == GfxTextureType::Texture2D)
         {
             size_t width = baseWidth;
             size_t height = baseHeight;
@@ -480,7 +480,7 @@ void GfxTexture::save()
                 width /= 2;
                 height /= 2;
             }
-        } else if (textureType == GfxTexture::Texture3D)
+        } else if (textureType == GfxTextureType::Texture3D)
         {
             size_t width = baseWidth;
             size_t height = baseHeight;
@@ -504,7 +504,7 @@ void GfxTexture::save()
                 height /= 2;
                 depth /= 2;
             }
-        } else if (textureType == GfxTexture::CubeMap)
+        } else if (textureType == GfxTextureType::CubeMap)
         {
             for (size_t j = 0; j < 6; ++j)
             {
@@ -519,7 +519,7 @@ void GfxTexture::save()
 
                     void *data = ALLOCATE(amount);
 
-                    getMipmapFace(i, 1, (Face)j, data);
+                    getMipmapFace(i, 1, (GfxFace)j, data);
 
                     file.write(amount, data);
 
@@ -552,14 +552,14 @@ Resource *GfxTexture::_copy() const
                            purpose,
                            format);
 
-    if (textureType == GfxTexture::Texture2D)
+    if (textureType == GfxTextureType::Texture2D)
     {
         size_t w = baseWidth;
         size_t h = baseHeight;
 
         for (size_t i = 0; w>1 and h>1; ++i)
         {
-            void *data = ALLOCATE(formatSizes[format]*w*h);
+            void *data = ALLOCATE(formatSizes[(int)format]*w*h);
 
             getMipmap(i, 1, data);
 
@@ -570,7 +570,7 @@ Resource *GfxTexture::_copy() const
             w /= 2;
             h /= 2;
         }
-    } else if (textureType == GfxTexture::Texture3D)
+    } else if (textureType == GfxTextureType::Texture3D)
     {
         size_t w = baseWidth;
         size_t h = baseHeight;
@@ -578,7 +578,7 @@ Resource *GfxTexture::_copy() const
 
         for (size_t i = 0; w>1 and h>1 and d>1; ++i)
         {
-            void *data = ALLOCATE(formatSizes[format]*w*h*d);
+            void *data = ALLOCATE(formatSizes[(int)format]*w*h*d);
 
             getMipmap(i, 1, data);
 
@@ -590,18 +590,18 @@ Resource *GfxTexture::_copy() const
             h /= 2;
             d /= 2;
         }
-    } else if (textureType == GfxTexture::CubeMap)
+    } else if (textureType == GfxTextureType::CubeMap)
     {
         size_t w = baseWidth;
         size_t h = baseHeight;
 
         for (size_t i = 0; w>1 and h>1; ++i)
         {
-            void *data = ALLOCATE(formatSizes[format]*w*h);
+            void *data = ALLOCATE(formatSizes[(int)format]*w*h);
 
             for (size_t j = 0; j < 6; ++j)
             {
-                GfxTexture::Face face = (GfxTexture::Face)j;
+                GfxFace face = (GfxFace)j;
 
                 getMipmapFace(i, 1, face, data);
 

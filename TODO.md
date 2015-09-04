@@ -16,7 +16,7 @@
     - [ ] C++ exceptions -> script exceptions
     - [ ] Bind lots of stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, File, GfxBuffer, GfxDebugDrawer, Light, Resource, Audio, AudioWorld, AudioDevice, List, GfxModel, GfxLOD.
+    - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, File, GfxBuffer, GfxDebugDrawer, Light, Resource, Audio, AudioWorld, AudioDevice, List, GfxModel, GfxLOD, GfxTexture, GfxApi.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
 - [ ] Make functions for builtin functions like + and *.

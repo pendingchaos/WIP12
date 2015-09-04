@@ -144,17 +144,17 @@ struct _functionStruct
     void (*f92)( Serializable *obj, File * arg0);
     void (*f93)( Resource *obj);
     bool (*f94)(const Resource *obj);
-    void (*f95)( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7);
-    void (*f96)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3);
+    void (*f95)( GfxTexture *obj, GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7);
+    void (*f96)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3);
     void (*f97)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2);
-    void (*f98)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3);
+    void (*f98)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3);
     void (*f99)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, void * arg2);
     void (*f100)( GfxTexture *obj);
     void (*f101)( GfxTexture *obj, float arg0);
-    void (*f102)( GfxTexture *obj, GfxTexture::Filter arg0);
-    void (*f103)( GfxTexture *obj, GfxTexture::Filter arg0);
-    void (*f104)( GfxTexture *obj, GfxTexture::MipmapMode arg0);
-    void (*f105)( GfxTexture *obj, GfxTexture::WrapMode arg0);
+    void (*f102)( GfxTexture *obj, GfxFilter arg0);
+    void (*f103)( GfxTexture *obj, GfxFilter arg0);
+    void (*f104)( GfxTexture *obj, GfxMipmapMode arg0);
+    void (*f105)( GfxTexture *obj, GfxWrapMode arg0);
     void (*f106)( GfxTexture *obj, bool arg0);
     Transform (*f107)( GhostObject *obj);
     void (*f108)(const GhostObject *obj, const Transform & arg0);
@@ -410,17 +410,17 @@ void f91( Serializable *obj, File * arg0) { obj->writeToFile(arg0);}
 void f92( Serializable *obj, File * arg0) { obj->readFromFile(arg0);}
 void f93( Resource *obj) { obj->load();}
 bool f94(const Resource *obj) {return obj->shouldReload();}
-void f95( GfxTexture *obj, GfxTexture::TextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexture::Purpose arg6, GfxTexture::Format arg7) { obj->startCreation(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
-void f96( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, const void * arg3) { obj->allocMipmapFace(arg0, arg1, arg2, arg3);}
+void f95( GfxTexture *obj, GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7) { obj->startCreation(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
+void f96( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3) { obj->allocMipmapFace(arg0, arg1, arg2, arg3);}
 void f97( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2) { obj->allocMipmap(arg0, arg1, arg2);}
-void f98(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxTexture::Face arg2, void * arg3) { obj->getMipmapFace(arg0, arg1, arg2, arg3);}
+void f98(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3) { obj->getMipmapFace(arg0, arg1, arg2, arg3);}
 void f99(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, void * arg2) { obj->getMipmap(arg0, arg1, arg2);}
 void f100( GfxTexture *obj) { obj->generateMipmaps();}
 void f101( GfxTexture *obj, float arg0) { obj->setMaximumAnisotropy(arg0);}
-void f102( GfxTexture *obj, GfxTexture::Filter arg0) { obj->setMinFilter(arg0);}
-void f103( GfxTexture *obj, GfxTexture::Filter arg0) { obj->setMagFilter(arg0);}
-void f104( GfxTexture *obj, GfxTexture::MipmapMode arg0) { obj->setMipmapMode(arg0);}
-void f105( GfxTexture *obj, GfxTexture::WrapMode arg0) { obj->setWrapMode(arg0);}
+void f102( GfxTexture *obj, GfxFilter arg0) { obj->setMinFilter(arg0);}
+void f103( GfxTexture *obj, GfxFilter arg0) { obj->setMagFilter(arg0);}
+void f104( GfxTexture *obj, GfxMipmapMode arg0) { obj->setMipmapMode(arg0);}
+void f105( GfxTexture *obj, GfxWrapMode arg0) { obj->setWrapMode(arg0);}
 void f106( GfxTexture *obj, bool arg0) { obj->setShadowmap(arg0);}
 Transform f107( GhostObject *obj) {return obj->getTransform();}
 void f108(const GhostObject *obj, const Transform & arg0) { obj->setTransform(arg0);}

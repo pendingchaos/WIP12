@@ -8,6 +8,7 @@
 #include "math/t2.h"
 #include "resource/resource.h"
 #include "error.h"
+#include "scripting/bindings.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -97,6 +98,6 @@ class Font : public Resource
         GfxCompiledShader *compiledQuadFragment;
     protected:
         Resource *_copy() const;
-} DESTROY(obj->release());
+} DESTROY(obj->release()) BIND;
 
 #endif // FONT_H

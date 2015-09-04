@@ -19,7 +19,7 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
     mesh = NEW(GfxMesh);
     mesh->primitive = GfxLines;
 
-    GfxMesh::VertexAttribute positionAttribute;
+    GfxVertexAttribute positionAttribute;
     positionAttribute.numComponents = 3;
     positionAttribute.type = GfxFloat;
     positionAttribute.stride = 28;
@@ -27,7 +27,7 @@ GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
 
     mesh->setVertexAttrib(GfxPosition, positionAttribute);
 
-    GfxMesh::VertexAttribute colorAttribute;
+    GfxVertexAttribute colorAttribute;
     colorAttribute.numComponents = 4;
     colorAttribute.type = GfxFloat;
     colorAttribute.stride = 28;
