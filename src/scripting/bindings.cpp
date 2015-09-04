@@ -2763,7 +2763,6 @@ struct create_val<T2<uint32_t> *>
 static SV f(CTX ctx,T2<uint32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(UInt2_ptr_funcs,obj,EXT->UInt2_ptr_typeID);
@@ -2812,7 +2811,6 @@ struct create_val<GPUTimer *>
 static SV f(CTX ctx,GPUTimer*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(GPUTimer_ptr_funcs,obj,EXT->GPUTimer_ptr_typeID);
@@ -2861,7 +2859,6 @@ struct create_val<RigidBody *>
 static SV f(CTX ctx,RigidBody*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(RigidBody_ptr_funcs,obj,EXT->RigidBody_ptr_typeID);
@@ -2910,7 +2907,6 @@ struct create_val<T2<float> *>
 static SV f(CTX ctx,T2<float>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Float2_ptr_funcs,obj,EXT->Float2_ptr_typeID);
@@ -2959,7 +2955,6 @@ struct create_val<Camera *>
 static SV f(CTX ctx,Camera*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Camera_ptr_funcs,obj,EXT->Camera_ptr_typeID);
@@ -3008,7 +3003,6 @@ struct create_val<T4<uint32_t> *>
 static SV f(CTX ctx,T4<uint32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(UInt4_ptr_funcs,obj,EXT->UInt4_ptr_typeID);
@@ -3057,7 +3051,6 @@ struct create_val<T3<int32_t> *>
 static SV f(CTX ctx,T3<int32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Int3_ptr_funcs,obj,EXT->Int3_ptr_typeID);
@@ -3106,7 +3099,6 @@ struct create_val<T4<int32_t> *>
 static SV f(CTX ctx,T4<int32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Int4_ptr_funcs,obj,EXT->Int4_ptr_typeID);
@@ -3155,7 +3147,6 @@ struct create_val<T3<float> *>
 static SV f(CTX ctx,T3<float>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Float3_ptr_funcs,obj,EXT->Float3_ptr_typeID);
@@ -3204,7 +3195,6 @@ struct create_val<GfxBuffer *>
 static SV f(CTX ctx,GfxBuffer*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(GfxBuffer_ptr_funcs,obj,EXT->GfxBuffer_ptr_typeID);
@@ -3253,7 +3243,6 @@ struct create_val<Transform *>
 static SV f(CTX ctx,Transform*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Transform_ptr_funcs,obj,EXT->Transform_ptr_typeID);
@@ -3302,7 +3291,6 @@ struct create_val<Quaternion *>
 static SV f(CTX ctx,Quaternion*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Quaternion_ptr_funcs,obj,EXT->Quaternion_ptr_typeID);
@@ -3351,7 +3339,6 @@ struct create_val<T2<int32_t> *>
 static SV f(CTX ctx,T2<int32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Int2_ptr_funcs,obj,EXT->Int2_ptr_typeID);
@@ -3400,7 +3387,6 @@ struct create_val<Light *>
 static SV f(CTX ctx,Light*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Light_ptr_funcs,obj,EXT->Light_ptr_typeID);
@@ -3449,7 +3435,6 @@ struct create_val<LightPointData *>
 static SV f(CTX ctx,LightPointData*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(LightPointData_ptr_funcs,obj,EXT->LightPointData_ptr_typeID);
@@ -3498,7 +3483,6 @@ struct create_val<T4<float> *>
 static SV f(CTX ctx,T4<float>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Float4_ptr_funcs,obj,EXT->Float4_ptr_typeID);
@@ -3547,7 +3531,6 @@ struct create_val<LightDirectionalData *>
 static SV f(CTX ctx,LightDirectionalData*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(LightDirectionalData_ptr_funcs,obj,EXT->LightDirectionalData_ptr_typeID);
@@ -3596,7 +3579,6 @@ struct create_val<Matrix4x4 *>
 static SV f(CTX ctx,Matrix4x4*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Matrix4x4_ptr_funcs,obj,EXT->Matrix4x4_ptr_typeID);
@@ -3645,7 +3627,6 @@ struct create_val<T3<uint32_t> *>
 static SV f(CTX ctx,T3<uint32_t>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(UInt3_ptr_funcs,obj,EXT->UInt3_ptr_typeID);
@@ -3694,7 +3675,6 @@ struct create_val<LightSpotData *>
 static SV f(CTX ctx,LightSpotData*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(LightSpotData_ptr_funcs,obj,EXT->LightSpotData_ptr_typeID);
@@ -3743,7 +3723,6 @@ struct create_val<Resource *>
 static SV f(CTX ctx,Resource*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Resource_ptr_funcs,obj,EXT->Resource_ptr_typeID);
@@ -3792,7 +3771,6 @@ struct create_val<File *>
 static SV f(CTX ctx,File*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(File_ptr_funcs,obj,EXT->File_ptr_typeID);
@@ -3841,7 +3819,6 @@ struct create_val<AABB *>
 static SV f(CTX ctx,AABB*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(AABB_ptr_funcs,obj,EXT->AABB_ptr_typeID);
@@ -3890,7 +3867,6 @@ struct create_val<Audio *>
 static SV f(CTX ctx,Audio*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Audio_ptr_funcs,obj,EXT->Audio_ptr_typeID);
@@ -3939,7 +3915,6 @@ struct create_val<Matrix3x3 *>
 static SV f(CTX ctx,Matrix3x3*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(Matrix3x3_ptr_funcs,obj,EXT->Matrix3x3_ptr_typeID);
@@ -3988,7 +3963,6 @@ struct create_val<GfxDebugDrawer *>
 static SV f(CTX ctx,GfxDebugDrawer*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
-i.cppRef = false;
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
 R S::createNativeObject(GfxDebugDrawer_ptr_funcs,obj,EXT->GfxDebugDrawer_ptr_typeID);

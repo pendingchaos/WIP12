@@ -127,6 +127,7 @@ class Function(object):
         self.template_types = {}
         self.script_public = False
         self.arg_convs = {}
+        self.ret_ptr_no_cpp_ref = False
 
         i = 0
 
@@ -167,6 +168,8 @@ class Function(object):
                     func = parts[1]
                     
                     self.arg_convs[index] = func
+                elif c.displayname == "retptrnocppref":
+                    self.ret_ptr_no_cpp_ref = True
 
 class Method(Function):
     def __init__(self, class_, cursor):
@@ -198,11 +201,14 @@ class Property(object):
         self.type = Type(cursor.type)
         self.name = cursor.spelling
         self.script_public = True
+        self.ret_ptr_no_cpp_ref = False
         
         for c in cursor.get_children():
             if c.kind == clang.cindex.CursorKind.ANNOTATE_ATTR:
                 if c.displayname == "nobind":
                     self.script_public = False
+                elif c.displayname == "retptrnocppref":
+                    self.ret_ptr_no_cpp_ref = True
 
 class Class(object):
     def __init__(self, cursor):
@@ -972,7 +978,6 @@ struct create_val<%s *>
 ????static SV f(CTX ctx,%s*obj)
 ????{
 ????????AllocInfo i=getAllocInfo((void*)obj);
-????????i.cppRef = false;
 ????????i.scriptRef = true;
 ????????setAllocInfo((void *)obj, i);
 ????????R S::createNativeObject(%s_funcs,obj,EXT->%s_ptr_typeID);
@@ -1186,7 +1191,16 @@ for class_ in classes.values():
         if not property_.script_public:
             continue
         
-        bindings.write(s(""" EI(keyStr=="%s")
+        if property_.ret_ptr_no_cpp_ref:
+            bindings.write(s(""" EI(keyStr=="%s")
+????????????{
+????????????????%s*obj=(%s*)F->data;
+????????????????%s r=obj->%s;
+????????????????allocInfo((void*)r,AllocInfo(true,false));
+????????????????R CV(r);
+????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.type_.to_string(class_.template_types), property_.name))
+        else:
+            bindings.write(s(""" EI(keyStr=="%s")
 ????????????{
 ????????????????%s*obj=(%s*)F->data;
 ????????????????R CV(obj->%s);
@@ -1270,18 +1284,45 @@ for class_ in classes.values():
                         if v == method.name:
                             operator = k[len("operator"):]
                     
-                    bindings.write(s("""????if(a.getCount()==%d)
+                    if method.ret_ptr_no_cpp_ref:
+                        bindings.write(s("""????if(a.getCount()==%d)
+????????if(%s)
+????????{
+????????????%s r=*F %s %s;
+????????????setAllocInfo((void*)r,AllocInfo(true,false));
+????????????R CV(r);
+????????}
+""") % (len(method.args)+1,
+        testStr,
+        method.return_type.to_string(class_.template_types),
+        operator,
+        argsStr))
+                    else:
+                        bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
 ????????{
 ????????????R CV(*F %s %s);
 ????????}
 """) % (len(method.args)+1,
-            testStr,
-            operator,
-            argsStr))
+        testStr,
+        operator,
+        argsStr))
 
                 else:
-                    bindings.write(s("""????if(a.getCount()==%d)
+                    if method.ret_ptr_no_cpp_ref:
+                        bindings.write(s("""????if(a.getCount()==%d)
+????????if(%s)
+????????{
+????????????%s r=F->%s(%s);
+????????????R CV(r);
+????????}
+""") % (len(method.args)+1,
+        testStr,
+        method.return_type.to_string(class_.template_types),
+        method.name,
+        argsStr))
+                    else:
+                        bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
 ????????{
 ????????????%s F->%s(%s));
@@ -1329,7 +1370,21 @@ for functions_ in functions.values():
 
             testStr = "&&".join(["1"] + args)
 
-            bindings.write(s("""????if(a.getCount()==%d)
+            if function.ret_ptr_no_cpp_ref:
+                bindings.write(s("""????if(a.getCount()==%d)
+????????if(%s)
+????????{
+????????????%s o=%s(%s);
+????????????setAllocInfo((void*)o,AllocInfo(true,false));
+????????????R CV(o);
+????????}
+""" % (len(function.args),
+       testStr,
+       function.return_type.to_string(),
+       function.name,
+       argsStr)))
+            else:
+                bindings.write(s("""????if(a.getCount()==%d)
 ????????if(%s)
 ????????{
 ????????????%s %s(%s));
@@ -1337,7 +1392,7 @@ for functions_ in functions.values():
 ????????}
 """) % (len(function.args),
        testStr,
-       "(" if function.return_type.to_string() == "void" else "return CV(" % function.return_type.to_string(),
+       "(" if function.return_type.to_string() == "void" else "R CV(" % function.return_type.to_string(),
        function.name,
        argsStr,
        "R CN" if function.return_type.to_string() == "void" else ""))
