@@ -9,9 +9,6 @@
     - Claims to be faster than SDSM in complex scenes.
     - Needs recent hardware.
 - [ ] Finish the script binding generator.
-    - [ ] Cast for things like Audio -> Resource for arguments.
-    - [ ] Cast for things like Resource -> Audio.
-
     - [ ] NULL <-> nil conversion
     - [ ] Templated Functions
     - [ ] Namespaces
@@ -20,6 +17,8 @@
     - [ ] Bind lots of stuff
     - [ ] Static methods and properties
     - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, File, GfxBuffer, GfxDebugDrawer, Light, Resource and Audio.
+    - [ ] Automatic cast for things like Audio -> Resource for arguments.
+    - [ ] Automatic cast for things like Resource -> Audio.
 - [ ] Make functions for builtin functions like + and *.
 - [ ] === function (scripting).
 

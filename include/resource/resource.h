@@ -83,6 +83,17 @@ enum class ResType
     FontType
 } BIND ENUM_CLASS;
 
+class GfxShader;
+class GfxTexture;
+class GfxMesh;
+class GfxMaterial;
+class GfxModel;
+class Scene;
+class Script;
+class PhysicsShape;
+class Audio;
+class Font;
+
 class Resource
 {
     public:

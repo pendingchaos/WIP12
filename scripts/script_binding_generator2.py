@@ -228,6 +228,7 @@ class Class(object):
         self.constructable = True
         self.parent = None
         self.destroy_code = None
+        self.subclasses = []
 
         num_private_cons = 0
 
@@ -385,6 +386,7 @@ def get_classes(cursor):
         if class_.parent != None:
             try:
                 class_.add_parent(classes[class_.parent])
+                classes[class_.parent].subclasses.append(class_)
             except KeyError:
                 pass
 
