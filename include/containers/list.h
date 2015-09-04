@@ -12,9 +12,9 @@ class List
     public:
         List() {}
         List(std::size_t count) : data(count) {}
-        List(std::size_t count, const T *data_) : data(data_, data_+count) {}
+        List(std::size_t count, const T *data_) NO_BIND : data(data_, data_+count) {}
 
-        List(const ResizableData& other)
+        List(const ResizableData& other) NO_BIND
         : data(other.getData(), other.getData()+other.getSize()) {}
 
         List(const List<T>& other)
@@ -43,7 +43,7 @@ class List
             return not (*this == other);
         }
 
-        inline const T& operator [] (std::size_t index) const
+        inline const T& operator [] (std::size_t index) const NO_BIND
         {
             if (index >= data.size())
             {
@@ -53,7 +53,7 @@ class List
             return data[index];
         }
 
-        inline T& operator [] (std::size_t index)
+        inline T& operator [] (std::size_t index) NO_BIND
         {
             if (index >= data.size())
             {
@@ -68,12 +68,12 @@ class List
             return data.size();
         }
 
-        inline T *getData()
+        inline T *getData() NO_BIND
         {
             return data.data();
         }
 
-        inline const T *getData() const
+        inline const T *getData() const NO_BIND
         {
             return data.data();
         }
@@ -83,7 +83,7 @@ class List
             data.push_back(toAppend);
         }
 
-        void append(std::size_t count, const T *toAppend)
+        void append(std::size_t count, const T *toAppend) NO_BIND
         {
             data.insert(data.end(), toAppend, toAppend+count);
         }
@@ -93,7 +93,7 @@ class List
             data.insert(data.end(), toAppend.data.begin(), toAppend.data.end());
         }
 
-        void insert(std::size_t start, std::size_t count, const T *toInsert)
+        void insert(std::size_t start, std::size_t count, const T *toInsert) NO_BIND
         {
             if (start > data.size())
             {
@@ -158,5 +158,8 @@ class List
     private:
         std::vector<T> data;
 };
+
+BIND_CLASS(List)
+TEMPLATE_TYPES(List:T, <GfxLOD>@GfxLODList <GfxModel::SubModel>@GfxSubModelList <scripting::Value*>@List)
 
 #endif // LIST_H

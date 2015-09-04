@@ -3,6 +3,7 @@
 
 #include "containers/string.h"
 #include "containers/hashmap.h"
+#include "scripting/bindings.h"
 
 #include <SDL2/SDL_audio.h>
 
@@ -58,7 +59,7 @@ class AudioDevice
         void play();
         bool getPaused();
 
-        HashMap<void *, Callback> callbacks;
+        NO_BIND HashMap<void *, Callback> callbacks;
 
         void runCallbacks(size_t numSamples);
 
@@ -72,6 +73,6 @@ class AudioDevice
         size_t samples;
 
         static void audioDeviceCallback(void *userdata, Uint8 *data, int len);
-};
+} BIND;
 
 #endif // AUDIODEVICE_H

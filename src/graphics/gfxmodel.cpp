@@ -3,15 +3,15 @@
 #include "file.h"
 #include "globals.h"
 
-GfxModel::LOD::LOD(float minDistance_,
-                   float maxDistance_,
-                   GfxMesh *mesh_,
-                   GfxMaterial *material_,
-                   const Matrix4x4& matrix) : minDistance(minDistance_),
-                                              maxDistance(maxDistance_),
-                                              mesh(mesh_),
-                                              material(material_),
-                                              worldMatrix(matrix) {}
+GfxLOD::GfxLOD(float minDistance_,
+              float maxDistance_,
+              GfxMesh *mesh_,
+              GfxMaterial *material_,
+              const Matrix4x4& matrix) : minDistance(minDistance_),
+                                         maxDistance(maxDistance_),
+                                         mesh(mesh_),
+                                         material(material_),
+                                         worldMatrix(matrix) {}
 
 GfxModel::GfxModel() : Resource(ResType::GfxModelType) {}
 
@@ -22,7 +22,7 @@ GfxModel::~GfxModel()
 {
     for (size_t i = 0; i < subModels.getCount(); ++i)
     {
-        List<LOD> subModel = subModels[i];
+        List<GfxLOD> subModel = subModels[i];
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {
@@ -36,7 +36,7 @@ void GfxModel::removeContent()
 {
     for (size_t i = 0; i < subModels.getCount(); ++i)
     {
-        List<LOD> subModel = subModels[i];
+        List<GfxLOD> subModel = subModels[i];
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {
@@ -64,7 +64,7 @@ void GfxModel::save()
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {
-            const LOD& lod = subModel[j];
+            const GfxLOD& lod = subModel[j];
 
             file.writeFloat32(lod.minDistance);
             file.writeFloat32(lod.maxDistance);
@@ -176,14 +176,14 @@ void GfxModel::_load()
                 String material((size_t)materialLen);
                 file.read(materialLen, material.getData());
 
-                subModel.append(LOD(minDistance,
-                                    maxDistance,
-                                    resMgr->load<GfxMesh>(mesh),
-                                    resMgr->load<GfxMaterial>(material),
-                                    Matrix4x4(Float4(r0c0, r0c1, r0c2, r0c3),
-                                              Float4(r1c0, r1c1, r1c2, r1c3),
-                                              Float4(r2c0, r2c1, r2c2, r2c3),
-                                              Float4(r3c0, r3c1, r3c2, r3c3))));
+                subModel.append(GfxLOD(minDistance,
+                                       maxDistance,
+                                       resMgr->load<GfxMesh>(mesh),
+                                       resMgr->load<GfxMaterial>(material),
+                                       Matrix4x4(Float4(r0c0, r0c1, r0c2, r0c3),
+                                                 Float4(r1c0, r1c1, r1c2, r1c3),
+                                                 Float4(r2c0, r2c1, r2c2, r2c3),
+                                                 Float4(r3c0, r3c1, r3c2, r3c3))));
             }
 
             subModels.append(subModel);
@@ -208,12 +208,12 @@ Resource *GfxModel::_copy() const
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {
-            const LOD& lod = subModel[j];
-            newSubModel.append(LOD(lod.minDistance,
-                                   lod.maxDistance,
-                                   lod.mesh->copyRef<GfxMesh>(),
-                                   lod.material->copyRef<GfxMaterial>(),
-                                   lod.worldMatrix));
+            const GfxLOD& lod = subModel[j];
+            newSubModel.append(GfxLOD(lod.minDistance,
+                                      lod.maxDistance,
+                                      lod.mesh->copyRef<GfxMesh>(),
+                                      lod.material->copyRef<GfxMaterial>(),
+                                      lod.worldMatrix));
         }
 
         model->subModels.append(newSubModel);

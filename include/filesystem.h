@@ -5,11 +5,10 @@
 #include "containers/string.h"
 #include "misc_macros.h"
 #include "file.h"
+#include "scripting/bindings.h"
 
 class Filesystem
 {
-    NO_COPY(Filesystem)
-
     public:
         Filesystem();
 
@@ -21,6 +20,6 @@ class Filesystem
         String getAbsolutePath(const char *path) const;
     private:
         List<List<String > > searchPaths;
-};
+} BIND;
 
 #endif // FILESYSTEM_H

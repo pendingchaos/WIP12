@@ -3,6 +3,7 @@
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include "scripting/bindings.h"
 
 class Application;
 class Platform;
@@ -12,7 +13,6 @@ class Filesystem;
 class GfxDebugDrawer;
 class AudioDevice;
 
-extern const char *programName;
 extern Application *app;
 extern Platform *platform;
 extern ResourceManager *resMgr;

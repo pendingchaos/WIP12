@@ -7,7 +7,34 @@
 #include "graphics/gfxmaterial.h"
 #include "resource/resource.h"
 #include "math/matrix4x4.h"
+#include "scripting/bindings.h"
 #include "misc_macros.h"
+
+struct GfxLOD
+{
+    //TODO: Handle pointer ownership.
+    GfxLOD() : minDistance(0.0f), maxDistance(0.0f), mesh(NEW(GfxMesh)), material(NEW(GfxMaterial)) {}
+    GfxLOD(float minDistance,
+           float maxDistance,
+           GfxMesh *mesh,
+           GfxMaterial *material,
+           const Matrix4x4& matrix) NO_BIND;
+
+    bool operator == (const GfxLOD& other) const
+    {
+        return minDistance == other.minDistance and
+               maxDistance == other.maxDistance and
+               mesh == other.mesh and
+               material == other.material and
+               worldMatrix == other.worldMatrix;
+    }
+
+    float minDistance;
+    float maxDistance;
+    NO_BIND GfxMesh *mesh;
+    NO_BIND GfxMaterial *material;
+    Matrix4x4 worldMatrix;
+} BIND;
 
 class GfxModel : public Resource
 {
@@ -16,22 +43,7 @@ class GfxModel : public Resource
     public:
         static const ResType resource_type = ResType::GfxModelType;
 
-        struct LOD
-        {
-            LOD(float minDistance,
-                float maxDistance,
-                GfxMesh *mesh,
-                GfxMaterial *material,
-                const Matrix4x4& matrix);
-
-            float minDistance;
-            float maxDistance;
-            GfxMesh *mesh;
-            GfxMaterial *material;
-            Matrix4x4 worldMatrix;
-        };
-
-        typedef List<LOD> SubModel;
+        typedef List<GfxLOD> SubModel;
 
         GfxModel();
         GfxModel(const String& filename);
@@ -45,6 +57,6 @@ class GfxModel : public Resource
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-} DESTROY(obj->release());
+} BIND DESTROY(obj->release());
 
 #endif // GFXMODEL_H

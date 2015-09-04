@@ -88,7 +88,7 @@ class Type(object):
                 s2 = part
                 
                 for k, v in template_types.iteritems():
-                    s2 = s2.replace(k, v[1:-1])
+                    s2 = s2.replace(k, v)
                 
                 s += s2
             else:
@@ -96,9 +96,9 @@ class Type(object):
         
         #Awful hack
         if s.replace(" ", "") in template_types:
-            s = template_types[s.replace(" ", "")][1:-1]
+            s = template_types[s.replace(" ", "")]
         if s.replace("&", "").replace(" ", "") in template_types:
-            s = template_types[s.replace("&", "").replace(" ", "")][1:-1] + "&"
+            s = template_types[s.replace("&", "").replace(" ", "")] + "&"
         
         return ("const " if self.const else "") + s
 
@@ -116,6 +116,7 @@ class Argument(object):
 class Function(object):
     def __init__(self, cursor):
         self.name = cursor.spelling
+        self.code_name = cursor.spelling
         self.return_type = Type(cursor.type.get_result())
         self.variadic = clang.cindex.conf.lib.clang_isFunctionTypeVariadic(cursor.type)
         self.definition = cursor.is_definition()
@@ -170,6 +171,8 @@ class Function(object):
                     self.arg_convs[index] = func
                 elif c.displayname == "retptrnocppref":
                     self.ret_ptr_no_cpp_ref = True
+                elif c.displayname == "rename":
+                    self.name = c.displayname[6:]
 
 class Method(Function):
     def __init__(self, class_, cursor):
@@ -200,6 +203,7 @@ class Property(object):
         
         self.type = Type(cursor.type)
         self.name = cursor.spelling
+        self.code_name = cursor.spelling
         self.script_public = True
         self.ret_ptr_no_cpp_ref = False
         
@@ -209,6 +213,8 @@ class Property(object):
                     self.script_public = False
                 elif c.displayname == "retptrnocppref":
                     self.ret_ptr_no_cpp_ref = True
+                elif c.displayname == "rename":
+                    self.name = c.displayname[6:]
 
 class Class(object):
     def __init__(self, cursor):
@@ -298,6 +304,8 @@ class Class(object):
                     self.copyable = False
                 elif c.displayname.startswith("destroy"):
                     self.destroy_code = c.displayname[7:]
+                elif c.displayname == "rename":
+                    self.name = c.displayname[6:]
 
     def add_parent(self, parent):
         self.methods += parent.methods
@@ -360,17 +368,17 @@ def get_classes(cursor):
                         a, b = c.displayname[13:].split(";")
                         class_ = a.split(":")[0]
                         
-                        types = [v.split(":")[0] for v in b.split(" ")]
-                        
-                        for type_, name in [tuple(v.split(":")) for v in b.split(" ")]:
+                        for type_, name in [tuple(v.split("@")) for v in b.split(" ")]:
                             c = copy.copy(template_classes[class_])
                             
                             c.name = name
                             c.code_name = class_ + type_
+                            c.template_types = {}
                             
                             classes[name] = c
                             
                             i = 0
+                            types = type_[1:-1].split(",")
                             for name in a.split(":")[1:]:
                                 c.template_types[name] = types[i]
                                 i += 1
@@ -683,6 +691,15 @@ struct val_to_c<const SV>
     }
 };
 
+template <>
+struct val_to_c<const SV&>
+{
+    static SV f(scripting::Context *ctx, const SV head)
+    {
+        return scripting::createCopy(ctx, head);
+    }
+};
+
 template <typename T>
 struct val_to_c<const T&> {
     static T f(scripting::Context *ctx, const SV head)
@@ -764,8 +781,35 @@ struct type_same<const T&>
     }
 };
 
+template <typename T>
+struct type_same<const T>
+{
+    static bool f(scripting::Context *ctx, const SV head)
+    {
+        return type_same<T>::f(ctx, head);
+    }
+};
+
 template <>
 struct type_same<SV>
+{
+    static bool f(scripting::Context *ctx, const SV head)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<const SV&>
+{
+    static bool f(scripting::Context *ctx, const SV head)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<const SV>
 {
     static bool f(scripting::Context *ctx, const SV head)
     {
@@ -1136,7 +1180,7 @@ for class_ in classes.values():
                 if i in constructor.arg_convs:
                     args[i] = "%s(ctx,a[%d])" % (constructor.arg_convs[i], i+1)
 
-            constStr = ",".join([class_.name] + args)
+            constStr = ",".join([class_.code_name] + args)
             
             args = ["TS(%s,a[%d])" % (constructor.args[j].type_.to_string(class_.template_types), j+1) for j in xrange(len(constructor.args))]
             
@@ -1200,13 +1244,13 @@ for class_ in classes.values():
 ????????????????%s r=obj->%s;
 ????????????????allocInfo((void*)r,AllocInfo(true,false));
 ????????????????R CV(r);
-????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.type_.to_string(class_.template_types), property_.name))
+????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.type_.to_string(class_.template_types), property_.code_name))
         else:
             bindings.write(s(""" EI(keyStr=="%s")
 ????????????{
 ????????????????%s*obj=(%s*)F->data;
 ????????????????R CV(obj->%s);
-????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name))
+????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.code_name))
     
     bindings.write(s(""" else
 ???????????????? CATE(KE,"Unknown member."));
@@ -1236,7 +1280,7 @@ for class_ in classes.values():
 ????????????{
 ????????????????%s*obj=(%s*)F->data;
 ????????????????obj->%s=val_to_c<decltype(obj->%s)>::f(ctx,value);
-????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.name, property_.name))
+????????????}""") % (property_.name, class_.code_name, class_.code_name, property_.code_name, property_.code_name))
     
     bindings.write(s(""" else
 ???????????????? CATE(KE,"Unknown member or member if read-only."));
@@ -1383,7 +1427,7 @@ for functions_ in functions.values():
 """ % (len(function.args),
        testStr,
        function.return_type.to_string(),
-       function.name,
+       function.code_name,
        argsStr)))
             else:
                 bindings.write(s("""????if(a.getCount()==%d)
@@ -1395,7 +1439,7 @@ for functions_ in functions.values():
 """) % (len(function.args),
        testStr,
        "(" if function.return_type.to_string() == "void" else "R CV(" % function.return_type.to_string(),
-       function.name,
+       function.code_name,
        argsStr,
        "R CN" if function.return_type.to_string() == "void" else ""))
 

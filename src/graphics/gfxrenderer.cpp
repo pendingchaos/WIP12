@@ -1617,7 +1617,7 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
 
                     for (size_t j = 0; j < subModel.getCount(); ++j)
                     {
-                        const GfxModel::LOD& lod = subModel[j];
+                        const GfxLOD& lod = subModel[j];
 
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
@@ -1658,7 +1658,7 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
 
                     for (size_t j = 0; j < subModel.getCount(); ++j)
                     {
-                        const GfxModel::LOD& lod = subModel[j];
+                        const GfxLOD& lod = subModel[j];
 
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
@@ -1798,7 +1798,7 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix, const GfxModel *model
 
         for (size_t j = 0; j < subModel.getCount(); ++j)
         {
-            const GfxModel::LOD& lod = subModel[j];
+            const GfxLOD& lod = subModel[j];
 
             if (lod.minDistance < distance and
                 distance < lod.maxDistance)

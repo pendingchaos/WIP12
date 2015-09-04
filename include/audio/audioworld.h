@@ -3,6 +3,7 @@
 
 #include "audio/audio.h"
 #include "math/t3.h"
+#include "scripting/bindings.h"
 
 #include <cmath>
 
@@ -50,7 +51,7 @@ class AudioSource
         }
     private:
         Audio *audio;
-};
+} BIND;
 
 class AudioWorld
 {
@@ -94,7 +95,7 @@ class AudioWorld
             sources.clear();
         }
 
-        inline const List<AudioSource *>& getSources() const
+        inline const List<AudioSource *>& getSources() const NO_BIND
         {
             return sources;
         }
@@ -103,6 +104,6 @@ class AudioWorld
         void removeFromAudioDevice(AudioDevice *device);
     private:
         List<AudioSource *> sources;
-};
+} BIND;
 
 #endif // AUDIOWORLD_H

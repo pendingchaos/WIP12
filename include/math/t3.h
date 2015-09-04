@@ -271,7 +271,7 @@ class T3
 };
 
 BIND_CLASS(T3)
-TEMPLATE_TYPES(T3:T, <float>:Float3 <int32_t>:Int3 <uint32_t>:UInt3)
+TEMPLATE_TYPES(T3:T, <float>@Float3 <int32_t>@Int3 <uint32_t>@UInt3)
 
 typedef T3<float> Float3;
 typedef T3<int32_t> Int3;
