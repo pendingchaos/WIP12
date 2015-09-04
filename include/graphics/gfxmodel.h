@@ -12,8 +12,8 @@
 
 struct GfxLOD
 {
+    GfxLOD() : minDistance(0.0f), maxDistance(0.0f), mesh(nullptr), material(nullptr) {} //TODO: Get rid of this.
     //TODO: Handle pointer ownership.
-    GfxLOD() : minDistance(0.0f), maxDistance(0.0f), mesh(NEW(GfxMesh)), material(NEW(GfxMaterial)) {}
     GfxLOD(float minDistance,
            float maxDistance,
            GfxMesh *mesh,

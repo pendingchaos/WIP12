@@ -134,6 +134,8 @@ LogEntry& LogEntry::log(const char *category,
     std::putc('\n', stdout);
     std::putc('\n', stdout);
 
+    va_end(args2);
+
     return *this;
 }
 
