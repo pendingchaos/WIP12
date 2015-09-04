@@ -45,6 +45,6 @@ class GfxModel : public Resource
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-};
+} DESTROY(obj->release());
 
 #endif // GFXMODEL_H

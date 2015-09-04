@@ -221,9 +221,10 @@ class Class(object):
         self.destructable = True
         self.constructable = True
         self.parent = None
-        
+        self.destroy_code = None
+
         num_private_cons = 0
-        
+
         for child in cursor.get_children():
             if child.kind == clang.cindex.CursorKind.CXX_BASE_SPECIFIER:
                 if len(child.spelling.split(" ")) == 2:
@@ -235,7 +236,7 @@ class Class(object):
                     self.destructable = False
                 elif child.kind == clang.cindex.CursorKind.CONSTRUCTOR:
                     num_private_cons += 1
-                
+
                 continue
 
             if child.kind == clang.cindex.CursorKind.CXX_METHOD:
@@ -288,7 +289,9 @@ class Class(object):
                     self.script_public = True
                 elif c.displayname == "nocopy":
                     self.copyable = False
-        
+                elif c.displayname.startswith("destroy"):
+                    self.destroy_code = c.displayname[7:]
+
     def add_parent(self, parent):
         self.methods += parent.methods
         self.properties += parent.properties
@@ -1076,8 +1079,11 @@ for class_ in classes.values():
 
 """) % (class_.name, class_.code_name, class_.name, class_.name))
 
-    if class_.destructable:
-        bindings.write(s("""????DELETE(%s,(%s *)F->data);
+    if class_.destroy_code != None:
+        bindings.write("%s*obj=(%s*)F->data;\n" % (class_.code_name, class_.code_name))
+        bindings.write(class_.destroy_code+";\n}")
+    elif class_.destructable:
+        bindings.write(s("""????DELETE(%s,(%s*)F->data);
 }""") % (class_.code_name, class_.code_name))
     else:
         bindings.write("}")
@@ -1407,7 +1413,16 @@ for class_ in classes.values():
 }
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
 
-    if not class_.destructable:
+    if class_.destroy_code != None:
+        bindings.write(s("""
+void %s_destroy(CTX ctx,NO F)
+{
+????if(!TS(%s*,(SV)F))
+????????CATE(TE,"%sRef::__del__ expects %sRef as first argument."));
+????%s*obj=(%s*)F->data;
+????if(shouldScriptDelete(F->data)) {%s;}
+}""" % (name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name, class_.destroy_code)))
+    elif not class_.destructable:
         #Let's hope it is freed.
         bindings.write(s("""
 void %s_destroy(CTX ctx,NO F)

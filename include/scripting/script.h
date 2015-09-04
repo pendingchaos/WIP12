@@ -195,6 +195,6 @@ class Script : public Resource
         }
 
         void destroyInstance(ScriptInstance *instance);
-};
+} DESTROY(obj->release());
 
 #endif // SCRIPT_H

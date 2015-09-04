@@ -4783,7 +4783,7 @@ void UInt2_destroy(CTX ctx,NO F)
 if(!TS(T2<uint32_t>, (SV)F))
 CATE(TE,"UInt2::__del__ expects UInt2 as first argument."));
 
-DELETE(T2<uint32_t>,(T2<uint32_t> *)F->data);
+DELETE(T2<uint32_t>,(T2<uint32_t>*)F->data);
 }SV UInt2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -5356,7 +5356,7 @@ void GPUTimer_destroy(CTX ctx,NO F)
 if(!TS(GPUTimer, (SV)F))
 CATE(TE,"GPUTimer::__del__ expects GPUTimer as first argument."));
 
-DELETE(GPUTimer,(GPUTimer *)F->data);
+DELETE(GPUTimer,(GPUTimer*)F->data);
 }SV GPUTimer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -6451,7 +6451,7 @@ void Float2_destroy(CTX ctx,NO F)
 if(!TS(T2<float>, (SV)F))
 CATE(TE,"Float2::__del__ expects Float2 as first argument."));
 
-DELETE(T2<float>,(T2<float> *)F->data);
+DELETE(T2<float>,(T2<float>*)F->data);
 }SV Float2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -7024,7 +7024,7 @@ void Camera_destroy(CTX ctx,NO F)
 if(!TS(Camera, (SV)F))
 CATE(TE,"Camera::__del__ expects Camera as first argument."));
 
-DELETE(Camera,(Camera *)F->data);
+DELETE(Camera,(Camera*)F->data);
 }SV Camera_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -7704,7 +7704,7 @@ void UInt4_destroy(CTX ctx,NO F)
 if(!TS(T4<uint32_t>, (SV)F))
 CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
 
-DELETE(T4<uint32_t>,(T4<uint32_t> *)F->data);
+DELETE(T4<uint32_t>,(T4<uint32_t>*)F->data);
 }SV UInt4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -10845,7 +10845,7 @@ void Int3_destroy(CTX ctx,NO F)
 if(!TS(T3<int32_t>, (SV)F))
 CATE(TE,"Int3::__del__ expects Int3 as first argument."));
 
-DELETE(T3<int32_t>,(T3<int32_t> *)F->data);
+DELETE(T3<int32_t>,(T3<int32_t>*)F->data);
 }SV Int3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -11888,7 +11888,7 @@ void Int4_destroy(CTX ctx,NO F)
 if(!TS(T4<int32_t>, (SV)F))
 CATE(TE,"Int4::__del__ expects Int4 as first argument."));
 
-DELETE(T4<int32_t>,(T4<int32_t> *)F->data);
+DELETE(T4<int32_t>,(T4<int32_t>*)F->data);
 }SV Int4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -15029,7 +15029,7 @@ void Float3_destroy(CTX ctx,NO F)
 if(!TS(T3<float>, (SV)F))
 CATE(TE,"Float3::__del__ expects Float3 as first argument."));
 
-DELETE(T3<float>,(T3<float> *)F->data);
+DELETE(T3<float>,(T3<float>*)F->data);
 }SV Float3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16072,7 +16072,7 @@ void GfxBuffer_destroy(CTX ctx,NO F)
 if(!TS(GfxBuffer, (SV)F))
 CATE(TE,"GfxBuffer::__del__ expects GfxBuffer as first argument."));
 
-DELETE(GfxBuffer,(GfxBuffer *)F->data);
+DELETE(GfxBuffer,(GfxBuffer*)F->data);
 }SV GfxBuffer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -16202,7 +16202,7 @@ void Transform_destroy(CTX ctx,NO F)
 if(!TS(Transform, (SV)F))
 CATE(TE,"Transform::__del__ expects Transform as first argument."));
 
-DELETE(Transform,(Transform *)F->data);
+DELETE(Transform,(Transform*)F->data);
 }SV Transform_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16312,7 +16312,7 @@ void Quaternion_destroy(CTX ctx,NO F)
 if(!TS(Quaternion, (SV)F))
 CATE(TE,"Quaternion::__del__ expects Quaternion as first argument."));
 
-DELETE(Quaternion,(Quaternion *)F->data);
+DELETE(Quaternion,(Quaternion*)F->data);
 }SV Quaternion_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16811,7 +16811,7 @@ void Int2_destroy(CTX ctx,NO F)
 if(!TS(T2<int32_t>, (SV)F))
 CATE(TE,"Int2::__del__ expects Int2 as first argument."));
 
-DELETE(T2<int32_t>,(T2<int32_t> *)F->data);
+DELETE(T2<int32_t>,(T2<int32_t>*)F->data);
 }SV Int2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -17384,7 +17384,7 @@ void Light_destroy(CTX ctx,NO F)
 if(!TS(Light, (SV)F))
 CATE(TE,"Light::__del__ expects Light as first argument."));
 
-DELETE(Light,(Light *)F->data);
+DELETE(Light,(Light*)F->data);
 }SV Light_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -17748,7 +17748,7 @@ void LightPointData_destroy(CTX ctx,NO F)
 if(!TS(LightPointData, (SV)F))
 CATE(TE,"LightPointData::__del__ expects LightPointData as first argument."));
 
-DELETE(LightPointData,(LightPointData *)F->data);
+DELETE(LightPointData,(LightPointData*)F->data);
 }SV LightPointData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -17832,7 +17832,7 @@ void Float4_destroy(CTX ctx,NO F)
 if(!TS(T4<float>, (SV)F))
 CATE(TE,"Float4::__del__ expects Float4 as first argument."));
 
-DELETE(T4<float>,(T4<float> *)F->data);
+DELETE(T4<float>,(T4<float>*)F->data);
 }SV Float4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -20973,7 +20973,7 @@ void LightDirectionalData_destroy(CTX ctx,NO F)
 if(!TS(LightDirectionalData, (SV)F))
 CATE(TE,"LightDirectionalData::__del__ expects LightDirectionalData as first argument."));
 
-DELETE(LightDirectionalData,(LightDirectionalData *)F->data);
+DELETE(LightDirectionalData,(LightDirectionalData*)F->data);
 }SV LightDirectionalData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -21041,7 +21041,7 @@ void Matrix4x4_destroy(CTX ctx,NO F)
 if(!TS(Matrix4x4, (SV)F))
 CATE(TE,"Matrix4x4::__del__ expects Matrix4x4 as first argument."));
 
-DELETE(Matrix4x4,(Matrix4x4 *)F->data);
+DELETE(Matrix4x4,(Matrix4x4*)F->data);
 }SV Matrix4x4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21443,7 +21443,7 @@ void UInt3_destroy(CTX ctx,NO F)
 if(!TS(T3<uint32_t>, (SV)F))
 CATE(TE,"UInt3::__del__ expects UInt3 as first argument."));
 
-DELETE(T3<uint32_t>,(T3<uint32_t> *)F->data);
+DELETE(T3<uint32_t>,(T3<uint32_t>*)F->data);
 }SV UInt3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -22486,7 +22486,7 @@ void LightSpotData_destroy(CTX ctx,NO F)
 if(!TS(LightSpotData, (SV)F))
 CATE(TE,"LightSpotData::__del__ expects LightSpotData as first argument."));
 
-DELETE(LightSpotData,(LightSpotData *)F->data);
+DELETE(LightSpotData,(LightSpotData*)F->data);
 }SV LightSpotData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -22586,7 +22586,8 @@ void Resource_destroy(CTX ctx,NO F)
 if(!TS(Resource, (SV)F))
 CATE(TE,"Resource::__del__ expects Resource as first argument."));
 
-DELETE(Resource,(Resource *)F->data);
+Resource*obj=(Resource*)F->data;
+obj->release();
 }SV Resource_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -22962,7 +22963,7 @@ void File_destroy(CTX ctx,NO F)
 if(!TS(File, (SV)F))
 CATE(TE,"File::__del__ expects File as first argument."));
 
-DELETE(File,(File *)F->data);
+DELETE(File,(File*)F->data);
 }SV File_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23898,7 +23899,7 @@ void AABB_destroy(CTX ctx,NO F)
 if(!TS(AABB, (SV)F))
 CATE(TE,"AABB::__del__ expects AABB as first argument."));
 
-DELETE(AABB,(AABB *)F->data);
+DELETE(AABB,(AABB*)F->data);
 }SV AABB_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -24053,7 +24054,8 @@ void Audio_destroy(CTX ctx,NO F)
 if(!TS(Audio, (SV)F))
 CATE(TE,"Audio::__del__ expects Audio as first argument."));
 
-DELETE(Audio,(Audio *)F->data);
+Audio*obj=(Audio*)F->data;
+obj->release();
 }SV Audio_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -24625,7 +24627,7 @@ void Matrix3x3_destroy(CTX ctx,NO F)
 if(!TS(Matrix3x3, (SV)F))
 CATE(TE,"Matrix3x3::__del__ expects Matrix3x3 as first argument."));
 
-DELETE(Matrix3x3,(Matrix3x3 *)F->data);
+DELETE(Matrix3x3,(Matrix3x3*)F->data);
 }SV Matrix3x3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -24939,7 +24941,7 @@ void GfxDebugDrawer_destroy(CTX ctx,NO F)
 if(!TS(GfxDebugDrawer, (SV)F))
 CATE(TE,"GfxDebugDrawer::__del__ expects GfxDebugDrawer as first argument."));
 
-DELETE(GfxDebugDrawer,(GfxDebugDrawer *)F->data);
+DELETE(GfxDebugDrawer,(GfxDebugDrawer*)F->data);
 }SV GfxDebugDrawer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -26692,7 +26694,8 @@ void Resource_ptr_destroy(CTX ctx,NO F)
 {
 if(!TS(Resource*,(SV)F))
 CATE(TE,"ResourceRef::__del__ expects ResourceRef as first argument."));
-SCRIPT_DELETE(Resource, (Resource *)F->data);
+Resource*obj=(Resource*)F->data;
+if(shouldScriptDelete(F->data)) {obj->release();}
 }
 SV Resource_ptr_get_member(CTX ctx,NO F,SV key)
 {
@@ -26935,7 +26938,8 @@ void Audio_ptr_destroy(CTX ctx,NO F)
 {
 if(!TS(Audio*,(SV)F))
 CATE(TE,"AudioRef::__del__ expects AudioRef as first argument."));
-SCRIPT_DELETE(Audio, (Audio *)F->data);
+Audio*obj=(Audio*)F->data;
+if(shouldScriptDelete(F->data)) {obj->release();}
 }
 SV Audio_ptr_get_member(CTX ctx,NO F,SV key)
 {

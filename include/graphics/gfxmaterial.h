@@ -110,6 +110,6 @@ class GfxMaterial : public Resource
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxMaterial, Resource)
-};
+} DESTROY(obj->release());
 
 #endif // MATERIAL_H

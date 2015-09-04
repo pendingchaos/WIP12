@@ -101,7 +101,7 @@ class GfxShader : public Resource
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxShader, Resource)
-};
+} DESTROY(obj->release());
 
 class GfxCompiledShader
 {

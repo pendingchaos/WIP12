@@ -298,7 +298,7 @@ class GfxTexture : public Resource
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxTexture, Resource)
-};
+} DESTROY(obj->release());
 
 class GfxTextureImpl
 {

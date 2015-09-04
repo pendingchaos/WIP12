@@ -84,7 +84,7 @@ class GfxMesh : public Resource
         virtual Resource *_copy() const;
 
     NO_COPY_INHERITED(GfxMesh, Resource)
-};
+} DESTROY(obj->release());
 
 class GfxMeshImpl
 {

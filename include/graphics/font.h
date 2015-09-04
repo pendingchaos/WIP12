@@ -97,6 +97,6 @@ class Font : public Resource
         GfxCompiledShader *compiledQuadFragment;
     protected:
         Resource *_copy() const;
-};
+} DESTROY(obj->release());
 
 #endif // FONT_H

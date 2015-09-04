@@ -18,6 +18,7 @@
 #define ARG_CONV(index, func) __attribute__((annotate("argconv" STR(index) ":" STR(func))))
 #define NOT_COPYABLE __attribute__((annotate("nocopy")))
 #define ENUM_CLASS __attribute__((annotate("enumclass")))
+#define DESTROY(...) __attribute__((annotate("destroy" STR(__VA_ARGS__))))
 #else
 #define GETTER
 #define SETTER
@@ -30,6 +31,7 @@
 #define ARG_CONV(index, func)
 #define NOT_COPYABLE
 #define ENUM_CLASS
+#define DESTROY(...)
 #endif
 
 namespace scripting

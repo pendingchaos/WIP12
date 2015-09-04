@@ -67,6 +67,6 @@ class Audio : public Resource
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-} BIND;
+} BIND DESTROY(obj->release());
 
 #endif // AUDIO_H

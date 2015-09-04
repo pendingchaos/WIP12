@@ -7,17 +7,17 @@
 - [ ] Virtual Shadow mapping: http://advances.realtimerendering.com/s2015/aaltonenhaar_siggraph2015_combined_final_footer_220dpi.pdf
     - Low priority
     - Claims to be faster than SDSM in complex scenes.
+    - Needs recent hardware.
 - [ ] Finish the script binding generator.
     - [ ] NULL <-> nil conversion
     - [ ] Templated Functions
+    - [ ] Pointer return value ownership.
     - [ ] Namespaces
     - [ ] Getters and Setters
     - [ ] C++ exceptions -> script exceptions
     - [ ] Bind lots of stuff
-    - [ ] Pointer return value ownership.
     - [ ] Static methods and properties
     - [ ] Finish binding Matrix3x3, Matrix4x4, RigidBody, File, GfxBuffer, GfxDebugDrawer, Light, Resource.
-    - [ ] Release for resource instead of DELETE.
     - [ ] Cast for things like Audio -> Resource for arguments.
     - [ ] Cast for things like Resource -> Audio.
 - [ ] Make functions for builtin functions like + and *.

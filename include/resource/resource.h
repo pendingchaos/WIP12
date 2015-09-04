@@ -187,6 +187,6 @@ class Resource
                  ResType type);
 
     NO_COPY(Resource)
-} BIND;
+} BIND DESTROY(obj->release());
 
 #endif // RESOURCE_H

@@ -83,7 +83,7 @@ bool _allocDelete(void *ptr)
     return true;
 }
 
-bool _scriptDelete(void *ptr)
+bool shouldScriptDelete(void *ptr)
 {
     if (allocs != nullptr)
     {
