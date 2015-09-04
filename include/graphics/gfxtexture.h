@@ -9,9 +9,9 @@
 #include <cmath>
 #include <algorithm>
 
-#define _TEX_POW2(v) (2 << (v - 1))
+#define _TEX_POW2(v) (2 << ((v) - 1))
 
-#define TEX_COMPUTE_MIPMAP_SIZE(baseSize, level) static_cast<unsigned int>(std::max(1u, static_cast<unsigned int>(baseSize / _TEX_POW2(level))))
+#define TEX_COMPUTE_MIPMAP_SIZE(baseSize, level) static_cast<unsigned int>(std::max(1u, static_cast<unsigned int>((baseSize) / _TEX_POW2(level))))
 
 class GfxTextureImpl;
 class GfxGLApi;
