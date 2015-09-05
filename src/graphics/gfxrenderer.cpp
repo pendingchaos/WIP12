@@ -1487,9 +1487,9 @@ void GfxRenderer::render()
         {
             const RenderComponent *comp = entity->getRenderComponent();
 
-            switch (comp->type)
+            switch (comp->mode)
             {
-            case RenderComponent::Overlay:
+            case RenderMode::Overlay:
             {
                 gfxApi->begin(compiledOverlayVertex,
                               nullptr,
@@ -1607,7 +1607,7 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
         {
             const RenderComponent *comp = entity->getRenderComponent();
 
-            if (comp->type == RenderComponent::Model)
+            if (comp->mode == RenderMode::Model)
             {
                 GfxModel *model = comp->model;
 
@@ -1648,7 +1648,7 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
         {
             const RenderComponent *comp = entity->getRenderComponent();
 
-            if (comp->type == RenderComponent::Model and comp->modelData.shadowCaster)
+            if (comp->mode == RenderMode::Model and comp->modelData.shadowCaster)
             {
                 GfxModel *model = comp->model;
 
@@ -1766,9 +1766,9 @@ void GfxRenderer::batchEntities(const List<Entity *>& entities)
         {
             const RenderComponent *comp = entity->getRenderComponent();
 
-            switch (comp->type)
+            switch (comp->mode)
             {
-            case RenderComponent::Model:
+            case RenderMode::Model:
             {
                 batchModel(transform, comp->model);
                 break;

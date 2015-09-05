@@ -662,7 +662,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
     if (entity->hasRenderComponent())
     {
-        if (entity->getRenderComponent()->type == RenderComponent::Model)
+        if (entity->getRenderComponent()->mode == RenderMode::Model)
         {
             file->writeUInt8(1);
         } else
@@ -678,7 +678,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
     if (entity->hasRenderComponent())
     {
-        if (entity->getRenderComponent()->type == RenderComponent::Model)
+        if (entity->getRenderComponent()->mode == RenderMode::Model)
         {
             GfxModel *model = entity->getRenderComponent()->model;
 
@@ -1010,10 +1010,10 @@ void copyEntity(Entity *dest, Entity *source)
     {
         RenderComponent *render = source->getRenderComponent();
 
-        if (render->type == RenderComponent::Model)
+        if (render->mode == RenderMode::Model)
         {
             dest->addModel(render->model->copyRef<GfxModel>(), render->modelData.shadowCaster);
-        } else if (render->type == RenderComponent::Overlay)
+        } else if (render->mode == RenderMode::Overlay)
         {
             dest->addOverlay(render->overlayTexture);
             dest->getRenderComponent()->overlayData.color = render->overlayData.color;

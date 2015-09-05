@@ -43,7 +43,7 @@ class List
             return not (*this == other);
         }
 
-        inline const T& operator [] (std::size_t index) const NO_BIND
+        const T& operator [] (std::size_t index) const NO_BIND
         {
             if (index >= data.size())
             {
@@ -53,7 +53,7 @@ class List
             return data[index];
         }
 
-        inline T& operator [] (std::size_t index) NO_BIND
+        T& operator [] (std::size_t index) NO_BIND
         {
             if (index >= data.size())
             {
@@ -61,6 +61,16 @@ class List
             }
 
             return data[index];
+        }
+
+        inline T get(size_t index) const
+        {
+            return (*this)[index];
+        }
+
+        inline void set(size_t index, const T& v)
+        {
+            (*this)[index] = v;
         }
 
         inline std::size_t getCount() const
@@ -160,6 +170,6 @@ class List
 };
 
 BIND_CLASS(List)
-TEMPLATE_TYPES(List:T, <GfxLOD>@GfxLODList <GfxModel::SubModel>@GfxSubModelList <scripting::Value*>@List <GhostObject*>@GhostObjList <RigidBody*>@RigidBodyList <AudioSource*>@AudioSourceList <Entity*>@EntityList <Light*>@LightList <String>@StringList)
+TEMPLATE_TYPES(List:T, <GfxLOD>@GfxLODList <GfxModel::SubModel>@GfxSubModelList <scripting::Value*>@List <GhostObject*>@GhostObjList <RigidBody*>@RigidBodyList <AudioSource*>@AudioSourceList <Entity*>@EntityList <Light*>@LightList <String>@StringList <float>@FloatList)
 
 #endif // LIST_H

@@ -95,7 +95,7 @@ class AudioWorld
             sources.clear();
         }
 
-        inline const List<AudioSource *>& getSources() const NO_BIND
+        inline const List<AudioSource *>& getSources() const
         {
             return sources;
         }

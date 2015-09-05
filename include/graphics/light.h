@@ -109,12 +109,12 @@ class Light
             }
         }
 
-        inline GfxTexture *getShadowmap() const NO_BIND
+        inline GfxTexture *getShadowmap() const
         {
             return shadowmap;
         }
 
-        inline GfxFramebuffer *getShadowmapFramebuffer() const NO_BIND
+        inline GfxFramebuffer *getShadowmapFramebuffer() const
         {
             return shadowmapFramebuffer;
         }
@@ -122,6 +122,16 @@ class Light
         inline GfxFramebuffer *const *getPointLightFramebuffers() const NO_BIND
         {
             return pointLightFramebuffers;
+        }
+
+        GfxFramebuffer *getPointLightFramebuffer(GfxFace face) const
+        {
+            if ((int)face > 5)
+            {
+                THROW(BoundsException);
+            }
+
+            return pointLightFramebuffers[(int)face];
         }
 
         inline size_t getShadowmapResolution() const
@@ -134,7 +144,7 @@ class Light
             return shadowmapPrecision;
         }
 
-        void updateMatrices(GfxRenderer *renderer) NO_BIND;
+        void updateMatrices(GfxRenderer *renderer);
 
         //These two functions only work with spot and directional lights.
         inline Matrix4x4 getViewMatrix() const

@@ -17,7 +17,7 @@ class Audio : public Resource
         virtual void removeContent();
 
         size_t frequency;
-        NO_BIND List<float> data;
+        List<float> data;
 
         static inline size_t changeSampleFrequency(size_t sample, size_t old, size_t new_)
         {

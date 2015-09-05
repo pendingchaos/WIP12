@@ -194,6 +194,23 @@ class GfxTexture : public Resource
                        unsigned int pixelAlignment,
                        void *data) const NO_BIND;
 
+        //TODO: Make this safe.
+        inline void allocMipmap(unsigned int level,
+                                unsigned int pixelAlignment,
+                                GfxFace face,
+                                const ResizableData& data)
+        {
+            allocMipmapFace(level, pixelAlignment, face, data.getData());
+        }
+
+        //TODO: Make this safe.
+        inline void allocMipmap(unsigned int level,
+                                unsigned int pixelAlignment,
+                                const ResizableData& data)
+        {
+            allocMipmap(level, pixelAlignment, data.getData());
+        }
+
         void generateMipmaps();
 
         inline GfxTextureType getTextureType() const

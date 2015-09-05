@@ -78,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType;
+    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, RenderMode_typeID;
+    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *RenderMode;
 };
 
 
@@ -1578,6 +1578,49 @@ R((NO)head)->typeID==EXT->RigidBodyType_typeID;
 else
  R false;
 }
+};void RenderMode_destroy(CTX,NO) {}
+SV RenderMode_get_member(CTX,NO,SV);
+void RenderMode_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs RenderMode_funcs={
+.destroy = RenderMode_destroy,
+.getMember = RenderMode_get_member,
+.setMember = RenderMode_set_member
+};
+template <>
+struct create_val<RenderMode>
+{
+static SV f(CTX ctx,RenderMode v)
+{
+R S::createNativeObject(RenderMode_funcs,(void *)v,EXT->RenderMode_typeID);
+}
+};
+template <>
+struct val_to_c<RenderMode>
+{
+static RenderMode f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to RenderMode."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->RenderMode_typeID)
+CATE(TE,"Value can not be converted to RenderMode."));
+size_t v=size_t(obj->data);
+if(v==0)return RenderMode::Nothing;
+if(v==1)return RenderMode::Model;
+if(v==2)return RenderMode::Overlay;
+}
+};
+template <>
+struct type_same<RenderMode>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RenderMode_typeID;
+else
+ R false;
+}
 };void Filesystem_destroy(CTX,NO);
 SV Filesystem_get_member(CTX,NO,SV);
 void Filesystem_set_member(CTX,NO,SV,SV);
@@ -1801,6 +1844,8 @@ else
 
 SV GhostObjList___eq__(CTX ctx,const List<SV>&a);
 SV GhostObjList___neq__(CTX ctx,const List<SV>&a);
+SV GhostObjList_get(CTX ctx,const List<SV>&a);
+SV GhostObjList_set(CTX ctx,const List<SV>&a);
 SV GhostObjList_getCount(CTX ctx,const List<SV>&a);
 SV GhostObjList_getData(CTX ctx,const List<SV>&a);
 SV GhostObjList_append(CTX ctx,const List<SV>&a);
@@ -1999,6 +2044,8 @@ else
 
 SV LightList___eq__(CTX ctx,const List<SV>&a);
 SV LightList___neq__(CTX ctx,const List<SV>&a);
+SV LightList_get(CTX ctx,const List<SV>&a);
+SV LightList_set(CTX ctx,const List<SV>&a);
 SV LightList_getCount(CTX ctx,const List<SV>&a);
 SV LightList_getData(CTX ctx,const List<SV>&a);
 SV LightList_append(CTX ctx,const List<SV>&a);
@@ -3391,6 +3438,8 @@ else
 
 SV GfxLODList___eq__(CTX ctx,const List<SV>&a);
 SV GfxLODList___neq__(CTX ctx,const List<SV>&a);
+SV GfxLODList_get(CTX ctx,const List<SV>&a);
+SV GfxLODList_set(CTX ctx,const List<SV>&a);
 SV GfxLODList_getCount(CTX ctx,const List<SV>&a);
 SV GfxLODList_getData(CTX ctx,const List<SV>&a);
 SV GfxLODList_append(CTX ctx,const List<SV>&a);
@@ -3619,6 +3668,8 @@ else
 
 SV AudioSourceList___eq__(CTX ctx,const List<SV>&a);
 SV AudioSourceList___neq__(CTX ctx,const List<SV>&a);
+SV AudioSourceList_get(CTX ctx,const List<SV>&a);
+SV AudioSourceList_set(CTX ctx,const List<SV>&a);
 SV AudioSourceList_getCount(CTX ctx,const List<SV>&a);
 SV AudioSourceList_getData(CTX ctx,const List<SV>&a);
 SV AudioSourceList_append(CTX ctx,const List<SV>&a);
@@ -3863,6 +3914,10 @@ else
 }
 };
 
+SV RenderComponent_getShadowCaster(CTX ctx,const List<SV>&a);
+SV RenderComponent_setShadowCaster(CTX ctx,const List<SV>&a);
+SV RenderComponent_getOverlayColor(CTX ctx,const List<SV>&a);
+SV RenderComponent_setOverlayColor(CTX ctx,const List<SV>&a);
 void Int2_destroy(CTX,NO);
 SV Int2_get_member(CTX,NO,SV);
 void Int2_set_member(CTX,NO,SV,SV);
@@ -4102,6 +4157,7 @@ SV Light_removeShadowmap(CTX ctx,const List<SV>&a);
 SV Light_getShadowmap(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a);
 SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a);
+SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a);
 SV Light_updateMatrices(CTX ctx,const List<SV>&a);
@@ -4167,6 +4223,8 @@ else
 
 SV StringList___eq__(CTX ctx,const List<SV>&a);
 SV StringList___neq__(CTX ctx,const List<SV>&a);
+SV StringList_get(CTX ctx,const List<SV>&a);
+SV StringList_set(CTX ctx,const List<SV>&a);
 SV StringList_getCount(CTX ctx,const List<SV>&a);
 SV StringList_getData(CTX ctx,const List<SV>&a);
 SV StringList_append(CTX ctx,const List<SV>&a);
@@ -4429,6 +4487,77 @@ SV Float4_getWXZY(CTX ctx,const List<SV>&a);
 SV Float4_setWXZY(CTX ctx,const List<SV>&a);
 SV Float4_getWXYZ(CTX ctx,const List<SV>&a);
 SV Float4_setWXYZ(CTX ctx,const List<SV>&a);
+void FloatList_destroy(CTX,NO);
+SV FloatList_get_member(CTX,NO,SV);
+void FloatList_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs FloatList_funcs={
+.destroy = FloatList_destroy,
+.getMember = FloatList_get_member,
+.setMember = FloatList_set_member
+};
+template <>
+struct create_val<List<float>>
+{
+static SV f(CTX ctx,const List<float>&obj)
+{
+#define ghfj List<float>
+R S::createNativeObject(FloatList_funcs,NEW(ghfj, obj),EXT->FloatList_typeID);
+}
+};
+template <>
+struct val_to_c<List<float>>
+{
+static List<float> f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->FloatList_typeID)
+R*((List<float>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to FloatList."));
+} else
+ CATE(TE,"Value can not be converted to FloatList."));
+}
+};
+
+template <>
+struct val_to_c<const List<float>>
+{
+static List<float> f(CTX ctx,const SV head) {return val_to_c<List<float>>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const List<float>>
+{
+static SV f(CTX ctx,const List<float>&obj) {return create_val<List<float>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<List<float>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->FloatList_typeID;
+else
+ R false;
+}
+};
+
+SV FloatList___eq__(CTX ctx,const List<SV>&a);
+SV FloatList___neq__(CTX ctx,const List<SV>&a);
+SV FloatList_get(CTX ctx,const List<SV>&a);
+SV FloatList_set(CTX ctx,const List<SV>&a);
+SV FloatList_getCount(CTX ctx,const List<SV>&a);
+SV FloatList_getData(CTX ctx,const List<SV>&a);
+SV FloatList_append(CTX ctx,const List<SV>&a);
+SV FloatList_insert(CTX ctx,const List<SV>&a);
+SV FloatList_remove(CTX ctx,const List<SV>&a);
+SV FloatList_clear(CTX ctx,const List<SV>&a);
+SV FloatList_find(CTX ctx,const List<SV>&a);
+SV FloatList_copy(CTX ctx,const List<SV>&a);
+SV FloatList_in(CTX ctx,const List<SV>&a);
 void LightDirectionalData_destroy(CTX,NO);
 SV LightDirectionalData_get_member(CTX,NO,SV);
 void LightDirectionalData_set_member(CTX,NO,SV,SV);
@@ -4974,6 +5103,8 @@ else
 
 SV RigidBodyList___eq__(CTX ctx,const List<SV>&a);
 SV RigidBodyList___neq__(CTX ctx,const List<SV>&a);
+SV RigidBodyList_get(CTX ctx,const List<SV>&a);
+SV RigidBodyList_set(CTX ctx,const List<SV>&a);
 SV RigidBodyList_getCount(CTX ctx,const List<SV>&a);
 SV RigidBodyList_getData(CTX ctx,const List<SV>&a);
 SV RigidBodyList_append(CTX ctx,const List<SV>&a);
@@ -5282,6 +5413,8 @@ else
 
 SV List___eq__(CTX ctx,const List<SV>&a);
 SV List___neq__(CTX ctx,const List<SV>&a);
+SV List_get(CTX ctx,const List<SV>&a);
+SV List_set(CTX ctx,const List<SV>&a);
 SV List_getCount(CTX ctx,const List<SV>&a);
 SV List_getData(CTX ctx,const List<SV>&a);
 SV List_append(CTX ctx,const List<SV>&a);
@@ -5454,6 +5587,8 @@ else
 
 SV GfxSubModelList___eq__(CTX ctx,const List<SV>&a);
 SV GfxSubModelList___neq__(CTX ctx,const List<SV>&a);
+SV GfxSubModelList_get(CTX ctx,const List<SV>&a);
+SV GfxSubModelList_set(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_getCount(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_getData(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_append(CTX ctx,const List<SV>&a);
@@ -5557,6 +5692,8 @@ else
 
 SV EntityList___eq__(CTX ctx,const List<SV>&a);
 SV EntityList___neq__(CTX ctx,const List<SV>&a);
+SV EntityList_get(CTX ctx,const List<SV>&a);
+SV EntityList_set(CTX ctx,const List<SV>&a);
 SV EntityList_getCount(CTX ctx,const List<SV>&a);
 SV EntityList_getData(CTX ctx,const List<SV>&a);
 SV EntityList_append(CTX ctx,const List<SV>&a);
@@ -8859,6 +8996,81 @@ else
 }
 };
 
+SV FloatList_ptr_copy(CTX,NO);
+void FloatList_ptr_destroy(CTX,NO);
+SV FloatList_ptr_get_member(CTX,NO,SV);
+void FloatList_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs FloatList_ptr_funcs={
+.destroy = FloatList_ptr_destroy,
+.getMember = FloatList_ptr_get_member,
+.setMember = FloatList_ptr_set_member
+};
+template <>
+struct create_val<List<float> *>
+{
+static SV f(CTX ctx,List<float>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(FloatList_ptr_funcs,obj,EXT->FloatList_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<List<float> *>
+{
+static List<float> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->FloatList_ptr_typeID)
+R(List<float>*)obj->data;
+else
+ CATE(TE,"Value is not a FloatListRef."));
+} else
+ CATE(TE,"Value is not a FloatListRef."));
+}
+};
+template <>
+struct type_same<List<float> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->FloatList_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const List<float> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->FloatList_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const List<float> *>
+{
+static const List<float> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->FloatList_ptr_typeID)
+R(List<float>*)obj->data;
+else
+ CATE(TE,"Value is not a FloatListRef."));
+} else
+ CATE(TE,"Value is not a FloatListRef."));
+}
+};
+
 SV LightDirectionalData_ptr_copy(CTX,NO);
 void LightDirectionalData_ptr_destroy(CTX,NO);
 SV LightDirectionalData_ptr_get_member(CTX,NO,SV);
@@ -11908,6 +12120,58 @@ else
 }
 }
 void RigidBodyType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV RenderMode___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("RenderMode::__eq__")));
+size_t F;
+if(!TS(a[0],RenderMode))
+CATE(TE,FAE("RenderMode::RenderMode","RenderMode")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],RenderMode))
+CATE(VE,UFOF("RenderMode::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV RenderMode_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("RenderMode");
+EI(keyStr=="__eq__")
+R CNF(RenderMode___eq__);
+EI(keyStr=="Nothing")R S::createNativeObject(RenderMode_funcs,(void *)0,EXT->RenderMode_typeID);
+EI(keyStr=="Model")R S::createNativeObject(RenderMode_funcs,(void *)1,EXT->RenderMode_typeID);
+EI(keyStr=="Overlay")R S::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("RenderMode");
+EI(keyStr=="__eq__")
+R CNF(RenderMode___eq__);
+EI(keyStr=="Nothing")R S::createNativeObject(RenderMode_funcs,(void *)0,EXT->RenderMode_typeID);
+EI(keyStr=="Model")R S::createNativeObject(RenderMode_funcs,(void *)1,EXT->RenderMode_typeID);
+EI(keyStr=="Overlay")R S::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void RenderMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 void Filesystem_destroy(CTX ctx,NO F)
 {
 if(!TS((SV)F,Filesystem))
@@ -12803,6 +13067,10 @@ R CNF(GhostObjList_new);
 R CNF(GhostObjList___eq__);
  EI(keyStr == "__neq__")
 R CNF(GhostObjList___neq__);
+ EI(keyStr == "get")
+R CNF(GhostObjList_get);
+ EI(keyStr == "set")
+R CNF(GhostObjList_set);
  EI(keyStr == "getCount")
 R CNF(GhostObjList_getCount);
  EI(keyStr == "getData")
@@ -12869,23 +13137,43 @@ CATE(TE,UFOF("GhostObjList::insert.")));
 R CN;
 }
 
-SV GhostObjList_copy(CTX ctx,const List<SV>&a)
+SV GhostObjList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GhostObjList::copy" EAOE));
+CATE(VE,"GhostObjList::set" EAOE));
 List<GhostObject*>*F;
 if(!TS(a[0],List<GhostObject*>))
-CATE(TE,FAE("GhostObjList::copy","GhostObjList")));
+CATE(TE,FAE("GhostObjList::set","GhostObjList")));
 else
  F=(List<GhostObject*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],GhostObject*))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GhostObject*>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GhostObjList::set.")));
+R CN;
+}
+
+SV GhostObjList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObjList::get" EAOE));
+List<GhostObject*>*F;
+if(!TS(a[0],List<GhostObject*>))
+CATE(TE,FAE("GhostObjList::get","GhostObjList")));
+else
+ F=(List<GhostObject*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("GhostObjList::copy.")));
+CATE(TE,UFOF("GhostObjList::get.")));
 R CN;
 }
 
@@ -12906,6 +13194,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("GhostObjList::clear.")));
+R CN;
+}
+
+SV GhostObjList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObjList::copy" EAOE));
+List<GhostObject*>*F;
+if(!TS(a[0],List<GhostObject*>))
+CATE(TE,FAE("GhostObjList::copy","GhostObjList")));
+else
+ F=(List<GhostObject*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("GhostObjList::copy.")));
 R CN;
 }
 
@@ -14687,6 +14995,12 @@ CATE(TE,FAE("RigidBody::getEntity","RigidBody")));
 else
  F=(RigidBody*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getEntity());
+;
+}
 CATE(TE,UFOF("RigidBody::getEntity.")));
 R CN;
 }
@@ -14803,6 +15117,10 @@ R CNF(LightList_new);
 R CNF(LightList___eq__);
  EI(keyStr == "__neq__")
 R CNF(LightList___neq__);
+ EI(keyStr == "get")
+R CNF(LightList_get);
+ EI(keyStr == "set")
+R CNF(LightList_set);
  EI(keyStr == "getCount")
 R CNF(LightList_getCount);
  EI(keyStr == "getData")
@@ -14869,23 +15187,43 @@ CATE(TE,UFOF("LightList::insert.")));
 R CN;
 }
 
-SV LightList_copy(CTX ctx,const List<SV>&a)
+SV LightList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"LightList::copy" EAOE));
+CATE(VE,"LightList::set" EAOE));
 List<Light*>*F;
 if(!TS(a[0],List<Light*>))
-CATE(TE,FAE("LightList::copy","LightList")));
+CATE(TE,FAE("LightList::set","LightList")));
 else
  F=(List<Light*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],Light*))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Light*>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("LightList::set.")));
+R CN;
+}
+
+SV LightList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"LightList::get" EAOE));
+List<Light*>*F;
+if(!TS(a[0],List<Light*>))
+CATE(TE,FAE("LightList::get","LightList")));
+else
+ F=(List<Light*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("LightList::copy.")));
+CATE(TE,UFOF("LightList::get.")));
 R CN;
 }
 
@@ -14906,6 +15244,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("LightList::clear.")));
+R CN;
+}
+
+SV LightList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"LightList::copy" EAOE));
+List<Light*>*F;
+if(!TS(a[0],List<Light*>))
+CATE(TE,FAE("LightList::copy","LightList")));
+else
+ F=(List<Light*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("LightList::copy.")));
 R CN;
 }
 
@@ -30099,6 +30457,10 @@ R CNF(GfxLODList_new);
 R CNF(GfxLODList___eq__);
  EI(keyStr == "__neq__")
 R CNF(GfxLODList___neq__);
+ EI(keyStr == "get")
+R CNF(GfxLODList_get);
+ EI(keyStr == "set")
+R CNF(GfxLODList_set);
  EI(keyStr == "getCount")
 R CNF(GfxLODList_getCount);
  EI(keyStr == "getData")
@@ -30165,23 +30527,43 @@ CATE(TE,UFOF("GfxLODList::insert.")));
 R CN;
 }
 
-SV GfxLODList_copy(CTX ctx,const List<SV>&a)
+SV GfxLODList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxLODList::copy" EAOE));
+CATE(VE,"GfxLODList::set" EAOE));
 List<GfxLOD>*F;
 if(!TS(a[0],List<GfxLOD>))
-CATE(TE,FAE("GfxLODList::copy","GfxLODList")));
+CATE(TE,FAE("GfxLODList::set","GfxLODList")));
 else
  F=(List<GfxLOD>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],GfxLOD))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxLOD>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GfxLODList::set.")));
+R CN;
+}
+
+SV GfxLODList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxLODList::get" EAOE));
+List<GfxLOD>*F;
+if(!TS(a[0],List<GfxLOD>))
+CATE(TE,FAE("GfxLODList::get","GfxLODList")));
+else
+ F=(List<GfxLOD>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("GfxLODList::copy.")));
+CATE(TE,UFOF("GfxLODList::get.")));
 R CN;
 }
 
@@ -30202,6 +30584,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("GfxLODList::clear.")));
+R CN;
+}
+
+SV GfxLODList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxLODList::copy" EAOE));
+List<GfxLOD>*F;
+if(!TS(a[0],List<GfxLOD>))
+CATE(TE,FAE("GfxLODList::copy","GfxLODList")));
+else
+ F=(List<GfxLOD>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("GfxLODList::copy.")));
 R CN;
 }
 
@@ -30504,9 +30906,9 @@ else
  F=(GfxBuffer*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],ResizableData &))
+if(1&&TS(a[1],size_t)&&TS(a[2],const ResizableData &))
 {
-( F->setData(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<ResizableData &>::type>::f(ctx,a[2])));
+( F->setData(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const ResizableData &>::type>::f(ctx,a[2])));
 R CN;
 }
 CATE(TE,UFOF("GfxBuffer::setData.")));
@@ -32021,6 +32423,10 @@ R CNF(AudioSourceList_new);
 R CNF(AudioSourceList___eq__);
  EI(keyStr == "__neq__")
 R CNF(AudioSourceList___neq__);
+ EI(keyStr == "get")
+R CNF(AudioSourceList_get);
+ EI(keyStr == "set")
+R CNF(AudioSourceList_set);
  EI(keyStr == "getCount")
 R CNF(AudioSourceList_getCount);
  EI(keyStr == "getData")
@@ -32087,23 +32493,43 @@ CATE(TE,UFOF("AudioSourceList::insert.")));
 R CN;
 }
 
-SV AudioSourceList_copy(CTX ctx,const List<SV>&a)
+SV AudioSourceList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"AudioSourceList::copy" EAOE));
+CATE(VE,"AudioSourceList::set" EAOE));
 List<AudioSource*>*F;
 if(!TS(a[0],List<AudioSource*>))
-CATE(TE,FAE("AudioSourceList::copy","AudioSourceList")));
+CATE(TE,FAE("AudioSourceList::set","AudioSourceList")));
 else
  F=(List<AudioSource*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],AudioSource*))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("AudioSourceList::set.")));
+R CN;
+}
+
+SV AudioSourceList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::get" EAOE));
+List<AudioSource*>*F;
+if(!TS(a[0],List<AudioSource*>))
+CATE(TE,FAE("AudioSourceList::get","AudioSourceList")));
+else
+ F=(List<AudioSource*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("AudioSourceList::copy.")));
+CATE(TE,UFOF("AudioSourceList::get.")));
 R CN;
 }
 
@@ -32124,6 +32550,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("AudioSourceList::clear.")));
+R CN;
+}
+
+SV AudioSourceList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::copy" EAOE));
+List<AudioSource*>*F;
+if(!TS(a[0],List<AudioSource*>))
+CATE(TE,FAE("AudioSourceList::copy","AudioSourceList")));
+else
+ F=(List<AudioSource*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("AudioSourceList::copy.")));
 R CN;
 }
 
@@ -34076,7 +34522,19 @@ if(keyStr=="__classTypeID__")
 R S::createInt(F->typeID);
 EI(keyStr=="__init__")
 R CNF(RenderComponent_new);
- EI(keyStr=="model")
+ EI(keyStr == "getShadowCaster")
+R CNF(RenderComponent_getShadowCaster);
+ EI(keyStr == "setShadowCaster")
+R CNF(RenderComponent_setShadowCaster);
+ EI(keyStr == "getOverlayColor")
+R CNF(RenderComponent_getOverlayColor);
+ EI(keyStr == "setOverlayColor")
+R CNF(RenderComponent_setOverlayColor);
+ EI(keyStr=="mode")
+{
+RenderComponent*obj=(RenderComponent*)F->data;
+R CV(obj->mode);
+} EI(keyStr=="model")
 {
 RenderComponent*obj=(RenderComponent*)F->data;
 R CV(obj->model);
@@ -34100,7 +34558,11 @@ if(F->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="model")
+if(0) {} EI(keyStr=="mode")
+{
+RenderComponent*obj=(RenderComponent*)F->data;
+obj->mode=val_to_c<decltype(obj->mode)>::f(ctx,value);
+} EI(keyStr=="model")
 {
 RenderComponent*obj=(RenderComponent*)F->data;
 obj->model=val_to_c<decltype(obj->model)>::f(ctx,value);
@@ -34112,6 +34574,86 @@ obj->overlayTexture=val_to_c<decltype(obj->overlayTexture)>::f(ctx,value);
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
+}
+
+SV RenderComponent_setOverlayColor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderComponent::setOverlayColor" EAOE));
+RenderComponent*F;
+if(!TS(a[0],RenderComponent))
+CATE(TE,FAE("RenderComponent::setOverlayColor","RenderComponent")));
+else
+ F=(RenderComponent*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Float3 &))
+{
+( F->setOverlayColor(val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("RenderComponent::setOverlayColor.")));
+R CN;
+}
+
+SV RenderComponent_getShadowCaster(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderComponent::getShadowCaster" EAOE));
+RenderComponent*F;
+if(!TS(a[0],RenderComponent))
+CATE(TE,FAE("RenderComponent::getShadowCaster","RenderComponent")));
+else
+ F=(RenderComponent*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getShadowCaster());
+;
+}
+CATE(TE,UFOF("RenderComponent::getShadowCaster.")));
+R CN;
+}
+
+SV RenderComponent_getOverlayColor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderComponent::getOverlayColor" EAOE));
+RenderComponent*F;
+if(!TS(a[0],RenderComponent))
+CATE(TE,FAE("RenderComponent::getOverlayColor","RenderComponent")));
+else
+ F=(RenderComponent*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getOverlayColor());
+;
+}
+CATE(TE,UFOF("RenderComponent::getOverlayColor.")));
+R CN;
+}
+
+SV RenderComponent_setShadowCaster(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderComponent::setShadowCaster" EAOE));
+RenderComponent*F;
+if(!TS(a[0],RenderComponent))
+CATE(TE,FAE("RenderComponent::setShadowCaster","RenderComponent")));
+else
+ F=(RenderComponent*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],bool))
+{
+( F->setShadowCaster(val_to_c<std::remove_reference<bool>::type>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("RenderComponent::setShadowCaster.")));
+R CN;
 }
 
 void Int2_destroy(CTX ctx,NO F)
@@ -34839,6 +35381,12 @@ CATE(TE,FAE("AudioWorld::getSources","AudioWorld")));
 else
  F=(AudioWorld*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getSources());
+;
+}
 CATE(TE,UFOF("AudioWorld::getSources.")));
 R CN;
 }
@@ -35340,6 +35888,8 @@ R CNF(Light_getShadowmap);
 R CNF(Light_getShadowmapFramebuffer);
  EI(keyStr == "getPointLightFramebuffers")
 R CNF(Light_getPointLightFramebuffers);
+ EI(keyStr == "getPointLightFramebuffer")
+R CNF(Light_getPointLightFramebuffer);
  EI(keyStr == "getShadowmapResolution")
 R CNF(Light_getShadowmapResolution);
  EI(keyStr == "getShadowmapPrecision")
@@ -35506,6 +36056,12 @@ CATE(TE,FAE("Light::updateMatrices","Light")));
 else
  F=(Light*)((NO)a[0])->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxRenderer *))
+{
+( F->updateMatrices(val_to_c<std::remove_reference<GfxRenderer *>::type>::f(ctx,a[1])));
+R CN;
+}
 CATE(TE,UFOF("Light::updateMatrices.")));
 R CN;
 }
@@ -35520,7 +36076,33 @@ CATE(TE,FAE("Light::getShadowmap","Light")));
 else
  F=(Light*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getShadowmap());
+;
+}
 CATE(TE,UFOF("Light::getShadowmap.")));
+R CN;
+}
+
+SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getPointLightFramebuffer" EAOE));
+Light*F;
+if(!TS(a[0],Light))
+CATE(TE,FAE("Light::getPointLightFramebuffer","Light")));
+else
+ F=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxFace))
+{
+R CV( F->getPointLightFramebuffer(val_to_c<std::remove_reference<GfxFace>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Light::getPointLightFramebuffer.")));
 R CN;
 }
 
@@ -35594,6 +36176,12 @@ CATE(TE,FAE("Light::getShadowmapFramebuffer","Light")));
 else
  F=(Light*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getShadowmapFramebuffer());
+;
+}
 CATE(TE,UFOF("Light::getShadowmapFramebuffer.")));
 R CN;
 }
@@ -35704,6 +36292,10 @@ R CNF(StringList_new);
 R CNF(StringList___eq__);
  EI(keyStr == "__neq__")
 R CNF(StringList___neq__);
+ EI(keyStr == "get")
+R CNF(StringList_get);
+ EI(keyStr == "set")
+R CNF(StringList_set);
  EI(keyStr == "getCount")
 R CNF(StringList_getCount);
  EI(keyStr == "getData")
@@ -35770,23 +36362,43 @@ CATE(TE,UFOF("StringList::insert.")));
 R CN;
 }
 
-SV StringList_copy(CTX ctx,const List<SV>&a)
+SV StringList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StringList::copy" EAOE));
+CATE(VE,"StringList::set" EAOE));
 List<String>*F;
 if(!TS(a[0],List<String>))
-CATE(TE,FAE("StringList::copy","StringList")));
+CATE(TE,FAE("StringList::set","StringList")));
 else
  F=(List<String>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],String))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<String>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("StringList::set.")));
+R CN;
+}
+
+SV StringList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StringList::get" EAOE));
+List<String>*F;
+if(!TS(a[0],List<String>))
+CATE(TE,FAE("StringList::get","StringList")));
+else
+ F=(List<String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("StringList::copy.")));
+CATE(TE,UFOF("StringList::get.")));
 R CN;
 }
 
@@ -35807,6 +36419,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("StringList::clear.")));
+R CN;
+}
+
+SV StringList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StringList::copy" EAOE));
+List<String>*F;
+if(!TS(a[0],List<String>))
+CATE(TE,FAE("StringList::copy","StringList")));
+else
+ F=(List<String>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("StringList::copy.")));
 R CN;
 }
 
@@ -39210,6 +39842,368 @@ CATE(TE,UFOF("Float4::dot.")));
 R CN;
 }
 
+void FloatList_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,List<float>))
+CATE(TE,"FloatList::__del__ expects FloatList as first argument."));
+
+DELETE((List<float>*)F->data);
+}SV FloatList_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList's constructor" EAOE));
+if(!TS(a[0],List<float>))
+CATE(TE,"FloatList's constructor expects FloatList as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(FloatList_funcs,NEW(List<float>),EXT->FloatList_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t))
+R S::createNativeObject(FloatList_funcs,NEW(List<float>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->FloatList_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const List<float> &))
+R S::createNativeObject(FloatList_funcs,NEW(List<float>,val_to_c<const List<float> &>::f(ctx,a[1])),EXT->FloatList_typeID);
+CATE(TE,UFOF("FloatList's constructor.")));
+R CN;
+}
+
+SV FloatList_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("FloatList");
+EI(keyStr=="__new__")
+R CNF(FloatList_new);
+EI(keyStr=="__call__")
+R CNF(FloatList_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(FloatList_new);
+ EI(keyStr == "__eq__")
+R CNF(FloatList___eq__);
+ EI(keyStr == "__neq__")
+R CNF(FloatList___neq__);
+ EI(keyStr == "get")
+R CNF(FloatList_get);
+ EI(keyStr == "set")
+R CNF(FloatList_set);
+ EI(keyStr == "getCount")
+R CNF(FloatList_getCount);
+ EI(keyStr == "getData")
+R CNF(FloatList_getData);
+ EI(keyStr == "append")
+R CNF(FloatList_append);
+ EI(keyStr == "insert")
+R CNF(FloatList_insert);
+ EI(keyStr == "remove")
+R CNF(FloatList_remove);
+ EI(keyStr == "clear")
+R CNF(FloatList_clear);
+ EI(keyStr == "find")
+R CNF(FloatList_find);
+ EI(keyStr == "copy")
+R CNF(FloatList_copy);
+ EI(keyStr == "in")
+R CNF(FloatList_in);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void FloatList_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV FloatList_insert(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::insert" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::insert","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],float))
+{
+( F->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
+R CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<float> &))
+{
+( F->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<float> &>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("FloatList::insert.")));
+R CN;
+}
+
+SV FloatList_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::set" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::set","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],float))
+{
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("FloatList::set.")));
+R CN;
+}
+
+SV FloatList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::get" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::get","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("FloatList::get.")));
+R CN;
+}
+
+SV FloatList_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::clear" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::clear","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->clear());
+R CN;
+}
+CATE(TE,UFOF("FloatList::clear.")));
+R CN;
+}
+
+SV FloatList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::copy" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::copy","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("FloatList::copy.")));
+R CN;
+}
+
+SV FloatList_remove(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::remove" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::remove","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
+{
+( F->remove(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("FloatList::remove.")));
+R CN;
+}
+
+SV FloatList_in(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::in" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::in","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+R CV( F->in(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("FloatList::in.")));
+R CN;
+}
+
+SV FloatList_getCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::getCount" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::getCount","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getCount());
+;
+}
+CATE(TE,UFOF("FloatList::getCount.")));
+R CN;
+}
+
+SV FloatList_getData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::getData" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::getData","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("FloatList::getData.")));
+R CN;
+}
+
+SV FloatList___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::__eq__" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::__eq__","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<float> &))
+{
+auto v=val_to_c<std::remove_reference<const List<float> &>::type>::f(ctx,a[1]);
+R CV(*F == v);
+}
+CATE(TE,UFOF("FloatList::__eq__.")));
+R CN;
+}
+
+SV FloatList_find(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::find" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::find","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+R CV( F->find(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("FloatList::find.")));
+R CN;
+}
+
+SV FloatList_append(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::append" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::append","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+( F->append(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+R CN;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<float> &))
+{
+( F->append(val_to_c<std::remove_reference<const List<float> &>::type>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("FloatList::append.")));
+R CN;
+}
+
+SV FloatList___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::__neq__" EAOE));
+List<float>*F;
+if(!TS(a[0],List<float>))
+CATE(TE,FAE("FloatList::__neq__","FloatList")));
+else
+ F=(List<float>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<float> &))
+{
+auto v=val_to_c<std::remove_reference<const List<float> &>::type>::f(ctx,a[1]);
+R CV(*F != v);
+}
+CATE(TE,UFOF("FloatList::__neq__.")));
+R CN;
+}
+
 void LightDirectionalData_destroy(CTX ctx,NO F)
 {
 if(!TS((SV)F,LightDirectionalData))
@@ -42393,6 +43387,10 @@ R CNF(RigidBodyList_new);
 R CNF(RigidBodyList___eq__);
  EI(keyStr == "__neq__")
 R CNF(RigidBodyList___neq__);
+ EI(keyStr == "get")
+R CNF(RigidBodyList_get);
+ EI(keyStr == "set")
+R CNF(RigidBodyList_set);
  EI(keyStr == "getCount")
 R CNF(RigidBodyList_getCount);
  EI(keyStr == "getData")
@@ -42459,23 +43457,43 @@ CATE(TE,UFOF("RigidBodyList::insert.")));
 R CN;
 }
 
-SV RigidBodyList_copy(CTX ctx,const List<SV>&a)
+SV RigidBodyList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"RigidBodyList::copy" EAOE));
+CATE(VE,"RigidBodyList::set" EAOE));
 List<RigidBody*>*F;
 if(!TS(a[0],List<RigidBody*>))
-CATE(TE,FAE("RigidBodyList::copy","RigidBodyList")));
+CATE(TE,FAE("RigidBodyList::set","RigidBodyList")));
 else
  F=(List<RigidBody*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],RigidBody*))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<RigidBody*>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("RigidBodyList::set.")));
+R CN;
+}
+
+SV RigidBodyList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RigidBodyList::get" EAOE));
+List<RigidBody*>*F;
+if(!TS(a[0],List<RigidBody*>))
+CATE(TE,FAE("RigidBodyList::get","RigidBodyList")));
+else
+ F=(List<RigidBody*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("RigidBodyList::copy.")));
+CATE(TE,UFOF("RigidBodyList::get.")));
 R CN;
 }
 
@@ -42496,6 +43514,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("RigidBodyList::clear.")));
+R CN;
+}
+
+SV RigidBodyList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RigidBodyList::copy" EAOE));
+List<RigidBody*>*F;
+if(!TS(a[0],List<RigidBody*>))
+CATE(TE,FAE("RigidBodyList::copy","RigidBodyList")));
+else
+ F=(List<RigidBody*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("RigidBodyList::copy.")));
 R CN;
 }
 
@@ -43928,6 +44966,10 @@ R CV(obj->type);
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)F->data;
 R CV(obj->mass);
+} EI(keyStr=="entity")
+{
+RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)F->data;
+R CV(obj->entity);
 } EI(keyStr=="linearDamping")
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)F->data;
@@ -43984,6 +45026,10 @@ obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)F->data;
 obj->mass=val_to_c<decltype(obj->mass)>::f(ctx,value);
+} EI(keyStr=="entity")
+{
+RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)F->data;
+obj->entity=val_to_c<decltype(obj->entity)>::f(ctx,value);
 } EI(keyStr=="linearDamping")
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)F->data;
@@ -44074,6 +45120,10 @@ R CNF(List_new);
 R CNF(List___eq__);
  EI(keyStr == "__neq__")
 R CNF(List___neq__);
+ EI(keyStr == "get")
+R CNF(List_get);
+ EI(keyStr == "set")
+R CNF(List_set);
  EI(keyStr == "getCount")
 R CNF(List_getCount);
  EI(keyStr == "getData")
@@ -44140,23 +45190,43 @@ CATE(TE,UFOF("List::insert.")));
 R CN;
 }
 
-SV List_copy(CTX ctx,const List<SV>&a)
+SV List_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"List::copy" EAOE));
+CATE(VE,"List::set" EAOE));
 List<scripting::Value*>*F;
 if(!TS(a[0],List<scripting::Value*>))
-CATE(TE,FAE("List::copy","List")));
+CATE(TE,FAE("List::set","List")));
 else
  F=(List<scripting::Value*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],scripting::Value*))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("List::set.")));
+R CN;
+}
+
+SV List_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"List::get" EAOE));
+List<scripting::Value*>*F;
+if(!TS(a[0],List<scripting::Value*>))
+CATE(TE,FAE("List::get","List")));
+else
+ F=(List<scripting::Value*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("List::copy.")));
+CATE(TE,UFOF("List::get.")));
 R CN;
 }
 
@@ -44177,6 +45247,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("List::clear.")));
+R CN;
+}
+
+SV List_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"List::copy" EAOE));
+List<scripting::Value*>*F;
+if(!TS(a[0],List<scripting::Value*>))
+CATE(TE,FAE("List::copy","List")));
+else
+ F=(List<scripting::Value*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("List::copy.")));
 R CN;
 }
 
@@ -44427,6 +45517,10 @@ R CNF(Audio_setFilename);
 {
 Audio*obj=(Audio*)F->data;
 R CV(obj->frequency);
+} EI(keyStr=="data")
+{
+Audio*obj=(Audio*)F->data;
+R CV(obj->data);
 } EI(keyStr=="autoReload")
 {
 Audio*obj=(Audio*)F->data;
@@ -44451,6 +45545,10 @@ if(0) {} EI(keyStr=="frequency")
 {
 Audio*obj=(Audio*)F->data;
 obj->frequency=val_to_c<decltype(obj->frequency)>::f(ctx,value);
+} EI(keyStr=="data")
+{
+Audio*obj=(Audio*)F->data;
+obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
 } EI(keyStr=="autoReload")
 {
 Audio*obj=(Audio*)F->data;
@@ -45194,6 +46292,18 @@ CATE(TE,FAE("GfxTexture::allocMipmap","GfxTexture")));
 else
  F=(GfxTexture*)((NO)a[0])->data;
 
+if(a.getCount()==5)
+if(1&&TS(a[1],unsigned int)&&TS(a[2],unsigned int)&&TS(a[3],GfxFace)&&TS(a[4],const ResizableData &))
+{
+( F->allocMipmap(val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxFace>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<const ResizableData &>::type>::f(ctx,a[4])));
+R CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],unsigned int)&&TS(a[2],unsigned int)&&TS(a[3],const ResizableData &))
+{
+( F->allocMipmap(val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const ResizableData &>::type>::f(ctx,a[3])));
+R CN;
+}
 CATE(TE,UFOF("GfxTexture::allocMipmap.")));
 R CN;
 }
@@ -45918,6 +47028,10 @@ R CNF(GfxSubModelList_new);
 R CNF(GfxSubModelList___eq__);
  EI(keyStr == "__neq__")
 R CNF(GfxSubModelList___neq__);
+ EI(keyStr == "get")
+R CNF(GfxSubModelList_get);
+ EI(keyStr == "set")
+R CNF(GfxSubModelList_set);
  EI(keyStr == "getCount")
 R CNF(GfxSubModelList_getCount);
  EI(keyStr == "getData")
@@ -45984,23 +47098,43 @@ CATE(TE,UFOF("GfxSubModelList::insert.")));
 R CN;
 }
 
-SV GfxSubModelList_copy(CTX ctx,const List<SV>&a)
+SV GfxSubModelList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxSubModelList::copy" EAOE));
+CATE(VE,"GfxSubModelList::set" EAOE));
 List<GfxModel::SubModel>*F;
 if(!TS(a[0],List<GfxModel::SubModel>))
-CATE(TE,FAE("GfxSubModelList::copy","GfxSubModelList")));
+CATE(TE,FAE("GfxSubModelList::set","GfxSubModelList")));
 else
  F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],GfxModel::SubModel))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxModel::SubModel>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("GfxSubModelList::set.")));
+R CN;
+}
+
+SV GfxSubModelList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxSubModelList::get" EAOE));
+List<GfxModel::SubModel>*F;
+if(!TS(a[0],List<GfxModel::SubModel>))
+CATE(TE,FAE("GfxSubModelList::get","GfxSubModelList")));
+else
+ F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("GfxSubModelList::copy.")));
+CATE(TE,UFOF("GfxSubModelList::get.")));
 R CN;
 }
 
@@ -46021,6 +47155,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("GfxSubModelList::clear.")));
+R CN;
+}
+
+SV GfxSubModelList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxSubModelList::copy" EAOE));
+List<GfxModel::SubModel>*F;
+if(!TS(a[0],List<GfxModel::SubModel>))
+CATE(TE,FAE("GfxSubModelList::copy","GfxSubModelList")));
+else
+ F=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("GfxSubModelList::copy.")));
 R CN;
 }
 
@@ -46633,6 +47787,10 @@ R CNF(EntityList_new);
 R CNF(EntityList___eq__);
  EI(keyStr == "__neq__")
 R CNF(EntityList___neq__);
+ EI(keyStr == "get")
+R CNF(EntityList_get);
+ EI(keyStr == "set")
+R CNF(EntityList_set);
  EI(keyStr == "getCount")
 R CNF(EntityList_getCount);
  EI(keyStr == "getData")
@@ -46699,23 +47857,43 @@ CATE(TE,UFOF("EntityList::insert.")));
 R CN;
 }
 
-SV EntityList_copy(CTX ctx,const List<SV>&a)
+SV EntityList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"EntityList::copy" EAOE));
+CATE(VE,"EntityList::set" EAOE));
 List<Entity*>*F;
 if(!TS(a[0],List<Entity*>))
-CATE(TE,FAE("EntityList::copy","EntityList")));
+CATE(TE,FAE("EntityList::set","EntityList")));
 else
  F=(List<Entity*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],Entity*))
 {
-R CV( F->copy());
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Entity*>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("EntityList::set.")));
+R CN;
+}
+
+SV EntityList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"EntityList::get" EAOE));
+List<Entity*>*F;
+if(!TS(a[0],List<Entity*>))
+CATE(TE,FAE("EntityList::get","EntityList")));
+else
+ F=(List<Entity*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("EntityList::copy.")));
+CATE(TE,UFOF("EntityList::get.")));
 R CN;
 }
 
@@ -46736,6 +47914,26 @@ if(1)
 R CN;
 }
 CATE(TE,UFOF("EntityList::clear.")));
+R CN;
+}
+
+SV EntityList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"EntityList::copy" EAOE));
+List<Entity*>*F;
+if(!TS(a[0],List<Entity*>))
+CATE(TE,FAE("EntityList::copy","EntityList")));
+else
+ F=(List<Entity*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("EntityList::copy.")));
 R CN;
 }
 
@@ -51518,6 +52716,87 @@ obj.refCount=1;
 obj.data=F->data;
 Float4_set_member(ctx, &obj, key, value);
 }
+SV FloatList_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->FloatList;
+NO obj=(NO)FloatList_new(ctx, args2);
+obj->funcs=FloatList_ptr_funcs;
+obj->typeID=EXT->FloatList_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV FloatList_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"FloatListRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,List<float>*))
+CATE(TE,"FloatListRef::deref expects FloatListRef as first argument."));
+R CV(*(List<float> *)((NO)F)->data);
+}
+SV FloatList_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"FloatList::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,List<float>*))
+CATE(TE,"FloatListRef::refset expects FloatListRef as first argument."));
+*((List<float> *)((NO)F)->data) = val_to_c<List<float>>::f(ctx,a[1]);
+R CN;
+}
+
+void FloatList_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,List<float>*))
+CATE(TE,"FloatListRef::__del__ expects FloatListRef as first argument."));
+SCRIPT_DELETE((List<float> *)F->data);
+}
+SV FloatList_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,List<float>*))
+CATE(TE,FAE("FloatListRef's get method","FloatListRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("FloatListPtr");
+EI(keyStr=="__new__")
+R CNF(FloatList_ptr_new);
+EI(keyStr=="__call__")
+R CNF(FloatList_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(FloatList_ptr_deref);
+if(keyStr=="refset")R CNF(FloatList_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=FloatList_funcs;
+obj.typeID=EXT->FloatList_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R FloatList_get_member(ctx, &obj, key);
+}
+void FloatList_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,List<float>*))
+CATE(TE,FAE("FloatListRef's set method","FloatListRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=FloatList_funcs;
+obj.typeID=EXT->FloatList_typeID;
+obj.refCount=1;
+obj.data=F->data;
+FloatList_set_member(ctx, &obj, key, value);
+}
 SV LightDirectionalData_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -53650,6 +54929,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Float4Ref", ext->Float4_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->FloatList_typeID = typeID;
+    ext->FloatList = scripting::createNativeObject(FloatList_funcs, NULL, typeID);
+    engine->getGlobalVars().set("FloatList", ext->FloatList);
+    
+    typeID = engine->createNewTypeID();
+    ext->FloatList_ptr_typeID = typeID;
+    ext->FloatList_ptr = scripting::createNativeObject(FloatList_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("FloatListRef", ext->FloatList_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->LightDirectionalData_typeID = typeID;
     ext->LightDirectionalData = scripting::createNativeObject(LightDirectionalData_funcs, NULL, typeID);
     engine->getGlobalVars().set("LightDirectionalData", ext->LightDirectionalData);
@@ -53980,6 +55269,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->RigidBodyType_typeID = typeID;
     ext->RigidBodyType = scripting::createNativeObject(RigidBodyType_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBodyType", ext->RigidBodyType);
+    
+    typeID = engine->createNewTypeID();
+    ext->RenderMode_typeID = typeID;
+    ext->RenderMode = scripting::createNativeObject(RenderMode_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RenderMode", ext->RenderMode);
     
     return ext;
 }

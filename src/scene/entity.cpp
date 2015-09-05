@@ -33,10 +33,10 @@ Entity::~Entity()
 
     if (render)
     {
-        if (renderComponent.type == RenderComponent::Model)
+        if (renderComponent.mode == RenderMode::Model)
         {
             renderComponent.model->release();
-        } else if (renderComponent.type == RenderComponent::Overlay)
+        } else if (renderComponent.mode == RenderMode::Overlay)
         {
             renderComponent.overlayTexture->release();
         }

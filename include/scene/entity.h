@@ -16,19 +16,21 @@
 class Scene;
 class Entity;
 
+enum class RenderMode
+{
+    Nothing,
+    Model,
+    Overlay
+} BIND ENUM_CLASS;
+
 class RenderComponent
 {
     friend Entity;
 
-    public:
-        enum Type
-        {
-            Nothing,
-            Model,
-            Overlay
-        };
+    NO_COPY(RenderComponent)
 
-        NO_BIND Type type;
+    public:
+        RenderMode mode;
 
         GfxModel *model;
         GfxTexture *overlayTexture;
@@ -44,10 +46,46 @@ class RenderComponent
                 Float3 color;
             } overlayData;
         } NO_BIND;
+
+        bool getShadowCaster() const
+        {
+            if (mode == RenderMode::Model)
+            {
+                return modelData.shadowCaster;
+            }
+
+            return false;
+        }
+
+        void setShadowCaster(bool caster)
+        {
+            if (mode == RenderMode::Model)
+            {
+                modelData.shadowCaster = caster;
+            }
+        }
+
+        Float3 getOverlayColor() const
+        {
+            if (mode == RenderMode::Overlay)
+            {
+                return overlayData.color;
+            }
+
+            return Float3(0.0f);
+        }
+
+        void setOverlayColor(const Float3& color)
+        {
+            if (mode == RenderMode::Overlay)
+            {
+                overlayData.color = color;
+            }
+        }
     private:
-        RenderComponent() : type(Nothing) {}
+        RenderComponent() : mode(RenderMode::Nothing) {}
         ~RenderComponent() {}
-} BIND;
+} BIND NOT_COPYABLE;
 
 class Entity
 {
@@ -143,7 +181,7 @@ class Entity
         inline void addModel(GfxModel *model, bool shadowCaster=true)
         {
             render = true;
-            renderComponent.type = RenderComponent::Model;
+            renderComponent.mode = RenderMode::Model;
             renderComponent.overlayTexture = nullptr;
             renderComponent.model = model;
             renderComponent.modelData.shadowCaster = shadowCaster;
@@ -152,7 +190,7 @@ class Entity
         inline void addOverlay(GfxTexture *texture)
         {
             render = true;
-            renderComponent.type = RenderComponent::Overlay;
+            renderComponent.mode = RenderMode::Overlay;
             renderComponent.model = nullptr;
             renderComponent.overlayTexture = texture;
             renderComponent.overlayData.color = Float3(1.0f);

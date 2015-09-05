@@ -37,7 +37,7 @@ class RigidBodyConstructionInfo
 
         RigidBodyType type;
         float mass;
-        NO_BIND Entity *entity;
+        Entity *entity;
         float linearDamping;
         float angularDamping;
         float friction;
@@ -150,7 +150,7 @@ class RigidBody
             return shape;
         }
 
-        inline Entity *getEntity() const NO_BIND
+        inline Entity *getEntity() const
         {
             return entity;
         }

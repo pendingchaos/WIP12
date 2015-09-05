@@ -14,9 +14,10 @@
     - [ ] Namespaces
     - [ ] Getters and Setters
     - [ ] C++ exceptions -> script exceptions
+        - [ ] Then bind the exceptions
     - [ ] Bind lots of stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding RigidBody, File, GfxDebugDrawer, Light, Resource, Audio, AudioWorld, AudioDevice, List, GfxModel, GfxLOD, GfxTexture, GfxApi, PhysicsWorld, PhysicsShape, ResourceManager, RenderComponent, GfxRenderer.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsWorld, PhysicsShape, ResourceManager, GfxRenderer.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
 - [ ] Make functions for builtin functions like + and *.
