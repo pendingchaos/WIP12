@@ -78,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, RenderMode_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *AudioSource, *AudioSource_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *RenderMode;
+    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -1578,6 +1578,48 @@ R((NO)head)->typeID==EXT->RigidBodyType_typeID;
 else
  R false;
 }
+};void PhysicsObjectType_destroy(CTX,NO) {}
+SV PhysicsObjectType_get_member(CTX,NO,SV);
+void PhysicsObjectType_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs PhysicsObjectType_funcs={
+.destroy = PhysicsObjectType_destroy,
+.getMember = PhysicsObjectType_get_member,
+.setMember = PhysicsObjectType_set_member
+};
+template <>
+struct create_val<PhysicsObjectType>
+{
+static SV f(CTX ctx,PhysicsObjectType v)
+{
+R S::createNativeObject(PhysicsObjectType_funcs,(void *)v,EXT->PhysicsObjectType_typeID);
+}
+};
+template <>
+struct val_to_c<PhysicsObjectType>
+{
+static PhysicsObjectType f(CTX ctx,const SV head)
+{
+if(head->type!=S::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to PhysicsObjectType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->PhysicsObjectType_typeID)
+CATE(TE,"Value can not be converted to PhysicsObjectType."));
+size_t v=size_t(obj->data);
+if(v==0)return PhysicsObjectType::Body;
+if(v==1)return PhysicsObjectType::Ghost;
+}
+};
+template <>
+struct type_same<PhysicsObjectType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->PhysicsObjectType_typeID;
+else
+ R false;
+}
 };void RenderMode_destroy(CTX,NO) {}
 SV RenderMode_get_member(CTX,NO,SV);
 void RenderMode_set_member(CTX,NO,SV,SV);
@@ -2425,6 +2467,77 @@ else
 
 SV AudioSource_getAudio(CTX ctx,const List<SV>&a);
 SV AudioSource_setAudio(CTX ctx,const List<SV>&a);
+void RayCastResultList_destroy(CTX,NO);
+SV RayCastResultList_get_member(CTX,NO,SV);
+void RayCastResultList_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs RayCastResultList_funcs={
+.destroy = RayCastResultList_destroy,
+.getMember = RayCastResultList_get_member,
+.setMember = RayCastResultList_set_member
+};
+template <>
+struct create_val<List<RayCastResult>>
+{
+static SV f(CTX ctx,const List<RayCastResult>&obj)
+{
+#define ghfj List<RayCastResult>
+R S::createNativeObject(RayCastResultList_funcs,NEW(ghfj, obj),EXT->RayCastResultList_typeID);
+}
+};
+template <>
+struct val_to_c<List<RayCastResult>>
+{
+static List<RayCastResult> f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RayCastResultList_typeID)
+R*((List<RayCastResult>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to RayCastResultList."));
+} else
+ CATE(TE,"Value can not be converted to RayCastResultList."));
+}
+};
+
+template <>
+struct val_to_c<const List<RayCastResult>>
+{
+static List<RayCastResult> f(CTX ctx,const SV head) {return val_to_c<List<RayCastResult>>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const List<RayCastResult>>
+{
+static SV f(CTX ctx,const List<RayCastResult>&obj) {return create_val<List<RayCastResult>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<List<RayCastResult>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RayCastResultList_typeID;
+else
+ R false;
+}
+};
+
+SV RayCastResultList___eq__(CTX ctx,const List<SV>&a);
+SV RayCastResultList___neq__(CTX ctx,const List<SV>&a);
+SV RayCastResultList_get(CTX ctx,const List<SV>&a);
+SV RayCastResultList_set(CTX ctx,const List<SV>&a);
+SV RayCastResultList_getCount(CTX ctx,const List<SV>&a);
+SV RayCastResultList_getData(CTX ctx,const List<SV>&a);
+SV RayCastResultList_append(CTX ctx,const List<SV>&a);
+SV RayCastResultList_insert(CTX ctx,const List<SV>&a);
+SV RayCastResultList_remove(CTX ctx,const List<SV>&a);
+SV RayCastResultList_clear(CTX ctx,const List<SV>&a);
+SV RayCastResultList_find(CTX ctx,const List<SV>&a);
+SV RayCastResultList_copy(CTX ctx,const List<SV>&a);
+SV RayCastResultList_in(CTX ctx,const List<SV>&a);
 void Camera_destroy(CTX,NO);
 SV Camera_get_member(CTX,NO,SV);
 void Camera_set_member(CTX,NO,SV,SV);
@@ -5114,6 +5227,67 @@ SV RigidBodyList_clear(CTX ctx,const List<SV>&a);
 SV RigidBodyList_find(CTX ctx,const List<SV>&a);
 SV RigidBodyList_copy(CTX ctx,const List<SV>&a);
 SV RigidBodyList_in(CTX ctx,const List<SV>&a);
+void RayCastResult_destroy(CTX,NO);
+SV RayCastResult_get_member(CTX,NO,SV);
+void RayCastResult_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs RayCastResult_funcs={
+.destroy = RayCastResult_destroy,
+.getMember = RayCastResult_get_member,
+.setMember = RayCastResult_set_member
+};
+template <>
+struct create_val<RayCastResult>
+{
+static SV f(CTX ctx,const RayCastResult&obj)
+{
+#define ghfj RayCastResult
+R S::createNativeObject(RayCastResult_funcs,NEW(ghfj, obj),EXT->RayCastResult_typeID);
+}
+};
+template <>
+struct val_to_c<RayCastResult>
+{
+static RayCastResult f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RayCastResult_typeID)
+R*((RayCastResult*)obj->data);
+else
+ CATE(TE,"Value can not be converted to RayCastResult."));
+} else
+ CATE(TE,"Value can not be converted to RayCastResult."));
+}
+};
+
+template <>
+struct val_to_c<const RayCastResult>
+{
+static RayCastResult f(CTX ctx,const SV head) {return val_to_c<RayCastResult>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const RayCastResult>
+{
+static SV f(CTX ctx,const RayCastResult&obj) {return create_val<RayCastResult>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<RayCastResult>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RayCastResult_typeID;
+else
+ R false;
+}
+};
+
+SV RayCastResult_getRigidBody(CTX ctx,const List<SV>&a);
+SV RayCastResult_getGhost(CTX ctx,const List<SV>&a);
+SV RayCastResult___eq__(CTX ctx,const List<SV>&a);
 void GfxLOD_destroy(CTX,NO);
 SV GfxLOD_get_member(CTX,NO,SV);
 void GfxLOD_set_member(CTX,NO,SV,SV);
@@ -6968,6 +7142,81 @@ else
  CATE(TE,"Value is not a AudioSourceRef."));
 } else
  CATE(TE,"Value is not a AudioSourceRef."));
+}
+};
+
+SV RayCastResultList_ptr_copy(CTX,NO);
+void RayCastResultList_ptr_destroy(CTX,NO);
+SV RayCastResultList_ptr_get_member(CTX,NO,SV);
+void RayCastResultList_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs RayCastResultList_ptr_funcs={
+.destroy = RayCastResultList_ptr_destroy,
+.getMember = RayCastResultList_ptr_get_member,
+.setMember = RayCastResultList_ptr_set_member
+};
+template <>
+struct create_val<List<RayCastResult> *>
+{
+static SV f(CTX ctx,List<RayCastResult>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(RayCastResultList_ptr_funcs,obj,EXT->RayCastResultList_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<List<RayCastResult> *>
+{
+static List<RayCastResult> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RayCastResultList_ptr_typeID)
+R(List<RayCastResult>*)obj->data;
+else
+ CATE(TE,"Value is not a RayCastResultListRef."));
+} else
+ CATE(TE,"Value is not a RayCastResultListRef."));
+}
+};
+template <>
+struct type_same<List<RayCastResult> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RayCastResultList_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const List<RayCastResult> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RayCastResultList_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const List<RayCastResult> *>
+{
+static const List<RayCastResult> *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RayCastResultList_ptr_typeID)
+R(List<RayCastResult>*)obj->data;
+else
+ CATE(TE,"Value is not a RayCastResultListRef."));
+} else
+ CATE(TE,"Value is not a RayCastResultListRef."));
 }
 };
 
@@ -9671,6 +9920,81 @@ else
 }
 };
 
+SV RayCastResult_ptr_copy(CTX,NO);
+void RayCastResult_ptr_destroy(CTX,NO);
+SV RayCastResult_ptr_get_member(CTX,NO,SV);
+void RayCastResult_ptr_set_member(CTX,NO,SV,SV);
+static const S::NativeObjectFuncs RayCastResult_ptr_funcs={
+.destroy = RayCastResult_ptr_destroy,
+.getMember = RayCastResult_ptr_get_member,
+.setMember = RayCastResult_ptr_set_member
+};
+template <>
+struct create_val<RayCastResult *>
+{
+static SV f(CTX ctx,RayCastResult*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+R S::createNativeObject(RayCastResult_ptr_funcs,obj,EXT->RayCastResult_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<RayCastResult *>
+{
+static RayCastResult *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RayCastResult_ptr_typeID)
+R(RayCastResult*)obj->data;
+else
+ CATE(TE,"Value is not a RayCastResultRef."));
+} else
+ CATE(TE,"Value is not a RayCastResultRef."));
+}
+};
+template <>
+struct type_same<RayCastResult *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RayCastResult_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct type_same<const RayCastResult *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+R((NO)head)->typeID==EXT->RayCastResult_ptr_typeID;
+else
+ R false;
+}
+};
+template <>
+struct val_to_c<const RayCastResult *>
+{
+static const RayCastResult *f(CTX ctx,const SV head)
+{
+if(head->type==S::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RayCastResult_ptr_typeID)
+R(RayCastResult*)obj->data;
+else
+ CATE(TE,"Value is not a RayCastResultRef."));
+} else
+ CATE(TE,"Value is not a RayCastResultRef."));
+}
+};
+
 SV GfxLOD_ptr_copy(CTX,NO);
 void GfxLOD_ptr_destroy(CTX,NO);
 SV GfxLOD_ptr_get_member(CTX,NO,SV);
@@ -12120,6 +12444,56 @@ else
 }
 }
 void RigidBodyType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV PhysicsObjectType___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("PhysicsObjectType::__eq__")));
+size_t F;
+if(!TS(a[0],PhysicsObjectType))
+CATE(TE,FAE("PhysicsObjectType::PhysicsObjectType","PhysicsObjectType")));
+else
+ F=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],PhysicsObjectType))
+CATE(VE,UFOF("PhysicsObjectType::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return S::createBoolean(F == other);
+}SV PhysicsObjectType_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("PhysicsObjectType");
+EI(keyStr=="__eq__")
+R CNF(PhysicsObjectType___eq__);
+EI(keyStr=="Body")R S::createNativeObject(PhysicsObjectType_funcs,(void *)0,EXT->PhysicsObjectType_typeID);
+EI(keyStr=="Ghost")R S::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("PhysicsObjectType");
+EI(keyStr=="__eq__")
+R CNF(PhysicsObjectType___eq__);
+EI(keyStr=="Body")R S::createNativeObject(PhysicsObjectType_funcs,(void *)0,EXT->PhysicsObjectType_typeID);
+EI(keyStr=="Ghost")R S::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void PhysicsObjectType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV RenderMode___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -17450,6 +17824,12 @@ CATE(TE,FAE("PhysicsWorld::castRay","PhysicsWorld")));
 else
  F=(PhysicsWorld*)((NO)a[0])->data;
 
+if(a.getCount()==4)
+if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Direction3D &)&&TS(a[3],float))
+{
+R CV( F->castRay(val_to_c<std::remove_reference<const Position3D &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Direction3D &>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
+;
+}
 CATE(TE,UFOF("PhysicsWorld::castRay.")));
 R CN;
 }
@@ -17841,6 +18221,368 @@ if(1&&TS(a[1],Audio *))
 R CN;
 }
 CATE(TE,UFOF("AudioSource::setAudio.")));
+R CN;
+}
+
+void RayCastResultList_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,List<RayCastResult>))
+CATE(TE,"RayCastResultList::__del__ expects RayCastResultList as first argument."));
+
+DELETE((List<RayCastResult>*)F->data);
+}SV RayCastResultList_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList's constructor" EAOE));
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,"RayCastResultList's constructor expects RayCastResultList as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(RayCastResultList_funcs,NEW(List<RayCastResult>),EXT->RayCastResultList_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t))
+R S::createNativeObject(RayCastResultList_funcs,NEW(List<RayCastResult>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->RayCastResultList_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const List<RayCastResult> &))
+R S::createNativeObject(RayCastResultList_funcs,NEW(List<RayCastResult>,val_to_c<const List<RayCastResult> &>::f(ctx,a[1])),EXT->RayCastResultList_typeID);
+CATE(TE,UFOF("RayCastResultList's constructor.")));
+R CN;
+}
+
+SV RayCastResultList_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("RayCastResultList");
+EI(keyStr=="__new__")
+R CNF(RayCastResultList_new);
+EI(keyStr=="__call__")
+R CNF(RayCastResultList_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(RayCastResultList_new);
+ EI(keyStr == "__eq__")
+R CNF(RayCastResultList___eq__);
+ EI(keyStr == "__neq__")
+R CNF(RayCastResultList___neq__);
+ EI(keyStr == "get")
+R CNF(RayCastResultList_get);
+ EI(keyStr == "set")
+R CNF(RayCastResultList_set);
+ EI(keyStr == "getCount")
+R CNF(RayCastResultList_getCount);
+ EI(keyStr == "getData")
+R CNF(RayCastResultList_getData);
+ EI(keyStr == "append")
+R CNF(RayCastResultList_append);
+ EI(keyStr == "insert")
+R CNF(RayCastResultList_insert);
+ EI(keyStr == "remove")
+R CNF(RayCastResultList_remove);
+ EI(keyStr == "clear")
+R CNF(RayCastResultList_clear);
+ EI(keyStr == "find")
+R CNF(RayCastResultList_find);
+ EI(keyStr == "copy")
+R CNF(RayCastResultList_copy);
+ EI(keyStr == "in")
+R CNF(RayCastResultList_in);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void RayCastResultList_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV RayCastResultList_insert(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::insert" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::insert","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],RayCastResult))
+{
+( F->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<RayCastResult>::type>::f(ctx,a[2])));
+R CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<RayCastResult> &))
+{
+( F->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<RayCastResult> &>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("RayCastResultList::insert.")));
+R CN;
+}
+
+SV RayCastResultList_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::set" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::set","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],RayCastResult))
+{
+( F->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<RayCastResult>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("RayCastResultList::set.")));
+R CN;
+}
+
+SV RayCastResultList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::get" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::get","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+R CV( F->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("RayCastResultList::get.")));
+R CN;
+}
+
+SV RayCastResultList_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::clear" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::clear","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( F->clear());
+R CN;
+}
+CATE(TE,UFOF("RayCastResultList::clear.")));
+R CN;
+}
+
+SV RayCastResultList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::copy" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::copy","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->copy());
+;
+}
+CATE(TE,UFOF("RayCastResultList::copy.")));
+R CN;
+}
+
+SV RayCastResultList_remove(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::remove" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::remove","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
+{
+( F->remove(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[2])));
+R CN;
+}
+CATE(TE,UFOF("RayCastResultList::remove.")));
+R CN;
+}
+
+SV RayCastResultList_in(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::in" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::in","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],RayCastResult))
+{
+R CV( F->in(val_to_c<std::remove_reference<RayCastResult>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("RayCastResultList::in.")));
+R CN;
+}
+
+SV RayCastResultList_getCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::getCount" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::getCount","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getCount());
+;
+}
+CATE(TE,UFOF("RayCastResultList::getCount.")));
+R CN;
+}
+
+SV RayCastResultList_getData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::getData" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::getData","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("RayCastResultList::getData.")));
+R CN;
+}
+
+SV RayCastResultList___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::__eq__" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::__eq__","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<RayCastResult> &))
+{
+auto v=val_to_c<std::remove_reference<const List<RayCastResult> &>::type>::f(ctx,a[1]);
+R CV(*F == v);
+}
+CATE(TE,UFOF("RayCastResultList::__eq__.")));
+R CN;
+}
+
+SV RayCastResultList_find(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::find" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::find","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],RayCastResult))
+{
+R CV( F->find(val_to_c<std::remove_reference<RayCastResult>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("RayCastResultList::find.")));
+R CN;
+}
+
+SV RayCastResultList_append(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::append" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::append","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],RayCastResult))
+{
+( F->append(val_to_c<std::remove_reference<RayCastResult>::type>::f(ctx,a[1])));
+R CN;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<RayCastResult> &))
+{
+( F->append(val_to_c<std::remove_reference<const List<RayCastResult> &>::type>::f(ctx,a[1])));
+R CN;
+}
+CATE(TE,UFOF("RayCastResultList::append.")));
+R CN;
+}
+
+SV RayCastResultList___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::__neq__" EAOE));
+List<RayCastResult>*F;
+if(!TS(a[0],List<RayCastResult>))
+CATE(TE,FAE("RayCastResultList::__neq__","RayCastResultList")));
+else
+ F=(List<RayCastResult>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<RayCastResult> &))
+{
+auto v=val_to_c<std::remove_reference<const List<RayCastResult> &>::type>::f(ctx,a[1]);
+R CV(*F != v);
+}
+CATE(TE,UFOF("RayCastResultList::__neq__.")));
 R CN;
 }
 
@@ -43697,6 +44439,160 @@ CATE(TE,UFOF("RigidBodyList::__neq__.")));
 R CN;
 }
 
+void RayCastResult_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,RayCastResult))
+CATE(TE,"RayCastResult::__del__ expects RayCastResult as first argument."));
+
+DELETE((RayCastResult*)F->data);
+}SV RayCastResult_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResult's constructor" EAOE));
+if(!TS(a[0],RayCastResult))
+CATE(TE,"RayCastResult's constructor expects RayCastResult as first argument."));
+if(a.getCount()==1)
+if(true)
+R S::createNativeObject(RayCastResult_funcs,NEW(RayCastResult),EXT->RayCastResult_typeID);
+CATE(TE,UFOF("RayCastResult's constructor.")));
+R CN;
+}
+
+SV RayCastResult_get_member(CTX ctx,NO F,SV key)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("RayCastResult");
+EI(keyStr=="__new__")
+R CNF(RayCastResult_new);
+EI(keyStr=="__call__")
+R CNF(RayCastResult_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__init__")
+R CNF(RayCastResult_new);
+ EI(keyStr == "getRigidBody")
+R CNF(RayCastResult_getRigidBody);
+ EI(keyStr == "getGhost")
+R CNF(RayCastResult_getGhost);
+ EI(keyStr == "__eq__")
+R CNF(RayCastResult___eq__);
+ EI(keyStr=="distance")
+{
+RayCastResult*obj=(RayCastResult*)F->data;
+R CV(obj->distance);
+} EI(keyStr=="normal")
+{
+RayCastResult*obj=(RayCastResult*)F->data;
+R CV(obj->normal);
+} EI(keyStr=="objType")
+{
+RayCastResult*obj=(RayCastResult*)F->data;
+R CV(obj->objType);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+R CN;
+}
+
+void RayCastResult_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue*)key)->value;
+if(F->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="distance")
+{
+RayCastResult*obj=(RayCastResult*)F->data;
+obj->distance=val_to_c<decltype(obj->distance)>::f(ctx,value);
+} EI(keyStr=="normal")
+{
+RayCastResult*obj=(RayCastResult*)F->data;
+obj->normal=val_to_c<decltype(obj->normal)>::f(ctx,value);
+} EI(keyStr=="objType")
+{
+RayCastResult*obj=(RayCastResult*)F->data;
+obj->objType=val_to_c<decltype(obj->objType)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV RayCastResult_getRigidBody(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResult::getRigidBody" EAOE));
+RayCastResult*F;
+if(!TS(a[0],RayCastResult))
+CATE(TE,FAE("RayCastResult::getRigidBody","RayCastResult")));
+else
+ F=(RayCastResult*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getRigidBody());
+;
+}
+CATE(TE,UFOF("RayCastResult::getRigidBody.")));
+R CN;
+}
+
+SV RayCastResult___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResult::__eq__" EAOE));
+RayCastResult*F;
+if(!TS(a[0],RayCastResult))
+CATE(TE,FAE("RayCastResult::__eq__","RayCastResult")));
+else
+ F=(RayCastResult*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const RayCastResult &))
+{
+auto v=val_to_c<std::remove_reference<const RayCastResult &>::type>::f(ctx,a[1]);
+R CV(*F == v);
+}
+CATE(TE,UFOF("RayCastResult::__eq__.")));
+R CN;
+}
+
+SV RayCastResult_getGhost(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResult::getGhost" EAOE));
+RayCastResult*F;
+if(!TS(a[0],RayCastResult))
+CATE(TE,FAE("RayCastResult::getGhost","RayCastResult")));
+else
+ F=(RayCastResult*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+R CV( F->getGhost());
+;
+}
+CATE(TE,UFOF("RayCastResult::getGhost.")));
+R CN;
+}
+
 void GfxLOD_destroy(CTX ctx,NO F)
 {
 if(!TS((SV)F,GfxLOD))
@@ -50526,6 +51422,87 @@ obj.refCount=1;
 obj.data=F->data;
 AudioSource_set_member(ctx, &obj, key, value);
 }
+SV RayCastResultList_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->RayCastResultList;
+NO obj=(NO)RayCastResultList_new(ctx, args2);
+obj->funcs=RayCastResultList_ptr_funcs;
+obj->typeID=EXT->RayCastResultList_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV RayCastResultList_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"RayCastResultListRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,List<RayCastResult>*))
+CATE(TE,"RayCastResultListRef::deref expects RayCastResultListRef as first argument."));
+R CV(*(List<RayCastResult> *)((NO)F)->data);
+}
+SV RayCastResultList_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"RayCastResultList::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,List<RayCastResult>*))
+CATE(TE,"RayCastResultListRef::refset expects RayCastResultListRef as first argument."));
+*((List<RayCastResult> *)((NO)F)->data) = val_to_c<List<RayCastResult>>::f(ctx,a[1]);
+R CN;
+}
+
+void RayCastResultList_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,List<RayCastResult>*))
+CATE(TE,"RayCastResultListRef::__del__ expects RayCastResultListRef as first argument."));
+SCRIPT_DELETE((List<RayCastResult> *)F->data);
+}
+SV RayCastResultList_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,List<RayCastResult>*))
+CATE(TE,FAE("RayCastResultListRef's get method","RayCastResultListRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("RayCastResultListPtr");
+EI(keyStr=="__new__")
+R CNF(RayCastResultList_ptr_new);
+EI(keyStr=="__call__")
+R CNF(RayCastResultList_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(RayCastResultList_ptr_deref);
+if(keyStr=="refset")R CNF(RayCastResultList_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=RayCastResultList_funcs;
+obj.typeID=EXT->RayCastResultList_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R RayCastResultList_get_member(ctx, &obj, key);
+}
+void RayCastResultList_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,List<RayCastResult>*))
+CATE(TE,FAE("RayCastResultListRef's set method","RayCastResultListRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=RayCastResultList_funcs;
+obj.typeID=EXT->RayCastResultList_typeID;
+obj.refCount=1;
+obj.data=F->data;
+RayCastResultList_set_member(ctx, &obj, key, value);
+}
 SV Camera_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -53446,6 +54423,87 @@ obj.refCount=1;
 obj.data=F->data;
 RigidBodyList_set_member(ctx, &obj, key, value);
 }
+SV RayCastResult_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->RayCastResult;
+NO obj=(NO)RayCastResult_new(ctx, args2);
+obj->funcs=RayCastResult_ptr_funcs;
+obj->typeID=EXT->RayCastResult_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+R(SV)obj;
+}
+SV RayCastResult_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"RayCastResultRef::deref" EAOE));
+SV F=a[0];
+if(!TS((SV)F,RayCastResult*))
+CATE(TE,"RayCastResultRef::deref expects RayCastResultRef as first argument."));
+R CV(*(RayCastResult *)((NO)F)->data);
+}
+SV RayCastResult_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"RayCastResult::refset expects two arguments."));
+SV F=a[0];
+if(!TS((SV)F,RayCastResult*))
+CATE(TE,"RayCastResultRef::refset expects RayCastResultRef as first argument."));
+*((RayCastResult *)((NO)F)->data) = val_to_c<RayCastResult>::f(ctx,a[1]);
+R CN;
+}
+
+void RayCastResult_ptr_destroy(CTX ctx,NO F)
+{
+if(!TS((SV)F,RayCastResult*))
+CATE(TE,"RayCastResultRef::__del__ expects RayCastResultRef as first argument."));
+SCRIPT_DELETE((RayCastResult *)F->data);
+}
+SV RayCastResult_ptr_get_member(CTX ctx,NO F,SV key)
+{
+if(!TS((SV)F,RayCastResult*))
+CATE(TE,FAE("RayCastResultRef's get method","RayCastResultRef")));
+if (key->type==S::ValueType::StringType)
+{
+String keyStr=((S::StringValue *)key)->value;
+if(F->data==NULL)
+{
+if(keyStr=="__typeID__")
+R S::createInt(F->typeID);
+EI(keyStr=="__name__")
+R S::createString("RayCastResultPtr");
+EI(keyStr=="__new__")
+R CNF(RayCastResult_ptr_new);
+EI(keyStr=="__call__")
+R CNF(RayCastResult_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")R CNF(RayCastResult_ptr_deref);
+if(keyStr=="refset")R CNF(RayCastResult_ptr_set);
+}
+}
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=RayCastResult_funcs;
+obj.typeID=EXT->RayCastResult_typeID;
+obj.refCount=1;
+obj.data=F->data;
+R RayCastResult_get_member(ctx, &obj, key);
+}
+void RayCastResult_ptr_set_member(CTX ctx,NO F,SV key,SV value)
+{
+if(!TS((SV)F,RayCastResult*))
+CATE(TE,FAE("RayCastResultRef's set method","RayCastResultRef")));
+S::NativeObject obj;
+obj.head.type=S::ValueType::NativeObject;
+obj.funcs=RayCastResult_funcs;
+obj.typeID=EXT->RayCastResult_typeID;
+obj.refCount=1;
+obj.data=F->data;
+RayCastResult_set_member(ctx, &obj, key, value);
+}
 SV GfxLOD_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -54659,6 +55717,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AudioSourceRef", ext->AudioSource_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->RayCastResultList_typeID = typeID;
+    ext->RayCastResultList = scripting::createNativeObject(RayCastResultList_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RayCastResultList", ext->RayCastResultList);
+    
+    typeID = engine->createNewTypeID();
+    ext->RayCastResultList_ptr_typeID = typeID;
+    ext->RayCastResultList_ptr = scripting::createNativeObject(RayCastResultList_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RayCastResultListRef", ext->RayCastResultList_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Camera_typeID = typeID;
     ext->Camera = scripting::createNativeObject(Camera_funcs, NULL, typeID);
     engine->getGlobalVars().set("Camera", ext->Camera);
@@ -55019,6 +56087,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("RigidBodyListRef", ext->RigidBodyList_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->RayCastResult_typeID = typeID;
+    ext->RayCastResult = scripting::createNativeObject(RayCastResult_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RayCastResult", ext->RayCastResult);
+    
+    typeID = engine->createNewTypeID();
+    ext->RayCastResult_ptr_typeID = typeID;
+    ext->RayCastResult_ptr = scripting::createNativeObject(RayCastResult_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RayCastResultRef", ext->RayCastResult_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->GfxLOD_typeID = typeID;
     ext->GfxLOD = scripting::createNativeObject(GfxLOD_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxLOD", ext->GfxLOD);
@@ -55269,6 +56347,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->RigidBodyType_typeID = typeID;
     ext->RigidBodyType = scripting::createNativeObject(RigidBodyType_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBodyType", ext->RigidBodyType);
+    
+    typeID = engine->createNewTypeID();
+    ext->PhysicsObjectType_typeID = typeID;
+    ext->PhysicsObjectType = scripting::createNativeObject(PhysicsObjectType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("PhysicsObjectType", ext->PhysicsObjectType);
     
     typeID = engine->createNewTypeID();
     ext->RenderMode_typeID = typeID;

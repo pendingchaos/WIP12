@@ -10,13 +10,6 @@
 #include <ctime>
 
 class ResourceManager;
-class GfxShader;
-class GfxTexture;
-class GfxMesh;
-class GfxMaterial;
-class GfxModel;
-class Scene;
-class Script;
 
 class ResourceIOException : public Exception
 {

@@ -9,6 +9,7 @@
 class Script;
 class Application;
 class Entity;
+class Scene;
 
 void precompileScriptInclude();
 

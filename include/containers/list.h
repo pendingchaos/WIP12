@@ -170,6 +170,6 @@ class List
 };
 
 BIND_CLASS(List)
-TEMPLATE_TYPES(List:T, <GfxLOD>@GfxLODList <GfxModel::SubModel>@GfxSubModelList <scripting::Value*>@List <GhostObject*>@GhostObjList <RigidBody*>@RigidBodyList <AudioSource*>@AudioSourceList <Entity*>@EntityList <Light*>@LightList <String>@StringList <float>@FloatList)
+TEMPLATE_TYPES(List:T, <GfxLOD>@GfxLODList <GfxModel::SubModel>@GfxSubModelList <scripting::Value*>@List <GhostObject*>@GhostObjList <RigidBody*>@RigidBodyList <AudioSource*>@AudioSourceList <Entity*>@EntityList <Light*>@LightList <String>@StringList <float>@FloatList <RayCastResult>@RayCastResultList)
 
 #endif // LIST_H

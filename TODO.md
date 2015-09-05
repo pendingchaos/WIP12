@@ -10,6 +10,7 @@
     - Needs recent hardware.
 - [ ] Finish the script binding generator.
     - [ ] NULL <-> nil conversion
+        - [ ] Needed for RayCastResult.
     - [ ] Templated Functions
     - [ ] Namespaces
     - [ ] Getters and Setters
@@ -17,7 +18,7 @@
         - [ ] Then bind the exceptions
     - [ ] Bind lots of stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsWorld, PhysicsShape, ResourceManager, GfxRenderer.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
 - [ ] Make functions for builtin functions like + and *.

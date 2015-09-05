@@ -95,9 +95,9 @@ void PhysicsWorld::debugDraw()
     }
 }
 
-List<PhysicsWorld::RayCastResult> PhysicsWorld::castRay(const Position3D& start,
-                                                        const Direction3D& direction,
-                                                        float distance)
+List<RayCastResult> PhysicsWorld::castRay(const Position3D& start,
+                                          const Direction3D& direction,
+                                           float distance)
 {
     class Callback : public btCollisionWorld::RayResultCallback
     {
@@ -126,11 +126,11 @@ List<PhysicsWorld::RayCastResult> PhysicsWorld::castRay(const Position3D& start,
 
                 if (dynamic_cast<const btRigidBody *>(object) != nullptr)
                 {
-                    result.objType = RayCastResult::ObjectType::Body;
+                    result.objType = PhysicsObjectType::Body;
                     result.body = (RigidBody *)rayResult.m_collisionObject->getUserPointer();
                 } else
                 {
-                    result.objType = RayCastResult::ObjectType::Ghost;
+                    result.objType = PhysicsObjectType::Ghost;
                     result.ghost = (GhostObject *)rayResult.m_collisionObject->getUserPointer();
                 }
 

@@ -14,28 +14,57 @@
 class ResourceManager;
 class Camera;
 
+enum class PhysicsObjectType
+{
+    Body,
+    Ghost
+} BIND ENUM_CLASS;
+
+class RayCastResult
+{
+    public:
+        RayCastResult() : distance(0.0f), objType(PhysicsObjectType::Body), body(nullptr) {}
+
+        float distance;
+        Direction3D normal;
+        PhysicsObjectType objType;
+
+        union
+        {
+            RigidBody *body;
+            GhostObject *ghost;
+        } NO_BIND;
+
+        inline RigidBody *getRigidBody() const
+        {
+            if (objType == PhysicsObjectType::Body)
+            {
+                return body;
+            }
+            return nullptr;
+        }
+
+        inline GhostObject *getGhost() const
+        {
+            if (objType == PhysicsObjectType::Ghost)
+            {
+                return ghost;
+            }
+            return nullptr;
+        }
+
+        inline bool operator == (const RayCastResult& other) const
+        {
+            return distance == other.distance and
+                   normal == other.normal and
+                   objType == other.objType and
+                   body == other.body;
+        }
+} BIND;
+
 class PhysicsWorld
 {
     public:
-        struct RayCastResult
-        {
-            enum ObjectType
-            {
-                Body,
-                Ghost
-            };
-
-            float distance;
-            Direction3D normal;
-            ObjectType objType;
-
-            union
-            {
-                RigidBody *body;
-                GhostObject *ghost;
-            };
-        };
-
         PhysicsWorld();
         virtual ~PhysicsWorld();
 
@@ -77,7 +106,7 @@ class PhysicsWorld
 
         List<RayCastResult> castRay(const Position3D& start,
                                     const Direction3D& direction,
-                                    float distance=9999.0f) NO_BIND;
+                                    float distance=9999.0f);
 
         inline btDynamicsWorld *getBulletWorld() const NO_BIND
         {
