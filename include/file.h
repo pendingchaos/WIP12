@@ -54,29 +54,41 @@ class FileException : public Exception
 };
 
 time_t getLastFileModification(const char *filename);
-bool doesFileExist(const char *filename);
-List<String> listFiles(const char *directory);
+bool doesFileExist(const char *filename) BIND;
+List<String> listFiles(const char *directory) BIND;
+
+enum class FileOrigin
+{
+    Set,
+    Current,
+    End
+} BIND ENUM_CLASS;
 
 class File
 {
     NO_COPY(File);
 
     public:
-        enum Origin
-        {
-            Set,
-            Current,
-            End
-        };
-
         File(const char *filename, const char *mode);
         ~File();
 
         void read(size_t amount, void *destination) NO_BIND;
 
+        inline ResizableData read(size_t amount)
+        {
+            ResizableData data(amount);
+            read(amount, data.getData());
+            return data;
+        }
+
         void write(size_t amount, const void *data) NO_BIND;
 
-        void seek(long int offset, File::Origin origin) NO_BIND;
+        inline void write(const ResizableData& data)
+        {
+            write(data.getSize(), data.getData());
+        }
+
+        void seek(long int offset, FileOrigin origin);
 
         long int tell();
 

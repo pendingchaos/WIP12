@@ -101,12 +101,10 @@ File::~File()
 
 void File::read(size_t amount, void *destination)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     if (std::fread(destination, amount, 1, file) != 1)
     {
@@ -116,12 +114,10 @@ void File::read(size_t amount, void *destination)
 
 void File::write(size_t amount, const void *data)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     if (std::fwrite(data, amount, 1, file) != 1)
     {
@@ -129,18 +125,16 @@ void File::write(size_t amount, const void *data)
     }
 }
 
-void File::seek(long int offset, Origin origin)
+void File::seek(long int offset, FileOrigin origin)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     switch (origin)
     {
-    case Set:
+    case FileOrigin::Set:
     {
         if (std::fseek(file, offset, SEEK_SET) != 0)
         {
@@ -148,7 +142,7 @@ void File::seek(long int offset, Origin origin)
         }
         break;
     }
-    case Current:
+    case FileOrigin::Current:
     {
         if (std::fseek(file, offset, SEEK_CUR) != 0)
         {
@@ -156,7 +150,7 @@ void File::seek(long int offset, Origin origin)
         }
         break;
     }
-    case End:
+    case FileOrigin::End:
     {
         if (std::fseek(file, offset, SEEK_END) != 0)
         {
@@ -169,36 +163,30 @@ void File::seek(long int offset, Origin origin)
 
 long int File::tell()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     return std::ftell(file);
 }
 
 void File::flush()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     std::fflush(file);
 }
 
 bool File::isAtEndOfFile()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     return std::feof(file);
 }
@@ -207,23 +195,21 @@ size_t File::getSize()
 {
     long int lastPosition = tell();
 
-    seek(0, End);
+    seek(0, FileOrigin::End);
 
     size_t size = tell();
 
-    seek(lastPosition, Set);
+    seek(lastPosition, FileOrigin::Set);
 
     return size;
 }
 
 uint8_t File::readUInt8()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint8_t integer;
 
@@ -234,12 +220,10 @@ uint8_t File::readUInt8()
 
 int8_t File::readInt8()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int8_t integer;
 
@@ -250,12 +234,10 @@ int8_t File::readInt8()
 
 uint16_t File::readUInt16LE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint16_t integer;
 
@@ -266,12 +248,10 @@ uint16_t File::readUInt16LE()
 
 int16_t File::readInt16LE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int16_t integer;
 
@@ -282,12 +262,10 @@ int16_t File::readInt16LE()
 
 uint32_t File::readUInt32LE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint32_t integer;
 
@@ -298,12 +276,10 @@ uint32_t File::readUInt32LE()
 
 int32_t File::readInt32LE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int32_t integer;
 
@@ -314,12 +290,10 @@ int32_t File::readInt32LE()
 
 uint64_t File::readUInt64LE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint64_t integer;
 
@@ -330,12 +304,10 @@ uint64_t File::readUInt64LE()
 
 int64_t File::readInt64LE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int64_t integer;
 
@@ -346,12 +318,10 @@ int64_t File::readInt64LE()
 
 uint16_t File::readUInt16BE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint16_t integer;
 
@@ -362,12 +332,10 @@ uint16_t File::readUInt16BE()
 
 int16_t File::readInt16BE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int16_t integer;
 
@@ -378,12 +346,10 @@ int16_t File::readInt16BE()
 
 uint32_t File::readUInt32BE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint32_t integer;
 
@@ -394,12 +360,10 @@ uint32_t File::readUInt32BE()
 
 int32_t File::readInt32BE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int32_t integer;
 
@@ -410,12 +374,10 @@ int32_t File::readInt32BE()
 
 uint64_t File::readUInt64BE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     uint64_t integer;
 
@@ -426,12 +388,10 @@ uint64_t File::readUInt64BE()
 
 int64_t File::readInt64BE()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int64_t integer;
 
@@ -440,14 +400,13 @@ int64_t File::readInt64BE()
     return FROM_BE_S64(integer);
 }
 
+//TODO: Make this more portable.
 float File::readFloat32()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     float result;
 
@@ -458,12 +417,10 @@ float File::readFloat32()
 
 char File::readChar()
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     int value = std::fgetc(file);
 
@@ -477,36 +434,30 @@ char File::readChar()
 
 void File::writeUInt8(uint8_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     write(1, &value);
 }
 
 void File::writeInt8(int8_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     write(1, &value);
 }
 
 void File::writeUInt16LE(uint16_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_LE_U64(value);
 
@@ -515,12 +466,10 @@ void File::writeUInt16LE(uint16_t value)
 
 void File::writeInt16LE(int16_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_LE_S64(value);
 
@@ -529,12 +478,10 @@ void File::writeInt16LE(int16_t value)
 
 void File::writeUInt32LE(uint32_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_LE_U64(value);
 
@@ -543,12 +490,10 @@ void File::writeUInt32LE(uint32_t value)
 
 void File::writeInt32LE(int32_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_LE_S64(value);
 
@@ -557,12 +502,10 @@ void File::writeInt32LE(int32_t value)
 
 void File::writeUInt64LE(uint64_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_LE_U64(value);
 
@@ -571,12 +514,10 @@ void File::writeUInt64LE(uint64_t value)
 
 void File::writeInt64LE(int64_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_LE_S64(value);
 
@@ -585,12 +526,10 @@ void File::writeInt64LE(int64_t value)
 
 void File::writeUInt16BE(uint16_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_BE_U64(value);
 
@@ -599,12 +538,10 @@ void File::writeUInt16BE(uint16_t value)
 
 void File::writeInt16BE(int16_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_BE_S64(value);
 
@@ -613,12 +550,10 @@ void File::writeInt16BE(int16_t value)
 
 void File::writeUInt32BE(uint32_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_BE_U64(value);
 
@@ -627,12 +562,10 @@ void File::writeUInt32BE(uint32_t value)
 
 void File::writeInt32BE(int32_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_BE_S64(value);
 
@@ -641,12 +574,10 @@ void File::writeInt32BE(int32_t value)
 
 void File::writeUInt64BE(uint64_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_BE_U64(value);
 
@@ -655,38 +586,33 @@ void File::writeUInt64BE(uint64_t value)
 
 void File::writeInt64BE(int64_t value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     value = TO_BE_S64(value);
 
     write(8, &value);
 }
 
+//TODO: Make this more portable.
 void File::writeFloat32(float value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     write(4, &value);
 }
 
 void File::printf(const char *format, ...)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     va_list list;
 
@@ -699,24 +625,20 @@ void File::printf(const char *format, ...)
 
 void File::vprintf(const char *format, va_list list)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     std::vfprintf(file, format, list);
 }
 
 void File::writeChar(char value)
 {
-    #ifdef DEBUG
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
-    #endif
 
     std::putc(value, file);
 }

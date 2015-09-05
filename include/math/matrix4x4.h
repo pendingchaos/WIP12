@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "math/t4.h"
+#include "error.h"
 
 class Matrix3x3;
 
@@ -46,6 +47,26 @@ class Matrix4x4
         inline float *operator [] (unsigned int row) NO_BIND
         {
             return data[row];
+        }
+
+        inline float get(size_t row, size_t column)
+        {
+            if (row > 2 or column > 2)
+            {
+                THROW(BoundsException);
+            }
+
+            return data[row][column];
+        }
+
+        inline void set(size_t row, size_t column, float value)
+        {
+            if (row > 2 or column > 2)
+            {
+                THROW(BoundsException);
+            }
+
+            data[row][column] = value;
         }
 
         inline bool operator == (const Matrix4x4& other) const

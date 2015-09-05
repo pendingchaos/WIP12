@@ -178,7 +178,7 @@ struct _functionStruct
     void (*f126)( Entity *obj, size_t arg0);
     void (*f127)( File *obj, size_t arg0, void * arg1);
     void (*f128)( File *obj, size_t arg0, const void * arg1);
-    void (*f129)( File *obj, long arg0, File::Origin arg1);
+    void (*f129)( File *obj, long arg0, FileOrigin arg1);
     long (*f130)( File *obj);
     void (*f131)( File *obj);
     bool (*f132)( File *obj);
@@ -444,7 +444,7 @@ AudioSource * f125( Entity *obj, Audio * arg0) {return obj->addAudioSource(arg0)
 void f126( Entity *obj, size_t arg0) { obj->removeAudioSource(arg0);}
 void f127( File *obj, size_t arg0, void * arg1) { obj->read(arg0, arg1);}
 void f128( File *obj, size_t arg0, const void * arg1) { obj->write(arg0, arg1);}
-void f129( File *obj, long arg0, File::Origin arg1) { obj->seek(arg0, arg1);}
+void f129( File *obj, long arg0, FileOrigin arg1) { obj->seek(arg0, arg1);}
 long f130( File *obj) {return obj->tell();}
 void f131( File *obj) { obj->flush();}
 bool f132( File *obj) {return obj->isAtEndOfFile();}

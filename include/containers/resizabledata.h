@@ -148,6 +148,8 @@ class ResizableData
         inline int32_t getInt32(size_t offset) const {return get<int32_t>(offset);}
         inline uint64_t getUInt64(size_t offset) const {return get<uint64_t>(offset);}
         inline int64_t getInt64(size_t offset) const {return get<int64_t>(offset);}
+        inline float getFloat32(size_t offset) const {return get<float>(offset);}
+        inline double getFloat64(size_t offset) const {return get<double>(offset);}
 
         inline uint16_t getUInt16LE(size_t offset) const {return FROM_LE_U16(get<uint16_t>(offset));}
         inline int16_t getInt16LE(size_t offset) const {return FROM_LE_S16(get<int16_t>(offset));}
@@ -171,6 +173,8 @@ class ResizableData
         inline void setInt32(size_t offset, int32_t v) const {set<int32_t>(offset, v);}
         inline void setUInt64(size_t offset, uint64_t v) const {set<uint64_t>(offset, v);}
         inline void setInt64(size_t offset, int64_t v) const {set<int64_t>(offset, v);}
+        inline void setFloat32(size_t offset, float v) const {set<float>(offset, v);}
+        inline void setFloat64(size_t offset, double v) const {set<double>(offset, v);}
 
         inline void setUInt16LE(size_t offset, uint16_t v) const {set<uint16_t>(offset, TO_LE_U16(v));}
         inline void setInt16LE(size_t offset, int16_t v) const {set<int16_t>(offset, TO_LE_S16(v));}

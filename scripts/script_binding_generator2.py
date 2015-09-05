@@ -41,7 +41,6 @@ operators = {"operator+": "__add__",
              "operator<=": "__leq__",
              "operator>=": "__geq__",
              "operator()": "__call__"}
-             #TODO: operator[]
 
 print "Running preprocessor"
 
@@ -1505,11 +1504,11 @@ for functions_ in functions.values():
 ????????????%s;
 ????????}
 """) % (len(function.args),
-       testStr,
-       "(" if function.return_type.to_string() == "void" else "R CV(" % function.return_type.to_string(),
-       function.code_name,
-       argsStr,
-       "R CN" if function.return_type.to_string() == "void" else ""))
+        testStr,
+        "(" if function.return_type.to_string() == "void" else "R CV(",
+        function.code_name,
+        argsStr,
+        "R CN" if function.return_type.to_string() == "void" else ""))
 
     bindings.write(s("""????CATE(TE,UFOF("%s")));
 ????R CN;
@@ -1726,5 +1725,5 @@ void registerBindings(scripting::Engine *engine)
 }
 }
 """)
-asdasdasd
+
 bindings.close()
