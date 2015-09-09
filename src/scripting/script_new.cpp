@@ -9,6 +9,7 @@
 #include "scene/scene.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
+#include "scripting/disasm.h"
 
 ScriptInstance::ScriptInstance(const char *name_,
                                Script *script_,
@@ -182,6 +183,14 @@ void Script::_load()
     DELETE(ast);
 
     scripting::Bytecode code(data);
+
+    /*String disasm = scripting::disasm(code);
+
+    {
+        File out("debug.scriptasm", "w");
+
+        out.write(disasm.getLength(), disasm.getData());
+    }*/
 
     {
         context = NEW(scripting::Context, scriptEngine);

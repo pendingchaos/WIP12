@@ -62,6 +62,7 @@
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
+#include "scripting/disasm.h"
 #include "scripting/script.h"
 #include "scripting/vm/engine.h"
 #include "scripting/vm/context.h"

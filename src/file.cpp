@@ -78,6 +78,11 @@ File::File(const char *filename_, const char *mode)
     if (fileSys != nullptr)
     {
         filename = fileSys->getAbsolutePath(filename_);
+
+        if (filename.getLength() == 0)
+        {
+            filename = filename_;
+        }
     } else
     {
         filename = filename_;

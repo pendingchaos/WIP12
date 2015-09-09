@@ -1187,11 +1187,12 @@ Value *getMember(Context *ctx, Value *val, Value *key)
 
         HashMap<String, Value *> members = ((ObjectValue *)val)->members;
 
-        int index = members.findEntry(((StringValue *)key)->value);
+        String keyStr = ((StringValue *)key)->value;
+        int index = members.findEntry(keyStr);
 
         if (index == -1)
         {
-            ctx->throwException(createException(ExcType::KeyError, "Unknown member."));
+            ctx->throwException(createException(ExcType::KeyError, String::format("Unknown member: '%s'", keyStr.getData())));
         }
 
         return createCopy(ctx, members.getValue(index));

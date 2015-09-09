@@ -466,7 +466,7 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 off = bodyData.getSize();
                 data.append(4, &off);
 
-                endJumpOffsetsPos.append(data.getSize()+bodyData.getSize());
+                endJumpOffsetsPos.append(data.getSize()+bodyData.getSize()-4);
 
                 data.append(bodyData);
             }

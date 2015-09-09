@@ -16,7 +16,7 @@
     - [ ] Getters and Setters
     - [ ] C++ exceptions -> script exceptions
         - [ ] Then bind the exceptions
-    - [ ] Bind some stuff (for example Platform)
+    - [ ] Bind some stuff
     - [ ] Static methods and properties
     - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer and Application.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
