@@ -17,6 +17,8 @@
 #include "error.h"
 #include "globals.h"
 #include "logging.h"
+#include "scripting/bindings.h"
+#include "scripting/vm/engine.h"
 
 Application::Application(const char *workingDir) : fixedTimestep(0.016f),
                                                    stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
@@ -32,11 +34,15 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     platform_ = NEW(Platform);
     platform = platform_;
 
-    platform_->initWindow(640, 640, 1);
+    platform_->initWindow(640, 640);
 
     fileSystem_ = NEW(Filesystem);
     fileSys = fileSystem_;
     fileSys->addSearchPath(workingDir);
+
+    scriptEngine_ = NEW(scripting::Engine);
+    scripting::registerBindings(scriptEngine_);
+    scriptEngine = scriptEngine_;
 
     resMgr_ = NEW(ResourceManager);
     resMgr = resMgr_;
@@ -57,14 +63,7 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
 
 Application::~Application()
 {
-    if (script != nullptr)
-    {
-        Script *script_ = script->getScript();
-
-        DELETE(script);
-
-        script_->release();
-    }
+    DELETE(script);
 
     if (nextScript != nullptr)
     {
@@ -78,6 +77,8 @@ Application::~Application()
     DELETE(gfxApi_);
 
     platform_->destroyWindow();
+
+    DELETE(scriptEngine_);
 
     DELETE(fileSystem_);
 

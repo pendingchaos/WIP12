@@ -55,7 +55,7 @@ BEGIN_INSTANCE(Player, InstanceBase)
                                        Position3D(0.0f, 1.0f, 0.0f) +
                                        scene->getRenderer()->camera.getDirection() * 2.0f;
 
-            RigidBody::ConstructionInfo info;
+            RigidBodyConstructionInfo info;
             info.mass = 100.0f;
 
             proj->addRigidBody(info, resMgr->loadAndCopy<PhysicsShape>("resources/shapes/projectile.bin"))
@@ -92,7 +92,7 @@ BEGIN_INSTANCE(Player, InstanceBase)
 
         float resSpeed = speed;
 
-        if (platform->isKeyPressed(Platform::Space))
+        if (platform->isKeyPressed(Key::Space))
         {
             resSpeed *= 2.0f;
         }
@@ -103,22 +103,22 @@ BEGIN_INSTANCE(Player, InstanceBase)
 
         Vector3D velocity;
 
-        if (platform->isKeyPressed(Platform::A))
+        if (platform->isKeyPressed(Key::A))
         {
             velocity -= right * timestep * resSpeed;
         }
 
-        if (platform->isKeyPressed(Platform::D))
+        if (platform->isKeyPressed(Key::D))
         {
             velocity += right * timestep * resSpeed;
         }
 
-        if (platform->isKeyPressed(Platform::W))
+        if (platform->isKeyPressed(Key::W))
         {
             velocity += dir * timestep * resSpeed;
         }
 
-        if (platform->isKeyPressed(Platform::S))
+        if (platform->isKeyPressed(Key::S))
         {
             velocity -= dir * timestep * resSpeed;
         }
@@ -148,7 +148,7 @@ BEGIN_INSTANCE(Player, InstanceBase)
 
         body->setLinearVelocity(oldVelocity + velocity);
 
-        if (platform->isKeyPressed(Platform::Space) and onFloor)
+        if (platform->isKeyPressed(Key::Space) and onFloor)
         {
             Vector3D vel = body->getLinearVelocity();
 

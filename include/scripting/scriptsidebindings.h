@@ -10,9 +10,9 @@ struct _functionStruct
     ScriptInstance * (*f5)( Script *obj, const char * arg0, Entity * arg1, Scene * arg2);
     Matrix4x4 (*f6)(const Transform *obj);
     void (*f7)( Transform *obj);
-    void (*f8)( Platform *obj, uint32_t arg0, uint32_t arg1, uint32_t arg2);
+    void (*f8)( Platform *obj, uint32_t arg0, uint32_t arg1);
     void (*f9)( Platform *obj);
-    bool (*f10)( Platform *obj, Platform::Event & arg0);
+    bool (*f10)( Platform *obj, Event & arg0);
     bool (*f11)(const Platform *obj);
     uint64_t (*f12)(const Platform *obj);
     uint64_t (*f13)(const Platform *obj);
@@ -26,7 +26,7 @@ struct _functionStruct
     Int2 (*f21)(const Platform *obj);
     bool (*f22)(const Platform *obj);
     void (*f23)(const Platform *obj, bool arg0);
-    bool (*f24)(const Platform *obj, Platform::Key arg0);
+    bool (*f24)(const Platform *obj, Key arg0);
     bool (*f25)(const Platform *obj);
     void (*f26)( Platform *obj, bool arg0);
     String (*f27)( AudioDevice *obj);
@@ -277,9 +277,9 @@ void setApplication(Application * arg0) { _functions->f4(arg0);}
 ScriptInstance * Script::createInstance(const char * arg0, Entity * arg1, Scene * arg2)  {return _functions->f5(this, arg0, arg1, arg2);}
 Matrix4x4 Transform::createMatrix() const {return _functions->f6(this);}
  Transform::Transform()  { _functions->f7(this);}
-void Platform::initWindow(uint32_t arg0, uint32_t arg1, uint32_t arg2)  { _functions->f8(this, arg0, arg1, arg2);}
+void Platform::initWindow(uint32_t arg0, uint32_t arg1)  { _functions->f8(this, arg0, arg1);}
 void Platform::destroyWindow()  { _functions->f9(this);}
-bool Platform::pollEvent(Platform::Event & arg0)  {return _functions->f10(this, arg0);}
+bool Platform::pollEvent(Event & arg0)  {return _functions->f10(this, arg0);}
 bool Platform::eventsLeft() const {return _functions->f11(this);}
 uint64_t Platform::getTime() const {return _functions->f12(this);}
 uint64_t Platform::getTimerFrequency() const {return _functions->f13(this);}
@@ -293,7 +293,7 @@ bool Platform::isMiddleMouseButtonPressed() const {return _functions->f20(this);
 Int2 Platform::getMouseWheel() const {return _functions->f21(this);}
 bool Platform::isCursorVisible() const {return _functions->f22(this);}
 void Platform::setCursorVisible(bool arg0) const { _functions->f23(this, arg0);}
-bool Platform::isKeyPressed(Platform::Key arg0) const {return _functions->f24(this, arg0);}
+bool Platform::isKeyPressed(Key arg0) const {return _functions->f24(this, arg0);}
 bool Platform::getFullscreen() const {return _functions->f25(this);}
 void Platform::setFullscreen(bool arg0)  { _functions->f26(this, arg0);}
 String AudioDevice::getName()  {return _functions->f27(this);}

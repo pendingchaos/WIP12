@@ -88,10 +88,13 @@ class Context
             return engine;
         }
 
+        scripting::Value *getVariable(const String& name);
+
         void reset();
         Value *run(const Bytecode& bytecode, List<Value *> args);
         void throwException(Value *exc);
     private:
+        void popCallstack();
         Value *_run(const Bytecode& bytecode, List<Value *> args);
         Engine *engine;
         size_t callStackSize;

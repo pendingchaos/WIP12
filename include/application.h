@@ -19,21 +19,26 @@ class Filesystem;
 class GfxDebugDrawer;
 class AudioDevice;
 
+namespace scripting
+{
+    class Engine;
+}
+
+struct Stats
+{
+    float handleInput;
+    float update;
+    float fixedUpdate;
+    float preRender;
+    float postRender;
+    float audio;
+} BIND;
+
 class Application
 {
     NO_COPY(Application)
 
     public:
-        struct Stats
-        {
-            float handleInput;
-            float update;
-            float fixedUpdate;
-            float preRender;
-            float postRender;
-            float audio;
-        };
-
         Application(const char *workingDir);
         ~Application();
 
@@ -64,7 +69,7 @@ class Application
             return debugDrawer_;
         }
 
-        inline FT_Library getFreeType() const
+        inline FT_Library getFreeType() const NO_BIND
         {
             return freeType_;
         }
@@ -74,7 +79,12 @@ class Application
             return audioDevice_;
         }
 
-        inline void setNextScript(Script *script_, const char *name)
+        inline scripting::Engine *getScriptEngine() const NO_BIND
+        {
+            return scriptEngine_;
+        }
+
+        inline void setNextScript(Script *script_, const char *name) NO_BIND
         {
             if (nextScript != nullptr)
             {
@@ -85,12 +95,12 @@ class Application
             nextScriptName = name;
         }
 
-        inline Script *getNextScript() const
+        inline Script *getNextScript() const NO_BIND
         {
             return nextScript;
         }
 
-        inline ScriptInstance *getScript() const
+        inline ScriptInstance *getScript() const NO_BIND
         {
             return script;
         }
@@ -111,6 +121,7 @@ class Application
         GfxDebugDrawer *debugDrawer_;
         FT_Library freeType_;
         AudioDevice *audioDevice_;
+        scripting::Engine *scriptEngine_;
 
         ScriptInstance *script;
         Script *nextScript;
@@ -119,6 +130,6 @@ class Application
 
         void _switchScripts();
         void updateFunction();
-};
+} BIND NOT_COPYABLE;
 
 #endif // APPLICATION_H

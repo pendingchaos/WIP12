@@ -32,52 +32,52 @@ class FPSCamera
 
             float resSpeed = speed;
 
-            if (platform->isKeyPressed(Platform::Space))
+            if (platform->isKeyPressed(Key::Space))
             {
                 resSpeed *= 4.0f;
             }
 
-            if (platform->isKeyPressed(Platform::LeftShift))
+            if (platform->isKeyPressed(Key::LeftShift))
             {
                 resSpeed /= 4.0f;
             }
 
-            /*if (platform->isKeyPressed(Platform::Left))
+            /*if (platform->isKeyPressed(Key::Left))
             {
                 angularVelocity.x += rotateSpeed * platform->getFrametime();
             }
 
-            if (platform->isKeyPressed(Platform::Right))
+            if (platform->isKeyPressed(Key::Right))
             {
                 angularVelocity.x -= rotateSpeed * platform->getFrametime();
             }
 
-            if (platform->isKeyPressed(Platform::Up))
+            if (platform->isKeyPressed(Key::Up))
             {
                 angularVelocity.y += rotateSpeed * platform->getFrametime();
             }
 
-            if (platform->isKeyPressed(Platform::Down))
+            if (platform->isKeyPressed(Key::Down))
             {
                 angularVelocity.y -= rotateSpeed * platform->getFrametime();
             }*/
 
-            if (platform->isKeyPressed(Platform::A))
+            if (platform->isKeyPressed(Key::A))
             {
                 velocity -= right * platform->getFrametime() * resSpeed;
             }
 
-            if (platform->isKeyPressed(Platform::D))
+            if (platform->isKeyPressed(Key::D))
             {
                 velocity += right * platform->getFrametime() * resSpeed;
             }
 
-            if (platform->isKeyPressed(Platform::W))
+            if (platform->isKeyPressed(Key::W))
             {
                 velocity += dir * platform->getFrametime() * resSpeed;
             }
 
-            if (platform->isKeyPressed(Platform::S))
+            if (platform->isKeyPressed(Key::S))
             {
                 velocity -= dir * platform->getFrametime() * resSpeed;
             }
@@ -191,7 +191,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
     {
         projScript->release();
 
-        DELETE(GPUTimer, textTimer);
+        DELETE(textTimer);
 
         font->release();
         scene->release();
@@ -199,42 +199,42 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
     virtual void handleInput()
     {
-        Platform::Event event;
+        Event event;
 
         while (platform->pollEvent(event))
         {
             switch (event.type)
             {
-            case Platform::Event::Quit:
+            case EventType::Quit:
             {
                 app->running = false;
                 break;
             }
-            case Platform::Event::KeyDown:
+            case EventType::KeyDown:
             {
                 switch (event.key.key)
                 {
-                case Platform::F1:
+                case Key::F1:
                 {
                     platform->setFullscreen(not platform->getFullscreen());
                     break;
                 }
-                case Platform::F2:
+                case Key::F2:
                 {
                     showExtraTimings = not showExtraTimings;
                     break;
                 }
-                case Platform::F3:
+                case Key::F3:
                 {
                     freezeTimings = not freezeTimings;
                     break;
                 }
-                case Platform::Escape:
+                case Key::Escape:
                 {
                     platform->setFullscreen(false);
                     break;
                 }
-                case Platform::F4:
+                case Key::F4:
                 {
                     scene->getRenderer()->debugDraw = not scene->getRenderer()->debugDraw;
                     break;
@@ -254,7 +254,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
         scene->getAudioWorld()->listenerPosition = scene->getRenderer()->camera.getPosition();
 
-        if (platform->isKeyPressed(Platform::H))
+        if (platform->isKeyPressed(Key::H))
         {
             source->playing = true;
         }
@@ -301,7 +301,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
                                       platform->getGPUFrametime() * 1000.0f,
                                       platform->getCPUFrametime() * 1000.0f);
 
-            Application::Stats cpuStats = app->getStats();
+            Stats cpuStats = app->getStats();
 
             float total = platform->getGPUFrametime();
             float cpuTotal = platform->getCPUFrametime();

@@ -80,6 +80,7 @@ class ResourceManager
             case ResType::GfxMaterialType: return (Resource *)loadMaterial(filename);
             case ResType::GfxModelType: return (Resource *)loadModel(filename);
             case ResType::SceneType: return (Resource *)loadScene(filename);
+            case ResType::ScriptType: return (Resource *)loadScript(filename);
             case ResType::PhysicsShapeType: return (Resource *)loadPhysicsShape(filename);
             case ResType::AudioType: return (Resource *)loadAudio(filename);
             case ResType::FontType: return (Resource *)loadFont(filename);
@@ -107,6 +108,7 @@ class ResourceManager
             case ResType::GfxMaterialType: return (Resource *)loadMaterialAndCopy(filename);
             case ResType::GfxModelType: return (Resource *)loadModelAndCopy(filename);
             case ResType::SceneType: return (Resource *)loadSceneAndCopy(filename);
+            case ResType::ScriptType: return (Resource *)loadScriptAndCopy(filename);
             case ResType::PhysicsShapeType: return (Resource *)loadPhysicsShapeAndCopy(filename);
             case ResType::AudioType: return (Resource *)loadAudioAndCopy(filename);
             case ResType::FontType: return (Resource *)loadFontAndCopy(filename);
@@ -134,6 +136,6 @@ class ResourceManager
         {
             return T::resource_type;
         }
-} NO_BIND NOT_COPYABLE;
+} BIND NOT_COPYABLE;
 
 #endif // RESOURCEMANAGER_H

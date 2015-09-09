@@ -96,6 +96,7 @@ bool shouldScriptDelete(void *ptr)
 
                 --numAllocs;
                 allocs = (Allocation *)std::realloc(allocs, numAllocs * sizeof(Allocation));
+
                 return true;
             } else if (allocs[i].ptr == ptr)
             {
@@ -105,7 +106,7 @@ bool shouldScriptDelete(void *ptr)
         }
     }
 
-    return true;
+    return false;
 }
 
 AllocInfo getAllocInfo(void *ptr)

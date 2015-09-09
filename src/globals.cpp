@@ -10,6 +10,7 @@ Filesystem *fileSys = nullptr;
 GfxDebugDrawer *debugDrawer = nullptr;
 FT_Library freeType = nullptr;
 AudioDevice *audioDevice = nullptr;
+scripting::Engine *scriptEngine = nullptr;
 
 void setApplication(Application *app_)
 {
@@ -24,6 +25,7 @@ void setApplication(Application *app_)
         debugDrawer = app->getDebugDrawer();
         freeType = app->getFreeType();
         audioDevice = app->getAudioDevice();
+        scriptEngine = app->getScriptEngine();
     } else
     {
         platform = nullptr;
@@ -33,5 +35,41 @@ void setApplication(Application *app_)
         debugDrawer = nullptr;
         freeType = nullptr;
         audioDevice = nullptr;
+        scriptEngine = nullptr;
     }
+}
+
+Application *getApp()
+{
+    return app;
+}
+
+Platform *getPlatform()
+{
+    return platform;
+}
+
+ResourceManager *getResMgr()
+{
+    return resMgr;
+}
+
+GfxApi *getGfxApi()
+{
+    return gfxApi;
+}
+
+Filesystem *getFileSys()
+{
+    return fileSys;
+}
+
+GfxDebugDrawer *getDebugDrawer()
+{
+    return debugDrawer;
+}
+
+AudioDevice *getAudioDevice()
+{
+    return audioDevice;
 }
