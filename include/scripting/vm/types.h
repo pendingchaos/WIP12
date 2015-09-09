@@ -42,7 +42,7 @@ Value *createReference(Value *value);
 Value *createString(const String& value);
 Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args));
 Value *createException(ExcType type, String error);
-Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID);
+Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID);
 Value *createCopy(Context *context, const Value *value);
 void destroy(Context *context, Value *value);
 

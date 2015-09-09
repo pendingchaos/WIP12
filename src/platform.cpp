@@ -8,143 +8,143 @@
 
 #include <cstdio>
 
-struct toSDLScancodeStruct {
-    Platform::Key key;
-    SDL_Scancode scancode;
+struct toSDLKeycodeStruct {
+    Key key;
+    SDL_Keycode keycode;
 };
 
-toSDLScancodeStruct toSDLScancodeTable[] = {
-{Platform::Space, SDL_SCANCODE_SPACE},
-{Platform::Apostrophe, SDL_SCANCODE_APOSTROPHE},
-{Platform::Comma, SDL_SCANCODE_COMMA},
-{Platform::Minus, SDL_SCANCODE_MINUS},
-{Platform::Period, SDL_SCANCODE_PERIOD},
-{Platform::Slash, SDL_SCANCODE_SLASH},
-{Platform::_0, SDL_SCANCODE_0},
-{Platform::_1, SDL_SCANCODE_1},
-{Platform::_2, SDL_SCANCODE_2},
-{Platform::_3, SDL_SCANCODE_3},
-{Platform::_4, SDL_SCANCODE_4},
-{Platform::_5, SDL_SCANCODE_5},
-{Platform::_6, SDL_SCANCODE_6},
-{Platform::_7, SDL_SCANCODE_7},
-{Platform::_8, SDL_SCANCODE_8},
-{Platform::_9, SDL_SCANCODE_9},
-{Platform::Semicolon, SDL_SCANCODE_SEMICOLON},
-{Platform::Equal, SDL_SCANCODE_EQUALS},
-{Platform::A, SDL_SCANCODE_A},
-{Platform::B, SDL_SCANCODE_B},
-{Platform::C, SDL_SCANCODE_C},
-{Platform::D, SDL_SCANCODE_D},
-{Platform::E, SDL_SCANCODE_E},
-{Platform::F, SDL_SCANCODE_F},
-{Platform::G, SDL_SCANCODE_G},
-{Platform::H, SDL_SCANCODE_H},
-{Platform::I, SDL_SCANCODE_I},
-{Platform::J, SDL_SCANCODE_J},
-{Platform::K, SDL_SCANCODE_K},
-{Platform::L, SDL_SCANCODE_L},
-{Platform::M, SDL_SCANCODE_M},
-{Platform::N, SDL_SCANCODE_N},
-{Platform::O, SDL_SCANCODE_O},
-{Platform::P, SDL_SCANCODE_P},
-{Platform::Q, SDL_SCANCODE_Q},
-{Platform::R, SDL_SCANCODE_R},
-{Platform::S, SDL_SCANCODE_S},
-{Platform::T, SDL_SCANCODE_T},
-{Platform::U, SDL_SCANCODE_U},
-{Platform::V, SDL_SCANCODE_V},
-{Platform::W, SDL_SCANCODE_W},
-{Platform::X, SDL_SCANCODE_X},
-{Platform::Y, SDL_SCANCODE_Y},
-{Platform::Z, SDL_SCANCODE_Z},
-{Platform::LeftBracket, SDL_SCANCODE_LEFTBRACKET},
-{Platform::RightBracket, SDL_SCANCODE_RIGHTBRACKET},
-{Platform::Backslash, SDL_SCANCODE_BACKSLASH},
-{Platform::Escape, SDL_SCANCODE_ESCAPE},
-{Platform::Enter, SDL_SCANCODE_RETURN},
-{Platform::Tab, SDL_SCANCODE_TAB},
-{Platform::Backspace, SDL_SCANCODE_BACKSPACE},
-{Platform::Insert, SDL_SCANCODE_INSERT},
-{Platform::Delete, SDL_SCANCODE_DELETE},
-{Platform::Right, SDL_SCANCODE_RIGHT},
-{Platform::Left, SDL_SCANCODE_LEFT},
-{Platform::Down, SDL_SCANCODE_DOWN},
-{Platform::Up, SDL_SCANCODE_UP},
-{Platform::PageUp, SDL_SCANCODE_PAGEUP},
-{Platform::PageDown, SDL_SCANCODE_PAGEDOWN},
-{Platform::Home, SDL_SCANCODE_HOME},
-{Platform::End, SDL_SCANCODE_END},
-{Platform::CapsLock, SDL_SCANCODE_CAPSLOCK},
-{Platform::ScrollLock, SDL_SCANCODE_SCROLLLOCK},
-{Platform::NumLock, SDL_SCANCODE_NUMLOCKCLEAR},
-{Platform::PrintScreen, SDL_SCANCODE_PRINTSCREEN},
-{Platform::Pause, SDL_SCANCODE_PAUSE},
-{Platform::F1, SDL_SCANCODE_F1},
-{Platform::F2, SDL_SCANCODE_F2},
-{Platform::F3, SDL_SCANCODE_F3},
-{Platform::F4, SDL_SCANCODE_F4},
-{Platform::F5, SDL_SCANCODE_F5},
-{Platform::F6, SDL_SCANCODE_F6},
-{Platform::F7, SDL_SCANCODE_F7},
-{Platform::F8, SDL_SCANCODE_F8},
-{Platform::F9, SDL_SCANCODE_F9},
-{Platform::LeftShift, SDL_SCANCODE_LSHIFT},
-{Platform::LeftControl, SDL_SCANCODE_LCTRL},
-{Platform::LeftAlt, SDL_SCANCODE_LALT},
-{Platform::LeftSuper, SDL_SCANCODE_LGUI},
-{Platform::RightShift, SDL_SCANCODE_RSHIFT},
-{Platform::RightControl, SDL_SCANCODE_RCTRL},
-{Platform::RightAlt, SDL_SCANCODE_RALT},
-{Platform::RightSuper, SDL_SCANCODE_RGUI},
-{Platform::Menu, SDL_SCANCODE_MENU},
-{Platform::Unknown, SDL_SCANCODE_UNKNOWN}};
+toSDLKeycodeStruct toSDLKeycodeTable[] = {
+{Key::Space, SDLK_SPACE},
+{Key::Apostrophe, SDLK_QUOTE},
+{Key::Comma, SDLK_COMMA},
+{Key::Minus, SDLK_MINUS},
+{Key::Period, SDLK_PERIOD},
+{Key::Slash, SDLK_SLASH},
+{Key::_0, SDLK_0},
+{Key::_1, SDLK_1},
+{Key::_2, SDLK_2},
+{Key::_3, SDLK_3},
+{Key::_4, SDLK_4},
+{Key::_5, SDLK_5},
+{Key::_6, SDLK_6},
+{Key::_7, SDLK_7},
+{Key::_8, SDLK_8},
+{Key::_9, SDLK_9},
+{Key::Semicolon, SDLK_SEMICOLON},
+{Key::Equal, SDLK_EQUALS},
+{Key::A, SDLK_a},
+{Key::B, SDLK_b},
+{Key::C, SDLK_c},
+{Key::D, SDLK_d},
+{Key::E, SDLK_e},
+{Key::F, SDLK_f},
+{Key::G, SDLK_g},
+{Key::H, SDLK_h},
+{Key::I, SDLK_i},
+{Key::J, SDLK_j},
+{Key::K, SDLK_k},
+{Key::L, SDLK_l},
+{Key::M, SDLK_m},
+{Key::N, SDLK_n},
+{Key::O, SDLK_o},
+{Key::P, SDLK_p},
+{Key::Q, SDLK_q},
+{Key::R, SDLK_r},
+{Key::S, SDLK_s},
+{Key::T, SDLK_t},
+{Key::U, SDLK_u},
+{Key::V, SDLK_v},
+{Key::W, SDLK_w},
+{Key::X, SDLK_x},
+{Key::Y, SDLK_y},
+{Key::Z, SDLK_z},
+{Key::LeftBracket, SDLK_LEFTBRACKET},
+{Key::RightBracket, SDLK_RIGHTBRACKET},
+{Key::Backslash, SDLK_BACKSLASH},
+{Key::Escape, SDLK_ESCAPE},
+{Key::Enter, SDLK_RETURN},
+{Key::Tab, SDLK_TAB},
+{Key::Backspace, SDLK_BACKSPACE},
+{Key::Insert, SDLK_INSERT},
+{Key::Delete, SDLK_DELETE},
+{Key::Right, SDLK_RIGHT},
+{Key::Left, SDLK_LEFT},
+{Key::Down, SDLK_DOWN},
+{Key::Up, SDLK_UP},
+{Key::PageUp, SDLK_PAGEUP},
+{Key::PageDown, SDLK_PAGEDOWN},
+{Key::Home, SDLK_HOME},
+{Key::End, SDLK_END},
+{Key::CapsLock, SDLK_CAPSLOCK},
+{Key::ScrollLock, SDLK_SCROLLLOCK},
+{Key::NumLock, SDLK_NUMLOCKCLEAR},
+{Key::PrintScreen, SDLK_PRINTSCREEN},
+{Key::Pause, SDLK_PAUSE},
+{Key::F1, SDLK_F1},
+{Key::F2, SDLK_F2},
+{Key::F3, SDLK_F3},
+{Key::F4, SDLK_F4},
+{Key::F5, SDLK_F5},
+{Key::F6, SDLK_F6},
+{Key::F7, SDLK_F7},
+{Key::F8, SDLK_F8},
+{Key::F9, SDLK_F9},
+{Key::LeftShift, SDLK_LSHIFT},
+{Key::LeftControl, SDLK_LCTRL},
+{Key::LeftAlt, SDLK_LALT},
+{Key::LeftSuper, SDLK_LGUI},
+{Key::RightShift, SDLK_RSHIFT},
+{Key::RightControl, SDLK_RCTRL},
+{Key::RightAlt, SDLK_RALT},
+{Key::RightSuper, SDLK_RGUI},
+{Key::Menu, SDLK_MENU},
+{Key::Unknown, SDLK_UNKNOWN}};
 
-SDL_Scancode toSDLScancode(Platform::Key key)
+SDL_Keycode toSDLKeycode(Key key)
 {
-    for (size_t i = 0; i < sizeof(toSDLScancodeTable)/sizeof(toSDLScancodeTable[0]); ++i)
+    for (size_t i = 0; i < sizeof(toSDLKeycodeTable)/sizeof(toSDLKeycodeStruct); ++i)
     {
-        if (toSDLScancodeTable[i].key == key)
+        if (toSDLKeycodeTable[i].key == key)
         {
-            return toSDLScancodeTable[i].scancode;
+            return toSDLKeycodeTable[i].keycode;
         }
     }
 
-    return SDL_SCANCODE_UNKNOWN;
+    return SDLK_UNKNOWN;
 }
 
-Platform::Key toKey(SDL_Scancode scancode)
+Key toKey(SDL_Keycode scancode)
 {
-    for (size_t i = 0; i < sizeof(toSDLScancodeTable)/sizeof(toSDLScancodeTable[0]); ++i)
+    for (size_t i = 0; i < sizeof(toSDLKeycodeTable)/sizeof(toSDLKeycodeStruct); ++i)
     {
-        if (toSDLScancodeTable[i].scancode == scancode)
+        if (toSDLKeycodeTable[i].keycode == scancode)
         {
-            return toSDLScancodeTable[i].key;
+            return toSDLKeycodeTable[i].key;
         }
     }
 
-    return Platform::Unknown;
+    return Key::Unknown;
 }
 
-Platform::MouseButton toMouseButton(Uint32 button)
+MouseButton toMouseButton(Uint32 button)
 {
     switch (button)
     {
     case SDL_BUTTON_LEFT:
     {
-        return Platform::LeftMouseButton;
+        return MouseButton::Left;
     }
     case SDL_BUTTON_MIDDLE:
     {
-        return Platform::MiddleMouseButton;
+        return MouseButton::Middle;
     }
     case SDL_BUTTON_RIGHT:
     {
-        return Platform::RightMouseButton;
+        return MouseButton::Right;
     }
     default:
     {
-        return Platform::UnknownMouseButton;
+        return MouseButton::Unknown;
     }
     }
 }
@@ -159,12 +159,13 @@ Platform::Platform() : running(false), frametime(0.0f), gpuFrametime(0.0f), full
 
 Platform::~Platform()
 {
+    destroyWindow();
+
     SDL_Quit();
 }
 
 void Platform::initWindow(uint32_t width,
-                          uint32_t height,
-                          uint32_t MSAA)
+                          uint32_t height)
 {
     if (window != nullptr)
     {
@@ -186,7 +187,6 @@ void Platform::initWindow(uint32_t width,
         return;
     }
 
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, MSAA);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
@@ -315,7 +315,7 @@ bool Platform::pollEvent(Event& event)
     {
     case SDL_QUIT:
     {
-        event.type = Event::Quit;
+        event.type = EventType::Quit;
         break;
     }
     case SDL_WINDOWEVENT:
@@ -324,7 +324,7 @@ bool Platform::pollEvent(Event& event)
         {
         case SDL_WINDOWEVENT_RESIZED:
         {
-            event.type = Event::WindowResize;
+            event.type = EventType::WindowResize;
 
             event.resize.width = sdlEvent.window.data1;
             event.resize.height = sdlEvent.window.data2;
@@ -332,7 +332,7 @@ bool Platform::pollEvent(Event& event)
         }
         default:
         {
-            event.type = Event::Unknown;
+            event.type = EventType::Unknown;
             break;
         }
         }
@@ -340,19 +340,19 @@ bool Platform::pollEvent(Event& event)
     }
     case SDL_KEYDOWN:
     {
-        event.type = Event::KeyDown;
-        event.key.key = toKey(sdlEvent.key.keysym.scancode);
+        event.type = EventType::KeyDown;
+        event.key.key = toKey(sdlEvent.key.keysym.sym);
         break;
     }
     case SDL_KEYUP:
     {
-        event.type = Event::KeyUp;
-        event.key.key = toKey(sdlEvent.key.keysym.scancode);
+        event.type = EventType::KeyUp;
+        event.key.key = toKey(sdlEvent.key.keysym.sym);
         break;
     }
     case SDL_MOUSEMOTION:
     {
-        event.type = Event::MouseMotion;
+        event.type = EventType::MouseMotion;
         event.mouseMotion.x = sdlEvent.motion.x;
         event.mouseMotion.y = sdlEvent.motion.y;
         event.mouseMotion.relativeX = sdlEvent.motion.xrel;
@@ -361,21 +361,21 @@ bool Platform::pollEvent(Event& event)
     }
     case SDL_MOUSEBUTTONDOWN:
     {
-        event.type = Event::MouseButtonDown;
+        event.type = EventType::MouseButtonDown;
         event.mouseButton.button = toMouseButton(sdlEvent.button.button);
         event.mouseButton.doubleClicked = sdlEvent.button.clicks == 2;
         break;
     }
     case SDL_MOUSEBUTTONUP:
     {
-        event.type = Event::MouseButtonUp;
+        event.type = EventType::MouseButtonUp;
         event.mouseButton.button = toMouseButton(sdlEvent.button.button);
         event.mouseButton.doubleClicked = sdlEvent.button.clicks == 2;
         break;
     }
     case SDL_MOUSEWHEEL:
     {
-        event.type = Event::MouseWheel;
+        event.type = EventType::MouseWheel;
         event.mouseWheel.relativeX = sdlEvent.wheel.x;
         event.mouseWheel.relativeY = sdlEvent.wheel.y;
 
@@ -385,7 +385,7 @@ bool Platform::pollEvent(Event& event)
     }
     default:
     {
-        event.type = Event::Unknown;
+        event.type = EventType::Unknown;
         break;
     }
     }
@@ -483,7 +483,7 @@ void Platform::setCursorVisible(bool visible) const
 
 bool Platform::isKeyPressed(Key key) const
 {
-    return SDL_GetKeyboardState(nullptr)[toSDLScancode(key)] != 0;
+    return SDL_GetKeyboardState(nullptr)[SDL_GetScancodeFromKey(toSDLKeycode(key))] != 0;
 }
 
 bool Platform::getFullscreen() const

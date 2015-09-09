@@ -16,12 +16,13 @@
     - [ ] Getters and Setters
     - [ ] C++ exceptions -> script exceptions
         - [ ] Then bind the exceptions
-    - [ ] Bind lots of stuff
+    - [ ] Bind some stuff (for example Platform)
     - [ ] Static methods and properties
-    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer and Application.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
-- [ ] Make functions for builtin functions like + and *.
+- [ ] Finish the bytecode generator (scripting).
+- [ ] Make functions for builtin functions like + and * (scripting).
 - [ ] === function (scripting).
 - [ ] Improve the String type (scripting).
 - [ ] Proper methods (scripting).

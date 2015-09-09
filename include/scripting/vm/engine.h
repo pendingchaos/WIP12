@@ -39,7 +39,7 @@ class Engine
             return extensions.get(name);
         }
 
-        int64_t createNewTypeID()
+        inline int64_t createNewTypeID()
         {
             return nextTypeID++;
         }

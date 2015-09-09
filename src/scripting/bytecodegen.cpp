@@ -179,7 +179,6 @@ Implement these:
     float
     boolean
     get
-    while
 
 Finish some TODOs.*/
 bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it pushed something onto the stack.
@@ -205,13 +204,13 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
     {
         IdentifierNode *id = (IdentifierNode *)node;
 
-        if (isBuiltin(id, "true"))
+        if (id->names.getCount() == 1 and id->names[0] == "true")
         {
             uint8_t v = 1;
 
             data.append(1, &opPushBoolean);
             data.append(1, &v);
-        } else if (isBuiltin(id, "false"))
+        } else if (id->names.getCount() == 1 and id->names[0] == "false")
         {
             uint8_t v = 0;
 
@@ -286,25 +285,51 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
 
             IdentifierNode *id = (IdentifierNode *)call->nodes[1];
 
-            if (id->names.getCount() != 1)
-            {
-                //TODO: Support
-                THROW(ByteCodeGenException, "Assigning to members not supported.")
-            }
-
             if (not _generateBytecode(call->nodes[2], data))
             {
                 THROW(ByteCodeGenException, "Argument does not evaluate to anything");
             }
 
-            String str = id->names[0];
-            uint32_t length = TO_LE_U32(str.getLength());
+            if (id->names.getCount() > 1)
+            {
+                String str = id->names[id->names.getCount()-1];
+                uint32_t length = TO_LE_U32(str.getLength());
+                data.append(1, &opPushString);
+                data.append(4, &length);
+                data.append(str.getLength(), str.getData());
 
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(str.getLength(), str.getData());
+                str = id->names[0];
+                length = TO_LE_U32(str.getLength());
+                data.append(1, &opPushString);
+                data.append(4, &length);
+                data.append(str.getLength(), str.getData());
 
-            data.append(1, &opStoreVar);
+                data.append(1, &opLoadVar);
+
+                for (size_t i = 1; i < id->names.getCount()-1; ++i)
+                {
+                    str = id->names[i];
+                    length = TO_LE_U32(str.getLength());
+
+                    data.append(1, &opPushString);
+                    data.append(4, &length);
+                    data.append(str.getLength(), str.getData());
+
+                    data.append(1, &opGetMember);
+                }
+
+                data.append(1, &opSetMember);
+            } else
+            {
+                const String& str = id->names[0];
+                uint32_t length = TO_LE_U32(str.getLength());
+
+                data.append(1, &opPushString);
+                data.append(4, &length);
+                data.append(str.getLength(), str.getData());
+
+                data.append(1, &opStoreVar);
+            }
 
             return false;
         } else if (isBuiltin(call, "class"))
@@ -429,20 +454,20 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 }
                 bodyData.append(1, &opJump);
 
-                endJumpOffsetsPos.append(data.getSize()+bodyData.getSize());
                 bodyData.resize(bodyData.getSize()+4);
 
-                ResizableData condData;
-                if (not _generateBytecode(cond, condData))
+                if (not _generateBytecode(cond, data))
                 {
                     THROW(ByteCodeGenException, "Condition does not evaluate to anything");
                 }
-                condData.append(1, &opBoolNot);
-                condData.append(1, &opJumpIf);
-                int32_t jumpOffset = bodyData.getSize();
-                condData.append(4, &jumpOffset);
+                data.append(1, &opJumpIf);
+                int32_t off = 0;
+                data.append(4, &off);
+                off = bodyData.getSize();
+                data.append(4, &off);
 
-                data.append(condData);
+                endJumpOffsetsPos.append(data.getSize()+bodyData.getSize());
+
                 data.append(bodyData);
             }
 
@@ -461,7 +486,7 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
             {
                 uint8_t *p = ((uint8_t *)data.getData())+endJumpOffsetsPos[i];
 
-                *((int32_t *)p) = data.getSize() - endJumpOffsetsPos[i];
+                *((int32_t *)p) = data.getSize() - (endJumpOffsetsPos[i] + 4);
             }
 
             return false;
@@ -617,27 +642,73 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 THROW(ByteCodeGenException, "Must have two arguments.");
             }
 
-            _generateBytecode(call->nodes[1], data);
+            if (not _generateBytecode(call->nodes[1], data))
+            {
+                THROW(ByteCodeGenException, "Value does not evaluate to anything.");
+            }
             uint32_t length = TO_LE_U32(15);
             data.append(1, &opPushString);
             data.append(4, &length);
             data.append(15, "__classTypeID__");
+            data.append(1, &opGetMember);
 
-            _generateBytecode(call->nodes[2], data);
+            if (not _generateBytecode(call->nodes[2], data))
+            {
+                THROW(ByteCodeGenException, "Value does not evaluate to anything.");
+            }
             length = TO_LE_U32(10);
             data.append(1, &opPushString);
             data.append(4, &length);
             data.append(10, "__typeID__");
+            data.append(1, &opGetMember);
 
             data.append(1, &opEqual);
-        } else if (isBuiltin(call, "meth"))
+        } else if (isBuiltin(call, "while"))
         {
             if (call->nodes.getCount() < 2)
             {
                 THROW(ByteCodeGenException, "Must have at least two arguments.");
             }
 
-            for (size_t i = 3; i < call->nodes.getCount(); ++i)
+            ASTNode *cond = call->nodes[1];
+
+            ResizableData data2;
+
+            for (size_t i = 2; i < call->nodes.getCount(); ++i)
+            {
+                if (_generateBytecode(call->nodes[i], data2))
+                {
+                    data2.append(1, &opStackPop);
+                }
+            }
+
+            ResizableData condData;
+
+            if (not _generateBytecode(cond, condData))
+            {
+                THROW(ByteCodeGenException, "While condition does not evaluate to anything.");
+            }
+
+            int32_t off = -(data2.getSize() + 14 + condData.getSize());
+            data2.append(1, &opJump);
+            data2.append(4, &off);
+
+            off = data2.getSize();
+            condData.append(1, &opJumpIf);
+            int32_t off2 = 0;
+            condData.append(4, &off2);
+            condData.append(4, &off);
+
+            data.append(condData);
+            data.append(data2);
+        } else if (isBuiltin(call, "meth"))
+        {
+            if (call->nodes.getCount() < 3)
+            {
+                THROW(ByteCodeGenException, "Must have at least two arguments.");
+            }
+
+            for (size_t i = call->nodes.getCount()-1; i >= 3; --i)
             {
                 if (not _generateBytecode(call->nodes[i], data))
                 {
@@ -682,7 +753,7 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 THROW(ByteCodeGenException, "Must have at least one argument.");
             }
 
-            for (size_t i = 1; i < call->nodes.getCount(); ++i)
+            for (size_t i = call->nodes.getCount()-1; i >= 1; --i)
             {
                 if (not _generateBytecode(call->nodes[i], data))
                 {

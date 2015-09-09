@@ -95,7 +95,7 @@ Value *createException(ExcType type, String error)
     return (Value *)value;
 }
 
-Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, uint64_t typeID)
+Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID)
 {
     NativeObject *value = NEW(NativeObject);
 
@@ -134,9 +134,9 @@ Value *createCopy(Context *context, const Value *value)
     }
     case ValueType::Object:
     {
-        ObjectValue *obj = NEW(ObjectValue, *(ObjectValue *)value);
+        ObjectValue *obj = ((ObjectValue *)value);
 
-        obj->refCount = 1;
+        ++(obj->refCount);
 
         return (Value *)obj;
     }
@@ -150,9 +150,9 @@ Value *createCopy(Context *context, const Value *value)
     }
     case ValueType::NativeObject:
     {
-        NativeObject *obj = NEW(NativeObject, *(NativeObject *)value);
+        NativeObject *obj = ((NativeObject *)value);
 
-        obj->refCount = 1;
+        ++(obj->refCount);
 
         return (Value *)obj;
     }
@@ -206,6 +206,8 @@ void destroy(Context *context, Value *value)
 
         if (obj->refCount == 0)
         {
+            obj->refCount = 1; //Hack
+
             HashMap<String, Value *> members = ((ObjectValue *)value)->members;
 
             if (members.findEntry("__del__") != -1)
@@ -240,6 +242,8 @@ void destroy(Context *context, Value *value)
 
         if (obj->refCount == 0)
         {
+            obj->refCount = 1; //Hack
+
             if (obj->funcs.destroy != NULL)
             {
                 obj->funcs.destroy(context, obj);

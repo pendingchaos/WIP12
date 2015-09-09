@@ -11,6 +11,11 @@ Context::Context(Engine *engine_) : engine(engine_), callStackSize(0), exception
 
 Context::~Context()
 {
+    while (callStackSize != 0)
+    {
+        popCallstack();
+    }
+
     reset();
 
     destroy(this, exception);
@@ -174,7 +179,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
                     stack->append(createCopy(this, vars.getValue(entry)));
                 } else
                 {
-                    throwException(createException(ExcType::KeyError, "No such variable."));
+                    throwException(createException(ExcType::KeyError, String::format("No such variable '%s'.", name.getData())));
                 }
             }
 
@@ -310,9 +315,10 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
                       key,
                       newValue);
 
+            stack->append(value);
+
             destroy(this, newValue);
             destroy(this, key);
-            destroy(this, value);
             break;
         }
         case Opcode::GetType:
@@ -992,39 +998,22 @@ break;
 
 Value *Context::run(const Bytecode& bytecode, List<Value *> args)
 {
+    if (callStackSize == SCRIPTING_MAX_CALLSTACK_SIZE)
+    {
+        THROW(CallstackBoundsException)
+    }
+
+    callStack[callStackSize++] = CallstackEntry(bytecode);
+    CallstackEntry& callstackEntry = callStack[callStackSize-1];
+
+    callstackEntry.stacks.append(List<Value *>());
+
     //This may not be safe.
     if (!setjmp(jumpBuf))
     {
-        if (callStackSize == SCRIPTING_MAX_CALLSTACK_SIZE)
-        {
-            THROW(CallstackBoundsException)
-        }
-
-        callStack[callStackSize++] = CallstackEntry(bytecode);
-        CallstackEntry& callstackEntry = callStack[callStackSize-1];
-
-        callstackEntry.stacks.append(List<Value *>());
-
         Value *result = _run(bytecode, args);
 
-        for (size_t i = 0; i < callstackEntry.stacks.getCount(); ++i)
-        {
-            for (size_t j = 0; j < callstackEntry.stacks[i].getCount(); ++j)
-            {
-                destroy(this, callstackEntry.stacks[i][j]);
-            }
-        }
-
-        callstackEntry.stacks.clear();
-
-        for (size_t i = 0; i < callstackEntry.variables.getEntryCount(); ++i)
-        {
-            destroy(this, callstackEntry.variables.getValue(i));
-        }
-
-        callstackEntry.variables.clear();
-
-        --callStackSize;
+        popCallstack();
 
         return result;
     } else
@@ -1073,6 +1062,35 @@ Value *Context::run(const Bytecode& bytecode, List<Value *> args)
 
         THROW(UnhandledExcException, this, exc);
     }
+}
+
+void Context::popCallstack()
+{
+    if (callStackSize == 0)
+    {
+        THROW(BoundsException);
+    }
+
+    CallstackEntry& callstackEntry = callStack[callStackSize-1];
+
+    for (size_t i = 0; i < callstackEntry.stacks.getCount(); ++i)
+    {
+        for (size_t j = 0; j < callstackEntry.stacks[i].getCount(); ++j)
+        {
+            destroy(this, callstackEntry.stacks[i][j]);
+        }
+    }
+
+    callstackEntry.stacks.clear();
+
+    for (size_t i = 0; i < callstackEntry.variables.getEntryCount(); ++i)
+    {
+        destroy(this, callstackEntry.variables.getValue(i));
+    }
+
+    callstackEntry.variables.clear();
+
+    --callStackSize;
 }
 
 void Context::throwException(Value *exc)
@@ -1256,7 +1274,7 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
             ctx->throwException(createException(ExcType::TypeError, "Member names must be String."));
         }
 
-        HashMap<String, Value *> members = ((ObjectValue *)dest)->members;
+        HashMap<String, Value *>& members = ((ObjectValue *)dest)->members;
 
         String name = ((StringValue *)key)->value;
 
@@ -1266,6 +1284,7 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
         }
 
         members.set(name, createCopy(ctx, value));
+        return;
     }
     case ValueType::StringType:
     {
@@ -1290,12 +1309,14 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
         }
 
         str[index] = ((StringValue *)value)->value[0];
+        return;
     }
     case ValueType::NativeObject:
     {
         NativeObject *obj = (NativeObject *)dest;
 
         obj->funcs.setMember(ctx, obj, key, value);
+        return;
     }
     default:
     {

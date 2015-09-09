@@ -26,7 +26,7 @@ BEGIN_INSTANCE(PlayerLight, InstanceBase)
 
     virtual void handleInput()
     {
-        on = platform->isKeyPressed(Platform::LeftShift);
+        on = platform->isKeyPressed(Key::LeftShift);
     }
 
     virtual void fixedUpdate(float timestep)

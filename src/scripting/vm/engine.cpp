@@ -2,7 +2,7 @@
 
 #include "scripting/vm/context.h"
 #include <stdint.h>
-
+#include <iostream>
 namespace scripting
 {
 Value *classNew(Context *ctx, const List<Value *>& args)
@@ -14,13 +14,15 @@ Value *classNew(Context *ctx, const List<Value *>& args)
 
     Value *class_ = args[0];
 
-    Value *__base__ = createString("__base__");
-    Value *base = getMember(ctx, class_, __base__);
-    destroy(ctx, __base__);
+    StringValue __base__;
+    __base__.head.type = ValueType::StringType;
+    __base__.value = "__base__";
+    Value *base = getMember(ctx, class_, (Value *)&__base__);
 
-    Value *__typeID__ = createString("__typeID__");
-    Value *typeID = getMember(ctx, class_, __typeID__);
-    destroy(ctx, __typeID__);
+    StringValue __typeID__;
+    __typeID__.head.type = ValueType::StringType;
+    __typeID__.value = "__typeID__";
+    Value *typeID = getMember(ctx, class_, (Value *)&__typeID__);
 
     if (base->type != ValueType::Object)
     {
@@ -33,9 +35,14 @@ Value *classNew(Context *ctx, const List<Value *>& args)
     }
 
     Value *resultHead = createObject();
-    HashMap<String, Value *> resultMembers = ((ObjectValue *)resultHead)->members;
+    HashMap<String, Value *>& resultMembers = ((ObjectValue *)resultHead)->members;
+    HashMap<String, Value *>& baseMembers = ((ObjectValue *)base)->members;
 
-    resultMembers.append(((ObjectValue *)base)->members);
+    for (size_t i = 0; i < baseMembers.getEntryCount(); ++i)
+    {
+        resultMembers.set(baseMembers.getKey(i), createCopy(ctx, baseMembers.getValue(i)));
+    }
+
     resultMembers.set("__classTypeID__", createInt(((IntValue *)typeID)->value));
 
     int entry = resultMembers.findEntry("__init__");
@@ -51,6 +58,9 @@ Value *classNew(Context *ctx, const List<Value *>& args)
         }
     }
 
+    destroy(ctx, typeID);
+    destroy(ctx, base);
+
     return resultHead;
 }
 
@@ -58,7 +68,7 @@ Value *createClass(Context *ctx, const List<Value *>& args)
 {
     if (args.getCount() != 1)
     {
-        ctx->throwException(createException(ExcType::ValueError, "__classify takes 1 arguments."));
+        ctx->throwException(createException(ExcType::ValueError, "__classify takes 1 argument."));
     }
 
     Value *base = args[0];
@@ -80,7 +90,7 @@ Value *createClass(Context *ctx, const List<Value *>& args)
     return result;
 }
 
-Engine::Engine() : debugOutput(true), nextTypeID(LONG_LONG_MIN)
+Engine::Engine() : debugOutput(false), nextTypeID(LONG_LONG_MIN)
 {
     globalVars.set("__classify", createNativeFunction(createClass));
 }

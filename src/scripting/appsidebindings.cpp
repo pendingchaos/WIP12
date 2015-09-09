@@ -57,9 +57,9 @@ struct _functionStruct
     ScriptInstance * (*f5)( Script *obj, const char * arg0, Entity * arg1, Scene * arg2);
     Matrix4x4 (*f6)(const Transform *obj);
     void (*f7)( Transform *obj);
-    void (*f8)( Platform *obj, uint32_t arg0, uint32_t arg1, uint32_t arg2);
+    void (*f8)( Platform *obj, uint32_t arg0, uint32_t arg1);
     void (*f9)( Platform *obj);
-    bool (*f10)( Platform *obj, Platform::Event & arg0);
+    bool (*f10)( Platform *obj, Event & arg0);
     bool (*f11)(const Platform *obj);
     uint64_t (*f12)(const Platform *obj);
     uint64_t (*f13)(const Platform *obj);
@@ -73,7 +73,7 @@ struct _functionStruct
     Int2 (*f21)(const Platform *obj);
     bool (*f22)(const Platform *obj);
     void (*f23)(const Platform *obj, bool arg0);
-    bool (*f24)(const Platform *obj, Platform::Key arg0);
+    bool (*f24)(const Platform *obj, Key arg0);
     bool (*f25)(const Platform *obj);
     void (*f26)( Platform *obj, bool arg0);
     String (*f27)( AudioDevice *obj);
@@ -323,9 +323,9 @@ void f4(Application * arg0) { setApplication(arg0);}
 ScriptInstance * f5( Script *obj, const char * arg0, Entity * arg1, Scene * arg2) {return obj->createInstance(arg0, arg1, arg2);}
 Matrix4x4 f6(const Transform *obj) {return obj->createMatrix();}
 void f7( Transform *obj) {new (obj) Transform();}
-void f8( Platform *obj, uint32_t arg0, uint32_t arg1, uint32_t arg2) { obj->initWindow(arg0, arg1, arg2);}
+void f8( Platform *obj, uint32_t arg0, uint32_t arg1) { obj->initWindow(arg0, arg1);}
 void f9( Platform *obj) { obj->destroyWindow();}
-bool f10( Platform *obj, Platform::Event & arg0) {return obj->pollEvent(arg0);}
+bool f10( Platform *obj, Event & arg0) {return obj->pollEvent(arg0);}
 bool f11(const Platform *obj) {return obj->eventsLeft();}
 uint64_t f12(const Platform *obj) {return obj->getTime();}
 uint64_t f13(const Platform *obj) {return obj->getTimerFrequency();}
@@ -339,7 +339,7 @@ bool f20(const Platform *obj) {return obj->isMiddleMouseButtonPressed();}
 Int2 f21(const Platform *obj) {return obj->getMouseWheel();}
 bool f22(const Platform *obj) {return obj->isCursorVisible();}
 void f23(const Platform *obj, bool arg0) { obj->setCursorVisible(arg0);}
-bool f24(const Platform *obj, Platform::Key arg0) {return obj->isKeyPressed(arg0);}
+bool f24(const Platform *obj, Key arg0) {return obj->isKeyPressed(arg0);}
 bool f25(const Platform *obj) {return obj->getFullscreen();}
 void f26( Platform *obj, bool arg0) { obj->setFullscreen(arg0);}
 String f27( AudioDevice *obj) {return obj->getName();}
