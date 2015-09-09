@@ -18,6 +18,7 @@ DECLUNIFORM(mat4, shadowmapViewMatrix)
 DECLUNIFORM(mat4, shadowmapProjectionMatrix)
 DECLUNIFORM(float, shadowMinBias)
 DECLUNIFORM(float, shadowBiasScale)
+DECLUNIFORM(float, shadowFixedBias)
 #endif
 
 DECLUNIFORM(mat4, viewProjection)
@@ -53,6 +54,7 @@ void main()
     
     shadowCoord.xyz /= shadowCoord.w;
     shadowCoord.z -= max(U(shadowBiasScale) * (1.0 - dot(texture(U(geomNormalTexture), frag_uv).rgb, U(lightNegDir))), U(shadowMinBias));
+    shadowCoord.z -= U(shadowFixedBias);
     shadowCoord.xyz += 1.0;
     shadowCoord.xyz /= 2.0;
     #endif

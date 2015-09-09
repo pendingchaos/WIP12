@@ -122,6 +122,7 @@
 		<Unit filename="include/scene/transform.h" />
 		<Unit filename="include/scripting/bindings.h" />
 		<Unit filename="include/scripting/bytecodegen.h" />
+		<Unit filename="include/scripting/disasm.h" />
 		<Unit filename="include/scripting/parser.h" />
 		<Unit filename="include/scripting/script.h" />
 		<Unit filename="include/scripting/scriptinclude.h" />
@@ -193,6 +194,7 @@
 		<Unit filename="src/scripting/appsidebindings.cpp" />
 		<Unit filename="src/scripting/bindings.cpp" />
 		<Unit filename="src/scripting/bytecodegen.cpp" />
+		<Unit filename="src/scripting/disasm.cpp" />
 		<Unit filename="src/scripting/parser.cpp" />
 		<Unit filename="src/scripting/script.cpp" />
 		<Unit filename="src/scripting/vm/bytecode.cpp" />

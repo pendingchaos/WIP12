@@ -1212,6 +1212,8 @@ void GfxRenderer::render()
             gfxApi->uniform(fragmentShader, "shadowmapProjectionMatrix", light->getProjectionMatrix());
             gfxApi->uniform(fragmentShader, "shadowMinBias", light->shadowMinBias);
             gfxApi->uniform(fragmentShader, "shadowBiasScale", light->shadowBiasScale);
+            gfxApi->uniform(fragmentShader, "shadowFixedBias", light->shadowFixedBias);
+            gfxApi->uniform(fragmentShader, "shadowRadius", light->shadowRadius);
         }
 
         switch (light->type)
@@ -1219,6 +1221,7 @@ void GfxRenderer::render()
         case GfxLightType::Directional:
         {
             gfxApi->uniform(fragmentShader, "lightNegDir", -light->direction.direction.normalize());
+            gfxApi->uniform(fragmentShader, "time", float(platform->getTime()) / float(platform->getTimerFrequency()));
             break;
         }
         case GfxLightType::Spot:

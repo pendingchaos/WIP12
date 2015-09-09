@@ -17,6 +17,7 @@ DECLUNIFORM(mat4, viewProjection)
 DECLUNIFORM(samplerCubeShadow, shadowmap)
 DECLUNIFORM(float, shadowMinBias)
 DECLUNIFORM(float, shadowBiasScale)
+DECLUNIFORM(float, shadowFixedBias)
 DECLUNIFORM(float, lightFar)
 #endif
 
@@ -48,7 +49,7 @@ void main()
     result_color.rgb = pointLight(U(lightPos), U(lightRadius), U(lightColor), U(lightAmbientStrength),
                                   albedo, metallic, roughness, normal, viewDir, ao, position
     #ifdef SHADOW_MAP
-    , U(shadowmap), 0.01, U(shadowBiasScale), U(shadowMinBias), U(lightFar), texture(U(geomNormalTexture), frag_uv).rgb
+    , U(shadowmap), 0.01, U(shadowBiasScale), U(shadowMinBias), U(shadowFixedBias), U(lightFar), texture(U(geomNormalTexture), frag_uv).rgb
     #endif
     );
     result_color.a = 1.0;

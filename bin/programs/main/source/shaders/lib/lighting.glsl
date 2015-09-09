@@ -45,6 +45,9 @@ layout (std140) uniform lights_
 };
 #endif
 
+DECLUNIFORM(float, time)
+DECLUNIFORM(float, shadowRadius)
+
 vec3 GGX(float nh, float roughness)
 {
     float a = roughness * roughness;
@@ -124,6 +127,13 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     return (diffuseResult + specular) * lightColor + mix(ambient, vec3(0.0), metallic);
 }
 
+float shadowNoise(float scale)
+{
+    return -scale + 2.0 * scale * fract(52.9829189 * fract(dot(gl_FragCoord.xy + vec2(fract(U(time)) * scale, 0.0), vec2(0.06711056, 0.00583715))));
+}
+
+#define _SHADOW_SAMPLE(samplePos) shadow += texture(shadowmap, shadowCoord.xyz + vec3(mat * samplePos * U(shadowRadius) * onePixel, 0.0));
+
 vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
                       vec3 albedo, float metallic, float roughness, vec3 normal, vec3 viewDir, float ao,
                       vec4 shadowCoord, sampler2DShadow shadowmap)
@@ -142,35 +152,26 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     
     float shadow = 0.0;
     
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-2, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(-1, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(0, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(2, 2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, -2));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, -1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 0));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 1));
-    shadow += textureOffset(shadowmap, shadowCoord.xyz, ivec2(1, 2));
-   
-    shadow /= 25.0;
+    float noise = shadowNoise(PI); //PI seems to look nice.
     
-    shadow = pow(shadow, 2.2);
+    float s = sin(noise);
+    float c = cos(noise);
+    
+    mat2 mat = mat2(s, -c,
+                    c, s);
+    
+    vec2 onePixel = vec2(1.0) / vec2(textureSize(shadowmap, 0));
+    
+    _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+    _SHADOW_SAMPLE(vec2(0.0, -0.875))
+    _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+    _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+    _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+    _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+    _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+    _SHADOW_SAMPLE(vec2(0.125, 0.0))
+    
+    shadow /= 8.0;
     
     albedo /= PI;
     
@@ -320,7 +321,7 @@ shadow += texture(shadowmap, vec4(normalize(-dir + xAxis * poisson + cross(xAxis
 
 vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAmbient,
                 vec3 albedo, float metallic, float roughness, vec3 normal, vec3 viewDir, float ao, vec3 position,
-                samplerCubeShadow shadowmap, float shadowRadius, float shadowBiasScale, float shadowMinBias, float lightFar, vec3 geomNormal)
+                samplerCubeShadow shadowmap, float shadowRadius, float shadowBiasScale, float shadowMinBias, float shadowFixedBias, float lightFar, vec3 geomNormal)
 {
     vec3 specular;
     float diffuse;
@@ -342,6 +343,7 @@ vec3 pointLight(vec3 lightPos, float lightRadius, vec3 lightColor, float lightAm
     
     float shadow = 0.0;
     float shadowDist = dist - max(shadowBiasScale * (1.0 - dot(geomNormal, dir)), shadowMinBias);
+    shadowDist -= shadowFixedBias;
     
     float angle = _pointLightRandom(gl_FragCoord.xyy, 0) * 6.283285;
     float s = sin(angle);

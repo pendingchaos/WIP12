@@ -606,6 +606,8 @@ void Scene::_load()
                 float minBias = file.readFloat32();
                 float biasScale = file.readFloat32();
                 float autoBiasScale = file.readFloat32();
+                float fixedBias = file.readFloat32();
+                float shadowRadius = file.readFloat32();
                 size_t resolution = file.readUInt16LE();
                 GfxShadowmapPrecision precision = (GfxShadowmapPrecision)file.readUInt8();
 
@@ -616,6 +618,8 @@ void Scene::_load()
                 light->shadowMinBias = minBias;
                 light->shadowBiasScale = biasScale;
                 light->shadowAutoBiasScale = autoBiasScale;
+                light->shadowFixedBias = fixedBias;
+                light->shadowRadius = shadowRadius;
             }
         }
 
@@ -938,6 +942,11 @@ void Scene::save()
             {
                 file.writeFloat32(light->shadowmapNear);
                 file.writeFloat32(light->shadowmapFar);
+                file.writeFloat32(light->shadowMinBias);
+                file.writeFloat32(light->shadowBiasScale);
+                file.writeFloat32(light->shadowAutoBiasScale);
+                file.writeFloat32(light->shadowFixedBias);
+                file.writeFloat32(light->shadowRadius);
                 file.writeUInt16LE(light->getShadowmapResolution());
                 file.writeUInt8((int)light->getShadowmapPrecision());
             }

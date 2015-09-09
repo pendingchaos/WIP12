@@ -574,6 +574,8 @@ if __name__ == "__main__":
                     self.radius = 1.0
                 
                 self.ambient_strength = 0.05
+                self.shadow_radius = 4.0
+                self.shadow_fixed_bias = 0.0
                 
                 self.shadowmap = False
             
@@ -615,12 +617,14 @@ if __name__ == "__main__":
                 if self.shadowmap:
                     s += "\x01"
                     
-                    s += struct.pack("<fffffH",
+                    s += struct.pack("<fffffffH",
                                      self.shadowmap_near,
                                      self.shadowmap_far,
                                      self.shadow_min_bias,
                                      self.shadow_bias_scale,
                                      self.shadow_auto_bias_scale,
+                                     self.shadow_fixed_bias,
+                                     self.shadow_radius,
                                      self.shadowmap_resolution)
                     
                     s += {Scene.Light.ShadowmapPrecision.Low: "\x00",
@@ -1391,90 +1395,200 @@ if __name__ == "__main__":
     ent.rigidBody.friction = 0.1
     platforms.entities.append(ent)
     
+    # Point light benchmark
     """light = Scene.Light(Scene.Light.Type.Point)
     light.position = [9.0, 2.5, -6.0]
     light.radius = 0.33
     light.color = [1.0, 0.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [11.0, 2.5, -6.0]
     light.radius = 0.33
     light.color = [0.0, 1.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [10.0, 2.5, -7.0]
     light.radius = 0.33
     light.color = [0.0, 0.0, 1.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [10.0, 2.5, -5.0]
     light.radius = 0.33
     light.color = [1.0, 1.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [9.0, 2.5, 0.0]
     light.radius = 0.33
     light.color = [1.0, 0.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [11.0, 2.5, 0.0]
     light.radius = 0.33
     light.color = [0.0, 1.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [10.0, 2.5, -1.0]
     light.radius = 0.33
     light.color = [0.0, 0.0, 1.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [10.0, 2.5, 1.0]
     light.radius = 0.33
     light.color = [1.0, 1.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [9.0, 2.5, 6.0]
     light.radius = 0.33
     light.color = [1.0, 0.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [11.0, 2.5, 6.0]
     light.radius = 0.33
     light.color = [0.0, 1.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [10.0, 2.5, 5.0]
     light.radius = 0.33
     light.color = [0.0, 0.0, 1.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [10.0, 2.5, 7.0]
     light.radius = 0.33
     light.color = [1.0, 1.0, 0.0]
+    light.power = 2.0
     light.ambient_strength = 0.005
+    light.shadowmap = True
+    light.shadowmap_near = 0.1
+    light.shadowmap_far = 100.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 0.65
+    light.shadowmap_resolution = 1024
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)"""
     
+    # Directional light test
     light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
@@ -1488,9 +1602,12 @@ if __name__ == "__main__":
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
+    # Point light test
     """light = Scene.Light(Scene.Light.Type.Point)
     light.position = [0.0, 1.0, 0.0]
     light.radius = 10.0
+    light.power = 2.0
+    light.ambient_strength = 0.004
     light.color = [1.0, 1.0, 1.0]
     light.shadowmap = True
     light.shadowmap_near = 0.1
@@ -1502,6 +1619,7 @@ if __name__ == "__main__":
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)"""
     
+    # Spot light test
     """light = Scene.Light(Scene.Light.Type.Spot)
     light.position = [8.0, 2.5, 0.0]
     light.direction = [1.0, -0.75, 0.0]
@@ -1516,6 +1634,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
+    light.ambient_strength = 0.015
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
@@ -1533,6 +1652,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
+    light.ambient_strength = 0.015
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)
     
@@ -1551,6 +1671,7 @@ if __name__ == "__main__":
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
+    light.ambient_strength = 0.015
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     scene.lights.append(light)"""
     
