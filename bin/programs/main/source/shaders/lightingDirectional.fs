@@ -14,7 +14,7 @@ DECLUNIFORM(sampler2D, aoTexture)
 DECLUNIFORM(mat4, viewProjection)
 
 #ifdef SHADOW_MAP
-DECLUNIFORM(sampler2DShadow, shadowmap)
+DECLUNIFORM(sampler2D, shadowmap)
 DECLUNIFORM(mat4, shadowmapViewMatrix)
 DECLUNIFORM(mat4, shadowmapProjectionMatrix)
 DECLUNIFORM(float, shadowMinBias)

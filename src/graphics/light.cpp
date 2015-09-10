@@ -62,7 +62,8 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
         pointLightFramebuffers[5]->setDepthAttachment(shadowmap, 0, 5);
     }
 
-    shadowmap->setShadowmap(true);
+    shadowmap->setMinFilter(GfxFilter::Nearest);
+    shadowmap->setMagFilter(GfxFilter::Nearest);
 
     shadowmapFramebuffer = gfxApi->createFramebuffer();
     shadowmapFramebuffer->setDepthAttachment(shadowmap);

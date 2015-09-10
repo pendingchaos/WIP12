@@ -127,20 +127,66 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     return (diffuseResult + specular) * lightColor + mix(ambient, vec3(0.0), metallic);
 }
 
+//Interleaved gradient noise from Next Generation Post Processing in Call of Duty: Advanced Warfare.
 float shadowNoise(float scale)
 {
-    return -scale + 2.0 * scale * fract(52.9829189 * fract(dot(gl_FragCoord.xy + vec2(fract(U(time)) * scale, 0.0), vec2(0.06711056, 0.00583715))));
+    return -scale + 2.0 * scale * fract(52.9829189 * fract(dot(gl_FragCoord.xy + vec2(U(time) * scale, 0.0), vec2(0.06711056, 0.00583715))));
 }
 
-#define _SHADOW_SAMPLE(samplePos) shadow += texture(shadowmap, shadowCoord.xyz + vec3(mat * samplePos * U(shadowRadius) * onePixel, 0.0));
+#ifdef GL_ARB_gpu_shader5
+#define TEX_GATHER
+#elif __VERSION__ >= 400
+#define TEX_GATHER
+#endif
+
+#ifdef TEX_GATHER
+#define _BLOCKER_SAMPLE(samplePos) {\
+    vec2 offset = mat * samplePos * U(shadowRadius) / texSize;\
+    vec4 depths = textureGather(shadowmap, shadowCoord.xy/shadowCoord.w + offset, 0);\
+    vec4 factors = step(depths, vec4(shadowCoord.z/shadowCoord.w));\
+    numBlockers += dot(factors, vec4(1.0));\
+    avgBlockerDepth += dot(depths, factors);\
+}
+#else
+#define _BLOCKER_SAMPLE(samplePos) {\
+    vec2 offset = mat * samplePos * U(shadowRadius) / texSize;\
+    float depth = textureLod(shadowmap, shadowCoord.xy/shadowCoord.w + offset, 0).r;\
+    float factor = step(depth, shadowCoord.z/shadowCoord.w);\
+    numBlockers += factors;\
+    avgBlockerDepth += depth * factor;\
+}
+#endif
+
+//This seems to result in lower quality.
+//shadow += mix(mix(factors.x, factors.y, fract(coord.x)), mix(factors.w, factors.z, fract(coord.x)), fract(coord.y));
+
+#ifdef TEX_GATHER
+#define _SHADOW_SAMPLE(samplePos) {\
+    vec2 coord = shadowCoord.xy*texSize + mat*samplePos*newRadius;\
+    vec4 depths = textureGather(shadowmap, coord/texSize, 0);\
+    vec4 factors = step(vec4(shadowCoord.z), depths);\
+    shadow += pow(dot(factors, vec4(0.25)), 2.2);\
+}
+#else
+#define _SHADOW_SAMPLE(samplePos) {\
+    vec2 coord = shadowCoord.xy*texSize + mat*samplePos*newRadius;\
+    coord -= 0.5;\
+    vec4 depths = vec4(textureLod(shadowmap, (coord+vec2(0.5, 0.5)) / texSize, 0.0).r,\
+                       textureLod(shadowmap, (coord+vec2(1.5, 0.5)) / texSize, 0.0).r,\
+                       textureLod(shadowmap, (coord+vec2(1.5, 1.5)) / texSize, 0.0).r,\
+                       textureLod(shadowmap, (coord+vec2(0.5, 1.5)) / texSize, 0.0).r);\
+    vec4 factors = step(vec4(shadowCoord.z), depths);\
+    shadow += pow(dot(factors, vec4(0.25)), 2.2);\
+}
+#endif
 
 vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
                       vec3 albedo, float metallic, float roughness, vec3 normal, vec3 viewDir, float ao,
-                      vec4 shadowCoord, sampler2DShadow shadowmap)
+                      vec4 shadowCoord, sampler2D shadowmap)
 {
     vec3 specular;
     float diffuse;
-    
+
     _lighting(lightNegDir,
               specular,
               diffuse,
@@ -149,38 +195,135 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
               metallic,
               normal,
               viewDir);
-    
-    float shadow = 0.0;
-    
+
     float noise = shadowNoise(PI); //PI seems to look nice.
-    
     float s = sin(noise);
     float c = cos(noise);
-    
     mat2 mat = mat2(s, -c,
                     c, s);
+
+    vec2 texSize = vec2(textureSize(shadowmap, 0));
+
+    float avgBlockerDepth = 0.0;
+    float numBlockers = 0;
+
+    _BLOCKER_SAMPLE(vec2(-0.7071, 0.7071))
+    _BLOCKER_SAMPLE(vec2(0.0, -0.875))
+    _BLOCKER_SAMPLE(vec2(0.5303, 0.5303))
+    _BLOCKER_SAMPLE(vec2(-0.625, 0.0))
+    _BLOCKER_SAMPLE(vec2(0.3536, -0.3536))
+    _BLOCKER_SAMPLE(vec2(0.0, 0.3750))
+    _BLOCKER_SAMPLE(vec2(0.1768, -0.1768))
+    _BLOCKER_SAMPLE(vec2(0.125, 0.0))
+    avgBlockerDepth /= numBlockers;
+
+    float precent = clamp(abs(shadowCoord.z - avgBlockerDepth) / avgBlockerDepth, 0.0, 1.0);
+    float newRadius = precent * U(shadowRadius);
+
+    float shadow = 0.0;
+
+    vec3 cost;
     
-    vec2 onePixel = vec2(1.0) / vec2(textureSize(shadowmap, 0));
-    
-    _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
-    _SHADOW_SAMPLE(vec2(0.0, -0.875))
-    _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
-    _SHADOW_SAMPLE(vec2(-0.625, 0.0))
-    _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
-    _SHADOW_SAMPLE(vec2(0.0, 0.3750))
-    _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
-    _SHADOW_SAMPLE(vec2(0.125, 0.0))
-    
-    shadow /= 8.0;
-    
+    if (numBlockers < 1.0)
+    {
+        shadow = 1.0;
+        cost = vec3(0.0, 0.0, 1.0);
+    } else if (precent > 0.75)
+    {
+        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+        _SHADOW_SAMPLE(vec2(0.0, -0.875))
+        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+        _SHADOW_SAMPLE(vec2(0.125, 0.0))
+        
+        noise += PI / 2.0;
+        s = sin(noise);
+        c = cos(noise);
+        mat = mat2(s, -c,
+                   c, s);
+        
+        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+        _SHADOW_SAMPLE(vec2(0.0, -0.875))
+        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+        _SHADOW_SAMPLE(vec2(0.125, 0.0))
+        
+        noise += PI / 2.0;
+        s = sin(noise);
+        c = cos(noise);
+        mat = mat2(s, -c,
+                   c, s);
+        
+        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+        _SHADOW_SAMPLE(vec2(0.0, -0.875))
+        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+        _SHADOW_SAMPLE(vec2(0.125, 0.0))
+        
+        shadow /= 24.0;
+        cost = vec3(1.0, 0.0, 0.0);
+    } else if (precent > 0.5)
+    {
+        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+        _SHADOW_SAMPLE(vec2(0.0, -0.875))
+        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+        _SHADOW_SAMPLE(vec2(0.125, 0.0))
+        
+        noise += PI;
+        s = sin(noise);
+        c = cos(noise);
+        mat = mat2(s, -c,
+                   c, s);
+        
+        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+        _SHADOW_SAMPLE(vec2(0.0, -0.875))
+        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+        _SHADOW_SAMPLE(vec2(0.125, 0.0))
+        
+        shadow /= 16.0;
+        cost = vec3(1.0, 1.0, 0.0);
+    } else
+    {
+        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
+        _SHADOW_SAMPLE(vec2(0.0, -0.875))
+        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
+        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
+        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
+        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
+        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
+        _SHADOW_SAMPLE(vec2(0.125, 0.0))
+        
+        shadow /= 8.0;
+        cost = vec3(0.0, 1.0, 0.0);
+    }
+
     albedo /= PI;
-    
+
     vec3 diffuseResult = albedo * min(diffuse, shadow);
-    
+
     vec3 ambient = albedo * lightAmbient * mix(ao, 1.0, min(diffuse, shadow)) * lightColor;
-    
+
     return (diffuseResult + specular * shadow) * lightColor + mix(ambient, vec3(0.0), metallic);
 }
+
+#undef TEX_GATHER
 
 vec3 spotLight(vec3 lightNegDir, vec3 lightPos, float lightCosInnerCutoff, float lightCosOuterCutoff,
                float lightRadius, vec3 lightColor, float lightAmbient,

@@ -58,7 +58,7 @@ DECLUNIFORM(uint, pomMaxLayers)
 void main()
 {
     //It is important that this if before parallax mapping. Doing this before fixes artifacts with parallax edge discard.
-    result_geom_normal = cross(normalize(dFdx(frag_position_worldSpace)), normalize(dFdy(frag_position_worldSpace)));
+    result_geom_normal = normalize(cross(dFdx(frag_position_worldSpace), dFdy(frag_position_worldSpace)));
     
     vec4 albedo_ = U(albedo);
     vec3 normal_worldSpace = normalize(frag_normal_worldSpace);
