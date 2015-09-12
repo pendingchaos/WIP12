@@ -162,7 +162,7 @@ enum class GfxMeshAttribDataType
     S32_3Norm,
     S32_4Norm
 };
-static const unsigned int GfxBlendModeMax = 56;
+static const unsigned int GfxMeshAttribDataTypeMax = 56;
 
 enum class GfxMeshIndexDataType
 {

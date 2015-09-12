@@ -80,8 +80,6 @@
 		<Unit filename="include/graphics/GL/gfxglapi.h" />
 		<Unit filename="include/graphics/GL/gfxglbuffer.h" />
 		<Unit filename="include/graphics/GL/gfxglframebuffer.h" />
-		<Unit filename="include/graphics/GL/gfxglmeshimpl.h" />
-		<Unit filename="include/graphics/GL/gfxglshaderimpl.h" />
 		<Unit filename="include/graphics/GL/gfxgltextureimpl.h" />
 		<Unit filename="include/graphics/GL/glgputimer.h" />
 		<Unit filename="include/graphics/camera.h" />
@@ -151,8 +149,6 @@
 		<Unit filename="src/graphics/GL/gfxglapi.cpp" />
 		<Unit filename="src/graphics/GL/gfxglbuffer.cpp" />
 		<Unit filename="src/graphics/GL/gfxglframebuffer.cpp" />
-		<Unit filename="src/graphics/GL/gfxglmeshimpl.cpp" />
-		<Unit filename="src/graphics/GL/gfxglshaderimpl.cpp" />
 		<Unit filename="src/graphics/GL/gfxgltextureimpl.cpp" />
 		<Unit filename="src/graphics/GL/glfl.cpp" />
 		<Unit filename="src/graphics/GL/glgputimer.cpp" />
