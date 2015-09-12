@@ -331,7 +331,7 @@ class GfxTextureCube
 class GfxShaderParamBuffer
 {
     public:
-        GfxShaderParamBuffer(Context *context);
+        GfxShaderParamBuffer(Context *context, size_t size);
         ~GfxShaderParamBuffer();
 
         void setInt(size_t offset, int32_t value);
