@@ -25,20 +25,30 @@
     - Looks nicer than addition.
 
 ## New rendering code
-### Requirements
-#### Required:
+
+### Required:
 - OpenGL 3.3
 - GL_ARB_tessellation_shader
 - GL_KHR_debug or similar extension
 - GL_ARB_separate_shader_objects
 
-#### Optional:
-- GL_ARB_get_program_binary
-- GL_ARB_internalformat_query
-- GL_ARB_multi_draw_indirect (still used if the below is not supported but not for GPU culling)
-- GL_ARB_indirect_parameters (only used when the below is supported) (for GPU culling)
-- GL_ARB_compute_shader with GL_ARB_shader_storage_buffer_object (for particle effects and GPU culling if the above is supported)
-- GL_ARB_buffer_storage (used when the above is not supported for persistent buffers)
+### Optional:
+- GL_ARB_internalformat_query2
+    - For better max texture sizes.
+    - glGetInternalFormati64v returns a width and height of 0 if the format is not natively supported by the GPU
+        - Fallback on glGetIntegerv
+- GPU Culling path
+    - GL_ARB_multi_draw_indirect
+    - GL_ARB_indirect_parameters
+    - GL_ARB_compute_shader
+    - GL_ARB_shader_storage_buffer_object
+- Multi draw indirect path
+    - GL_ARB_multi_draw_indirect
+- GPU Particles path
+    - GL_ARB_compute_shader
+    - GL_ARB_shader_storage_buffer_object
+- CPU Particles path
+    - GL_ARB_buffer_storage (persistent buffers)
 
 ### API
 ```c++
