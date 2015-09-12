@@ -386,7 +386,7 @@ class GfxMesh
         AABB aabb;
 };
 
-class Shader
+class GfxShader
 {
     public:
         GfxShader(Context *context);

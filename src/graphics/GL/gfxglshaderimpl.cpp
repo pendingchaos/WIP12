@@ -3,20 +3,13 @@
 #include "graphics/GL/gfxglapi.h"
 #include "globals.h"
 
-GfxGLShaderImpl::GfxGLShaderImpl() : stage(GfxStage::Vertex) {}
+GfxGLShaderImpl::GfxGLShaderImpl() : type(GfxShaderType::Vertex) {}
 
 GfxGLShaderImpl::~GfxGLShaderImpl()
 {
     for (size_t i = 0; i < compiledShaders.getEntryCount(); ++i)
     {
-        if (GLFL_GL_ARB_separate_shader_objects)
-        {
-            glDeleteProgram(compiledShaders.getValue(i)->getGLProgram());
-        } else
-        {
-            glDeleteShader(compiledShaders.getValue(i)->getGLProgram());
-        }
-
+        glDeleteProgram(compiledShaders.getValue(i)->getGLProgram());
         DELETE(compiledShaders.getValue(i));
     }
 }
@@ -26,72 +19,44 @@ GLuint GfxGLShaderImpl::_compile(GLenum type, GLsizei count, const char **string
     GLuint shader = glCreateShader(type);
 
     glShaderSource(shader, count, strings, nullptr);
-
     glCompileShader(shader);
 
-    if (GLFL_GL_ARB_separate_shader_objects)
+    GLuint program = glCreateProgram();
+
+    GLint compiled;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+
+    glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
+
+    if (compiled)
     {
-        GLuint program = glCreateProgram();
-
-        GLint compiled;
-
-        glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-
-        glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
-
-        if (compiled)
-        {
-            glAttachShader(program, shader);
-            glLinkProgram(program);
-            glDetachShader(program, shader);
-        } else
-        {
-            GLint length;
-
-            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-
-            infoLog.resize(length);
-
-            glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
-        }
-
-        glDeleteShader(shader);
-
-        GLint linked;
-
-        glGetProgramiv(program, GL_LINK_STATUS, &linked);
-
-        if (not linked and compiled)
-        {
-            GLint length;
-
-            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
-
-            infoLog.resize(length);
-
-            glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
-        }
-
-        return program;
+        glAttachShader(program, shader);
+        glLinkProgram(program);
+        glDetachShader(program, shader);
     } else
     {
-        GLint compiled;
+        GLint length;
+        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
 
-        glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-
-        if (not compiled)
-        {
-            GLint length;
-
-            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-
-            infoLog.resize(length);
-
-            glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
-        }
-
-        return shader;
+        infoLog.resize(length);
+        glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
     }
+
+    glDeleteShader(shader);
+
+    GLint linked;
+    glGetProgramiv(program, GL_LINK_STATUS, &linked);
+
+    if (not linked and compiled)
+    {
+        GLint length;
+        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+
+        infoLog.resize(length);
+        glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
+    }
+
+    return program;
 }
 
 void GfxGLShaderImpl::_compile()
@@ -108,13 +73,7 @@ void GfxGLShaderImpl::_compile()
 
             if (oldProgram != 0)
             {
-                if (GLFL_GL_ARB_separate_shader_objects)
-                {
-                    glDeleteProgram(oldProgram);
-                } else
-                {
-                    glDeleteShader(oldProgram);
-                }
+                glDeleteProgram(oldProgram);
             }
         } catch (ShaderCompileException& e)
         {
@@ -134,7 +93,7 @@ GfxCompiledShader *GfxGLShaderImpl::getCompiled(const HashMap<String, String >& 
 
     if (entry == -1)
     {
-        GfxGLCompiledShader *shader = NEW(GfxGLCompiledShader, stage, _compile(defines));
+        GfxGLCompiledShader *shader = NEW(GfxGLCompiledShader, type, _compile(defines));
 
         compiledShaders.set(defines, shader);
 
@@ -197,34 +156,34 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
         sources[i+2] = defineSources[i].getData();
     }
 
-    switch (stage)
+    switch (type)
     {
-    case GfxStage::Vertex:
+    case GfxShaderType::Vertex:
     {
         sources[defines.getEntryCount()+2] = "#define VERTEX 1\n";
         break;
     }
-    case GfxStage::TessControl:
+    case GfxShaderType::TessControl:
     {
         sources[defines.getEntryCount()+2] = "#define TESS_CONTROL 1\n";
         break;
     }
-    case GfxStage::TessEval:
+    case GfxShaderType::TessEval:
     {
         sources[defines.getEntryCount()+2] = "#define TESS_EVAL 1\n";
         break;
     }
-    case GfxStage::Geometry:
+    case GfxShaderType::Geometry:
     {
         sources[defines.getEntryCount()+2] = "#define GEOMETRY 1\n";
         break;
     }
-    case GfxStage::Fragment:
+    case GfxShaderType::Fragment:
     {
         sources[defines.getEntryCount()+2] = "#define FRAGMENT 1\n";
         break;
     }
-    case GfxStage::Compute:
+    case GfxShaderType::Compute:
     {
         sources[defines.getEntryCount()+2] = "#define __COMPUTE__ 1\n";
         break;
@@ -238,34 +197,34 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     GLuint result = 0;
     String infoLog;
 
-    switch (stage)
+    switch (type)
     {
-    case GfxStage::Vertex:
+    case GfxShaderType::Vertex:
     {
         result = _compile(GL_VERTEX_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxStage::TessControl:
+    case GfxShaderType::TessControl:
     {
         result = _compile(GL_TESS_CONTROL_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxStage::TessEval:
+    case GfxShaderType::TessEval:
     {
         result = _compile(GL_TESS_EVALUATION_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxStage::Geometry:
+    case GfxShaderType::Geometry:
     {
         result = _compile(GL_GEOMETRY_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxStage::Fragment:
+    case GfxShaderType::Fragment:
     {
         result = _compile(GL_FRAGMENT_SHADER, numSources, sources, infoLog);
         break;
     }
-    case GfxStage::Compute:
+    case GfxShaderType::Compute:
     {
         result = _compile(GL_COMPUTE_SHADER, numSources, sources, infoLog);
         break;
@@ -283,9 +242,9 @@ GLuint GfxGLShaderImpl::_compile(const HashMap<String, String >& defines) const
     return result;
 }
 
-void GfxGLShaderImpl::setSource(GfxStage stage_, const String& source_)
+void GfxGLShaderImpl::setSource(GfxShaderType type_, const String& source_)
 {
-    stage = stage_;
+    type = type_;
     source = source_;
 
     recompile();

@@ -32,34 +32,34 @@ void GfxShader::save()
 
     file.write(6, "shdr\x01\x00");
 
-    switch (getStage())
+    switch (getShaderType())
     {
-    case GfxStage::Vertex:
+    case GfxShaderType::Vertex:
     {
         file.writeUInt8(0);
         break;
     }
-    case GfxStage::TessControl:
+    case GfxShaderType::TessControl:
     {
         file.writeUInt8(1);
         break;
     }
-    case GfxStage::TessEval:
+    case GfxShaderType::TessEval:
     {
         file.writeUInt8(2);
         break;
     }
-    case GfxStage::Geometry:
+    case GfxShaderType::Geometry:
     {
         file.writeUInt8(3);
         break;
     }
-    case GfxStage::Fragment:
+    case GfxShaderType::Fragment:
     {
         file.writeUInt8(4);
         break;
     }
-    case GfxStage::Compute:
+    case GfxShaderType::Compute:
     {
         file.writeUInt8(5);
         break;
@@ -97,43 +97,43 @@ void GfxShader::_load()
             THROW(ResourceIOException, "shader", getFilename(), "Unsupported version.");
         }
 
-        GfxStage stage = GfxStage::Vertex;
+        GfxShaderType type = GfxShaderType::Vertex;
 
         switch (file.readUInt8())
         {
         case 0:
         {
-            stage = GfxStage::Vertex;
+            type = GfxShaderType::Vertex;
             break;
         }
         case 1:
         {
-            stage = GfxStage::TessControl;
+            type = GfxShaderType::TessControl;
             break;
         }
         case 2:
         {
-            stage = GfxStage::TessEval;
+            type = GfxShaderType::TessEval;
             break;
         }
         case 3:
         {
-            stage = GfxStage::Geometry;
+            type = GfxShaderType::Geometry;
             break;
         }
         case 4:
         {
-            stage = GfxStage::Fragment;
+            type = GfxShaderType::Fragment;
             break;
         }
         case 5:
         {
-            stage = GfxStage::Compute;
+            type = GfxShaderType::Compute;
             break;
         }
         default:
         {
-            THROW(ResourceIOException, "shader", getFilename(), "Invalid stage.");
+            THROW(ResourceIOException, "shader", getFilename(), "Invalid shader type.");
             break;
         }
         }
@@ -144,7 +144,7 @@ void GfxShader::_load()
 
         try
         {
-            setSource(stage, source);
+            setSource(type, source);
         } catch (ShaderCompileException& e)
         {
             THROW(ResourceIOException,
@@ -169,9 +169,9 @@ void GfxShader::possiblyReload()
     }
 }
 
-void GfxShader::setSource(GfxStage stage, const String& source)
+void GfxShader::setSource(GfxShaderType type, const String& source)
 {
-    impl->setSource(stage, source.copy());
+    impl->setSource(type, source.copy());
 }
 
 const String GfxShader::getSource() const
@@ -196,16 +196,16 @@ void GfxShader::recompile()
     impl->recompile();
 }
 
-GfxStage GfxShader::getStage() const
+GfxShaderType GfxShader::getShaderType() const
 {
-    return impl->getStage();
+    return impl->getType();
 }
 
 Resource *GfxShader::_copy() const
 {
     GfxShader *shader = NEW(GfxShader);
 
-    shader->setSource(getStage(), getSource());
+    shader->setSource(getShaderType(), getSource());
 
     return (Resource *)shader;
 }

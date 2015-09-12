@@ -714,7 +714,7 @@ void main()
 
     source.append("}");
 
-    colorModifierFragment->setSource(GfxStage::Fragment, source);
+    colorModifierFragment->setSource(GfxShaderType::Fragment, source);
 
     compiledColorModifier = colorModifierFragment->getCompiled();
 }

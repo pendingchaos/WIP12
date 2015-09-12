@@ -7,7 +7,7 @@ A work in progress using [OpenGL](https://opengl.org) and [Bullet Physics](bulle
 The program has only been tested on a Linux based operating system.
 
 ## Dependencies
-The program requires g++, SDL2, Bullet, FreeType, libdl, a c standard library implementation, a c++ standard library implementation, and an OpenGL implementation supporting OpenGL 3.3 or higher.
+The program requires g++, SDL2, Bullet, FreeType, libdl, a c standard library implementation, a c++ standard library implementation, and an OpenGL implementation supporting OpenGL 3.3 or higher and GL_ARB_separate_shader_objects.
 
 They can be installed by running or something similar:
 ```shell

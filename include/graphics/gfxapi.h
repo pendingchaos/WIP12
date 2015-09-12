@@ -52,7 +52,7 @@ struct TextureSampler
                                       wrapMode(wrapMode_),
                                       shadowmap(shadowmap_) {}
 
-    inline static TextureSampler createShadowmap()
+    inline static TextureSampler createShadowmap() NO_BIND
     {
         return TextureSampler(1.0f,
                               GfxFilter::Bilinear,
@@ -68,7 +68,7 @@ struct TextureSampler
     GfxMipmapMode mipmapMode;
     GfxWrapMode wrapMode;
     bool shadowmap;
-};
+} BIND;
 
 class GfxApi
 {

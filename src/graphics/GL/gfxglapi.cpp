@@ -18,50 +18,8 @@
 #include <cstring>
 
 #define UNIFORM_START GLint location;\
-if (GLFL_GL_ARB_separate_shader_objects)\
-{\
-    String newName = String::format("_%s_uniform", name);\
-    location = glGetUniformLocation(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), newName.getData());\
-} else\
-{\
-    String newName;\
-\
-    switch (shader->getStage())\
-    {\
-    case GfxStage::Vertex:\
-    {\
-        newName = String::format("_%s_vertex", name);\
-        break;\
-    }\
-    case GfxStage::TessControl:\
-    {\
-        newName = String::format("_%s_tessControl", name);\
-        break;\
-    }\
-    case GfxStage::TessEval:\
-    {\
-        newName = String::format("_%s_tessEval", name);\
-        break;\
-    }\
-    case GfxStage::Geometry:\
-    {\
-        newName = String::format("_%s_geometry", name);\
-        break;\
-    }\
-    case GfxStage::Fragment:\
-    {\
-        newName = String::format("_%s_fragment", name);\
-        break;\
-    }\
-    case GfxStage::Compute:\
-    {\
-        newName = String::format("_%s_compute", name);\
-        break;\
-    }\
-    }\
-    \
-    location = glGetUniformLocation(pipeline, newName.getData());\
-}\
+String newName = String::format("_%s_uniform", name);\
+location = glGetUniformLocation(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), newName.getData());\
 if (location == -1)\
 {\
     return;\
@@ -233,23 +191,17 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
         glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
     }
 
-    if (GLFL_GL_ARB_separate_shader_objects)
+    if (not GLFL_GL_ARB_separate_shader_objects)
     {
-        glGenProgramPipelines(1, &pipeline);
+        ERROR(CATEGORY_OPENGL, "GL_ARB_separate_shader_objects is not supported.")();
     }
+
+    glGenProgramPipelines(1, &pipeline);
 }
 
 GfxGLApi::~GfxGLApi()
 {
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glDeleteProgramPipelines(1, &pipeline);
-    }
-
-    for (size_t i = 0; i < programs.getEntryCount(); ++i)
-    {
-        glDeleteProgram(programs.getValue(i));
-    }
+    glDeleteProgramPipelines(1, &pipeline);
 }
 
 GfxDriver GfxGLApi::getDriver() const
@@ -389,13 +341,7 @@ void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
     glActiveTexture(GL_TEXTURE0+i);\
     glBindTexture(binding.target, dynamic_cast<GfxGLTextureImpl *>(binding.texture->getImpl())->getGLTexture());\
 \
-    if (GLFL_GL_ARB_separate_shader_objects)\
-    {\
-        glProgramUniform1i(binding.program, binding.location, i);\
-    } else\
-    {\
-        glUniform1i(binding.location, i);\
-    }\
+    glProgramUniform1i(binding.program, binding.location, i);\
     glBindSampler(i, binding.sampler);\
 }\
 for (size_t i = 0; i < uboBindingCount; ++i)\
@@ -444,161 +390,59 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
 {
     glBindVertexArray(dynamic_cast<GfxGLMeshImpl *>(mesh->getImpl())->getGLVAO());
 
-    if (GLFL_GL_ARB_separate_shader_objects)
+    glBindProgramPipeline(pipeline);
+
+    if (vertex_ != nullptr)
     {
-        glBindProgramPipeline(pipeline);
+        GfxGLCompiledShader *glVertex = dynamic_cast<GfxGLCompiledShader *>(vertex_);
 
-        if (vertex_ != nullptr)
-        {
-            GfxGLCompiledShader *glVertex = dynamic_cast<GfxGLCompiledShader *>(vertex_);
-
-            glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, glVertex->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, 0);
-        }
-
-        if (GLFL_GL_ARB_tessellation_shader)
-        {
-            if (tessControl_ != nullptr)
-            {
-                GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
-
-                glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, glTessControl->getGLProgram());
-            } else
-            {
-                glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, 0);
-            }
-
-            if (tessEval_ != nullptr)
-            {
-                GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
-
-                glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, glTessEval->getGLProgram());
-            } else
-            {
-                glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, 0);
-            }
-        }
-
-        if (geometry_ != nullptr)
-        {
-            GfxGLCompiledShader *glGeometry = dynamic_cast<GfxGLCompiledShader *>(geometry_);
-
-            glUseProgramStages(pipeline, GL_GEOMETRY_SHADER_BIT, glGeometry->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_GEOMETRY_SHADER_BIT, 0);
-        }
-
-        if (fragment_ != nullptr)
-        {
-            GfxGLCompiledShader *glFragment = dynamic_cast<GfxGLCompiledShader *>(fragment_);
-
-            glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, glFragment->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, 0);
-        }
+        glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, glVertex->getGLProgram());
     } else
     {
-        ProgramCombination comb;
+        glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, 0);
+    }
 
-        if (vertex_ != nullptr)
+    if (GLFL_GL_ARB_tessellation_shader)
+    {
+        if (tessControl_ != nullptr)
         {
-            GfxGLCompiledShader *glVertex = dynamic_cast<GfxGLCompiledShader *>(vertex_);
+            GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
 
-            comb.vertex = glVertex->getGLProgram();
+            glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, glTessControl->getGLProgram());
         } else
         {
-            comb.vertex = 0;
+            glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, 0);
         }
 
-        if (GLFL_GL_ARB_tessellation_shader)
+        if (tessEval_ != nullptr)
         {
-            if (tessControl_ != nullptr)
-            {
-                GfxGLCompiledShader *glTessControl = dynamic_cast<GfxGLCompiledShader *>(tessControl_);
+            GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
 
-                comb.tessControl = glTessControl->getGLProgram();
-            } else
-            {
-                comb.tessControl = 0;
-            }
-
-            if (tessEval_ != nullptr)
-            {
-                GfxGLCompiledShader *glTessEval = dynamic_cast<GfxGLCompiledShader *>(tessEval_);
-
-                comb.tessEval = glTessEval->getGLProgram();
-            } else
-            {
-                comb.tessEval = 0;
-            }
-        }
-
-        if (geometry_ != nullptr)
-        {
-            GfxGLCompiledShader *glGeometry = dynamic_cast<GfxGLCompiledShader *>(geometry_);
-
-            comb.geometry = glGeometry->getGLProgram();
+            glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, glTessEval->getGLProgram());
         } else
         {
-            comb.geometry = 0;
+            glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, 0);
         }
+    }
 
-        if (fragment_ != nullptr)
-        {
-            GfxGLCompiledShader *glFragment = dynamic_cast<GfxGLCompiledShader *>(fragment_);
+    if (geometry_ != nullptr)
+    {
+        GfxGLCompiledShader *glGeometry = dynamic_cast<GfxGLCompiledShader *>(geometry_);
 
-            comb.fragment = glFragment->getGLProgram();
-        } else
-        {
-            comb.fragment = 0;
-        }
+        glUseProgramStages(pipeline, GL_GEOMETRY_SHADER_BIT, glGeometry->getGLProgram());
+    } else
+    {
+        glUseProgramStages(pipeline, GL_GEOMETRY_SHADER_BIT, 0);
+    }
 
-        int index = programs.findEntry(comb);
+    if (fragment_ != nullptr)
+    {
+        GfxGLCompiledShader *glFragment = dynamic_cast<GfxGLCompiledShader *>(fragment_);
 
-        if (index == -1)
-        {
-            GLuint program = glCreateProgram();
-
-            if (comb.vertex != 0)
-            {
-                glAttachShader(program, comb.vertex);
-            }
-
-            if (comb.tessControl != 0)
-            {
-                glAttachShader(program, comb.tessControl);
-            }
-
-            if (comb.tessEval != 0)
-            {
-                glAttachShader(program, comb.tessEval);
-            }
-
-            if (comb.geometry != 0)
-            {
-                glAttachShader(program, comb.geometry);
-            }
-
-            if (comb.fragment != 0)
-            {
-                glAttachShader(program, comb.fragment);
-            }
-
-            glLinkProgram(program);
-
-            programs.set(comb, program);
-
-            pipeline = program;
-        } else
-        {
-            pipeline = programs.getValue(index);
-        }
-
-        glUseProgram(pipeline);
+        glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, glFragment->getGLProgram());
+    } else
+    {
+        glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, 0);
     }
 }
 
@@ -663,326 +507,152 @@ void GfxGLApi::endIndexed(GfxPrimitive primitive,
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, float value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform1f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value);
-    } else
-    {
-        glUniform1f(location, value);
-    }
+    glProgramUniform1f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Float2& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform2f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y);
-    } else
-    {
-        glUniform2f(location, value.x, value.y);
-    }
+    glProgramUniform2f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Float3& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform3f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z);
-    } else
-    {
-        glUniform3f(location, value.x, value.y, value.z);
-    }
+    glProgramUniform3f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Float4& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform4f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z, value.w);
-    } else
-    {
-        glUniform4f(location, value.x, value.y, value.z, value.w);
-    }
+    glProgramUniform4f(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z, value.w);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, int32_t value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform1i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value);
-    } else
-    {
-        glUniform1i(location, value);
-    }
+    glProgramUniform1i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Int2& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform2i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y);
-    } else
-    {
-        glUniform2i(location, value.x, value.y);
-    }
+    glProgramUniform2i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Int3& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform3i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z);
-    } else
-    {
-        glUniform3i(location, value.x, value.y, value.z);
-    }
+    glProgramUniform3i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Int4& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform4i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z, value.w);
-    } else
-    {
-        glUniform4i(location, value.x, value.y, value.z, value.w);
-    }
+    glProgramUniform4i(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z, value.w);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, uint32_t value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform1ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value);
-    } else
-    {
-        glUniform1ui(location, value);
-    }
+    glProgramUniform1ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const UInt2& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform2ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y);
-    } else
-    {
-        glUniform2ui(location, value.x, value.y);
-    }
+    glProgramUniform2ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const UInt3& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform3ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.y, value.y, value.z);
-    } else
-    {
-        glUniform3ui(location, value.y, value.y, value.z);
-    }
+    glProgramUniform3ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.y, value.y, value.z);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const UInt4& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform4ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z, value.w);
-    } else
-    {
-        glUniform4ui(location, value.x, value.y, value.z, value.w);
-    }
+    glProgramUniform4ui(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, value.x, value.y, value.z, value.w);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform1fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
-    } else
-    {
-        glUniform1fv(location, count, (const GLfloat *)values);
-    }
+    glProgramUniform1fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform2fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
-    } else
-    {
-        glUniform2fv(location, count, (const GLfloat *)values);
-    }
+    glProgramUniform2fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float3 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform3fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
-    } else
-    {
-        glUniform3fv(location, count, (const GLfloat *)values);
-    }
+    glProgramUniform3fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float4 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform4fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
-    } else
-    {
-        glUniform4fv(location, count, (const GLfloat *)values);
-    }
+    glProgramUniform4fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const int32_t *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform1iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
-    } else
-    {
-        glUniform1iv(location, count, (const GLint *)values);
-    }
+    glProgramUniform1iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int2 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform2iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
-    } else
-    {
-        glUniform2iv(location, count, (const GLint *)values);
-    }
+    glProgramUniform2iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int3 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform3iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
-    } else
-    {
-        glUniform3iv(location, count, (const GLint *)values);
-    }
+    glProgramUniform3iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int4 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform4iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
-    } else
-    {
-        glUniform4iv(location, count, (const GLint *)values);
-    }
+    glProgramUniform4iv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const uint32_t *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform1uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
-    } else
-    {
-        glUniform1uiv(location, count, (const GLuint *)values);
-    }
+    glProgramUniform1uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt2 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform2uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
-    } else
-    {
-        glUniform2uiv(location, count, (const GLuint *)values);
-    }
+    glProgramUniform2uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt3 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform3uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
-    } else
-    {
-        glUniform3uiv(location, count, (const GLuint *)values);
-    }
+    glProgramUniform3uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniform4uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
-    } else
-    {
-        glUniform4uiv(location, count, (const GLuint *)values);
-    }
+    glProgramUniform4uiv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, (const GLuint *)values);
 }
 
 void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer)
 {
     GLint location;
 
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        location = glGetUniformBlockIndex(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), name);
-    } else
-    {
-        location = glGetUniformBlockIndex(pipeline, name);
-    }
+    location = glGetUniformBlockIndex(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), name);
 
     if (location == -1)
     {
@@ -1023,9 +693,7 @@ void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const 
     {
         uboBindings[uboBindingCount++] = (UBOBinding){.buffer = buffer,
                                                       .location = location,
-                                                      .program = GLFL_GL_ARB_separate_shader_objects ?
-                                                      dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram() :
-                                                      pipeline};
+                                                      .program = dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram()};
     }
 }
 
@@ -1151,9 +819,7 @@ void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, Gf
         textureBindings[textureBindingCount++] = (TextureBinding){.texture = texture,
                                                                   .target = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLTarget(),
                                                                   .location = location,
-                                                                  .program = GLFL_GL_ARB_separate_shader_objects ?
-                                                      dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram() :
-                                                      pipeline,
+                                                                  .program = dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(),
                                                                   .bindingGet = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLBindingGet(),
                                                                   .sampler = glSampler};
     }
@@ -1162,53 +828,25 @@ void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, Gf
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniformMatrix3fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
-    } else
-    {
-        glUniformMatrix3fv(location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
-    }
+    glProgramUniformMatrix3fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniformMatrix4fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
-    } else
-    {
-        glUniformMatrix4fv(location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
-    }
+    glProgramUniformMatrix4fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniformMatrix3fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
-    } else
-    {
-        glUniformMatrix3fv(location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
-    }
+    glProgramUniformMatrix3fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *value)
 {
     UNIFORM_START
-
-    if (GLFL_GL_ARB_separate_shader_objects)
-    {
-        glProgramUniformMatrix4fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
-    } else
-    {
-        glUniformMatrix4fv(location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
-    }
+    glProgramUniformMatrix4fv(dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram(), location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
 void GfxGLApi::pushState()

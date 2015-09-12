@@ -80,8 +80,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxStage_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxStage, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -1494,49 +1494,49 @@ RET((NO)head)->typeID==EXT->GfxFace_typeID;
 else
  RET false;
 }
-};void GfxStage_destroy(CTX,NO) {}
-SV GfxStage_get_member(CTX,NO,SV);
-void GfxStage_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxStage_funcs={
-.destroy = GfxStage_destroy,
-.getMember = GfxStage_get_member,
-.setMember = GfxStage_set_member
+};void GfxShaderType_destroy(CTX,NO) {}
+SV GfxShaderType_get_member(CTX,NO,SV);
+void GfxShaderType_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GfxShaderType_funcs={
+.destroy = GfxShaderType_destroy,
+.getMember = GfxShaderType_get_member,
+.setMember = GfxShaderType_set_member
 };
 template <>
-struct create_val<GfxStage>
+struct create_val<GfxShaderType>
 {
-static SV f(CTX ctx,GfxStage v)
+static SV f(CTX ctx,GfxShaderType v)
 {
-RET STG::createNativeObject(GfxStage_funcs,(void *)v,EXT->GfxStage_typeID);
+RET STG::createNativeObject(GfxShaderType_funcs,(void *)v,EXT->GfxShaderType_typeID);
 }
 };
 template <>
-struct val_to_c<GfxStage>
+struct val_to_c<GfxShaderType>
 {
-static GfxStage f(CTX ctx,const SV head)
+static GfxShaderType f(CTX ctx,const SV head)
 {
 if(head->type!=STG::ValueType::NativeObject)
-CATE(TE,"Value can not be converted to GfxStage."));
+CATE(TE,"Value can not be converted to GfxShaderType."));
 
 NO obj=(NO)head;
-if(obj->typeID!=EXT->GfxStage_typeID)
-CATE(TE,"Value can not be converted to GfxStage."));
+if(obj->typeID!=EXT->GfxShaderType_typeID)
+CATE(TE,"Value can not be converted to GfxShaderType."));
 size_t v=size_t(obj->data);
-if(v==5)return GfxStage::Compute;
-if(v==3)return GfxStage::Geometry;
-if(v==0)return GfxStage::Vertex;
-if(v==4)return GfxStage::Fragment;
-if(v==1)return GfxStage::TessControl;
-if(v==2)return GfxStage::TessEval;
+if(v==5)return GfxShaderType::Compute;
+if(v==3)return GfxShaderType::Geometry;
+if(v==0)return GfxShaderType::Vertex;
+if(v==4)return GfxShaderType::Fragment;
+if(v==1)return GfxShaderType::TessControl;
+if(v==2)return GfxShaderType::TessEval;
 }
 };
 template <>
-struct type_same<GfxStage>
+struct type_same<GfxShaderType>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxStage_typeID;
+RET((NO)head)->typeID==EXT->GfxShaderType_typeID;
 else
  RET false;
 }
@@ -1965,7 +1965,7 @@ else
 };
 
 SV GfxCompiledShader_isInvalid(CTX ctx,const List<SV>&a);
-SV GfxCompiledShader_getStage(CTX ctx,const List<SV>&a);
+SV GfxCompiledShader_getType(CTX ctx,const List<SV>&a);
 void UInt2_destroy(CTX,NO);
 SV UInt2_get_member(CTX,NO,SV);
 void UInt2_set_member(CTX,NO,SV,SV);
@@ -3158,7 +3158,7 @@ SV GfxShader_setSource(CTX ctx,const List<SV>&a);
 SV GfxShader_getSource(CTX ctx,const List<SV>&a);
 SV GfxShader_getCompiled(CTX ctx,const List<SV>&a);
 SV GfxShader_recompile(CTX ctx,const List<SV>&a);
-SV GfxShader_getStage(CTX ctx,const List<SV>&a);
+SV GfxShader_getShaderType(CTX ctx,const List<SV>&a);
 SV GfxShader_getImpl(CTX ctx,const List<SV>&a);
 SV GfxShader_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxShader_load(CTX ctx,const List<SV>&a);
@@ -3367,6 +3367,65 @@ SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
 SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
+void TextureSampler_destroy(CTX,NO);
+SV TextureSampler_get_member(CTX,NO,SV);
+void TextureSampler_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs TextureSampler_funcs={
+.destroy = TextureSampler_destroy,
+.getMember = TextureSampler_get_member,
+.setMember = TextureSampler_set_member
+};
+template <>
+struct create_val<TextureSampler>
+{
+static SV f(CTX ctx,const TextureSampler&obj)
+{
+#define ghfj TextureSampler
+RET STG::createNativeObject(TextureSampler_funcs,NEW(ghfj, obj),EXT->TextureSampler_typeID);
+}
+};
+template <>
+struct val_to_c<TextureSampler>
+{
+static TextureSampler f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->TextureSampler_typeID)
+RET*((TextureSampler*)obj->data);
+else
+ CATE(TE,"Value can not be converted to TextureSampler."));
+} else
+ CATE(TE,"Value can not be converted to TextureSampler."));
+}
+};
+
+template <>
+struct val_to_c<const TextureSampler>
+{
+static TextureSampler f(CTX ctx,const SV head) {return val_to_c<TextureSampler>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const TextureSampler>
+{
+static SV f(CTX ctx,const TextureSampler&obj) {return create_val<TextureSampler>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<TextureSampler>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->TextureSampler_typeID;
+else
+ RET false;
+}
+};
+
+SV TextureSampler_createShadowmap(CTX ctx,const List<SV>&a);
 void Scene_destroy(CTX,NO);
 SV Scene_get_member(CTX,NO,SV);
 void Scene_set_member(CTX,NO,SV,SV);
@@ -8361,6 +8420,81 @@ else
 }
 };
 
+SV TextureSampler_ptr_copy(CTX,NO);
+void TextureSampler_ptr_destroy(CTX,NO);
+SV TextureSampler_ptr_get_member(CTX,NO,SV);
+void TextureSampler_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs TextureSampler_ptr_funcs={
+.destroy = TextureSampler_ptr_destroy,
+.getMember = TextureSampler_ptr_get_member,
+.setMember = TextureSampler_ptr_set_member
+};
+template <>
+struct create_val<TextureSampler *>
+{
+static SV f(CTX ctx,TextureSampler*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(TextureSampler_ptr_funcs,obj,EXT->TextureSampler_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<TextureSampler *>
+{
+static TextureSampler *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->TextureSampler_ptr_typeID)
+RET(TextureSampler*)obj->data;
+else
+ CATE(TE,"Value is not a TextureSamplerRef."));
+} else
+ CATE(TE,"Value is not a TextureSamplerRef."));
+}
+};
+template <>
+struct type_same<TextureSampler *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->TextureSampler_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const TextureSampler *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->TextureSampler_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const TextureSampler *>
+{
+static const TextureSampler *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->TextureSampler_ptr_typeID)
+RET(TextureSampler*)obj->data;
+else
+ CATE(TE,"Value is not a TextureSamplerRef."));
+} else
+ CATE(TE,"Value is not a TextureSamplerRef."));
+}
+};
+
 SV Scene_ptr_copy(CTX,NO);
 void Scene_ptr_destroy(CTX,NO);
 SV Scene_ptr_get_member(CTX,NO,SV);
@@ -13251,22 +13385,22 @@ else
 }
 }
 void GfxFace_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
-SV GfxStage___eq__(CTX ctx,const List<SV>&a)
+SV GfxShaderType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,UFOF("GfxStage::__eq__")));
+CATE(VE,UFOF("GfxShaderType::__eq__")));
 size_t f;
-if(!TS(a[0],GfxStage))
-CATE(TE,FAE("GfxStage::GfxStage","GfxStage")));
+if(!TS(a[0],GfxShaderType))
+CATE(TE,FAE("GfxShaderType::GfxShaderType","GfxShaderType")));
 else
  f=(size_t)((NO)a[0])->data;
 size_t other;
-if(!TS(a[1],GfxStage))
-CATE(VE,UFOF("GfxStage::__eq__")));
+if(!TS(a[1],GfxShaderType))
+CATE(VE,UFOF("GfxShaderType::__eq__")));
 else
  other=(size_t)((NO)a[1])->data;
 return STG::createBoolean(f == other);
-}SV GfxStage_get_member(CTX ctx,NO f,SV key)
+}SV GfxShaderType_get_member(CTX ctx,NO f,SV key)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -13276,15 +13410,15 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("GfxStage");
+RET STG::createString("GfxShaderType");
 EI(keyStr=="__eq__")
-RET CNF(GfxStage___eq__);
-EI(keyStr=="Compute")RET STG::createNativeObject(GfxStage_funcs,(void *)5,EXT->GfxStage_typeID);
-EI(keyStr=="Geometry")RET STG::createNativeObject(GfxStage_funcs,(void *)3,EXT->GfxStage_typeID);
-EI(keyStr=="Vertex")RET STG::createNativeObject(GfxStage_funcs,(void *)0,EXT->GfxStage_typeID);
-EI(keyStr=="Fragment")RET STG::createNativeObject(GfxStage_funcs,(void *)4,EXT->GfxStage_typeID);
-EI(keyStr=="TessControl")RET STG::createNativeObject(GfxStage_funcs,(void *)1,EXT->GfxStage_typeID);
-EI(keyStr=="TessEval")RET STG::createNativeObject(GfxStage_funcs,(void *)2,EXT->GfxStage_typeID);
+RET CNF(GfxShaderType___eq__);
+EI(keyStr=="Compute")RET STG::createNativeObject(GfxShaderType_funcs,(void *)5,EXT->GfxShaderType_typeID);
+EI(keyStr=="Geometry")RET STG::createNativeObject(GfxShaderType_funcs,(void *)3,EXT->GfxShaderType_typeID);
+EI(keyStr=="Vertex")RET STG::createNativeObject(GfxShaderType_funcs,(void *)0,EXT->GfxShaderType_typeID);
+EI(keyStr=="Fragment")RET STG::createNativeObject(GfxShaderType_funcs,(void *)4,EXT->GfxShaderType_typeID);
+EI(keyStr=="TessControl")RET STG::createNativeObject(GfxShaderType_funcs,(void *)1,EXT->GfxShaderType_typeID);
+EI(keyStr=="TessEval")RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
 
 else
  CATE(KE,"Unknown member."));
@@ -13293,22 +13427,22 @@ else
 if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("GfxStage");
+RET STG::createString("GfxShaderType");
 EI(keyStr=="__eq__")
-RET CNF(GfxStage___eq__);
-EI(keyStr=="Compute")RET STG::createNativeObject(GfxStage_funcs,(void *)5,EXT->GfxStage_typeID);
-EI(keyStr=="Geometry")RET STG::createNativeObject(GfxStage_funcs,(void *)3,EXT->GfxStage_typeID);
-EI(keyStr=="Vertex")RET STG::createNativeObject(GfxStage_funcs,(void *)0,EXT->GfxStage_typeID);
-EI(keyStr=="Fragment")RET STG::createNativeObject(GfxStage_funcs,(void *)4,EXT->GfxStage_typeID);
-EI(keyStr=="TessControl")RET STG::createNativeObject(GfxStage_funcs,(void *)1,EXT->GfxStage_typeID);
-EI(keyStr=="TessEval")RET STG::createNativeObject(GfxStage_funcs,(void *)2,EXT->GfxStage_typeID);
+RET CNF(GfxShaderType___eq__);
+EI(keyStr=="Compute")RET STG::createNativeObject(GfxShaderType_funcs,(void *)5,EXT->GfxShaderType_typeID);
+EI(keyStr=="Geometry")RET STG::createNativeObject(GfxShaderType_funcs,(void *)3,EXT->GfxShaderType_typeID);
+EI(keyStr=="Vertex")RET STG::createNativeObject(GfxShaderType_funcs,(void *)0,EXT->GfxShaderType_typeID);
+EI(keyStr=="Fragment")RET STG::createNativeObject(GfxShaderType_funcs,(void *)4,EXT->GfxShaderType_typeID);
+EI(keyStr=="TessControl")RET STG::createNativeObject(GfxShaderType_funcs,(void *)1,EXT->GfxShaderType_typeID);
+EI(keyStr=="TessEval")RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
 
 else
  CATE(KE,"Unknown member."));
 }
 }
 }
-void GfxStage_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxShaderType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV GfxBufferUsage___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13901,8 +14035,8 @@ EI(keyStr=="__init__")
 RET CNF(GfxCompiledShader_new);
  EI(keyStr == "isInvalid")
 RET CNF(GfxCompiledShader_isInvalid);
- EI(keyStr == "getStage")
-RET CNF(GfxCompiledShader_getStage);
+ EI(keyStr == "getType")
+RET CNF(GfxCompiledShader_getType);
  else
  CATE(KE,"Unknown member."));
 }
@@ -13942,20 +14076,20 @@ CATE(TE,UFOF("GfxCompiledShader::isInvalid.")));
 RET CN;
 }
 
-SV GfxCompiledShader_getStage(CTX ctx,const List<SV>&a)
+SV GfxCompiledShader_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxCompiledShader::getStage" EAOE));
+CATE(VE,"GfxCompiledShader::getType" EAOE));
 GfxCompiledShader*f;
 f=(GfxCompiledShader*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getStage());
+RET CV( f->getType());
 ;
 }
-CATE(TE,UFOF("GfxCompiledShader::getStage.")));
+CATE(TE,UFOF("GfxCompiledShader::getType.")));
 RET CN;
 }
 
@@ -22026,8 +22160,8 @@ RET CNF(GfxShader_getSource);
 RET CNF(GfxShader_getCompiled);
  EI(keyStr == "recompile")
 RET CNF(GfxShader_recompile);
- EI(keyStr == "getStage")
-RET CNF(GfxShader_getStage);
+ EI(keyStr == "getShaderType")
+RET CNF(GfxShader_getShaderType);
  EI(keyStr == "getImpl")
 RET CNF(GfxShader_getImpl);
  EI(keyStr == "possiblyReload")
@@ -22237,6 +22371,23 @@ CATE(TE,UFOF("GfxShader::setFilename.")));
 RET CN;
 }
 
+SV GfxShader_shouldReload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::shouldReload" EAOE));
+GfxShader*f;
+f=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->shouldReload());
+;
+}
+CATE(TE,UFOF("GfxShader::shouldReload.")));
+RET CN;
+}
+
 SV GfxShader_isLoaded(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -22308,23 +22459,6 @@ RET CV( f->getRefCount());
 ;
 }
 CATE(TE,UFOF("GfxShader::getRefCount.")));
-RET CN;
-}
-
-SV GfxShader_getStage(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::getStage" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getStage());
-;
-}
-CATE(TE,UFOF("GfxShader::getStage.")));
 RET CN;
 }
 
@@ -22402,20 +22536,20 @@ CATE(TE,UFOF("GfxShader::save.")));
 RET CN;
 }
 
-SV GfxShader_shouldReload(CTX ctx,const List<SV>&a)
+SV GfxShader_getShaderType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShader::shouldReload" EAOE));
+CATE(VE,"GfxShader::getShaderType" EAOE));
 GfxShader*f;
 f=(GfxShader*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->shouldReload());
+RET CV( f->getShaderType());
 ;
 }
-CATE(TE,UFOF("GfxShader::shouldReload.")));
+CATE(TE,UFOF("GfxShader::getShaderType.")));
 RET CN;
 }
 
@@ -22427,9 +22561,9 @@ GfxShader*f;
 f=(GfxShader*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],GfxStage)&&TS(a[2],const String &))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
 {
-( f->setSource(val_to_c<std::remove_reference<GfxStage>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
+( f->setSource(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("GfxShader::setSource.")));
@@ -25177,6 +25311,137 @@ RET CV( f->dot());
 ;
 }
 CATE(TE,UFOF("UInt4::dot.")));
+RET CN;
+}
+
+void TextureSampler_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,TextureSampler))
+CATE(TE,"TextureSampler::__del__ expects TextureSampler as first argument."));
+
+DELETE((TextureSampler*)f->data);
+}SV TextureSampler_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"TextureSampler's constructor" EAOE));
+if(!TS(a[0],TextureSampler))
+CATE(TE,"TextureSampler's constructor expects TextureSampler as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(TextureSampler_funcs,NEW(TextureSampler),EXT->TextureSampler_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],GfxTexture *))
+RET STG::createNativeObject(TextureSampler_funcs,NEW(TextureSampler,val_to_c<GfxTexture *>::f(ctx,a[1])),EXT->TextureSampler_typeID);
+if(a.getCount()==7)
+if(true&&TS(a[1],float)&&TS(a[2],GfxFilter)&&TS(a[3],GfxFilter)&&TS(a[4],GfxMipmapMode)&&TS(a[5],GfxWrapMode)&&TS(a[6],bool))
+RET STG::createNativeObject(TextureSampler_funcs,NEW(TextureSampler,val_to_c<float>::f(ctx,a[1]),val_to_c<GfxFilter>::f(ctx,a[2]),val_to_c<GfxFilter>::f(ctx,a[3]),val_to_c<GfxMipmapMode>::f(ctx,a[4]),val_to_c<GfxWrapMode>::f(ctx,a[5]),val_to_c<bool>::f(ctx,a[6])),EXT->TextureSampler_typeID);
+CATE(TE,UFOF("TextureSampler's constructor.")));
+RET CN;
+}
+
+SV TextureSampler_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("TextureSampler");
+EI(keyStr=="__new__")
+RET CNF(TextureSampler_new);
+EI(keyStr=="__call__")
+RET CNF(TextureSampler_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(TextureSampler_new);
+ EI(keyStr == "createShadowmap")
+RET CNF(TextureSampler_createShadowmap);
+ EI(keyStr=="maxAnisotropy")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+RET CV(obj->maxAnisotropy);
+} EI(keyStr=="minFilter")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+RET CV(obj->minFilter);
+} EI(keyStr=="magFilter")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+RET CV(obj->magFilter);
+} EI(keyStr=="mipmapMode")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+RET CV(obj->mipmapMode);
+} EI(keyStr=="wrapMode")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+RET CV(obj->wrapMode);
+} EI(keyStr=="shadowmap")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+RET CV(obj->shadowmap);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void TextureSampler_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="maxAnisotropy")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+obj->maxAnisotropy=val_to_c<decltype(obj->maxAnisotropy)>::f(ctx,value);
+} EI(keyStr=="minFilter")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+obj->minFilter=val_to_c<decltype(obj->minFilter)>::f(ctx,value);
+} EI(keyStr=="magFilter")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+obj->magFilter=val_to_c<decltype(obj->magFilter)>::f(ctx,value);
+} EI(keyStr=="mipmapMode")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+obj->mipmapMode=val_to_c<decltype(obj->mipmapMode)>::f(ctx,value);
+} EI(keyStr=="wrapMode")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+obj->wrapMode=val_to_c<decltype(obj->wrapMode)>::f(ctx,value);
+} EI(keyStr=="shadowmap")
+{
+TextureSampler*obj=(TextureSampler*)f->data;
+obj->shadowmap=val_to_c<decltype(obj->shadowmap)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV TextureSampler_createShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"TextureSampler::createShadowmap" EAOE));
+TextureSampler*f;
+f=(TextureSampler*)((NO)a[0])->data;
+
+CATE(TE,UFOF("TextureSampler::createShadowmap.")));
 RET CN;
 }
 
@@ -33154,6 +33419,12 @@ CATE(VE,"GfxApi::addTextureBinding" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0])->data;
 
+if(a.getCount()==5)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *)&&TS(a[4],TextureSampler))
+{
+( f->addTextureBinding(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<TextureSampler>::type>::f(ctx,a[4])));
+RET CN;
+}
 if(a.getCount()==4)
 if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *))
 {
@@ -36461,6 +36732,14 @@ RET CV(obj->shadowBiasScale);
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowAutoBiasScale);
+} EI(keyStr=="shadowFixedBias")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowFixedBias);
+} EI(keyStr=="shadowRadius")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowRadius);
 } EI(keyStr=="scriptOwned")
 {
 Light*obj=(Light*)f->data;
@@ -36529,6 +36808,14 @@ obj->shadowBiasScale=val_to_c<decltype(obj->shadowBiasScale)>::f(ctx,value);
 {
 Light*obj=(Light*)f->data;
 obj->shadowAutoBiasScale=val_to_c<decltype(obj->shadowAutoBiasScale)>::f(ctx,value);
+} EI(keyStr=="shadowFixedBias")
+{
+Light*obj=(Light*)f->data;
+obj->shadowFixedBias=val_to_c<decltype(obj->shadowFixedBias)>::f(ctx,value);
+} EI(keyStr=="shadowRadius")
+{
+Light*obj=(Light*)f->data;
+obj->shadowRadius=val_to_c<decltype(obj->shadowRadius)>::f(ctx,value);
 } EI(keyStr=="scriptOwned")
 {
 Light*obj=(Light*)f->data;
@@ -50860,6 +51147,87 @@ obj.refCount=1;
 obj.data=f->data;
 UInt4_set_member(ctx, &obj, key, value);
 }
+SV TextureSampler_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->TextureSampler;
+NO obj=(NO)TextureSampler_new(ctx, args2);
+obj->funcs=TextureSampler_ptr_funcs;
+obj->typeID=EXT->TextureSampler_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV TextureSampler_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"TextureSamplerRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,TextureSampler*))
+CATE(TE,"TextureSamplerRef::deref expects TextureSamplerRef as first argument."));
+RET CV(*(TextureSampler *)((NO)f)->data);
+}
+SV TextureSampler_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"TextureSampler::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,TextureSampler*))
+CATE(TE,"TextureSamplerRef::refset expects TextureSamplerRef as first argument."));
+*((TextureSampler *)((NO)f)->data) = val_to_c<TextureSampler>::f(ctx,a[1]);
+RET CN;
+}
+
+void TextureSampler_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,TextureSampler*))
+CATE(TE,"TextureSamplerRef::__del__ expects TextureSamplerRef as first argument."));
+SCRIPT_DELETE((TextureSampler *)f->data);
+}
+SV TextureSampler_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,TextureSampler*))
+CATE(TE,FAE("TextureSamplerRef's get method","TextureSamplerRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("TextureSamplerPtr");
+EI(keyStr=="__new__")
+RET CNF(TextureSampler_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(TextureSampler_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(TextureSampler_ptr_deref);
+if(keyStr=="refset")RET CNF(TextureSampler_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=TextureSampler_funcs;
+obj.typeID=EXT->TextureSampler_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET TextureSampler_get_member(ctx, &obj, key);
+}
+void TextureSampler_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,TextureSampler*))
+CATE(TE,FAE("TextureSamplerRef's set method","TextureSamplerRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=TextureSampler_funcs;
+obj.typeID=EXT->TextureSampler_typeID;
+obj.refCount=1;
+obj.data=f->data;
+TextureSampler_set_member(ctx, &obj, key, value);
+}
 SV Scene_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -54847,6 +55215,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->TextureSampler_typeID = typeID;
+    ext->TextureSampler = scripting::createNativeObject(TextureSampler_funcs, NULL, typeID);
+    engine->getGlobalVars().set("TextureSampler", ext->TextureSampler);
+    
+    typeID = engine->createNewTypeID();
+    ext->TextureSampler_ptr_typeID = typeID;
+    ext->TextureSampler_ptr = scripting::createNativeObject(TextureSampler_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("TextureSamplerRef", ext->TextureSampler_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Scene_typeID = typeID;
     ext->Scene = scripting::createNativeObject(Scene_funcs, NULL, typeID);
     engine->getGlobalVars().set("Scene", ext->Scene);
@@ -55416,9 +55794,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxFace", ext->GfxFace);
     
     typeID = engine->createNewTypeID();
-    ext->GfxStage_typeID = typeID;
-    ext->GfxStage = scripting::createNativeObject(GfxStage_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxStage", ext->GfxStage);
+    ext->GfxShaderType_typeID = typeID;
+    ext->GfxShaderType = scripting::createNativeObject(GfxShaderType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxShaderType", ext->GfxShaderType);
     
     typeID = engine->createNewTypeID();
     ext->GfxBufferUsage_typeID = typeID;

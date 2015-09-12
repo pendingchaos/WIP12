@@ -37,7 +37,7 @@ class ShaderCompileException : public Exception
 
 class GfxCompiledShader;
 
-enum class GfxStage
+enum class GfxShaderType
 {
     Vertex,
     TessControl,
@@ -63,7 +63,7 @@ class GfxShader : public Resource
 
         virtual void save();
 
-        void setSource(GfxStage stage, const String& source);
+        void setSource(GfxShaderType type, const String& source);
         const String getSource() const;
 
         inline GfxCompiledShader *getCompiled(const HashMap<String, String >& defines
@@ -85,7 +85,7 @@ class GfxShader : public Resource
 
         void recompile();
 
-        GfxStage getStage() const;
+        GfxShaderType getShaderType() const;
 
         inline GfxShaderImpl *getImpl() const NO_BIND
         {
@@ -113,14 +113,14 @@ class GfxCompiledShader
 
         virtual bool isInvalid() const=0;
 
-        inline GfxStage getStage() const
+        inline GfxShaderType getType() const
         {
-            return stage;
+            return type;
         }
     protected:
-        GfxCompiledShader(GfxStage stage_) : stage(stage_) {}
+        GfxCompiledShader(GfxShaderType type_) : type(type_) {}
     private:
-        GfxStage stage;
+        GfxShaderType type;
 } BIND;
 
 class GfxShaderImpl
@@ -132,7 +132,7 @@ class GfxShaderImpl
         GfxShaderImpl() {}
         virtual ~GfxShaderImpl() {}
 
-        virtual void setSource(GfxStage stage, const String& source)=0;
+        virtual void setSource(GfxShaderType type, const String& source)=0;
         virtual String getSource() const=0;
 
         virtual GfxCompiledShader *getCompiled(const HashMap<String, String >& defines=
@@ -140,7 +140,7 @@ class GfxShaderImpl
 
         virtual void recompile()=0;
 
-        virtual GfxStage getStage() const=0;
+        virtual GfxShaderType getType() const=0;
 
     NO_COPY(GfxShaderImpl)
 };

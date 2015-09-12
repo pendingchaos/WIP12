@@ -27,6 +27,7 @@
 - [ ] Improve the String type (scripting).
 - [ ] Proper methods (scripting).
 - [ ] Automatic shadow map far value calculation for point and spot lights.
+- [ ] Have point light radius in world space units.
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
