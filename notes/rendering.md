@@ -394,10 +394,10 @@ class Shader
 
         void setSource(size_t maxInstances, GfxShaderType type, const String& source);
 
-        inline GfxShaderType getType() {...}
-        inline size_t getMaxInstances() {...}
+        inline GfxShaderType getType() const {...}
+        inline size_t getMaxInstances() const {...}
 
-        GfxCompiledShader *getCompiled(const HashMap<String, String>& defines);
+        GfxCompiledShader *getCompiled(const HashMap<String, String>& defines) const;
 };
 
 class GfxCompiledShader
