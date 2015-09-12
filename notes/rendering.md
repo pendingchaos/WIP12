@@ -416,7 +416,8 @@ class GfxShaderCombination
         const String& getDefine(GfxShaderType shader, const String& name);
         void removeDefine(GfxShaderType shader, const String& name);
 
-        GfxCompiledShader *getShader(GfxShaderType type);
+        GfxShader *getShader(GfxShaderType type);
+        GfxCompiledShader *getCompiled(GfxShaderType type);
 };
 
 class PipelineState

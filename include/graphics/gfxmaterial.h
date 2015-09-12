@@ -60,10 +60,10 @@ class GfxMaterial : public Resource
             name = texture;\
             if (name != nullptr)\
             {\
-                shaderComb->setFragmentDefine(define, "1");\
+                shaderComb->setDefine(GfxShaderType::Fragment, define, "1");\
             } else\
             {\
-                shaderComb->removeFragmentDefine(define);\
+                shaderComb->removeDefine(GfxShaderType::Fragment, define);\
             }\
         }\
         \

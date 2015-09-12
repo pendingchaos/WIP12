@@ -96,17 +96,17 @@ GfxMaterial::~GfxMaterial()
         displacementMap->release();
     }
 
-    shaderComb->getVertexShader()->release();
-    shaderComb->getFragmentShader()->release();
+    shaderComb->getShader(GfxShaderType::Vertex)->release();
+    shaderComb->getShader(GfxShaderType::Fragment)->release();
 
-    if (shaderComb->getTessControlShader() != nullptr)
+    if (shaderComb->getShader(GfxShaderType::TessControl) != nullptr)
     {
-        shaderComb->getTessControlShader()->release();
+        shaderComb->getShader(GfxShaderType::TessControl)->release();
     }
 
-    if (shaderComb->getTessEvalShader() != nullptr)
+    if (shaderComb->getShader(GfxShaderType::TessEval) != nullptr)
     {
-        shaderComb->getTessEvalShader()->release();
+        shaderComb->getShader(GfxShaderType::TessEval)->release();
     }
 
     DELETE(shaderComb);
@@ -229,18 +229,18 @@ void GfxMaterial::setDisplacementMap(GfxTexture *texture)
 
     if (displacementMap != nullptr and gfxApi->tesselationSupported())
     {
-        if (shaderComb->getTessControlShader() != nullptr)
+        if (shaderComb->getShader(GfxShaderType::TessControl) != nullptr)
         {
-            shaderComb->getTessControlShader()->release();
+            shaderComb->getShader(GfxShaderType::TessControl)->release();
         }
 
-        if (shaderComb->getTessEvalShader() != nullptr)
+        if (shaderComb->getShader(GfxShaderType::TessEval) != nullptr)
         {
-            shaderComb->getTessEvalShader()->release();
+            shaderComb->getShader(GfxShaderType::TessEval)->release();
         }
 
-        shaderComb->setTessControlShader(resMgr->load<GfxShader>("resources/shaders/objectTessControl.bin"));
-        shaderComb->setTessEvalShader(resMgr->load<GfxShader>("resources/shaders/objectTessEval.bin"));
+        shaderComb->setShader(GfxShaderType::TessControl, resMgr->load<GfxShader>("resources/shaders/objectTessControl.bin"));
+        shaderComb->setShader(GfxShaderType::TessEval, resMgr->load<GfxShader>("resources/shaders/objectTessEval.bin"));
     }
 }
 
@@ -248,17 +248,17 @@ void GfxMaterial::setForward(bool forward_)
 {
     forward = forward_;
 
-    shaderComb->getVertexShader()->release();
-    shaderComb->getFragmentShader()->release();
+    shaderComb->getShader(GfxShaderType::Vertex)->release();
+    shaderComb->getShader(GfxShaderType::Fragment)->release();
 
-    if (shaderComb->getTessControlShader() != nullptr)
+    if (shaderComb->getShader(GfxShaderType::TessControl) != nullptr)
     {
-        shaderComb->getTessControlShader()->release();
+        shaderComb->getShader(GfxShaderType::TessControl)->release();
     }
 
-    if (shaderComb->getTessEvalShader() != nullptr)
+    if (shaderComb->getShader(GfxShaderType::TessEval) != nullptr)
     {
-        shaderComb->getTessEvalShader()->release();
+        shaderComb->getShader(GfxShaderType::TessEval)->release();
     }
 
     DELETE(shaderComb);

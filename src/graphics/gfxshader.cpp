@@ -378,3 +378,103 @@ Resource *GfxShader::_copy() const
 
     return (Resource *)shader;
 }
+
+GfxShaderCombination::GfxShaderCombination(GfxShader *vertex,
+                                           GfxShader *fragment)
+ : shaders{nullptr, nullptr, nullptr, nullptr, nullptr},
+   compiled{nullptr, nullptr, nullptr, nullptr, nullptr}
+{
+    setShader(GfxShaderType::Vertex, vertex),
+    setShader(GfxShaderType::Fragment, fragment);
+}
+
+void GfxShaderCombination::setDefine(GfxShaderType shader, const String& name, const String& content)
+{
+    size_t index = (size_t)shader;
+
+    if (index > 4)
+    {
+        THROW(BoundsException);
+    }
+
+    defines[index].set(name, content);
+    dirty[index] = true;
+}
+
+const String& GfxShaderCombination::getDefine(GfxShaderType shader, const String& name)
+{
+    size_t index = (size_t)shader;
+
+    if (index > 4)
+    {
+        THROW(BoundsException);
+    }
+
+    return defines[index].get(name);
+}
+
+void GfxShaderCombination::removeDefine(GfxShaderType shader, const String& name)
+{
+    size_t index = (size_t)shader;
+
+    if (index > 4)
+    {
+        THROW(BoundsException);
+    }
+
+    dirty[index] = true;
+    defines[index].remove(name);
+}
+
+GfxShader *GfxShaderCombination::getShader(GfxShaderType type)
+{
+    size_t index = (size_t)type;
+
+    if (index > 4)
+    {
+        THROW(BoundsException);
+    }
+
+    return shaders[index];
+}
+
+void GfxShaderCombination::setShader(GfxShaderType type, GfxShader *shader)
+{
+    size_t index = (size_t)type;
+
+    if (index > 4)
+    {
+        THROW(BoundsException);
+    }
+
+    shaders[index] = shader;
+    dirty[index] = true;
+}
+
+GfxCompiledShader *GfxShaderCombination::getCompiled(GfxShaderType type) const
+{
+    size_t index = (size_t)type;
+
+    if (index > 4)
+    {
+        THROW(BoundsException);
+    }
+
+    if (dirty[index])
+    {
+        compile(index);
+    }
+
+    return compiled[index];
+}
+
+void GfxShaderCombination::compile(size_t index) const
+{
+    if (shaders[index] != nullptr)
+    {
+        compiled[index] = shaders[index]->getCompiled(defines[index]);
+    } else
+    {
+        compiled[index] = nullptr;
+    }
+}

@@ -4226,7 +4226,6 @@ else
 
 SV GfxApi_getDriver(CTX ctx,const List<SV>&a);
 SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a);
-SV GfxApi_createShaderImpl(CTX ctx,const List<SV>&a);
 SV GfxApi_createBuffer(CTX ctx,const List<SV>&a);
 SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a);
 SV GfxApi_createMeshImpl(CTX ctx,const List<SV>&a);
@@ -6458,36 +6457,12 @@ else
 }
 };
 
-SV GfxShaderCombination_getVertexShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getTessControlShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getTessEvalShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getGeometryShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getFragmentShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setVertexShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setTessControlShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setTessEvalShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setGeometryShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setFragmentShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setVertexDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setTessControlDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setTessEvalDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setGeometryDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_setFragmentDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getVertexDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getTessControlDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getTessEvalDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getGeometryDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getFragmentDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_removeVertexDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_removeTessControlDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_removeTessEvalDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_removeGeometryDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_removeFragmentDefine(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getCompiledVertexShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getCompiledTessControlShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getCompiledTessEvalShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getCompiledGeometryShader(CTX ctx,const List<SV>&a);
-SV GfxShaderCombination_getCompiledFragmentShader(CTX ctx,const List<SV>&a);
+SV GfxShaderCombination_setDefine(CTX ctx,const List<SV>&a);
+SV GfxShaderCombination_getDefine(CTX ctx,const List<SV>&a);
+SV GfxShaderCombination_removeDefine(CTX ctx,const List<SV>&a);
+SV GfxShaderCombination_getShader(CTX ctx,const List<SV>&a);
+SV GfxShaderCombination_setShader(CTX ctx,const List<SV>&a);
+SV GfxShaderCombination_getCompiled(CTX ctx,const List<SV>&a);
 void Matrix3x3_destroy(CTX,NO);
 SV Matrix3x3_get_member(CTX,NO,SV);
 void Matrix3x3_set_member(CTX,NO,SV,SV);
@@ -32783,8 +32758,6 @@ RET CNF(GfxApi_new);
 RET CNF(GfxApi_getDriver);
  EI(keyStr == "tesselationSupported")
 RET CNF(GfxApi_tesselationSupported);
- EI(keyStr == "createShaderImpl")
-RET CNF(GfxApi_createShaderImpl);
  EI(keyStr == "createBuffer")
 RET CNF(GfxApi_createBuffer);
  EI(keyStr == "createTextureImpl")
@@ -33176,17 +33149,6 @@ RET CV( f->getBlendDstFactorAlpha());
 ;
 }
 CATE(TE,UFOF("GfxApi::getBlendDstFactorAlpha.")));
-RET CN;
-}
-
-SV GfxApi_createShaderImpl(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::createShaderImpl" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
-
-CATE(TE,UFOF("GfxApi::createShaderImpl.")));
 RET CN;
 }
 
@@ -48021,66 +47983,18 @@ if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
 RET CNF(GfxShaderCombination_new);
- EI(keyStr == "getVertexShader")
-RET CNF(GfxShaderCombination_getVertexShader);
- EI(keyStr == "getTessControlShader")
-RET CNF(GfxShaderCombination_getTessControlShader);
- EI(keyStr == "getTessEvalShader")
-RET CNF(GfxShaderCombination_getTessEvalShader);
- EI(keyStr == "getGeometryShader")
-RET CNF(GfxShaderCombination_getGeometryShader);
- EI(keyStr == "getFragmentShader")
-RET CNF(GfxShaderCombination_getFragmentShader);
- EI(keyStr == "setVertexShader")
-RET CNF(GfxShaderCombination_setVertexShader);
- EI(keyStr == "setTessControlShader")
-RET CNF(GfxShaderCombination_setTessControlShader);
- EI(keyStr == "setTessEvalShader")
-RET CNF(GfxShaderCombination_setTessEvalShader);
- EI(keyStr == "setGeometryShader")
-RET CNF(GfxShaderCombination_setGeometryShader);
- EI(keyStr == "setFragmentShader")
-RET CNF(GfxShaderCombination_setFragmentShader);
- EI(keyStr == "setVertexDefine")
-RET CNF(GfxShaderCombination_setVertexDefine);
- EI(keyStr == "setTessControlDefine")
-RET CNF(GfxShaderCombination_setTessControlDefine);
- EI(keyStr == "setTessEvalDefine")
-RET CNF(GfxShaderCombination_setTessEvalDefine);
- EI(keyStr == "setGeometryDefine")
-RET CNF(GfxShaderCombination_setGeometryDefine);
- EI(keyStr == "setFragmentDefine")
-RET CNF(GfxShaderCombination_setFragmentDefine);
- EI(keyStr == "getVertexDefine")
-RET CNF(GfxShaderCombination_getVertexDefine);
- EI(keyStr == "getTessControlDefine")
-RET CNF(GfxShaderCombination_getTessControlDefine);
- EI(keyStr == "getTessEvalDefine")
-RET CNF(GfxShaderCombination_getTessEvalDefine);
- EI(keyStr == "getGeometryDefine")
-RET CNF(GfxShaderCombination_getGeometryDefine);
- EI(keyStr == "getFragmentDefine")
-RET CNF(GfxShaderCombination_getFragmentDefine);
- EI(keyStr == "removeVertexDefine")
-RET CNF(GfxShaderCombination_removeVertexDefine);
- EI(keyStr == "removeTessControlDefine")
-RET CNF(GfxShaderCombination_removeTessControlDefine);
- EI(keyStr == "removeTessEvalDefine")
-RET CNF(GfxShaderCombination_removeTessEvalDefine);
- EI(keyStr == "removeGeometryDefine")
-RET CNF(GfxShaderCombination_removeGeometryDefine);
- EI(keyStr == "removeFragmentDefine")
-RET CNF(GfxShaderCombination_removeFragmentDefine);
- EI(keyStr == "getCompiledVertexShader")
-RET CNF(GfxShaderCombination_getCompiledVertexShader);
- EI(keyStr == "getCompiledTessControlShader")
-RET CNF(GfxShaderCombination_getCompiledTessControlShader);
- EI(keyStr == "getCompiledTessEvalShader")
-RET CNF(GfxShaderCombination_getCompiledTessEvalShader);
- EI(keyStr == "getCompiledGeometryShader")
-RET CNF(GfxShaderCombination_getCompiledGeometryShader);
- EI(keyStr == "getCompiledFragmentShader")
-RET CNF(GfxShaderCombination_getCompiledFragmentShader);
+ EI(keyStr == "setDefine")
+RET CNF(GfxShaderCombination_setDefine);
+ EI(keyStr == "getDefine")
+RET CNF(GfxShaderCombination_getDefine);
+ EI(keyStr == "removeDefine")
+RET CNF(GfxShaderCombination_removeDefine);
+ EI(keyStr == "getShader")
+RET CNF(GfxShaderCombination_getShader);
+ EI(keyStr == "setShader")
+RET CNF(GfxShaderCombination_setShader);
+ EI(keyStr == "getCompiled")
+RET CNF(GfxShaderCombination_getCompiled);
  else
  CATE(KE,"Unknown member."));
 }
@@ -48103,513 +48017,105 @@ if(0) {} else
 }
 }
 
-SV GfxShaderCombination_setTessControlDefine(CTX ctx,const List<SV>&a)
+SV GfxShaderCombination_setShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setTessControlDefine" EAOE));
+CATE(VE,"GfxShaderCombination::setShader" EAOE));
 GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],const char *)&&TS(a[2],const char *))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],GfxShader *))
 {
-( f->setTessControlDefine(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2])));
+( f->setShader(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxShader *>::type>::f(ctx,a[2])));
 RET CN;
 }
-CATE(TE,UFOF("GfxShaderCombination::setTessControlDefine.")));
+CATE(TE,UFOF("GfxShaderCombination::setShader.")));
 RET CN;
 }
 
-SV GfxShaderCombination_setGeometryShader(CTX ctx,const List<SV>&a)
+SV GfxShaderCombination_getShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setGeometryShader" EAOE));
+CATE(VE,"GfxShaderCombination::getShader" EAOE));
 GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],GfxShader *))
+if(1&&TS(a[1],GfxShaderType))
 {
-( f->setGeometryShader(val_to_c<std::remove_reference<GfxShader *>::type>::f(ctx,a[1])));
-RET CN;
+RET CV( f->getShader(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1])));
+;
 }
-CATE(TE,UFOF("GfxShaderCombination::setGeometryShader.")));
+CATE(TE,UFOF("GfxShaderCombination::getShader.")));
 RET CN;
 }
 
-SV GfxShaderCombination_getTessControlShader(CTX ctx,const List<SV>&a)
+SV GfxShaderCombination_getCompiled(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getTessControlShader" EAOE));
+CATE(VE,"GfxShaderCombination::getCompiled" EAOE));
 GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxShaderType))
 {
-RET CV( f->getTessControlShader());
+RET CV( f->getCompiled(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("GfxShaderCombination::getTessControlShader.")));
+CATE(TE,UFOF("GfxShaderCombination::getCompiled.")));
 RET CN;
 }
 
-SV GfxShaderCombination_setVertexDefine(CTX ctx,const List<SV>&a)
+SV GfxShaderCombination_getDefine(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setVertexDefine" EAOE));
+CATE(VE,"GfxShaderCombination::getDefine" EAOE));
 GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],const char *)&&TS(a[2],const char *))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
 {
-( f->setVertexDefine(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::setVertexDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getTessControlDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getTessControlDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->getTessControlDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->getDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
 ;
 }
-CATE(TE,UFOF("GfxShaderCombination::getTessControlDefine.")));
+CATE(TE,UFOF("GfxShaderCombination::getDefine.")));
 RET CN;
 }
 
-SV GfxShaderCombination_getCompiledTessControlShader(CTX ctx,const List<SV>&a)
+SV GfxShaderCombination_removeDefine(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getCompiledTessControlShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCompiledTessControlShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getCompiledTessControlShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getCompiledVertexShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getCompiledVertexShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCompiledVertexShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getCompiledVertexShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getGeometryDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getGeometryDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->getGeometryDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getGeometryDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_removeTessControlDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::removeTessControlDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->removeTessControlDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::removeTessControlDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_setFragmentShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setFragmentShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxShader *))
-{
-( f->setFragmentShader(val_to_c<std::remove_reference<GfxShader *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::setFragmentShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_removeTessEvalDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::removeTessEvalDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->removeTessEvalDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::removeTessEvalDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getTessEvalDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getTessEvalDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->getTessEvalDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getTessEvalDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getVertexShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getVertexShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getVertexShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getVertexShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getCompiledFragmentShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getCompiledFragmentShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCompiledFragmentShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getCompiledFragmentShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_setTessControlShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setTessControlShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxShader *))
-{
-( f->setTessControlShader(val_to_c<std::remove_reference<GfxShader *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::setTessControlShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_setGeometryDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setGeometryDefine" EAOE));
+CATE(VE,"GfxShaderCombination::removeDefine" EAOE));
 GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],const char *)&&TS(a[2],const char *))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
 {
-( f->setGeometryDefine(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2])));
+( f->removeDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
 RET CN;
 }
-CATE(TE,UFOF("GfxShaderCombination::setGeometryDefine.")));
+CATE(TE,UFOF("GfxShaderCombination::removeDefine.")));
 RET CN;
 }
 
-SV GfxShaderCombination_setTessEvalDefine(CTX ctx,const List<SV>&a)
+SV GfxShaderCombination_setDefine(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setTessEvalDefine" EAOE));
+CATE(VE,"GfxShaderCombination::setDefine" EAOE));
 GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0])->data;
 
-if(a.getCount()==3)
-if(1&&TS(a[1],const char *)&&TS(a[2],const char *))
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &)&&TS(a[3],const String &))
 {
-( f->setTessEvalDefine(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2])));
+( f->setDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[3])));
 RET CN;
 }
-CATE(TE,UFOF("GfxShaderCombination::setTessEvalDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_removeVertexDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::removeVertexDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->removeVertexDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::removeVertexDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_removeFragmentDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::removeFragmentDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->removeFragmentDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::removeFragmentDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getTessEvalShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getTessEvalShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getTessEvalShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getTessEvalShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getFragmentDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getFragmentDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->getFragmentDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getFragmentDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_removeGeometryDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::removeGeometryDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->removeGeometryDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::removeGeometryDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_setFragmentDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setFragmentDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],const char *)&&TS(a[2],const char *))
-{
-( f->setFragmentDefine(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::setFragmentDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getCompiledGeometryShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getCompiledGeometryShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCompiledGeometryShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getCompiledGeometryShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getFragmentShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getFragmentShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getFragmentShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getFragmentShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_setVertexShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setVertexShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxShader *))
-{
-( f->setVertexShader(val_to_c<std::remove_reference<GfxShader *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::setVertexShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getCompiledTessEvalShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getCompiledTessEvalShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCompiledTessEvalShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getCompiledTessEvalShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getVertexDefine(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getVertexDefine" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->getVertexDefine(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getVertexDefine.")));
-RET CN;
-}
-
-SV GfxShaderCombination_setTessEvalShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::setTessEvalShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxShader *))
-{
-( f->setTessEvalShader(val_to_c<std::remove_reference<GfxShader *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShaderCombination::setTessEvalShader.")));
-RET CN;
-}
-
-SV GfxShaderCombination_getGeometryShader(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShaderCombination::getGeometryShader" EAOE));
-GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getGeometryShader());
-;
-}
-CATE(TE,UFOF("GfxShaderCombination::getGeometryShader.")));
+CATE(TE,UFOF("GfxShaderCombination::setDefine.")));
 RET CN;
 }
 

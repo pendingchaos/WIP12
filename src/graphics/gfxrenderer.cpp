@@ -1892,11 +1892,11 @@ void GfxRenderer::renderBatches(bool forward)
 
             gfxApi->pushState();
 
-            GfxCompiledShader *vertex = shaderComb->getCompiledVertexShader();
-            GfxCompiledShader *tessControl = shaderComb->getCompiledTessControlShader();
-            GfxCompiledShader *tessEval = shaderComb->getCompiledTessEvalShader();
-            GfxCompiledShader *geometry = shaderComb->getCompiledGeometryShader();
-            GfxCompiledShader *fragment = shaderComb->getCompiledFragmentShader();
+            GfxCompiledShader *vertex = shaderComb->getCompiled(GfxShaderType::Vertex);
+            GfxCompiledShader *tessControl = shaderComb->getCompiled(GfxShaderType::TessControl);
+            GfxCompiledShader *tessEval = shaderComb->getCompiled(GfxShaderType::TessEval);
+            GfxCompiledShader *geometry = shaderComb->getCompiled(GfxShaderType::Geometry);
+            GfxCompiledShader *fragment = shaderComb->getCompiled(GfxShaderType::Fragment);
 
             gfxApi->begin(vertex,
                           tessControl,
