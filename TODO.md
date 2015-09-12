@@ -41,7 +41,6 @@
 - [ ] Transform::lookAt does not work.
 - [ ] Fix black borders around normal mapped metallic objects (http://marmosetco.tumblr.com/post/81245981087 ?):
 ![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/metallic border bug.png)
-- [ ] Point and spot shadow sampling no longer work (sampler2DShadow->sampler2D)
 
 ## Other
 - [ ] Texture types should be immutable.
@@ -54,7 +53,6 @@
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
-- [ ] Directional shadows look a lot better with hardware PCF.
 
 ## Performance Improvements
 - [ ] Instancing
@@ -76,3 +74,4 @@
         - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
 - [ ] Improve directional light performance.
     - [ ] Only do deferred shading where deferred objects are rendered.
+- [ ] Improve fixed update performance and find out what's not showing up on the renderer CPU timings.

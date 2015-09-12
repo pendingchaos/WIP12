@@ -84,7 +84,10 @@ class GfxGLApi : public GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values);
 
         virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer);
-        virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture);
+        virtual void addTextureBinding(GfxCompiledShader *shader,
+                                       const char *name,
+                                       GfxTexture *texture,
+                                       TextureSampler sampler);
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value);
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value);
@@ -190,7 +193,7 @@ class GfxGLApi : public GfxApi
             GLint location;
             GLuint program;
             GLenum bindingGet;
-            GLint lastTexture;
+            GLuint sampler;
         };
 
         struct UBOBinding

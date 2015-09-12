@@ -14,7 +14,8 @@ DECLUNIFORM(sampler2D, aoTexture)
 DECLUNIFORM(mat4, viewProjection)
 
 #ifdef SHADOW_MAP
-DECLUNIFORM(sampler2D, shadowmap)
+DECLUNIFORM(sampler2DShadow, shadowmap)
+DECLUNIFORM(sampler2D, depthmap)
 DECLUNIFORM(mat4, shadowmapViewMatrix)
 DECLUNIFORM(mat4, shadowmapProjectionMatrix)
 DECLUNIFORM(float, shadowMinBias)
@@ -59,7 +60,7 @@ void main()
     result_color.rgb = directionalLight(U(lightNegDir), U(lightColor), U(lightAmbientStrength),
                                         albedo, metallic, roughness, normal, viewDir, ao
     #ifdef SHADOW_MAP
-    , shadowCoord, U(shadowmap)
+    , shadowCoord, U(shadowmap), U(depthmap)
     #endif
     );
     result_color.a = 1.0;

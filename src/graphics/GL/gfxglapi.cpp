@@ -387,9 +387,6 @@ void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
     TextureBinding& binding = textureBindings[i];\
 \
     glActiveTexture(GL_TEXTURE0+i);\
-\
-    glGetIntegerv(binding.bindingGet, &binding.lastTexture);\
-\
     glBindTexture(binding.target, dynamic_cast<GfxGLTextureImpl *>(binding.texture->getImpl())->getGLTexture());\
 \
     if (GLFL_GL_ARB_separate_shader_objects)\
@@ -399,6 +396,7 @@ void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
     {\
         glUniform1i(binding.location, i);\
     }\
+    glBindSampler(i, binding.sampler);\
 }\
 for (size_t i = 0; i < uboBindingCount; ++i)\
 {\
@@ -422,6 +420,21 @@ case GfxCW:\
 }\
 }
 
+#define END_DRAW for (size_t i = 0; i < textureBindingCount; ++i)\
+{\
+    TextureBinding& binding = textureBindings[i];\
+\
+    glActiveTexture(GL_TEXTURE0+i);\
+    glBindTexture(binding.target, 0);\
+    binding.texture = nullptr;\
+\
+    glDeleteSamplers(1, &binding.sampler);\
+    glBindSampler(i, 0);\
+}\
+\
+textureBindingCount = 0;\
+uboBindingCount = 0;
+
 void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *tessControl_,
                      GfxCompiledShader *tessEval_,
@@ -429,18 +442,6 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *fragment_,
                      GfxMesh *mesh)
 {
-    for (size_t i = 0; i < textureBindingCount; ++i)
-    {
-        TextureBinding& binding = textureBindings[i];
-
-        glActiveTexture(GL_TEXTURE0+i);
-        glBindTexture(binding.target, binding.lastTexture);
-        binding.texture = nullptr;
-    }
-
-    textureBindingCount = 0;
-    uboBindingCount = 0;
-
     glBindVertexArray(dynamic_cast<GfxGLMeshImpl *>(mesh->getImpl())->getGLVAO());
 
     if (GLFL_GL_ARB_separate_shader_objects)
@@ -606,6 +607,8 @@ void GfxGLApi::end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, s
     BEGIN_DRAW
 
     glDrawArraysInstanced(toGLPrimitive[primitive], 0, count, instanceCount);
+
+    END_DRAW
 }
 
 void GfxGLApi::endIndexed(GfxPrimitive primitive,
@@ -653,6 +656,8 @@ void GfxGLApi::endIndexed(GfxPrimitive primitive,
     }
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    END_DRAW
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, float value)
@@ -1024,9 +1029,122 @@ void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const 
     }
 }
 
-void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
+void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture, TextureSampler sampler)
 {
     UNIFORM_START
+
+    GLuint glSampler;
+    glGenSamplers(1, &glSampler);
+
+    if (GLFL_GL_EXT_texture_filter_anisotropic)
+    {
+        float maxMaxAnisotropy = 1.0f;
+
+        glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxMaxAnisotropy);
+
+        float result = std::max(std::min(sampler.maxAnisotropy, maxMaxAnisotropy), 1.0f);
+
+        glSamplerParameterf(glSampler, GL_TEXTURE_MAX_ANISOTROPY_EXT, result);
+    }
+
+    switch (sampler.magFilter)
+    {
+    case GfxFilter::Bilinear:
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        break;
+    }
+    case GfxFilter::Nearest:
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    }
+    }
+
+    switch (sampler.wrapMode)
+    {
+    case GfxWrapMode::Stretch:
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        break;
+    }
+    case GfxWrapMode::Repeat:
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        break;
+    }
+    case GfxWrapMode::Mirror:
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+        break;
+    }
+    }
+
+    switch (sampler.mipmapMode)
+    {
+    case GfxMipmapMode::None:
+    {
+        switch (sampler.minFilter)
+        {
+        case GfxFilter::Bilinear:
+        {
+            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            break;
+        }
+        case GfxFilter::Nearest:
+        {
+            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            break;
+        }
+        }
+        break;
+    }
+    case GfxMipmapMode::Nearest:
+    {
+        switch (sampler.minFilter)
+        {
+        case GfxFilter::Bilinear:
+        {
+            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+            break;
+        }
+        case GfxFilter::Nearest:
+        {
+            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+            break;
+        }
+        }
+        break;
+    }
+    case GfxMipmapMode::Linear:
+    {
+        switch (sampler.minFilter)
+        {
+        case GfxFilter::Bilinear:
+        {
+            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            break;
+        }
+        case GfxFilter::Nearest:
+        {
+            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+            break;
+        }
+        }
+        break;
+    }
+    }
+
+    if (sampler.shadowmap)
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+        glSamplerParameteri(glSampler, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+    } else
+    {
+        glSamplerParameteri(glSampler, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+    }
 
     if (textureBindingCount < sizeof(textureBindings)/sizeof(TextureBinding))
     {
@@ -1036,7 +1154,8 @@ void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, Gf
                                                                   .program = GLFL_GL_ARB_separate_shader_objects ?
                                                       dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram() :
                                                       pipeline,
-                                                                  .bindingGet = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLBindingGet()};
+                                                                  .bindingGet = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLBindingGet(),
+                                                                  .sampler = glSampler};
     }
 }
 

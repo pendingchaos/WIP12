@@ -165,6 +165,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
     Audio *audio;
     Script *projScript;
     float textCPUTiming;
+    float playerFindCPUTiming;
 
     virtual void init()
     {
@@ -354,6 +355,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
                                           "        Overlay: %.2f ms (%.0f%)\n"
                                           "        Batching: %.2f ms (%.0f%)\n"
                                           "        Text: %.2f ms (%.0f%)\n"
+                                          "        Player Find: %.2f ms (%.0f%)\n"
                                           "    Audio: %.2f ms (%.0f%)\n",
                                           stats.gBufferTiming * 1000.0f,
                                           stats.gBufferTiming / total * 100.0f,
@@ -407,6 +409,8 @@ BEGIN_INSTANCE(Main, InstanceBase)
                                           stats.batchingTiming / cpuTotal * 100.0f,
                                           textCPUTiming * 1000.0f,
                                           textCPUTiming / cpuTotal * 100.0f,
+                                          playerFindCPUTiming * 1000.0f,
+                                          playerFindCPUTiming / cpuTotal * 100.0f,
                                           cpuStats.audio * 1000.0f,
                                           cpuStats.audio / cpuTotal * 100.0f);
         }
@@ -419,12 +423,16 @@ BEGIN_INSTANCE(Main, InstanceBase)
             displayedText.append(extraTimings);
         }
 
+        uint64_t start = platform->getTime();
+
         Player *player = scene->findWithScript<Player>();
 
         if (player != nullptr)
         {
             displayedText.append(String::format("Zoom: %f\n", 1.0f / player->zoom));
         }
+        
+        playerFindCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
         /*Projectile *proj = scene->findWithScript<Projectile>();
 
@@ -434,7 +442,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
         }*/
 
         textTimer->begin();
-        uint64_t start = platform->getTime();
+        start = platform->getTime();
 
         font->render(fontSize,
                      Float2(-1.0, y),

@@ -25,6 +25,51 @@ enum class GfxDriver
     Unknown
 } BIND ENUM_CLASS;
 
+struct TextureSampler
+{
+    TextureSampler() : maxAnisotropy(1.0f),
+                       minFilter(GfxFilter::Bilinear),
+                       magFilter(GfxFilter::Bilinear),
+                       mipmapMode(GfxMipmapMode::None),
+                       wrapMode(GfxWrapMode::Repeat),
+                       shadowmap(false) {}
+    TextureSampler(GfxTexture *tex) : maxAnisotropy(tex->getMaximumAnisotropy()),
+                                      minFilter(tex->getMinFilter()),
+                                      magFilter(tex->getMagFilter()),
+                                      mipmapMode(tex->getMipmapMode()),
+                                      wrapMode(tex->getWrapMode()),
+                                      shadowmap(tex->getShadowmap()) {}
+
+    TextureSampler(float maxAnisotropy_,
+                   GfxFilter minFilter_,
+                   GfxFilter magFilter_,
+                   GfxMipmapMode mipmapMode_,
+                   GfxWrapMode wrapMode_,
+                   bool shadowmap_) : maxAnisotropy(maxAnisotropy_),
+                                      minFilter(minFilter_),
+                                      magFilter(magFilter_),
+                                      mipmapMode(mipmapMode_),
+                                      wrapMode(wrapMode_),
+                                      shadowmap(shadowmap_) {}
+
+    inline static TextureSampler createShadowmap()
+    {
+        return TextureSampler(1.0f,
+                              GfxFilter::Bilinear,
+                              GfxFilter::Bilinear,
+                              GfxMipmapMode::None,
+                              GfxWrapMode::Stretch,
+                              true);
+    }
+
+    float maxAnisotropy;
+    GfxFilter minFilter;
+    GfxFilter magFilter;
+    GfxMipmapMode mipmapMode;
+    GfxWrapMode wrapMode;
+    bool shadowmap;
+};
+
 class GfxApi
 {
     public:
@@ -95,7 +140,15 @@ class GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values) NO_BIND=0;
 
         virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer)=0;
-        virtual void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)=0;
+        virtual void addTextureBinding(GfxCompiledShader *shader,
+                                       const char *name,
+                                       GfxTexture *texture,
+                                       TextureSampler sampler)=0;
+
+        inline void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
+        {
+            addTextureBinding(shader, name, texture, TextureSampler(texture));
+        }
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value) NO_BIND=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value) NO_BIND=0;

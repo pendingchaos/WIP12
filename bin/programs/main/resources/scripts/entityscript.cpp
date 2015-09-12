@@ -49,22 +49,27 @@ BEGIN_INSTANCE(Player, InstanceBase)
     {
         if (platform->isRightMouseButtonPressed() and fireTimeout < 0.0f)
         {
-            Entity *proj = scene->createEntity("projectile");
+            size_t count = platform->isKeyPressed(Key::Q) ? 1000 : 1;
+            
+            for (size_t i = 0; i < count; ++i)
+            {
+                Entity *proj = scene->createEntity("projectile");
 
-            proj->transform.position = entity->transform.position +
-                                       Position3D(0.0f, 1.0f, 0.0f) +
-                                       scene->getRenderer()->camera.getDirection() * 2.0f;
+                proj->transform.position = entity->transform.position +
+                                           Position3D(0.0f, 1.0f, 0.0f) +
+                                           scene->getRenderer()->camera.getDirection() * 2.0f;
 
-            RigidBodyConstructionInfo info;
-            info.mass = 100.0f;
+                RigidBodyConstructionInfo info;
+                info.mass = 100.0f;
 
-            proj->addRigidBody(info, resMgr->loadAndCopy<PhysicsShape>("resources/shapes/projectile.bin"))
-            ->setLinearVelocity(scene->getRenderer()->camera.getDirection()*10.0f);
+                proj->addRigidBody(info, resMgr->loadAndCopy<PhysicsShape>("resources/shapes/projectile.bin"))
+                ->setLinearVelocity(scene->getRenderer()->camera.getDirection()*10.0f);
 
-            proj->addModel(resMgr->load<GfxModel>("resources/models/projectile.bin"));
-            proj->addScript(resMgr->load<Script>("resources/scripts/projectilescript.cpp"), "Projectile");
+                proj->addModel(resMgr->load<GfxModel>("resources/models/projectile.bin"));
+                proj->addScript(resMgr->load<Script>("resources/scripts/projectilescript.cpp"), "Projectile");
 
-            proj->findScriptInstance<Projectile>()->scale = std::max(std::rand() / (float)RAND_MAX, 0.1f);
+                proj->findScriptInstance<Projectile>()->scale = std::max(std::rand() / (float)RAND_MAX, 0.1f);
+            }
 
             fireTimeout = 0.1f;
         }

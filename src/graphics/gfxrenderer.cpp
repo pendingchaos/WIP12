@@ -1207,7 +1207,10 @@ void GfxRenderer::render()
 
         if (light->getShadowmap() != nullptr)
         {
-            gfxApi->addTextureBinding(fragmentShader, "shadowmap", light->getShadowmap());
+            GfxTexture *shadowmap = light->getShadowmap();
+            gfxApi->addTextureBinding(fragmentShader, "depthmap", shadowmap);
+            gfxApi->addTextureBinding(fragmentShader, "shadowmap", shadowmap, TextureSampler::createShadowmap());
+
             gfxApi->uniform(fragmentShader, "shadowmapViewMatrix", light->getViewMatrix());
             gfxApi->uniform(fragmentShader, "shadowmapProjectionMatrix", light->getProjectionMatrix());
             gfxApi->uniform(fragmentShader, "shadowMinBias", light->shadowMinBias);

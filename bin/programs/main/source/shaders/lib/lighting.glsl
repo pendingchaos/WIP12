@@ -142,7 +142,7 @@ float shadowNoise(float scale)
 #ifdef TEX_GATHER
 #define _BLOCKER_SAMPLE(samplePos) {\
     vec2 offset = mat * samplePos * U(shadowRadius) / texSize;\
-    vec4 depths = textureGather(shadowmap, shadowCoord.xy/shadowCoord.w + offset, 0);\
+    vec4 depths = textureGather(depthmap, shadowCoord.xy/shadowCoord.w + offset, 0);\
     vec4 factors = step(depths, vec4(shadowCoord.z/shadowCoord.w));\
     numBlockers += dot(factors, vec4(1.0));\
     avgBlockerDepth += dot(depths, factors);\
@@ -150,7 +150,7 @@ float shadowNoise(float scale)
 #else
 #define _BLOCKER_SAMPLE(samplePos) {\
     vec2 offset = mat * samplePos * U(shadowRadius) / texSize;\
-    float depth = textureLod(shadowmap, shadowCoord.xy/shadowCoord.w + offset, 0).r;\
+    float depth = textureLod(depthmap, shadowCoord.xy/shadowCoord.w + offset, 0).r;\
     float factor = step(depth, shadowCoord.z/shadowCoord.w);\
     numBlockers += factors;\
     avgBlockerDepth += depth * factor;\
@@ -160,29 +160,11 @@ float shadowNoise(float scale)
 //This seems to result in lower quality.
 //shadow += mix(mix(factors.x, factors.y, fract(coord.x)), mix(factors.w, factors.z, fract(coord.x)), fract(coord.y));
 
-#ifdef TEX_GATHER
-#define _SHADOW_SAMPLE(samplePos) {\
-    vec2 coord = shadowCoord.xy*texSize + mat*samplePos*newRadius;\
-    vec4 depths = textureGather(shadowmap, coord/texSize, 0);\
-    vec4 factors = step(vec4(shadowCoord.z), depths);\
-    shadow += pow(dot(factors, vec4(0.25)), 2.2);\
-}
-#else
-#define _SHADOW_SAMPLE(samplePos) {\
-    vec2 coord = shadowCoord.xy*texSize + mat*samplePos*newRadius;\
-    coord -= 0.5;\
-    vec4 depths = vec4(textureLod(shadowmap, (coord+vec2(0.5, 0.5)) / texSize, 0.0).r,\
-                       textureLod(shadowmap, (coord+vec2(1.5, 0.5)) / texSize, 0.0).r,\
-                       textureLod(shadowmap, (coord+vec2(1.5, 1.5)) / texSize, 0.0).r,\
-                       textureLod(shadowmap, (coord+vec2(0.5, 1.5)) / texSize, 0.0).r);\
-    vec4 factors = step(vec4(shadowCoord.z), depths);\
-    shadow += pow(dot(factors, vec4(0.25)), 2.2);\
-}
-#endif
+#define _SHADOW_SAMPLE(samplePos) shadow += texture(shadowmap, shadowCoord.xyz + vec3(mat*samplePos*newRadius/texSize, 0.0)).r;
 
 vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
                       vec3 albedo, float metallic, float roughness, vec3 normal, vec3 viewDir, float ao,
-                      vec4 shadowCoord, sampler2D shadowmap)
+                      vec4 shadowCoord, sampler2DShadow shadowmap, sampler2D depthmap)
 {
     vec3 specular;
     float diffuse;
