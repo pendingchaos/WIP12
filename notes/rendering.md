@@ -289,8 +289,8 @@ class Texture2D
         Texture2D(GfxContext *context, GfxTextureFormat format, UInt2 size);
         ~Texture2D();
 
-        void setData(size_t mipmap, const void *data);
-        void getData(size_t mipmap, void *data);
+        void setData(size_t mipmap, const void *data, size_t alignment);
+        void getData(size_t mipmap, void *data, size_t alignment);
 
         GfxTextureFormat getFormat();
         UInt2 getSize();
@@ -304,8 +304,8 @@ class GfxTexture3D
         GfxTexture3D(GfxContext *context, GfxTextureFormat format, UInt3 size);
         ~GfxTexture3D();
 
-        void setData(size_t mipmap, const void *data);
-        void getData(size_t mipmap, void *data);
+        void setData(size_t mipmap, const void *data, size_t alignment);
+        void getData(size_t mipmap, void *data, size_t alignment);
 
         GfxTextureFormat getFormat();
         UInt3 getSize();
@@ -319,8 +319,8 @@ class GfxTextureCube
         GfxTextureCube(GfxContext *context, GfxTextureFormat format, UInt2 size);
         ~GfxTextureCube();
 
-        void setData(GfxFace face, size_t mipmap, const void *data);
-        void getData(GfxFace face, size_t mipmap, void *data);
+        void setData(GfxFace face, size_t mipmap, const void *data, size_t alignment);
+        void getData(GfxFace face, size_t mipmap, void *data, size_t alignment);
 
         GfxTextureFormat getFormat();
         UInt2 getSize();
