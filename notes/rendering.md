@@ -29,11 +29,10 @@
 #### Required:
 - OpenGL 3.3
 - GL_ARB_tessellation_shader
-- GL_ARB_texture_gather
 - GL_KHR_debug or similar extension
+- GL_ARB_separate_shader_objects
 
 #### Optional:
-- GL_ARB_separate_shader_objects
 - GL_ARB_get_program_binary
 - GL_ARB_internalformat_query
 - GL_ARB_multi_draw_indirect (still used if the below is not supported but not for GPU culling)
@@ -43,20 +42,18 @@
 
 ### API
 ```c++
-namespace gfx
-{
-enum class ShaderType
+enum class GfxShaderType
 {
     Vertex,
     Geometry,
     Fragment,
     TessControl,
     TessEval,
-    Compute,
-    Max
+    Compute
 };
+static const unsigned int GfxShaderTypeMax = 6;
 
-enum class DepthFunc
+enum class GfxDepthFunc
 {
     Never,
     Less,
@@ -65,19 +62,19 @@ enum class DepthFunc
     Greater,
     NotEqual,
     GreaterEqual,
-    Always,
-    Max
+    Always
 };
+static const unsigned int GfxDepthFuncMax = 8;
 
-enum class BlendMode
+enum class GfxBlendMode
 {
     Add,
     Subtract,
-    ReverseSubtract,
-    Max
+    ReverseSubtract
 };
+static const unsigned int GfxBlendModeMax = 3;
 
-enum class BlendFactor
+enum class GfxBlendFactor
 {
     Zero,
     One,
@@ -92,11 +89,11 @@ enum class BlendFactor
     ConstantColor,
     OneMinusConstantColor,
     ConstantAlpha,
-    OneMinusConstantAlpha,
-    Max
+    OneMinusConstantAlpha
 };
+static const unsigned int GfxBlendFactorMax = 14;
 
-enum class MeshAttribDataType
+enum class GfxMeshAttribDataType
 {
     F16_1,
     F16_2,
@@ -153,29 +150,30 @@ enum class MeshAttribDataType
     S32_1Norm,
     S32_2Norm,
     S32_3Norm,
-    S32_4Norm,
-    Max
+    S32_4Norm
 };
+static const unsigned int GfxBlendModeMax = 56;
 
-enum class MeshIndexDataType
+enum class GfxMeshIndexDataType
 {
     U8,
     U16,
     U24,
     U32
 };
+static const unsigned int GfxMeshIndexDataTypeMax = 4;
 
-enum class MeshAttribType
+enum class GfxMeshAttribType
 {
     Position,
     Normal,
     Tangent,
     Color,
-    TexCoord,
-    Max
+    TexCoord
 };
+static const unsigned int GfxMeshAttribTypeMax = 5;
 
-enum class TextureFormat
+enum class GfxTextureFormat
 {
     RedU8,
     RedI8,
@@ -205,207 +203,174 @@ enum class TextureFormat
     SRGBAU8,
     DepthF32_F16,
     DepthF32_F24,
-    DepthF32,
-    Max
+    DepthF32
 };
+static const unsigned int GfxTextureFormatMax = 29;
 
-enum class TextureFilter
+enum class GfxTextureFilter
 {
     Nearest,
-    Linear,
-    Max
+    Linear
 };
+static const unsigned int GfxTextureFilterMax = 2;
 
-enum class TextureMipmapMode
+enum class GfxTextureMipmapMode
 {
     None,
     Nearest,
-    Linear,
-    Max
+    Linear
 };
+static const unsigned int GfxTextureMipmapModeMax = 3;
 
-enum class TextureWrapMode
+enum class GfxTextureWrapMode
 {
     Clamp,
     Repeat,
-    Mirror,
-    Max
+    Mirror
 };
-
-enum class ShaderParamType
-{
-    Int,
-    Int2,
-    Int3,
-    Int4,
-    UInt,
-    UInt2,
-    UInt3,
-    UInt4,
-    Float,
-    Float2,
-    Float3,
-    Float4,
-    Max
-};
-
-enum class ShaderParamBufferLayout
-{
-    GLSL_STD140 //https://www.opengl.org/registry/doc/glspec45.core.pdf#page=159
-};
+static const unsigned int GfxTextureWrapModeMax = 3;
 
 struct TextureSampler
 {
-    TextureFilter magFilter;
-    TextureFilter minFilter;
-    TextureMipmapMode mipmapMode;
-    TextureWrapMode wrapMode;
+    GfxTextureFilter magFilter;
+    GfxTextureFilter minFilter;
+    GfxTextureMipmapMode mipmapMode;
+    GfxTextureWrapMode wrapMode;
     float maxAnisotropy;
 };
 
-struct TextureSamplerOverride
+struct GfxSamplerOverride
 {
     bool overrideMinFilter:1;
     bool overrideMagFilter:1;
     bool overrideMipmapMode:1;
     bool overrideWrapMode:1;
     bool overrideMaxAnisotropy:1;
-    TextureSampler sampler;
+    GfxTextureSampler sampler;
 };
 
-struct MeshAttrib
+struct GfxMeshAttrib
 {
-    MeshAttribDataType type;
+    GfxMeshAttribDataType type;
     void *data;
 };
 
-struct PerInstanceData
+struct GfxPerInstanceData
 {
     size_t stride;
     ResizableData data;
-    //TODO: Store format as an integer for better batching.
 };
 
-class Context;
+enum class GfxFace
+{
+    PositiveX,
+    NegativeX,
+    PositiveY,
+    NegativeY,
+    PositiveZ,
+    NegativeZ
+};
+
+class GfxContext;
 
 class Texture2D
 {
     public:
-        Texture2D(Context *context, TextureFormat format, UInt2 size);
+        Texture2D(GfxContext *context, GfxTextureFormat format, UInt2 size);
         ~Texture2D();
-        
+
         void setData(size_t mipmap, const void *data);
         void getData(size_t mipmap, void *data);
-        
-        TextureFormat getFormat();
+
+        GfxTextureFormat getFormat();
         UInt2 getSize();
-        TextureSamplerOverride getSamplerOverride();
-        void setSamplerOverride(const TextureSamplerOverride& sampler);
+        GfxSamplerOverride getSamplerOverride();
+        void setSamplerOverride(const GfxSamplerOverride& sampler);
 };
 
-class Texture3D
+class GfxTexture3D
 {
     public:
-        Texture3D(Context *context, TextureFormat format, UInt3 size);
-        ~Texture3D();
-        
+        GfxTexture3D(GfxContext *context, GfxTextureFormat format, UInt3 size);
+        ~GfxTexture3D();
+
         void setData(size_t mipmap, const void *data);
         void getData(size_t mipmap, void *data);
-        
-        TextureFormat getFormat();
+
+        GfxTextureFormat getFormat();
         UInt3 getSize();
-        Sampler getSamplerOverride();
-        void setSamplerOverride(const TextureSamplerOverride& sampler);
+        GfxSamplerOverride getSamplerOverride();
+        void setSamplerOverride(const GfxSamplerOverride& sampler);
 };
 
-class TextureCube
+class GfxTextureCube
 {
     public:
-        enum class Face
-        {
-            PositiveX,
-            NegativeX,
-            PositiveY,
-            NegativeY,
-            PositiveZ,
-            NegativeZ
-        };
-        
-        TextureCube(Context *context, TextureFormat format, UInt2 size);
-        ~TextureCube();
-        
-        void setData(Face face, size_t mipmap, const void *data);
-        void getData(Face face, size_t mipmap, void *data);
-        
-        TextureFormat getFormat();
+        GfxTextureCube(GfxContext *context, GfxTextureFormat format, UInt2 size);
+        ~GfxTextureCube();
+
+        void setData(GfxFace face, size_t mipmap, const void *data);
+        void getData(GfxFace face, size_t mipmap, void *data);
+
+        GfxTextureFormat getFormat();
         UInt2 getSize();
-        Sampler getSamplerOverride();
-        void setSamplerOverride(const TextureSamplerOverride& sampler);
+        GfxSamplerOverride getSamplerOverride();
+        void setSamplerOverride(const GfxSamplerOverride& sampler);
 };
 
-class ShaderParamBufferStruct
+class GfxShaderParamBuffer
 {
     public:
-        ShaderParamBufferStruct(Context *context);
-        ~ShaderParamBufferStruct();
-        
-        ShaderParamBufferStruct(ShaderParamBufferLayout layout);
-        void addMember(uint32_t id, ShaderParamType type, size_t count);
-        void finalizeMembers();
+        GfxShaderParamBuffer(Context *context);
+        ~GfxShaderParamBuffer();
+
+        void setInt(size_t offset, int32_t value);
+        void setInt2(size_t offset, const Int2& value);
+        void setInt3(size_t offset, const Int3& value);
+        void setInt4(size_t offset, const Int4& value);
+        void setUInt(size_t offset, size_t index, uint32_t value);
+        void setUInt2(size_t offset, const UInt2& value);
+        void setUInt3(size_t offset, const UInt3& value);
+        void setUInt4(size_t offset, const UInt4& value);
+        void setFloat(size_t offset, float value);
+        void setFloat2(size_t offset, const Float2& value);
+        void setFloat3(size_t offset, const Float3& value);
+        void setFloat4(size_t offset, const Float4& value);
+        void setMatrix3x3(size_t offset, const Matrix3x3& value);
+        void setMatrix4x4(size_t offset, const Matrix4x4& value);
 };
 
-class ShaderParamBuffer
+class GfxMesh
 {
     public:
-        ShaderParamBuffer(Context *context, ShaderParamBufferStruct struct_);
-        ~ShaderParamBuffer();
-        
-        void setInt(uint32_t id, size_t index, int32_t value);
-        void setInt2(uint32_t id, size_t index, const Int2& value);
-        void setInt3(uint32_t id, size_t index, const Int3& value);
-        void setInt4(uint32_t id, size_t index, const Int4& value);
-        void setUInt(uint32_t id, size_t index, uint32_t value);
-        void setUInt2(uint32_t id, size_t index, const UInt2& value);
-        void setUInt3(uint32_t id, size_t index, const UInt3& value);
-        void setUInt4(uint32_t id, size_t index, const UInt4& value);
-        void setFloat(uint32_t id, size_t index, float value);
-        void setFloat2(uint32_t id, size_t index, const Float2& value);
-        void setFloat3(uint32_t id, size_t index, const Float3& value);
-        void setFloat4(uint32_t id, size_t index, const Float4& value);
-        //TODO: Matrices
-};
+        GfxMesh(Context *context);
+        ~GfxMesh();
 
-class Mesh
-{
-    public:
-        Mesh(Context *context);
-        ~Mesh();
-        
         void initIndex(size_t numIndices,
-                       MeshIndexDataType indexType,
+                       GfxMeshIndexDataType indexType,
                        void *indices);
         void removeIndexData();
         bool hasIndexData() const;
-        
+
         void initVertex(size_t numVertices,
                         size_t numAttribs,
-                        const MeshAttrib *attribs);
-        
+                        const GfxMeshAttrib *attribs);
+
         size_t getNumIndices() const;
         size_t getNumVertices() const;
-        
+
         IndexType getIndexType() const;
         void *getIndices();
-        
+
         size_t getNumAttribs() const;
-        MeshAttrib getAttrib(MeshAttribType type, bool data);
-        
-        void CullMode getCullMode() const;
-        void setCullMode(CullMode mode);
-        
-        void Winding getWinding() const;
-        void setWinding(Winding winding);
-        
+        GfxMeshAttrib getAttrib(GfxMeshAttribType type, bool data);
+
+        void GfxCullMode getCullMode() const;
+        void setCullMode(GfxCullMode mode);
+
+        void GfxWinding getWinding() const;
+        void setWinding(GfxWinding winding);
+
         AABB getAABB() const;
     private:
         AABB aabb;
@@ -414,63 +379,63 @@ class Mesh
 class Shader
 {
     public:
-        Shader(Context *context);
-        ~Shader();
-        
-        void setSource(size_t maxInstances, ShaderType type, const String& source);
-        
-        inline ShaderType getType() {...}
+        GfxShader(Context *context);
+        ~GfxShader();
+
+        void setSource(size_t maxInstances, GfxShaderType type, const String& source);
+
+        inline GfxShaderType getType() {...}
         inline size_t getMaxInstances() {...}
-        
-        CompiledShader *getCompiled(const HashMap<String, String>& defines);
+
+        GfxCompiledShader *getCompiled(const HashMap<String, String>& defines);
 };
 
-class CompiledShader
+class GfxCompiledShader
 {
     public:
-        inline Shader *getShader() const {...}
+        inline GfxShader *getShader() const {...}
         inline HashMap<String, String> getDefines() const {...}
 };
 
-class ShaderCombination
+class GfxShaderCombination
 {
     public:
-        ShaderCombination(Context *context, const CompiledShader *shaders[ShaderType::Max]);
-        ~ShaderCombination();
-        
-        inline CompiledShader *getShader(ShaderType type) {...}
+        GfxShaderCombination(GfxContext *context, const GfxCompiledShader *shaders[GfxShaderTypeMax]);
+        ~GfxShaderCombination();
+
+        inline GfxCompiledShader *getShader(GfxShaderType type) {...}
 };
 
 class PipelineState
 {
     public:
-        PipelineState(Context *context);
+        PipelineState(GfxContext *context);
         ~PipelineState();
-        
+
         void setBlendingEnabled(bool enabled);
         bool isBlendingEnabled() const;
 
         void setBlendConstantColor(const uint8_t constantColor[4]);
         const uint8_t *getBlendConstantColor() const;
 
-        void setBlendFactors(BlendFactor srcFactorRGB,
-                             BlendFactor srcFactorAlpha,
-                             BlendFactor dstFactorRGB,
-                             BlendFactor dstFactorAlpha);
-        BlendFactor getBlendSrcFactorRGB() const;
-        BlendFactor getBlendSrcFactorAlpha() const;
-        BlendFactor getBlendDstFactorRGB() const;
-        BlendFactor getBlendDstFactorAlpha() const;
+        void setBlendFactors(GfxBlendFactor srcFactorRGB,
+                             GfxBlendFactor srcFactorAlpha,
+                             GfxBlendFactor dstFactorRGB,
+                             GfxBlendFactor dstFactorAlpha);
+        GfxBlendFactor getBlendSrcFactorRGB() const;
+        GfxBlendFactor getBlendSrcFactorAlpha() const;
+        GfxBlendFactor getBlendDstFactorRGB() const;
+        GfxBlendFactor getBlendDstFactorAlpha() const;
 
-        void setBlendMode(BlendMode blendRGB, BlendMode blendAlpha);
-        BlendMode getBlendModeRGB() const;
-        BlendMode getBlendModeAlpha() const;
+        void setBlendMode(GfxBlendMode blendRGB, GfxBlendMode blendAlpha);
+        GfxBlendMode getBlendModeRGB() const;
+        GfxBlendMode getBlendModeAlpha() const;
 
         void setWriteDepth(bool depth);
         bool getWriteDepth() const;
 
-        void setDepthFunction(DepthFunc depthFunc);
-        DepthFunc getDepthFunction() const;
+        void setDepthFunction(GfxDepthFunc depthFunc);
+        GfxDepthFunc getDepthFunction() const;
 };
 
 //This can not be modified when it is used in a draw call.
@@ -479,7 +444,7 @@ class ShaderParams
     public:
         ShaderParams(Context *context);
         ~ShaderParams();
-    
+
         void setInt(const String& name, int32_t value);
         void setInt2(const String& name, const Int2& value);
         void setInt3(const String& name, const Int3& value);
@@ -492,8 +457,9 @@ class ShaderParams
         void setFloat2(const String& name, const Float2& value);
         void setFloat3(const String& name, const Float3& value);
         void setFloat4(const String& name, const Float4& value);
-        //TODO: Matrices
-        
+        void setMatrix3x3(const String& name, const Matrix3x3& value);
+        void setMatrix4x4(const String& name, const Matrix4x4& value);
+
         void setIntArray(const String& name, const List<int32_t>& values);
         void setInt2Array(const String& name, const List<Int2>& values);
         void setInt3Array(const String& name, const List<Int3>& values);
@@ -506,51 +472,53 @@ class ShaderParams
         void setFloat2Array(const String& name, const List<Float2>& values);
         void setFloat3Array(const String& name, const List<Float3>& values);
         void setFloat4Array(const String& name, const List<Float4>& values);
-        
-        void setTexture2D(const String& name, const Texture2D *texture);
-        void setTexture3D(const String& name, const Texture3D *texture);
-        void setTextureCube(const String& name, const TextureCube *texture);
-        void setUBO(const String& name, const ShaderParamBuffer *buffer);
-        void setSSBO(const String& name, const ShaderParamBuffer *buffer, bool read, bool write);
-        
-        void setImage2D(const String& name, const Texture2D *texture, bool read, bool write);
-        void setImage3D(const String& name, const Texture3D *texture, bool read, bool write);
-        void setImageCube(const String& name, const TextureCube *texture, bool read, bool write);
-        
+        void setMatrix3x3Array(const String& name, const List<Matrix3x3>& values);
+        void setMatrix4x4Array(const String& name, const List<Matrix4x4>& values);
+
+        void setTexture2D(const String& name, const GfxTexture2D *texture);
+        void setTexture3D(const String& name, const GfxTexture3D *texture);
+        void setTextureCube(const String& name, const GfxTextureCube *texture);
+        void setUBO(const String& name, const GfxShaderParamBuffer *buffer);
+        void setSSBO(const String& name, const GfxShaderParamBuffer *buffer, bool read, bool write);
+
+        void setImage2D(const String& name, const GfxTexture2D *texture, bool read, bool write);
+        void setImage3D(const String& name, const GfxTexture3D *texture, bool read, bool write);
+        void setImageCube(const String& name, const GfxTextureCube *texture, bool read, bool write);
+
         void remove(const String& name);
 };
 
 class DrawCalls
 {
     public:
-        DrawCalls(Context *context);
-        ~DrawCalls();
-    
+        GfxDrawCalls(GfxContext *context);
+        ~GfxDrawCalls();
+
         void clear();
         void addSetOrderedDraws(bool ordered);
-        void addDraw(const PipelineState *state,
-                     const ShaderCombination *shaders,
-                     const Mesh *mesh,
-                     List<const ShaderParams *> params[ShaderType::Max],
-                     PerInstanceData instanceData[ShaderType::Max]);
-        void addComputeDispatch(Shader *computeShader, UInt3 dimensions);
+        void addDraw(const GfxPipelineState *state,
+                     const GfxShaderCombination *shaders,
+                     const GfxMesh *mesh,
+                     List<const GfxShaderParams *> params[GfxShaderTypeMax],
+                     GfxPerInstanceData instanceData[GfxShaderTypeMax]);
+        void addComputeDispatch(GfxShader *computeShader, UInt3 dimensions);
 };
 
 class RenderPass
 {
     public:
-        RenderPass(Context *context,
-                   Texture2D *depth,
-                   const List<Texture2D *>& color)
+        RenderPass(GfxContext *context,
+                   GfxTexture2D *depth,
+                   const List<GfxTexture2D *>& color)
         ~RenderPass();
-        
+
         void clearDrawCalls();
-        void addDrawCalls(const DrawCalls *drawCalls);
+        void addDrawCalls(const GfxDrawCalls *drawCalls);
         void executeDrawCalls(size_t viewLeft,
                               size_t viewBottom,
                               size_t viewWidth,
                               size_t viewHeight);
-        
+
         void clearDepth(float value=1.0f);
         void clearColor(size_t index, Float4 value);
 };
@@ -561,30 +529,29 @@ struct Caps
     bool indirectDrawParameters;
     bool computeShader;
     bool shaderStorageBufferObject;
-    
-    size_t maxTexturesPerDraw[ShaderType::Max];
-    size_t maxImagesPerDraw[ShaderType::Max];
-    size_t maxSSBOsPerDraw[ShaderType::Max];
-    size_t maxUBOsPerData[ShaderType::Max];
-    
+
+    size_t maxTexturesPerDraw[GfxShaderTypeMax];
+    size_t maxImagesPerDraw[GfxShaderTypeMax];
+    size_t maxSSBOsPerDraw[GfxShaderTypeMax];
+    size_t maxUBOsPerData[GfxShaderTypeMax];
+
     UInt3 maxComputeWorkGroups;
     UInt3 maxComputeWorkGroupSize;
-    
+
     size_t maxSSBOSize;
     size_t maxUBOSize;
-    UInt2 max2DTextureSize[TextureFormat::Max];
-    UInt3 max3DTextureSize(TextureFormat::Max);
-    
+    UInt2 max2DTextureSize[GfxTextureFormatMax];
+    UInt3 max3DTextureSize(GfxTextureFormatMax);
+
     float maxMaxAnisotropy;
 };
 
-class Context
+class GfxContext
 {
     public:
-        Caps *getCaps() const;
-        
-        Sampler getSampler() const;
-        void setSampler(const Sampler& sampler) const;
+        GfxCaps *getCaps() const;
+
+        GfxSampler getSampler() const;
+        void setSampler(const GfxSampler& sampler) const;
 };
-}
 ```
