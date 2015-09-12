@@ -26,7 +26,6 @@
 #include "graphics/gfxshader.h"
 #include "graphics/camera.h"
 #include "graphics/gfxmodel.h"
-#include "graphics/GL/gfxglmeshimpl.h"
 #include "graphics/GL/gfxglframebuffer.h"
 #include "graphics/GL/glfl.h"
 #include "graphics/GL/glgputimer.h"
@@ -79,8 +78,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t GhostObject_typeID, GhostObject_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *GhostObject, *GhostObject_ptr, *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *Entity, *Entity_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GfxMeshAttrib, *GfxMeshAttrib_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *UInt4, *UInt4_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -1582,6 +1581,190 @@ RET((NO)head)->typeID==EXT->GfxBufferUsage_typeID;
 else
  RET false;
 }
+};void GfxMeshIndexDataType_destroy(CTX,NO) {}
+SV GfxMeshIndexDataType_get_member(CTX,NO,SV);
+void GfxMeshIndexDataType_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GfxMeshIndexDataType_funcs={
+.destroy = GfxMeshIndexDataType_destroy,
+.getMember = GfxMeshIndexDataType_get_member,
+.setMember = GfxMeshIndexDataType_set_member
+};
+template <>
+struct create_val<GfxMeshIndexDataType>
+{
+static SV f(CTX ctx,GfxMeshIndexDataType v)
+{
+RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)v,EXT->GfxMeshIndexDataType_typeID);
+}
+};
+template <>
+struct val_to_c<GfxMeshIndexDataType>
+{
+static GfxMeshIndexDataType f(CTX ctx,const SV head)
+{
+if(head->type!=STG::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxMeshIndexDataType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxMeshIndexDataType_typeID)
+CATE(TE,"Value can not be converted to GfxMeshIndexDataType."));
+size_t v=size_t(obj->data);
+if(v==2)return GfxMeshIndexDataType::U32;
+if(v==0)return GfxMeshIndexDataType::U8;
+if(v==1)return GfxMeshIndexDataType::U16;
+}
+};
+template <>
+struct type_same<GfxMeshIndexDataType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->GfxMeshIndexDataType_typeID;
+else
+ RET false;
+}
+};void GfxMeshAttribType_destroy(CTX,NO) {}
+SV GfxMeshAttribType_get_member(CTX,NO,SV);
+void GfxMeshAttribType_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GfxMeshAttribType_funcs={
+.destroy = GfxMeshAttribType_destroy,
+.getMember = GfxMeshAttribType_get_member,
+.setMember = GfxMeshAttribType_set_member
+};
+template <>
+struct create_val<GfxMeshAttribType>
+{
+static SV f(CTX ctx,GfxMeshAttribType v)
+{
+RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)v,EXT->GfxMeshAttribType_typeID);
+}
+};
+template <>
+struct val_to_c<GfxMeshAttribType>
+{
+static GfxMeshAttribType f(CTX ctx,const SV head)
+{
+if(head->type!=STG::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxMeshAttribType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxMeshAttribType_typeID)
+CATE(TE,"Value can not be converted to GfxMeshAttribType."));
+size_t v=size_t(obj->data);
+if(v==3)return GfxMeshAttribType::Color;
+if(v==0)return GfxMeshAttribType::Position;
+if(v==2)return GfxMeshAttribType::Tangent;
+if(v==4)return GfxMeshAttribType::TexCoord;
+if(v==1)return GfxMeshAttribType::Normal;
+}
+};
+template <>
+struct type_same<GfxMeshAttribType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->GfxMeshAttribType_typeID;
+else
+ RET false;
+}
+};void GfxMeshAttribDataType_destroy(CTX,NO) {}
+SV GfxMeshAttribDataType_get_member(CTX,NO,SV);
+void GfxMeshAttribDataType_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GfxMeshAttribDataType_funcs={
+.destroy = GfxMeshAttribDataType_destroy,
+.getMember = GfxMeshAttribDataType_get_member,
+.setMember = GfxMeshAttribDataType_set_member
+};
+template <>
+struct create_val<GfxMeshAttribDataType>
+{
+static SV f(CTX ctx,GfxMeshAttribDataType v)
+{
+RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)v,EXT->GfxMeshAttribDataType_typeID);
+}
+};
+template <>
+struct val_to_c<GfxMeshAttribDataType>
+{
+static GfxMeshAttribDataType f(CTX ctx,const SV head)
+{
+if(head->type!=STG::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to GfxMeshAttribDataType."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->GfxMeshAttribDataType_typeID)
+CATE(TE,"Value can not be converted to GfxMeshAttribDataType."));
+size_t v=size_t(obj->data);
+if(v==54)return GfxMeshAttribDataType::S32_3Norm;
+if(v==21)return GfxMeshAttribDataType::S16_2;
+if(v==22)return GfxMeshAttribDataType::S16_3;
+if(v==20)return GfxMeshAttribDataType::S16_1;
+if(v==37)return GfxMeshAttribDataType::S8_2Norm;
+if(v==23)return GfxMeshAttribDataType::S16_4;
+if(v==53)return GfxMeshAttribDataType::S32_2Norm;
+if(v==42)return GfxMeshAttribDataType::U16_3Norm;
+if(v==55)return GfxMeshAttribDataType::S32_4Norm;
+if(v==38)return GfxMeshAttribDataType::S8_3Norm;
+if(v==25)return GfxMeshAttribDataType::U32_2;
+if(v==26)return GfxMeshAttribDataType::U32_3;
+if(v==24)return GfxMeshAttribDataType::U32_1;
+if(v==27)return GfxMeshAttribDataType::U32_4;
+if(v==36)return GfxMeshAttribDataType::S8_1Norm;
+if(v==9)return GfxMeshAttribDataType::U8_2;
+if(v==10)return GfxMeshAttribDataType::U8_3;
+if(v==8)return GfxMeshAttribDataType::U8_1;
+if(v==39)return GfxMeshAttribDataType::S8_4Norm;
+if(v==11)return GfxMeshAttribDataType::U8_4;
+if(v==34)return GfxMeshAttribDataType::U8_3Norm;
+if(v==2)return GfxMeshAttribDataType::F16_3;
+if(v==1)return GfxMeshAttribDataType::F16_2;
+if(v==0)return GfxMeshAttribDataType::F16_1;
+if(v==52)return GfxMeshAttribDataType::S32_1Norm;
+if(v==3)return GfxMeshAttribDataType::F16_4;
+if(v==50)return GfxMeshAttribDataType::U32_3Norm;
+if(v==41)return GfxMeshAttribDataType::U16_2Norm;
+if(v==40)return GfxMeshAttribDataType::U16_1Norm;
+if(v==33)return GfxMeshAttribDataType::U8_2Norm;
+if(v==35)return GfxMeshAttribDataType::U8_4Norm;
+if(v==51)return GfxMeshAttribDataType::U32_4Norm;
+if(v==48)return GfxMeshAttribDataType::U32_1Norm;
+if(v==45)return GfxMeshAttribDataType::S16_2Norm;
+if(v==19)return GfxMeshAttribDataType::U16_4;
+if(v==16)return GfxMeshAttribDataType::U16_1;
+if(v==17)return GfxMeshAttribDataType::U16_2;
+if(v==18)return GfxMeshAttribDataType::U16_3;
+if(v==47)return GfxMeshAttribDataType::S16_4Norm;
+if(v==32)return GfxMeshAttribDataType::U8_1Norm;
+if(v==31)return GfxMeshAttribDataType::S32_4;
+if(v==12)return GfxMeshAttribDataType::S8_1;
+if(v==13)return GfxMeshAttribDataType::S8_2;
+if(v==14)return GfxMeshAttribDataType::S8_3;
+if(v==15)return GfxMeshAttribDataType::S8_4;
+if(v==28)return GfxMeshAttribDataType::S32_1;
+if(v==29)return GfxMeshAttribDataType::S32_2;
+if(v==30)return GfxMeshAttribDataType::S32_3;
+if(v==49)return GfxMeshAttribDataType::U32_2Norm;
+if(v==46)return GfxMeshAttribDataType::S16_3Norm;
+if(v==4)return GfxMeshAttribDataType::F32_1;
+if(v==6)return GfxMeshAttribDataType::F32_3;
+if(v==5)return GfxMeshAttribDataType::F32_2;
+if(v==7)return GfxMeshAttribDataType::F32_4;
+if(v==43)return GfxMeshAttribDataType::U16_4Norm;
+if(v==44)return GfxMeshAttribDataType::S16_1Norm;
+}
+};
+template <>
+struct type_same<GfxMeshAttribDataType>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->GfxMeshAttribDataType_typeID;
+else
+ RET false;
+}
 };void GfxShadowmapPrecision_destroy(CTX,NO) {}
 SV GfxShadowmapPrecision_get_member(CTX,NO,SV);
 void GfxShadowmapPrecision_set_member(CTX,NO,SV,SV);
@@ -1881,7 +2064,37 @@ RET((NO)head)->typeID==EXT->RenderMode_typeID;
 else
  RET false;
 }
-};void Filesystem_destroy(CTX,NO);
+};void GhostObject_destroy(CTX,NO);
+SV GhostObject_get_member(CTX,NO,SV);
+void GhostObject_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GhostObject_funcs={
+.destroy = GhostObject_destroy,
+.getMember = GhostObject_get_member,
+.setMember = GhostObject_set_member
+};
+template <>
+struct type_same<GhostObject>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->GhostObject_typeID;
+else
+ RET false;
+}
+};
+
+SV GhostObject_getBulletGhostObject(CTX ctx,const List<SV>&a);
+SV GhostObject_getTransform(CTX ctx,const List<SV>&a);
+SV GhostObject_setTransform(CTX ctx,const List<SV>&a);
+SV GhostObject_getWorld(CTX ctx,const List<SV>&a);
+SV GhostObject_getCollisionMask(CTX ctx,const List<SV>&a);
+SV GhostObject_setShape(CTX ctx,const List<SV>&a);
+SV GhostObject_getCollisions(CTX ctx,const List<SV>&a);
+SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a);
+SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a);
+SV GhostObject_getShape(CTX ctx,const List<SV>&a);
+void Filesystem_destroy(CTX,NO);
 SV Filesystem_get_member(CTX,NO,SV);
 void Filesystem_set_member(CTX,NO,SV,SV);
 static const STG::NativeObjectFuncs Filesystem_funcs={
@@ -2154,49 +2367,6 @@ SV GhostObjList_clear(CTX ctx,const List<SV>&a);
 SV GhostObjList_find(CTX ctx,const List<SV>&a);
 SV GhostObjList_copy(CTX ctx,const List<SV>&a);
 SV GhostObjList_in(CTX ctx,const List<SV>&a);
-void Entity_destroy(CTX,NO);
-SV Entity_get_member(CTX,NO,SV);
-void Entity_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Entity_funcs={
-.destroy = Entity_destroy,
-.getMember = Entity_get_member,
-.setMember = Entity_set_member
-};
-template <>
-struct type_same<Entity>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_typeID;
-else
- RET false;
-}
-};
-
-SV Entity_addScript(CTX ctx,const List<SV>&a);
-SV Entity_removeScript(CTX ctx,const List<SV>&a);
-SV Entity_getScripts(CTX ctx,const List<SV>&a);
-SV Entity_findScriptInstanceByName(CTX ctx,const List<SV>&a);
-SV Entity_addRigidBody(CTX ctx,const List<SV>&a);
-SV Entity_getRigidBody(CTX ctx,const List<SV>&a);
-SV Entity_removeRigidBody(CTX ctx,const List<SV>&a);
-SV Entity_hasRigidBody(CTX ctx,const List<SV>&a);
-SV Entity_addModel(CTX ctx,const List<SV>&a);
-SV Entity_addOverlay(CTX ctx,const List<SV>&a);
-SV Entity_removeRenderComponent(CTX ctx,const List<SV>&a);
-SV Entity_getRenderComponent(CTX ctx,const List<SV>&a);
-SV Entity_hasRenderComponent(CTX ctx,const List<SV>&a);
-SV Entity_getScene(CTX ctx,const List<SV>&a);
-SV Entity_createEntity(CTX ctx,const List<SV>&a);
-SV Entity_removeEntity(CTX ctx,const List<SV>&a);
-SV Entity_getEntities(CTX ctx,const List<SV>&a);
-SV Entity_getParent(CTX ctx,const List<SV>&a);
-SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a);
-SV Entity_getFinalTransform(CTX ctx,const List<SV>&a);
-SV Entity_getAudioSources(CTX ctx,const List<SV>&a);
-SV Entity_addAudioSource(CTX ctx,const List<SV>&a);
-SV Entity_removeAudioSource(CTX ctx,const List<SV>&a);
 void GPUTimer_destroy(CTX,NO);
 SV GPUTimer_get_member(CTX,NO,SV);
 void GPUTimer_set_member(CTX,NO,SV,SV);
@@ -2399,64 +2569,49 @@ SV ResourceManager_loadAndCopy(CTX ctx,const List<SV>&a);
 SV ResourceManager_isResource(CTX ctx,const List<SV>&a);
 SV ResourceManager_autoReloadResources(CTX ctx,const List<SV>&a);
 SV ResourceManager_cleanupResources(CTX ctx,const List<SV>&a);
-void GfxIndexData_destroy(CTX,NO);
-SV GfxIndexData_get_member(CTX,NO,SV);
-void GfxIndexData_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxIndexData_funcs={
-.destroy = GfxIndexData_destroy,
-.getMember = GfxIndexData_get_member,
-.setMember = GfxIndexData_set_member
+void Entity_destroy(CTX,NO);
+SV Entity_get_member(CTX,NO,SV);
+void Entity_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Entity_funcs={
+.destroy = Entity_destroy,
+.getMember = Entity_get_member,
+.setMember = Entity_set_member
 };
 template <>
-struct create_val<GfxIndexData>
-{
-static SV f(CTX ctx,const GfxIndexData&obj)
-{
-#define ghfj GfxIndexData
-RET STG::createNativeObject(GfxIndexData_funcs,NEW(ghfj, obj),EXT->GfxIndexData_typeID);
-}
-};
-template <>
-struct val_to_c<GfxIndexData>
-{
-static GfxIndexData f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->GfxIndexData_typeID)
-RET*((GfxIndexData*)obj->data);
-else
- CATE(TE,"Value can not be converted to GfxIndexData."));
-} else
- CATE(TE,"Value can not be converted to GfxIndexData."));
-}
-};
-
-template <>
-struct val_to_c<const GfxIndexData>
-{
-static GfxIndexData f(CTX ctx,const SV head) {return val_to_c<GfxIndexData>::f(ctx, head);}
-};
-
-template <>
-struct create_val<const GfxIndexData>
-{
-static SV f(CTX ctx,const GfxIndexData&obj) {return create_val<GfxIndexData>::f(ctx,obj);}
-};
-
-template <>
-struct type_same<GfxIndexData>
+struct type_same<Entity>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxIndexData_typeID;
+RET((NO)head)->typeID==EXT->Entity_typeID;
 else
  RET false;
 }
 };
 
+SV Entity_addScript(CTX ctx,const List<SV>&a);
+SV Entity_removeScript(CTX ctx,const List<SV>&a);
+SV Entity_getScripts(CTX ctx,const List<SV>&a);
+SV Entity_findScriptInstanceByName(CTX ctx,const List<SV>&a);
+SV Entity_addRigidBody(CTX ctx,const List<SV>&a);
+SV Entity_getRigidBody(CTX ctx,const List<SV>&a);
+SV Entity_removeRigidBody(CTX ctx,const List<SV>&a);
+SV Entity_hasRigidBody(CTX ctx,const List<SV>&a);
+SV Entity_addModel(CTX ctx,const List<SV>&a);
+SV Entity_addOverlay(CTX ctx,const List<SV>&a);
+SV Entity_removeRenderComponent(CTX ctx,const List<SV>&a);
+SV Entity_getRenderComponent(CTX ctx,const List<SV>&a);
+SV Entity_hasRenderComponent(CTX ctx,const List<SV>&a);
+SV Entity_getScene(CTX ctx,const List<SV>&a);
+SV Entity_createEntity(CTX ctx,const List<SV>&a);
+SV Entity_removeEntity(CTX ctx,const List<SV>&a);
+SV Entity_getEntities(CTX ctx,const List<SV>&a);
+SV Entity_getParent(CTX ctx,const List<SV>&a);
+SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a);
+SV Entity_getFinalTransform(CTX ctx,const List<SV>&a);
+SV Entity_getAudioSources(CTX ctx,const List<SV>&a);
+SV Entity_addAudioSource(CTX ctx,const List<SV>&a);
+SV Entity_removeAudioSource(CTX ctx,const List<SV>&a);
 void GfxRenderer_destroy(CTX,NO);
 SV GfxRenderer_get_member(CTX,NO,SV);
 void GfxRenderer_set_member(CTX,NO,SV,SV);
@@ -3115,15 +3270,20 @@ else
 }
 };
 
-SV GfxMesh_init(CTX ctx,const List<SV>&a);
-SV GfxMesh_setVertexAttrib(CTX ctx,const List<SV>&a);
-SV GfxMesh_disableVertexAttrib(CTX ctx,const List<SV>&a);
-SV GfxMesh_isVertexAttribEnabled(CTX ctx,const List<SV>&a);
-SV GfxMesh_getVertexAttrib(CTX ctx,const List<SV>&a);
+SV GfxMesh_addIndices(CTX ctx,const List<SV>&a);
+SV GfxMesh_removeIndices(CTX ctx,const List<SV>&a);
+SV GfxMesh_setAttribute(CTX ctx,const List<SV>&a);
+SV GfxMesh_removeAttribute(CTX ctx,const List<SV>&a);
+SV GfxMesh_getIndexed(CTX ctx,const List<SV>&a);
+SV GfxMesh_getIndexType(CTX ctx,const List<SV>&a);
+SV GfxMesh_getIndices(CTX ctx,const List<SV>&a);
+SV GfxMesh_getAttribs(CTX ctx,const List<SV>&a);
+SV GfxMesh_getAttribCount(CTX ctx,const List<SV>&a);
+SV GfxMesh_getAttrib(CTX ctx,const List<SV>&a);
+SV GfxMesh_getGLVAO(CTX ctx,const List<SV>&a);
+SV GfxMesh_getGLIndexBuffer(CTX ctx,const List<SV>&a);
 SV GfxMesh_removeContent(CTX ctx,const List<SV>&a);
 SV GfxMesh_save(CTX ctx,const List<SV>&a);
-SV GfxMesh_getImpl(CTX ctx,const List<SV>&a);
-SV GfxMesh_getBuffer(CTX ctx,const List<SV>&a);
 SV GfxMesh_load(CTX ctx,const List<SV>&a);
 SV GfxMesh_reload(CTX ctx,const List<SV>&a);
 SV GfxMesh_copy(CTX ctx,const List<SV>&a);
@@ -3208,201 +3368,6 @@ SV GfxShader_release(CTX ctx,const List<SV>&a);
 SV GfxShader_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxShader_getFilename(CTX ctx,const List<SV>&a);
 SV GfxShader_setFilename(CTX ctx,const List<SV>&a);
-void UInt4_destroy(CTX,NO);
-SV UInt4_get_member(CTX,NO,SV);
-void UInt4_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt4_funcs={
-.destroy = UInt4_destroy,
-.getMember = UInt4_get_member,
-.setMember = UInt4_set_member
-};
-template <>
-struct create_val<T4<uint32_t>>
-{
-static SV f(CTX ctx,const T4<uint32_t>&obj)
-{
-#define ghfj T4<uint32_t>
-RET STG::createNativeObject(UInt4_funcs,NEW(ghfj, obj),EXT->UInt4_typeID);
-}
-};
-template <>
-struct val_to_c<T4<uint32_t>>
-{
-static T4<uint32_t> f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_typeID)
-RET*((T4<uint32_t>*)obj->data);
-else
- CATE(TE,"Value can not be converted to UInt4."));
-} else
- CATE(TE,"Value can not be converted to UInt4."));
-}
-};
-
-template <>
-struct val_to_c<const T4<uint32_t>>
-{
-static T4<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T4<uint32_t>>::f(ctx, head);}
-};
-
-template <>
-struct create_val<const T4<uint32_t>>
-{
-static SV f(CTX ctx,const T4<uint32_t>&obj) {return create_val<T4<uint32_t>>::f(ctx,obj);}
-};
-
-template <>
-struct type_same<T4<uint32_t>>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_typeID;
-else
- RET false;
-}
-};
-
-SV UInt4___add__(CTX ctx,const List<SV>&a);
-SV UInt4___sub__(CTX ctx,const List<SV>&a);
-SV UInt4___mul__(CTX ctx,const List<SV>&a);
-SV UInt4___div__(CTX ctx,const List<SV>&a);
-SV UInt4___eq__(CTX ctx,const List<SV>&a);
-SV UInt4___neq__(CTX ctx,const List<SV>&a);
-SV UInt4___less__(CTX ctx,const List<SV>&a);
-SV UInt4___grtr__(CTX ctx,const List<SV>&a);
-SV UInt4___leq__(CTX ctx,const List<SV>&a);
-SV UInt4___geq__(CTX ctx,const List<SV>&a);
-SV UInt4_sum(CTX ctx,const List<SV>&a);
-SV UInt4_length(CTX ctx,const List<SV>&a);
-SV UInt4_lengthSquared(CTX ctx,const List<SV>&a);
-SV UInt4_dot(CTX ctx,const List<SV>&a);
-SV UInt4_distance(CTX ctx,const List<SV>&a);
-SV UInt4_distanceSquared(CTX ctx,const List<SV>&a);
-SV UInt4_normalize(CTX ctx,const List<SV>&a);
-SV UInt4_getXY(CTX ctx,const List<SV>&a);
-SV UInt4_setXY(CTX ctx,const List<SV>&a);
-SV UInt4_getXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXW(CTX ctx,const List<SV>&a);
-SV UInt4_setXW(CTX ctx,const List<SV>&a);
-SV UInt4_getYX(CTX ctx,const List<SV>&a);
-SV UInt4_setYX(CTX ctx,const List<SV>&a);
-SV UInt4_getYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYW(CTX ctx,const List<SV>&a);
-SV UInt4_setYW(CTX ctx,const List<SV>&a);
-SV UInt4_getZX(CTX ctx,const List<SV>&a);
-SV UInt4_setZX(CTX ctx,const List<SV>&a);
-SV UInt4_getZY(CTX ctx,const List<SV>&a);
-SV UInt4_setZY(CTX ctx,const List<SV>&a);
-SV UInt4_getZW(CTX ctx,const List<SV>&a);
-SV UInt4_setZW(CTX ctx,const List<SV>&a);
-SV UInt4_getWX(CTX ctx,const List<SV>&a);
-SV UInt4_setWX(CTX ctx,const List<SV>&a);
-SV UInt4_getWY(CTX ctx,const List<SV>&a);
-SV UInt4_setWY(CTX ctx,const List<SV>&a);
-SV UInt4_getWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXYW(CTX ctx,const List<SV>&a);
-SV UInt4_setXYW(CTX ctx,const List<SV>&a);
-SV UInt4_getXZY(CTX ctx,const List<SV>&a);
-SV UInt4_setXZY(CTX ctx,const List<SV>&a);
-SV UInt4_getXZW(CTX ctx,const List<SV>&a);
-SV UInt4_setXZW(CTX ctx,const List<SV>&a);
-SV UInt4_getXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXWY(CTX ctx,const List<SV>&a);
-SV UInt4_setXWY(CTX ctx,const List<SV>&a);
-SV UInt4_getYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYXW(CTX ctx,const List<SV>&a);
-SV UInt4_setYXW(CTX ctx,const List<SV>&a);
-SV UInt4_getYZX(CTX ctx,const List<SV>&a);
-SV UInt4_setYZX(CTX ctx,const List<SV>&a);
-SV UInt4_getYZW(CTX ctx,const List<SV>&a);
-SV UInt4_setYZW(CTX ctx,const List<SV>&a);
-SV UInt4_getYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYWX(CTX ctx,const List<SV>&a);
-SV UInt4_setYWX(CTX ctx,const List<SV>&a);
-SV UInt4_getZXY(CTX ctx,const List<SV>&a);
-SV UInt4_setZXY(CTX ctx,const List<SV>&a);
-SV UInt4_getZXW(CTX ctx,const List<SV>&a);
-SV UInt4_setZXW(CTX ctx,const List<SV>&a);
-SV UInt4_getZYX(CTX ctx,const List<SV>&a);
-SV UInt4_setZYX(CTX ctx,const List<SV>&a);
-SV UInt4_getZYW(CTX ctx,const List<SV>&a);
-SV UInt4_setZYW(CTX ctx,const List<SV>&a);
-SV UInt4_getZWY(CTX ctx,const List<SV>&a);
-SV UInt4_setZWY(CTX ctx,const List<SV>&a);
-SV UInt4_getZWX(CTX ctx,const List<SV>&a);
-SV UInt4_setZWX(CTX ctx,const List<SV>&a);
-SV UInt4_getWXY(CTX ctx,const List<SV>&a);
-SV UInt4_setWXY(CTX ctx,const List<SV>&a);
-SV UInt4_getWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getWYX(CTX ctx,const List<SV>&a);
-SV UInt4_setWYX(CTX ctx,const List<SV>&a);
-SV UInt4_getWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getWZY(CTX ctx,const List<SV>&a);
-SV UInt4_setWZY(CTX ctx,const List<SV>&a);
-SV UInt4_getWZX(CTX ctx,const List<SV>&a);
-SV UInt4_setWZX(CTX ctx,const List<SV>&a);
-SV UInt4_getXYZW(CTX ctx,const List<SV>&a);
-SV UInt4_setXYZW(CTX ctx,const List<SV>&a);
-SV UInt4_getXYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXYWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getXZYW(CTX ctx,const List<SV>&a);
-SV UInt4_setXZYW(CTX ctx,const List<SV>&a);
-SV UInt4_getXZWY(CTX ctx,const List<SV>&a);
-SV UInt4_setXZWY(CTX ctx,const List<SV>&a);
-SV UInt4_getXWZY(CTX ctx,const List<SV>&a);
-SV UInt4_setXWZY(CTX ctx,const List<SV>&a);
-SV UInt4_getXWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setXWYZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYXZW(CTX ctx,const List<SV>&a);
-SV UInt4_setYXZW(CTX ctx,const List<SV>&a);
-SV UInt4_getYXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYXWZ(CTX ctx,const List<SV>&a);
-SV UInt4_getYZXW(CTX ctx,const List<SV>&a);
-SV UInt4_setYZXW(CTX ctx,const List<SV>&a);
-SV UInt4_getYZWX(CTX ctx,const List<SV>&a);
-SV UInt4_setYZWX(CTX ctx,const List<SV>&a);
-SV UInt4_getYWZX(CTX ctx,const List<SV>&a);
-SV UInt4_setYWZX(CTX ctx,const List<SV>&a);
-SV UInt4_getYWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setYWXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getZYXW(CTX ctx,const List<SV>&a);
-SV UInt4_setZYXW(CTX ctx,const List<SV>&a);
-SV UInt4_getZYWX(CTX ctx,const List<SV>&a);
-SV UInt4_setZYWX(CTX ctx,const List<SV>&a);
-SV UInt4_getZXYW(CTX ctx,const List<SV>&a);
-SV UInt4_setZXYW(CTX ctx,const List<SV>&a);
-SV UInt4_getZXWY(CTX ctx,const List<SV>&a);
-SV UInt4_setZXWY(CTX ctx,const List<SV>&a);
-SV UInt4_getZWXY(CTX ctx,const List<SV>&a);
-SV UInt4_setZWXY(CTX ctx,const List<SV>&a);
-SV UInt4_getZWYX(CTX ctx,const List<SV>&a);
-SV UInt4_setZWYX(CTX ctx,const List<SV>&a);
-SV UInt4_getWYZX(CTX ctx,const List<SV>&a);
-SV UInt4_setWYZX(CTX ctx,const List<SV>&a);
-SV UInt4_getWYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWYXZ(CTX ctx,const List<SV>&a);
-SV UInt4_getWZYX(CTX ctx,const List<SV>&a);
-SV UInt4_setWZYX(CTX ctx,const List<SV>&a);
-SV UInt4_getWZXY(CTX ctx,const List<SV>&a);
-SV UInt4_setWZXY(CTX ctx,const List<SV>&a);
-SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
-SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
-SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
-SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
 void Light_destroy(CTX,NO);
 SV Light_get_member(CTX,NO,SV);
 void Light_set_member(CTX,NO,SV,SV);
@@ -4228,7 +4193,6 @@ SV GfxApi_getDriver(CTX ctx,const List<SV>&a);
 SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a);
 SV GfxApi_createBuffer(CTX ctx,const List<SV>&a);
 SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a);
-SV GfxApi_createMeshImpl(CTX ctx,const List<SV>&a);
 SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a);
 SV GfxApi_createTimer(CTX ctx,const List<SV>&a);
 SV GfxApi_setCurrentFramebuffer(CTX ctx,const List<SV>&a);
@@ -4236,7 +4200,6 @@ SV GfxApi_clearDepth(CTX ctx,const List<SV>&a);
 SV GfxApi_clearColor(CTX ctx,const List<SV>&a);
 SV GfxApi_begin(CTX ctx,const List<SV>&a);
 SV GfxApi_end(CTX ctx,const List<SV>&a);
-SV GfxApi_endIndexed(CTX ctx,const List<SV>&a);
 SV GfxApi_uniform(CTX ctx,const List<SV>&a);
 SV GfxApi_addUBOBinding(CTX ctx,const List<SV>&a);
 SV GfxApi_addTextureBinding(CTX ctx,const List<SV>&a);
@@ -4477,89 +4440,59 @@ SV Quaternion_setAxis(CTX ctx,const List<SV>&a);
 SV Quaternion_setAxisAndAngle(CTX ctx,const List<SV>&a);
 SV Quaternion_setEulerAngles(CTX ctx,const List<SV>&a);
 SV Quaternion_getEulerAngles(CTX ctx,const List<SV>&a);
-void GhostObject_destroy(CTX,NO);
-SV GhostObject_get_member(CTX,NO,SV);
-void GhostObject_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GhostObject_funcs={
-.destroy = GhostObject_destroy,
-.getMember = GhostObject_get_member,
-.setMember = GhostObject_set_member
+void GfxMeshAttrib_destroy(CTX,NO);
+SV GfxMeshAttrib_get_member(CTX,NO,SV);
+void GfxMeshAttrib_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GfxMeshAttrib_funcs={
+.destroy = GfxMeshAttrib_destroy,
+.getMember = GfxMeshAttrib_get_member,
+.setMember = GfxMeshAttrib_set_member
 };
 template <>
-struct type_same<GhostObject>
+struct create_val<GfxMeshAttrib>
 {
-static bool f(CTX ctx,const SV head)
+static SV f(CTX ctx,const GfxMeshAttrib&obj)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_typeID;
-else
- RET false;
-}
-};
-
-SV GhostObject_getBulletGhostObject(CTX ctx,const List<SV>&a);
-SV GhostObject_getTransform(CTX ctx,const List<SV>&a);
-SV GhostObject_setTransform(CTX ctx,const List<SV>&a);
-SV GhostObject_getWorld(CTX ctx,const List<SV>&a);
-SV GhostObject_getCollisionMask(CTX ctx,const List<SV>&a);
-SV GhostObject_setShape(CTX ctx,const List<SV>&a);
-SV GhostObject_getCollisions(CTX ctx,const List<SV>&a);
-SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a);
-SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a);
-SV GhostObject_getShape(CTX ctx,const List<SV>&a);
-void GfxVertexAttribute_destroy(CTX,NO);
-SV GfxVertexAttribute_get_member(CTX,NO,SV);
-void GfxVertexAttribute_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxVertexAttribute_funcs={
-.destroy = GfxVertexAttribute_destroy,
-.getMember = GfxVertexAttribute_get_member,
-.setMember = GfxVertexAttribute_set_member
-};
-template <>
-struct create_val<GfxVertexAttribute>
-{
-static SV f(CTX ctx,const GfxVertexAttribute&obj)
-{
-#define ghfj GfxVertexAttribute
-RET STG::createNativeObject(GfxVertexAttribute_funcs,NEW(ghfj, obj),EXT->GfxVertexAttribute_typeID);
+#define ghfj GfxMeshAttrib
+RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(ghfj, obj),EXT->GfxMeshAttrib_typeID);
 }
 };
 template <>
-struct val_to_c<GfxVertexAttribute>
+struct val_to_c<GfxMeshAttrib>
 {
-static GfxVertexAttribute f(CTX ctx,const SV head)
+static GfxMeshAttrib f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxVertexAttribute_typeID)
-RET*((GfxVertexAttribute*)obj->data);
+if(obj->typeID==EXT->GfxMeshAttrib_typeID)
+RET*((GfxMeshAttrib*)obj->data);
 else
- CATE(TE,"Value can not be converted to GfxVertexAttribute."));
+ CATE(TE,"Value can not be converted to GfxMeshAttrib."));
 } else
- CATE(TE,"Value can not be converted to GfxVertexAttribute."));
+ CATE(TE,"Value can not be converted to GfxMeshAttrib."));
 }
 };
 
 template <>
-struct val_to_c<const GfxVertexAttribute>
+struct val_to_c<const GfxMeshAttrib>
 {
-static GfxVertexAttribute f(CTX ctx,const SV head) {return val_to_c<GfxVertexAttribute>::f(ctx, head);}
+static GfxMeshAttrib f(CTX ctx,const SV head) {return val_to_c<GfxMeshAttrib>::f(ctx, head);}
 };
 
 template <>
-struct create_val<const GfxVertexAttribute>
+struct create_val<const GfxMeshAttrib>
 {
-static SV f(CTX ctx,const GfxVertexAttribute&obj) {return create_val<GfxVertexAttribute>::f(ctx,obj);}
+static SV f(CTX ctx,const GfxMeshAttrib&obj) {return create_val<GfxMeshAttrib>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<GfxVertexAttribute>
+struct type_same<GfxMeshAttrib>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxVertexAttribute_typeID;
+RET((NO)head)->typeID==EXT->GfxMeshAttrib_typeID;
 else
  RET false;
 }
@@ -5787,6 +5720,201 @@ SV RigidBodyList_clear(CTX ctx,const List<SV>&a);
 SV RigidBodyList_find(CTX ctx,const List<SV>&a);
 SV RigidBodyList_copy(CTX ctx,const List<SV>&a);
 SV RigidBodyList_in(CTX ctx,const List<SV>&a);
+void UInt4_destroy(CTX,NO);
+SV UInt4_get_member(CTX,NO,SV);
+void UInt4_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs UInt4_funcs={
+.destroy = UInt4_destroy,
+.getMember = UInt4_get_member,
+.setMember = UInt4_set_member
+};
+template <>
+struct create_val<T4<uint32_t>>
+{
+static SV f(CTX ctx,const T4<uint32_t>&obj)
+{
+#define ghfj T4<uint32_t>
+RET STG::createNativeObject(UInt4_funcs,NEW(ghfj, obj),EXT->UInt4_typeID);
+}
+};
+template <>
+struct val_to_c<T4<uint32_t>>
+{
+static T4<uint32_t> f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt4_typeID)
+RET*((T4<uint32_t>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to UInt4."));
+} else
+ CATE(TE,"Value can not be converted to UInt4."));
+}
+};
+
+template <>
+struct val_to_c<const T4<uint32_t>>
+{
+static T4<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T4<uint32_t>>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const T4<uint32_t>>
+{
+static SV f(CTX ctx,const T4<uint32_t>&obj) {return create_val<T4<uint32_t>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<T4<uint32_t>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->UInt4_typeID;
+else
+ RET false;
+}
+};
+
+SV UInt4___add__(CTX ctx,const List<SV>&a);
+SV UInt4___sub__(CTX ctx,const List<SV>&a);
+SV UInt4___mul__(CTX ctx,const List<SV>&a);
+SV UInt4___div__(CTX ctx,const List<SV>&a);
+SV UInt4___eq__(CTX ctx,const List<SV>&a);
+SV UInt4___neq__(CTX ctx,const List<SV>&a);
+SV UInt4___less__(CTX ctx,const List<SV>&a);
+SV UInt4___grtr__(CTX ctx,const List<SV>&a);
+SV UInt4___leq__(CTX ctx,const List<SV>&a);
+SV UInt4___geq__(CTX ctx,const List<SV>&a);
+SV UInt4_sum(CTX ctx,const List<SV>&a);
+SV UInt4_length(CTX ctx,const List<SV>&a);
+SV UInt4_lengthSquared(CTX ctx,const List<SV>&a);
+SV UInt4_dot(CTX ctx,const List<SV>&a);
+SV UInt4_distance(CTX ctx,const List<SV>&a);
+SV UInt4_distanceSquared(CTX ctx,const List<SV>&a);
+SV UInt4_normalize(CTX ctx,const List<SV>&a);
+SV UInt4_getXY(CTX ctx,const List<SV>&a);
+SV UInt4_setXY(CTX ctx,const List<SV>&a);
+SV UInt4_getXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXW(CTX ctx,const List<SV>&a);
+SV UInt4_setXW(CTX ctx,const List<SV>&a);
+SV UInt4_getYX(CTX ctx,const List<SV>&a);
+SV UInt4_setYX(CTX ctx,const List<SV>&a);
+SV UInt4_getYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYW(CTX ctx,const List<SV>&a);
+SV UInt4_setYW(CTX ctx,const List<SV>&a);
+SV UInt4_getZX(CTX ctx,const List<SV>&a);
+SV UInt4_setZX(CTX ctx,const List<SV>&a);
+SV UInt4_getZY(CTX ctx,const List<SV>&a);
+SV UInt4_setZY(CTX ctx,const List<SV>&a);
+SV UInt4_getZW(CTX ctx,const List<SV>&a);
+SV UInt4_setZW(CTX ctx,const List<SV>&a);
+SV UInt4_getWX(CTX ctx,const List<SV>&a);
+SV UInt4_setWX(CTX ctx,const List<SV>&a);
+SV UInt4_getWY(CTX ctx,const List<SV>&a);
+SV UInt4_setWY(CTX ctx,const List<SV>&a);
+SV UInt4_getWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXYW(CTX ctx,const List<SV>&a);
+SV UInt4_setXYW(CTX ctx,const List<SV>&a);
+SV UInt4_getXZY(CTX ctx,const List<SV>&a);
+SV UInt4_setXZY(CTX ctx,const List<SV>&a);
+SV UInt4_getXZW(CTX ctx,const List<SV>&a);
+SV UInt4_setXZW(CTX ctx,const List<SV>&a);
+SV UInt4_getXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXWY(CTX ctx,const List<SV>&a);
+SV UInt4_setXWY(CTX ctx,const List<SV>&a);
+SV UInt4_getYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYXW(CTX ctx,const List<SV>&a);
+SV UInt4_setYXW(CTX ctx,const List<SV>&a);
+SV UInt4_getYZX(CTX ctx,const List<SV>&a);
+SV UInt4_setYZX(CTX ctx,const List<SV>&a);
+SV UInt4_getYZW(CTX ctx,const List<SV>&a);
+SV UInt4_setYZW(CTX ctx,const List<SV>&a);
+SV UInt4_getYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYWX(CTX ctx,const List<SV>&a);
+SV UInt4_setYWX(CTX ctx,const List<SV>&a);
+SV UInt4_getZXY(CTX ctx,const List<SV>&a);
+SV UInt4_setZXY(CTX ctx,const List<SV>&a);
+SV UInt4_getZXW(CTX ctx,const List<SV>&a);
+SV UInt4_setZXW(CTX ctx,const List<SV>&a);
+SV UInt4_getZYX(CTX ctx,const List<SV>&a);
+SV UInt4_setZYX(CTX ctx,const List<SV>&a);
+SV UInt4_getZYW(CTX ctx,const List<SV>&a);
+SV UInt4_setZYW(CTX ctx,const List<SV>&a);
+SV UInt4_getZWY(CTX ctx,const List<SV>&a);
+SV UInt4_setZWY(CTX ctx,const List<SV>&a);
+SV UInt4_getZWX(CTX ctx,const List<SV>&a);
+SV UInt4_setZWX(CTX ctx,const List<SV>&a);
+SV UInt4_getWXY(CTX ctx,const List<SV>&a);
+SV UInt4_setWXY(CTX ctx,const List<SV>&a);
+SV UInt4_getWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getWYX(CTX ctx,const List<SV>&a);
+SV UInt4_setWYX(CTX ctx,const List<SV>&a);
+SV UInt4_getWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getWZY(CTX ctx,const List<SV>&a);
+SV UInt4_setWZY(CTX ctx,const List<SV>&a);
+SV UInt4_getWZX(CTX ctx,const List<SV>&a);
+SV UInt4_setWZX(CTX ctx,const List<SV>&a);
+SV UInt4_getXYZW(CTX ctx,const List<SV>&a);
+SV UInt4_setXYZW(CTX ctx,const List<SV>&a);
+SV UInt4_getXYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXYWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getXZYW(CTX ctx,const List<SV>&a);
+SV UInt4_setXZYW(CTX ctx,const List<SV>&a);
+SV UInt4_getXZWY(CTX ctx,const List<SV>&a);
+SV UInt4_setXZWY(CTX ctx,const List<SV>&a);
+SV UInt4_getXWZY(CTX ctx,const List<SV>&a);
+SV UInt4_setXWZY(CTX ctx,const List<SV>&a);
+SV UInt4_getXWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setXWYZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYXZW(CTX ctx,const List<SV>&a);
+SV UInt4_setYXZW(CTX ctx,const List<SV>&a);
+SV UInt4_getYXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYXWZ(CTX ctx,const List<SV>&a);
+SV UInt4_getYZXW(CTX ctx,const List<SV>&a);
+SV UInt4_setYZXW(CTX ctx,const List<SV>&a);
+SV UInt4_getYZWX(CTX ctx,const List<SV>&a);
+SV UInt4_setYZWX(CTX ctx,const List<SV>&a);
+SV UInt4_getYWZX(CTX ctx,const List<SV>&a);
+SV UInt4_setYWZX(CTX ctx,const List<SV>&a);
+SV UInt4_getYWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setYWXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getZYXW(CTX ctx,const List<SV>&a);
+SV UInt4_setZYXW(CTX ctx,const List<SV>&a);
+SV UInt4_getZYWX(CTX ctx,const List<SV>&a);
+SV UInt4_setZYWX(CTX ctx,const List<SV>&a);
+SV UInt4_getZXYW(CTX ctx,const List<SV>&a);
+SV UInt4_setZXYW(CTX ctx,const List<SV>&a);
+SV UInt4_getZXWY(CTX ctx,const List<SV>&a);
+SV UInt4_setZXWY(CTX ctx,const List<SV>&a);
+SV UInt4_getZWXY(CTX ctx,const List<SV>&a);
+SV UInt4_setZWXY(CTX ctx,const List<SV>&a);
+SV UInt4_getZWYX(CTX ctx,const List<SV>&a);
+SV UInt4_setZWYX(CTX ctx,const List<SV>&a);
+SV UInt4_getWYZX(CTX ctx,const List<SV>&a);
+SV UInt4_setWYZX(CTX ctx,const List<SV>&a);
+SV UInt4_getWYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWYXZ(CTX ctx,const List<SV>&a);
+SV UInt4_getWZYX(CTX ctx,const List<SV>&a);
+SV UInt4_setWZYX(CTX ctx,const List<SV>&a);
+SV UInt4_getWZXY(CTX ctx,const List<SV>&a);
+SV UInt4_setWZXY(CTX ctx,const List<SV>&a);
+SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
+SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
+SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
 void RayCastResult_destroy(CTX,NO);
 SV RayCastResult_get_member(CTX,NO,SV);
 void RayCastResult_set_member(CTX,NO,SV,SV);
@@ -6556,6 +6684,81 @@ else
 
 SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a);
 SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a);
+SV GhostObject_ptr_copy(CTX,NO);
+void GhostObject_ptr_destroy(CTX,NO);
+SV GhostObject_ptr_get_member(CTX,NO,SV);
+void GhostObject_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GhostObject_ptr_funcs={
+.destroy = GhostObject_ptr_destroy,
+.getMember = GhostObject_ptr_get_member,
+.setMember = GhostObject_ptr_set_member
+};
+template <>
+struct create_val<GhostObject *>
+{
+static SV f(CTX ctx,GhostObject*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(GhostObject_ptr_funcs,obj,EXT->GhostObject_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<GhostObject *>
+{
+static GhostObject *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GhostObject_ptr_typeID)
+RET(GhostObject*)obj->data;
+else
+ CATE(TE,"Value is not a GhostObjectRef."));
+} else
+ CATE(TE,"Value is not a GhostObjectRef."));
+}
+};
+template <>
+struct type_same<GhostObject *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->GhostObject_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const GhostObject *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->GhostObject_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const GhostObject *>
+{
+static const GhostObject *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GhostObject_ptr_typeID)
+RET(GhostObject*)obj->data;
+else
+ CATE(TE,"Value is not a GhostObjectRef."));
+} else
+ CATE(TE,"Value is not a GhostObjectRef."));
+}
+};
+
 SV Filesystem_ptr_copy(CTX,NO);
 void Filesystem_ptr_destroy(CTX,NO);
 SV Filesystem_ptr_get_member(CTX,NO,SV);
@@ -6853,81 +7056,6 @@ else
  CATE(TE,"Value is not a GhostObjListRef."));
 } else
  CATE(TE,"Value is not a GhostObjListRef."));
-}
-};
-
-SV Entity_ptr_copy(CTX,NO);
-void Entity_ptr_destroy(CTX,NO);
-SV Entity_ptr_get_member(CTX,NO,SV);
-void Entity_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Entity_ptr_funcs={
-.destroy = Entity_ptr_destroy,
-.getMember = Entity_ptr_get_member,
-.setMember = Entity_ptr_set_member
-};
-template <>
-struct create_val<Entity *>
-{
-static SV f(CTX ctx,Entity*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Entity_ptr_funcs,obj,EXT->Entity_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<Entity *>
-{
-static Entity *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Entity_ptr_typeID)
-RET(Entity*)obj->data;
-else
- CATE(TE,"Value is not a EntityRef."));
-} else
- CATE(TE,"Value is not a EntityRef."));
-}
-};
-template <>
-struct type_same<Entity *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const Entity *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const Entity *>
-{
-static const Entity *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Entity_ptr_typeID)
-RET(Entity*)obj->data;
-else
- CATE(TE,"Value is not a EntityRef."));
-} else
- CATE(TE,"Value is not a EntityRef."));
 }
 };
 
@@ -7231,78 +7359,78 @@ else
 }
 };
 
-SV GfxIndexData_ptr_copy(CTX,NO);
-void GfxIndexData_ptr_destroy(CTX,NO);
-SV GfxIndexData_ptr_get_member(CTX,NO,SV);
-void GfxIndexData_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxIndexData_ptr_funcs={
-.destroy = GfxIndexData_ptr_destroy,
-.getMember = GfxIndexData_ptr_get_member,
-.setMember = GfxIndexData_ptr_set_member
+SV Entity_ptr_copy(CTX,NO);
+void Entity_ptr_destroy(CTX,NO);
+SV Entity_ptr_get_member(CTX,NO,SV);
+void Entity_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Entity_ptr_funcs={
+.destroy = Entity_ptr_destroy,
+.getMember = Entity_ptr_get_member,
+.setMember = Entity_ptr_set_member
 };
 template <>
-struct create_val<GfxIndexData *>
+struct create_val<Entity *>
 {
-static SV f(CTX ctx,GfxIndexData*obj)
+static SV f(CTX ctx,Entity*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxIndexData_ptr_funcs,obj,EXT->GfxIndexData_ptr_typeID);
+RET STG::createNativeObject(Entity_ptr_funcs,obj,EXT->Entity_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<GfxIndexData *>
+struct val_to_c<Entity *>
 {
-static GfxIndexData *f(CTX ctx,const SV head)
+static Entity *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxIndexData_ptr_typeID)
-RET(GfxIndexData*)obj->data;
+if(obj->typeID==EXT->Entity_ptr_typeID)
+RET(Entity*)obj->data;
 else
- CATE(TE,"Value is not a GfxIndexDataRef."));
+ CATE(TE,"Value is not a EntityRef."));
 } else
- CATE(TE,"Value is not a GfxIndexDataRef."));
+ CATE(TE,"Value is not a EntityRef."));
 }
 };
 template <>
-struct type_same<GfxIndexData *>
+struct type_same<Entity *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxIndexData_ptr_typeID;
+RET((NO)head)->typeID==EXT->Entity_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct type_same<const GfxIndexData *>
+struct type_same<const Entity *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxIndexData_ptr_typeID;
+RET((NO)head)->typeID==EXT->Entity_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct val_to_c<const GfxIndexData *>
+struct val_to_c<const Entity *>
 {
-static const GfxIndexData *f(CTX ctx,const SV head)
+static const Entity *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxIndexData_ptr_typeID)
-RET(GfxIndexData*)obj->data;
+if(obj->typeID==EXT->Entity_ptr_typeID)
+RET(Entity*)obj->data;
 else
- CATE(TE,"Value is not a GfxIndexDataRef."));
+ CATE(TE,"Value is not a EntityRef."));
 } else
- CATE(TE,"Value is not a GfxIndexDataRef."));
+ CATE(TE,"Value is not a EntityRef."));
 }
 };
 
@@ -8356,81 +8484,6 @@ else
 }
 };
 
-SV UInt4_ptr_copy(CTX,NO);
-void UInt4_ptr_destroy(CTX,NO);
-SV UInt4_ptr_get_member(CTX,NO,SV);
-void UInt4_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt4_ptr_funcs={
-.destroy = UInt4_ptr_destroy,
-.getMember = UInt4_ptr_get_member,
-.setMember = UInt4_ptr_set_member
-};
-template <>
-struct create_val<T4<uint32_t> *>
-{
-static SV f(CTX ctx,T4<uint32_t>*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(UInt4_ptr_funcs,obj,EXT->UInt4_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<T4<uint32_t> *>
-{
-static T4<uint32_t> *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_ptr_typeID)
-RET(T4<uint32_t>*)obj->data;
-else
- CATE(TE,"Value is not a UInt4Ref."));
-} else
- CATE(TE,"Value is not a UInt4Ref."));
-}
-};
-template <>
-struct type_same<T4<uint32_t> *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const T4<uint32_t> *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const T4<uint32_t> *>
-{
-static const T4<uint32_t> *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_ptr_typeID)
-RET(T4<uint32_t>*)obj->data;
-else
- CATE(TE,"Value is not a UInt4Ref."));
-} else
- CATE(TE,"Value is not a UInt4Ref."));
-}
-};
-
 SV Light_ptr_copy(CTX,NO);
 void Light_ptr_destroy(CTX,NO);
 SV Light_ptr_get_member(CTX,NO,SV);
@@ -9481,153 +9534,78 @@ else
 }
 };
 
-SV GhostObject_ptr_copy(CTX,NO);
-void GhostObject_ptr_destroy(CTX,NO);
-SV GhostObject_ptr_get_member(CTX,NO,SV);
-void GhostObject_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GhostObject_ptr_funcs={
-.destroy = GhostObject_ptr_destroy,
-.getMember = GhostObject_ptr_get_member,
-.setMember = GhostObject_ptr_set_member
+SV GfxMeshAttrib_ptr_copy(CTX,NO);
+void GfxMeshAttrib_ptr_destroy(CTX,NO);
+SV GfxMeshAttrib_ptr_get_member(CTX,NO,SV);
+void GfxMeshAttrib_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GfxMeshAttrib_ptr_funcs={
+.destroy = GfxMeshAttrib_ptr_destroy,
+.getMember = GfxMeshAttrib_ptr_get_member,
+.setMember = GfxMeshAttrib_ptr_set_member
 };
 template <>
-struct create_val<GhostObject *>
+struct create_val<GfxMeshAttrib *>
 {
-static SV f(CTX ctx,GhostObject*obj)
+static SV f(CTX ctx,GfxMeshAttrib*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GhostObject_ptr_funcs,obj,EXT->GhostObject_ptr_typeID);
+RET STG::createNativeObject(GfxMeshAttrib_ptr_funcs,obj,EXT->GfxMeshAttrib_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<GhostObject *>
+struct val_to_c<GfxMeshAttrib *>
 {
-static GhostObject *f(CTX ctx,const SV head)
+static GfxMeshAttrib *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GhostObject_ptr_typeID)
-RET(GhostObject*)obj->data;
+if(obj->typeID==EXT->GfxMeshAttrib_ptr_typeID)
+RET(GfxMeshAttrib*)obj->data;
 else
- CATE(TE,"Value is not a GhostObjectRef."));
+ CATE(TE,"Value is not a GfxMeshAttribRef."));
 } else
- CATE(TE,"Value is not a GhostObjectRef."));
+ CATE(TE,"Value is not a GfxMeshAttribRef."));
 }
 };
 template <>
-struct type_same<GhostObject *>
+struct type_same<GfxMeshAttrib *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMeshAttrib_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct type_same<const GhostObject *>
+struct type_same<const GfxMeshAttrib *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMeshAttrib_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct val_to_c<const GhostObject *>
+struct val_to_c<const GfxMeshAttrib *>
 {
-static const GhostObject *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->GhostObject_ptr_typeID)
-RET(GhostObject*)obj->data;
-else
- CATE(TE,"Value is not a GhostObjectRef."));
-} else
- CATE(TE,"Value is not a GhostObjectRef."));
-}
-};
-
-SV GfxVertexAttribute_ptr_copy(CTX,NO);
-void GfxVertexAttribute_ptr_destroy(CTX,NO);
-SV GfxVertexAttribute_ptr_get_member(CTX,NO,SV);
-void GfxVertexAttribute_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxVertexAttribute_ptr_funcs={
-.destroy = GfxVertexAttribute_ptr_destroy,
-.getMember = GfxVertexAttribute_ptr_get_member,
-.setMember = GfxVertexAttribute_ptr_set_member
-};
-template <>
-struct create_val<GfxVertexAttribute *>
-{
-static SV f(CTX ctx,GfxVertexAttribute*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxVertexAttribute_ptr_funcs,obj,EXT->GfxVertexAttribute_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<GfxVertexAttribute *>
-{
-static GfxVertexAttribute *f(CTX ctx,const SV head)
+static const GfxMeshAttrib *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxVertexAttribute_ptr_typeID)
-RET(GfxVertexAttribute*)obj->data;
+if(obj->typeID==EXT->GfxMeshAttrib_ptr_typeID)
+RET(GfxMeshAttrib*)obj->data;
 else
- CATE(TE,"Value is not a GfxVertexAttributeRef."));
+ CATE(TE,"Value is not a GfxMeshAttribRef."));
 } else
- CATE(TE,"Value is not a GfxVertexAttributeRef."));
-}
-};
-template <>
-struct type_same<GfxVertexAttribute *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxVertexAttribute_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const GfxVertexAttribute *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxVertexAttribute_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const GfxVertexAttribute *>
-{
-static const GfxVertexAttribute *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->GfxVertexAttribute_ptr_typeID)
-RET(GfxVertexAttribute*)obj->data;
-else
- CATE(TE,"Value is not a GfxVertexAttributeRef."));
-} else
- CATE(TE,"Value is not a GfxVertexAttributeRef."));
+ CATE(TE,"Value is not a GfxMeshAttribRef."));
 }
 };
 
@@ -10903,6 +10881,81 @@ else
  CATE(TE,"Value is not a RigidBodyListRef."));
 } else
  CATE(TE,"Value is not a RigidBodyListRef."));
+}
+};
+
+SV UInt4_ptr_copy(CTX,NO);
+void UInt4_ptr_destroy(CTX,NO);
+SV UInt4_ptr_get_member(CTX,NO,SV);
+void UInt4_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs UInt4_ptr_funcs={
+.destroy = UInt4_ptr_destroy,
+.getMember = UInt4_ptr_get_member,
+.setMember = UInt4_ptr_set_member
+};
+template <>
+struct create_val<T4<uint32_t> *>
+{
+static SV f(CTX ctx,T4<uint32_t>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(UInt4_ptr_funcs,obj,EXT->UInt4_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<T4<uint32_t> *>
+{
+static T4<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt4_ptr_typeID)
+RET(T4<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt4Ref."));
+} else
+ CATE(TE,"Value is not a UInt4Ref."));
+}
+};
+template <>
+struct type_same<T4<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const T4<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const T4<uint32_t> *>
+{
+static const T4<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt4_ptr_typeID)
+RET(T4<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt4Ref."));
+} else
+ CATE(TE,"Value is not a UInt4Ref."));
 }
 };
 
@@ -13506,6 +13559,272 @@ else
 }
 }
 void GfxBufferUsage_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxMeshIndexDataType___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxMeshIndexDataType::__eq__")));
+size_t f;
+if(!TS(a[0],GfxMeshIndexDataType))
+CATE(TE,FAE("GfxMeshIndexDataType::GfxMeshIndexDataType","GfxMeshIndexDataType")));
+else
+ f=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxMeshIndexDataType))
+CATE(VE,UFOF("GfxMeshIndexDataType::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return STG::createBoolean(f == other);
+}SV GfxMeshIndexDataType_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GfxMeshIndexDataType");
+EI(keyStr=="__eq__")
+RET CNF(GfxMeshIndexDataType___eq__);
+EI(keyStr=="U32")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)2,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr=="U8")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr=="U16")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GfxMeshIndexDataType");
+EI(keyStr=="__eq__")
+RET CNF(GfxMeshIndexDataType___eq__);
+EI(keyStr=="U32")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)2,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr=="U8")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr=="U16")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxMeshIndexDataType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxMeshAttribType___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxMeshAttribType::__eq__")));
+size_t f;
+if(!TS(a[0],GfxMeshAttribType))
+CATE(TE,FAE("GfxMeshAttribType::GfxMeshAttribType","GfxMeshAttribType")));
+else
+ f=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxMeshAttribType))
+CATE(VE,UFOF("GfxMeshAttribType::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return STG::createBoolean(f == other);
+}SV GfxMeshAttribType_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GfxMeshAttribType");
+EI(keyStr=="__eq__")
+RET CNF(GfxMeshAttribType___eq__);
+EI(keyStr=="Color")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)3,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="Position")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)0,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="Tangent")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)2,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="TexCoord")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)4,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="Normal")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)1,EXT->GfxMeshAttribType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GfxMeshAttribType");
+EI(keyStr=="__eq__")
+RET CNF(GfxMeshAttribType___eq__);
+EI(keyStr=="Color")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)3,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="Position")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)0,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="Tangent")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)2,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="TexCoord")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)4,EXT->GfxMeshAttribType_typeID);
+EI(keyStr=="Normal")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)1,EXT->GfxMeshAttribType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxMeshAttribType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV GfxMeshAttribDataType___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("GfxMeshAttribDataType::__eq__")));
+size_t f;
+if(!TS(a[0],GfxMeshAttribDataType))
+CATE(TE,FAE("GfxMeshAttribDataType::GfxMeshAttribDataType","GfxMeshAttribDataType")));
+else
+ f=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],GfxMeshAttribDataType))
+CATE(VE,UFOF("GfxMeshAttribDataType::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return STG::createBoolean(f == other);
+}SV GfxMeshAttribDataType_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GfxMeshAttribDataType");
+EI(keyStr=="__eq__")
+RET CNF(GfxMeshAttribDataType___eq__);
+EI(keyStr=="S32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)54,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)21,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)22,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)20,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)37,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)23,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)53,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)42,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)55,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)38,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)25,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)26,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)24,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)27,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)36,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)9,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)10,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)8,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)39,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)11,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)34,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)2,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)1,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)0,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)52,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)3,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)50,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)41,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)40,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)33,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)35,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)51,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)48,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)45,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)19,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)16,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)17,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)18,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)47,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)32,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)31,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)12,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)13,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)14,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)15,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)28,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)29,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)30,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)49,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)46,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)4,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)6,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)5,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)7,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)43,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GfxMeshAttribDataType");
+EI(keyStr=="__eq__")
+RET CNF(GfxMeshAttribDataType___eq__);
+EI(keyStr=="S32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)54,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)21,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)22,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)20,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)37,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)23,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)53,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)42,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)55,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)38,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)25,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)26,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)24,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)27,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)36,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)9,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)10,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)8,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)39,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)11,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)34,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)2,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)1,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)0,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)52,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)3,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)50,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)41,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)40,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)33,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)35,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)51,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)48,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)45,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)19,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)16,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)17,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)18,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)47,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)32,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)31,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)12,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)13,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)14,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)15,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)28,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)29,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)30,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)49,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)46,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)4,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)6,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)5,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="F32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)7,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="U16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)43,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr=="S16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void GfxMeshAttribDataType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV GfxShadowmapPrecision___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13866,6 +14185,243 @@ else
 }
 }
 void RenderMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GhostObject_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,GhostObject))
+CATE(TE,"GhostObject::__del__ expects GhostObject as first argument."));
+
+}SV GhostObject_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GhostObject's constructor" EAOE));
+if(!TS(a[0],GhostObject))
+CATE(TE,"GhostObject's constructor expects GhostObject as first argument."));
+CATE(TE,UFOF("GhostObject's constructor.")));
+}
+
+SV GhostObject_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GhostObject");
+EI(keyStr=="__new__")
+RET CNF(GhostObject_new);
+EI(keyStr=="__call__")
+RET CNF(GhostObject_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(GhostObject_new);
+ EI(keyStr == "getBulletGhostObject")
+RET CNF(GhostObject_getBulletGhostObject);
+ EI(keyStr == "getTransform")
+RET CNF(GhostObject_getTransform);
+ EI(keyStr == "setTransform")
+RET CNF(GhostObject_setTransform);
+ EI(keyStr == "getWorld")
+RET CNF(GhostObject_getWorld);
+ EI(keyStr == "getCollisionMask")
+RET CNF(GhostObject_getCollisionMask);
+ EI(keyStr == "setShape")
+RET CNF(GhostObject_setShape);
+ EI(keyStr == "getCollisions")
+RET CNF(GhostObject_getCollisions);
+ EI(keyStr == "getRigidBodyCollisions")
+RET CNF(GhostObject_getRigidBodyCollisions);
+ EI(keyStr == "getGhostCollisions")
+RET CNF(GhostObject_getGhostCollisions);
+ EI(keyStr == "getShape")
+RET CNF(GhostObject_getShape);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void GhostObject_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV GhostObject_getTransform(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getTransform" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getTransform());
+;
+}
+CATE(TE,UFOF("GhostObject::getTransform.")));
+RET CN;
+}
+
+SV GhostObject_setTransform(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::setTransform" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Transform &))
+{
+( f->setTransform(val_to_c<std::remove_reference<const Transform &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GhostObject::setTransform.")));
+RET CN;
+}
+
+SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getGhostCollisions" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getGhostCollisions());
+;
+}
+CATE(TE,UFOF("GhostObject::getGhostCollisions.")));
+RET CN;
+}
+
+SV GhostObject_getCollisions(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getCollisions" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GhostObject::getCollisions.")));
+RET CN;
+}
+
+SV GhostObject_getBulletGhostObject(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getBulletGhostObject" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GhostObject::getBulletGhostObject.")));
+RET CN;
+}
+
+SV GhostObject_getWorld(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getWorld" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWorld());
+;
+}
+CATE(TE,UFOF("GhostObject::getWorld.")));
+RET CN;
+}
+
+SV GhostObject_getShape(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getShape" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShape());
+;
+}
+CATE(TE,UFOF("GhostObject::getShape.")));
+RET CN;
+}
+
+SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getRigidBodyCollisions" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRigidBodyCollisions());
+;
+}
+CATE(TE,UFOF("GhostObject::getRigidBodyCollisions.")));
+RET CN;
+}
+
+SV GhostObject_getCollisionMask(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::getCollisionMask" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getCollisionMask());
+;
+}
+CATE(TE,UFOF("GhostObject::getCollisionMask.")));
+RET CN;
+}
+
+SV GhostObject_setShape(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObject::setShape" EAOE));
+GhostObject*f;
+f=(GhostObject*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],PhysicsShape *))
+{
+( f->setShape(val_to_c<std::remove_reference<PhysicsShape *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GhostObject::setShape.")));
+RET CN;
+}
+
 void Filesystem_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,Filesystem))
@@ -14967,500 +15523,6 @@ auto v=val_to_c<std::remove_reference<const List<GhostObject*> &>::type>::f(ctx,
 RET CV(*f != v);
 }
 CATE(TE,UFOF("GhostObjList::__neq__.")));
-RET CN;
-}
-
-void Entity_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Entity))
-CATE(TE,"Entity::__del__ expects Entity as first argument."));
-
-}SV Entity_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Entity's constructor" EAOE));
-if(!TS(a[0],Entity))
-CATE(TE,"Entity's constructor expects Entity as first argument."));
-CATE(TE,UFOF("Entity's constructor.")));
-}
-
-SV Entity_get_member(CTX ctx,NO f,SV key)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Entity");
-EI(keyStr=="__new__")
-RET CNF(Entity_new);
-EI(keyStr=="__call__")
-RET CNF(Entity_new);
-else
- CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="__classTypeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
-RET CNF(Entity_new);
- EI(keyStr == "addScript")
-RET CNF(Entity_addScript);
- EI(keyStr == "removeScript")
-RET CNF(Entity_removeScript);
- EI(keyStr == "getScripts")
-RET CNF(Entity_getScripts);
- EI(keyStr == "findScriptInstanceByName")
-RET CNF(Entity_findScriptInstanceByName);
- EI(keyStr == "addRigidBody")
-RET CNF(Entity_addRigidBody);
- EI(keyStr == "getRigidBody")
-RET CNF(Entity_getRigidBody);
- EI(keyStr == "removeRigidBody")
-RET CNF(Entity_removeRigidBody);
- EI(keyStr == "hasRigidBody")
-RET CNF(Entity_hasRigidBody);
- EI(keyStr == "addModel")
-RET CNF(Entity_addModel);
- EI(keyStr == "addOverlay")
-RET CNF(Entity_addOverlay);
- EI(keyStr == "removeRenderComponent")
-RET CNF(Entity_removeRenderComponent);
- EI(keyStr == "getRenderComponent")
-RET CNF(Entity_getRenderComponent);
- EI(keyStr == "hasRenderComponent")
-RET CNF(Entity_hasRenderComponent);
- EI(keyStr == "getScene")
-RET CNF(Entity_getScene);
- EI(keyStr == "createEntity")
-RET CNF(Entity_createEntity);
- EI(keyStr == "removeEntity")
-RET CNF(Entity_removeEntity);
- EI(keyStr == "getEntities")
-RET CNF(Entity_getEntities);
- EI(keyStr == "getParent")
-RET CNF(Entity_getParent);
- EI(keyStr == "updateFinalTransform")
-RET CNF(Entity_updateFinalTransform);
- EI(keyStr == "getFinalTransform")
-RET CNF(Entity_getFinalTransform);
- EI(keyStr == "getAudioSources")
-RET CNF(Entity_getAudioSources);
- EI(keyStr == "addAudioSource")
-RET CNF(Entity_addAudioSource);
- EI(keyStr == "removeAudioSource")
-RET CNF(Entity_removeAudioSource);
- EI(keyStr=="name")
-{
-Entity*obj=(Entity*)f->data;
-RET CV(obj->name);
-} EI(keyStr=="transform")
-{
-Entity*obj=(Entity*)f->data;
-RET CV(obj->transform);
-} else
- CATE(KE,"Unknown member."));
-}
-}
-RET CN;
-}
-
-void Entity_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue*)key)->value;
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} EI(keyStr=="name")
-{
-Entity*obj=(Entity*)f->data;
-obj->name=val_to_c<decltype(obj->name)>::f(ctx,value);
-} EI(keyStr=="transform")
-{
-Entity*obj=(Entity*)f->data;
-obj->transform=val_to_c<decltype(obj->transform)>::f(ctx,value);
-} else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV Entity_getFinalTransform(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getFinalTransform" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getFinalTransform());
-;
-}
-CATE(TE,UFOF("Entity::getFinalTransform.")));
-RET CN;
-}
-
-SV Entity_removeAudioSource(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::removeAudioSource" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-( f->removeAudioSource(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Entity::removeAudioSource.")));
-RET CN;
-}
-
-SV Entity_getAudioSources(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getAudioSources" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getAudioSources());
-;
-}
-CATE(TE,UFOF("Entity::getAudioSources.")));
-RET CN;
-}
-
-SV Entity_getRigidBody(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getRigidBody" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getRigidBody());
-;
-}
-CATE(TE,UFOF("Entity::getRigidBody.")));
-RET CN;
-}
-
-SV Entity_findScriptInstanceByName(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::findScriptInstanceByName" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Entity::findScriptInstanceByName.")));
-RET CN;
-}
-
-SV Entity_addOverlay(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::addOverlay" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->addOverlay(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Entity::addOverlay.")));
-RET CN;
-}
-
-SV Entity_addRigidBody(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::addRigidBody" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],const RigidBodyConstructionInfo &)&&TS(a[2],PhysicsShape *))
-{
-RET CV( f->addRigidBody(val_to_c<std::remove_reference<const RigidBodyConstructionInfo &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<PhysicsShape *>::type>::f(ctx,a[2])));
-;
-}
-CATE(TE,UFOF("Entity::addRigidBody.")));
-RET CN;
-}
-
-SV Entity_removeScript(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::removeScript" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Entity::removeScript.")));
-RET CN;
-}
-
-SV Entity_createEntity(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::createEntity" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->createEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Entity::createEntity.")));
-RET CN;
-}
-
-SV Entity_hasRigidBody(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::hasRigidBody" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->hasRigidBody());
-;
-}
-CATE(TE,UFOF("Entity::hasRigidBody.")));
-RET CN;
-}
-
-SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::updateFinalTransform" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->updateFinalTransform());
-RET CN;
-}
-CATE(TE,UFOF("Entity::updateFinalTransform.")));
-RET CN;
-}
-
-SV Entity_removeRenderComponent(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::removeRenderComponent" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->removeRenderComponent());
-RET CN;
-}
-CATE(TE,UFOF("Entity::removeRenderComponent.")));
-RET CN;
-}
-
-SV Entity_removeEntity(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::removeEntity" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-( f->removeEntity(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Entity::removeEntity.")));
-RET CN;
-}
-
-SV Entity_removeRigidBody(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::removeRigidBody" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->removeRigidBody());
-RET CN;
-}
-CATE(TE,UFOF("Entity::removeRigidBody.")));
-RET CN;
-}
-
-SV Entity_addScript(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::addScript" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Entity::addScript.")));
-RET CN;
-}
-
-SV Entity_getEntities(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getEntities" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getEntities());
-;
-}
-CATE(TE,UFOF("Entity::getEntities.")));
-RET CN;
-}
-
-SV Entity_hasRenderComponent(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::hasRenderComponent" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->hasRenderComponent());
-;
-}
-CATE(TE,UFOF("Entity::hasRenderComponent.")));
-RET CN;
-}
-
-SV Entity_addAudioSource(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::addAudioSource" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],Audio *))
-{
-RET CV( f->addAudioSource(val_to_c<std::remove_reference<Audio *>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Entity::addAudioSource.")));
-RET CN;
-}
-
-SV Entity_getRenderComponent(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getRenderComponent" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getRenderComponent());
-;
-}
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getRenderComponent());
-;
-}
-CATE(TE,UFOF("Entity::getRenderComponent.")));
-RET CN;
-}
-
-SV Entity_addModel(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::addModel" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],GfxModel *)&&TS(a[2],bool))
-{
-( f->addModel(val_to_c<std::remove_reference<GfxModel *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("Entity::addModel.")));
-RET CN;
-}
-
-SV Entity_getParent(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getParent" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getParent());
-;
-}
-CATE(TE,UFOF("Entity::getParent.")));
-RET CN;
-}
-
-SV Entity_getScripts(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getScripts" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Entity::getScripts.")));
-RET CN;
-}
-
-SV Entity_getScene(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::getScene" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getScene());
-;
-}
-CATE(TE,UFOF("Entity::getScene.")));
 RET CN;
 }
 
@@ -17301,23 +17363,21 @@ CATE(TE,UFOF("ResourceManager::loadTextureAndCopy.")));
 RET CN;
 }
 
-void GfxIndexData_destroy(CTX ctx,NO f)
+void Entity_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,GfxIndexData))
-CATE(TE,"GfxIndexData::__del__ expects GfxIndexData as first argument."));
+if(!TS((SV)f,Entity))
+CATE(TE,"Entity::__del__ expects Entity as first argument."));
 
-DELETE((GfxIndexData*)f->data);
-}SV GfxIndexData_new(CTX ctx,const List<SV>&a)
+}SV Entity_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"GfxIndexData's constructor" EAOE));
-if(!TS(a[0],GfxIndexData))
-CATE(TE,"GfxIndexData's constructor expects GfxIndexData as first argument."));
-#define fjis GfxIndexData
-RET STG::createNativeObject(GfxIndexData_funcs,NEW(fjis),EXT->GfxIndexData_typeID);
+CATE(VE,"Entity's constructor" EAOE));
+if(!TS(a[0],Entity))
+CATE(TE,"Entity's constructor expects Entity as first argument."));
+CATE(TE,UFOF("Entity's constructor.")));
 }
 
-SV GfxIndexData_get_member(CTX ctx,NO f,SV key)
+SV Entity_get_member(CTX ctx,NO f,SV key)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -17327,11 +17387,11 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("GfxIndexData");
+RET STG::createString("Entity");
 EI(keyStr=="__new__")
-RET CNF(GfxIndexData_new);
+RET CNF(Entity_new);
 EI(keyStr=="__call__")
-RET CNF(GfxIndexData_new);
+RET CNF(Entity_new);
 else
  CATE(KE,"Unknown member."));
 } else
@@ -17339,19 +17399,61 @@ else
 if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
-RET CNF(GfxIndexData_new);
- EI(keyStr=="type")
+RET CNF(Entity_new);
+ EI(keyStr == "addScript")
+RET CNF(Entity_addScript);
+ EI(keyStr == "removeScript")
+RET CNF(Entity_removeScript);
+ EI(keyStr == "getScripts")
+RET CNF(Entity_getScripts);
+ EI(keyStr == "findScriptInstanceByName")
+RET CNF(Entity_findScriptInstanceByName);
+ EI(keyStr == "addRigidBody")
+RET CNF(Entity_addRigidBody);
+ EI(keyStr == "getRigidBody")
+RET CNF(Entity_getRigidBody);
+ EI(keyStr == "removeRigidBody")
+RET CNF(Entity_removeRigidBody);
+ EI(keyStr == "hasRigidBody")
+RET CNF(Entity_hasRigidBody);
+ EI(keyStr == "addModel")
+RET CNF(Entity_addModel);
+ EI(keyStr == "addOverlay")
+RET CNF(Entity_addOverlay);
+ EI(keyStr == "removeRenderComponent")
+RET CNF(Entity_removeRenderComponent);
+ EI(keyStr == "getRenderComponent")
+RET CNF(Entity_getRenderComponent);
+ EI(keyStr == "hasRenderComponent")
+RET CNF(Entity_hasRenderComponent);
+ EI(keyStr == "getScene")
+RET CNF(Entity_getScene);
+ EI(keyStr == "createEntity")
+RET CNF(Entity_createEntity);
+ EI(keyStr == "removeEntity")
+RET CNF(Entity_removeEntity);
+ EI(keyStr == "getEntities")
+RET CNF(Entity_getEntities);
+ EI(keyStr == "getParent")
+RET CNF(Entity_getParent);
+ EI(keyStr == "updateFinalTransform")
+RET CNF(Entity_updateFinalTransform);
+ EI(keyStr == "getFinalTransform")
+RET CNF(Entity_getFinalTransform);
+ EI(keyStr == "getAudioSources")
+RET CNF(Entity_getAudioSources);
+ EI(keyStr == "addAudioSource")
+RET CNF(Entity_addAudioSource);
+ EI(keyStr == "removeAudioSource")
+RET CNF(Entity_removeAudioSource);
+ EI(keyStr=="name")
 {
-GfxIndexData*obj=(GfxIndexData*)f->data;
-RET CV(obj->type);
-} EI(keyStr=="numIndices")
+Entity*obj=(Entity*)f->data;
+RET CV(obj->name);
+} EI(keyStr=="transform")
 {
-GfxIndexData*obj=(GfxIndexData*)f->data;
-RET CV(obj->numIndices);
-} EI(keyStr=="offset")
-{
-GfxIndexData*obj=(GfxIndexData*)f->data;
-RET CV(obj->offset);
+Entity*obj=(Entity*)f->data;
+RET CV(obj->transform);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -17359,7 +17461,7 @@ RET CV(obj->offset);
 RET CN;
 }
 
-void GfxIndexData_set_member(CTX ctx,NO f,SV key,SV value)
+void Entity_set_member(CTX ctx,NO f,SV key,SV value)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -17368,22 +17470,391 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="type")
+if(0) {} EI(keyStr=="name")
 {
-GfxIndexData*obj=(GfxIndexData*)f->data;
-obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
-} EI(keyStr=="numIndices")
+Entity*obj=(Entity*)f->data;
+obj->name=val_to_c<decltype(obj->name)>::f(ctx,value);
+} EI(keyStr=="transform")
 {
-GfxIndexData*obj=(GfxIndexData*)f->data;
-obj->numIndices=val_to_c<decltype(obj->numIndices)>::f(ctx,value);
-} EI(keyStr=="offset")
-{
-GfxIndexData*obj=(GfxIndexData*)f->data;
-obj->offset=val_to_c<decltype(obj->offset)>::f(ctx,value);
+Entity*obj=(Entity*)f->data;
+obj->transform=val_to_c<decltype(obj->transform)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
+}
+
+SV Entity_getFinalTransform(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getFinalTransform" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getFinalTransform());
+;
+}
+CATE(TE,UFOF("Entity::getFinalTransform.")));
+RET CN;
+}
+
+SV Entity_removeAudioSource(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::removeAudioSource" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->removeAudioSource(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Entity::removeAudioSource.")));
+RET CN;
+}
+
+SV Entity_getAudioSources(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getAudioSources" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getAudioSources());
+;
+}
+CATE(TE,UFOF("Entity::getAudioSources.")));
+RET CN;
+}
+
+SV Entity_getRigidBody(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getRigidBody" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRigidBody());
+;
+}
+CATE(TE,UFOF("Entity::getRigidBody.")));
+RET CN;
+}
+
+SV Entity_findScriptInstanceByName(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::findScriptInstanceByName" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Entity::findScriptInstanceByName.")));
+RET CN;
+}
+
+SV Entity_addOverlay(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::addOverlay" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxTexture *))
+{
+( f->addOverlay(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Entity::addOverlay.")));
+RET CN;
+}
+
+SV Entity_addRigidBody(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::addRigidBody" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],const RigidBodyConstructionInfo &)&&TS(a[2],PhysicsShape *))
+{
+RET CV( f->addRigidBody(val_to_c<std::remove_reference<const RigidBodyConstructionInfo &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<PhysicsShape *>::type>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("Entity::addRigidBody.")));
+RET CN;
+}
+
+SV Entity_removeScript(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::removeScript" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Entity::removeScript.")));
+RET CN;
+}
+
+SV Entity_createEntity(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::createEntity" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->createEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Entity::createEntity.")));
+RET CN;
+}
+
+SV Entity_hasRigidBody(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::hasRigidBody" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->hasRigidBody());
+;
+}
+CATE(TE,UFOF("Entity::hasRigidBody.")));
+RET CN;
+}
+
+SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::updateFinalTransform" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->updateFinalTransform());
+RET CN;
+}
+CATE(TE,UFOF("Entity::updateFinalTransform.")));
+RET CN;
+}
+
+SV Entity_removeRenderComponent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::removeRenderComponent" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeRenderComponent());
+RET CN;
+}
+CATE(TE,UFOF("Entity::removeRenderComponent.")));
+RET CN;
+}
+
+SV Entity_removeEntity(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::removeEntity" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->removeEntity(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Entity::removeEntity.")));
+RET CN;
+}
+
+SV Entity_removeRigidBody(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::removeRigidBody" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeRigidBody());
+RET CN;
+}
+CATE(TE,UFOF("Entity::removeRigidBody.")));
+RET CN;
+}
+
+SV Entity_addScript(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::addScript" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Entity::addScript.")));
+RET CN;
+}
+
+SV Entity_getEntities(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getEntities" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getEntities());
+;
+}
+CATE(TE,UFOF("Entity::getEntities.")));
+RET CN;
+}
+
+SV Entity_hasRenderComponent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::hasRenderComponent" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->hasRenderComponent());
+;
+}
+CATE(TE,UFOF("Entity::hasRenderComponent.")));
+RET CN;
+}
+
+SV Entity_addAudioSource(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::addAudioSource" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],Audio *))
+{
+RET CV( f->addAudioSource(val_to_c<std::remove_reference<Audio *>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Entity::addAudioSource.")));
+RET CN;
+}
+
+SV Entity_getRenderComponent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getRenderComponent" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRenderComponent());
+;
+}
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRenderComponent());
+;
+}
+CATE(TE,UFOF("Entity::getRenderComponent.")));
+RET CN;
+}
+
+SV Entity_addModel(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::addModel" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxModel *)&&TS(a[2],bool))
+{
+( f->addModel(val_to_c<std::remove_reference<GfxModel *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("Entity::addModel.")));
+RET CN;
+}
+
+SV Entity_getParent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getParent" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getParent());
+;
+}
+CATE(TE,UFOF("Entity::getParent.")));
+RET CN;
+}
+
+SV Entity_getScripts(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getScripts" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Entity::getScripts.")));
+RET CN;
+}
+
+SV Entity_getScene(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getScene" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getScene());
+;
+}
+CATE(TE,UFOF("Entity::getScene.")));
+RET CN;
 }
 
 void GfxRenderer_destroy(CTX ctx,NO f)
@@ -21313,24 +21784,34 @@ if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
 RET CNF(GfxMesh_new);
- EI(keyStr == "init")
-RET CNF(GfxMesh_init);
- EI(keyStr == "setVertexAttrib")
-RET CNF(GfxMesh_setVertexAttrib);
- EI(keyStr == "disableVertexAttrib")
-RET CNF(GfxMesh_disableVertexAttrib);
- EI(keyStr == "isVertexAttribEnabled")
-RET CNF(GfxMesh_isVertexAttribEnabled);
- EI(keyStr == "getVertexAttrib")
-RET CNF(GfxMesh_getVertexAttrib);
+ EI(keyStr == "addIndices")
+RET CNF(GfxMesh_addIndices);
+ EI(keyStr == "removeIndices")
+RET CNF(GfxMesh_removeIndices);
+ EI(keyStr == "setAttribute")
+RET CNF(GfxMesh_setAttribute);
+ EI(keyStr == "removeAttribute")
+RET CNF(GfxMesh_removeAttribute);
+ EI(keyStr == "getIndexed")
+RET CNF(GfxMesh_getIndexed);
+ EI(keyStr == "getIndexType")
+RET CNF(GfxMesh_getIndexType);
+ EI(keyStr == "getIndices")
+RET CNF(GfxMesh_getIndices);
+ EI(keyStr == "getAttribs")
+RET CNF(GfxMesh_getAttribs);
+ EI(keyStr == "getAttribCount")
+RET CNF(GfxMesh_getAttribCount);
+ EI(keyStr == "getAttrib")
+RET CNF(GfxMesh_getAttrib);
+ EI(keyStr == "getGLVAO")
+RET CNF(GfxMesh_getGLVAO);
+ EI(keyStr == "getGLIndexBuffer")
+RET CNF(GfxMesh_getGLIndexBuffer);
  EI(keyStr == "removeContent")
 RET CNF(GfxMesh_removeContent);
  EI(keyStr == "save")
 RET CNF(GfxMesh_save);
- EI(keyStr == "getImpl")
-RET CNF(GfxMesh_getImpl);
- EI(keyStr == "getBuffer")
-RET CNF(GfxMesh_getBuffer);
  EI(keyStr == "load")
 RET CNF(GfxMesh_load);
  EI(keyStr == "reload")
@@ -21355,14 +21836,22 @@ RET CNF(GfxMesh_getRefCount);
 RET CNF(GfxMesh_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(GfxMesh_setFilename);
- EI(keyStr=="primitive")
+ EI(keyStr=="aabb")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
-RET CV(obj->primitive);
+RET CV(obj->aabb);
 } EI(keyStr=="numVertices")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->numVertices);
+} EI(keyStr=="numIndices")
+{
+GfxMesh*obj=(GfxMesh*)f->data;
+RET CV(obj->numIndices);
+} EI(keyStr=="primitive")
+{
+GfxMesh*obj=(GfxMesh*)f->data;
+RET CV(obj->primitive);
 } EI(keyStr=="cullMode")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
@@ -21371,18 +21860,6 @@ RET CV(obj->cullMode);
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->winding);
-} EI(keyStr=="indexed")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-RET CV(obj->indexed);
-} EI(keyStr=="indexData")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-RET CV(obj->indexData);
-} EI(keyStr=="aabb")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-RET CV(obj->aabb);
 } EI(keyStr=="autoReload")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
@@ -21403,14 +21880,22 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="primitive")
+if(0) {} EI(keyStr=="aabb")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
-obj->primitive=val_to_c<decltype(obj->primitive)>::f(ctx,value);
+obj->aabb=val_to_c<decltype(obj->aabb)>::f(ctx,value);
 } EI(keyStr=="numVertices")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->numVertices=val_to_c<decltype(obj->numVertices)>::f(ctx,value);
+} EI(keyStr=="numIndices")
+{
+GfxMesh*obj=(GfxMesh*)f->data;
+obj->numIndices=val_to_c<decltype(obj->numIndices)>::f(ctx,value);
+} EI(keyStr=="primitive")
+{
+GfxMesh*obj=(GfxMesh*)f->data;
+obj->primitive=val_to_c<decltype(obj->primitive)>::f(ctx,value);
 } EI(keyStr=="cullMode")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
@@ -21419,18 +21904,6 @@ obj->cullMode=val_to_c<decltype(obj->cullMode)>::f(ctx,value);
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->winding=val_to_c<decltype(obj->winding)>::f(ctx,value);
-} EI(keyStr=="indexed")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-obj->indexed=val_to_c<decltype(obj->indexed)>::f(ctx,value);
-} EI(keyStr=="indexData")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-obj->indexData=val_to_c<decltype(obj->indexData)>::f(ctx,value);
-} EI(keyStr=="aabb")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-obj->aabb=val_to_c<decltype(obj->aabb)>::f(ctx,value);
 } EI(keyStr=="autoReload")
 {
 GfxMesh*obj=(GfxMesh*)f->data;
@@ -21441,150 +21914,54 @@ obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
 }
 }
 
-SV GfxMesh_isVertexAttribEnabled(CTX ctx,const List<SV>&a)
+SV GfxMesh_load(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::isVertexAttribEnabled" EAOE));
+CATE(VE,"GfxMesh::load" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->load());
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::load.")));
+RET CN;
+}
+
+SV GfxMesh_getGLIndexBuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getGLIndexBuffer" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getGLIndexBuffer());
+;
+}
+CATE(TE,UFOF("GfxMesh::getGLIndexBuffer.")));
+RET CN;
+}
+
+SV GfxMesh_removeAttribute(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::removeAttribute" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],GfxVertexAttribPurpose))
+if(1&&TS(a[1],GfxMeshAttribType))
 {
-RET CV( f->isVertexAttribEnabled(val_to_c<std::remove_reference<GfxVertexAttribPurpose>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("GfxMesh::isVertexAttribEnabled.")));
+( f->removeAttribute(val_to_c<std::remove_reference<GfxMeshAttribType>::type>::f(ctx,a[1])));
 RET CN;
 }
-
-SV GfxMesh_disableVertexAttrib(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::disableVertexAttrib" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxVertexAttribPurpose))
-{
-( f->disableVertexAttrib(val_to_c<std::remove_reference<GfxVertexAttribPurpose>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::disableVertexAttrib.")));
-RET CN;
-}
-
-SV GfxMesh_setFilename(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::setFilename" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::setFilename.")));
-RET CN;
-}
-
-SV GfxMesh_getBuffer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getBuffer" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getBuffer());
-;
-}
-CATE(TE,UFOF("GfxMesh::getBuffer.")));
-RET CN;
-}
-
-SV GfxMesh_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::reload" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::reload.")));
-RET CN;
-}
-
-SV GfxMesh_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::isLoaded" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("GfxMesh::isLoaded.")));
-RET CN;
-}
-
-SV GfxMesh_getImpl(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getImpl" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-CATE(TE,UFOF("GfxMesh::getImpl.")));
-RET CN;
-}
-
-SV GfxMesh_copy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::copy" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->copy());
-;
-}
-CATE(TE,UFOF("GfxMesh::copy.")));
-RET CN;
-}
-
-SV GfxMesh_getType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getType" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getType());
-;
-}
-CATE(TE,UFOF("GfxMesh::getType.")));
+CATE(TE,UFOF("GfxMesh::removeAttribute.")));
 RET CN;
 }
 
@@ -21605,128 +21982,99 @@ CATE(TE,UFOF("GfxMesh::possiblyReload.")));
 RET CN;
 }
 
-SV GfxMesh_removeContent(CTX ctx,const List<SV>&a)
+SV GfxMesh_setFilename(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::removeContent" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->removeContent());
-RET CN;
-}
-if(a.getCount()==1)
-if(1)
-{
-( f->removeContent());
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::removeContent.")));
-RET CN;
-}
-
-SV GfxMesh_load(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::load" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->load());
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::load.")));
-RET CN;
-}
-
-SV GfxMesh_getVertexAttrib(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getVertexAttrib" EAOE));
+CATE(VE,"GfxMesh::setFilename" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],GfxVertexAttribPurpose))
+if(1&&TS(a[1],const String &))
 {
-RET CV( f->getVertexAttrib(val_to_c<std::remove_reference<GfxVertexAttribPurpose>::type>::f(ctx,a[1])));
-;
+( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CN;
 }
-CATE(TE,UFOF("GfxMesh::getVertexAttrib.")));
+CATE(TE,UFOF("GfxMesh::setFilename.")));
 RET CN;
 }
 
-SV GfxMesh_setVertexAttrib(CTX ctx,const List<SV>&a)
+SV GfxMesh_isLoaded(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::setVertexAttrib" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],GfxVertexAttribPurpose)&&TS(a[2],const GfxVertexAttribute &))
-{
-( f->setVertexAttrib(val_to_c<std::remove_reference<GfxVertexAttribPurpose>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const GfxVertexAttribute &>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::setVertexAttrib.")));
-RET CN;
-}
-
-SV GfxMesh_init(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::init" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==5)
-if(1&&TS(a[1],GfxPrimitive)&&TS(a[2],size_t)&&TS(a[3],GfxCullMode)&&TS(a[4],GfxWinding))
-{
-( f->init(val_to_c<std::remove_reference<GfxPrimitive>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCullMode>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<GfxWinding>::type>::f(ctx,a[4])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::init.")));
-RET CN;
-}
-
-SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getRefCount" EAOE));
+CATE(VE,"GfxMesh::isLoaded" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getRefCount());
+RET CV( f->isLoaded());
 ;
 }
-CATE(TE,UFOF("GfxMesh::getRefCount.")));
+CATE(TE,UFOF("GfxMesh::isLoaded.")));
 RET CN;
 }
 
-SV GfxMesh_release(CTX ctx,const List<SV>&a)
+SV GfxMesh_getAttribs(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::release" EAOE));
+CATE(VE,"GfxMesh::getAttribs" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxMesh::getAttribs.")));
+RET CN;
+}
+
+SV GfxMesh_getAttrib(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getAttrib" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getAttrib(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("GfxMesh::getAttrib.")));
+RET CN;
+}
+
+SV GfxMesh_removeIndices(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::removeIndices" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->release());
+( f->removeIndices());
 RET CN;
 }
-CATE(TE,UFOF("GfxMesh::release.")));
+CATE(TE,UFOF("GfxMesh::removeIndices.")));
+RET CN;
+}
+
+SV GfxMesh_getAttribCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getAttribCount" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getAttribCount());
+;
+}
+CATE(TE,UFOF("GfxMesh::getAttribCount.")));
 RET CN;
 }
 
@@ -21801,6 +22149,210 @@ RET CV( f->getFilename());
 ;
 }
 CATE(TE,UFOF("GfxMesh::getFilename.")));
+RET CN;
+}
+
+SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getRefCount" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRefCount());
+;
+}
+CATE(TE,UFOF("GfxMesh::getRefCount.")));
+RET CN;
+}
+
+SV GfxMesh_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getType" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getType());
+;
+}
+CATE(TE,UFOF("GfxMesh::getType.")));
+RET CN;
+}
+
+SV GfxMesh_getGLVAO(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getGLVAO" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getGLVAO());
+;
+}
+CATE(TE,UFOF("GfxMesh::getGLVAO.")));
+RET CN;
+}
+
+SV GfxMesh_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::removeContent" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeContent());
+RET CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( f->removeContent());
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::removeContent.")));
+RET CN;
+}
+
+SV GfxMesh_getIndices(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getIndices" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+CATE(TE,UFOF("GfxMesh::getIndices.")));
+RET CN;
+}
+
+SV GfxMesh_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::copy" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("GfxMesh::copy.")));
+RET CN;
+}
+
+SV GfxMesh_setAttribute(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::setAttribute" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const GfxMeshAttrib &))
+{
+( f->setAttribute(val_to_c<std::remove_reference<const GfxMeshAttrib &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::setAttribute.")));
+RET CN;
+}
+
+SV GfxMesh_reload(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::reload" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->reload());
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::reload.")));
+RET CN;
+}
+
+SV GfxMesh_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::release" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->release());
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::release.")));
+RET CN;
+}
+
+SV GfxMesh_getIndexed(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getIndexed" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getIndexed());
+;
+}
+CATE(TE,UFOF("GfxMesh::getIndexed.")));
+RET CN;
+}
+
+SV GfxMesh_addIndices(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::addIndices" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],size_t)&&TS(a[2],GfxMeshIndexDataType)&&TS(a[3],const ResizableData &))
+{
+( f->addIndices(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxMeshIndexDataType>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const ResizableData &>::type>::f(ctx,a[3])));
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::addIndices.")));
+RET CN;
+}
+
+SV GfxMesh_getIndexType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getIndexType" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getIndexType());
+;
+}
+CATE(TE,UFOF("GfxMesh::getIndexType.")));
 RET CN;
 }
 
@@ -22565,2750 +23117,6 @@ RET CV( f->getShaderType());
 ;
 }
 CATE(TE,UFOF("GfxShader::getShaderType.")));
-RET CN;
-}
-
-void UInt4_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T4<uint32_t>))
-CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
-
-DELETE((T4<uint32_t>*)f->data);
-}SV UInt4_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4's constructor" EAOE));
-if(!TS(a[0],T4<uint32_t>))
-CATE(TE,"UInt4's constructor expects UInt4 as first argument."));
-if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],uint32_t))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==5)
-if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t)&&TS(a[4],uint32_t))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3]),val_to_c<uint32_t>::f(ctx,a[4])),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<float> &))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<int32_t> &))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<uint32_t> &))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-CATE(TE,UFOF("UInt4's constructor.")));
-RET CN;
-}
-
-SV UInt4_get_member(CTX ctx,NO f,SV key)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("UInt4");
-EI(keyStr=="__new__")
-RET CNF(UInt4_new);
-EI(keyStr=="__call__")
-RET CNF(UInt4_new);
-else
- CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="__classTypeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
-RET CNF(UInt4_new);
- EI(keyStr == "__add__")
-RET CNF(UInt4___add__);
- EI(keyStr == "__sub__")
-RET CNF(UInt4___sub__);
- EI(keyStr == "__mul__")
-RET CNF(UInt4___mul__);
- EI(keyStr == "__div__")
-RET CNF(UInt4___div__);
- EI(keyStr == "__eq__")
-RET CNF(UInt4___eq__);
- EI(keyStr == "__neq__")
-RET CNF(UInt4___neq__);
- EI(keyStr == "__less__")
-RET CNF(UInt4___less__);
- EI(keyStr == "__grtr__")
-RET CNF(UInt4___grtr__);
- EI(keyStr == "__leq__")
-RET CNF(UInt4___leq__);
- EI(keyStr == "__geq__")
-RET CNF(UInt4___geq__);
- EI(keyStr == "sum")
-RET CNF(UInt4_sum);
- EI(keyStr == "length")
-RET CNF(UInt4_length);
- EI(keyStr == "lengthSquared")
-RET CNF(UInt4_lengthSquared);
- EI(keyStr == "dot")
-RET CNF(UInt4_dot);
- EI(keyStr == "distance")
-RET CNF(UInt4_distance);
- EI(keyStr == "distanceSquared")
-RET CNF(UInt4_distanceSquared);
- EI(keyStr == "normalize")
-RET CNF(UInt4_normalize);
- EI(keyStr == "getXY")
-RET CNF(UInt4_getXY);
- EI(keyStr == "setXY")
-RET CNF(UInt4_setXY);
- EI(keyStr == "getXZ")
-RET CNF(UInt4_getXZ);
- EI(keyStr == "setXZ")
-RET CNF(UInt4_setXZ);
- EI(keyStr == "getXW")
-RET CNF(UInt4_getXW);
- EI(keyStr == "setXW")
-RET CNF(UInt4_setXW);
- EI(keyStr == "getYX")
-RET CNF(UInt4_getYX);
- EI(keyStr == "setYX")
-RET CNF(UInt4_setYX);
- EI(keyStr == "getYZ")
-RET CNF(UInt4_getYZ);
- EI(keyStr == "setYZ")
-RET CNF(UInt4_setYZ);
- EI(keyStr == "getYW")
-RET CNF(UInt4_getYW);
- EI(keyStr == "setYW")
-RET CNF(UInt4_setYW);
- EI(keyStr == "getZX")
-RET CNF(UInt4_getZX);
- EI(keyStr == "setZX")
-RET CNF(UInt4_setZX);
- EI(keyStr == "getZY")
-RET CNF(UInt4_getZY);
- EI(keyStr == "setZY")
-RET CNF(UInt4_setZY);
- EI(keyStr == "getZW")
-RET CNF(UInt4_getZW);
- EI(keyStr == "setZW")
-RET CNF(UInt4_setZW);
- EI(keyStr == "getWX")
-RET CNF(UInt4_getWX);
- EI(keyStr == "setWX")
-RET CNF(UInt4_setWX);
- EI(keyStr == "getWY")
-RET CNF(UInt4_getWY);
- EI(keyStr == "setWY")
-RET CNF(UInt4_setWY);
- EI(keyStr == "getWZ")
-RET CNF(UInt4_getWZ);
- EI(keyStr == "setWZ")
-RET CNF(UInt4_setWZ);
- EI(keyStr == "getXYZ")
-RET CNF(UInt4_getXYZ);
- EI(keyStr == "setXYZ")
-RET CNF(UInt4_setXYZ);
- EI(keyStr == "getXYW")
-RET CNF(UInt4_getXYW);
- EI(keyStr == "setXYW")
-RET CNF(UInt4_setXYW);
- EI(keyStr == "getXZY")
-RET CNF(UInt4_getXZY);
- EI(keyStr == "setXZY")
-RET CNF(UInt4_setXZY);
- EI(keyStr == "getXZW")
-RET CNF(UInt4_getXZW);
- EI(keyStr == "setXZW")
-RET CNF(UInt4_setXZW);
- EI(keyStr == "getXWZ")
-RET CNF(UInt4_getXWZ);
- EI(keyStr == "setXWZ")
-RET CNF(UInt4_setXWZ);
- EI(keyStr == "getXWY")
-RET CNF(UInt4_getXWY);
- EI(keyStr == "setXWY")
-RET CNF(UInt4_setXWY);
- EI(keyStr == "getYXZ")
-RET CNF(UInt4_getYXZ);
- EI(keyStr == "setYXZ")
-RET CNF(UInt4_setYXZ);
- EI(keyStr == "getYXW")
-RET CNF(UInt4_getYXW);
- EI(keyStr == "setYXW")
-RET CNF(UInt4_setYXW);
- EI(keyStr == "getYZX")
-RET CNF(UInt4_getYZX);
- EI(keyStr == "setYZX")
-RET CNF(UInt4_setYZX);
- EI(keyStr == "getYZW")
-RET CNF(UInt4_getYZW);
- EI(keyStr == "setYZW")
-RET CNF(UInt4_setYZW);
- EI(keyStr == "getYWZ")
-RET CNF(UInt4_getYWZ);
- EI(keyStr == "setYWZ")
-RET CNF(UInt4_setYWZ);
- EI(keyStr == "getYWX")
-RET CNF(UInt4_getYWX);
- EI(keyStr == "setYWX")
-RET CNF(UInt4_setYWX);
- EI(keyStr == "getZXY")
-RET CNF(UInt4_getZXY);
- EI(keyStr == "setZXY")
-RET CNF(UInt4_setZXY);
- EI(keyStr == "getZXW")
-RET CNF(UInt4_getZXW);
- EI(keyStr == "setZXW")
-RET CNF(UInt4_setZXW);
- EI(keyStr == "getZYX")
-RET CNF(UInt4_getZYX);
- EI(keyStr == "setZYX")
-RET CNF(UInt4_setZYX);
- EI(keyStr == "getZYW")
-RET CNF(UInt4_getZYW);
- EI(keyStr == "setZYW")
-RET CNF(UInt4_setZYW);
- EI(keyStr == "getZWY")
-RET CNF(UInt4_getZWY);
- EI(keyStr == "setZWY")
-RET CNF(UInt4_setZWY);
- EI(keyStr == "getZWX")
-RET CNF(UInt4_getZWX);
- EI(keyStr == "setZWX")
-RET CNF(UInt4_setZWX);
- EI(keyStr == "getWXY")
-RET CNF(UInt4_getWXY);
- EI(keyStr == "setWXY")
-RET CNF(UInt4_setWXY);
- EI(keyStr == "getWXZ")
-RET CNF(UInt4_getWXZ);
- EI(keyStr == "setWXZ")
-RET CNF(UInt4_setWXZ);
- EI(keyStr == "getWYX")
-RET CNF(UInt4_getWYX);
- EI(keyStr == "setWYX")
-RET CNF(UInt4_setWYX);
- EI(keyStr == "getWYZ")
-RET CNF(UInt4_getWYZ);
- EI(keyStr == "setWYZ")
-RET CNF(UInt4_setWYZ);
- EI(keyStr == "getWZY")
-RET CNF(UInt4_getWZY);
- EI(keyStr == "setWZY")
-RET CNF(UInt4_setWZY);
- EI(keyStr == "getWZX")
-RET CNF(UInt4_getWZX);
- EI(keyStr == "setWZX")
-RET CNF(UInt4_setWZX);
- EI(keyStr == "getXYZW")
-RET CNF(UInt4_getXYZW);
- EI(keyStr == "setXYZW")
-RET CNF(UInt4_setXYZW);
- EI(keyStr == "getXYWZ")
-RET CNF(UInt4_getXYWZ);
- EI(keyStr == "setXYWZ")
-RET CNF(UInt4_setXYWZ);
- EI(keyStr == "getXZYW")
-RET CNF(UInt4_getXZYW);
- EI(keyStr == "setXZYW")
-RET CNF(UInt4_setXZYW);
- EI(keyStr == "getXZWY")
-RET CNF(UInt4_getXZWY);
- EI(keyStr == "setXZWY")
-RET CNF(UInt4_setXZWY);
- EI(keyStr == "getXWZY")
-RET CNF(UInt4_getXWZY);
- EI(keyStr == "setXWZY")
-RET CNF(UInt4_setXWZY);
- EI(keyStr == "getXWYZ")
-RET CNF(UInt4_getXWYZ);
- EI(keyStr == "setXWYZ")
-RET CNF(UInt4_setXWYZ);
- EI(keyStr == "getYXZW")
-RET CNF(UInt4_getYXZW);
- EI(keyStr == "setYXZW")
-RET CNF(UInt4_setYXZW);
- EI(keyStr == "getYXWZ")
-RET CNF(UInt4_getYXWZ);
- EI(keyStr == "setYXWZ")
-RET CNF(UInt4_setYXWZ);
- EI(keyStr == "getYZXW")
-RET CNF(UInt4_getYZXW);
- EI(keyStr == "setYZXW")
-RET CNF(UInt4_setYZXW);
- EI(keyStr == "getYZWX")
-RET CNF(UInt4_getYZWX);
- EI(keyStr == "setYZWX")
-RET CNF(UInt4_setYZWX);
- EI(keyStr == "getYWZX")
-RET CNF(UInt4_getYWZX);
- EI(keyStr == "setYWZX")
-RET CNF(UInt4_setYWZX);
- EI(keyStr == "getYWXZ")
-RET CNF(UInt4_getYWXZ);
- EI(keyStr == "setYWXZ")
-RET CNF(UInt4_setYWXZ);
- EI(keyStr == "getZYXW")
-RET CNF(UInt4_getZYXW);
- EI(keyStr == "setZYXW")
-RET CNF(UInt4_setZYXW);
- EI(keyStr == "getZYWX")
-RET CNF(UInt4_getZYWX);
- EI(keyStr == "setZYWX")
-RET CNF(UInt4_setZYWX);
- EI(keyStr == "getZXYW")
-RET CNF(UInt4_getZXYW);
- EI(keyStr == "setZXYW")
-RET CNF(UInt4_setZXYW);
- EI(keyStr == "getZXWY")
-RET CNF(UInt4_getZXWY);
- EI(keyStr == "setZXWY")
-RET CNF(UInt4_setZXWY);
- EI(keyStr == "getZWXY")
-RET CNF(UInt4_getZWXY);
- EI(keyStr == "setZWXY")
-RET CNF(UInt4_setZWXY);
- EI(keyStr == "getZWYX")
-RET CNF(UInt4_getZWYX);
- EI(keyStr == "setZWYX")
-RET CNF(UInt4_setZWYX);
- EI(keyStr == "getWYZX")
-RET CNF(UInt4_getWYZX);
- EI(keyStr == "setWYZX")
-RET CNF(UInt4_setWYZX);
- EI(keyStr == "getWYXZ")
-RET CNF(UInt4_getWYXZ);
- EI(keyStr == "setWYXZ")
-RET CNF(UInt4_setWYXZ);
- EI(keyStr == "getWZYX")
-RET CNF(UInt4_getWZYX);
- EI(keyStr == "setWZYX")
-RET CNF(UInt4_setWZYX);
- EI(keyStr == "getWZXY")
-RET CNF(UInt4_getWZXY);
- EI(keyStr == "setWZXY")
-RET CNF(UInt4_setWZXY);
- EI(keyStr == "getWXZY")
-RET CNF(UInt4_getWXZY);
- EI(keyStr == "setWXZY")
-RET CNF(UInt4_setWXZY);
- EI(keyStr == "getWXYZ")
-RET CNF(UInt4_getWXYZ);
- EI(keyStr == "setWXYZ")
-RET CNF(UInt4_setWXYZ);
- EI(keyStr=="x")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-RET CV(obj->x);
-} EI(keyStr=="y")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-RET CV(obj->y);
-} EI(keyStr=="z")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-RET CV(obj->z);
-} EI(keyStr=="w")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-RET CV(obj->w);
-} else
- CATE(KE,"Unknown member."));
-}
-}
-RET CN;
-}
-
-void UInt4_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue*)key)->value;
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} EI(keyStr=="x")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
-} EI(keyStr=="w")
-{
-T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
-obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
-} else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV UInt4_setZXYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZXYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setZXYW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZXYW.")));
-RET CN;
-}
-
-SV UInt4_setWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setWYZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWYZ.")));
-RET CN;
-}
-
-SV UInt4_setWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setWYX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWYX.")));
-RET CN;
-}
-
-SV UInt4_getZWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZWYX());
-;
-}
-CATE(TE,UFOF("UInt4::getZWYX.")));
-RET CN;
-}
-
-SV UInt4_getZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZW());
-;
-}
-CATE(TE,UFOF("UInt4::getZW.")));
-RET CN;
-}
-
-SV UInt4_getZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZY());
-;
-}
-CATE(TE,UFOF("UInt4::getZY.")));
-RET CN;
-}
-
-SV UInt4_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::distanceSquared" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt4::distanceSquared.")));
-RET CN;
-}
-
-SV UInt4_getYXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYXZW());
-;
-}
-CATE(TE,UFOF("UInt4::getYXZW.")));
-RET CN;
-}
-
-SV UInt4_setYZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setYZWX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYZWX.")));
-RET CN;
-}
-
-SV UInt4_getYWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYWZX());
-;
-}
-CATE(TE,UFOF("UInt4::getYWZX.")));
-RET CN;
-}
-
-SV UInt4_getWZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWZXY());
-;
-}
-CATE(TE,UFOF("UInt4::getWZXY.")));
-RET CN;
-}
-
-SV UInt4_getZYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZYXW());
-;
-}
-CATE(TE,UFOF("UInt4::getZYXW.")));
-RET CN;
-}
-
-SV UInt4_setXWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setXWYZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXWYZ.")));
-RET CN;
-}
-
-SV UInt4_setZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setZY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZY.")));
-RET CN;
-}
-
-SV UInt4_setZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setZX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZX.")));
-RET CN;
-}
-
-SV UInt4_getZXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZXWY());
-;
-}
-CATE(TE,UFOF("UInt4::getZXWY.")));
-RET CN;
-}
-
-SV UInt4_getXWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXWZY());
-;
-}
-CATE(TE,UFOF("UInt4::getXWZY.")));
-RET CN;
-}
-
-SV UInt4_setZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setZW(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZW.")));
-RET CN;
-}
-
-SV UInt4_setZYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setZYWX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZYWX.")));
-RET CN;
-}
-
-SV UInt4_getYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYZX());
-;
-}
-CATE(TE,UFOF("UInt4::getYZX.")));
-RET CN;
-}
-
-SV UInt4_getXYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXYWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXYWZ.")));
-RET CN;
-}
-
-SV UInt4_setYXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setYXZW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYXZW.")));
-RET CN;
-}
-
-SV UInt4_getWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWZY());
-;
-}
-CATE(TE,UFOF("UInt4::getWZY.")));
-RET CN;
-}
-
-SV UInt4_getWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWZX());
-;
-}
-CATE(TE,UFOF("UInt4::getWZX.")));
-RET CN;
-}
-
-SV UInt4_getWZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWZYX());
-;
-}
-CATE(TE,UFOF("UInt4::getWZYX.")));
-RET CN;
-}
-
-SV UInt4_setXWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setXWZY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXWZY.")));
-RET CN;
-}
-
-SV UInt4_getZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZXY());
-;
-}
-CATE(TE,UFOF("UInt4::getZXY.")));
-RET CN;
-}
-
-SV UInt4_setWZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setWZYX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWZYX.")));
-RET CN;
-}
-
-SV UInt4_setZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setZYW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZYW.")));
-RET CN;
-}
-
-SV UInt4_setZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setZYX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZYX.")));
-RET CN;
-}
-
-SV UInt4_setXZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setXZYW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXZYW.")));
-RET CN;
-}
-
-SV UInt4_getZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZXW());
-;
-}
-CATE(TE,UFOF("UInt4::getZXW.")));
-RET CN;
-}
-
-SV UInt4_setYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setYZW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYZW.")));
-RET CN;
-}
-
-SV UInt4_getYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYWZ.")));
-RET CN;
-}
-
-SV UInt4___leq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__leq__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f <= v);
-}
-CATE(TE,UFOF("UInt4::__leq__.")));
-RET CN;
-}
-
-SV UInt4_getYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYWX());
-;
-}
-CATE(TE,UFOF("UInt4::getYWX.")));
-RET CN;
-}
-
-SV UInt4_sum(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::sum" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->sum());
-;
-}
-CATE(TE,UFOF("UInt4::sum.")));
-RET CN;
-}
-
-SV UInt4_setYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setYZX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYZX.")));
-RET CN;
-}
-
-SV UInt4_getXYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXYZ.")));
-RET CN;
-}
-
-SV UInt4_getZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZX());
-;
-}
-CATE(TE,UFOF("UInt4::getZX.")));
-RET CN;
-}
-
-SV UInt4_getXYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXYW());
-;
-}
-CATE(TE,UFOF("UInt4::getXYW.")));
-RET CN;
-}
-
-SV UInt4_setYWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setYWZX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYWZX.")));
-RET CN;
-}
-
-SV UInt4_setWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setWXY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWXY.")));
-RET CN;
-}
-
-SV UInt4_setWXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setWXZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWXZ.")));
-RET CN;
-}
-
-SV UInt4_setZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setZXW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZXW.")));
-RET CN;
-}
-
-SV UInt4_getXWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXWYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXWYZ.")));
-RET CN;
-}
-
-SV UInt4_setWYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setWYXZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWYXZ.")));
-RET CN;
-}
-
-SV UInt4_setZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setZXY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZXY.")));
-RET CN;
-}
-
-SV UInt4_getXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXWY());
-;
-}
-CATE(TE,UFOF("UInt4::getXWY.")));
-RET CN;
-}
-
-SV UInt4_getYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYXW());
-;
-}
-CATE(TE,UFOF("UInt4::getYXW.")));
-RET CN;
-}
-
-SV UInt4_getYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYXZ.")));
-RET CN;
-}
-
-SV UInt4_setXYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXYWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setXYWZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXYWZ.")));
-RET CN;
-}
-
-SV UInt4_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::length" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->length());
-;
-}
-CATE(TE,UFOF("UInt4::length.")));
-RET CN;
-}
-
-SV UInt4_setWXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setWXZY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWXZY.")));
-RET CN;
-}
-
-SV UInt4_getYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYZW());
-;
-}
-CATE(TE,UFOF("UInt4::getYZW.")));
-RET CN;
-}
-
-SV UInt4_setXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setXWZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXWZ.")));
-RET CN;
-}
-
-SV UInt4_setXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setXWY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXWY.")));
-RET CN;
-}
-
-SV UInt4_getWYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWYZ.")));
-RET CN;
-}
-
-SV UInt4_getWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWYX());
-;
-}
-CATE(TE,UFOF("UInt4::getWYX.")));
-RET CN;
-}
-
-SV UInt4_getZYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZYWX());
-;
-}
-CATE(TE,UFOF("UInt4::getZYWX.")));
-RET CN;
-}
-
-SV UInt4_getXYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXYZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXYZW());
-;
-}
-CATE(TE,UFOF("UInt4::getXYZW.")));
-RET CN;
-}
-
-SV UInt4_setZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setZWY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZWY.")));
-RET CN;
-}
-
-SV UInt4_setZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setZWX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZWX.")));
-RET CN;
-}
-
-SV UInt4_setWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setWX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWX.")));
-RET CN;
-}
-
-SV UInt4_setWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setWY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWY.")));
-RET CN;
-}
-
-SV UInt4_setWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setWZ(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWZ.")));
-RET CN;
-}
-
-SV UInt4_getZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZWY());
-;
-}
-CATE(TE,UFOF("UInt4::getZWY.")));
-RET CN;
-}
-
-SV UInt4_getZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZWX());
-;
-}
-CATE(TE,UFOF("UInt4::getZWX.")));
-RET CN;
-}
-
-SV UInt4_setYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setYXZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYXZ.")));
-RET CN;
-}
-
-SV UInt4_setYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setYXW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYXW.")));
-RET CN;
-}
-
-SV UInt4_getXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXWZ.")));
-RET CN;
-}
-
-SV UInt4_getXZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXZWY());
-;
-}
-CATE(TE,UFOF("UInt4::getXZWY.")));
-RET CN;
-}
-
-SV UInt4___less__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__less__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f < v);
-}
-CATE(TE,UFOF("UInt4::__less__.")));
-RET CN;
-}
-
-SV UInt4_getZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZYW());
-;
-}
-CATE(TE,UFOF("UInt4::getZYW.")));
-RET CN;
-}
-
-SV UInt4_setWZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setWZY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWZY.")));
-RET CN;
-}
-
-SV UInt4_setWZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setWZX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWZX.")));
-RET CN;
-}
-
-SV UInt4_setZYXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZYXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setZYXW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZYXW.")));
-RET CN;
-}
-
-SV UInt4_getYZWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYZWX());
-;
-}
-CATE(TE,UFOF("UInt4::getYZWX.")));
-RET CN;
-}
-
-SV UInt4_getZYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZYX());
-;
-}
-CATE(TE,UFOF("UInt4::getZYX.")));
-RET CN;
-}
-
-SV UInt4_getXZYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXZYW());
-;
-}
-CATE(TE,UFOF("UInt4::getXZYW.")));
-RET CN;
-}
-
-SV UInt4_setYXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYXWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setYXWZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYXWZ.")));
-RET CN;
-}
-
-SV UInt4___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__eq__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
-}
-CATE(TE,UFOF("UInt4::__eq__.")));
-RET CN;
-}
-
-SV UInt4_getWYXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWYXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWYXZ.")));
-RET CN;
-}
-
-SV UInt4_distance(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::distance" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-RET CV( f->distance(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt4::distance.")));
-RET CN;
-}
-
-SV UInt4_getXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXZW());
-;
-}
-CATE(TE,UFOF("UInt4::getXZW.")));
-RET CN;
-}
-
-SV UInt4_setYZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setYZXW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYZXW.")));
-RET CN;
-}
-
-SV UInt4_getZWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZWXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZWXY());
-;
-}
-CATE(TE,UFOF("UInt4::getZWXY.")));
-RET CN;
-}
-
-SV UInt4_getXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXZY());
-;
-}
-CATE(TE,UFOF("UInt4::getXZY.")));
-RET CN;
-}
-
-SV UInt4_getYZXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYZXW());
-;
-}
-CATE(TE,UFOF("UInt4::getYZXW.")));
-RET CN;
-}
-
-SV UInt4_setZWYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setZWYX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZWYX.")));
-RET CN;
-}
-
-SV UInt4___sub__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__sub__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f - v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f - v);
-}
-CATE(TE,UFOF("UInt4::__sub__.")));
-RET CN;
-}
-
-SV UInt4_getYXWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYXWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYXWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYXWZ.")));
-RET CN;
-}
-
-SV UInt4_setXZWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setXZWY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXZWY.")));
-RET CN;
-}
-
-SV UInt4_setYWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setYWZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYWZ.")));
-RET CN;
-}
-
-SV UInt4_setYWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setYWX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYWX.")));
-RET CN;
-}
-
-SV UInt4_setYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setYZ(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYZ.")));
-RET CN;
-}
-
-SV UInt4_setYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setYX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYX.")));
-RET CN;
-}
-
-SV UInt4_setYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setYW(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYW.")));
-RET CN;
-}
-
-SV UInt4_getWXYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWXYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWXYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWXYZ.")));
-RET CN;
-}
-
-SV UInt4___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__neq__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
-}
-CATE(TE,UFOF("UInt4::__neq__.")));
-RET CN;
-}
-
-SV UInt4_normalize(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::normalize" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->normalize());
-;
-}
-CATE(TE,UFOF("UInt4::normalize.")));
-RET CN;
-}
-
-SV UInt4_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYX());
-;
-}
-CATE(TE,UFOF("UInt4::getYX.")));
-RET CN;
-}
-
-SV UInt4_setXZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setXZW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXZW.")));
-RET CN;
-}
-
-SV UInt4_setXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setXZY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXZY.")));
-RET CN;
-}
-
-SV UInt4_setXYZW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXYZW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setXYZW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXYZW.")));
-RET CN;
-}
-
-SV UInt4_getYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYW());
-;
-}
-CATE(TE,UFOF("UInt4::getYW.")));
-RET CN;
-}
-
-SV UInt4_setWXYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWXYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setWXYZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWXYZ.")));
-RET CN;
-}
-
-SV UInt4_getYWXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYWXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYWXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYWXZ.")));
-RET CN;
-}
-
-SV UInt4___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__mul__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-CATE(TE,UFOF("UInt4::__mul__.")));
-RET CN;
-}
-
-SV UInt4_getYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYZ());
-;
-}
-CATE(TE,UFOF("UInt4::getYZ.")));
-RET CN;
-}
-
-SV UInt4_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::lengthSquared" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->lengthSquared());
-;
-}
-CATE(TE,UFOF("UInt4::lengthSquared.")));
-RET CN;
-}
-
-SV UInt4_getWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWXY());
-;
-}
-CATE(TE,UFOF("UInt4::getWXY.")));
-RET CN;
-}
-
-SV UInt4_getWXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWXZ.")));
-RET CN;
-}
-
-SV UInt4_getWX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWX());
-;
-}
-CATE(TE,UFOF("UInt4::getWX.")));
-RET CN;
-}
-
-SV UInt4_getWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWY());
-;
-}
-CATE(TE,UFOF("UInt4::getWY.")));
-RET CN;
-}
-
-SV UInt4_getWZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWZ());
-;
-}
-CATE(TE,UFOF("UInt4::getWZ.")));
-RET CN;
-}
-
-SV UInt4_setXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setXY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXY.")));
-RET CN;
-}
-
-SV UInt4_getZXYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getZXYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getZXYW());
-;
-}
-CATE(TE,UFOF("UInt4::getZXYW.")));
-RET CN;
-}
-
-SV UInt4___add__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__add__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f + v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f + v);
-}
-CATE(TE,UFOF("UInt4::__add__.")));
-RET CN;
-}
-
-SV UInt4_setXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setXZ(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXZ.")));
-RET CN;
-}
-
-SV UInt4_getWYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWYZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWYZX());
-;
-}
-CATE(TE,UFOF("UInt4::getWYZX.")));
-RET CN;
-}
-
-SV UInt4_setXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setXW(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXW.")));
-RET CN;
-}
-
-SV UInt4_getWXZY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getWXZY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWXZY());
-;
-}
-CATE(TE,UFOF("UInt4::getWXZY.")));
-RET CN;
-}
-
-SV UInt4_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXY());
-;
-}
-CATE(TE,UFOF("UInt4::getXY.")));
-RET CN;
-}
-
-SV UInt4_setZXWY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZXWY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setZXWY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZXWY.")));
-RET CN;
-}
-
-SV UInt4_setXYW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXYW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setXYW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXYW.")));
-RET CN;
-}
-
-SV UInt4_getXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXZ());
-;
-}
-CATE(TE,UFOF("UInt4::getXZ.")));
-RET CN;
-}
-
-SV UInt4_setWZXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWZXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setWZXY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWZXY.")));
-RET CN;
-}
-
-SV UInt4___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__grtr__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f > v);
-}
-CATE(TE,UFOF("UInt4::__grtr__.")));
-RET CN;
-}
-
-SV UInt4_setZWXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setZWXY" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setZWXY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setZWXY.")));
-RET CN;
-}
-
-SV UInt4_getXW(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::getXW" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXW());
-;
-}
-CATE(TE,UFOF("UInt4::getXW.")));
-RET CN;
-}
-
-SV UInt4_setXYZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setXYZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T3<uint32_t> &))
-{
-( f->setXYZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setXYZ.")));
-RET CN;
-}
-
-SV UInt4___div__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__div__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f / v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f / v);
-}
-CATE(TE,UFOF("UInt4::__div__.")));
-RET CN;
-}
-
-SV UInt4_setWYZX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setWYZX" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setWYZX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setWYZX.")));
-RET CN;
-}
-
-SV UInt4_setYWXZ(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::setYWXZ" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-( f->setYWXZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt4::setYWXZ.")));
-RET CN;
-}
-
-SV UInt4___geq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::__geq__" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f >= v);
-}
-CATE(TE,UFOF("UInt4::__geq__.")));
-RET CN;
-}
-
-SV UInt4_dot(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt4::dot" EAOE));
-T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T4<uint32_t> &))
-{
-RET CV( f->dot(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->dot());
-;
-}
-CATE(TE,UFOF("UInt4::dot.")));
 RET CN;
 }
 
@@ -32762,8 +30570,6 @@ RET CNF(GfxApi_tesselationSupported);
 RET CNF(GfxApi_createBuffer);
  EI(keyStr == "createTextureImpl")
 RET CNF(GfxApi_createTextureImpl);
- EI(keyStr == "createMeshImpl")
-RET CNF(GfxApi_createMeshImpl);
  EI(keyStr == "createFramebuffer")
 RET CNF(GfxApi_createFramebuffer);
  EI(keyStr == "createTimer")
@@ -32778,8 +30584,6 @@ RET CNF(GfxApi_clearColor);
 RET CNF(GfxApi_begin);
  EI(keyStr == "end")
 RET CNF(GfxApi_end);
- EI(keyStr == "endIndexed")
-RET CNF(GfxApi_endIndexed);
  EI(keyStr == "uniform")
 RET CNF(GfxApi_uniform);
  EI(keyStr == "addUBOBinding")
@@ -33074,10 +30878,10 @@ CATE(VE,"GfxApi::end" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0])->data;
 
-if(a.getCount()==5)
-if(1&&TS(a[1],GfxPrimitive)&&TS(a[2],uint32_t)&&TS(a[3],GfxWinding)&&TS(a[4],size_t))
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
 {
-( f->end(val_to_c<std::remove_reference<GfxPrimitive>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxWinding>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[4])));
+( f->end(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::end.")));
@@ -33286,23 +31090,6 @@ CATE(TE,UFOF("GfxApi::addUBOBinding.")));
 RET CN;
 }
 
-SV GfxApi_endIndexed(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::endIndexed" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
-
-if(a.getCount()==8)
-if(1&&TS(a[1],GfxPrimitive)&&TS(a[2],GfxVertexAttribType)&&TS(a[3],uint32_t)&&TS(a[4],size_t)&&TS(a[5],GfxBuffer *)&&TS(a[6],GfxWinding)&&TS(a[7],size_t))
-{
-( f->endIndexed(val_to_c<std::remove_reference<GfxPrimitive>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxVertexAttribType>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<GfxBuffer *>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<GfxWinding>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[7])));
-RET CN;
-}
-CATE(TE,UFOF("GfxApi::endIndexed.")));
-RET CN;
-}
-
 SV GfxApi_getBlendModeRGB(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -33354,20 +31141,20 @@ CATE(TE,UFOF("GfxApi::getBlendConstantColorG.")));
 RET CN;
 }
 
-SV GfxApi_createTimer(CTX ctx,const List<SV>&a)
+SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::createTimer" EAOE));
+CATE(VE,"GfxApi::createFramebuffer" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->createTimer());
+RET CV( f->createFramebuffer());
 ;
 }
-CATE(TE,UFOF("GfxApi::createTimer.")));
+CATE(TE,UFOF("GfxApi::createFramebuffer.")));
 RET CN;
 }
 
@@ -33575,17 +31362,6 @@ CATE(TE,UFOF("GfxApi::createBuffer.")));
 RET CN;
 }
 
-SV GfxApi_createMeshImpl(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::createMeshImpl" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
-
-CATE(TE,UFOF("GfxApi::createMeshImpl.")));
-RET CN;
-}
-
 SV GfxApi_getScissorEnabled(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -33699,20 +31475,20 @@ CATE(TE,UFOF("GfxApi::getBlendSrcFactorAlpha.")));
 RET CN;
 }
 
-SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a)
+SV GfxApi_createTimer(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::createFramebuffer" EAOE));
+CATE(VE,"GfxApi::createTimer" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->createFramebuffer());
+RET CV( f->createTimer());
 ;
 }
-CATE(TE,UFOF("GfxApi::createFramebuffer.")));
+CATE(TE,UFOF("GfxApi::createTimer.")));
 RET CN;
 }
 
@@ -35455,21 +33231,23 @@ CATE(TE,UFOF("Quaternion::getZAxis.")));
 RET CN;
 }
 
-void GhostObject_destroy(CTX ctx,NO f)
+void GfxMeshAttrib_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,GhostObject))
-CATE(TE,"GhostObject::__del__ expects GhostObject as first argument."));
+if(!TS((SV)f,GfxMeshAttrib))
+CATE(TE,"GfxMeshAttrib::__del__ expects GfxMeshAttrib as first argument."));
 
-}SV GhostObject_new(CTX ctx,const List<SV>&a)
+DELETE((GfxMeshAttrib*)f->data);
+}SV GfxMeshAttrib_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"GhostObject's constructor" EAOE));
-if(!TS(a[0],GhostObject))
-CATE(TE,"GhostObject's constructor expects GhostObject as first argument."));
-CATE(TE,UFOF("GhostObject's constructor.")));
+CATE(VE,"GfxMeshAttrib's constructor" EAOE));
+if(!TS(a[0],GfxMeshAttrib))
+CATE(TE,"GfxMeshAttrib's constructor expects GfxMeshAttrib as first argument."));
+#define fjis GfxMeshAttrib
+RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(fjis),EXT->GfxMeshAttrib_typeID);
 }
 
-SV GhostObject_get_member(CTX ctx,NO f,SV key)
+SV GfxMeshAttrib_get_member(CTX ctx,NO f,SV key)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -35479,11 +33257,11 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("GhostObject");
+RET STG::createString("GfxMeshAttrib");
 EI(keyStr=="__new__")
-RET CNF(GhostObject_new);
+RET CNF(GfxMeshAttrib_new);
 EI(keyStr=="__call__")
-RET CNF(GhostObject_new);
+RET CNF(GfxMeshAttrib_new);
 else
  CATE(KE,"Unknown member."));
 } else
@@ -35491,262 +33269,19 @@ else
 if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
-RET CNF(GhostObject_new);
- EI(keyStr == "getBulletGhostObject")
-RET CNF(GhostObject_getBulletGhostObject);
- EI(keyStr == "getTransform")
-RET CNF(GhostObject_getTransform);
- EI(keyStr == "setTransform")
-RET CNF(GhostObject_setTransform);
- EI(keyStr == "getWorld")
-RET CNF(GhostObject_getWorld);
- EI(keyStr == "getCollisionMask")
-RET CNF(GhostObject_getCollisionMask);
- EI(keyStr == "setShape")
-RET CNF(GhostObject_setShape);
- EI(keyStr == "getCollisions")
-RET CNF(GhostObject_getCollisions);
- EI(keyStr == "getRigidBodyCollisions")
-RET CNF(GhostObject_getRigidBodyCollisions);
- EI(keyStr == "getGhostCollisions")
-RET CNF(GhostObject_getGhostCollisions);
- EI(keyStr == "getShape")
-RET CNF(GhostObject_getShape);
- else
- CATE(KE,"Unknown member."));
-}
-}
-RET CN;
-}
-
-void GhostObject_set_member(CTX ctx,NO f,SV key,SV value)
+RET CNF(GfxMeshAttrib_new);
+ EI(keyStr=="type")
 {
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue*)key)->value;
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV GhostObject_getTransform(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getTransform" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getTransform());
-;
-}
-CATE(TE,UFOF("GhostObject::getTransform.")));
-RET CN;
-}
-
-SV GhostObject_setTransform(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::setTransform" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const Transform &))
-{
-( f->setTransform(val_to_c<std::remove_reference<const Transform &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GhostObject::setTransform.")));
-RET CN;
-}
-
-SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getGhostCollisions" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getGhostCollisions());
-;
-}
-CATE(TE,UFOF("GhostObject::getGhostCollisions.")));
-RET CN;
-}
-
-SV GhostObject_getCollisions(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getCollisions" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-CATE(TE,UFOF("GhostObject::getCollisions.")));
-RET CN;
-}
-
-SV GhostObject_getBulletGhostObject(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getBulletGhostObject" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-CATE(TE,UFOF("GhostObject::getBulletGhostObject.")));
-RET CN;
-}
-
-SV GhostObject_getWorld(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getWorld" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWorld());
-;
-}
-CATE(TE,UFOF("GhostObject::getWorld.")));
-RET CN;
-}
-
-SV GhostObject_getShape(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getShape" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShape());
-;
-}
-CATE(TE,UFOF("GhostObject::getShape.")));
-RET CN;
-}
-
-SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getRigidBodyCollisions" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getRigidBodyCollisions());
-;
-}
-CATE(TE,UFOF("GhostObject::getRigidBodyCollisions.")));
-RET CN;
-}
-
-SV GhostObject_getCollisionMask(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::getCollisionMask" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCollisionMask());
-;
-}
-CATE(TE,UFOF("GhostObject::getCollisionMask.")));
-RET CN;
-}
-
-SV GhostObject_setShape(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GhostObject::setShape" EAOE));
-GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],PhysicsShape *))
-{
-( f->setShape(val_to_c<std::remove_reference<PhysicsShape *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GhostObject::setShape.")));
-RET CN;
-}
-
-void GfxVertexAttribute_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxVertexAttribute))
-CATE(TE,"GfxVertexAttribute::__del__ expects GfxVertexAttribute as first argument."));
-
-DELETE((GfxVertexAttribute*)f->data);
-}SV GfxVertexAttribute_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxVertexAttribute's constructor" EAOE));
-if(!TS(a[0],GfxVertexAttribute))
-CATE(TE,"GfxVertexAttribute's constructor expects GfxVertexAttribute as first argument."));
-#define fjis GfxVertexAttribute
-RET STG::createNativeObject(GfxVertexAttribute_funcs,NEW(fjis),EXT->GfxVertexAttribute_typeID);
-}
-
-SV GfxVertexAttribute_get_member(CTX ctx,NO f,SV key)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxVertexAttribute");
-EI(keyStr=="__new__")
-RET CNF(GfxVertexAttribute_new);
-EI(keyStr=="__call__")
-RET CNF(GfxVertexAttribute_new);
-else
- CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="__classTypeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
-RET CNF(GfxVertexAttribute_new);
- EI(keyStr=="numComponents")
-{
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
-RET CV(obj->numComponents);
-} EI(keyStr=="type")
-{
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
+GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 RET CV(obj->type);
-} EI(keyStr=="stride")
+} EI(keyStr=="dataType")
 {
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
-RET CV(obj->stride);
-} EI(keyStr=="offset")
+GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
+RET CV(obj->dataType);
+} EI(keyStr=="data")
 {
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
-RET CV(obj->offset);
+GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
+RET CV(obj->data);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -35754,7 +33289,7 @@ RET CV(obj->offset);
 RET CN;
 }
 
-void GfxVertexAttribute_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxMeshAttrib_set_member(CTX ctx,NO f,SV key,SV value)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -35763,22 +33298,18 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="numComponents")
+if(0) {} EI(keyStr=="type")
 {
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
-obj->numComponents=val_to_c<decltype(obj->numComponents)>::f(ctx,value);
-} EI(keyStr=="type")
-{
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
+GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
-} EI(keyStr=="stride")
+} EI(keyStr=="dataType")
 {
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
-obj->stride=val_to_c<decltype(obj->stride)>::f(ctx,value);
-} EI(keyStr=="offset")
+GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
+obj->dataType=val_to_c<decltype(obj->dataType)>::f(ctx,value);
+} EI(keyStr=="data")
 {
-GfxVertexAttribute*obj=(GfxVertexAttribute*)f->data;
-obj->offset=val_to_c<decltype(obj->offset)>::f(ctx,value);
+GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
+obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
@@ -43879,6 +41410,2750 @@ CATE(TE,UFOF("RigidBodyList::__neq__.")));
 RET CN;
 }
 
+void UInt4_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,T4<uint32_t>))
+CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
+
+DELETE((T4<uint32_t>*)f->data);
+}SV UInt4_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4's constructor" EAOE));
+if(!TS(a[0],T4<uint32_t>))
+CATE(TE,"UInt4's constructor expects UInt4 as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],uint32_t))
+RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(a.getCount()==5)
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t)&&TS(a[4],uint32_t))
+RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3]),val_to_c<uint32_t>::f(ctx,a[4])),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const T4<float> &))
+RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const T4<int32_t> &))
+RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const T4<uint32_t> &))
+RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
+CATE(TE,UFOF("UInt4's constructor.")));
+RET CN;
+}
+
+SV UInt4_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("UInt4");
+EI(keyStr=="__new__")
+RET CNF(UInt4_new);
+EI(keyStr=="__call__")
+RET CNF(UInt4_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(UInt4_new);
+ EI(keyStr == "__add__")
+RET CNF(UInt4___add__);
+ EI(keyStr == "__sub__")
+RET CNF(UInt4___sub__);
+ EI(keyStr == "__mul__")
+RET CNF(UInt4___mul__);
+ EI(keyStr == "__div__")
+RET CNF(UInt4___div__);
+ EI(keyStr == "__eq__")
+RET CNF(UInt4___eq__);
+ EI(keyStr == "__neq__")
+RET CNF(UInt4___neq__);
+ EI(keyStr == "__less__")
+RET CNF(UInt4___less__);
+ EI(keyStr == "__grtr__")
+RET CNF(UInt4___grtr__);
+ EI(keyStr == "__leq__")
+RET CNF(UInt4___leq__);
+ EI(keyStr == "__geq__")
+RET CNF(UInt4___geq__);
+ EI(keyStr == "sum")
+RET CNF(UInt4_sum);
+ EI(keyStr == "length")
+RET CNF(UInt4_length);
+ EI(keyStr == "lengthSquared")
+RET CNF(UInt4_lengthSquared);
+ EI(keyStr == "dot")
+RET CNF(UInt4_dot);
+ EI(keyStr == "distance")
+RET CNF(UInt4_distance);
+ EI(keyStr == "distanceSquared")
+RET CNF(UInt4_distanceSquared);
+ EI(keyStr == "normalize")
+RET CNF(UInt4_normalize);
+ EI(keyStr == "getXY")
+RET CNF(UInt4_getXY);
+ EI(keyStr == "setXY")
+RET CNF(UInt4_setXY);
+ EI(keyStr == "getXZ")
+RET CNF(UInt4_getXZ);
+ EI(keyStr == "setXZ")
+RET CNF(UInt4_setXZ);
+ EI(keyStr == "getXW")
+RET CNF(UInt4_getXW);
+ EI(keyStr == "setXW")
+RET CNF(UInt4_setXW);
+ EI(keyStr == "getYX")
+RET CNF(UInt4_getYX);
+ EI(keyStr == "setYX")
+RET CNF(UInt4_setYX);
+ EI(keyStr == "getYZ")
+RET CNF(UInt4_getYZ);
+ EI(keyStr == "setYZ")
+RET CNF(UInt4_setYZ);
+ EI(keyStr == "getYW")
+RET CNF(UInt4_getYW);
+ EI(keyStr == "setYW")
+RET CNF(UInt4_setYW);
+ EI(keyStr == "getZX")
+RET CNF(UInt4_getZX);
+ EI(keyStr == "setZX")
+RET CNF(UInt4_setZX);
+ EI(keyStr == "getZY")
+RET CNF(UInt4_getZY);
+ EI(keyStr == "setZY")
+RET CNF(UInt4_setZY);
+ EI(keyStr == "getZW")
+RET CNF(UInt4_getZW);
+ EI(keyStr == "setZW")
+RET CNF(UInt4_setZW);
+ EI(keyStr == "getWX")
+RET CNF(UInt4_getWX);
+ EI(keyStr == "setWX")
+RET CNF(UInt4_setWX);
+ EI(keyStr == "getWY")
+RET CNF(UInt4_getWY);
+ EI(keyStr == "setWY")
+RET CNF(UInt4_setWY);
+ EI(keyStr == "getWZ")
+RET CNF(UInt4_getWZ);
+ EI(keyStr == "setWZ")
+RET CNF(UInt4_setWZ);
+ EI(keyStr == "getXYZ")
+RET CNF(UInt4_getXYZ);
+ EI(keyStr == "setXYZ")
+RET CNF(UInt4_setXYZ);
+ EI(keyStr == "getXYW")
+RET CNF(UInt4_getXYW);
+ EI(keyStr == "setXYW")
+RET CNF(UInt4_setXYW);
+ EI(keyStr == "getXZY")
+RET CNF(UInt4_getXZY);
+ EI(keyStr == "setXZY")
+RET CNF(UInt4_setXZY);
+ EI(keyStr == "getXZW")
+RET CNF(UInt4_getXZW);
+ EI(keyStr == "setXZW")
+RET CNF(UInt4_setXZW);
+ EI(keyStr == "getXWZ")
+RET CNF(UInt4_getXWZ);
+ EI(keyStr == "setXWZ")
+RET CNF(UInt4_setXWZ);
+ EI(keyStr == "getXWY")
+RET CNF(UInt4_getXWY);
+ EI(keyStr == "setXWY")
+RET CNF(UInt4_setXWY);
+ EI(keyStr == "getYXZ")
+RET CNF(UInt4_getYXZ);
+ EI(keyStr == "setYXZ")
+RET CNF(UInt4_setYXZ);
+ EI(keyStr == "getYXW")
+RET CNF(UInt4_getYXW);
+ EI(keyStr == "setYXW")
+RET CNF(UInt4_setYXW);
+ EI(keyStr == "getYZX")
+RET CNF(UInt4_getYZX);
+ EI(keyStr == "setYZX")
+RET CNF(UInt4_setYZX);
+ EI(keyStr == "getYZW")
+RET CNF(UInt4_getYZW);
+ EI(keyStr == "setYZW")
+RET CNF(UInt4_setYZW);
+ EI(keyStr == "getYWZ")
+RET CNF(UInt4_getYWZ);
+ EI(keyStr == "setYWZ")
+RET CNF(UInt4_setYWZ);
+ EI(keyStr == "getYWX")
+RET CNF(UInt4_getYWX);
+ EI(keyStr == "setYWX")
+RET CNF(UInt4_setYWX);
+ EI(keyStr == "getZXY")
+RET CNF(UInt4_getZXY);
+ EI(keyStr == "setZXY")
+RET CNF(UInt4_setZXY);
+ EI(keyStr == "getZXW")
+RET CNF(UInt4_getZXW);
+ EI(keyStr == "setZXW")
+RET CNF(UInt4_setZXW);
+ EI(keyStr == "getZYX")
+RET CNF(UInt4_getZYX);
+ EI(keyStr == "setZYX")
+RET CNF(UInt4_setZYX);
+ EI(keyStr == "getZYW")
+RET CNF(UInt4_getZYW);
+ EI(keyStr == "setZYW")
+RET CNF(UInt4_setZYW);
+ EI(keyStr == "getZWY")
+RET CNF(UInt4_getZWY);
+ EI(keyStr == "setZWY")
+RET CNF(UInt4_setZWY);
+ EI(keyStr == "getZWX")
+RET CNF(UInt4_getZWX);
+ EI(keyStr == "setZWX")
+RET CNF(UInt4_setZWX);
+ EI(keyStr == "getWXY")
+RET CNF(UInt4_getWXY);
+ EI(keyStr == "setWXY")
+RET CNF(UInt4_setWXY);
+ EI(keyStr == "getWXZ")
+RET CNF(UInt4_getWXZ);
+ EI(keyStr == "setWXZ")
+RET CNF(UInt4_setWXZ);
+ EI(keyStr == "getWYX")
+RET CNF(UInt4_getWYX);
+ EI(keyStr == "setWYX")
+RET CNF(UInt4_setWYX);
+ EI(keyStr == "getWYZ")
+RET CNF(UInt4_getWYZ);
+ EI(keyStr == "setWYZ")
+RET CNF(UInt4_setWYZ);
+ EI(keyStr == "getWZY")
+RET CNF(UInt4_getWZY);
+ EI(keyStr == "setWZY")
+RET CNF(UInt4_setWZY);
+ EI(keyStr == "getWZX")
+RET CNF(UInt4_getWZX);
+ EI(keyStr == "setWZX")
+RET CNF(UInt4_setWZX);
+ EI(keyStr == "getXYZW")
+RET CNF(UInt4_getXYZW);
+ EI(keyStr == "setXYZW")
+RET CNF(UInt4_setXYZW);
+ EI(keyStr == "getXYWZ")
+RET CNF(UInt4_getXYWZ);
+ EI(keyStr == "setXYWZ")
+RET CNF(UInt4_setXYWZ);
+ EI(keyStr == "getXZYW")
+RET CNF(UInt4_getXZYW);
+ EI(keyStr == "setXZYW")
+RET CNF(UInt4_setXZYW);
+ EI(keyStr == "getXZWY")
+RET CNF(UInt4_getXZWY);
+ EI(keyStr == "setXZWY")
+RET CNF(UInt4_setXZWY);
+ EI(keyStr == "getXWZY")
+RET CNF(UInt4_getXWZY);
+ EI(keyStr == "setXWZY")
+RET CNF(UInt4_setXWZY);
+ EI(keyStr == "getXWYZ")
+RET CNF(UInt4_getXWYZ);
+ EI(keyStr == "setXWYZ")
+RET CNF(UInt4_setXWYZ);
+ EI(keyStr == "getYXZW")
+RET CNF(UInt4_getYXZW);
+ EI(keyStr == "setYXZW")
+RET CNF(UInt4_setYXZW);
+ EI(keyStr == "getYXWZ")
+RET CNF(UInt4_getYXWZ);
+ EI(keyStr == "setYXWZ")
+RET CNF(UInt4_setYXWZ);
+ EI(keyStr == "getYZXW")
+RET CNF(UInt4_getYZXW);
+ EI(keyStr == "setYZXW")
+RET CNF(UInt4_setYZXW);
+ EI(keyStr == "getYZWX")
+RET CNF(UInt4_getYZWX);
+ EI(keyStr == "setYZWX")
+RET CNF(UInt4_setYZWX);
+ EI(keyStr == "getYWZX")
+RET CNF(UInt4_getYWZX);
+ EI(keyStr == "setYWZX")
+RET CNF(UInt4_setYWZX);
+ EI(keyStr == "getYWXZ")
+RET CNF(UInt4_getYWXZ);
+ EI(keyStr == "setYWXZ")
+RET CNF(UInt4_setYWXZ);
+ EI(keyStr == "getZYXW")
+RET CNF(UInt4_getZYXW);
+ EI(keyStr == "setZYXW")
+RET CNF(UInt4_setZYXW);
+ EI(keyStr == "getZYWX")
+RET CNF(UInt4_getZYWX);
+ EI(keyStr == "setZYWX")
+RET CNF(UInt4_setZYWX);
+ EI(keyStr == "getZXYW")
+RET CNF(UInt4_getZXYW);
+ EI(keyStr == "setZXYW")
+RET CNF(UInt4_setZXYW);
+ EI(keyStr == "getZXWY")
+RET CNF(UInt4_getZXWY);
+ EI(keyStr == "setZXWY")
+RET CNF(UInt4_setZXWY);
+ EI(keyStr == "getZWXY")
+RET CNF(UInt4_getZWXY);
+ EI(keyStr == "setZWXY")
+RET CNF(UInt4_setZWXY);
+ EI(keyStr == "getZWYX")
+RET CNF(UInt4_getZWYX);
+ EI(keyStr == "setZWYX")
+RET CNF(UInt4_setZWYX);
+ EI(keyStr == "getWYZX")
+RET CNF(UInt4_getWYZX);
+ EI(keyStr == "setWYZX")
+RET CNF(UInt4_setWYZX);
+ EI(keyStr == "getWYXZ")
+RET CNF(UInt4_getWYXZ);
+ EI(keyStr == "setWYXZ")
+RET CNF(UInt4_setWYXZ);
+ EI(keyStr == "getWZYX")
+RET CNF(UInt4_getWZYX);
+ EI(keyStr == "setWZYX")
+RET CNF(UInt4_setWZYX);
+ EI(keyStr == "getWZXY")
+RET CNF(UInt4_getWZXY);
+ EI(keyStr == "setWZXY")
+RET CNF(UInt4_setWZXY);
+ EI(keyStr == "getWXZY")
+RET CNF(UInt4_getWXZY);
+ EI(keyStr == "setWXZY")
+RET CNF(UInt4_setWXZY);
+ EI(keyStr == "getWXYZ")
+RET CNF(UInt4_getWXYZ);
+ EI(keyStr == "setWXYZ")
+RET CNF(UInt4_setWXYZ);
+ EI(keyStr=="x")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+RET CV(obj->x);
+} EI(keyStr=="y")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+RET CV(obj->y);
+} EI(keyStr=="z")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+RET CV(obj->z);
+} EI(keyStr=="w")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+RET CV(obj->w);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void UInt4_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="x")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
+} EI(keyStr=="y")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
+} EI(keyStr=="z")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
+} EI(keyStr=="w")
+{
+T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
+obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV UInt4_setZXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setZXYW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZXYW.")));
+RET CN;
+}
+
+SV UInt4_setWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setWYZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWYZ.")));
+RET CN;
+}
+
+SV UInt4_setWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setWYX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWYX.")));
+RET CN;
+}
+
+SV UInt4_getZWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZWYX());
+;
+}
+CATE(TE,UFOF("UInt4::getZWYX.")));
+RET CN;
+}
+
+SV UInt4_getZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZW());
+;
+}
+CATE(TE,UFOF("UInt4::getZW.")));
+RET CN;
+}
+
+SV UInt4_getZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZY());
+;
+}
+CATE(TE,UFOF("UInt4::getZY.")));
+RET CN;
+}
+
+SV UInt4_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::distanceSquared" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt4::distanceSquared.")));
+RET CN;
+}
+
+SV UInt4_getYXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYXZW());
+;
+}
+CATE(TE,UFOF("UInt4::getYXZW.")));
+RET CN;
+}
+
+SV UInt4_setYZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setYZWX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYZWX.")));
+RET CN;
+}
+
+SV UInt4_getYWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYWZX());
+;
+}
+CATE(TE,UFOF("UInt4::getYWZX.")));
+RET CN;
+}
+
+SV UInt4_getWZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWZXY());
+;
+}
+CATE(TE,UFOF("UInt4::getWZXY.")));
+RET CN;
+}
+
+SV UInt4_getZYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZYXW());
+;
+}
+CATE(TE,UFOF("UInt4::getZYXW.")));
+RET CN;
+}
+
+SV UInt4_setXWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setXWYZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXWYZ.")));
+RET CN;
+}
+
+SV UInt4_setZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setZY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZY.")));
+RET CN;
+}
+
+SV UInt4_setZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setZX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZX.")));
+RET CN;
+}
+
+SV UInt4_getZXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZXWY());
+;
+}
+CATE(TE,UFOF("UInt4::getZXWY.")));
+RET CN;
+}
+
+SV UInt4_getXWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXWZY());
+;
+}
+CATE(TE,UFOF("UInt4::getXWZY.")));
+RET CN;
+}
+
+SV UInt4_setZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setZW(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZW.")));
+RET CN;
+}
+
+SV UInt4_setZYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setZYWX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZYWX.")));
+RET CN;
+}
+
+SV UInt4_getYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYZX());
+;
+}
+CATE(TE,UFOF("UInt4::getYZX.")));
+RET CN;
+}
+
+SV UInt4_getXYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXYWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXYWZ.")));
+RET CN;
+}
+
+SV UInt4_setYXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setYXZW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYXZW.")));
+RET CN;
+}
+
+SV UInt4_getWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWZY());
+;
+}
+CATE(TE,UFOF("UInt4::getWZY.")));
+RET CN;
+}
+
+SV UInt4_getWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWZX());
+;
+}
+CATE(TE,UFOF("UInt4::getWZX.")));
+RET CN;
+}
+
+SV UInt4_getWZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWZYX());
+;
+}
+CATE(TE,UFOF("UInt4::getWZYX.")));
+RET CN;
+}
+
+SV UInt4_setXWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setXWZY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXWZY.")));
+RET CN;
+}
+
+SV UInt4_getZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZXY());
+;
+}
+CATE(TE,UFOF("UInt4::getZXY.")));
+RET CN;
+}
+
+SV UInt4_setWZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setWZYX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWZYX.")));
+RET CN;
+}
+
+SV UInt4_setZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setZYW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZYW.")));
+RET CN;
+}
+
+SV UInt4_setZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setZYX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZYX.")));
+RET CN;
+}
+
+SV UInt4_setXZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setXZYW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXZYW.")));
+RET CN;
+}
+
+SV UInt4_getZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZXW());
+;
+}
+CATE(TE,UFOF("UInt4::getZXW.")));
+RET CN;
+}
+
+SV UInt4_setYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setYZW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYZW.")));
+RET CN;
+}
+
+SV UInt4_getYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYWZ.")));
+RET CN;
+}
+
+SV UInt4___leq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__leq__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f <= v);
+}
+CATE(TE,UFOF("UInt4::__leq__.")));
+RET CN;
+}
+
+SV UInt4_getYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYWX());
+;
+}
+CATE(TE,UFOF("UInt4::getYWX.")));
+RET CN;
+}
+
+SV UInt4_sum(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::sum" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->sum());
+;
+}
+CATE(TE,UFOF("UInt4::sum.")));
+RET CN;
+}
+
+SV UInt4_setYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setYZX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYZX.")));
+RET CN;
+}
+
+SV UInt4_getXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXYZ.")));
+RET CN;
+}
+
+SV UInt4_getZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZX());
+;
+}
+CATE(TE,UFOF("UInt4::getZX.")));
+RET CN;
+}
+
+SV UInt4_getXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXYW());
+;
+}
+CATE(TE,UFOF("UInt4::getXYW.")));
+RET CN;
+}
+
+SV UInt4_setYWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setYWZX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYWZX.")));
+RET CN;
+}
+
+SV UInt4_setWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setWXY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWXY.")));
+RET CN;
+}
+
+SV UInt4_setWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setWXZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWXZ.")));
+RET CN;
+}
+
+SV UInt4_setZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setZXW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZXW.")));
+RET CN;
+}
+
+SV UInt4_getXWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXWYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXWYZ.")));
+RET CN;
+}
+
+SV UInt4_setWYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setWYXZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWYXZ.")));
+RET CN;
+}
+
+SV UInt4_setZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setZXY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZXY.")));
+RET CN;
+}
+
+SV UInt4_getXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXWY());
+;
+}
+CATE(TE,UFOF("UInt4::getXWY.")));
+RET CN;
+}
+
+SV UInt4_getYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYXW());
+;
+}
+CATE(TE,UFOF("UInt4::getYXW.")));
+RET CN;
+}
+
+SV UInt4_getYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYXZ.")));
+RET CN;
+}
+
+SV UInt4_setXYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setXYWZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXYWZ.")));
+RET CN;
+}
+
+SV UInt4_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::length" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->length());
+;
+}
+CATE(TE,UFOF("UInt4::length.")));
+RET CN;
+}
+
+SV UInt4_setWXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setWXZY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWXZY.")));
+RET CN;
+}
+
+SV UInt4_getYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYZW());
+;
+}
+CATE(TE,UFOF("UInt4::getYZW.")));
+RET CN;
+}
+
+SV UInt4_setXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setXWZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXWZ.")));
+RET CN;
+}
+
+SV UInt4_setXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setXWY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXWY.")));
+RET CN;
+}
+
+SV UInt4_getWYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWYZ.")));
+RET CN;
+}
+
+SV UInt4_getWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWYX());
+;
+}
+CATE(TE,UFOF("UInt4::getWYX.")));
+RET CN;
+}
+
+SV UInt4_getZYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZYWX());
+;
+}
+CATE(TE,UFOF("UInt4::getZYWX.")));
+RET CN;
+}
+
+SV UInt4_getXYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXYZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXYZW());
+;
+}
+CATE(TE,UFOF("UInt4::getXYZW.")));
+RET CN;
+}
+
+SV UInt4_setZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setZWY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZWY.")));
+RET CN;
+}
+
+SV UInt4_setZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setZWX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZWX.")));
+RET CN;
+}
+
+SV UInt4_setWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setWX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWX.")));
+RET CN;
+}
+
+SV UInt4_setWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setWY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWY.")));
+RET CN;
+}
+
+SV UInt4_setWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setWZ(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWZ.")));
+RET CN;
+}
+
+SV UInt4_getZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZWY());
+;
+}
+CATE(TE,UFOF("UInt4::getZWY.")));
+RET CN;
+}
+
+SV UInt4_getZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZWX());
+;
+}
+CATE(TE,UFOF("UInt4::getZWX.")));
+RET CN;
+}
+
+SV UInt4_setYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setYXZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYXZ.")));
+RET CN;
+}
+
+SV UInt4_setYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setYXW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYXW.")));
+RET CN;
+}
+
+SV UInt4_getXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXWZ.")));
+RET CN;
+}
+
+SV UInt4_getXZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXZWY());
+;
+}
+CATE(TE,UFOF("UInt4::getXZWY.")));
+RET CN;
+}
+
+SV UInt4___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__less__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f < v);
+}
+CATE(TE,UFOF("UInt4::__less__.")));
+RET CN;
+}
+
+SV UInt4_getZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZYW());
+;
+}
+CATE(TE,UFOF("UInt4::getZYW.")));
+RET CN;
+}
+
+SV UInt4_setWZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setWZY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWZY.")));
+RET CN;
+}
+
+SV UInt4_setWZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setWZX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWZX.")));
+RET CN;
+}
+
+SV UInt4_setZYXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZYXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setZYXW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZYXW.")));
+RET CN;
+}
+
+SV UInt4_getYZWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYZWX());
+;
+}
+CATE(TE,UFOF("UInt4::getYZWX.")));
+RET CN;
+}
+
+SV UInt4_getZYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZYX());
+;
+}
+CATE(TE,UFOF("UInt4::getZYX.")));
+RET CN;
+}
+
+SV UInt4_getXZYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXZYW());
+;
+}
+CATE(TE,UFOF("UInt4::getXZYW.")));
+RET CN;
+}
+
+SV UInt4_setYXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYXWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setYXWZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYXWZ.")));
+RET CN;
+}
+
+SV UInt4___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__eq__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f == v);
+}
+CATE(TE,UFOF("UInt4::__eq__.")));
+RET CN;
+}
+
+SV UInt4_getWYXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWYXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWYXZ.")));
+RET CN;
+}
+
+SV UInt4_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::distance" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+RET CV( f->distance(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt4::distance.")));
+RET CN;
+}
+
+SV UInt4_getXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXZW());
+;
+}
+CATE(TE,UFOF("UInt4::getXZW.")));
+RET CN;
+}
+
+SV UInt4_setYZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setYZXW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYZXW.")));
+RET CN;
+}
+
+SV UInt4_getZWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZWXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZWXY());
+;
+}
+CATE(TE,UFOF("UInt4::getZWXY.")));
+RET CN;
+}
+
+SV UInt4_getXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXZY());
+;
+}
+CATE(TE,UFOF("UInt4::getXZY.")));
+RET CN;
+}
+
+SV UInt4_getYZXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYZXW());
+;
+}
+CATE(TE,UFOF("UInt4::getYZXW.")));
+RET CN;
+}
+
+SV UInt4_setZWYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setZWYX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZWYX.")));
+RET CN;
+}
+
+SV UInt4___sub__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__sub__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f - v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f - v);
+}
+CATE(TE,UFOF("UInt4::__sub__.")));
+RET CN;
+}
+
+SV UInt4_getYXWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYXWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYXWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYXWZ.")));
+RET CN;
+}
+
+SV UInt4_setXZWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setXZWY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXZWY.")));
+RET CN;
+}
+
+SV UInt4_setYWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setYWZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYWZ.")));
+RET CN;
+}
+
+SV UInt4_setYWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setYWX(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYWX.")));
+RET CN;
+}
+
+SV UInt4_setYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setYZ(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYZ.")));
+RET CN;
+}
+
+SV UInt4_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setYX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYX.")));
+RET CN;
+}
+
+SV UInt4_setYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setYW(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYW.")));
+RET CN;
+}
+
+SV UInt4_getWXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWXYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWXYZ.")));
+RET CN;
+}
+
+SV UInt4___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__neq__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("UInt4::__neq__.")));
+RET CN;
+}
+
+SV UInt4_normalize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::normalize" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->normalize());
+;
+}
+CATE(TE,UFOF("UInt4::normalize.")));
+RET CN;
+}
+
+SV UInt4_getYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYX());
+;
+}
+CATE(TE,UFOF("UInt4::getYX.")));
+RET CN;
+}
+
+SV UInt4_setXZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setXZW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXZW.")));
+RET CN;
+}
+
+SV UInt4_setXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setXZY(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXZY.")));
+RET CN;
+}
+
+SV UInt4_setXYZW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYZW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setXYZW(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXYZW.")));
+RET CN;
+}
+
+SV UInt4_getYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYW());
+;
+}
+CATE(TE,UFOF("UInt4::getYW.")));
+RET CN;
+}
+
+SV UInt4_setWXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWXYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setWXYZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWXYZ.")));
+RET CN;
+}
+
+SV UInt4_getYWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYWXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYWXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYWXZ.")));
+RET CN;
+}
+
+SV UInt4___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__mul__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+CATE(TE,UFOF("UInt4::__mul__.")));
+RET CN;
+}
+
+SV UInt4_getYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYZ());
+;
+}
+CATE(TE,UFOF("UInt4::getYZ.")));
+RET CN;
+}
+
+SV UInt4_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::lengthSquared" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->lengthSquared());
+;
+}
+CATE(TE,UFOF("UInt4::lengthSquared.")));
+RET CN;
+}
+
+SV UInt4_getWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWXY());
+;
+}
+CATE(TE,UFOF("UInt4::getWXY.")));
+RET CN;
+}
+
+SV UInt4_getWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWXZ.")));
+RET CN;
+}
+
+SV UInt4_getWX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWX());
+;
+}
+CATE(TE,UFOF("UInt4::getWX.")));
+RET CN;
+}
+
+SV UInt4_getWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWY());
+;
+}
+CATE(TE,UFOF("UInt4::getWY.")));
+RET CN;
+}
+
+SV UInt4_getWZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWZ());
+;
+}
+CATE(TE,UFOF("UInt4::getWZ.")));
+RET CN;
+}
+
+SV UInt4_setXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setXY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXY.")));
+RET CN;
+}
+
+SV UInt4_getZXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getZXYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getZXYW());
+;
+}
+CATE(TE,UFOF("UInt4::getZXYW.")));
+RET CN;
+}
+
+SV UInt4___add__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__add__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f + v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f + v);
+}
+CATE(TE,UFOF("UInt4::__add__.")));
+RET CN;
+}
+
+SV UInt4_setXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setXZ(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXZ.")));
+RET CN;
+}
+
+SV UInt4_getWYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWYZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWYZX());
+;
+}
+CATE(TE,UFOF("UInt4::getWYZX.")));
+RET CN;
+}
+
+SV UInt4_setXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setXW(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXW.")));
+RET CN;
+}
+
+SV UInt4_getWXZY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getWXZY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWXZY());
+;
+}
+CATE(TE,UFOF("UInt4::getWXZY.")));
+RET CN;
+}
+
+SV UInt4_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXY());
+;
+}
+CATE(TE,UFOF("UInt4::getXY.")));
+RET CN;
+}
+
+SV UInt4_setZXWY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZXWY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setZXWY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZXWY.")));
+RET CN;
+}
+
+SV UInt4_setXYW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setXYW(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXYW.")));
+RET CN;
+}
+
+SV UInt4_getXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXZ());
+;
+}
+CATE(TE,UFOF("UInt4::getXZ.")));
+RET CN;
+}
+
+SV UInt4_setWZXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWZXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setWZXY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWZXY.")));
+RET CN;
+}
+
+SV UInt4___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__grtr__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f > v);
+}
+CATE(TE,UFOF("UInt4::__grtr__.")));
+RET CN;
+}
+
+SV UInt4_setZWXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setZWXY" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setZWXY(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setZWXY.")));
+RET CN;
+}
+
+SV UInt4_getXW(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::getXW" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXW());
+;
+}
+CATE(TE,UFOF("UInt4::getXW.")));
+RET CN;
+}
+
+SV UInt4_setXYZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setXYZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T3<uint32_t> &))
+{
+( f->setXYZ(val_to_c<std::remove_reference<const T3<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setXYZ.")));
+RET CN;
+}
+
+SV UInt4___div__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__div__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f / v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f / v);
+}
+CATE(TE,UFOF("UInt4::__div__.")));
+RET CN;
+}
+
+SV UInt4_setWYZX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setWYZX" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setWYZX(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setWYZX.")));
+RET CN;
+}
+
+SV UInt4_setYWXZ(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::setYWXZ" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+( f->setYWXZ(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt4::setYWXZ.")));
+RET CN;
+}
+
+SV UInt4___geq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::__geq__" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f >= v);
+}
+CATE(TE,UFOF("UInt4::__geq__.")));
+RET CN;
+}
+
+SV UInt4_dot(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::dot" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T4<uint32_t> &))
+{
+RET CV( f->dot(val_to_c<std::remove_reference<const T4<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->dot());
+;
+}
+CATE(TE,UFOF("UInt4::dot.")));
+RET CN;
+}
+
 void RayCastResult_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,RayCastResult))
@@ -48649,6 +48924,86 @@ CATE(TE,UFOF("doesFileExist")));
 RET CN;
 }
 
+SV GhostObject_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->GhostObject;
+NO obj=(NO)GhostObject_new(ctx, args2);
+obj->funcs=GhostObject_ptr_funcs;
+obj->typeID=EXT->GhostObject_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV GhostObject_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"GhostObjectRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,GhostObject*))
+CATE(TE,"GhostObjectRef::deref expects GhostObjectRef as first argument."));
+CATE(TE,"GhostObject objects are not copyable."));
+}
+SV GhostObject_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"GhostObject::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,GhostObject*))
+CATE(TE,"GhostObjectRef::refset expects GhostObjectRef as first argument."));
+CATE(TE,"GhostObject objects are not copyable."));
+RET CN;
+}
+
+void GhostObject_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,GhostObject*))
+CATE(TE,"GhostObjectRef::__del__ expects GhostObjectRef as first argument."));
+}
+SV GhostObject_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,GhostObject*))
+CATE(TE,FAE("GhostObjectRef's get method","GhostObjectRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("GhostObjectPtr");
+EI(keyStr=="__new__")
+RET CNF(GhostObject_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(GhostObject_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(GhostObject_ptr_deref);
+if(keyStr=="refset")RET CNF(GhostObject_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=GhostObject_funcs;
+obj.typeID=EXT->GhostObject_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET GhostObject_get_member(ctx, &obj, key);
+}
+void GhostObject_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,GhostObject*))
+CATE(TE,FAE("GhostObjectRef's set method","GhostObjectRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=GhostObject_funcs;
+obj.typeID=EXT->GhostObject_typeID;
+obj.refCount=1;
+obj.data=f->data;
+GhostObject_set_member(ctx, &obj, key, value);
+}
 SV Filesystem_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -48973,86 +49328,6 @@ obj.refCount=1;
 obj.data=f->data;
 GhostObjList_set_member(ctx, &obj, key, value);
 }
-SV Entity_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Entity;
-NO obj=(NO)Entity_new(ctx, args2);
-obj->funcs=Entity_ptr_funcs;
-obj->typeID=EXT->Entity_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Entity_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"EntityRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Entity*))
-CATE(TE,"EntityRef::deref expects EntityRef as first argument."));
-CATE(TE,"Entity objects are not copyable."));
-}
-SV Entity_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Entity::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Entity*))
-CATE(TE,"EntityRef::refset expects EntityRef as first argument."));
-CATE(TE,"Entity objects are not copyable."));
-RET CN;
-}
-
-void Entity_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Entity*))
-CATE(TE,"EntityRef::__del__ expects EntityRef as first argument."));
-}
-SV Entity_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Entity*))
-CATE(TE,FAE("EntityRef's get method","EntityRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("EntityPtr");
-EI(keyStr=="__new__")
-RET CNF(Entity_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Entity_ptr_new);
-else
-CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="deref")RET CNF(Entity_ptr_deref);
-if(keyStr=="refset")RET CNF(Entity_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Entity_funcs;
-obj.typeID=EXT->Entity_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Entity_get_member(ctx, &obj, key);
-}
-void Entity_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Entity*))
-CATE(TE,FAE("EntityRef's set method","EntityRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Entity_funcs;
-obj.typeID=EXT->Entity_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Entity_set_member(ctx, &obj, key, value);
-}
 SV GPUTimer_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -49376,46 +49651,45 @@ obj.refCount=1;
 obj.data=f->data;
 ResourceManager_set_member(ctx, &obj, key, value);
 }
-SV GfxIndexData_ptr_new(CTX ctx,const List<SV>&a)
+SV Entity_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->GfxIndexData;
-NO obj=(NO)GfxIndexData_new(ctx, args2);
-obj->funcs=GfxIndexData_ptr_funcs;
-obj->typeID=EXT->GfxIndexData_ptr_typeID;
+args2[0]=EXT->Entity;
+NO obj=(NO)Entity_new(ctx, args2);
+obj->funcs=Entity_ptr_funcs;
+obj->typeID=EXT->Entity_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 RET(SV)obj;
 }
-SV GfxIndexData_ptr_deref(CTX ctx,const List<SV>&a)
+SV Entity_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"GfxIndexDataRef::deref" EAOE));
+CATE(VE,"EntityRef::deref" EAOE));
 SV f=a[0];
-if(!TS((SV)f,GfxIndexData*))
-CATE(TE,"GfxIndexDataRef::deref expects GfxIndexDataRef as first argument."));
-RET CV(*(GfxIndexData *)((NO)f)->data);
+if(!TS((SV)f,Entity*))
+CATE(TE,"EntityRef::deref expects EntityRef as first argument."));
+CATE(TE,"Entity objects are not copyable."));
 }
-SV GfxIndexData_ptr_set(CTX ctx,const List<SV>&a)
+SV Entity_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"GfxIndexData::refset expects two arguments."));
+CATE(VE,"Entity::refset expects two arguments."));
 SV f=a[0];
-if(!TS((SV)f,GfxIndexData*))
-CATE(TE,"GfxIndexDataRef::refset expects GfxIndexDataRef as first argument."));
-*((GfxIndexData *)((NO)f)->data) = val_to_c<GfxIndexData>::f(ctx,a[1]);
+if(!TS((SV)f,Entity*))
+CATE(TE,"EntityRef::refset expects EntityRef as first argument."));
+CATE(TE,"Entity objects are not copyable."));
 RET CN;
 }
 
-void GfxIndexData_ptr_destroy(CTX ctx,NO f)
+void Entity_ptr_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,GfxIndexData*))
-CATE(TE,"GfxIndexDataRef::__del__ expects GfxIndexDataRef as first argument."));
-SCRIPT_DELETE((GfxIndexData *)f->data);
+if(!TS((SV)f,Entity*))
+CATE(TE,"EntityRef::__del__ expects EntityRef as first argument."));
 }
-SV GfxIndexData_ptr_get_member(CTX ctx,NO f,SV key)
+SV Entity_ptr_get_member(CTX ctx,NO f,SV key)
 {
-if(!TS((SV)f,GfxIndexData*))
-CATE(TE,FAE("GfxIndexDataRef's get method","GfxIndexDataRef")));
+if(!TS((SV)f,Entity*))
+CATE(TE,FAE("EntityRef's get method","EntityRef")));
 if (key->type==STG::ValueType::StringType)
 {
 String keyStr=((STG::StringValue *)key)->value;
@@ -49424,38 +49698,38 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("GfxIndexDataPtr");
+RET STG::createString("EntityPtr");
 EI(keyStr=="__new__")
-RET CNF(GfxIndexData_ptr_new);
+RET CNF(Entity_ptr_new);
 EI(keyStr=="__call__")
-RET CNF(GfxIndexData_ptr_new);
+RET CNF(Entity_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")RET CNF(GfxIndexData_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxIndexData_ptr_set);
+if(keyStr=="deref")RET CNF(Entity_ptr_deref);
+if(keyStr=="refset")RET CNF(Entity_ptr_set);
 }
 }
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxIndexData_funcs;
-obj.typeID=EXT->GfxIndexData_typeID;
+obj.funcs=Entity_funcs;
+obj.typeID=EXT->Entity_typeID;
 obj.refCount=1;
 obj.data=f->data;
-RET GfxIndexData_get_member(ctx, &obj, key);
+RET Entity_get_member(ctx, &obj, key);
 }
-void GfxIndexData_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+void Entity_ptr_set_member(CTX ctx,NO f,SV key,SV value)
 {
-if(!TS((SV)f,GfxIndexData*))
-CATE(TE,FAE("GfxIndexDataRef's set method","GfxIndexDataRef")));
+if(!TS((SV)f,Entity*))
+CATE(TE,FAE("EntityRef's set method","EntityRef")));
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxIndexData_funcs;
-obj.typeID=EXT->GfxIndexData_typeID;
+obj.funcs=Entity_funcs;
+obj.typeID=EXT->Entity_typeID;
 obj.refCount=1;
 obj.data=f->data;
-GfxIndexData_set_member(ctx, &obj, key, value);
+Entity_set_member(ctx, &obj, key, value);
 }
 SV GfxRenderer_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -50595,87 +50869,6 @@ obj.refCount=1;
 obj.data=f->data;
 GfxShader_set_member(ctx, &obj, key, value);
 }
-SV UInt4_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->UInt4;
-NO obj=(NO)UInt4_new(ctx, args2);
-obj->funcs=UInt4_ptr_funcs;
-obj->typeID=EXT->UInt4_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV UInt4_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"UInt4Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,"UInt4Ref::deref expects UInt4Ref as first argument."));
-RET CV(*(T4<uint32_t> *)((NO)f)->data);
-}
-SV UInt4_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"UInt4::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,"UInt4Ref::refset expects UInt4Ref as first argument."));
-*((T4<uint32_t> *)((NO)f)->data) = val_to_c<T4<uint32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void UInt4_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
-SCRIPT_DELETE((T4<uint32_t> *)f->data);
-}
-SV UInt4_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,FAE("UInt4Ref's get method","UInt4Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("UInt4Ptr");
-EI(keyStr=="__new__")
-RET CNF(UInt4_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(UInt4_ptr_new);
-else
-CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="deref")RET CNF(UInt4_ptr_deref);
-if(keyStr=="refset")RET CNF(UInt4_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt4_funcs;
-obj.typeID=EXT->UInt4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET UInt4_get_member(ctx, &obj, key);
-}
-void UInt4_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,FAE("UInt4Ref's set method","UInt4Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt4_funcs;
-obj.typeID=EXT->UInt4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-UInt4_set_member(ctx, &obj, key, value);
-}
 SV Light_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -51812,45 +52005,46 @@ obj.refCount=1;
 obj.data=f->data;
 Quaternion_set_member(ctx, &obj, key, value);
 }
-SV GhostObject_ptr_new(CTX ctx,const List<SV>&a)
+SV GfxMeshAttrib_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->GhostObject;
-NO obj=(NO)GhostObject_new(ctx, args2);
-obj->funcs=GhostObject_ptr_funcs;
-obj->typeID=EXT->GhostObject_ptr_typeID;
+args2[0]=EXT->GfxMeshAttrib;
+NO obj=(NO)GfxMeshAttrib_new(ctx, args2);
+obj->funcs=GfxMeshAttrib_ptr_funcs;
+obj->typeID=EXT->GfxMeshAttrib_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 RET(SV)obj;
 }
-SV GhostObject_ptr_deref(CTX ctx,const List<SV>&a)
+SV GfxMeshAttrib_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"GhostObjectRef::deref" EAOE));
+CATE(VE,"GfxMeshAttribRef::deref" EAOE));
 SV f=a[0];
-if(!TS((SV)f,GhostObject*))
-CATE(TE,"GhostObjectRef::deref expects GhostObjectRef as first argument."));
-CATE(TE,"GhostObject objects are not copyable."));
+if(!TS((SV)f,GfxMeshAttrib*))
+CATE(TE,"GfxMeshAttribRef::deref expects GfxMeshAttribRef as first argument."));
+RET CV(*(GfxMeshAttrib *)((NO)f)->data);
 }
-SV GhostObject_ptr_set(CTX ctx,const List<SV>&a)
+SV GfxMeshAttrib_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"GhostObject::refset expects two arguments."));
+CATE(VE,"GfxMeshAttrib::refset expects two arguments."));
 SV f=a[0];
-if(!TS((SV)f,GhostObject*))
-CATE(TE,"GhostObjectRef::refset expects GhostObjectRef as first argument."));
-CATE(TE,"GhostObject objects are not copyable."));
+if(!TS((SV)f,GfxMeshAttrib*))
+CATE(TE,"GfxMeshAttribRef::refset expects GfxMeshAttribRef as first argument."));
+*((GfxMeshAttrib *)((NO)f)->data) = val_to_c<GfxMeshAttrib>::f(ctx,a[1]);
 RET CN;
 }
 
-void GhostObject_ptr_destroy(CTX ctx,NO f)
+void GfxMeshAttrib_ptr_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,GhostObject*))
-CATE(TE,"GhostObjectRef::__del__ expects GhostObjectRef as first argument."));
+if(!TS((SV)f,GfxMeshAttrib*))
+CATE(TE,"GfxMeshAttribRef::__del__ expects GfxMeshAttribRef as first argument."));
+SCRIPT_DELETE((GfxMeshAttrib *)f->data);
 }
-SV GhostObject_ptr_get_member(CTX ctx,NO f,SV key)
+SV GfxMeshAttrib_ptr_get_member(CTX ctx,NO f,SV key)
 {
-if(!TS((SV)f,GhostObject*))
-CATE(TE,FAE("GhostObjectRef's get method","GhostObjectRef")));
+if(!TS((SV)f,GfxMeshAttrib*))
+CATE(TE,FAE("GfxMeshAttribRef's get method","GfxMeshAttribRef")));
 if (key->type==STG::ValueType::StringType)
 {
 String keyStr=((STG::StringValue *)key)->value;
@@ -51859,119 +52053,38 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("GhostObjectPtr");
+RET STG::createString("GfxMeshAttribPtr");
 EI(keyStr=="__new__")
-RET CNF(GhostObject_ptr_new);
+RET CNF(GfxMeshAttrib_ptr_new);
 EI(keyStr=="__call__")
-RET CNF(GhostObject_ptr_new);
+RET CNF(GfxMeshAttrib_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")RET CNF(GhostObject_ptr_deref);
-if(keyStr=="refset")RET CNF(GhostObject_ptr_set);
+if(keyStr=="deref")RET CNF(GfxMeshAttrib_ptr_deref);
+if(keyStr=="refset")RET CNF(GfxMeshAttrib_ptr_set);
 }
 }
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GhostObject_funcs;
-obj.typeID=EXT->GhostObject_typeID;
+obj.funcs=GfxMeshAttrib_funcs;
+obj.typeID=EXT->GfxMeshAttrib_typeID;
 obj.refCount=1;
 obj.data=f->data;
-RET GhostObject_get_member(ctx, &obj, key);
+RET GfxMeshAttrib_get_member(ctx, &obj, key);
 }
-void GhostObject_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxMeshAttrib_ptr_set_member(CTX ctx,NO f,SV key,SV value)
 {
-if(!TS((SV)f,GhostObject*))
-CATE(TE,FAE("GhostObjectRef's set method","GhostObjectRef")));
+if(!TS((SV)f,GfxMeshAttrib*))
+CATE(TE,FAE("GfxMeshAttribRef's set method","GfxMeshAttribRef")));
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GhostObject_funcs;
-obj.typeID=EXT->GhostObject_typeID;
+obj.funcs=GfxMeshAttrib_funcs;
+obj.typeID=EXT->GfxMeshAttrib_typeID;
 obj.refCount=1;
 obj.data=f->data;
-GhostObject_set_member(ctx, &obj, key, value);
-}
-SV GfxVertexAttribute_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxVertexAttribute;
-NO obj=(NO)GfxVertexAttribute_new(ctx, args2);
-obj->funcs=GfxVertexAttribute_ptr_funcs;
-obj->typeID=EXT->GfxVertexAttribute_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxVertexAttribute_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxVertexAttributeRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxVertexAttribute*))
-CATE(TE,"GfxVertexAttributeRef::deref expects GfxVertexAttributeRef as first argument."));
-RET CV(*(GfxVertexAttribute *)((NO)f)->data);
-}
-SV GfxVertexAttribute_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxVertexAttribute::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxVertexAttribute*))
-CATE(TE,"GfxVertexAttributeRef::refset expects GfxVertexAttributeRef as first argument."));
-*((GfxVertexAttribute *)((NO)f)->data) = val_to_c<GfxVertexAttribute>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxVertexAttribute_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxVertexAttribute*))
-CATE(TE,"GfxVertexAttributeRef::__del__ expects GfxVertexAttributeRef as first argument."));
-SCRIPT_DELETE((GfxVertexAttribute *)f->data);
-}
-SV GfxVertexAttribute_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxVertexAttribute*))
-CATE(TE,FAE("GfxVertexAttributeRef's get method","GfxVertexAttributeRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxVertexAttributePtr");
-EI(keyStr=="__new__")
-RET CNF(GfxVertexAttribute_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxVertexAttribute_ptr_new);
-else
-CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxVertexAttribute_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxVertexAttribute_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxVertexAttribute_funcs;
-obj.typeID=EXT->GfxVertexAttribute_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxVertexAttribute_get_member(ctx, &obj, key);
-}
-void GfxVertexAttribute_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxVertexAttribute*))
-CATE(TE,FAE("GfxVertexAttributeRef's set method","GfxVertexAttributeRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxVertexAttribute_funcs;
-obj.typeID=EXT->GfxVertexAttribute_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxVertexAttribute_set_member(ctx, &obj, key, value);
+GfxMeshAttrib_set_member(ctx, &obj, key, value);
 }
 SV RenderComponent_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -53350,6 +53463,87 @@ obj.refCount=1;
 obj.data=f->data;
 RigidBodyList_set_member(ctx, &obj, key, value);
 }
+SV UInt4_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->UInt4;
+NO obj=(NO)UInt4_new(ctx, args2);
+obj->funcs=UInt4_ptr_funcs;
+obj->typeID=EXT->UInt4_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV UInt4_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"UInt4Ref::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,T4<uint32_t>*))
+CATE(TE,"UInt4Ref::deref expects UInt4Ref as first argument."));
+RET CV(*(T4<uint32_t> *)((NO)f)->data);
+}
+SV UInt4_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"UInt4::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,T4<uint32_t>*))
+CATE(TE,"UInt4Ref::refset expects UInt4Ref as first argument."));
+*((T4<uint32_t> *)((NO)f)->data) = val_to_c<T4<uint32_t>>::f(ctx,a[1]);
+RET CN;
+}
+
+void UInt4_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,T4<uint32_t>*))
+CATE(TE,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
+SCRIPT_DELETE((T4<uint32_t> *)f->data);
+}
+SV UInt4_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,T4<uint32_t>*))
+CATE(TE,FAE("UInt4Ref's get method","UInt4Ref")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("UInt4Ptr");
+EI(keyStr=="__new__")
+RET CNF(UInt4_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(UInt4_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(UInt4_ptr_deref);
+if(keyStr=="refset")RET CNF(UInt4_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=UInt4_funcs;
+obj.typeID=EXT->UInt4_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET UInt4_get_member(ctx, &obj, key);
+}
+void UInt4_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,T4<uint32_t>*))
+CATE(TE,FAE("UInt4Ref's set method","UInt4Ref")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=UInt4_funcs;
+obj.typeID=EXT->UInt4_typeID;
+obj.refCount=1;
+obj.data=f->data;
+UInt4_set_member(ctx, &obj, key, value);
+}
 SV RayCastResult_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -54494,6 +54688,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     int64_t typeID;
     
     typeID = engine->createNewTypeID();
+    ext->GhostObject_typeID = typeID;
+    ext->GhostObject = scripting::createNativeObject(GhostObject_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GhostObject", ext->GhostObject);
+    
+    typeID = engine->createNewTypeID();
+    ext->GhostObject_ptr_typeID = typeID;
+    ext->GhostObject_ptr = scripting::createNativeObject(GhostObject_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GhostObjectRef", ext->GhostObject_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->Filesystem_typeID = typeID;
     ext->Filesystem = scripting::createNativeObject(Filesystem_funcs, NULL, typeID);
     engine->getGlobalVars().set("Filesystem", ext->Filesystem);
@@ -54532,16 +54736,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GhostObjList_ptr_typeID = typeID;
     ext->GhostObjList_ptr = scripting::createNativeObject(GhostObjList_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("GhostObjListRef", ext->GhostObjList_ptr);
-    
-    typeID = engine->createNewTypeID();
-    ext->Entity_typeID = typeID;
-    ext->Entity = scripting::createNativeObject(Entity_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Entity", ext->Entity);
-    
-    typeID = engine->createNewTypeID();
-    ext->Entity_ptr_typeID = typeID;
-    ext->Entity_ptr = scripting::createNativeObject(Entity_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("EntityRef", ext->Entity_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GPUTimer_typeID = typeID;
@@ -54584,14 +54778,14 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("ResourceManagerRef", ext->ResourceManager_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->GfxIndexData_typeID = typeID;
-    ext->GfxIndexData = scripting::createNativeObject(GfxIndexData_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxIndexData", ext->GfxIndexData);
+    ext->Entity_typeID = typeID;
+    ext->Entity = scripting::createNativeObject(Entity_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Entity", ext->Entity);
     
     typeID = engine->createNewTypeID();
-    ext->GfxIndexData_ptr_typeID = typeID;
-    ext->GfxIndexData_ptr = scripting::createNativeObject(GfxIndexData_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxIndexDataRef", ext->GfxIndexData_ptr);
+    ext->Entity_ptr_typeID = typeID;
+    ext->Entity_ptr = scripting::createNativeObject(Entity_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("EntityRef", ext->Entity_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxRenderer_typeID = typeID;
@@ -54734,16 +54928,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxShaderRef", ext->GfxShader_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->UInt4_typeID = typeID;
-    ext->UInt4 = scripting::createNativeObject(UInt4_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt4", ext->UInt4);
-    
-    typeID = engine->createNewTypeID();
-    ext->UInt4_ptr_typeID = typeID;
-    ext->UInt4_ptr = scripting::createNativeObject(UInt4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Light_typeID = typeID;
     ext->Light = scripting::createNativeObject(Light_funcs, NULL, typeID);
     engine->getGlobalVars().set("Light", ext->Light);
@@ -54884,24 +55068,14 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("QuaternionRef", ext->Quaternion_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->GhostObject_typeID = typeID;
-    ext->GhostObject = scripting::createNativeObject(GhostObject_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GhostObject", ext->GhostObject);
+    ext->GfxMeshAttrib_typeID = typeID;
+    ext->GfxMeshAttrib = scripting::createNativeObject(GfxMeshAttrib_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMeshAttrib", ext->GfxMeshAttrib);
     
     typeID = engine->createNewTypeID();
-    ext->GhostObject_ptr_typeID = typeID;
-    ext->GhostObject_ptr = scripting::createNativeObject(GhostObject_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GhostObjectRef", ext->GhostObject_ptr);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxVertexAttribute_typeID = typeID;
-    ext->GfxVertexAttribute = scripting::createNativeObject(GfxVertexAttribute_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxVertexAttribute", ext->GfxVertexAttribute);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxVertexAttribute_ptr_typeID = typeID;
-    ext->GfxVertexAttribute_ptr = scripting::createNativeObject(GfxVertexAttribute_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxVertexAttributeRef", ext->GfxVertexAttribute_ptr);
+    ext->GfxMeshAttrib_ptr_typeID = typeID;
+    ext->GfxMeshAttrib_ptr = scripting::createNativeObject(GfxMeshAttrib_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMeshAttribRef", ext->GfxMeshAttrib_ptr);
     
     typeID = engine->createNewTypeID();
     ext->RenderComponent_typeID = typeID;
@@ -55072,6 +55246,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->RigidBodyList_ptr_typeID = typeID;
     ext->RigidBodyList_ptr = scripting::createNativeObject(RigidBodyList_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBodyListRef", ext->RigidBodyList_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->UInt4_typeID = typeID;
+    ext->UInt4 = scripting::createNativeObject(UInt4_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt4", ext->UInt4);
+    
+    typeID = engine->createNewTypeID();
+    ext->UInt4_ptr_typeID = typeID;
+    ext->UInt4_ptr = scripting::createNativeObject(UInt4_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->RayCastResult_typeID = typeID;
@@ -55331,6 +55515,21 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GfxBufferUsage_typeID = typeID;
     ext->GfxBufferUsage = scripting::createNativeObject(GfxBufferUsage_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxBufferUsage", ext->GfxBufferUsage);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxMeshIndexDataType_typeID = typeID;
+    ext->GfxMeshIndexDataType = scripting::createNativeObject(GfxMeshIndexDataType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMeshIndexDataType", ext->GfxMeshIndexDataType);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxMeshAttribType_typeID = typeID;
+    ext->GfxMeshAttribType = scripting::createNativeObject(GfxMeshAttribType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMeshAttribType", ext->GfxMeshAttribType);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxMeshAttribDataType_typeID = typeID;
+    ext->GfxMeshAttribDataType = scripting::createNativeObject(GfxMeshAttribDataType_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxMeshAttribDataType", ext->GfxMeshAttribDataType);
     
     typeID = engine->createNewTypeID();
     ext->GfxShadowmapPrecision_typeID = typeID;

@@ -2,7 +2,6 @@
 
 #include "graphics/gfxbuffer.h"
 #include "graphics/gfxtexture.h"
-#include "graphics/GL/gfxglmeshimpl.h"
 #include "graphics/GL/gfxgltextureimpl.h"
 #include "graphics/GL/gfxglbuffer.h"
 #include "graphics/GL/gfxglframebuffer.h"
@@ -151,7 +150,8 @@ void debugCallback(GLenum source,
 
 GfxGLApi::GfxGLApi() : stateStackSize(0),
                        textureBindingCount(0),
-                       uboBindingCount(0)
+                       uboBindingCount(0),
+                       mesh(nullptr)
 {
     glflInit();
 
@@ -221,11 +221,6 @@ GfxBuffer *GfxGLApi::createBuffer()
 GfxTextureImpl *GfxGLApi::createTextureImpl()
 {
     return NEW(GfxGLTextureImpl);
-}
-
-GfxMeshImpl *GfxGLApi::createMeshImpl(GfxMesh *mesh)
-{
-    return NEW(GfxGLMeshImpl, mesh);
 }
 
 GfxFramebuffer *GfxGLApi::createFramebuffer()
@@ -346,7 +341,26 @@ for (size_t i = 0; i < uboBindingCount; ++i)\
     glUniformBlockBinding(binding.program, binding.location, i);\
 }\
 \
-switch (winding)\
+switch (mesh->cullMode)\
+{\
+case GfxCullNone:\
+{\
+    glDisable(GL_CULL_FACE);\
+    break;\
+}\
+case GfxCullFront:\
+{\
+    glEnable(GL_CULL_FACE);\
+    glCullFace(GL_FRONT);\
+}\
+case GfxCullBack:\
+{\
+    glEnable(GL_CULL_FACE);\
+    glCullFace(GL_BACK);\
+}\
+}\
+\
+switch (mesh->winding)\
 {\
 case GfxCCW:\
 {\
@@ -380,9 +394,12 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *tessEval_,
                      GfxCompiledShader *geometry_,
                      GfxCompiledShader *fragment_,
-                     GfxMesh *mesh)
+                     GfxMesh *mesh_)
 {
-    glBindVertexArray(dynamic_cast<GfxGLMeshImpl *>(mesh->getImpl())->getGLVAO());
+    mesh = mesh_;
+    tesselation = tessControl_ != nullptr or tessEval_ != nullptr;
+
+    glBindVertexArray(mesh->getGLVAO());
 
     glBindProgramPipeline(pipeline);
 
@@ -430,62 +447,75 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
     }
 }
 
-void GfxGLApi::end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, size_t instanceCount)
+void GfxGLApi::draw(size_t instanceCount)
 {
+    if (mesh == nullptr)
+    {
+        return;
+    }
+
     BEGIN_DRAW
 
-    glDrawArraysInstanced(toGLPrimitive[primitive], 0, count, instanceCount);
+    GLenum primitive = tesselation ? GL_PATCHES : toGLPrimitive[(int)mesh->primitive];
 
-    END_DRAW
+    if (not mesh->getIndexed())
+    {
+        glDrawArraysInstanced(primitive, 0, mesh->numVertices, instanceCount);
+    } else
+    {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->getGLIndexBuffer());
+
+        switch (mesh->getIndexType())
+        {
+        case GfxMeshIndexDataType::U8:
+        {
+            glDrawElementsInstanced(primitive,
+                                    mesh->numIndices,
+                                    GL_UNSIGNED_BYTE,
+                                    (const GLvoid *)0,
+                                    instanceCount);
+            break;
+        }
+        case GfxMeshIndexDataType::U16:
+        {
+            glDrawElementsInstanced(primitive,
+                                    mesh->numIndices,
+                                    GL_UNSIGNED_SHORT,
+                                    (const GLvoid *)0,
+                                    instanceCount);
+            break;
+        }
+        case GfxMeshIndexDataType::U32:
+        {
+            glDrawElementsInstanced(primitive,
+                                    mesh->numIndices,
+                                    GL_UNSIGNED_INT,
+                                    (const GLvoid *)0,
+                                    instanceCount);
+            break;
+        }
+        default: {break;}
+        }
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    }
 }
 
-void GfxGLApi::endIndexed(GfxPrimitive primitive,
-                          GfxVertexAttribType type,
-                          uint32_t count,
-                          size_t offset,
-                          GfxBuffer *indices,
-                          GfxWinding winding,
-                          size_t instanceCount)
+void GfxGLApi::end(size_t instanceCount)
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamic_cast<GfxGLBuffer *>(indices)->getGLBuffer());
-
-    BEGIN_DRAW
-
-    switch (type)
+    if (mesh == nullptr)
     {
-    case GfxUnsignedByte:
-    {
-        glDrawElementsInstanced(toGLPrimitive[primitive],
-                                count,
-                                GL_UNSIGNED_BYTE,
-                                (const GLvoid *)offset,
-                                instanceCount);
-        break;
-    }
-    case GfxUnsignedShort:
-    {
-        glDrawElementsInstanced(toGLPrimitive[primitive],
-                                count,
-                                GL_UNSIGNED_SHORT,
-                                (const GLvoid *)offset,
-                                instanceCount);
-        break;
-    }
-    case GfxUnsignedInteger:
-    {
-        glDrawElementsInstanced(toGLPrimitive[primitive],
-                                count,
-                                GL_UNSIGNED_INT,
-                                (const GLvoid *)offset,
-                                instanceCount);
-        break;
-    }
-    default: {break;}
+        return;
     }
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    if (instanceCount != 0)
+    {
+        draw(instanceCount);
+    }
 
     END_DRAW
+
+    mesh = nullptr;
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, float value)

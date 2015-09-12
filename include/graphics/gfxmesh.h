@@ -16,22 +16,90 @@
 #include <stddef.h>
 #include <stdint.h>
 
-class GfxGLApi;
-class GfxMeshImpl;
-
-struct GfxVertexAttribute
+enum class GfxMeshIndexDataType
 {
-    uint8_t numComponents;
-    GfxVertexAttribType type;
-    uint32_t stride;
-    uint32_t offset;
-} BIND;
+    U8,
+    U16,
+    U32
+} BIND ENUM_CLASS;
+static const unsigned int GfxMeshIndexDataTypeMax = 4;
 
-struct GfxIndexData
+enum class GfxMeshAttribType
 {
-    GfxVertexAttribType type;
-    size_t numIndices;
-    size_t offset;
+    Position = 0,
+    Normal = 1,
+    Tangent = 2,
+    Color = 3,
+    TexCoord = 4
+} BIND ENUM_CLASS;
+static const unsigned int GfxMeshAttribTypeMax = 5;
+
+enum class GfxMeshAttribDataType
+{
+    F16_1 = 0,
+    F16_2 = 1,
+    F16_3 = 2,
+    F16_4 = 3,
+    F32_1 = 4,
+    F32_2 = 5,
+    F32_3 = 6,
+    F32_4 = 7,
+    U8_1 = 8,
+    U8_2 = 9,
+    U8_3 = 10,
+    U8_4 = 11,
+    S8_1 = 12,
+    S8_2 = 13,
+    S8_3 = 14,
+    S8_4 = 15,
+    U16_1 = 16,
+    U16_2 = 17,
+    U16_3 = 18,
+    U16_4 = 19,
+    S16_1 = 20,
+    S16_2 = 21,
+    S16_3 = 22,
+    S16_4 = 23,
+    U32_1 = 24,
+    U32_2 = 25,
+    U32_3 = 26,
+    U32_4 = 27,
+    S32_1 = 28,
+    S32_2 = 29,
+    S32_3 = 30,
+    S32_4 = 31,
+    U8_1Norm = 32,
+    U8_2Norm = 33,
+    U8_3Norm = 34,
+    U8_4Norm = 35,
+    S8_1Norm = 36,
+    S8_2Norm = 37,
+    S8_3Norm = 38,
+    S8_4Norm = 39,
+    U16_1Norm = 40,
+    U16_2Norm = 41,
+    U16_3Norm = 42,
+    U16_4Norm = 43,
+    S16_1Norm = 44,
+    S16_2Norm = 45,
+    S16_3Norm = 46,
+    S16_4Norm = 47,
+    U32_1Norm = 48,
+    U32_2Norm = 49,
+    U32_3Norm = 50,
+    U32_4Norm = 51,
+    S32_1Norm = 52,
+    S32_2Norm = 53,
+    S32_3Norm = 54,
+    S32_4Norm = 55
+} BIND ENUM_CLASS;
+static const unsigned int GfxMeshAttribDataTypeMax = 56;
+
+struct GfxMeshAttrib
+{
+    GfxMeshAttribType type;
+    GfxMeshAttribDataType dataType;
+    ResizableData data;
 } BIND;
 
 class GfxMesh : public Resource
@@ -43,67 +111,90 @@ class GfxMesh : public Resource
         GfxMesh();
         virtual ~GfxMesh();
 
-        void init(GfxPrimitive primitive_,
-                  size_t numVertices_,
-                  GfxCullMode cullMode,
-                  GfxWinding winding);
+        void addIndices(size_t numIndices,
+                        GfxMeshIndexDataType indexType,
+                        const void *indices) NO_BIND;
 
-        void setVertexAttrib(GfxVertexAttribPurpose purpose,
-                             const GfxVertexAttribute& attribute);
-        void disableVertexAttrib(GfxVertexAttribPurpose purpose);
-        bool isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const;
-        GfxVertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const;
+        inline void addIndices(size_t numIndices,
+                               GfxMeshIndexDataType indexType,
+                               const ResizableData& data)
+        {
+            if (((int)indexType+1  * numIndices) > data.getSize())
+            {
+                THROW(BoundsException);
+            }
+
+            addIndices(numIndices, indexType, data.getData());
+        }
+
+        void removeIndices();
+
+        void setAttribute(const GfxMeshAttrib& attrib);
+        void removeAttribute(GfxMeshAttribType type);
+
+        inline bool getIndexed() const
+        {
+            return indexed;
+        }
+
+        GfxMeshIndexDataType getIndexType() const
+        {
+            return indexType;
+        }
+
+        const void *getIndices() NO_BIND
+        {
+            return indices;
+        }
+
+        inline const List<GfxMeshAttrib>& getAttribs() const NO_BIND
+        {
+            return attribs;
+        }
+
+        inline size_t getAttribCount() const
+        {
+            return attribs.getCount();
+        }
+
+        inline GfxMeshAttrib getAttrib(size_t index) const
+        {
+            return attribs[index];
+        }
+
+        inline GLuint getGLVAO() const
+        {
+            return vao;
+        }
+
+        inline GLuint getGLIndexBuffer() const
+        {
+            return indexBuffer;
+        }
+
+        AABB aabb;
+        size_t numVertices;
+        size_t numIndices;
+        GfxPrimitive primitive;
+        GfxCullMode cullMode;
+        GfxWinding winding;
 
         virtual void removeContent();
 
         virtual void save();
-
-        inline GfxMeshImpl *getImpl() const NO_BIND
-        {
-            return impl;
-        }
-
-        GfxPrimitive primitive;
-        size_t numVertices;
-        GfxCullMode cullMode;
-        GfxWinding winding;
-
-        bool indexed;
-        GfxIndexData indexData;
-
-        AABB aabb;
-
-        inline GfxBuffer *getBuffer() const
-        {
-            return buffer;
-        }
     private:
-        GfxBuffer *buffer;
-        GfxMeshImpl *impl;
+        bool indexed;
+
+        List<GfxMeshAttrib> attribs;
+        List<GLuint> buffers;
+        GLuint indexBuffer;
+        GLuint vao;
+
+        GfxMeshIndexDataType indexType;
+        void *indices;
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
-
-    NO_COPY_INHERITED(GfxMesh, Resource)
 } DESTROY(obj->release()) BIND;
-
-class GfxMeshImpl
-{
-    friend class GfxMesh;
-
-    protected:
-        GfxMeshImpl(GfxMesh *mesh_) : mesh(mesh_) {}
-        virtual ~GfxMeshImpl() {}
-
-        virtual void setVertexAttrib(GfxVertexAttribPurpose purpose,
-                                     const GfxVertexAttribute& attribute)=0;
-        virtual void disableVertexAttrib(GfxVertexAttribPurpose purpose)=0;
-        virtual bool isVertexAttribEnabled(GfxVertexAttribPurpose purpose) const=0;
-        virtual GfxVertexAttribute getVertexAttrib(GfxVertexAttribPurpose purpose) const=0;
-
-        GfxMesh *mesh;
-
-    NO_COPY(GfxMeshImpl)
-};
 
 #endif // GFXMESH_H

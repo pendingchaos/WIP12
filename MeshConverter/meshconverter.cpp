@@ -98,20 +98,17 @@ void convert(const char *input, const char *out)
 
     aiMesh *mesh = scene->mMeshes[0];
 
-    bool indexed = mesh->mNumVertices < 0xFFFFFFFFu;
     size_t indexSize = (mesh->mNumVertices < 0xFFu) ? 1 : (mesh->mNumVertices < 0xFFFFu) ? 2 : 4;
 
     FILE *output = std::fopen(out, "wb");
 
-    std::fwrite("mesh\x01\x00", 6, 1, output);
+    std::fwrite("mesh\x00\x00", 6, 1, output);
 
-    unsigned int count = indexed ? mesh->mNumFaces*3 : mesh->mNumVertices;
+    unsigned int count = mesh->mNumFaces*3;
 
     std::fwrite(&count, 4, 1, output);
 
-    std::fwrite("\x06\x01\x00", 3, 1, output); //primitive, winding, cull mode
-
-    std::fwrite(indexed ? "\x01" : "\x00", 1, 1, output);
+    std::fwrite("\x01\x06\x00\x01", 4, 1, output); //indexed, primitive, cull mode, winding
 
     float minX = 0.0f;
     float minY = 0.0f;
@@ -142,300 +139,162 @@ void convert(const char *input, const char *out)
     std::fwrite(&maxY, 4, 1, output);
     std::fwrite(&maxZ, 4, 1, output);
 
-    uint32_t stride = 0;
+    uint32_t numVertexAttribs = ((mesh->HasPositions() != 0) ? 1 : 0) +
+                                ((mesh->HasNormals() != 0) ? 1 : 0) +
+                                ((mesh->HasTangentsAndBitangents() != 0) ? 1 : 0) +
+                                ((mesh->GetNumUVChannels() != 0) ? 1 : 0) +
+                                ((mesh->GetNumColorChannels() != 0) ? 1 : 0);
 
-    stride += mesh->HasPositions() ? 12 : 0;
-    stride += mesh->HasNormals() ? 6 : 0;
-    stride += mesh->HasTangentsAndBitangents() ? 6 : 0;
-    stride += mesh->GetNumUVChannels() != 0 ? 4 : 0;
-    stride += mesh->GetNumColorChannels() != 0 ? 3 : 0;
-
-    uint32_t offset = 0;
-
-    if (indexed)
-    {
-        static uint8_t arr[] = {0, 4, 6, 0, 8};
-        std::fwrite(&arr[indexSize], 1, 1, output); //Type
-
-        uint32_t indicesOffset = mesh->mNumVertices*stride;
-
-        std::fwrite(&indicesOffset, 4, 1, output);
-    }
-
-    uint8_t numVertexAttribs = (mesh->HasPositions() != 0 ? 1 : 0) +
-                               (mesh->HasNormals() != 0 ? 1 : 0) +
-                               (mesh->HasTangentsAndBitangents() != 0 ? 1 : 0) +
-                               (mesh->GetNumUVChannels() != 0 ? 1 : 0) +
-                               (mesh->GetNumColorChannels() != 0 ? 1 : 0);
-
-    std::fwrite(&numVertexAttribs, 1, 1, output);
+    std::fwrite(&numVertexAttribs, 4, 1, output);
 
     if (mesh->HasPositions())
     {
-        writeVertexAttrib(output, 0, 3, 1, stride, offset);
-        offset += 12;
+        std::fwrite("\x00\x06", 2, 1, output); //type, datatype
+
+        uint32_t size = mesh->mNumVertices * 12;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            std::fwrite(&mesh->mVertices[i].x, 4, 1, output);
+            std::fwrite(&mesh->mVertices[i].y, 4, 1, output);
+            std::fwrite(&mesh->mVertices[i].z, 4, 1, output);
+        }
     }
 
     if (mesh->HasNormals())
     {
-        writeVertexAttrib(output, 1, 3, 11, stride, offset);
-        offset += 6;
+        std::fwrite("\x01\x16", 2, 1, output); //type, datatype
+
+        uint32_t size = mesh->mNumVertices * 6;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            aiVector3D normal = mesh->mNormals[i];
+
+            struct
+            {
+                int16_t x;
+                int16_t y;
+                int16_t z;
+            } vert;
+
+            vert.x = normal.x * 32767.0f;
+            vert.y = normal.y * 32767.0f;
+            vert.z = normal.z * 32767.0f;
+
+            std::fwrite(&vert, 6, 1, output);
+        }
     }
 
     if (mesh->HasTangentsAndBitangents())
     {
-        writeVertexAttrib(output, 2, 3, 11, stride, offset);
-        offset += 6;
+        std::fwrite("\x02\x16", 2, 1, output); //type, datatype
+
+        uint32_t size = mesh->mNumVertices * 6;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            aiVector3D tangent = mesh->mTangents[i];
+
+            struct
+            {
+                int16_t x;
+                int16_t y;
+                int16_t z;
+            } vert;
+
+            vert.x = tangent.x * 32767.0f;
+            vert.y = tangent.y * 32767.0f;
+            vert.z = tangent.z * 32767.0f;
+
+            std::fwrite(&vert, 6, 1, output);
+        }
     }
 
     if (mesh->GetNumUVChannels() != 0)
     {
-        writeVertexAttrib(output, 4, 2, 12, stride, offset);
+        std::fwrite("\x04\x29", 2, 1, output); //type, datatype
 
-        offset += 4;
+        uint32_t size = mesh->mNumVertices * 4;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            const aiVector3D& texCoord = mesh->mTextureCoords[0][i];
+
+            uint16_t u = static_cast<uint16_t>(texCoord.x * 65535.0f);
+            uint16_t v = static_cast<uint16_t>(texCoord.y * 65535.0f);
+
+            std::fwrite(&u, 2, 1, output);
+            std::fwrite(&v, 2, 1, output);
+        }
     }
 
     if (mesh->GetNumColorChannels() != 0)
     {
-        writeVertexAttrib(output, 5, 3, 10, stride, offset);
+        std::fwrite("\x03\x23", 2, 1, output); //type, datatype
+
+        uint32_t size = mesh->mNumVertices * 4;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            const aiColor4D& color = mesh->mColors[0][i];
+
+            struct {uint8_t r, g, b, a;} rgba;
+
+            rgba.r = color.r * 255;
+            rgba.g = color.g * 255;
+            rgba.b = color.b * 255;
+            rgba.a = color.a * 255;
+
+            std::fwrite(&rgba, 4, 1, output);
+        }
     }
 
-    if (not indexed)
+    uint8_t indexType = indexSize - 1;
+
+    std::fwrite(&indexType, 1, 1, output);
+
+    if (indexSize == 4)
     {
-        unsigned int numVertices = 0;
-
-        for (unsigned int i = 0; i < mesh->mNumFaces; ++i)
+        for (size_t i = 0; i < mesh->mNumFaces; ++i)
         {
-            numVertices += mesh->mFaces[i].mNumIndices;
+            uint32_t i1 = mesh->mFaces[i].mIndices[0];
+            uint32_t i2 = mesh->mFaces[i].mIndices[1];
+            uint32_t i3 = mesh->mFaces[i].mIndices[2];
+
+            std::fwrite(&i1, 4, 1, output);
+            std::fwrite(&i2, 4, 1, output);
+            std::fwrite(&i3, 4, 1, output);
         }
-
-        char *data = (char *)std::malloc(stride * numVertices);
-
-        unsigned di = 0;
-
-        for (unsigned int i = 0; i < mesh->mNumFaces; ++i)
-        {
-            aiFace face = mesh->mFaces[i];
-
-            for (unsigned int i2 = 0; i2 < face.mNumIndices; ++i2)
-            {
-                unsigned int si = face.mIndices[i2];
-
-                offset = 0;
-
-                if (mesh->HasPositions())
-                {
-                    std::memcpy(data+di*stride, &mesh->mVertices[si], 12);
-
-                    offset += 12;
-                }
-
-                if (mesh->HasNormals())
-                {
-                    aiVector3D normal = mesh->mNormals[si];
-
-                    struct
-                    {
-                        int16_t x;
-                        int16_t y;
-                        int16_t z;
-                    } vert;
-
-                    vert.x = normal.x * 32767.0f;
-                    vert.y = normal.y * 32767.0f;
-                    vert.z = normal.z * 32767.0f;
-
-                    std::memcpy(data+di*stride+offset, &vert, 6);
-                    offset += 6;
-                }
-
-                if (mesh->HasTangentsAndBitangents())
-                {
-                    aiVector3D tangent = mesh->mTangents[si];
-
-                    struct
-                    {
-                        int16_t x;
-                        int16_t y;
-                        int16_t z;
-                    } vert;
-
-                    vert.x = tangent.x * 32767.0f;
-                    vert.y = tangent.y * 32767.0f;
-                    vert.z = tangent.z * 32767.0f;
-
-                    std::memcpy(data+di*stride+offset, &vert, 6);
-                    offset += 6;
-                }
-
-                if (mesh->GetNumUVChannels() != 0)
-                {
-                    const aiVector3D& texCoord = mesh->mTextureCoords[0][si];
-
-                    struct {uint16_t u, v;} uv;
-
-                    uv.u = static_cast<uint16_t>(texCoord.x * 65535.0f);
-                    uv.v = static_cast<uint16_t>(texCoord.y * 65535.0f);
-
-                    std::memcpy(data+di*stride+offset, &uv, 4);
-
-                    offset += 4;
-                }
-
-                if (mesh->GetNumColorChannels() != 0)
-                {
-                    const aiColor4D& color = mesh->mColors[0][si];
-
-                    struct {uint8_t r, g, b, a;} rgba;
-
-                    rgba.r = color.r * 255;
-                    rgba.g = color.g * 255;
-                    rgba.b = color.b * 255;
-                    rgba.a = color.a * 255;
-
-                    std::memcpy(data+di*stride+offset, &rgba, 4);
-
-                    offset += 4;
-                }
-
-                ++di;
-            }
-        }
-
-        uint32_t size = stride * numVertices;
-
-        std::fwrite(&size, 4, 1, output);
-        std::fwrite(data, size, 1, output);
-
-        std::free(data);
-    } else
+    } else if (indexSize == 2)
     {
-        char *data = (char *)std::malloc(stride*mesh->mNumVertices + mesh->mNumFaces*indexSize*3);
-
-        for (unsigned int i = 0; i < mesh->mNumVertices; ++i)
+        for (size_t i = 0; i < mesh->mNumFaces; ++i)
         {
-            offset = 0;
+            uint16_t i1 = mesh->mFaces[i].mIndices[0];
+            uint16_t i2 = mesh->mFaces[i].mIndices[1];
+            uint16_t i3 = mesh->mFaces[i].mIndices[2];
 
-            if (mesh->HasPositions())
-            {
-                std::memcpy(data+i*stride, &mesh->mVertices[i], 12);
-
-                offset += 12;
-            }
-
-            if (mesh->HasNormals())
-            {
-                aiVector3D normal = mesh->mNormals[i];
-
-                struct
-                {
-                    int16_t x;
-                    int16_t y;
-                    int16_t z;
-                } vert;
-
-                vert.x = normal.x * 32767.0f;
-                vert.y = normal.y * 32767.0f;
-                vert.z = normal.z * 32767.0f;
-
-                std::memcpy(data+i*stride+offset, &vert, 6);
-                offset += 6;
-            }
-
-            if (mesh->HasTangentsAndBitangents())
-            {
-                aiVector3D tangent = mesh->mTangents[i];
-
-                struct
-                {
-                    int16_t x;
-                    int16_t y;
-                    int16_t z;
-                } vert;
-
-                vert.x = tangent.x * 32767.0f;
-                vert.y = tangent.y * 32767.0f;
-                vert.z = tangent.z * 32767.0f;
-
-                std::memcpy(data+i*stride+offset, &vert, 6);
-                offset += 6;
-            }
-
-            if (mesh->GetNumUVChannels() != 0)
-            {
-                const aiVector3D& texCoord = mesh->mTextureCoords[0][i];
-
-                struct {uint16_t u, v;} uv;
-
-                uv.u = static_cast<uint16_t>(texCoord.x * 65535.0f);
-                uv.v = static_cast<uint16_t>(texCoord.y * 65535.0f);
-
-                std::memcpy(data+i*stride+offset, &uv, 4);
-
-                offset += 4;
-            }
-
-            if (mesh->GetNumColorChannels() != 0)
-            {
-                const aiColor4D& color = mesh->mColors[0][i];
-
-                struct {uint8_t r, g, b, a;} rgba;
-
-                rgba.r = color.r * 255;
-                rgba.g = color.g * 255;
-                rgba.b = color.b * 255;
-                rgba.a = color.a * 255;
-
-                std::memcpy(data+i*stride+offset, &rgba, 4);
-
-                offset += 4;
-            }
+            std::fwrite(&i1, 2, 1, output);
+            std::fwrite(&i2, 2, 1, output);
+            std::fwrite(&i3, 2, 1, output);
         }
-
-        if (indexSize == 4)
+    } else if (indexSize == 1)
+    {
+        for (size_t i = 0; i < mesh->mNumFaces; ++i)
         {
-            for (size_t i = 0; i < mesh->mNumFaces; ++i)
-            {
-                uint32_t i1 = mesh->mFaces[i].mIndices[0];
-                uint32_t i2 = mesh->mFaces[i].mIndices[1];
-                uint32_t i3 = mesh->mFaces[i].mIndices[2];
+            uint8_t i1 = mesh->mFaces[i].mIndices[0];
+            uint8_t i2 = mesh->mFaces[i].mIndices[1];
+            uint8_t i3 = mesh->mFaces[i].mIndices[2];
 
-                std::memcpy(data+mesh->mNumVertices*stride+i*12, &i1, 4);
-                std::memcpy(data+mesh->mNumVertices*stride+i*12+4, &i2, 4);
-                std::memcpy(data+mesh->mNumVertices*stride+i*12+8, &i3, 4);
-            }
-        } else if (indexSize == 2)
-        {
-            for (size_t i = 0; i < mesh->mNumFaces; ++i)
-            {
-                uint16_t i1 = mesh->mFaces[i].mIndices[0];
-                uint16_t i2 = mesh->mFaces[i].mIndices[1];
-                uint16_t i3 = mesh->mFaces[i].mIndices[2];
-
-                std::memcpy(data+mesh->mNumVertices*stride+i*6, &i1, 2);
-                std::memcpy(data+mesh->mNumVertices*stride+i*6+2, &i2, 2);
-                std::memcpy(data+mesh->mNumVertices*stride+i*6+4, &i3, 2);
-            }
-        } else if (indexSize == 1)
-        {
-            for (size_t i = 0; i < mesh->mNumFaces; ++i)
-            {
-                uint8_t i1 = mesh->mFaces[i].mIndices[0];
-                uint8_t i2 = mesh->mFaces[i].mIndices[1];
-                uint8_t i3 = mesh->mFaces[i].mIndices[2];
-
-                std::memcpy(data+mesh->mNumVertices*stride+i*3, &i1, 1);
-                std::memcpy(data+mesh->mNumVertices*stride+i*3+1, &i2, 1);
-                std::memcpy(data+mesh->mNumVertices*stride+i*3+2, &i3, 1);
-            }
+            std::fwrite(&i1, 1, 1, output);
+            std::fwrite(&i2, 1, 1, output);
+            std::fwrite(&i3, 1, 1, output);
         }
-
-        uint32_t size = stride*mesh->mNumVertices + mesh->mNumFaces*indexSize*3;
-
-        std::fwrite(&size, 4, 1, output);
-        std::fwrite(data, size, 1, output);
-
-        std::free(data);
     }
 
     std::fclose(output);

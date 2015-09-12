@@ -188,10 +188,7 @@ void Font::render(size_t size,
             gfxApi->uniform(compiledQuadFragment, "color", color);
             gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
 
-            gfxApi->end(quadMesh->primitive,
-                        quadMesh->numVertices,
-                        quadMesh->winding,
-                        100);
+            gfxApi->end(100);
         }
 
         if (positions.getCount() % 100 != 0)
@@ -210,10 +207,7 @@ void Font::render(size_t size,
             gfxApi->uniform(compiledQuadFragment, "color", color);
             gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
 
-            gfxApi->end(quadMesh->primitive,
-                        quadMesh->numVertices,
-                        quadMesh->winding,
-                        positions.getCount() % 100);
+            gfxApi->end(positions.getCount() % 100);
         }
     }
 

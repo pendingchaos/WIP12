@@ -18,7 +18,7 @@
         - [ ] Then bind the exceptions
     - [ ] Bind some stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer and Application.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
 - [ ] Finish the bytecode generator (scripting).

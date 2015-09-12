@@ -82,7 +82,6 @@ class GfxApi
 
         virtual GfxBuffer *createBuffer()=0;
         virtual GfxTextureImpl *createTextureImpl() NO_BIND=0;
-        virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh) NO_BIND=0;
         virtual GfxFramebuffer *createFramebuffer()=0;
         virtual GPUTimer *createTimer()=0;
 
@@ -99,14 +98,8 @@ class GfxApi
                            GfxCompiledShader *geometry,
                            GfxCompiledShader *fragment,
                            GfxMesh *mesh)=0;
-        virtual void end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, size_t instanceCount=1)=0;
-        virtual void endIndexed(GfxPrimitive primitive,
-                                GfxVertexAttribType type,
-                                uint32_t count,
-                                size_t offset,
-                                GfxBuffer *indices,
-                                GfxWinding winding,
-                                size_t instanceCount=1)=0;
+        virtual void draw(size_t instanceCount=1)=0;
+        virtual void end(size_t instanceCount=1)=0;
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value)=0;

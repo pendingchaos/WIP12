@@ -126,18 +126,15 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
     quadMesh = NEW(GfxMesh);
 
-    quadMesh->getBuffer()->allocData(sizeof(positionData), positionData, GfxBufferUsage::Static);
-
     quadMesh->primitive = GfxTriangles;
     quadMesh->numVertices = 6;
 
-    GfxVertexAttribute positionAttribute;
-    positionAttribute.numComponents = 2;
-    positionAttribute.type = GfxFloat;
-    positionAttribute.stride = 8;
-    positionAttribute.offset = 0;
+    GfxMeshAttrib attrib;
+    attrib.type = GfxMeshAttribType::Position;
+    attrib.dataType = GfxMeshAttribDataType::F32_2;
+    attrib.data = ResizableData(sizeof(positionData), positionData);
 
-    quadMesh->setVertexAttrib(GfxPosition, positionAttribute);
+    quadMesh->setAttribute(attrib);
 
     readColorTexture = NEW(GfxTexture);
     writeColorTexture = NEW(GfxTexture);
@@ -1003,9 +1000,7 @@ void GfxRenderer::render()
     gfxApi->uniform(compiledSSAOFragment, "radius", ssaoRadius);
     gfxApi->addTextureBinding(compiledSSAOFragment, "randomTex", ssaoRandomTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     ssaoTimer->end();
@@ -1104,9 +1099,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(compiledSSAOBlurXFragment, "aoTexture", ssaoTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     ssaoBlurXTimer->end();
@@ -1125,9 +1118,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(compiledSSAOBlurYFragment, "aoTexture", ssaoBlurXTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     ssaoBlurYTimer->end();
@@ -1249,9 +1240,7 @@ void GfxRenderer::render()
         }
         }
 
-        gfxApi->end(quadMesh->primitive,
-                    quadMesh->numVertices,
-                    quadMesh->winding);
+        gfxApi->end();
         ++stats.numDrawCalls;
     }
 
@@ -1303,9 +1292,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(compiledLumCalcFragment, "colorTexture", writeColorTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     luminanceTexture->generateMipmaps();
@@ -1361,9 +1348,7 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(compiledBloomDownsampleFragment, "colorTexture", readColorTexture);
         gfxApi->uniform(compiledBloomDownsampleFragment, "threshold", bloomThreshold);
 
-        gfxApi->end(quadMesh->primitive,
-                    quadMesh->numVertices,
-                    quadMesh->winding);
+        gfxApi->end();
         ++stats.numDrawCalls;
 
         #define BLOOM(framebuffer) {\
@@ -1383,9 +1368,7 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)radius);\
         gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);\
 \
-        gfxApi->end(quadMesh->primitive,\
-                    quadMesh->numVertices,\
-                    quadMesh->winding);\
+        gfxApi->end();\
         ++stats.numDrawCalls;\
 \
         gfxApi->setCurrentFramebuffer(framebuffer);\
@@ -1401,9 +1384,7 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)radius);\
         gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);\
 \
-        gfxApi->end(quadMesh->primitive,\
-                    quadMesh->numVertices,\
-                    quadMesh->winding);\
+        gfxApi->end();\
         ++stats.numDrawCalls;\
         }
 
@@ -1446,9 +1427,7 @@ void GfxRenderer::render()
         gfxApi->uniform(compiledApplyBloomFragment, "bloom3Strength", bloom3Strength);
         gfxApi->uniform(compiledApplyBloomFragment, "bloom4Strength", bloom4Strength);
 
-        gfxApi->end(quadMesh->primitive,
-                    quadMesh->numVertices,
-                    quadMesh->winding);
+        gfxApi->end();
         ++stats.numDrawCalls;
 
         swapFramebuffers();
@@ -1470,9 +1449,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(compiledColorModifier, "colorTexture", readColorTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     colorModifierTimer->end();
@@ -1508,9 +1485,7 @@ void GfxRenderer::render()
                 gfxApi->uniform(compiledOverlayFragment, "color", comp->overlayData.color);
                 gfxApi->addTextureBinding(compiledOverlayFragment, "colorTexture", comp->overlayTexture);
 
-                gfxApi->end(quadMesh->primitive,
-                            quadMesh->numVertices,
-                            quadMesh->winding);
+                gfxApi->end();
                 ++stats.numDrawCalls;
                 break;
             }
@@ -1541,9 +1516,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(compiledGammaCorrectionFragment, "colorTexture", readColorTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     swapFramebuffers();
@@ -1564,9 +1537,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(compiledFXAAFragment, "colorTexture", readColorTexture);
 
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
+    gfxApi->end();
     ++stats.numDrawCalls;
 
     fxaaTimer->end();
@@ -1984,10 +1955,6 @@ void GfxRenderer::renderBatches(bool forward)
 
             gfxApi->setCullMode(mesh->cullMode);
 
-            GfxPrimitive primitive = useTesselation ?
-                                     GfxPatches :
-                                     mesh->primitive;
-
             if (useTesselation)
             {
                 gfxApi->setTessPatchSize(3);
@@ -2011,19 +1978,7 @@ void GfxRenderer::renderBatches(bool forward)
 
                 instanceBuffer->setData(0, 16384, instanceData);
 
-                if (mesh->indexed)
-                {
-                    gfxApi->endIndexed(primitive,
-                                       mesh->indexData.type,
-                                       mesh->indexData.numIndices,
-                                       mesh->indexData.offset,
-                                       mesh->getBuffer(),
-                                       mesh->winding,
-                                       128);
-                } else
-                {
-                    gfxApi->end(primitive, mesh->numVertices, mesh->winding, 128);
-                }
+                gfxApi->draw(128);
                 ++stats.numDrawCalls;
             }
 
@@ -2046,21 +2001,11 @@ void GfxRenderer::renderBatches(bool forward)
 
                 instanceBuffer->setData(0, numLeft*128, instanceData);
 
-                if (mesh->indexed)
-                {
-                    gfxApi->endIndexed(primitive,
-                                       mesh->indexData.type,
-                                       mesh->indexData.numIndices,
-                                       mesh->indexData.offset,
-                                       mesh->getBuffer(),
-                                       mesh->winding,
-                                       numLeft);
-                } else
-                {
-                    gfxApi->end(primitive, mesh->numVertices, mesh->winding, numLeft);
-                }
+                gfxApi->draw(numLeft);
                 ++stats.numDrawCalls;
             }
+
+            gfxApi->end(0);
 
             gfxApi->popState();
         }
@@ -2090,20 +2035,7 @@ void GfxRenderer::renderSkybox()
 
         gfxApi->addTextureBinding(compiledFS, "enviroment", skybox);
 
-        if (skyboxMesh->indexed)
-        {
-            gfxApi->endIndexed(skyboxMesh->primitive,
-                               skyboxMesh->indexData.type,
-                               skyboxMesh->indexData.numIndices,
-                               skyboxMesh->indexData.offset,
-                               skyboxMesh->getBuffer(),
-                               skyboxMesh->winding);
-        } else
-        {
-            gfxApi->end(skyboxMesh->primitive,
-                        skyboxMesh->numVertices,
-                        skyboxMesh->winding);
-        }
+        gfxApi->end();
         ++stats.numDrawCalls;
 
         gfxApi->popState();
@@ -2246,10 +2178,6 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
         gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
 
-        GfxPrimitive primitive = useTesselation ?
-                                 GfxPatches :
-                                 mesh->primitive;
-
         gfxApi->setTessPatchSize(3);
 
         for (size_t j = 0; j < batch.worldMatrices.getCount(); ++j)
@@ -2263,20 +2191,11 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                 gfxApi->uniform(vertexShader, "normalMatrix", Matrix3x3(worldMatrix.inverse().transpose()));
             }
 
-            if (mesh->indexed)
-            {
-                gfxApi->endIndexed(primitive,
-                                   mesh->indexData.type,
-                                   mesh->indexData.numIndices,
-                                   mesh->indexData.offset,
-                                   mesh->getBuffer(),
-                                   mesh->winding);
-            } else
-            {
-                gfxApi->end(primitive, mesh->numVertices, mesh->winding);
-            }
+            gfxApi->draw();
             ++stats.numDrawCalls;
         }
+
+        gfxApi->end(0);
     }
 }
 

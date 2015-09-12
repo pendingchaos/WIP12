@@ -26,7 +26,6 @@ class GfxGLApi : public GfxApi
 
         virtual GfxBuffer *createBuffer();
         virtual GfxTextureImpl *createTextureImpl();
-        virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh);
         virtual GfxFramebuffer *createFramebuffer();
         virtual GPUTimer *createTimer();
 
@@ -43,14 +42,8 @@ class GfxGLApi : public GfxApi
                            GfxCompiledShader *geometry,
                            GfxCompiledShader *fragment,
                            GfxMesh *mesh);
-        virtual void end(GfxPrimitive primitive, uint32_t count, GfxWinding winding, size_t instanceCount=1);
-        virtual void endIndexed(GfxPrimitive primitive,
-                                GfxVertexAttribType type,
-                                uint32_t count,
-                                size_t offset,
-                                GfxBuffer *indices,
-                                GfxWinding winding,
-                                size_t instanceCount=1);
+        virtual void draw(size_t instanceCount=1);
+        virtual void end(size_t instanceCount=1);
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value);
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value);
@@ -207,6 +200,9 @@ class GfxGLApi : public GfxApi
 
         uint8_t uboBindingCount;
         UBOBinding uboBindings[64];
+
+        GfxMesh *mesh;
+        bool tesselation;
 
         void useState(const State& state);
 };
