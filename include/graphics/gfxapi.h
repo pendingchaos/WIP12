@@ -80,7 +80,6 @@ class GfxApi
 
         virtual bool tesselationSupported()=0;
 
-        virtual GfxShaderImpl *createShaderImpl() NO_BIND=0;
         virtual GfxBuffer *createBuffer()=0;
         virtual GfxTextureImpl *createTextureImpl() NO_BIND=0;
         virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh) NO_BIND=0;

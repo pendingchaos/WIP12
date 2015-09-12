@@ -4,26 +4,43 @@
 #include "error.h"
 #include "filesystem.h"
 #include "globals.h"
-#include "graphics/gfxapi.h"
+#include "graphics/GL/gfxglapi.h"
 
 #include <unistd.h>
 
 GfxShader::GfxShader(const String& filename) : Resource(filename,
                                                         ResType::GfxShaderType),
-                                               impl(gfxApi->createShaderImpl()) {}
+                                               shaderType(GfxShaderType::Vertex) {}
 
 GfxShader::GfxShader() : Resource(ResType::GfxShaderType),
-                         impl(gfxApi->createShaderImpl()) {}
+                         shaderType(GfxShaderType::Vertex) {}
 
 GfxShader::~GfxShader()
 {
-    DELETE(impl);
+    for (size_t i = 0; i < compiled.getEntryCount(); ++i)
+    {
+        GfxCompiledShader *shader = compiled.getValue(i);
+
+        glDeleteProgram(shader->getGLProgram());
+        glDeleteShader(shader->getGLShader());
+        DELETE(shader);
+    }
 }
 
 void GfxShader::removeContent()
 {
-    DELETE(impl);
-    impl = gfxApi->createShaderImpl();
+    for (size_t i = 0; i < compiled.getEntryCount(); ++i)
+    {
+        GfxCompiledShader *shader = compiled.getValue(i);
+
+        glDeleteProgram(shader->getGLProgram());
+        glDeleteShader(shader->getGLShader());
+        DELETE(shader);
+    }
+
+    compiled.clear();
+
+    shaderType = GfxShaderType::Vertex;
 }
 
 void GfxShader::save()
@@ -65,8 +82,6 @@ void GfxShader::save()
         break;
     }
     }
-
-    const String source = getSource();
 
     file.write(source.getLength(), source.getData());
 }
@@ -138,13 +153,13 @@ void GfxShader::_load()
         }
         }
 
-        String source(file.getSize()-7);
+        source = String(file.getSize()-7);
 
         file.read(source.getLength(), source.getData());
 
         try
         {
-            setSource(type, source);
+            compile(type, source);
         } catch (ShaderCompileException& e)
         {
             THROW(ResourceIOException,
@@ -169,43 +184,197 @@ void GfxShader::possiblyReload()
     }
 }
 
-void GfxShader::setSource(GfxShaderType type, const String& source)
+GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings, String& infoLog)
 {
-    impl->setSource(type, source.copy());
-}
+    GLuint shader = glCreateShader(type);
 
-const String GfxShader::getSource() const
-{
-    return impl->getSource();
-}
+    glShaderSource(shader, count, strings, nullptr);
+    glCompileShader(shader);
 
-GfxCompiledShader *GfxShader::_getCompiled(List<String> defineNames, List<String> defineValues) const
-{
-    HashMap<String, String> defines;
+    GLint compiled;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
 
-    for (size_t i = 0; i < defineNames.getCount(); ++i)
+    if (compiled)
     {
-        defines.set(defineNames[i], defineValues[i]);
+        glAttachShader(program, shader);
+        glLinkProgram(program);
+    } else
+    {
+        GLint length;
+        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+        infoLog.resize(length);
+        glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
+
+        glDeleteShader(shader);
+
+        return 0;
     }
 
-    return impl->getCompiled(defines);
+    GLint linked;
+    glGetProgramiv(program, GL_LINK_STATUS, &linked);
+
+    if (not linked and compiled)
+    {
+        GLint length;
+        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+
+        infoLog.resize(length);
+        glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
+
+        glDeleteShader(shader);
+
+        return 0;
+    }
+
+    return shader;
 }
 
-void GfxShader::recompile()
+void GfxShader::compile(GfxShaderType type, const String& source_)
 {
-    impl->recompile();
+    shaderType = type;
+    source = source_;
+
+    for (size_t i = 0; i < compiled.getEntryCount(); ++i)
+    {
+        GfxCompiledShader *shader = compiled.getValue(i);
+
+        glDetachShader(shader->program, shader->glShader);
+
+        shader->glShader = _compile(shader->program, compiled.getKey(i));
+    }
 }
 
-GfxShaderType GfxShader::getShaderType() const
+GfxCompiledShader *GfxShader::getCompiled(const HashMap<String, String>& defines) const
 {
-    return impl->getType();
+    int entry = compiled.findEntry(defines);
+
+    if (entry == -1)
+    {
+        GLuint program = glCreateProgram();
+        glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
+
+        GfxCompiledShader *shader = NEW(GfxCompiledShader, const_cast<GfxShader *>(this), program, _compile(program, defines));
+
+        compiled.set(defines, shader);
+
+        return shader;
+    }
+
+    return compiled.getValue(entry);
+}
+
+GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defines) const
+{
+    GLsizei numSources = defines.getEntryCount() + 4;
+    const char *sources[numSources];
+    String defineSources[defines.getEntryCount()];
+
+    unsigned int major = ((GfxGLApi *)gfxApi)->getOpenGLMajorVersion();
+    unsigned int minor = ((GfxGLApi *)gfxApi)->getOpenGLMinorVersion();
+
+    if (major == 3 and minor == 3)
+    {
+        sources[0] = "#version 330 core\n";
+    } else if (major == 4 and minor == 0)
+    {
+        sources[0] = "#version 400 core\n";
+    } else if (major == 4 and minor == 1)
+    {
+        sources[0] = "#version 410 core\n";
+    } else if (major == 4 and minor == 2)
+    {
+        sources[0] = "#version 420 core\n";
+    } else if (major == 4 and minor == 3)
+    {
+        sources[0] = "#version 430 core\n";
+    } else if (major == 4 and minor == 4)
+    {
+        sources[0] = "#version 440 core\n";
+    } else if (major == 4 and minor == 5)
+    {
+        sources[0] = "#version 450 core\n";
+    }
+
+    sources[1] = "#extension GL_ARB_gpu_shader5 : enable\n"
+"#pragma optionNV(fastmath on)\n"
+"#pragma optionNV(fastprecision on)\n"
+"#pragma optionNV(ifcvt none)\n"
+"#pragma optionNV(inline all)\n"
+"#pragma optionNV(strict on)\n"
+"#pragma optionNV(unroll all)\n"
+"#if GL_ARB_gpu_shader5 || (__VERSION__ >= 400)\n"
+"#else\n"
+"#define fma(a, b, c) ((a) * (b) + (c))\n"
+"#endif\n";
+
+    for (size_t i = 0; i < defines.getEntryCount(); ++i)
+    {
+        defineSources[i] = String::format("#define %s %s\n",
+                                          defines.getKey(i).getData(),
+                                          defines.getValue(i).getData());
+        sources[i+2] = defineSources[i].getData();
+    }
+
+    sources[defines.getEntryCount()+2] = "#line 1\n";
+
+    sources[defines.getEntryCount()+3] = source.getData();
+
+    if (source.getLength() < 10)
+    {
+        std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAA\n" << source.getData() << std::endl;
+    }
+
+    GLuint result = 0;
+    String infoLog;
+
+    switch (shaderType)
+    {
+    case GfxShaderType::Vertex:
+    {
+        result = ::_compile(program, GL_VERTEX_SHADER, numSources, sources, infoLog);
+        break;
+    }
+    case GfxShaderType::TessControl:
+    {
+        result = ::_compile(program, GL_TESS_CONTROL_SHADER, numSources, sources, infoLog);
+        break;
+    }
+    case GfxShaderType::TessEval:
+    {
+        result = ::_compile(program, GL_TESS_EVALUATION_SHADER, numSources, sources, infoLog);
+        break;
+    }
+    case GfxShaderType::Geometry:
+    {
+        result = ::_compile(program, GL_GEOMETRY_SHADER, numSources, sources, infoLog);
+        break;
+    }
+    case GfxShaderType::Fragment:
+    {
+        result = ::_compile(program, GL_FRAGMENT_SHADER, numSources, sources, infoLog);
+        break;
+    }
+    case GfxShaderType::Compute:
+    {
+        result = ::_compile(program, GL_COMPUTE_SHADER, numSources, sources, infoLog);
+        break;
+    }
+    }
+
+    if (infoLog.getLength() != 0)
+    {
+        THROW(ShaderCompileException, infoLog);
+    }
+
+    return result;
 }
 
 Resource *GfxShader::_copy() const
 {
     GfxShader *shader = NEW(GfxShader);
 
-    shader->setSource(getShaderType(), getSource());
+    shader->compile(shaderType, source);
 
     return (Resource *)shader;
 }

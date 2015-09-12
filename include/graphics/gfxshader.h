@@ -49,101 +49,74 @@ enum class GfxShaderType
 
 class GfxShader : public Resource
 {
-    friend class GfxCompiledShader;
+    NO_COPY_INHERITED(GfxShader, Resource)
 
     public:
         static const ResType resource_type = ResType::GfxShaderType;
 
         GfxShader(const String& filename);
         GfxShader();
-
         ~GfxShader();
 
         virtual void removeContent();
 
         virtual void save();
 
-        void setSource(GfxShaderType type, const String& source);
-        const String getSource() const;
+        void compile(GfxShaderType type, const String& source);
 
-        inline GfxCompiledShader *getCompiled(const HashMap<String, String >& defines
-                                              =HashMap<String, String >()) const
+        inline const String& getSource() const
         {
-            //Ugly hack to get around undefined reference error (g++ bug?).
-            List<String> names;
-            List<String> values;
-
-            for (size_t i = 0; i < defines.getEntryCount(); ++i)
-            {
-                names.append(defines.getKey(i));
-
-                values.append(defines.getValue(i));
-            }
-
-            return _getCompiled(names, values);
+            return source;
         }
 
-        void recompile();
-
-        GfxShaderType getShaderType() const;
-
-        inline GfxShaderImpl *getImpl() const NO_BIND
+        inline GfxShaderType getShaderType() const
         {
-            return impl;
+            return shaderType;
         }
+
+        GfxCompiledShader *getCompiled(const HashMap<String, String>& defines=HashMap<String, String>()) const;
 
         virtual void possiblyReload();
     private:
-        GfxCompiledShader *_getCompiled(List<String> defineNames, List<String> defineValues) const;
-
-        GfxShaderImpl *impl;
-    protected:
         virtual void _load();
         virtual Resource *_copy() const;
+        GLuint _compile(GLuint program, const HashMap<String, String >& defines) const;
 
-    NO_COPY_INHERITED(GfxShader, Resource)
+        GfxShaderType shaderType;
+        mutable HashMap<HashMap<String, String>, GfxCompiledShader *> compiled;
+        String source;
 } DESTROY(obj->release()) BIND;
 
 class GfxCompiledShader
 {
-    NO_COPY(GfxCompiledShader)
+    friend GfxShader;
 
     public:
-        virtual ~GfxCompiledShader() {}
-
-        virtual bool isInvalid() const=0;
-
-        inline GfxShaderType getType() const
+        inline GfxShader *getShader() const
         {
-            return type;
+            return shader;
+        }
+
+        inline GLuint getGLProgram() const
+        {
+            return program;
+        }
+
+        inline GLuint getGLShader() const
+        {
+            return glShader;
         }
     protected:
-        GfxCompiledShader(GfxShaderType type_) : type(type_) {}
+        GfxCompiledShader(GfxShader *shader_,
+                          GLuint program_,
+                          GLuint glShader_) : shader(shader_),
+                                              program(program_),
+                                              glShader(glShader_) {}
     private:
-        GfxShaderType type;
+        GfxShader *shader;
+        GLuint program;
+        GLuint glShader;
 } BIND;
-
-class GfxShaderImpl
-{
-    friend class GfxShader;
-    friend class GfxGLApi;
-
-    protected:
-        GfxShaderImpl() {}
-        virtual ~GfxShaderImpl() {}
-
-        virtual void setSource(GfxShaderType type, const String& source)=0;
-        virtual String getSource() const=0;
-
-        virtual GfxCompiledShader *getCompiled(const HashMap<String, String >& defines=
-                                               HashMap<String, String >()) const=0;
-
-        virtual void recompile()=0;
-
-        virtual GfxShaderType getType() const=0;
-
-    NO_COPY(GfxShaderImpl)
-};
 
 class GfxShaderCombination
 {

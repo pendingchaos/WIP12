@@ -42,6 +42,7 @@
 - [ ] Transform::lookAt does not work.
 - [ ] Fix black borders around normal mapped metallic objects (http://marmosetco.tumblr.com/post/81245981087 ?):
 ![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/metallic border bug.png)
+- [ ] Compiled shaders will be invalidated when a shader is reloaded.
 
 ## Other
 - [ ] Texture types should be immutable.

@@ -24,7 +24,6 @@ class GfxGLApi : public GfxApi
 
         virtual bool tesselationSupported();
 
-        virtual GfxShaderImpl *createShaderImpl();
         virtual GfxBuffer *createBuffer();
         virtual GfxTextureImpl *createTextureImpl();
         virtual GfxMeshImpl *createMeshImpl(GfxMesh *mesh);
@@ -210,26 +209,6 @@ class GfxGLApi : public GfxApi
         UBOBinding uboBindings[64];
 
         void useState(const State& state);
-
-        struct ProgramCombination
-        {
-            GLuint vertex;
-            GLuint tessControl;
-            GLuint tessEval;
-            GLuint geometry;
-            GLuint fragment;
-
-            inline bool operator == (const ProgramCombination& other) const
-            {
-                return vertex == other.vertex and
-                       tessControl == other.tessControl and
-                       tessEval == other.tessEval and
-                       geometry == other.geometry and
-                       fragment == other.fragment;
-            }
-        };
-
-        HashMap<ProgramCombination, GLuint> programs;
 };
 
 #endif // GFXGLAPI_H

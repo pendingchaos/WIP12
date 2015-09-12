@@ -27,7 +27,6 @@
 #include "graphics/camera.h"
 #include "graphics/gfxmodel.h"
 #include "graphics/GL/gfxglmeshimpl.h"
-#include "graphics/GL/gfxglshaderimpl.h"
 #include "graphics/GL/gfxglframebuffer.h"
 #include "graphics/GL/glfl.h"
 #include "graphics/GL/glgputimer.h"
@@ -80,8 +79,8 @@
 
 struct BindingsExt
 {
-    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, Light_typeID, Light_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *Light, *Light_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t Filesystem_typeID, Filesystem_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, GfxIndexData_typeID, GfxIndexData_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GhostObject_typeID, GhostObject_ptr_typeID, GfxVertexAttribute_typeID, GfxVertexAttribute_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *Filesystem, *Filesystem_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *Entity, *Entity_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *GfxIndexData, *GfxIndexData_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *UInt4, *UInt4_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxLODList, *GfxLODList_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *GfxApi, *GfxApi_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GhostObject, *GhostObject_ptr, *GfxVertexAttribute, *GfxVertexAttribute_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -1953,6 +1952,44 @@ static const STG::NativeObjectFuncs GfxCompiledShader_funcs={
 .setMember = GfxCompiledShader_set_member
 };
 template <>
+struct create_val<GfxCompiledShader>
+{
+static SV f(CTX ctx,const GfxCompiledShader&obj)
+{
+#define ghfj GfxCompiledShader
+RET STG::createNativeObject(GfxCompiledShader_funcs,NEW(ghfj, obj),EXT->GfxCompiledShader_typeID);
+}
+};
+template <>
+struct val_to_c<GfxCompiledShader>
+{
+static GfxCompiledShader f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->GfxCompiledShader_typeID)
+RET*((GfxCompiledShader*)obj->data);
+else
+ CATE(TE,"Value can not be converted to GfxCompiledShader."));
+} else
+ CATE(TE,"Value can not be converted to GfxCompiledShader."));
+}
+};
+
+template <>
+struct val_to_c<const GfxCompiledShader>
+{
+static GfxCompiledShader f(CTX ctx,const SV head) {return val_to_c<GfxCompiledShader>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const GfxCompiledShader>
+{
+static SV f(CTX ctx,const GfxCompiledShader&obj) {return create_val<GfxCompiledShader>::f(ctx,obj);}
+};
+
+template <>
 struct type_same<GfxCompiledShader>
 {
 static bool f(CTX ctx,const SV head)
@@ -1964,8 +2001,9 @@ else
 }
 };
 
-SV GfxCompiledShader_isInvalid(CTX ctx,const List<SV>&a);
-SV GfxCompiledShader_getType(CTX ctx,const List<SV>&a);
+SV GfxCompiledShader_getShader(CTX ctx,const List<SV>&a);
+SV GfxCompiledShader_getGLProgram(CTX ctx,const List<SV>&a);
+SV GfxCompiledShader_getGLShader(CTX ctx,const List<SV>&a);
 void UInt2_destroy(CTX,NO);
 SV UInt2_get_member(CTX,NO,SV);
 void UInt2_set_member(CTX,NO,SV,SV);
@@ -3154,12 +3192,10 @@ else
 
 SV GfxShader_removeContent(CTX ctx,const List<SV>&a);
 SV GfxShader_save(CTX ctx,const List<SV>&a);
-SV GfxShader_setSource(CTX ctx,const List<SV>&a);
+SV GfxShader_compile(CTX ctx,const List<SV>&a);
 SV GfxShader_getSource(CTX ctx,const List<SV>&a);
-SV GfxShader_getCompiled(CTX ctx,const List<SV>&a);
-SV GfxShader_recompile(CTX ctx,const List<SV>&a);
 SV GfxShader_getShaderType(CTX ctx,const List<SV>&a);
-SV GfxShader_getImpl(CTX ctx,const List<SV>&a);
+SV GfxShader_getCompiled(CTX ctx,const List<SV>&a);
 SV GfxShader_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxShader_load(CTX ctx,const List<SV>&a);
 SV GfxShader_reload(CTX ctx,const List<SV>&a);
@@ -3367,6 +3403,37 @@ SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
 SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
+void Light_destroy(CTX,NO);
+SV Light_get_member(CTX,NO,SV);
+void Light_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Light_funcs={
+.destroy = Light_destroy,
+.getMember = Light_get_member,
+.setMember = Light_set_member
+};
+template <>
+struct type_same<Light>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Light_typeID;
+else
+ RET false;
+}
+};
+
+SV Light_addShadowmap(CTX ctx,const List<SV>&a);
+SV Light_removeShadowmap(CTX ctx,const List<SV>&a);
+SV Light_getShadowmap(CTX ctx,const List<SV>&a);
+SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a);
+SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a);
+SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a);
+SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a);
+SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a);
+SV Light_updateMatrices(CTX ctx,const List<SV>&a);
+SV Light_getViewMatrix(CTX ctx,const List<SV>&a);
+SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a);
 void TextureSampler_destroy(CTX,NO);
 SV TextureSampler_get_member(CTX,NO,SV);
 void TextureSampler_set_member(CTX,NO,SV,SV);
@@ -4737,37 +4804,6 @@ SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a);
 SV StrStrMap_remove(CTX ctx,const List<SV>&a);
 SV StrStrMap_clear(CTX ctx,const List<SV>&a);
 SV StrStrMap_append(CTX ctx,const List<SV>&a);
-void Light_destroy(CTX,NO);
-SV Light_get_member(CTX,NO,SV);
-void Light_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Light_funcs={
-.destroy = Light_destroy,
-.getMember = Light_get_member,
-.setMember = Light_set_member
-};
-template <>
-struct type_same<Light>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_typeID;
-else
- RET false;
-}
-};
-
-SV Light_addShadowmap(CTX ctx,const List<SV>&a);
-SV Light_removeShadowmap(CTX ctx,const List<SV>&a);
-SV Light_getShadowmap(CTX ctx,const List<SV>&a);
-SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a);
-SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a);
-SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a);
-SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a);
-SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a);
-SV Light_updateMatrices(CTX ctx,const List<SV>&a);
-SV Light_getViewMatrix(CTX ctx,const List<SV>&a);
-SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a);
 void StringList_destroy(CTX,NO);
 SV StringList_get_member(CTX,NO,SV);
 void StringList_set_member(CTX,NO,SV,SV);
@@ -8420,6 +8456,81 @@ else
 }
 };
 
+SV Light_ptr_copy(CTX,NO);
+void Light_ptr_destroy(CTX,NO);
+SV Light_ptr_get_member(CTX,NO,SV);
+void Light_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Light_ptr_funcs={
+.destroy = Light_ptr_destroy,
+.getMember = Light_ptr_get_member,
+.setMember = Light_ptr_set_member
+};
+template <>
+struct create_val<Light *>
+{
+static SV f(CTX ctx,Light*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(Light_ptr_funcs,obj,EXT->Light_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Light *>
+{
+static Light *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Light_ptr_typeID)
+RET(Light*)obj->data;
+else
+ CATE(TE,"Value is not a LightRef."));
+} else
+ CATE(TE,"Value is not a LightRef."));
+}
+};
+template <>
+struct type_same<Light *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Light_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const Light *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Light_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const Light *>
+{
+static const Light *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Light_ptr_typeID)
+RET(Light*)obj->data;
+else
+ CATE(TE,"Value is not a LightRef."));
+} else
+ CATE(TE,"Value is not a LightRef."));
+}
+};
+
 SV TextureSampler_ptr_copy(CTX,NO);
 void TextureSampler_ptr_destroy(CTX,NO);
 SV TextureSampler_ptr_get_member(CTX,NO,SV);
@@ -9842,81 +9953,6 @@ else
  CATE(TE,"Value is not a StrStrMapRef."));
 } else
  CATE(TE,"Value is not a StrStrMapRef."));
-}
-};
-
-SV Light_ptr_copy(CTX,NO);
-void Light_ptr_destroy(CTX,NO);
-SV Light_ptr_get_member(CTX,NO,SV);
-void Light_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Light_ptr_funcs={
-.destroy = Light_ptr_destroy,
-.getMember = Light_ptr_get_member,
-.setMember = Light_ptr_set_member
-};
-template <>
-struct create_val<Light *>
-{
-static SV f(CTX ctx,Light*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Light_ptr_funcs,obj,EXT->Light_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<Light *>
-{
-static Light *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Light_ptr_typeID)
-RET(Light*)obj->data;
-else
- CATE(TE,"Value is not a LightRef."));
-} else
- CATE(TE,"Value is not a LightRef."));
-}
-};
-template <>
-struct type_same<Light *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const Light *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const Light *>
-{
-static const Light *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Light_ptr_typeID)
-RET(Light*)obj->data;
-else
- CATE(TE,"Value is not a LightRef."));
-} else
- CATE(TE,"Value is not a LightRef."));
 }
 };
 
@@ -14033,10 +14069,12 @@ if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
 RET CNF(GfxCompiledShader_new);
- EI(keyStr == "isInvalid")
-RET CNF(GfxCompiledShader_isInvalid);
- EI(keyStr == "getType")
-RET CNF(GfxCompiledShader_getType);
+ EI(keyStr == "getShader")
+RET CNF(GfxCompiledShader_getShader);
+ EI(keyStr == "getGLProgram")
+RET CNF(GfxCompiledShader_getGLProgram);
+ EI(keyStr == "getGLShader")
+RET CNF(GfxCompiledShader_getGLShader);
  else
  CATE(KE,"Unknown member."));
 }
@@ -14059,37 +14097,54 @@ if(0) {} else
 }
 }
 
-SV GfxCompiledShader_isInvalid(CTX ctx,const List<SV>&a)
+SV GfxCompiledShader_getGLShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxCompiledShader::isInvalid" EAOE));
+CATE(VE,"GfxCompiledShader::getGLShader" EAOE));
 GfxCompiledShader*f;
 f=(GfxCompiledShader*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->isInvalid());
+RET CV( f->getGLShader());
 ;
 }
-CATE(TE,UFOF("GfxCompiledShader::isInvalid.")));
+CATE(TE,UFOF("GfxCompiledShader::getGLShader.")));
 RET CN;
 }
 
-SV GfxCompiledShader_getType(CTX ctx,const List<SV>&a)
+SV GfxCompiledShader_getShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxCompiledShader::getType" EAOE));
+CATE(VE,"GfxCompiledShader::getShader" EAOE));
 GfxCompiledShader*f;
 f=(GfxCompiledShader*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getType());
+RET CV( f->getShader());
 ;
 }
-CATE(TE,UFOF("GfxCompiledShader::getType.")));
+CATE(TE,UFOF("GfxCompiledShader::getShader.")));
+RET CN;
+}
+
+SV GfxCompiledShader_getGLProgram(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxCompiledShader::getGLProgram" EAOE));
+GfxCompiledShader*f;
+f=(GfxCompiledShader*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getGLProgram());
+;
+}
+CATE(TE,UFOF("GfxCompiledShader::getGLProgram.")));
 RET CN;
 }
 
@@ -22152,18 +22207,14 @@ RET CNF(GfxShader_new);
 RET CNF(GfxShader_removeContent);
  EI(keyStr == "save")
 RET CNF(GfxShader_save);
- EI(keyStr == "setSource")
-RET CNF(GfxShader_setSource);
+ EI(keyStr == "compile")
+RET CNF(GfxShader_compile);
  EI(keyStr == "getSource")
 RET CNF(GfxShader_getSource);
- EI(keyStr == "getCompiled")
-RET CNF(GfxShader_getCompiled);
- EI(keyStr == "recompile")
-RET CNF(GfxShader_recompile);
  EI(keyStr == "getShaderType")
 RET CNF(GfxShader_getShaderType);
- EI(keyStr == "getImpl")
-RET CNF(GfxShader_getImpl);
+ EI(keyStr == "getCompiled")
+RET CNF(GfxShader_getCompiled);
  EI(keyStr == "possiblyReload")
 RET CNF(GfxShader_possiblyReload);
  EI(keyStr == "load")
@@ -22286,20 +22337,20 @@ CATE(TE,UFOF("GfxShader::getCompiled.")));
 RET CN;
 }
 
-SV GfxShader_recompile(CTX ctx,const List<SV>&a)
+SV GfxShader_getLastFileModification(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShader::recompile" EAOE));
+CATE(VE,"GfxShader::getLastFileModification" EAOE));
 GfxShader*f;
 f=(GfxShader*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->recompile());
-RET CN;
+RET CV( f->getLastFileModification());
+;
 }
-CATE(TE,UFOF("GfxShader::recompile.")));
+CATE(TE,UFOF("GfxShader::getLastFileModification.")));
 RET CN;
 }
 
@@ -22326,14 +22377,20 @@ CATE(TE,UFOF("GfxShader::possiblyReload.")));
 RET CN;
 }
 
-SV GfxShader_getImpl(CTX ctx,const List<SV>&a)
+SV GfxShader_shouldReload(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxShader::getImpl" EAOE));
+CATE(VE,"GfxShader::shouldReload" EAOE));
 GfxShader*f;
 f=(GfxShader*)((NO)a[0])->data;
 
-CATE(TE,UFOF("GfxShader::getImpl.")));
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->shouldReload());
+;
+}
+CATE(TE,UFOF("GfxShader::shouldReload.")));
 RET CN;
 }
 
@@ -22371,23 +22428,6 @@ CATE(TE,UFOF("GfxShader::setFilename.")));
 RET CN;
 }
 
-SV GfxShader_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::shouldReload" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("GfxShader::shouldReload.")));
-RET CN;
-}
-
 SV GfxShader_isLoaded(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -22402,6 +22442,23 @@ RET CV( f->isLoaded());
 ;
 }
 CATE(TE,UFOF("GfxShader::isLoaded.")));
+RET CN;
+}
+
+SV GfxShader_compile(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxShader::compile" EAOE));
+GfxShader*f;
+f=(GfxShader*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
+{
+( f->compile(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("GfxShader::compile.")));
 RET CN;
 }
 
@@ -22479,23 +22536,6 @@ CATE(TE,UFOF("GfxShader::release.")));
 RET CN;
 }
 
-SV GfxShader_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::getLastFileModification" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("GfxShader::getLastFileModification.")));
-RET CN;
-}
-
 SV GfxShader_getSource(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -22550,23 +22590,6 @@ RET CV( f->getShaderType());
 ;
 }
 CATE(TE,UFOF("GfxShader::getShaderType.")));
-RET CN;
-}
-
-SV GfxShader_setSource(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::setSource" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
-{
-( f->setSource(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("GfxShader::setSource.")));
 RET CN;
 }
 
@@ -25311,6 +25334,393 @@ RET CV( f->dot());
 ;
 }
 CATE(TE,UFOF("UInt4::dot.")));
+RET CN;
+}
+
+void Light_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Light))
+CATE(TE,"Light::__del__ expects Light as first argument."));
+
+DELETE((Light*)f->data);
+}SV Light_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light's constructor" EAOE));
+if(!TS(a[0],Light))
+CATE(TE,"Light's constructor expects Light as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(Light_funcs,NEW(Light),EXT->Light_typeID);
+CATE(TE,UFOF("Light's constructor.")));
+RET CN;
+}
+
+SV Light_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Light");
+EI(keyStr=="__new__")
+RET CNF(Light_new);
+EI(keyStr=="__call__")
+RET CNF(Light_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(Light_new);
+ EI(keyStr == "addShadowmap")
+RET CNF(Light_addShadowmap);
+ EI(keyStr == "removeShadowmap")
+RET CNF(Light_removeShadowmap);
+ EI(keyStr == "getShadowmap")
+RET CNF(Light_getShadowmap);
+ EI(keyStr == "getShadowmapFramebuffer")
+RET CNF(Light_getShadowmapFramebuffer);
+ EI(keyStr == "getPointLightFramebuffers")
+RET CNF(Light_getPointLightFramebuffers);
+ EI(keyStr == "getPointLightFramebuffer")
+RET CNF(Light_getPointLightFramebuffer);
+ EI(keyStr == "getShadowmapResolution")
+RET CNF(Light_getShadowmapResolution);
+ EI(keyStr == "getShadowmapPrecision")
+RET CNF(Light_getShadowmapPrecision);
+ EI(keyStr == "updateMatrices")
+RET CNF(Light_updateMatrices);
+ EI(keyStr == "getViewMatrix")
+RET CNF(Light_getViewMatrix);
+ EI(keyStr == "getProjectionMatrix")
+RET CNF(Light_getProjectionMatrix);
+ EI(keyStr=="type")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->type);
+} EI(keyStr=="power")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->power);
+} EI(keyStr=="color")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->color);
+} EI(keyStr=="ambientStrength")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->ambientStrength);
+} EI(keyStr=="shadowmapNear")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowmapNear);
+} EI(keyStr=="shadowmapFar")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowmapFar);
+} EI(keyStr=="shadowMinBias")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowMinBias);
+} EI(keyStr=="shadowBiasScale")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowBiasScale);
+} EI(keyStr=="shadowAutoBiasScale")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowAutoBiasScale);
+} EI(keyStr=="shadowFixedBias")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowFixedBias);
+} EI(keyStr=="shadowRadius")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowRadius);
+} EI(keyStr=="scriptOwned")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->scriptOwned);
+} EI(keyStr=="direction")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->direction);
+} EI(keyStr=="spot")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->spot);
+} EI(keyStr=="point")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->point);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void Light_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="type")
+{
+Light*obj=(Light*)f->data;
+obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
+} EI(keyStr=="power")
+{
+Light*obj=(Light*)f->data;
+obj->power=val_to_c<decltype(obj->power)>::f(ctx,value);
+} EI(keyStr=="color")
+{
+Light*obj=(Light*)f->data;
+obj->color=val_to_c<decltype(obj->color)>::f(ctx,value);
+} EI(keyStr=="ambientStrength")
+{
+Light*obj=(Light*)f->data;
+obj->ambientStrength=val_to_c<decltype(obj->ambientStrength)>::f(ctx,value);
+} EI(keyStr=="shadowmapNear")
+{
+Light*obj=(Light*)f->data;
+obj->shadowmapNear=val_to_c<decltype(obj->shadowmapNear)>::f(ctx,value);
+} EI(keyStr=="shadowmapFar")
+{
+Light*obj=(Light*)f->data;
+obj->shadowmapFar=val_to_c<decltype(obj->shadowmapFar)>::f(ctx,value);
+} EI(keyStr=="shadowMinBias")
+{
+Light*obj=(Light*)f->data;
+obj->shadowMinBias=val_to_c<decltype(obj->shadowMinBias)>::f(ctx,value);
+} EI(keyStr=="shadowBiasScale")
+{
+Light*obj=(Light*)f->data;
+obj->shadowBiasScale=val_to_c<decltype(obj->shadowBiasScale)>::f(ctx,value);
+} EI(keyStr=="shadowAutoBiasScale")
+{
+Light*obj=(Light*)f->data;
+obj->shadowAutoBiasScale=val_to_c<decltype(obj->shadowAutoBiasScale)>::f(ctx,value);
+} EI(keyStr=="shadowFixedBias")
+{
+Light*obj=(Light*)f->data;
+obj->shadowFixedBias=val_to_c<decltype(obj->shadowFixedBias)>::f(ctx,value);
+} EI(keyStr=="shadowRadius")
+{
+Light*obj=(Light*)f->data;
+obj->shadowRadius=val_to_c<decltype(obj->shadowRadius)>::f(ctx,value);
+} EI(keyStr=="scriptOwned")
+{
+Light*obj=(Light*)f->data;
+obj->scriptOwned=val_to_c<decltype(obj->scriptOwned)>::f(ctx,value);
+} EI(keyStr=="direction")
+{
+Light*obj=(Light*)f->data;
+obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
+} EI(keyStr=="spot")
+{
+Light*obj=(Light*)f->data;
+obj->spot=val_to_c<decltype(obj->spot)>::f(ctx,value);
+} EI(keyStr=="point")
+{
+Light*obj=(Light*)f->data;
+obj->point=val_to_c<decltype(obj->point)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmapResolution" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShadowmapResolution());
+;
+}
+CATE(TE,UFOF("Light::getShadowmapResolution.")));
+RET CN;
+}
+
+SV Light_updateMatrices(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::updateMatrices" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxRenderer *))
+{
+( f->updateMatrices(val_to_c<std::remove_reference<GfxRenderer *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Light::updateMatrices.")));
+RET CN;
+}
+
+SV Light_getShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmap" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShadowmap());
+;
+}
+CATE(TE,UFOF("Light::getShadowmap.")));
+RET CN;
+}
+
+SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getPointLightFramebuffer" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxFace))
+{
+RET CV( f->getPointLightFramebuffer(val_to_c<std::remove_reference<GfxFace>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Light::getPointLightFramebuffer.")));
+RET CN;
+}
+
+SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getViewMatrix" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getViewMatrix());
+;
+}
+CATE(TE,UFOF("Light::getViewMatrix.")));
+RET CN;
+}
+
+SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getProjectionMatrix" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getProjectionMatrix());
+;
+}
+CATE(TE,UFOF("Light::getProjectionMatrix.")));
+RET CN;
+}
+
+SV Light_addShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::addShadowmap" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],GfxShadowmapPrecision))
+{
+( f->addShadowmap(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxShadowmapPrecision>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("Light::addShadowmap.")));
+RET CN;
+}
+
+SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmapFramebuffer" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShadowmapFramebuffer());
+;
+}
+CATE(TE,UFOF("Light::getShadowmapFramebuffer.")));
+RET CN;
+}
+
+SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getShadowmapPrecision" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShadowmapPrecision());
+;
+}
+CATE(TE,UFOF("Light::getShadowmapPrecision.")));
+RET CN;
+}
+
+SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getPointLightFramebuffers" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Light::getPointLightFramebuffers.")));
+RET CN;
+}
+
+SV Light_removeShadowmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::removeShadowmap" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeShadowmap());
+RET CN;
+}
+CATE(TE,UFOF("Light::removeShadowmap.")));
 RET CN;
 }
 
@@ -36629,393 +37039,6 @@ auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f
 RET CV(*f != v);
 }
 CATE(TE,UFOF("StrStrMap::__neq__.")));
-RET CN;
-}
-
-void Light_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Light))
-CATE(TE,"Light::__del__ expects Light as first argument."));
-
-DELETE((Light*)f->data);
-}SV Light_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light's constructor" EAOE));
-if(!TS(a[0],Light))
-CATE(TE,"Light's constructor expects Light as first argument."));
-if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Light_funcs,NEW(Light),EXT->Light_typeID);
-CATE(TE,UFOF("Light's constructor.")));
-RET CN;
-}
-
-SV Light_get_member(CTX ctx,NO f,SV key)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Light");
-EI(keyStr=="__new__")
-RET CNF(Light_new);
-EI(keyStr=="__call__")
-RET CNF(Light_new);
-else
- CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="__classTypeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
-RET CNF(Light_new);
- EI(keyStr == "addShadowmap")
-RET CNF(Light_addShadowmap);
- EI(keyStr == "removeShadowmap")
-RET CNF(Light_removeShadowmap);
- EI(keyStr == "getShadowmap")
-RET CNF(Light_getShadowmap);
- EI(keyStr == "getShadowmapFramebuffer")
-RET CNF(Light_getShadowmapFramebuffer);
- EI(keyStr == "getPointLightFramebuffers")
-RET CNF(Light_getPointLightFramebuffers);
- EI(keyStr == "getPointLightFramebuffer")
-RET CNF(Light_getPointLightFramebuffer);
- EI(keyStr == "getShadowmapResolution")
-RET CNF(Light_getShadowmapResolution);
- EI(keyStr == "getShadowmapPrecision")
-RET CNF(Light_getShadowmapPrecision);
- EI(keyStr == "updateMatrices")
-RET CNF(Light_updateMatrices);
- EI(keyStr == "getViewMatrix")
-RET CNF(Light_getViewMatrix);
- EI(keyStr == "getProjectionMatrix")
-RET CNF(Light_getProjectionMatrix);
- EI(keyStr=="type")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->type);
-} EI(keyStr=="power")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->power);
-} EI(keyStr=="color")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->color);
-} EI(keyStr=="ambientStrength")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->ambientStrength);
-} EI(keyStr=="shadowmapNear")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowmapNear);
-} EI(keyStr=="shadowmapFar")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowmapFar);
-} EI(keyStr=="shadowMinBias")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowMinBias);
-} EI(keyStr=="shadowBiasScale")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowBiasScale);
-} EI(keyStr=="shadowAutoBiasScale")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowAutoBiasScale);
-} EI(keyStr=="shadowFixedBias")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowFixedBias);
-} EI(keyStr=="shadowRadius")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowRadius);
-} EI(keyStr=="scriptOwned")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->scriptOwned);
-} EI(keyStr=="direction")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->direction);
-} EI(keyStr=="spot")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->spot);
-} EI(keyStr=="point")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->point);
-} else
- CATE(KE,"Unknown member."));
-}
-}
-RET CN;
-}
-
-void Light_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue*)key)->value;
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} EI(keyStr=="type")
-{
-Light*obj=(Light*)f->data;
-obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
-} EI(keyStr=="power")
-{
-Light*obj=(Light*)f->data;
-obj->power=val_to_c<decltype(obj->power)>::f(ctx,value);
-} EI(keyStr=="color")
-{
-Light*obj=(Light*)f->data;
-obj->color=val_to_c<decltype(obj->color)>::f(ctx,value);
-} EI(keyStr=="ambientStrength")
-{
-Light*obj=(Light*)f->data;
-obj->ambientStrength=val_to_c<decltype(obj->ambientStrength)>::f(ctx,value);
-} EI(keyStr=="shadowmapNear")
-{
-Light*obj=(Light*)f->data;
-obj->shadowmapNear=val_to_c<decltype(obj->shadowmapNear)>::f(ctx,value);
-} EI(keyStr=="shadowmapFar")
-{
-Light*obj=(Light*)f->data;
-obj->shadowmapFar=val_to_c<decltype(obj->shadowmapFar)>::f(ctx,value);
-} EI(keyStr=="shadowMinBias")
-{
-Light*obj=(Light*)f->data;
-obj->shadowMinBias=val_to_c<decltype(obj->shadowMinBias)>::f(ctx,value);
-} EI(keyStr=="shadowBiasScale")
-{
-Light*obj=(Light*)f->data;
-obj->shadowBiasScale=val_to_c<decltype(obj->shadowBiasScale)>::f(ctx,value);
-} EI(keyStr=="shadowAutoBiasScale")
-{
-Light*obj=(Light*)f->data;
-obj->shadowAutoBiasScale=val_to_c<decltype(obj->shadowAutoBiasScale)>::f(ctx,value);
-} EI(keyStr=="shadowFixedBias")
-{
-Light*obj=(Light*)f->data;
-obj->shadowFixedBias=val_to_c<decltype(obj->shadowFixedBias)>::f(ctx,value);
-} EI(keyStr=="shadowRadius")
-{
-Light*obj=(Light*)f->data;
-obj->shadowRadius=val_to_c<decltype(obj->shadowRadius)>::f(ctx,value);
-} EI(keyStr=="scriptOwned")
-{
-Light*obj=(Light*)f->data;
-obj->scriptOwned=val_to_c<decltype(obj->scriptOwned)>::f(ctx,value);
-} EI(keyStr=="direction")
-{
-Light*obj=(Light*)f->data;
-obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
-} EI(keyStr=="spot")
-{
-Light*obj=(Light*)f->data;
-obj->spot=val_to_c<decltype(obj->spot)>::f(ctx,value);
-} EI(keyStr=="point")
-{
-Light*obj=(Light*)f->data;
-obj->point=val_to_c<decltype(obj->point)>::f(ctx,value);
-} else
- CATE(KE,"Unknown member or member if read-only."));
-}
-}
-}
-
-SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getShadowmapResolution" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShadowmapResolution());
-;
-}
-CATE(TE,UFOF("Light::getShadowmapResolution.")));
-RET CN;
-}
-
-SV Light_updateMatrices(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::updateMatrices" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxRenderer *))
-{
-( f->updateMatrices(val_to_c<std::remove_reference<GfxRenderer *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Light::updateMatrices.")));
-RET CN;
-}
-
-SV Light_getShadowmap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getShadowmap" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShadowmap());
-;
-}
-CATE(TE,UFOF("Light::getShadowmap.")));
-RET CN;
-}
-
-SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getPointLightFramebuffer" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxFace))
-{
-RET CV( f->getPointLightFramebuffer(val_to_c<std::remove_reference<GfxFace>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Light::getPointLightFramebuffer.")));
-RET CN;
-}
-
-SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getViewMatrix" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getViewMatrix());
-;
-}
-CATE(TE,UFOF("Light::getViewMatrix.")));
-RET CN;
-}
-
-SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getProjectionMatrix" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getProjectionMatrix());
-;
-}
-CATE(TE,UFOF("Light::getProjectionMatrix.")));
-RET CN;
-}
-
-SV Light_addShadowmap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::addShadowmap" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],GfxShadowmapPrecision))
-{
-( f->addShadowmap(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxShadowmapPrecision>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("Light::addShadowmap.")));
-RET CN;
-}
-
-SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getShadowmapFramebuffer" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShadowmapFramebuffer());
-;
-}
-CATE(TE,UFOF("Light::getShadowmapFramebuffer.")));
-RET CN;
-}
-
-SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getShadowmapPrecision" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShadowmapPrecision());
-;
-}
-CATE(TE,UFOF("Light::getShadowmapPrecision.")));
-RET CN;
-}
-
-SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getPointLightFramebuffers" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Light::getPointLightFramebuffers.")));
-RET CN;
-}
-
-SV Light_removeShadowmap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::removeShadowmap" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->removeShadowmap());
-RET CN;
-}
-CATE(TE,UFOF("Light::removeShadowmap.")));
 RET CN;
 }
 
@@ -49218,7 +49241,7 @@ CATE(VE,"GfxCompiledShaderRef::deref" EAOE));
 SV f=a[0];
 if(!TS((SV)f,GfxCompiledShader*))
 CATE(TE,"GfxCompiledShaderRef::deref expects GfxCompiledShaderRef as first argument."));
-CATE(TE,"GfxCompiledShader objects are not copyable."));
+RET CV(*(GfxCompiledShader *)((NO)f)->data);
 }
 SV GfxCompiledShader_ptr_set(CTX ctx,const List<SV>&a)
 {
@@ -49227,7 +49250,7 @@ CATE(VE,"GfxCompiledShader::refset expects two arguments."));
 SV f=a[0];
 if(!TS((SV)f,GfxCompiledShader*))
 CATE(TE,"GfxCompiledShaderRef::refset expects GfxCompiledShaderRef as first argument."));
-CATE(TE,"GfxCompiledShader objects are not copyable."));
+*((GfxCompiledShader *)((NO)f)->data) = val_to_c<GfxCompiledShader>::f(ctx,a[1]);
 RET CN;
 }
 
@@ -51147,6 +51170,87 @@ obj.refCount=1;
 obj.data=f->data;
 UInt4_set_member(ctx, &obj, key, value);
 }
+SV Light_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Light;
+NO obj=(NO)Light_new(ctx, args2);
+obj->funcs=Light_ptr_funcs;
+obj->typeID=EXT->Light_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV Light_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"LightRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,Light*))
+CATE(TE,"LightRef::deref expects LightRef as first argument."));
+CATE(TE,"Light objects are not copyable."));
+}
+SV Light_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Light::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,Light*))
+CATE(TE,"LightRef::refset expects LightRef as first argument."));
+CATE(TE,"Light objects are not copyable."));
+RET CN;
+}
+
+void Light_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Light*))
+CATE(TE,"LightRef::__del__ expects LightRef as first argument."));
+SCRIPT_DELETE((Light *)f->data);
+}
+SV Light_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,Light*))
+CATE(TE,FAE("LightRef's get method","LightRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("LightPtr");
+EI(keyStr=="__new__")
+RET CNF(Light_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(Light_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(Light_ptr_deref);
+if(keyStr=="refset")RET CNF(Light_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=Light_funcs;
+obj.typeID=EXT->Light_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET Light_get_member(ctx, &obj, key);
+}
+void Light_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,Light*))
+CATE(TE,FAE("LightRef's set method","LightRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=Light_funcs;
+obj.typeID=EXT->Light_typeID;
+obj.refCount=1;
+obj.data=f->data;
+Light_set_member(ctx, &obj, key, value);
+}
 SV TextureSampler_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -52685,87 +52789,6 @@ obj.typeID=EXT->StrStrMap_typeID;
 obj.refCount=1;
 obj.data=f->data;
 StrStrMap_set_member(ctx, &obj, key, value);
-}
-SV Light_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Light;
-NO obj=(NO)Light_new(ctx, args2);
-obj->funcs=Light_ptr_funcs;
-obj->typeID=EXT->Light_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Light_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"LightRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Light*))
-CATE(TE,"LightRef::deref expects LightRef as first argument."));
-CATE(TE,"Light objects are not copyable."));
-}
-SV Light_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Light::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Light*))
-CATE(TE,"LightRef::refset expects LightRef as first argument."));
-CATE(TE,"Light objects are not copyable."));
-RET CN;
-}
-
-void Light_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Light*))
-CATE(TE,"LightRef::__del__ expects LightRef as first argument."));
-SCRIPT_DELETE((Light *)f->data);
-}
-SV Light_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Light*))
-CATE(TE,FAE("LightRef's get method","LightRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("LightPtr");
-EI(keyStr=="__new__")
-RET CNF(Light_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Light_ptr_new);
-else
-CATE(KE,"Unknown member."));
-} else
-{
-if(keyStr=="deref")RET CNF(Light_ptr_deref);
-if(keyStr=="refset")RET CNF(Light_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Light_funcs;
-obj.typeID=EXT->Light_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Light_get_member(ctx, &obj, key);
-}
-void Light_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Light*))
-CATE(TE,FAE("LightRef's set method","LightRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Light_funcs;
-obj.typeID=EXT->Light_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Light_set_member(ctx, &obj, key, value);
 }
 SV StringList_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -55215,6 +55238,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->Light_typeID = typeID;
+    ext->Light = scripting::createNativeObject(Light_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Light", ext->Light);
+    
+    typeID = engine->createNewTypeID();
+    ext->Light_ptr_typeID = typeID;
+    ext->Light_ptr = scripting::createNativeObject(Light_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("LightRef", ext->Light_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->TextureSampler_typeID = typeID;
     ext->TextureSampler = scripting::createNativeObject(TextureSampler_funcs, NULL, typeID);
     engine->getGlobalVars().set("TextureSampler", ext->TextureSampler);
@@ -55403,16 +55436,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->StrStrMap_ptr_typeID = typeID;
     ext->StrStrMap_ptr = scripting::createNativeObject(StrStrMap_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("StrStrMapRef", ext->StrStrMap_ptr);
-    
-    typeID = engine->createNewTypeID();
-    ext->Light_typeID = typeID;
-    ext->Light = scripting::createNativeObject(Light_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Light", ext->Light);
-    
-    typeID = engine->createNewTypeID();
-    ext->Light_ptr_typeID = typeID;
-    ext->Light_ptr = scripting::createNativeObject(Light_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("LightRef", ext->Light_ptr);
     
     typeID = engine->createNewTypeID();
     ext->StringList_typeID = typeID;
