@@ -404,16 +404,19 @@ class GfxCompiledShader
 {
     public:
         inline GfxShader *getShader() const {...}
-        inline HashMap<String, String> getDefines() const {...}
 };
 
 class GfxShaderCombination
 {
     public:
-        GfxShaderCombination(GfxContext *context, const GfxCompiledShader *shaders[GfxShaderTypeMax]);
+        GfxShaderCombination(GfxContext *context, const GfxShader *shaders[GfxShaderTypeMax]);
         ~GfxShaderCombination();
 
-        inline GfxCompiledShader *getShader(GfxShaderType type) {...}
+        void setDefine(GfxShaderType shader, const String& name, const String& content);
+        const String& getDefine(GfxShaderType shader, const String& name);
+        void removeDefine(GfxShaderType shader, const String& name);
+
+        GfxCompiledShader *getShader(GfxShaderType type);
 };
 
 class PipelineState
