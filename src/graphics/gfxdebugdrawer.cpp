@@ -33,8 +33,6 @@ void GfxDebugDrawer::render(const Camera& camera)
     ResizableData positionData(lines.getCount()*2*12);
     ResizableData colorData(lines.getCount()*2*4);
 
-    std::cout << lines.getCount() << std::endl;
-
     for (size_t i = 0; i < lines.getCount(); ++i)
     {
         float *pos = (float *)positionData.getData() + i * 2 * 3;

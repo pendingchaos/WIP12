@@ -186,6 +186,10 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
         //Kept around to speed up projectile creation.
         projScript = resMgr->load<Script>("resources/scripts/projectilescript.cpp");
+        
+        textTiming = 0.0f;
+        textCPUTiming = 0.0f;
+        playerFindCPUTiming = 0.0f;
     }
 
     virtual void deinit()

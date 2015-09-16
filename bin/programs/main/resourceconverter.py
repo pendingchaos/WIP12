@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import os
 import os.path
 import json
@@ -704,6 +706,7 @@ if __name__ == "__main__":
                 
                 self.model = None
                 self.shadow_caster = True
+                self.animation = None
                 
                 self.overlayTexture = None
                 self.overlayColor = [1.0, 1.0, 1.0]
@@ -723,6 +726,12 @@ if __name__ == "__main__":
                     s += get_dest_filename(self.model, Model)
                     
                     s += struct.pack("<?", self.shadow_caster)
+                    
+                    s += struct.pack("<?", self.animation != None)
+                    
+                    if self.animation != None:
+                        s += struct.pack("<L", len(self.animation))
+                        s += self.animation
                 elif self.overlayTexture != None:
                     s += struct.pack("<L", len(get_dest_filename(self.overlayTexture, Texture)))
                     s += get_dest_filename(self.overlayTexture, Texture)
@@ -1142,6 +1151,13 @@ if __name__ == "__main__":
     mat.albedo = [0.9, 0.9, 1.0, 1.0]
     conv["platform material"] = mat
     
+    """mat = Material([], "resources/materials/astroboy.bin")
+    mat.forward = False
+    mat.smoothness = 0.5
+    mat.metalMask = 1.0
+    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
+    conv["AstroBoy material"] = mat"""
+    
     model = Model([], "resources/models/model.bin")
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
     conv["model"] = model
@@ -1185,6 +1201,10 @@ if __name__ == "__main__":
     model = Model([], "resources/models/projectile.bin")
     model.sub_models = [[Model.LOD(conv["sphere.obj"], conv["projectile material"], 0.0, 9999.0)]]
     conv["projectile"] = model
+    
+    #model = Model([], "resources/models/astroboy.bin")
+    #model.sub_models = [[Model.LOD("resources/meshes/astroboy.bin", conv["AstroBoy material"], 0.0, 9999.0)]]
+    #conv["AstroBoy model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
     floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
@@ -1310,11 +1330,32 @@ if __name__ == "__main__":
     ent.model = conv["ao test model"]
     scene.entities.append(ent)
     
-    ent = Scene.Entity("Parallax test test")
+    ent = Scene.Entity("Parallax test")
     ent.transform.position = [0.0, 1.0, 0.0]
     ent.transform.scale = [0.1, 1.0, 0.1]
     ent.model = conv["parallax test model"]
     scene.entities.append(ent)
+    
+    """ent = Scene.Entity("AstroBoy")
+    #ent.transform.position = [0.0, 3.25, -3.0]
+    #ent.transform.position = [0.0, 0.0, -3.0]
+    ent.transform.position = [0.0, 2.4, -3.0]
+    #ent.transform.position = [11.0, 6.0, 6.0]
+    #ent.transform.scale = [0.75, 0.75, 0.75]
+    #ent.transform.scale = [0.055, 0.055, 0.055]
+    #ent.transform.scale = [3.0, 3.0, 3.0]
+    #ent.transform.scale = [0.2, 0.2, 0.2]
+    #ent.transform.scale = [1.2, 1.2, 1.2]
+    ent.transform.orientation = [0.0, 225.0, 0.0]
+    ent.model = conv["AstroBoy model"]
+    #ent.animation = "man"
+    #ent.animation = "knight_attack"
+    #ent.animation = "kngcalvn_fbx_test"
+    #ent.animation = "Octaminator_lowpoly_final"
+    #ent.animation = "riggedHorse"
+    ent.animation = "soldier"
+    ent.scripts.append(("resources/scripts/animated.cpp", "Animated"))
+    scene.entities.append(ent)"""
     
     ent = Scene.Entity("TessTest")
     ent.transform.position = [0.0, 1.15, 5.0]
@@ -1324,7 +1365,7 @@ if __name__ == "__main__":
     ent.rigidBody.shape = tessTestShape
     scene.entities.append(ent)
     
-    platforms = Scene.Entity("Platfoms")
+    """platforms = Scene.Entity("Platfoms")
     platforms.transform.position = [0.0, 0.0, 25.0]
     platforms.transform.orientation = [0.0, 90.0, 0.0]
     scene.entities.append(platforms)
@@ -1393,7 +1434,7 @@ if __name__ == "__main__":
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = platformShape
     ent.rigidBody.friction = 0.1
-    platforms.entities.append(ent)
+    platforms.entities.append(ent)"""
     
     # Point light benchmark
     """light = Scene.Light(Scene.Light.Type.Point)

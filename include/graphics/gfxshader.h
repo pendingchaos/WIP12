@@ -138,7 +138,7 @@ class GfxShaderCombination
         HashMap<String, String> defines[5];
         GfxShader *shaders[5];
         mutable GfxCompiledShader *compiled[5];
-        bool dirty[5];
+        mutable bool dirty[5];
 
     NO_COPY(GfxShaderCombination)
 } NOT_COPYABLE BIND;

@@ -241,6 +241,38 @@ void loadEntity(Entity *entity, File *file)
         bool shadowCaster = file->readUInt8() != 0;
 
         entity->addModel(resMgr->load<GfxModel>(modelFile), shadowCaster);
+
+        if (file->readUInt8())
+        {
+            uint32_t animNameLen = file->readUInt32LE();
+
+            String animName((size_t)animNameLen);
+            file->read(animNameLen, animName.getData());
+
+            GfxModel *model = entity->getRenderComponent()->model;
+            GfxMesh *mesh = nullptr;
+
+            for (size_t i = 0; i < model->subModels.getCount(); ++i)
+            {
+                const GfxModel::SubModel& subModel = model->subModels[i];
+
+                for (size_t j = 0; j < subModel.getCount(); ++j)
+                {
+                    mesh = subModel[j].mesh;
+                    break;
+                }
+
+                if (mesh != nullptr)
+                {
+                    break;
+                }
+            }
+
+            if (mesh != nullptr)
+            {
+                entity->getRenderComponent()->setAnimationState(mesh, animName);
+            }
+        }
     } else if (useOverlay)
     {
         uint32_t textureFileLen = file->readUInt32LE();
@@ -690,6 +722,16 @@ void saveEntity(Entity *entity, File *file, const String& filename)
             file->write(model->getFilename().getLength(), model->getFilename().getData());
 
             file->writeUInt8(entity->getRenderComponent()->modelData.shadowCaster);
+
+            GfxAnimationState *animState = entity->getRenderComponent()->getAnimationState();
+
+            file->writeUInt8(animState != nullptr);
+
+            if (animState != nullptr)
+            {
+                file->writeUInt32LE(animState->animName.getLength());
+                file->write(animState->animName.getLength(), animState->animName.getData());
+            }
         }
     }
 

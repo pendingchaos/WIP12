@@ -276,6 +276,8 @@ class GfxRenderer
         GfxCompiledShader *compiledPostEffectVertex;
         GfxCompiledShader *compiledShadowmapVertex;
         GfxCompiledShader *compiledShadowmapVertexTesselation;
+        GfxCompiledShader *compiledShadowmapVertexAnimated;
+        GfxCompiledShader *compiledShadowmapVertexTesselationAnimated;
         GfxCompiledShader *compiledShadowmapTessControl;
         GfxCompiledShader *compiledShadowmapTessEval;
         GfxCompiledShader *compiledPointShadowmapGeometry;
@@ -300,7 +302,10 @@ class GfxRenderer
 
         void fillLightBuffer(Scene *scene);
         void batchEntities(const List<Entity *>& entities);
-        void batchModel(const Matrix4x4& worldMatrix, const GfxModel *model);
+        void batchModel(const Matrix4x4& worldMatrix,
+                        const GfxModel *model,
+                        GfxMesh *animMesh,
+                        GfxAnimationState *animState);
         void renderBatches(bool forward);
         void renderSkybox();
         void renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
@@ -350,11 +355,7 @@ class GfxRenderer
             GfxMesh *mesh;
             GfxMaterial *material;
             List<Matrix4x4> worldMatrices;
-
-            inline bool operator == (const Batch& other) const
-            {
-                return mesh == other.mesh and material == other.material and worldMatrices == other.worldMatrices;
-            }
+            GfxAnimationState *animState;
         };
 
         List<Batch> batches;

@@ -82,9 +82,33 @@ class RenderComponent
                 overlayData.color = color;
             }
         }
+
+        void setAnimationState(GfxMesh *mesh,
+                               const String& animName)
+        {
+            if (animation != nullptr)
+            {
+                DELETE(animation);
+            }
+
+            animation = NEW(GfxAnimationState, mesh, animName);
+        }
+
+        void removeAnimationState()
+        {
+            DELETE(animation);
+            animation = nullptr;
+        }
+
+        GfxAnimationState *getAnimationState() const
+        {
+            return animation;
+        }
     private:
-        RenderComponent() : mode(RenderMode::Nothing) {}
+        RenderComponent() : mode(RenderMode::Nothing), animation(nullptr) {}
         ~RenderComponent() {}
+
+        GfxAnimationState *animation;
 } BIND NOT_COPYABLE;
 
 class Entity

@@ -320,11 +320,6 @@ GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defin
 
     sources[defines.getEntryCount()+3] = source.getData();
 
-    if (source.getLength() < 10)
-    {
-        std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAA\n" << source.getData() << std::endl;
-    }
-
     GLuint result = 0;
     String infoLog;
 
@@ -382,7 +377,8 @@ Resource *GfxShader::_copy() const
 GfxShaderCombination::GfxShaderCombination(GfxShader *vertex,
                                            GfxShader *fragment)
  : shaders{nullptr, nullptr, nullptr, nullptr, nullptr},
-   compiled{nullptr, nullptr, nullptr, nullptr, nullptr}
+   compiled{nullptr, nullptr, nullptr, nullptr, nullptr},
+   dirty{true, true, true, true, true}
 {
     setShader(GfxShaderType::Vertex, vertex),
     setShader(GfxShaderType::Fragment, fragment);
@@ -476,5 +472,6 @@ void GfxShaderCombination::compile(size_t index) const
     } else
     {
         compiled[index] = nullptr;
+        dirty[index] = false;
     }
 }

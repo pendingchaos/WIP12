@@ -28,7 +28,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomEnabled(true),
                                           ssaoRadius(0.1f),
                                           skybox(nullptr),
-                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0}),
+                                          stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0}),
                                           width(0),
                                           height(0),
                                           scene(scene_),
@@ -87,6 +87,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledTonemapFragment = tonemapFragment->getCompiled();
     compiledPostEffectVertex = postEffectVertex->getCompiled();
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
+    compiledShadowmapVertexAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("SKELETAL_ANIMATION", "1"));
     compiledApplyBloomFragment = applyBloomFragment->getCompiled();
     compiledBloomDownsampleFragment = bloomDownsampleFragment->getCompiled();
     //compiledHBAOFragment = hbaoFragment->getCompiled();
@@ -96,6 +97,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     if (gfxApi->tesselationSupported())
     {
         compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1"));
+        compiledShadowmapVertexTesselationAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1").add("SKELETAL_ANIMATION", "1"));
     }
 
     compiledPointShadowmapGeometry = pointShadowmapGeometry->getCompiled();
@@ -915,6 +917,15 @@ void GfxRenderer::render()
     batchEntities(scene->getEntities());
 
     stats.batchingTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
+
+    //TODO: Add a timing for this.
+    for (size_t i = 0; i < batches.getCount(); ++i)
+    {
+        if (batches[i].animState != nullptr)
+        {
+            batches[i].animState->updateMatrices();
+        }
+    }
 
     //Shadowmaps
     start = platform->getTime();
@@ -1747,7 +1758,15 @@ void GfxRenderer::batchEntities(const List<Entity *>& entities)
             {
             case RenderMode::Model:
             {
-                batchModel(transform, comp->model);
+                if (comp->getAnimationState() != nullptr)
+                {
+                    GfxAnimationState *state = comp->getAnimationState();
+
+                    batchModel(transform, comp->model, state->getMesh(), state);
+                } else
+                {
+                    batchModel(transform, comp->model, nullptr, nullptr);
+                }
                 break;
             }
             default:
@@ -1761,7 +1780,10 @@ void GfxRenderer::batchEntities(const List<Entity *>& entities)
     }
 }
 
-void GfxRenderer::batchModel(const Matrix4x4& worldMatrix, const GfxModel *model)
+void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
+                             const GfxModel *model,
+                             GfxMesh *animMesh,
+                             GfxAnimationState *animState)
 {
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
@@ -1785,6 +1807,18 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix, const GfxModel *model
                 GfxMaterial *material = lod.material;
                 GfxMesh *mesh = lod.mesh;
 
+                if (mesh == animMesh)
+                {
+                    Batch batch;
+                    batch.material = material;
+                    batch.mesh = mesh;
+                    batch.worldMatrices = List<Matrix4x4>();
+                    batch.worldMatrices.append(newWorldMatrix);
+                    batch.animState = animState;
+                    batches.append(batch);
+                    continue;
+                }
+
                 bool found = false;
 
                 for (size_t k = 0; k < batches.getCount(); ++k)
@@ -1803,6 +1837,7 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix, const GfxModel *model
                     batch.material = material;
                     batch.mesh = mesh;
                     batch.worldMatrices.append(newWorldMatrix);
+                    batch.animState = nullptr;
 
                     batches.append(batch);
                 }
@@ -1862,6 +1897,11 @@ void GfxRenderer::renderBatches(bool forward)
                                   mesh->primitive == GfxTriangles;
 
             gfxApi->pushState();
+
+            if (batch.animState != nullptr)
+            {
+                shaderComb->setDefine(GfxShaderType::Vertex, "SKELETAL_ANIMATION", "1");
+            }
 
             GfxCompiledShader *vertex = shaderComb->getCompiled(GfxShaderType::Vertex);
             GfxCompiledShader *tessControl = shaderComb->getCompiled(GfxShaderType::TessControl);
@@ -1950,6 +1990,12 @@ void GfxRenderer::renderBatches(bool forward)
                 gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
             }
 
+            if (batch.animState != nullptr)
+            {
+                gfxApi->addUBOBinding(vertex, "bonePositionData", batch.animState->getMatrixBuffer());
+                gfxApi->addUBOBinding(vertex, "boneNormalData", batch.animState->getNormalMatrixBuffer());
+            }
+
             //gfxApi->addTextureBinding(vertex, "matrixTexture", matrixTexture);
             gfxApi->addUBOBinding(vertex, "instanceData", instanceBuffer);
 
@@ -2007,6 +2053,11 @@ void GfxRenderer::renderBatches(bool forward)
 
             gfxApi->end(0);
 
+            if (batch.animState != nullptr)
+            {
+                shaderComb->removeDefine(GfxShaderType::Vertex, "SKELETAL_ANIMATION");
+            }
+
             gfxApi->popState();
         }
     }
@@ -2054,7 +2105,9 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
         GfxMaterial *material = batch.material;
         GfxMesh *mesh = batch.mesh;
 
-        GfxCompiledShader *vertexShader = compiledShadowmapVertex;
+        GfxCompiledShader *vertexShader = batch.animState == nullptr ?
+                                          compiledShadowmapVertex :
+                                          compiledShadowmapVertexAnimated;
         GfxCompiledShader *geometryShader = nullptr;
         GfxCompiledShader *fragmentShader = compiledShadowmapFragment;
         GfxCompiledShader *tessControlShader = nullptr;
@@ -2066,7 +2119,9 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
         if (useTesselation)
         {
-            vertexShader = compiledShadowmapVertexTesselation;
+            vertexShader = batch.animState == nullptr ?
+                           compiledShadowmapVertexTesselation :
+                           compiledShadowmapVertexTesselationAnimated;
             tessControlShader = compiledShadowmapTessControl;
             tessEvalShader = compiledShadowmapTessEval;
         }
@@ -2179,6 +2234,16 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
         gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
 
         gfxApi->setTessPatchSize(3);
+
+        if (batch.animState != nullptr)
+        {
+            gfxApi->addUBOBinding(vertexShader, "bonePositionData", batch.animState->getMatrixBuffer());
+
+            if (useTesselation)
+            {
+                gfxApi->addUBOBinding(vertexShader, "boneNormalData", batch.animState->getNormalMatrixBuffer());
+            }
+        }
 
         for (size_t j = 0; j < batch.worldMatrices.getCount(); ++j)
         {

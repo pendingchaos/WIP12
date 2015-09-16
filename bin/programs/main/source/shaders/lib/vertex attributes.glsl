@@ -6,5 +6,7 @@
 #define TANGENT 2
 #define COLOR 3
 #define TEXCOORD 4
+#define BONE_INDEX 5
+#define BONE_WEIGHT 6
 
 #endif

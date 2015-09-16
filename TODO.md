@@ -18,9 +18,10 @@
         - [ ] Then bind the exceptions
     - [ ] Bind some stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh, GfxAnimationState, GfxAnimationFrame, GfxAnimation and GfxBone.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
+    - [ ] Bind Pose, AnimationFrame, Animation, Bone.
 - [ ] Finish the bytecode generator (scripting).
 - [ ] Make functions for builtin functions like + and * (scripting).
 - [ ] === function (scripting).
@@ -28,7 +29,11 @@
 - [ ] Proper methods (scripting).
 - [ ] Automatic shadow map far value calculation for point and spot lights.
 - [ ] Have point light radius in world space units.
+- [ ] Skeletal animation for the mesh converter.
+- [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)
+    - Runner up test model: http://opengameart.org/content/wizard
 
+struct GfxBone
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)
@@ -55,6 +60,7 @@
 - [ ] Ambient occlusion looks very bad on spheres.
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
+- [ ] SSAO looks bad on curved low-poly faces.
 
 ## Performance Improvements
 - [ ] Instancing

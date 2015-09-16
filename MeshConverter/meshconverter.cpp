@@ -11,6 +11,10 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#if __BYTE_ORDER != __LITTLE_ENDIAN
+#error "The byte order is not little endian."
+#endif
+
 void importError(const char *message)
 {
     std::cerr << "Import error: " << message << '\n';
@@ -214,25 +218,6 @@ void convert(const char *input, const char *out)
         }
     }
 
-    if (mesh->GetNumUVChannels() != 0)
-    {
-        std::fwrite("\x04\x29", 2, 1, output); //type, datatype
-
-        uint32_t size = mesh->mNumVertices * 4;
-        std::fwrite(&size, 4, 1, output);
-
-        for (size_t i = 0; i < mesh->mNumVertices; ++i)
-        {
-            const aiVector3D& texCoord = mesh->mTextureCoords[0][i];
-
-            uint16_t u = static_cast<uint16_t>(texCoord.x * 65535.0f);
-            uint16_t v = static_cast<uint16_t>(texCoord.y * 65535.0f);
-
-            std::fwrite(&u, 2, 1, output);
-            std::fwrite(&v, 2, 1, output);
-        }
-    }
-
     if (mesh->GetNumColorChannels() != 0)
     {
         std::fwrite("\x03\x23", 2, 1, output); //type, datatype
@@ -255,7 +240,37 @@ void convert(const char *input, const char *out)
         }
     }
 
-    uint8_t indexType = indexSize - 1;
+    if (mesh->GetNumUVChannels() != 0)
+    {
+        std::fwrite("\x04\x29", 2, 1, output); //type, datatype
+
+        uint32_t size = mesh->mNumVertices * 4;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            const aiVector3D& texCoord = mesh->mTextureCoords[0][i];
+
+            uint16_t u = static_cast<uint16_t>(texCoord.x * 65535.0f);
+            uint16_t v = static_cast<uint16_t>(texCoord.y * 65535.0f);
+
+            std::fwrite(&u, 2, 1, output);
+            std::fwrite(&v, 2, 1, output);
+        }
+    }
+
+    uint8_t indexType;
+
+    if (indexSize == 4)
+    {
+        indexType = 2;
+    } else if (indexSize == 2)
+    {
+        indexType = 1;
+    } else if (indexSize == 1)
+    {
+        indexType = 0;
+    }
 
     std::fwrite(&indexType, 1, 1, output);
 
@@ -296,6 +311,12 @@ void convert(const char *input, const char *out)
             std::fwrite(&i3, 1, 1, output);
         }
     }
+
+    uint32_t boneCount = 0;
+    std::fwrite(&boneCount, 4, 1, output);
+
+    uint32_t animationCount = 0;
+    std::fwrite(&animationCount, 4, 1, output);
 
     std::fclose(output);
 }

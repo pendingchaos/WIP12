@@ -12,6 +12,7 @@
 #include "math/aabb.h"
 #include "misc_macros.h"
 #include "scripting/bindings.h"
+#include "scene/transform.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -22,7 +23,7 @@ enum class GfxMeshIndexDataType
     U16,
     U32
 } BIND ENUM_CLASS;
-static const unsigned int GfxMeshIndexDataTypeMax = 4;
+static const unsigned int GfxMeshIndexDataTypeMax = 3;
 
 enum class GfxMeshAttribType
 {
@@ -30,7 +31,9 @@ enum class GfxMeshAttribType
     Normal = 1,
     Tangent = 2,
     Color = 3,
-    TexCoord = 4
+    TexCoord = 4,
+    BoneIndex = 5,
+    BoneWeight = 6
 } BIND ENUM_CLASS;
 static const unsigned int GfxMeshAttribTypeMax = 5;
 
@@ -102,6 +105,24 @@ struct GfxMeshAttrib
     ResizableData data;
 } BIND;
 
+struct GfxAnimationFrame
+{
+    List<Transform> boneTransforms; //index 0 is for GfxMesh::bones[0], index 1 is for GfxMesh::bones[1]...
+};
+
+struct GfxAnimation
+{
+    size_t fps;
+    List<GfxAnimationFrame> frames;
+};
+
+struct GfxBone
+{
+    int16_t parent; //Index for GfxMesh::bones. -1 if the bone has no parent.
+    Matrix4x4 boneMatrix;
+    List<uint8_t> children; //Indices for GfxMesh::bones
+};
+
 class GfxMesh : public Resource
 {
     public:
@@ -119,7 +140,9 @@ class GfxMesh : public Resource
                                GfxMeshIndexDataType indexType,
                                const ResizableData& data)
         {
-            if (((int)indexType+1  * numIndices) > data.getSize())
+            static const size_t indexTypeSizes[] = {1, 2, 4};
+
+            if ((indexTypeSizes[(int)indexType] * numIndices) > data.getSize())
             {
                 THROW(BoundsException);
             }
@@ -178,6 +201,8 @@ class GfxMesh : public Resource
         GfxPrimitive primitive;
         GfxCullMode cullMode;
         GfxWinding winding;
+        NO_BIND List<GfxBone> bones;
+        NO_BIND HashMap<String, GfxAnimation> animations;
 
         virtual void removeContent();
 
@@ -196,5 +221,39 @@ class GfxMesh : public Resource
         virtual void _load();
         virtual Resource *_copy() const;
 } DESTROY(obj->release()) BIND;
+
+class GfxAnimationState
+{
+    NO_COPY(GfxAnimationState)
+
+    public:
+        GfxAnimationState(GfxMesh *mesh_,
+                          const String& animName_);
+        ~GfxAnimationState();
+
+        void updateMatrices();
+
+        const String animName;
+        float timeOffset;
+
+        inline GfxMesh *getMesh() const
+        {
+            return mesh;
+        }
+
+        inline GfxBuffer *getMatrixBuffer() const
+        {
+            return matrixBuffer;
+        }
+
+        inline GfxBuffer *getNormalMatrixBuffer() const
+        {
+            return normalMatrixBuffer;
+        }
+    private:
+        GfxMesh *mesh;
+        GfxBuffer *matrixBuffer;
+        GfxBuffer *normalMatrixBuffer;
+};
 
 #endif // GFXMESH_H

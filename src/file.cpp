@@ -111,6 +111,11 @@ void File::read(size_t amount, void *destination)
         THROW(FileException, filename, "File invalid");
     }
 
+    if (amount == 0)
+    {
+        return;
+    }
+
     if (std::fread(destination, amount, 1, file) != 1)
     {
         THROW(FileException, filename, "Unable to read from file.")
