@@ -287,9 +287,9 @@ void Serializable::writeToFile(File *file)
     {
         file->writeUInt32LE(list.getCount());
 
-        for (size_t i = 0; i < list.getCount(); ++i)
+        for (auto elem : list)
         {
-            list[i].writeToFile(file);
+            elem.writeToFile(file);
         }
         break;
     }

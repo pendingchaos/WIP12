@@ -76,7 +76,7 @@ class Scene : public Resource
             return nullptr;
         }
 
-        inline void removeScript(ScriptInstance *instance) NO_BIND
+        void removeScript(ScriptInstance *instance) NO_BIND
         {
             int index = scripts.find(instance);
 
@@ -93,13 +93,13 @@ class Scene : public Resource
             return scripts;
         }
 
-        inline ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
+        ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
         {
-            for (size_t i = 0; i < scripts.getCount(); ++i)
+            for (auto script : scripts)
             {
-                if (scripts[i]->getName() == name)
+                if (script->getName() == name)
                 {
-                    return scripts[i];
+                    return script;
                 }
             }
 
@@ -108,7 +108,7 @@ class Scene : public Resource
 
         #ifdef IN_SCRIPT
         template <typename T>
-        inline T *findScriptInstance() const
+        T *findScriptInstance() const
         {
             ScriptInstance *inst = findScriptInstanceByName(T::_name);
 
@@ -131,9 +131,8 @@ class Scene : public Resource
         template <typename T>
         T *_findWithScript(const List<Entity *>& entities) const
         {
-            for (size_t i = 0; i < entities.getCount(); ++i)
+            for (auto entity : entities)
             {
-                Entity *entity = entities[i];
                 T *inst = entity->findScriptInstance<T>();
 
                 if (inst != nullptr)

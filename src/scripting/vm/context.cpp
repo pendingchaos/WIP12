@@ -27,11 +27,11 @@ void Context::reset()
     {
         CallstackEntry& entry = callStack[i];
 
-        for (size_t j = 0; j < entry.stacks.getCount(); ++j)
+        for (auto stack : entry.stacks)
         {
-            for (size_t k = 0; k < entry.stacks[j].getCount(); ++k)
+            for (auto value : stack)
             {
-                destroy(this, entry.stacks[j][k]);
+                destroy(this, value);
             }
         }
 
@@ -653,9 +653,9 @@ break;
 
             stack->append(call(this, head, args));
 
-            for (size_t i = 0; i < args.getCount(); ++i)
+            for (auto arg : args)
             {
-                destroy(this, args[i]);
+                destroy(this, arg);
             }
 
             destroy(this, argCountHead);
@@ -695,9 +695,9 @@ break;
 
             stack->append(callMethod(this, head, ((StringValue *)nameHead)->value, args));
 
-            for (size_t i = 0; i < args.getCount(); ++i)
+            for (auto arg : args)
             {
-                destroy(this, args[i]);
+                destroy(this, arg);
             }
 
             destroy(this, argCountHead);
@@ -1040,9 +1040,9 @@ Value *Context::run(const Bytecode& bytecode, List<Value *> args)
 
             List<Value *>& stack = entry->stacks[entry->stacks.getCount()-1];
 
-            for (size_t i = 0; i < stack.getCount(); ++i)
+            for (auto value : stack)
             {
-                destroy(this, stack[i]);
+                destroy(this, value);
             }
 
             entry->stacks.remove(entry->stacks.getCount()-1);
@@ -1073,11 +1073,11 @@ void Context::popCallstack()
 
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
 
-    for (size_t i = 0; i < callstackEntry.stacks.getCount(); ++i)
+    for (auto stack : callstackEntry.stacks)
     {
-        for (size_t j = 0; j < callstackEntry.stacks[i].getCount(); ++j)
+        for (auto value : stack)
         {
-            destroy(this, callstackEntry.stacks[i][j]);
+            destroy(this, value);
         }
     }
 

@@ -33,23 +33,23 @@ Scene::Scene(const String& filename) : Resource(filename,
 
 Scene::~Scene()
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        DELETE(entities[i]);
+        DELETE(entity);
     }
 
     List<Script *> scripts_;
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts_.append(scripts[i]->getScript());
+        scripts_.append(scriptInst->getScript());
 
-        DELETE(scripts[i]);
+        DELETE(scriptInst);
     }
 
-    for (size_t i = 0; i < scripts_.getCount(); ++i)
+    for (auto script : scripts_)
     {
-        scripts_[i]->release();
+        script->release();
     }
 
     audioWorld->removeFromAudioDevice(audioDevice);
@@ -61,28 +61,26 @@ Scene::~Scene()
 
 void Scene::removeContent()
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        DELETE(entities[i]);
+        DELETE(entity);
     }
-
     entities.clear();
 
     List<Script *> scripts_;
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts_.append(scripts[i]->getScript());
+        scripts_.append(scriptInst->getScript());
 
-        DELETE(scripts[i]);
+        DELETE(scriptInst);
     }
-
-    for (size_t i = 0; i < scripts_.getCount(); ++i)
-    {
-        scripts_[i]->release();
-    }
-
     scripts.clear();
+
+    for (auto script : scripts_)
+    {
+        script->release();
+    }
 
     audioWorld->clearSources();
 
@@ -95,46 +93,46 @@ void Scene::removeContent()
 
 void Scene::handleInput()
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        entities[i]->updateFinalTransform();
+        entity->updateFinalTransform();
     }
 
     _handleInput(entities);
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts[i]->handleInput();
+        scriptInst->handleInput();
     }
 }
 
 void Scene::update()
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        entities[i]->updateFinalTransform();
+        entity->updateFinalTransform();
     }
 
     _update(entities);
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts[i]->update();
+        scriptInst->update();
     }
 }
 
 void Scene::fixedUpdate(float timestep)
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        entities[i]->updateFinalTransform();
+        entity->updateFinalTransform();
     }
 
     _fixedUpdate(entities, timestep);
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts[i]->fixedUpdate(timestep);
+        scriptInst->fixedUpdate(timestep);
     }
 
     physicsWorld->stepSimulation(timestep);
@@ -142,13 +140,11 @@ void Scene::fixedUpdate(float timestep)
 
 void Scene::_handleInput(const List<Entity *>& entities_)
 {
-    for (size_t i = 0; i < entities_.getCount(); ++i)
+    for (auto entity : entities_)
     {
-        const Entity *entity = entities_[i];
-
-        for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
+        for (auto scriptInst : entity->getScripts())
         {
-            entity->getScripts()[i]->handleInput();
+            scriptInst->handleInput();
         }
 
         _handleInput(entity->getEntities());
@@ -157,13 +153,11 @@ void Scene::_handleInput(const List<Entity *>& entities_)
 
 void Scene::_update(const List<Entity *>& entities_)
 {
-    for (size_t i = 0; i < entities_.getCount(); ++i)
+    for (auto entity : entities_)
     {
-        const Entity *entity = entities_[i];
-
-        for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
+        for (auto scriptInst : entity->getScripts())
         {
-            entity->getScripts()[i]->update();
+            scriptInst->update();
         }
 
         _update(entity->getEntities());
@@ -172,13 +166,11 @@ void Scene::_update(const List<Entity *>& entities_)
 
 void Scene::_fixedUpdate(const List<Entity *>& entities_, float timestep)
 {
-    for (size_t i = 0; i < entities_.getCount(); ++i)
+    for (auto entity : entities_)
     {
-        const Entity *entity = entities_[i];
-
-        for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
+        for (auto scriptInst : entity->getScripts())
         {
-            entity->getScripts()[i]->fixedUpdate(timestep);
+            scriptInst->fixedUpdate(timestep);
         }
 
         _fixedUpdate(entity->getEntities(), timestep);
@@ -187,23 +179,23 @@ void Scene::_fixedUpdate(const List<Entity *>& entities_, float timestep)
 
 void Scene::render()
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        entities[i]->updateFinalTransform();
+        entity->updateFinalTransform();
     }
 
     renderer->updateStats();
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts[i]->preRender();
+        scriptInst->preRender();
     }
 
     renderer->render();
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts[i]->postRender();
+        scriptInst->postRender();
     }
 }
 
@@ -252,13 +244,14 @@ void loadEntity(Entity *entity, File *file)
             GfxModel *model = entity->getRenderComponent()->model;
             GfxMesh *mesh = nullptr;
 
-            for (size_t i = 0; i < model->subModels.getCount(); ++i)
+            for (auto subModel : model->subModels)
             {
-                const GfxModel::SubModel& subModel = model->subModels[i];
-
-                for (size_t j = 0; j < subModel.getCount(); ++j)
+                for (auto lod : subModel)
                 {
-                    mesh = subModel[j].mesh;
+                    if (lod.mesh->animations.findEntry(animName) != -1)
+                    {
+                        mesh = lod.mesh;
+                    }
                     break;
                 }
 
@@ -771,9 +764,9 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
     file->writeUInt32LE(entity->getScripts().getCount());
 
-    for (size_t i = 0; i < entity->getScripts().getCount(); ++i)
+    for (auto scriptInst : entity->getScripts())
     {
-        String filename = entity->getScripts()[i]->getScript()->getFilename();
+        String filename = scriptInst->getScript()->getFilename();
 
         file->writeUInt32LE(filename.getLength());
         file->write(filename.getLength(), filename.getData());
@@ -781,9 +774,9 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
     file->writeUInt32LE(entity->getEntities().getCount());
 
-    for (size_t i = 0; i < entity->getEntities().getCount(); ++i)
+    for (auto child : entity->getEntities())
     {
-        saveEntity(entity->getEntities()[i], file, filename);
+        saveEntity(child, file, filename);
     }
 
 }
@@ -857,10 +850,8 @@ void Scene::save()
 
         file.writeUInt32LE(renderer->colorModifiers.getCount());
 
-        for (size_t i = 0; i < renderer->colorModifiers.getCount(); ++i)
+        for (auto modifier : renderer->colorModifiers)
         {
-            GfxRenderer::ColorModifier& modifier = renderer->colorModifiers[i];
-
             file.writeUInt8((uint8_t)modifier.type);
 
             switch (modifier.type)
@@ -924,9 +915,9 @@ void Scene::save()
 
         file.writeUInt32LE(entities.getCount());
 
-        for (size_t i = 0; i < entities.getCount(); ++i)
+        for (auto entity : entities)
         {
-            saveEntity(entities[i], &file, getFilename());
+            saveEntity(entity, &file, getFilename());
         }
 
         file.writeUInt32LE(renderer->getLights().getCount());
@@ -996,9 +987,9 @@ void Scene::save()
 
         file.writeUInt32LE(scripts.getCount());
 
-        for (size_t i = 0; i < scripts.getCount(); ++i)
+        for (auto scriptInst : scripts)
         {
-            String filename = scripts[i]->getScript()->getFilename();
+            String filename = scriptInst->getScript()->getFilename();
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -1071,9 +1062,8 @@ void copyEntity(Entity *dest, Entity *source)
         }
     }
 
-    for (size_t i = 0; i < source->getAudioSources().getCount(); ++i)
+    for (auto audio : source->getAudioSources())
     {
-        AudioSource *audio = source->getAudioSources()[i];
         AudioSource *audio2 = dest->addAudioSource(audio->getAudio()->copyRef<Audio>());
 
         audio2->is3d = audio->is3d;
@@ -1089,10 +1079,8 @@ void copyEntity(Entity *dest, Entity *source)
         audio2->playing = audio->playing;
     }
 
-    for (size_t i = 0; i < source->getScripts().getCount(); ++i)
+    for (auto inst : source->getScripts())
     {
-        ScriptInstance *inst = source->getScripts()[i];
-
         Serializable serialized;
 
         inst->serialize(serialized);
@@ -1128,10 +1116,8 @@ Resource *Scene::_copy() const
 {
     Scene *scene = NEW(Scene);
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto inst : scripts)
     {
-        ScriptInstance *inst = scripts[i];
-
         scene->addScript(inst->getScript(), inst->getName().getData());
     }
 
@@ -1153,10 +1139,8 @@ Resource *Scene::_copy() const
 
     scene->renderer->updateColorModifierShader();
 
-    for (size_t i = 0; i < renderer->getLights().getCount(); ++i)
+    for (auto light : renderer->getLights())
     {
-        Light *light = renderer->getLights()[i];
-
         if (light->scriptOwned)
         {
             continue;
@@ -1189,17 +1173,13 @@ Resource *Scene::_copy() const
         }
     }
 
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        Entity *entity = entities[i];
-
         copyEntity(scene->createEntity(entity->name.copy()), entity);
     }
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto inst : scripts)
     {
-        ScriptInstance *inst = scripts[i];
-
         Serializable serialized;
 
         inst->serialize(serialized);

@@ -154,11 +154,11 @@ class Entity
 
         inline ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
         {
-            for (size_t i = 0; i < scripts.getCount(); ++i)
+            for (auto script : scripts)
             {
-                if (scripts[i]->getName() == name)
+                if (script->getName() == name)
                 {
-                    return scripts[i];
+                    return script;
                 }
             }
 

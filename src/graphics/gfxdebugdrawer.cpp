@@ -35,23 +35,25 @@ void GfxDebugDrawer::render(const Camera& camera)
 
     for (size_t i = 0; i < lines.getCount(); ++i)
     {
+        const Line& line = lines[i];
+
         float *pos = (float *)positionData.getData() + i * 2 * 3;
 
-        pos[0] = lines[i].startPos.x;
-        pos[1] = lines[i].startPos.y;
-        pos[2] = lines[i].startPos.z;
-        pos[3] = lines[i].endPos.x;
-        pos[4] = lines[i].endPos.y;
-        pos[5] = lines[i].endPos.z;
+        pos[0] = line.startPos.x;
+        pos[1] = line.startPos.y;
+        pos[2] = line.startPos.z;
+        pos[3] = line.endPos.x;
+        pos[4] = line.endPos.y;
+        pos[5] = line.endPos.z;
 
         uint8_t *color = (uint8_t *)colorData.getData() + i * 2 * 4;
 
-        color[0] = lines[i].startColor.x * 255.0f;
-        color[1] = lines[i].startColor.y * 255.0f;
-        color[2] = lines[i].startColor.z * 255.0f;
-        color[3] = lines[i].endColor.x * 255.0f;
-        color[4] = lines[i].endColor.y * 255.0f;
-        color[5] = lines[i].endColor.z * 255.0f;
+        color[0] = line.startColor.x * 255.0f;
+        color[1] = line.startColor.y * 255.0f;
+        color[2] = line.startColor.z * 255.0f;
+        color[3] = line.endColor.x * 255.0f;
+        color[4] = line.endColor.y * 255.0f;
+        color[5] = line.endColor.z * 255.0f;
     }
 
     GfxMeshAttrib attrib;

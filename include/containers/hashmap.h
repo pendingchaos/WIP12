@@ -100,16 +100,16 @@ class HashMap
                 return false;
             }
 
-            for (size_t i = 0; i < entries.getCount(); ++i)
+            for (auto entry : entries)
             {
-                int otherIndex = other.findEntry(entries[i].key);
+                int otherIndex = other.findEntry(entry.key);
 
                 if (otherIndex == -1)
                 {
                     return false;
                 }
 
-                if (not (entries[i].value == other.entries[otherIndex].value))
+                if (not (entry.value == other.entries[otherIndex].value))
                 {
                     return false;
                 }
@@ -213,13 +213,10 @@ class HashMap
             entries.clear();
         }
 
-        void append(const HashMap<Key,
-                                  Value>& other)
+        void append(const HashMap<Key, Value>& other)
         {
-            for (size_t i = 0; i < other.getEntryCount(); ++i)
+            for (auto entry : other.entries)
             {
-                const Entry& entry = other.entries[i];
-
                 _set(entry.keyHash, entry.key, entry.value);
             }
         }

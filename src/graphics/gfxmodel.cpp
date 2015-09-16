@@ -20,28 +20,24 @@ GfxModel::GfxModel(const String& filename) : Resource(filename,
 
 GfxModel::~GfxModel()
 {
-    for (size_t i = 0; i < subModels.getCount(); ++i)
+    for (auto subModel : subModels)
     {
-        List<GfxLOD> subModel = subModels[i];
-
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        for (auto lod : subModel)
         {
-            subModel[i].mesh->release();
-            subModel[i].material->release();
+            lod.mesh->release();
+            lod.material->release();
         }
     }
 }
 
 void GfxModel::removeContent()
 {
-    for (size_t i = 0; i < subModels.getCount(); ++i)
+    for (auto subModel : subModels)
     {
-        List<GfxLOD> subModel = subModels[i];
-
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        for (auto lod : subModel)
         {
-            subModel[i].mesh->release();
-            subModel[i].material->release();
+            lod.mesh->release();
+            lod.material->release();
         }
     }
 
@@ -56,16 +52,12 @@ void GfxModel::save()
 
     file.writeUInt32LE(subModels.getCount());
 
-    for (size_t i = 0; i < subModels.getCount(); ++i)
+    for (auto subModel : subModels)
     {
-        const SubModel& subModel = subModels[i];
-
         file.writeUInt32LE(subModel.getCount());
 
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        for (auto lod : subModel)
         {
-            const GfxLOD& lod = subModel[j];
-
             file.writeFloat32(lod.minDistance);
             file.writeFloat32(lod.maxDistance);
 
@@ -201,14 +193,12 @@ Resource *GfxModel::_copy() const
 {
     GfxModel *model = NEW(GfxModel);
 
-    for (size_t i = 0; i < subModels.getCount(); ++i)
+    for (auto subModel : subModels)
     {
-        const SubModel& subModel = subModels[i];
         SubModel newSubModel;
 
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        for (auto lod : subModel)
         {
-            const GfxLOD& lod = subModel[j];
             newSubModel.append(GfxLOD(lod.minDistance,
                                       lod.maxDistance,
                                       lod.mesh->copyRef<GfxMesh>(),

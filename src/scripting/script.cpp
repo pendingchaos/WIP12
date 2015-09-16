@@ -25,10 +25,8 @@ void getIncludes(const String& source, List<String>& includes)
 {
     List<String> lines = source.split('\n');
 
-    for (size_t i = 0; i < lines.getCount(); ++i)
+    for (auto line : lines)
     {
-        const String& line = lines[i];
-
         try
         {
             if (line.startsWith("#include"))
@@ -184,10 +182,8 @@ Script::Script(const String& filename) : Resource(filename,
 
 Script::~Script()
 {
-    for (size_t i = 0; i < instances.getCount(); ++i)
+    for (auto instance : instances)
     {
-        ScriptInstance *instance = instances[i];
-
         void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
 
         if (destroyFunc != nullptr)
@@ -205,10 +201,8 @@ void Script::removeContent()
 {
     if (dl != nullptr)
     {
-        for (size_t i = 0; i < instances.getCount(); ++i)
+        for (auto instance : instances)
         {
-            ScriptInstance *instance = instances[i];
-
             void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
 
             if (destroyFunc != nullptr)
@@ -257,11 +251,11 @@ void Script::_load()
 
     if (dl != nullptr)
     {
-        for (size_t i = 0; i < instances.getCount(); ++i)
+        for (auto instance : instances)
         {
             Serializable serialized_;
 
-            instances[i]->serialize(serialized_);
+            instance->serialize(serialized_);
 
             serialized.append(serialized_);
         }
@@ -415,9 +409,9 @@ void Script::_load()
 
     fileSys->popSearchPaths();
 
-    for (size_t i = 0; i < includes.getCount(); ++i)
+    for (auto include : includes)
     {
-        includesModifications.append(::getLastFileModification(includes[i].getData()));
+        includesModifications.append(::getLastFileModification(include.getData()));
     }
 }
 

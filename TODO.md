@@ -33,7 +33,6 @@
 - [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)
     - Runner up test model: http://opengameart.org/content/wizard
 
-struct GfxBone
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)

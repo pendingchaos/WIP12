@@ -11,9 +11,7 @@ size_t getHash(const String& value)
 
     for (size_t i = 0; i < value.getLength(); ++i)
     {
-        char c = value[i];
-
-        result ^= c;
+        result ^= value[i];
         #if __WORDSIZE == 64
         result *= 1099511628211ULL;
         #else

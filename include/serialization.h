@@ -164,9 +164,9 @@ class Serializable
             {
                 List<T> result;
 
-                for (size_t i = 0; i < list.getCount(); ++i)
+                for (auto elem : list)
                 {
-                    result.append((T)list[i]);
+                    result.append((T)elem);
                 }
             } else
             {
@@ -347,9 +347,9 @@ Serializable::Serializable(const HashMap<Key, Value>& value)
 template <typename T>
 Serializable::Serializable(const List<T>& value)
 {
-    for (size_t i = 0; i < value.getCount(); ++i)
+    for (auto elem : value)
     {
-        list.append(serialize(value[i]));
+        list.append(serialize(elem));
     }
 }
 

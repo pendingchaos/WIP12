@@ -230,14 +230,13 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
 
             data.append(1, &opLoadVar);
 
-            for (size_t i = 1; i < id->names.getCount(); ++i)
+            for (auto name : id->names)
             {
-                str = id->names[i];
-                length = TO_LE_U32(str.getLength());
+                length = TO_LE_U32(name.getLength());
 
                 data.append(1, &opPushString);
                 data.append(4, &length);
-                data.append(str.getLength(), str.getData());
+                data.append(name.getLength(), name.getData());
 
                 data.append(1, &opGetMember);
             }
@@ -246,11 +245,9 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
     }
     case ASTNode::Statements:
     {
-        List<ASTNode *> statements = ((StatementsNode *)node)->statements;
-
-        for (size_t i = 0; i < statements.getCount(); ++i)
+        for (auto statement : ((StatementsNode *)node)->statements)
         {
-            if (_generateBytecode(statements[i], data))
+            if (_generateBytecode(statement, data))
             {
                 data.append(1, &opStackPop);
             }
@@ -306,14 +303,13 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
 
                 data.append(1, &opLoadVar);
 
-                for (size_t i = 1; i < id->names.getCount()-1; ++i)
+                for (auto name : id->names)
                 {
-                    str = id->names[i];
-                    length = TO_LE_U32(str.getLength());
+                    length = TO_LE_U32(name.getLength());
 
                     data.append(1, &opPushString);
                     data.append(4, &length);
-                    data.append(str.getLength(), str.getData());
+                    data.append(name.getLength(), name.getData());
 
                     data.append(1, &opGetMember);
                 }
@@ -423,9 +419,9 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 bodyData.append(1, &opStoreVar);
             }
 
-            for (size_t i = 2; i < call->nodes.getCount(); ++i)
+            for (auto node : call->nodes)
             {
-                if (_generateBytecode(call->nodes[i], bodyData))
+                if (_generateBytecode(node, bodyData))
                 {
                     bodyData.append(1, &opStackPop);
                 }
@@ -482,11 +478,11 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
                 }
             }
 
-            for (size_t i = 0; i < endJumpOffsetsPos.getCount(); ++i)
+            for (auto pos : endJumpOffsetsPos)
             {
-                uint8_t *p = ((uint8_t *)data.getData())+endJumpOffsetsPos[i];
+                uint8_t *p = ((uint8_t *)data.getData()) + pos;
 
-                *((int32_t *)p) = data.getSize() - (endJumpOffsetsPos[i] + 4);
+                *((int32_t *)p) = data.getSize() - (pos + 4);
             }
 
             return false;
@@ -674,9 +670,9 @@ bool _generateBytecode(ASTNode *node, ResizableData& data) //Returns true if it 
 
             ResizableData data2;
 
-            for (size_t i = 2; i < call->nodes.getCount(); ++i)
+            for (auto node : call->nodes)
             {
-                if (_generateBytecode(call->nodes[i], data2))
+                if (_generateBytecode(node, data2))
                 {
                     data2.append(1, &opStackPop);
                 }

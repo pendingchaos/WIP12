@@ -105,13 +105,13 @@ void ResourceManager::cleanupResources()
             }
         }
 
-        for (size_t j = 0; j < toDelete.getCount(); ++j)
+        for (auto res : toDelete)
         {
             int index = -1;
 
             for (size_t i2 = 0; i2 < resources_.getEntryCount(); ++i2)
             {
-                if (resources_.getValue(i2) == toDelete[j])
+                if (resources_.getValue(i2) == res)
                 {
                     index = i2;
                     break;
@@ -123,7 +123,7 @@ void ResourceManager::cleanupResources()
                 resources_.removeEntry(index);
             }
 
-            toDelete[j]->release();
+            res->release();
         }
     }
 }

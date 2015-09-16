@@ -64,7 +64,7 @@ class AudioWorld
         Position3D listenerPosition;
         float speedOfSound;
 
-        inline AudioSource *createSource(Audio *audio)
+        AudioSource *createSource(Audio *audio)
         {
             AudioSource *source = NEW(AudioSource, audio);
 
@@ -73,7 +73,7 @@ class AudioWorld
             return source;
         }
 
-        inline void destroySource(AudioSource *source)
+        void destroySource(AudioSource *source)
         {
             int index = sources.find(source);
 
@@ -85,11 +85,11 @@ class AudioWorld
             }
         }
 
-        inline void clearSources()
+        void clearSources()
         {
-            for (size_t i = 0; i < sources.getCount(); ++i)
+            for (auto source : sources)
             {
-                DELETE(sources[i]);
+                DELETE(source);
             }
 
             sources.clear();

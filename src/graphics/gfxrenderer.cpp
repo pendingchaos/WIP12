@@ -280,9 +280,9 @@ GfxRenderer::~GfxRenderer()
     //matrixTexture->release();
     DELETE(instanceBuffer);
 
-    for (size_t i = 0; i < lights.getCount(); ++i)
+    for (auto light : lights)
     {
-        DELETE(lights[i]);
+        DELETE(light);
     }
 
     if (skybox != nullptr)
@@ -633,10 +633,8 @@ void main()
     result_color = texture(U(colorTexture), frag_uv).rgb;
 ));
 
-    for (size_t i = 0; i < colorModifiers.getCount(); ++i)
+    for (auto modifier : colorModifiers)
     {
-        const ColorModifier& modifier = colorModifiers[i];
-
         switch (modifier.type)
         {
         case ColorModifier::ReinhardTonemapping:
@@ -919,11 +917,11 @@ void GfxRenderer::render()
     stats.batchingTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //TODO: Add a timing for this.
-    for (size_t i = 0; i < batches.getCount(); ++i)
+    for (auto batch : batches)
     {
-        if (batches[i].animState != nullptr)
+        if (batch.animState != nullptr)
         {
-            batches[i].animState->updateMatrices();
+            batch.animState->updateMatrices();
         }
     }
 
@@ -931,10 +929,8 @@ void GfxRenderer::render()
     start = platform->getTime();
     shadowmapTimer->begin();
 
-    for (size_t i = 0; i < lights.getCount(); ++i)
+    for (auto light : lights)
     {
-        Light *light = lights[i];
-
         light->updateMatrices(this);
 
         if (light->getShadowmap() == nullptr)
@@ -1146,10 +1142,8 @@ void GfxRenderer::render()
     gfxApi->setBlendFactors(GfxOne, GfxOne, GfxOne, GfxOne);
     gfxApi->setBlendMode(GfxAdd, GfxAdd);
 
-    for (size_t i = 0; i < lights.getCount(); ++i)
+    for (auto light : lights)
     {
-        Light *light = lights[i];
-
         GfxCompiledShader *fragmentShader = nullptr;
 
         switch (light->type)
@@ -1471,10 +1465,8 @@ void GfxRenderer::render()
 
     const List<Entity *>& entities = scene->getEntities();
 
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        const Entity *entity = entities[i];
-
         Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
@@ -1585,10 +1577,8 @@ AABB GfxRenderer::computeShadowCasterAABB() const
 
 void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        const Entity *entity = entities[i];
-
         Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
@@ -1599,14 +1589,10 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
             {
                 GfxModel *model = comp->model;
 
-                for (size_t i = 0; i < model->subModels.getCount(); ++i)
+                for (auto subModel : model->subModels)
                 {
-                    const GfxModel::SubModel& subModel = model->subModels[i];
-
-                    for (size_t j = 0; j < subModel.getCount(); ++j)
+                    for (auto lod : subModel)
                     {
-                        const GfxLOD& lod = subModel[j];
-
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
                         if (lod.material->getDisplacementMap() != nullptr)
@@ -1626,10 +1612,8 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
 
 void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        const Entity *entity = entities[i];
-
         Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
@@ -1640,14 +1624,10 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
             {
                 GfxModel *model = comp->model;
 
-                for (size_t i = 0; i < model->subModels.getCount(); ++i)
+                for (auto subModel : model->subModels)
                 {
-                    const GfxModel::SubModel& subModel = model->subModels[i];
-
-                    for (size_t j = 0; j < subModel.getCount(); ++j)
+                    for (auto lod : subModel)
                     {
-                        const GfxLOD& lod = subModel[j];
-
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
                         if (lod.material->getDisplacementMap() != nullptr and lod.material->shadowTesselation)
@@ -1667,8 +1647,6 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
 
 void GfxRenderer::fillLightBuffer(Scene *scene)
 {
-    numLights = lights.getCount();
-
     float *lightData = NEW_ARRAY(float, 4096);
 
     static const size_t pointOffset = 1792;
@@ -1678,10 +1656,8 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
     numDirectionalLights = 0;
     numSpotLights = 0;
 
-    for (size_t i = 0; i < numLights; ++i)
+    for (auto light : lights)
     {
-        const Light *light = lights[i];
-
         switch (light->type)
         {
         case GfxLightType::Directional:
@@ -1744,10 +1720,8 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
 
 void GfxRenderer::batchEntities(const List<Entity *>& entities)
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto entity : entities)
     {
-        const Entity *entity = entities[i];
-
         Matrix4x4 transform = entity->getFinalTransform();
 
         if (entity->hasRenderComponent())
@@ -1791,14 +1765,10 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
 
     float distance = position.distance(camera.getPosition());
 
-    for (size_t i = 0; i < model->subModels.getCount(); ++i)
+    for (auto subModel : model->subModels)
     {
-        GfxModel::SubModel subModel = model->subModels[i];
-
-        for (size_t j = 0; j < subModel.getCount(); ++j)
+        for (auto lod : subModel)
         {
-            const GfxLOD& lod = subModel[j];
-
             if (lod.minDistance < distance and
                 distance < lod.maxDistance)
             {
@@ -1852,10 +1822,8 @@ void GfxRenderer::renderBatches(bool forward)
     Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
     Matrix4x4 viewMatrix = camera.getViewMatrix();
 
-    for (size_t i = 0; i < batches.getCount(); ++i)
+    for (auto batch : batches)
     {
-        Batch batch = batches[i];
-
         if (batch.material->isForward() == forward)
         {
             List<Matrix4x4> worldMatrices = batch.worldMatrices;
@@ -2098,10 +2066,8 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                                            Light *light,
                                            size_t cubemapFace)
 {
-    for (size_t i = 0; i < batches.getCount(); ++i)
+    for (auto batch : batches)
     {
-        Batch batch = batches[i];
-
         GfxMaterial *material = batch.material;
         GfxMesh *mesh = batch.mesh;
 
@@ -2245,10 +2211,8 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
             }
         }
 
-        for (size_t j = 0; j < batch.worldMatrices.getCount(); ++j)
+        for (auto worldMatrix : batch.worldMatrices)
         {
-            Matrix4x4 worldMatrix = batch.worldMatrices[j];
-
             gfxApi->uniform(vertexShader, "worldMatrix", worldMatrix);
 
             if (useTesselation)

@@ -376,6 +376,80 @@ class String
         {
             return copy().append(other);
         }
+
+        class Iterator
+        {
+            friend String;
+
+            public:
+                inline char operator * () const
+                {
+                    return str[i];
+                }
+
+                inline Iterator& operator ++ ()
+                {
+                    ++i;
+                    return *this;
+                }
+
+                inline bool operator != (const Iterator& other) const
+                {
+                    return i != other.i;
+                }
+            private:
+                Iterator(String& str_, size_t i_) : str(str_), i(i_) {}
+
+                String& str; //TODO: Remove the reference
+                size_t i;
+        };
+
+        class ConstIterator
+        {
+            friend String;
+
+            public:
+                inline char operator * () const
+                {
+                    return str[i];
+                }
+
+                inline ConstIterator& operator ++ ()
+                {
+                    ++i;
+                    return *this;
+                }
+
+                inline bool operator != (const ConstIterator& other) const
+                {
+                    return i != other.i;
+                }
+            private:
+                ConstIterator(const String& str_, size_t i_) : str(str_), i(i_) {}
+
+                const String& str; //TODO: Remove the reference
+                size_t i;
+        };
+
+        inline Iterator begin()
+        {
+            return Iterator(*this, 0);
+        }
+
+        inline Iterator end()
+        {
+            return Iterator(*this, getLength());
+        }
+
+        inline ConstIterator begin() const
+        {
+            return ConstIterator(*this, 0);
+        }
+
+        inline ConstIterator end() const
+        {
+            return ConstIterator(*this, getLength());
+        }
     private:
         ResizableData data;
 };

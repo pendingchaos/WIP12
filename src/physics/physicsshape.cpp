@@ -528,14 +528,14 @@ PhysicsShapeImpl::~PhysicsShapeImpl()
 
 void PhysicsShapeImpl::updateRigidBodies()
 {
-    for (size_t i = 0; i < physShape->rigidBodies.getCount(); ++i)
+    for (auto rigidBody : physShape->rigidBodies)
     {
-        physShape->rigidBodies[i]->updateShape();
+        rigidBody->updateShape();
     }
 
-    for (size_t i = 0; i < physShape->ghosts.getCount(); ++i)
+    for (auto ghost : physShape->ghosts)
     {
-        physShape->ghosts[i]->ghostObject->setCollisionShape(shape);
+        ghost->ghostObject->setCollisionShape(shape);
     }
 }
 

@@ -165,6 +165,80 @@ class List
         {
             return find(value) != -1;
         }
+
+        class Iterator
+        {
+            friend List;
+
+            public:
+                inline const T& operator * () const
+                {
+                    return list[i];
+                }
+
+                inline Iterator& operator ++ ()
+                {
+                    ++i;
+                    return *this;
+                }
+
+                inline bool operator != (const Iterator& other) const
+                {
+                    return i != other.i;
+                }
+            private:
+                Iterator(List<T>& list_, size_t i_) : list(list_), i(i_) {}
+
+                List<T> list;
+                size_t i;
+        };
+
+        class ConstIterator
+        {
+            friend List;
+
+            public:
+                inline const T& operator * () const
+                {
+                    return list[i];
+                }
+
+                inline ConstIterator& operator ++ ()
+                {
+                    ++i;
+                    return *this;
+                }
+
+                inline bool operator != (const ConstIterator& other) const
+                {
+                    return i != other.i;
+                }
+            private:
+                ConstIterator(const List<T>& list_, size_t i_) : list(list_), i(i_) {}
+
+                List<T> list;
+                size_t i;
+        };
+
+        inline Iterator begin()
+        {
+            return Iterator(*this, 0);
+        }
+
+        inline Iterator end()
+        {
+            return Iterator(*this, getCount());
+        }
+
+        inline ConstIterator begin() const
+        {
+            return ConstIterator(*this, 0);
+        }
+
+        inline ConstIterator end() const
+        {
+            return ConstIterator(*this, getCount());
+        }
     private:
         std::vector<T> data;
 };

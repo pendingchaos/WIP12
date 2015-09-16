@@ -12,23 +12,23 @@ Entity::Entity(const String& name_,
 
 Entity::~Entity()
 {
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto child : entities)
     {
-        DELETE(entities[i]);
+        DELETE(child);
     }
 
     List<Script *> scripts_;
 
-    for (size_t i = 0; i < scripts.getCount(); ++i)
+    for (auto scriptInst : scripts)
     {
-        scripts_.append(scripts[i]->getScript());
+        scripts_.append(scriptInst->getScript());
 
-        DELETE(scripts[i]);
+        DELETE(scriptInst);
     }
 
-    for (size_t i = 0; i < scripts_.getCount(); ++i)
+    for (auto script : scripts_)
     {
-        scripts_[i]->release();
+        script->release();
     }
 
     if (render)
@@ -92,9 +92,9 @@ void Entity::updateFinalTransform()
         finalTransform = transform.createMatrix();
     }
 
-    for (size_t i = 0; i < entities.getCount(); ++i)
+    for (auto child : entities)
     {
-        entities[i]->updateFinalTransform();
+        child->updateFinalTransform();
     }
 }
 

@@ -105,9 +105,9 @@ class InstanceBase
         {
             T message(args...);
 
-            for (size_t i = 0; i < target->getScripts().getCount(); ++i)
+            for (auto script : target->getScripts())
             {
-                target->getScripts()[i]->handleMessage(&message);
+                script->handleMessage(&message);
             }
         }
 
@@ -116,18 +116,18 @@ class InstanceBase
         {
             sendMessageEntity<T>(target, args...);
 
-            for (size_t i = 0; i < target->getEntities().getCount(); ++i)
+            for (auto entity : target->getEntities())
             {
-                sendMessageEntityRecursive<T>(target->getEntities()[i], args...);
+                sendMessageEntityRecursive<T>(entity, args...);
             }
         }
 
         template <typename T, typename... Args>
         void sendMessageGlobal(Args... args)
         {
-            for (size_t i = 0; i < scene->getEntities().getCount(); ++i)
+            for (auto entity : scene->getEntities())
             {
-                sendMessageEntityRecursive<T>(scene->getEntities()[i], args...);
+                sendMessageEntityRecursive<T>(entity, args...);
             }
         }
     protected:

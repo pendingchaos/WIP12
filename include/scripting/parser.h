@@ -78,9 +78,9 @@ class StatementsNode : public ASTNode
 
         virtual ~StatementsNode()
         {
-            for (size_t i = 0; i < statements.getCount(); ++i)
+            for (auto statement : statements)
             {
-                DELETE(statements[i]);
+                DELETE(statement);
             }
         }
 
@@ -103,9 +103,9 @@ class CallNode : public ASTNode
 
         virtual ~CallNode()
         {
-            for (size_t i = 0; i < nodes.getCount(); ++i)
+            for (auto node : nodes)
             {
-                DELETE(nodes[i]);
+                DELETE(node);
             }
         }
 

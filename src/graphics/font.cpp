@@ -167,9 +167,9 @@ void Font::render(size_t size,
     {
         List<Position2D> positions;
 
-        for (size_t j = 0; j < characters.getValue(i).getCount(); ++j)
+        for (auto character : characters.getValue(i))
         {
-            positions.append(characters.getValue(i)[j].position);
+            positions.append(character.position);
         }
 
         Glyph& glyph = characters.getValue(i)[0].glyph;

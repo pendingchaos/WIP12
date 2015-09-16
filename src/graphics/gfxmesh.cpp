@@ -196,13 +196,13 @@ void GfxMesh::removeAttribute(GfxMeshAttribType type)
     glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &lastVAO);
     glBindVertexArray(vao);
 
-    for (size_t i = 0; i < attribs.getCount(); ++i)
+    for (auto attrib : attribs)
     {
-        if (attribs[i].type == type)
+        if (attrib.type == type)
         {
             glBindBuffer(GL_ARRAY_BUFFER, 0);
-            glVertexAttribPointer((int)attribs[i].type, 1, GL_BYTE, GL_FALSE, 0, (const GLvoid *)0);
-            glDisableVertexAttribArray((int)attribs[i].type);
+            glVertexAttribPointer((int)attrib.type, 1, GL_BYTE, GL_FALSE, 0, (const GLvoid *)0);
+            glDisableVertexAttribArray((int)attrib.type);
         }
     }
 
@@ -253,12 +253,12 @@ void GfxMesh::save()
 
         file.writeUInt32LE(attribs.getCount());
 
-        for (size_t i = 0; i < attribs.getCount(); ++i)
+        for (auto attrib : attribs)
         {
-            file.writeUInt8((int)attribs[i].type);
-            file.writeUInt8((int)attribs[i].dataType);
-            file.writeUInt32LE(attribs[i].data.getSize());
-            file.write(attribs[i].data);
+            file.writeUInt8((int)attrib.type);
+            file.writeUInt8((int)attrib.dataType);
+            file.writeUInt32LE(attrib.data.getSize());
+            file.write(attrib.data);
         }
 
         file.writeUInt8((int)indexType);
@@ -266,10 +266,8 @@ void GfxMesh::save()
 
         file.writeUInt32LE(bones.getCount());
 
-        for (size_t i = 0; i < bones.getCount(); ++i)
+        for (auto bone : bones)
         {
-            const GfxBone& bone = bones[i];
-
             file.writeInt16LE(bone.parent);
             file.writeUInt32LE(bone.children.getCount());
 
@@ -309,14 +307,10 @@ void GfxMesh::save()
             file.writeUInt32LE(anim.fps);
             file.writeUInt32LE(anim.frames.getCount());
 
-            for (size_t j = 0; j < anim.frames.getCount(); ++j)
+            for (auto frame : anim.frames)
             {
-                const GfxAnimationFrame& frame = anim.frames[j];
-
-                for (size_t k = 0; k < frame.boneTransforms.getCount(); ++k)
+                for (auto transform : frame.boneTransforms)
                 {
-                    const Transform& transform = frame.boneTransforms[k];
-
                     file.writeFloat32(transform.orientation.x);
                     file.writeFloat32(transform.orientation.y);
                     file.writeFloat32(transform.orientation.z);
@@ -513,9 +507,9 @@ Resource *GfxMesh::_copy() const
         mesh->addIndices(numIndices, indexType, indices);
     }
 
-    for (size_t i = 0; i < attribs.getCount(); ++i)
+    for (auto attrib : attribs)
     {
-        mesh->setAttribute(attribs[i]);
+        mesh->setAttribute(attrib);
     }
 
     return (Resource *)mesh;
@@ -548,9 +542,9 @@ void getMatrix(size_t index, const GfxMesh *mesh, const GfxAnimationFrame& frame
     Matrix4x4 matrix = parentMatrix * frame.boneTransforms[index].createMatrix();
     matrices[index] = matrix * mesh->bones[index].boneMatrix;
 
-    for (size_t i = 0; i < bone.children.getCount(); ++i)
+    for (auto child : bone.children)
     {
-        getMatrix(bone.children[i], mesh, frame, matrices, matrix);
+        getMatrix(child, mesh, frame, matrices, matrix);
     }
 }
 

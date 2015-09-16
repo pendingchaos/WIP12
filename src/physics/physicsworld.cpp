@@ -21,14 +21,14 @@ PhysicsWorld::PhysicsWorld() : debugDrawer(nullptr)
 
 PhysicsWorld::~PhysicsWorld()
 {
-    for (size_t i = 0; i < rigidBodies.getCount(); ++i)
+    for (auto rigidBody : rigidBodies)
     {
-        DELETE(rigidBodies[i]);
+        DELETE(rigidBody);
     }
 
-    for (size_t i = 0; i < ghostObjects.getCount(); ++i)
+    for (auto ghost : ghostObjects)
     {
-        DELETE(ghostObjects[i]);
+        DELETE(ghost);
     }
 
     world->setDebugDrawer(nullptr);
