@@ -1,6 +1,5 @@
 ## Features
 - [ ] Forward shadow mapping.
-- [ ] Skeletal animation.
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
 - [ ] Transformation for a PhysicsShape.
 - [ ] Make physics shapes more lightweight.
@@ -18,7 +17,7 @@
         - [ ] Then bind the exceptions
     - [ ] Bind some stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh, GfxAnimationState, GfxAnimationFrame, GfxAnimation and GfxBone.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh, GfxAnimationState, GfxAnimationFrame, GfxAnimation, GfxBone and GfxTerrain.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
@@ -30,8 +29,12 @@
 - [ ] Automatic shadow map far value calculation for point and spot lights.
 - [ ] Have point light radius in world space units.
 - [ ] Skeletal animation for the mesh converter.
+- [ ] Improved skeletal animation.
 - [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)
     - Runner up test model: http://opengameart.org/content/wizard
+- [ ] Terrain shadows from point lights.
+    - Separate option.
+- [ ] Separate option for spot light terrain shadows.
 
 ## Bugs
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:

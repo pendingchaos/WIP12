@@ -939,7 +939,9 @@ if __name__ == "__main__":
     conv["bricks2.jpg"] = Texture(["source/bricks2.jpg"], "resources/textures/bricks2.bin")
     conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
     conv["bricks2_disp.jpg"].max_anisotropy = 1.0
-    conv["bricks2_normal.jpg"] = Texture(["source/bricks2_normal.png"], "resources/textures/bricks2_normal.bin")
+    conv["bricks2_normal.png"] = Texture(["source/bricks2_normal.png"], "resources/textures/bricks2_normal.bin")
+    conv["terrain.png"] = Texture(["source/terrain.png"], "resources/textures/terrain.bin")
+    conv["terrain.png"].wrap_mode = Texture.WrapMode.Stretch
     
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
     conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
@@ -1049,6 +1051,17 @@ if __name__ == "__main__":
     conv["ssaoInterleaveFragment.fs"] = Shader(["source/shaders/ssaoInterleaveFragment.fs"], "../../resources/shaders/ssaoInterleaveFragment.bin")
     conv["ssaoInterleaveFragment.fs"].stage_ = Shader.Stage.Fragment
     
+    conv["terrainVertex.vs"] = Shader(["source/shaders/terrainVertex.vs"], "../../resources/shaders/terrainVertex.bin")
+    
+    conv["terrainTessControl.tcs"] = Shader(["source/shaders/terrainTessControl.tcs"], "../../resources/shaders/terrainTessControl.bin")
+    conv["terrainTessControl.tcs"].stage_ = Shader.Stage.TessControl
+    
+    conv["terrainTessEval.tes"] = Shader(["source/shaders/terrainTessEval.tes"], "../../resources/shaders/terrainTessEval.bin")
+    conv["terrainTessEval.tes"].stage_ = Shader.Stage.TessEval
+    
+    conv["terrainFragment.fs"] = Shader(["source/shaders/terrainFragment.fs"], "../../resources/shaders/terrainFragment.bin")
+    conv["terrainFragment.fs"].stage_ = Shader.Stage.Fragment
+    
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")
@@ -1123,7 +1136,7 @@ if __name__ == "__main__":
     mat.metalMask = 0.0
     mat.albedoMap = conv["bricks2.jpg"]
     mat.pomHeightMap = conv["bricks2_disp.jpg"]
-    mat.normalMap = conv["bricks2_normal.jpg"]
+    mat.normalMap = conv["bricks2_normal.png"]
     mat.parallaxStrength = 0.1
     mat.pomMinLayers = 30
     mat.pomMaxLayers = 70
@@ -1133,7 +1146,7 @@ if __name__ == "__main__":
     mat.forward = False
     mat.smoothness = 0.5
     mat.albedoMap = conv["bricks2.jpg"]
-    mat.normalMap = conv["bricks2_normal.jpg"]
+    mat.normalMap = conv["bricks2_normal.png"]
     mat.displacementMap = conv["bricks2_disp.jpg"]
     mat.minTessLevel = 1.0
     mat.maxTessLevel = 15.0

@@ -119,7 +119,7 @@ class Entity
         Entity(const String& name, Scene *scene);
         ~Entity();
     public:
-        inline ScriptInstance *addScript(Script *script, const char *name) NO_BIND
+        ScriptInstance *addScript(Script *script, const char *name) NO_BIND
         {
             ScriptInstance *inst = findScriptInstanceByName(name);
 
@@ -135,7 +135,7 @@ class Entity
             return nullptr;
         }
 
-        inline void removeScript(ScriptInstance *instance) NO_BIND
+        void removeScript(ScriptInstance *instance) NO_BIND
         {
             int index = scripts.find(instance);
 
@@ -152,7 +152,7 @@ class Entity
             return scripts;
         }
 
-        inline ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
+        ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
         {
             for (auto script : scripts)
             {
@@ -167,7 +167,7 @@ class Entity
 
         #ifdef IN_SCRIPT
         template <typename T>
-        inline T *findScriptInstance() const
+        T *findScriptInstance() const
         {
             ScriptInstance *inst = findScriptInstanceByName(T::_name);
 
@@ -188,7 +188,7 @@ class Entity
             return rigidBody;
         }
 
-        inline void removeRigidBody()
+        void removeRigidBody()
         {
             if (rigidBody != nullptr)
             {
@@ -202,7 +202,7 @@ class Entity
             return rigidBody != nullptr;
         }
 
-        inline void addModel(GfxModel *model, bool shadowCaster=true)
+        void addModel(GfxModel *model, bool shadowCaster=true)
         {
             render = true;
             renderComponent.mode = RenderMode::Model;
@@ -211,7 +211,7 @@ class Entity
             renderComponent.modelData.shadowCaster = shadowCaster;
         }
 
-        inline void addOverlay(GfxTexture *texture)
+        void addOverlay(GfxTexture *texture)
         {
             render = true;
             renderComponent.mode = RenderMode::Overlay;

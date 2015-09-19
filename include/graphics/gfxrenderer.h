@@ -16,6 +16,7 @@ class Matrix4x4;
 class String;
 class GfxFramebuffer;
 class GPUTimer;
+class GfxTerrain;
 
 class GfxRenderer
 {
@@ -199,6 +200,17 @@ class GfxRenderer
         {
             return skybox;
         }
+
+        GfxTerrain *addTerrain(float chunkSize,
+                               size_t sizeInChunks,
+                               GfxTexture *heightmap,
+                               GfxTexture *texture) NO_BIND;
+        void removeTerrain();
+
+        inline GfxTerrain *getTerrain() const
+        {
+            return terrain;
+        }
     private:
         void _computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const;
         void _computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const;
@@ -259,6 +271,10 @@ class GfxRenderer
         GfxShader *hbaoFragment;
         GfxShader *ssaoInterleaveFragment;
         GfxShader *ssaoDeinterleaveFragment;
+        GfxShader *terrainVertex;
+        GfxShader *terrainTessControl;
+        GfxShader *terrainTessEval;
+        GfxShader *terrainFragment;
         GfxCompiledShader *compiledFXAAFragment;
         GfxCompiledShader *compiledLightingDirectional;
         GfxCompiledShader *compiledLightingDirectionalShadow;
@@ -292,6 +308,10 @@ class GfxRenderer
         GfxCompiledShader *compiledHBAOFragment;
         GfxCompiledShader *compiledSSAOInterleaveFragment;
         GfxCompiledShader *compiledSSAODeinterleaveFragment;
+        GfxCompiledShader *compiledTerrainVertex;
+        GfxCompiledShader *compiledTerrainTessControl;
+        GfxCompiledShader *compiledTerrainTessEval;
+        GfxCompiledShader *compiledTerrainFragment;
         //float averageLuminance;
 
         size_t numLights;
@@ -299,6 +319,8 @@ class GfxRenderer
         size_t numPointLights;
         size_t numDirectionalLights;
         size_t numSpotLights;
+
+        GfxTerrain *terrain;
 
         void fillLightBuffer(Scene *scene);
         void batchEntities(const List<Entity *>& entities);
@@ -313,6 +335,10 @@ class GfxRenderer
                                       Light *light,
                                       size_t cubemapFace);
         void renderShadowmap(Light *light);
+        void renderTerrain();
+        void renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
+                                      const Matrix4x4& viewMatrix,
+                                      float autoBiasScale);
 
         GfxTexture *writeColorTexture;
         GfxTexture *readColorTexture;

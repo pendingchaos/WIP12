@@ -73,8 +73,7 @@ void convert(const char *input, const char *out)
                                                     | aiProcess_FindInvalidData
                                                     | aiProcess_GenUVCoords
                                                     | aiProcess_FindInstances
-                                                    | aiProcess_OptimizeMeshes
-                                                    | aiProcess_OptimizeGraph);
+                                                    | aiProcess_OptimizeMeshes);
 
     if (scene == NULL)
     {

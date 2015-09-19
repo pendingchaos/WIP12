@@ -1,0 +1,50 @@
+#include "lib/uniform.glsl"
+
+layout (quads) in;
+
+in gl_PerVertex
+{
+    vec4 gl_Position;
+} gl_in[];
+
+out gl_PerVertex
+{
+    vec4 gl_Position;
+};
+
+out vec3 frag_position_worldSpace;
+out vec2 frag_uv_tangentSpace;
+
+DECLUNIFORM(mat4, viewMatrix)
+DECLUNIFORM(mat4, projectionMatrix)
+DECLUNIFORM(float, size)
+DECLUNIFORM(sampler2D, heightMap)
+DECLUNIFORM(float, scale)
+
+void main()
+{
+    float u = gl_TessCoord.x;    
+    float v = gl_TessCoord.y;
+    
+    vec3 p0 = mix(gl_in[0].gl_Position.xyz, gl_in[3].gl_Position.xyz, u);
+    vec3 p1 = mix(gl_in[1].gl_Position.xyz, gl_in[2].gl_Position.xyz, u);
+    frag_position_worldSpace = mix(p0, p1, v);
+    
+    frag_uv_tangentSpace = (frag_position_worldSpace.xz+U(size)/2.0) / U(size);
+    
+    float height = 0.0;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, -1)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, -1)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, -1)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, 0)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, 0)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, 0)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, 1)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, 1)).r;
+    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, 1)).r;
+    height /= 9.0;
+    
+    frag_position_worldSpace.y += height * U(scale);
+    
+    gl_Position = U(projectionMatrix) * U(viewMatrix) * vec4(frag_position_worldSpace, 1.0);
+}

@@ -7,6 +7,7 @@
 #include "graphics/gfxdebugdrawer.h"
 #include "graphics/gfxbuffer.h"
 #include "graphics/gputimer.h"
+#include "graphics/gfxterrain.h"
 #include "scene/scene.h"
 #include "scene/entity.h"
 #include "globals.h"
@@ -33,7 +34,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           height(0),
                                           scene(scene_),
                                           //averageLuminance(0.0f),
-                                          numLights(0)
+                                          numLights(0),
+                                          terrain(nullptr)
 {
     skyboxVertex = resMgr->load<GfxShader>("resources/shaders/skyboxVertex.bin");
     skyboxFragment = resMgr->load<GfxShader>("resources/shaders/skyboxFragment.bin");
@@ -57,6 +59,10 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //hbaoFragment = resMgr->load<GfxShader>("resources/shaders/hbaoFragment.bin");
     ssaoInterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoInterleaveFragment.bin");
     ssaoDeinterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoDeinterleaveFragment.bin");
+    terrainVertex = resMgr->load<GfxShader>("resources/shaders/terrainVertex.bin");
+    terrainTessControl = resMgr->load<GfxShader>("resources/shaders/terrainTessControl.bin");
+    terrainTessEval = resMgr->load<GfxShader>("resources/shaders/terrainTessEval.bin");
+    terrainFragment = resMgr->load<GfxShader>("resources/shaders/terrainFragment.bin");
 
     if (gfxApi->tesselationSupported())
     {
@@ -93,6 +99,10 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //compiledHBAOFragment = hbaoFragment->getCompiled();
     compiledSSAOInterleaveFragment = ssaoInterleaveFragment->getCompiled();
     compiledSSAODeinterleaveFragment = ssaoDeinterleaveFragment->getCompiled();
+    compiledTerrainVertex = terrainVertex->getCompiled();
+    compiledTerrainTessControl = terrainTessControl->getCompiled();
+    compiledTerrainTessEval = terrainTessEval->getCompiled();
+    compiledTerrainFragment = terrainFragment->getCompiled();
 
     if (gfxApi->tesselationSupported())
     {
@@ -273,6 +283,13 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     //matrixTexture = NEW(GfxTexture);
     instanceBuffer = gfxApi->createBuffer();
     instanceBuffer->allocData(16384, NULL, GfxBufferUsage::Dynamic);
+
+    /*addTerrain(2.0f,
+               32.0f,
+               resMgr->load<GfxTexture>("resources/textures/terrain.bin"),
+               resMgr->load<GfxTexture>("resources/textures/bricks2.bin"))->setScale(10.0f);
+
+    terrain->textureScale = 64.0f;*/
 }
 
 GfxRenderer::~GfxRenderer()
@@ -716,6 +733,23 @@ void main()
     compiledColorModifier = colorModifierFragment->getCompiled();
 }
 
+GfxTerrain *GfxRenderer::addTerrain(float chunkSize,
+                                    size_t sizeInChunks,
+                                    GfxTexture *heightmap,
+                                    GfxTexture *texture)
+{
+    DELETE(terrain);
+    terrain = NEW(GfxTerrain, chunkSize, sizeInChunks, heightmap, texture);
+
+    return terrain;
+}
+
+void GfxRenderer::removeTerrain()
+{
+    DELETE(terrain);
+    terrain = nullptr;
+}
+
 void GfxRenderer::resize(const UInt2& size)
 {
     if (size.x != width or size.y != width)
@@ -961,6 +995,8 @@ void GfxRenderer::render()
     gfxApi->clearColor(2, Float4(0.5f, 0.5f, 0.5f, 0.0f));
 
     renderBatches(false);
+
+    renderTerrain();
 
     swapFramebuffers();
 
@@ -1561,6 +1597,11 @@ AABB GfxRenderer::computeSceneAABB() const
 
     _computeSceneAABB(entities, aabb);
 
+    if (terrain != nullptr)
+    {
+        aabb.extend(terrain->getMesh()->aabb);
+    }
+
     return aabb;
 }
 
@@ -1571,6 +1612,11 @@ AABB GfxRenderer::computeShadowCasterAABB() const
     const List<Entity *>& entities = scene->getEntities();
 
     _computeShadowCasterAABB(entities, aabb);
+
+    if (terrain != nullptr)
+    {
+        aabb.extend(terrain->getMesh()->aabb);
+    }
 
     return aabb;
 }
@@ -2255,7 +2301,92 @@ void GfxRenderer::renderShadowmap(Light *light)
         renderBatchesToShadowmap(viewMatrix, projectionMatrix, light, i);
     }
 
+    renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
+
     gfxApi->popState();
+}
+
+void GfxRenderer::renderTerrain()
+{
+    if (terrain == nullptr)
+    {
+        return;
+    }
+
+    gfxApi->pushState();
+
+    Matrix4x4 viewMatrix = camera.getViewMatrix();
+    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
+
+    gfxApi->begin(compiledTerrainVertex,
+                  compiledTerrainTessControl,
+                  compiledTerrainTessEval,
+                  nullptr,
+                  compiledTerrainFragment,
+                  terrain->getMesh());
+
+    gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
+    gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
+    gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
+    gfxApi->uniform(compiledTerrainTessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
+    gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
+    gfxApi->addTextureBinding(compiledTerrainTessEval,
+                              "heightMap",
+                              terrain->getHeightmap(),
+                              TextureSampler(terrain->getHeightmap()));
+    gfxApi->addTextureBinding(compiledTerrainFragment,
+                              "heightMap",
+                              terrain->getHeightmap(),
+                              TextureSampler(terrain->getHeightmap()));
+    gfxApi->addTextureBinding(compiledTerrainFragment,
+                              "albedoTexture",
+                              terrain->getTexture(),
+                              TextureSampler(terrain->getTexture()));
+    gfxApi->uniform(compiledTerrainFragment, "textureScale", terrain->textureScale);
+
+    gfxApi->setTessPatchSize(4);
+
+    gfxApi->end();
+    gfxApi->popState();
+
+    ++stats.numDrawCalls;
+}
+
+void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
+                                           const Matrix4x4& viewMatrix,
+                                           float autoBiasScale)
+{
+    if (terrain == nullptr)
+    {
+        return;
+    }
+
+    gfxApi->pushState();
+
+    gfxApi->begin(compiledTerrainVertex,
+                  compiledTerrainTessControl,
+                  compiledTerrainTessEval,
+                  nullptr,
+                  compiledShadowmapFragment,
+                  terrain->getMesh());
+
+    gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
+    gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
+    gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
+    gfxApi->uniform(compiledTerrainTessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
+    gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
+    gfxApi->addTextureBinding(compiledTerrainTessEval,
+                              "heightMap",
+                              terrain->getHeightmap(),
+                              TextureSampler(terrain->getHeightmap()));
+    gfxApi->uniform(compiledShadowmapFragment, "biasScale", autoBiasScale);
+
+    gfxApi->setTessPatchSize(4);
+
+    gfxApi->end();
+    gfxApi->popState();
+
+    ++stats.numDrawCalls;
 }
 
 void GfxRenderer::swapFramebuffers()
