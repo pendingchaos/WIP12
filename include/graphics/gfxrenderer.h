@@ -203,8 +203,7 @@ class GfxRenderer
 
         GfxTerrain *addTerrain(float chunkSize,
                                size_t sizeInChunks,
-                               GfxTexture *heightmap,
-                               GfxTexture *texture) NO_BIND;
+                               GfxTexture *heightmap) NO_BIND;
         void removeTerrain();
 
         inline GfxTerrain *getTerrain() const

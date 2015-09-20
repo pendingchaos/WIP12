@@ -285,11 +285,18 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     instanceBuffer->allocData(16384, NULL, GfxBufferUsage::Dynamic);
 
     /*addTerrain(2.0f,
-               32.0f,
-               resMgr->load<GfxTexture>("resources/textures/terrain.bin"),
-               resMgr->load<GfxTexture>("resources/textures/bricks2.bin"))->setScale(10.0f);
+               32,
+               resMgr->load<GfxTexture>("resources/textures/terrain.bin"))->setScale(10.0f);
 
-    terrain->textureScale = 64.0f;*/
+    GfxTerrainLayer layer(resMgr->load<GfxMaterial>("resources/materials/grass.bin"),
+                          resMgr->load<GfxTexture>("resources/textures/terrainWeight.bin"));
+    layer.uvScale = 64.0f;
+    terrain->layers.append(layer);
+
+    GfxTerrainLayer layer2(resMgr->load<GfxMaterial>("resources/materials/rock.bin"),
+                          resMgr->load<GfxTexture>("resources/textures/terrainWeight2.bin"));
+    layer2.uvScale = 64.0f;
+    terrain->layers.append(layer2);*/
 }
 
 GfxRenderer::~GfxRenderer()
@@ -735,11 +742,10 @@ void main()
 
 GfxTerrain *GfxRenderer::addTerrain(float chunkSize,
                                     size_t sizeInChunks,
-                                    GfxTexture *heightmap,
-                                    GfxTexture *texture)
+                                    GfxTexture *heightmap)
 {
     DELETE(terrain);
-    terrain = NEW(GfxTerrain, chunkSize, sizeInChunks, heightmap, texture);
+    terrain = NEW(GfxTerrain, chunkSize, sizeInChunks, heightmap);
 
     return terrain;
 }
@@ -1904,8 +1910,6 @@ void GfxRenderer::renderBatches(bool forward)
             GfxMesh *mesh = batch.mesh;
             GfxShaderCombination *shaderComb = material->getShaderComb();
 
-            gfxApi->setCullMode(mesh->cullMode);
-
             bool useTesselation = material->getDisplacementMap() != nullptr and
                                   gfxApi->tesselationSupported() and
                                   mesh->primitive == GfxTriangles;
@@ -2019,8 +2023,6 @@ void GfxRenderer::renderBatches(bool forward)
             {
                 gfxApi->setTessPatchSize(3);
             }
-
-            gfxApi->addUBOBinding(vertex, "instanceData", instanceBuffer);
 
             for (size_t j = 0; j < worldMatrices.getCount()/128; ++j)
             {
@@ -2301,7 +2303,10 @@ void GfxRenderer::renderShadowmap(Light *light)
         renderBatchesToShadowmap(viewMatrix, projectionMatrix, light, i);
     }
 
-    renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
+    if (light->type != GfxLightType::Point)
+    {
+        renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
+    }
 
     gfxApi->popState();
 }
@@ -2313,43 +2318,97 @@ void GfxRenderer::renderTerrain()
         return;
     }
 
-    gfxApi->pushState();
-
     Matrix4x4 viewMatrix = camera.getViewMatrix();
     Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
 
-    gfxApi->begin(compiledTerrainVertex,
-                  compiledTerrainTessControl,
-                  compiledTerrainTessEval,
-                  nullptr,
-                  compiledTerrainFragment,
-                  terrain->getMesh());
+    gfxApi->pushState();
 
-    gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
-    gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
-    gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
-    gfxApi->uniform(compiledTerrainTessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
-    gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
-    gfxApi->addTextureBinding(compiledTerrainTessEval,
-                              "heightMap",
-                              terrain->getHeightmap(),
-                              TextureSampler(terrain->getHeightmap()));
-    gfxApi->addTextureBinding(compiledTerrainFragment,
-                              "heightMap",
-                              terrain->getHeightmap(),
-                              TextureSampler(terrain->getHeightmap()));
-    gfxApi->addTextureBinding(compiledTerrainFragment,
-                              "albedoTexture",
-                              terrain->getTexture(),
-                              TextureSampler(terrain->getTexture()));
-    gfxApi->uniform(compiledTerrainFragment, "textureScale", terrain->textureScale);
+    for (auto layer : terrain->layers)
+    {
+        GfxMaterial *material = layer.getMaterial();
+        GfxShaderCombination *shaderComb = material->getShaderComb();
 
-    gfxApi->setTessPatchSize(4);
+        shaderComb->setDefine(GfxShaderType::Fragment, "TERRAIN", "1");
 
-    gfxApi->end();
+        GfxCompiledShader *fragment = shaderComb->getCompiled(GfxShaderType::Fragment);
+
+        gfxApi->begin(compiledTerrainVertex,
+                      compiledTerrainTessControl,
+                      compiledTerrainTessEval,
+                      nullptr,
+                      fragment,
+                      terrain->getMesh());
+
+        gfxApi->uniform(compiledTerrainVertex, "sizeInChunks", (uint32_t)terrain->getSizeInChunks());
+        gfxApi->uniform(compiledTerrainVertex, "chunkSize", terrain->getChunkSize());
+        gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
+        gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
+        gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
+        gfxApi->uniform(compiledTerrainTessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
+        gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
+        gfxApi->uniform(compiledTerrainTessEval, "cameraPosition", camera.getPosition());
+        gfxApi->uniform(compiledTerrainTessEval, "uvScale", layer.uvScale);
+        gfxApi->addTextureBinding(compiledTerrainTessEval,
+                                  "heightMap",
+                                  terrain->getHeightmap());
+
+        gfxApi->uniform(fragment, "smoothness", material->smoothness);
+        gfxApi->uniform(fragment, "metalMask", material->metalMask);
+        gfxApi->uniform(fragment, "albedo", material->albedo);
+
+        if (material->getSmoothnessMap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragment, "smoothnessMap", material->getSmoothnessMap());
+        }
+
+        if (material->getMetalMaskMap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragment, "metalMaskMap", material->getMetalMaskMap());
+        }
+
+        if (material->getAlbedoMap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragment, "albedoMap", material->getAlbedoMap());
+        }
+
+        if (material->getNormalMap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
+        }
+
+        if (material->getParallaxHeightMap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragment, "heightMap", material->getParallaxHeightMap());
+
+            gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
+            gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
+        }
+
+        if (material->getPOMHeightMap() != nullptr)
+        {
+            gfxApi->addTextureBinding(fragment, "heightMap", material->getPOMHeightMap());
+
+            gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
+            gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
+            gfxApi->uniform(fragment, "pomMinLayers", material->pomMinLayers);
+            gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
+        }
+
+        gfxApi->addTextureBinding(fragment, "weightMap", layer.getWeight());
+
+        gfxApi->setTessPatchSize(4);
+
+        gfxApi->end(terrain->getSizeInChunks() * terrain->getSizeInChunks());
+        ++stats.numDrawCalls;
+
+        shaderComb->removeDefine(GfxShaderType::Fragment, "TERRAIN");
+
+        gfxApi->setBlendingEnabled(true);
+        gfxApi->setBlendFactors(GfxOne, GfxOne, GfxOne, GfxOne);
+        gfxApi->setDepthFunction(GfxLessEqual);
+    }
+
     gfxApi->popState();
-
-    ++stats.numDrawCalls;
 }
 
 void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
@@ -2361,8 +2420,6 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
         return;
     }
 
-    gfxApi->pushState();
-
     gfxApi->begin(compiledTerrainVertex,
                   compiledTerrainTessControl,
                   compiledTerrainTessEval,
@@ -2370,6 +2427,8 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
                   compiledShadowmapFragment,
                   terrain->getMesh());
 
+    gfxApi->uniform(compiledTerrainVertex, "sizeInChunks", (uint32_t)terrain->getSizeInChunks());
+    gfxApi->uniform(compiledTerrainVertex, "chunkSize", terrain->getChunkSize());
     gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
     gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
     gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
@@ -2377,15 +2436,12 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
     gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
     gfxApi->addTextureBinding(compiledTerrainTessEval,
                               "heightMap",
-                              terrain->getHeightmap(),
-                              TextureSampler(terrain->getHeightmap()));
+                              terrain->getHeightmap());
     gfxApi->uniform(compiledShadowmapFragment, "biasScale", autoBiasScale);
 
     gfxApi->setTessPatchSize(4);
 
-    gfxApi->end();
-    gfxApi->popState();
-
+    gfxApi->end(terrain->getSizeInChunks() * terrain->getSizeInChunks());
     ++stats.numDrawCalls;
 }
 

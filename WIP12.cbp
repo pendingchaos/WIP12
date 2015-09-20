@@ -94,6 +94,7 @@
 		<Unit filename="include/graphics/gfxmodel.h" />
 		<Unit filename="include/graphics/gfxrenderer.h" />
 		<Unit filename="include/graphics/gfxshader.h" />
+		<Unit filename="include/graphics/gfxterrain.h" />
 		<Unit filename="include/graphics/gfxtexture.h" />
 		<Unit filename="include/graphics/gputimer.h" />
 		<Unit filename="include/graphics/light.h" />
@@ -163,6 +164,7 @@
 		<Unit filename="src/graphics/gfxmodel.cpp" />
 		<Unit filename="src/graphics/gfxrenderer.cpp" />
 		<Unit filename="src/graphics/gfxshader.cpp" />
+		<Unit filename="src/graphics/gfxterrain.cpp" />
 		<Unit filename="src/graphics/gfxtexture.cpp" />
 		<Unit filename="src/graphics/gputimer.cpp" />
 		<Unit filename="src/graphics/light.cpp" />

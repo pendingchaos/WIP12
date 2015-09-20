@@ -940,8 +940,21 @@ if __name__ == "__main__":
     conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
     conv["bricks2_disp.jpg"].max_anisotropy = 1.0
     conv["bricks2_normal.png"] = Texture(["source/bricks2_normal.png"], "resources/textures/bricks2_normal.bin")
+    conv["bricks2_normal.png"].purpose = Texture.Purpose.Normal
     conv["terrain.png"] = Texture(["source/terrain.png"], "resources/textures/terrain.bin")
     conv["terrain.png"].wrap_mode = Texture.WrapMode.Stretch
+    conv["terrainWeight.png"] = Texture(["source/terrainWeight.png"], "resources/textures/terrainWeight.bin")
+    conv["terrainWeight.png"].wrap_mode = Texture.WrapMode.Stretch
+    conv["terrainWeight.png"].purpose = Texture.Purpose.Other
+    conv["terrainWeight2.png"] = Texture(["source/terrainWeight2.png"], "resources/textures/terrainWeight2.bin")
+    conv["terrainWeight2.png"].wrap_mode = Texture.WrapMode.Stretch
+    conv["terrainWeight2.png"].purpose = Texture.Purpose.Other
+    conv["grassAlbedo.png"] = Texture(["source/grass/diffuse.tga"], "resources/textures/grassAlbedo.bin")
+    conv["grassNormal.png"] = Texture(["source/grass/normal.tga"], "resources/textures/grassNormal.bin")
+    conv["grassNormal.png"].purpose = Texture.Purpose.Normal
+    conv["rockAlbedo.png"] = Texture(["source/rock/diffuse.tga"], "resources/textures/rockAlbedo.bin")
+    conv["rockNormal.png"] = Texture(["source/rock/normal.tga"], "resources/textures/rockNormal.bin")
+    conv["rockNormal.png"].purpose = Texture.Purpose.Normal
     
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
     conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
@@ -1139,7 +1152,7 @@ if __name__ == "__main__":
     mat.normalMap = conv["bricks2_normal.png"]
     mat.parallaxStrength = 0.1
     mat.pomMinLayers = 30
-    mat.pomMaxLayers = 70
+    mat.pomMaxLayers = 50
     conv["parallax test material"] = mat
     
     mat = Material([], "resources/materials/tesselation test material.bin")
@@ -1163,6 +1176,20 @@ if __name__ == "__main__":
     mat.smoothness = 0.1
     mat.albedo = [0.9, 0.9, 1.0, 1.0]
     conv["platform material"] = mat
+    
+    mat = Material([], "resources/materials/grass.bin")
+    mat.forward = False
+    mat.smoothness = 0.1
+    mat.albedoMap = conv["grassAlbedo.png"]
+    mat.normalMap = conv["grassNormal.png"]
+    conv["grass material"] = mat
+    
+    mat = Material([], "resources/materials/rock.bin")
+    mat.forward = False
+    mat.smoothness = 0.1
+    mat.albedoMap = conv["rockAlbedo.png"]
+    mat.normalMap = conv["rockNormal.png"]
+    conv["rock material"] = mat
     
     """mat = Material([], "resources/materials/astroboy.bin")
     mat.forward = False

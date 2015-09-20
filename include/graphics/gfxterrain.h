@@ -4,14 +4,44 @@
 #include "graphics/gfxtexture.h"
 
 class GfxMesh;
+class GfxMaterial;
+class GfxTexture;
+
+class GfxTerrainLayer
+{
+    public:
+        GfxTerrainLayer(GfxMaterial *material, GfxTexture *weight);
+        GfxTerrainLayer(const GfxTerrainLayer& other);
+        ~GfxTerrainLayer();
+
+        GfxTerrainLayer& operator = (const GfxTerrainLayer& other);
+
+        inline GfxMaterial *getMaterial() const
+        {
+            return material;
+        }
+
+        void setMaterial(GfxMaterial *material_);
+
+        inline GfxTexture *getWeight() const
+        {
+            return weight;
+        }
+
+        void setWeight(GfxTexture *weight_);
+
+        float uvScale;
+    private:
+        GfxMaterial *material;
+        GfxTexture *weight;
+};
 
 class GfxTerrain
 {
     public:
         GfxTerrain(float chunkSize,
                    size_t sizeInCunks,
-                   GfxTexture *heightmap,
-                   GfxTexture *texture);
+                   GfxTexture *heightmap);
         ~GfxTerrain();
 
         inline float getChunkSize() const
@@ -62,18 +92,7 @@ class GfxTerrain
             updateAABB();
         }
 
-        inline GfxTexture *getTexture() const
-        {
-            return texture;
-        }
-
-        inline void setTexture(GfxTexture *texture_)
-        {
-            texture->release();
-            texture = texture_;
-        }
-
-        float textureScale;
+        List<GfxTerrainLayer> layers;
     private:
         void recreate();
         void updateAABB();
@@ -84,7 +103,6 @@ class GfxTerrain
         float scale;
 
         GfxMesh *mesh;
-        GfxTexture *texture;
 };
 
 #endif // GFXTERRAIN_H

@@ -14,12 +14,19 @@ out gl_PerVertex
 
 out vec3 frag_position_worldSpace;
 out vec2 frag_uv_tangentSpace;
+out vec3 frag_normal_worldSpace;
+out vec3 frag_viewDir_worldSpace;
+out vec3 frag_tangent_worldSpace;
+out vec3 frag_bitangent_worldSpace;
+out vec2 frag_terruv_tangentSpace;
 
 DECLUNIFORM(mat4, viewMatrix)
 DECLUNIFORM(mat4, projectionMatrix)
 DECLUNIFORM(float, size)
 DECLUNIFORM(sampler2D, heightMap)
 DECLUNIFORM(float, scale)
+DECLUNIFORM(vec3, cameraPosition)
+DECLUNIFORM(float, uvScale)
 
 void main()
 {
@@ -32,19 +39,42 @@ void main()
     
     frag_uv_tangentSpace = (frag_position_worldSpace.xz+U(size)/2.0) / U(size);
     
-    float height = 0.0;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, -1)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, -1)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, -1)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, 0)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, 0)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, 0)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, 1)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, 1)).r;
-    height += textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, 1)).r;
-    height /= 9.0;
+    float h0 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, -1)).r;
+    float h1 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, -1)).r;
+    float h2 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, -1)).r;
+    float h3 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, 0)).r;
+    float h4 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, 0)).r;
+    float h5 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, 0)).r;
+    float h6 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(-1, 1)).r;
+    float h7 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(0, 1)).r;
+    float h8 = textureOffset(U(heightMap), frag_uv_tangentSpace, ivec2(1, 1)).r;
     
+    frag_terruv_tangentSpace = frag_uv_tangentSpace;
+    frag_uv_tangentSpace *= U(uvScale);
+    
+    /*frag_normal_worldSpace = vec3(-(h2-h0+2.0*(h5-h3)+h8-h6),
+                                  1.0,
+                                  -(h6-h0+2.0*(h7-h1)+h8-h2));
+    frag_normal_worldSpace = normalize(frag_normal_worldSpace);*/
+    frag_normal_worldSpace = normalize(cross(vec3(0.0, h4*U(scale), 0.0)-vec3(0.0, h7*U(scale), 1.0),
+                                             vec3(0.0, h4*U(scale), 0.0)-vec3(1.0, h5*U(scale), 0.0)));
+    frag_normal_worldSpace += normalize(cross(vec3(0.0, h4*U(scale), 0.0)-vec3(-1.0, h3*U(scale), 0.0),
+                                              vec3(0.0, h4*U(scale), 0.0)-vec3(0.0, h7*U(scale), 1.0)));
+    frag_normal_worldSpace += normalize(cross(vec3(0.0, h4*U(scale), 0.0)-vec3(0.0, h1*U(scale), -1.0),
+                                              vec3(0.0, h4*U(scale), 0.0)-vec3(-1.0, h3*U(scale), 0.0)));
+    frag_normal_worldSpace += normalize(cross(vec3(0.0, h4*U(scale), 0.0)-vec3(1.0, h5*U(scale), 0.0),
+                                              vec3(0.0, h4*U(scale), 0.0)-vec3(0.0, h1*U(scale), -1.0)));
+    frag_normal_worldSpace /= 4.0;
+    
+    frag_tangent_worldSpace = cross(frag_normal_worldSpace, vec3(0.0, 0.0, 1.0));
+    frag_bitangent_worldSpace = normalize(cross(frag_normal_worldSpace,
+                                                frag_tangent_worldSpace));
+    
+    float height = h0 + h1 + h2 + h3 + h4 + h5 + h6 + h7 + h8;
+    height /= 9.0;
     frag_position_worldSpace.y += height * U(scale);
+    
+    frag_viewDir_worldSpace = normalize(U(cameraPosition) - frag_position_worldSpace);
     
     gl_Position = U(projectionMatrix) * U(viewMatrix) * vec4(frag_position_worldSpace, 1.0);
 }

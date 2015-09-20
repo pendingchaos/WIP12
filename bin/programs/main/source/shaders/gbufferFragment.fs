@@ -18,6 +18,9 @@ in vec3 frag_position_worldSpace;
 in vec3 frag_viewDir_worldSpace;
 in vec3 frag_tangent_worldSpace;
 in vec3 frag_bitangent_worldSpace;
+#ifdef TERRAIN
+in vec2 frag_terruv_tangentSpace;
+#endif
 
 layout (location = 0) out vec3 result_albedo;
 layout (location = 1) out vec2 result_material;
@@ -44,6 +47,10 @@ DECLUNIFORM(sampler2D, metalMaskMap)
 DECLUNIFORM(sampler2D, normalMap)
 #endif
 
+#ifdef TERRAIN
+DECLUNIFORM(sampler2D, weightMap)
+#endif
+
 #if defined(PARALLAX_MAPPING) || defined(POM)
 DECLUNIFORM(sampler2D, heightMap)
 DECLUNIFORM(float, heightScale)
@@ -57,6 +64,10 @@ DECLUNIFORM(uint, pomMaxLayers)
 
 void main()
 {
+    #ifdef TERRAIN
+    float weight = texture(U(weightMap), frag_terruv_tangentSpace).r;
+    #endif
+
     //It is important that this if before parallax mapping. Doing this before fixes artifacts with parallax edge discard.
     result_geom_normal = normalize(cross(dFdx(frag_position_worldSpace), dFdy(frag_position_worldSpace)));
     
@@ -114,7 +125,13 @@ void main()
     normal_worldSpace = normalize(normal_worldSpace);
     #endif
 
+    #ifdef TERRAIN
+    result_albedo = albedo_.rgb * weight;
+    result_material = vec2(metallic_, roughness_) * weight;
+    result_normal = normal_worldSpace * weight;
+    #else
     result_albedo = albedo_.rgb;
     result_material = vec2(metallic_, roughness_);
     result_normal = normal_worldSpace;
+    #endif
 }
