@@ -35,12 +35,8 @@ DECLUNIFORM(float, metalMask)
 DECLUNIFORM(sampler2D, albedoMap)
 #endif
 
-#ifdef SMOOTHNESS_MAP
-DECLUNIFORM(sampler2D, smoothnessMap)
-#endif
-
-#ifdef METAL_MASK_MAP
-DECLUNIFORM(sampler2D, metalMaskMap)
+#ifdef MATERIAL_MAP
+DECLUNIFORM(sampler2D, materialMap)
 #endif
 
 #ifdef NORMAL_MAP
@@ -108,15 +104,13 @@ void main()
     #endif
 
     float roughness_ = 1.0 - U(smoothness);
-
-    #ifdef SMOOTHNESS_MAP
-    roughness_ *= 1.0 - texture(U(smoothnessMap), texCoord).r;
-    #endif
-
     float metallic_ = U(metalMask);
 
-    #ifdef METAL_MASK_MAP
-    metallic_ *= texture((metalMaskMap), texCoord).r;
+    #ifdef MATERIAL_MAP
+    vec2 material = texture(U(materialMap), texCoord).rg;
+
+    roughness_ *= 1.0 - material.r;
+    metallic_ *= material.g;
     #endif
 
     #ifdef NORMAL_MAP

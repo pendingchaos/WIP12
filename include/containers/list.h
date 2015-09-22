@@ -220,22 +220,22 @@ class List
                 size_t i;
         };
 
-        inline Iterator begin()
+        inline Iterator begin() NO_BIND
         {
             return Iterator(*this, 0);
         }
 
-        inline Iterator end()
+        inline Iterator end() NO_BIND
         {
             return Iterator(*this, getCount());
         }
 
-        inline ConstIterator begin() const
+        inline ConstIterator begin() const NO_BIND
         {
             return ConstIterator(*this, 0);
         }
 
-        inline ConstIterator end() const
+        inline ConstIterator end() const NO_BIND
         {
             return ConstIterator(*this, getCount());
         }

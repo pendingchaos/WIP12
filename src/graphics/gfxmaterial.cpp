@@ -45,8 +45,7 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    shadowTesselation(false),
                                                    shadowMinTessLevel(1.0f),
                                                    shadowMaxTessLevel(5.0f),
-                                                   smoothnessMap(nullptr),
-                                                   metalMaskMap(nullptr),
+                                                   materialMap(nullptr),
                                                    albedoMap(nullptr),
                                                    normalMap(nullptr),
                                                    parallaxHeightMap(nullptr),
@@ -61,14 +60,9 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
 
 GfxMaterial::~GfxMaterial()
 {
-    if (smoothnessMap != nullptr)
+    if (materialMap != nullptr)
     {
-        smoothnessMap->release();
-    }
-
-    if (metalMaskMap != nullptr)
-    {
-        metalMaskMap->release();
+        materialMap->release();
     }
 
     if (albedoMap != nullptr)
@@ -156,20 +150,9 @@ void GfxMaterial::save()
         file.writeUInt32LE(0);
     }
 
-    if (smoothnessMap != nullptr)
+    if (materialMap != nullptr)
     {
-        String filename = smoothnessMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-
-    if (metalMaskMap != nullptr)
-    {
-        String filename = metalMaskMap->getFilename();
+        String filename = materialMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -348,15 +331,7 @@ void GfxMaterial::_load()
         {
             String tex((size_t)len);
             file.read(len, tex.getData());
-            setSmoothnessMap(resMgr->load<GfxTexture>(tex));
-        }
-
-        len = file.readUInt32LE();
-        if (len != 0)
-        {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
-            setMetalMaskMap(resMgr->load<GfxTexture>(tex));
+            setMaterialMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
@@ -418,8 +393,7 @@ Resource *GfxMaterial::_copy() const
     material->shadowTesselation = shadowTesselation;
     material->shadowMinTessLevel = shadowMinTessLevel;
     material->shadowMaxTessLevel = shadowMaxTessLevel;
-    material->setSmoothnessMap(smoothnessMap->copyRef<GfxTexture>());
-    material->setMetalMaskMap(metalMaskMap->copyRef<GfxTexture>());
+    material->setMaterialMap(materialMap->copyRef<GfxTexture>());
     material->setAlbedoMap(albedoMap->copyRef<GfxTexture>());
     material->setNormalMap(normalMap->copyRef<GfxTexture>());
     material->setParallaxHeightMap(parallaxHeightMap->copyRef<GfxTexture>());

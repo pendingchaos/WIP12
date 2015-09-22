@@ -34,7 +34,7 @@ class GfxTerrainLayer
     private:
         GfxMaterial *material;
         GfxTexture *weight;
-};
+} NO_BIND;
 
 class GfxTerrain
 {
@@ -103,6 +103,6 @@ class GfxTerrain
         float scale;
 
         GfxMesh *mesh;
-};
+} NO_BIND;
 
 #endif // GFXTERRAIN_H

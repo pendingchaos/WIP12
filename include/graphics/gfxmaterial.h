@@ -72,8 +72,7 @@ class GfxMaterial : public Resource
             return name;\
         }
 
-        TEXTURE(smoothnessMap, SmoothnessMap, "SMOOTHNESS_MAP")
-        TEXTURE(metalMaskMap, MetalMaskMap, "METAL_MASK_MAP")
+        TEXTURE(materialMap, MaterialMap, "MATERIAL_MAP")
         TEXTURE(albedoMap, AlbedoMap, "ALBEDO_MAP")
         TEXTURE(normalMap, NormalMap, "NORMAL_MAP")
         TEXTURE(parallaxHeightMap, ParallaxHeightMap, "PARALLAX_MAPPING")
@@ -97,8 +96,7 @@ class GfxMaterial : public Resource
     private:
         GfxShaderCombination *shaderComb;
 
-        GfxTexture *smoothnessMap;
-        GfxTexture *metalMaskMap;
+        GfxTexture *materialMap;
         GfxTexture *albedoMap;
         GfxTexture *normalMap;
         GfxTexture *parallaxHeightMap;

@@ -17,7 +17,7 @@
         - [ ] Then bind the exceptions
     - [ ] Bind some stuff
     - [ ] Static methods and properties
-    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh, GfxAnimationState, GfxAnimationFrame, GfxAnimation, GfxBone and GfxTerrain.
+    - [ ] Finish binding GfxLOD, GfxTexture, GfxApi, PhysicsShape, GfxRenderer, Application, GfxMesh, GfxAnimationState, GfxAnimationFrame, GfxAnimation, GfxBone, GfxTerrain and RenderComponent.
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.

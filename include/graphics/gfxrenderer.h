@@ -206,7 +206,7 @@ class GfxRenderer
                                GfxTexture *heightmap) NO_BIND;
         void removeTerrain();
 
-        inline GfxTerrain *getTerrain() const
+        inline GfxTerrain *getTerrain() const NO_BIND
         {
             return terrain;
         }

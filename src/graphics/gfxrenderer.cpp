@@ -1970,14 +1970,9 @@ void GfxRenderer::renderBatches(bool forward)
                 gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
             }
 
-            if (material->getSmoothnessMap() != nullptr)
+            if (material->getMaterialMap() != nullptr)
             {
-                gfxApi->addTextureBinding(fragment, "smoothnessMap", material->getSmoothnessMap());
-            }
-
-            if (material->getMetalMaskMap() != nullptr)
-            {
-                gfxApi->addTextureBinding(fragment, "metalMaskMap", material->getMetalMaskMap());
+                gfxApi->addTextureBinding(fragment, "materialMap", material->getMaterialMap());
             }
 
             if (material->getAlbedoMap() != nullptr)
@@ -2356,14 +2351,9 @@ void GfxRenderer::renderTerrain()
         gfxApi->uniform(fragment, "metalMask", material->metalMask);
         gfxApi->uniform(fragment, "albedo", material->albedo);
 
-        if (material->getSmoothnessMap() != nullptr)
+        if (material->getMaterialMap() != nullptr)
         {
-            gfxApi->addTextureBinding(fragment, "smoothnessMap", material->getSmoothnessMap());
-        }
-
-        if (material->getMetalMaskMap() != nullptr)
-        {
-            gfxApi->addTextureBinding(fragment, "metalMaskMap", material->getMetalMaskMap());
+            gfxApi->addTextureBinding(fragment, "materialMap", material->getMaterialMap());
         }
 
         if (material->getAlbedoMap() != nullptr)

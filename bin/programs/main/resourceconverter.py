@@ -258,8 +258,7 @@ if __name__ == "__main__":
             self.smoothness = 0.6
             self.metalMask = 0.0
             self.albedoMap = None
-            self.smoothnessMap = None
-            self.metalMaskMap = None
+            self.materialMap = None
             self.normalMap = None
             
             self.parallaxStrength = 0.0
@@ -315,15 +314,9 @@ if __name__ == "__main__":
             else:
                 s += struct.pack("<L", 0)
             
-            if self.smoothnessMap != None:
-                s += struct.pack("<L", len(get_dest_filename(self.smoothnessMap, Texture)))
-                s += get_dest_filename(self.smoothnessMap, Texture)
-            else:
-                s += struct.pack("<L", 0)
-            
-            if self.metalMaskMap != None:
-                s += struct.pack("<L", len(get_dest_filename(self.metalMaskMap, Texture)))
-                s += get_dest_filename(self.metalMaskMap, Texture)
+            if self.materialMap != None:
+                s += struct.pack("<L", len(get_dest_filename(self.materialMap, Texture)))
+                s += get_dest_filename(self.materialMap, Texture)
             else:
                 s += struct.pack("<L", 0)
             
