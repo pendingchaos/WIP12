@@ -6,6 +6,7 @@
 #include "error.h"
 #include "globals.h"
 #include "memory.h"
+#include "imgui.h"
 #include "application.h"
 #include "endian_utils.h"
 #include "logging.h"

@@ -152,7 +152,7 @@ class FPSCamera
 
 BEGIN_INSTANCE(Main, InstanceBase)
     Scene *scene;
-    Font *font;
+    //Font *font;
     bool showExtraTimings;
     String timings;
     String extraTimings;
@@ -166,6 +166,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
     Script *projScript;
     float textCPUTiming;
     float playerFindCPUTiming;
+    ImGui gui;
 
     virtual void init()
     {
@@ -175,7 +176,8 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
         scene = resMgr->load<Scene>("resources/scenes/scene.bin");
 
-        font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
+        //For some reason Font's constructors are not being bound.
+        //font = resMgr->load<Font>("/usr/share/fonts/gnu-free/FreeSans.ttf");
 
         textTimer = gfxApi->createTimer();
 
@@ -198,7 +200,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
         DELETE(textTimer);
 
-        font->release();
+        //font->release();
         scene->release();
     }
 
@@ -435,7 +437,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
         {
             displayedText.append(String::format("Zoom: %f\n", 1.0f / player->zoom));
         }
-        
+
         playerFindCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
         /*Projectile *proj = scene->findWithScript<Projectile>();
@@ -448,14 +450,29 @@ BEGIN_INSTANCE(Main, InstanceBase)
         textTimer->begin();
         start = platform->getTime();
 
-        font->render(fontSize,
+        /*font->render(fontSize,
                      Float2(-1.0, y),
                      displayedText.getData(),
                      NULL,
-                     Float3(1.0));
+                     Float3(1.0));*/
 
         textCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
         textTimer->end();
+
+        /*gfxApi->clearColor(0, Float4(0.0f));
+        static bool last = false;
+        if (gui.button("Click me!", -0.5f, 0.5f, -0.1f, 0.1f))
+        {
+            if (last != true)
+            {
+                INFO(CATEGORY_OTHER, "Button pressed!")();
+            }
+            
+            last = true;
+        } else
+        {
+            last = false;
+        }*/
     }
 END_INSTANCE(Main)
 

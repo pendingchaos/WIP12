@@ -55,6 +55,7 @@
 #include "audio/audio.h"
 #include "audio/audioworld.h"
 #include "audio/audiodevice.h"
+#include "imgui.h"
 
 #define _SCRIPT_SIDE_IMPLS
 #include "scripting/scriptsidebindings.h"

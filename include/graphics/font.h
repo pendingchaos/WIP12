@@ -56,12 +56,14 @@ class FontException : public Exception
 
 class Font : public Resource
 {
+    NO_COPY_INHERITED(Font, Resource);
+
     public:
         static const ResType resource_type = ResType::FontType;
 
         Font();
         Font(const String& filename);
-        ~Font();
+        virtual ~Font();
 
         virtual void removeContent();
 

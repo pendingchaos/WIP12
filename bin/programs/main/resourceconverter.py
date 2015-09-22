@@ -1068,6 +1068,11 @@ if __name__ == "__main__":
     conv["terrainFragment.fs"] = Shader(["source/shaders/terrainFragment.fs"], "../../resources/shaders/terrainFragment.bin")
     conv["terrainFragment.fs"].stage_ = Shader.Stage.Fragment
     
+    conv["guiVertex.vs"] = Shader(["source/shaders/guiVertex.vs"], "../../resources/shaders/guiVertex.bin")
+    
+    conv["guiFragment.fs"] = Shader(["source/shaders/guiFragment.fs"], "../../resources/shaders/guiFragment.bin")
+    conv["guiFragment.fs"].stage_ = Shader.Stage.Fragment
+    
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")

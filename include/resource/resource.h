@@ -59,9 +59,6 @@ class ResourceIOException : public Exception
         String problem;
 };
 
-#undef _RES_INC_REF_COUNT
-#undef _RES_RELEASE
-
 enum class ResType
 {
     GfxShaderType,
