@@ -18,6 +18,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,6 +33,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DNDEBUG" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -98,6 +100,7 @@
 		<Unit filename="include/graphics/gfxtexture.h" />
 		<Unit filename="include/graphics/gputimer.h" />
 		<Unit filename="include/graphics/light.h" />
+		<Unit filename="include/imgui.h" />
 		<Unit filename="include/logging.h" />
 		<Unit filename="include/math/aabb.h" />
 		<Unit filename="include/math/matrix3x3.h" />
@@ -168,6 +171,7 @@
 		<Unit filename="src/graphics/gfxtexture.cpp" />
 		<Unit filename="src/graphics/gputimer.cpp" />
 		<Unit filename="src/graphics/light.cpp" />
+		<Unit filename="src/imgui.cpp" />
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/aabb.cpp" />
