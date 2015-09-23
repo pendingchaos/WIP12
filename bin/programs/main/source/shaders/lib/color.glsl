@@ -20,7 +20,7 @@ vec4 toSRGB(vec4 color)
 
 vec3 toLinear(vec3 color)
 {
-    return pow(color, vec3(2.2));
+    return color * (color * (color * 0.305306011 + 0.682171111) + 0.012522878);
 }
 
 vec4 toLinear(vec4 color)

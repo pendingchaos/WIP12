@@ -67,6 +67,8 @@ class Font : public Resource
 
         virtual void removeContent();
 
+        size_t predictWidth(size_t size, const char *string);
+
         void render(size_t size,
                     const Float2& position,
                     const char *string,
@@ -86,6 +88,8 @@ class Font : public Resource
             FT_Face face;
             HashMap<char, Glyph> glyphs;
         };
+
+        Face *getFace(size_t size);
 
         void loadGlyph(Face& face, char character);
 

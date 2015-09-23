@@ -2902,6 +2902,7 @@ else
 };
 
 SV Font_removeContent(CTX ctx,const List<SV>&a);
+SV Font_predictWidth(CTX ctx,const List<SV>&a);
 SV Font_render(CTX ctx,const List<SV>&a);
 SV Font_load(CTX ctx,const List<SV>&a);
 SV Font_reload(CTX ctx,const List<SV>&a);
@@ -20437,6 +20438,8 @@ EI(keyStr=="__init__")
 RET CNF(Font_new);
  EI(keyStr == "removeContent")
 RET CNF(Font_removeContent);
+ EI(keyStr == "predictWidth")
+RET CNF(Font_predictWidth);
  EI(keyStr == "render")
 RET CNF(Font_render);
  EI(keyStr == "load")
@@ -20563,20 +20566,20 @@ CATE(TE,UFOF("Font::render.")));
 RET CN;
 }
 
-SV Font_getLastFileModification(CTX ctx,const List<SV>&a)
+SV Font_reload(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Font::getLastFileModification" EAOE));
+CATE(VE,"Font::reload" EAOE));
 Font*f;
 f=(Font*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getLastFileModification());
-;
+( f->reload());
+RET CN;
 }
-CATE(TE,UFOF("Font::getLastFileModification.")));
+CATE(TE,UFOF("Font::reload.")));
 RET CN;
 }
 
@@ -20648,20 +20651,20 @@ CATE(TE,UFOF("Font::isLoaded.")));
 RET CN;
 }
 
-SV Font_reload(CTX ctx,const List<SV>&a)
+SV Font_predictWidth(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Font::reload" EAOE));
+CATE(VE,"Font::predictWidth" EAOE));
 Font*f;
 f=(Font*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],const char *))
 {
-( f->reload());
-RET CN;
+RET CV( f->predictWidth(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2])));
+;
 }
-CATE(TE,UFOF("Font::reload.")));
+CATE(TE,UFOF("Font::predictWidth.")));
 RET CN;
 }
 
@@ -20719,6 +20722,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("Font::release.")));
+RET CN;
+}
+
+SV Font_getLastFileModification(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Font::getLastFileModification" EAOE));
+Font*f;
+f=(Font*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getLastFileModification());
+;
+}
+CATE(TE,UFOF("Font::getLastFileModification.")));
 RET CN;
 }
 

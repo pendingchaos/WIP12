@@ -118,7 +118,7 @@ struct _functionStruct
     void (*f113)(const GhostObject *obj, const Transform & arg0);
     void (*f114)( GhostObject *obj, PhysicsShape * arg0);
     void (*f115)(const GhostObject *obj, List<RigidBody *> & arg0, List<GhostObject *> & arg1);
-    bool (*f116)( ImGui *obj, const char * arg0, float arg1, float arg2, float arg3, float arg4);
+    bool (*f116)( ImGui *obj, const char * arg0, int arg1, int arg2, int arg3, int arg4);
     void (*f117)( ImGui *obj);
     void (*f118)( ImGui *obj);
     void (*f119)( Application *obj);
@@ -399,7 +399,7 @@ Transform GhostObject::getTransform()  {return _functions->f112(this);}
 void GhostObject::setTransform(const Transform & arg0) const { _functions->f113(this, arg0);}
 void GhostObject::setShape(PhysicsShape * arg0)  { _functions->f114(this, arg0);}
 void GhostObject::getCollisions(List<RigidBody *> & arg0, List<GhostObject *> & arg1) const { _functions->f115(this, arg0, arg1);}
-bool ImGui::button(const char * arg0, float arg1, float arg2, float arg3, float arg4)  {return _functions->f116(this, arg0, arg1, arg2, arg3, arg4);}
+bool ImGui::button(const char * arg0, int arg1, int arg2, int arg3, int arg4)  {return _functions->f116(this, arg0, arg1, arg2, arg3, arg4);}
  ImGui::ImGui()  { _functions->f117(this);}
  ImGui::~ImGui()  { _functions->f118(this);}
 void Application::mainloop()  { _functions->f119(this);}

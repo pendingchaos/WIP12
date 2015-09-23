@@ -60,21 +60,9 @@ void Font::removeContent()
     faces.clear();
 }
 
-void Font::render(size_t size,
-                  const Float2& position,
-                  const char *string,
-                  GfxFramebuffer *framebuffer,
-                  const Float3& color)
+Font::Face *Font::getFace(size_t size)
 {
-    if (getFilename().getLength() == 0)
-    {
-        return;
-    }
-
-    Float2 onePixel = Float2(1.0f) / Float2(gfxApi->getViewportWidth(), gfxApi->getViewportHeight());
-
     int faceIndex = faces.findEntry(size);
-    Face *face;
 
     if (faceIndex == -1)
     {
@@ -89,11 +77,68 @@ void Font::render(size_t size,
 
         faces.set(size, newFace);
 
-        face = &faces.get(size);
+        return &faces.get(size);
     } else
     {
-        face = &faces.getValue(faceIndex);
+        return &faces.getValue(faceIndex);
     }
+}
+
+size_t Font::predictWidth(size_t size, const char *string)
+{
+    if (getFilename().getLength() == 0)
+    {
+        return 0;
+    }
+
+    Face *face = getFace(size);
+
+    size_t length = std::strlen(string);
+    size_t width = 0;
+    size_t lineWidth = 0;
+
+    for (size_t i = 0; i < length; ++i)
+    {
+        if (string[i] == '\n')
+        {
+            width = std::max(lineWidth, width);
+            lineWidth = 0;
+            continue;
+        }
+
+        int glyphIndex = face->glyphs.findEntry(string[i]);
+        Glyph glyph;
+
+        if (glyphIndex == -1)
+        {
+            loadGlyph(*face, string[i]);
+
+            glyph = face->glyphs.get(string[i]);
+        } else
+        {
+            glyph = face->glyphs.getValue(glyphIndex);
+        }
+
+        lineWidth += glyph.xAdvance + glyph.bearing.x + glyph.size.x;
+    }
+
+    return std::max(width, lineWidth);
+}
+
+void Font::render(size_t size,
+                  const Float2& position,
+                  const char *string,
+                  GfxFramebuffer *framebuffer,
+                  const Float3& color)
+{
+    if (getFilename().getLength() == 0)
+    {
+        return;
+    }
+
+    Float2 onePixel = Float2(1.0f) / Float2(gfxApi->getViewportWidth(), gfxApi->getViewportHeight());
+
+    Face *face = getFace(size);
 
     size_t length = std::strlen(string);
 
@@ -202,7 +247,7 @@ void Font::render(size_t size,
                           compiledQuadFragment,
                           quadMesh);
 
-            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size) * onePixel);
+            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
             gfxApi->uniform(compiledQuadGeometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);
             gfxApi->uniform(compiledQuadFragment, "color", color);
             gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);

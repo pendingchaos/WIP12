@@ -1,6 +1,8 @@
 #ifndef IMGUI_H
 #define IMGUI_H
 
+#include <stddef.h>
+
 class GfxMesh;
 class GfxShader;
 class GfxCompiledShader;
@@ -12,13 +14,15 @@ class ImGui
         ImGui();
         ~ImGui();
 
-        bool button(const char *text, float left, float right, float bottom, float top);
+        bool button(const char *text, int left, int right, int bottom, int top);
     private:
         GfxMesh *mesh;
         GfxShader *vertexShader;
         GfxShader *fragmentShader;
         GfxCompiledShader *compiledVertex;
         GfxCompiledShader *compiledFragment;
+
+        Font *font;
 };
 
 #endif // IMGUI_H

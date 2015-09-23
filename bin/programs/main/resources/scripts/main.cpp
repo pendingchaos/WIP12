@@ -461,7 +461,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
         /*gfxApi->clearColor(0, Float4(0.0f));
         static bool last = false;
-        if (gui.button("Click me!", -0.5f, 0.5f, -0.1f, 0.1f))
+        if (gui.button("Click me!", 10, 110, 10, 30))
         {
             if (last != true)
             {
