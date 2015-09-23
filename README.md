@@ -3,6 +3,7 @@
 ![screenshot](https://raw.githubusercontent.com/pendingchaos/WIP12/master/screenshot.png)
 
 A work in progress using [OpenGL](https://opengl.org) and [Bullet Physics](bulletphysics.org) in C++.
+Please do not submit any pull requests. This is my own project that I am making for fun and knowledge.
 
 The program has only been tested on a Linux based operating system.
 
