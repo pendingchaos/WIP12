@@ -4,6 +4,7 @@
 #include "scripting/bindings.h"
 #include "math/t3.h"
 #include "math/t4.h"
+#include "containers/string.h"
 
 #include <stddef.h>
 
@@ -28,6 +29,31 @@ struct ScrollBar
 
     NO_BIND ScrollBarState state;
     NO_BIND Int2 lastMousePos;
+
+    inline float getValue() const
+    {
+        return barSize >= 1.0f ? 1.0f : (center - barSize/2.0f) / (1.0f - barSize);
+    }
+
+    inline void setValue(float value)
+    {
+        center = value * (1.0f - barSize*2.0f) + barSize;
+    }
+} BIND;
+
+struct Container
+{
+    Container() : scrollX(0), scrollY(0) {}
+
+    ScrollBar vertical;
+    ScrollBar horizonal;
+
+    NO_BIND size_t scrollX;
+    NO_BIND size_t scrollY;
+    NO_BIND int left;
+    NO_BIND int right;
+    NO_BIND int bottom;
+    NO_BIND int top;
 } BIND;
 
 class ImGui
@@ -51,22 +77,83 @@ class ImGui
                        float gradientPower=2.2f,
                        Float3 color=Float3(1.0f),
                        Float4 cornerRoundness=Float4(5.0f)); //Topleft, topright, bottomleft, bottomright
-        void beginContainer(int left, int right, int bottom, int top, int *scrollX, int *scrollY) NO_BIND;
-        void endContainer();
+        void beginContainer(int left, int right, int bottom, int top, Container *container) NO_BIND;
+        void endContainer(Container *container);
         void verticalScrollBar(int left,
                                int right,
                                int bottom,
                                int top,
-                               bool leftSideRounded,
-                               bool rightSideRounded,
+                               bool leftRounded,
+                               bool rightRounded,
                                ScrollBar *state);
+        void horizontalScrollBar(int left,
+                                 int right,
+                                 int bottom,
+                                 int top,
+                                 bool topRounded,
+                                 bool bottomRounded,
+                                 ScrollBar *state);
         bool button(const char *text, int left, int right, int bottom, int top);
         size_t label(const char *text,
                      int leftOrRight,
                      int bottomOrTop,
                      bool left=true,
                      bool bottom=true);
+
+        void render();
     private:
+        struct Command
+        {
+            enum Type
+            {
+                Rectangle,
+                Text,
+                PushScissor,
+                PopScissor
+            };
+
+            Type type;
+
+            String textStr;
+            union
+            {
+                struct
+                {
+                    size_t size;
+                    int left;
+                    int bottom;
+                    float colorR;
+                    float colorG;
+                    float colorB;
+                } text;
+                struct
+                {
+                    int left;
+                    int right;
+                    int bottom;
+                    int top;
+                    float brightness;
+                    float gradientStart;
+                    float gradientSize;
+                    float gradientPower;
+                    float colorR;
+                    float colorG;
+                    float colorB;
+                    float topLeftCornerRoundness;
+                    float topRightCornerRoundness;
+                    float bottomLeftCornerRoundness;
+                    float bottomRightCornerRoundness;
+                } rect;
+                struct
+                {
+                    uint16_t left;
+                    uint16_t right;
+                    uint16_t bottom;
+                    uint16_t top;
+                } scissor;
+            };
+        };
+
         GfxMesh *mesh;
         GfxShader *vertexShader;
         GfxShader *fragmentShader;
@@ -77,6 +164,12 @@ class ImGui
 
         int scrollX;
         int scrollY;
+        int containerLeft;
+        int containerRight;
+        int containerTop;
+        int containerBottom;
+
+        List<Command> commands;
 } BIND;
 
 enum class XOrigin

@@ -81,84 +81,215 @@ void ImGui::rectangle(int left,
         return;
     }
 
-    left += scrollX;
-    right += scrollX;
+    containerLeft = std::min(containerLeft, left);
+    containerRight = std::max(containerRight, right);
+    containerTop = std::max(containerTop, top);
+    containerBottom = std::min(containerBottom, bottom);
 
-    top += scrollY;
-    bottom += scrollY;
+    Command command;
+    command.type = Command::Rectangle;
+    command.rect.left = left + scrollX;
+    command.rect.right = right + scrollX;
+    command.rect.bottom = bottom + scrollY;
+    command.rect.top = top + scrollY;
+    command.rect.brightness = brightness;
+    command.rect.gradientStart = gradientStart;
+    command.rect.gradientSize = gradientSize;
+    command.rect.gradientPower = gradientPower;
+    command.rect.colorR = color.x;
+    command.rect.colorG = color.y;
+    command.rect.colorB = color.z;
+    command.rect.topLeftCornerRoundness = cornerRoundness.x;
+    command.rect.topRightCornerRoundness = cornerRoundness.y;
+    command.rect.bottomLeftCornerRoundness = cornerRoundness.z;
+    command.rect.bottomRightCornerRoundness = cornerRoundness.w;
 
-    gfxApi->pushState();
-
-    gfxApi->setBlendingEnabled(true);
-    gfxApi->setBlendFactors(GfxSrcAlpha, GfxSrcAlpha, GfxOneMinusSrcAlpha, GfxOneMinusSrcAlpha);
-    gfxApi->setDepthFunction(GfxAlways);
-
-    gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment, mesh);
-
-    float w = gfxApi->getViewportWidth();
-    float h = gfxApi->getViewportHeight();
-    float fleft = left / w * 2.0f - 1.0f;
-    float fright = right / w * 2.0f - 1.0f;
-    float ftop = top / h * 2.0f - 1.0f;
-    float fbottom = bottom / h * 2.0f - 1.0f;
-
-    gfxApi->uniform(compiledVertex, "offset", Float2(fleft, fbottom));
-    gfxApi->uniform(compiledVertex, "size", Float2(fright-fleft, ftop-fbottom));
-    gfxApi->uniform(compiledVertex, "gradientStart", gradientStart);
-    gfxApi->uniform(compiledVertex, "gradientSize", gradientSize);
-    gfxApi->uniform(compiledVertex, "gradientPower", gradientPower);
-    gfxApi->uniform(compiledVertex, "color", color);
-    gfxApi->uniform(compiledFragment, "topRight", Float2(right, top));
-    gfxApi->uniform(compiledFragment, "bottomLeft", Float2(left, bottom));
-    gfxApi->uniform(compiledFragment, "brightness", brightness);
-    gfxApi->uniform(compiledFragment, "topLeftCornerRoundness", cornerRoundness.x);
-    gfxApi->uniform(compiledFragment, "topRightCornerRoundness", cornerRoundness.y);
-    gfxApi->uniform(compiledFragment, "bottomLeftCornerRoundness", cornerRoundness.z);
-    gfxApi->uniform(compiledFragment, "bottomRightCornerRoundness", cornerRoundness.w);
-
-    gfxApi->end();
-
-    gfxApi->popState();
+    commands.append(command);
 }
 
-void ImGui::beginContainer(int left, int right, int bottom, int top, int *scrollX_, int *scrollY_)
+void ImGui::beginContainer(int left, int right, int bottom, int top, Container *container)
 {
     if (left > right or bottom > top)
     {
-        gfxApi->pushState();
+        Command command;
+        command.type = Command::PushScissor;
+        command.scissor.left = 0;
+        command.scissor.right = 0;
+        command.scissor.bottom = 0;
+        command.scissor.top = 0;
+
+        commands.append(command);
         return;
     }
 
-    rectangle(left, right, bottom, top, 0.44f, 1.0f, 0.0f, 1.0f, Float3(1.0f), Float4(0.0f));
+    rectangle(left, right+10, bottom-10, top, 0.44f, 1.0f, 0.0f, 1.0f, Float3(1.0f), Float4(0.0f));
 
-    gfxApi->pushState();
-    gfxApi->setScissor(left, bottom, right-left, top-bottom);
+    Command command;
+    command.type = Command::PushScissor;
+    command.scissor.left = left;
+    command.scissor.right = right;
+    command.scissor.bottom = bottom;
+    command.scissor.top = top;
 
-    if (scrollX_ != nullptr)
-    {
-        scrollX = *scrollX_;
-    }
+    commands.append(command);
 
-    if (scrollY_ != nullptr)
-    {
-        scrollY = *scrollY_;
-    }
+    scrollX = container->scrollX;
+    scrollY = container->scrollY;
+
+    containerLeft = left;
+    containerRight = right;
+    containerTop = top;
+    containerBottom = bottom;
+
+    container->left = left;
+    container->right = right;
+    container->bottom = bottom;
+    container->top = top;
 }
 
-void ImGui::endContainer()
+void ImGui::endContainer(Container *container)
 {
-    gfxApi->popState();
-
     scrollX = 0;
     scrollY = 0;
+
+    Command command;
+    command.type = Command::PopScissor;
+
+    commands.append(command);
+
+    int extraContainerWidth = (containerRight - containerLeft);
+    int extraContainerHeight = (containerTop - containerBottom);
+    int containerWidth = container->right - container->left;
+    int containerheight = container->top - container->bottom;
+
+    container->horizonal.barSize = std::min(float(containerWidth) / extraContainerWidth, 1.0f);
+    container->vertical.barSize = std::min(float(containerheight) / extraContainerHeight, 1.0f);
+
+    horizontalScrollBar(container->left,
+                        container->right-10,
+                        container->bottom-10,
+                        container->bottom,
+                        true,
+                        false,
+                        &container->horizonal);
+
+    verticalScrollBar(container->right,
+                      container->right+10,
+                      container->bottom,
+                      container->top,
+                      true,
+                      false,
+                      &container->vertical);
+
+    container->scrollX = container->horizonal.getValue() * -std::max(extraContainerWidth - containerWidth, 0);
+    container->scrollY = (1.0f - container->vertical.getValue()) * std::max(extraContainerHeight - containerheight, 0);
+}
+
+float scrollBarLogic(int left,
+                     int right,
+                     int bottom,
+                     int top,
+                     ScrollBar *state,
+                     bool vertical,
+                     float scrollSpeed)
+{
+    int size = vertical ? top-bottom : right-left;
+
+    Int2 mousePos = platform->getMousePosition();
+    mousePos.y = platform->getWindowHeight() - mousePos.y;
+    bool intersection = intersects(left, right, bottom, top, mousePos);
+
+    float brightness = intersection ? 0.95f : 1.0f;
+
+    switch (state->state)
+    {
+    case ScrollBarState::Idle:
+    {
+        bool pressed = platform->isLeftMouseButtonPressed() and intersection;
+
+        if (pressed and vertical)
+        {
+            int barBottom = bottom + state->center*size - state->barSize*size/2.0f;
+            int barTop = barBottom + state->barSize*size;
+
+            if (mousePos.y > barBottom and mousePos.y < barTop)
+            {
+                state->state = ScrollBarState::Dragged;
+            } else
+            {
+                state->state = ScrollBarState::Placed;
+            }
+        } else if (pressed and intersection)
+        {
+            int barLeft = left + state->center*size - state->barSize*size/2.0f;
+            int barRight = barLeft + state->barSize*size;
+
+            if (mousePos.x > barLeft and mousePos.x < barRight)
+            {
+                state->state = ScrollBarState::Dragged;
+            } else
+            {
+                state->state = ScrollBarState::Placed;
+            }
+        }
+        break;
+    }
+    case ScrollBarState::Dragged:
+    {
+        int movement;
+
+        if (vertical)
+        {
+            movement = mousePos.y - state->lastMousePos.y;
+        } else
+        {
+            movement = mousePos.x - state->lastMousePos.x;
+        }
+
+        state->center += float(movement) / size;
+        brightness = 0.8f;
+
+        if (not platform->isLeftMouseButtonPressed())
+        {
+            state->state = ScrollBarState::Idle;
+        }
+        break;
+    }
+    case ScrollBarState::Placed:
+    {
+        state->center = float(vertical ? (mousePos.y-bottom) : (mousePos.x-left)) / size;
+        brightness = 0.8f;
+
+        if (not platform->isLeftMouseButtonPressed())
+        {
+            state->state = ScrollBarState::Idle;
+        }
+        break;
+    }
+    }
+
+    if (intersection and vertical)
+    {
+        state->center += platform->getMouseWheel().y * scrollSpeed * platform->getFrametime();
+    } else if (intersection)
+    {
+        state->center += platform->getMouseWheel().x * scrollSpeed * platform->getFrametime();
+    }
+
+    state->center = std::max(state->center, state->barSize/2.0f);
+    state->center = std::min(state->center, 1.0f-state->barSize/2.0f);
+
+    state->lastMousePos = mousePos;
+
+    return brightness;
 }
 
 void ImGui::verticalScrollBar(int left,
                               int right,
                               int bottom,
                               int top,
-                              bool leftSideRounded,
-                              bool rightSideRounded,
+                              bool leftRounded,
+                              bool rightRounded,
                               ScrollBar *state)
 {
     if (left > right or bottom > top)
@@ -166,8 +297,8 @@ void ImGui::verticalScrollBar(int left,
         return;
     }
 
-    Float4 cornerRoundness = (leftSideRounded ? Float4(5.0f, 0.0f, 5.0f, 0.0f) : Float4()) +
-                             (rightSideRounded ? Float4(0.0f, 5.0f, 0.0f, 5.0f) : Float4());
+    Float4 cornerRoundness = (leftRounded ? Float4(5.0f, 0.0f, 5.0f, 0.0f) : Float4()) +
+                             (rightRounded ? Float4(0.0f, 5.0f, 0.0f, 5.0f) : Float4());
 
     rectangle(left,
               right,
@@ -182,62 +313,7 @@ void ImGui::verticalScrollBar(int left,
 
     int size = top - bottom;
 
-    Int2 mousePos = platform->getMousePosition();
-    mousePos.y = platform->getWindowHeight() - mousePos.y;
-    bool intersection = intersects(left, right, bottom, top, mousePos);
-
-    float brightness = intersection ? 0.95f : 1.0f;
-
-    switch (state->state)
-    {
-    case ScrollBarState::Idle:
-    {
-        if (platform->isLeftMouseButtonPressed() and intersection)
-        {
-            int barBottom = bottom + state->center*size - state->barSize*size/2.0f;
-            int barTop = barBottom + state->barSize*size;
-
-            if (mousePos.y > barBottom and mousePos.y < barTop)
-            {
-                state->state = ScrollBarState::Dragged;
-            } else
-            {
-                state->state = ScrollBarState::Placed;
-            }
-        }
-        break;
-    }
-    case ScrollBarState::Dragged:
-    {
-        int movement = state->lastMousePos.y - platform->getMousePosition().y;
-        state->center += float(movement) / size;
-        brightness = 0.8f;
-
-        if (not platform->isLeftMouseButtonPressed())
-        {
-            state->state = ScrollBarState::Idle;
-        }
-        break;
-    }
-    case ScrollBarState::Placed:
-    {
-        state->center = float(mousePos.y - bottom) / size;
-        brightness = 0.8f;
-
-        if (not platform->isLeftMouseButtonPressed())
-        {
-            state->state = ScrollBarState::Idle;
-        }
-        break;
-    }
-    }
-
-    if (intersection)
-    {
-        state->center += platform->getMouseWheel().y * scrollSpeed * platform->getFrametime();
-    }
-
-    state->center = std::min(std::max(state->center, state->barSize/2.0f), 1.0f-state->barSize/2.0f);
+    float brightness = scrollBarLogic(left+scrollX, right+scrollX, bottom+scrollY, top+scrollY, state, true, scrollSpeed);
 
     int barBottom = bottom + state->center*size - state->barSize*size/2.0f;
     int barTop = barBottom + state->barSize*size;
@@ -252,8 +328,52 @@ void ImGui::verticalScrollBar(int left,
               2.2f,
               Float3(1.0f),
               cornerRoundness);
+}
 
-    state->lastMousePos = platform->getMousePosition();
+void ImGui::horizontalScrollBar(int left,
+                                int right,
+                                int bottom,
+                                int top,
+                                bool topRounded,
+                                bool bottomRounded,
+                                ScrollBar *state)
+{
+    if (left > right or bottom > top)
+    {
+        return;
+    }
+
+    Float4 cornerRoundness = (topRounded ? Float4(5.0f, 5.0f, 0.0f, 0.0f) : Float4()) +
+                             (bottomRounded ? Float4(0.0f, 0.0f, 5.0f, 5.0f) : Float4());
+
+    rectangle(left,
+              right,
+              bottom,
+              top,
+              0.25f,
+              1.0f,
+              0.0f,
+              1.0f,
+              Float3(1.0f),
+              cornerRoundness);
+
+    int size = right - left;
+
+    float brightness = scrollBarLogic(left+scrollX, right+scrollX, bottom+scrollY, top+scrollY, state, false, scrollSpeed);
+
+    int barLeft = left + state->center*size - state->barSize*size/2.0f;
+    int barRight = barLeft + state->barSize*size;
+
+    rectangle(barLeft,
+              barRight,
+              bottom,
+              top,
+              brightness,
+              0.85f,
+              0.15f,
+              2.2f,
+              Float3(1.0f),
+              cornerRoundness);
 }
 
 bool ImGui::button(const char *text, int left, int right, int bottom, int top)
@@ -262,6 +382,12 @@ bool ImGui::button(const char *text, int left, int right, int bottom, int top)
     {
         return false;
     }
+
+    left += scrollX;
+    right += scrollX;
+
+    top += scrollY;
+    bottom += scrollY;
 
     bool pressed = false;
 
@@ -277,18 +403,13 @@ bool ImGui::button(const char *text, int left, int right, int bottom, int top)
         pressed = true;
     }
 
-    rectangle(left, right, bottom, top, brightness);
+    rectangle(left-scrollX, right-scrollX, bottom-scrollY, top-scrollY, brightness);
 
+    //For some reason doing this in integers won't work.
     size_t textWidth = font->predictWidth(textSize, text);
 
     float textHeightGL = textSize / float(platform->getWindowHeight()) / 2.0f;
     float textWidthGL = textWidth / float(platform->getWindowWidth()) / 2.0f;
-
-    left += scrollX;
-    right += scrollX;
-
-    top += scrollY;
-    bottom += scrollY;
 
     float w = gfxApi->getViewportWidth();
     float h = gfxApi->getViewportHeight();
@@ -300,7 +421,17 @@ bool ImGui::button(const char *text, int left, int right, int bottom, int top)
     Float2 textPosition(fleft + (fright-fleft-textWidthGL)/2.0f,
                         fbottom + (ftop-fbottom-textHeightGL)/2.0f);
 
-    font->render(textSize, textPosition, text, nullptr, buttonTextColor);
+    Command command;
+    command.type = Command::Text;
+    command.text.size = textSize;
+    command.text.left = (textPosition.x + 1.0f) / 2.0f * platform->getWindowWidth();
+    command.text.bottom = (textPosition.y + 1.0f) / 2.0f * platform->getWindowHeight();
+    command.text.colorR = buttonTextColor.x;
+    command.text.colorG = buttonTextColor.y;
+    command.text.colorB = buttonTextColor.z;
+    command.textStr = text;
+
+    commands.append(command);
 
     return pressed;
 }
@@ -316,14 +447,109 @@ size_t ImGui::label(const char *text,
     int left = isLeft ? leftOrRight : (leftOrRight - textWidth);
     int bottom = isBottom ? bottomOrTop : (bottomOrTop - textSize/2);
 
-    float w = gfxApi->getViewportWidth();
-    float h = gfxApi->getViewportHeight();
-    float fleft = left / w * 2.0f - 1.0f;
-    float fbottom = bottom / h * 2.0f - 1.0f;
+    containerLeft = std::min(containerLeft, left);
+    containerRight = std::max(containerRight, left + int(textWidth));
+    containerTop = std::max(containerTop, bottom + int(textSize));
+    containerBottom = std::min(containerBottom, bottom);
 
-    font->render(textSize, Float2(fleft, fbottom), text, nullptr, labelColor);
+    Command command;
+    command.type = Command::Text;
+    command.text.size = textSize;
+    command.text.left = left + scrollX;
+    command.text.bottom = bottom + scrollY;
+    command.text.colorR = labelColor.x;
+    command.text.colorG = labelColor.y;
+    command.text.colorB = labelColor.z;
+    command.textStr = text;
+
+    commands.append(command);
 
     return textWidth;
+}
+
+void ImGui::render()
+{
+    for (auto command : commands)
+    {
+        switch (command.type)
+        {
+        case Command::Rectangle:
+        {
+            decltype(Command::rect) rect = command.rect;
+
+            gfxApi->pushState();
+
+            gfxApi->setBlendingEnabled(true);
+            gfxApi->setBlendFactors(GfxSrcAlpha,
+                                    GfxSrcAlpha,
+                                    GfxOneMinusSrcAlpha,
+                                    GfxOneMinusSrcAlpha);
+            gfxApi->setDepthFunction(GfxAlways);
+
+            gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment, mesh);
+
+            float w = gfxApi->getViewportWidth();
+            float h = gfxApi->getViewportHeight();
+            float fleft = rect.left / w * 2.0f - 1.0f;
+            float fright = rect.right / w * 2.0f - 1.0f;
+            float ftop = rect.top / h * 2.0f - 1.0f;
+            float fbottom = rect.bottom / h * 2.0f - 1.0f;
+
+            gfxApi->uniform(compiledVertex, "offset", Float2(fleft, fbottom));
+            gfxApi->uniform(compiledVertex, "size", Float2(fright-fleft, ftop-fbottom));
+            gfxApi->uniform(compiledVertex, "gradientStart", rect.gradientStart);
+            gfxApi->uniform(compiledVertex, "gradientSize", rect.gradientSize);
+            gfxApi->uniform(compiledVertex, "gradientPower", rect.gradientPower);
+            gfxApi->uniform(compiledVertex, "color", Float3(rect.colorR, rect.colorG, rect.colorB));
+            gfxApi->uniform(compiledFragment, "topRight", Float2(rect.right, rect.top));
+            gfxApi->uniform(compiledFragment, "bottomLeft", Float2(rect.left, rect.bottom));
+            gfxApi->uniform(compiledFragment, "brightness", rect.brightness);
+            gfxApi->uniform(compiledFragment, "topLeftCornerRoundness", rect.topLeftCornerRoundness);
+            gfxApi->uniform(compiledFragment, "topRightCornerRoundness", rect.topRightCornerRoundness);
+            gfxApi->uniform(compiledFragment, "bottomLeftCornerRoundness", rect.bottomLeftCornerRoundness);
+            gfxApi->uniform(compiledFragment, "bottomRightCornerRoundness", rect.bottomRightCornerRoundness);
+
+            gfxApi->end();
+
+            gfxApi->popState();
+            break;
+        }
+        case Command::Text:
+        {
+            float w = gfxApi->getViewportWidth();
+            float h = gfxApi->getViewportHeight();
+            float fleft = command.text.left / w * 2.0f - 1.0f;
+            float fbottom = command.text.bottom / h * 2.0f - 1.0f;
+
+            font->render(command.text.size,
+                         Float2(fleft, fbottom),
+                         command.textStr.getData(),
+                         nullptr,
+                         Float3(command.text.colorR,
+                                command.text.colorG,
+                                command.text.colorB));
+            break;
+        }
+        case Command::PushScissor:
+        {
+            gfxApi->pushState();
+
+            gfxApi->setScissorEnabled(true);
+            gfxApi->setScissor(command.scissor.left,
+                               command.scissor.bottom,
+                               command.scissor.right-command.scissor.left,
+                               command.scissor.top-command.scissor.bottom);
+            break;
+        }
+        case Command::PopScissor:
+        {
+            gfxApi->popState();
+            break;
+        }
+        }
+    }
+
+    commands.clear();
 }
 
 GuiPlacer::GuiPlacer(ImGui *gui_,

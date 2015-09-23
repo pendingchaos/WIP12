@@ -464,7 +464,8 @@ BEGIN_INSTANCE(Main, InstanceBase)
         static int scrollX = 0;
         static int scrollY = 0;
         
-        gui.beginContainer(0, 230, platform->getWindowHeight()-330, platform->getWindowHeight(), &scrollX, &scrollY);
+        static Container container;
+        gui.beginContainer(0, 230, platform->getWindowHeight()-200, platform->getWindowHeight(), &container);
         
         GuiPlacer placer(&gui, platform->getWindowHeight(), 0, 10);
         
@@ -476,9 +477,10 @@ BEGIN_INSTANCE(Main, InstanceBase)
         
         placer.button("Hullo!", 100, 250);
         placer.button("Good bye!", 100, 20);
+        placer.button("Peek a Boo!", 100, 20);
         placer.advanceY();
         
-        gui.endContainer();
+        gui.endContainer(&container);
         
         placer.setXOrigin(XOrigin::Right, platform->getWindowWidth());
         placer.button("Boing!", 75, 30);
@@ -507,7 +509,12 @@ BEGIN_INSTANCE(Main, InstanceBase)
         placer.button("Blah blah!", 100, 20);
         
         static ScrollBar state;
-        gui.verticalScrollBar(315, 330, 20, 620, true, true, &state);*/
+        gui.verticalScrollBar(315, 330, 55, 620, true, true, &state);
+        
+        static ScrollBar state2;
+        gui.horizontalScrollBar(50, 590, 20, 35, true, true, &state2);
+        
+        gui.render();*/
     }
 END_INSTANCE(Main)
 

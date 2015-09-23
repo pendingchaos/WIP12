@@ -175,174 +175,176 @@ struct _functionStruct
     void (*f122)( GhostObject *obj, PhysicsShape * arg0);
     void (*f123)(const GhostObject *obj, List<RigidBody *> & arg0, List<GhostObject *> & arg1);
     void (*f124)( ImGui *obj, int arg0, int arg1, int arg2, int arg3, float arg4, float arg5, float arg6, float arg7, Float3 arg8, Float4 arg9);
-    void (*f125)( ImGui *obj, int arg0, int arg1, int arg2, int arg3, int * arg4, int * arg5);
-    void (*f126)( ImGui *obj);
+    void (*f125)( ImGui *obj, int arg0, int arg1, int arg2, int arg3, Container * arg4);
+    void (*f126)( ImGui *obj, Container * arg0);
     void (*f127)( ImGui *obj, int arg0, int arg1, int arg2, int arg3, bool arg4, bool arg5, ScrollBar * arg6);
-    bool (*f128)( ImGui *obj, const char * arg0, int arg1, int arg2, int arg3, int arg4);
-    size_t (*f129)( ImGui *obj, const char * arg0, int arg1, int arg2, bool arg3, bool arg4);
-    void (*f130)( ImGui *obj);
+    void (*f128)( ImGui *obj, int arg0, int arg1, int arg2, int arg3, bool arg4, bool arg5, ScrollBar * arg6);
+    bool (*f129)( ImGui *obj, const char * arg0, int arg1, int arg2, int arg3, int arg4);
+    size_t (*f130)( ImGui *obj, const char * arg0, int arg1, int arg2, bool arg3, bool arg4);
     void (*f131)( ImGui *obj);
-    void (*f132)( Application *obj);
-    void (*f133)( Application *obj, const char * arg0);
+    void (*f132)( ImGui *obj);
+    void (*f133)( ImGui *obj);
     void (*f134)( Application *obj);
-    void (*f135)( Scene *obj);
-    void (*f136)( Scene *obj);
-    void (*f137)( Scene *obj, float arg0);
+    void (*f135)( Application *obj, const char * arg0);
+    void (*f136)( Application *obj);
+    void (*f137)( Scene *obj);
     void (*f138)( Scene *obj);
-    Entity * (*f139)( Scene *obj, const String & arg0);
-    void (*f140)( Scene *obj, size_t arg0);
-    RigidBody * (*f141)( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1);
-    Scene * (*f142)(const Entity *obj);
-    Entity * (*f143)( Entity *obj, const String & arg0);
-    void (*f144)( Entity *obj, size_t arg0);
-    void (*f145)( Entity *obj);
-    AudioSource * (*f146)( Entity *obj, Audio * arg0);
-    void (*f147)( Entity *obj, size_t arg0);
-    void (*f148)( File *obj, size_t arg0, void * arg1);
-    void (*f149)( File *obj, size_t arg0, const void * arg1);
-    void (*f150)( File *obj, long arg0, FileOrigin arg1);
-    long (*f151)( File *obj);
-    void (*f152)( File *obj);
-    bool (*f153)( File *obj);
-    size_t (*f154)( File *obj);
-    uint8_t (*f155)( File *obj);
-    int8_t (*f156)( File *obj);
-    uint16_t (*f157)( File *obj);
-    int16_t (*f158)( File *obj);
-    uint32_t (*f159)( File *obj);
-    int32_t (*f160)( File *obj);
-    uint64_t (*f161)( File *obj);
-    int64_t (*f162)( File *obj);
-    uint16_t (*f163)( File *obj);
-    int16_t (*f164)( File *obj);
-    uint32_t (*f165)( File *obj);
-    int32_t (*f166)( File *obj);
-    uint64_t (*f167)( File *obj);
-    int64_t (*f168)( File *obj);
-    float (*f169)( File *obj);
-    char (*f170)( File *obj);
-    void (*f171)( File *obj, uint8_t arg0);
-    void (*f172)( File *obj, int8_t arg0);
-    void (*f173)( File *obj, uint16_t arg0);
-    void (*f174)( File *obj, int16_t arg0);
-    void (*f175)( File *obj, uint32_t arg0);
-    void (*f176)( File *obj, int32_t arg0);
-    void (*f177)( File *obj, uint64_t arg0);
-    void (*f178)( File *obj, int64_t arg0);
-    void (*f179)( File *obj, uint16_t arg0);
-    void (*f180)( File *obj, int16_t arg0);
-    void (*f181)( File *obj, uint32_t arg0);
-    void (*f182)( File *obj, int32_t arg0);
-    void (*f183)( File *obj, uint64_t arg0);
-    void (*f184)( File *obj, int64_t arg0);
-    void (*f185)( File *obj, float arg0);
-    void (*f186)( File *obj, const char * arg0, va_list arg1);
-    void (*f187)( File *obj, char arg0);
-    void (*f188)( File *obj, const char * arg0, const char * arg1);
-    void (*f189)( File *obj);
-    void (*f190)( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1, const String & arg2);
-    const String & (*f191)( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1);
-    void (*f192)( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1);
-    GfxShader * (*f193)( GfxShaderCombination *obj, GfxShaderType arg0);
-    void (*f194)( GfxShaderCombination *obj, GfxShaderType arg0, GfxShader * arg1);
-    GfxCompiledShader * (*f195)(const GfxShaderCombination *obj, GfxShaderType arg0);
-    void (*f196)( GfxShaderCombination *obj, GfxShader * arg0, GfxShader * arg1);
-    Matrix3x3 (*f197)(const Matrix3x3 *obj, const Matrix3x3 & arg0);
-    Float3 (*f198)(const Matrix3x3 *obj, const Float3 & arg0);
-    Matrix3x3 (*f199)(const Matrix3x3 *obj, float arg0);
-    Matrix3x3 (*f200)(const Matrix3x3 *obj);
-    Matrix3x3 (*f201)(const Matrix3x3 *obj);
-    Matrix3x3 (*f202)(const Float2 & arg0);
-    Matrix3x3 (*f203)(const Float3 & arg0);
-    Matrix3x3 (*f204)(float arg0);
-    Matrix3x3 (*f205)(float arg0);
+    void (*f139)( Scene *obj, float arg0);
+    void (*f140)( Scene *obj);
+    Entity * (*f141)( Scene *obj, const String & arg0);
+    void (*f142)( Scene *obj, size_t arg0);
+    RigidBody * (*f143)( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1);
+    Scene * (*f144)(const Entity *obj);
+    Entity * (*f145)( Entity *obj, const String & arg0);
+    void (*f146)( Entity *obj, size_t arg0);
+    void (*f147)( Entity *obj);
+    AudioSource * (*f148)( Entity *obj, Audio * arg0);
+    void (*f149)( Entity *obj, size_t arg0);
+    void (*f150)( File *obj, size_t arg0, void * arg1);
+    void (*f151)( File *obj, size_t arg0, const void * arg1);
+    void (*f152)( File *obj, long arg0, FileOrigin arg1);
+    long (*f153)( File *obj);
+    void (*f154)( File *obj);
+    bool (*f155)( File *obj);
+    size_t (*f156)( File *obj);
+    uint8_t (*f157)( File *obj);
+    int8_t (*f158)( File *obj);
+    uint16_t (*f159)( File *obj);
+    int16_t (*f160)( File *obj);
+    uint32_t (*f161)( File *obj);
+    int32_t (*f162)( File *obj);
+    uint64_t (*f163)( File *obj);
+    int64_t (*f164)( File *obj);
+    uint16_t (*f165)( File *obj);
+    int16_t (*f166)( File *obj);
+    uint32_t (*f167)( File *obj);
+    int32_t (*f168)( File *obj);
+    uint64_t (*f169)( File *obj);
+    int64_t (*f170)( File *obj);
+    float (*f171)( File *obj);
+    char (*f172)( File *obj);
+    void (*f173)( File *obj, uint8_t arg0);
+    void (*f174)( File *obj, int8_t arg0);
+    void (*f175)( File *obj, uint16_t arg0);
+    void (*f176)( File *obj, int16_t arg0);
+    void (*f177)( File *obj, uint32_t arg0);
+    void (*f178)( File *obj, int32_t arg0);
+    void (*f179)( File *obj, uint64_t arg0);
+    void (*f180)( File *obj, int64_t arg0);
+    void (*f181)( File *obj, uint16_t arg0);
+    void (*f182)( File *obj, int16_t arg0);
+    void (*f183)( File *obj, uint32_t arg0);
+    void (*f184)( File *obj, int32_t arg0);
+    void (*f185)( File *obj, uint64_t arg0);
+    void (*f186)( File *obj, int64_t arg0);
+    void (*f187)( File *obj, float arg0);
+    void (*f188)( File *obj, const char * arg0, va_list arg1);
+    void (*f189)( File *obj, char arg0);
+    void (*f190)( File *obj, const char * arg0, const char * arg1);
+    void (*f191)( File *obj);
+    void (*f192)( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1, const String & arg2);
+    const String & (*f193)( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1);
+    void (*f194)( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1);
+    GfxShader * (*f195)( GfxShaderCombination *obj, GfxShaderType arg0);
+    void (*f196)( GfxShaderCombination *obj, GfxShaderType arg0, GfxShader * arg1);
+    GfxCompiledShader * (*f197)(const GfxShaderCombination *obj, GfxShaderType arg0);
+    void (*f198)( GfxShaderCombination *obj, GfxShader * arg0, GfxShader * arg1);
+    Matrix3x3 (*f199)(const Matrix3x3 *obj, const Matrix3x3 & arg0);
+    Float3 (*f200)(const Matrix3x3 *obj, const Float3 & arg0);
+    Matrix3x3 (*f201)(const Matrix3x3 *obj, float arg0);
+    Matrix3x3 (*f202)(const Matrix3x3 *obj);
+    Matrix3x3 (*f203)(const Matrix3x3 *obj);
+    Matrix3x3 (*f204)(const Float2 & arg0);
+    Matrix3x3 (*f205)(const Float3 & arg0);
     Matrix3x3 (*f206)(float arg0);
     Matrix3x3 (*f207)(float arg0);
-    void (*f208)( Matrix3x3 *obj);
-    void (*f209)( Matrix3x3 *obj, const Matrix4x4 & arg0);
-    void (*f210)( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
-    void (*f211)( GfxDebugDrawer *obj, const Camera & arg0);
-    void (*f212)( GfxDebugDrawer *obj, GfxApi * arg0);
-    void (*f213)( GfxDebugDrawer *obj);
-    AudioSource *(*f214)(Audio * arg0);
-    Script *(*f215)();
-    Script *(*f216)(size_t count);
-    Script *(*f217)(const String & arg0);
-    Transform *(*f218)();
-    Transform *(*f219)(size_t count);
-    Platform *(*f220)();
-    Platform *(*f221)(size_t count);
-    AudioDevice *(*f222)(size_t arg0, size_t arg1, size_t arg2);
-    GfxMaterial *(*f223)();
-    GfxMaterial *(*f224)(size_t count);
-    GfxMaterial *(*f225)(const String & arg0);
-    SerializeException *(*f226)(const char * arg0, size_t arg1, const char * arg2);
-    LookupException *(*f227)(const char * arg0, size_t arg1, const char * arg2);
-    Quaternion *(*f228)();
-    Quaternion *(*f229)(size_t count);
-    Quaternion *(*f230)(const Direction3D & arg0, float arg1);
-    Quaternion *(*f231)(float arg0, float arg1, float arg2, float arg3);
-    Quaternion *(*f232)(const Float3 & arg0);
-    Light *(*f233)();
-    Light *(*f234)(size_t count);
-    PhysicsShape *(*f235)();
-    PhysicsShape *(*f236)(size_t count);
-    PhysicsShape *(*f237)(const String & arg0);
-    Serializable *(*f238)();
-    Serializable *(*f239)(size_t count);
-    Serializable *(*f240)(uint8_t arg0);
-    Serializable *(*f241)(int8_t arg0);
-    Serializable *(*f242)(uint16_t arg0);
-    Serializable *(*f243)(int16_t arg0);
-    Serializable *(*f244)(uint32_t arg0);
-    Serializable *(*f245)(int32_t arg0);
-    Serializable *(*f246)(uint64_t arg0);
-    Serializable *(*f247)(int64_t arg0);
-    Serializable *(*f248)(const String & arg0);
-    Serializable *(*f249)(bool arg0);
-    Serializable *(*f250)(float arg0);
-    Serializable *(*f251)(const Float2 & arg0);
-    Serializable *(*f252)(const Float3 & arg0);
-    Serializable *(*f253)(const Float4 & arg0);
-    Serializable *(*f254)(const Int2 & arg0);
-    Serializable *(*f255)(const Int3 & arg0);
-    Serializable *(*f256)(const Int4 & arg0);
-    Serializable *(*f257)(const UInt2 & arg0);
-    Serializable *(*f258)(const UInt3 & arg0);
-    Serializable *(*f259)(const UInt4 & arg0);
-    ShaderCompileException *(*f260)(const char * arg0, size_t arg1, const char * arg2, const String & arg3);
-    Exception *(*f261)(const char * arg0, size_t arg1, const char * arg2);
-    FileException *(*f262)(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4);
-    AABB *(*f263)();
-    AABB *(*f264)(size_t count);
-    AABB *(*f265)(const Position3D & arg0, const Position3D & arg1);
-    ResourceIOException *(*f266)(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5);
-    GfxAnimationState *(*f267)(GfxMesh * arg0, const String & arg1);
-    GuiPlacer *(*f268)(ImGui * arg0, int arg1, int arg2, size_t arg3);
-    Audio *(*f269)();
-    Audio *(*f270)(size_t count);
-    Audio *(*f271)(const String & arg0);
-    GfxTexture *(*f272)(const String & arg0);
-    GfxTexture *(*f273)();
-    GfxTexture *(*f274)(size_t count);
-    PhysicsDebugDrawer *(*f275)();
-    PhysicsDebugDrawer *(*f276)(size_t count);
-    ImGui *(*f277)();
-    ImGui *(*f278)(size_t count);
-    Application *(*f279)(const char * arg0);
-    GfxModel *(*f280)();
-    GfxModel *(*f281)(size_t count);
-    GfxModel *(*f282)(const String & arg0);
-    Scene *(*f283)();
-    Scene *(*f284)(size_t count);
-    Scene *(*f285)(const String & arg0);
-    File *(*f286)(const char * arg0, const char * arg1);
-    GfxShaderCombination *(*f287)(GfxShader * arg0, GfxShader * arg1);
-    Matrix3x3 *(*f288)();
-    Matrix3x3 *(*f289)(size_t count);
-    Matrix3x3 *(*f290)(const Matrix4x4 & arg0);
-    Matrix3x3 *(*f291)(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
-    GfxDebugDrawer *(*f292)(GfxApi * arg0);
+    Matrix3x3 (*f208)(float arg0);
+    Matrix3x3 (*f209)(float arg0);
+    void (*f210)( Matrix3x3 *obj);
+    void (*f211)( Matrix3x3 *obj, const Matrix4x4 & arg0);
+    void (*f212)( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
+    void (*f213)( GfxDebugDrawer *obj, const Camera & arg0);
+    void (*f214)( GfxDebugDrawer *obj, GfxApi * arg0);
+    void (*f215)( GfxDebugDrawer *obj);
+    AudioSource *(*f216)(Audio * arg0);
+    Script *(*f217)();
+    Script *(*f218)(size_t count);
+    Script *(*f219)(const String & arg0);
+    Transform *(*f220)();
+    Transform *(*f221)(size_t count);
+    Platform *(*f222)();
+    Platform *(*f223)(size_t count);
+    AudioDevice *(*f224)(size_t arg0, size_t arg1, size_t arg2);
+    GfxMaterial *(*f225)();
+    GfxMaterial *(*f226)(size_t count);
+    GfxMaterial *(*f227)(const String & arg0);
+    SerializeException *(*f228)(const char * arg0, size_t arg1, const char * arg2);
+    LookupException *(*f229)(const char * arg0, size_t arg1, const char * arg2);
+    Quaternion *(*f230)();
+    Quaternion *(*f231)(size_t count);
+    Quaternion *(*f232)(const Direction3D & arg0, float arg1);
+    Quaternion *(*f233)(float arg0, float arg1, float arg2, float arg3);
+    Quaternion *(*f234)(const Float3 & arg0);
+    Light *(*f235)();
+    Light *(*f236)(size_t count);
+    PhysicsShape *(*f237)();
+    PhysicsShape *(*f238)(size_t count);
+    PhysicsShape *(*f239)(const String & arg0);
+    Serializable *(*f240)();
+    Serializable *(*f241)(size_t count);
+    Serializable *(*f242)(uint8_t arg0);
+    Serializable *(*f243)(int8_t arg0);
+    Serializable *(*f244)(uint16_t arg0);
+    Serializable *(*f245)(int16_t arg0);
+    Serializable *(*f246)(uint32_t arg0);
+    Serializable *(*f247)(int32_t arg0);
+    Serializable *(*f248)(uint64_t arg0);
+    Serializable *(*f249)(int64_t arg0);
+    Serializable *(*f250)(const String & arg0);
+    Serializable *(*f251)(bool arg0);
+    Serializable *(*f252)(float arg0);
+    Serializable *(*f253)(const Float2 & arg0);
+    Serializable *(*f254)(const Float3 & arg0);
+    Serializable *(*f255)(const Float4 & arg0);
+    Serializable *(*f256)(const Int2 & arg0);
+    Serializable *(*f257)(const Int3 & arg0);
+    Serializable *(*f258)(const Int4 & arg0);
+    Serializable *(*f259)(const UInt2 & arg0);
+    Serializable *(*f260)(const UInt3 & arg0);
+    Serializable *(*f261)(const UInt4 & arg0);
+    ShaderCompileException *(*f262)(const char * arg0, size_t arg1, const char * arg2, const String & arg3);
+    Exception *(*f263)(const char * arg0, size_t arg1, const char * arg2);
+    FileException *(*f264)(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4);
+    AABB *(*f265)();
+    AABB *(*f266)(size_t count);
+    AABB *(*f267)(const Position3D & arg0, const Position3D & arg1);
+    ResourceIOException *(*f268)(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5);
+    GfxAnimationState *(*f269)(GfxMesh * arg0, const String & arg1);
+    GuiPlacer *(*f270)(ImGui * arg0, int arg1, int arg2, size_t arg3);
+    Audio *(*f271)();
+    Audio *(*f272)(size_t count);
+    Audio *(*f273)(const String & arg0);
+    GfxTexture *(*f274)(const String & arg0);
+    GfxTexture *(*f275)();
+    GfxTexture *(*f276)(size_t count);
+    PhysicsDebugDrawer *(*f277)();
+    PhysicsDebugDrawer *(*f278)(size_t count);
+    ImGui *(*f279)();
+    ImGui *(*f280)(size_t count);
+    Application *(*f281)(const char * arg0);
+    GfxModel *(*f282)();
+    GfxModel *(*f283)(size_t count);
+    GfxModel *(*f284)(const String & arg0);
+    Scene *(*f285)();
+    Scene *(*f286)(size_t count);
+    Scene *(*f287)(const String & arg0);
+    File *(*f288)(const char * arg0, const char * arg1);
+    GfxShaderCombination *(*f289)(GfxShader * arg0, GfxShader * arg1);
+    Matrix3x3 *(*f290)();
+    Matrix3x3 *(*f291)(size_t count);
+    Matrix3x3 *(*f292)(const Matrix4x4 & arg0);
+    Matrix3x3 *(*f293)(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
+    GfxDebugDrawer *(*f294)(GfxApi * arg0);
 };
 const char ** f0(unsigned int & arg0) {return getBacktrace(arg0);}
 size_t f1(const String & arg0) {return getHash(arg0);}
@@ -469,173 +471,175 @@ void f121(const GhostObject *obj, const Transform & arg0) { obj->setTransform(ar
 void f122( GhostObject *obj, PhysicsShape * arg0) { obj->setShape(arg0);}
 void f123(const GhostObject *obj, List<RigidBody *> & arg0, List<GhostObject *> & arg1) { obj->getCollisions(arg0, arg1);}
 void f124( ImGui *obj, int arg0, int arg1, int arg2, int arg3, float arg4, float arg5, float arg6, float arg7, Float3 arg8, Float4 arg9) { obj->rectangle(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);}
-void f125( ImGui *obj, int arg0, int arg1, int arg2, int arg3, int * arg4, int * arg5) { obj->beginContainer(arg0, arg1, arg2, arg3, arg4, arg5);}
-void f126( ImGui *obj) { obj->endContainer();}
+void f125( ImGui *obj, int arg0, int arg1, int arg2, int arg3, Container * arg4) { obj->beginContainer(arg0, arg1, arg2, arg3, arg4);}
+void f126( ImGui *obj, Container * arg0) { obj->endContainer(arg0);}
 void f127( ImGui *obj, int arg0, int arg1, int arg2, int arg3, bool arg4, bool arg5, ScrollBar * arg6) { obj->verticalScrollBar(arg0, arg1, arg2, arg3, arg4, arg5, arg6);}
-bool f128( ImGui *obj, const char * arg0, int arg1, int arg2, int arg3, int arg4) {return obj->button(arg0, arg1, arg2, arg3, arg4);}
-size_t f129( ImGui *obj, const char * arg0, int arg1, int arg2, bool arg3, bool arg4) {return obj->label(arg0, arg1, arg2, arg3, arg4);}
-void f130( ImGui *obj) {new (obj) ImGui();}
-void f131( ImGui *obj) { obj->~ImGui();}
-void f132( Application *obj) { obj->mainloop();}
-void f133( Application *obj, const char * arg0) {new (obj) Application(arg0);}
-void f134( Application *obj) { obj->~Application();}
-void f135( Scene *obj) { obj->handleInput();}
-void f136( Scene *obj) { obj->update();}
-void f137( Scene *obj, float arg0) { obj->fixedUpdate(arg0);}
-void f138( Scene *obj) { obj->render();}
-Entity * f139( Scene *obj, const String & arg0) {return obj->createEntity(arg0);}
-void f140( Scene *obj, size_t arg0) { obj->removeEntity(arg0);}
-RigidBody * f141( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1) {return obj->addRigidBody(arg0, arg1);}
-Scene * f142(const Entity *obj) {return obj->getScene();}
-Entity * f143( Entity *obj, const String & arg0) {return obj->createEntity(arg0);}
-void f144( Entity *obj, size_t arg0) { obj->removeEntity(arg0);}
-void f145( Entity *obj) { obj->updateFinalTransform();}
-AudioSource * f146( Entity *obj, Audio * arg0) {return obj->addAudioSource(arg0);}
-void f147( Entity *obj, size_t arg0) { obj->removeAudioSource(arg0);}
-void f148( File *obj, size_t arg0, void * arg1) { obj->read(arg0, arg1);}
-void f149( File *obj, size_t arg0, const void * arg1) { obj->write(arg0, arg1);}
-void f150( File *obj, long arg0, FileOrigin arg1) { obj->seek(arg0, arg1);}
-long f151( File *obj) {return obj->tell();}
-void f152( File *obj) { obj->flush();}
-bool f153( File *obj) {return obj->isAtEndOfFile();}
-size_t f154( File *obj) {return obj->getSize();}
-uint8_t f155( File *obj) {return obj->readUInt8();}
-int8_t f156( File *obj) {return obj->readInt8();}
-uint16_t f157( File *obj) {return obj->readUInt16LE();}
-int16_t f158( File *obj) {return obj->readInt16LE();}
-uint32_t f159( File *obj) {return obj->readUInt32LE();}
-int32_t f160( File *obj) {return obj->readInt32LE();}
-uint64_t f161( File *obj) {return obj->readUInt64LE();}
-int64_t f162( File *obj) {return obj->readInt64LE();}
-uint16_t f163( File *obj) {return obj->readUInt16BE();}
-int16_t f164( File *obj) {return obj->readInt16BE();}
-uint32_t f165( File *obj) {return obj->readUInt32BE();}
-int32_t f166( File *obj) {return obj->readInt32BE();}
-uint64_t f167( File *obj) {return obj->readUInt64BE();}
-int64_t f168( File *obj) {return obj->readInt64BE();}
-float f169( File *obj) {return obj->readFloat32();}
-char f170( File *obj) {return obj->readChar();}
-void f171( File *obj, uint8_t arg0) { obj->writeUInt8(arg0);}
-void f172( File *obj, int8_t arg0) { obj->writeInt8(arg0);}
-void f173( File *obj, uint16_t arg0) { obj->writeUInt16LE(arg0);}
-void f174( File *obj, int16_t arg0) { obj->writeInt16LE(arg0);}
-void f175( File *obj, uint32_t arg0) { obj->writeUInt32LE(arg0);}
-void f176( File *obj, int32_t arg0) { obj->writeInt32LE(arg0);}
-void f177( File *obj, uint64_t arg0) { obj->writeUInt64LE(arg0);}
-void f178( File *obj, int64_t arg0) { obj->writeInt64LE(arg0);}
-void f179( File *obj, uint16_t arg0) { obj->writeUInt16BE(arg0);}
-void f180( File *obj, int16_t arg0) { obj->writeInt16BE(arg0);}
-void f181( File *obj, uint32_t arg0) { obj->writeUInt32BE(arg0);}
-void f182( File *obj, int32_t arg0) { obj->writeInt32BE(arg0);}
-void f183( File *obj, uint64_t arg0) { obj->writeUInt64BE(arg0);}
-void f184( File *obj, int64_t arg0) { obj->writeInt64BE(arg0);}
-void f185( File *obj, float arg0) { obj->writeFloat32(arg0);}
-void f186( File *obj, const char * arg0, va_list arg1) { obj->vprintf(arg0, arg1);}
-void f187( File *obj, char arg0) { obj->writeChar(arg0);}
-void f188( File *obj, const char * arg0, const char * arg1) {new (obj) File(arg0, arg1);}
-void f189( File *obj) { obj->~File();}
-void f190( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1, const String & arg2) { obj->setDefine(arg0, arg1, arg2);}
-const String & f191( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1) {return obj->getDefine(arg0, arg1);}
-void f192( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1) { obj->removeDefine(arg0, arg1);}
-GfxShader * f193( GfxShaderCombination *obj, GfxShaderType arg0) {return obj->getShader(arg0);}
-void f194( GfxShaderCombination *obj, GfxShaderType arg0, GfxShader * arg1) { obj->setShader(arg0, arg1);}
-GfxCompiledShader * f195(const GfxShaderCombination *obj, GfxShaderType arg0) {return obj->getCompiled(arg0);}
-void f196( GfxShaderCombination *obj, GfxShader * arg0, GfxShader * arg1) {new (obj) GfxShaderCombination(arg0, arg1);}
-Matrix3x3 f197(const Matrix3x3 *obj, const Matrix3x3 & arg0) {return obj->operator*(arg0);}
-Float3 f198(const Matrix3x3 *obj, const Float3 & arg0) {return obj->operator*(arg0);}
-Matrix3x3 f199(const Matrix3x3 *obj, float arg0) {return obj->operator/(arg0);}
-Matrix3x3 f200(const Matrix3x3 *obj) {return obj->transpose();}
-Matrix3x3 f201(const Matrix3x3 *obj) {return obj->inverse();}
-Matrix3x3 f202(const Float2 & arg0) {return Matrix3x3::translate(arg0);}
-Matrix3x3 f203(const Float3 & arg0) {return Matrix3x3::scale(arg0);}
-Matrix3x3 f204(float arg0) {return Matrix3x3::rotate(arg0);}
-Matrix3x3 f205(float arg0) {return Matrix3x3::rotatex(arg0);}
-Matrix3x3 f206(float arg0) {return Matrix3x3::rotatey(arg0);}
-Matrix3x3 f207(float arg0) {return Matrix3x3::rotatez(arg0);}
-void f208( Matrix3x3 *obj) {new (obj) Matrix3x3();}
-void f209( Matrix3x3 *obj, const Matrix4x4 & arg0) {new (obj) Matrix3x3(arg0);}
-void f210( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {new (obj) Matrix3x3(arg0, arg1, arg2);}
-void f211( GfxDebugDrawer *obj, const Camera & arg0) { obj->render(arg0);}
-void f212( GfxDebugDrawer *obj, GfxApi * arg0) {new (obj) GfxDebugDrawer(arg0);}
-void f213( GfxDebugDrawer *obj) { obj->~GfxDebugDrawer();}
-AudioSource *f214(Audio * arg0) {return NEW(AudioSource, arg0);}
-Script *f215() {return NEW(Script);}
-Script *f216(size_t count) {return NEW_ARRAY(Script, count);}
-Script *f217(const String & arg0) {return NEW(Script, arg0);}
-Transform *f218() {return NEW(Transform);}
-Transform *f219(size_t count) {return NEW_ARRAY(Transform, count);}
-Platform *f220() {return NEW(Platform);}
-Platform *f221(size_t count) {return NEW_ARRAY(Platform, count);}
-AudioDevice *f222(size_t arg0, size_t arg1, size_t arg2) {return NEW(AudioDevice, arg0, arg1, arg2);}
-GfxMaterial *f223() {return NEW(GfxMaterial);}
-GfxMaterial *f224(size_t count) {return NEW_ARRAY(GfxMaterial, count);}
-GfxMaterial *f225(const String & arg0) {return NEW(GfxMaterial, arg0);}
-SerializeException *f226(const char * arg0, size_t arg1, const char * arg2) {return NEW(SerializeException, arg0, arg1, arg2);}
-LookupException *f227(const char * arg0, size_t arg1, const char * arg2) {return NEW(LookupException, arg0, arg1, arg2);}
-Quaternion *f228() {return NEW(Quaternion);}
-Quaternion *f229(size_t count) {return NEW_ARRAY(Quaternion, count);}
-Quaternion *f230(const Direction3D & arg0, float arg1) {return NEW(Quaternion, arg0, arg1);}
-Quaternion *f231(float arg0, float arg1, float arg2, float arg3) {return NEW(Quaternion, arg0, arg1, arg2, arg3);}
-Quaternion *f232(const Float3 & arg0) {return NEW(Quaternion, arg0);}
-Light *f233() {return NEW(Light);}
-Light *f234(size_t count) {return NEW_ARRAY(Light, count);}
-PhysicsShape *f235() {return NEW(PhysicsShape);}
-PhysicsShape *f236(size_t count) {return NEW_ARRAY(PhysicsShape, count);}
-PhysicsShape *f237(const String & arg0) {return NEW(PhysicsShape, arg0);}
-Serializable *f238() {return NEW(Serializable);}
-Serializable *f239(size_t count) {return NEW_ARRAY(Serializable, count);}
-Serializable *f240(uint8_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f241(int8_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f242(uint16_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f243(int16_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f244(uint32_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f245(int32_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f246(uint64_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f247(int64_t arg0) {return NEW(Serializable, arg0);}
-Serializable *f248(const String & arg0) {return NEW(Serializable, arg0);}
-Serializable *f249(bool arg0) {return NEW(Serializable, arg0);}
-Serializable *f250(float arg0) {return NEW(Serializable, arg0);}
-Serializable *f251(const Float2 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f252(const Float3 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f253(const Float4 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f254(const Int2 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f255(const Int3 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f256(const Int4 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f257(const UInt2 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f258(const UInt3 & arg0) {return NEW(Serializable, arg0);}
-Serializable *f259(const UInt4 & arg0) {return NEW(Serializable, arg0);}
-ShaderCompileException *f260(const char * arg0, size_t arg1, const char * arg2, const String & arg3) {return NEW(ShaderCompileException, arg0, arg1, arg2, arg3);}
-Exception *f261(const char * arg0, size_t arg1, const char * arg2) {return NEW(Exception, arg0, arg1, arg2);}
-FileException *f262(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4) {return NEW(FileException, arg0, arg1, arg2, arg3, arg4);}
-AABB *f263() {return NEW(AABB);}
-AABB *f264(size_t count) {return NEW_ARRAY(AABB, count);}
-AABB *f265(const Position3D & arg0, const Position3D & arg1) {return NEW(AABB, arg0, arg1);}
-ResourceIOException *f266(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5) {return NEW(ResourceIOException, arg0, arg1, arg2, arg3, arg4, arg5);}
-GfxAnimationState *f267(GfxMesh * arg0, const String & arg1) {return NEW(GfxAnimationState, arg0, arg1);}
-GuiPlacer *f268(ImGui * arg0, int arg1, int arg2, size_t arg3) {return NEW(GuiPlacer, arg0, arg1, arg2, arg3);}
-Audio *f269() {return NEW(Audio);}
-Audio *f270(size_t count) {return NEW_ARRAY(Audio, count);}
-Audio *f271(const String & arg0) {return NEW(Audio, arg0);}
-GfxTexture *f272(const String & arg0) {return NEW(GfxTexture, arg0);}
-GfxTexture *f273() {return NEW(GfxTexture);}
-GfxTexture *f274(size_t count) {return NEW_ARRAY(GfxTexture, count);}
-PhysicsDebugDrawer *f275() {return NEW(PhysicsDebugDrawer);}
-PhysicsDebugDrawer *f276(size_t count) {return NEW_ARRAY(PhysicsDebugDrawer, count);}
-ImGui *f277() {return NEW(ImGui);}
-ImGui *f278(size_t count) {return NEW_ARRAY(ImGui, count);}
-Application *f279(const char * arg0) {return NEW(Application, arg0);}
-GfxModel *f280() {return NEW(GfxModel);}
-GfxModel *f281(size_t count) {return NEW_ARRAY(GfxModel, count);}
-GfxModel *f282(const String & arg0) {return NEW(GfxModel, arg0);}
-Scene *f283() {return NEW(Scene);}
-Scene *f284(size_t count) {return NEW_ARRAY(Scene, count);}
-Scene *f285(const String & arg0) {return NEW(Scene, arg0);}
-File *f286(const char * arg0, const char * arg1) {return NEW(File, arg0, arg1);}
-GfxShaderCombination *f287(GfxShader * arg0, GfxShader * arg1) {return NEW(GfxShaderCombination, arg0, arg1);}
-Matrix3x3 *f288() {return NEW(Matrix3x3);}
-Matrix3x3 *f289(size_t count) {return NEW_ARRAY(Matrix3x3, count);}
-Matrix3x3 *f290(const Matrix4x4 & arg0) {return NEW(Matrix3x3, arg0);}
-Matrix3x3 *f291(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {return NEW(Matrix3x3, arg0, arg1, arg2);}
-GfxDebugDrawer *f292(GfxApi * arg0) {return NEW(GfxDebugDrawer, arg0);}
-static const _functionStruct functions = {f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51, f52, f53, f54, f55, f56, f57, f58, f59, f60, f61, f62, f63, f64, f65, f66, f67, f68, f69, f70, f71, f72, f73, f74, f75, f76, f77, f78, f79, f80, f81, f82, f83, f84, f85, f86, f87, f88, f89, f90, f91, f92, f93, f94, f95, f96, f97, f98, f99, f100, f101, f102, f103, f104, f105, f106, f107, f108, f109, f110, f111, f112, f113, f114, f115, f116, f117, f118, f119, f120, f121, f122, f123, f124, f125, f126, f127, f128, f129, f130, f131, f132, f133, f134, f135, f136, f137, f138, f139, f140, f141, f142, f143, f144, f145, f146, f147, f148, f149, f150, f151, f152, f153, f154, f155, f156, f157, f158, f159, f160, f161, f162, f163, f164, f165, f166, f167, f168, f169, f170, f171, f172, f173, f174, f175, f176, f177, f178, f179, f180, f181, f182, f183, f184, f185, f186, f187, f188, f189, f190, f191, f192, f193, f194, f195, f196, f197, f198, f199, f200, f201, f202, f203, f204, f205, f206, f207, f208, f209, f210, f211, f212, f213, f214, f215, f216, f217, f218, f219, f220, f221, f222, f223, f224, f225, f226, f227, f228, f229, f230, f231, f232, f233, f234, f235, f236, f237, f238, f239, f240, f241, f242, f243, f244, f245, f246, f247, f248, f249, f250, f251, f252, f253, f254, f255, f256, f257, f258, f259, f260, f261, f262, f263, f264, f265, f266, f267, f268, f269, f270, f271, f272, f273, f274, f275, f276, f277, f278, f279, f280, f281, f282, f283, f284, f285, f286, f287, f288, f289, f290, f291, f292};
+void f128( ImGui *obj, int arg0, int arg1, int arg2, int arg3, bool arg4, bool arg5, ScrollBar * arg6) { obj->horizontalScrollBar(arg0, arg1, arg2, arg3, arg4, arg5, arg6);}
+bool f129( ImGui *obj, const char * arg0, int arg1, int arg2, int arg3, int arg4) {return obj->button(arg0, arg1, arg2, arg3, arg4);}
+size_t f130( ImGui *obj, const char * arg0, int arg1, int arg2, bool arg3, bool arg4) {return obj->label(arg0, arg1, arg2, arg3, arg4);}
+void f131( ImGui *obj) { obj->render();}
+void f132( ImGui *obj) {new (obj) ImGui();}
+void f133( ImGui *obj) { obj->~ImGui();}
+void f134( Application *obj) { obj->mainloop();}
+void f135( Application *obj, const char * arg0) {new (obj) Application(arg0);}
+void f136( Application *obj) { obj->~Application();}
+void f137( Scene *obj) { obj->handleInput();}
+void f138( Scene *obj) { obj->update();}
+void f139( Scene *obj, float arg0) { obj->fixedUpdate(arg0);}
+void f140( Scene *obj) { obj->render();}
+Entity * f141( Scene *obj, const String & arg0) {return obj->createEntity(arg0);}
+void f142( Scene *obj, size_t arg0) { obj->removeEntity(arg0);}
+RigidBody * f143( Entity *obj, const RigidBodyConstructionInfo & arg0, PhysicsShape * arg1) {return obj->addRigidBody(arg0, arg1);}
+Scene * f144(const Entity *obj) {return obj->getScene();}
+Entity * f145( Entity *obj, const String & arg0) {return obj->createEntity(arg0);}
+void f146( Entity *obj, size_t arg0) { obj->removeEntity(arg0);}
+void f147( Entity *obj) { obj->updateFinalTransform();}
+AudioSource * f148( Entity *obj, Audio * arg0) {return obj->addAudioSource(arg0);}
+void f149( Entity *obj, size_t arg0) { obj->removeAudioSource(arg0);}
+void f150( File *obj, size_t arg0, void * arg1) { obj->read(arg0, arg1);}
+void f151( File *obj, size_t arg0, const void * arg1) { obj->write(arg0, arg1);}
+void f152( File *obj, long arg0, FileOrigin arg1) { obj->seek(arg0, arg1);}
+long f153( File *obj) {return obj->tell();}
+void f154( File *obj) { obj->flush();}
+bool f155( File *obj) {return obj->isAtEndOfFile();}
+size_t f156( File *obj) {return obj->getSize();}
+uint8_t f157( File *obj) {return obj->readUInt8();}
+int8_t f158( File *obj) {return obj->readInt8();}
+uint16_t f159( File *obj) {return obj->readUInt16LE();}
+int16_t f160( File *obj) {return obj->readInt16LE();}
+uint32_t f161( File *obj) {return obj->readUInt32LE();}
+int32_t f162( File *obj) {return obj->readInt32LE();}
+uint64_t f163( File *obj) {return obj->readUInt64LE();}
+int64_t f164( File *obj) {return obj->readInt64LE();}
+uint16_t f165( File *obj) {return obj->readUInt16BE();}
+int16_t f166( File *obj) {return obj->readInt16BE();}
+uint32_t f167( File *obj) {return obj->readUInt32BE();}
+int32_t f168( File *obj) {return obj->readInt32BE();}
+uint64_t f169( File *obj) {return obj->readUInt64BE();}
+int64_t f170( File *obj) {return obj->readInt64BE();}
+float f171( File *obj) {return obj->readFloat32();}
+char f172( File *obj) {return obj->readChar();}
+void f173( File *obj, uint8_t arg0) { obj->writeUInt8(arg0);}
+void f174( File *obj, int8_t arg0) { obj->writeInt8(arg0);}
+void f175( File *obj, uint16_t arg0) { obj->writeUInt16LE(arg0);}
+void f176( File *obj, int16_t arg0) { obj->writeInt16LE(arg0);}
+void f177( File *obj, uint32_t arg0) { obj->writeUInt32LE(arg0);}
+void f178( File *obj, int32_t arg0) { obj->writeInt32LE(arg0);}
+void f179( File *obj, uint64_t arg0) { obj->writeUInt64LE(arg0);}
+void f180( File *obj, int64_t arg0) { obj->writeInt64LE(arg0);}
+void f181( File *obj, uint16_t arg0) { obj->writeUInt16BE(arg0);}
+void f182( File *obj, int16_t arg0) { obj->writeInt16BE(arg0);}
+void f183( File *obj, uint32_t arg0) { obj->writeUInt32BE(arg0);}
+void f184( File *obj, int32_t arg0) { obj->writeInt32BE(arg0);}
+void f185( File *obj, uint64_t arg0) { obj->writeUInt64BE(arg0);}
+void f186( File *obj, int64_t arg0) { obj->writeInt64BE(arg0);}
+void f187( File *obj, float arg0) { obj->writeFloat32(arg0);}
+void f188( File *obj, const char * arg0, va_list arg1) { obj->vprintf(arg0, arg1);}
+void f189( File *obj, char arg0) { obj->writeChar(arg0);}
+void f190( File *obj, const char * arg0, const char * arg1) {new (obj) File(arg0, arg1);}
+void f191( File *obj) { obj->~File();}
+void f192( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1, const String & arg2) { obj->setDefine(arg0, arg1, arg2);}
+const String & f193( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1) {return obj->getDefine(arg0, arg1);}
+void f194( GfxShaderCombination *obj, GfxShaderType arg0, const String & arg1) { obj->removeDefine(arg0, arg1);}
+GfxShader * f195( GfxShaderCombination *obj, GfxShaderType arg0) {return obj->getShader(arg0);}
+void f196( GfxShaderCombination *obj, GfxShaderType arg0, GfxShader * arg1) { obj->setShader(arg0, arg1);}
+GfxCompiledShader * f197(const GfxShaderCombination *obj, GfxShaderType arg0) {return obj->getCompiled(arg0);}
+void f198( GfxShaderCombination *obj, GfxShader * arg0, GfxShader * arg1) {new (obj) GfxShaderCombination(arg0, arg1);}
+Matrix3x3 f199(const Matrix3x3 *obj, const Matrix3x3 & arg0) {return obj->operator*(arg0);}
+Float3 f200(const Matrix3x3 *obj, const Float3 & arg0) {return obj->operator*(arg0);}
+Matrix3x3 f201(const Matrix3x3 *obj, float arg0) {return obj->operator/(arg0);}
+Matrix3x3 f202(const Matrix3x3 *obj) {return obj->transpose();}
+Matrix3x3 f203(const Matrix3x3 *obj) {return obj->inverse();}
+Matrix3x3 f204(const Float2 & arg0) {return Matrix3x3::translate(arg0);}
+Matrix3x3 f205(const Float3 & arg0) {return Matrix3x3::scale(arg0);}
+Matrix3x3 f206(float arg0) {return Matrix3x3::rotate(arg0);}
+Matrix3x3 f207(float arg0) {return Matrix3x3::rotatex(arg0);}
+Matrix3x3 f208(float arg0) {return Matrix3x3::rotatey(arg0);}
+Matrix3x3 f209(float arg0) {return Matrix3x3::rotatez(arg0);}
+void f210( Matrix3x3 *obj) {new (obj) Matrix3x3();}
+void f211( Matrix3x3 *obj, const Matrix4x4 & arg0) {new (obj) Matrix3x3(arg0);}
+void f212( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {new (obj) Matrix3x3(arg0, arg1, arg2);}
+void f213( GfxDebugDrawer *obj, const Camera & arg0) { obj->render(arg0);}
+void f214( GfxDebugDrawer *obj, GfxApi * arg0) {new (obj) GfxDebugDrawer(arg0);}
+void f215( GfxDebugDrawer *obj) { obj->~GfxDebugDrawer();}
+AudioSource *f216(Audio * arg0) {return NEW(AudioSource, arg0);}
+Script *f217() {return NEW(Script);}
+Script *f218(size_t count) {return NEW_ARRAY(Script, count);}
+Script *f219(const String & arg0) {return NEW(Script, arg0);}
+Transform *f220() {return NEW(Transform);}
+Transform *f221(size_t count) {return NEW_ARRAY(Transform, count);}
+Platform *f222() {return NEW(Platform);}
+Platform *f223(size_t count) {return NEW_ARRAY(Platform, count);}
+AudioDevice *f224(size_t arg0, size_t arg1, size_t arg2) {return NEW(AudioDevice, arg0, arg1, arg2);}
+GfxMaterial *f225() {return NEW(GfxMaterial);}
+GfxMaterial *f226(size_t count) {return NEW_ARRAY(GfxMaterial, count);}
+GfxMaterial *f227(const String & arg0) {return NEW(GfxMaterial, arg0);}
+SerializeException *f228(const char * arg0, size_t arg1, const char * arg2) {return NEW(SerializeException, arg0, arg1, arg2);}
+LookupException *f229(const char * arg0, size_t arg1, const char * arg2) {return NEW(LookupException, arg0, arg1, arg2);}
+Quaternion *f230() {return NEW(Quaternion);}
+Quaternion *f231(size_t count) {return NEW_ARRAY(Quaternion, count);}
+Quaternion *f232(const Direction3D & arg0, float arg1) {return NEW(Quaternion, arg0, arg1);}
+Quaternion *f233(float arg0, float arg1, float arg2, float arg3) {return NEW(Quaternion, arg0, arg1, arg2, arg3);}
+Quaternion *f234(const Float3 & arg0) {return NEW(Quaternion, arg0);}
+Light *f235() {return NEW(Light);}
+Light *f236(size_t count) {return NEW_ARRAY(Light, count);}
+PhysicsShape *f237() {return NEW(PhysicsShape);}
+PhysicsShape *f238(size_t count) {return NEW_ARRAY(PhysicsShape, count);}
+PhysicsShape *f239(const String & arg0) {return NEW(PhysicsShape, arg0);}
+Serializable *f240() {return NEW(Serializable);}
+Serializable *f241(size_t count) {return NEW_ARRAY(Serializable, count);}
+Serializable *f242(uint8_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f243(int8_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f244(uint16_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f245(int16_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f246(uint32_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f247(int32_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f248(uint64_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f249(int64_t arg0) {return NEW(Serializable, arg0);}
+Serializable *f250(const String & arg0) {return NEW(Serializable, arg0);}
+Serializable *f251(bool arg0) {return NEW(Serializable, arg0);}
+Serializable *f252(float arg0) {return NEW(Serializable, arg0);}
+Serializable *f253(const Float2 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f254(const Float3 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f255(const Float4 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f256(const Int2 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f257(const Int3 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f258(const Int4 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f259(const UInt2 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f260(const UInt3 & arg0) {return NEW(Serializable, arg0);}
+Serializable *f261(const UInt4 & arg0) {return NEW(Serializable, arg0);}
+ShaderCompileException *f262(const char * arg0, size_t arg1, const char * arg2, const String & arg3) {return NEW(ShaderCompileException, arg0, arg1, arg2, arg3);}
+Exception *f263(const char * arg0, size_t arg1, const char * arg2) {return NEW(Exception, arg0, arg1, arg2);}
+FileException *f264(const char * arg0, size_t arg1, const char * arg2, String arg3, String arg4) {return NEW(FileException, arg0, arg1, arg2, arg3, arg4);}
+AABB *f265() {return NEW(AABB);}
+AABB *f266(size_t count) {return NEW_ARRAY(AABB, count);}
+AABB *f267(const Position3D & arg0, const Position3D & arg1) {return NEW(AABB, arg0, arg1);}
+ResourceIOException *f268(const char * arg0, size_t arg1, const char * arg2, const String & arg3, const String & arg4, const String & arg5) {return NEW(ResourceIOException, arg0, arg1, arg2, arg3, arg4, arg5);}
+GfxAnimationState *f269(GfxMesh * arg0, const String & arg1) {return NEW(GfxAnimationState, arg0, arg1);}
+GuiPlacer *f270(ImGui * arg0, int arg1, int arg2, size_t arg3) {return NEW(GuiPlacer, arg0, arg1, arg2, arg3);}
+Audio *f271() {return NEW(Audio);}
+Audio *f272(size_t count) {return NEW_ARRAY(Audio, count);}
+Audio *f273(const String & arg0) {return NEW(Audio, arg0);}
+GfxTexture *f274(const String & arg0) {return NEW(GfxTexture, arg0);}
+GfxTexture *f275() {return NEW(GfxTexture);}
+GfxTexture *f276(size_t count) {return NEW_ARRAY(GfxTexture, count);}
+PhysicsDebugDrawer *f277() {return NEW(PhysicsDebugDrawer);}
+PhysicsDebugDrawer *f278(size_t count) {return NEW_ARRAY(PhysicsDebugDrawer, count);}
+ImGui *f279() {return NEW(ImGui);}
+ImGui *f280(size_t count) {return NEW_ARRAY(ImGui, count);}
+Application *f281(const char * arg0) {return NEW(Application, arg0);}
+GfxModel *f282() {return NEW(GfxModel);}
+GfxModel *f283(size_t count) {return NEW_ARRAY(GfxModel, count);}
+GfxModel *f284(const String & arg0) {return NEW(GfxModel, arg0);}
+Scene *f285() {return NEW(Scene);}
+Scene *f286(size_t count) {return NEW_ARRAY(Scene, count);}
+Scene *f287(const String & arg0) {return NEW(Scene, arg0);}
+File *f288(const char * arg0, const char * arg1) {return NEW(File, arg0, arg1);}
+GfxShaderCombination *f289(GfxShader * arg0, GfxShader * arg1) {return NEW(GfxShaderCombination, arg0, arg1);}
+Matrix3x3 *f290() {return NEW(Matrix3x3);}
+Matrix3x3 *f291(size_t count) {return NEW_ARRAY(Matrix3x3, count);}
+Matrix3x3 *f292(const Matrix4x4 & arg0) {return NEW(Matrix3x3, arg0);}
+Matrix3x3 *f293(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {return NEW(Matrix3x3, arg0, arg1, arg2);}
+GfxDebugDrawer *f294(GfxApi * arg0) {return NEW(GfxDebugDrawer, arg0);}
+static const _functionStruct functions = {f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43, f44, f45, f46, f47, f48, f49, f50, f51, f52, f53, f54, f55, f56, f57, f58, f59, f60, f61, f62, f63, f64, f65, f66, f67, f68, f69, f70, f71, f72, f73, f74, f75, f76, f77, f78, f79, f80, f81, f82, f83, f84, f85, f86, f87, f88, f89, f90, f91, f92, f93, f94, f95, f96, f97, f98, f99, f100, f101, f102, f103, f104, f105, f106, f107, f108, f109, f110, f111, f112, f113, f114, f115, f116, f117, f118, f119, f120, f121, f122, f123, f124, f125, f126, f127, f128, f129, f130, f131, f132, f133, f134, f135, f136, f137, f138, f139, f140, f141, f142, f143, f144, f145, f146, f147, f148, f149, f150, f151, f152, f153, f154, f155, f156, f157, f158, f159, f160, f161, f162, f163, f164, f165, f166, f167, f168, f169, f170, f171, f172, f173, f174, f175, f176, f177, f178, f179, f180, f181, f182, f183, f184, f185, f186, f187, f188, f189, f190, f191, f192, f193, f194, f195, f196, f197, f198, f199, f200, f201, f202, f203, f204, f205, f206, f207, f208, f209, f210, f211, f212, f213, f214, f215, f216, f217, f218, f219, f220, f221, f222, f223, f224, f225, f226, f227, f228, f229, f230, f231, f232, f233, f234, f235, f236, f237, f238, f239, f240, f241, f242, f243, f244, f245, f246, f247, f248, f249, f250, f251, f252, f253, f254, f255, f256, f257, f258, f259, f260, f261, f262, f263, f264, f265, f266, f267, f268, f269, f270, f271, f272, f273, f274, f275, f276, f277, f278, f279, f280, f281, f282, f283, f284, f285, f286, f287, f288, f289, f290, f291, f292, f293, f294};
 const void *getScriptFunctionStruct() {return &functions;}

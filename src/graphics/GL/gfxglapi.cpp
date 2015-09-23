@@ -1047,6 +1047,11 @@ void GfxGLApi::useState(const State& state)
                 state.viewportWidth,
                 state.viewportHeight);
     setCullMode(state.cullMode);
+    setScissorEnabled(state.scissorEnabled);
+    setScissor(state.scissorLeft,
+               state.scissorBottom,
+               state.scissorWidth,
+               state.scissorHeight);
 }
 
 bool GfxGLApi::isBlendingEnabled() const
