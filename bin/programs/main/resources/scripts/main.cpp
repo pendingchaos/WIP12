@@ -460,19 +460,54 @@ BEGIN_INSTANCE(Main, InstanceBase)
         textTimer->end();
 
         /*gfxApi->clearColor(0, Float4(0.0f));
-        static bool last = false;
-        if (gui.button("Click me!", 10, 110, 10, 30))
-        {
-            if (last != true)
-            {
-                INFO(CATEGORY_OTHER, "Button pressed!")();
-            }
-            
-            last = true;
-        } else
-        {
-            last = false;
-        }*/
+        
+        static int scrollX = 0;
+        static int scrollY = 0;
+        
+        gui.beginContainer(0, 230, platform->getWindowHeight()-330, platform->getWindowHeight(), &scrollX, &scrollY);
+        
+        GuiPlacer placer(&gui, platform->getWindowHeight(), 0, 10);
+        
+        placer.button("Click me!", 100, 20);
+        placer.advanceY();
+        
+        placer.button("No! Me!", 100, 20);
+        placer.advanceY();
+        
+        placer.button("Hullo!", 100, 250);
+        placer.button("Good bye!", 100, 20);
+        placer.advanceY();
+        
+        gui.endContainer();
+        
+        placer.setXOrigin(XOrigin::Right, platform->getWindowWidth());
+        placer.button("Boing!", 75, 30);
+        placer.setXOrigin(XOrigin::Left, 0);
+        placer.button("Boing!", 75, 40);
+        placer.advanceY();
+        
+        placer.label("This is a label!");
+        
+        placer.setXOrigin(XOrigin::Right, platform->getWindowWidth());
+        placer.resetY();
+        placer.button("On the right now!", 150, 20);
+        placer.advanceY();
+        
+        placer.button("Downwards!", 100, 20);
+        placer.button("To the left!", 100, 20);
+        placer.advanceY();
+        
+        GuiPlacer placer2 = placer.placer(150, placer.getPadding());
+        
+        placer2.button("Such fun!", 100, 20);
+        placer2.advanceY();
+        
+        placer.advanceY(placer2);
+        
+        placer.button("Blah blah!", 100, 20);
+        
+        static ScrollBar state;
+        gui.verticalScrollBar(315, 330, 20, 620, true, true, &state);*/
     }
 END_INSTANCE(Main)
 

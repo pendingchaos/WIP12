@@ -228,7 +228,7 @@ void Font::render(size_t size,
                           compiledQuadFragment,
                           quadMesh);
 
-            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size) * onePixel);
+            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
             gfxApi->uniform(compiledQuadGeometry, "glyphPositions", 100, positions.getData()+j*100*sizeof(Position2D));
             gfxApi->uniform(compiledQuadFragment, "color", color);
             gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
@@ -284,6 +284,10 @@ void Font::loadGlyph(Face& face, char character)
 
     glyph.texture->allocMipmap(0, 1, face.face->glyph->bitmap.buffer);
     glyph.texture->setWrapMode(GfxWrapMode::Stretch);
+    glyph.texture->setMagFilter(GfxFilter::Nearest);
+    glyph.texture->setMinFilter(GfxFilter::Nearest);
+    glyph.texture->setMipmapMode(GfxMipmapMode::None);
+    glyph.texture->setMaximumAnisotropy(1.0f);
 
     face.glyphs.set(character, glyph);
 }

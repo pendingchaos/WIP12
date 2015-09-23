@@ -70,7 +70,7 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "LookupException", "ResourceIOException", "LogEntry", "PhysicsShapeImpl",
 "Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB", "GhostObject",
 "Audio", "AudioDevice", "AudioWorld", "AudioSource", "SerializeException",
-"Serializable", "GfxAnimationState", "ImGui"]
+"Serializable", "GfxAnimationState", "ImGui", "GuiPlacer"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",
