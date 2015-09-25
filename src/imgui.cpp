@@ -166,7 +166,7 @@ void ImGui::endContainer(Container *container)
     container->vertical.barSize = std::min(float(containerheight) / extraContainerHeight, 1.0f);
 
     horizontalScrollBar(container->left,
-                        container->right-10,
+                        container->right,
                         container->bottom-10,
                         container->bottom,
                         true,
