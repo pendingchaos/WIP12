@@ -1,5 +1,4 @@
 #include "lib/vertex attributes.glsl"
-#include "lib/uniform.glsl"
 
 layout (location=POSITION) in vec3 position;
 
@@ -10,12 +9,12 @@ out gl_PerVertex
     vec4 gl_Position;
 };
 
-DECLUNIFORM(mat4, projectionMatrix)
-DECLUNIFORM(mat4, viewMatrix)
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
 
 void main()
 {
-    gl_Position = U(projectionMatrix) * U(viewMatrix) * vec4(position, 1.0);
+    gl_Position = projectionMatrix * viewMatrix * vec4(position, 1.0);
     gl_Position = gl_Position.xyww;
     frag_position = position;
 }

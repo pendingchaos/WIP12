@@ -3,7 +3,6 @@
 #include "lib/color.glsl"
 #include "lib/lighting.glsl"
 #include "lib/parallax.glsl"
-#include "lib/uniform.glsl"
 
 #ifdef GL_ARB_shader_image_load_store
 #if defined(PARALLAX_MAPPING) || defined(POM)
@@ -27,47 +26,47 @@ layout (location = 1) out vec2 result_material;
 layout (location = 2) out vec3 result_normal;
 layout (location = 3) out vec3 result_geom_normal;
 
-DECLUNIFORM(vec4, albedo)
-DECLUNIFORM(float, smoothness)
-DECLUNIFORM(float, metalMask)
+uniform vec4 albedo;
+uniform float smoothness;
+uniform float metalMask;
 
 #ifdef ALBEDO_MAP
-DECLUNIFORM(sampler2D, albedoMap)
+uniform sampler2D albedoMap;
 #endif
 
 #ifdef MATERIAL_MAP
-DECLUNIFORM(sampler2D, materialMap)
+uniform sampler2D materialMap;
 #endif
 
 #ifdef NORMAL_MAP
-DECLUNIFORM(sampler2D, normalMap)
+uniform sampler2D normalMap;
 #endif
 
 #ifdef TERRAIN
-DECLUNIFORM(sampler2D, weightMap)
+uniform sampler2D weightMap;
 #endif
 
 #if defined(PARALLAX_MAPPING) || defined(POM)
-DECLUNIFORM(sampler2D, heightMap)
-DECLUNIFORM(float, heightScale)
-DECLUNIFORM(bool, parallaxEdgeDiscard)
+uniform sampler2D heightMap;
+uniform float heightScale;
+uniform bool parallaxEdgeDiscard;
 #endif
 
 #ifdef POM
-DECLUNIFORM(uint, pomMinLayers)
-DECLUNIFORM(uint, pomMaxLayers)
+uniform uint pomMinLayers;
+uniform uint pomMaxLayers;
 #endif
 
 void main()
 {
     #ifdef TERRAIN
-    float weight = texture(U(weightMap), frag_terruv_tangentSpace).r;
+    float weight = texture(weightMap, frag_terruv_tangentSpace).r;
     #endif
 
     //It is important that this if before parallax mapping. Doing this before fixes artifacts with parallax edge discard.
     result_geom_normal = normalize(cross(dFdx(frag_position_worldSpace), dFdy(frag_position_worldSpace)));
     
-    vec4 albedo_ = U(albedo);
+    vec4 albedo_ = albedo;
     vec3 normal_worldSpace = normalize(frag_normal_worldSpace);
 
     #if defined(NORMAL_MAP) || defined(PARALLAX_MAPPING) || defined(POM)
@@ -76,45 +75,45 @@ void main()
     #endif
 
     #ifdef PARALLAX_MAPPING
-    vec2 texCoord = parallaxMapping(U(heightMap),
+    vec2 texCoord = parallaxMapping(heightMap,
                                     mod(frag_uv_tangentSpace, vec2(1.0)),
                                     normalize(toTangentSpace * normalize(frag_viewDir_worldSpace)),
-                                    U(heightScale));
+                                    heightScale);
     #elif defined(POM)
-    vec2 texCoord = pom(U(heightMap),
+    vec2 texCoord = pom(heightMap,
                         mod(frag_uv_tangentSpace, vec2(1.0)),
                         normalize(toTangentSpace * normalize(frag_viewDir_worldSpace)),
-                        U(heightScale),
-                        U(pomMinLayers),
-                        U(pomMaxLayers));
+                        heightScale,
+                        pomMinLayers,
+                        pomMaxLayers);
     #else
     vec2 texCoord = frag_uv_tangentSpace;
     #endif
 
     #if defined(PARALLAX_MAPPING) || defined(POM)
     if ((texCoord.x > 1.0 || texCoord.y > 1.0 || texCoord.x < 0.0 || texCoord.y < 0.0) &&
-        U(parallaxEdgeDiscard))
+        parallaxEdgeDiscard)
     {
         discard;
     }
     #endif
 
     #ifdef ALBEDO_MAP
-    albedo_ *= texture(U(albedoMap), texCoord);
+    albedo_ *= texture(albedoMap, texCoord);
     #endif
 
-    float roughness_ = 1.0 - U(smoothness);
-    float metallic_ = U(metalMask);
+    float roughness_ = 1.0 - smoothness;
+    float metallic_ = metalMask;
 
     #ifdef MATERIAL_MAP
-    vec2 material = texture(U(materialMap), texCoord).rg;
+    vec2 material = texture(materialMap, texCoord).rg;
 
     roughness_ *= 1.0 - material.r;
     metallic_ *= material.g;
     #endif
 
     #ifdef NORMAL_MAP
-    normal_worldSpace = fromTangentSpace * normalize(texture(U(normalMap), texCoord).xyz * 2.0 - 1.0);
+    normal_worldSpace = fromTangentSpace * normalize(texture(normalMap, texCoord).xyz * 2.0 - 1.0);
 
     normal_worldSpace = normalize(normal_worldSpace);
     #endif

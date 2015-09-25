@@ -39,6 +39,7 @@
 - [ ] Make a GUI skinnable.
 
 ## Bugs
+- [ ] Shadow mapping with skinning does not work.
 - [ ] POM with terrains freezes the computer.
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)
@@ -66,7 +67,6 @@
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
 - [ ] SSAO looks bad on curved low-poly faces.
-- [ ] Get rid of DECLUNIFORM.
 - [ ] Get rid of automatic reloading.
 
 ## Performance Improvements

@@ -359,7 +359,7 @@ GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defin
 
     if (infoLog.getLength() != 0)
     {
-        THROW(ShaderCompileException, infoLog);
+        THROW(ShaderCompileException, String::format("Filename: %s\n", getFilename().getData()).append(infoLog));
     }
 
     return result;

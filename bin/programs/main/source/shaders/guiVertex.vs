@@ -1,5 +1,4 @@
 #include "lib/vertex attributes.glsl"
-#include "lib/uniform.glsl"
 
 layout (location=POSITION) in vec2 position;
 
@@ -10,17 +9,17 @@ out gl_PerVertex
     vec4 gl_Position;
 };
 
-DECLUNIFORM(vec2, offset)
-DECLUNIFORM(vec2, size)
-DECLUNIFORM(float, gradientStart) //0.85
-DECLUNIFORM(float, gradientSize) //0.15
-DECLUNIFORM(float, gradientPower) //2.2
-DECLUNIFORM(vec3, color)
+uniform vec2 offset;
+uniform vec2 size;
+uniform float gradientStart; //0.85
+uniform float gradientSize; //0.15
+uniform float gradientPower; //2.2
+uniform vec3 color;
 
 void main()
 {
-    gl_Position = vec4(position * U(size) + U(offset), 0.0, 1.0);
+    gl_Position = vec4(position * size + offset, 0.0, 1.0);
     
-    frag_color = vec3(pow(position.y * U(gradientSize) + U(gradientStart), U(gradientPower)));
-    frag_color *= U(color);
+    frag_color = vec3(pow(position.y * gradientSize + gradientStart, gradientPower));
+    frag_color *= color;
 }

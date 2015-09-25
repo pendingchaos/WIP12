@@ -1,10 +1,8 @@
-#include "lib/uniform.glsl"
-
 layout (location = 0) out float result_lum;
 
 in vec2 frag_uv;
 
-DECLUNIFORM(sampler2D, colorTexture)
+uniform sampler2D colorTexture;
 
 float calcLum(vec3 color)
 {
@@ -13,6 +11,6 @@ float calcLum(vec3 color)
 
 void main()
 {
-    result_lum = log(max(calcLum(texture(U(colorTexture), frag_uv).rgb), 0.0001));
+    result_lum = log(max(calcLum(texture(colorTexture, frag_uv).rgb), 0.0001));
 }
 

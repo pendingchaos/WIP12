@@ -1,7 +1,5 @@
 #extension GL_ARB_tessellation_shader : require
 
-#include "lib/uniform.glsl"
-
 layout (triangles) in;
 
 in gl_PerVertex
@@ -28,10 +26,10 @@ out vec3 frag_viewDir_worldSpace;
 out vec3 frag_tangent_worldSpace;
 out vec3 frag_bitangent_worldSpace;
 
-DECLUNIFORM(sampler2D, heightMap)
-DECLUNIFORM(mat4, projectionViewMatrix)
-DECLUNIFORM(float, strength)
-DECLUNIFORM(float, displacementMidlevel)
+uniform sampler2D heightMap;
+uniform mat4 projectionViewMatrix;
+uniform float strength;
+uniform float displacementMidlevel;
 
 vec2 interpolateVec2(in vec2 v0, in vec2 v1, in vec2 v2)
 {
@@ -84,7 +82,7 @@ void main()
                                                 eval_bitangent_worldSpace[1],
                                                 eval_bitangent_worldSpace[2]);
 
-    gl_Position.xyz += frag_normal_worldSpace * (texture(U(heightMap), frag_uv_tangentSpace).r - U(displacementMidlevel)) * U(strength);
+    gl_Position.xyz += frag_normal_worldSpace * (texture(heightMap, frag_uv_tangentSpace).r - displacementMidlevel) * strength;
 
-    gl_Position = U(projectionViewMatrix) * gl_Position;
+    gl_Position = projectionViewMatrix * gl_Position;
 }

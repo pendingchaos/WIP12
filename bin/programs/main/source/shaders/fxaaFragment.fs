@@ -4,13 +4,11 @@
 #extension GL_EXT_gpu_shader4 : enable
 #endif
 
-#include "lib/uniform.glsl"
-
 layout (location = 0) out vec4 result_color;
 
 in vec2 frag_uv;
 
-DECLUNIFORM(sampler2D, colorTexture)
+uniform sampler2D colorTexture;
 
 #define QUALITY 2
 
@@ -34,7 +32,7 @@ DECLUNIFORM(sampler2D, colorTexture)
 void main()
 {
 	FxaaFloat4 fxaaConsolePosPos = vec4(0);
-	FxaaFloat2 fxaaQualityRcpFrame = vec2(1.0) / vec2(textureSize(U(colorTexture), 0));
+	FxaaFloat2 fxaaQualityRcpFrame = vec2(1.0) / vec2(textureSize(colorTexture, 0));
 	FxaaFloat4 fxaaConsoleRcpFrameOpt = vec4(0);
 	FxaaFloat4 fxaaConsoleRcpFrameOpt2 = vec4(0);
 	FxaaFloat4 fxaaConsole360RcpFrameOpt2 = vec4(0);
@@ -56,7 +54,7 @@ void main()
 	FxaaFloat fxaaConsoleEdgeThresholdMin = 0.05;
 	FxaaFloat4 fxaaConsole360ConstDir = vec4(0);
 	
-    result_color = FxaaPixelShader(frag_uv, fxaaConsolePosPos, U(colorTexture), U(colorTexture), U(colorTexture), fxaaQualityRcpFrame, 
+    result_color = FxaaPixelShader(frag_uv, fxaaConsolePosPos, colorTexture, colorTexture, colorTexture, fxaaQualityRcpFrame, 
     			                   fxaaConsoleRcpFrameOpt, fxaaConsoleRcpFrameOpt2, fxaaConsole360RcpFrameOpt2, fxaaQualitySubpix, fxaaQualityEdgeThreshold, 
     				               fxaaQualityEdgeThresholdMin, fxaaConsoleEdgeSharpness, fxaaConsoleEdgeThreshold, fxaaConsoleEdgeThresholdMin, fxaaConsole360ConstDir);
 

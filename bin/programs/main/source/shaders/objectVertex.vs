@@ -1,5 +1,4 @@
 #include "lib/vertex attributes.glsl"
-#include "lib/uniform.glsl"
 
 layout (location=POSITION) in vec3 position_modelSpace;
 layout (location=NORMAL) in vec3 normal_modelSpace;
@@ -23,8 +22,8 @@ out gl_PerVertex
     vec4 gl_Position;
 };
 
-DECLUNIFORM(mat4, projectionViewMatrix)
-DECLUNIFORM(vec3, cameraPosition)
+uniform mat4 projectionViewMatrix;
+uniform vec3 cameraPosition;
 
 struct Instance
 {
@@ -38,7 +37,7 @@ layout (std140) uniform instanceData
     Instance instances[128];
 };
 
-//DECLUNIFORM(sampler2D, matrixTexture)
+//uniform sampler2D matrixTexture;
 
 #ifdef SKELETAL_ANIMATION
 layout (std140) uniform bonePositionData
@@ -77,21 +76,21 @@ void main()
     mat4 worldMatrix = instances[gl_InstanceID].worldMatrix;
     mat3 normalMatrix = mat3(instances[gl_InstanceID].normalMatrix);
     
-    /*mat4 worldMatrix = mat4(texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8, 0), 0),
-                            texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+1, 0), 0),
-                            texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+2, 0), 0),
-                            texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+3, 0), 0));
-    mat3 normalMatrix = mat3(mat4(texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+4, 0), 0),
-                                  texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+5, 0), 0),
-                                  texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+6, 0), 0),
-                                  texelFetch(U(matrixTexture), ivec2(gl_InstanceID*8+7, 0), 0)));*/
+    /*mat4 worldMatrix = mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8, 0), 0),
+                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+1, 0), 0),
+                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+2, 0), 0),
+                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+3, 0), 0));
+    mat3 normalMatrix = mat3(mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8+4, 0), 0),
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+5, 0), 0),
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+6, 0), 0),
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+7, 0), 0)));*/
     
-    gl_Position = U(projectionViewMatrix) * worldMatrix * vec4(pos_modelSpace, 1.0);
+    gl_Position = projectionViewMatrix * worldMatrix * vec4(pos_modelSpace, 1.0);
     frag_normal_worldSpace = normalize(normalMatrix * norm_modelSpace);
     frag_uv_tangentSpace = texCoord0_tangentSpace;
     frag_position_worldSpace = (worldMatrix * vec4(pos_modelSpace, 1.0)).xyz;
 
-    frag_viewDir_worldSpace = normalize(U(cameraPosition) - frag_position_worldSpace);
+    frag_viewDir_worldSpace = normalize(cameraPosition - frag_position_worldSpace);
 
     frag_tangent_worldSpace = normalize(normalMatrix * tangent_modelSpace);
     

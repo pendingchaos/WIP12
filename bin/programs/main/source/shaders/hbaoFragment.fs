@@ -1,5 +1,3 @@
-#include "lib/uniform.glsl"
-
 layout (location = 0) out vec4 result_ao;
 
 in vec2 frag_uv;
@@ -9,16 +7,16 @@ in vec2 frag_uv;
 #define NUM_STEPS 4
 #define NUM_DIRECTIONS 8
 
-DECLUNIFORM(sampler2D, depthTexture)
-DECLUNIFORM(sampler2D, normalTexture)
-DECLUNIFORM(mat4, projectionMatrix)
-DECLUNIFORM(mat3, normalMatrix)
-DECLUNIFORM(float, radius)
-DECLUNIFORM(float, exponent)
-DECLUNIFORM(float, multiplier)
-DECLUNIFORM(float, cosAngleBias)
-DECLUNIFORM(vec3, random)
-DECLUNIFORM(ivec2, tile)
+uniform sampler2D, depthTexture;
+uniform sampler2D, normalTexture;
+uniform mat4, projectionMatrix;
+uniform mat3, normalMatrix;
+uniform float, radius;
+uniform float, exponent;
+uniform float, multiplier;
+uniform float, cosAngleBias;
+uniform vec3, random;
+uniform ivec2, tile;
 
 vec3 minDiff(vec3 P, vec3 P1, vec3 P2)
 {
@@ -31,34 +29,34 @@ vec3 getPosition(vec2 uv, vec2 resolution)
 {
     uv = clamp(uv, 0.0, 1.0);
 
-    vec3 position = vec3(uv, texelFetch(U(depthTexture), ivec2(uv*resolution) + U(tile), 0).r);
+    vec3 position = vec3(uv, texelFetch(depthTexture, ivec2(uv*resolution) + tile, 0).r);
     position = position * 2.0 - 1.0;
-    vec4 position4 = inverse(U(projectionMatrix)) * vec4(position, 1.0);
+    vec4 position4 = inverse(projectionMatrix) * vec4(position, 1.0);
     return position4.xyz / position4.w;
 }
 
 float falloff(float dist)
 {
-    return dist * (-1.0 / U(radius)) + 1.0;
+    return dist * (-1.0 / radius) + 1.0;
 }
 
 void main()
 {
-    vec2 resolution = vec2(textureSize(U(depthTexture), 0) / 4);
+    vec2 resolution = vec2(textureSize(depthTexture, 0) / 4);
     vec2 onePixel = 1.0 / resolution;
     
     vec3 position = getPosition(frag_uv, resolution);
     
-    vec3 normal = normalMatrix * normalize(texture(U(normalTexture), frag_uv).xyz);
+    vec3 normal = normalMatrix * normalize(texture(normalTexture, frag_uv).xyz);
     
-    float radiusPixels = U(radius) * resolution.y / position.z;
+    float radiusPixels = radius * resolution.y / position.z;
     
     float stepSize = radiusPixels / (NUM_STEPS + 1);
     
     float AO = 0;
     
-    mat2 rotationMatrix = mat2(U(random).x, -U(random).y, 
-                               U(random).y, U(random).x);
+    mat2 rotationMatrix = mat2(random.x, -random.y, 
+                               random.y, random.x);
     
     for (uint i = uint(0); i < uint(NUM_DIRECTIONS); ++i)
     {
@@ -81,13 +79,13 @@ void main()
             float Vlength = length(V);
             float NdotV = dot(normal, V) * 1.0/Vlength;
             
-            AO += clamp(NdotV - U(cosAngleBias), 0.0, 1.0) * clamp(falloff(Vlength), 0.0, 1.0);
+            AO += clamp(NdotV - cosAngleBias, 0.0, 1.0) * clamp(falloff(Vlength), 0.0, 1.0);
         }
     }
     
-    AO *= U(multiplier) / (NUM_DIRECTIONS * NUM_STEPS);
+    AO *= multiplier / (NUM_DIRECTIONS * NUM_STEPS);
     AO = clamp(1.0 - AO, 0.0, 1.0);
     
-    result_ao = vec4(pow(AO, U(exponent)), normal);
+    result_ao = vec4(pow(AO, exponent), normal);
 }
 

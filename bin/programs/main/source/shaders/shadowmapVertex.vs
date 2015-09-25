@@ -11,7 +11,7 @@ out vec3 control_normal_worldSpace;
 out vec2 control_uv_tangentSpace;
 out vec3 control_position_worldSpace;
 
-DECLUNIFORM(mat3, normalMatrix)
+uniform mat3 normalMatrix;
 #endif
 
 #ifdef SKELETAL_ANIMATION
@@ -25,13 +25,13 @@ out gl_PerVertex
 };
 
 #ifndef TESSELATION
-DECLUNIFORM(mat4, projectionMatrix)
-DECLUNIFORM(mat4, viewMatrix)
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
 
 out vec3 frag_position;
 #endif
 
-DECLUNIFORM(mat4, worldMatrix)
+uniform mat4 worldMatrix;
 
 #ifdef SKELETAL_ANIMATION
 layout (std140) uniform bonePositionData
@@ -74,15 +74,15 @@ void main()
 
     gl_Position =
     #ifndef TESSELATION
-    U(projectionMatrix) * U(viewMatrix) * 
+    projectionMatrix * viewMatrix * 
     #endif
-    U(worldMatrix) * vec4(pos_modelSpace, 1.0);
+    worldMatrix * vec4(pos_modelSpace, 1.0);
 
     #ifdef TESSELATION
-    control_normal_worldSpace = normalize(U(normalMatrix) * norm_modelSpace);
+    control_normal_worldSpace = normalize(normalMatrix * norm_modelSpace);
     control_uv_tangentSpace = uv_tangentSpace;
-    control_position_worldSpace = (U(worldMatrix) * vec4(pos_modelSpace, 1.0)).xyz;
+    control_position_worldSpace = (worldMatrix * vec4(pos_modelSpace, 1.0)).xyz;
     #else
-    frag_position = (U(worldMatrix) * vec4(pos_modelSpace, 1.0)).xyz;
+    frag_position = (worldMatrix * vec4(pos_modelSpace, 1.0)).xyz;
     #endif
 }

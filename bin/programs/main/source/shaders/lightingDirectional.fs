@@ -1,66 +1,65 @@
 #include "lib/lighting.glsl"
-#include "lib/uniform.glsl"
 
 layout (location = 0) out vec4 result_color;
 
 in vec2 frag_uv;
 
-DECLUNIFORM(sampler2D, albedoTexture)
-DECLUNIFORM(sampler2D, materialTexture)
-DECLUNIFORM(sampler2D, normalTexture)
-DECLUNIFORM(sampler2D, geomNormalTexture)
-DECLUNIFORM(sampler2D, depthTexture)
-DECLUNIFORM(sampler2D, aoTexture)
-DECLUNIFORM(mat4, viewProjection)
+uniform sampler2D albedoTexture;
+uniform sampler2D materialTexture;
+uniform sampler2D normalTexture;
+uniform sampler2D geomNormalTexture;
+uniform sampler2D depthTexture;
+uniform sampler2D aoTexture;
+uniform mat4 viewProjection;
 
 #ifdef SHADOW_MAP
-DECLUNIFORM(sampler2DShadow, shadowmap)
-DECLUNIFORM(sampler2D, depthmap)
-DECLUNIFORM(mat4, shadowmapViewMatrix)
-DECLUNIFORM(mat4, shadowmapProjectionMatrix)
-DECLUNIFORM(float, shadowMinBias)
-DECLUNIFORM(float, shadowBiasScale)
-DECLUNIFORM(float, shadowFixedBias)
+uniform sampler2DShadow shadowmap;
+uniform sampler2D depthmap;
+uniform mat4 shadowmapViewMatrix;
+uniform mat4 shadowmapProjectionMatrix;
+uniform float shadowMinBias;
+uniform float shadowBiasScale;
+uniform float shadowFixedBias;
 #endif
 
-DECLUNIFORM(vec3, cameraPosition)
+uniform vec3 cameraPosition;
 
-DECLUNIFORM(vec3, lightColor)
-DECLUNIFORM(float, lightAmbientStrength)
-DECLUNIFORM(vec3, lightNegDir)
+uniform vec3 lightColor;
+uniform float lightAmbientStrength;
+uniform vec3 lightNegDir;
 
 void main()
 {
-    vec3 albedo = texture(U(albedoTexture), frag_uv).rgb;
-    vec2 material = texture(U(materialTexture), frag_uv).rg;
-    vec3 normal = normalize(texture(U(normalTexture), frag_uv).rgb);
+    vec3 albedo = texture(albedoTexture, frag_uv).rgb;
+    vec2 material = texture(materialTexture, frag_uv).rg;
+    vec3 normal = normalize(texture(normalTexture, frag_uv).rgb);
     
-    vec3 position = vec3(frag_uv, texture(U(depthTexture), frag_uv).r);
+    vec3 position = vec3(frag_uv, texture(depthTexture, frag_uv).r);
     position = position * 2.0 - 1.0;
-    vec4 position4 = inverse(U(viewProjection)) * vec4(position, 1.0);
+    vec4 position4 = inverse(viewProjection) * vec4(position, 1.0);
     position = position4.xyz / position4.w;
     
     float metallic = material.x;
     float roughness = material.y;
     
-    vec3 viewDir = normalize(U(cameraPosition) - position);
+    vec3 viewDir = normalize(cameraPosition - position);
     
     #ifdef SHADOW_MAP
-    vec4 shadowCoord = U(shadowmapProjectionMatrix) * U(shadowmapViewMatrix) * vec4(position, 1.0);
+    vec4 shadowCoord = shadowmapProjectionMatrix * shadowmapViewMatrix * vec4(position, 1.0);
     
     shadowCoord.xyz /= shadowCoord.w;
-    shadowCoord.z -= max(U(shadowBiasScale) * (1.0 - dot(texture(U(geomNormalTexture), frag_uv).rgb, U(lightNegDir))), U(shadowMinBias));
-    shadowCoord.z -= U(shadowFixedBias);
+    shadowCoord.z -= max(shadowBiasScale * (1.0 - dot(texture(geomNormalTexture, frag_uv).rgb, lightNegDir)), shadowMinBias);
+    shadowCoord.z -= shadowFixedBias;
     shadowCoord.xyz += 1.0;
     shadowCoord.xyz /= 2.0;
     #endif
     
-    float ao = texture(U(aoTexture), frag_uv).r;
+    float ao = texture(aoTexture, frag_uv).r;
     
-    result_color.rgb = directionalLight(U(lightNegDir), U(lightColor), U(lightAmbientStrength),
+    result_color.rgb = directionalLight(lightNegDir, lightColor, lightAmbientStrength,
                                         albedo, metallic, roughness, normal, viewDir, ao
     #ifdef SHADOW_MAP
-    , shadowCoord, U(shadowmap), U(depthmap)
+    , shadowCoord, shadowmap, depthmap
     #endif
     );
     result_color.a = 1.0;

@@ -1,5 +1,3 @@
-#include "lib/uniform.glsl"
-
 layout (points) in;
 layout (triangle_strip, max_vertices = 4) out;
 
@@ -12,24 +10,24 @@ out gl_PerVertex
 
 out vec2 frag_uv;
 
-DECLUNIFORM(vec2, glyphSize)
-DECLUNIFORMARRAY(vec2, 100, glyphPositions)
+uniform vec2 glyphSize;
+uniform vec2 glyphPositions[100];
 
 void main()
 {
-    gl_Position = vec4(U(glyphPositions)[geom_instanceID[0]], 0.0, 1.0);
+    gl_Position = vec4(glyphPositions[geom_instanceID[0]], 0.0, 1.0);
     frag_uv = vec2(0.0, 1.0);
     EmitVertex();
     
-    gl_Position = vec4(U(glyphPositions)[geom_instanceID[0]] + vec2(U(glyphSize).x, 0.0), 0.0, 1.0);
+    gl_Position = vec4(glyphPositions[geom_instanceID[0]] + vec2(glyphSize.x, 0.0), 0.0, 1.0);
     frag_uv = vec2(1.0, 1.0);
     EmitVertex();
     
-    gl_Position = vec4(U(glyphPositions)[geom_instanceID[0]] + vec2(0.0, U(glyphSize).y), 0.0, 1.0);
+    gl_Position = vec4(glyphPositions[geom_instanceID[0]] + vec2(0.0, glyphSize.y), 0.0, 1.0);
     frag_uv = vec2(0.0, 0.0);
     EmitVertex();
     
-    gl_Position = vec4(U(glyphPositions)[geom_instanceID[0]] + U(glyphSize), 0.0, 1.0);
+    gl_Position = vec4(glyphPositions[geom_instanceID[0]] + glyphSize, 0.0, 1.0);
     frag_uv = vec2(1.0, 0.0);
     EmitVertex();
     

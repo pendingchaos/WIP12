@@ -1,5 +1,3 @@
-#include "lib/uniform.glsl"
-
 layout (vertices = 4) out;
 
 in gl_PerVertex
@@ -14,7 +12,7 @@ out gl_PerVertex
     vec4 gl_Position;
 } gl_out[];
 
-DECLUNIFORM(vec3, cameraPosition)
+uniform vec3 cameraPosition;
 
 float remap(in float value,
             in float old_min,
@@ -46,10 +44,10 @@ void main()
     vec3 p2 = position_worldSpace[2];
     vec3 p3 = position_worldSpace[3];
     
-    gl_TessLevelOuter[0] = getTessLevel(distance((p0 + p1) / 2.0, U(cameraPosition)));
-    gl_TessLevelOuter[3] = getTessLevel(distance((p1 + p2) / 2.0, U(cameraPosition)));
-    gl_TessLevelOuter[2] = getTessLevel(distance((p2 + p3) / 2.0, U(cameraPosition)));
-    gl_TessLevelOuter[1] = getTessLevel(distance((p3 + p0) / 2.0, U(cameraPosition)));
+    gl_TessLevelOuter[0] = getTessLevel(distance((p0 + p1) / 2.0, cameraPosition));
+    gl_TessLevelOuter[3] = getTessLevel(distance((p1 + p2) / 2.0, cameraPosition));
+    gl_TessLevelOuter[2] = getTessLevel(distance((p2 + p3) / 2.0, cameraPosition));
+    gl_TessLevelOuter[1] = getTessLevel(distance((p3 + p0) / 2.0, cameraPosition));
     
     gl_TessLevelInner[0] = dot(vec4(gl_TessLevelOuter[0], gl_TessLevelOuter[1], gl_TessLevelOuter[2], gl_TessLevelOuter[3]), vec4(0.25));
     gl_TessLevelInner[1] = gl_TessLevelInner[0];
