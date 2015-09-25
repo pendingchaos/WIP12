@@ -284,8 +284,8 @@ void Font::loadGlyph(Face& face, char character)
 
     glyph.texture->allocMipmap(0, 1, face.face->glyph->bitmap.buffer);
     glyph.texture->setWrapMode(GfxWrapMode::Stretch);
-    glyph.texture->setMagFilter(GfxFilter::Nearest);
-    glyph.texture->setMinFilter(GfxFilter::Nearest);
+    glyph.texture->setMagFilter(GfxFilter::Bilinear);
+    glyph.texture->setMinFilter(GfxFilter::Bilinear);
     glyph.texture->setMipmapMode(GfxMipmapMode::None);
     glyph.texture->setMaximumAnisotropy(1.0f);
 
