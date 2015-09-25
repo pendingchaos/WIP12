@@ -6,6 +6,7 @@
 #include "graphics/gfxmesh.h"
 #include "graphics/gfxshader.h"
 #include "math/t2.h"
+#include "math/t3.h"
 #include "resource/resource.h"
 #include "error.h"
 #include "scripting/bindings.h"

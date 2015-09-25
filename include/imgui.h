@@ -5,13 +5,13 @@
 #include "math/t3.h"
 #include "math/t4.h"
 #include "containers/string.h"
+#include "graphics/font.h"
 
 #include <stddef.h>
 
 class GfxMesh;
 class GfxShader;
 class GfxCompiledShader;
-class Font;
 
 enum class ScrollBarState
 {
