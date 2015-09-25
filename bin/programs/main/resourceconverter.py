@@ -1756,4 +1756,5 @@ if __name__ == "__main__":
     scene.lights.append(light)"""
     
     for res in conv.values():
-        res.convert()
+        #if isinstance(res, Shader):
+            res.convert()

@@ -7,6 +7,7 @@
     - Low priority
     - Claims to be faster than SDSM in complex scenes.
     - Needs recent hardware.
+    - How do you render to this?
 - [ ] Finish the script binding generator.
     - [ ] NULL <-> nil conversion
         - [ ] Needed for RayCastResult.
@@ -35,6 +36,7 @@
 - [ ] Terrain shadows from point lights.
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
+- [ ] Make a GUI skinnable.
 
 ## Bugs
 - [ ] POM with terrains freezes the computer.

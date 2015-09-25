@@ -31,6 +31,8 @@
 - GL_ARB_tessellation_shader
 - GL_KHR_debug or similar extension
 - GL_ARB_separate_shader_objects
+- GL_ARB_shader_storage_buffer_object
+- GL_ARB_shader_atomic_counters
 
 ### Optional:
 - GL_ARB_internalformat_query2
@@ -41,12 +43,10 @@
     - GL_ARB_multi_draw_indirect
     - GL_ARB_indirect_parameters
     - GL_ARB_compute_shader
-    - GL_ARB_shader_storage_buffer_object
 - Multi draw indirect path
     - GL_ARB_multi_draw_indirect
 - GPU Particles path
     - GL_ARB_compute_shader
-    - GL_ARB_shader_storage_buffer_object
 - CPU Particles path
     - GL_ARB_buffer_storage (persistent buffers)
 

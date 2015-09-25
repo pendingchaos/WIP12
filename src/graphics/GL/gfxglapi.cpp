@@ -14,10 +14,9 @@
 
 #include <cstdio>
 #include <cstring>
+#include <iostream>
 
-#define UNIFORM_START GLint location;\
-String newName = String::format("_%s_uniform", name);\
-location = glGetUniformLocation(shader->getGLProgram(), newName.getData());\
+#define UNIFORM_START GLint location = glGetUniformLocation(shader->getGLProgram(), name);\
 if (location == -1)\
 {\
     return;\

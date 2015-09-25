@@ -1,5 +1,5 @@
-#define DECLUNIFORM(type, name) uniform type _##name##_uniform;
-#define U(name) _##name##_uniform
+#define DECLUNIFORM(type, name) uniform type name;
+#define U(name) name
 
-#define DECLUNIFORMARRAY(type, count, name) uniform type _##name##_uniform[count];
-#define U(name) _##name##_uniform
+#define DECLUNIFORMARRAY(type, count, name) uniform type name[count];
+#define U(name) name

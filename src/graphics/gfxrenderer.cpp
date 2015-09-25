@@ -480,35 +480,7 @@ void GfxRenderer::updateStats()
 
 void GfxRenderer::updateColorModifierShader()
 {
-    //uniform.glsl
-    String source = "#extension GL_ARB_separate_shader_objects : enable\n"
-"\n"
-"#ifdef GL_ARB_separate_shader_objects\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_uniform;\n"
-"#define U(name) _##name##_uniform\n"
-"#else\n"
-"#ifdef __VERTEX__\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_vertex;\n"
-"#define U(name) _##name##_vertex\n"
-"#elif defined(__TESS_CONTROL__)\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_tessControl;\n"
-"#define U(name) _##name##_tessControl\n"
-"#elif defined(__TESS_EVAL__)\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_tessEval;\n"
-"#define U(name) _##name##_tessEval\n"
-"#elif defined(__GEOMETRY__)\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_geometry;\n"
-"#define U(name) _##name##_geometry\n"
-"#elif defined(__FRAGMENT__)\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_fragment;\n"
-"#define U(name) _##name##_fragment\n"
-"#elif defined(__COMPUTE__)\n"
-"#define DECLUNIFORM(type, name) uniform type _##name##_compute;\n"
-"#define U(name) _##name##_compute\n"
-"#endif\n"
-"#endif\n";
-
-    source.append(STR(
+    String source = (STR(
 //Begin color.glsl\n
 vec3 RGBToxyY(vec3 rgb)
 {
@@ -563,98 +535,65 @@ layout (location = 0) out vec3 result_color;
 
 in vec2 frag_uv;
 
-DECLUNIFORM(sampler2D, colorTexture)
+uniform sampler2D colorTexture;
 
 vec3 reinhard(vec3 color)
 {
     return color / (color + 1.0);
 }
-
 vec3 reinhardBrightnessOnly(vec3 color)
 {
     vec3 xyY = RGBToxyY(color);
-
     xyY.z /= xyY.z + 1.0;
-
     return xyYToRGB(xyY);
 }
-
 vec3 vignette(vec3 color, float radius, float softness, float intensity)
 {
     float vignette = distance(vec2(0.5), frag_uv);
-
     vignette = smoothstep(radius/2.0, (radius-softness)/2.0, vignette);
-
     return color * mix(1.0, vignette, intensity);
 }
-
 vec3 hueShift(vec3 color, float hue)
 {
     vec3 hsv = rgb2hsv(color);
-
     hsv.x += hue;
-
     return hsv2rgb(hsv);
 }
-
 vec3 saturationShift(vec3 color, float saturation)
 {
     vec3 hsv = rgb2hsv(color);
-
     hsv.y += saturation;
-
     return hsv2rgb(hsv);
 }
-
 vec3 brightnessShift(vec3 color, float brightness)
 {
     vec3 xyY = RGBToxyY(color);
-
     xyY.z += brightness;
-
     return xyYToRGB(xyY);
 }
-
-vec3 contrast(vec3 color, float contrast)
-{
-    return (color - 0.5) * contrast + 0.5;
-}
-
-vec3 multiply(vec3 color, vec3 by)
-{
-    return color * by;
-}
-
+vec3 contrast(vec3 color, float contrast){return (color - 0.5) * contrast + 0.5;}
+vec3 multiply(vec3 color, vec3 by){return color * by;}
 vec3 hueReplace(vec3 color, float hue)
 {
     vec3 hsv = rgb2hsv(color);
-
     hsv.x = hue;
-
     return hsv2rgb(hsv);
 }
-
 vec3 saturationReplace(vec3 color, float saturation)
 {
     vec3 hsv = rgb2hsv(color);
-
     hsv.y = saturation;
-
     return hsv2rgb(hsv);
 }
-
 vec3 brightnessReplace(vec3 color, float brightness)
 {
     vec3 xyY = RGBToxyY(color);
-
     xyY.z = brightness;
-
     return xyYToRGB(xyY);
 }
-
 void main()
 {
-    result_color = texture(U(colorTexture), frag_uv).rgb;
+    result_color = texture(colorTexture, frag_uv).rgb;
 ));
 
     for (auto modifier : colorModifiers)
