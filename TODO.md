@@ -67,7 +67,6 @@
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
 - [ ] SSAO looks bad on curved low-poly faces.
-- [ ] Get rid of automatic reloading.
 
 ## Performance Improvements
 - [ ] Instancing

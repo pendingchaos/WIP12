@@ -80,8 +80,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, GhostObject_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *GhostObject, *GhostObject_ptr, *Filesystem, *Filesystem_ptr, *GfxApi, *GfxApi_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *UInt2, *UInt2_ptr, *GhostObjList, *GhostObjList_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *Entity, *Entity_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GfxMeshAttrib, *GfxMeshAttrib_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *StrStrMap, *StrStrMap_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *UInt4, *UInt4_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *GfxLODList, *GfxLODList_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t GhostObject_typeID, GhostObject_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, ScrollBar_typeID, ScrollBar_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, GuiPlacer_typeID, GuiPlacer_ptr_typeID, ImGui_typeID, ImGui_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, Container_typeID, Container_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, XOrigin_typeID, ResType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxShaderType_typeID, GfxBufferUsage_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *GhostObject, *GhostObject_ptr, *Filesystem, *Filesystem_ptr, *StrStrMap, *StrStrMap_ptr, *GfxApi, *GfxApi_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *ScrollBar, *ScrollBar_ptr, *GhostObjList, *GhostObjList_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *UInt2, *UInt2_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *Entity, *Entity_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GfxMeshAttrib, *GfxMeshAttrib_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *GuiPlacer, *GuiPlacer_ptr, *ImGui, *ImGui_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *Container, *Container_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *UInt4, *UInt4_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *GfxLODList, *GfxLODList_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *XOrigin, *ResType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxShaderType, *GfxBufferUsage, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -692,6 +692,48 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 RET((NO)head)->typeID==EXT->FileOrigin_typeID;
+else
+ RET false;
+}
+};void XOrigin_destroy(CTX,NO) {}
+SV XOrigin_get_member(CTX,NO,SV);
+void XOrigin_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs XOrigin_funcs={
+.destroy = XOrigin_destroy,
+.getMember = XOrigin_get_member,
+.setMember = XOrigin_set_member
+};
+template <>
+struct create_val<XOrigin>
+{
+static SV f(CTX ctx,XOrigin v)
+{
+RET STG::createNativeObject(XOrigin_funcs,(void *)v,EXT->XOrigin_typeID);
+}
+};
+template <>
+struct val_to_c<XOrigin>
+{
+static XOrigin f(CTX ctx,const SV head)
+{
+if(head->type!=STG::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to XOrigin."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->XOrigin_typeID)
+CATE(TE,"Value can not be converted to XOrigin."));
+size_t v=size_t(obj->data);
+if(v==1)return XOrigin::Right;
+if(v==0)return XOrigin::Left;
+}
+};
+template <>
+struct type_same<XOrigin>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->XOrigin_typeID;
 else
  RET false;
 }
@@ -2160,6 +2202,77 @@ SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a);
 SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a);
 SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a);
 SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a);
+void StrStrMap_destroy(CTX,NO);
+SV StrStrMap_get_member(CTX,NO,SV);
+void StrStrMap_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs StrStrMap_funcs={
+.destroy = StrStrMap_destroy,
+.getMember = StrStrMap_get_member,
+.setMember = StrStrMap_set_member
+};
+template <>
+struct create_val<HashMap<String,String>>
+{
+static SV f(CTX ctx,const HashMap<String,String>&obj)
+{
+#define ghfj HashMap<String,String>
+RET STG::createNativeObject(StrStrMap_funcs,NEW(ghfj, obj),EXT->StrStrMap_typeID);
+}
+};
+template <>
+struct val_to_c<HashMap<String,String>>
+{
+static HashMap<String,String> f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->StrStrMap_typeID)
+RET*((HashMap<String,String>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to StrStrMap."));
+} else
+ CATE(TE,"Value can not be converted to StrStrMap."));
+}
+};
+
+template <>
+struct val_to_c<const HashMap<String,String>>
+{
+static HashMap<String,String> f(CTX ctx,const SV head) {return val_to_c<HashMap<String,String>>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const HashMap<String,String>>
+{
+static SV f(CTX ctx,const HashMap<String,String>&obj) {return create_val<HashMap<String,String>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<HashMap<String,String>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->StrStrMap_typeID;
+else
+ RET false;
+}
+};
+
+SV StrStrMap___eq__(CTX ctx,const List<SV>&a);
+SV StrStrMap___neq__(CTX ctx,const List<SV>&a);
+SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a);
+SV StrStrMap_findEntry(CTX ctx,const List<SV>&a);
+SV StrStrMap_getKey(CTX ctx,const List<SV>&a);
+SV StrStrMap_getValue(CTX ctx,const List<SV>&a);
+SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a);
+SV StrStrMap_get(CTX ctx,const List<SV>&a);
+SV StrStrMap_set(CTX ctx,const List<SV>&a);
+SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a);
+SV StrStrMap_remove(CTX ctx,const List<SV>&a);
+SV StrStrMap_clear(CTX ctx,const List<SV>&a);
+SV StrStrMap_append(CTX ctx,const List<SV>&a);
 void GfxApi_destroy(CTX,NO);
 SV GfxApi_get_member(CTX,NO,SV);
 void GfxApi_set_member(CTX,NO,SV,SV);
@@ -2295,85 +2408,66 @@ else
 SV GfxCompiledShader_getShader(CTX ctx,const List<SV>&a);
 SV GfxCompiledShader_getGLProgram(CTX ctx,const List<SV>&a);
 SV GfxCompiledShader_getGLShader(CTX ctx,const List<SV>&a);
-void UInt2_destroy(CTX,NO);
-SV UInt2_get_member(CTX,NO,SV);
-void UInt2_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt2_funcs={
-.destroy = UInt2_destroy,
-.getMember = UInt2_get_member,
-.setMember = UInt2_set_member
+void ScrollBar_destroy(CTX,NO);
+SV ScrollBar_get_member(CTX,NO,SV);
+void ScrollBar_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs ScrollBar_funcs={
+.destroy = ScrollBar_destroy,
+.getMember = ScrollBar_get_member,
+.setMember = ScrollBar_set_member
 };
 template <>
-struct create_val<T2<uint32_t>>
+struct create_val<ScrollBar>
 {
-static SV f(CTX ctx,const T2<uint32_t>&obj)
+static SV f(CTX ctx,const ScrollBar&obj)
 {
-#define ghfj T2<uint32_t>
-RET STG::createNativeObject(UInt2_funcs,NEW(ghfj, obj),EXT->UInt2_typeID);
+#define ghfj ScrollBar
+RET STG::createNativeObject(ScrollBar_funcs,NEW(ghfj, obj),EXT->ScrollBar_typeID);
 }
 };
 template <>
-struct val_to_c<T2<uint32_t>>
+struct val_to_c<ScrollBar>
 {
-static T2<uint32_t> f(CTX ctx,const SV head)
+static ScrollBar f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt2_typeID)
-RET*((T2<uint32_t>*)obj->data);
+if(obj->typeID==EXT->ScrollBar_typeID)
+RET*((ScrollBar*)obj->data);
 else
- CATE(TE,"Value can not be converted to UInt2."));
+ CATE(TE,"Value can not be converted to ScrollBar."));
 } else
- CATE(TE,"Value can not be converted to UInt2."));
+ CATE(TE,"Value can not be converted to ScrollBar."));
 }
 };
 
 template <>
-struct val_to_c<const T2<uint32_t>>
+struct val_to_c<const ScrollBar>
 {
-static T2<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T2<uint32_t>>::f(ctx, head);}
+static ScrollBar f(CTX ctx,const SV head) {return val_to_c<ScrollBar>::f(ctx, head);}
 };
 
 template <>
-struct create_val<const T2<uint32_t>>
+struct create_val<const ScrollBar>
 {
-static SV f(CTX ctx,const T2<uint32_t>&obj) {return create_val<T2<uint32_t>>::f(ctx,obj);}
+static SV f(CTX ctx,const ScrollBar&obj) {return create_val<ScrollBar>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<T2<uint32_t>>
+struct type_same<ScrollBar>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_typeID;
+RET((NO)head)->typeID==EXT->ScrollBar_typeID;
 else
  RET false;
 }
 };
 
-SV UInt2___add__(CTX ctx,const List<SV>&a);
-SV UInt2___sub__(CTX ctx,const List<SV>&a);
-SV UInt2___mul__(CTX ctx,const List<SV>&a);
-SV UInt2___div__(CTX ctx,const List<SV>&a);
-SV UInt2___eq__(CTX ctx,const List<SV>&a);
-SV UInt2___neq__(CTX ctx,const List<SV>&a);
-SV UInt2___less__(CTX ctx,const List<SV>&a);
-SV UInt2___grtr__(CTX ctx,const List<SV>&a);
-SV UInt2___leq__(CTX ctx,const List<SV>&a);
-SV UInt2___geq__(CTX ctx,const List<SV>&a);
-SV UInt2_sum(CTX ctx,const List<SV>&a);
-SV UInt2_length(CTX ctx,const List<SV>&a);
-SV UInt2_lengthSquared(CTX ctx,const List<SV>&a);
-SV UInt2_dot(CTX ctx,const List<SV>&a);
-SV UInt2_distance(CTX ctx,const List<SV>&a);
-SV UInt2_distanceSquared(CTX ctx,const List<SV>&a);
-SV UInt2_normalize(CTX ctx,const List<SV>&a);
-SV UInt2_getXY(CTX ctx,const List<SV>&a);
-SV UInt2_setXY(CTX ctx,const List<SV>&a);
-SV UInt2_getYX(CTX ctx,const List<SV>&a);
-SV UInt2_setYX(CTX ctx,const List<SV>&a);
+SV ScrollBar_getValue(CTX ctx,const List<SV>&a);
+SV ScrollBar_setValue(CTX ctx,const List<SV>&a);
 void GhostObjList_destroy(CTX,NO);
 SV GhostObjList_get_member(CTX,NO,SV);
 void GhostObjList_set_member(CTX,NO,SV,SV);
@@ -2533,6 +2627,85 @@ SV RigidBody_getCollisionMask(CTX ctx,const List<SV>&a);
 SV RigidBody_setShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getEntity(CTX ctx,const List<SV>&a);
+void UInt2_destroy(CTX,NO);
+SV UInt2_get_member(CTX,NO,SV);
+void UInt2_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs UInt2_funcs={
+.destroy = UInt2_destroy,
+.getMember = UInt2_get_member,
+.setMember = UInt2_set_member
+};
+template <>
+struct create_val<T2<uint32_t>>
+{
+static SV f(CTX ctx,const T2<uint32_t>&obj)
+{
+#define ghfj T2<uint32_t>
+RET STG::createNativeObject(UInt2_funcs,NEW(ghfj, obj),EXT->UInt2_typeID);
+}
+};
+template <>
+struct val_to_c<T2<uint32_t>>
+{
+static T2<uint32_t> f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt2_typeID)
+RET*((T2<uint32_t>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to UInt2."));
+} else
+ CATE(TE,"Value can not be converted to UInt2."));
+}
+};
+
+template <>
+struct val_to_c<const T2<uint32_t>>
+{
+static T2<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T2<uint32_t>>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const T2<uint32_t>>
+{
+static SV f(CTX ctx,const T2<uint32_t>&obj) {return create_val<T2<uint32_t>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<T2<uint32_t>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->UInt2_typeID;
+else
+ RET false;
+}
+};
+
+SV UInt2___add__(CTX ctx,const List<SV>&a);
+SV UInt2___sub__(CTX ctx,const List<SV>&a);
+SV UInt2___mul__(CTX ctx,const List<SV>&a);
+SV UInt2___div__(CTX ctx,const List<SV>&a);
+SV UInt2___eq__(CTX ctx,const List<SV>&a);
+SV UInt2___neq__(CTX ctx,const List<SV>&a);
+SV UInt2___less__(CTX ctx,const List<SV>&a);
+SV UInt2___grtr__(CTX ctx,const List<SV>&a);
+SV UInt2___leq__(CTX ctx,const List<SV>&a);
+SV UInt2___geq__(CTX ctx,const List<SV>&a);
+SV UInt2_sum(CTX ctx,const List<SV>&a);
+SV UInt2_length(CTX ctx,const List<SV>&a);
+SV UInt2_lengthSquared(CTX ctx,const List<SV>&a);
+SV UInt2_dot(CTX ctx,const List<SV>&a);
+SV UInt2_distance(CTX ctx,const List<SV>&a);
+SV UInt2_distanceSquared(CTX ctx,const List<SV>&a);
+SV UInt2_normalize(CTX ctx,const List<SV>&a);
+SV UInt2_getXY(CTX ctx,const List<SV>&a);
+SV UInt2_setXY(CTX ctx,const List<SV>&a);
+SV UInt2_getYX(CTX ctx,const List<SV>&a);
+SV UInt2_setYX(CTX ctx,const List<SV>&a);
 void LightList_destroy(CTX,NO);
 SV LightList_get_member(CTX,NO,SV);
 void LightList_set_member(CTX,NO,SV,SV);
@@ -2649,7 +2822,6 @@ SV ResourceManager_loadAudioAndCopy(CTX ctx,const List<SV>&a);
 SV ResourceManager_loadFontAndCopy(CTX ctx,const List<SV>&a);
 SV ResourceManager_loadAndCopy(CTX ctx,const List<SV>&a);
 SV ResourceManager_isResource(CTX ctx,const List<SV>&a);
-SV ResourceManager_autoReloadResources(CTX ctx,const List<SV>&a);
 SV ResourceManager_cleanupResources(CTX ctx,const List<SV>&a);
 void Entity_destroy(CTX,NO);
 SV Entity_get_member(CTX,NO,SV);
@@ -2905,14 +3077,9 @@ SV Font_removeContent(CTX ctx,const List<SV>&a);
 SV Font_predictWidth(CTX ctx,const List<SV>&a);
 SV Font_render(CTX ctx,const List<SV>&a);
 SV Font_load(CTX ctx,const List<SV>&a);
-SV Font_reload(CTX ctx,const List<SV>&a);
 SV Font_save(CTX ctx,const List<SV>&a);
 SV Font_copy(CTX ctx,const List<SV>&a);
 SV Font_getType(CTX ctx,const List<SV>&a);
-SV Font_isLoaded(CTX ctx,const List<SV>&a);
-SV Font_getLastFileModification(CTX ctx,const List<SV>&a);
-SV Font_shouldReload(CTX ctx,const List<SV>&a);
-SV Font_possiblyReload(CTX ctx,const List<SV>&a);
 SV Font_release(CTX ctx,const List<SV>&a);
 SV Font_getRefCount(CTX ctx,const List<SV>&a);
 SV Font_getFilename(CTX ctx,const List<SV>&a);
@@ -3373,13 +3540,8 @@ SV GfxMesh_getGLIndexBuffer(CTX ctx,const List<SV>&a);
 SV GfxMesh_removeContent(CTX ctx,const List<SV>&a);
 SV GfxMesh_save(CTX ctx,const List<SV>&a);
 SV GfxMesh_load(CTX ctx,const List<SV>&a);
-SV GfxMesh_reload(CTX ctx,const List<SV>&a);
 SV GfxMesh_copy(CTX ctx,const List<SV>&a);
 SV GfxMesh_getType(CTX ctx,const List<SV>&a);
-SV GfxMesh_isLoaded(CTX ctx,const List<SV>&a);
-SV GfxMesh_getLastFileModification(CTX ctx,const List<SV>&a);
-SV GfxMesh_shouldReload(CTX ctx,const List<SV>&a);
-SV GfxMesh_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxMesh_release(CTX ctx,const List<SV>&a);
 SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxMesh_getFilename(CTX ctx,const List<SV>&a);
@@ -3406,14 +3568,9 @@ else
 
 SV Resource_removeContent(CTX ctx,const List<SV>&a);
 SV Resource_load(CTX ctx,const List<SV>&a);
-SV Resource_reload(CTX ctx,const List<SV>&a);
 SV Resource_save(CTX ctx,const List<SV>&a);
 SV Resource_copy(CTX ctx,const List<SV>&a);
 SV Resource_getType(CTX ctx,const List<SV>&a);
-SV Resource_isLoaded(CTX ctx,const List<SV>&a);
-SV Resource_getLastFileModification(CTX ctx,const List<SV>&a);
-SV Resource_shouldReload(CTX ctx,const List<SV>&a);
-SV Resource_possiblyReload(CTX ctx,const List<SV>&a);
 SV Resource_release(CTX ctx,const List<SV>&a);
 SV Resource_getRefCount(CTX ctx,const List<SV>&a);
 SV Resource_getFilename(CTX ctx,const List<SV>&a);
@@ -3444,14 +3601,9 @@ SV GfxShader_compile(CTX ctx,const List<SV>&a);
 SV GfxShader_getSource(CTX ctx,const List<SV>&a);
 SV GfxShader_getShaderType(CTX ctx,const List<SV>&a);
 SV GfxShader_getCompiled(CTX ctx,const List<SV>&a);
-SV GfxShader_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxShader_load(CTX ctx,const List<SV>&a);
-SV GfxShader_reload(CTX ctx,const List<SV>&a);
 SV GfxShader_copy(CTX ctx,const List<SV>&a);
 SV GfxShader_getType(CTX ctx,const List<SV>&a);
-SV GfxShader_isLoaded(CTX ctx,const List<SV>&a);
-SV GfxShader_getLastFileModification(CTX ctx,const List<SV>&a);
-SV GfxShader_shouldReload(CTX ctx,const List<SV>&a);
 SV GfxShader_release(CTX ctx,const List<SV>&a);
 SV GfxShader_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxShader_getFilename(CTX ctx,const List<SV>&a);
@@ -3583,13 +3735,8 @@ SV Scene_removeScript(CTX ctx,const List<SV>&a);
 SV Scene_getScripts(CTX ctx,const List<SV>&a);
 SV Scene_findScriptInstanceByName(CTX ctx,const List<SV>&a);
 SV Scene_load(CTX ctx,const List<SV>&a);
-SV Scene_reload(CTX ctx,const List<SV>&a);
 SV Scene_copy(CTX ctx,const List<SV>&a);
 SV Scene_getType(CTX ctx,const List<SV>&a);
-SV Scene_isLoaded(CTX ctx,const List<SV>&a);
-SV Scene_getLastFileModification(CTX ctx,const List<SV>&a);
-SV Scene_shouldReload(CTX ctx,const List<SV>&a);
-SV Scene_possiblyReload(CTX ctx,const List<SV>&a);
 SV Scene_release(CTX ctx,const List<SV>&a);
 SV Scene_getRefCount(CTX ctx,const List<SV>&a);
 SV Scene_getFilename(CTX ctx,const List<SV>&a);
@@ -4297,13 +4444,8 @@ SV GfxMaterial_getDisplacementMap(CTX ctx,const List<SV>&a);
 SV GfxMaterial_isForward(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setForward(CTX ctx,const List<SV>&a);
 SV GfxMaterial_load(CTX ctx,const List<SV>&a);
-SV GfxMaterial_reload(CTX ctx,const List<SV>&a);
 SV GfxMaterial_copy(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getType(CTX ctx,const List<SV>&a);
-SV GfxMaterial_isLoaded(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getLastFileModification(CTX ctx,const List<SV>&a);
-SV GfxMaterial_shouldReload(CTX ctx,const List<SV>&a);
-SV GfxMaterial_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxMaterial_release(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getFilename(CTX ctx,const List<SV>&a);
@@ -4612,77 +4754,139 @@ SV AudioWorld_clearSources(CTX ctx,const List<SV>&a);
 SV AudioWorld_getSources(CTX ctx,const List<SV>&a);
 SV AudioWorld_addToAudioDevice(CTX ctx,const List<SV>&a);
 SV AudioWorld_removeFromAudioDevice(CTX ctx,const List<SV>&a);
-void StrStrMap_destroy(CTX,NO);
-SV StrStrMap_get_member(CTX,NO,SV);
-void StrStrMap_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs StrStrMap_funcs={
-.destroy = StrStrMap_destroy,
-.getMember = StrStrMap_get_member,
-.setMember = StrStrMap_set_member
+void GuiPlacer_destroy(CTX,NO);
+SV GuiPlacer_get_member(CTX,NO,SV);
+void GuiPlacer_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GuiPlacer_funcs={
+.destroy = GuiPlacer_destroy,
+.getMember = GuiPlacer_get_member,
+.setMember = GuiPlacer_set_member
 };
 template <>
-struct create_val<HashMap<String,String>>
+struct create_val<GuiPlacer>
 {
-static SV f(CTX ctx,const HashMap<String,String>&obj)
+static SV f(CTX ctx,const GuiPlacer&obj)
 {
-#define ghfj HashMap<String,String>
-RET STG::createNativeObject(StrStrMap_funcs,NEW(ghfj, obj),EXT->StrStrMap_typeID);
+#define ghfj GuiPlacer
+RET STG::createNativeObject(GuiPlacer_funcs,NEW(ghfj, obj),EXT->GuiPlacer_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<String,String>>
+struct val_to_c<GuiPlacer>
 {
-static HashMap<String,String> f(CTX ctx,const SV head)
+static GuiPlacer f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StrStrMap_typeID)
-RET*((HashMap<String,String>*)obj->data);
+if(obj->typeID==EXT->GuiPlacer_typeID)
+RET*((GuiPlacer*)obj->data);
 else
- CATE(TE,"Value can not be converted to StrStrMap."));
+ CATE(TE,"Value can not be converted to GuiPlacer."));
 } else
- CATE(TE,"Value can not be converted to StrStrMap."));
+ CATE(TE,"Value can not be converted to GuiPlacer."));
 }
 };
 
 template <>
-struct val_to_c<const HashMap<String,String>>
+struct val_to_c<const GuiPlacer>
 {
-static HashMap<String,String> f(CTX ctx,const SV head) {return val_to_c<HashMap<String,String>>::f(ctx, head);}
+static GuiPlacer f(CTX ctx,const SV head) {return val_to_c<GuiPlacer>::f(ctx, head);}
 };
 
 template <>
-struct create_val<const HashMap<String,String>>
+struct create_val<const GuiPlacer>
 {
-static SV f(CTX ctx,const HashMap<String,String>&obj) {return create_val<HashMap<String,String>>::f(ctx,obj);}
+static SV f(CTX ctx,const GuiPlacer&obj) {return create_val<GuiPlacer>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<HashMap<String,String>>
+struct type_same<GuiPlacer>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_typeID;
+RET((NO)head)->typeID==EXT->GuiPlacer_typeID;
 else
  RET false;
 }
 };
 
-SV StrStrMap___eq__(CTX ctx,const List<SV>&a);
-SV StrStrMap___neq__(CTX ctx,const List<SV>&a);
-SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a);
-SV StrStrMap_findEntry(CTX ctx,const List<SV>&a);
-SV StrStrMap_getKey(CTX ctx,const List<SV>&a);
-SV StrStrMap_getValue(CTX ctx,const List<SV>&a);
-SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a);
-SV StrStrMap_get(CTX ctx,const List<SV>&a);
-SV StrStrMap_set(CTX ctx,const List<SV>&a);
-SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a);
-SV StrStrMap_remove(CTX ctx,const List<SV>&a);
-SV StrStrMap_clear(CTX ctx,const List<SV>&a);
-SV StrStrMap_append(CTX ctx,const List<SV>&a);
+SV GuiPlacer_button(CTX ctx,const List<SV>&a);
+SV GuiPlacer_label(CTX ctx,const List<SV>&a);
+SV GuiPlacer_placer(CTX ctx,const List<SV>&a);
+SV GuiPlacer_advanceY(CTX ctx,const List<SV>&a);
+SV GuiPlacer_resetY(CTX ctx,const List<SV>&a);
+SV GuiPlacer_setXOrigin(CTX ctx,const List<SV>&a);
+SV GuiPlacer_getXOriginMode(CTX ctx,const List<SV>&a);
+SV GuiPlacer_getXOrigin(CTX ctx,const List<SV>&a);
+SV GuiPlacer_getPadding(CTX ctx,const List<SV>&a);
+void ImGui_destroy(CTX,NO);
+SV ImGui_get_member(CTX,NO,SV);
+void ImGui_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs ImGui_funcs={
+.destroy = ImGui_destroy,
+.getMember = ImGui_get_member,
+.setMember = ImGui_set_member
+};
+template <>
+struct create_val<ImGui>
+{
+static SV f(CTX ctx,const ImGui&obj)
+{
+#define ghfj ImGui
+RET STG::createNativeObject(ImGui_funcs,NEW(ghfj, obj),EXT->ImGui_typeID);
+}
+};
+template <>
+struct val_to_c<ImGui>
+{
+static ImGui f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ImGui_typeID)
+RET*((ImGui*)obj->data);
+else
+ CATE(TE,"Value can not be converted to ImGui."));
+} else
+ CATE(TE,"Value can not be converted to ImGui."));
+}
+};
+
+template <>
+struct val_to_c<const ImGui>
+{
+static ImGui f(CTX ctx,const SV head) {return val_to_c<ImGui>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const ImGui>
+{
+static SV f(CTX ctx,const ImGui&obj) {return create_val<ImGui>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<ImGui>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ImGui_typeID;
+else
+ RET false;
+}
+};
+
+SV ImGui_rectangle(CTX ctx,const List<SV>&a);
+SV ImGui_beginContainer(CTX ctx,const List<SV>&a);
+SV ImGui_endContainer(CTX ctx,const List<SV>&a);
+SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a);
+SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a);
+SV ImGui_button(CTX ctx,const List<SV>&a);
+SV ImGui_label(CTX ctx,const List<SV>&a);
+SV ImGui_render(CTX ctx,const List<SV>&a);
 void StringList_destroy(CTX,NO);
 SV StringList_get_member(CTX,NO,SV);
 void StringList_set_member(CTX,NO,SV,SV);
@@ -5115,6 +5319,64 @@ SV FloatList_copy(CTX ctx,const List<SV>&a);
 SV FloatList_in(CTX ctx,const List<SV>&a);
 SV FloatList_begin(CTX ctx,const List<SV>&a);
 SV FloatList_end(CTX ctx,const List<SV>&a);
+void Container_destroy(CTX,NO);
+SV Container_get_member(CTX,NO,SV);
+void Container_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Container_funcs={
+.destroy = Container_destroy,
+.getMember = Container_get_member,
+.setMember = Container_set_member
+};
+template <>
+struct create_val<Container>
+{
+static SV f(CTX ctx,const Container&obj)
+{
+#define ghfj Container
+RET STG::createNativeObject(Container_funcs,NEW(ghfj, obj),EXT->Container_typeID);
+}
+};
+template <>
+struct val_to_c<Container>
+{
+static Container f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Container_typeID)
+RET*((Container*)obj->data);
+else
+ CATE(TE,"Value can not be converted to Container."));
+} else
+ CATE(TE,"Value can not be converted to Container."));
+}
+};
+
+template <>
+struct val_to_c<const Container>
+{
+static Container f(CTX ctx,const SV head) {return val_to_c<Container>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const Container>
+{
+static SV f(CTX ctx,const Container&obj) {return create_val<Container>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<Container>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Container_typeID;
+else
+ RET false;
+}
+};
+
 void LightDirectionalData_destroy(CTX,NO);
 SV LightDirectionalData_get_member(CTX,NO,SV);
 void LightDirectionalData_set_member(CTX,NO,SV,SV);
@@ -5518,13 +5780,8 @@ SV PhysicsShape_setPlane(CTX ctx,const List<SV>&a);
 SV PhysicsShape_setCompound(CTX ctx,const List<SV>&a);
 SV PhysicsShape_save(CTX ctx,const List<SV>&a);
 SV PhysicsShape_load(CTX ctx,const List<SV>&a);
-SV PhysicsShape_reload(CTX ctx,const List<SV>&a);
 SV PhysicsShape_copy(CTX ctx,const List<SV>&a);
 SV PhysicsShape_getType(CTX ctx,const List<SV>&a);
-SV PhysicsShape_isLoaded(CTX ctx,const List<SV>&a);
-SV PhysicsShape_getLastFileModification(CTX ctx,const List<SV>&a);
-SV PhysicsShape_shouldReload(CTX ctx,const List<SV>&a);
-SV PhysicsShape_possiblyReload(CTX ctx,const List<SV>&a);
 SV PhysicsShape_release(CTX ctx,const List<SV>&a);
 SV PhysicsShape_getRefCount(CTX ctx,const List<SV>&a);
 SV PhysicsShape_getFilename(CTX ctx,const List<SV>&a);
@@ -6271,14 +6528,9 @@ SV Audio_setMonoSample(CTX ctx,const List<SV>&a);
 SV Audio_getDuration(CTX ctx,const List<SV>&a);
 SV Audio_getSampleIndex(CTX ctx,const List<SV>&a);
 SV Audio_load(CTX ctx,const List<SV>&a);
-SV Audio_reload(CTX ctx,const List<SV>&a);
 SV Audio_save(CTX ctx,const List<SV>&a);
 SV Audio_copy(CTX ctx,const List<SV>&a);
 SV Audio_getType(CTX ctx,const List<SV>&a);
-SV Audio_isLoaded(CTX ctx,const List<SV>&a);
-SV Audio_getLastFileModification(CTX ctx,const List<SV>&a);
-SV Audio_shouldReload(CTX ctx,const List<SV>&a);
-SV Audio_possiblyReload(CTX ctx,const List<SV>&a);
 SV Audio_release(CTX ctx,const List<SV>&a);
 SV Audio_getRefCount(CTX ctx,const List<SV>&a);
 SV Audio_getFilename(CTX ctx,const List<SV>&a);
@@ -6333,13 +6585,8 @@ SV GfxTexture_setShadowmap(CTX ctx,const List<SV>&a);
 SV GfxTexture_getImpl(CTX ctx,const List<SV>&a);
 SV GfxTexture_save(CTX ctx,const List<SV>&a);
 SV GfxTexture_load(CTX ctx,const List<SV>&a);
-SV GfxTexture_reload(CTX ctx,const List<SV>&a);
 SV GfxTexture_copy(CTX ctx,const List<SV>&a);
 SV GfxTexture_getType(CTX ctx,const List<SV>&a);
-SV GfxTexture_isLoaded(CTX ctx,const List<SV>&a);
-SV GfxTexture_getLastFileModification(CTX ctx,const List<SV>&a);
-SV GfxTexture_shouldReload(CTX ctx,const List<SV>&a);
-SV GfxTexture_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxTexture_release(CTX ctx,const List<SV>&a);
 SV GfxTexture_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxTexture_getFilename(CTX ctx,const List<SV>&a);
@@ -6440,13 +6687,8 @@ else
 SV GfxModel_removeContent(CTX ctx,const List<SV>&a);
 SV GfxModel_save(CTX ctx,const List<SV>&a);
 SV GfxModel_load(CTX ctx,const List<SV>&a);
-SV GfxModel_reload(CTX ctx,const List<SV>&a);
 SV GfxModel_copy(CTX ctx,const List<SV>&a);
 SV GfxModel_getType(CTX ctx,const List<SV>&a);
-SV GfxModel_isLoaded(CTX ctx,const List<SV>&a);
-SV GfxModel_getLastFileModification(CTX ctx,const List<SV>&a);
-SV GfxModel_shouldReload(CTX ctx,const List<SV>&a);
-SV GfxModel_possiblyReload(CTX ctx,const List<SV>&a);
 SV GfxModel_release(CTX ctx,const List<SV>&a);
 SV GfxModel_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxModel_getFilename(CTX ctx,const List<SV>&a);
@@ -6866,6 +7108,81 @@ else
 }
 };
 
+SV StrStrMap_ptr_copy(CTX,NO);
+void StrStrMap_ptr_destroy(CTX,NO);
+SV StrStrMap_ptr_get_member(CTX,NO,SV);
+void StrStrMap_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs StrStrMap_ptr_funcs={
+.destroy = StrStrMap_ptr_destroy,
+.getMember = StrStrMap_ptr_get_member,
+.setMember = StrStrMap_ptr_set_member
+};
+template <>
+struct create_val<HashMap<String,String> *>
+{
+static SV f(CTX ctx,HashMap<String,String>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(StrStrMap_ptr_funcs,obj,EXT->StrStrMap_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<HashMap<String,String> *>
+{
+static HashMap<String,String> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->StrStrMap_ptr_typeID)
+RET(HashMap<String,String>*)obj->data;
+else
+ CATE(TE,"Value is not a StrStrMapRef."));
+} else
+ CATE(TE,"Value is not a StrStrMapRef."));
+}
+};
+template <>
+struct type_same<HashMap<String,String> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const HashMap<String,String> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const HashMap<String,String> *>
+{
+static const HashMap<String,String> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->StrStrMap_ptr_typeID)
+RET(HashMap<String,String>*)obj->data;
+else
+ CATE(TE,"Value is not a StrStrMapRef."));
+} else
+ CATE(TE,"Value is not a StrStrMapRef."));
+}
+};
+
 SV GfxApi_ptr_copy(CTX,NO);
 void GfxApi_ptr_destroy(CTX,NO);
 SV GfxApi_ptr_get_member(CTX,NO,SV);
@@ -7016,78 +7333,78 @@ else
 }
 };
 
-SV UInt2_ptr_copy(CTX,NO);
-void UInt2_ptr_destroy(CTX,NO);
-SV UInt2_ptr_get_member(CTX,NO,SV);
-void UInt2_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt2_ptr_funcs={
-.destroy = UInt2_ptr_destroy,
-.getMember = UInt2_ptr_get_member,
-.setMember = UInt2_ptr_set_member
+SV ScrollBar_ptr_copy(CTX,NO);
+void ScrollBar_ptr_destroy(CTX,NO);
+SV ScrollBar_ptr_get_member(CTX,NO,SV);
+void ScrollBar_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs ScrollBar_ptr_funcs={
+.destroy = ScrollBar_ptr_destroy,
+.getMember = ScrollBar_ptr_get_member,
+.setMember = ScrollBar_ptr_set_member
 };
 template <>
-struct create_val<T2<uint32_t> *>
+struct create_val<ScrollBar *>
 {
-static SV f(CTX ctx,T2<uint32_t>*obj)
+static SV f(CTX ctx,ScrollBar*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(UInt2_ptr_funcs,obj,EXT->UInt2_ptr_typeID);
+RET STG::createNativeObject(ScrollBar_ptr_funcs,obj,EXT->ScrollBar_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<T2<uint32_t> *>
+struct val_to_c<ScrollBar *>
 {
-static T2<uint32_t> *f(CTX ctx,const SV head)
+static ScrollBar *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt2_ptr_typeID)
-RET(T2<uint32_t>*)obj->data;
+if(obj->typeID==EXT->ScrollBar_ptr_typeID)
+RET(ScrollBar*)obj->data;
 else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a ScrollBarRef."));
 } else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a ScrollBarRef."));
 }
 };
 template <>
-struct type_same<T2<uint32_t> *>
+struct type_same<ScrollBar *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+RET((NO)head)->typeID==EXT->ScrollBar_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct type_same<const T2<uint32_t> *>
+struct type_same<const ScrollBar *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+RET((NO)head)->typeID==EXT->ScrollBar_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct val_to_c<const T2<uint32_t> *>
+struct val_to_c<const ScrollBar *>
 {
-static const T2<uint32_t> *f(CTX ctx,const SV head)
+static const ScrollBar *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt2_ptr_typeID)
-RET(T2<uint32_t>*)obj->data;
+if(obj->typeID==EXT->ScrollBar_ptr_typeID)
+RET(ScrollBar*)obj->data;
 else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a ScrollBarRef."));
 } else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a ScrollBarRef."));
 }
 };
 
@@ -7313,6 +7630,81 @@ else
  CATE(TE,"Value is not a RigidBodyRef."));
 } else
  CATE(TE,"Value is not a RigidBodyRef."));
+}
+};
+
+SV UInt2_ptr_copy(CTX,NO);
+void UInt2_ptr_destroy(CTX,NO);
+SV UInt2_ptr_get_member(CTX,NO,SV);
+void UInt2_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs UInt2_ptr_funcs={
+.destroy = UInt2_ptr_destroy,
+.getMember = UInt2_ptr_get_member,
+.setMember = UInt2_ptr_set_member
+};
+template <>
+struct create_val<T2<uint32_t> *>
+{
+static SV f(CTX ctx,T2<uint32_t>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(UInt2_ptr_funcs,obj,EXT->UInt2_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<T2<uint32_t> *>
+{
+static T2<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt2_ptr_typeID)
+RET(T2<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt2Ref."));
+} else
+ CATE(TE,"Value is not a UInt2Ref."));
+}
+};
+template <>
+struct type_same<T2<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const T2<uint32_t> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const T2<uint32_t> *>
+{
+static const T2<uint32_t> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->UInt2_ptr_typeID)
+RET(T2<uint32_t>*)obj->data;
+else
+ CATE(TE,"Value is not a UInt2Ref."));
+} else
+ CATE(TE,"Value is not a UInt2Ref."));
 }
 };
 
@@ -9791,78 +10183,153 @@ else
 }
 };
 
-SV StrStrMap_ptr_copy(CTX,NO);
-void StrStrMap_ptr_destroy(CTX,NO);
-SV StrStrMap_ptr_get_member(CTX,NO,SV);
-void StrStrMap_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs StrStrMap_ptr_funcs={
-.destroy = StrStrMap_ptr_destroy,
-.getMember = StrStrMap_ptr_get_member,
-.setMember = StrStrMap_ptr_set_member
+SV GuiPlacer_ptr_copy(CTX,NO);
+void GuiPlacer_ptr_destroy(CTX,NO);
+SV GuiPlacer_ptr_get_member(CTX,NO,SV);
+void GuiPlacer_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs GuiPlacer_ptr_funcs={
+.destroy = GuiPlacer_ptr_destroy,
+.getMember = GuiPlacer_ptr_get_member,
+.setMember = GuiPlacer_ptr_set_member
 };
 template <>
-struct create_val<HashMap<String,String> *>
+struct create_val<GuiPlacer *>
 {
-static SV f(CTX ctx,HashMap<String,String>*obj)
+static SV f(CTX ctx,GuiPlacer*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(StrStrMap_ptr_funcs,obj,EXT->StrStrMap_ptr_typeID);
+RET STG::createNativeObject(GuiPlacer_ptr_funcs,obj,EXT->GuiPlacer_ptr_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<String,String> *>
+struct val_to_c<GuiPlacer *>
 {
-static HashMap<String,String> *f(CTX ctx,const SV head)
+static GuiPlacer *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StrStrMap_ptr_typeID)
-RET(HashMap<String,String>*)obj->data;
+if(obj->typeID==EXT->GuiPlacer_ptr_typeID)
+RET(GuiPlacer*)obj->data;
 else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a GuiPlacerRef."));
 } else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a GuiPlacerRef."));
 }
 };
 template <>
-struct type_same<HashMap<String,String> *>
+struct type_same<GuiPlacer *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+RET((NO)head)->typeID==EXT->GuiPlacer_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct type_same<const HashMap<String,String> *>
+struct type_same<const GuiPlacer *>
 {
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+RET((NO)head)->typeID==EXT->GuiPlacer_ptr_typeID;
 else
  RET false;
 }
 };
 template <>
-struct val_to_c<const HashMap<String,String> *>
+struct val_to_c<const GuiPlacer *>
 {
-static const HashMap<String,String> *f(CTX ctx,const SV head)
+static const GuiPlacer *f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StrStrMap_ptr_typeID)
-RET(HashMap<String,String>*)obj->data;
+if(obj->typeID==EXT->GuiPlacer_ptr_typeID)
+RET(GuiPlacer*)obj->data;
 else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a GuiPlacerRef."));
 } else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a GuiPlacerRef."));
+}
+};
+
+SV ImGui_ptr_copy(CTX,NO);
+void ImGui_ptr_destroy(CTX,NO);
+SV ImGui_ptr_get_member(CTX,NO,SV);
+void ImGui_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs ImGui_ptr_funcs={
+.destroy = ImGui_ptr_destroy,
+.getMember = ImGui_ptr_get_member,
+.setMember = ImGui_ptr_set_member
+};
+template <>
+struct create_val<ImGui *>
+{
+static SV f(CTX ctx,ImGui*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(ImGui_ptr_funcs,obj,EXT->ImGui_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<ImGui *>
+{
+static ImGui *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ImGui_ptr_typeID)
+RET(ImGui*)obj->data;
+else
+ CATE(TE,"Value is not a ImGuiRef."));
+} else
+ CATE(TE,"Value is not a ImGuiRef."));
+}
+};
+template <>
+struct type_same<ImGui *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ImGui_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const ImGui *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ImGui_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const ImGui *>
+{
+static const ImGui *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ImGui_ptr_typeID)
+RET(ImGui*)obj->data;
+else
+ CATE(TE,"Value is not a ImGuiRef."));
+} else
+ CATE(TE,"Value is not a ImGuiRef."));
 }
 };
 
@@ -10238,6 +10705,81 @@ else
  CATE(TE,"Value is not a FloatListRef."));
 } else
  CATE(TE,"Value is not a FloatListRef."));
+}
+};
+
+SV Container_ptr_copy(CTX,NO);
+void Container_ptr_destroy(CTX,NO);
+SV Container_ptr_get_member(CTX,NO,SV);
+void Container_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Container_ptr_funcs={
+.destroy = Container_ptr_destroy,
+.getMember = Container_ptr_get_member,
+.setMember = Container_ptr_set_member
+};
+template <>
+struct create_val<Container *>
+{
+static SV f(CTX ctx,Container*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(Container_ptr_funcs,obj,EXT->Container_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Container *>
+{
+static Container *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Container_ptr_typeID)
+RET(Container*)obj->data;
+else
+ CATE(TE,"Value is not a ContainerRef."));
+} else
+ CATE(TE,"Value is not a ContainerRef."));
+}
+};
+template <>
+struct type_same<Container *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Container_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const Container *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Container_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const Container *>
+{
+static const Container *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Container_ptr_typeID)
+RET(Container*)obj->data;
+else
+ CATE(TE,"Value is not a ContainerRef."));
+} else
+ CATE(TE,"Value is not a ContainerRef."));
 }
 };
 
@@ -12427,6 +12969,56 @@ else
 }
 }
 void FileOrigin_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV XOrigin___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("XOrigin::__eq__")));
+size_t f;
+if(!TS(a[0],XOrigin))
+CATE(TE,FAE("XOrigin::XOrigin","XOrigin")));
+else
+ f=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],XOrigin))
+CATE(VE,UFOF("XOrigin::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return STG::createBoolean(f == other);
+}SV XOrigin_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("XOrigin");
+EI(keyStr=="__eq__")
+RET CNF(XOrigin___eq__);
+EI(keyStr=="Right")RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOrigin_typeID);
+EI(keyStr=="Left")RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("XOrigin");
+EI(keyStr=="__eq__")
+RET CNF(XOrigin___eq__);
+EI(keyStr=="Right")RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOrigin_typeID);
+EI(keyStr=="Left")RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
+
+else
+ CATE(KE,"Unknown member."));
+}
+}
+}
+void XOrigin_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV ResType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14598,6 +15190,332 @@ CATE(TE,UFOF("Filesystem::getAbsolutePath.")));
 RET CN;
 }
 
+void StrStrMap_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,HashMap<String,String>))
+CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
+
+DELETE((HashMap<String,String>*)f->data);
+}SV StrStrMap_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"StrStrMap's constructor" EAOE));
+if(!TS(a[0],HashMap<String,String>))
+CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
+#define fjis HashMap<String,String>
+RET STG::createNativeObject(StrStrMap_funcs,NEW(fjis),EXT->StrStrMap_typeID);
+}
+
+SV StrStrMap_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("StrStrMap");
+EI(keyStr=="__new__")
+RET CNF(StrStrMap_new);
+EI(keyStr=="__call__")
+RET CNF(StrStrMap_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(StrStrMap_new);
+ EI(keyStr == "__eq__")
+RET CNF(StrStrMap___eq__);
+ EI(keyStr == "__neq__")
+RET CNF(StrStrMap___neq__);
+ EI(keyStr == "getEntryCount")
+RET CNF(StrStrMap_getEntryCount);
+ EI(keyStr == "findEntry")
+RET CNF(StrStrMap_findEntry);
+ EI(keyStr == "getKey")
+RET CNF(StrStrMap_getKey);
+ EI(keyStr == "getValue")
+RET CNF(StrStrMap_getValue);
+ EI(keyStr == "getKeyHash")
+RET CNF(StrStrMap_getKeyHash);
+ EI(keyStr == "get")
+RET CNF(StrStrMap_get);
+ EI(keyStr == "set")
+RET CNF(StrStrMap_set);
+ EI(keyStr == "removeEntry")
+RET CNF(StrStrMap_removeEntry);
+ EI(keyStr == "remove")
+RET CNF(StrStrMap_remove);
+ EI(keyStr == "clear")
+RET CNF(StrStrMap_clear);
+ EI(keyStr == "append")
+RET CNF(StrStrMap_append);
+ else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void StrStrMap_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::removeEntry" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],int))
+{
+( f->removeEntry(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("StrStrMap::removeEntry.")));
+RET CN;
+}
+
+SV StrStrMap_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::set" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],String)&&TS(a[2],String))
+{
+RET CV( f->set(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<String>::type>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("StrStrMap::set.")));
+RET CN;
+}
+
+SV StrStrMap_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::get" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],String))
+{
+RET CV( f->get(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],String))
+{
+RET CV( f->get(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::get.")));
+RET CN;
+}
+
+SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getEntryCount" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getEntryCount());
+;
+}
+CATE(TE,UFOF("StrStrMap::getEntryCount.")));
+RET CN;
+}
+
+SV StrStrMap_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::clear" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->clear());
+RET CN;
+}
+CATE(TE,UFOF("StrStrMap::clear.")));
+RET CN;
+}
+
+SV StrStrMap_remove(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::remove" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],String))
+{
+( f->remove(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("StrStrMap::remove.")));
+RET CN;
+}
+
+SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getValue" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::getValue.")));
+RET CN;
+}
+
+SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getKeyHash" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getKeyHash(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::getKeyHash.")));
+RET CN;
+}
+
+SV StrStrMap_append(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::append" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+( f->append(val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("StrStrMap::append.")));
+RET CN;
+}
+
+SV StrStrMap_getKey(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getKey" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::getKey.")));
+RET CN;
+}
+
+SV StrStrMap___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::__eq__" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1]);
+RET CV(*f == v);
+}
+CATE(TE,UFOF("StrStrMap::__eq__.")));
+RET CN;
+}
+
+SV StrStrMap_findEntry(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::findEntry" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],String))
+{
+RET CV( f->findEntry(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("StrStrMap::findEntry.")));
+RET CN;
+}
+
+SV StrStrMap___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::__neq__" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const HashMap<String, String> &))
+{
+auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("StrStrMap::__neq__.")));
+RET CN;
+}
+
 void GfxApi_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,GfxApi))
@@ -15873,41 +16791,26 @@ CATE(TE,UFOF("GfxCompiledShader::getGLProgram.")));
 RET CN;
 }
 
-void UInt2_destroy(CTX ctx,NO f)
+void ScrollBar_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,T2<uint32_t>))
-CATE(TE,"UInt2::__del__ expects UInt2 as first argument."));
+if(!TS((SV)f,ScrollBar))
+CATE(TE,"ScrollBar::__del__ expects ScrollBar as first argument."));
 
-DELETE((T2<uint32_t>*)f->data);
-}SV UInt2_new(CTX ctx,const List<SV>&a)
+DELETE((ScrollBar*)f->data);
+}SV ScrollBar_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt2's constructor" EAOE));
-if(!TS(a[0],T2<uint32_t>))
-CATE(TE,"UInt2's constructor expects UInt2 as first argument."));
+CATE(VE,"ScrollBar's constructor" EAOE));
+if(!TS(a[0],ScrollBar))
+CATE(TE,"ScrollBar's constructor expects ScrollBar as first argument."));
 if(a.getCount()==1)
 if(true)
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],uint32_t))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt2_typeID);
-if(a.getCount()==3)
-if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2])),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<float> &))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<int32_t> &))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<uint32_t> &))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
-CATE(TE,UFOF("UInt2's constructor.")));
+RET STG::createNativeObject(ScrollBar_funcs,NEW(ScrollBar),EXT->ScrollBar_typeID);
+CATE(TE,UFOF("ScrollBar's constructor.")));
 RET CN;
 }
 
-SV UInt2_get_member(CTX ctx,NO f,SV key)
+SV ScrollBar_get_member(CTX ctx,NO f,SV key)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -15917,11 +16820,11 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("UInt2");
+RET STG::createString("ScrollBar");
 EI(keyStr=="__new__")
-RET CNF(UInt2_new);
+RET CNF(ScrollBar_new);
 EI(keyStr=="__call__")
-RET CNF(UInt2_new);
+RET CNF(ScrollBar_new);
 else
  CATE(KE,"Unknown member."));
 } else
@@ -15929,57 +16832,19 @@ else
 if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
-RET CNF(UInt2_new);
- EI(keyStr == "__add__")
-RET CNF(UInt2___add__);
- EI(keyStr == "__sub__")
-RET CNF(UInt2___sub__);
- EI(keyStr == "__mul__")
-RET CNF(UInt2___mul__);
- EI(keyStr == "__div__")
-RET CNF(UInt2___div__);
- EI(keyStr == "__eq__")
-RET CNF(UInt2___eq__);
- EI(keyStr == "__neq__")
-RET CNF(UInt2___neq__);
- EI(keyStr == "__less__")
-RET CNF(UInt2___less__);
- EI(keyStr == "__grtr__")
-RET CNF(UInt2___grtr__);
- EI(keyStr == "__leq__")
-RET CNF(UInt2___leq__);
- EI(keyStr == "__geq__")
-RET CNF(UInt2___geq__);
- EI(keyStr == "sum")
-RET CNF(UInt2_sum);
- EI(keyStr == "length")
-RET CNF(UInt2_length);
- EI(keyStr == "lengthSquared")
-RET CNF(UInt2_lengthSquared);
- EI(keyStr == "dot")
-RET CNF(UInt2_dot);
- EI(keyStr == "distance")
-RET CNF(UInt2_distance);
- EI(keyStr == "distanceSquared")
-RET CNF(UInt2_distanceSquared);
- EI(keyStr == "normalize")
-RET CNF(UInt2_normalize);
- EI(keyStr == "getXY")
-RET CNF(UInt2_getXY);
- EI(keyStr == "setXY")
-RET CNF(UInt2_setXY);
- EI(keyStr == "getYX")
-RET CNF(UInt2_getYX);
- EI(keyStr == "setYX")
-RET CNF(UInt2_setYX);
- EI(keyStr=="x")
+RET CNF(ScrollBar_new);
+ EI(keyStr == "getValue")
+RET CNF(ScrollBar_getValue);
+ EI(keyStr == "setValue")
+RET CNF(ScrollBar_setValue);
+ EI(keyStr=="center")
 {
-T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
-RET CV(obj->x);
-} EI(keyStr=="y")
+ScrollBar*obj=(ScrollBar*)f->data;
+RET CV(obj->center);
+} EI(keyStr=="barSize")
 {
-T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
-RET CV(obj->y);
+ScrollBar*obj=(ScrollBar*)f->data;
+RET CV(obj->barSize);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -15987,7 +16852,7 @@ RET CV(obj->y);
 RET CN;
 }
 
-void UInt2_set_member(CTX ctx,NO f,SV key,SV value)
+void ScrollBar_set_member(CTX ctx,NO f,SV key,SV value)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -15996,404 +16861,51 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr=="center")
 {
-T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
-obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+ScrollBar*obj=(ScrollBar*)f->data;
+obj->center=val_to_c<decltype(obj->center)>::f(ctx,value);
+} EI(keyStr=="barSize")
 {
-T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
-obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
+ScrollBar*obj=(ScrollBar*)f->data;
+obj->barSize=val_to_c<decltype(obj->barSize)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
 }
 
-SV UInt2_normalize(CTX ctx,const List<SV>&a)
+SV ScrollBar_setValue(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt2::normalize" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+CATE(VE,"ScrollBar::setValue" EAOE));
+ScrollBar*f;
+f=(ScrollBar*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+( f->setValue(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("ScrollBar::setValue.")));
+RET CN;
+}
+
+SV ScrollBar_getValue(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScrollBar::getValue" EAOE));
+ScrollBar*f;
+f=(ScrollBar*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->normalize());
+RET CV( f->getValue());
 ;
 }
-CATE(TE,UFOF("UInt2::normalize.")));
-RET CN;
-}
-
-SV UInt2_distance(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::distance" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-RET CV( f->distance(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt2::distance.")));
-RET CN;
-}
-
-SV UInt2_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::lengthSquared" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->lengthSquared());
-;
-}
-CATE(TE,UFOF("UInt2::lengthSquared.")));
-RET CN;
-}
-
-SV UInt2___leq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__leq__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f <= v);
-}
-CATE(TE,UFOF("UInt2::__leq__.")));
-RET CN;
-}
-
-SV UInt2_setYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::setYX" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setYX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt2::setYX.")));
-RET CN;
-}
-
-SV UInt2___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__grtr__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f > v);
-}
-CATE(TE,UFOF("UInt2::__grtr__.")));
-RET CN;
-}
-
-SV UInt2_sum(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::sum" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->sum());
-;
-}
-CATE(TE,UFOF("UInt2::sum.")));
-RET CN;
-}
-
-SV UInt2_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::getXY" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXY());
-;
-}
-CATE(TE,UFOF("UInt2::getXY.")));
-RET CN;
-}
-
-SV UInt2_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::length" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->length());
-;
-}
-CATE(TE,UFOF("UInt2::length.")));
-RET CN;
-}
-
-SV UInt2_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::getYX" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYX());
-;
-}
-CATE(TE,UFOF("UInt2::getYX.")));
-RET CN;
-}
-
-SV UInt2___div__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__div__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f / v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f / v);
-}
-CATE(TE,UFOF("UInt2::__div__.")));
-RET CN;
-}
-
-SV UInt2_setXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::setXY" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setXY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt2::setXY.")));
-RET CN;
-}
-
-SV UInt2___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__mul__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-CATE(TE,UFOF("UInt2::__mul__.")));
-RET CN;
-}
-
-SV UInt2___add__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__add__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f + v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f + v);
-}
-CATE(TE,UFOF("UInt2::__add__.")));
-RET CN;
-}
-
-SV UInt2___less__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__less__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f < v);
-}
-CATE(TE,UFOF("UInt2::__less__.")));
-RET CN;
-}
-
-SV UInt2___sub__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__sub__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f - v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f - v);
-}
-CATE(TE,UFOF("UInt2::__sub__.")));
-RET CN;
-}
-
-SV UInt2___geq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__geq__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f >= v);
-}
-CATE(TE,UFOF("UInt2::__geq__.")));
-RET CN;
-}
-
-SV UInt2_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::distanceSquared" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt2::distanceSquared.")));
-RET CN;
-}
-
-SV UInt2___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__eq__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
-}
-CATE(TE,UFOF("UInt2::__eq__.")));
-RET CN;
-}
-
-SV UInt2_dot(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::dot" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-RET CV( f->dot(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->dot());
-;
-}
-CATE(TE,UFOF("UInt2::dot.")));
-RET CN;
-}
-
-SV UInt2___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__neq__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
-}
-CATE(TE,UFOF("UInt2::__neq__.")));
+CATE(TE,UFOF("ScrollBar::getValue.")));
 RET CN;
 }
 
@@ -17733,6 +18245,530 @@ CATE(TE,UFOF("RigidBody::getLinearDamping.")));
 RET CN;
 }
 
+void UInt2_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,T2<uint32_t>))
+CATE(TE,"UInt2::__del__ expects UInt2 as first argument."));
+
+DELETE((T2<uint32_t>*)f->data);
+}SV UInt2_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2's constructor" EAOE));
+if(!TS(a[0],T2<uint32_t>))
+CATE(TE,"UInt2's constructor expects UInt2 as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>),EXT->UInt2_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],uint32_t))
+RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt2_typeID);
+if(a.getCount()==3)
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t))
+RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2])),EXT->UInt2_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const T2<float> &))
+RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->UInt2_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const T2<int32_t> &))
+RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const T2<uint32_t> &))
+RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
+CATE(TE,UFOF("UInt2's constructor.")));
+RET CN;
+}
+
+SV UInt2_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("UInt2");
+EI(keyStr=="__new__")
+RET CNF(UInt2_new);
+EI(keyStr=="__call__")
+RET CNF(UInt2_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(UInt2_new);
+ EI(keyStr == "__add__")
+RET CNF(UInt2___add__);
+ EI(keyStr == "__sub__")
+RET CNF(UInt2___sub__);
+ EI(keyStr == "__mul__")
+RET CNF(UInt2___mul__);
+ EI(keyStr == "__div__")
+RET CNF(UInt2___div__);
+ EI(keyStr == "__eq__")
+RET CNF(UInt2___eq__);
+ EI(keyStr == "__neq__")
+RET CNF(UInt2___neq__);
+ EI(keyStr == "__less__")
+RET CNF(UInt2___less__);
+ EI(keyStr == "__grtr__")
+RET CNF(UInt2___grtr__);
+ EI(keyStr == "__leq__")
+RET CNF(UInt2___leq__);
+ EI(keyStr == "__geq__")
+RET CNF(UInt2___geq__);
+ EI(keyStr == "sum")
+RET CNF(UInt2_sum);
+ EI(keyStr == "length")
+RET CNF(UInt2_length);
+ EI(keyStr == "lengthSquared")
+RET CNF(UInt2_lengthSquared);
+ EI(keyStr == "dot")
+RET CNF(UInt2_dot);
+ EI(keyStr == "distance")
+RET CNF(UInt2_distance);
+ EI(keyStr == "distanceSquared")
+RET CNF(UInt2_distanceSquared);
+ EI(keyStr == "normalize")
+RET CNF(UInt2_normalize);
+ EI(keyStr == "getXY")
+RET CNF(UInt2_getXY);
+ EI(keyStr == "setXY")
+RET CNF(UInt2_setXY);
+ EI(keyStr == "getYX")
+RET CNF(UInt2_getYX);
+ EI(keyStr == "setYX")
+RET CNF(UInt2_setYX);
+ EI(keyStr=="x")
+{
+T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
+RET CV(obj->x);
+} EI(keyStr=="y")
+{
+T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
+RET CV(obj->y);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void UInt2_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="x")
+{
+T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
+obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
+} EI(keyStr=="y")
+{
+T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
+obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV UInt2_normalize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::normalize" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->normalize());
+;
+}
+CATE(TE,UFOF("UInt2::normalize.")));
+RET CN;
+}
+
+SV UInt2_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::distance" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+RET CV( f->distance(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt2::distance.")));
+RET CN;
+}
+
+SV UInt2_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::lengthSquared" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->lengthSquared());
+;
+}
+CATE(TE,UFOF("UInt2::lengthSquared.")));
+RET CN;
+}
+
+SV UInt2___leq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__leq__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f <= v);
+}
+CATE(TE,UFOF("UInt2::__leq__.")));
+RET CN;
+}
+
+SV UInt2_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::setYX" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setYX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt2::setYX.")));
+RET CN;
+}
+
+SV UInt2___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__grtr__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f > v);
+}
+CATE(TE,UFOF("UInt2::__grtr__.")));
+RET CN;
+}
+
+SV UInt2_sum(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::sum" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->sum());
+;
+}
+CATE(TE,UFOF("UInt2::sum.")));
+RET CN;
+}
+
+SV UInt2_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::getXY" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXY());
+;
+}
+CATE(TE,UFOF("UInt2::getXY.")));
+RET CN;
+}
+
+SV UInt2_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::length" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->length());
+;
+}
+CATE(TE,UFOF("UInt2::length.")));
+RET CN;
+}
+
+SV UInt2_getYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::getYX" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getYX());
+;
+}
+CATE(TE,UFOF("UInt2::getYX.")));
+RET CN;
+}
+
+SV UInt2___div__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__div__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f / v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f / v);
+}
+CATE(TE,UFOF("UInt2::__div__.")));
+RET CN;
+}
+
+SV UInt2_setXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::setXY" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setXY(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt2::setXY.")));
+RET CN;
+}
+
+SV UInt2___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__mul__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+CATE(TE,UFOF("UInt2::__mul__.")));
+RET CN;
+}
+
+SV UInt2___add__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__add__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f + v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f + v);
+}
+CATE(TE,UFOF("UInt2::__add__.")));
+RET CN;
+}
+
+SV UInt2___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__less__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f < v);
+}
+CATE(TE,UFOF("UInt2::__less__.")));
+RET CN;
+}
+
+SV UInt2___sub__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__sub__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f - v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f - v);
+}
+CATE(TE,UFOF("UInt2::__sub__.")));
+RET CN;
+}
+
+SV UInt2___geq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__geq__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f >= v);
+}
+CATE(TE,UFOF("UInt2::__geq__.")));
+RET CN;
+}
+
+SV UInt2_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::distanceSquared" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt2::distanceSquared.")));
+RET CN;
+}
+
+SV UInt2___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__eq__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f == v);
+}
+CATE(TE,UFOF("UInt2::__eq__.")));
+RET CN;
+}
+
+SV UInt2_dot(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::dot" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+RET CV( f->dot(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->dot());
+;
+}
+CATE(TE,UFOF("UInt2::dot.")));
+RET CN;
+}
+
+SV UInt2___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__neq__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("UInt2::__neq__.")));
+RET CN;
+}
+
 void LightList_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,List<Light*>))
@@ -18170,8 +19206,6 @@ RET CNF(ResourceManager_loadFontAndCopy);
 RET CNF(ResourceManager_loadAndCopy);
  EI(keyStr == "isResource")
 RET CNF(ResourceManager_isResource);
- EI(keyStr == "autoReloadResources")
-RET CNF(ResourceManager_autoReloadResources);
  EI(keyStr == "cleanupResources")
 RET CNF(ResourceManager_cleanupResources);
  else
@@ -18244,23 +19278,6 @@ RET CV( f->loadFont(val_to_c<std::remove_reference<const String &>::type>::f(ctx
 ;
 }
 CATE(TE,UFOF("ResourceManager::loadFont.")));
-RET CN;
-}
-
-SV ResourceManager_autoReloadResources(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ResourceManager::autoReloadResources" EAOE));
-ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->autoReloadResources());
-RET CN;
-}
-CATE(TE,UFOF("ResourceManager::autoReloadResources.")));
 RET CN;
 }
 
@@ -20444,22 +21461,12 @@ RET CNF(Font_predictWidth);
 RET CNF(Font_render);
  EI(keyStr == "load")
 RET CNF(Font_load);
- EI(keyStr == "reload")
-RET CNF(Font_reload);
  EI(keyStr == "save")
 RET CNF(Font_save);
  EI(keyStr == "copy")
 RET CNF(Font_copy);
  EI(keyStr == "getType")
 RET CNF(Font_getType);
- EI(keyStr == "isLoaded")
-RET CNF(Font_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(Font_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(Font_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(Font_possiblyReload);
  EI(keyStr == "release")
 RET CNF(Font_release);
  EI(keyStr == "getRefCount")
@@ -20468,11 +21475,7 @@ RET CNF(Font_getRefCount);
 RET CNF(Font_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(Font_setFilename);
- EI(keyStr=="autoReload")
-{
-Font*obj=(Font*)f->data;
-RET CV(obj->autoReload);
-} else
+ else
  CATE(KE,"Unknown member."));
 }
 }
@@ -20488,11 +21491,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="autoReload")
-{
-Font*obj=(Font*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
@@ -20566,40 +21565,6 @@ CATE(TE,UFOF("Font::render.")));
 RET CN;
 }
 
-SV Font_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Font::reload" EAOE));
-Font*f;
-f=(Font*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("Font::reload.")));
-RET CN;
-}
-
-SV Font_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Font::possiblyReload" EAOE));
-Font*f;
-f=(Font*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("Font::possiblyReload.")));
-RET CN;
-}
-
 SV Font_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -20631,23 +21596,6 @@ if(1&&TS(a[1],const String &))
 RET CN;
 }
 CATE(TE,UFOF("Font::setFilename.")));
-RET CN;
-}
-
-SV Font_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Font::isLoaded" EAOE));
-Font*f;
-f=(Font*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("Font::isLoaded.")));
 RET CN;
 }
 
@@ -20722,40 +21670,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("Font::release.")));
-RET CN;
-}
-
-SV Font_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Font::getLastFileModification" EAOE));
-Font*f;
-f=(Font*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("Font::getLastFileModification.")));
-RET CN;
-}
-
-SV Font_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Font::shouldReload" EAOE));
-Font*f;
-f=(Font*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("Font::shouldReload.")));
 RET CN;
 }
 
@@ -23150,20 +24064,10 @@ RET CNF(GfxMesh_removeContent);
 RET CNF(GfxMesh_save);
  EI(keyStr == "load")
 RET CNF(GfxMesh_load);
- EI(keyStr == "reload")
-RET CNF(GfxMesh_reload);
  EI(keyStr == "copy")
 RET CNF(GfxMesh_copy);
  EI(keyStr == "getType")
 RET CNF(GfxMesh_getType);
- EI(keyStr == "isLoaded")
-RET CNF(GfxMesh_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(GfxMesh_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(GfxMesh_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(GfxMesh_possiblyReload);
  EI(keyStr == "release")
 RET CNF(GfxMesh_release);
  EI(keyStr == "getRefCount")
@@ -23196,10 +24100,6 @@ RET CV(obj->cullMode);
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->winding);
-} EI(keyStr=="autoReload")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-RET CV(obj->autoReload);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -23240,30 +24140,20 @@ obj->cullMode=val_to_c<decltype(obj->cullMode)>::f(ctx,value);
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->winding=val_to_c<decltype(obj->winding)>::f(ctx,value);
-} EI(keyStr=="autoReload")
-{
-GfxMesh*obj=(GfxMesh*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
 }
 
-SV GfxMesh_load(CTX ctx,const List<SV>&a)
+SV GfxMesh_getAttribs(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::load" EAOE));
+CATE(VE,"GfxMesh::getAttribs" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
-{
-( f->load());
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::load.")));
+CATE(TE,UFOF("GfxMesh::getAttribs.")));
 RET CN;
 }
 
@@ -23284,37 +24174,37 @@ CATE(TE,UFOF("GfxMesh::getGLIndexBuffer.")));
 RET CN;
 }
 
-SV GfxMesh_removeAttribute(CTX ctx,const List<SV>&a)
+SV GfxMesh_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::removeAttribute" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxMeshAttribType))
-{
-( f->removeAttribute(val_to_c<std::remove_reference<GfxMeshAttribType>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::removeAttribute.")));
-RET CN;
-}
-
-SV GfxMesh_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::possiblyReload" EAOE));
+CATE(VE,"GfxMesh::getType" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->possiblyReload());
+RET CV( f->getType());
+;
+}
+CATE(TE,UFOF("GfxMesh::getType.")));
 RET CN;
 }
-CATE(TE,UFOF("GfxMesh::possiblyReload.")));
+
+SV GfxMesh_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::copy" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("GfxMesh::copy.")));
 RET CN;
 }
 
@@ -23335,31 +24225,20 @@ CATE(TE,UFOF("GfxMesh::setFilename.")));
 RET CN;
 }
 
-SV GfxMesh_isLoaded(CTX ctx,const List<SV>&a)
+SV GfxMesh_removeAttribute(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::isLoaded" EAOE));
+CATE(VE,"GfxMesh::removeAttribute" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxMeshAttribType))
 {
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("GfxMesh::isLoaded.")));
+( f->removeAttribute(val_to_c<std::remove_reference<GfxMeshAttribType>::type>::f(ctx,a[1])));
 RET CN;
 }
-
-SV GfxMesh_getAttribs(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getAttribs" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-CATE(TE,UFOF("GfxMesh::getAttribs.")));
+CATE(TE,UFOF("GfxMesh::removeAttribute.")));
 RET CN;
 }
 
@@ -23414,111 +24293,37 @@ CATE(TE,UFOF("GfxMesh::getAttribCount.")));
 RET CN;
 }
 
-SV GfxMesh_getLastFileModification(CTX ctx,const List<SV>&a)
+SV GfxMesh_setAttribute(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMesh::getLastFileModification" EAOE));
+CATE(VE,"GfxMesh::setAttribute" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const GfxMeshAttrib &))
+{
+( f->setAttribute(val_to_c<std::remove_reference<const GfxMeshAttrib &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::setAttribute.")));
+RET CN;
+}
+
+SV GfxMesh_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::load" EAOE));
 GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("GfxMesh::getLastFileModification.")));
+( f->load());
 RET CN;
 }
-
-SV GfxMesh_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::shouldReload" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("GfxMesh::shouldReload.")));
-RET CN;
-}
-
-SV GfxMesh_save(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::save" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::save.")));
-RET CN;
-}
-
-SV GfxMesh_getFilename(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getFilename" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getFilename());
-;
-}
-CATE(TE,UFOF("GfxMesh::getFilename.")));
-RET CN;
-}
-
-SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getRefCount" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getRefCount());
-;
-}
-CATE(TE,UFOF("GfxMesh::getRefCount.")));
-RET CN;
-}
-
-SV GfxMesh_getType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::getType" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getType());
-;
-}
-CATE(TE,UFOF("GfxMesh::getType.")));
+CATE(TE,UFOF("GfxMesh::load.")));
 RET CN;
 }
 
@@ -23562,6 +24367,23 @@ CATE(TE,UFOF("GfxMesh::removeContent.")));
 RET CN;
 }
 
+SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getRefCount" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRefCount());
+;
+}
+CATE(TE,UFOF("GfxMesh::getRefCount.")));
+RET CN;
+}
+
 SV GfxMesh_getIndices(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23570,57 +24392,6 @@ GfxMesh*f;
 f=(GfxMesh*)((NO)a[0])->data;
 
 CATE(TE,UFOF("GfxMesh::getIndices.")));
-RET CN;
-}
-
-SV GfxMesh_copy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::copy" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->copy());
-;
-}
-CATE(TE,UFOF("GfxMesh::copy.")));
-RET CN;
-}
-
-SV GfxMesh_setAttribute(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::setAttribute" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const GfxMeshAttrib &))
-{
-( f->setAttribute(val_to_c<std::remove_reference<const GfxMeshAttrib &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::setAttribute.")));
-RET CN;
-}
-
-SV GfxMesh_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMesh::reload" EAOE));
-GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("GfxMesh::reload.")));
 RET CN;
 }
 
@@ -23675,6 +24446,29 @@ CATE(TE,UFOF("GfxMesh::addIndices.")));
 RET CN;
 }
 
+SV GfxMesh_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::save" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->save());
+RET CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( f->save());
+RET CN;
+}
+CATE(TE,UFOF("GfxMesh::save.")));
+RET CN;
+}
+
 SV GfxMesh_getIndexType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23689,6 +24483,23 @@ RET CV( f->getIndexType());
 ;
 }
 CATE(TE,UFOF("GfxMesh::getIndexType.")));
+RET CN;
+}
+
+SV GfxMesh_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMesh::getFilename" EAOE));
+GfxMesh*f;
+f=(GfxMesh*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getFilename());
+;
+}
+CATE(TE,UFOF("GfxMesh::getFilename.")));
 RET CN;
 }
 
@@ -23735,22 +24546,12 @@ RET CNF(Resource_new);
 RET CNF(Resource_removeContent);
  EI(keyStr == "load")
 RET CNF(Resource_load);
- EI(keyStr == "reload")
-RET CNF(Resource_reload);
  EI(keyStr == "save")
 RET CNF(Resource_save);
  EI(keyStr == "copy")
 RET CNF(Resource_copy);
  EI(keyStr == "getType")
 RET CNF(Resource_getType);
- EI(keyStr == "isLoaded")
-RET CNF(Resource_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(Resource_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(Resource_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(Resource_possiblyReload);
  EI(keyStr == "release")
 RET CNF(Resource_release);
  EI(keyStr == "getRefCount")
@@ -23759,11 +24560,7 @@ RET CNF(Resource_getRefCount);
 RET CNF(Resource_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(Resource_setFilename);
- EI(keyStr=="autoReload")
-{
-Resource*obj=(Resource*)f->data;
-RET CV(obj->autoReload);
-} else
+ else
  CATE(KE,"Unknown member."));
 }
 }
@@ -23779,11 +24576,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="autoReload")
-{
-Resource*obj=(Resource*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
@@ -23840,40 +24633,6 @@ CATE(TE,UFOF("Resource::copy.")));
 RET CN;
 }
 
-SV Resource_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Resource::getLastFileModification" EAOE));
-Resource*f;
-f=(Resource*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("Resource::getLastFileModification.")));
-RET CN;
-}
-
-SV Resource_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Resource::possiblyReload" EAOE));
-Resource*f;
-f=(Resource*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("Resource::possiblyReload.")));
-RET CN;
-}
-
 SV Resource_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23905,40 +24664,6 @@ if(1&&TS(a[1],const String &))
 RET CN;
 }
 CATE(TE,UFOF("Resource::setFilename.")));
-RET CN;
-}
-
-SV Resource_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Resource::isLoaded" EAOE));
-Resource*f;
-f=(Resource*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("Resource::isLoaded.")));
-RET CN;
-}
-
-SV Resource_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Resource::reload" EAOE));
-Resource*f;
-f=(Resource*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("Resource::reload.")));
 RET CN;
 }
 
@@ -23990,23 +24715,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("Resource::release.")));
-RET CN;
-}
-
-SV Resource_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Resource::shouldReload" EAOE));
-Resource*f;
-f=(Resource*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("Resource::shouldReload.")));
 RET CN;
 }
 
@@ -24078,22 +24786,12 @@ RET CNF(GfxShader_getSource);
 RET CNF(GfxShader_getShaderType);
  EI(keyStr == "getCompiled")
 RET CNF(GfxShader_getCompiled);
- EI(keyStr == "possiblyReload")
-RET CNF(GfxShader_possiblyReload);
  EI(keyStr == "load")
 RET CNF(GfxShader_load);
- EI(keyStr == "reload")
-RET CNF(GfxShader_reload);
  EI(keyStr == "copy")
 RET CNF(GfxShader_copy);
  EI(keyStr == "getType")
 RET CNF(GfxShader_getType);
- EI(keyStr == "isLoaded")
-RET CNF(GfxShader_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(GfxShader_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(GfxShader_shouldReload);
  EI(keyStr == "release")
 RET CNF(GfxShader_release);
  EI(keyStr == "getRefCount")
@@ -24102,11 +24800,7 @@ RET CNF(GfxShader_getRefCount);
 RET CNF(GfxShader_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(GfxShader_setFilename);
- EI(keyStr=="autoReload")
-{
-GfxShader*obj=(GfxShader*)f->data;
-RET CV(obj->autoReload);
-} else
+ else
  CATE(KE,"Unknown member."));
 }
 }
@@ -24122,11 +24816,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="autoReload")
-{
-GfxShader*obj=(GfxShader*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
@@ -24200,63 +24890,6 @@ CATE(TE,UFOF("GfxShader::getCompiled.")));
 RET CN;
 }
 
-SV GfxShader_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::getLastFileModification" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("GfxShader::getLastFileModification.")));
-RET CN;
-}
-
-SV GfxShader_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::possiblyReload" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("GfxShader::possiblyReload.")));
-RET CN;
-}
-
-SV GfxShader_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::shouldReload" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("GfxShader::shouldReload.")));
-RET CN;
-}
-
 SV GfxShader_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -24291,23 +24924,6 @@ CATE(TE,UFOF("GfxShader::setFilename.")));
 RET CN;
 }
 
-SV GfxShader_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::isLoaded" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("GfxShader::isLoaded.")));
-RET CN;
-}
-
 SV GfxShader_compile(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -24322,23 +24938,6 @@ if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
 RET CN;
 }
 CATE(TE,UFOF("GfxShader::compile.")));
-RET CN;
-}
-
-SV GfxShader_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxShader::reload" EAOE));
-GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("GfxShader::reload.")));
 RET CN;
 }
 
@@ -25047,20 +25646,10 @@ RET CNF(Scene_getScripts);
 RET CNF(Scene_findScriptInstanceByName);
  EI(keyStr == "load")
 RET CNF(Scene_load);
- EI(keyStr == "reload")
-RET CNF(Scene_reload);
  EI(keyStr == "copy")
 RET CNF(Scene_copy);
  EI(keyStr == "getType")
 RET CNF(Scene_getType);
- EI(keyStr == "isLoaded")
-RET CNF(Scene_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(Scene_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(Scene_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(Scene_possiblyReload);
  EI(keyStr == "release")
 RET CNF(Scene_release);
  EI(keyStr == "getRefCount")
@@ -25069,11 +25658,7 @@ RET CNF(Scene_getRefCount);
 RET CNF(Scene_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(Scene_setFilename);
- EI(keyStr=="autoReload")
-{
-Scene*obj=(Scene*)f->data;
-RET CV(obj->autoReload);
-} else
+ else
  CATE(KE,"Unknown member."));
 }
 }
@@ -25089,11 +25674,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="autoReload")
-{
-Scene*obj=(Scene*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
@@ -25133,23 +25714,6 @@ CATE(TE,UFOF("Scene::render.")));
 RET CN;
 }
 
-SV Scene_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Scene::possiblyReload" EAOE));
-Scene*f;
-f=(Scene*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("Scene::possiblyReload.")));
-RET CN;
-}
-
 SV Scene_findScriptInstanceByName(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25175,23 +25739,6 @@ if(1&&TS(a[1],const String &))
 RET CN;
 }
 CATE(TE,UFOF("Scene::setFilename.")));
-RET CN;
-}
-
-SV Scene_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Scene::isLoaded" EAOE));
-Scene*f;
-f=(Scene*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("Scene::isLoaded.")));
 RET CN;
 }
 
@@ -25291,23 +25838,6 @@ CATE(TE,UFOF("Scene::removeEntity.")));
 RET CN;
 }
 
-SV Scene_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Scene::getLastFileModification" EAOE));
-Scene*f;
-f=(Scene*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("Scene::getLastFileModification.")));
-RET CN;
-}
-
 SV Scene_addScript(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25316,23 +25846,6 @@ Scene*f;
 f=(Scene*)((NO)a[0])->data;
 
 CATE(TE,UFOF("Scene::addScript.")));
-RET CN;
-}
-
-SV Scene_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Scene::shouldReload" EAOE));
-Scene*f;
-f=(Scene*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("Scene::shouldReload.")));
 RET CN;
 }
 
@@ -25515,23 +26028,6 @@ RET CV( f->getPhysicsWorld());
 ;
 }
 CATE(TE,UFOF("Scene::getPhysicsWorld.")));
-RET CN;
-}
-
-SV Scene_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Scene::reload" EAOE));
-Scene*f;
-f=(Scene*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("Scene::reload.")));
 RET CN;
 }
 
@@ -31961,20 +32457,10 @@ RET CNF(GfxMaterial_isForward);
 RET CNF(GfxMaterial_setForward);
  EI(keyStr == "load")
 RET CNF(GfxMaterial_load);
- EI(keyStr == "reload")
-RET CNF(GfxMaterial_reload);
  EI(keyStr == "copy")
 RET CNF(GfxMaterial_copy);
  EI(keyStr == "getType")
 RET CNF(GfxMaterial_getType);
- EI(keyStr == "isLoaded")
-RET CNF(GfxMaterial_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(GfxMaterial_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(GfxMaterial_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(GfxMaterial_possiblyReload);
  EI(keyStr == "release")
 RET CNF(GfxMaterial_release);
  EI(keyStr == "getRefCount")
@@ -32047,10 +32533,6 @@ RET CV(obj->shadowMinTessLevel);
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->shadowMaxTessLevel);
-} EI(keyStr=="autoReload")
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->autoReload);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -32131,10 +32613,6 @@ obj->shadowMinTessLevel=val_to_c<decltype(obj->shadowMinTessLevel)>::f(ctx,value
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->shadowMaxTessLevel=val_to_c<decltype(obj->shadowMaxTessLevel)>::f(ctx,value);
-} EI(keyStr=="autoReload")
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
@@ -32192,23 +32670,6 @@ CATE(TE,UFOF("GfxMaterial::setPOMHeightMap.")));
 RET CN;
 }
 
-SV GfxMaterial_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::possiblyReload" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::possiblyReload.")));
-RET CN;
-}
-
 SV GfxMaterial_setFilename(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -32223,23 +32684,6 @@ if(1&&TS(a[1],const String &))
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::setFilename.")));
-RET CN;
-}
-
-SV GfxMaterial_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::isLoaded" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("GfxMaterial::isLoaded.")));
 RET CN;
 }
 
@@ -32274,40 +32718,6 @@ RET CV( f->getNormalMap());
 ;
 }
 CATE(TE,UFOF("GfxMaterial::getNormalMap.")));
-RET CN;
-}
-
-SV GfxMaterial_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getLastFileModification" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getLastFileModification.")));
-RET CN;
-}
-
-SV GfxMaterial_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::shouldReload" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("GfxMaterial::shouldReload.")));
 RET CN;
 }
 
@@ -32592,23 +33002,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::removeContent.")));
-RET CN;
-}
-
-SV GfxMaterial_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::reload" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::reload.")));
 RET CN;
 }
 
@@ -34110,23 +34503,26 @@ CATE(TE,UFOF("AudioWorld::clearSources.")));
 RET CN;
 }
 
-void StrStrMap_destroy(CTX ctx,NO f)
+void GuiPlacer_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,HashMap<String,String>))
-CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
+if(!TS((SV)f,GuiPlacer))
+CATE(TE,"GuiPlacer::__del__ expects GuiPlacer as first argument."));
 
-DELETE((HashMap<String,String>*)f->data);
-}SV StrStrMap_new(CTX ctx,const List<SV>&a)
+DELETE((GuiPlacer*)f->data);
+}SV GuiPlacer_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
-CATE(VE,"StrStrMap's constructor" EAOE));
-if(!TS(a[0],HashMap<String,String>))
-CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
-#define fjis HashMap<String,String>
-RET STG::createNativeObject(StrStrMap_funcs,NEW(fjis),EXT->StrStrMap_typeID);
+if(a.getCount()<1)
+CATE(VE,"GuiPlacer's constructor" EAOE));
+if(!TS(a[0],GuiPlacer))
+CATE(TE,"GuiPlacer's constructor expects GuiPlacer as first argument."));
+if(a.getCount()==5)
+if(true&&TS(a[1],ImGui *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],size_t))
+RET STG::createNativeObject(GuiPlacer_funcs,NEW(GuiPlacer,val_to_c<ImGui *>::f(ctx,a[1]),val_to_c<int>::f(ctx,a[2]),val_to_c<int>::f(ctx,a[3]),val_to_c<size_t>::f(ctx,a[4])),EXT->GuiPlacer_typeID);
+CATE(TE,UFOF("GuiPlacer's constructor.")));
+RET CN;
 }
 
-SV StrStrMap_get_member(CTX ctx,NO f,SV key)
+SV GuiPlacer_get_member(CTX ctx,NO f,SV key)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -34136,11 +34532,11 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("StrStrMap");
+RET STG::createString("GuiPlacer");
 EI(keyStr=="__new__")
-RET CNF(StrStrMap_new);
+RET CNF(GuiPlacer_new);
 EI(keyStr=="__call__")
-RET CNF(StrStrMap_new);
+RET CNF(GuiPlacer_new);
 else
  CATE(KE,"Unknown member."));
 } else
@@ -34148,33 +34544,25 @@ else
 if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
-RET CNF(StrStrMap_new);
- EI(keyStr == "__eq__")
-RET CNF(StrStrMap___eq__);
- EI(keyStr == "__neq__")
-RET CNF(StrStrMap___neq__);
- EI(keyStr == "getEntryCount")
-RET CNF(StrStrMap_getEntryCount);
- EI(keyStr == "findEntry")
-RET CNF(StrStrMap_findEntry);
- EI(keyStr == "getKey")
-RET CNF(StrStrMap_getKey);
- EI(keyStr == "getValue")
-RET CNF(StrStrMap_getValue);
- EI(keyStr == "getKeyHash")
-RET CNF(StrStrMap_getKeyHash);
- EI(keyStr == "get")
-RET CNF(StrStrMap_get);
- EI(keyStr == "set")
-RET CNF(StrStrMap_set);
- EI(keyStr == "removeEntry")
-RET CNF(StrStrMap_removeEntry);
- EI(keyStr == "remove")
-RET CNF(StrStrMap_remove);
- EI(keyStr == "clear")
-RET CNF(StrStrMap_clear);
- EI(keyStr == "append")
-RET CNF(StrStrMap_append);
+RET CNF(GuiPlacer_new);
+ EI(keyStr == "button")
+RET CNF(GuiPlacer_button);
+ EI(keyStr == "label")
+RET CNF(GuiPlacer_label);
+ EI(keyStr == "placer")
+RET CNF(GuiPlacer_placer);
+ EI(keyStr == "advanceY")
+RET CNF(GuiPlacer_advanceY);
+ EI(keyStr == "resetY")
+RET CNF(GuiPlacer_resetY);
+ EI(keyStr == "setXOrigin")
+RET CNF(GuiPlacer_setXOrigin);
+ EI(keyStr == "getXOriginMode")
+RET CNF(GuiPlacer_getXOriginMode);
+ EI(keyStr == "getXOrigin")
+RET CNF(GuiPlacer_getXOrigin);
+ EI(keyStr == "getPadding")
+RET CNF(GuiPlacer_getPadding);
  else
  CATE(KE,"Unknown member."));
 }
@@ -34182,7 +34570,7 @@ RET CNF(StrStrMap_append);
 RET CN;
 }
 
-void StrStrMap_set_member(CTX ctx,NO f,SV key,SV value)
+void GuiPlacer_set_member(CTX ctx,NO f,SV key,SV value)
 {
 if (key->type==STG::ValueType::StringType)
 {
@@ -34197,242 +34585,404 @@ if(0) {} else
 }
 }
 
-SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
+SV GuiPlacer_advanceY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::removeEntry" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"GuiPlacer::advanceY" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+( f->advanceY());
+RET CN;
+}
 if(a.getCount()==2)
-if(1&&TS(a[1],int))
+if(1&&TS(a[1],const GuiPlacer &))
 {
-( f->removeEntry(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1])));
+( f->advanceY(val_to_c<std::remove_reference<const GuiPlacer &>::type>::f(ctx,a[1])));
 RET CN;
 }
-CATE(TE,UFOF("StrStrMap::removeEntry.")));
+CATE(TE,UFOF("GuiPlacer::advanceY.")));
 RET CN;
 }
 
-SV StrStrMap_set(CTX ctx,const List<SV>&a)
+SV GuiPlacer_placer(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::set" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"GuiPlacer::placer" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],String)&&TS(a[2],String))
+if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
 {
-RET CV( f->set(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<String>::type>::f(ctx,a[2])));
+RET CV( f->placer(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2])));
 ;
 }
-CATE(TE,UFOF("StrStrMap::set.")));
+CATE(TE,UFOF("GuiPlacer::placer.")));
 RET CN;
 }
 
-SV StrStrMap_get(CTX ctx,const List<SV>&a)
+SV GuiPlacer_getPadding(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::get" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],String))
-{
-RET CV( f->get(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],String))
-{
-RET CV( f->get(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("StrStrMap::get.")));
-RET CN;
-}
-
-SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"StrStrMap::getEntryCount" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"GuiPlacer::getPadding" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getEntryCount());
+RET CV( f->getPadding());
 ;
 }
-CATE(TE,UFOF("StrStrMap::getEntryCount.")));
+CATE(TE,UFOF("GuiPlacer::getPadding.")));
 RET CN;
 }
 
-SV StrStrMap_clear(CTX ctx,const List<SV>&a)
+SV GuiPlacer_button(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::clear" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"GuiPlacer::button" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],const char *)&&TS(a[2],size_t)&&TS(a[3],size_t))
+{
+RET CV( f->button(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[3])));
+;
+}
+CATE(TE,UFOF("GuiPlacer::button.")));
+RET CN;
+}
+
+SV GuiPlacer_label(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GuiPlacer::label" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const char *))
+{
+( f->label(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GuiPlacer::label.")));
+RET CN;
+}
+
+SV GuiPlacer_resetY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GuiPlacer::resetY" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->clear());
+( f->resetY());
 RET CN;
 }
-CATE(TE,UFOF("StrStrMap::clear.")));
+CATE(TE,UFOF("GuiPlacer::resetY.")));
 RET CN;
 }
 
-SV StrStrMap_remove(CTX ctx,const List<SV>&a)
+SV GuiPlacer_getXOriginMode(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::remove" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"GuiPlacer::getXOriginMode" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(a.getCount()==1)
+if(1)
 {
-( f->remove(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("StrStrMap::remove.")));
-RET CN;
-}
-
-SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"StrStrMap::getValue" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CV( f->getXOriginMode());
 ;
 }
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
+CATE(TE,UFOF("GuiPlacer::getXOriginMode.")));
+RET CN;
+}
+
+SV GuiPlacer_setXOrigin(CTX ctx,const List<SV>&a)
 {
-RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+if(a.getCount()<1)
+CATE(VE,"GuiPlacer::setXOrigin" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],XOrigin)&&TS(a[2],int))
+{
+( f->setXOrigin(val_to_c<std::remove_reference<XOrigin>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("GuiPlacer::setXOrigin.")));
+RET CN;
+}
+
+SV GuiPlacer_getXOrigin(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GuiPlacer::getXOrigin" EAOE));
+GuiPlacer*f;
+f=(GuiPlacer*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXOrigin());
 ;
 }
-CATE(TE,UFOF("StrStrMap::getValue.")));
+CATE(TE,UFOF("GuiPlacer::getXOrigin.")));
 RET CN;
 }
 
-SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a)
+void ImGui_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,ImGui))
+CATE(TE,"ImGui::__del__ expects ImGui as first argument."));
+
+DELETE((ImGui*)f->data);
+}SV ImGui_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::getKeyHash" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"ImGui's constructor" EAOE));
+if(!TS(a[0],ImGui))
+CATE(TE,"ImGui's constructor expects ImGui as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(ImGui_funcs,NEW(ImGui),EXT->ImGui_typeID);
+CATE(TE,UFOF("ImGui's constructor.")));
+RET CN;
+}
+
+SV ImGui_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("ImGui");
+EI(keyStr=="__new__")
+RET CNF(ImGui_new);
+EI(keyStr=="__call__")
+RET CNF(ImGui_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(ImGui_new);
+ EI(keyStr == "rectangle")
+RET CNF(ImGui_rectangle);
+ EI(keyStr == "beginContainer")
+RET CNF(ImGui_beginContainer);
+ EI(keyStr == "endContainer")
+RET CNF(ImGui_endContainer);
+ EI(keyStr == "verticalScrollBar")
+RET CNF(ImGui_verticalScrollBar);
+ EI(keyStr == "horizontalScrollBar")
+RET CNF(ImGui_horizontalScrollBar);
+ EI(keyStr == "button")
+RET CNF(ImGui_button);
+ EI(keyStr == "label")
+RET CNF(ImGui_label);
+ EI(keyStr == "render")
+RET CNF(ImGui_render);
+ EI(keyStr=="buttonTextColor")
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->buttonTextColor);
+} EI(keyStr=="labelColor")
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->labelColor);
+} EI(keyStr=="textSize")
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->textSize);
+} EI(keyStr=="scrollSpeed")
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->scrollSpeed);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void ImGui_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="buttonTextColor")
+{
+ImGui*obj=(ImGui*)f->data;
+obj->buttonTextColor=val_to_c<decltype(obj->buttonTextColor)>::f(ctx,value);
+} EI(keyStr=="labelColor")
+{
+ImGui*obj=(ImGui*)f->data;
+obj->labelColor=val_to_c<decltype(obj->labelColor)>::f(ctx,value);
+} EI(keyStr=="textSize")
+{
+ImGui*obj=(ImGui*)f->data;
+obj->textSize=val_to_c<decltype(obj->textSize)>::f(ctx,value);
+} EI(keyStr=="scrollSpeed")
+{
+ImGui*obj=(ImGui*)f->data;
+obj->scrollSpeed=val_to_c<decltype(obj->scrollSpeed)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
+SV ImGui_endContainer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::endContainer" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
+if(1&&TS(a[1],Container *))
 {
-RET CV( f->getKeyHash(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+( f->endContainer(val_to_c<std::remove_reference<Container *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("ImGui::endContainer.")));
+RET CN;
+}
+
+SV ImGui_render(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::render" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->render());
+RET CN;
+}
+CATE(TE,UFOF("ImGui::render.")));
+RET CN;
+}
+
+SV ImGui_beginContainer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::beginContainer" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ImGui::beginContainer.")));
+RET CN;
+}
+
+SV ImGui_button(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::button" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
+
+if(a.getCount()==6)
+if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],int))
+{
+RET CV( f->button(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[5])));
 ;
 }
-CATE(TE,UFOF("StrStrMap::getKeyHash.")));
+CATE(TE,UFOF("ImGui::button.")));
 RET CN;
 }
 
-SV StrStrMap_append(CTX ctx,const List<SV>&a)
+SV ImGui_label(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::append" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"ImGui::label" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
+if(a.getCount()==6)
+if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],bool)&&TS(a[5],bool))
 {
-( f->append(val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("StrStrMap::append.")));
-RET CN;
-}
-
-SV StrStrMap_getKey(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"StrStrMap::getKey" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CV( f->label(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5])));
 ;
 }
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("StrStrMap::getKey.")));
+CATE(TE,UFOF("ImGui::label.")));
 RET CN;
 }
 
-SV StrStrMap___eq__(CTX ctx,const List<SV>&a)
+SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::__eq__" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"ImGui::verticalScrollBar" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
+if(a.getCount()==8)
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
+( f->verticalScrollBar(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<ScrollBar *>::type>::f(ctx,a[7])));
+RET CN;
 }
-CATE(TE,UFOF("StrStrMap::__eq__.")));
+CATE(TE,UFOF("ImGui::verticalScrollBar.")));
 RET CN;
 }
 
-SV StrStrMap_findEntry(CTX ctx,const List<SV>&a)
+SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::findEntry" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"ImGui::horizontalScrollBar" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(a.getCount()==8)
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
 {
-RET CV( f->findEntry(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
-;
+( f->horizontalScrollBar(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<ScrollBar *>::type>::f(ctx,a[7])));
+RET CN;
 }
-CATE(TE,UFOF("StrStrMap::findEntry.")));
+CATE(TE,UFOF("ImGui::horizontalScrollBar.")));
 RET CN;
 }
 
-SV StrStrMap___neq__(CTX ctx,const List<SV>&a)
+SV ImGui_rectangle(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::__neq__" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+CATE(VE,"ImGui::rectangle" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
+if(a.getCount()==11)
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],float)&&TS(a[6],float)&&TS(a[7],float)&&TS(a[8],float)&&TS(a[9],Float3)&&TS(a[10],Float4))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
+( f->rectangle(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[7]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[8]), val_to_c<std::remove_reference<Float3>::type>::f(ctx,a[9]), val_to_c<std::remove_reference<Float4>::type>::f(ctx,a[10])));
+RET CN;
 }
-CATE(TE,UFOF("StrStrMap::__neq__.")));
+CATE(TE,UFOF("ImGui::rectangle.")));
 RET CN;
 }
 
@@ -38260,6 +38810,86 @@ CATE(TE,UFOF("FloatList::__neq__.")));
 RET CN;
 }
 
+void Container_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Container))
+CATE(TE,"Container::__del__ expects Container as first argument."));
+
+DELETE((Container*)f->data);
+}SV Container_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Container's constructor" EAOE));
+if(!TS(a[0],Container))
+CATE(TE,"Container's constructor expects Container as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(Container_funcs,NEW(Container),EXT->Container_typeID);
+CATE(TE,UFOF("Container's constructor.")));
+RET CN;
+}
+
+SV Container_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Container");
+EI(keyStr=="__new__")
+RET CNF(Container_new);
+EI(keyStr=="__call__")
+RET CNF(Container_new);
+else
+ CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(Container_new);
+ EI(keyStr=="vertical")
+{
+Container*obj=(Container*)f->data;
+RET CV(obj->vertical);
+} EI(keyStr=="horizonal")
+{
+Container*obj=(Container*)f->data;
+RET CV(obj->horizonal);
+} else
+ CATE(KE,"Unknown member."));
+}
+}
+RET CN;
+}
+
+void Container_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="vertical")
+{
+Container*obj=(Container*)f->data;
+obj->vertical=val_to_c<decltype(obj->vertical)>::f(ctx,value);
+} EI(keyStr=="horizonal")
+{
+Container*obj=(Container*)f->data;
+obj->horizonal=val_to_c<decltype(obj->horizonal)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only."));
+}
+}
+}
+
 void LightDirectionalData_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,LightDirectionalData))
@@ -40167,20 +40797,10 @@ RET CNF(PhysicsShape_setCompound);
 RET CNF(PhysicsShape_save);
  EI(keyStr == "load")
 RET CNF(PhysicsShape_load);
- EI(keyStr == "reload")
-RET CNF(PhysicsShape_reload);
  EI(keyStr == "copy")
 RET CNF(PhysicsShape_copy);
  EI(keyStr == "getType")
 RET CNF(PhysicsShape_getType);
- EI(keyStr == "isLoaded")
-RET CNF(PhysicsShape_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(PhysicsShape_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(PhysicsShape_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(PhysicsShape_possiblyReload);
  EI(keyStr == "release")
 RET CNF(PhysicsShape_release);
  EI(keyStr == "getRefCount")
@@ -40189,11 +40809,7 @@ RET CNF(PhysicsShape_getRefCount);
 RET CNF(PhysicsShape_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(PhysicsShape_setFilename);
- EI(keyStr=="autoReload")
-{
-PhysicsShape*obj=(PhysicsShape*)f->data;
-RET CV(obj->autoReload);
-} else
+ else
  CATE(KE,"Unknown member."));
 }
 }
@@ -40209,11 +40825,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="autoReload")
-{
-PhysicsShape*obj=(PhysicsShape*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
@@ -40233,23 +40845,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("PhysicsShape::load.")));
-RET CN;
-}
-
-SV PhysicsShape_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"PhysicsShape::possiblyReload" EAOE));
-PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("PhysicsShape::possiblyReload.")));
 RET CN;
 }
 
@@ -40287,23 +40882,6 @@ CATE(TE,UFOF("PhysicsShape::setScale.")));
 RET CN;
 }
 
-SV PhysicsShape_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"PhysicsShape::isLoaded" EAOE));
-PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("PhysicsShape::isLoaded.")));
-RET CN;
-}
-
 SV PhysicsShape_setEmpty(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -40332,23 +40910,6 @@ CATE(TE,UFOF("PhysicsShape::getImpl.")));
 RET CN;
 }
 
-SV PhysicsShape_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"PhysicsShape::getLastFileModification" EAOE));
-PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("PhysicsShape::getLastFileModification.")));
-RET CN;
-}
-
 SV PhysicsShape_setCompound(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -40357,23 +40918,6 @@ PhysicsShape*f;
 f=(PhysicsShape*)((NO)a[0])->data;
 
 CATE(TE,UFOF("PhysicsShape::setCompound.")));
-RET CN;
-}
-
-SV PhysicsShape_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"PhysicsShape::shouldReload" EAOE));
-PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("PhysicsShape::shouldReload.")));
 RET CN;
 }
 
@@ -40628,23 +41172,6 @@ PhysicsShape*f;
 f=(PhysicsShape*)((NO)a[0])->data;
 
 CATE(TE,UFOF("PhysicsShape::setCylinder.")));
-RET CN;
-}
-
-SV PhysicsShape_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"PhysicsShape::reload" EAOE));
-PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("PhysicsShape::reload.")));
 RET CN;
 }
 
@@ -45922,22 +46449,12 @@ RET CNF(Audio_getDuration);
 RET CNF(Audio_getSampleIndex);
  EI(keyStr == "load")
 RET CNF(Audio_load);
- EI(keyStr == "reload")
-RET CNF(Audio_reload);
  EI(keyStr == "save")
 RET CNF(Audio_save);
  EI(keyStr == "copy")
 RET CNF(Audio_copy);
  EI(keyStr == "getType")
 RET CNF(Audio_getType);
- EI(keyStr == "isLoaded")
-RET CNF(Audio_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(Audio_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(Audio_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(Audio_possiblyReload);
  EI(keyStr == "release")
 RET CNF(Audio_release);
  EI(keyStr == "getRefCount")
@@ -45954,10 +46471,6 @@ RET CV(obj->frequency);
 {
 Audio*obj=(Audio*)f->data;
 RET CV(obj->data);
-} EI(keyStr=="autoReload")
-{
-Audio*obj=(Audio*)f->data;
-RET CV(obj->autoReload);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -45982,184 +46495,10 @@ obj->frequency=val_to_c<decltype(obj->frequency)>::f(ctx,value);
 {
 Audio*obj=(Audio*)f->data;
 obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
-} EI(keyStr=="autoReload")
-{
-Audio*obj=(Audio*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
-}
-
-SV Audio_load(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::load" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->load());
-RET CN;
-}
-CATE(TE,UFOF("Audio::load.")));
-RET CN;
-}
-
-SV Audio_changeSampleFrequency(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::changeSampleFrequency" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==4)
-if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t))
-{
-RET CV( f->changeSampleFrequency(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[3])));
-;
-}
-CATE(TE,UFOF("Audio::changeSampleFrequency.")));
-RET CN;
-}
-
-SV Audio_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::possiblyReload" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("Audio::possiblyReload.")));
-RET CN;
-}
-
-SV Audio_setFilename(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::setFilename" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Audio::setFilename.")));
-RET CN;
-}
-
-SV Audio_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::isLoaded" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("Audio::isLoaded.")));
-RET CN;
-}
-
-SV Audio_getFilename(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::getFilename" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getFilename());
-;
-}
-CATE(TE,UFOF("Audio::getFilename.")));
-RET CN;
-}
-
-SV Audio_getMonoSample(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::getMonoSample" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getMonoSample(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Audio::getMonoSample.")));
-RET CN;
-}
-
-SV Audio_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::getLastFileModification" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("Audio::getLastFileModification.")));
-RET CN;
-}
-
-SV Audio_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::shouldReload" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("Audio::shouldReload.")));
-RET CN;
-}
-
-SV Audio_save(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::save" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-CATE(TE,UFOF("Audio::save.")));
-RET CN;
 }
 
 SV Audio_getSampleIndex(CTX ctx,const List<SV>&a)
@@ -46185,20 +46524,71 @@ CATE(TE,UFOF("Audio::getSampleIndex.")));
 RET CN;
 }
 
-SV Audio_getRefCount(CTX ctx,const List<SV>&a)
+SV Audio_changeSampleFrequency(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Audio::getRefCount" EAOE));
+CATE(VE,"Audio::changeSampleFrequency" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t))
+{
+RET CV( f->changeSampleFrequency(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[3])));
+;
+}
+CATE(TE,UFOF("Audio::changeSampleFrequency.")));
+RET CN;
+}
+
+SV Audio_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::save" EAOE));
 Audio*f;
 f=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getRefCount());
-;
+( f->save());
+RET CN;
 }
-CATE(TE,UFOF("Audio::getRefCount.")));
+CATE(TE,UFOF("Audio::save.")));
+RET CN;
+}
+
+SV Audio_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::setFilename" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Audio::setFilename.")));
+RET CN;
+}
+
+SV Audio_setMonoSample(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::setMonoSample" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],float))
+{
+( f->setMonoSample(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("Audio::setMonoSample.")));
 RET CN;
 }
 
@@ -46216,6 +46606,74 @@ RET CV( f->getType());
 ;
 }
 CATE(TE,UFOF("Audio::getType.")));
+RET CN;
+}
+
+SV Audio_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::load" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->load());
+RET CN;
+}
+CATE(TE,UFOF("Audio::load.")));
+RET CN;
+}
+
+SV Audio_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::copy" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Audio::copy.")));
+RET CN;
+}
+
+SV Audio_getMonoSample(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getMonoSample" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getMonoSample(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Audio::getMonoSample.")));
+RET CN;
+}
+
+SV Audio_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::release" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->release());
+RET CN;
+}
+CATE(TE,UFOF("Audio::release.")));
 RET CN;
 }
 
@@ -46239,6 +46697,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("Audio::removeContent.")));
+RET CN;
+}
+
+SV Audio_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Audio::getRefCount" EAOE));
+Audio*f;
+f=(Audio*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRefCount());
+;
+}
+CATE(TE,UFOF("Audio::getRefCount.")));
 RET CN;
 }
 
@@ -46276,23 +46751,6 @@ CATE(TE,UFOF("Audio::getNumSamples.")));
 RET CN;
 }
 
-SV Audio_copy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::copy" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->copy());
-;
-}
-CATE(TE,UFOF("Audio::copy.")));
-RET CN;
-}
-
 SV Audio_getSample(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46310,54 +46768,20 @@ CATE(TE,UFOF("Audio::getSample.")));
 RET CN;
 }
 
-SV Audio_setMonoSample(CTX ctx,const List<SV>&a)
+SV Audio_getFilename(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Audio::setMonoSample" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],float))
-{
-( f->setMonoSample(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("Audio::setMonoSample.")));
-RET CN;
-}
-
-SV Audio_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::reload" EAOE));
+CATE(VE,"Audio::getFilename" EAOE));
 Audio*f;
 f=(Audio*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->reload());
-RET CN;
+RET CV( f->getFilename());
+;
 }
-CATE(TE,UFOF("Audio::reload.")));
-RET CN;
-}
-
-SV Audio_release(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Audio::release" EAOE));
-Audio*f;
-f=(Audio*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->release());
-RET CN;
-}
-CATE(TE,UFOF("Audio::release.")));
+CATE(TE,UFOF("Audio::getFilename.")));
 RET CN;
 }
 
@@ -46477,20 +46901,10 @@ RET CNF(GfxTexture_getImpl);
 RET CNF(GfxTexture_save);
  EI(keyStr == "load")
 RET CNF(GfxTexture_load);
- EI(keyStr == "reload")
-RET CNF(GfxTexture_reload);
  EI(keyStr == "copy")
 RET CNF(GfxTexture_copy);
  EI(keyStr == "getType")
 RET CNF(GfxTexture_getType);
- EI(keyStr == "isLoaded")
-RET CNF(GfxTexture_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(GfxTexture_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(GfxTexture_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(GfxTexture_possiblyReload);
  EI(keyStr == "release")
 RET CNF(GfxTexture_release);
  EI(keyStr == "getRefCount")
@@ -46499,11 +46913,7 @@ RET CNF(GfxTexture_getRefCount);
 RET CNF(GfxTexture_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(GfxTexture_setFilename);
- EI(keyStr=="autoReload")
-{
-GfxTexture*obj=(GfxTexture*)f->data;
-RET CV(obj->autoReload);
-} else
+ else
  CATE(KE,"Unknown member."));
 }
 }
@@ -46519,11 +46929,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="autoReload")
-{
-GfxTexture*obj=(GfxTexture*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only."));
 }
 }
@@ -46597,23 +47003,6 @@ CATE(TE,UFOF("GfxTexture::setMinFilter.")));
 RET CN;
 }
 
-SV GfxTexture_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::possiblyReload" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::possiblyReload.")));
-RET CN;
-}
-
 SV GfxTexture_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46651,23 +47040,6 @@ if(1&&TS(a[1],unsigned int)&&TS(a[2],unsigned int)&&TS(a[3],const ResizableData 
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::allocMipmap.")));
-RET CN;
-}
-
-SV GfxTexture_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::isLoaded" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("GfxTexture::isLoaded.")));
 RET CN;
 }
 
@@ -46823,23 +47195,6 @@ CATE(TE,UFOF("GfxTexture::allocMipmapFace.")));
 RET CN;
 }
 
-SV GfxTexture_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getLastFileModification" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("GfxTexture::getLastFileModification.")));
-RET CN;
-}
-
 SV GfxTexture_setMipmapMode(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46854,23 +47209,6 @@ if(1&&TS(a[1],GfxMipmapMode))
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::setMipmapMode.")));
-RET CN;
-}
-
-SV GfxTexture_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::shouldReload" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("GfxTexture::shouldReload.")));
 RET CN;
 }
 
@@ -47132,23 +47470,6 @@ if(1&&TS(a[1],GfxFilter))
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::setMagFilter.")));
-RET CN;
-}
-
-SV GfxTexture_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::reload" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::reload.")));
 RET CN;
 }
 
@@ -47614,20 +47935,10 @@ RET CNF(GfxModel_removeContent);
 RET CNF(GfxModel_save);
  EI(keyStr == "load")
 RET CNF(GfxModel_load);
- EI(keyStr == "reload")
-RET CNF(GfxModel_reload);
  EI(keyStr == "copy")
 RET CNF(GfxModel_copy);
  EI(keyStr == "getType")
 RET CNF(GfxModel_getType);
- EI(keyStr == "isLoaded")
-RET CNF(GfxModel_isLoaded);
- EI(keyStr == "getLastFileModification")
-RET CNF(GfxModel_getLastFileModification);
- EI(keyStr == "shouldReload")
-RET CNF(GfxModel_shouldReload);
- EI(keyStr == "possiblyReload")
-RET CNF(GfxModel_possiblyReload);
  EI(keyStr == "release")
 RET CNF(GfxModel_release);
  EI(keyStr == "getRefCount")
@@ -47640,10 +47951,6 @@ RET CNF(GfxModel_setFilename);
 {
 GfxModel*obj=(GfxModel*)f->data;
 RET CV(obj->subModels);
-} EI(keyStr=="autoReload")
-{
-GfxModel*obj=(GfxModel*)f->data;
-RET CV(obj->autoReload);
 } else
  CATE(KE,"Unknown member."));
 }
@@ -47664,10 +47971,6 @@ if(0) {} EI(keyStr=="subModels")
 {
 GfxModel*obj=(GfxModel*)f->data;
 obj->subModels=val_to_c<decltype(obj->subModels)>::f(ctx,value);
-} EI(keyStr=="autoReload")
-{
-GfxModel*obj=(GfxModel*)f->data;
-obj->autoReload=val_to_c<decltype(obj->autoReload)>::f(ctx,value);
 } else
  CATE(KE,"Unknown member or member if read-only."));
 }
@@ -47725,40 +48028,6 @@ CATE(TE,UFOF("GfxModel::copy.")));
 RET CN;
 }
 
-SV GfxModel_getLastFileModification(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxModel::getLastFileModification" EAOE));
-GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLastFileModification());
-;
-}
-CATE(TE,UFOF("GfxModel::getLastFileModification.")));
-RET CN;
-}
-
-SV GfxModel_possiblyReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxModel::possiblyReload" EAOE));
-GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->possiblyReload());
-RET CN;
-}
-CATE(TE,UFOF("GfxModel::possiblyReload.")));
-RET CN;
-}
-
 SV GfxModel_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -47790,40 +48059,6 @@ if(1&&TS(a[1],const String &))
 RET CN;
 }
 CATE(TE,UFOF("GfxModel::setFilename.")));
-RET CN;
-}
-
-SV GfxModel_isLoaded(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxModel::isLoaded" EAOE));
-GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isLoaded());
-;
-}
-CATE(TE,UFOF("GfxModel::isLoaded.")));
-RET CN;
-}
-
-SV GfxModel_reload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxModel::reload" EAOE));
-GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->reload());
-RET CN;
-}
-CATE(TE,UFOF("GfxModel::reload.")));
 RET CN;
 }
 
@@ -47881,23 +48116,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxModel::release.")));
-RET CN;
-}
-
-SV GfxModel_shouldReload(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxModel::shouldReload" EAOE));
-GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldReload());
-;
-}
-CATE(TE,UFOF("GfxModel::shouldReload.")));
 RET CN;
 }
 
@@ -49491,6 +49709,87 @@ obj.refCount=1;
 obj.data=f->data;
 Filesystem_set_member(ctx, &obj, key, value);
 }
+SV StrStrMap_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->StrStrMap;
+NO obj=(NO)StrStrMap_new(ctx, args2);
+obj->funcs=StrStrMap_ptr_funcs;
+obj->typeID=EXT->StrStrMap_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV StrStrMap_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"StrStrMapRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,HashMap<String,String>*))
+CATE(TE,"StrStrMapRef::deref expects StrStrMapRef as first argument."));
+RET CV(*(HashMap<String,String> *)((NO)f)->data);
+}
+SV StrStrMap_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"StrStrMap::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,HashMap<String,String>*))
+CATE(TE,"StrStrMapRef::refset expects StrStrMapRef as first argument."));
+*((HashMap<String,String> *)((NO)f)->data) = val_to_c<HashMap<String,String>>::f(ctx,a[1]);
+RET CN;
+}
+
+void StrStrMap_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,HashMap<String,String>*))
+CATE(TE,"StrStrMapRef::__del__ expects StrStrMapRef as first argument."));
+SCRIPT_DELETE((HashMap<String,String> *)f->data);
+}
+SV StrStrMap_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,HashMap<String,String>*))
+CATE(TE,FAE("StrStrMapRef's get method","StrStrMapRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("StrStrMapPtr");
+EI(keyStr=="__new__")
+RET CNF(StrStrMap_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(StrStrMap_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(StrStrMap_ptr_deref);
+if(keyStr=="refset")RET CNF(StrStrMap_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=StrStrMap_funcs;
+obj.typeID=EXT->StrStrMap_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET StrStrMap_get_member(ctx, &obj, key);
+}
+void StrStrMap_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,HashMap<String,String>*))
+CATE(TE,FAE("StrStrMapRef's set method","StrStrMapRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=StrStrMap_funcs;
+obj.typeID=EXT->StrStrMap_typeID;
+obj.refCount=1;
+obj.data=f->data;
+StrStrMap_set_member(ctx, &obj, key, value);
+}
 SV GfxApi_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -49653,46 +49952,46 @@ obj.refCount=1;
 obj.data=f->data;
 GfxCompiledShader_set_member(ctx, &obj, key, value);
 }
-SV UInt2_ptr_new(CTX ctx,const List<SV>&a)
+SV ScrollBar_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->UInt2;
-NO obj=(NO)UInt2_new(ctx, args2);
-obj->funcs=UInt2_ptr_funcs;
-obj->typeID=EXT->UInt2_ptr_typeID;
+args2[0]=EXT->ScrollBar;
+NO obj=(NO)ScrollBar_new(ctx, args2);
+obj->funcs=ScrollBar_ptr_funcs;
+obj->typeID=EXT->ScrollBar_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 RET(SV)obj;
 }
-SV UInt2_ptr_deref(CTX ctx,const List<SV>&a)
+SV ScrollBar_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"UInt2Ref::deref" EAOE));
+CATE(VE,"ScrollBarRef::deref" EAOE));
 SV f=a[0];
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,"UInt2Ref::deref expects UInt2Ref as first argument."));
-RET CV(*(T2<uint32_t> *)((NO)f)->data);
+if(!TS((SV)f,ScrollBar*))
+CATE(TE,"ScrollBarRef::deref expects ScrollBarRef as first argument."));
+RET CV(*(ScrollBar *)((NO)f)->data);
 }
-SV UInt2_ptr_set(CTX ctx,const List<SV>&a)
+SV ScrollBar_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"UInt2::refset expects two arguments."));
+CATE(VE,"ScrollBar::refset expects two arguments."));
 SV f=a[0];
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,"UInt2Ref::refset expects UInt2Ref as first argument."));
-*((T2<uint32_t> *)((NO)f)->data) = val_to_c<T2<uint32_t>>::f(ctx,a[1]);
+if(!TS((SV)f,ScrollBar*))
+CATE(TE,"ScrollBarRef::refset expects ScrollBarRef as first argument."));
+*((ScrollBar *)((NO)f)->data) = val_to_c<ScrollBar>::f(ctx,a[1]);
 RET CN;
 }
 
-void UInt2_ptr_destroy(CTX ctx,NO f)
+void ScrollBar_ptr_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,"UInt2Ref::__del__ expects UInt2Ref as first argument."));
-SCRIPT_DELETE((T2<uint32_t> *)f->data);
+if(!TS((SV)f,ScrollBar*))
+CATE(TE,"ScrollBarRef::__del__ expects ScrollBarRef as first argument."));
+SCRIPT_DELETE((ScrollBar *)f->data);
 }
-SV UInt2_ptr_get_member(CTX ctx,NO f,SV key)
+SV ScrollBar_ptr_get_member(CTX ctx,NO f,SV key)
 {
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,FAE("UInt2Ref's get method","UInt2Ref")));
+if(!TS((SV)f,ScrollBar*))
+CATE(TE,FAE("ScrollBarRef's get method","ScrollBarRef")));
 if (key->type==STG::ValueType::StringType)
 {
 String keyStr=((STG::StringValue *)key)->value;
@@ -49701,38 +50000,38 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("UInt2Ptr");
+RET STG::createString("ScrollBarPtr");
 EI(keyStr=="__new__")
-RET CNF(UInt2_ptr_new);
+RET CNF(ScrollBar_ptr_new);
 EI(keyStr=="__call__")
-RET CNF(UInt2_ptr_new);
+RET CNF(ScrollBar_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")RET CNF(UInt2_ptr_deref);
-if(keyStr=="refset")RET CNF(UInt2_ptr_set);
+if(keyStr=="deref")RET CNF(ScrollBar_ptr_deref);
+if(keyStr=="refset")RET CNF(ScrollBar_ptr_set);
 }
 }
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt2_funcs;
-obj.typeID=EXT->UInt2_typeID;
+obj.funcs=ScrollBar_funcs;
+obj.typeID=EXT->ScrollBar_typeID;
 obj.refCount=1;
 obj.data=f->data;
-RET UInt2_get_member(ctx, &obj, key);
+RET ScrollBar_get_member(ctx, &obj, key);
 }
-void UInt2_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+void ScrollBar_ptr_set_member(CTX ctx,NO f,SV key,SV value)
 {
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,FAE("UInt2Ref's set method","UInt2Ref")));
+if(!TS((SV)f,ScrollBar*))
+CATE(TE,FAE("ScrollBarRef's set method","ScrollBarRef")));
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt2_funcs;
-obj.typeID=EXT->UInt2_typeID;
+obj.funcs=ScrollBar_funcs;
+obj.typeID=EXT->ScrollBar_typeID;
 obj.refCount=1;
 obj.data=f->data;
-UInt2_set_member(ctx, &obj, key, value);
+ScrollBar_set_member(ctx, &obj, key, value);
 }
 SV GhostObjList_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -49975,6 +50274,87 @@ obj.typeID=EXT->RigidBody_typeID;
 obj.refCount=1;
 obj.data=f->data;
 RigidBody_set_member(ctx, &obj, key, value);
+}
+SV UInt2_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->UInt2;
+NO obj=(NO)UInt2_new(ctx, args2);
+obj->funcs=UInt2_ptr_funcs;
+obj->typeID=EXT->UInt2_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV UInt2_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"UInt2Ref::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,T2<uint32_t>*))
+CATE(TE,"UInt2Ref::deref expects UInt2Ref as first argument."));
+RET CV(*(T2<uint32_t> *)((NO)f)->data);
+}
+SV UInt2_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"UInt2::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,T2<uint32_t>*))
+CATE(TE,"UInt2Ref::refset expects UInt2Ref as first argument."));
+*((T2<uint32_t> *)((NO)f)->data) = val_to_c<T2<uint32_t>>::f(ctx,a[1]);
+RET CN;
+}
+
+void UInt2_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,T2<uint32_t>*))
+CATE(TE,"UInt2Ref::__del__ expects UInt2Ref as first argument."));
+SCRIPT_DELETE((T2<uint32_t> *)f->data);
+}
+SV UInt2_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,T2<uint32_t>*))
+CATE(TE,FAE("UInt2Ref's get method","UInt2Ref")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("UInt2Ptr");
+EI(keyStr=="__new__")
+RET CNF(UInt2_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(UInt2_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(UInt2_ptr_deref);
+if(keyStr=="refset")RET CNF(UInt2_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=UInt2_funcs;
+obj.typeID=EXT->UInt2_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET UInt2_get_member(ctx, &obj, key);
+}
+void UInt2_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,T2<uint32_t>*))
+CATE(TE,FAE("UInt2Ref's set method","UInt2Ref")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=UInt2_funcs;
+obj.typeID=EXT->UInt2_typeID;
+obj.refCount=1;
+obj.data=f->data;
+UInt2_set_member(ctx, &obj, key, value);
 }
 SV LightList_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -52653,46 +53033,46 @@ obj.refCount=1;
 obj.data=f->data;
 AudioWorld_set_member(ctx, &obj, key, value);
 }
-SV StrStrMap_ptr_new(CTX ctx,const List<SV>&a)
+SV GuiPlacer_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
-args2[0]=EXT->StrStrMap;
-NO obj=(NO)StrStrMap_new(ctx, args2);
-obj->funcs=StrStrMap_ptr_funcs;
-obj->typeID=EXT->StrStrMap_ptr_typeID;
+args2[0]=EXT->GuiPlacer;
+NO obj=(NO)GuiPlacer_new(ctx, args2);
+obj->funcs=GuiPlacer_ptr_funcs;
+obj->typeID=EXT->GuiPlacer_ptr_typeID;
 setAllocInfo(obj->data, AllocInfo(true, false));
 RET(SV)obj;
 }
-SV StrStrMap_ptr_deref(CTX ctx,const List<SV>&a)
+SV GuiPlacer_ptr_deref(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
-CATE(VE,"StrStrMapRef::deref" EAOE));
+CATE(VE,"GuiPlacerRef::deref" EAOE));
 SV f=a[0];
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,"StrStrMapRef::deref expects StrStrMapRef as first argument."));
-RET CV(*(HashMap<String,String> *)((NO)f)->data);
+if(!TS((SV)f,GuiPlacer*))
+CATE(TE,"GuiPlacerRef::deref expects GuiPlacerRef as first argument."));
+RET CV(*(GuiPlacer *)((NO)f)->data);
 }
-SV StrStrMap_ptr_set(CTX ctx,const List<SV>&a)
+SV GuiPlacer_ptr_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
-CATE(VE,"StrStrMap::refset expects two arguments."));
+CATE(VE,"GuiPlacer::refset expects two arguments."));
 SV f=a[0];
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,"StrStrMapRef::refset expects StrStrMapRef as first argument."));
-*((HashMap<String,String> *)((NO)f)->data) = val_to_c<HashMap<String,String>>::f(ctx,a[1]);
+if(!TS((SV)f,GuiPlacer*))
+CATE(TE,"GuiPlacerRef::refset expects GuiPlacerRef as first argument."));
+*((GuiPlacer *)((NO)f)->data) = val_to_c<GuiPlacer>::f(ctx,a[1]);
 RET CN;
 }
 
-void StrStrMap_ptr_destroy(CTX ctx,NO f)
+void GuiPlacer_ptr_destroy(CTX ctx,NO f)
 {
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,"StrStrMapRef::__del__ expects StrStrMapRef as first argument."));
-SCRIPT_DELETE((HashMap<String,String> *)f->data);
+if(!TS((SV)f,GuiPlacer*))
+CATE(TE,"GuiPlacerRef::__del__ expects GuiPlacerRef as first argument."));
+SCRIPT_DELETE((GuiPlacer *)f->data);
 }
-SV StrStrMap_ptr_get_member(CTX ctx,NO f,SV key)
+SV GuiPlacer_ptr_get_member(CTX ctx,NO f,SV key)
 {
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,FAE("StrStrMapRef's get method","StrStrMapRef")));
+if(!TS((SV)f,GuiPlacer*))
+CATE(TE,FAE("GuiPlacerRef's get method","GuiPlacerRef")));
 if (key->type==STG::ValueType::StringType)
 {
 String keyStr=((STG::StringValue *)key)->value;
@@ -52701,38 +53081,119 @@ if(f->data==NULL)
 if(keyStr=="__typeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__name__")
-RET STG::createString("StrStrMapPtr");
+RET STG::createString("GuiPlacerPtr");
 EI(keyStr=="__new__")
-RET CNF(StrStrMap_ptr_new);
+RET CNF(GuiPlacer_ptr_new);
 EI(keyStr=="__call__")
-RET CNF(StrStrMap_ptr_new);
+RET CNF(GuiPlacer_ptr_new);
 else
 CATE(KE,"Unknown member."));
 } else
 {
-if(keyStr=="deref")RET CNF(StrStrMap_ptr_deref);
-if(keyStr=="refset")RET CNF(StrStrMap_ptr_set);
+if(keyStr=="deref")RET CNF(GuiPlacer_ptr_deref);
+if(keyStr=="refset")RET CNF(GuiPlacer_ptr_set);
 }
 }
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=StrStrMap_funcs;
-obj.typeID=EXT->StrStrMap_typeID;
+obj.funcs=GuiPlacer_funcs;
+obj.typeID=EXT->GuiPlacer_typeID;
 obj.refCount=1;
 obj.data=f->data;
-RET StrStrMap_get_member(ctx, &obj, key);
+RET GuiPlacer_get_member(ctx, &obj, key);
 }
-void StrStrMap_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+void GuiPlacer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
 {
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,FAE("StrStrMapRef's set method","StrStrMapRef")));
+if(!TS((SV)f,GuiPlacer*))
+CATE(TE,FAE("GuiPlacerRef's set method","GuiPlacerRef")));
 STG::NativeObject obj;
 obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=StrStrMap_funcs;
-obj.typeID=EXT->StrStrMap_typeID;
+obj.funcs=GuiPlacer_funcs;
+obj.typeID=EXT->GuiPlacer_typeID;
 obj.refCount=1;
 obj.data=f->data;
-StrStrMap_set_member(ctx, &obj, key, value);
+GuiPlacer_set_member(ctx, &obj, key, value);
+}
+SV ImGui_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->ImGui;
+NO obj=(NO)ImGui_new(ctx, args2);
+obj->funcs=ImGui_ptr_funcs;
+obj->typeID=EXT->ImGui_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV ImGui_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"ImGuiRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,ImGui*))
+CATE(TE,"ImGuiRef::deref expects ImGuiRef as first argument."));
+RET CV(*(ImGui *)((NO)f)->data);
+}
+SV ImGui_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"ImGui::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,ImGui*))
+CATE(TE,"ImGuiRef::refset expects ImGuiRef as first argument."));
+*((ImGui *)((NO)f)->data) = val_to_c<ImGui>::f(ctx,a[1]);
+RET CN;
+}
+
+void ImGui_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,ImGui*))
+CATE(TE,"ImGuiRef::__del__ expects ImGuiRef as first argument."));
+SCRIPT_DELETE((ImGui *)f->data);
+}
+SV ImGui_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,ImGui*))
+CATE(TE,FAE("ImGuiRef's get method","ImGuiRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("ImGuiPtr");
+EI(keyStr=="__new__")
+RET CNF(ImGui_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(ImGui_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(ImGui_ptr_deref);
+if(keyStr=="refset")RET CNF(ImGui_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=ImGui_funcs;
+obj.typeID=EXT->ImGui_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET ImGui_get_member(ctx, &obj, key);
+}
+void ImGui_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,ImGui*))
+CATE(TE,FAE("ImGuiRef's set method","ImGuiRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=ImGui_funcs;
+obj.typeID=EXT->ImGui_typeID;
+obj.refCount=1;
+obj.data=f->data;
+ImGui_set_member(ctx, &obj, key, value);
 }
 SV StringList_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -53138,6 +53599,87 @@ obj.typeID=EXT->FloatList_typeID;
 obj.refCount=1;
 obj.data=f->data;
 FloatList_set_member(ctx, &obj, key, value);
+}
+SV Container_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Container;
+NO obj=(NO)Container_new(ctx, args2);
+obj->funcs=Container_ptr_funcs;
+obj->typeID=EXT->Container_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV Container_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"ContainerRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,Container*))
+CATE(TE,"ContainerRef::deref expects ContainerRef as first argument."));
+RET CV(*(Container *)((NO)f)->data);
+}
+SV Container_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Container::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,Container*))
+CATE(TE,"ContainerRef::refset expects ContainerRef as first argument."));
+*((Container *)((NO)f)->data) = val_to_c<Container>::f(ctx,a[1]);
+RET CN;
+}
+
+void Container_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Container*))
+CATE(TE,"ContainerRef::__del__ expects ContainerRef as first argument."));
+SCRIPT_DELETE((Container *)f->data);
+}
+SV Container_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,Container*))
+CATE(TE,FAE("ContainerRef's get method","ContainerRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("ContainerPtr");
+EI(keyStr=="__new__")
+RET CNF(Container_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(Container_ptr_new);
+else
+CATE(KE,"Unknown member."));
+} else
+{
+if(keyStr=="deref")RET CNF(Container_ptr_deref);
+if(keyStr=="refset")RET CNF(Container_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=Container_funcs;
+obj.typeID=EXT->Container_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET Container_get_member(ctx, &obj, key);
+}
+void Container_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,Container*))
+CATE(TE,FAE("ContainerRef's set method","ContainerRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=Container_funcs;
+obj.typeID=EXT->Container_typeID;
+obj.refCount=1;
+obj.data=f->data;
+Container_set_member(ctx, &obj, key, value);
 }
 SV LightDirectionalData_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -55114,6 +55656,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("FilesystemRef", ext->Filesystem_ptr);
     
     typeID = engine->createNewTypeID();
+    ext->StrStrMap_typeID = typeID;
+    ext->StrStrMap = scripting::createNativeObject(StrStrMap_funcs, NULL, typeID);
+    engine->getGlobalVars().set("StrStrMap", ext->StrStrMap);
+    
+    typeID = engine->createNewTypeID();
+    ext->StrStrMap_ptr_typeID = typeID;
+    ext->StrStrMap_ptr = scripting::createNativeObject(StrStrMap_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("StrStrMapRef", ext->StrStrMap_ptr);
+    
+    typeID = engine->createNewTypeID();
     ext->GfxApi_typeID = typeID;
     ext->GfxApi = scripting::createNativeObject(GfxApi_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxApi", ext->GfxApi);
@@ -55134,14 +55686,14 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxCompiledShaderRef", ext->GfxCompiledShader_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->UInt2_typeID = typeID;
-    ext->UInt2 = scripting::createNativeObject(UInt2_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt2", ext->UInt2);
+    ext->ScrollBar_typeID = typeID;
+    ext->ScrollBar = scripting::createNativeObject(ScrollBar_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ScrollBar", ext->ScrollBar);
     
     typeID = engine->createNewTypeID();
-    ext->UInt2_ptr_typeID = typeID;
-    ext->UInt2_ptr = scripting::createNativeObject(UInt2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt2Ref", ext->UInt2_ptr);
+    ext->ScrollBar_ptr_typeID = typeID;
+    ext->ScrollBar_ptr = scripting::createNativeObject(ScrollBar_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ScrollBarRef", ext->ScrollBar_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GhostObjList_typeID = typeID;
@@ -55172,6 +55724,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->RigidBody_ptr_typeID = typeID;
     ext->RigidBody_ptr = scripting::createNativeObject(RigidBody_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBodyRef", ext->RigidBody_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->UInt2_typeID = typeID;
+    ext->UInt2 = scripting::createNativeObject(UInt2_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt2", ext->UInt2);
+    
+    typeID = engine->createNewTypeID();
+    ext->UInt2_ptr_typeID = typeID;
+    ext->UInt2_ptr = scripting::createNativeObject(UInt2_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("UInt2Ref", ext->UInt2_ptr);
     
     typeID = engine->createNewTypeID();
     ext->LightList_typeID = typeID;
@@ -55504,14 +56066,24 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AudioWorldRef", ext->AudioWorld_ptr);
     
     typeID = engine->createNewTypeID();
-    ext->StrStrMap_typeID = typeID;
-    ext->StrStrMap = scripting::createNativeObject(StrStrMap_funcs, NULL, typeID);
-    engine->getGlobalVars().set("StrStrMap", ext->StrStrMap);
+    ext->GuiPlacer_typeID = typeID;
+    ext->GuiPlacer = scripting::createNativeObject(GuiPlacer_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GuiPlacer", ext->GuiPlacer);
     
     typeID = engine->createNewTypeID();
-    ext->StrStrMap_ptr_typeID = typeID;
-    ext->StrStrMap_ptr = scripting::createNativeObject(StrStrMap_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("StrStrMapRef", ext->StrStrMap_ptr);
+    ext->GuiPlacer_ptr_typeID = typeID;
+    ext->GuiPlacer_ptr = scripting::createNativeObject(GuiPlacer_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GuiPlacerRef", ext->GuiPlacer_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->ImGui_typeID = typeID;
+    ext->ImGui = scripting::createNativeObject(ImGui_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ImGui", ext->ImGui);
+    
+    typeID = engine->createNewTypeID();
+    ext->ImGui_ptr_typeID = typeID;
+    ext->ImGui_ptr = scripting::createNativeObject(ImGui_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ImGuiRef", ext->ImGui_ptr);
     
     typeID = engine->createNewTypeID();
     ext->StringList_typeID = typeID;
@@ -55562,6 +56134,16 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->FloatList_ptr_typeID = typeID;
     ext->FloatList_ptr = scripting::createNativeObject(FloatList_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("FloatListRef", ext->FloatList_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->Container_typeID = typeID;
+    ext->Container = scripting::createNativeObject(Container_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Container", ext->Container);
+    
+    typeID = engine->createNewTypeID();
+    ext->Container_ptr_typeID = typeID;
+    ext->Container_ptr = scripting::createNativeObject(Container_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ContainerRef", ext->Container_ptr);
     
     typeID = engine->createNewTypeID();
     ext->LightDirectionalData_typeID = typeID;
@@ -55831,6 +56413,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->FileOrigin_typeID = typeID;
     ext->FileOrigin = scripting::createNativeObject(FileOrigin_funcs, NULL, typeID);
     engine->getGlobalVars().set("FileOrigin", ext->FileOrigin);
+    
+    typeID = engine->createNewTypeID();
+    ext->XOrigin_typeID = typeID;
+    ext->XOrigin = scripting::createNativeObject(XOrigin_funcs, NULL, typeID);
+    engine->getGlobalVars().set("XOrigin", ext->XOrigin);
     
     typeID = engine->createNewTypeID();
     ext->ResType_typeID = typeID;

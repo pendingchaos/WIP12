@@ -75,8 +75,6 @@ class GfxShader : public Resource
         }
 
         GfxCompiledShader *getCompiled(const HashMap<String, String>& defines=HashMap<String, String>()) const;
-
-        virtual void possiblyReload();
     private:
         virtual void _load();
         virtual Resource *_copy() const;

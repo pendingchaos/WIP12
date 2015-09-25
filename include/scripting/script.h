@@ -156,7 +156,6 @@ class Script : public Resource
         virtual ~Script();
 
         virtual void removeContent();
-        virtual void possiblyReload();
 
         ScriptInstance *createInstance(const char *name, Entity *entity=nullptr, Scene *scene=nullptr);
 

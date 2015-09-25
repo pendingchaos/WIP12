@@ -5,21 +5,14 @@
 #include "filesystem.h"
 #include "globals.h"
 
-Resource::Resource(ResType type_) : autoReload(true),
-                                    filename(""),
+Resource::Resource(ResType type_) : filename(""),
                                     type(type_),
-                                    loaded(true),
                                     refCount(1) {}
 
 Resource::Resource(const String& filename_,
-                   ResType type_) : autoReload(true),
-                                    filename(filename_),
+                   ResType type_) : filename(filename_),
                                     type(type_),
-                                    loaded(false),
-                                    refCount(1)
-{
-    refreshModification();
-}
+                                    refCount(1) {}
 
 Resource::~Resource() {}
 
@@ -29,10 +22,6 @@ void Resource::load()
     {
         return;
     }
-
-    refreshModification();
-
-    loaded = true;
 
     fileSys->pushSearchPaths();
 
@@ -50,29 +39,4 @@ void Resource::load()
     fileSys->popSearchPaths();
 }
 
-void Resource::reload()
-{
-    load();
-
-    refreshModification();
-}
-
 void Resource::save() {}
-
-bool Resource::shouldReload() const
-{
-    if (filename.getLength() == 0)
-    {
-        return false;
-    }
-
-    return ::getLastFileModification(filename.getData()) != lastFileModification;
-}
-
-void Resource::refreshModification()
-{
-    if (filename.getLength() != 0)
-    {
-        lastFileModification = ::getLastFileModification(filename.getData());
-    }
-}

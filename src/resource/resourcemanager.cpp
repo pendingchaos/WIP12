@@ -61,32 +61,6 @@ PhysicsShape *ResourceManager::loadPhysicsShapeAndCopy(const String& filename) {
 Audio *ResourceManager::loadAudioAndCopy(const String& filename) {return loadAndCopy<Audio>(filename);}
 Font *ResourceManager::loadFontAndCopy(const String& filename) {return loadAndCopy<Font>(filename);}
 
-void ResourceManager::autoReloadResources() const
-{
-    for (size_t i = 0; i < resources.getEntryCount(); ++i)
-    {
-        HashMap<String, Resource *> resources_ = resources.getValue(i);
-
-        for (size_t j = 0; j < resources_.getEntryCount(); ++j)
-        {
-            Resource *resource = resources_.getValue(j);
-
-            try
-            {
-                resource->possiblyReload();
-            } catch (ResourceIOException& e)
-            {
-                ERROR(CATEGORY_RENDER,
-                      "Unable to reload resource at %s: %s",
-                      resource->getFilename().getData(),
-                      e.getString())(e.getFile(),
-                                     e.getLine(),
-                                     e.getFunction());
-            }
-        }
-    }
-}
-
 void ResourceManager::cleanupResources()
 {
     for (size_t i = 0; i < resources.getEntryCount(); ++i)

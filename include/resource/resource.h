@@ -81,7 +81,6 @@ class Resource
         virtual void removeContent()=0;
 
         void load();
-        virtual void reload();
         virtual void save();
 
         Resource *copy() const
@@ -94,31 +93,9 @@ class Resource
             return type;
         }
 
-        inline bool isLoaded() const
-        {
-            return loaded;
-        }
-
-        inline time_t getLastFileModification() const
-        {
-            return lastFileModification;
-        }
-
-        bool shouldReload() const;
-
-        virtual void possiblyReload()
-        {
-            if (shouldReload())
-            {
-                reload();
-            }
-        }
-
         inline void release()
         {
-            --refCount;
-
-            if (refCount == 0)
+            if (--refCount == 0)
             {
                 DELETE(this);
             }
@@ -158,15 +135,10 @@ class Resource
 
             load();
         }
-
-        bool autoReload;
     private:
         String filename;
-        void refreshModification();
 
         ResType type;
-        bool loaded;
-        time_t lastFileModification;
         mutable uint32_t refCount;
     protected:
         virtual void _load() {}

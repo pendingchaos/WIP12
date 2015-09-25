@@ -176,14 +176,6 @@ void GfxShader::_load()
     }
 }
 
-void GfxShader::possiblyReload()
-{
-    if (shouldReload())
-    {
-        reload();
-    }
-}
-
 GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings, String& infoLog)
 {
     GLuint shader = glCreateShader(type);

@@ -221,30 +221,6 @@ void Script::removeContent()
     includesModifications.clear();
 }
 
-void Script::possiblyReload()
-{
-    bool includesDirty = false;
-
-    for (size_t i = 0; i < includes.getCount(); ++i)
-    {
-        try
-        {
-            if (::getLastFileModification(includes[i].getData()) != includesModifications[i])
-            {
-                includesDirty = true;
-            }
-        } catch (FileException& e)
-        {
-            includesDirty = true;
-        }
-    }
-
-    if (shouldReload() or includesDirty)
-    {
-        reload();
-    }
-}
-
 void Script::_load()
 {
     List<Serializable> serialized;

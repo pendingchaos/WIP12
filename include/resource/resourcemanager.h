@@ -126,7 +126,6 @@ class ResourceManager
 
         bool isResource(ResType type, const String& filename) const;
 
-        void autoReloadResources() const;
         void cleanupResources();
     private:
         HashMap<ResType, HashMap<String, Resource *>> resources;
