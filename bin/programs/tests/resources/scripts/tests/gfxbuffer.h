@@ -7,15 +7,15 @@ class TestGfxBuffer
             
             GfxBuffer *buffer = gfxApi->createBuffer();
             
-            buffer->allocData(16, NULL, GfxBuffer::Static);
+            buffer->allocData(16, NULL, GfxBufferUsage::Static);
             
             REQUIRE(buffer->getSize() == 16)
             
-            DELETE(GfxBuffer, buffer);
+            DELETE(buffer);
             
             buffer = gfxApi->createBuffer();
             
-            buffer->allocData(5, "Heya!", GfxBuffer::Static);
+            buffer->allocData(5, "Heya!", GfxBufferUsage::Static);
             
             char data[4];
             buffer->getData(1, 4, data);
@@ -27,7 +27,7 @@ class TestGfxBuffer
             buffer->getData(0, 5, data);
             REQUIRE(data[0] == 'H' and data[1] == 'a' and data[2] == 'b' and data[3] == 'c' and data[4] == 'd')
             
-            DELETE(GfxBuffer, buffer)
+            DELETE(buffer);
             
             return -1;
         }

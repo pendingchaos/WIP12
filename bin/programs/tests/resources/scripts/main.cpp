@@ -24,7 +24,7 @@
 #include "tests/t4.h"
 #include "tests/gfxbuffer.h"
 
-BEGIN_INSTANCE(Main)
+BEGIN_INSTANCE(Main, InstanceBase)
     virtual void init()
     {
         size_t succeeded = 0;
