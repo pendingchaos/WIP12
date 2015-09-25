@@ -2,10 +2,11 @@
 
 #include "graphics/gfxapi.h"
 #include "globals.h"
+#include <algorithm>
 
 GLGPUTimer::GLGPUTimer()
 {
-    glGenQueries(2, queries);
+    glGenQueries(4, queries);
 
     if (gfxApi->getDriver() == GfxDriver::Nvidia)
     {
@@ -13,6 +14,12 @@ GLGPUTimer::GLGPUTimer()
         glEndQuery(GL_TIME_ELAPSED);
 
         glBeginQuery(GL_TIME_ELAPSED, queries[1]);
+        glEndQuery(GL_TIME_ELAPSED);
+
+        glBeginQuery(GL_TIME_ELAPSED, queries[2]);
+        glEndQuery(GL_TIME_ELAPSED);
+
+        glBeginQuery(GL_TIME_ELAPSED, queries[3]);
         glEndQuery(GL_TIME_ELAPSED);
     }
 }
@@ -61,4 +68,10 @@ void GLGPUTimer::end()
     glDeleteQueries(1, &queries[1]);
     glGenQueries(1, &queries[1]);
     glQueryCounter(queries[1], GL_TIMESTAMP);
+}
+
+void GLGPUTimer::swap()
+{
+    std::swap(queries[0], queries[2]);
+    std::swap(queries[1], queries[3]);
 }

@@ -16,8 +16,10 @@ class GLGPUTimer : public GPUTimer
 
         virtual void begin();
         virtual void end();
+
+        virtual void swap();
     private:
-        GLuint queries[2];
+        GLuint queries[4];
 };
 
 #endif // GLGPUTIMER_H

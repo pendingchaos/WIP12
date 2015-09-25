@@ -406,72 +406,85 @@ GfxRenderer::~GfxRenderer()
 
 void GfxRenderer::updateStats()
 {
-    //TODO: Sometimes the results are never available.
+    gBufferTimer->swap();
     if (gBufferTimer->resultAvailable())
     {
         stats.gBufferTiming = gBufferTimer->getResult() / (float)gBufferTimer->getResultResolution();
     }
 
+    ssaoTimer->swap();
     if (ssaoTimer->resultAvailable())
     {
         stats.ssaoTiming = ssaoTimer->getResult() / (float)ssaoTimer->getResultResolution();
     }
 
+    ssaoBlurXTimer->swap();
     if (ssaoBlurXTimer->resultAvailable())
     {
         stats.ssaoBlurXTiming = ssaoBlurXTimer->getResult() / (float)ssaoBlurXTimer->getResultResolution();
     }
 
+    ssaoBlurYTimer->swap();
     if (ssaoBlurYTimer->resultAvailable())
     {
         stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult() / (float)ssaoBlurYTimer->getResultResolution();
     }
 
+    deferredShadingTimer->swap();
     if (deferredShadingTimer->resultAvailable())
     {
         stats.deferredShadingTiming = deferredShadingTimer->getResult() / (float)deferredShadingTimer->getResultResolution();
     }
 
+    forwardTimer->swap();
     if (forwardTimer->resultAvailable())
     {
         stats.forwardTiming = forwardTimer->getResult() / (float)forwardTimer->getResultResolution();
     }
 
+    gammaCorrectionTimer->swap();
     if (gammaCorrectionTimer->resultAvailable())
     {
         stats.gammaCorrectionTiming = gammaCorrectionTimer->getResult() / (float)gammaCorrectionTimer->getResultResolution();
     }
 
+    fxaaTimer->swap();
     if (fxaaTimer->resultAvailable())
     {
         stats.fxaaTiming = fxaaTimer->getResult() / (float)fxaaTimer->getResultResolution();
     }
 
+    colorModifierTimer->swap();
     if (colorModifierTimer->resultAvailable())
     {
         stats.colorModifierTiming = colorModifierTimer->getResult() / (float)colorModifierTimer->getResultResolution();
     }
 
+    bloomTimer->swap();
     if (bloomTimer->resultAvailable())
     {
         stats.bloomTiming = bloomTimer->getResult() / (float)bloomTimer->getResultResolution();
     }
 
-    /*if (luminanceCalcTimer->resultAvailable())
+    /*luminanceCalcTimer->swap();
+    if (luminanceCalcTimer->resultAvailable())
     {
         stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
     }*/
 
+    shadowmapTimer->swap();
     if (shadowmapTimer->resultAvailable())
     {
         stats.shadowmapTiming = shadowmapTimer->getResult() / (float)shadowmapTimer->getResultResolution();
     }
 
+    overlayTimer->swap();
     if (overlayTimer->resultAvailable())
     {
         stats.overlayTiming = overlayTimer->getResult() / (float)overlayTimer->getResultResolution();
     }
 
+    debugDrawTimer->swap();
     if (debugDrawTimer->resultAvailable())
     {
         stats.debugDrawTiming = debugDrawTimer->getResult() / (float)debugDrawTimer->getResultResolution();

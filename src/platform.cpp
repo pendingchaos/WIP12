@@ -268,6 +268,7 @@ void Platform::run(void (*updateFunction)(Platform *platform))
 
         Uint64 end = SDL_GetPerformanceCounter();
 
+        gpuTimer->swap();
         if (gpuTimer->resultAvailable())
         {
             gpuTime = gpuTimer->getResult();

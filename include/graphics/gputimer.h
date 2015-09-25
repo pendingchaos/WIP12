@@ -16,6 +16,8 @@ class GPUTimer
 
         virtual void begin()=0;
         virtual void end()=0;
+
+        virtual void swap() {}
 } BIND;
 
 #endif // GPUTIMER_H
