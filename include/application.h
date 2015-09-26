@@ -91,7 +91,7 @@ class Application
                 nextScript->release();
             }
 
-            nextScript = script_;
+            nextScript = script_->copyRef<Script>();
             nextScriptName = name;
         }
 

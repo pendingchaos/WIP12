@@ -16,6 +16,19 @@
 
 #include <cmath>
 
+static GfxShaderCombination *createPostShader(const char *filename)
+{
+    GfxShader *vertex = resMgr->load<GfxShader>("resources/shaders/postEffectVertex.bin");
+    GfxShader *fragment = resMgr->load<GfxShader>(filename);
+
+    auto result = NEW(GfxShaderCombination, vertex, fragment);
+
+    vertex->release();
+    fragment->release();
+
+    return result;
+}
+
 GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           bloomThreshold(1.0f),
                                           bloom1Radius(0.1f),
@@ -37,28 +50,40 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           numLights(0),
                                           terrain(nullptr)
 {
-    skyboxVertex = resMgr->load<GfxShader>("resources/shaders/skyboxVertex.bin");
-    skyboxFragment = resMgr->load<GfxShader>("resources/shaders/skyboxFragment.bin");
+    skyboxShaders = NEW(GfxShaderCombination,
+                        resMgr->load<GfxShader>("resources/shaders/skyboxVertex.bin"),
+                        resMgr->load<GfxShader>("resources/shaders/skyboxFragment.bin"));
+    skyboxShaders->getShader(GfxShaderType::Vertex)->release();
+    skyboxShaders->getShader(GfxShaderType::Fragment)->release();
     skyboxMesh = resMgr->load<GfxMesh>("resources/meshes/cube.bin");
-    fxaaFragment = resMgr->load<GfxShader>("resources/shaders/fxaaFragment.bin");
-    lightingDirectional = resMgr->load<GfxShader>("resources/shaders/lightingDirectional.bin");
-    lightingPoint = resMgr->load<GfxShader>("resources/shaders/lightingPoint.bin");
-    lightingSpot = resMgr->load<GfxShader>("resources/shaders/lightingSpot.bin");
-    ssaoFragment = resMgr->load<GfxShader>("resources/shaders/ssaoFragment.bin");
-    ssaoBlurXFragment = resMgr->load<GfxShader>("resources/shaders/ssaoBlurXFragment.bin");
-    ssaoBlurYFragment = resMgr->load<GfxShader>("resources/shaders/ssaoBlurYFragment.bin");
-    bloomBlurXFragment = resMgr->load<GfxShader>("resources/shaders/bloomBlurXFragment.bin");
-    bloomBlurYFragment = resMgr->load<GfxShader>("resources/shaders/bloomBlurYFragment.bin");
-    lumCalcFragment = resMgr->load<GfxShader>("resources/shaders/lumCalcFragment.bin");
-    tonemapFragment = resMgr->load<GfxShader>("resources/shaders/tonemapFragment.bin");
-    postEffectVertex = resMgr->load<GfxShader>("resources/shaders/postEffectVertex.bin");
-    shadowmapVertex = resMgr->load<GfxShader>("resources/shaders/shadowmapVertex.bin");
-    pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
-    applyBloomFragment = resMgr->load<GfxShader>("resources/shaders/applyBloomFragment.bin");
-    bloomDownsampleFragment = resMgr->load<GfxShader>("resources/shaders/bloomDownsampleFragment.bin");
-    //hbaoFragment = resMgr->load<GfxShader>("resources/shaders/hbaoFragment.bin");
-    ssaoInterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoInterleaveFragment.bin");
-    ssaoDeinterleaveFragment = resMgr->load<GfxShader>("resources/shaders/ssaoDeinterleaveFragment.bin");
+
+    lightingDirectional = createPostShader("resources/shaders/lightingDirectional.bin");
+    lightingDirectionalShadow = createPostShader("resources/shaders/lightingDirectional.bin");
+    lightingDirectionalShadow->setDefine(GfxShaderType::Fragment, "SHADOW_MAP", "1");
+
+    lightingPoint = createPostShader("resources/shaders/lightingPoint.bin");
+    lightingPointShadow = createPostShader("resources/shaders/lightingPoint.bin");
+    lightingPointShadow->setDefine(GfxShaderType::Fragment, "SHADOW_MAP", "1");
+
+    lightingSpot = createPostShader("resources/shaders/lightingSpot.bin");
+    lightingSpotShadow = createPostShader("resources/shaders/lightingSpot.bin");
+    lightingSpotShadow->setDefine(GfxShaderType::Fragment, "SHADOW_MAP", "1");
+
+    fxaa = createPostShader("resources/shaders/fxaaFragment.bin");
+    ssao = createPostShader("resources/shaders/ssaoFragment.bin");
+    ssaoBlurX = createPostShader("resources/shaders/ssaoBlurXFragment.bin");
+    ssaoBlurY = createPostShader("resources/shaders/ssaoBlurYFragment.bin");
+    bloomBlurX = createPostShader("resources/shaders/bloomBlurXFragment.bin");
+    bloomBlurY = createPostShader("resources/shaders/bloomBlurYFragment.bin");
+    lumCalc = createPostShader("resources/shaders/lumCalcFragment.bin");
+    tonemap = createPostShader("resources/shaders/tonemapFragment.bin");
+    applyBloom = createPostShader("resources/shaders/applyBloomFragment.bin");
+    bloomDownsample = createPostShader("resources/shaders/bloomDownsampleFragment.bin");
+    //hbao = createPostShader("resources/shaders/hbaoFragment.bin");
+    ssaoInterleave = createPostShader("resources/shaders/ssaoInterleaveFragment.bin");
+    ssaoDeinterleave = createPostShader("resources/shaders/ssaoDeinterleaveFragment.bin");
+    gammaCorrection = createPostShader("resources/shaders/gammaCorrectionFragment.bin");
+
     terrainVertex = resMgr->load<GfxShader>("resources/shaders/terrainVertex.bin");
     terrainTessControl = resMgr->load<GfxShader>("resources/shaders/terrainTessControl.bin");
     terrainTessEval = resMgr->load<GfxShader>("resources/shaders/terrainTessEval.bin");
@@ -70,61 +95,42 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
         shadowmapTessEval = resMgr->load<GfxShader>("resources/shaders/shadowmapEval.bin");
     }
 
+    shadowmapVertex = resMgr->load<GfxShader>("resources/shaders/shadowmapVertex.bin");
+    pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
     shadowmapFragment = resMgr->load<GfxShader>("resources/shaders/shadowmapFragment.bin");
     pointShadowmapFragment = resMgr->load<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
-    overlayVertex = resMgr->load<GfxShader>("resources/shaders/overlayVertex.bin");
-    overlayFragment = resMgr->load<GfxShader>("resources/shaders/overlayFragment.bin");
-    colorModifierFragment = NEW(GfxShader);
-    gammaCorrectionFragment = resMgr->load<GfxShader>("resources/shaders/gammaCorrectionFragment.bin");
 
-    compiledFXAAFragment = fxaaFragment->getCompiled();
-    compiledLightingDirectional = lightingDirectional->getCompiled();
-    compiledLightingDirectionalShadow = lightingDirectional->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
-    compiledLightingPoint = lightingPoint->getCompiled();
-    compiledLightingPointShadow = lightingPoint->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
-    compiledLightingSpot = lightingSpot->getCompiled();
-    compiledLightingSpotShadow = lightingSpot->getCompiled(HashMapBuilder<String, String>().add("SHADOW_MAP", "1"));
-    compiledSSAOFragment = ssaoFragment->getCompiled();
-    compiledSSAOBlurXFragment = ssaoBlurXFragment->getCompiled();
-    compiledSSAOBlurYFragment = ssaoBlurYFragment->getCompiled();
-    compiledBloomBlurXFragment = bloomBlurXFragment->getCompiled();
-    compiledBloomBlurYFragment = bloomBlurYFragment->getCompiled();
-    compiledLumCalcFragment = lumCalcFragment->getCompiled();
-    compiledTonemapFragment = tonemapFragment->getCompiled();
-    compiledPostEffectVertex = postEffectVertex->getCompiled();
+    overlayShaders = NEW(GfxShaderCombination,
+                         resMgr->load<GfxShader>("resources/shaders/overlayVertex.bin"),
+                         resMgr->load<GfxShader>("resources/shaders/overlayFragment.bin"));
+    overlayShaders->getShader(GfxShaderType::Vertex)->release();
+    overlayShaders->getShader(GfxShaderType::Fragment)->release();
+
+    colorModifierFragment = NEW(GfxShader);
+    updateColorModifierShader();
+
+    colorModify = NEW(GfxShaderCombination,
+                      resMgr->load<GfxShader>("resources/shaders/postEffectVertex.bin"),
+                      colorModifierFragment);
+    colorModify->getShader(GfxShaderType::Vertex)->release();
+
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
     compiledShadowmapVertexAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("SKELETAL_ANIMATION", "1"));
-    compiledApplyBloomFragment = applyBloomFragment->getCompiled();
-    compiledBloomDownsampleFragment = bloomDownsampleFragment->getCompiled();
-    //compiledHBAOFragment = hbaoFragment->getCompiled();
-    compiledSSAOInterleaveFragment = ssaoInterleaveFragment->getCompiled();
-    compiledSSAODeinterleaveFragment = ssaoDeinterleaveFragment->getCompiled();
     compiledTerrainVertex = terrainVertex->getCompiled();
     compiledTerrainTessControl = terrainTessControl->getCompiled();
     compiledTerrainTessEval = terrainTessEval->getCompiled();
     compiledTerrainFragment = terrainFragment->getCompiled();
 
-    if (gfxApi->tesselationSupported())
-    {
-        compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1"));
-        compiledShadowmapVertexTesselationAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1").add("SKELETAL_ANIMATION", "1"));
-    }
+    compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1"));
+    compiledShadowmapVertexTesselationAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1").add("SKELETAL_ANIMATION", "1"));
 
     compiledPointShadowmapGeometry = pointShadowmapGeometry->getCompiled();
 
-    if (gfxApi->tesselationSupported())
-    {
-        compiledShadowmapTessControl = shadowmapTessControl->getCompiled();
-        compiledShadowmapTessEval = shadowmapTessEval->getCompiled();
-    }
+    compiledShadowmapTessControl = shadowmapTessControl->getCompiled();
+    compiledShadowmapTessEval = shadowmapTessEval->getCompiled();
 
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
     compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
-    compiledOverlayVertex = overlayVertex->getCompiled();
-    compiledOverlayFragment = overlayFragment->getCompiled();
-    compiledGammaCorrectionFragment = gammaCorrectionFragment->getCompiled();
-
-    updateColorModifierShader();
 
     lightBuffer = gfxApi->createBuffer();
     lightBuffer->allocData(16384, nullptr, GfxBufferUsage::Dynamic);
@@ -354,6 +360,7 @@ GfxRenderer::~GfxRenderer()
     bloom3Texture->release();
     bloom2Texture->release();
     bloom1Texture->release();
+    ssaoNormalTexture->release();
     ssaoRandomTexture->release();
     //luminanceTexture->release();
     bloomBlurXTexture->release();
@@ -367,10 +374,35 @@ GfxRenderer::~GfxRenderer()
 
     quadMesh->release();
 
-    gammaCorrectionFragment->release();
+    DELETE(skyboxShaders);
+    DELETE(fxaa);
+    DELETE(lightingDirectional);
+    DELETE(lightingDirectionalShadow);
+    DELETE(lightingPoint);
+    DELETE(lightingPointShadow);
+    DELETE(lightingSpot);
+    DELETE(lightingSpotShadow);
+    DELETE(ssao);
+    DELETE(ssaoBlurX);
+    DELETE(ssaoBlurY);
+    DELETE(bloomBlurX);
+    DELETE(bloomBlurY);
+    DELETE(tonemap);
+    DELETE(lumCalc);
+    DELETE(gammaCorrection);
+    DELETE(applyBloom);
+    DELETE(bloomDownsample);
+    //DELETE(hbao);
+    DELETE(ssaoInterleave);
+    DELETE(ssaoDeinterleave);
+    DELETE(overlayShaders);
+    DELETE(colorModify);
+
+    terrainFragment->release();
+    terrainTessControl->release();
+    terrainTessEval->release();
+    terrainVertex->release();
     colorModifierFragment->release();
-    overlayFragment->release();
-    overlayVertex->release();
     pointShadowmapFragment->release();
     shadowmapFragment->release();
 
@@ -380,28 +412,9 @@ GfxRenderer::~GfxRenderer()
         shadowmapTessControl->release();
     }
 
-    ssaoDeinterleaveFragment->release();
-    ssaoInterleaveFragment->release();
-    //hbaoFragment->release();
-    bloomDownsampleFragment->release();
-    applyBloomFragment->release();
     pointShadowmapGeometry->release();
     shadowmapVertex->release();
-    postEffectVertex->release();
-    tonemapFragment->release();
-    lumCalcFragment->release();
-    bloomBlurYFragment->release();
-    bloomBlurXFragment->release();
-    ssaoBlurYFragment->release();
-    ssaoBlurXFragment->release();
-    ssaoFragment->release();
-    lightingSpot->release();
-    lightingPoint->release();
-    lightingDirectional->release();
-    fxaaFragment->release();
     skyboxMesh->release();
-    skyboxFragment->release();
-    skyboxVertex->release();
 }
 
 void GfxRenderer::updateStats()
@@ -986,20 +999,16 @@ void GfxRenderer::render()
 
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledSSAOFragment,
-                  quadMesh);
+    gfxApi->begin(ssao, quadMesh);
 
-    gfxApi->addTextureBinding(compiledSSAOFragment, "depthTexture", depthTexture);
-    gfxApi->addTextureBinding(compiledSSAOFragment, "normalTexture", geomNormalTexture);
-    gfxApi->uniform(compiledSSAOFragment, "cameraNear", camera.getNear());
-    gfxApi->uniform(compiledSSAOFragment, "cameraFar", camera.getFar());
-    gfxApi->uniform(compiledSSAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
-    gfxApi->uniform(compiledSSAOFragment, "radius", ssaoRadius);
-    gfxApi->addTextureBinding(compiledSSAOFragment, "randomTex", ssaoRandomTexture);
+    GfxCompiledShader *ssaoFragment = ssao->getCompiled(GfxShaderType::Fragment);
+    gfxApi->addTextureBinding(ssaoFragment, "depthTexture", depthTexture);
+    gfxApi->addTextureBinding(ssaoFragment, "normalTexture", geomNormalTexture);
+    gfxApi->uniform(ssaoFragment, "cameraNear", camera.getNear());
+    gfxApi->uniform(ssaoFragment, "cameraFar", camera.getFar());
+    gfxApi->uniform(ssaoFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
+    gfxApi->uniform(ssaoFragment, "radius", ssaoRadius);
+    gfxApi->addTextureBinding(ssaoFragment, "randomTex", ssaoRandomTexture);
 
     gfxApi->end();
     ++stats.numDrawCalls;
@@ -1091,14 +1100,10 @@ void GfxRenderer::render()
 
     gfxApi->setCurrentFramebuffer(ssaoBlurXFramebuffer);
 
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledSSAOBlurXFragment,
-                  quadMesh);
+    gfxApi->begin(ssaoBlurX, quadMesh);
 
-    gfxApi->addTextureBinding(compiledSSAOBlurXFragment, "aoTexture", ssaoTexture);
+    GfxCompiledShader *ssaoBlurXFragment = ssaoBlurX->getCompiled(GfxShaderType::Fragment);
+    gfxApi->addTextureBinding(ssaoBlurXFragment, "aoTexture", ssaoTexture);
 
     gfxApi->end();
     ++stats.numDrawCalls;
@@ -1110,14 +1115,10 @@ void GfxRenderer::render()
 
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
 
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledSSAOBlurYFragment,
-                  quadMesh);
+    gfxApi->begin(ssaoBlurY, quadMesh);
 
-    gfxApi->addTextureBinding(compiledSSAOBlurYFragment, "aoTexture", ssaoBlurXTexture);
+    GfxCompiledShader *ssaoBlurYFragment = ssaoBlurY->getCompiled(GfxShaderType::Fragment);
+    gfxApi->addTextureBinding(ssaoBlurYFragment, "aoTexture", ssaoBlurXTexture);
 
     gfxApi->end();
     ++stats.numDrawCalls;
@@ -1138,7 +1139,7 @@ void GfxRenderer::render()
 
     for (auto light : lights)
     {
-        GfxCompiledShader *fragmentShader = nullptr;
+        GfxShaderCombination *shaders;
 
         switch (light->type)
         {
@@ -1146,10 +1147,10 @@ void GfxRenderer::render()
         {
             if (light->getShadowmap() != nullptr)
             {
-                fragmentShader = compiledLightingDirectionalShadow;
+                shaders = lightingDirectionalShadow;
             } else
             {
-                fragmentShader = compiledLightingDirectional;
+                shaders = lightingDirectional;
             }
             break;
         }
@@ -1157,10 +1158,10 @@ void GfxRenderer::render()
         {
             if (light->getShadowmap() != nullptr)
             {
-                fragmentShader = compiledLightingPointShadow;
+                shaders = lightingPointShadow;
             } else
             {
-                fragmentShader = compiledLightingPoint;
+                shaders = lightingPoint;
             }
             break;
         }
@@ -1168,72 +1169,69 @@ void GfxRenderer::render()
         {
             if (light->getShadowmap() != nullptr)
             {
-                fragmentShader = compiledLightingSpotShadow;
+                shaders = lightingSpotShadow;
             } else
             {
-                fragmentShader = compiledLightingSpot;
+                shaders = lightingSpot;
             }
             break;
         }
         }
 
-        gfxApi->begin(compiledPostEffectVertex,
-                      nullptr,
-                      nullptr,
-                      nullptr,
-                      fragmentShader,
-                      quadMesh);
+        gfxApi->begin(shaders, quadMesh);
 
-        gfxApi->addTextureBinding(fragmentShader, "albedoTexture", readColorTexture);
-        gfxApi->addTextureBinding(fragmentShader, "materialTexture", materialTexture);
-        gfxApi->addTextureBinding(fragmentShader, "normalTexture", normalTexture);
-        gfxApi->addTextureBinding(fragmentShader, "geomNormalTexture", geomNormalTexture);
-        gfxApi->addTextureBinding(fragmentShader, "depthTexture", depthTexture);
-        gfxApi->addTextureBinding(fragmentShader, "aoTexture", ssaoTexture);
-        gfxApi->uniform(fragmentShader, "viewProjection", viewProjection);
-        gfxApi->uniform(fragmentShader, "lightColor", light->color * light->power);
-        gfxApi->uniform(fragmentShader, "lightAmbientStrength", light->ambientStrength);
-        gfxApi->uniform(fragmentShader, "cameraPosition", camera.getPosition());
+        GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);
+
+        gfxApi->addTextureBinding(fragment, "albedoTexture", readColorTexture);
+        gfxApi->addTextureBinding(fragment, "materialTexture", materialTexture);
+        gfxApi->addTextureBinding(fragment, "normalTexture", normalTexture);
+        gfxApi->addTextureBinding(fragment, "geomNormalTexture", geomNormalTexture);
+        gfxApi->addTextureBinding(fragment, "depthTexture", depthTexture);
+        gfxApi->addTextureBinding(fragment, "aoTexture", ssaoTexture);
+        gfxApi->uniform(fragment, "viewProjection", viewProjection);
+        gfxApi->uniform(fragment, "lightColor", light->color * light->power);
+        gfxApi->uniform(fragment, "lightAmbientStrength", light->ambientStrength);
+        gfxApi->uniform(fragment, "cameraPosition", camera.getPosition());
 
         if (light->getShadowmap() != nullptr)
         {
             GfxTexture *shadowmap = light->getShadowmap();
-            gfxApi->addTextureBinding(fragmentShader, "depthmap", shadowmap);
-            gfxApi->addTextureBinding(fragmentShader, "shadowmap", shadowmap, TextureSampler::createShadowmap());
+            gfxApi->addTextureBinding(fragment, "depthmap", shadowmap);
+            gfxApi->addTextureBinding(fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
 
-            gfxApi->uniform(fragmentShader, "shadowmapViewMatrix", light->getViewMatrix());
-            gfxApi->uniform(fragmentShader, "shadowmapProjectionMatrix", light->getProjectionMatrix());
-            gfxApi->uniform(fragmentShader, "shadowMinBias", light->shadowMinBias);
-            gfxApi->uniform(fragmentShader, "shadowBiasScale", light->shadowBiasScale);
-            gfxApi->uniform(fragmentShader, "shadowFixedBias", light->shadowFixedBias);
-            gfxApi->uniform(fragmentShader, "shadowRadius", light->shadowRadius);
+            gfxApi->uniform(fragment, "shadowmapViewMatrix", light->getViewMatrix());
+            gfxApi->uniform(fragment, "shadowmapProjectionMatrix", light->getProjectionMatrix());
+            gfxApi->uniform(fragment, "shadowMinBias", light->shadowMinBias);
+            gfxApi->uniform(fragment, "shadowBiasScale", light->shadowBiasScale);
+            gfxApi->uniform(fragment, "shadowFixedBias", light->shadowFixedBias);
+            gfxApi->uniform(fragment, "shadowRadius", light->shadowRadius);
         }
 
         switch (light->type)
         {
         case GfxLightType::Directional:
         {
-            gfxApi->uniform(fragmentShader, "lightNegDir", -light->direction.direction.normalize());
-            gfxApi->uniform(fragmentShader, "time", float(platform->getTime()) / float(platform->getTimerFrequency()));
+            gfxApi->uniform(fragment, "lightNegDir", -light->direction.direction.normalize());
+            gfxApi->uniform(fragment, "time", float(platform->getTime()) / float(platform->getTimerFrequency()));
             break;
         }
         case GfxLightType::Spot:
         {
-            gfxApi->uniform(fragmentShader, "lightNegDir", -light->spot.direction.normalize());
-            gfxApi->uniform(fragmentShader, "lightPos", light->spot.position);
-            gfxApi->uniform(fragmentShader, "lightCosInnerCutoff", (float)std::cos(RADIANS(light->spot.innerCutoff)));
-            gfxApi->uniform(fragmentShader, "lightCosOuterCutoff", (float)std::cos(RADIANS(light->spot.outerCutoff)));
-            gfxApi->uniform(fragmentShader, "lightRadius", light->spot.radius);
+            gfxApi->uniform(fragment, "lightNegDir", -light->spot.direction.normalize());
+            gfxApi->uniform(fragment, "lightPos", light->spot.position);
+            gfxApi->uniform(fragment, "lightCosInnerCutoff", (float)std::cos(RADIANS(light->spot.innerCutoff)));
+            gfxApi->uniform(fragment, "lightCosOuterCutoff", (float)std::cos(RADIANS(light->spot.outerCutoff)));
+            gfxApi->uniform(fragment, "lightRadius", light->spot.radius);
             break;
         }
         case GfxLightType::Point:
         {
-            gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
-            gfxApi->uniform(fragmentShader, "lightRadius", light->point.radius);
+            gfxApi->uniform(fragment, "lightPos", light->point.position);
+            gfxApi->uniform(fragment, "lightRadius", light->point.radius);
 
             if (light->getShadowmap() != nullptr)
             {
-                gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
+                gfxApi->uniform(fragment, "lightFar", light->shadowmapFar);
             }
             break;
         }
@@ -1337,18 +1335,18 @@ void GfxRenderer::render()
         gfxApi->setCurrentFramebuffer(bloomDownsampleFramebuffer);
         gfxApi->setViewport(0, 0, width/4, height/4);
 
-        gfxApi->begin(compiledPostEffectVertex,
-                      nullptr,
-                      nullptr,
-                      nullptr,
-                      compiledBloomDownsampleFragment,
-                      quadMesh);
+        gfxApi->begin(bloomDownsample, quadMesh);
 
-        gfxApi->addTextureBinding(compiledBloomDownsampleFragment, "colorTexture", readColorTexture);
-        gfxApi->uniform(compiledBloomDownsampleFragment, "threshold", bloomThreshold);
+        GfxCompiledShader *bloomDownsampleFragment = bloomDownsample->getCompiled(GfxShaderType::Fragment);
+
+        gfxApi->addTextureBinding(bloomDownsampleFragment, "colorTexture", readColorTexture);
+        gfxApi->uniform(bloomDownsampleFragment, "threshold", bloomThreshold);
 
         gfxApi->end();
         ++stats.numDrawCalls;
+
+        GfxCompiledShader *bloomBlurXFragment = bloomBlurX->getCompiled(GfxShaderType::Fragment);
+        GfxCompiledShader *bloomBlurYFragment = bloomBlurY->getCompiled(GfxShaderType::Fragment);
 
         #define BLOOM(framebuffer) {\
         int32_t radius = bloomRadiusPixels / 4;\
@@ -1356,32 +1354,22 @@ void GfxRenderer::render()
         \
         gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);\
 \
-        gfxApi->begin(compiledPostEffectVertex,\
-                      nullptr,\
-                      nullptr,\
-                      nullptr,\
-                      compiledBloomBlurXFragment,\
-                      quadMesh);\
+        gfxApi->begin(bloomBlurX, quadMesh);\
 \
-        gfxApi->addTextureBinding(compiledBloomBlurXFragment, "bloomTexture", bloomDownsampleTexture);\
-        gfxApi->uniform(compiledBloomBlurXFragment, "radius", (int32_t)radius);\
-        gfxApi->uniform(compiledBloomBlurXFragment, "sigma", bloomSigma);\
+        gfxApi->addTextureBinding(bloomBlurXFragment, "bloomTexture", bloomDownsampleTexture);\
+        gfxApi->uniform(bloomBlurXFragment, "radius", (int32_t)radius);\
+        gfxApi->uniform(bloomBlurXFragment, "sigma", bloomSigma);\
 \
         gfxApi->end();\
         ++stats.numDrawCalls;\
 \
         gfxApi->setCurrentFramebuffer(framebuffer);\
 \
-        gfxApi->begin(compiledPostEffectVertex,\
-                      nullptr,\
-                      nullptr,\
-                      nullptr,\
-                      compiledBloomBlurYFragment,\
-                      quadMesh);\
+        gfxApi->begin(bloomBlurY, quadMesh);\
 \
-        gfxApi->addTextureBinding(compiledBloomBlurYFragment, "bloomTexture", bloomBlurXTexture);\
-        gfxApi->uniform(compiledBloomBlurYFragment, "radius", (int32_t)radius);\
-        gfxApi->uniform(compiledBloomBlurYFragment, "sigma", bloomSigma);\
+        gfxApi->addTextureBinding(bloomBlurYFragment, "bloomTexture", bloomBlurXTexture);\
+        gfxApi->uniform(bloomBlurYFragment, "radius", (int32_t)radius);\
+        gfxApi->uniform(bloomBlurYFragment, "sigma", bloomSigma);\
 \
         gfxApi->end();\
         ++stats.numDrawCalls;\
@@ -1409,22 +1397,19 @@ void GfxRenderer::render()
         gfxApi->setCurrentFramebuffer(writeFramebuffer);
         gfxApi->setViewport(0, 0, width, height);
 
-        gfxApi->begin(compiledPostEffectVertex,
-                      nullptr,
-                      nullptr,
-                      nullptr,
-                      compiledApplyBloomFragment,
-                      quadMesh);
+        gfxApi->begin(applyBloom, quadMesh);
 
-        gfxApi->addTextureBinding(compiledApplyBloomFragment, "colorTexture", readColorTexture);
-        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom1Texture", bloom1Texture);
-        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom2Texture", bloom2Texture);
-        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom3Texture", bloom3Texture);
-        gfxApi->addTextureBinding(compiledApplyBloomFragment, "bloom4Texture", bloom4Texture);
-        gfxApi->uniform(compiledApplyBloomFragment, "bloom1Strength", bloom1Strength);
-        gfxApi->uniform(compiledApplyBloomFragment, "bloom2Strength", bloom2Strength);
-        gfxApi->uniform(compiledApplyBloomFragment, "bloom3Strength", bloom3Strength);
-        gfxApi->uniform(compiledApplyBloomFragment, "bloom4Strength", bloom4Strength);
+        GfxCompiledShader *applyBloomFragment = applyBloom->getCompiled(GfxShaderType::Fragment);
+
+        gfxApi->addTextureBinding(applyBloomFragment, "colorTexture", readColorTexture);
+        gfxApi->addTextureBinding(applyBloomFragment, "bloom1Texture", bloom1Texture);
+        gfxApi->addTextureBinding(applyBloomFragment, "bloom2Texture", bloom2Texture);
+        gfxApi->addTextureBinding(applyBloomFragment, "bloom3Texture", bloom3Texture);
+        gfxApi->addTextureBinding(applyBloomFragment, "bloom4Texture", bloom4Texture);
+        gfxApi->uniform(applyBloomFragment, "bloom1Strength", bloom1Strength);
+        gfxApi->uniform(applyBloomFragment, "bloom2Strength", bloom2Strength);
+        gfxApi->uniform(applyBloomFragment, "bloom3Strength", bloom3Strength);
+        gfxApi->uniform(applyBloomFragment, "bloom4Strength", bloom4Strength);
 
         gfxApi->end();
         ++stats.numDrawCalls;
@@ -1439,14 +1424,11 @@ void GfxRenderer::render()
 
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledColorModifier,
-                  quadMesh);
+    gfxApi->begin(colorModify, quadMesh);
 
-    gfxApi->addTextureBinding(compiledColorModifier, "colorTexture", readColorTexture);
+    GfxCompiledShader *colorModifyFragment = colorModify->getCompiled(GfxShaderType::Fragment);
+
+    gfxApi->addTextureBinding(colorModifyFragment, "colorTexture", readColorTexture);
 
     gfxApi->end();
     ++stats.numDrawCalls;
@@ -1471,16 +1453,11 @@ void GfxRenderer::render()
             {
             case RenderMode::Overlay:
             {
-                gfxApi->begin(compiledOverlayVertex,
-                              nullptr,
-                              nullptr,
-                              nullptr,
-                              compiledOverlayFragment,
-                              quadMesh);
+                gfxApi->begin(overlayShaders, quadMesh);
 
-                gfxApi->uniform(compiledOverlayVertex, "transform", transform);
-                gfxApi->uniform(compiledOverlayFragment, "color", comp->overlayData.color);
-                gfxApi->addTextureBinding(compiledOverlayFragment, "colorTexture", comp->overlayTexture);
+                gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Vertex), "transform", transform);
+                gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Fragment), "color", comp->overlayData.color);
+                gfxApi->addTextureBinding(overlayShaders->getCompiled(GfxShaderType::Fragment), "colorTexture", comp->overlayTexture);
 
                 gfxApi->end();
                 ++stats.numDrawCalls;
@@ -1504,14 +1481,9 @@ void GfxRenderer::render()
 
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
 
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledGammaCorrectionFragment,
-                  quadMesh);
+    gfxApi->begin(gammaCorrection, quadMesh);
 
-    gfxApi->addTextureBinding(compiledGammaCorrectionFragment, "colorTexture", readColorTexture);
+    gfxApi->addTextureBinding(gammaCorrection->getCompiled(GfxShaderType::Fragment), "colorTexture", readColorTexture);
 
     gfxApi->end();
     ++stats.numDrawCalls;
@@ -1525,14 +1497,9 @@ void GfxRenderer::render()
 
     gfxApi->setCurrentFramebuffer(nullptr);
 
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledFXAAFragment,
-                  quadMesh);
+    gfxApi->begin(fxaa, quadMesh);
 
-    gfxApi->addTextureBinding(compiledFXAAFragment, "colorTexture", readColorTexture);
+    gfxApi->addTextureBinding(fxaa->getCompiled(GfxShaderType::Fragment), "colorTexture", readColorTexture);
 
     gfxApi->end();
     ++stats.numDrawCalls;
@@ -2032,15 +1999,10 @@ void GfxRenderer::renderSkybox()
     {
         gfxApi->pushState();
 
-        GfxCompiledShader *compiledVS = skyboxVertex->getCompiled();
-        GfxCompiledShader *compiledFS = skyboxFragment->getCompiled();
+        GfxCompiledShader *compiledVS = skyboxShaders->getCompiled(GfxShaderType::Vertex);
+        GfxCompiledShader *compiledFS = skyboxShaders->getCompiled(GfxShaderType::Fragment);
 
-        gfxApi->begin(compiledVS,
-                      nullptr,
-                      nullptr,
-                      nullptr,
-                      compiledFS,
-                      skyboxMesh);
+        gfxApi->begin(skyboxShaders, skyboxMesh);
 
         gfxApi->setDepthFunction(GfxLessEqual);
 

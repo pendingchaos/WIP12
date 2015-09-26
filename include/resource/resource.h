@@ -93,7 +93,7 @@ class Resource
             return type;
         }
 
-        inline void release()
+        inline void release() const
         {
             if (--refCount == 0)
             {
@@ -115,7 +115,7 @@ class Resource
         }
 
         template <typename T>
-        inline T *copyRef() const NO_BIND
+        inline const T *copyRef() const NO_BIND
         {
             ++refCount;
 

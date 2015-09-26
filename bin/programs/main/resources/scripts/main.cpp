@@ -200,7 +200,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
 
         DELETE(textTimer);
 
-        //font->release();
+        font->release();
         scene->release();
     }
 

@@ -11,22 +11,23 @@ Font::Font(const String& filename) : Resource(filename, ResType::FontType)
     quadMesh->primitive = GfxPoints;
     quadMesh->numVertices = 1;
 
-    quadVertex = resMgr->load<GfxShader>("resources/shaders/fontVertex.bin");
-    quadGeometry = resMgr->load<GfxShader>("resources/shaders/fontGeometry.bin");
-    quadFragment = resMgr->load<GfxShader>("resources/shaders/fontFragment.bin");
+    GfxShader *vertex = resMgr->load<GfxShader>("resources/shaders/fontVertex.bin");
+    GfxShader *geometry = resMgr->load<GfxShader>("resources/shaders/fontGeometry.bin");
+    GfxShader *fragment = resMgr->load<GfxShader>("resources/shaders/fontFragment.bin");
 
-    compiledQuadVertex = quadVertex->getCompiled();
-    compiledQuadGeometry = quadGeometry->getCompiled();
-    compiledQuadFragment = quadFragment->getCompiled();
+    shaders = NEW(GfxShaderCombination, vertex, fragment);
+    shaders->setShader(GfxShaderType::Geometry, geometry);
+
+    fragment->release();
+    geometry->release();
+    vertex->release();
 }
 
 Font::Font() : Resource(ResType::FontType) {}
 
 Font::~Font()
 {
-    quadFragment->release();
-    quadGeometry->release();
-    quadVertex->release();
+    DELETE(shaders);
 
     quadMesh->release();
 
@@ -219,38 +220,31 @@ void Font::render(size_t size,
 
         Glyph& glyph = characters.getValue(i)[0].glyph;
 
+        GfxCompiledShader *geometry = shaders->getCompiled(GfxShaderType::Geometry);
+        GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);
+
         for (size_t j = 0; j < positions.getCount()/100; ++j)
         {
-            gfxApi->begin(compiledQuadVertex,
-                          nullptr,
-                          nullptr,
-                          compiledQuadGeometry,
-                          compiledQuadFragment,
-                          quadMesh);
+            gfxApi->begin(shaders, quadMesh);
 
-            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
-            gfxApi->uniform(compiledQuadGeometry, "glyphPositions", 100, positions.getData()+j*100*sizeof(Position2D));
-            gfxApi->uniform(compiledQuadFragment, "color", color);
-            gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
+            gfxApi->uniform(geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
+            gfxApi->uniform(geometry, "glyphPositions", 100, positions.getData()+j*100);
+            gfxApi->uniform(fragment, "color", color);
+            gfxApi->addTextureBinding(fragment, "glyphTexture", glyph.texture);
 
             gfxApi->end(100);
         }
 
         if (positions.getCount() % 100 != 0)
         {
-            size_t offset = positions.getCount()/100*100*sizeof(Position2D);
+            size_t offset = positions.getCount()/100*100;
 
-            gfxApi->begin(compiledQuadVertex,
-                          nullptr,
-                          nullptr,
-                          compiledQuadGeometry,
-                          compiledQuadFragment,
-                          quadMesh);
+            gfxApi->begin(shaders, quadMesh);
 
-            gfxApi->uniform(compiledQuadGeometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
-            gfxApi->uniform(compiledQuadGeometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);
-            gfxApi->uniform(compiledQuadFragment, "color", color);
-            gfxApi->addTextureBinding(compiledQuadFragment, "glyphTexture", glyph.texture);
+            gfxApi->uniform(geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
+            gfxApi->uniform(geometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);
+            gfxApi->uniform(fragment, "color", color);
+            gfxApi->addTextureBinding(fragment, "glyphTexture", glyph.texture);
 
             gfxApi->end(positions.getCount() % 100);
         }

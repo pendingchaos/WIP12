@@ -97,12 +97,7 @@ class Font : public Resource
         HashMap<size_t, Face> faces;
 
         GfxMesh *quadMesh;
-        GfxShader *quadVertex;
-        GfxShader *quadGeometry;
-        GfxShader *quadFragment;
-        GfxCompiledShader *compiledQuadVertex;
-        GfxCompiledShader *compiledQuadGeometry;
-        GfxCompiledShader *compiledQuadFragment;
+        GfxShaderCombination *shaders;
     protected:
         Resource *_copy() const;
 } DESTROY(obj->release()) BIND;

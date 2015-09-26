@@ -18,9 +18,12 @@ void run(const char *dir)
 
         setApplication(&app_);
 
-        app->setNextScript(resMgr->load<Script>("resources/scripts/main.cpp"), "Main");
+        Script *script = resMgr->load<Script>("resources/scripts/main.cpp");
+        app->setNextScript(script, "Main");
+        script->release();
 
         app->mainloop();
+
     }
 
     setApplication(nullptr);

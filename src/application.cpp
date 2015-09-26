@@ -187,6 +187,7 @@ void Application::_switchScripts()
 
         script = nextScript->createInstance(nextScriptName.getData());
 
+        nextScript->release();
         nextScript = nullptr;
     }
 }

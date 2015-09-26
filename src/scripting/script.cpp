@@ -99,7 +99,7 @@ ScriptInstance::ScriptInstance(const char *name_,
                                void *ptr_,
                                Entity *entity_,
                                Scene *scene_) : name(name_),
-                                                script(script_),
+                                                script(script_->copyRef<Script>()),
                                                 ptr(ptr_),
                                                 entity(entity_),
                                                 scene(scene_) {}
@@ -107,6 +107,7 @@ ScriptInstance::ScriptInstance(const char *name_,
 ScriptInstance::~ScriptInstance()
 {
     script->destroyInstance(this);
+    script->release();
 }
 
 void ScriptInstance::handleInput()

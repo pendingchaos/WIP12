@@ -374,6 +374,38 @@ GfxShaderCombination::GfxShaderCombination(GfxShader *vertex,
 {
     setShader(GfxShaderType::Vertex, vertex),
     setShader(GfxShaderType::Fragment, fragment);
+
+    glGenProgramPipelines(1, &pipeline);
+}
+
+GfxShaderCombination::~GfxShaderCombination()
+{
+    glDeleteProgramPipelines(1, &pipeline);
+
+    if (shaders[0] != nullptr)
+    {
+        shaders[0]->release();
+    }
+
+    if (shaders[1] != nullptr)
+    {
+        shaders[1]->release();
+    }
+
+    if (shaders[2] != nullptr)
+    {
+        shaders[2]->release();
+    }
+
+    if (shaders[3] != nullptr)
+    {
+        shaders[3]->release();
+    }
+
+    if (shaders[4] != nullptr)
+    {
+        shaders[4]->release();
+    }
 }
 
 void GfxShaderCombination::setDefine(GfxShaderType shader, const String& name, const String& content)
@@ -389,7 +421,7 @@ void GfxShaderCombination::setDefine(GfxShaderType shader, const String& name, c
     dirty[index] = true;
 }
 
-const String& GfxShaderCombination::getDefine(GfxShaderType shader, const String& name)
+const String& GfxShaderCombination::getDefine(GfxShaderType shader, const String& name) const
 {
     size_t index = (size_t)shader;
 
@@ -414,7 +446,7 @@ void GfxShaderCombination::removeDefine(GfxShaderType shader, const String& name
     defines[index].remove(name);
 }
 
-GfxShader *GfxShaderCombination::getShader(GfxShaderType type)
+GfxShader *GfxShaderCombination::getShader(GfxShaderType type) const
 {
     size_t index = (size_t)type;
 
@@ -435,7 +467,12 @@ void GfxShaderCombination::setShader(GfxShaderType type, GfxShader *shader)
         THROW(BoundsException);
     }
 
-    shaders[index] = shader;
+    if (shaders[index] != nullptr)
+    {
+        shaders[index]->release();
+    }
+
+    shaders[index] = shader->copyRef<GfxShader>();
     dirty[index] = true;
 }
 
@@ -456,14 +493,24 @@ GfxCompiledShader *GfxShaderCombination::getCompiled(GfxShaderType type) const
     return compiled[index];
 }
 
+static GLbitfield bits[] = {GL_VERTEX_SHADER_BIT,
+                            GL_TESS_CONTROL_SHADER_BIT,
+                            GL_TESS_EVALUATION_SHADER_BIT,
+                            GL_GEOMETRY_SHADER_BIT,
+                            GL_FRAGMENT_SHADER_BIT};
+
 void GfxShaderCombination::compile(size_t index) const
 {
     if (shaders[index] != nullptr)
     {
         compiled[index] = shaders[index]->getCompiled(defines[index]);
+
+        glUseProgramStages(pipeline, bits[index], compiled[index]->getGLProgram());
     } else
     {
         compiled[index] = nullptr;
         dirty[index] = false;
+
+        glUseProgramStages(pipeline, bits[index], 0);
     }
 }

@@ -70,6 +70,8 @@ struct TextureSampler
     bool shadowmap;
 } BIND;
 
+class GfxShaderCombination;
+
 class GfxApi
 {
     public:
@@ -98,6 +100,7 @@ class GfxApi
                            GfxCompiledShader *geometry,
                            GfxCompiledShader *fragment,
                            GfxMesh *mesh)=0;
+        void begin(GfxShaderCombination *shaders, GfxMesh *mesh);
         virtual void draw(size_t instanceCount=1)=0;
         virtual void end(size_t instanceCount=1)=0;
 

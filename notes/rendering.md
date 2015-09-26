@@ -452,12 +452,11 @@ class PipelineState
         GfxDepthFunc getDepthFunction() const;
 };
 
-//This can not be modified when it is used in a draw call.
-class ShaderParams
+class GfxShaderParams
 {
     public:
-        ShaderParams(Context *context);
-        ~ShaderParams();
+        GfxShaderParams(Context *context);
+        ~GfxShaderParams();
 
         void setInt(const String& name, int32_t value);
         void setInt2(const String& name, const Int2& value);
@@ -502,7 +501,7 @@ class ShaderParams
         void remove(const String& name);
 };
 
-class DrawCalls
+class GfxDrawCalls
 {
     public:
         GfxDrawCalls(GfxContext *context);

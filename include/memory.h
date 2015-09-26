@@ -25,7 +25,7 @@ class MemoryException : public Exception
 
 #define DEALLOCATE(pointer) do\
 {\
-    std::free(pointer);\
+    std::free((void *)pointer);\
 } while (0)
 
 #ifdef IN_SCRIPT

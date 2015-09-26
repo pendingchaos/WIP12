@@ -22,42 +22,42 @@ if (location == -1)\
     return;\
 }
 
-GLenum toGLPrimitive[] = {GL_POINTS,
-                          GL_LINE_STRIP,
-                          GL_LINE_LOOP,
-                          GL_LINES,
-                          GL_TRIANGLE_STRIP,
-                          GL_TRIANGLE_FAN,
-                          GL_TRIANGLES,
-                          GL_PATCHES};
+static const GLenum toGLPrimitive[] = {GL_POINTS,
+                                       GL_LINE_STRIP,
+                                       GL_LINE_LOOP,
+                                       GL_LINES,
+                                       GL_TRIANGLE_STRIP,
+                                       GL_TRIANGLE_FAN,
+                                       GL_TRIANGLES,
+                                       GL_PATCHES};
 
-GLenum toGLBlendFactor[] = {GL_ZERO,
-                            GL_ONE,
-                            GL_SRC_COLOR,
-                            GL_ONE_MINUS_SRC_COLOR,
-                            GL_DST_COLOR,
-                            GL_ONE_MINUS_DST_COLOR,
-                            GL_SRC_ALPHA,
-                            GL_ONE_MINUS_SRC_ALPHA,
-                            GL_DST_ALPHA,
-                            GL_ONE_MINUS_DST_ALPHA,
-                            GL_CONSTANT_COLOR,
-                            GL_ONE_MINUS_CONSTANT_COLOR,
-                            GL_CONSTANT_ALPHA,
-                            GL_ONE_MINUS_CONSTANT_ALPHA};
+static const GLenum toGLBlendFactor[] = {GL_ZERO,
+                                         GL_ONE,
+                                         GL_SRC_COLOR,
+                                         GL_ONE_MINUS_SRC_COLOR,
+                                         GL_DST_COLOR,
+                                         GL_ONE_MINUS_DST_COLOR,
+                                         GL_SRC_ALPHA,
+                                         GL_ONE_MINUS_SRC_ALPHA,
+                                         GL_DST_ALPHA,
+                                         GL_ONE_MINUS_DST_ALPHA,
+                                         GL_CONSTANT_COLOR,
+                                         GL_ONE_MINUS_CONSTANT_COLOR,
+                                         GL_CONSTANT_ALPHA,
+                                         GL_ONE_MINUS_CONSTANT_ALPHA};
 
-GLenum toGLBlendMode[] = {GL_FUNC_ADD, GL_FUNC_SUBTRACT, GL_FUNC_REVERSE_SUBTRACT};
+static const GLenum toGLBlendMode[] = {GL_FUNC_ADD, GL_FUNC_SUBTRACT, GL_FUNC_REVERSE_SUBTRACT};
 
-GLenum toGLDepthFunc[] = {GL_NEVER,
-                          GL_LESS,
-                          GL_EQUAL,
-                          GL_LEQUAL,
-                          GL_GREATER,
-                          GL_NOTEQUAL,
-                          GL_GEQUAL,
-                          GL_ALWAYS};
+static const GLenum toGLDepthFunc[] = {GL_NEVER,
+                                       GL_LESS,
+                                       GL_EQUAL,
+                                       GL_LEQUAL,
+                                       GL_GREATER,
+                                       GL_NOTEQUAL,
+                                       GL_GEQUAL,
+                                       GL_ALWAYS};
 
-void printOpenGLInfo()
+static void printOpenGLInfo()
 {
     const char *vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
     const char *renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
@@ -85,13 +85,13 @@ void printOpenGLInfo()
                                                  extensions);
 }
 
-void debugCallback(GLenum source,
-                   GLenum type,
-                   GLuint id,
-                   GLenum severity,
-                   GLsizei length,
-                   const char *message,
-                   const void *userParam)
+static void debugCallback(GLenum source,
+                          GLenum type,
+                          GLuint id,
+                          GLenum severity,
+                          GLsizei length,
+                          const char *message,
+                          const void *userParam)
 {
     #define HANDLE_MESSAGE(behavior) switch (type)\
     {\

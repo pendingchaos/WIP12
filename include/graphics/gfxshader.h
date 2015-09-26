@@ -121,15 +121,21 @@ class GfxShaderCombination
     public:
         GfxShaderCombination(GfxShader *vertex,
                              GfxShader *fragment);
+        ~GfxShaderCombination();
 
         void setDefine(GfxShaderType shader, const String& name, const String& content);
-        const String& getDefine(GfxShaderType shader, const String& name);
+        const String& getDefine(GfxShaderType shader, const String& name) const;
         void removeDefine(GfxShaderType shader, const String& name);
 
-        GfxShader *getShader(GfxShaderType type);
+        GfxShader *getShader(GfxShaderType type) const;
         void setShader(GfxShaderType type, GfxShader *shader);
 
         GfxCompiledShader *getCompiled(GfxShaderType type) const;
+
+        inline GLuint getGLPipeline() const
+        {
+            return pipeline;
+        }
     private:
         void compile(size_t index) const;
 
@@ -137,6 +143,8 @@ class GfxShaderCombination
         GfxShader *shaders[5];
         mutable GfxCompiledShader *compiled[5];
         mutable bool dirty[5];
+
+        GLuint pipeline;
 
     NO_COPY(GfxShaderCombination)
 } NOT_COPYABLE BIND;
