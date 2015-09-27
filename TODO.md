@@ -27,8 +27,6 @@
 - [ ] === function (scripting).
 - [ ] Improve the String type (scripting).
 - [ ] Proper methods (scripting).
-- [ ] Automatic shadow map far value calculation for point and spot lights.
-- [ ] Have point light radius in world space units.
 - [ ] Skeletal animation for the mesh converter.
 - [ ] Improve skeletal animation.
 - [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)
@@ -36,6 +34,8 @@
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
 - [ ] Make a GUI skinnable.
+- [ ] Automatic shadow map far value calculation for point and spot lights.
+- [ ] Have point light radius in world space units.
 
 ## Bugs
 - [ ] POM with terrains freezes the computer.

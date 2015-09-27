@@ -3,7 +3,7 @@ import shutil
 import xml.etree.ElementTree as ET
 
 target = "debug" #Change to "release" for a release target.
-process_count = 10
+process_count = 3
 
 options = "-Wall -fexceptions `sdl2-config --cflags` `pkg-config bullet --cflags` `freetype-config --cflags` `pkg-config vorbisfile --cflags` -std=gnu++11 -DUSE_SDL2 -DGLFL_USE_SDL2 -DGLFL_USE_GL -I../include -D_REENTRANT"
 
