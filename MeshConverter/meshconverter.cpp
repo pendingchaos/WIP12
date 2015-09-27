@@ -6,6 +6,9 @@
 #include <cstring>
 #include <stddef.h>
 #include <stdint.h>
+#include <vector>
+#include <array>
+#include <assert.h>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -57,9 +60,32 @@ void writeVertexAttrib(FILE *file,
     std::fwrite(data, 3, 1, file);
 }
 
+struct VertexBoneData
+{
+    VertexBoneData()
+    {
+        count = 0;
+        bones[0] = bones[1] = bones[2] = bones[3] = 0;
+        weights[0] = 255;
+        weights[1] = weights[2] = weights[3] = 0;
+    }
+
+    void add(uint8_t bone, uint8_t weight)
+    {
+        assert(count < 4);
+
+        bones[count] = bone;
+        weights[count++] = weight;
+    }
+
+    size_t count;
+    uint8_t bones[4];
+    uint8_t weights[4];
+};
+
 extern "C"
 {
-void convert(const char *input, const char *out)
+void convert(const char *input, const char *out, bool animated)
 {
     Assimp::Importer importer;
 
@@ -67,13 +93,14 @@ void convert(const char *input, const char *out)
                                                     | aiProcess_JoinIdenticalVertices
                                                     | aiProcess_Triangulate
                                                     | aiProcess_GenSmoothNormals
-                                                    | aiProcess_PreTransformVertices
                                                     | aiProcess_ValidateDataStructure
                                                     | aiProcess_ImproveCacheLocality
                                                     | aiProcess_FindInvalidData
                                                     | aiProcess_GenUVCoords
                                                     | aiProcess_FindInstances
-                                                    | aiProcess_OptimizeMeshes);
+                                                    | aiProcess_OptimizeMeshes
+                                                    | aiProcess_LimitBoneWeights
+                                                    | (animated ? 0 : aiProcess_PreTransformVertices));
 
     if (scene == NULL)
     {
@@ -97,6 +124,13 @@ void convert(const char *input, const char *out)
     {
         importWarning("There are multiple meshes in the file.\n"
                       "The first one is being used.");
+
+        std::cerr << "Meshes:\n";
+
+        for (size_t i = 0; i < scene->mNumMeshes; ++i)
+        {
+            std::cout << "    " << scene->mMeshes[i]->mName.data << std::endl;
+        }
     }
 
     aiMesh *mesh = scene->mMeshes[0];
@@ -146,7 +180,8 @@ void convert(const char *input, const char *out)
                                 ((mesh->HasNormals() != 0) ? 1 : 0) +
                                 ((mesh->HasTangentsAndBitangents() != 0) ? 1 : 0) +
                                 ((mesh->GetNumUVChannels() != 0) ? 1 : 0) +
-                                ((mesh->GetNumColorChannels() != 0) ? 1 : 0);
+                                ((mesh->GetNumColorChannels() != 0) ? 1 : 0) +
+                                ((mesh->HasBones() != 0) ? 2 : 0);
 
     std::fwrite(&numVertexAttribs, 4, 1, output);
 
@@ -258,6 +293,42 @@ void convert(const char *input, const char *out)
         }
     }
 
+    if (mesh->HasBones())
+    {
+        std::vector<VertexBoneData> boneData(mesh->mNumVertices);
+
+        for (size_t i = 0; i < mesh->mNumBones; ++i)
+        {
+            aiBone *bone = mesh->mBones[i];
+
+            for (size_t j = 0; j < bone->mNumWeights; ++j)
+            {
+                boneData[bone->mWeights[j].mVertexId].add(i+1, bone->mWeights[j].mWeight * 255.0f);
+            }
+        }
+
+        //Bone indices
+        std::fwrite("\x05\x0b", 2, 1, output); //type, datatype
+
+        uint32_t size = mesh->mNumVertices * 4;
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            std::fwrite(boneData[i].bones, 4, 1, output);
+        }
+
+        //Bone weights
+        std::fwrite("\x06\x23", 2, 1, output); //type, datatype
+
+        std::fwrite(&size, 4, 1, output);
+
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            std::fwrite(boneData[i].weights, 4, 1, output);
+        }
+    }
+
     uint8_t indexType;
 
     if (indexSize == 4)
@@ -311,11 +382,174 @@ void convert(const char *input, const char *out)
         }
     }
 
-    uint32_t boneCount = 0;
+    uint32_t boneCount = mesh->mNumBones+1;
     std::fwrite(&boneCount, 4, 1, output);
 
-    uint32_t animationCount = 0;
+    //Identity bone
+    float identityMatrix[] = {1.0f, 0.0f, 0.0f, 0.0f,
+                              0.0f, 1.0f, 0.0f, 0.0f,
+                              0.0f, 0.0f, 1.0f, 0.0f,
+                              0.0f, 0.0f, 0.0f, 1.0f};
+    std::fwrite(identityMatrix, 64, 1, output);
+
+    uint32_t numChildren = 0;
+    std::fwrite(&numChildren, 4, 1, output);
+
+    for (size_t i = 0; i < mesh->mNumBones; ++i)
+    {
+        aiMatrix4x4 boneMatrix = mesh->mBones[i]->mOffsetMatrix;
+
+        boneMatrix.Transpose();
+
+        std::fwrite(&boneMatrix, 64, 1, output);
+
+        aiNode *bone = scene->mRootNode->FindNode(mesh->mBones[i]->mName);
+
+        std::vector<uint8_t> children;
+        for (size_t j = 0; j < bone->mNumChildren; ++j)
+        {
+            int boneIndex = -1;
+
+            for (size_t k = 0; k < mesh->mNumBones; ++k)
+            {
+                if (mesh->mBones[i]->mName == bone->mChildren[j]->mName)
+                {
+                    boneIndex = k;
+                    break;
+                }
+            }
+
+            if (boneIndex == -1)
+            {
+                continue;
+            }
+
+            uint8_t v = boneIndex + 1;
+            children.push_back(v);
+        }
+
+        uint32_t numChildren = children.size();
+
+        std::fwrite(&numChildren, 4, 1, output);
+
+        std::fwrite(children.data(), numChildren, 1, output);
+    }
+
+    uint32_t animationCount = scene->mNumAnimations;
     std::fwrite(&animationCount, 4, 1, output);
+
+    for (size_t i = 0; i < scene->mNumAnimations; ++i)
+    {
+        aiAnimation *anim = scene->mAnimations[i];
+
+        uint32_t nameLength = 9;
+        std::fwrite(&nameLength, 4, 1, output);
+
+        std::cout << "Animation name: '" << "animation" << "'" << std::endl;
+
+        std::fwrite("animation", 9, 1, output);
+
+        uint32_t fps = 24;
+        uint32_t numFrames = anim->mDuration * fps;
+
+        std::fwrite(&fps, 4, 1, output);
+        std::fwrite(&numFrames, 4, 1, output);
+
+        for (size_t j = 0; j < numFrames; ++j)
+        {
+            std::vector<std::array<float, 10>> transforms(mesh->mNumBones+1);
+
+            for (auto& transform : transforms)
+            {
+                transform[0] = 0.0f;
+                transform[1] = 0.0f;
+                transform[2] = 0.0f;
+                transform[3] = 1.0f;
+                transform[4] = 1.0f;
+                transform[5] = 1.0f;
+                transform[6] = 1.0f;
+                transform[7] = 0.0f;
+                transform[8] = 0.0f;
+                transform[9] = 0.0f;
+            }
+
+            for (size_t k = 0; k < anim->mNumChannels; ++k)
+            {
+                aiNodeAnim *nodeAnim = anim->mChannels[k];
+
+                int boneIndex = -1;
+
+                for (size_t k = 0; k < mesh->mNumBones; ++k)
+                {
+                    if (mesh->mBones[k]->mName == nodeAnim->mNodeName)
+                    {
+                        boneIndex = k;
+                        break;
+                    }
+                }
+
+                if (boneIndex == -1)
+                {
+                    continue;
+                }
+
+                aiVectorKey positionKey;
+                aiVectorKey scaleKey;
+                aiQuatKey orientationKey;
+
+                for (size_t k2 = 0; k2 < nodeAnim->mNumPositionKeys; ++k2)
+                {
+                    if (size_t(nodeAnim->mPositionKeys[k2].mTime * fps) >= j)
+                    {
+                        positionKey = nodeAnim->mPositionKeys[k2];
+                    }
+                }
+
+                for (size_t k2 = 0; k2 < nodeAnim->mNumScalingKeys; ++k2)
+                {
+                    if (size_t(nodeAnim->mScalingKeys[k2].mTime * fps) >= j)
+                    {
+                        scaleKey = nodeAnim->mScalingKeys[k2];
+                    }
+                }
+
+                for (size_t k2 = 0; k2 < nodeAnim->mNumRotationKeys; ++k2)
+                {
+                    if (size_t(nodeAnim->mRotationKeys[k2].mTime * fps) >= j)
+                    {
+                        orientationKey = nodeAnim->mRotationKeys[k2];
+                    }
+                }
+
+                transforms[boneIndex+1] = {orientationKey.mValue.x,
+                                           orientationKey.mValue.y,
+                                           orientationKey.mValue.z,
+                                           orientationKey.mValue.w,
+                                           scaleKey.mValue.x,
+                                           scaleKey.mValue.y,
+                                           scaleKey.mValue.z,
+                                           positionKey.mValue.x,
+                                           positionKey.mValue.y,
+                                           positionKey.mValue.z};
+
+                /*std::cout << transforms[boneIndex][0] << " "
+                          << transforms[boneIndex][1] << " "
+                          << transforms[boneIndex][2] << " "
+                          << transforms[boneIndex][3] << " "
+                          << transforms[boneIndex][4] << " "
+                          << transforms[boneIndex][5] << " "
+                          << transforms[boneIndex][6] << " "
+                          << transforms[boneIndex][7] << " "
+                          << transforms[boneIndex][8] << " "
+                          << transforms[boneIndex][9] << std::endl;*/
+            }
+
+            for (auto transform : transforms)
+            {
+                std::fwrite(transform.data(), 40, 1, output);
+            }
+        }
+    }
 
     std::fclose(output);
 }

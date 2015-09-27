@@ -166,7 +166,7 @@
 	<stdint.h>
 	<wchar.h>
 
-1442173585 source:/home/rugrats/Documents/CPP/WIP12/MeshConverter/meshconverter.cpp
+1443306050 source:/home/rugrats/Documents/CPP/WIP12/MeshConverter/meshconverter.cpp
 	"../include/endian_utils.h"
 	<iostream>
 	<cstdlib>
@@ -174,6 +174,9 @@
 	<cstring>
 	<stddef.h>
 	<stdint.h>
+	<vector>
+	<array>
+	<assert.h>
 	<assimp/Importer.hpp>
 	<assimp/scene.h>
 	<assimp/postprocess.h>

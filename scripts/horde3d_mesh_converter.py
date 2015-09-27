@@ -78,6 +78,13 @@ for i in xrange(numStreams):
 numIndices = struct.unpack("<L", mesh.read(4))[0]
 indices = [struct.unpack("<L", mesh.read(4))[0] for i in xrange(numIndices)]
 
+positions = positions[:numVertices]
+normals = normals[:numVertices]
+tangents = tangents[:numVertices]
+boneIndices = boneIndices[:numVertices]
+boneWeights = boneWeights[:numVertices]
+texCoords = texCoords[:numVertices]
+
 """# For the head and sword removal hack
 positions = [positions[index] for index in indices]
 normals = [normals[index] for index in indices]
@@ -176,12 +183,12 @@ for pos in positions:
     aabb[4] = max(pos[1], aabb[4])
     aabb[5] = max(pos[2], aabb[5])
 
-output = open("../bin/programs/main/resources/meshes/astroboy.bin", "wb")
+output = open("../bin/programs/main/resources/meshes/soldier.bin", "wb")
 output.write("mesh\x00\x00")
 output.write(struct.pack("<L", len(indices)))
 output.write("\x01") # Indexed
 output.write("\x06") # Primitive
-output.write("\x00") # Cull moed
+output.write("\x00") # Cull mode
 output.write("\x01") # Winding
 output.write(struct.pack("<ffffff", *aabb))
 output.write(struct.pack("<L", 6)) # Attribute count

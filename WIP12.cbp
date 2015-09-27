@@ -86,7 +86,6 @@
 		<Unit filename="include/graphics/font.h" />
 		<Unit filename="include/graphics/gfxapi.h" />
 		<Unit filename="include/graphics/gfxbuffer.h" />
-		<Unit filename="include/graphics/gfxcontext.h" />
 		<Unit filename="include/graphics/gfxdebugdrawer.h" />
 		<Unit filename="include/graphics/gfxdefs.h" />
 		<Unit filename="include/graphics/gfxframebuffer.h" />
@@ -159,7 +158,6 @@
 		<Unit filename="src/graphics/font.cpp" />
 		<Unit filename="src/graphics/gfxapi.cpp" />
 		<Unit filename="src/graphics/gfxbuffer.cpp" />
-		<Unit filename="src/graphics/gfxcontext.cpp" />
 		<Unit filename="src/graphics/gfxdebugdrawer.cpp" />
 		<Unit filename="src/graphics/gfxframebuffer.cpp" />
 		<Unit filename="src/graphics/gfxmaterial.cpp" />

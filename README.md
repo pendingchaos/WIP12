@@ -53,3 +53,6 @@ or bin/run_main.
 ```shell
 make lazy
 ```
+
+## Attribution
+The Soldier 1.0 model (http://opengameart.org/content/soldier-10) was created by killyoverdrive and released under the Creative Commons Attribution ShareAlike 3.0 Unported license.

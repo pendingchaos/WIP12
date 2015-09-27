@@ -239,13 +239,15 @@ if __name__ == "__main__":
     class Mesh(Resource):
         def __init__(self, src_filenames, dest_filename):
             Resource.__init__(self, "mesh", src_filenames, dest_filename)
+            
+            self.animated = False
         
         def convert(self):
             if meshConverter != None:
                 src = self.src_filenames[0].encode("ascii")
                 dest = (self.dest_filename+".temp").encode("ascii")
                 
-                meshConverter.convert(src, dest)
+                meshConverter.convert(src, dest, self.animated)
                 
                 os.rename(self.dest_filename+".temp", self.dest_filename)
     
@@ -1083,6 +1085,8 @@ if __name__ == "__main__":
     conv["fence.obj"] = Mesh(["source/fence.obj"], "resources/meshes/fence.bin")
     conv["aotest.obj"] = Mesh(["source/ao test.obj"], "resources/meshes/aotest.bin")
     conv["platform.obj"] = Mesh(["source/platform.obj"], "resources/meshes/platform.bin")
+    #conv["soldier1"] = Mesh(["source/Cube.mesh.xml"], "resources/meshes/soldier.bin")
+    #conv["soldier1"].animated = True
     
     mat = Material([], "resources/materials/material.bin")
     mat.forward = False
@@ -1189,12 +1193,12 @@ if __name__ == "__main__":
     mat.normalMap = conv["rockNormal.png"]
     conv["rock material"] = mat
     
-    """mat = Material([], "resources/materials/astroboy.bin")
+    mat = Material([], "resources/materials/soldier.bin")
     mat.forward = False
     mat.smoothness = 0.5
     mat.metalMask = 1.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    conv["AstroBoy material"] = mat"""
+    conv["Soldier material"] = mat
     
     model = Model([], "resources/models/model.bin")
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
@@ -1240,9 +1244,9 @@ if __name__ == "__main__":
     model.sub_models = [[Model.LOD(conv["sphere.obj"], conv["projectile material"], 0.0, 9999.0)]]
     conv["projectile"] = model
     
-    #model = Model([], "resources/models/astroboy.bin")
-    #model.sub_models = [[Model.LOD("resources/meshes/astroboy.bin", conv["AstroBoy material"], 0.0, 9999.0)]]
-    #conv["AstroBoy model"] = model
+    model = Model([], "resources/models/solider.bin")
+    model.sub_models = [[Model.LOD("resources/meshes/soldier1.bin", conv["Soldier material"], 0.0, 9999.0)]]
+    conv["Soldier model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
     floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
@@ -1374,7 +1378,7 @@ if __name__ == "__main__":
     ent.model = conv["parallax test model"]
     scene.entities.append(ent)
     
-    """ent = Scene.Entity("AstroBoy")
+    """ent = Scene.Entity("Soldier")
     #ent.transform.position = [0.0, 3.25, -3.0]
     #ent.transform.position = [0.0, 0.0, -3.0]
     ent.transform.position = [0.0, 2.4, -3.0]
@@ -1385,13 +1389,13 @@ if __name__ == "__main__":
     #ent.transform.scale = [0.2, 0.2, 0.2]
     #ent.transform.scale = [1.2, 1.2, 1.2]
     ent.transform.orientation = [0.0, 225.0, 0.0]
-    ent.model = conv["AstroBoy model"]
+    ent.model = conv["Soldier model"]
     #ent.animation = "man"
     #ent.animation = "knight_attack"
     #ent.animation = "kngcalvn_fbx_test"
     #ent.animation = "Octaminator_lowpoly_final"
     #ent.animation = "riggedHorse"
-    ent.animation = "soldier"
+    ent.animation = "ArmatureAction"
     ent.scripts.append(("resources/scripts/animated.cpp", "Animated"))
     scene.entities.append(ent)"""
     
@@ -1756,5 +1760,10 @@ if __name__ == "__main__":
     scene.lights.append(light)"""
     
     for res in conv.values():
+        if len(res.src_filenames) == 1:
+            print res.src_filenames[0], "->", res.dest_filename
+        else:
+            print res.src_filenames, "->", res.dest_filename
+        
         #if isinstance(res, Shader):
-            res.convert()
+        res.convert()
