@@ -994,9 +994,6 @@ if __name__ == "__main__":
     conv["ssaoBlurYFragment.fs"] = Shader(["source/shaders/ssaoBlurYFragment.fs"], "../../resources/shaders/ssaoBlurYFragment.bin")
     conv["ssaoBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["ssaoUpsample.fs"] = Shader(["source/shaders/ssaoUpsampleFragment.fs"], "../../resources/shaders/ssaoUpsampleFragment.bin")
-    conv["ssaoUpsample.fs"].stage_ = Shader.Stage.Fragment
-    
     conv["bloomBlurXFragment.fs"] = Shader(["source/shaders/bloomBlurXFragment.fs"], "../../resources/shaders/bloomBlurXFragment.bin")
     conv["bloomBlurXFragment.fs"].stage_ = Shader.Stage.Fragment
     

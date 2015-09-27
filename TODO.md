@@ -30,7 +30,7 @@
 - [ ] Automatic shadow map far value calculation for point and spot lights.
 - [ ] Have point light radius in world space units.
 - [ ] Skeletal animation for the mesh converter.
-- [ ] Improved skeletal animation.
+- [ ] Improve skeletal animation.
 - [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)
 - [ ] Terrain shadows from point lights.
     - Separate option.
@@ -63,7 +63,6 @@
     - [ ] Dithering? https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering?
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
-- [ ] Improve directional shadow quality.
 
 ## Performance Improvements
 - [ ] Instancing

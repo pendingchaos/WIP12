@@ -204,13 +204,13 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
 
     float shadow = 0.0;
 
-    vec3 cost;
-    
     if (numBlockers < 1.0)
     {
         shadow = 1.0;
-        cost = vec3(0.0, 0.0, 1.0);
-    } else if (precent > 0.75)
+    } else if (dot(normal, lightNegDir) < -0.1)
+    {
+        shadow = 0.0;
+    } else
     {
         _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
         _SHADOW_SAMPLE(vec2(0.0, -0.875))
@@ -252,48 +252,6 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
         _SHADOW_SAMPLE(vec2(0.125, 0.0))
         
         shadow /= 24.0;
-        cost = vec3(1.0, 0.0, 0.0);
-    } else if (precent > 0.5)
-    {
-        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
-        _SHADOW_SAMPLE(vec2(0.0, -0.875))
-        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
-        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
-        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
-        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
-        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
-        _SHADOW_SAMPLE(vec2(0.125, 0.0))
-        
-        noise += PI;
-        s = sin(noise);
-        c = cos(noise);
-        mat = mat2(s, -c,
-                   c, s);
-        
-        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
-        _SHADOW_SAMPLE(vec2(0.0, -0.875))
-        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
-        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
-        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
-        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
-        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
-        _SHADOW_SAMPLE(vec2(0.125, 0.0))
-        
-        shadow /= 16.0;
-        cost = vec3(1.0, 1.0, 0.0);
-    } else
-    {
-        _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
-        _SHADOW_SAMPLE(vec2(0.0, -0.875))
-        _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
-        _SHADOW_SAMPLE(vec2(-0.625, 0.0))
-        _SHADOW_SAMPLE(vec2(0.3536, -0.3536))
-        _SHADOW_SAMPLE(vec2(0.0, 0.3750))
-        _SHADOW_SAMPLE(vec2(0.1768, -0.1768))
-        _SHADOW_SAMPLE(vec2(0.125, 0.0))
-        
-        shadow /= 8.0;
-        cost = vec3(0.0, 1.0, 0.0);
     }
 
     albedo /= PI;
