@@ -99,6 +99,7 @@ class GfxRenderer
             float ssaoTiming;
             float ssaoBlurXTiming;
             float ssaoBlurYTiming;
+            float ssaoUpsampleTiming;
             float deferredShadingTiming;
             float forwardTiming;
             float gammaCorrectionTiming;
@@ -224,6 +225,7 @@ class GfxRenderer
         GPUTimer *ssaoTimer;
         GPUTimer *ssaoBlurXTimer;
         GPUTimer *ssaoBlurYTimer;
+        GPUTimer *ssaoUpsampleTimer;
         GPUTimer *deferredShadingTimer;
         GPUTimer *forwardTimer;
         GPUTimer *gammaCorrectionTimer;
@@ -260,9 +262,6 @@ class GfxRenderer
         GfxShaderCombination *gammaCorrection;
         GfxShaderCombination *applyBloom;
         GfxShaderCombination *bloomDownsample;
-        GfxShaderCombination *hbao;
-        GfxShaderCombination *ssaoInterleave;
-        GfxShaderCombination *ssaoDeinterleave;
         GfxShaderCombination *overlayShaders;
         GfxShaderCombination *colorModify;
         GfxShader *colorModifierFragment;
@@ -335,10 +334,6 @@ class GfxRenderer
         GfxTexture *bloom3Texture;
         GfxTexture *bloom4Texture;
         GfxTexture *bloomDownsampleTexture;
-        GfxTexture *hbaoRandomTexture;
-        GfxTexture *deinterleavedDepthTexture;
-        GfxTexture *ssaoNormalTexture;
-        GfxTexture *deinterleavedSSAOTexture;
         GfxTexture *geomNormalTexture;
         //GfxTexture> luminanceTexture;
 
@@ -353,8 +348,6 @@ class GfxRenderer
         GfxFramebuffer *bloom3Framebuffer;
         GfxFramebuffer *bloom4Framebuffer;
         GfxFramebuffer *bloomDownsampleFramebuffer;
-        GfxFramebuffer *ssaoDeinterleavedFramebuffer;
-        GfxFramebuffer *ssaoDepthDeinterleaveFramebuffer;
         //GfxFramebuffer *luminanceFramebuffer;
 
         struct Batch

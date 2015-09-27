@@ -79,9 +79,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     tonemap = createPostShader("resources/shaders/tonemapFragment.bin");
     applyBloom = createPostShader("resources/shaders/applyBloomFragment.bin");
     bloomDownsample = createPostShader("resources/shaders/bloomDownsampleFragment.bin");
-    //hbao = createPostShader("resources/shaders/hbaoFragment.bin");
-    ssaoInterleave = createPostShader("resources/shaders/ssaoInterleaveFragment.bin");
-    ssaoDeinterleave = createPostShader("resources/shaders/ssaoDeinterleaveFragment.bin");
     gammaCorrection = createPostShader("resources/shaders/gammaCorrectionFragment.bin");
 
     terrainVertex = resMgr->load<GfxShader>("resources/shaders/terrainVertex.bin");
@@ -169,9 +166,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloom3Texture = NEW(GfxTexture);
     bloom4Texture = NEW(GfxTexture);
     bloomDownsampleTexture = NEW(GfxTexture);
-    deinterleavedSSAOTexture = NEW(GfxTexture);
-    deinterleavedDepthTexture = NEW(GfxTexture);
-    ssaoNormalTexture = NEW(GfxTexture);
     geomNormalTexture = NEW(GfxTexture);
 
     readColorTexture->setWrapMode(GfxWrapMode::Stretch);
@@ -187,9 +181,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloom3Texture->setWrapMode(GfxWrapMode::Stretch);
     bloom4Texture->setWrapMode(GfxWrapMode::Stretch);
     bloomDownsampleTexture->setWrapMode(GfxWrapMode::Stretch);
-    deinterleavedSSAOTexture->setWrapMode(GfxWrapMode::Stretch);
-    deinterleavedDepthTexture->setWrapMode(GfxWrapMode::Stretch);
-    ssaoNormalTexture->setWrapMode(GfxWrapMode::Stretch);
     geomNormalTexture->setWrapMode(GfxWrapMode::Stretch);
     //luminanceTexture->setWrapMode(GfxWrapMode::Stretch);
 
@@ -202,26 +193,22 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                      1,
                                      0,
                                      GfxTexPurpose::Other,
-                                     GfxTexFormat::RedGreenF32_F16);
+                                     GfxTexFormat::RGBF32_F16);
 
-    static const float randomVecs[] = {-0.99f, -0.15f,
-                                       -0.5f, 0.87f,
-                                       0.97f, -0.24f,
-                                       0.65f, 0.76f,
-                                       -0.81f, 0.59f,
-                                       0.9f, -0.44f,
-                                       -1.0f, 0.07f,
-                                       0.79f, 0.61f,
-                                       0.20f, -0.98f,
-                                       0.93f, -0.36f,
-                                       0.99f, -0.15f,
-                                       -0.74f, -0.67f,
-                                       0.87f, 0.49f,
-                                       0.71f, -0.7f,
-                                       -0.66f, -0.75f,
-                                       -1.0f, 0.07f};
+    const int NUM_DIRECTIONS = 8;
 
-    ssaoRandomTexture->allocMipmap(0, 1, randomVecs);
+    float random[48];
+
+    for (size_t i = 0; i < 16; ++i)
+    {
+        float angle = 2.0f * M_PI * (std::rand() / (float)RAND_MAX) / NUM_DIRECTIONS;
+
+        random[i*3] = std::cos(angle);
+        random[i*3+1] = std::sin(angle);
+        random[i*3+2] = std::rand() / (float)RAND_MAX;
+    }
+
+    ssaoRandomTexture->allocMipmap(0, 1, random);
 
     readFramebuffer = gfxApi->createFramebuffer();
     readFramebuffer->addColorAttachment(0, readColorTexture);
@@ -262,12 +249,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloomDownsampleFramebuffer = gfxApi->createFramebuffer();
     bloomDownsampleFramebuffer->addColorAttachment(0, bloomDownsampleTexture);
 
-    ssaoDeinterleavedFramebuffer = gfxApi->createFramebuffer();
-    ssaoDeinterleavedFramebuffer->addColorAttachment(0, deinterleavedSSAOTexture);
-
-    ssaoDepthDeinterleaveFramebuffer = gfxApi->createFramebuffer();
-    ssaoDepthDeinterleaveFramebuffer->addColorAttachment(0, deinterleavedDepthTexture);
-
     /*luminanceFramebuffer = gfxApi->createFramebuffer();
     luminanceFramebuffer->addColorAttachment(0, luminanceTexture);*/
 
@@ -275,6 +256,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoTimer = gfxApi->createTimer();
     ssaoBlurXTimer = gfxApi->createTimer();
     ssaoBlurYTimer = gfxApi->createTimer();
+    ssaoUpsampleTimer = gfxApi->createTimer();
     deferredShadingTimer = gfxApi->createTimer();
     forwardTimer = gfxApi->createTimer();
     gammaCorrectionTimer = gfxApi->createTimer();
@@ -322,6 +304,7 @@ GfxRenderer::~GfxRenderer()
 
     DELETE(gBufferTimer);
     DELETE(ssaoTimer);
+    DELETE(ssaoUpsampleTimer);
     DELETE(ssaoBlurXTimer);
     DELETE(ssaoBlurYTimer);
     DELETE(deferredShadingTimer);
@@ -346,21 +329,16 @@ GfxRenderer::~GfxRenderer()
     DELETE(bloom3Framebuffer);
     DELETE(bloom4Framebuffer);
     DELETE(bloomDownsampleFramebuffer);
-    DELETE(ssaoDeinterleavedFramebuffer);
-    DELETE(ssaoDepthDeinterleaveFramebuffer);
     //DELETE(luminanceFramebuffer);
 
     DELETE(lightBuffer);
 
     geomNormalTexture->release();
-    deinterleavedDepthTexture->release();
-    deinterleavedSSAOTexture->release();
     bloomDownsampleTexture->release();
     bloom4Texture->release();
     bloom3Texture->release();
     bloom2Texture->release();
     bloom1Texture->release();
-    ssaoNormalTexture->release();
     ssaoRandomTexture->release();
     //luminanceTexture->release();
     bloomBlurXTexture->release();
@@ -391,10 +369,6 @@ GfxRenderer::~GfxRenderer()
     DELETE(lumCalc);
     DELETE(gammaCorrection);
     DELETE(applyBloom);
-    DELETE(bloomDownsample);
-    //DELETE(hbao);
-    DELETE(ssaoInterleave);
-    DELETE(ssaoDeinterleave);
     DELETE(overlayShaders);
     DELETE(colorModify);
 
@@ -441,6 +415,12 @@ void GfxRenderer::updateStats()
     if (ssaoBlurYTimer->resultAvailable())
     {
         stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult() / (float)ssaoBlurYTimer->getResultResolution();
+    }
+
+    ssaoUpsampleTimer->swap();
+    if (ssaoUpsampleTimer->resultAvailable())
+    {
+        stats.ssaoUpsampleTiming = ssaoUpsampleTimer->getResult() / (float)ssaoUpsampleTimer->getResultResolution();
     }
 
     deferredShadingTimer->swap();
@@ -873,26 +853,6 @@ void GfxRenderer::resize(const UInt2& size)
                                         GfxTexFormat::RedF32_F16);
         luminanceTexture->allocMipmap(0, 1, nullptr);*/
 
-        deinterleavedSSAOTexture->startCreation(GfxTextureType::Texture2D,
-                                                false,
-                                                width,
-                                                height,
-                                                1,
-                                                0,
-                                                GfxTexPurpose::Other,
-                                                GfxTexFormat::RGBAF32_F16);
-        deinterleavedSSAOTexture->allocMipmap(0, 1, nullptr);
-
-        deinterleavedDepthTexture->startCreation(GfxTextureType::Texture2D,
-                                                 false,
-                                                 width,
-                                                 height,
-                                                 1,
-                                                 0,
-                                                 GfxTexPurpose::Other,
-                                                 GfxTexFormat::RedF32);
-        deinterleavedDepthTexture->allocMipmap(0, 1, nullptr);
-
         geomNormalTexture->startCreation(GfxTextureType::Texture2D,
                                          false,
                                          width,
@@ -1002,98 +962,20 @@ void GfxRenderer::render()
     gfxApi->begin(ssao, quadMesh);
 
     GfxCompiledShader *ssaoFragment = ssao->getCompiled(GfxShaderType::Fragment);
+
     gfxApi->addTextureBinding(ssaoFragment, "depthTexture", depthTexture);
-    gfxApi->addTextureBinding(ssaoFragment, "normalTexture", geomNormalTexture);
-    gfxApi->uniform(ssaoFragment, "cameraNear", camera.getNear());
-    gfxApi->uniform(ssaoFragment, "cameraFar", camera.getFar());
+    gfxApi->addTextureBinding(ssaoFragment, "normalTexture", normalTexture);
+    gfxApi->addTextureBinding(ssaoFragment, "randomTexture", ssaoRandomTexture);
     gfxApi->uniform(ssaoFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
-    gfxApi->uniform(ssaoFragment, "radius", ssaoRadius);
-    gfxApi->addTextureBinding(ssaoFragment, "randomTex", ssaoRandomTexture);
+    gfxApi->uniform(ssaoFragment, "inverseProjectionMatrix", camera.getProjectionMatrix().inverse());
+    gfxApi->uniform(ssaoFragment, "radius", 1.0f);
+    gfxApi->uniform(ssaoFragment, "exponent", 1.5f);
+    gfxApi->uniform(ssaoFragment, "multiplier", 4.0f);
+    gfxApi->uniform(ssaoFragment, "cosAngleBias", 0.0833f);
 
     gfxApi->end();
-    ++stats.numDrawCalls;
 
     ssaoTimer->end();
-
-    //Deinterleave
-    /*ssaoTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(ssaoDepthDeinterleaveFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledSSAODeinterleaveFragment,
-                  quadMesh);
-
-    gfxApi->addTextureBinding(compiledSSAODeinterleaveFragment, "depthTexture", depthTexture);
-
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
-
-    //The actual SSAO.
-    gfxApi->setCurrentFramebuffer(ssaoDeinterleavedFramebuffer);
-
-    //This should be the same as in hbaoFragment.fs
-    #define NUM_DIRECTIONS 8
-    std::srand(0);
-
-    for (size_t i = 0; i < 16; ++i)
-    {
-        float angle = 2.0f * M_PI * (std::rand() / (float)RAND_MAX) / NUM_DIRECTIONS;
-
-        Float3 random(std::cos(angle), std::sin(angle), std::rand() / (float)RAND_MAX);
-
-        size_t tileX = i % 4;
-        size_t tileY = i / 4;
-
-        gfxApi->setViewport(width/4*tileX, height/4*tileY, width/4, height/4);
-
-        gfxApi->begin(compiledPostEffectVertex,
-                      nullptr,
-                      nullptr,
-                      nullptr,
-                      compiledHBAOFragment,
-                      quadMesh);
-
-        gfxApi->addTextureBinding(compiledHBAOFragment, "depthTexture", deinterleavedDepthTexture);
-        gfxApi->addTextureBinding(compiledHBAOFragment, "normalTexture", geomNormalTexture);
-        gfxApi->uniform(compiledHBAOFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
-        gfxApi->uniform(compiledHBAOFragment, "projectionMatrix", camera.getProjectionMatrix());
-        gfxApi->uniform(compiledHBAOFragment, "radius", 1.0f);
-        gfxApi->uniform(compiledHBAOFragment, "exponent", 1.5f);
-        gfxApi->uniform(compiledHBAOFragment, "multiplier", 4.0f);
-        gfxApi->uniform(compiledHBAOFragment, "cosAngleBias", 0.1f);
-        gfxApi->uniform(compiledHBAOFragment, "tile", Int2(tileX * (width/4), tileY * (height/4)));
-        gfxApi->uniform(compiledHBAOFragment, "random", random);
-
-        gfxApi->end(quadMesh->primitive,
-                    quadMesh->numVertices,
-                    quadMesh->winding);
-    }
-    #undef NUM_DIRECTIONS
-
-    //Interleave
-    gfxApi->setViewport(0, 0, width, height);
-    gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledSSAOInterleaveFragment,
-                  quadMesh);
-
-    gfxApi->addTextureBinding(compiledSSAOInterleaveFragment, "aoTexture", deinterleavedSSAOTexture);
-    gfxApi->uniform(compiledSSAOInterleaveFragment, "size", Int2(width/4, height/4));
-
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);
-
-    ssaoTimer->end();*/
 
     //SSAO Blur X
     ssaoBlurXTimer->begin();
@@ -1124,6 +1006,22 @@ void GfxRenderer::render()
     ++stats.numDrawCalls;
 
     ssaoBlurYTimer->end();
+
+    /*//SSAO Upsample
+    ssaoUpsampleTimer->begin();
+
+    gfxApi->setCurrentFramebuffer(ssaoFinalFramebuffer);
+    gfxApi->setViewport(0, 0, width, height);
+
+    gfxApi->begin(ssaoUpsample, quadMesh);
+
+    GfxCompiledShader *ssaoUpsampleFragment = ssaoUpsample->getCompiled(GfxShaderType::Fragment);
+    gfxApi->addTextureBinding(ssaoUpsampleFragment, "aoTexture", ssaoTexture);
+
+    gfxApi->end();
+    ++stats.numDrawCalls;
+
+    ssaoUpsampleTimer->end();*/
 
     //Lighting using the G buffer
     deferredShadingTimer->begin();

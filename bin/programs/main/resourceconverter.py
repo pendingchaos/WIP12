@@ -858,7 +858,7 @@ if __name__ == "__main__":
             self.bloom2Strength = 1.0
             self.bloom3Strength = 1.0
             self.bloom4Strength = 1.0
-            self.bloomEnabled = True
+            self.bloomEnabled = False
             self.ssaoRadius = 0.25
             self.colorModifiers = []
             self.scripts = []
@@ -994,6 +994,9 @@ if __name__ == "__main__":
     conv["ssaoBlurYFragment.fs"] = Shader(["source/shaders/ssaoBlurYFragment.fs"], "../../resources/shaders/ssaoBlurYFragment.bin")
     conv["ssaoBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
     
+    conv["ssaoUpsample.fs"] = Shader(["source/shaders/ssaoUpsampleFragment.fs"], "../../resources/shaders/ssaoUpsampleFragment.bin")
+    conv["ssaoUpsample.fs"].stage_ = Shader.Stage.Fragment
+    
     conv["bloomBlurXFragment.fs"] = Shader(["source/shaders/bloomBlurXFragment.fs"], "../../resources/shaders/bloomBlurXFragment.bin")
     conv["bloomBlurXFragment.fs"].stage_ = Shader.Stage.Fragment
     
@@ -1049,15 +1052,6 @@ if __name__ == "__main__":
     
     conv["bloomDownsampleFragment.fs"] = Shader(["source/shaders/bloomDownsampleFragment.fs"], "../../resources/shaders/bloomDownsampleFragment.bin")
     conv["bloomDownsampleFragment.fs"].stage_ = Shader.Stage.Fragment
-    
-    conv["hbaoFragment.fs"] = Shader(["source/shaders/hbaoFragment.fs"], "../../resources/shaders/hbaoFragment.bin")
-    conv["hbaoFragment.fs"].stage_ = Shader.Stage.Fragment
-    
-    conv["ssaoDeinterleaveFragment.fs"] = Shader(["source/shaders/ssaoDeinterleaveFragment.fs"], "../../resources/shaders/ssaoDeinterleaveFragment.bin")
-    conv["ssaoDeinterleaveFragment.fs"].stage_ = Shader.Stage.Fragment
-    
-    conv["ssaoInterleaveFragment.fs"] = Shader(["source/shaders/ssaoInterleaveFragment.fs"], "../../resources/shaders/ssaoInterleaveFragment.bin")
-    conv["ssaoInterleaveFragment.fs"].stage_ = Shader.Stage.Fragment
     
     conv["terrainVertex.vs"] = Shader(["source/shaders/terrainVertex.vs"], "../../resources/shaders/terrainVertex.bin")
     

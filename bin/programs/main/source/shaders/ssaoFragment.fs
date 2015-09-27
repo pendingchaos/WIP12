@@ -1,81 +1,98 @@
+#define PI 3.14159265f
+
+#define NUM_STEPS 4
+#define NUM_DIRECTIONS 8
+
 layout (location = 0) out vec4 result_ao;
 
 in vec2 frag_uv;
 
 uniform sampler2D depthTexture;
 uniform sampler2D normalTexture;
-uniform sampler2D randomTex;
-uniform float cameraNear;
-uniform float cameraFar;
+uniform sampler2D randomTexture;
+uniform mat4 inverseProjectionMatrix;
 uniform mat3 normalMatrix;
 uniform float radius;
+uniform float exponent;
+uniform float multiplier;
+uniform float cosAngleBias;
 
-float linearizeDepth(float depth)
+vec3 minDiff(vec3 P, vec3 P1, vec3 P2)
 {
-    return cameraNear * cameraFar / ((depth * (cameraFar - cameraNear)) - cameraFar);
+    vec3 V1 = P1 - P;
+    vec3 V2 = P - P2;
+    return (dot(V1, V1) < dot(V2, V2)) ? V1 : V2;
 }
 
-vec3 getRandom(vec2 pos)
+vec3 getPosition(vec2 uv, vec2 resolution)
 {
-    return texelFetch(randomTex, ivec2(pos) % 4, 0).xyz;
+    uv = clamp(uv, 0.0, 1.0);
+
+    vec3 position = vec3(uv, texelFetch(depthTexture, ivec2(uv*resolution), 0).r);
+    position = position * 2.0 - 1.0;
+    vec4 position4 = inverseProjectionMatrix * vec4(position, 1.0);
+    vec3 result = position4.xyz / position4.w;
+    return result;
 }
 
-#define SAMPLE(kernel) {\
-    vec3 samplePos = tbn * kernel * radius + origin;\
-    vec2 texPos = samplePos.xy * 0.5 + 0.5;\
-    float sampleDepth = linearizeDepth(texture(depthTexture, texPos).r);\
-    float rangeCheck = smoothstep(0.0, 1.0, radius / abs(samplePos.z - sampleDepth));\
-    result_ao.r += samplePos.z >= sampleDepth ? 0.0 : 1.0 * rangeCheck;\
-}\
+float falloff(float dist)
+{
+    return dist * (-1.0 / radius) + 1.0;
+}
 
 void main()
 {
-    float depth = linearizeDepth(texture(depthTexture, frag_uv).r);
-    vec3 origin = vec3(frag_uv * 2.0 - 1.0, depth);
+    vec2 resolution = vec2(textureSize(depthTexture, 0));
+    vec2 onePixel = 1.0 / resolution;
     
-    vec3 normal = normalize(normalMatrix * texture(normalTexture, frag_uv).xyz);
-    //vec3 normal = normalize(cross(dFdx(origin), dFdy(origin)));
-    vec3 rvec = getRandom(gl_FragCoord.xy);
-    vec3 tangent = normalize(rvec - normal * dot(rvec, normal));
-    vec3 bitangent = cross(tangent, normal);
-    mat3 tbn = mat3(tangent, bitangent, normal);
-
-    result_ao.r = 0.0;
-
-    SAMPLE(vec3(-0.021705, 0.061174, 0.076070))
-    SAMPLE(vec3(-0.059246, 0.022466, 0.078497))
-    SAMPLE(vec3(0.027279, -0.098184, 0.018202))
-    SAMPLE(vec3(-0.028377, 0.096082, 0.040096))
-    SAMPLE(vec3(-0.077052, -0.067115, 0.050682))
-    SAMPLE(vec3(-0.081984, 0.087470, 0.022471))
-    SAMPLE(vec3(0.016880, 0.105354, 0.077103))
-    SAMPLE(vec3(0.092991, 0.075487, 0.078246))
-    SAMPLE(vec3(0.124298, 0.090585, 0.027539))
-    SAMPLE(vec3(0.134415, 0.095001, 0.047051))
-    SAMPLE(vec3(0.103106, -0.108602, 0.113479))
-    SAMPLE(vec3(-0.063310, -0.194990, 0.023455))
-    SAMPLE(vec3(0.017814, -0.103700, 0.200648))
-    SAMPLE(vec3(-0.069504, -0.145266, 0.189306))
-    SAMPLE(vec3(-0.090322, 0.221064, 0.130772))
-    SAMPLE(vec3(0.215415, 0.205492, 0.005190))
-    SAMPLE(vec3(0.159416, 0.120552, 0.256279))
-    SAMPLE(vec3(0.344563, 0.029439, 0.075688))
-    SAMPLE(vec3(-0.114333, 0.361992, 0.062724))
-    SAMPLE(vec3(-0.409849, -0.003138, 0.078364))
-    SAMPLE(vec3(-0.286618, 0.188601, 0.293579))
-    SAMPLE(vec3(-0.011728, -0.337581, 0.351644))
-    SAMPLE(vec3(0.359209, -0.366484, 0.112666))
-    SAMPLE(vec3(0.416884, 0.024438, 0.380486))
-    SAMPLE(vec3(0.111629, -0.015451, 0.595684))
-    SAMPLE(vec3(0.538785, -0.083810, 0.352560))
-    SAMPLE(vec3(-0.383228, 0.564943, 0.125727))
-    SAMPLE(vec3(-0.365297, 0.440068, 0.470711))
-    SAMPLE(vec3(-0.468366, 0.149180, 0.617250))
-    SAMPLE(vec3(-0.531191, 0.292589, 0.580015))
-    SAMPLE(vec3(-0.502290, 0.454897, 0.578517))
-    SAMPLE(vec3(0.311337, -0.725261, 0.519028))
-
-    result_ao.r = 1.0 - result_ao.r / 32.0;
-    result_ao.gba = normal;
+    vec3 position = getPosition(frag_uv, resolution);
+    
+    vec3 normal = normalize(normalMatrix * normalize(texture(normalTexture, frag_uv).xyz));
+    
+    float radiusPixels = radius * resolution.y / abs(position.z);
+    
+    float stepSize = radiusPixels / (NUM_STEPS + 1);
+    
+    vec3 random = texelFetch(randomTexture, ivec2(gl_FragCoord.xy) % 4, 0).xyz;
+    
+    mat2 rotationMatrix = mat2(random.x, -random.y, 
+                               random.y, random.x);
+    
+    float AO = 0;
+    
+    for (uint i = uint(0); i < uint(NUM_DIRECTIONS); ++i)
+    {
+        float angle = 2.0 * PI / float(NUM_DIRECTIONS) * float(i);
+        
+        float c = cos(angle);
+        float s = sin(angle);
+        
+        vec2 dir = rotationMatrix * vec2(s, c);
+        
+        float rayPixels = stepSize * random.z + 1.0;
+        
+        for (uint j = uint(0); j < uint(NUM_STEPS); ++j)
+        {
+            vec2 uv = frag_uv + round(rayPixels * dir) * onePixel;
+            
+            if ((clamp(uv.x, 0.0, 1.0) == uv.x) &&
+                (clamp(uv.y, 0.0, 1.0) == uv.y))
+            {
+                vec3 samplePos = getPosition(uv, resolution);
+                
+                rayPixels += stepSize;
+                
+                vec3 V = samplePos - position;
+                float Vlength = length(V);
+                float NdotV = dot(normal, V) / Vlength;
+                
+                AO += clamp(NdotV - cosAngleBias, 0.0, 1.0) * clamp(falloff(Vlength), 0.0, 1.0);
+            }
+        }
+    }
+    
+    AO *= multiplier / (NUM_DIRECTIONS * NUM_STEPS);
+    AO = clamp(1.0 - AO, 0.0, 1.0);
+    
+    result_ao = vec4(pow(AO, exponent), normal);
 }
-
