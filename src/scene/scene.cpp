@@ -627,7 +627,6 @@ void Scene::_load()
             if (shadowmap)
             {
                 float near = file.readFloat32();
-                float far = file.readFloat32();
                 float minBias = file.readFloat32();
                 float biasScale = file.readFloat32();
                 float autoBiasScale = file.readFloat32();
@@ -639,7 +638,6 @@ void Scene::_load()
                 light->addShadowmap(resolution, precision);
 
                 light->shadowmapNear = near;
-                light->shadowmapFar = far;
                 light->shadowMinBias = minBias;
                 light->shadowBiasScale = biasScale;
                 light->shadowAutoBiasScale = autoBiasScale;
@@ -974,7 +972,6 @@ void Scene::save()
             if (light->getShadowmap() != nullptr)
             {
                 file.writeFloat32(light->shadowmapNear);
-                file.writeFloat32(light->shadowmapFar);
                 file.writeFloat32(light->shadowMinBias);
                 file.writeFloat32(light->shadowBiasScale);
                 file.writeFloat32(light->shadowAutoBiasScale);
@@ -1153,7 +1150,6 @@ Resource *Scene::_copy() const
         light2->color = light->color;
         light2->ambientStrength = light->ambientStrength;
         light2->shadowmapNear = light->shadowmapNear;
-        light2->shadowmapFar = light->shadowmapFar;
         light2->shadowMinBias = light->shadowMinBias;
         light2->shadowAutoBiasScale = light->shadowAutoBiasScale;
         light2->direction.direction = light->direction.direction;

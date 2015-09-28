@@ -1129,7 +1129,7 @@ void GfxRenderer::render()
 
             if (light->getShadowmap() != nullptr)
             {
-                gfxApi->uniform(fragment, "lightFar", light->shadowmapFar);
+                gfxApi->uniform(fragment, "lightFar", light->getPointLightInfluence());
             }
             break;
         }
@@ -1998,7 +1998,7 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
             }
 
             gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
-            gfxApi->uniform(fragmentShader, "lightFar", light->shadowmapFar);
+            gfxApi->uniform(fragmentShader, "lightFar", light->getPointLightInfluence());
 
             if (light->point.singlePassShadowMap)
             {

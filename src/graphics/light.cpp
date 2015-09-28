@@ -72,6 +72,16 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
     shadowmapPrecision = precision;
 }
 
+float Light::getPointLightInfluence(float cutoff) const
+{
+    return (std::sqrt(1.0f / cutoff) - 1.0f) * point.radius;
+}
+
+float Light::getSpotLightInfluence(float cutoff) const
+{
+    return (std::sqrt(1.0f / cutoff) - 1.0f) * spot.radius;
+}
+
 void Light::updateMatrices(GfxRenderer *renderer)
 {
     switch (type)
@@ -94,11 +104,10 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                        spot.position + spot.direction,
                                        up);
 
-        //TODO: Automatic calculation of near and far.
         projectionMatrix = Matrix4x4::perspective(std::min(spot.outerCutoff * 1.2f, 175.0f),
                                                   1.0f,
                                                   shadowmapNear,
-                                                  shadowmapFar);
+                                                  getSpotLightInfluence());
         break;
     }
     case GfxLightType::Directional:
@@ -196,7 +205,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
         projectionMatrix = Matrix4x4::perspective(RADIANS(90.0f),
                                                   1.0f,
                                                   shadowmapNear,
-                                                  shadowmapFar);
+                                                  getPointLightInfluence());
         break;
     }
     }

@@ -34,8 +34,6 @@
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
 - [ ] Make a GUI skinnable.
-- [ ] Automatic shadow map far value calculation for point and spot lights.
-- [ ] Have point light radius in world space units.
 
 ## Bugs
 - [ ] POM with terrains freezes the computer.

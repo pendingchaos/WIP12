@@ -55,7 +55,6 @@ class Light
                   color(1.0f),
                   ambientStrength(0.05f),
                   shadowmapNear(0.1f),
-                  shadowmapFar(100.0f),
                   shadowMinBias(0.005f),
                   shadowBiasScale(0.05f),
                   shadowAutoBiasScale(1.0f),
@@ -72,7 +71,6 @@ class Light
         Float3 color;
         float ambientStrength;
         float shadowmapNear;
-        float shadowmapFar;
         float shadowMinBias;
         float shadowBiasScale;
         float shadowAutoBiasScale;
@@ -147,6 +145,9 @@ class Light
         {
             return shadowmapPrecision;
         }
+
+        float getPointLightInfluence(float cutoff=0.039) const;
+        float getSpotLightInfluence(float cutoff=0.039) const;
 
         void updateMatrices(GfxRenderer *renderer);
 

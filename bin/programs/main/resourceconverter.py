@@ -614,9 +614,8 @@ if __name__ == "__main__":
                 if self.shadowmap:
                     s += "\x01"
                     
-                    s += struct.pack("<fffffffH",
+                    s += struct.pack("<ffffffH",
                                      self.shadowmap_near,
-                                     self.shadowmap_far,
                                      self.shadow_min_bias,
                                      self.shadow_bias_scale,
                                      self.shadow_auto_bias_scale,
@@ -1470,7 +1469,7 @@ if __name__ == "__main__":
     platforms.entities.append(ent)"""
     
     # Point light benchmark
-    """light = Scene.Light(Scene.Light.Type.Point)
+    light = Scene.Light(Scene.Light.Type.Point)
     light.position = [9.0, 2.5, -6.0]
     light.radius = 0.33
     light.color = [1.0, 0.0, 0.0]
@@ -1478,7 +1477,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1494,7 +1492,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1510,7 +1507,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1526,7 +1522,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1542,7 +1537,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1558,7 +1552,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1574,7 +1567,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1590,7 +1582,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1606,7 +1597,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1622,7 +1612,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1638,7 +1627,6 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1654,15 +1642,14 @@ if __name__ == "__main__":
     light.ambient_strength = 0.005
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
     light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
-    scene.lights.append(light)"""
+    scene.lights.append(light)
     
-    # Directional light test
+    """# Directional light test
     light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
@@ -1675,7 +1662,7 @@ if __name__ == "__main__":
     light.shadowmap_resolution = 2048
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     light.shadow_radius = 32
-    scene.lights.append(light)
+    scene.lights.append(light)"""
     
     # Point light test
     """light = Scene.Light(Scene.Light.Type.Point)
@@ -1686,7 +1673,6 @@ if __name__ == "__main__":
     light.color = [1.0, 1.0, 1.0]
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 0.65
@@ -1704,7 +1690,6 @@ if __name__ == "__main__":
     light.outer_cutoff = 30.0
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
@@ -1722,7 +1707,6 @@ if __name__ == "__main__":
     light.outer_cutoff = 30.0
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
@@ -1741,7 +1725,6 @@ if __name__ == "__main__":
     light.outer_cutoff = 30.0
     light.shadowmap = True
     light.shadowmap_near = 0.1
-    light.shadowmap_far = 100.0
     light.shadow_min_bias = 0.005
     light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0

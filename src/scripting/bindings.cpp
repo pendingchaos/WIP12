@@ -3637,6 +3637,8 @@ SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a);
 SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a);
+SV Light_getPointLightInfluence(CTX ctx,const List<SV>&a);
+SV Light_getSpotLightInfluence(CTX ctx,const List<SV>&a);
 SV Light_updateMatrices(CTX ctx,const List<SV>&a);
 SV Light_getViewMatrix(CTX ctx,const List<SV>&a);
 SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a);
@@ -25140,6 +25142,10 @@ RET CNF(Light_getPointLightFramebuffer);
 RET CNF(Light_getShadowmapResolution);
  EI(keyStr == "getShadowmapPrecision")
 RET CNF(Light_getShadowmapPrecision);
+ EI(keyStr == "getPointLightInfluence")
+RET CNF(Light_getPointLightInfluence);
+ EI(keyStr == "getSpotLightInfluence")
+RET CNF(Light_getSpotLightInfluence);
  EI(keyStr == "updateMatrices")
 RET CNF(Light_updateMatrices);
  EI(keyStr == "getViewMatrix")
@@ -25166,10 +25172,6 @@ RET CV(obj->ambientStrength);
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowmapNear);
-} EI(keyStr=="shadowmapFar")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->shadowmapFar);
 } EI(keyStr=="shadowMinBias")
 {
 Light*obj=(Light*)f->data;
@@ -25242,10 +25244,6 @@ obj->ambientStrength=val_to_c<decltype(obj->ambientStrength)>::f(ctx,value);
 {
 Light*obj=(Light*)f->data;
 obj->shadowmapNear=val_to_c<decltype(obj->shadowmapNear)>::f(ctx,value);
-} EI(keyStr=="shadowmapFar")
-{
-Light*obj=(Light*)f->data;
-obj->shadowmapFar=val_to_c<decltype(obj->shadowmapFar)>::f(ctx,value);
 } EI(keyStr=="shadowMinBias")
 {
 Light*obj=(Light*)f->data;
@@ -25322,6 +25320,23 @@ CATE(TE,UFOF("Light::updateMatrices.")));
 RET CN;
 }
 
+SV Light_getPointLightInfluence(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getPointLightInfluence" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+RET CV( f->getPointLightInfluence(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Light::getPointLightInfluence.")));
+RET CN;
+}
+
 SV Light_getShadowmap(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25353,6 +25368,23 @@ RET CV( f->getPointLightFramebuffer(val_to_c<std::remove_reference<GfxFace>::typ
 ;
 }
 CATE(TE,UFOF("Light::getPointLightFramebuffer.")));
+RET CN;
+}
+
+SV Light_getSpotLightInfluence(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getSpotLightInfluence" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+RET CV( f->getSpotLightInfluence(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Light::getSpotLightInfluence.")));
 RET CN;
 }
 
