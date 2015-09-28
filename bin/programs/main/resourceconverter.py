@@ -1468,7 +1468,7 @@ if __name__ == "__main__":
     ent.rigidBody.friction = 0.1
     platforms.entities.append(ent)"""
     
-    # Point light benchmark
+    """# Point light benchmark
     light = Scene.Light(Scene.Light.Type.Point)
     light.position = [9.0, 2.5, -6.0]
     light.radius = 0.33
@@ -1647,9 +1647,9 @@ if __name__ == "__main__":
     light.shadow_auto_bias_scale = 0.65
     light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
-    scene.lights.append(light)
+    scene.lights.append(light)"""
     
-    """# Directional light test
+    # Directional light test
     light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [0.4, -1.0, 0.0]
     light.color = [1.0, 1.0, 0.8]
@@ -1662,7 +1662,7 @@ if __name__ == "__main__":
     light.shadowmap_resolution = 2048
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     light.shadow_radius = 32
-    scene.lights.append(light)"""
+    scene.lights.append(light)
     
     # Point light test
     """light = Scene.Light(Scene.Light.Type.Point)
