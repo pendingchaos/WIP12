@@ -56,7 +56,7 @@ class MemoryException : public Exception
 #define SCRIPT_DELETE(pointer) do\
 {\
     auto p = pointer;\
-    if (shouldScriptDelete((void *)p))\
+    if (_scriptDeletePart((void *)p))\
     {\
         delete p;\
     }\
@@ -73,7 +73,7 @@ struct AllocInfo
 
 void *_alloc(size_t amount);
 bool _allocDelete(void *ptr);
-bool shouldScriptDelete(void *ptr);
+bool _scriptDeletePart(void *ptr);
 
 void setAllocInfo(void *ptr, AllocInfo info);
 AllocInfo getAllocInfo(void *ptr);

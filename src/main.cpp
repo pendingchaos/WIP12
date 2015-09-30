@@ -23,7 +23,6 @@ void run(const char *dir)
         script->release();
 
         app->mainloop();
-
     }
 
     setApplication(nullptr);

@@ -19,7 +19,7 @@
 #define NOT_COPYABLE __attribute__((annotate("nocopy")))
 #define ENUM_CLASS __attribute__((annotate("enumclass")))
 #define DESTROY(...) __attribute__((annotate("destroy" STR(__VA_ARGS__))))
-#define REF_PTR_NO_CPP_REF __attribute__((annotate("retptrnocppref")))
+#define RET_PTR_NO_CPP_REF __attribute__((annotate("retptrnocppref")))
 #define RENAME(name) __attribute__((annotate("rename" name)))
 #else
 #define GETTER
@@ -34,7 +34,7 @@
 #define NOT_COPYABLE
 #define ENUM_CLASS
 #define DESTROY(...)
-#define REF_PTR_NO_CPP_REF
+#define RET_PTR_NO_CPP_REF
 #define RENAME(name)
 #endif
 

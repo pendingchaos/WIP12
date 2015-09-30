@@ -3,6 +3,9 @@
 #include <cstring>
 #include <cstdlib>
 
+#include <iostream>
+#include "backtrace.h"
+
 void *_alloc(size_t amount)
 {
     void *mem = std::malloc(amount);
@@ -65,16 +68,16 @@ bool _allocDelete(void *ptr)
         for (size_t i = 0; i < numAllocs; ++i)
         {
             if (allocs[i].ptr == ptr and
-                not allocs[i].info.cppRef and
                 not allocs[i].info.scriptRef)
             {
-                std::memcpy(allocs+i, allocs+i+1, (numAllocs-i-1) * sizeof(Allocation));
+                std::memmove(allocs+i, allocs+i+1, (numAllocs-i-1) * sizeof(Allocation));
 
                 --numAllocs;
                 allocs = (Allocation *)std::realloc(allocs, numAllocs * sizeof(Allocation));
                 return true;
             } else if (allocs[i].ptr == ptr)
             {
+                allocs[i].info.cppRef = false;
                 return false;
             }
         }
@@ -83,7 +86,7 @@ bool _allocDelete(void *ptr)
     return true;
 }
 
-bool shouldScriptDelete(void *ptr)
+bool _scriptDeletePart(void *ptr)
 {
     if (allocs != nullptr)
     {
@@ -92,7 +95,7 @@ bool shouldScriptDelete(void *ptr)
             if (allocs[i].ptr == ptr and
                 not allocs[i].info.cppRef)
             {
-                std::memcpy(allocs+i, allocs+i+1, (numAllocs-i-1) * sizeof(Allocation));
+                std::memmove(allocs+i, allocs+i+1, (numAllocs-i-1) * sizeof(Allocation));
 
                 --numAllocs;
                 allocs = (Allocation *)std::realloc(allocs, numAllocs * sizeof(Allocation));

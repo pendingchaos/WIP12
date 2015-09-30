@@ -212,7 +212,7 @@ void destroy(Context *context, Value *value)
 
             if (members.findEntry("__del__") != -1)
             {
-                callMethod(context, value, "__del__", List<Value *>());
+                destroy(context, callMethod(context, value, "__del__", List<Value *>()));
             }
 
             for (size_t i = 0; i < members.getEntryCount(); ++i)

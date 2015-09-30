@@ -367,6 +367,7 @@ GfxRenderer::~GfxRenderer()
     DELETE(bloomBlurY);
     DELETE(tonemap);
     DELETE(lumCalc);
+    DELETE(bloomDownsample);
     DELETE(gammaCorrection);
     DELETE(applyBloom);
     DELETE(overlayShaders);

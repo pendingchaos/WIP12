@@ -3,6 +3,7 @@
 //TODO: ...args
 //TODO: scope {...}
 //TODO: function() {...} with x, y->z, z->y
+//- Make this a method? (function() {}):with("x", x):with("y", z):with("z": y)
 namespace scripting
 {
     static void getArgs(LROpNode *args, CallNode *call)
@@ -22,6 +23,8 @@ namespace scripting
         {
             call->addArg(args->right);
         }
+
+        operator delete(args); //Mwahahahaha
     }
 
     static void getFuncArgs(LROpNode *args, FunctionNode *func)
@@ -32,6 +35,7 @@ namespace scripting
         } else if (args->left->type == ASTNode::Identifier)
         {
             func->args.append(((IdentifierNode *)args->left)->name);
+            DELETE(args->left);
         } else
         {
             THROW(ParseException, "Invalid argument name.", 0, 0); //TODO: More info
@@ -40,11 +44,13 @@ namespace scripting
         if (args->right->type == ASTNode::Identifier)
         {
             func->args.append(((IdentifierNode *)args->right)->name);
+            DELETE(args->right);
         } else
         {
             THROW(ParseException, "Invalid argument name.", 0, 0); //TODO: More info
         }
 
+        operator delete(args); //Mwahahahaha
     }
 
     static void getStatements(LROpNode *node, StatementsNode *statements)
@@ -64,6 +70,8 @@ namespace scripting
         {
             statements->addStatement(node->right);
         }
+
+        operator delete(node); //Mwahahahaha
     }
 
     class Parser;
@@ -384,6 +392,8 @@ namespace scripting
                     } else if (args->type == ASTNode::Identifier)
                     {
                         func->args.append(((IdentifierNode *)args)->name);
+
+                        DELETE(args);
                     } else
                     {
                         THROW(ParseException, "Invalid argument name.", 0, 0); //TODO: More info

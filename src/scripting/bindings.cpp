@@ -19271,8 +19271,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==3)
 if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
 {
-RET CV( f->load(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
-;
+Resource * r=f->load(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::load.")));
 RET CN;
@@ -19288,8 +19289,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadPhysicsShape(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+PhysicsShape * r=f->loadPhysicsShape(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadPhysicsShape.")));
 RET CN;
@@ -19305,8 +19307,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadFont(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+Font * r=f->loadFont(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadFont.")));
 RET CN;
@@ -19322,8 +19325,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadPhysicsShapeAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+PhysicsShape * r=f->loadPhysicsShapeAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadPhysicsShapeAndCopy.")));
 RET CN;
@@ -19339,8 +19343,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==3)
 if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
 {
-RET CV( f->loadAndCopy(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
-;
+Resource * r=f->loadAndCopy(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadAndCopy.")));
 RET CN;
@@ -19356,8 +19361,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadModel(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxModel * r=f->loadModel(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadModel.")));
 RET CN;
@@ -19373,8 +19379,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadMeshAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxMesh * r=f->loadMeshAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadMeshAndCopy.")));
 RET CN;
@@ -19407,8 +19414,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadScene(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+Scene * r=f->loadScene(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadScene.")));
 RET CN;
@@ -19424,8 +19432,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadAudioAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+Audio * r=f->loadAudioAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadAudioAndCopy.")));
 RET CN;
@@ -19441,8 +19450,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadAudio(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+Audio * r=f->loadAudio(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadAudio.")));
 RET CN;
@@ -19458,8 +19468,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadShader(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxShader * r=f->loadShader(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadShader.")));
 RET CN;
@@ -19475,8 +19486,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadTexture(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxTexture * r=f->loadTexture(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadTexture.")));
 RET CN;
@@ -19492,8 +19504,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadMaterialAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxMaterial * r=f->loadMaterialAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadMaterialAndCopy.")));
 RET CN;
@@ -19509,8 +19522,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadMaterial(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxMaterial * r=f->loadMaterial(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadMaterial.")));
 RET CN;
@@ -19537,8 +19551,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadShaderAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxShader * r=f->loadShaderAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadShaderAndCopy.")));
 RET CN;
@@ -19565,8 +19580,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadFontAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+Font * r=f->loadFontAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadFontAndCopy.")));
 RET CN;
@@ -19582,8 +19598,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadSceneAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+Scene * r=f->loadSceneAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadSceneAndCopy.")));
 RET CN;
@@ -19599,8 +19616,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadMesh(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxMesh * r=f->loadMesh(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadMesh.")));
 RET CN;
@@ -19616,8 +19634,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadModelAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxModel * r=f->loadModelAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadModelAndCopy.")));
 RET CN;
@@ -19650,8 +19669,9 @@ f=(ResourceManager*)((NO)a[0])->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
 {
-RET CV( f->loadTextureAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
+GfxTexture * r=f->loadTextureAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("ResourceManager::loadTextureAndCopy.")));
 RET CN;
@@ -50956,7 +50976,7 @@ void Font_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Font*))
 CATE(TE,"FontRef::__del__ expects FontRef as first argument."));
 Font*obj=(Font*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV Font_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -51605,7 +51625,7 @@ void GfxMesh_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxMesh*))
 CATE(TE,"GfxMeshRef::__del__ expects GfxMeshRef as first argument."));
 GfxMesh*obj=(GfxMesh*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV GfxMesh_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -51687,7 +51707,7 @@ void Resource_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Resource*))
 CATE(TE,"ResourceRef::__del__ expects ResourceRef as first argument."));
 Resource*obj=(Resource*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV Resource_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -51769,7 +51789,7 @@ void GfxShader_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxShader*))
 CATE(TE,"GfxShaderRef::__del__ expects GfxShaderRef as first argument."));
 GfxShader*obj=(GfxShader*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV GfxShader_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -52013,7 +52033,7 @@ void Scene_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Scene*))
 CATE(TE,"SceneRef::__del__ expects SceneRef as first argument."));
 Scene*obj=(Scene*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV Scene_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -52662,7 +52682,7 @@ void GfxMaterial_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxMaterial*))
 CATE(TE,"GfxMaterialRef::__del__ expects GfxMaterialRef as first argument."));
 GfxMaterial*obj=(GfxMaterial*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV GfxMaterial_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -54201,7 +54221,7 @@ void PhysicsShape_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,PhysicsShape*))
 CATE(TE,"PhysicsShapeRef::__del__ expects PhysicsShapeRef as first argument."));
 PhysicsShape*obj=(PhysicsShape*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV PhysicsShape_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -55012,7 +55032,7 @@ void Audio_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Audio*))
 CATE(TE,"AudioRef::__del__ expects AudioRef as first argument."));
 Audio*obj=(Audio*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV Audio_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -55094,7 +55114,7 @@ void GfxTexture_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxTexture*))
 CATE(TE,"GfxTextureRef::__del__ expects GfxTextureRef as first argument."));
 GfxTexture*obj=(GfxTexture*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV GfxTexture_ptr_get_member(CTX ctx,NO f,SV key)
 {
@@ -55257,7 +55277,7 @@ void GfxModel_ptr_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxModel*))
 CATE(TE,"GfxModelRef::__del__ expects GfxModelRef as first argument."));
 GfxModel*obj=(GfxModel*)f->data;
-if(shouldScriptDelete(f->data) && (obj != NULL)) {obj->release();}
+if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
 }
 SV GfxModel_ptr_get_member(CTX ctx,NO f,SV key)
 {

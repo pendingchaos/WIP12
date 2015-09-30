@@ -49,7 +49,7 @@ Value *classNew(Context *ctx, const List<Value *>& args)
 
     if (entry != -1)
     {
-        callMethod(ctx, resultHead, "__init__", List<Value *>(args.getCount(), args.getData()+1));
+        destroy(ctx, callMethod(ctx, resultHead, "__init__", List<Value *>(args.getCount()-1, args.getData()+1)));
     } else
     {
         if (args.getCount() != 1)

@@ -2,6 +2,8 @@ return class {
     __init__ = function(self) {
         resMgr = getResMgr();
         self.scene = resMgr.loadScene(resMgr, "resources/scenes/scene.bin");
+        self.font = resMgr.loadFont(resMgr,
+                                    "/usr/share/fonts/gnu-free/FreeSans.ttf");
     };
     
     __del__ = function(self) {};

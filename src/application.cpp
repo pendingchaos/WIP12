@@ -76,12 +76,11 @@ Application::~Application()
     DELETE(debugDrawer_);
     DELETE(gfxApi_);
 
-    platform_->destroyWindow();
-
     DELETE(scriptEngine_);
 
     DELETE(fileSystem_);
 
+    platform_->destroyWindow();
     DELETE(platform_);
 
     FT_Done_FreeType(freeType);

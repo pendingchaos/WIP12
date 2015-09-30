@@ -227,11 +227,14 @@ void Platform::initWindow(uint32_t width,
 
 void Platform::destroyWindow()
 {
-    SDL_GL_DeleteContext(context);
-    SDL_DestroyWindow(window);
+    if (context != nullptr)
+    {
+        SDL_GL_DeleteContext(context);
+        SDL_DestroyWindow(window);
 
-    context = nullptr;
-    window = nullptr;
+        context = nullptr;
+        window = nullptr;
+    }
 }
 
 void Platform::run(void (*updateFunction)(Platform *platform))
