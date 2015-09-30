@@ -51,9 +51,11 @@ void GfxDebugDrawer::render(const Camera& camera)
         color[0] = line.startColor.x * 255.0f;
         color[1] = line.startColor.y * 255.0f;
         color[2] = line.startColor.z * 255.0f;
-        color[3] = line.endColor.x * 255.0f;
-        color[4] = line.endColor.y * 255.0f;
-        color[5] = line.endColor.z * 255.0f;
+        color[3] = 255;
+        color[4] = line.endColor.x * 255.0f;
+        color[5] = line.endColor.y * 255.0f;
+        color[6] = line.endColor.z * 255.0f;
+        color[7] = 255;
     }
 
     GfxMeshAttrib attrib;

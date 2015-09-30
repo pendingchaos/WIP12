@@ -447,6 +447,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
             proj->getEntity()->transform.lookAt(player->getEntity()->transform.position);
         }*/
 
+        textTimer->swap();
         textTimer->begin();
         start = platform->getTime();
 

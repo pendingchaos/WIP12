@@ -4,6 +4,10 @@ return class {
         self.scene = resMgr.loadScene(resMgr, "resources/scenes/scene.bin");
         self.font = resMgr.loadFont(resMgr,
                                     "/usr/share/fonts/gnu-free/FreeSans.ttf");
+        
+        self.showExtraTimings = false;
+        self.timingsUpdateCountdown = 0.0;
+        self.freezeTimings = false;
     };
     
     __del__ = function(self) {};
@@ -18,12 +22,21 @@ return class {
             if event.type == EventType.Quit {
                 app.running = false;
             } elif event.type == EventType.KeyDown {
-                if event.getKey(event) == Key.F1 {
+                key = event.getKey(event);
+                
+                if key == Key.F1 {
                     fullscreen = platform.getFullscreen(platform);
                     platform.setFullscreen(platform, not fullscreen);
-                } elif event.getKey(event) == Key.Escape {
+                } elif key == Key.F2 {
+                    self.showExtraTimings = not self.showExtraTimings;
+                } elif key == Key.F3 {
+                    self.freezeTimings = not self.freezeTimings;
+                } elif key == Key.F4 {
+                    renderer = self.scene.getRenderer(self.scene);
+                    renderer.debugDraw = not renderer.debugDraw;
+                } elif key == Key.Escape {
                     platform.setFullscreen(platform, false);
-                }
+                };
             };
         };
         
@@ -45,6 +58,14 @@ return class {
         width = platform.getWindowWidth(platform);
         height = platform.getWindowHeight(platform);
         renderer = self.scene.getRenderer(self.scene);
+        
+        self.timingsUpdateCountdown = self.timingsUpdateCountdown - platform.getFrametime(platform);
+        
+        if (renderer.debugDraw) {
+            world = self.scene.getPhysicsWorld(self.scene);
+            world.debugDraw(world);
+        };
+        
         renderer.resize(renderer, UInt2(width, height));
         renderer.render(renderer);
     };
