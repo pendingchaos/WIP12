@@ -1,4 +1,4 @@
-#include "ast.h"
+#include "scripting/parser/ast.h"
 
 //TODO: ...args
 //TODO: scope {...}

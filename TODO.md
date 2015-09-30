@@ -23,13 +23,13 @@
     - [ ] Automatic cast for things like Resource -> Audio.
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
 - [ ] Finish the bytecode generator (scripting).
-- [ ] Make functions for builtin functions like + and * (scripting).
 - [ ] === function (scripting).
 - [ ] Improve the String type (scripting).
-- [ ] Proper methods (scripting).
-- [ ] Skeletal animation for the mesh converter.
+- [ ] Proper methods (scripting). (: like in Lua to get a function as a method)
+- [ ] Fix skeletal animation for the mesh converter.
 - [ ] Improve skeletal animation.
 - [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)
+    - [ ] Get the Blender exporter to work and use it.
 - [ ] Terrain shadows from point lights.
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
