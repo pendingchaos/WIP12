@@ -147,7 +147,6 @@ class Script : public Resource
         virtual ~Script();
 
         virtual void removeContent();
-        virtual void possiblyReload();
 
         //TODO: Get rid of name.
         ScriptInstance *createInstance(const char *name, Entity *entity=nullptr, Scene *scene=nullptr);

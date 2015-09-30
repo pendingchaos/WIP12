@@ -48,6 +48,7 @@ int unsafeMain(int argc, const char *argv[])
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
+#include "scripting/disasm.h"
 
 #include <iostream>
 
@@ -75,7 +76,7 @@ scripting::Value *print(scripting::Context *ctx, const List<scripting::Value *>&
     return scripting::createNil();
 }
 
-void printAST(size_t indent, scripting::ASTNode *node)
+/*void printAST(size_t indent, scripting::ASTNode *node)
 {
     std::cout << "--------------------------------\n";
 
@@ -162,6 +163,358 @@ void printAST(size_t indent, scripting::ASTNode *node)
         {
             printAST(indent+1, snode->statements[i]);
         }
+        break;
+    }
+    }
+}*/
+
+static void printAST(size_t indent, scripting::ASTNode *node)
+{
+    std::cout << "--------------------------------\n";
+
+    for (size_t i = 0; i < indent; ++i)
+    {
+        std::cout << "    ";
+    }
+
+    switch (node->type)
+    {
+    case scripting::ASTNode::Assign:
+    {
+        std::cout << "Assign:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Add:
+    {
+        std::cout << "Add:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Subtract:
+    {
+        std::cout << "Subtract:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Multiply:
+    {
+        std::cout << "Multiply:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Divide:
+    {
+        std::cout << "Divide:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Modulo:
+    {
+        std::cout << "Modulo:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Less:
+    {
+        std::cout << "Less:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Greater:
+    {
+        std::cout << "Greater:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Equal:
+    {
+        std::cout << "Equal:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::NotEqual:
+    {
+        std::cout << "NotEqual:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::LessEqual:
+    {
+        std::cout << "LessEqual:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::GreaterEqual:
+    {
+        std::cout << "GreaterEqual:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BoolAnd:
+    {
+        std::cout << "BoolAnd:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BoolOr:
+    {
+        std::cout << "BoolOr:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BitAnd:
+    {
+        std::cout << "BitAnd:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BitOr:
+    {
+        std::cout << "BitOr:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BitXOr:
+    {
+        std::cout << "BitXOr:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::LeftShift:
+    {
+        std::cout << "LeftShift:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::RightShift:
+    {
+        std::cout << "RightShift:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Comma:
+    {
+        std::cout << "Comma (should not be here):\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::StatementSplit:
+    {
+        std::cout << "StatementSplit (should not be here):\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::GetMember:
+    {
+        std::cout << "GetMember:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Call:
+    {
+        scripting::CallNode *cnode = (scripting::CallNode *)node;
+        std::cout << "Call:\n";
+
+        printAST(indent+1, cnode->callable);
+
+        for (size_t i = 0; i < cnode->args.getCount(); ++i)
+        {
+            printAST(indent+1, cnode->args[i]);
+        }
+        break;
+    }
+    case scripting::ASTNode::BoolNot:
+    {
+        std::cout << "BoolNot:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::BitNot:
+    {
+        std::cout << "BitNot:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Class:
+    {
+        std::cout << "Class:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Throw:
+    {
+        std::cout << "Throw:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Return:
+    {
+        std::cout << "Return:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Negate:
+    {
+        std::cout << "Negate:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Function:
+    {
+        std::cout << "Function:\n";
+
+        scripting::FunctionNode *fnode = (scripting::FunctionNode *)node;
+
+        for (size_t i = 0; i < fnode->args.getCount(); ++i)
+        {
+            for (size_t j = 0; j <= indent; ++j)
+            {
+                std::cout << "    ";
+            }
+
+            std::cout << fnode->args[i].getData() << '\n';
+        }
+
+        printAST(indent+1, fnode->body);
+        break;
+    }
+    case scripting::ASTNode::TryExcept:
+    {
+        std::cout << "TryExcept:\n";
+
+        scripting::TryExceptNode *tenode = (scripting::TryExceptNode *)node;
+
+        printAST(indent+1, tenode->try_);
+        printAST(indent+1, tenode->except);
+        break;
+    }
+    case scripting::ASTNode::If:
+    {
+        std::cout << "If:\n";
+
+        scripting::IfNode *inode = (scripting::IfNode *)node;
+
+        printAST(indent+1, inode->ifCond);
+        printAST(indent+1, inode->if_);
+
+        for (size_t i = 0; i < inode->elifs.getCount(); ++i)
+        {
+            printAST(indent+1, inode->elifConds[i]);
+            printAST(indent+1, inode->elifs[i]);
+        }
+
+        if (inode->else_ != nullptr)
+        {
+            printAST(indent+1, inode->else_);
+        }
+        break;
+    }
+    case scripting::ASTNode::While:
+    {
+        std::cout << "While:\n";
+
+        scripting::WhileNode *whileNode = (scripting::WhileNode *)node;
+
+        printAST(indent+1, whileNode->cond);
+        printAST(indent+1, whileNode->block);
+        break;
+    }
+    case scripting::ASTNode::Identifier:
+    {
+        std::cout << "Identifier:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::IdentifierNode *)node)->name.getData() << std::endl;
+        break;
+    }
+    case scripting::ASTNode::Integer:
+    {
+        std::cout << "Integer:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::IntegerNode *)node)->value << std::endl;
+        break;
+    }
+    case scripting::ASTNode::Float:
+    {
+        std::cout << "Float:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::FloatNode *)node)->value << std::endl;
+        break;
+    }
+    case scripting::ASTNode::String:
+    {
+        std::cout << "String:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::StringNode *)node)->content.getData() << std::endl;
+        break;
+    }
+    case scripting::ASTNode::Statements:
+    {
+        std::cout << "Statements:\n";
+
+        scripting::StatementsNode *snode = (scripting::StatementsNode *)node;
+
+        for (size_t i = 0; i < snode->statements.getCount(); ++i)
+        {
+            printAST(indent+1, snode->statements[i]);
+        }
+        break;
+    }
+    case scripting::ASTNode::True:
+    {
+        std::cout << "True\n";
+        break;
+    }
+    case scripting::ASTNode::False:
+    {
+        std::cout << "False\n";
+        break;
+    }
+    case scripting::ASTNode::Nil:
+    {
+        std::cout << "Nil\n";
         break;
     }
     }
@@ -602,6 +955,147 @@ int main(int argc, const char *argv[])
     } catch (scripting::ParseException& e)
     {
         std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
+    }
+    #elif 0
+    try
+    {
+        scripting::ASTNode *ast = scripting::parse(
+"some_module = import(\"some_module.rkt\");\n"
+"\n"
+"vec2 = class {\n"
+"    __init__ = function(self) {\n"
+"        if args.len == 0 {\n"
+"            self.x = 0.0;\n"
+"            self.y = 0.0;\n"
+"        } elif args.len == 1 {\n"
+"            self.x = float(args[0]);\n"
+"            self.y = float(args[0]);\n"
+"        } elif args.len == 2 {\n"
+"            self.x = float(args[0]);\n"
+"            self.y = float(args[1]);\n"
+"        } else {\n"
+"            throw ValueException(\"vec2.__init__ takes 0, 1 or 2 arguments.\");\n"
+"        }\n"
+"    };\n"
+"    \n"
+"    __add__ = function(self, other) {\n"
+"        if std.isInstance(other, vec2) {\n"
+"            return vec2(self.x + other.x, self.y + other.y);\n"
+"        } else {\n"
+"            return vec2(self.x + other, self.y + other);\n"
+"        }\n"
+"    };\n"
+"};\n"
+"\n"
+"# Comment\n"
+"\n"
+"some_module.some_function();\n"
+"\n"
+"adder = function(x, x2, x3, x4) {\n"
+"    return function() {\n"
+"        return x + inc + inc2 + x3 + x4;\n"
+"    }\n"
+"};\n"
+"\n"
+);
+
+        printAST(0, ast);
+
+        DELETE(ast);
+    } catch (scripting::ParseException& e)
+    {
+        std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
+    }
+    #elif 0
+    try
+    {
+        scripting::ASTNode *ast = scripting::parse(
+        //"print(\"Hello world!\", 5 + 10*15, \"= 155\");\n"
+        //"if false {print(5);} elif false {print(10);} else {print(15);}"
+        //"i = 0; while i < 10 {print(i); i = i + 1;}"
+"vec2 = class {\n"
+"    __init__ = function(self) {\n"
+"        if args.len == 0 {\n"
+"            self.x = 0.0;\n"
+"            self.y = 0.0;\n"
+"        } elif args.len == 1 {\n"
+"            self.x = float(args[0]);\n"
+"            self.y = float(args[0]);\n"
+"        } elif args.len == 2 {\n"
+"            self.x = float(args[0]);\n"
+"            self.y = float(args[1]);\n"
+"        } else {\n"
+"            throw ValueException(\"vec2.__init__ takes 0, 1 or 2 arguments.\");\n"
+"        }\n"
+"    };\n"
+"    \n"
+"    __add__ = function(self, other) {\n"
+"        if std.isInstance(other, vec2) {\n"
+"            return vec2(self.x + other.x, self.y + other.y);\n"
+"        } else {\n"
+"            return vec2(self.x + other, self.y + other);\n"
+"        }\n"
+"    };\n"
+"};\n"
+"\n"
+"# Comment\n"
+"\n"
+"adder = function(x, x2, x3, x4) {\n"
+"    return function() {\n"
+"        return x + inc + inc2 + x3 + x4;\n"
+"    }\n"
+"};\n"
+"\n"
+        );
+
+        printAST(0, ast);
+
+        ResizableData data = generateBytecode(ast);
+
+        String disasm = scripting::disasm(data);
+
+        std::cout << disasm.getData();
+
+        std::cout << "Compiled program takes up " << data.getSize() << " bytes\n";
+
+        DELETE(ast);
+
+        scripting::Bytecode code(data);
+
+        scripting::Engine *engine = NEW(scripting::Engine);
+
+        engine->getGlobalVars().set("print", scripting::createNativeFunction(print));
+
+        {
+            scripting::Context *context = NEW(scripting::Context, engine);
+
+            try
+            {
+                scripting::Value *result = context->run(code, List<scripting::Value *>());
+
+                scripting::destroy(context, result);
+            } catch (scripting::UnhandledExcException& e)
+            {
+                scripting::Value *exc = e.getException();
+
+                std::cout << "Unhandled script exception: ";
+
+                if (exc->type == scripting::ValueType::Exception)
+                {
+                    std::cout << ((scripting::ExceptionValue *)exc)->error.getData();
+                }
+            }
+
+            DELETE(context);
+        }
+
+        DELETE(engine);
+    } catch (scripting::ParseException& e)
+    {
+        std::printf("Failed to parse input at %zu:%zu: %s\n", e.scriptLine, e.scriptColumn, e.message);
+    } catch (scripting::ByteCodeGenException& e)
+    {
+        std::printf("Failed to generate bytecode: %s\n", e.message);
     }
     #else
     initBacktrace();

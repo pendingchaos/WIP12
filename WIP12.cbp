@@ -18,6 +18,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
+					<Add directory="include/scripting/parser" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,6 +33,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DNDEBUG" />
+					<Add directory="include/scripting/parser" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -124,6 +126,8 @@
 		<Unit filename="include/scripting/bytecodegen.h" />
 		<Unit filename="include/scripting/disasm.h" />
 		<Unit filename="include/scripting/parser.h" />
+		<Unit filename="include/scripting/parser/ast.h" />
+		<Unit filename="include/scripting/parser/tokenizer.h" />
 		<Unit filename="include/scripting/script.h" />
 		<Unit filename="include/scripting/scriptinclude.h" />
 		<Unit filename="include/scripting/scriptsidebindings.h" />
@@ -196,6 +200,8 @@
 		<Unit filename="src/scripting/bytecodegen.cpp" />
 		<Unit filename="src/scripting/disasm.cpp" />
 		<Unit filename="src/scripting/parser.cpp" />
+		<Unit filename="src/scripting/parser/ast.cpp" />
+		<Unit filename="src/scripting/parser/tokenizer.cpp" />
 		<Unit filename="src/scripting/script.cpp" />
 		<Unit filename="src/scripting/vm/bytecode.cpp" />
 		<Unit filename="src/scripting/vm/context.cpp" />

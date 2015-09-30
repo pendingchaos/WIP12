@@ -1,4 +1,4 @@
-#include "scripting/parser.h"
+/*#include "scripting/parser.h"
 
 #define ADVANCE_LINE do\
 {\
@@ -540,3 +540,4 @@ ASTNode *parse(const String& source)
     return result;
 }
 }
+*/

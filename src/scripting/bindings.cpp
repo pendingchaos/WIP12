@@ -68,6 +68,8 @@
 #include "scripting/vm/context.h"
 #include "scripting/vm/bytecode.h"
 #include "scripting/vm/types.h"
+#include "scripting/parser/ast.h"
+#include "scripting/parser/tokenizer.h"
 #include <stdint.h>
 
 #include "scripting/vm/engine.h"
@@ -12702,7 +12704,7 @@ EI(keyStr=="F6")RET STG::createNativeObject(Key_funcs,(void *)280,EXT->Key_typeI
 EI(keyStr=="RightShift")RET STG::createNativeObject(Key_funcs,(void *)288,EXT->Key_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -12798,7 +12800,7 @@ EI(keyStr=="F6")RET STG::createNativeObject(Key_funcs,(void *)280,EXT->Key_typeI
 EI(keyStr=="RightShift")RET STG::createNativeObject(Key_funcs,(void *)288,EXT->Key_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -12837,7 +12839,7 @@ EI(keyStr=="Unknown")RET STG::createNativeObject(MouseButton_funcs,(void *)3,EXT
 EI(keyStr=="Left")RET STG::createNativeObject(MouseButton_funcs,(void *)0,EXT->MouseButton_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -12852,7 +12854,7 @@ EI(keyStr=="Unknown")RET STG::createNativeObject(MouseButton_funcs,(void *)3,EXT
 EI(keyStr=="Left")RET STG::createNativeObject(MouseButton_funcs,(void *)0,EXT->MouseButton_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -12896,7 +12898,7 @@ EI(keyStr=="KeyDown")RET STG::createNativeObject(EventType_funcs,(void *)2,EXT->
 EI(keyStr=="MouseButtonUp")RET STG::createNativeObject(EventType_funcs,(void *)6,EXT->EventType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -12916,7 +12918,7 @@ EI(keyStr=="KeyDown")RET STG::createNativeObject(EventType_funcs,(void *)2,EXT->
 EI(keyStr=="MouseButtonUp")RET STG::createNativeObject(EventType_funcs,(void *)6,EXT->EventType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -12954,7 +12956,7 @@ EI(keyStr=="Set")RET STG::createNativeObject(FileOrigin_funcs,(void *)0,EXT->Fil
 EI(keyStr=="End")RET STG::createNativeObject(FileOrigin_funcs,(void *)2,EXT->FileOrigin_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -12968,7 +12970,7 @@ EI(keyStr=="Set")RET STG::createNativeObject(FileOrigin_funcs,(void *)0,EXT->Fil
 EI(keyStr=="End")RET STG::createNativeObject(FileOrigin_funcs,(void *)2,EXT->FileOrigin_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13013,7 +13015,7 @@ EI(keyStr=="GfxShaderType")RET STG::createNativeObject(ResType_funcs,(void *)0,E
 EI(keyStr=="SceneType")RET STG::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13034,7 +13036,7 @@ EI(keyStr=="GfxShaderType")RET STG::createNativeObject(ResType_funcs,(void *)0,E
 EI(keyStr=="SceneType")RET STG::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13072,7 +13074,7 @@ EI(keyStr=="Texture3D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)
 EI(keyStr=="Texture2D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13086,7 +13088,7 @@ EI(keyStr=="Texture3D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)
 EI(keyStr=="Texture2D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13123,7 +13125,7 @@ EI(keyStr=="Bilinear")RET STG::createNativeObject(GfxFilter_funcs,(void *)1,EXT-
 EI(keyStr=="Nearest")RET STG::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13136,7 +13138,7 @@ EI(keyStr=="Bilinear")RET STG::createNativeObject(GfxFilter_funcs,(void *)1,EXT-
 EI(keyStr=="Nearest")RET STG::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13174,7 +13176,7 @@ EI(keyStr=="None")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT-
 EI(keyStr=="Linear")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13188,7 +13190,7 @@ EI(keyStr=="None")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT-
 EI(keyStr=="Linear")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13226,7 +13228,7 @@ EI(keyStr=="Repeat")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT-
 EI(keyStr=="Mirror")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13240,7 +13242,7 @@ EI(keyStr=="Repeat")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT-
 EI(keyStr=="Mirror")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13346,7 +13348,7 @@ EI(keyStr=="DepthF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *
 EI(keyStr=="AlphaF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13428,7 +13430,7 @@ EI(keyStr=="DepthF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *
 EI(keyStr=="AlphaF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13466,7 +13468,7 @@ EI(keyStr=="Other")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)2,EXT
 EI(keyStr=="Normal")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)1,EXT->GfxTexPurpose_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13480,7 +13482,7 @@ EI(keyStr=="Other")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)2,EXT
 EI(keyStr=="Normal")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)1,EXT->GfxTexPurpose_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13521,7 +13523,7 @@ EI(keyStr=="NegativeX")RET STG::createNativeObject(GfxFace_funcs,(void *)1,EXT->
 EI(keyStr=="NegativeY")RET STG::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13538,7 +13540,7 @@ EI(keyStr=="NegativeX")RET STG::createNativeObject(GfxFace_funcs,(void *)1,EXT->
 EI(keyStr=="NegativeY")RET STG::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13576,7 +13578,7 @@ EI(keyStr=="Static")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)1,E
 EI(keyStr=="Stream")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13590,7 +13592,7 @@ EI(keyStr=="Static")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)1,E
 EI(keyStr=="Stream")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13631,7 +13633,7 @@ EI(keyStr=="TessControl")RET STG::createNativeObject(GfxShaderType_funcs,(void *
 EI(keyStr=="TessEval")RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13648,7 +13650,7 @@ EI(keyStr=="TessControl")RET STG::createNativeObject(GfxShaderType_funcs,(void *
 EI(keyStr=="TessEval")RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13691,7 +13693,7 @@ EI(keyStr=="GfxTriangleStrip")RET STG::createNativeObject(GfxPrimitive_funcs,(vo
 EI(keyStr=="GfxPatches")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13710,7 +13712,7 @@ EI(keyStr=="GfxTriangleStrip")RET STG::createNativeObject(GfxPrimitive_funcs,(vo
 EI(keyStr=="GfxPatches")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13753,7 +13755,7 @@ EI(keyStr=="GfxEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *
 EI(keyStr=="GfxNotEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)5,EXT->GfxDepthFunction_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13772,7 +13774,7 @@ EI(keyStr=="GfxEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *
 EI(keyStr=="GfxNotEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)5,EXT->GfxDepthFunction_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13810,7 +13812,7 @@ EI(keyStr=="GfxAdd")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)0,EXT
 EI(keyStr=="GfxSubtract")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)1,EXT->GfxBlendMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13824,7 +13826,7 @@ EI(keyStr=="GfxAdd")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)0,EXT
 EI(keyStr=="GfxSubtract")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)1,EXT->GfxBlendMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13873,7 +13875,7 @@ EI(keyStr=="GfxOne")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)1,E
 EI(keyStr=="GfxOneMinusDstAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)9,EXT->GfxBlendFactor_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13898,7 +13900,7 @@ EI(keyStr=="GfxOne")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)1,E
 EI(keyStr=="GfxOneMinusDstAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)9,EXT->GfxBlendFactor_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13936,7 +13938,7 @@ EI(keyStr=="GfxCullBack")RET STG::createNativeObject(GfxCullMode_funcs,(void *)2
 EI(keyStr=="GfxCullFront")RET STG::createNativeObject(GfxCullMode_funcs,(void *)1,EXT->GfxCullMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -13950,7 +13952,7 @@ EI(keyStr=="GfxCullBack")RET STG::createNativeObject(GfxCullMode_funcs,(void *)2
 EI(keyStr=="GfxCullFront")RET STG::createNativeObject(GfxCullMode_funcs,(void *)1,EXT->GfxCullMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -13987,7 +13989,7 @@ EI(keyStr=="GfxCCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)1,EXT->
 EI(keyStr=="GfxCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)0,EXT->GfxWinding_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14000,7 +14002,7 @@ EI(keyStr=="GfxCCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)1,EXT->
 EI(keyStr=="GfxCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)0,EXT->GfxWinding_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14040,7 +14042,7 @@ EI(keyStr=="GfxNormal")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,
 EI(keyStr=="GfxColor")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)3,EXT->GfxVertexAttribPurpose_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14056,7 +14058,7 @@ EI(keyStr=="GfxNormal")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,
 EI(keyStr=="GfxColor")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)3,EXT->GfxVertexAttribPurpose_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14106,7 +14108,7 @@ EI(keyStr=="GfxUnsignedByte")RET STG::createNativeObject(GfxVertexAttribType_fun
 EI(keyStr=="GfxNormalizedUnsignedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)12,EXT->GfxVertexAttribType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14132,7 +14134,7 @@ EI(keyStr=="GfxUnsignedByte")RET STG::createNativeObject(GfxVertexAttribType_fun
 EI(keyStr=="GfxNormalizedUnsignedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)12,EXT->GfxVertexAttribType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14170,7 +14172,7 @@ EI(keyStr=="U8")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0
 EI(keyStr=="U16")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14184,7 +14186,7 @@ EI(keyStr=="U8")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0
 EI(keyStr=="U16")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14226,7 +14228,7 @@ EI(keyStr=="Position")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void 
 EI(keyStr=="BoneIndex")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)5,EXT->GfxMeshAttribType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14244,7 +14246,7 @@ EI(keyStr=="Position")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void 
 EI(keyStr=="BoneIndex")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)5,EXT->GfxMeshAttribType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14335,7 +14337,7 @@ EI(keyStr=="U16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(
 EI(keyStr=="S16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14402,7 +14404,7 @@ EI(keyStr=="U16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(
 EI(keyStr=="S16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14439,7 +14441,7 @@ EI(keyStr=="Right")RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOri
 EI(keyStr=="Left")RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14452,7 +14454,7 @@ EI(keyStr=="Right")RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOri
 EI(keyStr=="Left")RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14490,7 +14492,7 @@ EI(keyStr=="Medium")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(voi
 EI(keyStr=="Low")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14504,7 +14506,7 @@ EI(keyStr=="Medium")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(voi
 EI(keyStr=="Low")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14542,7 +14544,7 @@ EI(keyStr=="Spot")RET STG::createNativeObject(GfxLightType_funcs,(void *)1,EXT->
 EI(keyStr=="Directional")RET STG::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14556,7 +14558,7 @@ EI(keyStr=="Spot")RET STG::createNativeObject(GfxLightType_funcs,(void *)1,EXT->
 EI(keyStr=="Directional")RET STG::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14594,7 +14596,7 @@ EI(keyStr=="Mesa")RET STG::createNativeObject(GfxDriver_funcs,(void *)1,EXT->Gfx
 EI(keyStr=="Nvidia")RET STG::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14608,7 +14610,7 @@ EI(keyStr=="Mesa")RET STG::createNativeObject(GfxDriver_funcs,(void *)1,EXT->Gfx
 EI(keyStr=="Nvidia")RET STG::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14645,7 +14647,7 @@ EI(keyStr=="Perspective")RET STG::createNativeObject(CameraType_funcs,(void *)0,
 EI(keyStr=="Orthographic")RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14658,7 +14660,7 @@ EI(keyStr=="Perspective")RET STG::createNativeObject(CameraType_funcs,(void *)0,
 EI(keyStr=="Orthographic")RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14696,7 +14698,7 @@ EI(keyStr=="Static")RET STG::createNativeObject(RigidBodyType_funcs,(void *)0,EX
 EI(keyStr=="Kinematic")RET STG::createNativeObject(RigidBodyType_funcs,(void *)2,EXT->RigidBodyType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14710,7 +14712,7 @@ EI(keyStr=="Static")RET STG::createNativeObject(RigidBodyType_funcs,(void *)0,EX
 EI(keyStr=="Kinematic")RET STG::createNativeObject(RigidBodyType_funcs,(void *)2,EXT->RigidBodyType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14747,7 +14749,7 @@ EI(keyStr=="Body")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)0,
 EI(keyStr=="Ghost")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14760,7 +14762,7 @@ EI(keyStr=="Body")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)0,
 EI(keyStr=="Ghost")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14798,7 +14800,7 @@ EI(keyStr=="Model")RET STG::createNativeObject(RenderMode_funcs,(void *)1,EXT->R
 EI(keyStr=="Overlay")RET STG::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14812,7 +14814,7 @@ EI(keyStr=="Model")RET STG::createNativeObject(RenderMode_funcs,(void *)1,EXT->R
 EI(keyStr=="Overlay")RET STG::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
 
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown enum."));
 }
 }
 }
@@ -14847,7 +14849,7 @@ RET CNF(GhostObject_new);
 EI(keyStr=="__call__")
 RET CNF(GhostObject_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GhostObject."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -14875,7 +14877,7 @@ RET CNF(GhostObject_getGhostCollisions);
  EI(keyStr == "getShape")
 RET CNF(GhostObject_getShape);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GhostObject."));
 }
 }
 RET CN;
@@ -14891,7 +14893,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GhostObject."));
 }
 }
 }
@@ -15089,7 +15091,7 @@ RET CNF(Filesystem_new);
 EI(keyStr=="__call__")
 RET CNF(Filesystem_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Filesystem."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -15105,7 +15107,7 @@ RET CNF(Filesystem_addSearchPath);
  EI(keyStr == "getAbsolutePath")
 RET CNF(Filesystem_getAbsolutePath);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Filesystem."));
 }
 }
 RET CN;
@@ -15121,7 +15123,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Filesystem."));
 }
 }
 }
@@ -15226,7 +15228,7 @@ RET CNF(StrStrMap_new);
 EI(keyStr=="__call__")
 RET CNF(StrStrMap_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for StrStrMap."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -15260,7 +15262,7 @@ RET CNF(StrStrMap_clear);
  EI(keyStr == "append")
 RET CNF(StrStrMap_append);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for StrStrMap."));
 }
 }
 RET CN;
@@ -15276,7 +15278,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for StrStrMap."));
 }
 }
 }
@@ -15551,7 +15553,7 @@ RET CNF(GfxApi_new);
 EI(keyStr=="__call__")
 RET CNF(GfxApi_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxApi."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -15667,7 +15669,7 @@ RET CNF(GfxApi_setTessPatchSize);
  EI(keyStr == "getTessPatchSize")
 RET CNF(GfxApi_getTessPatchSize);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxApi."));
 }
 }
 RET CN;
@@ -15683,7 +15685,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxApi."));
 }
 }
 }
@@ -16715,7 +16717,7 @@ RET CNF(GfxCompiledShader_new);
 EI(keyStr=="__call__")
 RET CNF(GfxCompiledShader_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxCompiledShader."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -16729,7 +16731,7 @@ RET CNF(GfxCompiledShader_getGLProgram);
  EI(keyStr == "getGLShader")
 RET CNF(GfxCompiledShader_getGLShader);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxCompiledShader."));
 }
 }
 RET CN;
@@ -16745,7 +16747,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxCompiledShader."));
 }
 }
 }
@@ -16836,7 +16838,7 @@ RET CNF(ScrollBar_new);
 EI(keyStr=="__call__")
 RET CNF(ScrollBar_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ScrollBar."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -16856,7 +16858,7 @@ RET CV(obj->center);
 ScrollBar*obj=(ScrollBar*)f->data;
 RET CV(obj->barSize);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ScrollBar."));
 }
 }
 RET CN;
@@ -16880,7 +16882,7 @@ obj->center=val_to_c<decltype(obj->center)>::f(ctx,value);
 ScrollBar*obj=(ScrollBar*)f->data;
 obj->barSize=val_to_c<decltype(obj->barSize)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for ScrollBar."));
 }
 }
 }
@@ -16960,7 +16962,7 @@ RET CNF(GhostObjList_new);
 EI(keyStr=="__call__")
 RET CNF(GhostObjList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GhostObjList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -16998,7 +17000,7 @@ RET CNF(GhostObjList_begin);
  EI(keyStr == "end")
 RET CNF(GhostObjList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GhostObjList."));
 }
 }
 RET CN;
@@ -17014,7 +17016,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GhostObjList."));
 }
 }
 }
@@ -17299,7 +17301,7 @@ RET CNF(GPUTimer_new);
 EI(keyStr=="__call__")
 RET CNF(GPUTimer_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GPUTimer."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -17319,7 +17321,7 @@ RET CNF(GPUTimer_end);
  EI(keyStr == "swap")
 RET CNF(GPUTimer_swap);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GPUTimer."));
 }
 }
 RET CN;
@@ -17335,7 +17337,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GPUTimer."));
 }
 }
 }
@@ -17472,7 +17474,7 @@ RET CNF(RigidBody_new);
 EI(keyStr=="__call__")
 RET CNF(RigidBody_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RigidBody."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -17562,7 +17564,7 @@ RET CNF(RigidBody_getShape);
  EI(keyStr == "getEntity")
 RET CNF(RigidBody_getEntity);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RigidBody."));
 }
 }
 RET CN;
@@ -17578,7 +17580,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for RigidBody."));
 }
 }
 }
@@ -18324,7 +18326,7 @@ RET CNF(UInt2_new);
 EI(keyStr=="__call__")
 RET CNF(UInt2_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for UInt2."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -18382,7 +18384,7 @@ RET CV(obj->x);
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
 RET CV(obj->y);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for UInt2."));
 }
 }
 RET CN;
@@ -18406,7 +18408,7 @@ obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for UInt2."));
 }
 }
 }
@@ -18839,7 +18841,7 @@ RET CNF(LightList_new);
 EI(keyStr=="__call__")
 RET CNF(LightList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -18877,7 +18879,7 @@ RET CNF(LightList_begin);
  EI(keyStr == "end")
 RET CNF(LightList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightList."));
 }
 }
 RET CN;
@@ -18893,7 +18895,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for LightList."));
 }
 }
 }
@@ -19182,7 +19184,7 @@ RET CNF(ResourceManager_new);
 EI(keyStr=="__call__")
 RET CNF(ResourceManager_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ResourceManager."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -19238,7 +19240,7 @@ RET CNF(ResourceManager_isResource);
  EI(keyStr == "cleanupResources")
 RET CNF(ResourceManager_cleanupResources);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ResourceManager."));
 }
 }
 RET CN;
@@ -19254,7 +19256,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for ResourceManager."));
 }
 }
 }
@@ -19685,7 +19687,7 @@ RET CNF(Entity_new);
 EI(keyStr=="__call__")
 RET CNF(Entity_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Entity."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -19747,7 +19749,7 @@ RET CV(obj->name);
 Entity*obj=(Entity*)f->data;
 RET CV(obj->transform);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Entity."));
 }
 }
 RET CN;
@@ -19771,7 +19773,7 @@ obj->name=val_to_c<decltype(obj->name)>::f(ctx,value);
 Entity*obj=(Entity*)f->data;
 obj->transform=val_to_c<decltype(obj->transform)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Entity."));
 }
 }
 }
@@ -20180,7 +20182,7 @@ RET CNF(GfxRenderer_new);
 EI(keyStr=="__call__")
 RET CNF(GfxRenderer_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxRenderer."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -20274,7 +20276,7 @@ RET CV(obj->bloomEnabled);
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->ssaoRadius);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxRenderer."));
 }
 }
 RET CN;
@@ -20342,7 +20344,7 @@ obj->bloomEnabled=val_to_c<decltype(obj->bloomEnabled)>::f(ctx,value);
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->ssaoRadius=val_to_c<decltype(obj->ssaoRadius)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxRenderer."));
 }
 }
 }
@@ -20662,7 +20664,7 @@ RET CNF(Float2_new);
 EI(keyStr=="__call__")
 RET CNF(Float2_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Float2."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -20720,7 +20722,7 @@ RET CV(obj->x);
 T2<float>*obj=(T2<float>*)f->data;
 RET CV(obj->y);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Float2."));
 }
 }
 RET CN;
@@ -20744,7 +20746,7 @@ obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
 T2<float>*obj=(T2<float>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Float2."));
 }
 }
 }
@@ -21167,7 +21169,7 @@ RET CNF(GfxFramebuffer_new);
 EI(keyStr=="__call__")
 RET CNF(GfxFramebuffer_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxFramebuffer."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -21201,7 +21203,7 @@ RET CNF(GfxFramebuffer_getDepthTextureMipmapLevel);
  EI(keyStr == "getDepthAttachmentLayer")
 RET CNF(GfxFramebuffer_getDepthAttachmentLayer);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxFramebuffer."));
 }
 }
 RET CN;
@@ -21217,7 +21219,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxFramebuffer."));
 }
 }
 }
@@ -21475,7 +21477,7 @@ RET CNF(Font_new);
 EI(keyStr=="__call__")
 RET CNF(Font_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Font."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -21505,7 +21507,7 @@ RET CNF(Font_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(Font_setFilename);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Font."));
 }
 }
 RET CN;
@@ -21521,7 +21523,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Font."));
 }
 }
 }
@@ -21751,7 +21753,7 @@ RET CNF(Event_new);
 EI(keyStr=="__call__")
 RET CNF(Event_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Event."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -21781,7 +21783,7 @@ RET CNF(Event_getDoubleClicked);
 Event*obj=(Event*)f->data;
 RET CV(obj->type);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Event."));
 }
 }
 RET CN;
@@ -21801,7 +21803,7 @@ if(0) {} EI(keyStr=="type")
 Event*obj=(Event*)f->data;
 obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Event."));
 }
 }
 }
@@ -21994,7 +21996,7 @@ RET CNF(PhysicsWorld_new);
 EI(keyStr=="__call__")
 RET CNF(PhysicsWorld_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for PhysicsWorld."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -22028,7 +22030,7 @@ RET CNF(PhysicsWorld_castRay);
  EI(keyStr == "getBulletWorld")
 RET CNF(PhysicsWorld_getBulletWorld);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for PhysicsWorld."));
 }
 }
 RET CN;
@@ -22044,7 +22046,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for PhysicsWorld."));
 }
 }
 }
@@ -22296,7 +22298,7 @@ RET CNF(Stats_new);
 EI(keyStr=="__call__")
 RET CNF(Stats_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Stats."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -22328,7 +22330,7 @@ RET CV(obj->postRender);
 Stats*obj=(Stats*)f->data;
 RET CV(obj->audio);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Stats."));
 }
 }
 RET CN;
@@ -22368,7 +22370,7 @@ obj->postRender=val_to_c<decltype(obj->postRender)>::f(ctx,value);
 Stats*obj=(Stats*)f->data;
 obj->audio=val_to_c<decltype(obj->audio)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Stats."));
 }
 }
 }
@@ -22408,7 +22410,7 @@ RET CNF(AudioSource_new);
 EI(keyStr=="__call__")
 RET CNF(AudioSource_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioSource."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -22464,7 +22466,7 @@ RET CV(obj->loop);
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->playing);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioSource."));
 }
 }
 RET CN;
@@ -22524,7 +22526,7 @@ obj->loop=val_to_c<decltype(obj->loop)>::f(ctx,value);
 AudioSource*obj=(AudioSource*)f->data;
 obj->playing=val_to_c<decltype(obj->playing)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for AudioSource."));
 }
 }
 }
@@ -22604,7 +22606,7 @@ RET CNF(RayCastResultList_new);
 EI(keyStr=="__call__")
 RET CNF(RayCastResultList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RayCastResultList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -22642,7 +22644,7 @@ RET CNF(RayCastResultList_begin);
  EI(keyStr == "end")
 RET CNF(RayCastResultList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RayCastResultList."));
 }
 }
 RET CN;
@@ -22658,7 +22660,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for RayCastResultList."));
 }
 }
 }
@@ -22947,7 +22949,7 @@ RET CNF(Platform_new);
 EI(keyStr=="__call__")
 RET CNF(Platform_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Platform."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -23007,7 +23009,7 @@ RET CNF(Platform_getCPUFrametime);
 Platform*obj=(Platform*)f->data;
 RET CV(obj->running);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Platform."));
 }
 }
 RET CN;
@@ -23027,7 +23029,7 @@ if(0) {} EI(keyStr=="running")
 Platform*obj=(Platform*)f->data;
 obj->running=val_to_c<decltype(obj->running)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Platform."));
 }
 }
 }
@@ -23463,7 +23465,7 @@ RET CNF(Camera_new);
 EI(keyStr=="__call__")
 RET CNF(Camera_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Camera."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -23527,7 +23529,7 @@ RET CNF(Camera_getViewMatrix);
  EI(keyStr == "getProjectionMatrix")
 RET CNF(Camera_getProjectionMatrix);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Camera."));
 }
 }
 RET CN;
@@ -23543,7 +23545,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Camera."));
 }
 }
 }
@@ -24056,7 +24058,7 @@ RET CNF(GfxMesh_new);
 EI(keyStr=="__call__")
 RET CNF(GfxMesh_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxMesh."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -24130,7 +24132,7 @@ RET CV(obj->cullMode);
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->winding);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxMesh."));
 }
 }
 RET CN;
@@ -24170,7 +24172,7 @@ obj->cullMode=val_to_c<decltype(obj->cullMode)>::f(ctx,value);
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->winding=val_to_c<decltype(obj->winding)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxMesh."));
 }
 }
 }
@@ -24564,7 +24566,7 @@ RET CNF(Resource_new);
 EI(keyStr=="__call__")
 RET CNF(Resource_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Resource."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -24590,7 +24592,7 @@ RET CNF(Resource_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(Resource_setFilename);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Resource."));
 }
 }
 RET CN;
@@ -24606,7 +24608,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Resource."));
 }
 }
 }
@@ -24796,7 +24798,7 @@ RET CNF(GfxShader_new);
 EI(keyStr=="__call__")
 RET CNF(GfxShader_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxShader."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -24830,7 +24832,7 @@ RET CNF(GfxShader_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(GfxShader_setFilename);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxShader."));
 }
 }
 RET CN;
@@ -24846,7 +24848,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxShader."));
 }
 }
 }
@@ -25119,7 +25121,7 @@ RET CNF(Light_new);
 EI(keyStr=="__call__")
 RET CNF(Light_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Light."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -25209,7 +25211,7 @@ RET CV(obj->spot);
 Light*obj=(Light*)f->data;
 RET CV(obj->point);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Light."));
 }
 }
 RET CN;
@@ -25281,7 +25283,7 @@ obj->spot=val_to_c<decltype(obj->spot)>::f(ctx,value);
 Light*obj=(Light*)f->data;
 obj->point=val_to_c<decltype(obj->point)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Light."));
 }
 }
 }
@@ -25542,7 +25544,7 @@ RET CNF(TextureSampler_new);
 EI(keyStr=="__call__")
 RET CNF(TextureSampler_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for TextureSampler."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -25576,7 +25578,7 @@ RET CV(obj->wrapMode);
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->shadowmap);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for TextureSampler."));
 }
 }
 RET CN;
@@ -25616,7 +25618,7 @@ obj->wrapMode=val_to_c<decltype(obj->wrapMode)>::f(ctx,value);
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->shadowmap=val_to_c<decltype(obj->shadowmap)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for TextureSampler."));
 }
 }
 }
@@ -25664,7 +25666,7 @@ RET CNF(Scene_new);
 EI(keyStr=="__call__")
 RET CNF(Scene_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Scene."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -25718,7 +25720,7 @@ RET CNF(Scene_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(Scene_setFilename);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Scene."));
 }
 }
 RET CN;
@@ -25734,7 +25736,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Scene."));
 }
 }
 }
@@ -26168,7 +26170,7 @@ RET CNF(Int3_new);
 EI(keyStr=="__call__")
 RET CNF(Int3_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Int3."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -26272,7 +26274,7 @@ RET CV(obj->y);
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 RET CV(obj->z);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Int3."));
 }
 }
 RET CN;
@@ -26300,7 +26302,7 @@ obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Int3."));
 }
 }
 }
@@ -27087,7 +27089,7 @@ RET CNF(ResizableData_new);
 EI(keyStr=="__call__")
 RET CNF(ResizableData_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ResizableData."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -27207,7 +27209,7 @@ RET CNF(ResizableData_getChar);
  EI(keyStr == "setChar")
 RET CNF(ResizableData_setChar);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ResizableData."));
 }
 }
 RET CN;
@@ -27223,7 +27225,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for ResizableData."));
 }
 }
 }
@@ -28224,7 +28226,7 @@ RET CNF(Int4_new);
 EI(keyStr=="__call__")
 RET CNF(Int4_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Int4."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -28522,7 +28524,7 @@ RET CV(obj->z);
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 RET CV(obj->w);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Int4."));
 }
 }
 RET CN;
@@ -28554,7 +28556,7 @@ obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Int4."));
 }
 }
 }
@@ -30968,7 +30970,7 @@ RET CNF(Float3_new);
 EI(keyStr=="__call__")
 RET CNF(Float3_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Float3."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -31072,7 +31074,7 @@ RET CV(obj->y);
 T3<float>*obj=(T3<float>*)f->data;
 RET CV(obj->z);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Float3."));
 }
 }
 RET CN;
@@ -31100,7 +31102,7 @@ obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 T3<float>*obj=(T3<float>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Float3."));
 }
 }
 }
@@ -31880,7 +31882,7 @@ RET CNF(GfxBuffer_new);
 EI(keyStr=="__call__")
 RET CNF(GfxBuffer_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxBuffer."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -31896,7 +31898,7 @@ RET CNF(GfxBuffer_getData);
  EI(keyStr == "getSize")
 RET CNF(GfxBuffer_getSize);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxBuffer."));
 }
 }
 RET CN;
@@ -31912,7 +31914,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxBuffer."));
 }
 }
 }
@@ -32020,7 +32022,7 @@ RET CNF(Transform_new);
 EI(keyStr=="__call__")
 RET CNF(Transform_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Transform."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -32042,7 +32044,7 @@ RET CV(obj->scale);
 Transform*obj=(Transform*)f->data;
 RET CV(obj->position);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Transform."));
 }
 }
 RET CN;
@@ -32070,7 +32072,7 @@ obj->scale=val_to_c<decltype(obj->scale)>::f(ctx,value);
 Transform*obj=(Transform*)f->data;
 obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Transform."));
 }
 }
 }
@@ -32133,7 +32135,7 @@ RET CNF(AudioSourceList_new);
 EI(keyStr=="__call__")
 RET CNF(AudioSourceList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioSourceList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -32171,7 +32173,7 @@ RET CNF(AudioSourceList_begin);
  EI(keyStr == "end")
 RET CNF(AudioSourceList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioSourceList."));
 }
 }
 RET CN;
@@ -32187,7 +32189,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for AudioSourceList."));
 }
 }
 }
@@ -32473,7 +32475,7 @@ RET CNF(GfxMaterial_new);
 EI(keyStr=="__call__")
 RET CNF(GfxMaterial_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxMaterial."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -32593,7 +32595,7 @@ RET CV(obj->shadowMinTessLevel);
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->shadowMaxTessLevel);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxMaterial."));
 }
 }
 RET CN;
@@ -32673,7 +32675,7 @@ obj->shadowMinTessLevel=val_to_c<decltype(obj->shadowMinTessLevel)>::f(ctx,value
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->shadowMaxTessLevel=val_to_c<decltype(obj->shadowMaxTessLevel)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxMaterial."));
 }
 }
 }
@@ -33142,7 +33144,7 @@ RET CNF(Quaternion_new);
 EI(keyStr=="__call__")
 RET CNF(Quaternion_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Quaternion."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -33202,7 +33204,7 @@ RET CV(obj->z);
 Quaternion*obj=(Quaternion*)f->data;
 RET CV(obj->w);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Quaternion."));
 }
 }
 RET CN;
@@ -33234,7 +33236,7 @@ obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 Quaternion*obj=(Quaternion*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Quaternion."));
 }
 }
 }
@@ -33577,7 +33579,7 @@ RET CNF(GfxMeshAttrib_new);
 EI(keyStr=="__call__")
 RET CNF(GfxMeshAttrib_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxMeshAttrib."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -33597,7 +33599,7 @@ RET CV(obj->dataType);
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 RET CV(obj->data);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxMeshAttrib."));
 }
 }
 RET CN;
@@ -33625,7 +33627,7 @@ obj->dataType=val_to_c<decltype(obj->dataType)>::f(ctx,value);
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxMeshAttrib."));
 }
 }
 }
@@ -33660,7 +33662,7 @@ RET CNF(RenderComponent_new);
 EI(keyStr=="__call__")
 RET CNF(RenderComponent_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RenderComponent."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -33694,7 +33696,7 @@ RET CV(obj->model);
 RenderComponent*obj=(RenderComponent*)f->data;
 RET CV(obj->overlayTexture);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RenderComponent."));
 }
 }
 RET CN;
@@ -33722,7 +33724,7 @@ obj->model=val_to_c<decltype(obj->model)>::f(ctx,value);
 RenderComponent*obj=(RenderComponent*)f->data;
 obj->overlayTexture=val_to_c<decltype(obj->overlayTexture)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for RenderComponent."));
 }
 }
 }
@@ -33878,7 +33880,7 @@ RET CNF(Int2_new);
 EI(keyStr=="__call__")
 RET CNF(Int2_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Int2."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -33936,7 +33938,7 @@ RET CV(obj->x);
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
 RET CV(obj->y);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Int2."));
 }
 }
 RET CN;
@@ -33960,7 +33962,7 @@ obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Int2."));
 }
 }
 }
@@ -34387,7 +34389,7 @@ RET CNF(AudioWorld_new);
 EI(keyStr=="__call__")
 RET CNF(AudioWorld_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioWorld."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -34423,7 +34425,7 @@ RET CV(obj->listenerPosition);
 AudioWorld*obj=(AudioWorld*)f->data;
 RET CV(obj->speedOfSound);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioWorld."));
 }
 }
 RET CN;
@@ -34455,7 +34457,7 @@ obj->listenerPosition=val_to_c<decltype(obj->listenerPosition)>::f(ctx,value);
 AudioWorld*obj=(AudioWorld*)f->data;
 obj->speedOfSound=val_to_c<decltype(obj->speedOfSound)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for AudioWorld."));
 }
 }
 }
@@ -34597,7 +34599,7 @@ RET CNF(GuiPlacer_new);
 EI(keyStr=="__call__")
 RET CNF(GuiPlacer_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GuiPlacer."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -34623,7 +34625,7 @@ RET CNF(GuiPlacer_getXOrigin);
  EI(keyStr == "getPadding")
 RET CNF(GuiPlacer_getPadding);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GuiPlacer."));
 }
 }
 RET CN;
@@ -34639,7 +34641,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GuiPlacer."));
 }
 }
 }
@@ -34838,7 +34840,7 @@ RET CNF(ImGui_new);
 EI(keyStr=="__call__")
 RET CNF(ImGui_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ImGui."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -34878,7 +34880,7 @@ RET CV(obj->textSize);
 ImGui*obj=(ImGui*)f->data;
 RET CV(obj->scrollSpeed);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for ImGui."));
 }
 }
 RET CN;
@@ -34910,7 +34912,7 @@ obj->textSize=val_to_c<decltype(obj->textSize)>::f(ctx,value);
 ImGui*obj=(ImGui*)f->data;
 obj->scrollSpeed=val_to_c<decltype(obj->scrollSpeed)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for ImGui."));
 }
 }
 }
@@ -35086,7 +35088,7 @@ RET CNF(StringList_new);
 EI(keyStr=="__call__")
 RET CNF(StringList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for StringList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -35124,7 +35126,7 @@ RET CNF(StringList_begin);
  EI(keyStr == "end")
 RET CNF(StringList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for StringList."));
 }
 }
 RET CN;
@@ -35140,7 +35142,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for StringList."));
 }
 }
 }
@@ -35429,7 +35431,7 @@ RET CNF(Application_new);
 EI(keyStr=="__call__")
 RET CNF(Application_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Application."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -35471,7 +35473,7 @@ RET CV(obj->fixedTimestep);
 Application*obj=(Application*)f->data;
 RET CV(obj->running);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Application."));
 }
 }
 RET CN;
@@ -35495,7 +35497,7 @@ obj->fixedTimestep=val_to_c<decltype(obj->fixedTimestep)>::f(ctx,value);
 Application*obj=(Application*)f->data;
 obj->running=val_to_c<decltype(obj->running)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Application."));
 }
 }
 }
@@ -35723,7 +35725,7 @@ RET CNF(LightPointData_new);
 EI(keyStr=="__call__")
 RET CNF(LightPointData_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightPointData."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -35743,7 +35745,7 @@ RET CV(obj->radius);
 LightPointData*obj=(LightPointData*)f->data;
 RET CV(obj->singlePassShadowMap);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightPointData."));
 }
 }
 RET CN;
@@ -35771,7 +35773,7 @@ obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
 LightPointData*obj=(LightPointData*)f->data;
 obj->singlePassShadowMap=val_to_c<decltype(obj->singlePassShadowMap)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for LightPointData."));
 }
 }
 }
@@ -35826,7 +35828,7 @@ RET CNF(Float4_new);
 EI(keyStr=="__call__")
 RET CNF(Float4_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Float4."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -36124,7 +36126,7 @@ RET CV(obj->z);
 T4<float>*obj=(T4<float>*)f->data;
 RET CV(obj->w);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Float4."));
 }
 }
 RET CN;
@@ -36156,7 +36158,7 @@ obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 T4<float>*obj=(T4<float>*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Float4."));
 }
 }
 }
@@ -38561,7 +38563,7 @@ RET CNF(FloatList_new);
 EI(keyStr=="__call__")
 RET CNF(FloatList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for FloatList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -38599,7 +38601,7 @@ RET CNF(FloatList_begin);
  EI(keyStr == "end")
 RET CNF(FloatList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for FloatList."));
 }
 }
 RET CN;
@@ -38615,7 +38617,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for FloatList."));
 }
 }
 }
@@ -38904,7 +38906,7 @@ RET CNF(Container_new);
 EI(keyStr=="__call__")
 RET CNF(Container_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Container."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -38920,7 +38922,7 @@ RET CV(obj->vertical);
 Container*obj=(Container*)f->data;
 RET CV(obj->horizonal);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Container."));
 }
 }
 RET CN;
@@ -38944,7 +38946,7 @@ obj->vertical=val_to_c<decltype(obj->vertical)>::f(ctx,value);
 Container*obj=(Container*)f->data;
 obj->horizonal=val_to_c<decltype(obj->horizonal)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Container."));
 }
 }
 }
@@ -38981,7 +38983,7 @@ RET CNF(LightDirectionalData_new);
 EI(keyStr=="__call__")
 RET CNF(LightDirectionalData_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightDirectionalData."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -38993,7 +38995,7 @@ RET CNF(LightDirectionalData_new);
 LightDirectionalData*obj=(LightDirectionalData*)f->data;
 RET CV(obj->direction);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightDirectionalData."));
 }
 }
 RET CN;
@@ -39013,7 +39015,7 @@ if(0) {} EI(keyStr=="direction")
 LightDirectionalData*obj=(LightDirectionalData*)f->data;
 obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for LightDirectionalData."));
 }
 }
 }
@@ -39059,7 +39061,7 @@ RET CNF(Matrix4x4_new);
 EI(keyStr=="__call__")
 RET CNF(Matrix4x4_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Matrix4x4."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -39101,7 +39103,7 @@ RET CNF(Matrix4x4_lookAt);
  EI(keyStr == "lookAtDir")
 RET CNF(Matrix4x4_lookAtDir);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Matrix4x4."));
 }
 }
 RET CN;
@@ -39117,7 +39119,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Matrix4x4."));
 }
 }
 }
@@ -39449,7 +39451,7 @@ RET CNF(Map_new);
 EI(keyStr=="__call__")
 RET CNF(Map_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Map."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -39483,7 +39485,7 @@ RET CNF(Map_clear);
  EI(keyStr == "append")
 RET CNF(Map_append);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Map."));
 }
 }
 RET CN;
@@ -39499,7 +39501,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Map."));
 }
 }
 }
@@ -39793,7 +39795,7 @@ RET CNF(UInt3_new);
 EI(keyStr=="__call__")
 RET CNF(UInt3_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for UInt3."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -39897,7 +39899,7 @@ RET CV(obj->y);
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 RET CV(obj->z);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for UInt3."));
 }
 }
 RET CN;
@@ -39925,7 +39927,7 @@ obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for UInt3."));
 }
 }
 }
@@ -40706,7 +40708,7 @@ RET CNF(LightSpotData_new);
 EI(keyStr=="__call__")
 RET CNF(LightSpotData_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightSpotData."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -40734,7 +40736,7 @@ RET CV(obj->outerCutoff);
 LightSpotData*obj=(LightSpotData*)f->data;
 RET CV(obj->radius);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for LightSpotData."));
 }
 }
 RET CN;
@@ -40770,7 +40772,7 @@ obj->outerCutoff=val_to_c<decltype(obj->outerCutoff)>::f(ctx,value);
 LightSpotData*obj=(LightSpotData*)f->data;
 obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for LightSpotData."));
 }
 }
 }
@@ -40807,7 +40809,7 @@ RET CNF(PhysicsShape_new);
 EI(keyStr=="__call__")
 RET CNF(PhysicsShape_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for PhysicsShape."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -40869,7 +40871,7 @@ RET CNF(PhysicsShape_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(PhysicsShape_setFilename);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for PhysicsShape."));
 }
 }
 RET CN;
@@ -40885,7 +40887,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for PhysicsShape."));
 }
 }
 }
@@ -41336,7 +41338,7 @@ RET CNF(AudioDevice_new);
 EI(keyStr=="__call__")
 RET CNF(AudioDevice_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioDevice."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -41374,7 +41376,7 @@ RET CNF(AudioDevice_runCallbacks);
 AudioDevice*obj=(AudioDevice*)f->data;
 RET CV(obj->volume);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AudioDevice."));
 }
 }
 RET CN;
@@ -41394,7 +41396,7 @@ if(0) {} EI(keyStr=="volume")
 AudioDevice*obj=(AudioDevice*)f->data;
 obj->volume=val_to_c<decltype(obj->volume)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for AudioDevice."));
 }
 }
 }
@@ -41667,7 +41669,7 @@ RET CNF(RigidBodyList_new);
 EI(keyStr=="__call__")
 RET CNF(RigidBodyList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RigidBodyList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -41705,7 +41707,7 @@ RET CNF(RigidBodyList_begin);
  EI(keyStr == "end")
 RET CNF(RigidBodyList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RigidBodyList."));
 }
 }
 RET CN;
@@ -41721,7 +41723,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for RigidBodyList."));
 }
 }
 }
@@ -42025,7 +42027,7 @@ RET CNF(UInt4_new);
 EI(keyStr=="__call__")
 RET CNF(UInt4_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for UInt4."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -42323,7 +42325,7 @@ RET CV(obj->z);
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 RET CV(obj->w);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for UInt4."));
 }
 }
 RET CN;
@@ -42355,7 +42357,7 @@ obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for UInt4."));
 }
 }
 }
@@ -44754,7 +44756,7 @@ RET CNF(RayCastResult_new);
 EI(keyStr=="__call__")
 RET CNF(RayCastResult_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RayCastResult."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -44780,7 +44782,7 @@ RET CV(obj->normal);
 RayCastResult*obj=(RayCastResult*)f->data;
 RET CV(obj->objType);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RayCastResult."));
 }
 }
 RET CN;
@@ -44808,7 +44810,7 @@ obj->normal=val_to_c<decltype(obj->normal)>::f(ctx,value);
 RayCastResult*obj=(RayCastResult*)f->data;
 obj->objType=val_to_c<decltype(obj->objType)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for RayCastResult."));
 }
 }
 }
@@ -44899,7 +44901,7 @@ RET CNF(GfxLOD_new);
 EI(keyStr=="__call__")
 RET CNF(GfxLOD_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxLOD."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -44921,7 +44923,7 @@ RET CV(obj->maxDistance);
 GfxLOD*obj=(GfxLOD*)f->data;
 RET CV(obj->worldMatrix);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxLOD."));
 }
 }
 RET CN;
@@ -44949,7 +44951,7 @@ obj->maxDistance=val_to_c<decltype(obj->maxDistance)>::f(ctx,value);
 GfxLOD*obj=(GfxLOD*)f->data;
 obj->worldMatrix=val_to_c<decltype(obj->worldMatrix)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxLOD."));
 }
 }
 }
@@ -45006,7 +45008,7 @@ RET CNF(File_new);
 EI(keyStr=="__call__")
 RET CNF(File_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for File."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -45096,7 +45098,7 @@ RET CNF(File_vprintf);
  EI(keyStr == "writeChar")
 RET CNF(File_writeChar);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for File."));
 }
 }
 RET CN;
@@ -45112,7 +45114,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for File."));
 }
 }
 }
@@ -45840,7 +45842,7 @@ RET CNF(AABB_new);
 EI(keyStr=="__call__")
 RET CNF(AABB_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AABB."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -45862,7 +45864,7 @@ RET CV(obj->min);
 AABB*obj=(AABB*)f->data;
 RET CV(obj->max);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for AABB."));
 }
 }
 RET CN;
@@ -45886,7 +45888,7 @@ obj->min=val_to_c<decltype(obj->min)>::f(ctx,value);
 AABB*obj=(AABB*)f->data;
 obj->max=val_to_c<decltype(obj->max)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for AABB."));
 }
 }
 }
@@ -45983,7 +45985,7 @@ RET CNF(RigidBodyConstructionInfo_new);
 EI(keyStr=="__call__")
 RET CNF(RigidBodyConstructionInfo_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RigidBodyConstructionInfo."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -46035,7 +46037,7 @@ RET CV(obj->angularSleepingThreshold);
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->collisionMask);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for RigidBodyConstructionInfo."));
 }
 }
 RET CN;
@@ -46095,7 +46097,7 @@ obj->angularSleepingThreshold=val_to_c<decltype(obj->angularSleepingThreshold)>:
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->collisionMask=val_to_c<decltype(obj->collisionMask)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for RigidBodyConstructionInfo."));
 }
 }
 }
@@ -46141,7 +46143,7 @@ RET CNF(List_new);
 EI(keyStr=="__call__")
 RET CNF(List_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for List."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -46179,7 +46181,7 @@ RET CNF(List_begin);
  EI(keyStr == "end")
 RET CNF(List_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for List."));
 }
 }
 RET CN;
@@ -46195,7 +46197,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for List."));
 }
 }
 }
@@ -46481,7 +46483,7 @@ RET CNF(Audio_new);
 EI(keyStr=="__call__")
 RET CNF(Audio_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Audio."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -46531,7 +46533,7 @@ RET CV(obj->frequency);
 Audio*obj=(Audio*)f->data;
 RET CV(obj->data);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Audio."));
 }
 }
 RET CN;
@@ -46555,7 +46557,7 @@ obj->frequency=val_to_c<decltype(obj->frequency)>::f(ctx,value);
 Audio*obj=(Audio*)f->data;
 obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Audio."));
 }
 }
 }
@@ -46893,7 +46895,7 @@ RET CNF(GfxTexture_new);
 EI(keyStr=="__call__")
 RET CNF(GfxTexture_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxTexture."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -46973,7 +46975,7 @@ RET CNF(GfxTexture_getFilename);
  EI(keyStr == "setFilename")
 RET CNF(GfxTexture_setFilename);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxTexture."));
 }
 }
 RET CN;
@@ -46989,7 +46991,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxTexture."));
 }
 }
 }
@@ -47641,7 +47643,7 @@ RET CNF(GfxSubModelList_new);
 EI(keyStr=="__call__")
 RET CNF(GfxSubModelList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxSubModelList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -47679,7 +47681,7 @@ RET CNF(GfxSubModelList_begin);
  EI(keyStr == "end")
 RET CNF(GfxSubModelList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxSubModelList."));
 }
 }
 RET CN;
@@ -47695,7 +47697,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxSubModelList."));
 }
 }
 }
@@ -47981,7 +47983,7 @@ RET CNF(GfxModel_new);
 EI(keyStr=="__call__")
 RET CNF(GfxModel_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxModel."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -48011,7 +48013,7 @@ RET CNF(GfxModel_setFilename);
 GfxModel*obj=(GfxModel*)f->data;
 RET CV(obj->subModels);
 } else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxModel."));
 }
 }
 RET CN;
@@ -48031,7 +48033,7 @@ if(0) {} EI(keyStr=="subModels")
 GfxModel*obj=(GfxModel*)f->data;
 obj->subModels=val_to_c<decltype(obj->subModels)>::f(ctx,value);
 } else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxModel."));
 }
 }
 }
@@ -48242,7 +48244,7 @@ RET CNF(GfxLODList_new);
 EI(keyStr=="__call__")
 RET CNF(GfxLODList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxLODList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -48280,7 +48282,7 @@ RET CNF(GfxLODList_begin);
  EI(keyStr == "end")
 RET CNF(GfxLODList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxLODList."));
 }
 }
 RET CN;
@@ -48296,7 +48298,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxLODList."));
 }
 }
 }
@@ -48591,7 +48593,7 @@ RET CNF(EntityList_new);
 EI(keyStr=="__call__")
 RET CNF(EntityList_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for EntityList."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -48629,7 +48631,7 @@ RET CNF(EntityList_begin);
  EI(keyStr == "end")
 RET CNF(EntityList_end);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for EntityList."));
 }
 }
 RET CN;
@@ -48645,7 +48647,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for EntityList."));
 }
 }
 }
@@ -48934,7 +48936,7 @@ RET CNF(GfxShaderCombination_new);
 EI(keyStr=="__call__")
 RET CNF(GfxShaderCombination_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxShaderCombination."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -48956,7 +48958,7 @@ RET CNF(GfxShaderCombination_getCompiled);
  EI(keyStr == "getGLPipeline")
 RET CNF(GfxShaderCombination_getGLPipeline);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxShaderCombination."));
 }
 }
 RET CN;
@@ -48972,7 +48974,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxShaderCombination."));
 }
 }
 }
@@ -49137,7 +49139,7 @@ RET CNF(Matrix3x3_new);
 EI(keyStr=="__call__")
 RET CNF(Matrix3x3_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Matrix3x3."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -49171,7 +49173,7 @@ RET CNF(Matrix3x3_rotatey);
  EI(keyStr == "rotatez")
 RET CNF(Matrix3x3_rotatez);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for Matrix3x3."));
 }
 }
 RET CN;
@@ -49187,7 +49189,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for Matrix3x3."));
 }
 }
 }
@@ -49451,7 +49453,7 @@ RET CNF(GfxDebugDrawer_new);
 EI(keyStr=="__call__")
 RET CNF(GfxDebugDrawer_new);
 else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxDebugDrawer."));
 } else
 {
 if(keyStr=="__classTypeID__")
@@ -49463,7 +49465,7 @@ RET CNF(GfxDebugDrawer_addLine);
  EI(keyStr == "render")
 RET CNF(GfxDebugDrawer_render);
  else
- CATE(KE,"Unknown member."));
+ CATE(KE,"Unknown member for GfxDebugDrawer."));
 }
 }
 RET CN;
@@ -49479,7 +49481,7 @@ CATE(KE,"Native classes are read-only."));
 else
 {
 if(0) {} else
- CATE(KE,"Unknown member or member if read-only."));
+ CATE(KE,"Unknown member or member if read-only for GfxDebugDrawer."));
 }
 }
 }
@@ -49679,7 +49681,7 @@ RET CNF(GhostObject_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GhostObject_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GhostObjectRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GhostObject_ptr_deref);
@@ -49760,7 +49762,7 @@ RET CNF(Filesystem_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Filesystem_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for FilesystemRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Filesystem_ptr_deref);
@@ -49841,7 +49843,7 @@ RET CNF(StrStrMap_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(StrStrMap_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for StrStrMapRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(StrStrMap_ptr_deref);
@@ -49922,7 +49924,7 @@ RET CNF(GfxApi_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxApi_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxApiRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxApi_ptr_deref);
@@ -50003,7 +50005,7 @@ RET CNF(GfxCompiledShader_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxCompiledShader_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxCompiledShaderRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxCompiledShader_ptr_deref);
@@ -50084,7 +50086,7 @@ RET CNF(ScrollBar_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(ScrollBar_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ScrollBarRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(ScrollBar_ptr_deref);
@@ -50165,7 +50167,7 @@ RET CNF(GhostObjList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GhostObjList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GhostObjListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GhostObjList_ptr_deref);
@@ -50246,7 +50248,7 @@ RET CNF(GPUTimer_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GPUTimer_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GPUTimerRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GPUTimer_ptr_deref);
@@ -50326,7 +50328,7 @@ RET CNF(RigidBody_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(RigidBody_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for RigidBodyRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(RigidBody_ptr_deref);
@@ -50407,7 +50409,7 @@ RET CNF(UInt2_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(UInt2_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for UInt2Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(UInt2_ptr_deref);
@@ -50488,7 +50490,7 @@ RET CNF(LightList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(LightList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for LightListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(LightList_ptr_deref);
@@ -50569,7 +50571,7 @@ RET CNF(ResourceManager_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(ResourceManager_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ResourceManagerRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(ResourceManager_ptr_deref);
@@ -50649,7 +50651,7 @@ RET CNF(Entity_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Entity_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for EntityRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Entity_ptr_deref);
@@ -50730,7 +50732,7 @@ RET CNF(GfxRenderer_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxRenderer_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxRendererRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxRenderer_ptr_deref);
@@ -50811,7 +50813,7 @@ RET CNF(Float2_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Float2_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Float2Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Float2_ptr_deref);
@@ -50892,7 +50894,7 @@ RET CNF(GfxFramebuffer_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxFramebuffer_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxFramebufferRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxFramebuffer_ptr_deref);
@@ -50974,7 +50976,7 @@ RET CNF(Font_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Font_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for FontRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Font_ptr_deref);
@@ -51055,7 +51057,7 @@ RET CNF(Event_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Event_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for EventRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Event_ptr_deref);
@@ -51136,7 +51138,7 @@ RET CNF(PhysicsWorld_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(PhysicsWorld_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for PhysicsWorldRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(PhysicsWorld_ptr_deref);
@@ -51217,7 +51219,7 @@ RET CNF(Stats_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Stats_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for StatsRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Stats_ptr_deref);
@@ -51298,7 +51300,7 @@ RET CNF(AudioSource_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(AudioSource_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for AudioSourceRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(AudioSource_ptr_deref);
@@ -51379,7 +51381,7 @@ RET CNF(RayCastResultList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(RayCastResultList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for RayCastResultListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(RayCastResultList_ptr_deref);
@@ -51460,7 +51462,7 @@ RET CNF(Platform_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Platform_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for PlatformRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Platform_ptr_deref);
@@ -51541,7 +51543,7 @@ RET CNF(Camera_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Camera_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for CameraRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Camera_ptr_deref);
@@ -51623,7 +51625,7 @@ RET CNF(GfxMesh_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxMesh_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxMeshRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxMesh_ptr_deref);
@@ -51705,7 +51707,7 @@ RET CNF(Resource_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Resource_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ResourceRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Resource_ptr_deref);
@@ -51787,7 +51789,7 @@ RET CNF(GfxShader_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxShader_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxShaderRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxShader_ptr_deref);
@@ -51868,7 +51870,7 @@ RET CNF(Light_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Light_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for LightRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Light_ptr_deref);
@@ -51949,7 +51951,7 @@ RET CNF(TextureSampler_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(TextureSampler_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for TextureSamplerRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(TextureSampler_ptr_deref);
@@ -52031,7 +52033,7 @@ RET CNF(Scene_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Scene_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for SceneRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Scene_ptr_deref);
@@ -52112,7 +52114,7 @@ RET CNF(Int3_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Int3_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Int3Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Int3_ptr_deref);
@@ -52193,7 +52195,7 @@ RET CNF(ResizableData_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(ResizableData_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ResizableDataRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(ResizableData_ptr_deref);
@@ -52274,7 +52276,7 @@ RET CNF(Int4_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Int4_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Int4Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Int4_ptr_deref);
@@ -52355,7 +52357,7 @@ RET CNF(Float3_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Float3_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Float3Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Float3_ptr_deref);
@@ -52436,7 +52438,7 @@ RET CNF(GfxBuffer_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxBuffer_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxBufferRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxBuffer_ptr_deref);
@@ -52517,7 +52519,7 @@ RET CNF(Transform_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Transform_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for TransformRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Transform_ptr_deref);
@@ -52598,7 +52600,7 @@ RET CNF(AudioSourceList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(AudioSourceList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for AudioSourceListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(AudioSourceList_ptr_deref);
@@ -52680,7 +52682,7 @@ RET CNF(GfxMaterial_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxMaterial_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxMaterialRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxMaterial_ptr_deref);
@@ -52761,7 +52763,7 @@ RET CNF(Quaternion_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Quaternion_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for QuaternionRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Quaternion_ptr_deref);
@@ -52842,7 +52844,7 @@ RET CNF(GfxMeshAttrib_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxMeshAttrib_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxMeshAttribRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxMeshAttrib_ptr_deref);
@@ -52922,7 +52924,7 @@ RET CNF(RenderComponent_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(RenderComponent_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for RenderComponentRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(RenderComponent_ptr_deref);
@@ -53003,7 +53005,7 @@ RET CNF(Int2_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Int2_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Int2Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Int2_ptr_deref);
@@ -53084,7 +53086,7 @@ RET CNF(AudioWorld_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(AudioWorld_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for AudioWorldRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(AudioWorld_ptr_deref);
@@ -53165,7 +53167,7 @@ RET CNF(GuiPlacer_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GuiPlacer_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GuiPlacerRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GuiPlacer_ptr_deref);
@@ -53246,7 +53248,7 @@ RET CNF(ImGui_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(ImGui_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ImGuiRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(ImGui_ptr_deref);
@@ -53327,7 +53329,7 @@ RET CNF(StringList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(StringList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for StringListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(StringList_ptr_deref);
@@ -53408,7 +53410,7 @@ RET CNF(Application_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Application_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ApplicationRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Application_ptr_deref);
@@ -53489,7 +53491,7 @@ RET CNF(LightPointData_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(LightPointData_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for LightPointDataRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(LightPointData_ptr_deref);
@@ -53570,7 +53572,7 @@ RET CNF(Float4_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Float4_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Float4Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Float4_ptr_deref);
@@ -53651,7 +53653,7 @@ RET CNF(FloatList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(FloatList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for FloatListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(FloatList_ptr_deref);
@@ -53732,7 +53734,7 @@ RET CNF(Container_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Container_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ContainerRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Container_ptr_deref);
@@ -53813,7 +53815,7 @@ RET CNF(LightDirectionalData_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(LightDirectionalData_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for LightDirectionalDataRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(LightDirectionalData_ptr_deref);
@@ -53894,7 +53896,7 @@ RET CNF(Matrix4x4_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Matrix4x4_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Matrix4x4Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Matrix4x4_ptr_deref);
@@ -53975,7 +53977,7 @@ RET CNF(Map_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Map_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for MapRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Map_ptr_deref);
@@ -54056,7 +54058,7 @@ RET CNF(UInt3_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(UInt3_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for UInt3Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(UInt3_ptr_deref);
@@ -54137,7 +54139,7 @@ RET CNF(LightSpotData_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(LightSpotData_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for LightSpotDataRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(LightSpotData_ptr_deref);
@@ -54219,7 +54221,7 @@ RET CNF(PhysicsShape_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(PhysicsShape_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for PhysicsShapeRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(PhysicsShape_ptr_deref);
@@ -54300,7 +54302,7 @@ RET CNF(AudioDevice_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(AudioDevice_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for AudioDeviceRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(AudioDevice_ptr_deref);
@@ -54381,7 +54383,7 @@ RET CNF(RigidBodyList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(RigidBodyList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for RigidBodyListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(RigidBodyList_ptr_deref);
@@ -54462,7 +54464,7 @@ RET CNF(UInt4_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(UInt4_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for UInt4Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(UInt4_ptr_deref);
@@ -54543,7 +54545,7 @@ RET CNF(RayCastResult_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(RayCastResult_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for RayCastResultRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(RayCastResult_ptr_deref);
@@ -54624,7 +54626,7 @@ RET CNF(GfxLOD_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxLOD_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxLODRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxLOD_ptr_deref);
@@ -54705,7 +54707,7 @@ RET CNF(File_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(File_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for FileRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(File_ptr_deref);
@@ -54786,7 +54788,7 @@ RET CNF(AABB_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(AABB_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for AABBRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(AABB_ptr_deref);
@@ -54867,7 +54869,7 @@ RET CNF(RigidBodyConstructionInfo_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(RigidBodyConstructionInfo_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for RigidBodyConstructionInfoRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(RigidBodyConstructionInfo_ptr_deref);
@@ -54948,7 +54950,7 @@ RET CNF(List_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(List_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for ListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(List_ptr_deref);
@@ -55030,7 +55032,7 @@ RET CNF(Audio_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Audio_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for AudioRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(Audio_ptr_deref);
@@ -55112,7 +55114,7 @@ RET CNF(GfxTexture_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxTexture_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxTextureRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxTexture_ptr_deref);
@@ -55193,7 +55195,7 @@ RET CNF(GfxSubModelList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxSubModelList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxSubModelListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxSubModelList_ptr_deref);
@@ -55275,7 +55277,7 @@ RET CNF(GfxModel_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxModel_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxModelRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxModel_ptr_deref);
@@ -55356,7 +55358,7 @@ RET CNF(GfxLODList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxLODList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxLODListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxLODList_ptr_deref);
@@ -55437,7 +55439,7 @@ RET CNF(EntityList_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(EntityList_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for EntityListRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(EntityList_ptr_deref);
@@ -55518,7 +55520,7 @@ RET CNF(GfxShaderCombination_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxShaderCombination_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxShaderCombinationRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxShaderCombination_ptr_deref);
@@ -55599,7 +55601,7 @@ RET CNF(Matrix3x3_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(Matrix3x3_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for Matrix3x3Ref."));
 } else
 {
 if(keyStr=="deref")RET CNF(Matrix3x3_ptr_deref);
@@ -55680,7 +55682,7 @@ RET CNF(GfxDebugDrawer_ptr_new);
 EI(keyStr=="__call__")
 RET CNF(GfxDebugDrawer_ptr_new);
 else
-CATE(KE,"Unknown member."));
+CATE(KE,"Unknown member for GfxDebugDrawerRef."));
 } else
 {
 if(keyStr=="deref")RET CNF(GfxDebugDrawer_ptr_deref);

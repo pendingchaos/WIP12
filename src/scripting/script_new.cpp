@@ -16,7 +16,7 @@ ScriptInstance::ScriptInstance(const char *name_,
                                scripting::Value *obj_,
                                Entity *entity_,
                                Scene *scene_) : name(name_),
-                                                script(script_),
+                                                script(script_->copyRef<Script>()),
                                                 obj(obj_),
                                                 entity(entity_),
                                                 scene(scene_) {}
@@ -26,6 +26,7 @@ ScriptInstance::~ScriptInstance()
     destroy();
 
     script->removeInstance(this);
+    script->release();
 }
 
 void ScriptInstance::method(const String& name)
@@ -95,7 +96,6 @@ void ScriptInstance::destroy()
     if (obj != nullptr)
     {
         scripting::destroy(script->getContext(), obj);
-
         obj = nullptr;
     }
 }
@@ -124,14 +124,7 @@ void Script::removeContent()
         scripting::destroy(context, class_);
 
         DELETE(context);
-    }
-}
-
-void Script::possiblyReload()
-{
-    if (shouldReload())
-    {
-        reload();
+        context = nullptr;
     }
 }
 
@@ -184,13 +177,8 @@ void Script::_load()
 
     scripting::Bytecode code(data);
 
-    /*String disasm = scripting::disasm(code);
-
-    {
-        File out("debug.scriptasm", "w");
-
-        out.write(disasm.getLength(), disasm.getData());
-    }*/
+    //String disasm = scripting::disasm(code);
+    //std::cout << disasm.getData() << std::endl;
 
     {
         context = NEW(scripting::Context, scriptEngine);
@@ -236,7 +224,7 @@ ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *
 
 void Script::removeInstance(ScriptInstance *instance)
 {
-    if (instance->script == this and instance->obj != nullptr)
+    if (instance->script == this)
     {
         instances.remove(instances.find(instance));
     }

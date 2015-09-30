@@ -307,6 +307,8 @@ namespace scripting
             }
         }
 
+        result.append(String::format("%zu: <end>\n", bytecode.data.getSize()));
+
         return result;
     }
 }

@@ -1,4 +1,5 @@
-#ifndef PARSER_H
+#include "scripting/parser/ast.h"
+/*#ifndef PARSER_H
 #define PARSER_H
 
 #include "containers/string.h"
@@ -116,3 +117,4 @@ ASTNode *parse(const String& source);
 }
 
 #endif // PARSER_H
+*/
