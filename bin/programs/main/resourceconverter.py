@@ -1070,7 +1070,6 @@ if __name__ == "__main__":
     conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")
     conv["tesselation test.obj"] = Mesh(["source/tesselation test.obj"], "resources/meshes/tesselation test.bin")
     conv["sphere.obj"] = Mesh(["source/sphere.obj"], "resources/meshes/sphere.bin")
-    conv["teapot.obj"] = Mesh(["source/teapot.obj"], "resources/meshes/teapot.bin")
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
     conv["fence.obj"] = Mesh(["source/fence.obj"], "resources/meshes/fence.bin")
     conv["aotest.obj"] = Mesh(["source/ao test.obj"], "resources/meshes/aotest.bin")
