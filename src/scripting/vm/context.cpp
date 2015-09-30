@@ -1174,6 +1174,374 @@ size_t toIndex(Context *ctx, Value *value)
     assert(false);
 }
 
+static Value *strEqual(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::__eq__ takes two arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the second argument."));
+    }
+
+    return createBoolean(((StringValue *)args[0])->value == ((StringValue *)args[1])->value);
+}
+
+static Value *strNotEqual(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::__eq__ takes two arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the second argument."));
+    }
+
+    return createBoolean(((StringValue *)args[0])->value != ((StringValue *)args[1])->value);
+}
+
+static Value *strAppend(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::append takes two arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::append takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::append takes a string as the second argument."));
+    }
+
+    return createString(((StringValue *)args[0])->value.append(((StringValue *)args[1])->value));
+}
+
+static Value *strInsert(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 3)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::insert takes three arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::insert takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::Int or args[1]->type != ValueType::Float)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::insert takes a integer or float as the second argument."));
+    }
+
+    if (args[2]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::insert takes a string as the third argument."));
+    }
+
+    String str = ((StringValue *)args[0])->value;
+    size_t start = toIndex(ctx, args[1]);
+    String toInsert = ((StringValue *)args[2])->value;
+
+    if (start > str.getLength())
+    {
+        ctx->throwException(createException(ExcType::ValueError, "Invalid start for string insertion."));
+    }
+
+    str.insert(start, toInsert);
+    return createNil();
+}
+
+static Value *strRemove(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 3)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::remove takes three arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::remove takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::Int and args[1]->type != ValueType::Float)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::remove takes a integer or float as the second argument."));
+    }
+
+    if (args[2]->type != ValueType::Int and args[2]->type != ValueType::Float)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::remove takes a integer or float as the third argument."));
+    }
+
+    String str = ((StringValue *)args[0])->value;
+    size_t start = toIndex(ctx, args[1]);
+    size_t count = toIndex(ctx, args[2]);
+
+    if (start+count > str.getLength())
+    {
+        ctx->throwException(createException(ExcType::ValueError, "Invalid start and count for string removal."));
+    }
+
+    str.remove(start, count);
+    return createNil();
+}
+
+static Value *strClear(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 1)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::clear takes one argument."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::clear takes a string as the first argument."));
+    }
+
+    ((StringValue *)args[0])->value.clear();
+
+    return createNil();
+}
+
+static Value *strResize(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::resize takes two arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::resize takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::Int and args[1]->type != ValueType::Float)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::resize takes a integer or float as the second argument."));
+    }
+
+    ((StringValue *)args[0])->value.resize(toIndex(ctx, args[1]));
+
+    return createNil();
+}
+
+static Value *strFind(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::find takes two arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::find takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::find takes a string as the second argument."));
+    }
+
+    return createInt(((StringValue *)args[0])->value.find(((StringValue *)args[1])->value));
+}
+
+static Value *strSubStr(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 3)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::subStr takes three arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::Int and args[1]->type != ValueType::Float)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a integer or float as the second argument."));
+    }
+
+    if (args[2]->type != ValueType::Int and args[2]->type != ValueType::Float)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a integer or float as the third argument."));
+    }
+
+    String str = ((StringValue *)args[0])->value;
+    size_t offset = toIndex(ctx, args[1]);
+    size_t length = toIndex(ctx, args[2]);
+
+    if (offset+length > str.getLength())
+    {
+        ctx->throwException(createException(ExcType::ValueError, "Invalid start or count for String::subStr"));
+    }
+
+    return createString(str.subStr(offset, length));
+}
+
+static Value *strCopy(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 1)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::copy takes one argument."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::copy takes a string as the first argument."));
+    }
+
+    return createString(((StringValue *)args[0])->value.copy());
+}
+
+static Value *strCopyFrom(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::copyFrom takes two arguments."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::copyFrom takes a string as the first argument."));
+    }
+
+    if (args[1]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::copyFrom takes a string as the second argument."));
+    }
+
+    ((StringValue *)args[0])->value.copyFrom(((StringValue *)args[1])->value);
+
+    return createNil();
+}
+
+static Value *strFormat(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() < 1)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "String::format takes at least one argument."));
+    }
+
+    if (args[0]->type != ValueType::StringType)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "String::format takes a string as the first argument."));
+    }
+
+    String formatStr = ((StringValue *)args[0])->value;
+    String result;
+    size_t argIndex = 1;
+
+    for (size_t i = 0; i < formatStr.getLength(); ++i)
+    {
+        char c = formatStr[i];
+
+        if (c == '%')
+        {
+            if (i+1 == formatStr.getLength())
+            {
+                ctx->throwException(createException(ExcType::ValueError, "Unable to get the rest of the format thingy."));
+            }
+
+            char type = formatStr[++i];
+
+            if (type == '%')
+            {
+                result.append(c);
+            } else if (type == 'v')
+            {
+                if (argIndex >= args.getCount())
+                {
+                    ctx->throwException(createException(ExcType::ValueError, "Unable to get argument for format thingy."));
+                }
+
+                Value *v = args[argIndex++];
+
+                switch (v->type)
+                {
+                case ValueType::Int:
+                {
+                    result.append(String::formatValue((long long int)((IntValue *)v)->value));
+                    break;
+                }
+                case ValueType::Float:
+                {
+                    result.append(String::formatValue(((FloatValue *)v)->value));
+                    break;
+                }
+                case ValueType::Boolean:
+                {
+                    result.append(((BooleanValue *)v)->value ? "true" : "false");
+                    break;
+                }
+                case ValueType::Nil:
+                {
+                    result.append("nil");
+                    break;
+                }
+                case ValueType::Function:
+                {
+                    result.append("<function>");
+                    break;
+                }
+                case ValueType::Object:
+                {
+                    result.append("<object>");
+                    break;
+                }
+                case ValueType::StringType:
+                {
+                    result.append(((StringValue *)v)->value);
+                    break;
+                }
+                case ValueType::NativeFunction:
+                {
+                    result.append("<native function>");
+                    break;
+                }
+                case ValueType::NativeObject:
+                {
+                    result.append("<native object>");
+                    break;
+                }
+                case ValueType::Exception:
+                {
+                    result.append("<exception>");
+                    break;
+                }
+                }
+            } else
+            {
+                result.append(c);
+                --i;
+            }
+        } else
+        {
+            result.append(c);
+        }
+    }
+
+    return createString(result);
+}
+
 Value *getMember(Context *ctx, Value *val, Value *key)
 {
     switch (val->type)
@@ -1199,16 +1567,69 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     }
     case ValueType::StringType:
     {
-        String str = ((StringValue *)val)->value;
-
-        size_t index = toIndex(ctx, key);
-
-        if (index >= str.getLength())
+        if (key->type == ValueType::Int or key->type == ValueType::Float)
         {
-            ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
-        }
+            String str = ((StringValue *)val)->value;
 
-        return createString(String(str[index]));
+            size_t index = toIndex(ctx, key);
+
+            if (index >= str.getLength())
+            {
+                ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
+            }
+
+            return createString(String(str[index]));
+        } else if (key->type == ValueType::StringType)
+        {
+            String keyStr = ((StringValue *)key)->value;
+
+            if (keyStr == "__eq__")
+            {
+                return createNativeFunction(strEqual);
+            } else if (keyStr == "__neq__")
+            {
+                return createNativeFunction(strNotEqual);
+            } else if (keyStr == "length")
+            {
+                return createInt(((StringValue *)val)->value.getLength());
+            } else if (keyStr == "append")
+            {
+                return createNativeFunction(strAppend);
+            } else if (keyStr == "insert")
+            {
+                return createNativeFunction(strInsert);
+            } else if (keyStr == "remove")
+            {
+                return createNativeFunction(strRemove);
+            } else if (keyStr == "clear")
+            {
+                return createNativeFunction(strClear);
+            } else if (keyStr == "resize")
+            {
+                return createNativeFunction(strResize);
+            } else if (keyStr == "find")
+            {
+                return createNativeFunction(strFind);
+            } else if (keyStr == "subStr")
+            {
+                return createNativeFunction(strSubStr);
+            } else if (keyStr == "copy")
+            {
+                return createNativeFunction(strCopy);
+            } else if (keyStr == "copyFrom")
+            {
+                return createNativeFunction(strCopyFrom);
+            } else if (keyStr == "format")
+            {
+                return createNativeFunction(strFormat);
+            } else
+            {
+                ctx->throwException(createException(ExcType::KeyError, "Unknown member for String."));
+            }
+        } else
+        {
+            ctx->throwException(createException(ExcType::KeyError, "Unknown member for String."));
+        }
     }
     case ValueType::NativeObject:
     {

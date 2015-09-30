@@ -36,8 +36,9 @@ class String
 
         String(const char *data_) : data(std::strlen(data_)+1, data_) {}
 
-        String(char c) : data(2, &c)
+        String(char c) : data(2)
         {
+            getData()[1] = c;
             getData()[1] = '\x00';
         }
 
@@ -308,17 +309,22 @@ class String
             return String::format("u", value);
         }
 
-        inline static String formatValue(long long value)
+        inline static String formatValue(long long int value)
         {
             return String::format("lli", value);
         }
 
-        inline static String formatValue(unsigned long long value)
+        inline static String formatValue(unsigned long long int value)
         {
             return String::format("llu", value);
         }
 
         inline static String formatValue(float value)
+        {
+            return String::format("f", value);
+        }
+
+        inline static String formatValue(double value)
         {
             return String::format("f", value);
         }

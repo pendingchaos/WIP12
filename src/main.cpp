@@ -1012,7 +1012,7 @@ int main(int argc, const char *argv[])
         //"print(\"Hello world!\", 5 + 10*15, \"= 155\");\n"
         //"if false {print(5);} elif false {print(10);} else {print(15);}"
         //"i = 0; while i < 10 {print(i); i = i + 1;}"
-"vec2 = class {\n"
+/*"vec2 = class {\n"
 "    __init__ = function(self) {\n"
 "        if args.len == 0 {\n"
 "            self.x = 0.0;\n"
@@ -1044,7 +1044,8 @@ int main(int argc, const char *argv[])
 "        return x + inc + inc2 + x3 + x4;\n"
 "    }\n"
 "};\n"
-"\n"
+"\n"*/
+"s = \"Hello %v!\"; print(s.format(s, \"world\")); print(s.format(s, \"you\"));"
         );
 
         printAST(0, ast);

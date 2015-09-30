@@ -24,7 +24,6 @@
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
 - [ ] Finish the bytecode generator (scripting).
 - [ ] === function (scripting).
-- [ ] Improve the String type (scripting).
 - [ ] Proper methods (scripting). (: like in Lua to get a function as a method)
 - [ ] Fix skeletal animation for the mesh converter.
 - [ ] Improve skeletal animation.
