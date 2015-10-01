@@ -1,0 +1,138 @@
+return class {
+    __init__ = function(self, entity) {
+        self.entity = entity
+        self.scene = entity.scene
+        
+        self.angle = Float2(PI, 0.0)
+        self.speed = 10.0
+        self.rotateSpeed = 0.125
+        self.zoom = 1.0
+        self.maxVel = 12.0
+        self.maxAngVel = 0.5
+        self.angVel = Float2(0.0, 0.0)
+        self.zoom = 1.0
+    }
+    
+    __del__ = function(self) {};
+    handleInput = function(self) {}
+    update = function(self) {}
+    
+    fixedUpdate = function(self, timestep) {
+        body = self.entity.rigidBody
+        
+        cam = self.scene.renderer.camera
+        
+        dir = Float3(cos(self.angle.y) * sin(self.angle.x),
+                     sin(self.angle.y),
+                     cos(self.angle.y) * cos(self.angle.x))
+        cam.direction = dir
+        
+        right = Float3(sin(self.angle.x - PI/2.0),
+                       0.0,
+                       cos(self.angle.x - PI/2.0))
+    
+        cam.up = right:cross(dir)
+        
+        resSpeed = self.speed
+        
+        if platform.keys[Key.Space] {
+            resSpeed = resSpeed * 2.0
+        }
+        
+        moveDir = Float3(sin(angle.x), 0.0, cos(self.angle.x))
+        
+        vel = Float3()
+        
+        if platform.keys[Key.A] {
+            vel -= right*timestep*resSpeed
+        }
+        
+        if platform.keys[Key.D] {
+            vel += right*timestep*resSpeed
+        }
+        
+        if platform.keys[Key.W] {
+            vel += dir*timestep*resSpeed
+        }
+        
+        if platform.keys[Key.S] {
+            vel -= dir*timestep*resSpeed
+        }
+        
+        vel.y = 0.0;
+        
+        oldVel = body.linearVelocity
+        newVel = oldVel + vel
+        
+        if newVel.x > self.maxVel {
+            vel.x -= newVel.x - self.maxVel
+        } elif newVel.x < -self.maxVel {
+            vel.x += abs(newVel.x) - self.maxVel
+        }
+        
+        if newVel.z > self.maxVel {
+            vel.z -= newVel.z - self.maxVel
+        } elif newVel.x < -self.maxVel {
+            vel.z += abs(newVel.z) - self.maxVel
+        }
+        
+        body.linearVelocity = oldVel + vel
+        
+        if platform.leftMouseButton {
+            platform.cursorVisible = false
+            
+            w = platform.windowWidth
+            h = platform.windowHeight
+            pos = platform.mousePosition
+            
+            platform.mousePosition = Int2(w/2, h/2)
+            
+            rel = Float2(w, h) / 2.0 - Float2(pos.x, pos.y)
+            
+            if rel.x>-1.0 and rel.x<1.0 {
+                rel.x = 0.0
+            }
+            
+            if rel.y>-1.0 and rel.y<1.0 {
+                rel.y = 0.0
+            }
+            
+            self.angVel.x += self.rotateSpeed*timestep*rel.x
+            self.angVel.y += self.rotateSpeed*timestep*rel.y
+        } else {
+            platform.cursorVisible = true
+        }
+        
+        self.angVel.x = clamp(self.angVel.x, -self.maxAngVel, self.maxAngVel)
+        self.angVel.y = clamp(self.angVel.y, -self.maxAngVel, self.maxAngVel)
+        
+        self.angle = self.angle + self.angVel
+        
+        self.angle.y = max(self.angle.y, -PI/2.0)
+        self.angle.y = min(self.angle.y, PI/2.0)
+        
+        if platform.mouseWheel.y > 0.0 {
+            zoom = zoom - timestep
+        } elif platform.mouseWheel.y < 0.0 {
+            zoom = zoom + timestep
+        }
+        
+        self.zoom = clamp(self.zoom, 0.3, 1.7)
+        
+        cam.fov = self.zoom * 50.0
+        
+        if self.angVel.x>-0.001 and self.angVel.x < 0.001 {
+            self.angVel.x = 0.0
+        }
+        
+        if self.angVel.y>-0.001 and self.angVel.y<0.001 {
+            self.angVel.y = 0.0
+        }
+        
+        cam.position = self.entity.transform.position + Float3(0.0, 1.5, 0.0);
+    }
+    
+    preRender = function(self) {}
+    postRender = function(self) {}
+};
+

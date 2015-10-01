@@ -23,7 +23,7 @@
     - [ ] Automatic cast for things like Resource -> Audio.
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
 - [ ] Finish the bytecode generator (scripting).
-- [ ] === function (scripting).
+- [ ] === operator (scripting).
 - [ ] Proper methods (scripting). (: like in Lua to get a function as a method)
 - [ ] Fix skeletal animation for the mesh converter.
 - [ ] Improve skeletal animation.
@@ -33,6 +33,7 @@
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
 - [ ] Make a GUI skinnable.
+- [ ] Get rid of <class>Ref.
 
 ## Bugs
 - [ ] POM with terrains freezes the computer.

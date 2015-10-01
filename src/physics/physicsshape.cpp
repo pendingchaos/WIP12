@@ -44,7 +44,7 @@ void PhysicsShape::setBox(const Vector3D& halfExtents)
     impl = NEW(PhysicsBoxShape, this, halfExtents);
 }
 
-void PhysicsShape::setCylinder(PhysicsCylinderShape::Axis axis,
+void PhysicsShape::setCylinder(Axis axis,
                                float height,
                                float radius)
 {
@@ -53,7 +53,7 @@ void PhysicsShape::setCylinder(PhysicsCylinderShape::Axis axis,
     impl = NEW(PhysicsCylinderShape, this, axis, height, radius);
 }
 
-void PhysicsShape::setCapsule(PhysicsCapsuleShape::Axis axis,
+void PhysicsShape::setCapsule(Axis axis,
                               float height,
                               float radius)
 {
@@ -62,7 +62,7 @@ void PhysicsShape::setCapsule(PhysicsCapsuleShape::Axis axis,
     impl = NEW(PhysicsCapsuleShape, this, axis, height, radius);
 }
 
-void PhysicsShape::setCone(PhysicsConeShape::Axis axis,
+void PhysicsShape::setCone(Axis axis,
                            float height,
                            float radius)
 {
@@ -303,17 +303,17 @@ PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
         {
         case 0:
         {
-            dest->setCylinder(PhysicsCylinderShape::X, height, radius);
+            dest->setCylinder(Axis::X, height, radius);
             break;
         }
         case 1:
         {
-            dest->setCylinder(PhysicsCylinderShape::Y, height, radius);
+            dest->setCylinder(Axis::Y, height, radius);
             break;
         }
         case 2:
         {
-            dest->setCylinder(PhysicsCylinderShape::Z, height, radius);
+            dest->setCylinder(Axis::Z, height, radius);
             break;
         }
         }
@@ -329,17 +329,17 @@ PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
         {
         case 0:
         {
-            dest->setCapsule(PhysicsCapsuleShape::X, height, radius);
+            dest->setCapsule(Axis::X, height, radius);
             break;
         }
         case 1:
         {
-            dest->setCapsule(PhysicsCapsuleShape::Y, height, radius);
+            dest->setCapsule(Axis::Y, height, radius);
             break;
         }
         case 2:
         {
-            dest->setCapsule(PhysicsCapsuleShape::Z, height, radius);
+            dest->setCapsule(Axis::Z, height, radius);
             break;
         }
         }
@@ -355,17 +355,17 @@ PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
         {
         case 0:
         {
-            dest->setCone(PhysicsConeShape::X, height, radius);
+            dest->setCone(Axis::X, height, radius);
             break;
         }
         case 1:
         {
-            dest->setCone(PhysicsConeShape::Y, height, radius);
+            dest->setCone(Axis::Y, height, radius);
             break;
         }
         case 2:
         {
-            dest->setCone(PhysicsConeShape::Z, height, radius);
+            dest->setCone(Axis::Z, height, radius);
             break;
         }
         }
@@ -594,17 +594,17 @@ void PhysicsCylinderShape::create()
 {
     switch (axis)
     {
-    case PhysicsCylinderShape::X:
+    case Axis::X:
     {
         shape = NEW(btCylinderShapeX, btVector3(height/2.0f, radius, radius));
         break;
     }
-    case PhysicsCylinderShape::Y:
+    case Axis::Y:
     {
         shape = NEW(btCylinderShape, btVector3(radius, height/2.0f, radius));
         break;
     }
-    case PhysicsCylinderShape::Z:
+    case Axis::Z:
     {
         shape = NEW(btCylinderShapeZ, btVector3(radius, radius, height/2.0f));
         break;
@@ -655,17 +655,17 @@ void PhysicsCapsuleShape::create()
 {
     switch (axis)
     {
-    case PhysicsCapsuleShape::X:
+    case Axis::X:
     {
         shape = NEW(btCapsuleShapeX, radius, height);
         break;
     }
-    case PhysicsCapsuleShape::Y:
+    case Axis::Y:
     {
         shape = NEW(btCapsuleShape, radius, height);
         break;
     }
-    case PhysicsCapsuleShape::Z:
+    case Axis::Z:
     {
         shape = NEW(btCapsuleShapeZ, radius, height);
         break;
@@ -716,17 +716,17 @@ void PhysicsConeShape::create()
 {
     switch (axis)
     {
-    case PhysicsConeShape::X:
+    case Axis::X:
     {
         shape = NEW(btConeShapeX, radius, height);
         break;
     }
-    case PhysicsConeShape::Y:
+    case Axis::Y:
     {
         shape = NEW(btConeShape, radius, height);
         break;
     }
-    case PhysicsConeShape::Z:
+    case Axis::Z:
     {
         shape = NEW(btConeShapeZ, radius, height);
         break;

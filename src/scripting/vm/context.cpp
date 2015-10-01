@@ -412,7 +412,7 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject o
     stack->append(createFloat(fop));\
 } else\
 {\
-    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(iop)));\
 }\
 \
 destroy(this, aHead);\
@@ -453,7 +453,7 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
     stack->append(callMethod(this, aHead, funcName, args));\
 } else if (aHead->type != type_ or bHead->type != type_)\
 {\
-    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
 } else\
 {\
 stack->append(createFunc(((typeStruct *)aHead)->value op ((typeStruct *)bHead)->value));\
@@ -484,7 +484,7 @@ break;
                 stack->append(createBoolean(not ((BooleanValue *)head)->value));
             } else
             {
-                throwException(createException(ExcType::TypeError, "Invalid operand type. Must be Boolean."));
+                throwException(createException(ExcType::TypeError, "Invalid operand type for not. Must be Boolean."));
             }
 
             destroy(this, head);
@@ -515,7 +515,7 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
     stack->append(callMethod(this, aHead, funcName, args));\
 } else if (aHead->type != ValueType::Int or bHead->type != ValueType::Int)\
 {\
-    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
 } else\
 {\
     if (((IntValue *)aHead)->value < 0)\
@@ -592,11 +592,11 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject o
     stack->append(createBoolean(a op b));\
 } else\
 {\
-    throwException(createException(ExcType::TypeError, "Invalid operand types."));\
+    throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
 }\
 \
-destroy(this, aHead);\
 destroy(this, bHead);\
+destroy(this, aHead);\
 \
 break;
 

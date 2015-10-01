@@ -38,6 +38,8 @@ BEGIN_INSTANCE(Player, InstanceBase)
         shape->setCylinder(PhysicsCylinderShape::Y, 0.1f, 0.8f);
 
         feetGhost = entity->getScene()->getPhysicsWorld()->createGhostObject(shape);
+        
+        shape->release();
     }
 
     virtual void deinit()

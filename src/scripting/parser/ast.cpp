@@ -250,7 +250,7 @@ namespace scripting
                 case Token::Float:
                 case Token::ScientificFloat:
                 {
-                    double v = strtod(token.str.getData()+2, nullptr);
+                    double v = strtod(token.str.getData(), nullptr);
                     result = NEW(FloatNode, v);
                     break;
                 }

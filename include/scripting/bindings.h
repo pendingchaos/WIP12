@@ -1,5 +1,5 @@
-#ifndef BINDING_H
-#define BINDING_H
+#ifndef BINDINGS_H
+#define BINDINGS_H
 
 #include "misc_macros.h"
 
@@ -45,4 +45,4 @@ namespace scripting
     void registerBindings(scripting::Engine *engine);
 };
 
-#endif // BINDING_H
+#endif // BINDINGS_H

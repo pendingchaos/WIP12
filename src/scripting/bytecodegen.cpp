@@ -315,15 +315,14 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
 
-        int64_t i = 0;
-
-        data.append(1, &opPushInteger);
-        data.append(8, &i);
-
         if (not _generateBytecode(op->operand, data))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
+
+        int64_t i = 0;
+        data.append(1, &opPushInteger);
+        data.append(8, &i);
 
         data.append(1, &opSubtract);
         return true;

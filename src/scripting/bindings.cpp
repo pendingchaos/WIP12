@@ -58,11 +58,12 @@
 #include "containers/hashmap.h"
 #include "containers/list.h"
 #include "containers/string.h"
-#include "scripting/script_new.h"
+#include "scripting/script_old.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
 #include "scripting/disasm.h"
+#include "scripting/bindings2.h"
 #include "scripting/script.h"
 #include "scripting/vm/engine.h"
 #include "scripting/vm/context.h"
@@ -82,15 +83,15 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, GhostObject_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, ScrollBar_typeID, ScrollBar_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, LightList_typeID, LightList_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, GuiPlacer_typeID, GuiPlacer_ptr_typeID, ImGui_typeID, ImGui_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, Container_typeID, Container_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *GhostObject, *GhostObject_ptr, *Filesystem, *Filesystem_ptr, *StrStrMap, *StrStrMap_ptr, *GfxApi, *GfxApi_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *ScrollBar, *ScrollBar_ptr, *GhostObjList, *GhostObjList_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *UInt2, *UInt2_ptr, *LightList, *LightList_ptr, *ResourceManager, *ResourceManager_ptr, *Entity, *Entity_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GfxMeshAttrib, *GfxMeshAttrib_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *GuiPlacer, *GuiPlacer_ptr, *ImGui, *ImGui_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *Container, *Container_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *UInt4, *UInt4_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *GfxLODList, *GfxLODList_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t GhostObject_typeID, GhostObject_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, ScrollBar_typeID, ScrollBar_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, LightList_typeID, LightList_ptr_typeID, RenderStats_typeID, RenderStats_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, GuiPlacer_typeID, GuiPlacer_ptr_typeID, ImGui_typeID, ImGui_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, Container_typeID, Container_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *GhostObject, *GhostObject_ptr, *StrStrMap, *StrStrMap_ptr, *GfxApi, *GfxApi_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *ScrollBar, *ScrollBar_ptr, *GhostObjList, *GhostObjList_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *UInt2, *UInt2_ptr, *LightList, *LightList_ptr, *RenderStats, *RenderStats_ptr, *Filesystem, *Filesystem_ptr, *ResourceManager, *ResourceManager_ptr, *Entity, *Entity_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GfxMeshAttrib, *GfxMeshAttrib_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *GuiPlacer, *GuiPlacer_ptr, *ImGui, *ImGui_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *Container, *Container_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *UInt4, *UInt4_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *GfxLODList, *GfxLODList_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
 #define CATE ctx->throwException(scripting::createException
 #define SV scripting::Value*
 #define NO scripting::NativeObject*
-#define CV(expr) create_val<std::remove_reference<decltype(expr)>::type>::f(ctx, expr)
+#define CV(expr) create_val<std::remove_const<std::remove_reference<decltype(expr)>::type>::type>::f(ctx, expr)
 #define TS(expr, ...) type_same<std::remove_reference<__VA_ARGS__>::type>::f(ctx, expr)
 #define VE scripting::ExcType::ValueError
 #define TE scripting::ExcType::TypeError
@@ -133,20 +134,16 @@ struct val_to_c<float>
 {
     static float f(scripting::Context *ctx, const SV head)
     {
-        float v;
-        
         if (head->type == scripting::ValueType::Int)
         {
-            v = ((scripting::IntValue *)head)->value;
+            return (float)((scripting::IntValue *)head)->value;
         } else if (head->type == scripting::ValueType::Float)
         {
-            v = ((scripting::FloatValue *)head)->value;
+            return (float)((scripting::FloatValue *)head)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
-        
-        return v;
     }
 };
 
@@ -155,20 +152,16 @@ struct val_to_c<double>
 {
     static double f(scripting::Context *ctx, const SV head)
     {
-        double v;
-        
         if (head->type == scripting::ValueType::Int)
         {
-            v = ((scripting::IntValue *)head)->value;
+            return ((scripting::IntValue *)head)->value;
         } else if (head->type == scripting::ValueType::Float)
         {
-            v = ((scripting::FloatValue *)head)->value;
+            return ((scripting::FloatValue *)head)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
-        
-        return v;
     }
 };
 
@@ -1984,6 +1977,49 @@ RET((NO)head)->typeID==EXT->CameraType_typeID;
 else
  RET false;
 }
+};void Axis_destroy(CTX,NO) {}
+SV Axis_get_member(CTX,NO,SV);
+void Axis_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Axis_funcs={
+.destroy = Axis_destroy,
+.getMember = Axis_get_member,
+.setMember = Axis_set_member
+};
+template <>
+struct create_val<Axis>
+{
+static SV f(CTX ctx,Axis v)
+{
+RET STG::createNativeObject(Axis_funcs,(void *)v,EXT->Axis_typeID);
+}
+};
+template <>
+struct val_to_c<Axis>
+{
+static Axis f(CTX ctx,const SV head)
+{
+if(head->type!=STG::ValueType::NativeObject)
+CATE(TE,"Value can not be converted to Axis."));
+
+NO obj=(NO)head;
+if(obj->typeID!=EXT->Axis_typeID)
+CATE(TE,"Value can not be converted to Axis."));
+size_t v=size_t(obj->data);
+if(v==1)return Axis::Y;
+if(v==0)return Axis::X;
+if(v==2)return Axis::Z;
+}
+};
+template <>
+struct type_same<Axis>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Axis_typeID;
+else
+ RET false;
+}
 };void RigidBodyType_destroy(CTX,NO) {}
 SV RigidBodyType_get_member(CTX,NO,SV);
 void RigidBodyType_set_member(CTX,NO,SV,SV);
@@ -2142,68 +2178,6 @@ SV GhostObject_getCollisions(CTX ctx,const List<SV>&a);
 SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a);
 SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a);
 SV GhostObject_getShape(CTX ctx,const List<SV>&a);
-void Filesystem_destroy(CTX,NO);
-SV Filesystem_get_member(CTX,NO,SV);
-void Filesystem_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Filesystem_funcs={
-.destroy = Filesystem_destroy,
-.getMember = Filesystem_get_member,
-.setMember = Filesystem_set_member
-};
-template <>
-struct create_val<Filesystem>
-{
-static SV f(CTX ctx,const Filesystem&obj)
-{
-#define ghfj Filesystem
-RET STG::createNativeObject(Filesystem_funcs,NEW(ghfj, obj),EXT->Filesystem_typeID);
-}
-};
-template <>
-struct val_to_c<Filesystem>
-{
-static Filesystem f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Filesystem_typeID)
-RET*((Filesystem*)obj->data);
-else
- CATE(TE,"Value can not be converted to Filesystem."));
-} else
- CATE(TE,"Value can not be converted to Filesystem."));
-}
-};
-
-template <>
-struct val_to_c<const Filesystem>
-{
-static Filesystem f(CTX ctx,const SV head) {return val_to_c<Filesystem>::f(ctx, head);}
-};
-
-template <>
-struct create_val<const Filesystem>
-{
-static SV f(CTX ctx,const Filesystem&obj) {return create_val<Filesystem>::f(ctx,obj);}
-};
-
-template <>
-struct type_same<Filesystem>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_typeID;
-else
- RET false;
-}
-};
-
-SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a);
-SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a);
-SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a);
-SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a);
 void StrStrMap_destroy(CTX,NO);
 SV StrStrMap_get_member(CTX,NO,SV);
 void StrStrMap_set_member(CTX,NO,SV,SV);
@@ -2782,6 +2756,126 @@ SV LightList_copy(CTX ctx,const List<SV>&a);
 SV LightList_in(CTX ctx,const List<SV>&a);
 SV LightList_begin(CTX ctx,const List<SV>&a);
 SV LightList_end(CTX ctx,const List<SV>&a);
+void RenderStats_destroy(CTX,NO);
+SV RenderStats_get_member(CTX,NO,SV);
+void RenderStats_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs RenderStats_funcs={
+.destroy = RenderStats_destroy,
+.getMember = RenderStats_get_member,
+.setMember = RenderStats_set_member
+};
+template <>
+struct create_val<RenderStats>
+{
+static SV f(CTX ctx,const RenderStats&obj)
+{
+#define ghfj RenderStats
+RET STG::createNativeObject(RenderStats_funcs,NEW(ghfj, obj),EXT->RenderStats_typeID);
+}
+};
+template <>
+struct val_to_c<RenderStats>
+{
+static RenderStats f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RenderStats_typeID)
+RET*((RenderStats*)obj->data);
+else
+ CATE(TE,"Value can not be converted to RenderStats."));
+} else
+ CATE(TE,"Value can not be converted to RenderStats."));
+}
+};
+
+template <>
+struct val_to_c<const RenderStats>
+{
+static RenderStats f(CTX ctx,const SV head) {return val_to_c<RenderStats>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const RenderStats>
+{
+static SV f(CTX ctx,const RenderStats&obj) {return create_val<RenderStats>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<RenderStats>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->RenderStats_typeID;
+else
+ RET false;
+}
+};
+
+void Filesystem_destroy(CTX,NO);
+SV Filesystem_get_member(CTX,NO,SV);
+void Filesystem_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Filesystem_funcs={
+.destroy = Filesystem_destroy,
+.getMember = Filesystem_get_member,
+.setMember = Filesystem_set_member
+};
+template <>
+struct create_val<Filesystem>
+{
+static SV f(CTX ctx,const Filesystem&obj)
+{
+#define ghfj Filesystem
+RET STG::createNativeObject(Filesystem_funcs,NEW(ghfj, obj),EXT->Filesystem_typeID);
+}
+};
+template <>
+struct val_to_c<Filesystem>
+{
+static Filesystem f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Filesystem_typeID)
+RET*((Filesystem*)obj->data);
+else
+ CATE(TE,"Value can not be converted to Filesystem."));
+} else
+ CATE(TE,"Value can not be converted to Filesystem."));
+}
+};
+
+template <>
+struct val_to_c<const Filesystem>
+{
+static Filesystem f(CTX ctx,const SV head) {return val_to_c<Filesystem>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const Filesystem>
+{
+static SV f(CTX ctx,const Filesystem&obj) {return create_val<Filesystem>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<Filesystem>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Filesystem_typeID;
+else
+ RET false;
+}
+};
+
+SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a);
+SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a);
+SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a);
+SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a);
 void ResourceManager_destroy(CTX,NO);
 SV ResourceManager_get_member(CTX,NO,SV);
 void ResourceManager_set_member(CTX,NO,SV,SV);
@@ -7039,81 +7133,6 @@ else
 }
 };
 
-SV Filesystem_ptr_copy(CTX,NO);
-void Filesystem_ptr_destroy(CTX,NO);
-SV Filesystem_ptr_get_member(CTX,NO,SV);
-void Filesystem_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Filesystem_ptr_funcs={
-.destroy = Filesystem_ptr_destroy,
-.getMember = Filesystem_ptr_get_member,
-.setMember = Filesystem_ptr_set_member
-};
-template <>
-struct create_val<Filesystem *>
-{
-static SV f(CTX ctx,Filesystem*obj)
-{
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Filesystem_ptr_funcs,obj,EXT->Filesystem_ptr_typeID);
-}
-};
-template <>
-struct val_to_c<Filesystem *>
-{
-static Filesystem *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Filesystem_ptr_typeID)
-RET(Filesystem*)obj->data;
-else
- CATE(TE,"Value is not a FilesystemRef."));
-} else
- CATE(TE,"Value is not a FilesystemRef."));
-}
-};
-template <>
-struct type_same<Filesystem *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const Filesystem *>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const Filesystem *>
-{
-static const Filesystem *f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)head;
-if(obj->typeID==EXT->Filesystem_ptr_typeID)
-RET(Filesystem*)obj->data;
-else
- CATE(TE,"Value is not a FilesystemRef."));
-} else
- CATE(TE,"Value is not a FilesystemRef."));
-}
-};
-
 SV StrStrMap_ptr_copy(CTX,NO);
 void StrStrMap_ptr_destroy(CTX,NO);
 SV StrStrMap_ptr_get_member(CTX,NO,SV);
@@ -7786,6 +7805,156 @@ else
  CATE(TE,"Value is not a LightListRef."));
 } else
  CATE(TE,"Value is not a LightListRef."));
+}
+};
+
+SV RenderStats_ptr_copy(CTX,NO);
+void RenderStats_ptr_destroy(CTX,NO);
+SV RenderStats_ptr_get_member(CTX,NO,SV);
+void RenderStats_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs RenderStats_ptr_funcs={
+.destroy = RenderStats_ptr_destroy,
+.getMember = RenderStats_ptr_get_member,
+.setMember = RenderStats_ptr_set_member
+};
+template <>
+struct create_val<RenderStats *>
+{
+static SV f(CTX ctx,RenderStats*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(RenderStats_ptr_funcs,obj,EXT->RenderStats_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<RenderStats *>
+{
+static RenderStats *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RenderStats_ptr_typeID)
+RET(RenderStats*)obj->data;
+else
+ CATE(TE,"Value is not a RenderStatsRef."));
+} else
+ CATE(TE,"Value is not a RenderStatsRef."));
+}
+};
+template <>
+struct type_same<RenderStats *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->RenderStats_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const RenderStats *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->RenderStats_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const RenderStats *>
+{
+static const RenderStats *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->RenderStats_ptr_typeID)
+RET(RenderStats*)obj->data;
+else
+ CATE(TE,"Value is not a RenderStatsRef."));
+} else
+ CATE(TE,"Value is not a RenderStatsRef."));
+}
+};
+
+SV Filesystem_ptr_copy(CTX,NO);
+void Filesystem_ptr_destroy(CTX,NO);
+SV Filesystem_ptr_get_member(CTX,NO,SV);
+void Filesystem_ptr_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Filesystem_ptr_funcs={
+.destroy = Filesystem_ptr_destroy,
+.getMember = Filesystem_ptr_get_member,
+.setMember = Filesystem_ptr_set_member
+};
+template <>
+struct create_val<Filesystem *>
+{
+static SV f(CTX ctx,Filesystem*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(Filesystem_ptr_funcs,obj,EXT->Filesystem_ptr_typeID);
+}
+};
+template <>
+struct val_to_c<Filesystem *>
+{
+static Filesystem *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Filesystem_ptr_typeID)
+RET(Filesystem*)obj->data;
+else
+ CATE(TE,"Value is not a FilesystemRef."));
+} else
+ CATE(TE,"Value is not a FilesystemRef."));
+}
+};
+template <>
+struct type_same<Filesystem *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const Filesystem *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const Filesystem *>
+{
+static const Filesystem *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Filesystem_ptr_typeID)
+RET(Filesystem*)obj->data;
+else
+ CATE(TE,"Value is not a FilesystemRef."));
+} else
+ CATE(TE,"Value is not a FilesystemRef."));
 }
 };
 
@@ -14665,6 +14834,58 @@ else
 }
 }
 void CameraType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+SV Axis___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,UFOF("Axis::__eq__")));
+size_t f;
+if(!TS(a[0],Axis))
+CATE(TE,FAE("Axis::Axis","Axis")));
+else
+ f=(size_t)((NO)a[0])->data;
+size_t other;
+if(!TS(a[1],Axis))
+CATE(VE,UFOF("Axis::__eq__")));
+else
+ other=(size_t)((NO)a[1])->data;
+return STG::createBoolean(f == other);
+}SV Axis_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Axis");
+EI(keyStr=="__eq__")
+RET CNF(Axis___eq__);
+EI(keyStr=="Y")RET STG::createNativeObject(Axis_funcs,(void *)1,EXT->Axis_typeID);
+EI(keyStr=="X")RET STG::createNativeObject(Axis_funcs,(void *)0,EXT->Axis_typeID);
+EI(keyStr=="Z")RET STG::createNativeObject(Axis_funcs,(void *)2,EXT->Axis_typeID);
+
+else
+ CATE(KE,"Unknown enum."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Axis");
+EI(keyStr=="__eq__")
+RET CNF(Axis___eq__);
+EI(keyStr=="Y")RET STG::createNativeObject(Axis_funcs,(void *)1,EXT->Axis_typeID);
+EI(keyStr=="X")RET STG::createNativeObject(Axis_funcs,(void *)0,EXT->Axis_typeID);
+EI(keyStr=="Z")RET STG::createNativeObject(Axis_funcs,(void *)2,EXT->Axis_typeID);
+
+else
+ CATE(KE,"Unknown enum."));
+}
+}
+}
+void Axis_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV RigidBodyType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -15053,146 +15274,6 @@ if(1&&TS(a[1],PhysicsShape *))
 RET CN;
 }
 CATE(TE,UFOF("GhostObject::setShape.")));
-RET CN;
-}
-
-void Filesystem_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Filesystem))
-CATE(TE,"Filesystem::__del__ expects Filesystem as first argument."));
-
-DELETE((Filesystem*)f->data);
-}SV Filesystem_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Filesystem's constructor" EAOE));
-if(!TS(a[0],Filesystem))
-CATE(TE,"Filesystem's constructor expects Filesystem as first argument."));
-if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Filesystem_funcs,NEW(Filesystem),EXT->Filesystem_typeID);
-CATE(TE,UFOF("Filesystem's constructor.")));
-RET CN;
-}
-
-SV Filesystem_get_member(CTX ctx,NO f,SV key)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Filesystem");
-EI(keyStr=="__new__")
-RET CNF(Filesystem_new);
-EI(keyStr=="__call__")
-RET CNF(Filesystem_new);
-else
- CATE(KE,"Unknown member for Filesystem."));
-} else
-{
-if(keyStr=="__classTypeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
-RET CNF(Filesystem_new);
- EI(keyStr == "pushSearchPaths")
-RET CNF(Filesystem_pushSearchPaths);
- EI(keyStr == "popSearchPaths")
-RET CNF(Filesystem_popSearchPaths);
- EI(keyStr == "addSearchPath")
-RET CNF(Filesystem_addSearchPath);
- EI(keyStr == "getAbsolutePath")
-RET CNF(Filesystem_getAbsolutePath);
- else
- CATE(KE,"Unknown member for Filesystem."));
-}
-}
-RET CN;
-}
-
-void Filesystem_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue*)key)->value;
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} else
- CATE(KE,"Unknown member or member if read-only for Filesystem."));
-}
-}
-}
-
-SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Filesystem::addSearchPath" EAOE));
-Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-( f->addSearchPath(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Filesystem::addSearchPath.")));
-RET CN;
-}
-
-SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Filesystem::pushSearchPaths" EAOE));
-Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->pushSearchPaths());
-RET CN;
-}
-CATE(TE,UFOF("Filesystem::pushSearchPaths.")));
-RET CN;
-}
-
-SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Filesystem::popSearchPaths" EAOE));
-Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->popSearchPaths());
-RET CN;
-}
-CATE(TE,UFOF("Filesystem::popSearchPaths.")));
-RET CN;
-}
-
-SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Filesystem::getAbsolutePath" EAOE));
-Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const char *))
-{
-RET CV( f->getAbsolutePath(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Filesystem::getAbsolutePath.")));
 RET CN;
 }
 
@@ -19149,6 +19230,359 @@ CATE(TE,UFOF("LightList::__neq__.")));
 RET CN;
 }
 
+void RenderStats_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,RenderStats))
+CATE(TE,"RenderStats::__del__ expects RenderStats as first argument."));
+
+DELETE((RenderStats*)f->data);
+}SV RenderStats_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"RenderStats's constructor" EAOE));
+if(!TS(a[0],RenderStats))
+CATE(TE,"RenderStats's constructor expects RenderStats as first argument."));
+#define fjis RenderStats
+RET STG::createNativeObject(RenderStats_funcs,NEW(fjis),EXT->RenderStats_typeID);
+}
+
+SV RenderStats_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("RenderStats");
+EI(keyStr=="__new__")
+RET CNF(RenderStats_new);
+EI(keyStr=="__call__")
+RET CNF(RenderStats_new);
+else
+ CATE(KE,"Unknown member for RenderStats."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(RenderStats_new);
+ EI(keyStr=="gBufferTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->gBufferTiming);
+} EI(keyStr=="ssaoTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->ssaoTiming);
+} EI(keyStr=="ssaoBlurXTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->ssaoBlurXTiming);
+} EI(keyStr=="ssaoBlurYTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->ssaoBlurYTiming);
+} EI(keyStr=="deferredShadingTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->deferredShadingTiming);
+} EI(keyStr=="forwardTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->forwardTiming);
+} EI(keyStr=="gammaCorrectionTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->gammaCorrectionTiming);
+} EI(keyStr=="fxaaTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->fxaaTiming);
+} EI(keyStr=="colorModifierTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->colorModifierTiming);
+} EI(keyStr=="bloomTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->bloomTiming);
+} EI(keyStr=="shadowmapTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->shadowmapTiming);
+} EI(keyStr=="overlayTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->overlayTiming);
+} EI(keyStr=="debugDrawTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->debugDrawTiming);
+} EI(keyStr=="shadowmapCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->shadowmapCPUTiming);
+} EI(keyStr=="gbufferCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->gbufferCPUTiming);
+} EI(keyStr=="forwardCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->forwardCPUTiming);
+} EI(keyStr=="overlayCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->overlayCPUTiming);
+} EI(keyStr=="batchingTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->batchingTiming);
+} EI(keyStr=="numDrawCalls")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->numDrawCalls);
+} else
+ CATE(KE,"Unknown member for RenderStats."));
+}
+}
+RET CN;
+}
+
+void RenderStats_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="gBufferTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->gBufferTiming=val_to_c<decltype(obj->gBufferTiming)>::f(ctx,value);
+} EI(keyStr=="ssaoTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->ssaoTiming=val_to_c<decltype(obj->ssaoTiming)>::f(ctx,value);
+} EI(keyStr=="ssaoBlurXTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->ssaoBlurXTiming=val_to_c<decltype(obj->ssaoBlurXTiming)>::f(ctx,value);
+} EI(keyStr=="ssaoBlurYTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->ssaoBlurYTiming=val_to_c<decltype(obj->ssaoBlurYTiming)>::f(ctx,value);
+} EI(keyStr=="deferredShadingTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->deferredShadingTiming=val_to_c<decltype(obj->deferredShadingTiming)>::f(ctx,value);
+} EI(keyStr=="forwardTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->forwardTiming=val_to_c<decltype(obj->forwardTiming)>::f(ctx,value);
+} EI(keyStr=="gammaCorrectionTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->gammaCorrectionTiming=val_to_c<decltype(obj->gammaCorrectionTiming)>::f(ctx,value);
+} EI(keyStr=="fxaaTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->fxaaTiming=val_to_c<decltype(obj->fxaaTiming)>::f(ctx,value);
+} EI(keyStr=="colorModifierTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->colorModifierTiming=val_to_c<decltype(obj->colorModifierTiming)>::f(ctx,value);
+} EI(keyStr=="bloomTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->bloomTiming=val_to_c<decltype(obj->bloomTiming)>::f(ctx,value);
+} EI(keyStr=="shadowmapTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->shadowmapTiming=val_to_c<decltype(obj->shadowmapTiming)>::f(ctx,value);
+} EI(keyStr=="overlayTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->overlayTiming=val_to_c<decltype(obj->overlayTiming)>::f(ctx,value);
+} EI(keyStr=="debugDrawTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->debugDrawTiming=val_to_c<decltype(obj->debugDrawTiming)>::f(ctx,value);
+} EI(keyStr=="shadowmapCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->shadowmapCPUTiming=val_to_c<decltype(obj->shadowmapCPUTiming)>::f(ctx,value);
+} EI(keyStr=="gbufferCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->gbufferCPUTiming=val_to_c<decltype(obj->gbufferCPUTiming)>::f(ctx,value);
+} EI(keyStr=="forwardCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->forwardCPUTiming=val_to_c<decltype(obj->forwardCPUTiming)>::f(ctx,value);
+} EI(keyStr=="overlayCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->overlayCPUTiming=val_to_c<decltype(obj->overlayCPUTiming)>::f(ctx,value);
+} EI(keyStr=="batchingTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->batchingTiming=val_to_c<decltype(obj->batchingTiming)>::f(ctx,value);
+} EI(keyStr=="numDrawCalls")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->numDrawCalls=val_to_c<decltype(obj->numDrawCalls)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only for RenderStats."));
+}
+}
+}
+
+void Filesystem_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Filesystem))
+CATE(TE,"Filesystem::__del__ expects Filesystem as first argument."));
+
+DELETE((Filesystem*)f->data);
+}SV Filesystem_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Filesystem's constructor" EAOE));
+if(!TS(a[0],Filesystem))
+CATE(TE,"Filesystem's constructor expects Filesystem as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(Filesystem_funcs,NEW(Filesystem),EXT->Filesystem_typeID);
+CATE(TE,UFOF("Filesystem's constructor.")));
+RET CN;
+}
+
+SV Filesystem_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Filesystem");
+EI(keyStr=="__new__")
+RET CNF(Filesystem_new);
+EI(keyStr=="__call__")
+RET CNF(Filesystem_new);
+else
+ CATE(KE,"Unknown member for Filesystem."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(Filesystem_new);
+ EI(keyStr == "pushSearchPaths")
+RET CNF(Filesystem_pushSearchPaths);
+ EI(keyStr == "popSearchPaths")
+RET CNF(Filesystem_popSearchPaths);
+ EI(keyStr == "addSearchPath")
+RET CNF(Filesystem_addSearchPath);
+ EI(keyStr == "getAbsolutePath")
+RET CNF(Filesystem_getAbsolutePath);
+ else
+ CATE(KE,"Unknown member for Filesystem."));
+}
+}
+RET CN;
+}
+
+void Filesystem_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for Filesystem."));
+}
+}
+}
+
+SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Filesystem::addSearchPath" EAOE));
+Filesystem*f;
+f=(Filesystem*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( f->addSearchPath(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Filesystem::addSearchPath.")));
+RET CN;
+}
+
+SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Filesystem::pushSearchPaths" EAOE));
+Filesystem*f;
+f=(Filesystem*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->pushSearchPaths());
+RET CN;
+}
+CATE(TE,UFOF("Filesystem::pushSearchPaths.")));
+RET CN;
+}
+
+SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Filesystem::popSearchPaths" EAOE));
+Filesystem*f;
+f=(Filesystem*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->popSearchPaths());
+RET CN;
+}
+CATE(TE,UFOF("Filesystem::popSearchPaths.")));
+RET CN;
+}
+
+SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Filesystem::getAbsolutePath" EAOE));
+Filesystem*f;
+f=(Filesystem*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const char *))
+{
+RET CV( f->getAbsolutePath(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Filesystem::getAbsolutePath.")));
+RET CN;
+}
+
 void ResourceManager_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,ResourceManager))
@@ -20376,6 +20810,12 @@ CATE(VE,"GfxRenderer::getLightBuffer" EAOE));
 GfxRenderer*f;
 f=(GfxRenderer*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getLightBuffer());
+;
+}
 CATE(TE,UFOF("GfxRenderer::getLightBuffer.")));
 RET CN;
 }
@@ -20528,6 +20968,12 @@ CATE(VE,"GfxRenderer::getStats" EAOE));
 GfxRenderer*f;
 f=(GfxRenderer*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getStats());
+;
+}
 CATE(TE,UFOF("GfxRenderer::getStats.")));
 RET CN;
 }
@@ -21474,11 +21920,18 @@ Font*obj=(Font*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV Font_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"Font's constructor" EAOE));
 if(!TS(a[0],Font))
 CATE(TE,"Font's constructor expects Font as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(Font_funcs,NEW(Font),EXT->Font_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(Font_funcs,NEW(Font,val_to_c<const String &>::f(ctx,a[1])),EXT->Font_typeID);
 CATE(TE,UFOF("Font's constructor.")));
+RET CN;
 }
 
 SV Font_get_member(CTX ctx,NO f,SV key)
@@ -24055,11 +24508,18 @@ GfxMesh*obj=(GfxMesh*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV GfxMesh_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"GfxMesh's constructor" EAOE));
 if(!TS(a[0],GfxMesh))
 CATE(TE,"GfxMesh's constructor expects GfxMesh as first argument."));
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(GfxMesh_funcs,NEW(GfxMesh,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxMesh_typeID);
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(GfxMesh_funcs,NEW(GfxMesh),EXT->GfxMesh_typeID);
 CATE(TE,UFOF("GfxMesh's constructor.")));
+RET CN;
 }
 
 SV GfxMesh_get_member(CTX ctx,NO f,SV key)
@@ -24795,11 +25255,18 @@ GfxShader*obj=(GfxShader*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV GfxShader_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"GfxShader's constructor" EAOE));
 if(!TS(a[0],GfxShader))
 CATE(TE,"GfxShader's constructor expects GfxShader as first argument."));
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(GfxShader_funcs,NEW(GfxShader,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxShader_typeID);
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(GfxShader_funcs,NEW(GfxShader),EXT->GfxShader_typeID);
 CATE(TE,UFOF("GfxShader's constructor.")));
+RET CN;
 }
 
 SV GfxShader_get_member(CTX ctx,NO f,SV key)
@@ -25663,11 +26130,18 @@ Scene*obj=(Scene*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV Scene_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"Scene's constructor" EAOE));
 if(!TS(a[0],Scene))
 CATE(TE,"Scene's constructor expects Scene as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(Scene_funcs,NEW(Scene),EXT->Scene_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(Scene_funcs,NEW(Scene,val_to_c<const String &>::f(ctx,a[1])),EXT->Scene_typeID);
 CATE(TE,UFOF("Scene's constructor.")));
+RET CN;
 }
 
 SV Scene_get_member(CTX ctx,NO f,SV key)
@@ -32472,11 +32946,18 @@ GfxMaterial*obj=(GfxMaterial*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV GfxMaterial_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"GfxMaterial's constructor" EAOE));
 if(!TS(a[0],GfxMaterial))
 CATE(TE,"GfxMaterial's constructor expects GfxMaterial as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(GfxMaterial_funcs,NEW(GfxMaterial),EXT->GfxMaterial_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(GfxMaterial_funcs,NEW(GfxMaterial,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxMaterial_typeID);
 CATE(TE,UFOF("GfxMaterial's constructor.")));
+RET CN;
 }
 
 SV GfxMaterial_get_member(CTX ctx,NO f,SV key)
@@ -40806,11 +41287,18 @@ PhysicsShape*obj=(PhysicsShape*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV PhysicsShape_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"PhysicsShape's constructor" EAOE));
 if(!TS(a[0],PhysicsShape))
 CATE(TE,"PhysicsShape's constructor expects PhysicsShape as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(PhysicsShape_funcs,NEW(PhysicsShape),EXT->PhysicsShape_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(PhysicsShape_funcs,NEW(PhysicsShape,val_to_c<const String &>::f(ctx,a[1])),EXT->PhysicsShape_typeID);
 CATE(TE,UFOF("PhysicsShape's constructor.")));
+RET CN;
 }
 
 SV PhysicsShape_get_member(CTX ctx,NO f,SV key)
@@ -41049,6 +41537,12 @@ CATE(VE,"PhysicsShape::setCapsule" EAOE));
 PhysicsShape*f;
 f=(PhysicsShape*)((NO)a[0])->data;
 
+if(a.getCount()==4)
+if(1&&TS(a[1],Axis)&&TS(a[2],float)&&TS(a[3],float))
+{
+( f->setCapsule(val_to_c<std::remove_reference<Axis>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
+RET CN;
+}
 CATE(TE,UFOF("PhysicsShape::setCapsule.")));
 RET CN;
 }
@@ -41252,6 +41746,12 @@ CATE(VE,"PhysicsShape::setCylinder" EAOE));
 PhysicsShape*f;
 f=(PhysicsShape*)((NO)a[0])->data;
 
+if(a.getCount()==4)
+if(1&&TS(a[1],Axis)&&TS(a[2],float)&&TS(a[3],float))
+{
+( f->setCylinder(val_to_c<std::remove_reference<Axis>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
+RET CN;
+}
 CATE(TE,UFOF("PhysicsShape::setCylinder.")));
 RET CN;
 }
@@ -41263,6 +41763,12 @@ CATE(VE,"PhysicsShape::setCone" EAOE));
 PhysicsShape*f;
 f=(PhysicsShape*)((NO)a[0])->data;
 
+if(a.getCount()==4)
+if(1&&TS(a[1],Axis)&&TS(a[2],float)&&TS(a[3],float))
+{
+( f->setCone(val_to_c<std::remove_reference<Axis>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
+RET CN;
+}
 CATE(TE,UFOF("PhysicsShape::setCone.")));
 RET CN;
 }
@@ -46480,11 +46986,18 @@ Audio*obj=(Audio*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV Audio_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"Audio's constructor" EAOE));
 if(!TS(a[0],Audio))
 CATE(TE,"Audio's constructor expects Audio as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(Audio_funcs,NEW(Audio),EXT->Audio_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(Audio_funcs,NEW(Audio,val_to_c<const String &>::f(ctx,a[1])),EXT->Audio_typeID);
 CATE(TE,UFOF("Audio's constructor.")));
+RET CN;
 }
 
 SV Audio_get_member(CTX ctx,NO f,SV key)
@@ -46892,11 +47405,18 @@ GfxTexture*obj=(GfxTexture*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV GfxTexture_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"GfxTexture's constructor" EAOE));
 if(!TS(a[0],GfxTexture))
 CATE(TE,"GfxTexture's constructor expects GfxTexture as first argument."));
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(GfxTexture_funcs,NEW(GfxTexture,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxTexture_typeID);
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(GfxTexture_funcs,NEW(GfxTexture),EXT->GfxTexture_typeID);
 CATE(TE,UFOF("GfxTexture's constructor.")));
+RET CN;
 }
 
 SV GfxTexture_get_member(CTX ctx,NO f,SV key)
@@ -47980,11 +48500,18 @@ GfxModel*obj=(GfxModel*)f->data;
 if(obj!=nullptr){obj->release();}
 }SV GfxModel_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"GfxModel's constructor" EAOE));
 if(!TS(a[0],GfxModel))
 CATE(TE,"GfxModel's constructor expects GfxModel as first argument."));
+if(a.getCount()==1)
+if(true)
+RET STG::createNativeObject(GfxModel_funcs,NEW(GfxModel),EXT->GfxModel_typeID);
+if(a.getCount()==2)
+if(true&&TS(a[1],const String &))
+RET STG::createNativeObject(GfxModel_funcs,NEW(GfxModel,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxModel_typeID);
 CATE(TE,UFOF("GfxModel's constructor.")));
+RET CN;
 }
 
 SV GfxModel_get_member(CTX ctx,NO f,SV key)
@@ -49728,87 +50255,6 @@ obj.refCount=1;
 obj.data=f->data;
 GhostObject_set_member(ctx, &obj, key, value);
 }
-SV Filesystem_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Filesystem;
-NO obj=(NO)Filesystem_new(ctx, args2);
-obj->funcs=Filesystem_ptr_funcs;
-obj->typeID=EXT->Filesystem_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Filesystem_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"FilesystemRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Filesystem*))
-CATE(TE,"FilesystemRef::deref expects FilesystemRef as first argument."));
-RET CV(*(Filesystem *)((NO)f)->data);
-}
-SV Filesystem_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Filesystem::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Filesystem*))
-CATE(TE,"FilesystemRef::refset expects FilesystemRef as first argument."));
-*((Filesystem *)((NO)f)->data) = val_to_c<Filesystem>::f(ctx,a[1]);
-RET CN;
-}
-
-void Filesystem_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Filesystem*))
-CATE(TE,"FilesystemRef::__del__ expects FilesystemRef as first argument."));
-SCRIPT_DELETE((Filesystem *)f->data);
-}
-SV Filesystem_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Filesystem*))
-CATE(TE,FAE("FilesystemRef's get method","FilesystemRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("FilesystemPtr");
-EI(keyStr=="__new__")
-RET CNF(Filesystem_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Filesystem_ptr_new);
-else
-CATE(KE,"Unknown member for FilesystemRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Filesystem_ptr_deref);
-if(keyStr=="refset")RET CNF(Filesystem_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Filesystem_funcs;
-obj.typeID=EXT->Filesystem_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Filesystem_get_member(ctx, &obj, key);
-}
-void Filesystem_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Filesystem*))
-CATE(TE,FAE("FilesystemRef's set method","FilesystemRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Filesystem_funcs;
-obj.typeID=EXT->Filesystem_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Filesystem_set_member(ctx, &obj, key, value);
-}
 SV StrStrMap_ptr_new(CTX ctx,const List<SV>&a)
 {
 List<SV> args2 = a.copy();
@@ -50536,6 +50982,168 @@ obj.typeID=EXT->LightList_typeID;
 obj.refCount=1;
 obj.data=f->data;
 LightList_set_member(ctx, &obj, key, value);
+}
+SV RenderStats_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->RenderStats;
+NO obj=(NO)RenderStats_new(ctx, args2);
+obj->funcs=RenderStats_ptr_funcs;
+obj->typeID=EXT->RenderStats_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV RenderStats_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"RenderStatsRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,RenderStats*))
+CATE(TE,"RenderStatsRef::deref expects RenderStatsRef as first argument."));
+RET CV(*(RenderStats *)((NO)f)->data);
+}
+SV RenderStats_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"RenderStats::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,RenderStats*))
+CATE(TE,"RenderStatsRef::refset expects RenderStatsRef as first argument."));
+*((RenderStats *)((NO)f)->data) = val_to_c<RenderStats>::f(ctx,a[1]);
+RET CN;
+}
+
+void RenderStats_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,RenderStats*))
+CATE(TE,"RenderStatsRef::__del__ expects RenderStatsRef as first argument."));
+SCRIPT_DELETE((RenderStats *)f->data);
+}
+SV RenderStats_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,RenderStats*))
+CATE(TE,FAE("RenderStatsRef's get method","RenderStatsRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("RenderStatsPtr");
+EI(keyStr=="__new__")
+RET CNF(RenderStats_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(RenderStats_ptr_new);
+else
+CATE(KE,"Unknown member for RenderStatsRef."));
+} else
+{
+if(keyStr=="deref")RET CNF(RenderStats_ptr_deref);
+if(keyStr=="refset")RET CNF(RenderStats_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=RenderStats_funcs;
+obj.typeID=EXT->RenderStats_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET RenderStats_get_member(ctx, &obj, key);
+}
+void RenderStats_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,RenderStats*))
+CATE(TE,FAE("RenderStatsRef's set method","RenderStatsRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=RenderStats_funcs;
+obj.typeID=EXT->RenderStats_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RenderStats_set_member(ctx, &obj, key, value);
+}
+SV Filesystem_ptr_new(CTX ctx,const List<SV>&a)
+{
+List<SV> args2 = a.copy();
+args2[0]=EXT->Filesystem;
+NO obj=(NO)Filesystem_new(ctx, args2);
+obj->funcs=Filesystem_ptr_funcs;
+obj->typeID=EXT->Filesystem_ptr_typeID;
+setAllocInfo(obj->data, AllocInfo(true, false));
+RET(SV)obj;
+}
+SV Filesystem_ptr_deref(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"FilesystemRef::deref" EAOE));
+SV f=a[0];
+if(!TS((SV)f,Filesystem*))
+CATE(TE,"FilesystemRef::deref expects FilesystemRef as first argument."));
+RET CV(*(Filesystem *)((NO)f)->data);
+}
+SV Filesystem_ptr_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=2)
+CATE(VE,"Filesystem::refset expects two arguments."));
+SV f=a[0];
+if(!TS((SV)f,Filesystem*))
+CATE(TE,"FilesystemRef::refset expects FilesystemRef as first argument."));
+*((Filesystem *)((NO)f)->data) = val_to_c<Filesystem>::f(ctx,a[1]);
+RET CN;
+}
+
+void Filesystem_ptr_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Filesystem*))
+CATE(TE,"FilesystemRef::__del__ expects FilesystemRef as first argument."));
+SCRIPT_DELETE((Filesystem *)f->data);
+}
+SV Filesystem_ptr_get_member(CTX ctx,NO f,SV key)
+{
+if(!TS((SV)f,Filesystem*))
+CATE(TE,FAE("FilesystemRef's get method","FilesystemRef")));
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("FilesystemPtr");
+EI(keyStr=="__new__")
+RET CNF(Filesystem_ptr_new);
+EI(keyStr=="__call__")
+RET CNF(Filesystem_ptr_new);
+else
+CATE(KE,"Unknown member for FilesystemRef."));
+} else
+{
+if(keyStr=="deref")RET CNF(Filesystem_ptr_deref);
+if(keyStr=="refset")RET CNF(Filesystem_ptr_set);
+}
+}
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=Filesystem_funcs;
+obj.typeID=EXT->Filesystem_typeID;
+obj.refCount=1;
+obj.data=f->data;
+RET Filesystem_get_member(ctx, &obj, key);
+}
+void Filesystem_ptr_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if(!TS((SV)f,Filesystem*))
+CATE(TE,FAE("FilesystemRef's set method","FilesystemRef")));
+STG::NativeObject obj;
+obj.head.type=STG::ValueType::NativeObject;
+obj.funcs=Filesystem_funcs;
+obj.typeID=EXT->Filesystem_typeID;
+obj.refCount=1;
+obj.data=f->data;
+Filesystem_set_member(ctx, &obj, key, value);
 }
 SV ResourceManager_ptr_new(CTX ctx,const List<SV>&a)
 {
@@ -55729,6 +56337,169 @@ obj.refCount=1;
 obj.data=f->data;
 GfxDebugDrawer_set_member(ctx, &obj, key, value);
 }
+namespace scripting
+{
+SV create(CTX ctx,const HashMap<String,String>& value){RET CV(value);}
+SV create(CTX ctx,const GfxCompiledShader& value){RET CV(value);}
+SV create(CTX ctx,const ScrollBar& value){RET CV(value);}
+SV create(CTX ctx,const List<GhostObject*>& value){RET CV(value);}
+SV create(CTX ctx,const T2<uint32_t>& value){RET CV(value);}
+SV create(CTX ctx,const List<Light*>& value){RET CV(value);}
+SV create(CTX ctx,const RenderStats& value){RET CV(value);}
+SV create(CTX ctx,const Filesystem& value){RET CV(value);}
+SV create(CTX ctx,const GfxRenderer& value){RET CV(value);}
+SV create(CTX ctx,const T2<float>& value){RET CV(value);}
+SV create(CTX ctx,const Event& value){RET CV(value);}
+SV create(CTX ctx,const Stats& value){RET CV(value);}
+SV create(CTX ctx,const AudioSource& value){RET CV(value);}
+SV create(CTX ctx,const List<RayCastResult>& value){RET CV(value);}
+SV create(CTX ctx,const Camera& value){RET CV(value);}
+SV create(CTX ctx,const TextureSampler& value){RET CV(value);}
+SV create(CTX ctx,const T3<int32_t>& value){RET CV(value);}
+SV create(CTX ctx,const ResizableData& value){RET CV(value);}
+SV create(CTX ctx,const T4<int32_t>& value){RET CV(value);}
+SV create(CTX ctx,const T3<float>& value){RET CV(value);}
+SV create(CTX ctx,const Transform& value){RET CV(value);}
+SV create(CTX ctx,const List<AudioSource*>& value){RET CV(value);}
+SV create(CTX ctx,const Quaternion& value){RET CV(value);}
+SV create(CTX ctx,const GfxMeshAttrib& value){RET CV(value);}
+SV create(CTX ctx,const T2<int32_t>& value){RET CV(value);}
+SV create(CTX ctx,const AudioWorld& value){RET CV(value);}
+SV create(CTX ctx,const GuiPlacer& value){RET CV(value);}
+SV create(CTX ctx,const ImGui& value){RET CV(value);}
+SV create(CTX ctx,const List<String>& value){RET CV(value);}
+SV create(CTX ctx,const LightPointData& value){RET CV(value);}
+SV create(CTX ctx,const T4<float>& value){RET CV(value);}
+SV create(CTX ctx,const List<float>& value){RET CV(value);}
+SV create(CTX ctx,const Container& value){RET CV(value);}
+SV create(CTX ctx,const LightDirectionalData& value){RET CV(value);}
+SV create(CTX ctx,const Matrix4x4& value){RET CV(value);}
+SV create(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>& value){RET CV(value);}
+SV create(CTX ctx,const T3<uint32_t>& value){RET CV(value);}
+SV create(CTX ctx,const LightSpotData& value){RET CV(value);}
+SV create(CTX ctx,const AudioDevice& value){RET CV(value);}
+SV create(CTX ctx,const List<RigidBody*>& value){RET CV(value);}
+SV create(CTX ctx,const T4<uint32_t>& value){RET CV(value);}
+SV create(CTX ctx,const RayCastResult& value){RET CV(value);}
+SV create(CTX ctx,const GfxLOD& value){RET CV(value);}
+SV create(CTX ctx,const AABB& value){RET CV(value);}
+SV create(CTX ctx,const RigidBodyConstructionInfo& value){RET CV(value);}
+SV create(CTX ctx,const List<scripting::Value*>& value){RET CV(value);}
+SV create(CTX ctx,const List<GfxModel::SubModel>& value){RET CV(value);}
+SV create(CTX ctx,const List<GfxLOD>& value){RET CV(value);}
+SV create(CTX ctx,const List<Entity*>& value){RET CV(value);}
+SV create(CTX ctx,const Matrix3x3& value){RET CV(value);}
+SV create(CTX ctx,GhostObject *value){RET CV(value);}
+SV create(CTX ctx,HashMap<String,String> *value){RET CV(value);}
+SV create(CTX ctx,GfxApi *value){RET CV(value);}
+SV create(CTX ctx,GfxCompiledShader *value){RET CV(value);}
+SV create(CTX ctx,ScrollBar *value){RET CV(value);}
+SV create(CTX ctx,List<GhostObject*> *value){RET CV(value);}
+SV create(CTX ctx,GPUTimer *value){RET CV(value);}
+SV create(CTX ctx,RigidBody *value){RET CV(value);}
+SV create(CTX ctx,T2<uint32_t> *value){RET CV(value);}
+SV create(CTX ctx,List<Light*> *value){RET CV(value);}
+SV create(CTX ctx,RenderStats *value){RET CV(value);}
+SV create(CTX ctx,Filesystem *value){RET CV(value);}
+SV create(CTX ctx,ResourceManager *value){RET CV(value);}
+SV create(CTX ctx,Entity *value){RET CV(value);}
+SV create(CTX ctx,GfxRenderer *value){RET CV(value);}
+SV create(CTX ctx,T2<float> *value){RET CV(value);}
+SV create(CTX ctx,GfxFramebuffer *value){RET CV(value);}
+SV create(CTX ctx,Font *value){RET CV(value);}
+SV create(CTX ctx,Event *value){RET CV(value);}
+SV create(CTX ctx,PhysicsWorld *value){RET CV(value);}
+SV create(CTX ctx,Stats *value){RET CV(value);}
+SV create(CTX ctx,AudioSource *value){RET CV(value);}
+SV create(CTX ctx,List<RayCastResult> *value){RET CV(value);}
+SV create(CTX ctx,Platform *value){RET CV(value);}
+SV create(CTX ctx,Camera *value){RET CV(value);}
+SV create(CTX ctx,GfxMesh *value){RET CV(value);}
+SV create(CTX ctx,Resource *value){RET CV(value);}
+SV create(CTX ctx,GfxShader *value){RET CV(value);}
+SV create(CTX ctx,Light *value){RET CV(value);}
+SV create(CTX ctx,TextureSampler *value){RET CV(value);}
+SV create(CTX ctx,Scene *value){RET CV(value);}
+SV create(CTX ctx,T3<int32_t> *value){RET CV(value);}
+SV create(CTX ctx,ResizableData *value){RET CV(value);}
+SV create(CTX ctx,T4<int32_t> *value){RET CV(value);}
+SV create(CTX ctx,T3<float> *value){RET CV(value);}
+SV create(CTX ctx,GfxBuffer *value){RET CV(value);}
+SV create(CTX ctx,Transform *value){RET CV(value);}
+SV create(CTX ctx,List<AudioSource*> *value){RET CV(value);}
+SV create(CTX ctx,GfxMaterial *value){RET CV(value);}
+SV create(CTX ctx,Quaternion *value){RET CV(value);}
+SV create(CTX ctx,GfxMeshAttrib *value){RET CV(value);}
+SV create(CTX ctx,RenderComponent *value){RET CV(value);}
+SV create(CTX ctx,T2<int32_t> *value){RET CV(value);}
+SV create(CTX ctx,AudioWorld *value){RET CV(value);}
+SV create(CTX ctx,GuiPlacer *value){RET CV(value);}
+SV create(CTX ctx,ImGui *value){RET CV(value);}
+SV create(CTX ctx,List<String> *value){RET CV(value);}
+SV create(CTX ctx,Application *value){RET CV(value);}
+SV create(CTX ctx,LightPointData *value){RET CV(value);}
+SV create(CTX ctx,T4<float> *value){RET CV(value);}
+SV create(CTX ctx,List<float> *value){RET CV(value);}
+SV create(CTX ctx,Container *value){RET CV(value);}
+SV create(CTX ctx,LightDirectionalData *value){RET CV(value);}
+SV create(CTX ctx,Matrix4x4 *value){RET CV(value);}
+SV create(CTX ctx,HashMap<scripting::Value*,scripting::Value*> *value){RET CV(value);}
+SV create(CTX ctx,T3<uint32_t> *value){RET CV(value);}
+SV create(CTX ctx,LightSpotData *value){RET CV(value);}
+SV create(CTX ctx,PhysicsShape *value){RET CV(value);}
+SV create(CTX ctx,AudioDevice *value){RET CV(value);}
+SV create(CTX ctx,List<RigidBody*> *value){RET CV(value);}
+SV create(CTX ctx,T4<uint32_t> *value){RET CV(value);}
+SV create(CTX ctx,RayCastResult *value){RET CV(value);}
+SV create(CTX ctx,GfxLOD *value){RET CV(value);}
+SV create(CTX ctx,File *value){RET CV(value);}
+SV create(CTX ctx,AABB *value){RET CV(value);}
+SV create(CTX ctx,RigidBodyConstructionInfo *value){RET CV(value);}
+SV create(CTX ctx,List<scripting::Value*> *value){RET CV(value);}
+SV create(CTX ctx,Audio *value){RET CV(value);}
+SV create(CTX ctx,GfxTexture *value){RET CV(value);}
+SV create(CTX ctx,List<GfxModel::SubModel> *value){RET CV(value);}
+SV create(CTX ctx,GfxModel *value){RET CV(value);}
+SV create(CTX ctx,List<GfxLOD> *value){RET CV(value);}
+SV create(CTX ctx,List<Entity*> *value){RET CV(value);}
+SV create(CTX ctx,GfxShaderCombination *value){RET CV(value);}
+SV create(CTX ctx,Matrix3x3 *value){RET CV(value);}
+SV create(CTX ctx,GfxDebugDrawer *value){RET CV(value);}
+SV create(CTX ctx,Key value){RET CV(value);}
+SV create(CTX ctx,MouseButton value){RET CV(value);}
+SV create(CTX ctx,EventType value){RET CV(value);}
+SV create(CTX ctx,FileOrigin value){RET CV(value);}
+SV create(CTX ctx,ResType value){RET CV(value);}
+SV create(CTX ctx,GfxTextureType value){RET CV(value);}
+SV create(CTX ctx,GfxFilter value){RET CV(value);}
+SV create(CTX ctx,GfxMipmapMode value){RET CV(value);}
+SV create(CTX ctx,GfxWrapMode value){RET CV(value);}
+SV create(CTX ctx,GfxTexFormat value){RET CV(value);}
+SV create(CTX ctx,GfxTexPurpose value){RET CV(value);}
+SV create(CTX ctx,GfxFace value){RET CV(value);}
+SV create(CTX ctx,GfxBufferUsage value){RET CV(value);}
+SV create(CTX ctx,GfxShaderType value){RET CV(value);}
+SV create(CTX ctx,GfxPrimitive value){RET CV(value);}
+SV create(CTX ctx,GfxDepthFunction value){RET CV(value);}
+SV create(CTX ctx,GfxBlendMode value){RET CV(value);}
+SV create(CTX ctx,GfxBlendFactor value){RET CV(value);}
+SV create(CTX ctx,GfxCullMode value){RET CV(value);}
+SV create(CTX ctx,GfxWinding value){RET CV(value);}
+SV create(CTX ctx,GfxVertexAttribPurpose value){RET CV(value);}
+SV create(CTX ctx,GfxVertexAttribType value){RET CV(value);}
+SV create(CTX ctx,GfxMeshIndexDataType value){RET CV(value);}
+SV create(CTX ctx,GfxMeshAttribType value){RET CV(value);}
+SV create(CTX ctx,GfxMeshAttribDataType value){RET CV(value);}
+SV create(CTX ctx,XOrigin value){RET CV(value);}
+SV create(CTX ctx,GfxShadowmapPrecision value){RET CV(value);}
+SV create(CTX ctx,GfxLightType value){RET CV(value);}
+SV create(CTX ctx,GfxDriver value){RET CV(value);}
+SV create(CTX ctx,CameraType value){RET CV(value);}
+SV create(CTX ctx,Axis value){RET CV(value);}
+SV create(CTX ctx,RigidBodyType value){RET CV(value);}
+SV create(CTX ctx,PhysicsObjectType value){RET CV(value);}
+SV create(CTX ctx,RenderMode value){RET CV(value);}
+}
 void *initBindings(scripting::Engine *engine, void *data)
 {
     BindingsExt *ext = NEW(BindingsExt);
@@ -55744,16 +56515,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GhostObject_ptr_typeID = typeID;
     ext->GhostObject_ptr = scripting::createNativeObject(GhostObject_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("GhostObjectRef", ext->GhostObject_ptr);
-    
-    typeID = engine->createNewTypeID();
-    ext->Filesystem_typeID = typeID;
-    ext->Filesystem = scripting::createNativeObject(Filesystem_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Filesystem", ext->Filesystem);
-    
-    typeID = engine->createNewTypeID();
-    ext->Filesystem_ptr_typeID = typeID;
-    ext->Filesystem_ptr = scripting::createNativeObject(Filesystem_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("FilesystemRef", ext->Filesystem_ptr);
     
     typeID = engine->createNewTypeID();
     ext->StrStrMap_typeID = typeID;
@@ -55844,6 +56605,26 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->LightList_ptr_typeID = typeID;
     ext->LightList_ptr = scripting::createNativeObject(LightList_ptr_funcs, NULL, typeID);
     engine->getGlobalVars().set("LightListRef", ext->LightList_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->RenderStats_typeID = typeID;
+    ext->RenderStats = scripting::createNativeObject(RenderStats_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RenderStats", ext->RenderStats);
+    
+    typeID = engine->createNewTypeID();
+    ext->RenderStats_ptr_typeID = typeID;
+    ext->RenderStats_ptr = scripting::createNativeObject(RenderStats_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RenderStatsRef", ext->RenderStats_ptr);
+    
+    typeID = engine->createNewTypeID();
+    ext->Filesystem_typeID = typeID;
+    ext->Filesystem = scripting::createNativeObject(Filesystem_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Filesystem", ext->Filesystem);
+    
+    typeID = engine->createNewTypeID();
+    ext->Filesystem_ptr_typeID = typeID;
+    ext->Filesystem_ptr = scripting::createNativeObject(Filesystem_ptr_funcs, NULL, typeID);
+    engine->getGlobalVars().set("FilesystemRef", ext->Filesystem_ptr);
     
     typeID = engine->createNewTypeID();
     ext->ResourceManager_typeID = typeID;
@@ -56486,15 +57267,15 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxDebugDrawerRef", ext->GfxDebugDrawer_ptr);
     
     engine->getGlobalVars().set("getFileSys", scripting::createNativeFunction(getFileSys_binding));
-            engine->getGlobalVars().set("getAudioDevice", scripting::createNativeFunction(getAudioDevice_binding));
-            engine->getGlobalVars().set("listFiles", scripting::createNativeFunction(listFiles_binding));
-            engine->getGlobalVars().set("getResMgr", scripting::createNativeFunction(getResMgr_binding));
-            engine->getGlobalVars().set("getApp", scripting::createNativeFunction(getApp_binding));
-            engine->getGlobalVars().set("getDebugDrawer", scripting::createNativeFunction(getDebugDrawer_binding));
-            engine->getGlobalVars().set("getPlatform", scripting::createNativeFunction(getPlatform_binding));
-            engine->getGlobalVars().set("getGfxApi", scripting::createNativeFunction(getGfxApi_binding));
-            engine->getGlobalVars().set("doesFileExist", scripting::createNativeFunction(doesFileExist_binding));
-            typeID = engine->createNewTypeID();
+    engine->getGlobalVars().set("getAudioDevice", scripting::createNativeFunction(getAudioDevice_binding));
+    engine->getGlobalVars().set("listFiles", scripting::createNativeFunction(listFiles_binding));
+    engine->getGlobalVars().set("getResMgr", scripting::createNativeFunction(getResMgr_binding));
+    engine->getGlobalVars().set("getApp", scripting::createNativeFunction(getApp_binding));
+    engine->getGlobalVars().set("getDebugDrawer", scripting::createNativeFunction(getDebugDrawer_binding));
+    engine->getGlobalVars().set("getPlatform", scripting::createNativeFunction(getPlatform_binding));
+    engine->getGlobalVars().set("getGfxApi", scripting::createNativeFunction(getGfxApi_binding));
+    engine->getGlobalVars().set("doesFileExist", scripting::createNativeFunction(doesFileExist_binding));
+    typeID = engine->createNewTypeID();
     ext->Key_typeID = typeID;
     ext->Key = scripting::createNativeObject(Key_funcs, NULL, typeID);
     engine->getGlobalVars().set("Key", ext->Key);
@@ -56643,6 +57424,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->CameraType_typeID = typeID;
     ext->CameraType = scripting::createNativeObject(CameraType_funcs, NULL, typeID);
     engine->getGlobalVars().set("CameraType", ext->CameraType);
+    
+    typeID = engine->createNewTypeID();
+    ext->Axis_typeID = typeID;
+    ext->Axis = scripting::createNativeObject(Axis_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Axis", ext->Axis);
     
     typeID = engine->createNewTypeID();
     ext->RigidBodyType_typeID = typeID;

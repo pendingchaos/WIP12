@@ -2,10 +2,13 @@
 
 #include "scripting/vm/context.h"
 #include <stdint.h>
+#include <assert.h>
+#include <cmath>
 #include <iostream>
+
 namespace scripting
 {
-Value *classNew(Context *ctx, const List<Value *>& args)
+static Value *classNew(Context *ctx, const List<Value *>& args)
 {
     if (args.getCount() < 1)
     {
@@ -64,7 +67,7 @@ Value *classNew(Context *ctx, const List<Value *>& args)
     return resultHead;
 }
 
-Value *createClass(Context *ctx, const List<Value *>& args)
+static Value *createClass(Context *ctx, const List<Value *>& args)
 {
     if (args.getCount() != 1)
     {
@@ -90,9 +93,165 @@ Value *createClass(Context *ctx, const List<Value *>& args)
     return result;
 }
 
+static double asNumber(Context *ctx, Value *value)
+{
+    switch (value->type)
+    {
+    case ValueType::Float:
+    {
+        return ((FloatValue *)value)->value;
+    }
+    case ValueType::Int:
+    {
+        return ((IntValue *)value)->value;
+    }
+    default:
+    {
+        ctx->throwException(createException(ExcType::TypeError, "Value is not convertable to float."));
+    }
+    }
+
+    assert(false);
+}
+
+static Value *mathAbs(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 1)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "abs takes only one argument."));
+    }
+
+    switch (args[0]->type)
+    {
+    case ValueType::Float:
+    {
+        return createFloat(std::abs(((FloatValue *)args[0])->value));
+    }
+    case ValueType::Int:
+    {
+        return createInt(std::llabs(((FloatValue *)args[0])->value));
+    }
+    default:
+    {
+        ctx->throwException(createException(ExcType::TypeError, "Value is not convertable to float."));
+    }
+    }
+
+    assert(false);
+}
+
+template <double (*F)(double)>
+struct mathFunc1
+{
+    static Value *f(Context *ctx, const List<Value *>& args)
+    {
+        if (args.getCount() != 1)
+        {
+            ctx->throwException(createException(ExcType::ValueError, "Function takes only one argument."));
+        }
+
+        return createFloat(F(asNumber(ctx, args[0])));
+    }
+};
+
+template <double (*F)(double, double)>
+struct mathFunc2
+{
+    static Value *f(Context *ctx, const List<Value *>& args)
+    {
+        if (args.getCount() != 2)
+        {
+            ctx->throwException(createException(ExcType::ValueError, "Function takes only one argument."));
+        }
+
+        return createFloat(F(asNumber(ctx, args[0]), asNumber(ctx, args[1])));
+    }
+};
+
+static double mathMin(double a, double b)
+{
+    return std::min(a, b);
+}
+
+static double mathMax(double a, double b)
+{
+    return std::max(a, b);
+}
+
+static Value *print(Context *ctx, const List<Value *>& args)
+{
+    for (size_t i = 0; i < args.getCount(); ++i)
+    {
+        Value *head = args[i];
+
+        if (head->type == ValueType::StringType)
+        {
+            std::cout << ((StringValue *)head)->value.getData() << ' ';
+        } else if (head->type == ValueType::Int)
+        {
+            std::cout << ((IntValue *)head)->value << ' ';
+        } else if (head->type == ValueType::Float)
+        {
+            std::cout << ((FloatValue *)head)->value << ' ';
+        } else if (head->type == ValueType::Boolean)
+        {
+            std::cout << (((BooleanValue *)head)->value ? "true" : "false") << ' ';
+        } else
+        {
+            ctx->throwException(createException(ExcType::TypeError, "Argument must be string, integer, float or boolean."));
+        }
+    }
+
+    std::cout << std::endl;
+
+    return createNil();
+}
+
 Engine::Engine() : debugOutput(false), nextTypeID(LONG_LONG_MIN)
 {
     globalVars.set("__classify", createNativeFunction(createClass));
+    globalVars.set("abs", createNativeFunction(mathAbs));
+    globalVars.set("exp", createNativeFunction(mathFunc1<std::exp>::f));
+    globalVars.set("exp2", createNativeFunction(mathFunc1<std::exp2>::f));
+    globalVars.set("expm1", createNativeFunction(mathFunc1<std::expm1>::f));
+    globalVars.set("log", createNativeFunction(mathFunc1<std::log>::f));
+    globalVars.set("log10", createNativeFunction(mathFunc1<std::log10>::f));
+    globalVars.set("log2", createNativeFunction(mathFunc1<std::log2>::f));
+    globalVars.set("log1p", createNativeFunction(mathFunc1<std::log1p>::f));
+    globalVars.set("pow", createNativeFunction(mathFunc2<std::pow>::f));
+    globalVars.set("sqrt", createNativeFunction(mathFunc1<std::sqrt>::f));
+    globalVars.set("cbrt", createNativeFunction(mathFunc1<std::cbrt>::f));
+    globalVars.set("hypot", createNativeFunction(mathFunc2<std::hypot>::f));
+    globalVars.set("sin", createNativeFunction(mathFunc1<std::sin>::f));
+    globalVars.set("cos", createNativeFunction(mathFunc1<std::cos>::f));
+    globalVars.set("tan", createNativeFunction(mathFunc1<std::tan>::f));
+    globalVars.set("asin", createNativeFunction(mathFunc1<std::asin>::f));
+    globalVars.set("acos", createNativeFunction(mathFunc1<std::acos>::f));
+    globalVars.set("atan", createNativeFunction(mathFunc1<std::atan>::f));
+    globalVars.set("atan2", createNativeFunction(mathFunc2<std::atan2>::f));
+    globalVars.set("sinh", createNativeFunction(mathFunc1<std::sinh>::f));
+    globalVars.set("cosh", createNativeFunction(mathFunc1<std::cosh>::f));
+    globalVars.set("tanh", createNativeFunction(mathFunc1<std::tanh>::f));
+    globalVars.set("asinh", createNativeFunction(mathFunc1<std::asinh>::f));
+    globalVars.set("acosh", createNativeFunction(mathFunc1<std::acosh>::f));
+    globalVars.set("atanh", createNativeFunction(mathFunc1<std::atanh>::f));
+    globalVars.set("erf", createNativeFunction(mathFunc1<std::erf>::f));
+    globalVars.set("erfc", createNativeFunction(mathFunc1<std::erfc>::f));
+    globalVars.set("lgamma", createNativeFunction(mathFunc1<std::lgamma>::f));
+    globalVars.set("ceil", createNativeFunction(mathFunc1<std::ceil>::f));
+    globalVars.set("floor", createNativeFunction(mathFunc1<std::floor>::f));
+    globalVars.set("trunc", createNativeFunction(mathFunc1<std::trunc>::f));
+    globalVars.set("round", createNativeFunction(mathFunc1<std::round>::f));
+    globalVars.set("max", createNativeFunction(mathFunc2<mathMax>::f));
+    globalVars.set("min", createNativeFunction(mathFunc2<mathMin>::f));
+    globalVars.set("HUGE_VAL", createFloat(HUGE_VAL));
+    globalVars.set("INF", createFloat(INFINITY));
+    globalVars.set("NAN", createFloat(NAN));
+    globalVars.set("PI", createFloat(M_PI));
+    globalVars.set("PI_2", createFloat(M_PI_2));
+    globalVars.set("PI_4", createFloat(M_PI_4));
+
+    globalVars.set("print", createNativeFunction(print));
 }
 
 Engine::~Engine()

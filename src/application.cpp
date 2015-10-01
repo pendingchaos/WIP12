@@ -24,7 +24,7 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
                                                    stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
                                                    nextScript(nullptr)
 {
-    precompileScriptInclude();
+    //precompileScriptInclude();
 
     app = this;
 

@@ -18,7 +18,7 @@ void run(const char *dir)
 
         setApplication(&app_);
 
-        Script *script = resMgr->load<Script>("resources/scripts/main.cpp");
+        Script *script = resMgr->load<Script>("resources/scripts/main.rkt");
         app->setNextScript(script, "Main");
         script->release();
 
@@ -50,30 +50,6 @@ int unsafeMain(int argc, const char *argv[])
 #include "scripting/disasm.h"
 
 #include <iostream>
-
-scripting::Value *print(scripting::Context *ctx, const List<scripting::Value *>& args)
-{
-    for (size_t i = 0; i < args.getCount(); ++i)
-    {
-        scripting::Value *head = args[i];
-
-        if (head->type == scripting::ValueType::StringType)
-        {
-            std::cout << ((scripting::StringValue *)head)->value.getData() << std::endl;
-        } else if (head->type == scripting::ValueType::Int)
-        {
-            std::cout << ((scripting::IntValue *)head)->value << std::endl;
-        } else if (head->type == scripting::ValueType::Float)
-        {
-            std::cout << ((scripting::FloatValue *)head)->value << std::endl;
-        } else
-        {
-            ctx->throwException(scripting::createException(scripting::ExcType::TypeError, "Argument must be string."));
-        }
-    }
-
-    return scripting::createNil();
-}
 
 /*void printAST(size_t indent, scripting::ASTNode *node)
 {
@@ -1101,9 +1077,11 @@ int main(int argc, const char *argv[])
     initBacktrace();
     initLoggingSystem();
 
+    int result;
+
     try
     {
-        return unsafeMain(argc, argv);
+        result = unsafeMain(argc, argv);
     } catch (std::exception& e)
     {
         log("Unhandled exception caught: %s\n", e.what());
@@ -1117,6 +1095,8 @@ int main(int argc, const char *argv[])
 
     deinitLoggingSystem();
     deinitBacktrace();
+
+    return result;
     #endif
 }
 }

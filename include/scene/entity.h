@@ -240,7 +240,10 @@ class Entity
             return render;
         }
 
-        Scene *getScene() const;
+        inline Scene *getScene() const
+        {
+            return scene;
+        }
 
         Entity *createEntity(const String& name);
         void removeEntity(size_t index);

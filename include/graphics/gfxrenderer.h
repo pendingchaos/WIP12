@@ -19,6 +19,30 @@ class GPUTimer;
 class GfxTerrain;
 class GfxShaderCombination;
 
+struct RenderStats
+{
+    float gBufferTiming;
+    float ssaoTiming;
+    float ssaoBlurXTiming;
+    float ssaoBlurYTiming;
+    float deferredShadingTiming;
+    float forwardTiming;
+    float gammaCorrectionTiming;
+    float fxaaTiming;
+    float colorModifierTiming;
+    float bloomTiming;
+    //float lumCalcTiming;
+    float shadowmapTiming;
+    float overlayTiming;
+    float debugDrawTiming;
+    float shadowmapCPUTiming;
+    float gbufferCPUTiming;
+    float forwardCPUTiming;
+    float overlayCPUTiming;
+    float batchingTiming;
+    size_t numDrawCalls;
+} BIND;
+
 class GfxRenderer
 {
     private:
@@ -93,31 +117,6 @@ class GfxRenderer
             };
         };
 
-        struct RenderStats
-        {
-            float gBufferTiming;
-            float ssaoTiming;
-            float ssaoBlurXTiming;
-            float ssaoBlurYTiming;
-            float ssaoUpsampleTiming;
-            float deferredShadingTiming;
-            float forwardTiming;
-            float gammaCorrectionTiming;
-            float fxaaTiming;
-            float colorModifierTiming;
-            float bloomTiming;
-            //float lumCalcTiming;
-            float shadowmapTiming;
-            float overlayTiming;
-            float debugDrawTiming;
-            float shadowmapCPUTiming;
-            float gbufferCPUTiming;
-            float forwardCPUTiming;
-            float overlayCPUTiming;
-            float batchingTiming;
-            size_t numDrawCalls;
-        };
-
         ~GfxRenderer();
 
         void resize(const UInt2& size);
@@ -128,12 +127,12 @@ class GfxRenderer
             return numLights;
         }
 
-        inline GfxBuffer *getLightBuffer() const NO_BIND
+        inline GfxBuffer *getLightBuffer() const
         {
             return lightBuffer;
         }
 
-        inline RenderStats getStats() const NO_BIND
+        inline RenderStats getStats() const
         {
             return stats;
         }
@@ -225,7 +224,6 @@ class GfxRenderer
         GPUTimer *ssaoTimer;
         GPUTimer *ssaoBlurXTimer;
         GPUTimer *ssaoBlurYTimer;
-        GPUTimer *ssaoUpsampleTimer;
         GPUTimer *deferredShadingTimer;
         GPUTimer *forwardTimer;
         GPUTimer *gammaCorrectionTimer;

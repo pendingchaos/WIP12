@@ -293,7 +293,7 @@ BEGIN_INSTANCE(Main, InstanceBase)
         float y = gfxApi->getViewportHeight() - fontSize;
         y /= gfxApi->getViewportHeight();
 
-        GfxRenderer::RenderStats stats = scene->getRenderer()->getStats();
+        RenderStats stats = scene->getRenderer()->getStats();
 
         if (timingsUpdateCountdown < 0.0f and not freezeTimings)
         {

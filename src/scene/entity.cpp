@@ -59,11 +59,6 @@ RigidBody *Entity::addRigidBody(const RigidBodyConstructionInfo& info,
     return rigidBody;
 }
 
-Scene *Entity::getScene() const
-{
-    return scene;
-}
-
 Entity *Entity::createEntity(const String& name)
 {
     Entity *entity = NEW(Entity, name, scene);

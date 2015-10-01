@@ -256,7 +256,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoTimer = gfxApi->createTimer();
     ssaoBlurXTimer = gfxApi->createTimer();
     ssaoBlurYTimer = gfxApi->createTimer();
-    ssaoUpsampleTimer = gfxApi->createTimer();
     deferredShadingTimer = gfxApi->createTimer();
     forwardTimer = gfxApi->createTimer();
     gammaCorrectionTimer = gfxApi->createTimer();
@@ -304,7 +303,6 @@ GfxRenderer::~GfxRenderer()
 
     DELETE(gBufferTimer);
     DELETE(ssaoTimer);
-    DELETE(ssaoUpsampleTimer);
     DELETE(ssaoBlurXTimer);
     DELETE(ssaoBlurYTimer);
     DELETE(deferredShadingTimer);
@@ -416,12 +414,6 @@ void GfxRenderer::updateStats()
     if (ssaoBlurYTimer->resultAvailable())
     {
         stats.ssaoBlurYTiming = ssaoBlurYTimer->getResult() / (float)ssaoBlurYTimer->getResultResolution();
-    }
-
-    ssaoUpsampleTimer->swap();
-    if (ssaoUpsampleTimer->resultAvailable())
-    {
-        stats.ssaoUpsampleTiming = ssaoUpsampleTimer->getResult() / (float)ssaoUpsampleTimer->getResultResolution();
     }
 
     deferredShadingTimer->swap();

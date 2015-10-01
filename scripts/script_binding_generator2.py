@@ -316,7 +316,6 @@ class Class(object):
         self.properties += parent.properties
         self.copyable = self.copyable and parent.copyable
         self.destructable = self.destructable and parent.destructable
-        self.constructable = self.constructable and parent.constructable
 
 class Enum(object):
     def __init__(self, cursor):
@@ -503,7 +502,7 @@ bindings.write("""
 #define CATE ctx->throwException(scripting::createException
 #define SV scripting::Value*
 #define NO scripting::NativeObject*
-#define CV(expr) create_val<std::remove_reference<decltype(expr)>::type>::f(ctx, expr)
+#define CV(expr) create_val<std::remove_const<std::remove_reference<decltype(expr)>::type>::type>::f(ctx, expr)
 #define TS(expr, ...) type_same<std::remove_reference<__VA_ARGS__>::type>::f(ctx, expr)
 #define VE scripting::ExcType::ValueError
 #define TE scripting::ExcType::TypeError
@@ -571,20 +570,16 @@ struct val_to_c<float>
 {
     static float f(scripting::Context *ctx, const SV head)
     {
-        float v;
-        
         if (head->type == scripting::ValueType::Int)
         {
-            v = ((scripting::IntValue *)head)->value;
+            return (float)((scripting::IntValue *)head)->value;
         } else if (head->type == scripting::ValueType::Float)
         {
-            v = ((scripting::FloatValue *)head)->value;
+            return (float)((scripting::FloatValue *)head)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
-        
-        return v;
     }
 };
 
@@ -593,20 +588,16 @@ struct val_to_c<double>
 {
     static double f(scripting::Context *ctx, const SV head)
     {
-        double v;
-        
         if (head->type == scripting::ValueType::Int)
         {
-            v = ((scripting::IntValue *)head)->value;
+            return ((scripting::IntValue *)head)->value;
         } else if (head->type == scripting::ValueType::Float)
         {
-            v = ((scripting::FloatValue *)head)->value;
+            return ((scripting::FloatValue *)head)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
         }
-        
-        return v;
     }
 };
 
@@ -1658,6 +1649,28 @@ void %s_set_member(CTX ctx,NO f,SV key,SV value)
         class_.name, class_.name, class_.name, class_.name, class_.name, name, class_.code_name,
         class_.name, class_.name, class_.name, class_.name, class_.name))
 
+bindings.write("namespace scripting\n{\n")
+
+for class_ in classes.values():
+    if not class_.script_public or not class_.copyable:
+        continue
+    
+    bindings.write("SV create(CTX ctx,const %s& value){RET CV(value);}\n" % (class_.code_name))
+
+for class_ in classes.values():
+    if not class_.script_public:
+        continue
+    
+    bindings.write("SV create(CTX ctx,%s *value){RET CV(value);}\n" % (class_.code_name))
+
+for enum in enums:
+    if not enum.script_public:
+        continue
+    
+    bindings.write("SV create(CTX ctx,%s value){RET CV(value);}\n" % (enum.name))
+
+bindings.write("}\n")
+
 bindings.write("""void *initBindings(scripting::Engine *engine, void *data)
 {
     BindingsExt *ext = NEW(BindingsExt);
@@ -1690,7 +1703,7 @@ for functions_ in functions.values():
             continue
         
         bindings.write("""    engine->getGlobalVars().set("%s", scripting::createNativeFunction(%s_binding));
-        """ % (function.name, function.name))
+""" % (function.name, function.name))
 
 for enum in enums:
     if not enum.script_public:
@@ -1723,6 +1736,49 @@ void registerBindings(scripting::Engine *engine)
     engine->addExtension("bindings", ext);
 }
 }
+""")
+
+bindings.close()
+
+bindings = open("../include/scripting/bindings2.h", "w")
+
+bindings.write("//Generated from script_binding_generator2.py. Do not edit. Edit script_binding_generator2.py instead.\n")
+
+bindings.write("""#ifndef BINDINGS2_H
+#define BINDINGS2_H
+
+""")
+
+files.remove("../include/scripting/bindings2.h")
+for file_ in files:
+    bindings.write("#include \"%s\"\n" % (file_[11:]))
+
+bindings.write("""
+namespace scripting
+{
+""")
+
+for class_ in classes.values():
+    if not class_.script_public or not class_.copyable:
+        continue
+    
+    bindings.write("    Value *create(Context *ctx, const %s& value);\n" % (class_.code_name))
+
+for class_ in classes.values():
+    if not class_.script_public:
+        continue
+    
+    bindings.write("    Value *create(Context *ctx, %s *value);\n" % (class_.code_name))
+
+for enum in enums:
+    if not enum.script_public:
+        continue
+    
+    bindings.write("    Value *create(Context *ctx, %s value);\n" % (enum.name))
+
+bindings.write("""};
+
+#endif // BINDINGS2_H
 """)
 
 bindings.close()

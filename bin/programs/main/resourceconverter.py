@@ -1300,8 +1300,9 @@ if __name__ == "__main__":
     cubeEnt.rigidBody.angularSleepingThreshold = 0.0
     cubeEnt.rigidBody.linearDamping = 0.8
     cubeEnt.rigidBody.mass = 100.0
-    cubeEnt.scripts.append(("resources/scripts/entityscript.cpp", "Player"))
-    cubeEnt.scripts.append(("resources/scripts/lightscript.cpp", "PlayerLight"))
+    #cubeEnt.scripts.append(("resources/scripts/entityscript.cpp", "Player"))
+    cubeEnt.scripts.append(("resources/scripts/player.rkt", "Player"))
+    #cubeEnt.scripts.append(("resources/scripts/lightscript.cpp", "PlayerLight"))
     scene.entities.append(cubeEnt)
     
     clayEnt = Scene.Entity("Clay")

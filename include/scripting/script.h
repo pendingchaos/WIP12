@@ -3,6 +3,8 @@
 
 #include "resource/resource.h"
 #include "serialization.h"
+#include "scripting/vm/context.h"
+#include "scripting/vm/types.h"
 
 #include <dlfcn.h>
 
@@ -61,40 +63,6 @@ class ScriptFunctionException : public Exception
         String problem;
 };
 
-class BaseMessage
-{
-    public:
-        virtual ~BaseMessage() {}
-
-        template <typename T>
-        inline T *cast()
-        {
-            if (name == T::_name)
-            {
-                return (T *)this;
-            } else
-            {
-                return nullptr;
-            }
-        }
-
-        template <typename T>
-        inline T *cast() const
-        {
-            if (name == T::_name)
-            {
-                return (const T *)this;
-            } else
-            {
-                return nullptr;
-            }
-        }
-    private:
-        const char *name;
-    protected:
-        BaseMessage(const char *name_) : name(name_) {}
-};
-
 class ScriptInstance
 {
     NO_COPY(ScriptInstance)
@@ -104,14 +72,35 @@ class ScriptInstance
     public:
         ~ScriptInstance();
 
-        void handleInput();
-        void update();
-        void fixedUpdate(float timestep);
-        void preRender();
-        void postRender();
         void serialize(Serializable& serialized);
         void deserialize(const Serializable& serialized);
-        void handleMessage(BaseMessage *message);
+        void method(const String& name);
+        void method(const String& name, float timestep);
+
+        inline void handleInput()
+        {
+            method("handleInput");
+        }
+
+        inline void fixedUpdate(float timestep)
+        {
+            method("fixedUpdate", timestep);
+        }
+
+        inline void update()
+        {
+            method("update");
+        }
+
+        inline void preRender()
+        {
+            method("preRender");
+        }
+
+        inline void postRender()
+        {
+            method("postRender");
+        }
 
         inline Script *getScript() const
         {
@@ -123,22 +112,24 @@ class ScriptInstance
             return name;
         }
 
-        inline void *getPointer() const
+        inline scripting::Value *getObject() const
         {
-            return ptr;
+            return obj;
         }
     private:
         ScriptInstance(const char *name,
                        Script *script,
-                       void *ptr,
+                       scripting::Value *obj,
                        Entity *entity,
                        Scene *scene);
 
         String name;
         Script *script;
-        void *ptr;
+        scripting::Value *obj;
         Entity *entity;
         Scene *scene;
+
+        void destroy();
 };
 
 class Script : public Resource
@@ -157,44 +148,21 @@ class Script : public Resource
 
         virtual void removeContent();
 
+        //TODO: Get rid of name.
         ScriptInstance *createInstance(const char *name, Entity *entity=nullptr, Scene *scene=nullptr);
 
-        template <typename Return, typename ... Args>
-        inline Return call(const String& name, Args... args)
+        inline scripting::Context *getContext() const
         {
-            return ((Return (*)(Args...))getFunction(name))(args...);
+            return context;
         }
     protected:
         virtual void _load();
     private:
-        void *dl;
-
+        scripting::Context *context;
+        scripting::Value *class_;
         List<ScriptInstance *> instances;
-        List<String> includes;
-        List<time_t> includesModifications;
 
-        void *(*getCreateFunc(const char *name))(Application *, Entity *, Scene *, Script *);
-        void (*getDestroyFunc(const char *name))(void *);
-
-        void (*getFunction(const String& name))()
-        {
-            if (dl != nullptr)
-            {
-                void (*func)() = (void (*)())dlsym(dl, name.getData());
-
-                if (func == nullptr)
-                {
-                    THROW(ScriptFunctionException, getFilename(), name, "No such function.");
-                }
-
-                return func;
-            } else
-            {
-                THROW(ScriptFunctionException, getFilename(), name, "Script not loaded.");
-            }
-        }
-
-        void destroyInstance(ScriptInstance *instance);
+        void removeInstance(ScriptInstance *instance);
 } DESTROY(obj->release());
 
 #endif // SCRIPT_H

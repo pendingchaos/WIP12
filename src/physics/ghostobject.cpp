@@ -4,7 +4,7 @@
 
 GhostObject::GhostObject(unsigned short collisionMask,
                          PhysicsWorld *world_,
-                         PhysicsShape *shape_) : shape(shape_),
+                         PhysicsShape *shape_) : shape(shape_->copyRef<PhysicsShape>()),
                                                  world(world_),
                                                  collisionMask(collisionMask)
 {

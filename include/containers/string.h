@@ -38,7 +38,7 @@ class String
 
         String(char c) : data(2)
         {
-            getData()[1] = c;
+            getData()[0] = c;
             getData()[1] = '\x00';
         }
 
@@ -103,7 +103,7 @@ class String
 
         String& append(char toAppend)
         {
-            data.insert(getLength(), 1, &toAppend);
+            insert(getLength(), 1, &toAppend);
 
             return *this;
         }

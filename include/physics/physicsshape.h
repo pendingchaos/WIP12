@@ -120,17 +120,17 @@ class PhysicsBoxShape : public PhysicsShapeImpl
     NO_COPY_INHERITED(PhysicsBoxShape, PhysicsShapeImpl)
 };
 
+enum class Axis
+{
+    X,
+    Y,
+    Z
+} ENUM_CLASS BIND;
+
 class PhysicsCylinderShape : public PhysicsShapeImpl
 {
     public:
-        enum Axis
-        {
-            X,
-            Y,
-            Z
-        };
-
-        PhysicsCylinderShape(PhysicsShape *physShape, PhysicsCylinderShape::Axis axis, float height, float radius);
+        PhysicsCylinderShape(PhysicsShape *physShape, Axis axis, float height, float radius);
 
         inline Axis getAxis() const
         {
@@ -163,16 +163,9 @@ class PhysicsCylinderShape : public PhysicsShapeImpl
 class PhysicsCapsuleShape : public PhysicsShapeImpl
 {
     public:
-        enum Axis
-        {
-            X,
-            Y,
-            Z
-        };
+        PhysicsCapsuleShape(PhysicsShape *physShape, Axis axis, float height, float radius);
 
-        PhysicsCapsuleShape(PhysicsShape *physShape, PhysicsCapsuleShape::Axis axis, float height, float radius);
-
-        inline PhysicsCapsuleShape::Axis getAxis() const
+        inline Axis getAxis() const
         {
             return axis;
         }
@@ -203,16 +196,9 @@ class PhysicsCapsuleShape : public PhysicsShapeImpl
 class PhysicsConeShape : public PhysicsShapeImpl
 {
     public:
-        enum Axis
-        {
-            X,
-            Y,
-            Z
-        };
+        PhysicsConeShape(PhysicsShape *physShape, Axis axis, float height, float radius);
 
-        PhysicsConeShape(PhysicsShape *physShape, PhysicsConeShape::Axis axis, float height, float radius);
-
-        inline PhysicsConeShape::Axis getAxis() const
+        inline Axis getAxis() const
         {
             return axis;
         }
@@ -457,9 +443,9 @@ class PhysicsShape : public Resource
         void setEmpty();
         void setSphere(float radius);
         void setBox(const Vector3D& halfExtents);
-        void setCylinder(PhysicsCylinderShape::Axis axis, float height, float radius) NO_BIND;
-        void setCapsule(PhysicsCapsuleShape::Axis axis, float height, float radius) NO_BIND;
-        void setCone(PhysicsConeShape::Axis axis, float height, float radius) NO_BIND;
+        void setCylinder(Axis axis, float height, float radius);
+        void setCapsule(Axis axis, float height, float radius);
+        void setCone(Axis axis, float height, float radius);
         void setConvexHull(size_t pointCount, const Position3D *points) NO_BIND;
         void setStaticTriangleMesh(size_t numVertices, const Position3D *vertices) NO_BIND;
         void setHeightfield(uint32_t width, uint32_t height, const float *data) NO_BIND;

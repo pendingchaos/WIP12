@@ -132,6 +132,8 @@ List<Token> tokenize(const String& input)
                 {
                 } else if (c == ' ' or c == '\n' or c == '\t')
                 {
+                    ++line;
+                    lastLineOffset = offset;
                     break;
                 } else
                 {
@@ -161,6 +163,8 @@ List<Token> tokenize(const String& input)
                     tok.str.append(c);
                 } else if (c == ' ' or c == '\n' or c == '\t')
                 {
+                    ++line;
+                    lastLineOffset = offset;
                     break;
                 } else
                 {
@@ -221,19 +225,24 @@ List<Token> tokenize(const String& input)
                 {
                 } else if (c >= 'a' and c <= 'z')
                 {
-                        THROW(TokenException, "A number literal can not contain letters like that.", line, COLUMN);
+                    THROW(TokenException, "A number literal can not contain letters like that.", line, COLUMN);
                 } else if (c >= 'A' and c <= 'Z')
                 {
-                        THROW(TokenException, "A number literal can not contain letters like that.", line, COLUMN);
+                    THROW(TokenException, "A number literal can not contain letters like that.", line, COLUMN);
                 } else if (c == '_')
                 {
-                        THROW(TokenException, "A number literal can not contain underscores.", line, COLUMN);
+                    THROW(TokenException, "A number literal can not contain underscores.", line, COLUMN);
+                } else if (c == '\n')
+                {
+                    ++line;
+                    lastLineOffset = offset;
+                    break;
                 } else
                 {
                     break;
                 }
 
-                tok.str.append(input[offset]);
+                tok.str.append(c);
             }
 
             tok.type = scientific ? Token::ScientificFloat : (hasFractional ? Token::Float : Token::Integer);
@@ -282,6 +291,11 @@ List<Token> tokenize(const String& input)
                     tok.str.append(c);
                     success = true;
                     break;
+                } else if (c == '\n')
+                {
+                    ++line;
+                    lastLineOffset = offset;
+                    tok.str.append('\n');
                 } else
                 {
                     tok.str.append(c);
@@ -300,6 +314,8 @@ List<Token> tokenize(const String& input)
             {
                 if (input[offset] == '\n')
                 {
+                    ++line;
+                    lastLineOffset = offset;
                     break;
                 }
             }

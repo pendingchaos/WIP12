@@ -7,237 +7,482 @@
 #include "platform.h"
 #include "scene/entity.h"
 #include "scene/scene.h"
+#include "scripting/parser.h"
+#include "scripting/bytecodegen.h"
+#include "scripting/disasm.h"
+#include "scripting/bindings2.h"
 
-#include <stdio.h>
-#include <dlfcn.h>
-#include <sys/stat.h>
-
-void precompileScriptInclude()
+static void printAST(size_t indent, scripting::ASTNode *node)
 {
-    system("g++ -g -fPIC -D_REENTRANT -I../include"
-           " -std=gnu++11 ../include/scripting/scriptinclude.h"
-           " -o../include/scripting/scriptinclude.h.gch `sdl2-config --cflags`"
-           " `pkg-config bullet --cflags` `freetype-config --cflags` "
-           "-fabi-version=" STR(__GXX_ABI_VERSION));
-}
+    std::cout << "--------------------------------\n";
 
-void getIncludes(const String& source, List<String>& includes)
-{
-    List<String> lines = source.split('\n');
-
-    for (auto line : lines)
+    for (size_t i = 0; i < indent; ++i)
     {
-        try
+        std::cout << "    ";
+    }
+
+    switch (node->type)
+    {
+    case scripting::ASTNode::Assign:
+    {
+        std::cout << "Assign:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Add:
+    {
+        std::cout << "Add:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Subtract:
+    {
+        std::cout << "Subtract:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Multiply:
+    {
+        std::cout << "Multiply:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Divide:
+    {
+        std::cout << "Divide:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Modulo:
+    {
+        std::cout << "Modulo:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Less:
+    {
+        std::cout << "Less:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Greater:
+    {
+        std::cout << "Greater:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Equal:
+    {
+        std::cout << "Equal:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::NotEqual:
+    {
+        std::cout << "NotEqual:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::LessEqual:
+    {
+        std::cout << "LessEqual:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::GreaterEqual:
+    {
+        std::cout << "GreaterEqual:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BoolAnd:
+    {
+        std::cout << "BoolAnd:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BoolOr:
+    {
+        std::cout << "BoolOr:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BitAnd:
+    {
+        std::cout << "BitAnd:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BitOr:
+    {
+        std::cout << "BitOr:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::BitXOr:
+    {
+        std::cout << "BitXOr:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::LeftShift:
+    {
+        std::cout << "LeftShift:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::RightShift:
+    {
+        std::cout << "RightShift:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Comma:
+    {
+        std::cout << "Comma (should not be here):\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::StatementSplit:
+    {
+        std::cout << "StatementSplit (should not be here):\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::GetMember:
+    {
+        std::cout << "GetMember:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
+    case scripting::ASTNode::Call:
+    {
+        scripting::CallNode *cnode = (scripting::CallNode *)node;
+        std::cout << "Call:\n";
+
+        printAST(indent+1, cnode->callable);
+
+        for (size_t i = 0; i < cnode->args.getCount(); ++i)
         {
-            if (line.startsWith("#include"))
+            printAST(indent+1, cnode->args[i]);
+        }
+        break;
+    }
+    case scripting::ASTNode::BoolNot:
+    {
+        std::cout << "BoolNot:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::BitNot:
+    {
+        std::cout << "BitNot:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Class:
+    {
+        std::cout << "Class:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Throw:
+    {
+        std::cout << "Throw:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Return:
+    {
+        std::cout << "Return:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Negate:
+    {
+        std::cout << "Negate:\n";
+        printAST(indent+1, ((scripting::SingleOperandNode *)node)->operand);
+        break;
+    }
+    case scripting::ASTNode::Function:
+    {
+        std::cout << "Function:\n";
+
+        scripting::FunctionNode *fnode = (scripting::FunctionNode *)node;
+
+        for (size_t i = 0; i < fnode->args.getCount(); ++i)
+        {
+            for (size_t j = 0; j <= indent; ++j)
             {
-                List<String> parts = line.split('"');
-                String includedFile;
-
-                if (parts.getCount() == 1)
-                {
-                    parts = line.split('<');
-
-                    includedFile = parts[1].split('>')[0];
-                } else
-                {
-                    includedFile = parts[1];
-                }
-
-                includedFile = fileSys->getAbsolutePath(includedFile.getData());
-
-                if (includedFile.getLength() != 0)
-                {
-                    includes.append(includedFile);
-
-                    File f(includedFile.getData(), "r");
-
-                    String source2(f.getSize());
-                    f.read(source2.getLength(), source2.getData());
-
-                    getIncludes(source2, includes);
-                }
+                std::cout << "    ";
             }
-        } catch (BoundsException& e) {}
+
+            std::cout << fnode->args[i].getData() << '\n';
+        }
+
+        printAST(indent+1, fnode->body);
+        break;
+    }
+    case scripting::ASTNode::TryExcept:
+    {
+        std::cout << "TryExcept:\n";
+
+        scripting::TryExceptNode *tenode = (scripting::TryExceptNode *)node;
+
+        printAST(indent+1, tenode->try_);
+        printAST(indent+1, tenode->except);
+        break;
+    }
+    case scripting::ASTNode::If:
+    {
+        std::cout << "If:\n";
+
+        scripting::IfNode *inode = (scripting::IfNode *)node;
+
+        printAST(indent+1, inode->ifCond);
+        printAST(indent+1, inode->if_);
+
+        for (size_t i = 0; i < inode->elifs.getCount(); ++i)
+        {
+            printAST(indent+1, inode->elifConds[i]);
+            printAST(indent+1, inode->elifs[i]);
+        }
+
+        if (inode->else_ != nullptr)
+        {
+            printAST(indent+1, inode->else_);
+        }
+        break;
+    }
+    case scripting::ASTNode::While:
+    {
+        std::cout << "While:\n";
+
+        scripting::WhileNode *whileNode = (scripting::WhileNode *)node;
+
+        printAST(indent+1, whileNode->cond);
+        printAST(indent+1, whileNode->block);
+        break;
+    }
+    case scripting::ASTNode::Identifier:
+    {
+        std::cout << "Identifier:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::IdentifierNode *)node)->name.getData() << std::endl;
+        break;
+    }
+    case scripting::ASTNode::Integer:
+    {
+        std::cout << "Integer:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::IntegerNode *)node)->value << std::endl;
+        break;
+    }
+    case scripting::ASTNode::Float:
+    {
+        std::cout << "Float:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::FloatNode *)node)->value << std::endl;
+        break;
+    }
+    case scripting::ASTNode::String:
+    {
+        std::cout << "String:\n";
+
+        for (size_t j = 0; j <= indent; ++j)
+        {
+            std::cout << "    ";
+        }
+
+        std::cout << ((scripting::StringNode *)node)->content.getData() << std::endl;
+        break;
+    }
+    case scripting::ASTNode::Statements:
+    {
+        std::cout << "Statements:\n";
+
+        scripting::StatementsNode *snode = (scripting::StatementsNode *)node;
+
+        for (size_t i = 0; i < snode->statements.getCount(); ++i)
+        {
+            printAST(indent+1, snode->statements[i]);
+        }
+        break;
+    }
+    case scripting::ASTNode::True:
+    {
+        std::cout << "True\n";
+        break;
+    }
+    case scripting::ASTNode::False:
+    {
+        std::cout << "False\n";
+        break;
+    }
+    case scripting::ASTNode::Nil:
+    {
+        std::cout << "Nil\n";
+        break;
+    }
     }
 }
 
-const void *getScriptFunctionStruct();
-
-class InstanceBase
-{
-    public:
-        InstanceBase();
-        virtual ~InstanceBase();
-
-        virtual void init() {}
-        virtual void deinit() {}
-        virtual void handleInput() {}
-        virtual void update() {}
-        virtual void fixedUpdate(float timestep) {}
-        virtual void preRender() {}
-        virtual void postRender() {}
-        virtual void serialize(Serializable& serialized) {}
-        virtual void deserialize(const Serializable& serialized) {}
-        virtual void handleMessage(BaseMessage *message) {}
-        inline Entity *getEntity() const {return entity;}
-    protected:
-        Application *app;
-        Platform *platform;
-        ResourceManager *resMgr;
-        GfxApi *gfxApi;
-        Filesystem *fileSys;
-        GfxDebugDrawer *debugDrawer;
-        AudioDevice *audioDevice;
-        Entity *entity;
-        Script *script;
-        Scene *scene;
-};
-
 ScriptInstance::ScriptInstance(const char *name_,
                                Script *script_,
-                               void *ptr_,
+                               scripting::Value *obj_,
                                Entity *entity_,
                                Scene *scene_) : name(name_),
                                                 script(script_->copyRef<Script>()),
-                                                ptr(ptr_),
+                                                obj(obj_),
                                                 entity(entity_),
                                                 scene(scene_) {}
 
 ScriptInstance::~ScriptInstance()
 {
-    script->destroyInstance(this);
+    destroy();
+
+    script->removeInstance(this);
     script->release();
 }
 
-void ScriptInstance::handleInput()
+void ScriptInstance::method(const String& name)
 {
-    if (ptr != nullptr)
+    scripting::Context *ctx = script->getContext();
+
+    if (obj != nullptr)
     {
-        ((InstanceBase *)ptr)->handleInput();
+        try
+        {
+            scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, List<scripting::Value *>()));
+        } catch (scripting::UnhandledExcException& e)
+        {
+            scripting::Value *exc = e.getException();
+
+            log("Unhandled script exception in %s\n", script->getFilename().getData());
+
+            if (exc->type == scripting::ValueType::Exception)
+            {
+                log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+            }
+            std::exit(1);
+        }
     }
 }
 
-void ScriptInstance::update()
+void ScriptInstance::method(const String& name, float timestep)
 {
-    if (ptr != nullptr)
-    {
-        ((InstanceBase *)ptr)->update();
-    }
-}
+    scripting::Context *ctx = script->getContext();
 
-void ScriptInstance::fixedUpdate(float timestep)
-{
-    if (ptr != nullptr)
+    if (obj != nullptr)
     {
-        ((InstanceBase *)ptr)->fixedUpdate(timestep);
-    }
-}
+        scripting::Value *arg = scripting::createFloat(timestep);
 
-void ScriptInstance::preRender()
-{
-    if (ptr != nullptr)
-    {
-        ((InstanceBase *)ptr)->preRender();
-    }
-}
+        List<scripting::Value *> args;
+        args.append(arg);
 
-void ScriptInstance::postRender()
-{
-    if (ptr != nullptr)
-    {
-        ((InstanceBase *)ptr)->postRender();
+        try
+        {
+            scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, args));
+        } catch (scripting::UnhandledExcException& e)
+        {
+            scripting::Value *exc = e.getException();
+
+            log("Unhandled script exception in %s\n", script->getFilename().getData());
+
+            if (exc->type == scripting::ValueType::Exception)
+            {
+                log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+            }
+        }
+
+        scripting::destroy(ctx, arg);
     }
 }
 
 void ScriptInstance::serialize(Serializable& serialized)
 {
-    if (ptr != nullptr)
-    {
-        ((InstanceBase *)ptr)->serialize(serialized);
-    }
 }
 
 void ScriptInstance::deserialize(const Serializable& serialized)
 {
-    if (ptr != nullptr)
-    {
-        ((InstanceBase *)ptr)->deserialize(serialized);
-    }
 }
 
-void ScriptInstance::handleMessage(BaseMessage *message)
+void ScriptInstance::destroy()
 {
-    if (ptr != nullptr)
+    if (obj != nullptr)
     {
-        ((InstanceBase *)ptr)->handleMessage(message);
+        scripting::destroy(script->getContext(), obj);
+        obj = nullptr;
     }
 }
 
 Script::Script() : Resource(ResType::ScriptType),
-                   dl(nullptr) {}
+                   context(nullptr) {}
 
 Script::Script(const String& filename) : Resource(filename,
                                                   ResType::ScriptType),
-                                         dl(nullptr) {}
+                                         context(nullptr) {}
 
 Script::~Script()
 {
-    for (auto instance : instances)
-    {
-        void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
-
-        if (destroyFunc != nullptr)
-        {
-            destroyFunc(instance->ptr);
-        }
-
-        instance->ptr = nullptr;
-    }
-
-    dlclose(dl);
+    removeContent();
 }
 
 void Script::removeContent()
 {
-    if (dl != nullptr)
+    if (context != nullptr)
     {
-        for (auto instance : instances)
+        for (size_t i = 0; i < instances.getCount(); ++i)
         {
-            void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
-
-            if (destroyFunc != nullptr)
-            {
-                destroyFunc(instance->ptr);
-            }
-
-            instance->ptr = nullptr;
+            instances[i]->destroy();
         }
 
-        dlclose(dl);
-        dl = nullptr;
-    }
+        scripting::destroy(context, class_);
 
-    includes.clear();
-    includesModifications.clear();
+        DELETE(context);
+        context = nullptr;
+    }
 }
 
 void Script::_load()
 {
-    List<Serializable> serialized;
-
-    if (dl != nullptr)
-    {
-        for (auto instance : instances)
-        {
-            Serializable serialized_;
-
-            instance->serialize(serialized_);
-
-            serialized.append(serialized_);
-        }
-    }
-
     removeContent();
 
     String source;
@@ -255,140 +500,65 @@ void Script::_load()
               e.getString());
     }
 
-    String scriptFilename = fileSys->getAbsolutePath(getFilename().getData());
+    scripting::ASTNode *ast;
 
-    source = String("#include <scripting/scriptinclude.h>\n#line 0\"").append(scriptFilename).append("\"\n").append(source);
-
-    int index = scriptFilename.findLast('/');
-
-    String dir = scriptFilename.subStr(0, index);
-    scriptFilename = scriptFilename.subStr(index+1, scriptFilename.getLength()-index-1);
-
-    String binaryFilename = String::format("%s/bin/%s.so", dir.getData(), scriptFilename.getData());
-
-    String binaryDirectory = String::format("%s/bin", dir.getData());
-
-    mkdir(binaryDirectory.getData(), 0777);
-
-    String command = String::format("g++ -o\"%s\" -g -I../include -I\"%s\" "
-                                    "`pkg-config bullet --cflags` `freetype-config --cflags` -D_REENTRANT"
-                                    " -fPIC -shared -std=gnu++11 -Winvalid-pch -fabi-version="
-                                    STR(__GXX_ABI_VERSION) " -xc++ -",
-                                    binaryFilename.getData(),
-                                    dir.getData());
-
-    uint64_t start = platform->getTime();
-
-    FILE *pipe = popen(command.getData(), "w");
-
-    if (pipe == nullptr)
+    try
+    {
+        ast = scripting::parse(source);
+    } catch (const scripting::ParseException& e)
     {
         THROW(ResourceIOException,
               "script",
               getFilename(),
-              String("Unable to execute command: ").append(command));
+              String::format("%d:%d: %s", e.scriptLine, e.scriptColumn, e.message));
     }
 
-    fwrite(source.getData(), source.getLength(), 1, pipe);
+    //printAST(0, ast);
 
-    if (pclose(pipe) == EXIT_SUCCESS)
+    ResizableData data;
+
+    try
     {
-        uint64_t end = platform->getTime();
+        data = scripting::generateBytecode(ast);
+    } catch (const scripting::ByteCodeGenException& e)
+    {
+        THROW(ResourceIOException,
+              "script",
+              getFilename(),
+              e.message);
+    }
 
-        float time = float(end - start) / (float)platform->getTimerFrequency();
+    DELETE(ast);
 
-        INFO(CATEGORY_SCRIPT, "Compilation complete.")(time);
+    scripting::Bytecode code(data);
 
-        dl = dlopen(binaryFilename.getData(), RTLD_LAZY);
+    //String disasm = scripting::disasm(code);
+    //std::cout << disasm.getData() << std::endl;
 
-        if (dl == nullptr)
+    {
+        context = NEW(scripting::Context, scriptEngine);
+
+        try
         {
-            THROW(ResourceIOException,
-                  "script",
-                  getFilename(),
-                  String::format("Unable to load compiled script at %s: %s",
-                                 binaryFilename.getData(),
-                                 dlerror()));
-
-            return;
-        }
-
-        void (*initFunc)(const void *) = (void (*)(const void *))dlsym(dl, "_initFunctions");
-
-        if (initFunc == nullptr)
+            class_ = context->run(code, List<scripting::Value *>());
+        } catch (scripting::UnhandledExcException& e)
         {
-            dlclose(dl);
+            scripting::Value *exc = e.getException();
 
-            dl = nullptr;
-
-            THROW(ResourceIOException,
-                  "script",
-                  getFilename(),
-                  String::format("Compiled script at %s does not contain the needed functions.",
-                                 binaryFilename.getData()));
-        } else
-        {
-            initFunc(getScriptFunctionStruct());
-
-            for (size_t i = 0; i < instances.getCount(); ++i)
+            if (exc->type == scripting::ValueType::Exception)
             {
-                ScriptInstance *instance = instances[i];
-
-                void *(*createFunc)(Application *, Entity *, Scene *, Script *) = getCreateFunc(instance->getName().getData());
-
-                if (createFunc == nullptr)
-                {
-                    instance->ptr = nullptr;
-                } else
-                {
-                    instance->ptr = createFunc(app, instance->entity, instance->scene, this);
-
-                    if (serialized.getCount() != 0)
-                    {
-                        try
-                        {
-                            instance->deserialize(serialized[i]);
-                        } catch (SerializeException& e)
-                        {
-                            log("Serialization exception");
-                            log("    File: %s\n", e.getFile());
-                            log("    Line: %d\n", e.getLine());
-                            log("    Function: %s\n", e.getFunction());
-                            log("    Script: %s\n", getFilename().getData());
-
-                            void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
-
-                            if (destroyFunc != nullptr)
-                            {
-                                destroyFunc(instance->ptr);
-                                instance->ptr = createFunc(app, instance->entity, instance->scene, this);
-                            } else
-                            {
-                                instance->ptr = nullptr;
-                            }
-                        }
-                    }
-                }
+                THROW(ResourceIOException,
+                      "script",
+                      getFilename(),
+                      ((scripting::ExceptionValue *)exc)->error.getData());
+            } else
+            {
+                THROW(ResourceIOException,
+                      "script",
+                      getFilename(),
+                      "Unhandled exception");
             }
         }
-    } else
-    {
-        THROW(ResourceIOException,
-              "script",
-              getFilename(),
-              String("Unable to execute command: ").append(command));
-    }
-
-    fileSys->pushSearchPaths();
-    fileSys->addSearchPath(dir);
-
-    getIncludes(source, includes);
-
-    fileSys->popSearchPaths();
-
-    for (auto include : includes)
-    {
-        includesModifications.append(::getLastFileModification(include.getData()));
     }
 }
 
@@ -399,60 +569,44 @@ ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *
         scene = entity->getScene();
     }
 
-    void *(*createFunc)(Application *, Entity *, Scene *, Script *) = getCreateFunc(name);
+    List<scripting::Value *> args;
 
-    InstanceBase *ptr;
-
-    if (createFunc == nullptr)
+    if (entity != nullptr)
     {
-        ptr = nullptr;
-    } else
+        args.append(create(context, entity));
+    } else if (scene != nullptr)
     {
-        ptr = dl == nullptr ? nullptr : (InstanceBase *)createFunc(app, entity, scene, this);
+        args.append(create(context, scene));
     }
 
-    ScriptInstance *result = NEW(ScriptInstance, name, this, ptr, entity, scene);
+    ScriptInstance *result;
+
+    try
+    {
+        result = NEW(ScriptInstance, name, this, scripting::call(context, class_, args), entity, scene);
+    } catch (scripting::UnhandledExcException& e)
+    {
+        scripting::Value *exc = e.getException();
+
+        log("Unhandled script exception in %s\n", getFilename().getData());
+
+        if (exc->type == scripting::ValueType::Exception)
+        {
+            log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+        }
+
+        result = NEW(ScriptInstance, name, this, nullptr, entity, scene);
+    }
 
     instances.append(result);
 
     return result;
 }
 
-void *(*Script::getCreateFunc(const char *name))(Application *, Entity *, Scene *, Script *)
+void Script::removeInstance(ScriptInstance *instance)
 {
-    if (dl == nullptr)
+    if (instance->script == this)
     {
-        return nullptr;
-    }
-
-    String resName = String::format("_create%s", name);
-
-    return (void *(*)(Application *, Entity *, Scene *, Script *))dlsym(dl, resName.getData());
-}
-
-void (*Script::getDestroyFunc(const char *name))(void *)
-{
-    if (dl == nullptr)
-    {
-        return nullptr;
-    }
-
-    String resName = String::format("_destroy%s", name);
-
-    return (void (*)(void *))dlsym(dl, resName.getData());
-}
-
-void Script::destroyInstance(ScriptInstance *instance)
-{
-    if (instance->script == this and instance->ptr != nullptr)
-    {
-        void (*destroyFunc)(void *) = getDestroyFunc(instance->getName().getData());
-
-        if (destroyFunc != nullptr)
-        {
-            destroyFunc(instance->ptr);
-        }
-
         instances.remove(instances.find(instance));
     }
 }
