@@ -22065,6 +22065,12 @@ if(1&&TS(a[1],size_t)&&TS(a[2],const Float2 &)&&TS(a[3],const char *)&&TS(a[4],G
 ( f->render(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Float2 &>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<GfxFramebuffer *>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[5])));
 RET CN;
 }
+if(a.getCount()==5)
+if(1&&TS(a[1],size_t)&&TS(a[2],const Float2 &)&&TS(a[3],const char *)&&TS(a[4],const Float3 &))
+{
+( f->render(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Float2 &>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[4])));
+RET CN;
+}
 CATE(TE,UFOF("Font::render.")));
 RET CN;
 }

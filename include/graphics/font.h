@@ -68,13 +68,21 @@ class Font : public Resource
 
         virtual void removeContent();
 
-        size_t predictWidth(size_t size, const char *string);
+        size_t predictWidth(size_t size, const char *string) const;
 
         void render(size_t size,
                     const Float2& position,
                     const char *string,
                     GfxFramebuffer *framebuffer,
-                    const Float3& color);
+                    const Float3& color) const;
+
+        inline void render(size_t size,
+                           const Float2& position,
+                           const char *string,
+                           const Float3& color) const
+        {
+            render(size, position, string, nullptr, color);
+        }
     private:
         struct Glyph
         {
@@ -90,11 +98,11 @@ class Font : public Resource
             HashMap<char, Glyph> glyphs;
         };
 
-        Face *getFace(size_t size);
+        Face *getFace(size_t size) const;
 
-        void loadGlyph(Face& face, char character);
+        void loadGlyph(Face& face, char character) const;
 
-        HashMap<size_t, Face> faces;
+        mutable HashMap<size_t, Face> faces;
 
         GfxMesh *quadMesh;
         GfxShaderCombination *shaders;

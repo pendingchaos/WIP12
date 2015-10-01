@@ -215,7 +215,8 @@ CPU Timings:
         displayedText = self.timings.copy(self.timings);
         
         if self.showExtraTimings {
-            displayedText.append(displayedText, self.extraTimings);
+            #TODO: Why is the "displayedText = " needed?
+            displayedText = displayedText.append(displayedText, self.extraTimings);
         };
         
         self.textTimer.swap(self.textTimer);
@@ -225,8 +226,7 @@ CPU Timings:
         y = height - 40.0;
         y = y / height;
         
-        #TODO: nil -> NULL
-        #self.font.render(self.font, 40, Float2(-1.0, y), displayedText, nil, Float3(1.0));
+        self.font.render(self.font, 40, Float2(-1.0, y), displayedText, Float3(1.0));
         
         self.textCPUTiming = (platform.getTime(platform) - start + 0.0) / platform.getTimerFrequency(platform);
         self.textTimer.end(self.textTimer);

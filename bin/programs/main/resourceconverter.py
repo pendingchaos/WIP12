@@ -857,7 +857,7 @@ if __name__ == "__main__":
             self.bloom2Strength = 1.0
             self.bloom3Strength = 1.0
             self.bloom4Strength = 1.0
-            self.bloomEnabled = False
+            self.bloomEnabled = True
             self.ssaoRadius = 0.25
             self.colorModifiers = []
             self.scripts = []

@@ -61,7 +61,7 @@ void Font::removeContent()
     faces.clear();
 }
 
-Font::Face *Font::getFace(size_t size)
+Font::Face *Font::getFace(size_t size) const
 {
     int faceIndex = faces.findEntry(size);
 
@@ -85,7 +85,7 @@ Font::Face *Font::getFace(size_t size)
     }
 }
 
-size_t Font::predictWidth(size_t size, const char *string)
+size_t Font::predictWidth(size_t size, const char *string) const
 {
     if (getFilename().getLength() == 0)
     {
@@ -130,7 +130,7 @@ void Font::render(size_t size,
                   const Float2& position,
                   const char *string,
                   GfxFramebuffer *framebuffer,
-                  const Float3& color)
+                  const Float3& color) const
 {
     if (getFilename().getLength() == 0)
     {
@@ -253,7 +253,7 @@ void Font::render(size_t size,
     gfxApi->popState();
 }
 
-void Font::loadGlyph(Face& face, char character)
+void Font::loadGlyph(Face& face, char character) const
 {
     FT_Load_Char(face.face, character, FT_LOAD_RENDER);
 

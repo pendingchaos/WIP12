@@ -1484,7 +1484,7 @@ static Value *strFormat(Context *ctx, const List<Value *>& args)
                 }
                 case ValueType::Float:
                 {
-                    result.append(String::formatValue(((FloatValue *)v)->value));
+                    result.append(String::format("%.2f", ((FloatValue *)v)->value));
                     break;
                 }
                 case ValueType::Boolean:

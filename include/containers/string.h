@@ -301,32 +301,32 @@ class String
 
         inline static String formatValue(int value)
         {
-            return String::format("i", value);
+            return String::format("%i", value);
         }
 
         inline static String formatValue(unsigned int value)
         {
-            return String::format("u", value);
+            return String::format("%u", value);
         }
 
         inline static String formatValue(long long int value)
         {
-            return String::format("lli", value);
+            return String::format("%lli", value);
         }
 
         inline static String formatValue(unsigned long long int value)
         {
-            return String::format("llu", value);
+            return String::format("%llu", value);
         }
 
         inline static String formatValue(float value)
         {
-            return String::format("f", value);
+            return String::format("%f", value);
         }
 
         inline static String formatValue(double value)
         {
-            return String::format("f", value);
+            return String::format("%f", value);
         }
 
         inline bool startsWith(const String& with, size_t offset=0) const
