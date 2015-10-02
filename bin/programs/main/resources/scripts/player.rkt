@@ -18,7 +18,7 @@ return class {
         
         physicsWorld = self.scene:getPhysicsWorld();
         
-        shape = PhysicsShapeRef();
+        shape = PhysicsShape();
         shape:setCylinder(Axis.Y, 0.1, 0.8);
         self.feetGhost = physicsWorld:createGhostObject(shape, 0xFFFF ); #TODO: A space is required.
     };

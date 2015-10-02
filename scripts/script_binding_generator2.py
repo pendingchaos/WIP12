@@ -479,7 +479,6 @@ names = []
 for class_ in classes.keys():
     if classes[class_].script_public:
         names.append(class_+"_typeID")
-        names.append(class_+"_ptr_typeID")
 
 for enum in enums:
     if enum.script_public:
@@ -494,7 +493,6 @@ names = []
 for class_ in classes.keys():
     if classes[class_].script_public:
         names.append("*"+class_)
-        names.append("*"+class_+"_ptr")
 
 for enum in enums:
     if enum.script_public:
@@ -955,7 +953,6 @@ for class_ in classes.values():
 
     print "Bindings will be generated for %s" % class_.name
 
-    # The #define is a hack.
     bindings.write(s("""void %s_destroy(CTX,NO);
 SV %s_get_member(CTX,NO,SV);
 void %s_set_member(CTX,NO,SV,SV);
@@ -972,7 +969,9 @@ struct create_val<%s>
 {
 ????static SV f(CTX ctx,const %s&obj)
 ????{
-????????RET STG::createNativeObject(%s_funcs,NEW(TYPE(%s), obj),EXT->%s_typeID);
+????????void *p = (void *)NEW(TYPE(%s), obj);
+????????setAllocInfo(p, AllocInfo(true, false));
+????????RET STG::createNativeObject(%s_funcs,p,EXT->%s_typeID);
 ????}
 };
 template <>
@@ -1003,7 +1002,7 @@ struct create_val<const %s>
 {
 ????static SV f(CTX ctx,const %s&obj) {return create_val<%s>::f(ctx,obj);}
 };
-""" % (class_.code_name, class_.code_name, class_.name, class_.code_name,
+""" % (class_.code_name, class_.code_name, class_.code_name, class_.name,
        class_.name, class_.code_name, class_.code_name, class_.name,
        class_.code_name, class_.name, class_.name, class_.code_name,
        class_.code_name, class_.code_name, class_.code_name, class_.code_name,
@@ -1037,18 +1036,7 @@ for class_ in classes.values():
     if not class_.script_public:
         continue
 
-    name = class_.name + "_ptr"
-
-    bindings.write(s("""SV %s_copy(CTX,?NO);
-void %s_destroy(CTX,NO);
-SV %s_get_member(CTX,NO,SV);
-void %s_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs %s_funcs={
-????.destroy = %s_destroy,
-????.getMember = %s_get_member,
-????.setMember = %s_set_member
-};
-""" % (name, name, name, name, name, name, name, name)))
+    name = class_.name
 
     bindings.write(s("""template <>
 struct create_val<%s *>
@@ -1058,7 +1046,7 @@ struct create_val<%s *>
 ????????AllocInfo i=getAllocInfo((void*)obj);
 ????????i.scriptRef = true;
 ????????setAllocInfo((void *)obj, i);
-????????RET STG::createNativeObject(%s_funcs,obj,EXT->%s_ptr_typeID);
+????????RET STG::createNativeObject(%s_funcs,obj,EXT->%s_typeID);
 ????}
 };
 template <>
@@ -1069,12 +1057,12 @@ struct val_to_c<%s *>
 ????????if(head->type==STG::ValueType::NativeObject)
 ????????{
 ????????????NO obj=(NO)head;
-????????????if(obj->typeID==EXT->%s_ptr_typeID)
+????????????if(obj->typeID==EXT->%s_typeID)
 ????????????????RET(%s*)obj->data;
 ????????????else
-???????????????? CATE(TE,"Value is not a %sRef."));
+???????????????? CATE(TE,"Value is not a %s."));
 ????????} else
-???????????? CATE(TE,"Value is not a %sRef."));
+???????????? CATE(TE,"Value is not a %s."));
 ????}
 };
 template <>
@@ -1083,7 +1071,7 @@ struct type_same<%s *>
 ????static bool f(CTX ctx,const SV head)
 ????{
 ????????if(head->type==STG::ValueType::NativeObject)
-????????????RET((NO)head)->typeID==EXT->%s_ptr_typeID;
+????????????RET((NO)head)->typeID==EXT->%s_typeID;
 ????????else
 ???????????? RET false;
 ????}
@@ -1094,7 +1082,7 @@ struct type_same<const %s *>
 ????static bool f(CTX ctx,const SV head)
 ????{
 ????????if(head->type==STG::ValueType::NativeObject)
-????????????RET((NO)head)->typeID==EXT->%s_ptr_typeID;
+????????????RET((NO)head)->typeID==EXT->%s_typeID;
 ????????else
 ???????????? RET false;
 ????}
@@ -1107,12 +1095,12 @@ struct val_to_c<const %s *>
 ????????if(head->type==STG::ValueType::NativeObject)
 ????????{
 ????????????NO obj=(NO)head;
-????????????if(obj->typeID==EXT->%s_ptr_typeID)
+????????????if(obj->typeID==EXT->%s_typeID)
 ????????????????RET(%s*)obj->data;
 ????????????else
-???????????????? CATE(TE,"Value is not a %sRef."));
+???????????????? CATE(TE,"Value is not a %s."));
 ????????} else
-???????????? CATE(TE,"Value is not a %sRef."));
+???????????? CATE(TE,"Value is not a %s."));
 ????}
 };
 
@@ -1194,9 +1182,9 @@ for class_ in classes.values():
 
     if class_.destroy_code != None:
         bindings.write("%s*obj=(%s*)f->data;\n" % (class_.code_name, class_.code_name))
-        bindings.write("if(obj!=nullptr){"+class_.destroy_code+";}\n}")
+        bindings.write("if(_scriptDeletePart(obj)){"+class_.destroy_code+";}\n}")
     elif class_.destructable:
-        bindings.write(s("""????DELETE((%s*)f->data);
+        bindings.write(s("""????SCRIPT_DELETE((%s*)f->data);
 }""") % (class_.code_name))
     else:
         bindings.write("}")
@@ -1213,7 +1201,6 @@ for class_ in classes.values():
 
 """ % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
     elif len(class_.constructors) == 0:
-        #The #define is a hack.
         bindings.write(s("""SV %s_new(CTX ctx,const List<SV>&a)
 {
 ????if(a.getCount()!=1)
@@ -1243,16 +1230,18 @@ for class_ in classes.values():
                 if i in constructor.arg_convs:
                     args[i] = "%s(ctx,a[%d])" % (constructor.arg_convs[i], i+1)
 
-            constStr = ",".join([class_.code_name] + args)
+            constStr = ",".join(["TYPE(%s)" % (class_.code_name)] + args)
             
             args = ["TS(a[%d],%s)" % (j+1, constructor.args[j].type_.to_string(class_.template_types)) for j in xrange(len(constructor.args))]
             
             testStr = "&&".join(["true"] + args)
 
             bindings.write(s("""????if(a.getCount()==%d)
-????????if(%s)
-????????????RET STG::createNativeObject(%s_funcs,NEW(%s),EXT->%s_typeID);
-""") % (len(constructor.args)+1, testStr, class_.name, constStr, class_.name))
+????????if(%s){
+????????????void *p = (void *)NEW(%s);
+????????????setAllocInfo(p, AllocInfo(true, false));
+????????????RET STG::createNativeObject(%s_funcs,p,EXT->%s_typeID);
+}""") % (len(constructor.args)+1, testStr, constStr, class_.name, class_.name))
 
         bindings.write(s("""????CATE(TE,UFOF("%s's constructor.")));
 ????RET CN;
@@ -1511,149 +1500,6 @@ for functions_ in functions.values():
 
 """) % (function.name))
 
-for class_ in classes.values():
-    if not class_.script_public:
-        continue
-    
-    name = class_.name + "_ptr"
-    
-    bindings.write(s("""SV %s_ptr_new(CTX ctx,const List<SV>&a)
-{
-????List<SV> args2 = a.copy();
-????args2[0]=EXT->%s;
-????NO obj=(NO)%s_new(ctx, args2);
-????obj->funcs=%s_ptr_funcs;
-????obj->typeID=EXT->%s_ptr_typeID;
-????setAllocInfo(obj->data, AllocInfo(true, false));
-????RET(SV)obj;
-}
-""" % (class_.name, class_.name, class_.name, class_.name, class_.name)))
-
-    if class_.copyable:
-        bindings.write(s("""SV %s_ptr_deref(CTX ctx,const List<SV>&a)
-{
-????if(a.getCount()!=1)
-????????CATE(VE,"%sRef::deref" EAOE));
-????SV f=a[0];
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::deref expects %sRef as first argument."));
-????RET CV(*(%s *)((NO)f)->data);
-}
-""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name)))
-
-        bindings.write(s("""SV %s_ptr_set(CTX ctx,const List<SV>&a)
-{
-????if(a.getCount()!=2)
-????????CATE(VE,"%s::refset expects two arguments."));
-????SV f=a[0];
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::refset expects %sRef as first argument."));
-????*((%s *)((NO)f)->data) = val_to_c<%s>::f(ctx,a[1]);
-????RET CN;
-}
-""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name)))
-    else:
-        bindings.write(s("""SV %s_ptr_deref(CTX ctx,const List<SV>&a)
-{
-????if(a.getCount()!=1)
-????????CATE(VE,"%sRef::deref" EAOE));
-????SV f=a[0];
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::deref expects %sRef as first argument."));
-????????CATE(TE,"%s objects are not copyable."));
-}
-""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
-
-        bindings.write(s("""SV %s_ptr_set(CTX ctx,const List<SV>&a)
-{
-????if(a.getCount()!=2)
-????????CATE(VE,"%s::refset expects two arguments."));
-????SV f=a[0];
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::refset expects %sRef as first argument."));
-????????CATE(TE,"%s objects are not copyable."));
-????RET CN;
-}
-""" % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name)))
-
-    if class_.destroy_code != None:
-        bindings.write(s("""
-void %s_destroy(CTX ctx,NO f)
-{
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::__del__ expects %sRef as first argument."));
-????%s*obj=(%s*)f->data;
-????if(_scriptDeletePart(f->data) && (obj != NULL)) {%s;}
-}""" % (name, class_.code_name, class_.name, class_.name, class_.code_name, class_.code_name, class_.destroy_code)))
-    elif not class_.destructable:
-        #Let's hope it is freed.
-        bindings.write(s("""
-void %s_destroy(CTX ctx,NO f)
-{
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::__del__ expects %sRef as first argument."));
-}""" % (name, class_.code_name, class_.name, class_.name)))
-    else:
-        bindings.write(s("""
-void %s_destroy(CTX ctx,NO f)
-{
-????if(!TS((SV)f,%s*))
-????????CATE(TE,"%sRef::__del__ expects %sRef as first argument."));
-????SCRIPT_DELETE((%s *)f->data);
-}""" % (name, class_.code_name, class_.name, class_.name,
-        class_.code_name)))
-
-    bindings.write(s("""
-SV %s_get_member(CTX ctx,NO f,SV key)
-{
-????if(!TS((SV)f,%s*))
-????????CATE(TE,FAE("%sRef's get method","%sRef")));
-????if (key->type==STG::ValueType::StringType)
-????{
-????????String keyStr=((STG::StringValue *)key)->value;
-????????if(f->data==NULL)
-????????{
-????????if(keyStr=="__typeID__")
-????????????RET STG::createInt(f->typeID);
-????????EI(keyStr=="__name__")
-????????????RET STG::createString("%sPtr");
-????????EI(keyStr=="__new__")
-????????????RET CNF(%s_ptr_new);
-????????EI(keyStr=="__call__")
-????????????RET CNF(%s_ptr_new);
-????????else
-????????????CATE(KE,"Unknown member for %sRef."));
-????????} else
-????????{
-????????if(keyStr=="deref")RET CNF(%s_ptr_deref);
-????????if(keyStr=="refset")RET CNF(%s_ptr_set);
-????????}
-????}
-????STG::NativeObject obj;
-????obj.head.type=STG::ValueType::NativeObject;
-????obj.funcs=%s_funcs;
-????obj.typeID=EXT->%s_typeID;
-????obj.refCount=1;
-????obj.data=f->data;
-????RET %s_get_member(ctx, &obj, key);
-}
-void %s_set_member(CTX ctx,NO f,SV key,SV value)
-{
-????if(!TS((SV)f,%s*))
-????????CATE(TE,FAE("%sRef's set method","%sRef")));
-????STG::NativeObject obj;
-????obj.head.type=STG::ValueType::NativeObject;
-????obj.funcs=%s_funcs;
-????obj.typeID=EXT->%s_typeID;
-????obj.refCount=1;
-????obj.data=f->data;
-????%s_set_member(ctx, &obj, key, value);
-}
-""") % (name, class_.code_name, class_.name,
-        class_.name, class_.name, class_.name, class_.name, class_.name,
-        class_.name, class_.name, class_.name, class_.name, class_.name, name, class_.code_name,
-        class_.name, class_.name, class_.name, class_.name, class_.name))
-
 bindings.write("namespace scripting\n{\n")
 
 for class_ in classes.values():
@@ -1692,13 +1538,6 @@ for class_ in classes.values():
     ext->%s_typeID = typeID;
     ext->%s = scripting::createNativeObject(%s_funcs, NULL, typeID);
     engine->getGlobalVars().set("%s", ext->%s);
-    
-""" % (class_.name, class_.name, class_.name, class_.name, class_.name))
-
-    bindings.write("""    typeID = engine->createNewTypeID();
-    ext->%s_ptr_typeID = typeID;
-    ext->%s_ptr = scripting::createNativeObject(%s_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("%sRef", ext->%s_ptr);
     
 """ % (class_.name, class_.name, class_.name, class_.name, class_.name))
 

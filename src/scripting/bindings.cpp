@@ -89,8 +89,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, GhostObject_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, ScrollBar_typeID, ScrollBar_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, LightList_typeID, LightList_ptr_typeID, RenderStats_typeID, RenderStats_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, GuiPlacer_typeID, GuiPlacer_ptr_typeID, ImGui_typeID, ImGui_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, Container_typeID, Container_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *GhostObject, *GhostObject_ptr, *StrStrMap, *StrStrMap_ptr, *GfxApi, *GfxApi_ptr, *GfxCompiledShader, *GfxCompiledShader_ptr, *ScrollBar, *ScrollBar_ptr, *GhostObjList, *GhostObjList_ptr, *GPUTimer, *GPUTimer_ptr, *RigidBody, *RigidBody_ptr, *UInt2, *UInt2_ptr, *LightList, *LightList_ptr, *RenderStats, *RenderStats_ptr, *Filesystem, *Filesystem_ptr, *ResourceManager, *ResourceManager_ptr, *Entity, *Entity_ptr, *GfxRenderer, *GfxRenderer_ptr, *Float2, *Float2_ptr, *GfxFramebuffer, *GfxFramebuffer_ptr, *Font, *Font_ptr, *Event, *Event_ptr, *PhysicsWorld, *PhysicsWorld_ptr, *Stats, *Stats_ptr, *AudioSource, *AudioSource_ptr, *RayCastResultList, *RayCastResultList_ptr, *Platform, *Platform_ptr, *Camera, *Camera_ptr, *GfxMesh, *GfxMesh_ptr, *Resource, *Resource_ptr, *GfxShader, *GfxShader_ptr, *Light, *Light_ptr, *TextureSampler, *TextureSampler_ptr, *Scene, *Scene_ptr, *Int3, *Int3_ptr, *ResizableData, *ResizableData_ptr, *Int4, *Int4_ptr, *Float3, *Float3_ptr, *GfxBuffer, *GfxBuffer_ptr, *Transform, *Transform_ptr, *AudioSourceList, *AudioSourceList_ptr, *GfxMaterial, *GfxMaterial_ptr, *Quaternion, *Quaternion_ptr, *GfxMeshAttrib, *GfxMeshAttrib_ptr, *RenderComponent, *RenderComponent_ptr, *Int2, *Int2_ptr, *AudioWorld, *AudioWorld_ptr, *GuiPlacer, *GuiPlacer_ptr, *ImGui, *ImGui_ptr, *StringList, *StringList_ptr, *Application, *Application_ptr, *LightPointData, *LightPointData_ptr, *Float4, *Float4_ptr, *FloatList, *FloatList_ptr, *Container, *Container_ptr, *LightDirectionalData, *LightDirectionalData_ptr, *Matrix4x4, *Matrix4x4_ptr, *Map, *Map_ptr, *UInt3, *UInt3_ptr, *LightSpotData, *LightSpotData_ptr, *PhysicsShape, *PhysicsShape_ptr, *AudioDevice, *AudioDevice_ptr, *RigidBodyList, *RigidBodyList_ptr, *UInt4, *UInt4_ptr, *RayCastResult, *RayCastResult_ptr, *GfxLOD, *GfxLOD_ptr, *File, *File_ptr, *AABB, *AABB_ptr, *RigidBodyConstructionInfo, *RigidBodyConstructionInfo_ptr, *List, *List_ptr, *Audio, *Audio_ptr, *GfxTexture, *GfxTexture_ptr, *GfxSubModelList, *GfxSubModelList_ptr, *GfxModel, *GfxModel_ptr, *GfxLODList, *GfxLODList_ptr, *EntityList, *EntityList_ptr, *GfxShaderCombination, *GfxShaderCombination_ptr, *Matrix3x3, *Matrix3x3_ptr, *GfxDebugDrawer, *GfxDebugDrawer_ptr, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *GhostObject, *StrStrMap, *GfxApi, *GfxCompiledShader, *ScrollBar, *GhostObjList, *GPUTimer, *RigidBody, *UInt2, *LightList, *RenderStats, *Filesystem, *ResourceManager, *Entity, *GfxRenderer, *Float2, *GfxFramebuffer, *Font, *Event, *PhysicsWorld, *Stats, *AudioSource, *RayCastResultList, *Platform, *Camera, *GfxMesh, *Resource, *GfxShader, *Light, *TextureSampler, *Scene, *Int3, *ResizableData, *Int4, *Float3, *GfxBuffer, *Transform, *AudioSourceList, *GfxMaterial, *Quaternion, *GfxMeshAttrib, *RenderComponent, *Int2, *AudioWorld, *GuiPlacer, *ImGui, *StringList, *Application, *LightPointData, *Float4, *FloatList, *Container, *LightDirectionalData, *Matrix4x4, *Map, *UInt3, *LightSpotData, *PhysicsShape, *AudioDevice, *RigidBodyList, *UInt4, *RayCastResult, *GfxLOD, *File, *AABB, *RigidBodyConstructionInfo, *List, *Audio, *GfxTexture, *GfxSubModelList, *GfxModel, *GfxLODList, *EntityList, *GfxShaderCombination, *Matrix3x3, *GfxDebugDrawer, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -2198,7 +2198,9 @@ struct create_val<HashMap<String,String>>
 {
 static SV f(CTX ctx,const HashMap<String,String>&obj)
 {
-RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>), obj),EXT->StrStrMap_typeID);
+void *p = (void *)NEW(TYPE(HashMap<String,String>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(StrStrMap_funcs,p,EXT->StrStrMap_typeID);
 }
 };
 template <>
@@ -2342,7 +2344,9 @@ struct create_val<GfxCompiledShader>
 {
 static SV f(CTX ctx,const GfxCompiledShader&obj)
 {
-RET STG::createNativeObject(GfxCompiledShader_funcs,NEW(TYPE(GfxCompiledShader), obj),EXT->GfxCompiledShader_typeID);
+void *p = (void *)NEW(TYPE(GfxCompiledShader), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxCompiledShader_funcs,p,EXT->GfxCompiledShader_typeID);
 }
 };
 template <>
@@ -2402,7 +2406,9 @@ struct create_val<ScrollBar>
 {
 static SV f(CTX ctx,const ScrollBar&obj)
 {
-RET STG::createNativeObject(ScrollBar_funcs,NEW(TYPE(ScrollBar), obj),EXT->ScrollBar_typeID);
+void *p = (void *)NEW(TYPE(ScrollBar), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ScrollBar_funcs,p,EXT->ScrollBar_typeID);
 }
 };
 template <>
@@ -2461,7 +2467,9 @@ struct create_val<List<GhostObject*>>
 {
 static SV f(CTX ctx,const List<GhostObject*>&obj)
 {
-RET STG::createNativeObject(GhostObjList_funcs,NEW(TYPE(List<GhostObject*>), obj),EXT->GhostObjList_typeID);
+void *p = (void *)NEW(TYPE(List<GhostObject*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GhostObjList_funcs,p,EXT->GhostObjList_typeID);
 }
 };
 template <>
@@ -2620,7 +2628,9 @@ struct create_val<T2<uint32_t>>
 {
 static SV f(CTX ctx,const T2<uint32_t>&obj)
 {
-RET STG::createNativeObject(UInt2_funcs,NEW(TYPE(T2<uint32_t>), obj),EXT->UInt2_typeID);
+void *p = (void *)NEW(TYPE(T2<uint32_t>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
 }
 };
 template <>
@@ -2698,7 +2708,9 @@ struct create_val<List<Light*>>
 {
 static SV f(CTX ctx,const List<Light*>&obj)
 {
-RET STG::createNativeObject(LightList_funcs,NEW(TYPE(List<Light*>), obj),EXT->LightList_typeID);
+void *p = (void *)NEW(TYPE(List<Light*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightList_funcs,p,EXT->LightList_typeID);
 }
 };
 template <>
@@ -2770,7 +2782,9 @@ struct create_val<RenderStats>
 {
 static SV f(CTX ctx,const RenderStats&obj)
 {
-RET STG::createNativeObject(RenderStats_funcs,NEW(TYPE(RenderStats), obj),EXT->RenderStats_typeID);
+void *p = (void *)NEW(TYPE(RenderStats), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RenderStats_funcs,p,EXT->RenderStats_typeID);
 }
 };
 template <>
@@ -2827,7 +2841,9 @@ struct create_val<Filesystem>
 {
 static SV f(CTX ctx,const Filesystem&obj)
 {
-RET STG::createNativeObject(Filesystem_funcs,NEW(TYPE(Filesystem), obj),EXT->Filesystem_typeID);
+void *p = (void *)NEW(TYPE(Filesystem), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Filesystem_funcs,p,EXT->Filesystem_typeID);
 }
 };
 template <>
@@ -2975,7 +2991,9 @@ struct create_val<GfxRenderer>
 {
 static SV f(CTX ctx,const GfxRenderer&obj)
 {
-RET STG::createNativeObject(GfxRenderer_funcs,NEW(TYPE(GfxRenderer), obj),EXT->GfxRenderer_typeID);
+void *p = (void *)NEW(TYPE(GfxRenderer), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxRenderer_funcs,p,EXT->GfxRenderer_typeID);
 }
 };
 template <>
@@ -3049,7 +3067,9 @@ struct create_val<T2<float>>
 {
 static SV f(CTX ctx,const T2<float>&obj)
 {
-RET STG::createNativeObject(Float2_funcs,NEW(TYPE(T2<float>), obj),EXT->Float2_typeID);
+void *p = (void *)NEW(TYPE(T2<float>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
 }
 };
 template <>
@@ -3191,7 +3211,9 @@ struct create_val<Event>
 {
 static SV f(CTX ctx,const Event&obj)
 {
-RET STG::createNativeObject(Event_funcs,NEW(TYPE(Event), obj),EXT->Event_typeID);
+void *p = (void *)NEW(TYPE(Event), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Event_funcs,p,EXT->Event_typeID);
 }
 };
 template <>
@@ -3290,7 +3312,9 @@ struct create_val<Stats>
 {
 static SV f(CTX ctx,const Stats&obj)
 {
-RET STG::createNativeObject(Stats_funcs,NEW(TYPE(Stats), obj),EXT->Stats_typeID);
+void *p = (void *)NEW(TYPE(Stats), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Stats_funcs,p,EXT->Stats_typeID);
 }
 };
 template <>
@@ -3347,7 +3371,9 @@ struct create_val<AudioSource>
 {
 static SV f(CTX ctx,const AudioSource&obj)
 {
-RET STG::createNativeObject(AudioSource_funcs,NEW(TYPE(AudioSource), obj),EXT->AudioSource_typeID);
+void *p = (void *)NEW(TYPE(AudioSource), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSource_funcs,p,EXT->AudioSource_typeID);
 }
 };
 template <>
@@ -3406,7 +3432,9 @@ struct create_val<List<RayCastResult>>
 {
 static SV f(CTX ctx,const List<RayCastResult>&obj)
 {
-RET STG::createNativeObject(RayCastResultList_funcs,NEW(TYPE(List<RayCastResult>), obj),EXT->RayCastResultList_typeID);
+void *p = (void *)NEW(TYPE(List<RayCastResult>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RayCastResultList_funcs,p,EXT->RayCastResultList_typeID);
 }
 };
 template <>
@@ -3522,7 +3550,9 @@ struct create_val<Camera>
 {
 static SV f(CTX ctx,const Camera&obj)
 {
-RET STG::createNativeObject(Camera_funcs,NEW(TYPE(Camera), obj),EXT->Camera_typeID);
+void *p = (void *)NEW(TYPE(Camera), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Camera_funcs,p,EXT->Camera_typeID);
 }
 };
 template <>
@@ -3743,7 +3773,9 @@ struct create_val<TextureSampler>
 {
 static SV f(CTX ctx,const TextureSampler&obj)
 {
-RET STG::createNativeObject(TextureSampler_funcs,NEW(TYPE(TextureSampler), obj),EXT->TextureSampler_typeID);
+void *p = (void *)NEW(TYPE(TextureSampler), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
 }
 };
 template <>
@@ -3844,7 +3876,9 @@ struct create_val<T3<int32_t>>
 {
 static SV f(CTX ctx,const T3<int32_t>&obj)
 {
-RET STG::createNativeObject(Int3_funcs,NEW(TYPE(T3<int32_t>), obj),EXT->Int3_typeID);
+void *p = (void *)NEW(TYPE(T3<int32_t>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
 }
 };
 template <>
@@ -3943,7 +3977,9 @@ struct create_val<ResizableData>
 {
 static SV f(CTX ctx,const ResizableData&obj)
 {
-RET STG::createNativeObject(ResizableData_funcs,NEW(TYPE(ResizableData), obj),EXT->ResizableData_typeID);
+void *p = (void *)NEW(TYPE(ResizableData), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ResizableData_funcs,p,EXT->ResizableData_typeID);
 }
 };
 template <>
@@ -4056,7 +4092,9 @@ struct create_val<T4<int32_t>>
 {
 static SV f(CTX ctx,const T4<int32_t>&obj)
 {
-RET STG::createNativeObject(Int4_funcs,NEW(TYPE(T4<int32_t>), obj),EXT->Int4_typeID);
+void *p = (void *)NEW(TYPE(T4<int32_t>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
 }
 };
 template <>
@@ -4250,7 +4288,9 @@ struct create_val<T3<float>>
 {
 static SV f(CTX ctx,const T3<float>&obj)
 {
-RET STG::createNativeObject(Float3_funcs,NEW(TYPE(T3<float>), obj),EXT->Float3_typeID);
+void *p = (void *)NEW(TYPE(T3<float>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
 }
 };
 template <>
@@ -4373,7 +4413,9 @@ struct create_val<Transform>
 {
 static SV f(CTX ctx,const Transform&obj)
 {
-RET STG::createNativeObject(Transform_funcs,NEW(TYPE(Transform), obj),EXT->Transform_typeID);
+void *p = (void *)NEW(TYPE(Transform), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Transform_funcs,p,EXT->Transform_typeID);
 }
 };
 template <>
@@ -4431,7 +4473,9 @@ struct create_val<List<AudioSource*>>
 {
 static SV f(CTX ctx,const List<AudioSource*>&obj)
 {
-RET STG::createNativeObject(AudioSourceList_funcs,NEW(TYPE(List<AudioSource*>), obj),EXT->AudioSourceList_typeID);
+void *p = (void *)NEW(TYPE(List<AudioSource*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
 }
 };
 template <>
@@ -4547,7 +4591,9 @@ struct create_val<Quaternion>
 {
 static SV f(CTX ctx,const Quaternion&obj)
 {
-RET STG::createNativeObject(Quaternion_funcs,NEW(TYPE(Quaternion), obj),EXT->Quaternion_typeID);
+void *p = (void *)NEW(TYPE(Quaternion), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
 }
 };
 template <>
@@ -4622,7 +4668,9 @@ struct create_val<GfxMeshAttrib>
 {
 static SV f(CTX ctx,const GfxMeshAttrib&obj)
 {
-RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(TYPE(GfxMeshAttrib), obj),EXT->GfxMeshAttrib_typeID);
+void *p = (void *)NEW(TYPE(GfxMeshAttrib), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxMeshAttrib_funcs,p,EXT->GfxMeshAttrib_typeID);
 }
 };
 template <>
@@ -4706,7 +4754,9 @@ struct create_val<T2<int32_t>>
 {
 static SV f(CTX ctx,const T2<int32_t>&obj)
 {
-RET STG::createNativeObject(Int2_funcs,NEW(TYPE(T2<int32_t>), obj),EXT->Int2_typeID);
+void *p = (void *)NEW(TYPE(T2<int32_t>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
 }
 };
 template <>
@@ -4784,7 +4834,9 @@ struct create_val<AudioWorld>
 {
 static SV f(CTX ctx,const AudioWorld&obj)
 {
-RET STG::createNativeObject(AudioWorld_funcs,NEW(TYPE(AudioWorld), obj),EXT->AudioWorld_typeID);
+void *p = (void *)NEW(TYPE(AudioWorld), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioWorld_funcs,p,EXT->AudioWorld_typeID);
 }
 };
 template <>
@@ -4847,7 +4899,9 @@ struct create_val<GuiPlacer>
 {
 static SV f(CTX ctx,const GuiPlacer&obj)
 {
-RET STG::createNativeObject(GuiPlacer_funcs,NEW(TYPE(GuiPlacer), obj),EXT->GuiPlacer_typeID);
+void *p = (void *)NEW(TYPE(GuiPlacer), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GuiPlacer_funcs,p,EXT->GuiPlacer_typeID);
 }
 };
 template <>
@@ -4913,7 +4967,9 @@ struct create_val<ImGui>
 {
 static SV f(CTX ctx,const ImGui&obj)
 {
-RET STG::createNativeObject(ImGui_funcs,NEW(TYPE(ImGui), obj),EXT->ImGui_typeID);
+void *p = (void *)NEW(TYPE(ImGui), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
 }
 };
 template <>
@@ -4978,7 +5034,9 @@ struct create_val<List<String>>
 {
 static SV f(CTX ctx,const List<String>&obj)
 {
-RET STG::createNativeObject(StringList_funcs,NEW(TYPE(List<String>), obj),EXT->StringList_typeID);
+void *p = (void *)NEW(TYPE(List<String>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 }
 };
 template <>
@@ -5083,7 +5141,9 @@ struct create_val<LightPointData>
 {
 static SV f(CTX ctx,const LightPointData&obj)
 {
-RET STG::createNativeObject(LightPointData_funcs,NEW(TYPE(LightPointData), obj),EXT->LightPointData_typeID);
+void *p = (void *)NEW(TYPE(LightPointData), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightPointData_funcs,p,EXT->LightPointData_typeID);
 }
 };
 template <>
@@ -5140,7 +5200,9 @@ struct create_val<T4<float>>
 {
 static SV f(CTX ctx,const T4<float>&obj)
 {
-RET STG::createNativeObject(Float4_funcs,NEW(TYPE(T4<float>), obj),EXT->Float4_typeID);
+void *p = (void *)NEW(TYPE(T4<float>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
 }
 };
 template <>
@@ -5334,7 +5396,9 @@ struct create_val<List<float>>
 {
 static SV f(CTX ctx,const List<float>&obj)
 {
-RET STG::createNativeObject(FloatList_funcs,NEW(TYPE(List<float>), obj),EXT->FloatList_typeID);
+void *p = (void *)NEW(TYPE(List<float>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(FloatList_funcs,p,EXT->FloatList_typeID);
 }
 };
 template <>
@@ -5406,7 +5470,9 @@ struct create_val<Container>
 {
 static SV f(CTX ctx,const Container&obj)
 {
-RET STG::createNativeObject(Container_funcs,NEW(TYPE(Container), obj),EXT->Container_typeID);
+void *p = (void *)NEW(TYPE(Container), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Container_funcs,p,EXT->Container_typeID);
 }
 };
 template <>
@@ -5463,7 +5529,9 @@ struct create_val<LightDirectionalData>
 {
 static SV f(CTX ctx,const LightDirectionalData&obj)
 {
-RET STG::createNativeObject(LightDirectionalData_funcs,NEW(TYPE(LightDirectionalData), obj),EXT->LightDirectionalData_typeID);
+void *p = (void *)NEW(TYPE(LightDirectionalData), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightDirectionalData_funcs,p,EXT->LightDirectionalData_typeID);
 }
 };
 template <>
@@ -5520,7 +5588,9 @@ struct create_val<Matrix4x4>
 {
 static SV f(CTX ctx,const Matrix4x4&obj)
 {
-RET STG::createNativeObject(Matrix4x4_funcs,NEW(TYPE(Matrix4x4), obj),EXT->Matrix4x4_typeID);
+void *p = (void *)NEW(TYPE(Matrix4x4), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix4x4_funcs,p,EXT->Matrix4x4_typeID);
 }
 };
 template <>
@@ -5594,7 +5664,9 @@ struct create_val<HashMap<scripting::Value*,scripting::Value*>>
 {
 static SV f(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>&obj)
 {
-RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>), obj),EXT->Map_typeID);
+void *p = (void *)NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Map_funcs,p,EXT->Map_typeID);
 }
 };
 template <>
@@ -5664,7 +5736,9 @@ struct create_val<T3<uint32_t>>
 {
 static SV f(CTX ctx,const T3<uint32_t>&obj)
 {
-RET STG::createNativeObject(UInt3_funcs,NEW(TYPE(T3<uint32_t>), obj),EXT->UInt3_typeID);
+void *p = (void *)NEW(TYPE(T3<uint32_t>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
 }
 };
 template <>
@@ -5763,7 +5837,9 @@ struct create_val<LightSpotData>
 {
 static SV f(CTX ctx,const LightSpotData&obj)
 {
-RET STG::createNativeObject(LightSpotData_funcs,NEW(TYPE(LightSpotData), obj),EXT->LightSpotData_typeID);
+void *p = (void *)NEW(TYPE(LightSpotData), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightSpotData_funcs,p,EXT->LightSpotData_typeID);
 }
 };
 template <>
@@ -5867,7 +5943,9 @@ struct create_val<AudioDevice>
 {
 static SV f(CTX ctx,const AudioDevice&obj)
 {
-RET STG::createNativeObject(AudioDevice_funcs,NEW(TYPE(AudioDevice), obj),EXT->AudioDevice_typeID);
+void *p = (void *)NEW(TYPE(AudioDevice), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioDevice_funcs,p,EXT->AudioDevice_typeID);
 }
 };
 template <>
@@ -5937,7 +6015,9 @@ struct create_val<List<RigidBody*>>
 {
 static SV f(CTX ctx,const List<RigidBody*>&obj)
 {
-RET STG::createNativeObject(RigidBodyList_funcs,NEW(TYPE(List<RigidBody*>), obj),EXT->RigidBodyList_typeID);
+void *p = (void *)NEW(TYPE(List<RigidBody*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RigidBodyList_funcs,p,EXT->RigidBodyList_typeID);
 }
 };
 template <>
@@ -6009,7 +6089,9 @@ struct create_val<T4<uint32_t>>
 {
 static SV f(CTX ctx,const T4<uint32_t>&obj)
 {
-RET STG::createNativeObject(UInt4_funcs,NEW(TYPE(T4<uint32_t>), obj),EXT->UInt4_typeID);
+void *p = (void *)NEW(TYPE(T4<uint32_t>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
 }
 };
 template <>
@@ -6203,7 +6285,9 @@ struct create_val<RayCastResult>
 {
 static SV f(CTX ctx,const RayCastResult&obj)
 {
-RET STG::createNativeObject(RayCastResult_funcs,NEW(TYPE(RayCastResult), obj),EXT->RayCastResult_typeID);
+void *p = (void *)NEW(TYPE(RayCastResult), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RayCastResult_funcs,p,EXT->RayCastResult_typeID);
 }
 };
 template <>
@@ -6263,7 +6347,9 @@ struct create_val<GfxLOD>
 {
 static SV f(CTX ctx,const GfxLOD&obj)
 {
-RET STG::createNativeObject(GfxLOD_funcs,NEW(TYPE(GfxLOD), obj),EXT->GfxLOD_typeID);
+void *p = (void *)NEW(TYPE(GfxLOD), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxLOD_funcs,p,EXT->GfxLOD_typeID);
 }
 };
 template <>
@@ -6382,7 +6468,9 @@ struct create_val<AABB>
 {
 static SV f(CTX ctx,const AABB&obj)
 {
-RET STG::createNativeObject(AABB_funcs,NEW(TYPE(AABB), obj),EXT->AABB_typeID);
+void *p = (void *)NEW(TYPE(AABB), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AABB_funcs,p,EXT->AABB_typeID);
 }
 };
 template <>
@@ -6442,7 +6530,9 @@ struct create_val<RigidBodyConstructionInfo>
 {
 static SV f(CTX ctx,const RigidBodyConstructionInfo&obj)
 {
-RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,NEW(TYPE(RigidBodyConstructionInfo), obj),EXT->RigidBodyConstructionInfo_typeID);
+void *p = (void *)NEW(TYPE(RigidBodyConstructionInfo), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,p,EXT->RigidBodyConstructionInfo_typeID);
 }
 };
 template <>
@@ -6499,7 +6589,9 @@ struct create_val<List<scripting::Value*>>
 {
 static SV f(CTX ctx,const List<scripting::Value*>&obj)
 {
-RET STG::createNativeObject(List_funcs,NEW(TYPE(List<scripting::Value*>), obj),EXT->List_typeID);
+void *p = (void *)NEW(TYPE(List<scripting::Value*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }
 };
 template <>
@@ -6664,7 +6756,9 @@ struct create_val<List<GfxModel::SubModel>>
 {
 static SV f(CTX ctx,const List<GfxModel::SubModel>&obj)
 {
-RET STG::createNativeObject(GfxSubModelList_funcs,NEW(TYPE(List<GfxModel::SubModel>), obj),EXT->GfxSubModelList_typeID);
+void *p = (void *)NEW(TYPE(List<GfxModel::SubModel>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxSubModelList_funcs,p,EXT->GfxSubModelList_typeID);
 }
 };
 template <>
@@ -6765,7 +6859,9 @@ struct create_val<List<GfxLOD>>
 {
 static SV f(CTX ctx,const List<GfxLOD>&obj)
 {
-RET STG::createNativeObject(GfxLODList_funcs,NEW(TYPE(List<GfxLOD>), obj),EXT->GfxLODList_typeID);
+void *p = (void *)NEW(TYPE(List<GfxLOD>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxLODList_funcs,p,EXT->GfxLODList_typeID);
 }
 };
 template <>
@@ -6837,7 +6933,9 @@ struct create_val<List<Entity*>>
 {
 static SV f(CTX ctx,const List<Entity*>&obj)
 {
-RET STG::createNativeObject(EntityList_funcs,NEW(TYPE(List<Entity*>), obj),EXT->EntityList_typeID);
+void *p = (void *)NEW(TYPE(List<Entity*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(EntityList_funcs,p,EXT->EntityList_typeID);
 }
 };
 template <>
@@ -6936,7 +7034,9 @@ struct create_val<Matrix3x3>
 {
 static SV f(CTX ctx,const Matrix3x3&obj)
 {
-RET STG::createNativeObject(Matrix3x3_funcs,NEW(TYPE(Matrix3x3), obj),EXT->Matrix3x3_typeID);
+void *p = (void *)NEW(TYPE(Matrix3x3), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix3x3_funcs,p,EXT->Matrix3x3_typeID);
 }
 };
 template <>
@@ -7015,15 +7115,6 @@ else
 
 SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a);
 SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a);
-SV GhostObject_ptr_copy(CTX,NO);
-void GhostObject_ptr_destroy(CTX,NO);
-SV GhostObject_ptr_get_member(CTX,NO,SV);
-void GhostObject_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GhostObject_ptr_funcs={
-.destroy = GhostObject_ptr_destroy,
-.getMember = GhostObject_ptr_get_member,
-.setMember = GhostObject_ptr_set_member
-};
 template <>
 struct create_val<GhostObject *>
 {
@@ -7032,7 +7123,7 @@ static SV f(CTX ctx,GhostObject*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GhostObject_ptr_funcs,obj,EXT->GhostObject_ptr_typeID);
+RET STG::createNativeObject(GhostObject_funcs,obj,EXT->GhostObject_typeID);
 }
 };
 template <>
@@ -7043,12 +7134,12 @@ static GhostObject *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GhostObject_ptr_typeID)
+if(obj->typeID==EXT->GhostObject_typeID)
 RET(GhostObject*)obj->data;
 else
- CATE(TE,"Value is not a GhostObjectRef."));
+ CATE(TE,"Value is not a GhostObject."));
 } else
- CATE(TE,"Value is not a GhostObjectRef."));
+ CATE(TE,"Value is not a GhostObject."));
 }
 };
 template <>
@@ -7057,7 +7148,7 @@ struct type_same<GhostObject *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_ptr_typeID;
+RET((NO)head)->typeID==EXT->GhostObject_typeID;
 else
  RET false;
 }
@@ -7068,7 +7159,7 @@ struct type_same<const GhostObject *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_ptr_typeID;
+RET((NO)head)->typeID==EXT->GhostObject_typeID;
 else
  RET false;
 }
@@ -7081,24 +7172,15 @@ static const GhostObject *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GhostObject_ptr_typeID)
+if(obj->typeID==EXT->GhostObject_typeID)
 RET(GhostObject*)obj->data;
 else
- CATE(TE,"Value is not a GhostObjectRef."));
+ CATE(TE,"Value is not a GhostObject."));
 } else
- CATE(TE,"Value is not a GhostObjectRef."));
+ CATE(TE,"Value is not a GhostObject."));
 }
 };
 
-SV StrStrMap_ptr_copy(CTX,NO);
-void StrStrMap_ptr_destroy(CTX,NO);
-SV StrStrMap_ptr_get_member(CTX,NO,SV);
-void StrStrMap_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs StrStrMap_ptr_funcs={
-.destroy = StrStrMap_ptr_destroy,
-.getMember = StrStrMap_ptr_get_member,
-.setMember = StrStrMap_ptr_set_member
-};
 template <>
 struct create_val<HashMap<String,String> *>
 {
@@ -7107,7 +7189,7 @@ static SV f(CTX ctx,HashMap<String,String>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(StrStrMap_ptr_funcs,obj,EXT->StrStrMap_ptr_typeID);
+RET STG::createNativeObject(StrStrMap_funcs,obj,EXT->StrStrMap_typeID);
 }
 };
 template <>
@@ -7118,12 +7200,12 @@ static HashMap<String,String> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StrStrMap_ptr_typeID)
+if(obj->typeID==EXT->StrStrMap_typeID)
 RET(HashMap<String,String>*)obj->data;
 else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a StrStrMap."));
 } else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a StrStrMap."));
 }
 };
 template <>
@@ -7132,7 +7214,7 @@ struct type_same<HashMap<String,String> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+RET((NO)head)->typeID==EXT->StrStrMap_typeID;
 else
  RET false;
 }
@@ -7143,7 +7225,7 @@ struct type_same<const HashMap<String,String> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_ptr_typeID;
+RET((NO)head)->typeID==EXT->StrStrMap_typeID;
 else
  RET false;
 }
@@ -7156,24 +7238,15 @@ static const HashMap<String,String> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StrStrMap_ptr_typeID)
+if(obj->typeID==EXT->StrStrMap_typeID)
 RET(HashMap<String,String>*)obj->data;
 else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a StrStrMap."));
 } else
- CATE(TE,"Value is not a StrStrMapRef."));
+ CATE(TE,"Value is not a StrStrMap."));
 }
 };
 
-SV GfxApi_ptr_copy(CTX,NO);
-void GfxApi_ptr_destroy(CTX,NO);
-SV GfxApi_ptr_get_member(CTX,NO,SV);
-void GfxApi_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxApi_ptr_funcs={
-.destroy = GfxApi_ptr_destroy,
-.getMember = GfxApi_ptr_get_member,
-.setMember = GfxApi_ptr_set_member
-};
 template <>
 struct create_val<GfxApi *>
 {
@@ -7182,7 +7255,7 @@ static SV f(CTX ctx,GfxApi*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxApi_ptr_funcs,obj,EXT->GfxApi_ptr_typeID);
+RET STG::createNativeObject(GfxApi_funcs,obj,EXT->GfxApi_typeID);
 }
 };
 template <>
@@ -7193,12 +7266,12 @@ static GfxApi *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxApi_ptr_typeID)
+if(obj->typeID==EXT->GfxApi_typeID)
 RET(GfxApi*)obj->data;
 else
- CATE(TE,"Value is not a GfxApiRef."));
+ CATE(TE,"Value is not a GfxApi."));
 } else
- CATE(TE,"Value is not a GfxApiRef."));
+ CATE(TE,"Value is not a GfxApi."));
 }
 };
 template <>
@@ -7207,7 +7280,7 @@ struct type_same<GfxApi *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxApi_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxApi_typeID;
 else
  RET false;
 }
@@ -7218,7 +7291,7 @@ struct type_same<const GfxApi *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxApi_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxApi_typeID;
 else
  RET false;
 }
@@ -7231,24 +7304,15 @@ static const GfxApi *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxApi_ptr_typeID)
+if(obj->typeID==EXT->GfxApi_typeID)
 RET(GfxApi*)obj->data;
 else
- CATE(TE,"Value is not a GfxApiRef."));
+ CATE(TE,"Value is not a GfxApi."));
 } else
- CATE(TE,"Value is not a GfxApiRef."));
+ CATE(TE,"Value is not a GfxApi."));
 }
 };
 
-SV GfxCompiledShader_ptr_copy(CTX,NO);
-void GfxCompiledShader_ptr_destroy(CTX,NO);
-SV GfxCompiledShader_ptr_get_member(CTX,NO,SV);
-void GfxCompiledShader_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxCompiledShader_ptr_funcs={
-.destroy = GfxCompiledShader_ptr_destroy,
-.getMember = GfxCompiledShader_ptr_get_member,
-.setMember = GfxCompiledShader_ptr_set_member
-};
 template <>
 struct create_val<GfxCompiledShader *>
 {
@@ -7257,7 +7321,7 @@ static SV f(CTX ctx,GfxCompiledShader*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxCompiledShader_ptr_funcs,obj,EXT->GfxCompiledShader_ptr_typeID);
+RET STG::createNativeObject(GfxCompiledShader_funcs,obj,EXT->GfxCompiledShader_typeID);
 }
 };
 template <>
@@ -7268,12 +7332,12 @@ static GfxCompiledShader *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxCompiledShader_ptr_typeID)
+if(obj->typeID==EXT->GfxCompiledShader_typeID)
 RET(GfxCompiledShader*)obj->data;
 else
- CATE(TE,"Value is not a GfxCompiledShaderRef."));
+ CATE(TE,"Value is not a GfxCompiledShader."));
 } else
- CATE(TE,"Value is not a GfxCompiledShaderRef."));
+ CATE(TE,"Value is not a GfxCompiledShader."));
 }
 };
 template <>
@@ -7282,7 +7346,7 @@ struct type_same<GfxCompiledShader *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxCompiledShader_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxCompiledShader_typeID;
 else
  RET false;
 }
@@ -7293,7 +7357,7 @@ struct type_same<const GfxCompiledShader *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxCompiledShader_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxCompiledShader_typeID;
 else
  RET false;
 }
@@ -7306,24 +7370,15 @@ static const GfxCompiledShader *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxCompiledShader_ptr_typeID)
+if(obj->typeID==EXT->GfxCompiledShader_typeID)
 RET(GfxCompiledShader*)obj->data;
 else
- CATE(TE,"Value is not a GfxCompiledShaderRef."));
+ CATE(TE,"Value is not a GfxCompiledShader."));
 } else
- CATE(TE,"Value is not a GfxCompiledShaderRef."));
+ CATE(TE,"Value is not a GfxCompiledShader."));
 }
 };
 
-SV ScrollBar_ptr_copy(CTX,NO);
-void ScrollBar_ptr_destroy(CTX,NO);
-SV ScrollBar_ptr_get_member(CTX,NO,SV);
-void ScrollBar_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs ScrollBar_ptr_funcs={
-.destroy = ScrollBar_ptr_destroy,
-.getMember = ScrollBar_ptr_get_member,
-.setMember = ScrollBar_ptr_set_member
-};
 template <>
 struct create_val<ScrollBar *>
 {
@@ -7332,7 +7387,7 @@ static SV f(CTX ctx,ScrollBar*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(ScrollBar_ptr_funcs,obj,EXT->ScrollBar_ptr_typeID);
+RET STG::createNativeObject(ScrollBar_funcs,obj,EXT->ScrollBar_typeID);
 }
 };
 template <>
@@ -7343,12 +7398,12 @@ static ScrollBar *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ScrollBar_ptr_typeID)
+if(obj->typeID==EXT->ScrollBar_typeID)
 RET(ScrollBar*)obj->data;
 else
- CATE(TE,"Value is not a ScrollBarRef."));
+ CATE(TE,"Value is not a ScrollBar."));
 } else
- CATE(TE,"Value is not a ScrollBarRef."));
+ CATE(TE,"Value is not a ScrollBar."));
 }
 };
 template <>
@@ -7357,7 +7412,7 @@ struct type_same<ScrollBar *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScrollBar_ptr_typeID;
+RET((NO)head)->typeID==EXT->ScrollBar_typeID;
 else
  RET false;
 }
@@ -7368,7 +7423,7 @@ struct type_same<const ScrollBar *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScrollBar_ptr_typeID;
+RET((NO)head)->typeID==EXT->ScrollBar_typeID;
 else
  RET false;
 }
@@ -7381,24 +7436,15 @@ static const ScrollBar *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ScrollBar_ptr_typeID)
+if(obj->typeID==EXT->ScrollBar_typeID)
 RET(ScrollBar*)obj->data;
 else
- CATE(TE,"Value is not a ScrollBarRef."));
+ CATE(TE,"Value is not a ScrollBar."));
 } else
- CATE(TE,"Value is not a ScrollBarRef."));
+ CATE(TE,"Value is not a ScrollBar."));
 }
 };
 
-SV GhostObjList_ptr_copy(CTX,NO);
-void GhostObjList_ptr_destroy(CTX,NO);
-SV GhostObjList_ptr_get_member(CTX,NO,SV);
-void GhostObjList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GhostObjList_ptr_funcs={
-.destroy = GhostObjList_ptr_destroy,
-.getMember = GhostObjList_ptr_get_member,
-.setMember = GhostObjList_ptr_set_member
-};
 template <>
 struct create_val<List<GhostObject*> *>
 {
@@ -7407,7 +7453,7 @@ static SV f(CTX ctx,List<GhostObject*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GhostObjList_ptr_funcs,obj,EXT->GhostObjList_ptr_typeID);
+RET STG::createNativeObject(GhostObjList_funcs,obj,EXT->GhostObjList_typeID);
 }
 };
 template <>
@@ -7418,12 +7464,12 @@ static List<GhostObject*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GhostObjList_ptr_typeID)
+if(obj->typeID==EXT->GhostObjList_typeID)
 RET(List<GhostObject*>*)obj->data;
 else
- CATE(TE,"Value is not a GhostObjListRef."));
+ CATE(TE,"Value is not a GhostObjList."));
 } else
- CATE(TE,"Value is not a GhostObjListRef."));
+ CATE(TE,"Value is not a GhostObjList."));
 }
 };
 template <>
@@ -7432,7 +7478,7 @@ struct type_same<List<GhostObject*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObjList_ptr_typeID;
+RET((NO)head)->typeID==EXT->GhostObjList_typeID;
 else
  RET false;
 }
@@ -7443,7 +7489,7 @@ struct type_same<const List<GhostObject*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObjList_ptr_typeID;
+RET((NO)head)->typeID==EXT->GhostObjList_typeID;
 else
  RET false;
 }
@@ -7456,24 +7502,15 @@ static const List<GhostObject*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GhostObjList_ptr_typeID)
+if(obj->typeID==EXT->GhostObjList_typeID)
 RET(List<GhostObject*>*)obj->data;
 else
- CATE(TE,"Value is not a GhostObjListRef."));
+ CATE(TE,"Value is not a GhostObjList."));
 } else
- CATE(TE,"Value is not a GhostObjListRef."));
+ CATE(TE,"Value is not a GhostObjList."));
 }
 };
 
-SV GPUTimer_ptr_copy(CTX,NO);
-void GPUTimer_ptr_destroy(CTX,NO);
-SV GPUTimer_ptr_get_member(CTX,NO,SV);
-void GPUTimer_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GPUTimer_ptr_funcs={
-.destroy = GPUTimer_ptr_destroy,
-.getMember = GPUTimer_ptr_get_member,
-.setMember = GPUTimer_ptr_set_member
-};
 template <>
 struct create_val<GPUTimer *>
 {
@@ -7482,7 +7519,7 @@ static SV f(CTX ctx,GPUTimer*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GPUTimer_ptr_funcs,obj,EXT->GPUTimer_ptr_typeID);
+RET STG::createNativeObject(GPUTimer_funcs,obj,EXT->GPUTimer_typeID);
 }
 };
 template <>
@@ -7493,12 +7530,12 @@ static GPUTimer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GPUTimer_ptr_typeID)
+if(obj->typeID==EXT->GPUTimer_typeID)
 RET(GPUTimer*)obj->data;
 else
- CATE(TE,"Value is not a GPUTimerRef."));
+ CATE(TE,"Value is not a GPUTimer."));
 } else
- CATE(TE,"Value is not a GPUTimerRef."));
+ CATE(TE,"Value is not a GPUTimer."));
 }
 };
 template <>
@@ -7507,7 +7544,7 @@ struct type_same<GPUTimer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GPUTimer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GPUTimer_typeID;
 else
  RET false;
 }
@@ -7518,7 +7555,7 @@ struct type_same<const GPUTimer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GPUTimer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GPUTimer_typeID;
 else
  RET false;
 }
@@ -7531,24 +7568,15 @@ static const GPUTimer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GPUTimer_ptr_typeID)
+if(obj->typeID==EXT->GPUTimer_typeID)
 RET(GPUTimer*)obj->data;
 else
- CATE(TE,"Value is not a GPUTimerRef."));
+ CATE(TE,"Value is not a GPUTimer."));
 } else
- CATE(TE,"Value is not a GPUTimerRef."));
+ CATE(TE,"Value is not a GPUTimer."));
 }
 };
 
-SV RigidBody_ptr_copy(CTX,NO);
-void RigidBody_ptr_destroy(CTX,NO);
-SV RigidBody_ptr_get_member(CTX,NO,SV);
-void RigidBody_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RigidBody_ptr_funcs={
-.destroy = RigidBody_ptr_destroy,
-.getMember = RigidBody_ptr_get_member,
-.setMember = RigidBody_ptr_set_member
-};
 template <>
 struct create_val<RigidBody *>
 {
@@ -7557,7 +7585,7 @@ static SV f(CTX ctx,RigidBody*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RigidBody_ptr_funcs,obj,EXT->RigidBody_ptr_typeID);
+RET STG::createNativeObject(RigidBody_funcs,obj,EXT->RigidBody_typeID);
 }
 };
 template <>
@@ -7568,12 +7596,12 @@ static RigidBody *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RigidBody_ptr_typeID)
+if(obj->typeID==EXT->RigidBody_typeID)
 RET(RigidBody*)obj->data;
 else
- CATE(TE,"Value is not a RigidBodyRef."));
+ CATE(TE,"Value is not a RigidBody."));
 } else
- CATE(TE,"Value is not a RigidBodyRef."));
+ CATE(TE,"Value is not a RigidBody."));
 }
 };
 template <>
@@ -7582,7 +7610,7 @@ struct type_same<RigidBody *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBody_ptr_typeID;
+RET((NO)head)->typeID==EXT->RigidBody_typeID;
 else
  RET false;
 }
@@ -7593,7 +7621,7 @@ struct type_same<const RigidBody *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBody_ptr_typeID;
+RET((NO)head)->typeID==EXT->RigidBody_typeID;
 else
  RET false;
 }
@@ -7606,24 +7634,15 @@ static const RigidBody *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RigidBody_ptr_typeID)
+if(obj->typeID==EXT->RigidBody_typeID)
 RET(RigidBody*)obj->data;
 else
- CATE(TE,"Value is not a RigidBodyRef."));
+ CATE(TE,"Value is not a RigidBody."));
 } else
- CATE(TE,"Value is not a RigidBodyRef."));
+ CATE(TE,"Value is not a RigidBody."));
 }
 };
 
-SV UInt2_ptr_copy(CTX,NO);
-void UInt2_ptr_destroy(CTX,NO);
-SV UInt2_ptr_get_member(CTX,NO,SV);
-void UInt2_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt2_ptr_funcs={
-.destroy = UInt2_ptr_destroy,
-.getMember = UInt2_ptr_get_member,
-.setMember = UInt2_ptr_set_member
-};
 template <>
 struct create_val<T2<uint32_t> *>
 {
@@ -7632,7 +7651,7 @@ static SV f(CTX ctx,T2<uint32_t>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(UInt2_ptr_funcs,obj,EXT->UInt2_ptr_typeID);
+RET STG::createNativeObject(UInt2_funcs,obj,EXT->UInt2_typeID);
 }
 };
 template <>
@@ -7643,12 +7662,12 @@ static T2<uint32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt2_ptr_typeID)
+if(obj->typeID==EXT->UInt2_typeID)
 RET(T2<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a UInt2."));
 } else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a UInt2."));
 }
 };
 template <>
@@ -7657,7 +7676,7 @@ struct type_same<T2<uint32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+RET((NO)head)->typeID==EXT->UInt2_typeID;
 else
  RET false;
 }
@@ -7668,7 +7687,7 @@ struct type_same<const T2<uint32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_ptr_typeID;
+RET((NO)head)->typeID==EXT->UInt2_typeID;
 else
  RET false;
 }
@@ -7681,24 +7700,15 @@ static const T2<uint32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt2_ptr_typeID)
+if(obj->typeID==EXT->UInt2_typeID)
 RET(T2<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a UInt2."));
 } else
- CATE(TE,"Value is not a UInt2Ref."));
+ CATE(TE,"Value is not a UInt2."));
 }
 };
 
-SV LightList_ptr_copy(CTX,NO);
-void LightList_ptr_destroy(CTX,NO);
-SV LightList_ptr_get_member(CTX,NO,SV);
-void LightList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs LightList_ptr_funcs={
-.destroy = LightList_ptr_destroy,
-.getMember = LightList_ptr_get_member,
-.setMember = LightList_ptr_set_member
-};
 template <>
 struct create_val<List<Light*> *>
 {
@@ -7707,7 +7717,7 @@ static SV f(CTX ctx,List<Light*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(LightList_ptr_funcs,obj,EXT->LightList_ptr_typeID);
+RET STG::createNativeObject(LightList_funcs,obj,EXT->LightList_typeID);
 }
 };
 template <>
@@ -7718,12 +7728,12 @@ static List<Light*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightList_ptr_typeID)
+if(obj->typeID==EXT->LightList_typeID)
 RET(List<Light*>*)obj->data;
 else
- CATE(TE,"Value is not a LightListRef."));
+ CATE(TE,"Value is not a LightList."));
 } else
- CATE(TE,"Value is not a LightListRef."));
+ CATE(TE,"Value is not a LightList."));
 }
 };
 template <>
@@ -7732,7 +7742,7 @@ struct type_same<List<Light*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightList_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightList_typeID;
 else
  RET false;
 }
@@ -7743,7 +7753,7 @@ struct type_same<const List<Light*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightList_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightList_typeID;
 else
  RET false;
 }
@@ -7756,24 +7766,15 @@ static const List<Light*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightList_ptr_typeID)
+if(obj->typeID==EXT->LightList_typeID)
 RET(List<Light*>*)obj->data;
 else
- CATE(TE,"Value is not a LightListRef."));
+ CATE(TE,"Value is not a LightList."));
 } else
- CATE(TE,"Value is not a LightListRef."));
+ CATE(TE,"Value is not a LightList."));
 }
 };
 
-SV RenderStats_ptr_copy(CTX,NO);
-void RenderStats_ptr_destroy(CTX,NO);
-SV RenderStats_ptr_get_member(CTX,NO,SV);
-void RenderStats_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RenderStats_ptr_funcs={
-.destroy = RenderStats_ptr_destroy,
-.getMember = RenderStats_ptr_get_member,
-.setMember = RenderStats_ptr_set_member
-};
 template <>
 struct create_val<RenderStats *>
 {
@@ -7782,7 +7783,7 @@ static SV f(CTX ctx,RenderStats*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RenderStats_ptr_funcs,obj,EXT->RenderStats_ptr_typeID);
+RET STG::createNativeObject(RenderStats_funcs,obj,EXT->RenderStats_typeID);
 }
 };
 template <>
@@ -7793,12 +7794,12 @@ static RenderStats *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RenderStats_ptr_typeID)
+if(obj->typeID==EXT->RenderStats_typeID)
 RET(RenderStats*)obj->data;
 else
- CATE(TE,"Value is not a RenderStatsRef."));
+ CATE(TE,"Value is not a RenderStats."));
 } else
- CATE(TE,"Value is not a RenderStatsRef."));
+ CATE(TE,"Value is not a RenderStats."));
 }
 };
 template <>
@@ -7807,7 +7808,7 @@ struct type_same<RenderStats *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderStats_ptr_typeID;
+RET((NO)head)->typeID==EXT->RenderStats_typeID;
 else
  RET false;
 }
@@ -7818,7 +7819,7 @@ struct type_same<const RenderStats *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderStats_ptr_typeID;
+RET((NO)head)->typeID==EXT->RenderStats_typeID;
 else
  RET false;
 }
@@ -7831,24 +7832,15 @@ static const RenderStats *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RenderStats_ptr_typeID)
+if(obj->typeID==EXT->RenderStats_typeID)
 RET(RenderStats*)obj->data;
 else
- CATE(TE,"Value is not a RenderStatsRef."));
+ CATE(TE,"Value is not a RenderStats."));
 } else
- CATE(TE,"Value is not a RenderStatsRef."));
+ CATE(TE,"Value is not a RenderStats."));
 }
 };
 
-SV Filesystem_ptr_copy(CTX,NO);
-void Filesystem_ptr_destroy(CTX,NO);
-SV Filesystem_ptr_get_member(CTX,NO,SV);
-void Filesystem_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Filesystem_ptr_funcs={
-.destroy = Filesystem_ptr_destroy,
-.getMember = Filesystem_ptr_get_member,
-.setMember = Filesystem_ptr_set_member
-};
 template <>
 struct create_val<Filesystem *>
 {
@@ -7857,7 +7849,7 @@ static SV f(CTX ctx,Filesystem*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Filesystem_ptr_funcs,obj,EXT->Filesystem_ptr_typeID);
+RET STG::createNativeObject(Filesystem_funcs,obj,EXT->Filesystem_typeID);
 }
 };
 template <>
@@ -7868,12 +7860,12 @@ static Filesystem *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Filesystem_ptr_typeID)
+if(obj->typeID==EXT->Filesystem_typeID)
 RET(Filesystem*)obj->data;
 else
- CATE(TE,"Value is not a FilesystemRef."));
+ CATE(TE,"Value is not a Filesystem."));
 } else
- CATE(TE,"Value is not a FilesystemRef."));
+ CATE(TE,"Value is not a Filesystem."));
 }
 };
 template <>
@@ -7882,7 +7874,7 @@ struct type_same<Filesystem *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
+RET((NO)head)->typeID==EXT->Filesystem_typeID;
 else
  RET false;
 }
@@ -7893,7 +7885,7 @@ struct type_same<const Filesystem *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_ptr_typeID;
+RET((NO)head)->typeID==EXT->Filesystem_typeID;
 else
  RET false;
 }
@@ -7906,24 +7898,15 @@ static const Filesystem *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Filesystem_ptr_typeID)
+if(obj->typeID==EXT->Filesystem_typeID)
 RET(Filesystem*)obj->data;
 else
- CATE(TE,"Value is not a FilesystemRef."));
+ CATE(TE,"Value is not a Filesystem."));
 } else
- CATE(TE,"Value is not a FilesystemRef."));
+ CATE(TE,"Value is not a Filesystem."));
 }
 };
 
-SV ResourceManager_ptr_copy(CTX,NO);
-void ResourceManager_ptr_destroy(CTX,NO);
-SV ResourceManager_ptr_get_member(CTX,NO,SV);
-void ResourceManager_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs ResourceManager_ptr_funcs={
-.destroy = ResourceManager_ptr_destroy,
-.getMember = ResourceManager_ptr_get_member,
-.setMember = ResourceManager_ptr_set_member
-};
 template <>
 struct create_val<ResourceManager *>
 {
@@ -7932,7 +7915,7 @@ static SV f(CTX ctx,ResourceManager*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(ResourceManager_ptr_funcs,obj,EXT->ResourceManager_ptr_typeID);
+RET STG::createNativeObject(ResourceManager_funcs,obj,EXT->ResourceManager_typeID);
 }
 };
 template <>
@@ -7943,12 +7926,12 @@ static ResourceManager *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ResourceManager_ptr_typeID)
+if(obj->typeID==EXT->ResourceManager_typeID)
 RET(ResourceManager*)obj->data;
 else
- CATE(TE,"Value is not a ResourceManagerRef."));
+ CATE(TE,"Value is not a ResourceManager."));
 } else
- CATE(TE,"Value is not a ResourceManagerRef."));
+ CATE(TE,"Value is not a ResourceManager."));
 }
 };
 template <>
@@ -7957,7 +7940,7 @@ struct type_same<ResourceManager *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResourceManager_ptr_typeID;
+RET((NO)head)->typeID==EXT->ResourceManager_typeID;
 else
  RET false;
 }
@@ -7968,7 +7951,7 @@ struct type_same<const ResourceManager *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResourceManager_ptr_typeID;
+RET((NO)head)->typeID==EXT->ResourceManager_typeID;
 else
  RET false;
 }
@@ -7981,24 +7964,15 @@ static const ResourceManager *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ResourceManager_ptr_typeID)
+if(obj->typeID==EXT->ResourceManager_typeID)
 RET(ResourceManager*)obj->data;
 else
- CATE(TE,"Value is not a ResourceManagerRef."));
+ CATE(TE,"Value is not a ResourceManager."));
 } else
- CATE(TE,"Value is not a ResourceManagerRef."));
+ CATE(TE,"Value is not a ResourceManager."));
 }
 };
 
-SV Entity_ptr_copy(CTX,NO);
-void Entity_ptr_destroy(CTX,NO);
-SV Entity_ptr_get_member(CTX,NO,SV);
-void Entity_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Entity_ptr_funcs={
-.destroy = Entity_ptr_destroy,
-.getMember = Entity_ptr_get_member,
-.setMember = Entity_ptr_set_member
-};
 template <>
 struct create_val<Entity *>
 {
@@ -8007,7 +7981,7 @@ static SV f(CTX ctx,Entity*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Entity_ptr_funcs,obj,EXT->Entity_ptr_typeID);
+RET STG::createNativeObject(Entity_funcs,obj,EXT->Entity_typeID);
 }
 };
 template <>
@@ -8018,12 +7992,12 @@ static Entity *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Entity_ptr_typeID)
+if(obj->typeID==EXT->Entity_typeID)
 RET(Entity*)obj->data;
 else
- CATE(TE,"Value is not a EntityRef."));
+ CATE(TE,"Value is not a Entity."));
 } else
- CATE(TE,"Value is not a EntityRef."));
+ CATE(TE,"Value is not a Entity."));
 }
 };
 template <>
@@ -8032,7 +8006,7 @@ struct type_same<Entity *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_ptr_typeID;
+RET((NO)head)->typeID==EXT->Entity_typeID;
 else
  RET false;
 }
@@ -8043,7 +8017,7 @@ struct type_same<const Entity *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_ptr_typeID;
+RET((NO)head)->typeID==EXT->Entity_typeID;
 else
  RET false;
 }
@@ -8056,24 +8030,15 @@ static const Entity *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Entity_ptr_typeID)
+if(obj->typeID==EXT->Entity_typeID)
 RET(Entity*)obj->data;
 else
- CATE(TE,"Value is not a EntityRef."));
+ CATE(TE,"Value is not a Entity."));
 } else
- CATE(TE,"Value is not a EntityRef."));
+ CATE(TE,"Value is not a Entity."));
 }
 };
 
-SV GfxRenderer_ptr_copy(CTX,NO);
-void GfxRenderer_ptr_destroy(CTX,NO);
-SV GfxRenderer_ptr_get_member(CTX,NO,SV);
-void GfxRenderer_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxRenderer_ptr_funcs={
-.destroy = GfxRenderer_ptr_destroy,
-.getMember = GfxRenderer_ptr_get_member,
-.setMember = GfxRenderer_ptr_set_member
-};
 template <>
 struct create_val<GfxRenderer *>
 {
@@ -8082,7 +8047,7 @@ static SV f(CTX ctx,GfxRenderer*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxRenderer_ptr_funcs,obj,EXT->GfxRenderer_ptr_typeID);
+RET STG::createNativeObject(GfxRenderer_funcs,obj,EXT->GfxRenderer_typeID);
 }
 };
 template <>
@@ -8093,12 +8058,12 @@ static GfxRenderer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxRenderer_ptr_typeID)
+if(obj->typeID==EXT->GfxRenderer_typeID)
 RET(GfxRenderer*)obj->data;
 else
- CATE(TE,"Value is not a GfxRendererRef."));
+ CATE(TE,"Value is not a GfxRenderer."));
 } else
- CATE(TE,"Value is not a GfxRendererRef."));
+ CATE(TE,"Value is not a GfxRenderer."));
 }
 };
 template <>
@@ -8107,7 +8072,7 @@ struct type_same<GfxRenderer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxRenderer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxRenderer_typeID;
 else
  RET false;
 }
@@ -8118,7 +8083,7 @@ struct type_same<const GfxRenderer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxRenderer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxRenderer_typeID;
 else
  RET false;
 }
@@ -8131,24 +8096,15 @@ static const GfxRenderer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxRenderer_ptr_typeID)
+if(obj->typeID==EXT->GfxRenderer_typeID)
 RET(GfxRenderer*)obj->data;
 else
- CATE(TE,"Value is not a GfxRendererRef."));
+ CATE(TE,"Value is not a GfxRenderer."));
 } else
- CATE(TE,"Value is not a GfxRendererRef."));
+ CATE(TE,"Value is not a GfxRenderer."));
 }
 };
 
-SV Float2_ptr_copy(CTX,NO);
-void Float2_ptr_destroy(CTX,NO);
-SV Float2_ptr_get_member(CTX,NO,SV);
-void Float2_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Float2_ptr_funcs={
-.destroy = Float2_ptr_destroy,
-.getMember = Float2_ptr_get_member,
-.setMember = Float2_ptr_set_member
-};
 template <>
 struct create_val<T2<float> *>
 {
@@ -8157,7 +8113,7 @@ static SV f(CTX ctx,T2<float>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Float2_ptr_funcs,obj,EXT->Float2_ptr_typeID);
+RET STG::createNativeObject(Float2_funcs,obj,EXT->Float2_typeID);
 }
 };
 template <>
@@ -8168,12 +8124,12 @@ static T2<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float2_ptr_typeID)
+if(obj->typeID==EXT->Float2_typeID)
 RET(T2<float>*)obj->data;
 else
- CATE(TE,"Value is not a Float2Ref."));
+ CATE(TE,"Value is not a Float2."));
 } else
- CATE(TE,"Value is not a Float2Ref."));
+ CATE(TE,"Value is not a Float2."));
 }
 };
 template <>
@@ -8182,7 +8138,7 @@ struct type_same<T2<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float2_ptr_typeID;
+RET((NO)head)->typeID==EXT->Float2_typeID;
 else
  RET false;
 }
@@ -8193,7 +8149,7 @@ struct type_same<const T2<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float2_ptr_typeID;
+RET((NO)head)->typeID==EXT->Float2_typeID;
 else
  RET false;
 }
@@ -8206,24 +8162,15 @@ static const T2<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float2_ptr_typeID)
+if(obj->typeID==EXT->Float2_typeID)
 RET(T2<float>*)obj->data;
 else
- CATE(TE,"Value is not a Float2Ref."));
+ CATE(TE,"Value is not a Float2."));
 } else
- CATE(TE,"Value is not a Float2Ref."));
+ CATE(TE,"Value is not a Float2."));
 }
 };
 
-SV GfxFramebuffer_ptr_copy(CTX,NO);
-void GfxFramebuffer_ptr_destroy(CTX,NO);
-SV GfxFramebuffer_ptr_get_member(CTX,NO,SV);
-void GfxFramebuffer_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxFramebuffer_ptr_funcs={
-.destroy = GfxFramebuffer_ptr_destroy,
-.getMember = GfxFramebuffer_ptr_get_member,
-.setMember = GfxFramebuffer_ptr_set_member
-};
 template <>
 struct create_val<GfxFramebuffer *>
 {
@@ -8232,7 +8179,7 @@ static SV f(CTX ctx,GfxFramebuffer*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxFramebuffer_ptr_funcs,obj,EXT->GfxFramebuffer_ptr_typeID);
+RET STG::createNativeObject(GfxFramebuffer_funcs,obj,EXT->GfxFramebuffer_typeID);
 }
 };
 template <>
@@ -8243,12 +8190,12 @@ static GfxFramebuffer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxFramebuffer_ptr_typeID)
+if(obj->typeID==EXT->GfxFramebuffer_typeID)
 RET(GfxFramebuffer*)obj->data;
 else
- CATE(TE,"Value is not a GfxFramebufferRef."));
+ CATE(TE,"Value is not a GfxFramebuffer."));
 } else
- CATE(TE,"Value is not a GfxFramebufferRef."));
+ CATE(TE,"Value is not a GfxFramebuffer."));
 }
 };
 template <>
@@ -8257,7 +8204,7 @@ struct type_same<GfxFramebuffer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFramebuffer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxFramebuffer_typeID;
 else
  RET false;
 }
@@ -8268,7 +8215,7 @@ struct type_same<const GfxFramebuffer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFramebuffer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxFramebuffer_typeID;
 else
  RET false;
 }
@@ -8281,24 +8228,15 @@ static const GfxFramebuffer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxFramebuffer_ptr_typeID)
+if(obj->typeID==EXT->GfxFramebuffer_typeID)
 RET(GfxFramebuffer*)obj->data;
 else
- CATE(TE,"Value is not a GfxFramebufferRef."));
+ CATE(TE,"Value is not a GfxFramebuffer."));
 } else
- CATE(TE,"Value is not a GfxFramebufferRef."));
+ CATE(TE,"Value is not a GfxFramebuffer."));
 }
 };
 
-SV Font_ptr_copy(CTX,NO);
-void Font_ptr_destroy(CTX,NO);
-SV Font_ptr_get_member(CTX,NO,SV);
-void Font_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Font_ptr_funcs={
-.destroy = Font_ptr_destroy,
-.getMember = Font_ptr_get_member,
-.setMember = Font_ptr_set_member
-};
 template <>
 struct create_val<Font *>
 {
@@ -8307,7 +8245,7 @@ static SV f(CTX ctx,Font*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Font_ptr_funcs,obj,EXT->Font_ptr_typeID);
+RET STG::createNativeObject(Font_funcs,obj,EXT->Font_typeID);
 }
 };
 template <>
@@ -8318,12 +8256,12 @@ static Font *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Font_ptr_typeID)
+if(obj->typeID==EXT->Font_typeID)
 RET(Font*)obj->data;
 else
- CATE(TE,"Value is not a FontRef."));
+ CATE(TE,"Value is not a Font."));
 } else
- CATE(TE,"Value is not a FontRef."));
+ CATE(TE,"Value is not a Font."));
 }
 };
 template <>
@@ -8332,7 +8270,7 @@ struct type_same<Font *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Font_ptr_typeID;
+RET((NO)head)->typeID==EXT->Font_typeID;
 else
  RET false;
 }
@@ -8343,7 +8281,7 @@ struct type_same<const Font *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Font_ptr_typeID;
+RET((NO)head)->typeID==EXT->Font_typeID;
 else
  RET false;
 }
@@ -8356,24 +8294,15 @@ static const Font *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Font_ptr_typeID)
+if(obj->typeID==EXT->Font_typeID)
 RET(Font*)obj->data;
 else
- CATE(TE,"Value is not a FontRef."));
+ CATE(TE,"Value is not a Font."));
 } else
- CATE(TE,"Value is not a FontRef."));
+ CATE(TE,"Value is not a Font."));
 }
 };
 
-SV Event_ptr_copy(CTX,NO);
-void Event_ptr_destroy(CTX,NO);
-SV Event_ptr_get_member(CTX,NO,SV);
-void Event_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Event_ptr_funcs={
-.destroy = Event_ptr_destroy,
-.getMember = Event_ptr_get_member,
-.setMember = Event_ptr_set_member
-};
 template <>
 struct create_val<Event *>
 {
@@ -8382,7 +8311,7 @@ static SV f(CTX ctx,Event*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Event_ptr_funcs,obj,EXT->Event_ptr_typeID);
+RET STG::createNativeObject(Event_funcs,obj,EXT->Event_typeID);
 }
 };
 template <>
@@ -8393,12 +8322,12 @@ static Event *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Event_ptr_typeID)
+if(obj->typeID==EXT->Event_typeID)
 RET(Event*)obj->data;
 else
- CATE(TE,"Value is not a EventRef."));
+ CATE(TE,"Value is not a Event."));
 } else
- CATE(TE,"Value is not a EventRef."));
+ CATE(TE,"Value is not a Event."));
 }
 };
 template <>
@@ -8407,7 +8336,7 @@ struct type_same<Event *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Event_ptr_typeID;
+RET((NO)head)->typeID==EXT->Event_typeID;
 else
  RET false;
 }
@@ -8418,7 +8347,7 @@ struct type_same<const Event *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Event_ptr_typeID;
+RET((NO)head)->typeID==EXT->Event_typeID;
 else
  RET false;
 }
@@ -8431,24 +8360,15 @@ static const Event *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Event_ptr_typeID)
+if(obj->typeID==EXT->Event_typeID)
 RET(Event*)obj->data;
 else
- CATE(TE,"Value is not a EventRef."));
+ CATE(TE,"Value is not a Event."));
 } else
- CATE(TE,"Value is not a EventRef."));
+ CATE(TE,"Value is not a Event."));
 }
 };
 
-SV PhysicsWorld_ptr_copy(CTX,NO);
-void PhysicsWorld_ptr_destroy(CTX,NO);
-SV PhysicsWorld_ptr_get_member(CTX,NO,SV);
-void PhysicsWorld_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs PhysicsWorld_ptr_funcs={
-.destroy = PhysicsWorld_ptr_destroy,
-.getMember = PhysicsWorld_ptr_get_member,
-.setMember = PhysicsWorld_ptr_set_member
-};
 template <>
 struct create_val<PhysicsWorld *>
 {
@@ -8457,7 +8377,7 @@ static SV f(CTX ctx,PhysicsWorld*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(PhysicsWorld_ptr_funcs,obj,EXT->PhysicsWorld_ptr_typeID);
+RET STG::createNativeObject(PhysicsWorld_funcs,obj,EXT->PhysicsWorld_typeID);
 }
 };
 template <>
@@ -8468,12 +8388,12 @@ static PhysicsWorld *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->PhysicsWorld_ptr_typeID)
+if(obj->typeID==EXT->PhysicsWorld_typeID)
 RET(PhysicsWorld*)obj->data;
 else
- CATE(TE,"Value is not a PhysicsWorldRef."));
+ CATE(TE,"Value is not a PhysicsWorld."));
 } else
- CATE(TE,"Value is not a PhysicsWorldRef."));
+ CATE(TE,"Value is not a PhysicsWorld."));
 }
 };
 template <>
@@ -8482,7 +8402,7 @@ struct type_same<PhysicsWorld *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsWorld_ptr_typeID;
+RET((NO)head)->typeID==EXT->PhysicsWorld_typeID;
 else
  RET false;
 }
@@ -8493,7 +8413,7 @@ struct type_same<const PhysicsWorld *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsWorld_ptr_typeID;
+RET((NO)head)->typeID==EXT->PhysicsWorld_typeID;
 else
  RET false;
 }
@@ -8506,24 +8426,15 @@ static const PhysicsWorld *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->PhysicsWorld_ptr_typeID)
+if(obj->typeID==EXT->PhysicsWorld_typeID)
 RET(PhysicsWorld*)obj->data;
 else
- CATE(TE,"Value is not a PhysicsWorldRef."));
+ CATE(TE,"Value is not a PhysicsWorld."));
 } else
- CATE(TE,"Value is not a PhysicsWorldRef."));
+ CATE(TE,"Value is not a PhysicsWorld."));
 }
 };
 
-SV Stats_ptr_copy(CTX,NO);
-void Stats_ptr_destroy(CTX,NO);
-SV Stats_ptr_get_member(CTX,NO,SV);
-void Stats_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Stats_ptr_funcs={
-.destroy = Stats_ptr_destroy,
-.getMember = Stats_ptr_get_member,
-.setMember = Stats_ptr_set_member
-};
 template <>
 struct create_val<Stats *>
 {
@@ -8532,7 +8443,7 @@ static SV f(CTX ctx,Stats*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Stats_ptr_funcs,obj,EXT->Stats_ptr_typeID);
+RET STG::createNativeObject(Stats_funcs,obj,EXT->Stats_typeID);
 }
 };
 template <>
@@ -8543,12 +8454,12 @@ static Stats *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Stats_ptr_typeID)
+if(obj->typeID==EXT->Stats_typeID)
 RET(Stats*)obj->data;
 else
- CATE(TE,"Value is not a StatsRef."));
+ CATE(TE,"Value is not a Stats."));
 } else
- CATE(TE,"Value is not a StatsRef."));
+ CATE(TE,"Value is not a Stats."));
 }
 };
 template <>
@@ -8557,7 +8468,7 @@ struct type_same<Stats *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Stats_ptr_typeID;
+RET((NO)head)->typeID==EXT->Stats_typeID;
 else
  RET false;
 }
@@ -8568,7 +8479,7 @@ struct type_same<const Stats *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Stats_ptr_typeID;
+RET((NO)head)->typeID==EXT->Stats_typeID;
 else
  RET false;
 }
@@ -8581,24 +8492,15 @@ static const Stats *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Stats_ptr_typeID)
+if(obj->typeID==EXT->Stats_typeID)
 RET(Stats*)obj->data;
 else
- CATE(TE,"Value is not a StatsRef."));
+ CATE(TE,"Value is not a Stats."));
 } else
- CATE(TE,"Value is not a StatsRef."));
+ CATE(TE,"Value is not a Stats."));
 }
 };
 
-SV AudioSource_ptr_copy(CTX,NO);
-void AudioSource_ptr_destroy(CTX,NO);
-SV AudioSource_ptr_get_member(CTX,NO,SV);
-void AudioSource_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs AudioSource_ptr_funcs={
-.destroy = AudioSource_ptr_destroy,
-.getMember = AudioSource_ptr_get_member,
-.setMember = AudioSource_ptr_set_member
-};
 template <>
 struct create_val<AudioSource *>
 {
@@ -8607,7 +8509,7 @@ static SV f(CTX ctx,AudioSource*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(AudioSource_ptr_funcs,obj,EXT->AudioSource_ptr_typeID);
+RET STG::createNativeObject(AudioSource_funcs,obj,EXT->AudioSource_typeID);
 }
 };
 template <>
@@ -8618,12 +8520,12 @@ static AudioSource *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioSource_ptr_typeID)
+if(obj->typeID==EXT->AudioSource_typeID)
 RET(AudioSource*)obj->data;
 else
- CATE(TE,"Value is not a AudioSourceRef."));
+ CATE(TE,"Value is not a AudioSource."));
 } else
- CATE(TE,"Value is not a AudioSourceRef."));
+ CATE(TE,"Value is not a AudioSource."));
 }
 };
 template <>
@@ -8632,7 +8534,7 @@ struct type_same<AudioSource *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSource_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioSource_typeID;
 else
  RET false;
 }
@@ -8643,7 +8545,7 @@ struct type_same<const AudioSource *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSource_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioSource_typeID;
 else
  RET false;
 }
@@ -8656,24 +8558,15 @@ static const AudioSource *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioSource_ptr_typeID)
+if(obj->typeID==EXT->AudioSource_typeID)
 RET(AudioSource*)obj->data;
 else
- CATE(TE,"Value is not a AudioSourceRef."));
+ CATE(TE,"Value is not a AudioSource."));
 } else
- CATE(TE,"Value is not a AudioSourceRef."));
+ CATE(TE,"Value is not a AudioSource."));
 }
 };
 
-SV RayCastResultList_ptr_copy(CTX,NO);
-void RayCastResultList_ptr_destroy(CTX,NO);
-SV RayCastResultList_ptr_get_member(CTX,NO,SV);
-void RayCastResultList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RayCastResultList_ptr_funcs={
-.destroy = RayCastResultList_ptr_destroy,
-.getMember = RayCastResultList_ptr_get_member,
-.setMember = RayCastResultList_ptr_set_member
-};
 template <>
 struct create_val<List<RayCastResult> *>
 {
@@ -8682,7 +8575,7 @@ static SV f(CTX ctx,List<RayCastResult>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RayCastResultList_ptr_funcs,obj,EXT->RayCastResultList_ptr_typeID);
+RET STG::createNativeObject(RayCastResultList_funcs,obj,EXT->RayCastResultList_typeID);
 }
 };
 template <>
@@ -8693,12 +8586,12 @@ static List<RayCastResult> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RayCastResultList_ptr_typeID)
+if(obj->typeID==EXT->RayCastResultList_typeID)
 RET(List<RayCastResult>*)obj->data;
 else
- CATE(TE,"Value is not a RayCastResultListRef."));
+ CATE(TE,"Value is not a RayCastResultList."));
 } else
- CATE(TE,"Value is not a RayCastResultListRef."));
+ CATE(TE,"Value is not a RayCastResultList."));
 }
 };
 template <>
@@ -8707,7 +8600,7 @@ struct type_same<List<RayCastResult> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResultList_ptr_typeID;
+RET((NO)head)->typeID==EXT->RayCastResultList_typeID;
 else
  RET false;
 }
@@ -8718,7 +8611,7 @@ struct type_same<const List<RayCastResult> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResultList_ptr_typeID;
+RET((NO)head)->typeID==EXT->RayCastResultList_typeID;
 else
  RET false;
 }
@@ -8731,24 +8624,15 @@ static const List<RayCastResult> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RayCastResultList_ptr_typeID)
+if(obj->typeID==EXT->RayCastResultList_typeID)
 RET(List<RayCastResult>*)obj->data;
 else
- CATE(TE,"Value is not a RayCastResultListRef."));
+ CATE(TE,"Value is not a RayCastResultList."));
 } else
- CATE(TE,"Value is not a RayCastResultListRef."));
+ CATE(TE,"Value is not a RayCastResultList."));
 }
 };
 
-SV Platform_ptr_copy(CTX,NO);
-void Platform_ptr_destroy(CTX,NO);
-SV Platform_ptr_get_member(CTX,NO,SV);
-void Platform_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Platform_ptr_funcs={
-.destroy = Platform_ptr_destroy,
-.getMember = Platform_ptr_get_member,
-.setMember = Platform_ptr_set_member
-};
 template <>
 struct create_val<Platform *>
 {
@@ -8757,7 +8641,7 @@ static SV f(CTX ctx,Platform*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Platform_ptr_funcs,obj,EXT->Platform_ptr_typeID);
+RET STG::createNativeObject(Platform_funcs,obj,EXT->Platform_typeID);
 }
 };
 template <>
@@ -8768,12 +8652,12 @@ static Platform *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Platform_ptr_typeID)
+if(obj->typeID==EXT->Platform_typeID)
 RET(Platform*)obj->data;
 else
- CATE(TE,"Value is not a PlatformRef."));
+ CATE(TE,"Value is not a Platform."));
 } else
- CATE(TE,"Value is not a PlatformRef."));
+ CATE(TE,"Value is not a Platform."));
 }
 };
 template <>
@@ -8782,7 +8666,7 @@ struct type_same<Platform *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Platform_ptr_typeID;
+RET((NO)head)->typeID==EXT->Platform_typeID;
 else
  RET false;
 }
@@ -8793,7 +8677,7 @@ struct type_same<const Platform *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Platform_ptr_typeID;
+RET((NO)head)->typeID==EXT->Platform_typeID;
 else
  RET false;
 }
@@ -8806,24 +8690,15 @@ static const Platform *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Platform_ptr_typeID)
+if(obj->typeID==EXT->Platform_typeID)
 RET(Platform*)obj->data;
 else
- CATE(TE,"Value is not a PlatformRef."));
+ CATE(TE,"Value is not a Platform."));
 } else
- CATE(TE,"Value is not a PlatformRef."));
+ CATE(TE,"Value is not a Platform."));
 }
 };
 
-SV Camera_ptr_copy(CTX,NO);
-void Camera_ptr_destroy(CTX,NO);
-SV Camera_ptr_get_member(CTX,NO,SV);
-void Camera_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Camera_ptr_funcs={
-.destroy = Camera_ptr_destroy,
-.getMember = Camera_ptr_get_member,
-.setMember = Camera_ptr_set_member
-};
 template <>
 struct create_val<Camera *>
 {
@@ -8832,7 +8707,7 @@ static SV f(CTX ctx,Camera*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Camera_ptr_funcs,obj,EXT->Camera_ptr_typeID);
+RET STG::createNativeObject(Camera_funcs,obj,EXT->Camera_typeID);
 }
 };
 template <>
@@ -8843,12 +8718,12 @@ static Camera *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Camera_ptr_typeID)
+if(obj->typeID==EXT->Camera_typeID)
 RET(Camera*)obj->data;
 else
- CATE(TE,"Value is not a CameraRef."));
+ CATE(TE,"Value is not a Camera."));
 } else
- CATE(TE,"Value is not a CameraRef."));
+ CATE(TE,"Value is not a Camera."));
 }
 };
 template <>
@@ -8857,7 +8732,7 @@ struct type_same<Camera *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Camera_ptr_typeID;
+RET((NO)head)->typeID==EXT->Camera_typeID;
 else
  RET false;
 }
@@ -8868,7 +8743,7 @@ struct type_same<const Camera *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Camera_ptr_typeID;
+RET((NO)head)->typeID==EXT->Camera_typeID;
 else
  RET false;
 }
@@ -8881,24 +8756,15 @@ static const Camera *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Camera_ptr_typeID)
+if(obj->typeID==EXT->Camera_typeID)
 RET(Camera*)obj->data;
 else
- CATE(TE,"Value is not a CameraRef."));
+ CATE(TE,"Value is not a Camera."));
 } else
- CATE(TE,"Value is not a CameraRef."));
+ CATE(TE,"Value is not a Camera."));
 }
 };
 
-SV GfxMesh_ptr_copy(CTX,NO);
-void GfxMesh_ptr_destroy(CTX,NO);
-SV GfxMesh_ptr_get_member(CTX,NO,SV);
-void GfxMesh_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxMesh_ptr_funcs={
-.destroy = GfxMesh_ptr_destroy,
-.getMember = GfxMesh_ptr_get_member,
-.setMember = GfxMesh_ptr_set_member
-};
 template <>
 struct create_val<GfxMesh *>
 {
@@ -8907,7 +8773,7 @@ static SV f(CTX ctx,GfxMesh*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxMesh_ptr_funcs,obj,EXT->GfxMesh_ptr_typeID);
+RET STG::createNativeObject(GfxMesh_funcs,obj,EXT->GfxMesh_typeID);
 }
 };
 template <>
@@ -8918,12 +8784,12 @@ static GfxMesh *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxMesh_ptr_typeID)
+if(obj->typeID==EXT->GfxMesh_typeID)
 RET(GfxMesh*)obj->data;
 else
- CATE(TE,"Value is not a GfxMeshRef."));
+ CATE(TE,"Value is not a GfxMesh."));
 } else
- CATE(TE,"Value is not a GfxMeshRef."));
+ CATE(TE,"Value is not a GfxMesh."));
 }
 };
 template <>
@@ -8932,7 +8798,7 @@ struct type_same<GfxMesh *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMesh_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMesh_typeID;
 else
  RET false;
 }
@@ -8943,7 +8809,7 @@ struct type_same<const GfxMesh *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMesh_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMesh_typeID;
 else
  RET false;
 }
@@ -8956,24 +8822,15 @@ static const GfxMesh *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxMesh_ptr_typeID)
+if(obj->typeID==EXT->GfxMesh_typeID)
 RET(GfxMesh*)obj->data;
 else
- CATE(TE,"Value is not a GfxMeshRef."));
+ CATE(TE,"Value is not a GfxMesh."));
 } else
- CATE(TE,"Value is not a GfxMeshRef."));
+ CATE(TE,"Value is not a GfxMesh."));
 }
 };
 
-SV Resource_ptr_copy(CTX,NO);
-void Resource_ptr_destroy(CTX,NO);
-SV Resource_ptr_get_member(CTX,NO,SV);
-void Resource_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Resource_ptr_funcs={
-.destroy = Resource_ptr_destroy,
-.getMember = Resource_ptr_get_member,
-.setMember = Resource_ptr_set_member
-};
 template <>
 struct create_val<Resource *>
 {
@@ -8982,7 +8839,7 @@ static SV f(CTX ctx,Resource*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Resource_ptr_funcs,obj,EXT->Resource_ptr_typeID);
+RET STG::createNativeObject(Resource_funcs,obj,EXT->Resource_typeID);
 }
 };
 template <>
@@ -8993,12 +8850,12 @@ static Resource *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Resource_ptr_typeID)
+if(obj->typeID==EXT->Resource_typeID)
 RET(Resource*)obj->data;
 else
- CATE(TE,"Value is not a ResourceRef."));
+ CATE(TE,"Value is not a Resource."));
 } else
- CATE(TE,"Value is not a ResourceRef."));
+ CATE(TE,"Value is not a Resource."));
 }
 };
 template <>
@@ -9007,7 +8864,7 @@ struct type_same<Resource *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Resource_ptr_typeID;
+RET((NO)head)->typeID==EXT->Resource_typeID;
 else
  RET false;
 }
@@ -9018,7 +8875,7 @@ struct type_same<const Resource *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Resource_ptr_typeID;
+RET((NO)head)->typeID==EXT->Resource_typeID;
 else
  RET false;
 }
@@ -9031,24 +8888,15 @@ static const Resource *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Resource_ptr_typeID)
+if(obj->typeID==EXT->Resource_typeID)
 RET(Resource*)obj->data;
 else
- CATE(TE,"Value is not a ResourceRef."));
+ CATE(TE,"Value is not a Resource."));
 } else
- CATE(TE,"Value is not a ResourceRef."));
+ CATE(TE,"Value is not a Resource."));
 }
 };
 
-SV GfxShader_ptr_copy(CTX,NO);
-void GfxShader_ptr_destroy(CTX,NO);
-SV GfxShader_ptr_get_member(CTX,NO,SV);
-void GfxShader_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxShader_ptr_funcs={
-.destroy = GfxShader_ptr_destroy,
-.getMember = GfxShader_ptr_get_member,
-.setMember = GfxShader_ptr_set_member
-};
 template <>
 struct create_val<GfxShader *>
 {
@@ -9057,7 +8905,7 @@ static SV f(CTX ctx,GfxShader*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxShader_ptr_funcs,obj,EXT->GfxShader_ptr_typeID);
+RET STG::createNativeObject(GfxShader_funcs,obj,EXT->GfxShader_typeID);
 }
 };
 template <>
@@ -9068,12 +8916,12 @@ static GfxShader *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxShader_ptr_typeID)
+if(obj->typeID==EXT->GfxShader_typeID)
 RET(GfxShader*)obj->data;
 else
- CATE(TE,"Value is not a GfxShaderRef."));
+ CATE(TE,"Value is not a GfxShader."));
 } else
- CATE(TE,"Value is not a GfxShaderRef."));
+ CATE(TE,"Value is not a GfxShader."));
 }
 };
 template <>
@@ -9082,7 +8930,7 @@ struct type_same<GfxShader *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShader_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxShader_typeID;
 else
  RET false;
 }
@@ -9093,7 +8941,7 @@ struct type_same<const GfxShader *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShader_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxShader_typeID;
 else
  RET false;
 }
@@ -9106,24 +8954,15 @@ static const GfxShader *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxShader_ptr_typeID)
+if(obj->typeID==EXT->GfxShader_typeID)
 RET(GfxShader*)obj->data;
 else
- CATE(TE,"Value is not a GfxShaderRef."));
+ CATE(TE,"Value is not a GfxShader."));
 } else
- CATE(TE,"Value is not a GfxShaderRef."));
+ CATE(TE,"Value is not a GfxShader."));
 }
 };
 
-SV Light_ptr_copy(CTX,NO);
-void Light_ptr_destroy(CTX,NO);
-SV Light_ptr_get_member(CTX,NO,SV);
-void Light_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Light_ptr_funcs={
-.destroy = Light_ptr_destroy,
-.getMember = Light_ptr_get_member,
-.setMember = Light_ptr_set_member
-};
 template <>
 struct create_val<Light *>
 {
@@ -9132,7 +8971,7 @@ static SV f(CTX ctx,Light*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Light_ptr_funcs,obj,EXT->Light_ptr_typeID);
+RET STG::createNativeObject(Light_funcs,obj,EXT->Light_typeID);
 }
 };
 template <>
@@ -9143,12 +8982,12 @@ static Light *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Light_ptr_typeID)
+if(obj->typeID==EXT->Light_typeID)
 RET(Light*)obj->data;
 else
- CATE(TE,"Value is not a LightRef."));
+ CATE(TE,"Value is not a Light."));
 } else
- CATE(TE,"Value is not a LightRef."));
+ CATE(TE,"Value is not a Light."));
 }
 };
 template <>
@@ -9157,7 +8996,7 @@ struct type_same<Light *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_ptr_typeID;
+RET((NO)head)->typeID==EXT->Light_typeID;
 else
  RET false;
 }
@@ -9168,7 +9007,7 @@ struct type_same<const Light *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_ptr_typeID;
+RET((NO)head)->typeID==EXT->Light_typeID;
 else
  RET false;
 }
@@ -9181,24 +9020,15 @@ static const Light *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Light_ptr_typeID)
+if(obj->typeID==EXT->Light_typeID)
 RET(Light*)obj->data;
 else
- CATE(TE,"Value is not a LightRef."));
+ CATE(TE,"Value is not a Light."));
 } else
- CATE(TE,"Value is not a LightRef."));
+ CATE(TE,"Value is not a Light."));
 }
 };
 
-SV TextureSampler_ptr_copy(CTX,NO);
-void TextureSampler_ptr_destroy(CTX,NO);
-SV TextureSampler_ptr_get_member(CTX,NO,SV);
-void TextureSampler_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs TextureSampler_ptr_funcs={
-.destroy = TextureSampler_ptr_destroy,
-.getMember = TextureSampler_ptr_get_member,
-.setMember = TextureSampler_ptr_set_member
-};
 template <>
 struct create_val<TextureSampler *>
 {
@@ -9207,7 +9037,7 @@ static SV f(CTX ctx,TextureSampler*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(TextureSampler_ptr_funcs,obj,EXT->TextureSampler_ptr_typeID);
+RET STG::createNativeObject(TextureSampler_funcs,obj,EXT->TextureSampler_typeID);
 }
 };
 template <>
@@ -9218,12 +9048,12 @@ static TextureSampler *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->TextureSampler_ptr_typeID)
+if(obj->typeID==EXT->TextureSampler_typeID)
 RET(TextureSampler*)obj->data;
 else
- CATE(TE,"Value is not a TextureSamplerRef."));
+ CATE(TE,"Value is not a TextureSampler."));
 } else
- CATE(TE,"Value is not a TextureSamplerRef."));
+ CATE(TE,"Value is not a TextureSampler."));
 }
 };
 template <>
@@ -9232,7 +9062,7 @@ struct type_same<TextureSampler *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->TextureSampler_ptr_typeID;
+RET((NO)head)->typeID==EXT->TextureSampler_typeID;
 else
  RET false;
 }
@@ -9243,7 +9073,7 @@ struct type_same<const TextureSampler *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->TextureSampler_ptr_typeID;
+RET((NO)head)->typeID==EXT->TextureSampler_typeID;
 else
  RET false;
 }
@@ -9256,24 +9086,15 @@ static const TextureSampler *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->TextureSampler_ptr_typeID)
+if(obj->typeID==EXT->TextureSampler_typeID)
 RET(TextureSampler*)obj->data;
 else
- CATE(TE,"Value is not a TextureSamplerRef."));
+ CATE(TE,"Value is not a TextureSampler."));
 } else
- CATE(TE,"Value is not a TextureSamplerRef."));
+ CATE(TE,"Value is not a TextureSampler."));
 }
 };
 
-SV Scene_ptr_copy(CTX,NO);
-void Scene_ptr_destroy(CTX,NO);
-SV Scene_ptr_get_member(CTX,NO,SV);
-void Scene_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Scene_ptr_funcs={
-.destroy = Scene_ptr_destroy,
-.getMember = Scene_ptr_get_member,
-.setMember = Scene_ptr_set_member
-};
 template <>
 struct create_val<Scene *>
 {
@@ -9282,7 +9103,7 @@ static SV f(CTX ctx,Scene*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Scene_ptr_funcs,obj,EXT->Scene_ptr_typeID);
+RET STG::createNativeObject(Scene_funcs,obj,EXT->Scene_typeID);
 }
 };
 template <>
@@ -9293,12 +9114,12 @@ static Scene *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Scene_ptr_typeID)
+if(obj->typeID==EXT->Scene_typeID)
 RET(Scene*)obj->data;
 else
- CATE(TE,"Value is not a SceneRef."));
+ CATE(TE,"Value is not a Scene."));
 } else
- CATE(TE,"Value is not a SceneRef."));
+ CATE(TE,"Value is not a Scene."));
 }
 };
 template <>
@@ -9307,7 +9128,7 @@ struct type_same<Scene *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Scene_ptr_typeID;
+RET((NO)head)->typeID==EXT->Scene_typeID;
 else
  RET false;
 }
@@ -9318,7 +9139,7 @@ struct type_same<const Scene *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Scene_ptr_typeID;
+RET((NO)head)->typeID==EXT->Scene_typeID;
 else
  RET false;
 }
@@ -9331,24 +9152,15 @@ static const Scene *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Scene_ptr_typeID)
+if(obj->typeID==EXT->Scene_typeID)
 RET(Scene*)obj->data;
 else
- CATE(TE,"Value is not a SceneRef."));
+ CATE(TE,"Value is not a Scene."));
 } else
- CATE(TE,"Value is not a SceneRef."));
+ CATE(TE,"Value is not a Scene."));
 }
 };
 
-SV Int3_ptr_copy(CTX,NO);
-void Int3_ptr_destroy(CTX,NO);
-SV Int3_ptr_get_member(CTX,NO,SV);
-void Int3_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Int3_ptr_funcs={
-.destroy = Int3_ptr_destroy,
-.getMember = Int3_ptr_get_member,
-.setMember = Int3_ptr_set_member
-};
 template <>
 struct create_val<T3<int32_t> *>
 {
@@ -9357,7 +9169,7 @@ static SV f(CTX ctx,T3<int32_t>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Int3_ptr_funcs,obj,EXT->Int3_ptr_typeID);
+RET STG::createNativeObject(Int3_funcs,obj,EXT->Int3_typeID);
 }
 };
 template <>
@@ -9368,12 +9180,12 @@ static T3<int32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Int3_ptr_typeID)
+if(obj->typeID==EXT->Int3_typeID)
 RET(T3<int32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Int3Ref."));
+ CATE(TE,"Value is not a Int3."));
 } else
- CATE(TE,"Value is not a Int3Ref."));
+ CATE(TE,"Value is not a Int3."));
 }
 };
 template <>
@@ -9382,7 +9194,7 @@ struct type_same<T3<int32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int3_ptr_typeID;
+RET((NO)head)->typeID==EXT->Int3_typeID;
 else
  RET false;
 }
@@ -9393,7 +9205,7 @@ struct type_same<const T3<int32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int3_ptr_typeID;
+RET((NO)head)->typeID==EXT->Int3_typeID;
 else
  RET false;
 }
@@ -9406,24 +9218,15 @@ static const T3<int32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Int3_ptr_typeID)
+if(obj->typeID==EXT->Int3_typeID)
 RET(T3<int32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Int3Ref."));
+ CATE(TE,"Value is not a Int3."));
 } else
- CATE(TE,"Value is not a Int3Ref."));
+ CATE(TE,"Value is not a Int3."));
 }
 };
 
-SV ResizableData_ptr_copy(CTX,NO);
-void ResizableData_ptr_destroy(CTX,NO);
-SV ResizableData_ptr_get_member(CTX,NO,SV);
-void ResizableData_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs ResizableData_ptr_funcs={
-.destroy = ResizableData_ptr_destroy,
-.getMember = ResizableData_ptr_get_member,
-.setMember = ResizableData_ptr_set_member
-};
 template <>
 struct create_val<ResizableData *>
 {
@@ -9432,7 +9235,7 @@ static SV f(CTX ctx,ResizableData*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(ResizableData_ptr_funcs,obj,EXT->ResizableData_ptr_typeID);
+RET STG::createNativeObject(ResizableData_funcs,obj,EXT->ResizableData_typeID);
 }
 };
 template <>
@@ -9443,12 +9246,12 @@ static ResizableData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ResizableData_ptr_typeID)
+if(obj->typeID==EXT->ResizableData_typeID)
 RET(ResizableData*)obj->data;
 else
- CATE(TE,"Value is not a ResizableDataRef."));
+ CATE(TE,"Value is not a ResizableData."));
 } else
- CATE(TE,"Value is not a ResizableDataRef."));
+ CATE(TE,"Value is not a ResizableData."));
 }
 };
 template <>
@@ -9457,7 +9260,7 @@ struct type_same<ResizableData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResizableData_ptr_typeID;
+RET((NO)head)->typeID==EXT->ResizableData_typeID;
 else
  RET false;
 }
@@ -9468,7 +9271,7 @@ struct type_same<const ResizableData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResizableData_ptr_typeID;
+RET((NO)head)->typeID==EXT->ResizableData_typeID;
 else
  RET false;
 }
@@ -9481,24 +9284,15 @@ static const ResizableData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ResizableData_ptr_typeID)
+if(obj->typeID==EXT->ResizableData_typeID)
 RET(ResizableData*)obj->data;
 else
- CATE(TE,"Value is not a ResizableDataRef."));
+ CATE(TE,"Value is not a ResizableData."));
 } else
- CATE(TE,"Value is not a ResizableDataRef."));
+ CATE(TE,"Value is not a ResizableData."));
 }
 };
 
-SV Int4_ptr_copy(CTX,NO);
-void Int4_ptr_destroy(CTX,NO);
-SV Int4_ptr_get_member(CTX,NO,SV);
-void Int4_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Int4_ptr_funcs={
-.destroy = Int4_ptr_destroy,
-.getMember = Int4_ptr_get_member,
-.setMember = Int4_ptr_set_member
-};
 template <>
 struct create_val<T4<int32_t> *>
 {
@@ -9507,7 +9301,7 @@ static SV f(CTX ctx,T4<int32_t>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Int4_ptr_funcs,obj,EXT->Int4_ptr_typeID);
+RET STG::createNativeObject(Int4_funcs,obj,EXT->Int4_typeID);
 }
 };
 template <>
@@ -9518,12 +9312,12 @@ static T4<int32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Int4_ptr_typeID)
+if(obj->typeID==EXT->Int4_typeID)
 RET(T4<int32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Int4Ref."));
+ CATE(TE,"Value is not a Int4."));
 } else
- CATE(TE,"Value is not a Int4Ref."));
+ CATE(TE,"Value is not a Int4."));
 }
 };
 template <>
@@ -9532,7 +9326,7 @@ struct type_same<T4<int32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int4_ptr_typeID;
+RET((NO)head)->typeID==EXT->Int4_typeID;
 else
  RET false;
 }
@@ -9543,7 +9337,7 @@ struct type_same<const T4<int32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int4_ptr_typeID;
+RET((NO)head)->typeID==EXT->Int4_typeID;
 else
  RET false;
 }
@@ -9556,24 +9350,15 @@ static const T4<int32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Int4_ptr_typeID)
+if(obj->typeID==EXT->Int4_typeID)
 RET(T4<int32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Int4Ref."));
+ CATE(TE,"Value is not a Int4."));
 } else
- CATE(TE,"Value is not a Int4Ref."));
+ CATE(TE,"Value is not a Int4."));
 }
 };
 
-SV Float3_ptr_copy(CTX,NO);
-void Float3_ptr_destroy(CTX,NO);
-SV Float3_ptr_get_member(CTX,NO,SV);
-void Float3_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Float3_ptr_funcs={
-.destroy = Float3_ptr_destroy,
-.getMember = Float3_ptr_get_member,
-.setMember = Float3_ptr_set_member
-};
 template <>
 struct create_val<T3<float> *>
 {
@@ -9582,7 +9367,7 @@ static SV f(CTX ctx,T3<float>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Float3_ptr_funcs,obj,EXT->Float3_ptr_typeID);
+RET STG::createNativeObject(Float3_funcs,obj,EXT->Float3_typeID);
 }
 };
 template <>
@@ -9593,12 +9378,12 @@ static T3<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float3_ptr_typeID)
+if(obj->typeID==EXT->Float3_typeID)
 RET(T3<float>*)obj->data;
 else
- CATE(TE,"Value is not a Float3Ref."));
+ CATE(TE,"Value is not a Float3."));
 } else
- CATE(TE,"Value is not a Float3Ref."));
+ CATE(TE,"Value is not a Float3."));
 }
 };
 template <>
@@ -9607,7 +9392,7 @@ struct type_same<T3<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float3_ptr_typeID;
+RET((NO)head)->typeID==EXT->Float3_typeID;
 else
  RET false;
 }
@@ -9618,7 +9403,7 @@ struct type_same<const T3<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float3_ptr_typeID;
+RET((NO)head)->typeID==EXT->Float3_typeID;
 else
  RET false;
 }
@@ -9631,24 +9416,15 @@ static const T3<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float3_ptr_typeID)
+if(obj->typeID==EXT->Float3_typeID)
 RET(T3<float>*)obj->data;
 else
- CATE(TE,"Value is not a Float3Ref."));
+ CATE(TE,"Value is not a Float3."));
 } else
- CATE(TE,"Value is not a Float3Ref."));
+ CATE(TE,"Value is not a Float3."));
 }
 };
 
-SV GfxBuffer_ptr_copy(CTX,NO);
-void GfxBuffer_ptr_destroy(CTX,NO);
-SV GfxBuffer_ptr_get_member(CTX,NO,SV);
-void GfxBuffer_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxBuffer_ptr_funcs={
-.destroy = GfxBuffer_ptr_destroy,
-.getMember = GfxBuffer_ptr_get_member,
-.setMember = GfxBuffer_ptr_set_member
-};
 template <>
 struct create_val<GfxBuffer *>
 {
@@ -9657,7 +9433,7 @@ static SV f(CTX ctx,GfxBuffer*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxBuffer_ptr_funcs,obj,EXT->GfxBuffer_ptr_typeID);
+RET STG::createNativeObject(GfxBuffer_funcs,obj,EXT->GfxBuffer_typeID);
 }
 };
 template <>
@@ -9668,12 +9444,12 @@ static GfxBuffer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxBuffer_ptr_typeID)
+if(obj->typeID==EXT->GfxBuffer_typeID)
 RET(GfxBuffer*)obj->data;
 else
- CATE(TE,"Value is not a GfxBufferRef."));
+ CATE(TE,"Value is not a GfxBuffer."));
 } else
- CATE(TE,"Value is not a GfxBufferRef."));
+ CATE(TE,"Value is not a GfxBuffer."));
 }
 };
 template <>
@@ -9682,7 +9458,7 @@ struct type_same<GfxBuffer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBuffer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxBuffer_typeID;
 else
  RET false;
 }
@@ -9693,7 +9469,7 @@ struct type_same<const GfxBuffer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBuffer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxBuffer_typeID;
 else
  RET false;
 }
@@ -9706,24 +9482,15 @@ static const GfxBuffer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxBuffer_ptr_typeID)
+if(obj->typeID==EXT->GfxBuffer_typeID)
 RET(GfxBuffer*)obj->data;
 else
- CATE(TE,"Value is not a GfxBufferRef."));
+ CATE(TE,"Value is not a GfxBuffer."));
 } else
- CATE(TE,"Value is not a GfxBufferRef."));
+ CATE(TE,"Value is not a GfxBuffer."));
 }
 };
 
-SV Transform_ptr_copy(CTX,NO);
-void Transform_ptr_destroy(CTX,NO);
-SV Transform_ptr_get_member(CTX,NO,SV);
-void Transform_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Transform_ptr_funcs={
-.destroy = Transform_ptr_destroy,
-.getMember = Transform_ptr_get_member,
-.setMember = Transform_ptr_set_member
-};
 template <>
 struct create_val<Transform *>
 {
@@ -9732,7 +9499,7 @@ static SV f(CTX ctx,Transform*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Transform_ptr_funcs,obj,EXT->Transform_ptr_typeID);
+RET STG::createNativeObject(Transform_funcs,obj,EXT->Transform_typeID);
 }
 };
 template <>
@@ -9743,12 +9510,12 @@ static Transform *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Transform_ptr_typeID)
+if(obj->typeID==EXT->Transform_typeID)
 RET(Transform*)obj->data;
 else
- CATE(TE,"Value is not a TransformRef."));
+ CATE(TE,"Value is not a Transform."));
 } else
- CATE(TE,"Value is not a TransformRef."));
+ CATE(TE,"Value is not a Transform."));
 }
 };
 template <>
@@ -9757,7 +9524,7 @@ struct type_same<Transform *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Transform_ptr_typeID;
+RET((NO)head)->typeID==EXT->Transform_typeID;
 else
  RET false;
 }
@@ -9768,7 +9535,7 @@ struct type_same<const Transform *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Transform_ptr_typeID;
+RET((NO)head)->typeID==EXT->Transform_typeID;
 else
  RET false;
 }
@@ -9781,24 +9548,15 @@ static const Transform *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Transform_ptr_typeID)
+if(obj->typeID==EXT->Transform_typeID)
 RET(Transform*)obj->data;
 else
- CATE(TE,"Value is not a TransformRef."));
+ CATE(TE,"Value is not a Transform."));
 } else
- CATE(TE,"Value is not a TransformRef."));
+ CATE(TE,"Value is not a Transform."));
 }
 };
 
-SV AudioSourceList_ptr_copy(CTX,NO);
-void AudioSourceList_ptr_destroy(CTX,NO);
-SV AudioSourceList_ptr_get_member(CTX,NO,SV);
-void AudioSourceList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs AudioSourceList_ptr_funcs={
-.destroy = AudioSourceList_ptr_destroy,
-.getMember = AudioSourceList_ptr_get_member,
-.setMember = AudioSourceList_ptr_set_member
-};
 template <>
 struct create_val<List<AudioSource*> *>
 {
@@ -9807,7 +9565,7 @@ static SV f(CTX ctx,List<AudioSource*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(AudioSourceList_ptr_funcs,obj,EXT->AudioSourceList_ptr_typeID);
+RET STG::createNativeObject(AudioSourceList_funcs,obj,EXT->AudioSourceList_typeID);
 }
 };
 template <>
@@ -9818,12 +9576,12 @@ static List<AudioSource*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioSourceList_ptr_typeID)
+if(obj->typeID==EXT->AudioSourceList_typeID)
 RET(List<AudioSource*>*)obj->data;
 else
- CATE(TE,"Value is not a AudioSourceListRef."));
+ CATE(TE,"Value is not a AudioSourceList."));
 } else
- CATE(TE,"Value is not a AudioSourceListRef."));
+ CATE(TE,"Value is not a AudioSourceList."));
 }
 };
 template <>
@@ -9832,7 +9590,7 @@ struct type_same<List<AudioSource*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSourceList_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioSourceList_typeID;
 else
  RET false;
 }
@@ -9843,7 +9601,7 @@ struct type_same<const List<AudioSource*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSourceList_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioSourceList_typeID;
 else
  RET false;
 }
@@ -9856,24 +9614,15 @@ static const List<AudioSource*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioSourceList_ptr_typeID)
+if(obj->typeID==EXT->AudioSourceList_typeID)
 RET(List<AudioSource*>*)obj->data;
 else
- CATE(TE,"Value is not a AudioSourceListRef."));
+ CATE(TE,"Value is not a AudioSourceList."));
 } else
- CATE(TE,"Value is not a AudioSourceListRef."));
+ CATE(TE,"Value is not a AudioSourceList."));
 }
 };
 
-SV GfxMaterial_ptr_copy(CTX,NO);
-void GfxMaterial_ptr_destroy(CTX,NO);
-SV GfxMaterial_ptr_get_member(CTX,NO,SV);
-void GfxMaterial_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxMaterial_ptr_funcs={
-.destroy = GfxMaterial_ptr_destroy,
-.getMember = GfxMaterial_ptr_get_member,
-.setMember = GfxMaterial_ptr_set_member
-};
 template <>
 struct create_val<GfxMaterial *>
 {
@@ -9882,7 +9631,7 @@ static SV f(CTX ctx,GfxMaterial*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxMaterial_ptr_funcs,obj,EXT->GfxMaterial_ptr_typeID);
+RET STG::createNativeObject(GfxMaterial_funcs,obj,EXT->GfxMaterial_typeID);
 }
 };
 template <>
@@ -9893,12 +9642,12 @@ static GfxMaterial *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxMaterial_ptr_typeID)
+if(obj->typeID==EXT->GfxMaterial_typeID)
 RET(GfxMaterial*)obj->data;
 else
- CATE(TE,"Value is not a GfxMaterialRef."));
+ CATE(TE,"Value is not a GfxMaterial."));
 } else
- CATE(TE,"Value is not a GfxMaterialRef."));
+ CATE(TE,"Value is not a GfxMaterial."));
 }
 };
 template <>
@@ -9907,7 +9656,7 @@ struct type_same<GfxMaterial *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMaterial_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMaterial_typeID;
 else
  RET false;
 }
@@ -9918,7 +9667,7 @@ struct type_same<const GfxMaterial *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMaterial_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMaterial_typeID;
 else
  RET false;
 }
@@ -9931,24 +9680,15 @@ static const GfxMaterial *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxMaterial_ptr_typeID)
+if(obj->typeID==EXT->GfxMaterial_typeID)
 RET(GfxMaterial*)obj->data;
 else
- CATE(TE,"Value is not a GfxMaterialRef."));
+ CATE(TE,"Value is not a GfxMaterial."));
 } else
- CATE(TE,"Value is not a GfxMaterialRef."));
+ CATE(TE,"Value is not a GfxMaterial."));
 }
 };
 
-SV Quaternion_ptr_copy(CTX,NO);
-void Quaternion_ptr_destroy(CTX,NO);
-SV Quaternion_ptr_get_member(CTX,NO,SV);
-void Quaternion_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Quaternion_ptr_funcs={
-.destroy = Quaternion_ptr_destroy,
-.getMember = Quaternion_ptr_get_member,
-.setMember = Quaternion_ptr_set_member
-};
 template <>
 struct create_val<Quaternion *>
 {
@@ -9957,7 +9697,7 @@ static SV f(CTX ctx,Quaternion*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Quaternion_ptr_funcs,obj,EXT->Quaternion_ptr_typeID);
+RET STG::createNativeObject(Quaternion_funcs,obj,EXT->Quaternion_typeID);
 }
 };
 template <>
@@ -9968,12 +9708,12 @@ static Quaternion *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Quaternion_ptr_typeID)
+if(obj->typeID==EXT->Quaternion_typeID)
 RET(Quaternion*)obj->data;
 else
- CATE(TE,"Value is not a QuaternionRef."));
+ CATE(TE,"Value is not a Quaternion."));
 } else
- CATE(TE,"Value is not a QuaternionRef."));
+ CATE(TE,"Value is not a Quaternion."));
 }
 };
 template <>
@@ -9982,7 +9722,7 @@ struct type_same<Quaternion *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Quaternion_ptr_typeID;
+RET((NO)head)->typeID==EXT->Quaternion_typeID;
 else
  RET false;
 }
@@ -9993,7 +9733,7 @@ struct type_same<const Quaternion *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Quaternion_ptr_typeID;
+RET((NO)head)->typeID==EXT->Quaternion_typeID;
 else
  RET false;
 }
@@ -10006,24 +9746,15 @@ static const Quaternion *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Quaternion_ptr_typeID)
+if(obj->typeID==EXT->Quaternion_typeID)
 RET(Quaternion*)obj->data;
 else
- CATE(TE,"Value is not a QuaternionRef."));
+ CATE(TE,"Value is not a Quaternion."));
 } else
- CATE(TE,"Value is not a QuaternionRef."));
+ CATE(TE,"Value is not a Quaternion."));
 }
 };
 
-SV GfxMeshAttrib_ptr_copy(CTX,NO);
-void GfxMeshAttrib_ptr_destroy(CTX,NO);
-SV GfxMeshAttrib_ptr_get_member(CTX,NO,SV);
-void GfxMeshAttrib_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxMeshAttrib_ptr_funcs={
-.destroy = GfxMeshAttrib_ptr_destroy,
-.getMember = GfxMeshAttrib_ptr_get_member,
-.setMember = GfxMeshAttrib_ptr_set_member
-};
 template <>
 struct create_val<GfxMeshAttrib *>
 {
@@ -10032,7 +9763,7 @@ static SV f(CTX ctx,GfxMeshAttrib*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxMeshAttrib_ptr_funcs,obj,EXT->GfxMeshAttrib_ptr_typeID);
+RET STG::createNativeObject(GfxMeshAttrib_funcs,obj,EXT->GfxMeshAttrib_typeID);
 }
 };
 template <>
@@ -10043,12 +9774,12 @@ static GfxMeshAttrib *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxMeshAttrib_ptr_typeID)
+if(obj->typeID==EXT->GfxMeshAttrib_typeID)
 RET(GfxMeshAttrib*)obj->data;
 else
- CATE(TE,"Value is not a GfxMeshAttribRef."));
+ CATE(TE,"Value is not a GfxMeshAttrib."));
 } else
- CATE(TE,"Value is not a GfxMeshAttribRef."));
+ CATE(TE,"Value is not a GfxMeshAttrib."));
 }
 };
 template <>
@@ -10057,7 +9788,7 @@ struct type_same<GfxMeshAttrib *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttrib_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMeshAttrib_typeID;
 else
  RET false;
 }
@@ -10068,7 +9799,7 @@ struct type_same<const GfxMeshAttrib *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttrib_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxMeshAttrib_typeID;
 else
  RET false;
 }
@@ -10081,24 +9812,15 @@ static const GfxMeshAttrib *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxMeshAttrib_ptr_typeID)
+if(obj->typeID==EXT->GfxMeshAttrib_typeID)
 RET(GfxMeshAttrib*)obj->data;
 else
- CATE(TE,"Value is not a GfxMeshAttribRef."));
+ CATE(TE,"Value is not a GfxMeshAttrib."));
 } else
- CATE(TE,"Value is not a GfxMeshAttribRef."));
+ CATE(TE,"Value is not a GfxMeshAttrib."));
 }
 };
 
-SV RenderComponent_ptr_copy(CTX,NO);
-void RenderComponent_ptr_destroy(CTX,NO);
-SV RenderComponent_ptr_get_member(CTX,NO,SV);
-void RenderComponent_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RenderComponent_ptr_funcs={
-.destroy = RenderComponent_ptr_destroy,
-.getMember = RenderComponent_ptr_get_member,
-.setMember = RenderComponent_ptr_set_member
-};
 template <>
 struct create_val<RenderComponent *>
 {
@@ -10107,7 +9829,7 @@ static SV f(CTX ctx,RenderComponent*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RenderComponent_ptr_funcs,obj,EXT->RenderComponent_ptr_typeID);
+RET STG::createNativeObject(RenderComponent_funcs,obj,EXT->RenderComponent_typeID);
 }
 };
 template <>
@@ -10118,12 +9840,12 @@ static RenderComponent *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RenderComponent_ptr_typeID)
+if(obj->typeID==EXT->RenderComponent_typeID)
 RET(RenderComponent*)obj->data;
 else
- CATE(TE,"Value is not a RenderComponentRef."));
+ CATE(TE,"Value is not a RenderComponent."));
 } else
- CATE(TE,"Value is not a RenderComponentRef."));
+ CATE(TE,"Value is not a RenderComponent."));
 }
 };
 template <>
@@ -10132,7 +9854,7 @@ struct type_same<RenderComponent *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderComponent_ptr_typeID;
+RET((NO)head)->typeID==EXT->RenderComponent_typeID;
 else
  RET false;
 }
@@ -10143,7 +9865,7 @@ struct type_same<const RenderComponent *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderComponent_ptr_typeID;
+RET((NO)head)->typeID==EXT->RenderComponent_typeID;
 else
  RET false;
 }
@@ -10156,24 +9878,15 @@ static const RenderComponent *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RenderComponent_ptr_typeID)
+if(obj->typeID==EXT->RenderComponent_typeID)
 RET(RenderComponent*)obj->data;
 else
- CATE(TE,"Value is not a RenderComponentRef."));
+ CATE(TE,"Value is not a RenderComponent."));
 } else
- CATE(TE,"Value is not a RenderComponentRef."));
+ CATE(TE,"Value is not a RenderComponent."));
 }
 };
 
-SV Int2_ptr_copy(CTX,NO);
-void Int2_ptr_destroy(CTX,NO);
-SV Int2_ptr_get_member(CTX,NO,SV);
-void Int2_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Int2_ptr_funcs={
-.destroy = Int2_ptr_destroy,
-.getMember = Int2_ptr_get_member,
-.setMember = Int2_ptr_set_member
-};
 template <>
 struct create_val<T2<int32_t> *>
 {
@@ -10182,7 +9895,7 @@ static SV f(CTX ctx,T2<int32_t>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Int2_ptr_funcs,obj,EXT->Int2_ptr_typeID);
+RET STG::createNativeObject(Int2_funcs,obj,EXT->Int2_typeID);
 }
 };
 template <>
@@ -10193,12 +9906,12 @@ static T2<int32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Int2_ptr_typeID)
+if(obj->typeID==EXT->Int2_typeID)
 RET(T2<int32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Int2Ref."));
+ CATE(TE,"Value is not a Int2."));
 } else
- CATE(TE,"Value is not a Int2Ref."));
+ CATE(TE,"Value is not a Int2."));
 }
 };
 template <>
@@ -10207,7 +9920,7 @@ struct type_same<T2<int32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int2_ptr_typeID;
+RET((NO)head)->typeID==EXT->Int2_typeID;
 else
  RET false;
 }
@@ -10218,7 +9931,7 @@ struct type_same<const T2<int32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int2_ptr_typeID;
+RET((NO)head)->typeID==EXT->Int2_typeID;
 else
  RET false;
 }
@@ -10231,24 +9944,15 @@ static const T2<int32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Int2_ptr_typeID)
+if(obj->typeID==EXT->Int2_typeID)
 RET(T2<int32_t>*)obj->data;
 else
- CATE(TE,"Value is not a Int2Ref."));
+ CATE(TE,"Value is not a Int2."));
 } else
- CATE(TE,"Value is not a Int2Ref."));
+ CATE(TE,"Value is not a Int2."));
 }
 };
 
-SV AudioWorld_ptr_copy(CTX,NO);
-void AudioWorld_ptr_destroy(CTX,NO);
-SV AudioWorld_ptr_get_member(CTX,NO,SV);
-void AudioWorld_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs AudioWorld_ptr_funcs={
-.destroy = AudioWorld_ptr_destroy,
-.getMember = AudioWorld_ptr_get_member,
-.setMember = AudioWorld_ptr_set_member
-};
 template <>
 struct create_val<AudioWorld *>
 {
@@ -10257,7 +9961,7 @@ static SV f(CTX ctx,AudioWorld*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(AudioWorld_ptr_funcs,obj,EXT->AudioWorld_ptr_typeID);
+RET STG::createNativeObject(AudioWorld_funcs,obj,EXT->AudioWorld_typeID);
 }
 };
 template <>
@@ -10268,12 +9972,12 @@ static AudioWorld *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioWorld_ptr_typeID)
+if(obj->typeID==EXT->AudioWorld_typeID)
 RET(AudioWorld*)obj->data;
 else
- CATE(TE,"Value is not a AudioWorldRef."));
+ CATE(TE,"Value is not a AudioWorld."));
 } else
- CATE(TE,"Value is not a AudioWorldRef."));
+ CATE(TE,"Value is not a AudioWorld."));
 }
 };
 template <>
@@ -10282,7 +9986,7 @@ struct type_same<AudioWorld *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioWorld_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioWorld_typeID;
 else
  RET false;
 }
@@ -10293,7 +9997,7 @@ struct type_same<const AudioWorld *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioWorld_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioWorld_typeID;
 else
  RET false;
 }
@@ -10306,24 +10010,15 @@ static const AudioWorld *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioWorld_ptr_typeID)
+if(obj->typeID==EXT->AudioWorld_typeID)
 RET(AudioWorld*)obj->data;
 else
- CATE(TE,"Value is not a AudioWorldRef."));
+ CATE(TE,"Value is not a AudioWorld."));
 } else
- CATE(TE,"Value is not a AudioWorldRef."));
+ CATE(TE,"Value is not a AudioWorld."));
 }
 };
 
-SV GuiPlacer_ptr_copy(CTX,NO);
-void GuiPlacer_ptr_destroy(CTX,NO);
-SV GuiPlacer_ptr_get_member(CTX,NO,SV);
-void GuiPlacer_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GuiPlacer_ptr_funcs={
-.destroy = GuiPlacer_ptr_destroy,
-.getMember = GuiPlacer_ptr_get_member,
-.setMember = GuiPlacer_ptr_set_member
-};
 template <>
 struct create_val<GuiPlacer *>
 {
@@ -10332,7 +10027,7 @@ static SV f(CTX ctx,GuiPlacer*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GuiPlacer_ptr_funcs,obj,EXT->GuiPlacer_ptr_typeID);
+RET STG::createNativeObject(GuiPlacer_funcs,obj,EXT->GuiPlacer_typeID);
 }
 };
 template <>
@@ -10343,12 +10038,12 @@ static GuiPlacer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GuiPlacer_ptr_typeID)
+if(obj->typeID==EXT->GuiPlacer_typeID)
 RET(GuiPlacer*)obj->data;
 else
- CATE(TE,"Value is not a GuiPlacerRef."));
+ CATE(TE,"Value is not a GuiPlacer."));
 } else
- CATE(TE,"Value is not a GuiPlacerRef."));
+ CATE(TE,"Value is not a GuiPlacer."));
 }
 };
 template <>
@@ -10357,7 +10052,7 @@ struct type_same<GuiPlacer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GuiPlacer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GuiPlacer_typeID;
 else
  RET false;
 }
@@ -10368,7 +10063,7 @@ struct type_same<const GuiPlacer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GuiPlacer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GuiPlacer_typeID;
 else
  RET false;
 }
@@ -10381,24 +10076,15 @@ static const GuiPlacer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GuiPlacer_ptr_typeID)
+if(obj->typeID==EXT->GuiPlacer_typeID)
 RET(GuiPlacer*)obj->data;
 else
- CATE(TE,"Value is not a GuiPlacerRef."));
+ CATE(TE,"Value is not a GuiPlacer."));
 } else
- CATE(TE,"Value is not a GuiPlacerRef."));
+ CATE(TE,"Value is not a GuiPlacer."));
 }
 };
 
-SV ImGui_ptr_copy(CTX,NO);
-void ImGui_ptr_destroy(CTX,NO);
-SV ImGui_ptr_get_member(CTX,NO,SV);
-void ImGui_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs ImGui_ptr_funcs={
-.destroy = ImGui_ptr_destroy,
-.getMember = ImGui_ptr_get_member,
-.setMember = ImGui_ptr_set_member
-};
 template <>
 struct create_val<ImGui *>
 {
@@ -10407,7 +10093,7 @@ static SV f(CTX ctx,ImGui*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(ImGui_ptr_funcs,obj,EXT->ImGui_ptr_typeID);
+RET STG::createNativeObject(ImGui_funcs,obj,EXT->ImGui_typeID);
 }
 };
 template <>
@@ -10418,12 +10104,12 @@ static ImGui *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ImGui_ptr_typeID)
+if(obj->typeID==EXT->ImGui_typeID)
 RET(ImGui*)obj->data;
 else
- CATE(TE,"Value is not a ImGuiRef."));
+ CATE(TE,"Value is not a ImGui."));
 } else
- CATE(TE,"Value is not a ImGuiRef."));
+ CATE(TE,"Value is not a ImGui."));
 }
 };
 template <>
@@ -10432,7 +10118,7 @@ struct type_same<ImGui *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ImGui_ptr_typeID;
+RET((NO)head)->typeID==EXT->ImGui_typeID;
 else
  RET false;
 }
@@ -10443,7 +10129,7 @@ struct type_same<const ImGui *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ImGui_ptr_typeID;
+RET((NO)head)->typeID==EXT->ImGui_typeID;
 else
  RET false;
 }
@@ -10456,24 +10142,15 @@ static const ImGui *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->ImGui_ptr_typeID)
+if(obj->typeID==EXT->ImGui_typeID)
 RET(ImGui*)obj->data;
 else
- CATE(TE,"Value is not a ImGuiRef."));
+ CATE(TE,"Value is not a ImGui."));
 } else
- CATE(TE,"Value is not a ImGuiRef."));
+ CATE(TE,"Value is not a ImGui."));
 }
 };
 
-SV StringList_ptr_copy(CTX,NO);
-void StringList_ptr_destroy(CTX,NO);
-SV StringList_ptr_get_member(CTX,NO,SV);
-void StringList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs StringList_ptr_funcs={
-.destroy = StringList_ptr_destroy,
-.getMember = StringList_ptr_get_member,
-.setMember = StringList_ptr_set_member
-};
 template <>
 struct create_val<List<String> *>
 {
@@ -10482,7 +10159,7 @@ static SV f(CTX ctx,List<String>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(StringList_ptr_funcs,obj,EXT->StringList_ptr_typeID);
+RET STG::createNativeObject(StringList_funcs,obj,EXT->StringList_typeID);
 }
 };
 template <>
@@ -10493,12 +10170,12 @@ static List<String> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StringList_ptr_typeID)
+if(obj->typeID==EXT->StringList_typeID)
 RET(List<String>*)obj->data;
 else
- CATE(TE,"Value is not a StringListRef."));
+ CATE(TE,"Value is not a StringList."));
 } else
- CATE(TE,"Value is not a StringListRef."));
+ CATE(TE,"Value is not a StringList."));
 }
 };
 template <>
@@ -10507,7 +10184,7 @@ struct type_same<List<String> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StringList_ptr_typeID;
+RET((NO)head)->typeID==EXT->StringList_typeID;
 else
  RET false;
 }
@@ -10518,7 +10195,7 @@ struct type_same<const List<String> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StringList_ptr_typeID;
+RET((NO)head)->typeID==EXT->StringList_typeID;
 else
  RET false;
 }
@@ -10531,24 +10208,15 @@ static const List<String> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->StringList_ptr_typeID)
+if(obj->typeID==EXT->StringList_typeID)
 RET(List<String>*)obj->data;
 else
- CATE(TE,"Value is not a StringListRef."));
+ CATE(TE,"Value is not a StringList."));
 } else
- CATE(TE,"Value is not a StringListRef."));
+ CATE(TE,"Value is not a StringList."));
 }
 };
 
-SV Application_ptr_copy(CTX,NO);
-void Application_ptr_destroy(CTX,NO);
-SV Application_ptr_get_member(CTX,NO,SV);
-void Application_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Application_ptr_funcs={
-.destroy = Application_ptr_destroy,
-.getMember = Application_ptr_get_member,
-.setMember = Application_ptr_set_member
-};
 template <>
 struct create_val<Application *>
 {
@@ -10557,7 +10225,7 @@ static SV f(CTX ctx,Application*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Application_ptr_funcs,obj,EXT->Application_ptr_typeID);
+RET STG::createNativeObject(Application_funcs,obj,EXT->Application_typeID);
 }
 };
 template <>
@@ -10568,12 +10236,12 @@ static Application *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Application_ptr_typeID)
+if(obj->typeID==EXT->Application_typeID)
 RET(Application*)obj->data;
 else
- CATE(TE,"Value is not a ApplicationRef."));
+ CATE(TE,"Value is not a Application."));
 } else
- CATE(TE,"Value is not a ApplicationRef."));
+ CATE(TE,"Value is not a Application."));
 }
 };
 template <>
@@ -10582,7 +10250,7 @@ struct type_same<Application *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Application_ptr_typeID;
+RET((NO)head)->typeID==EXT->Application_typeID;
 else
  RET false;
 }
@@ -10593,7 +10261,7 @@ struct type_same<const Application *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Application_ptr_typeID;
+RET((NO)head)->typeID==EXT->Application_typeID;
 else
  RET false;
 }
@@ -10606,24 +10274,15 @@ static const Application *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Application_ptr_typeID)
+if(obj->typeID==EXT->Application_typeID)
 RET(Application*)obj->data;
 else
- CATE(TE,"Value is not a ApplicationRef."));
+ CATE(TE,"Value is not a Application."));
 } else
- CATE(TE,"Value is not a ApplicationRef."));
+ CATE(TE,"Value is not a Application."));
 }
 };
 
-SV LightPointData_ptr_copy(CTX,NO);
-void LightPointData_ptr_destroy(CTX,NO);
-SV LightPointData_ptr_get_member(CTX,NO,SV);
-void LightPointData_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs LightPointData_ptr_funcs={
-.destroy = LightPointData_ptr_destroy,
-.getMember = LightPointData_ptr_get_member,
-.setMember = LightPointData_ptr_set_member
-};
 template <>
 struct create_val<LightPointData *>
 {
@@ -10632,7 +10291,7 @@ static SV f(CTX ctx,LightPointData*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(LightPointData_ptr_funcs,obj,EXT->LightPointData_ptr_typeID);
+RET STG::createNativeObject(LightPointData_funcs,obj,EXT->LightPointData_typeID);
 }
 };
 template <>
@@ -10643,12 +10302,12 @@ static LightPointData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightPointData_ptr_typeID)
+if(obj->typeID==EXT->LightPointData_typeID)
 RET(LightPointData*)obj->data;
 else
- CATE(TE,"Value is not a LightPointDataRef."));
+ CATE(TE,"Value is not a LightPointData."));
 } else
- CATE(TE,"Value is not a LightPointDataRef."));
+ CATE(TE,"Value is not a LightPointData."));
 }
 };
 template <>
@@ -10657,7 +10316,7 @@ struct type_same<LightPointData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightPointData_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightPointData_typeID;
 else
  RET false;
 }
@@ -10668,7 +10327,7 @@ struct type_same<const LightPointData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightPointData_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightPointData_typeID;
 else
  RET false;
 }
@@ -10681,24 +10340,15 @@ static const LightPointData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightPointData_ptr_typeID)
+if(obj->typeID==EXT->LightPointData_typeID)
 RET(LightPointData*)obj->data;
 else
- CATE(TE,"Value is not a LightPointDataRef."));
+ CATE(TE,"Value is not a LightPointData."));
 } else
- CATE(TE,"Value is not a LightPointDataRef."));
+ CATE(TE,"Value is not a LightPointData."));
 }
 };
 
-SV Float4_ptr_copy(CTX,NO);
-void Float4_ptr_destroy(CTX,NO);
-SV Float4_ptr_get_member(CTX,NO,SV);
-void Float4_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Float4_ptr_funcs={
-.destroy = Float4_ptr_destroy,
-.getMember = Float4_ptr_get_member,
-.setMember = Float4_ptr_set_member
-};
 template <>
 struct create_val<T4<float> *>
 {
@@ -10707,7 +10357,7 @@ static SV f(CTX ctx,T4<float>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Float4_ptr_funcs,obj,EXT->Float4_ptr_typeID);
+RET STG::createNativeObject(Float4_funcs,obj,EXT->Float4_typeID);
 }
 };
 template <>
@@ -10718,12 +10368,12 @@ static T4<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float4_ptr_typeID)
+if(obj->typeID==EXT->Float4_typeID)
 RET(T4<float>*)obj->data;
 else
- CATE(TE,"Value is not a Float4Ref."));
+ CATE(TE,"Value is not a Float4."));
 } else
- CATE(TE,"Value is not a Float4Ref."));
+ CATE(TE,"Value is not a Float4."));
 }
 };
 template <>
@@ -10732,7 +10382,7 @@ struct type_same<T4<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float4_ptr_typeID;
+RET((NO)head)->typeID==EXT->Float4_typeID;
 else
  RET false;
 }
@@ -10743,7 +10393,7 @@ struct type_same<const T4<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float4_ptr_typeID;
+RET((NO)head)->typeID==EXT->Float4_typeID;
 else
  RET false;
 }
@@ -10756,24 +10406,15 @@ static const T4<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Float4_ptr_typeID)
+if(obj->typeID==EXT->Float4_typeID)
 RET(T4<float>*)obj->data;
 else
- CATE(TE,"Value is not a Float4Ref."));
+ CATE(TE,"Value is not a Float4."));
 } else
- CATE(TE,"Value is not a Float4Ref."));
+ CATE(TE,"Value is not a Float4."));
 }
 };
 
-SV FloatList_ptr_copy(CTX,NO);
-void FloatList_ptr_destroy(CTX,NO);
-SV FloatList_ptr_get_member(CTX,NO,SV);
-void FloatList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs FloatList_ptr_funcs={
-.destroy = FloatList_ptr_destroy,
-.getMember = FloatList_ptr_get_member,
-.setMember = FloatList_ptr_set_member
-};
 template <>
 struct create_val<List<float> *>
 {
@@ -10782,7 +10423,7 @@ static SV f(CTX ctx,List<float>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(FloatList_ptr_funcs,obj,EXT->FloatList_ptr_typeID);
+RET STG::createNativeObject(FloatList_funcs,obj,EXT->FloatList_typeID);
 }
 };
 template <>
@@ -10793,12 +10434,12 @@ static List<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->FloatList_ptr_typeID)
+if(obj->typeID==EXT->FloatList_typeID)
 RET(List<float>*)obj->data;
 else
- CATE(TE,"Value is not a FloatListRef."));
+ CATE(TE,"Value is not a FloatList."));
 } else
- CATE(TE,"Value is not a FloatListRef."));
+ CATE(TE,"Value is not a FloatList."));
 }
 };
 template <>
@@ -10807,7 +10448,7 @@ struct type_same<List<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->FloatList_ptr_typeID;
+RET((NO)head)->typeID==EXT->FloatList_typeID;
 else
  RET false;
 }
@@ -10818,7 +10459,7 @@ struct type_same<const List<float> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->FloatList_ptr_typeID;
+RET((NO)head)->typeID==EXT->FloatList_typeID;
 else
  RET false;
 }
@@ -10831,24 +10472,15 @@ static const List<float> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->FloatList_ptr_typeID)
+if(obj->typeID==EXT->FloatList_typeID)
 RET(List<float>*)obj->data;
 else
- CATE(TE,"Value is not a FloatListRef."));
+ CATE(TE,"Value is not a FloatList."));
 } else
- CATE(TE,"Value is not a FloatListRef."));
+ CATE(TE,"Value is not a FloatList."));
 }
 };
 
-SV Container_ptr_copy(CTX,NO);
-void Container_ptr_destroy(CTX,NO);
-SV Container_ptr_get_member(CTX,NO,SV);
-void Container_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Container_ptr_funcs={
-.destroy = Container_ptr_destroy,
-.getMember = Container_ptr_get_member,
-.setMember = Container_ptr_set_member
-};
 template <>
 struct create_val<Container *>
 {
@@ -10857,7 +10489,7 @@ static SV f(CTX ctx,Container*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Container_ptr_funcs,obj,EXT->Container_ptr_typeID);
+RET STG::createNativeObject(Container_funcs,obj,EXT->Container_typeID);
 }
 };
 template <>
@@ -10868,12 +10500,12 @@ static Container *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Container_ptr_typeID)
+if(obj->typeID==EXT->Container_typeID)
 RET(Container*)obj->data;
 else
- CATE(TE,"Value is not a ContainerRef."));
+ CATE(TE,"Value is not a Container."));
 } else
- CATE(TE,"Value is not a ContainerRef."));
+ CATE(TE,"Value is not a Container."));
 }
 };
 template <>
@@ -10882,7 +10514,7 @@ struct type_same<Container *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Container_ptr_typeID;
+RET((NO)head)->typeID==EXT->Container_typeID;
 else
  RET false;
 }
@@ -10893,7 +10525,7 @@ struct type_same<const Container *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Container_ptr_typeID;
+RET((NO)head)->typeID==EXT->Container_typeID;
 else
  RET false;
 }
@@ -10906,24 +10538,15 @@ static const Container *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Container_ptr_typeID)
+if(obj->typeID==EXT->Container_typeID)
 RET(Container*)obj->data;
 else
- CATE(TE,"Value is not a ContainerRef."));
+ CATE(TE,"Value is not a Container."));
 } else
- CATE(TE,"Value is not a ContainerRef."));
+ CATE(TE,"Value is not a Container."));
 }
 };
 
-SV LightDirectionalData_ptr_copy(CTX,NO);
-void LightDirectionalData_ptr_destroy(CTX,NO);
-SV LightDirectionalData_ptr_get_member(CTX,NO,SV);
-void LightDirectionalData_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs LightDirectionalData_ptr_funcs={
-.destroy = LightDirectionalData_ptr_destroy,
-.getMember = LightDirectionalData_ptr_get_member,
-.setMember = LightDirectionalData_ptr_set_member
-};
 template <>
 struct create_val<LightDirectionalData *>
 {
@@ -10932,7 +10555,7 @@ static SV f(CTX ctx,LightDirectionalData*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(LightDirectionalData_ptr_funcs,obj,EXT->LightDirectionalData_ptr_typeID);
+RET STG::createNativeObject(LightDirectionalData_funcs,obj,EXT->LightDirectionalData_typeID);
 }
 };
 template <>
@@ -10943,12 +10566,12 @@ static LightDirectionalData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightDirectionalData_ptr_typeID)
+if(obj->typeID==EXT->LightDirectionalData_typeID)
 RET(LightDirectionalData*)obj->data;
 else
- CATE(TE,"Value is not a LightDirectionalDataRef."));
+ CATE(TE,"Value is not a LightDirectionalData."));
 } else
- CATE(TE,"Value is not a LightDirectionalDataRef."));
+ CATE(TE,"Value is not a LightDirectionalData."));
 }
 };
 template <>
@@ -10957,7 +10580,7 @@ struct type_same<LightDirectionalData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightDirectionalData_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightDirectionalData_typeID;
 else
  RET false;
 }
@@ -10968,7 +10591,7 @@ struct type_same<const LightDirectionalData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightDirectionalData_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightDirectionalData_typeID;
 else
  RET false;
 }
@@ -10981,24 +10604,15 @@ static const LightDirectionalData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightDirectionalData_ptr_typeID)
+if(obj->typeID==EXT->LightDirectionalData_typeID)
 RET(LightDirectionalData*)obj->data;
 else
- CATE(TE,"Value is not a LightDirectionalDataRef."));
+ CATE(TE,"Value is not a LightDirectionalData."));
 } else
- CATE(TE,"Value is not a LightDirectionalDataRef."));
+ CATE(TE,"Value is not a LightDirectionalData."));
 }
 };
 
-SV Matrix4x4_ptr_copy(CTX,NO);
-void Matrix4x4_ptr_destroy(CTX,NO);
-SV Matrix4x4_ptr_get_member(CTX,NO,SV);
-void Matrix4x4_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Matrix4x4_ptr_funcs={
-.destroy = Matrix4x4_ptr_destroy,
-.getMember = Matrix4x4_ptr_get_member,
-.setMember = Matrix4x4_ptr_set_member
-};
 template <>
 struct create_val<Matrix4x4 *>
 {
@@ -11007,7 +10621,7 @@ static SV f(CTX ctx,Matrix4x4*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Matrix4x4_ptr_funcs,obj,EXT->Matrix4x4_ptr_typeID);
+RET STG::createNativeObject(Matrix4x4_funcs,obj,EXT->Matrix4x4_typeID);
 }
 };
 template <>
@@ -11018,12 +10632,12 @@ static Matrix4x4 *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Matrix4x4_ptr_typeID)
+if(obj->typeID==EXT->Matrix4x4_typeID)
 RET(Matrix4x4*)obj->data;
 else
- CATE(TE,"Value is not a Matrix4x4Ref."));
+ CATE(TE,"Value is not a Matrix4x4."));
 } else
- CATE(TE,"Value is not a Matrix4x4Ref."));
+ CATE(TE,"Value is not a Matrix4x4."));
 }
 };
 template <>
@@ -11032,7 +10646,7 @@ struct type_same<Matrix4x4 *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix4x4_ptr_typeID;
+RET((NO)head)->typeID==EXT->Matrix4x4_typeID;
 else
  RET false;
 }
@@ -11043,7 +10657,7 @@ struct type_same<const Matrix4x4 *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix4x4_ptr_typeID;
+RET((NO)head)->typeID==EXT->Matrix4x4_typeID;
 else
  RET false;
 }
@@ -11056,24 +10670,15 @@ static const Matrix4x4 *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Matrix4x4_ptr_typeID)
+if(obj->typeID==EXT->Matrix4x4_typeID)
 RET(Matrix4x4*)obj->data;
 else
- CATE(TE,"Value is not a Matrix4x4Ref."));
+ CATE(TE,"Value is not a Matrix4x4."));
 } else
- CATE(TE,"Value is not a Matrix4x4Ref."));
+ CATE(TE,"Value is not a Matrix4x4."));
 }
 };
 
-SV Map_ptr_copy(CTX,NO);
-void Map_ptr_destroy(CTX,NO);
-SV Map_ptr_get_member(CTX,NO,SV);
-void Map_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Map_ptr_funcs={
-.destroy = Map_ptr_destroy,
-.getMember = Map_ptr_get_member,
-.setMember = Map_ptr_set_member
-};
 template <>
 struct create_val<HashMap<scripting::Value*,scripting::Value*> *>
 {
@@ -11082,7 +10687,7 @@ static SV f(CTX ctx,HashMap<scripting::Value*,scripting::Value*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Map_ptr_funcs,obj,EXT->Map_ptr_typeID);
+RET STG::createNativeObject(Map_funcs,obj,EXT->Map_typeID);
 }
 };
 template <>
@@ -11093,12 +10698,12 @@ static HashMap<scripting::Value*,scripting::Value*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Map_ptr_typeID)
+if(obj->typeID==EXT->Map_typeID)
 RET(HashMap<scripting::Value*,scripting::Value*>*)obj->data;
 else
- CATE(TE,"Value is not a MapRef."));
+ CATE(TE,"Value is not a Map."));
 } else
- CATE(TE,"Value is not a MapRef."));
+ CATE(TE,"Value is not a Map."));
 }
 };
 template <>
@@ -11107,7 +10712,7 @@ struct type_same<HashMap<scripting::Value*,scripting::Value*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Map_ptr_typeID;
+RET((NO)head)->typeID==EXT->Map_typeID;
 else
  RET false;
 }
@@ -11118,7 +10723,7 @@ struct type_same<const HashMap<scripting::Value*,scripting::Value*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Map_ptr_typeID;
+RET((NO)head)->typeID==EXT->Map_typeID;
 else
  RET false;
 }
@@ -11131,24 +10736,15 @@ static const HashMap<scripting::Value*,scripting::Value*> *f(CTX ctx,const SV he
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Map_ptr_typeID)
+if(obj->typeID==EXT->Map_typeID)
 RET(HashMap<scripting::Value*,scripting::Value*>*)obj->data;
 else
- CATE(TE,"Value is not a MapRef."));
+ CATE(TE,"Value is not a Map."));
 } else
- CATE(TE,"Value is not a MapRef."));
+ CATE(TE,"Value is not a Map."));
 }
 };
 
-SV UInt3_ptr_copy(CTX,NO);
-void UInt3_ptr_destroy(CTX,NO);
-SV UInt3_ptr_get_member(CTX,NO,SV);
-void UInt3_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt3_ptr_funcs={
-.destroy = UInt3_ptr_destroy,
-.getMember = UInt3_ptr_get_member,
-.setMember = UInt3_ptr_set_member
-};
 template <>
 struct create_val<T3<uint32_t> *>
 {
@@ -11157,7 +10753,7 @@ static SV f(CTX ctx,T3<uint32_t>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(UInt3_ptr_funcs,obj,EXT->UInt3_ptr_typeID);
+RET STG::createNativeObject(UInt3_funcs,obj,EXT->UInt3_typeID);
 }
 };
 template <>
@@ -11168,12 +10764,12 @@ static T3<uint32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt3_ptr_typeID)
+if(obj->typeID==EXT->UInt3_typeID)
 RET(T3<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt3Ref."));
+ CATE(TE,"Value is not a UInt3."));
 } else
- CATE(TE,"Value is not a UInt3Ref."));
+ CATE(TE,"Value is not a UInt3."));
 }
 };
 template <>
@@ -11182,7 +10778,7 @@ struct type_same<T3<uint32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt3_ptr_typeID;
+RET((NO)head)->typeID==EXT->UInt3_typeID;
 else
  RET false;
 }
@@ -11193,7 +10789,7 @@ struct type_same<const T3<uint32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt3_ptr_typeID;
+RET((NO)head)->typeID==EXT->UInt3_typeID;
 else
  RET false;
 }
@@ -11206,24 +10802,15 @@ static const T3<uint32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt3_ptr_typeID)
+if(obj->typeID==EXT->UInt3_typeID)
 RET(T3<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt3Ref."));
+ CATE(TE,"Value is not a UInt3."));
 } else
- CATE(TE,"Value is not a UInt3Ref."));
+ CATE(TE,"Value is not a UInt3."));
 }
 };
 
-SV LightSpotData_ptr_copy(CTX,NO);
-void LightSpotData_ptr_destroy(CTX,NO);
-SV LightSpotData_ptr_get_member(CTX,NO,SV);
-void LightSpotData_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs LightSpotData_ptr_funcs={
-.destroy = LightSpotData_ptr_destroy,
-.getMember = LightSpotData_ptr_get_member,
-.setMember = LightSpotData_ptr_set_member
-};
 template <>
 struct create_val<LightSpotData *>
 {
@@ -11232,7 +10819,7 @@ static SV f(CTX ctx,LightSpotData*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(LightSpotData_ptr_funcs,obj,EXT->LightSpotData_ptr_typeID);
+RET STG::createNativeObject(LightSpotData_funcs,obj,EXT->LightSpotData_typeID);
 }
 };
 template <>
@@ -11243,12 +10830,12 @@ static LightSpotData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightSpotData_ptr_typeID)
+if(obj->typeID==EXT->LightSpotData_typeID)
 RET(LightSpotData*)obj->data;
 else
- CATE(TE,"Value is not a LightSpotDataRef."));
+ CATE(TE,"Value is not a LightSpotData."));
 } else
- CATE(TE,"Value is not a LightSpotDataRef."));
+ CATE(TE,"Value is not a LightSpotData."));
 }
 };
 template <>
@@ -11257,7 +10844,7 @@ struct type_same<LightSpotData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightSpotData_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightSpotData_typeID;
 else
  RET false;
 }
@@ -11268,7 +10855,7 @@ struct type_same<const LightSpotData *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightSpotData_ptr_typeID;
+RET((NO)head)->typeID==EXT->LightSpotData_typeID;
 else
  RET false;
 }
@@ -11281,24 +10868,15 @@ static const LightSpotData *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->LightSpotData_ptr_typeID)
+if(obj->typeID==EXT->LightSpotData_typeID)
 RET(LightSpotData*)obj->data;
 else
- CATE(TE,"Value is not a LightSpotDataRef."));
+ CATE(TE,"Value is not a LightSpotData."));
 } else
- CATE(TE,"Value is not a LightSpotDataRef."));
+ CATE(TE,"Value is not a LightSpotData."));
 }
 };
 
-SV PhysicsShape_ptr_copy(CTX,NO);
-void PhysicsShape_ptr_destroy(CTX,NO);
-SV PhysicsShape_ptr_get_member(CTX,NO,SV);
-void PhysicsShape_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs PhysicsShape_ptr_funcs={
-.destroy = PhysicsShape_ptr_destroy,
-.getMember = PhysicsShape_ptr_get_member,
-.setMember = PhysicsShape_ptr_set_member
-};
 template <>
 struct create_val<PhysicsShape *>
 {
@@ -11307,7 +10885,7 @@ static SV f(CTX ctx,PhysicsShape*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(PhysicsShape_ptr_funcs,obj,EXT->PhysicsShape_ptr_typeID);
+RET STG::createNativeObject(PhysicsShape_funcs,obj,EXT->PhysicsShape_typeID);
 }
 };
 template <>
@@ -11318,12 +10896,12 @@ static PhysicsShape *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->PhysicsShape_ptr_typeID)
+if(obj->typeID==EXT->PhysicsShape_typeID)
 RET(PhysicsShape*)obj->data;
 else
- CATE(TE,"Value is not a PhysicsShapeRef."));
+ CATE(TE,"Value is not a PhysicsShape."));
 } else
- CATE(TE,"Value is not a PhysicsShapeRef."));
+ CATE(TE,"Value is not a PhysicsShape."));
 }
 };
 template <>
@@ -11332,7 +10910,7 @@ struct type_same<PhysicsShape *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsShape_ptr_typeID;
+RET((NO)head)->typeID==EXT->PhysicsShape_typeID;
 else
  RET false;
 }
@@ -11343,7 +10921,7 @@ struct type_same<const PhysicsShape *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsShape_ptr_typeID;
+RET((NO)head)->typeID==EXT->PhysicsShape_typeID;
 else
  RET false;
 }
@@ -11356,24 +10934,15 @@ static const PhysicsShape *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->PhysicsShape_ptr_typeID)
+if(obj->typeID==EXT->PhysicsShape_typeID)
 RET(PhysicsShape*)obj->data;
 else
- CATE(TE,"Value is not a PhysicsShapeRef."));
+ CATE(TE,"Value is not a PhysicsShape."));
 } else
- CATE(TE,"Value is not a PhysicsShapeRef."));
+ CATE(TE,"Value is not a PhysicsShape."));
 }
 };
 
-SV AudioDevice_ptr_copy(CTX,NO);
-void AudioDevice_ptr_destroy(CTX,NO);
-SV AudioDevice_ptr_get_member(CTX,NO,SV);
-void AudioDevice_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs AudioDevice_ptr_funcs={
-.destroy = AudioDevice_ptr_destroy,
-.getMember = AudioDevice_ptr_get_member,
-.setMember = AudioDevice_ptr_set_member
-};
 template <>
 struct create_val<AudioDevice *>
 {
@@ -11382,7 +10951,7 @@ static SV f(CTX ctx,AudioDevice*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(AudioDevice_ptr_funcs,obj,EXT->AudioDevice_ptr_typeID);
+RET STG::createNativeObject(AudioDevice_funcs,obj,EXT->AudioDevice_typeID);
 }
 };
 template <>
@@ -11393,12 +10962,12 @@ static AudioDevice *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioDevice_ptr_typeID)
+if(obj->typeID==EXT->AudioDevice_typeID)
 RET(AudioDevice*)obj->data;
 else
- CATE(TE,"Value is not a AudioDeviceRef."));
+ CATE(TE,"Value is not a AudioDevice."));
 } else
- CATE(TE,"Value is not a AudioDeviceRef."));
+ CATE(TE,"Value is not a AudioDevice."));
 }
 };
 template <>
@@ -11407,7 +10976,7 @@ struct type_same<AudioDevice *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioDevice_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioDevice_typeID;
 else
  RET false;
 }
@@ -11418,7 +10987,7 @@ struct type_same<const AudioDevice *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioDevice_ptr_typeID;
+RET((NO)head)->typeID==EXT->AudioDevice_typeID;
 else
  RET false;
 }
@@ -11431,24 +11000,15 @@ static const AudioDevice *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AudioDevice_ptr_typeID)
+if(obj->typeID==EXT->AudioDevice_typeID)
 RET(AudioDevice*)obj->data;
 else
- CATE(TE,"Value is not a AudioDeviceRef."));
+ CATE(TE,"Value is not a AudioDevice."));
 } else
- CATE(TE,"Value is not a AudioDeviceRef."));
+ CATE(TE,"Value is not a AudioDevice."));
 }
 };
 
-SV RigidBodyList_ptr_copy(CTX,NO);
-void RigidBodyList_ptr_destroy(CTX,NO);
-SV RigidBodyList_ptr_get_member(CTX,NO,SV);
-void RigidBodyList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RigidBodyList_ptr_funcs={
-.destroy = RigidBodyList_ptr_destroy,
-.getMember = RigidBodyList_ptr_get_member,
-.setMember = RigidBodyList_ptr_set_member
-};
 template <>
 struct create_val<List<RigidBody*> *>
 {
@@ -11457,7 +11017,7 @@ static SV f(CTX ctx,List<RigidBody*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RigidBodyList_ptr_funcs,obj,EXT->RigidBodyList_ptr_typeID);
+RET STG::createNativeObject(RigidBodyList_funcs,obj,EXT->RigidBodyList_typeID);
 }
 };
 template <>
@@ -11468,12 +11028,12 @@ static List<RigidBody*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RigidBodyList_ptr_typeID)
+if(obj->typeID==EXT->RigidBodyList_typeID)
 RET(List<RigidBody*>*)obj->data;
 else
- CATE(TE,"Value is not a RigidBodyListRef."));
+ CATE(TE,"Value is not a RigidBodyList."));
 } else
- CATE(TE,"Value is not a RigidBodyListRef."));
+ CATE(TE,"Value is not a RigidBodyList."));
 }
 };
 template <>
@@ -11482,7 +11042,7 @@ struct type_same<List<RigidBody*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyList_ptr_typeID;
+RET((NO)head)->typeID==EXT->RigidBodyList_typeID;
 else
  RET false;
 }
@@ -11493,7 +11053,7 @@ struct type_same<const List<RigidBody*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyList_ptr_typeID;
+RET((NO)head)->typeID==EXT->RigidBodyList_typeID;
 else
  RET false;
 }
@@ -11506,24 +11066,15 @@ static const List<RigidBody*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RigidBodyList_ptr_typeID)
+if(obj->typeID==EXT->RigidBodyList_typeID)
 RET(List<RigidBody*>*)obj->data;
 else
- CATE(TE,"Value is not a RigidBodyListRef."));
+ CATE(TE,"Value is not a RigidBodyList."));
 } else
- CATE(TE,"Value is not a RigidBodyListRef."));
+ CATE(TE,"Value is not a RigidBodyList."));
 }
 };
 
-SV UInt4_ptr_copy(CTX,NO);
-void UInt4_ptr_destroy(CTX,NO);
-SV UInt4_ptr_get_member(CTX,NO,SV);
-void UInt4_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs UInt4_ptr_funcs={
-.destroy = UInt4_ptr_destroy,
-.getMember = UInt4_ptr_get_member,
-.setMember = UInt4_ptr_set_member
-};
 template <>
 struct create_val<T4<uint32_t> *>
 {
@@ -11532,7 +11083,7 @@ static SV f(CTX ctx,T4<uint32_t>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(UInt4_ptr_funcs,obj,EXT->UInt4_ptr_typeID);
+RET STG::createNativeObject(UInt4_funcs,obj,EXT->UInt4_typeID);
 }
 };
 template <>
@@ -11543,12 +11094,12 @@ static T4<uint32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_ptr_typeID)
+if(obj->typeID==EXT->UInt4_typeID)
 RET(T4<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt4Ref."));
+ CATE(TE,"Value is not a UInt4."));
 } else
- CATE(TE,"Value is not a UInt4Ref."));
+ CATE(TE,"Value is not a UInt4."));
 }
 };
 template <>
@@ -11557,7 +11108,7 @@ struct type_same<T4<uint32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+RET((NO)head)->typeID==EXT->UInt4_typeID;
 else
  RET false;
 }
@@ -11568,7 +11119,7 @@ struct type_same<const T4<uint32_t> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_ptr_typeID;
+RET((NO)head)->typeID==EXT->UInt4_typeID;
 else
  RET false;
 }
@@ -11581,24 +11132,15 @@ static const T4<uint32_t> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->UInt4_ptr_typeID)
+if(obj->typeID==EXT->UInt4_typeID)
 RET(T4<uint32_t>*)obj->data;
 else
- CATE(TE,"Value is not a UInt4Ref."));
+ CATE(TE,"Value is not a UInt4."));
 } else
- CATE(TE,"Value is not a UInt4Ref."));
+ CATE(TE,"Value is not a UInt4."));
 }
 };
 
-SV RayCastResult_ptr_copy(CTX,NO);
-void RayCastResult_ptr_destroy(CTX,NO);
-SV RayCastResult_ptr_get_member(CTX,NO,SV);
-void RayCastResult_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RayCastResult_ptr_funcs={
-.destroy = RayCastResult_ptr_destroy,
-.getMember = RayCastResult_ptr_get_member,
-.setMember = RayCastResult_ptr_set_member
-};
 template <>
 struct create_val<RayCastResult *>
 {
@@ -11607,7 +11149,7 @@ static SV f(CTX ctx,RayCastResult*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RayCastResult_ptr_funcs,obj,EXT->RayCastResult_ptr_typeID);
+RET STG::createNativeObject(RayCastResult_funcs,obj,EXT->RayCastResult_typeID);
 }
 };
 template <>
@@ -11618,12 +11160,12 @@ static RayCastResult *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RayCastResult_ptr_typeID)
+if(obj->typeID==EXT->RayCastResult_typeID)
 RET(RayCastResult*)obj->data;
 else
- CATE(TE,"Value is not a RayCastResultRef."));
+ CATE(TE,"Value is not a RayCastResult."));
 } else
- CATE(TE,"Value is not a RayCastResultRef."));
+ CATE(TE,"Value is not a RayCastResult."));
 }
 };
 template <>
@@ -11632,7 +11174,7 @@ struct type_same<RayCastResult *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResult_ptr_typeID;
+RET((NO)head)->typeID==EXT->RayCastResult_typeID;
 else
  RET false;
 }
@@ -11643,7 +11185,7 @@ struct type_same<const RayCastResult *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResult_ptr_typeID;
+RET((NO)head)->typeID==EXT->RayCastResult_typeID;
 else
  RET false;
 }
@@ -11656,24 +11198,15 @@ static const RayCastResult *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RayCastResult_ptr_typeID)
+if(obj->typeID==EXT->RayCastResult_typeID)
 RET(RayCastResult*)obj->data;
 else
- CATE(TE,"Value is not a RayCastResultRef."));
+ CATE(TE,"Value is not a RayCastResult."));
 } else
- CATE(TE,"Value is not a RayCastResultRef."));
+ CATE(TE,"Value is not a RayCastResult."));
 }
 };
 
-SV GfxLOD_ptr_copy(CTX,NO);
-void GfxLOD_ptr_destroy(CTX,NO);
-SV GfxLOD_ptr_get_member(CTX,NO,SV);
-void GfxLOD_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxLOD_ptr_funcs={
-.destroy = GfxLOD_ptr_destroy,
-.getMember = GfxLOD_ptr_get_member,
-.setMember = GfxLOD_ptr_set_member
-};
 template <>
 struct create_val<GfxLOD *>
 {
@@ -11682,7 +11215,7 @@ static SV f(CTX ctx,GfxLOD*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxLOD_ptr_funcs,obj,EXT->GfxLOD_ptr_typeID);
+RET STG::createNativeObject(GfxLOD_funcs,obj,EXT->GfxLOD_typeID);
 }
 };
 template <>
@@ -11693,12 +11226,12 @@ static GfxLOD *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxLOD_ptr_typeID)
+if(obj->typeID==EXT->GfxLOD_typeID)
 RET(GfxLOD*)obj->data;
 else
- CATE(TE,"Value is not a GfxLODRef."));
+ CATE(TE,"Value is not a GfxLOD."));
 } else
- CATE(TE,"Value is not a GfxLODRef."));
+ CATE(TE,"Value is not a GfxLOD."));
 }
 };
 template <>
@@ -11707,7 +11240,7 @@ struct type_same<GfxLOD *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLOD_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxLOD_typeID;
 else
  RET false;
 }
@@ -11718,7 +11251,7 @@ struct type_same<const GfxLOD *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLOD_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxLOD_typeID;
 else
  RET false;
 }
@@ -11731,24 +11264,15 @@ static const GfxLOD *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxLOD_ptr_typeID)
+if(obj->typeID==EXT->GfxLOD_typeID)
 RET(GfxLOD*)obj->data;
 else
- CATE(TE,"Value is not a GfxLODRef."));
+ CATE(TE,"Value is not a GfxLOD."));
 } else
- CATE(TE,"Value is not a GfxLODRef."));
+ CATE(TE,"Value is not a GfxLOD."));
 }
 };
 
-SV File_ptr_copy(CTX,NO);
-void File_ptr_destroy(CTX,NO);
-SV File_ptr_get_member(CTX,NO,SV);
-void File_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs File_ptr_funcs={
-.destroy = File_ptr_destroy,
-.getMember = File_ptr_get_member,
-.setMember = File_ptr_set_member
-};
 template <>
 struct create_val<File *>
 {
@@ -11757,7 +11281,7 @@ static SV f(CTX ctx,File*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(File_ptr_funcs,obj,EXT->File_ptr_typeID);
+RET STG::createNativeObject(File_funcs,obj,EXT->File_typeID);
 }
 };
 template <>
@@ -11768,12 +11292,12 @@ static File *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->File_ptr_typeID)
+if(obj->typeID==EXT->File_typeID)
 RET(File*)obj->data;
 else
- CATE(TE,"Value is not a FileRef."));
+ CATE(TE,"Value is not a File."));
 } else
- CATE(TE,"Value is not a FileRef."));
+ CATE(TE,"Value is not a File."));
 }
 };
 template <>
@@ -11782,7 +11306,7 @@ struct type_same<File *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->File_ptr_typeID;
+RET((NO)head)->typeID==EXT->File_typeID;
 else
  RET false;
 }
@@ -11793,7 +11317,7 @@ struct type_same<const File *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->File_ptr_typeID;
+RET((NO)head)->typeID==EXT->File_typeID;
 else
  RET false;
 }
@@ -11806,24 +11330,15 @@ static const File *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->File_ptr_typeID)
+if(obj->typeID==EXT->File_typeID)
 RET(File*)obj->data;
 else
- CATE(TE,"Value is not a FileRef."));
+ CATE(TE,"Value is not a File."));
 } else
- CATE(TE,"Value is not a FileRef."));
+ CATE(TE,"Value is not a File."));
 }
 };
 
-SV AABB_ptr_copy(CTX,NO);
-void AABB_ptr_destroy(CTX,NO);
-SV AABB_ptr_get_member(CTX,NO,SV);
-void AABB_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs AABB_ptr_funcs={
-.destroy = AABB_ptr_destroy,
-.getMember = AABB_ptr_get_member,
-.setMember = AABB_ptr_set_member
-};
 template <>
 struct create_val<AABB *>
 {
@@ -11832,7 +11347,7 @@ static SV f(CTX ctx,AABB*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(AABB_ptr_funcs,obj,EXT->AABB_ptr_typeID);
+RET STG::createNativeObject(AABB_funcs,obj,EXT->AABB_typeID);
 }
 };
 template <>
@@ -11843,12 +11358,12 @@ static AABB *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AABB_ptr_typeID)
+if(obj->typeID==EXT->AABB_typeID)
 RET(AABB*)obj->data;
 else
- CATE(TE,"Value is not a AABBRef."));
+ CATE(TE,"Value is not a AABB."));
 } else
- CATE(TE,"Value is not a AABBRef."));
+ CATE(TE,"Value is not a AABB."));
 }
 };
 template <>
@@ -11857,7 +11372,7 @@ struct type_same<AABB *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AABB_ptr_typeID;
+RET((NO)head)->typeID==EXT->AABB_typeID;
 else
  RET false;
 }
@@ -11868,7 +11383,7 @@ struct type_same<const AABB *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AABB_ptr_typeID;
+RET((NO)head)->typeID==EXT->AABB_typeID;
 else
  RET false;
 }
@@ -11881,24 +11396,15 @@ static const AABB *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->AABB_ptr_typeID)
+if(obj->typeID==EXT->AABB_typeID)
 RET(AABB*)obj->data;
 else
- CATE(TE,"Value is not a AABBRef."));
+ CATE(TE,"Value is not a AABB."));
 } else
- CATE(TE,"Value is not a AABBRef."));
+ CATE(TE,"Value is not a AABB."));
 }
 };
 
-SV RigidBodyConstructionInfo_ptr_copy(CTX,NO);
-void RigidBodyConstructionInfo_ptr_destroy(CTX,NO);
-SV RigidBodyConstructionInfo_ptr_get_member(CTX,NO,SV);
-void RigidBodyConstructionInfo_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs RigidBodyConstructionInfo_ptr_funcs={
-.destroy = RigidBodyConstructionInfo_ptr_destroy,
-.getMember = RigidBodyConstructionInfo_ptr_get_member,
-.setMember = RigidBodyConstructionInfo_ptr_set_member
-};
 template <>
 struct create_val<RigidBodyConstructionInfo *>
 {
@@ -11907,7 +11413,7 @@ static SV f(CTX ctx,RigidBodyConstructionInfo*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(RigidBodyConstructionInfo_ptr_funcs,obj,EXT->RigidBodyConstructionInfo_ptr_typeID);
+RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,obj,EXT->RigidBodyConstructionInfo_typeID);
 }
 };
 template <>
@@ -11918,12 +11424,12 @@ static RigidBodyConstructionInfo *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RigidBodyConstructionInfo_ptr_typeID)
+if(obj->typeID==EXT->RigidBodyConstructionInfo_typeID)
 RET(RigidBodyConstructionInfo*)obj->data;
 else
- CATE(TE,"Value is not a RigidBodyConstructionInfoRef."));
+ CATE(TE,"Value is not a RigidBodyConstructionInfo."));
 } else
- CATE(TE,"Value is not a RigidBodyConstructionInfoRef."));
+ CATE(TE,"Value is not a RigidBodyConstructionInfo."));
 }
 };
 template <>
@@ -11932,7 +11438,7 @@ struct type_same<RigidBodyConstructionInfo *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_ptr_typeID;
+RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_typeID;
 else
  RET false;
 }
@@ -11943,7 +11449,7 @@ struct type_same<const RigidBodyConstructionInfo *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_ptr_typeID;
+RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_typeID;
 else
  RET false;
 }
@@ -11956,24 +11462,15 @@ static const RigidBodyConstructionInfo *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->RigidBodyConstructionInfo_ptr_typeID)
+if(obj->typeID==EXT->RigidBodyConstructionInfo_typeID)
 RET(RigidBodyConstructionInfo*)obj->data;
 else
- CATE(TE,"Value is not a RigidBodyConstructionInfoRef."));
+ CATE(TE,"Value is not a RigidBodyConstructionInfo."));
 } else
- CATE(TE,"Value is not a RigidBodyConstructionInfoRef."));
+ CATE(TE,"Value is not a RigidBodyConstructionInfo."));
 }
 };
 
-SV List_ptr_copy(CTX,NO);
-void List_ptr_destroy(CTX,NO);
-SV List_ptr_get_member(CTX,NO,SV);
-void List_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs List_ptr_funcs={
-.destroy = List_ptr_destroy,
-.getMember = List_ptr_get_member,
-.setMember = List_ptr_set_member
-};
 template <>
 struct create_val<List<scripting::Value*> *>
 {
@@ -11982,7 +11479,7 @@ static SV f(CTX ctx,List<scripting::Value*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(List_ptr_funcs,obj,EXT->List_ptr_typeID);
+RET STG::createNativeObject(List_funcs,obj,EXT->List_typeID);
 }
 };
 template <>
@@ -11993,12 +11490,12 @@ static List<scripting::Value*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->List_ptr_typeID)
+if(obj->typeID==EXT->List_typeID)
 RET(List<scripting::Value*>*)obj->data;
 else
- CATE(TE,"Value is not a ListRef."));
+ CATE(TE,"Value is not a List."));
 } else
- CATE(TE,"Value is not a ListRef."));
+ CATE(TE,"Value is not a List."));
 }
 };
 template <>
@@ -12007,7 +11504,7 @@ struct type_same<List<scripting::Value*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->List_ptr_typeID;
+RET((NO)head)->typeID==EXT->List_typeID;
 else
  RET false;
 }
@@ -12018,7 +11515,7 @@ struct type_same<const List<scripting::Value*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->List_ptr_typeID;
+RET((NO)head)->typeID==EXT->List_typeID;
 else
  RET false;
 }
@@ -12031,24 +11528,15 @@ static const List<scripting::Value*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->List_ptr_typeID)
+if(obj->typeID==EXT->List_typeID)
 RET(List<scripting::Value*>*)obj->data;
 else
- CATE(TE,"Value is not a ListRef."));
+ CATE(TE,"Value is not a List."));
 } else
- CATE(TE,"Value is not a ListRef."));
+ CATE(TE,"Value is not a List."));
 }
 };
 
-SV Audio_ptr_copy(CTX,NO);
-void Audio_ptr_destroy(CTX,NO);
-SV Audio_ptr_get_member(CTX,NO,SV);
-void Audio_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Audio_ptr_funcs={
-.destroy = Audio_ptr_destroy,
-.getMember = Audio_ptr_get_member,
-.setMember = Audio_ptr_set_member
-};
 template <>
 struct create_val<Audio *>
 {
@@ -12057,7 +11545,7 @@ static SV f(CTX ctx,Audio*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Audio_ptr_funcs,obj,EXT->Audio_ptr_typeID);
+RET STG::createNativeObject(Audio_funcs,obj,EXT->Audio_typeID);
 }
 };
 template <>
@@ -12068,12 +11556,12 @@ static Audio *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Audio_ptr_typeID)
+if(obj->typeID==EXT->Audio_typeID)
 RET(Audio*)obj->data;
 else
- CATE(TE,"Value is not a AudioRef."));
+ CATE(TE,"Value is not a Audio."));
 } else
- CATE(TE,"Value is not a AudioRef."));
+ CATE(TE,"Value is not a Audio."));
 }
 };
 template <>
@@ -12082,7 +11570,7 @@ struct type_same<Audio *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Audio_ptr_typeID;
+RET((NO)head)->typeID==EXT->Audio_typeID;
 else
  RET false;
 }
@@ -12093,7 +11581,7 @@ struct type_same<const Audio *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Audio_ptr_typeID;
+RET((NO)head)->typeID==EXT->Audio_typeID;
 else
  RET false;
 }
@@ -12106,24 +11594,15 @@ static const Audio *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Audio_ptr_typeID)
+if(obj->typeID==EXT->Audio_typeID)
 RET(Audio*)obj->data;
 else
- CATE(TE,"Value is not a AudioRef."));
+ CATE(TE,"Value is not a Audio."));
 } else
- CATE(TE,"Value is not a AudioRef."));
+ CATE(TE,"Value is not a Audio."));
 }
 };
 
-SV GfxTexture_ptr_copy(CTX,NO);
-void GfxTexture_ptr_destroy(CTX,NO);
-SV GfxTexture_ptr_get_member(CTX,NO,SV);
-void GfxTexture_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxTexture_ptr_funcs={
-.destroy = GfxTexture_ptr_destroy,
-.getMember = GfxTexture_ptr_get_member,
-.setMember = GfxTexture_ptr_set_member
-};
 template <>
 struct create_val<GfxTexture *>
 {
@@ -12132,7 +11611,7 @@ static SV f(CTX ctx,GfxTexture*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxTexture_ptr_funcs,obj,EXT->GfxTexture_ptr_typeID);
+RET STG::createNativeObject(GfxTexture_funcs,obj,EXT->GfxTexture_typeID);
 }
 };
 template <>
@@ -12143,12 +11622,12 @@ static GfxTexture *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxTexture_ptr_typeID)
+if(obj->typeID==EXT->GfxTexture_typeID)
 RET(GfxTexture*)obj->data;
 else
- CATE(TE,"Value is not a GfxTextureRef."));
+ CATE(TE,"Value is not a GfxTexture."));
 } else
- CATE(TE,"Value is not a GfxTextureRef."));
+ CATE(TE,"Value is not a GfxTexture."));
 }
 };
 template <>
@@ -12157,7 +11636,7 @@ struct type_same<GfxTexture *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexture_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxTexture_typeID;
 else
  RET false;
 }
@@ -12168,7 +11647,7 @@ struct type_same<const GfxTexture *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexture_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxTexture_typeID;
 else
  RET false;
 }
@@ -12181,24 +11660,15 @@ static const GfxTexture *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxTexture_ptr_typeID)
+if(obj->typeID==EXT->GfxTexture_typeID)
 RET(GfxTexture*)obj->data;
 else
- CATE(TE,"Value is not a GfxTextureRef."));
+ CATE(TE,"Value is not a GfxTexture."));
 } else
- CATE(TE,"Value is not a GfxTextureRef."));
+ CATE(TE,"Value is not a GfxTexture."));
 }
 };
 
-SV GfxSubModelList_ptr_copy(CTX,NO);
-void GfxSubModelList_ptr_destroy(CTX,NO);
-SV GfxSubModelList_ptr_get_member(CTX,NO,SV);
-void GfxSubModelList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxSubModelList_ptr_funcs={
-.destroy = GfxSubModelList_ptr_destroy,
-.getMember = GfxSubModelList_ptr_get_member,
-.setMember = GfxSubModelList_ptr_set_member
-};
 template <>
 struct create_val<List<GfxModel::SubModel> *>
 {
@@ -12207,7 +11677,7 @@ static SV f(CTX ctx,List<GfxModel::SubModel>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxSubModelList_ptr_funcs,obj,EXT->GfxSubModelList_ptr_typeID);
+RET STG::createNativeObject(GfxSubModelList_funcs,obj,EXT->GfxSubModelList_typeID);
 }
 };
 template <>
@@ -12218,12 +11688,12 @@ static List<GfxModel::SubModel> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxSubModelList_ptr_typeID)
+if(obj->typeID==EXT->GfxSubModelList_typeID)
 RET(List<GfxModel::SubModel>*)obj->data;
 else
- CATE(TE,"Value is not a GfxSubModelListRef."));
+ CATE(TE,"Value is not a GfxSubModelList."));
 } else
- CATE(TE,"Value is not a GfxSubModelListRef."));
+ CATE(TE,"Value is not a GfxSubModelList."));
 }
 };
 template <>
@@ -12232,7 +11702,7 @@ struct type_same<List<GfxModel::SubModel> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxSubModelList_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxSubModelList_typeID;
 else
  RET false;
 }
@@ -12243,7 +11713,7 @@ struct type_same<const List<GfxModel::SubModel> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxSubModelList_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxSubModelList_typeID;
 else
  RET false;
 }
@@ -12256,24 +11726,15 @@ static const List<GfxModel::SubModel> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxSubModelList_ptr_typeID)
+if(obj->typeID==EXT->GfxSubModelList_typeID)
 RET(List<GfxModel::SubModel>*)obj->data;
 else
- CATE(TE,"Value is not a GfxSubModelListRef."));
+ CATE(TE,"Value is not a GfxSubModelList."));
 } else
- CATE(TE,"Value is not a GfxSubModelListRef."));
+ CATE(TE,"Value is not a GfxSubModelList."));
 }
 };
 
-SV GfxModel_ptr_copy(CTX,NO);
-void GfxModel_ptr_destroy(CTX,NO);
-SV GfxModel_ptr_get_member(CTX,NO,SV);
-void GfxModel_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxModel_ptr_funcs={
-.destroy = GfxModel_ptr_destroy,
-.getMember = GfxModel_ptr_get_member,
-.setMember = GfxModel_ptr_set_member
-};
 template <>
 struct create_val<GfxModel *>
 {
@@ -12282,7 +11743,7 @@ static SV f(CTX ctx,GfxModel*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxModel_ptr_funcs,obj,EXT->GfxModel_ptr_typeID);
+RET STG::createNativeObject(GfxModel_funcs,obj,EXT->GfxModel_typeID);
 }
 };
 template <>
@@ -12293,12 +11754,12 @@ static GfxModel *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxModel_ptr_typeID)
+if(obj->typeID==EXT->GfxModel_typeID)
 RET(GfxModel*)obj->data;
 else
- CATE(TE,"Value is not a GfxModelRef."));
+ CATE(TE,"Value is not a GfxModel."));
 } else
- CATE(TE,"Value is not a GfxModelRef."));
+ CATE(TE,"Value is not a GfxModel."));
 }
 };
 template <>
@@ -12307,7 +11768,7 @@ struct type_same<GfxModel *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxModel_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxModel_typeID;
 else
  RET false;
 }
@@ -12318,7 +11779,7 @@ struct type_same<const GfxModel *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxModel_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxModel_typeID;
 else
  RET false;
 }
@@ -12331,24 +11792,15 @@ static const GfxModel *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxModel_ptr_typeID)
+if(obj->typeID==EXT->GfxModel_typeID)
 RET(GfxModel*)obj->data;
 else
- CATE(TE,"Value is not a GfxModelRef."));
+ CATE(TE,"Value is not a GfxModel."));
 } else
- CATE(TE,"Value is not a GfxModelRef."));
+ CATE(TE,"Value is not a GfxModel."));
 }
 };
 
-SV GfxLODList_ptr_copy(CTX,NO);
-void GfxLODList_ptr_destroy(CTX,NO);
-SV GfxLODList_ptr_get_member(CTX,NO,SV);
-void GfxLODList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxLODList_ptr_funcs={
-.destroy = GfxLODList_ptr_destroy,
-.getMember = GfxLODList_ptr_get_member,
-.setMember = GfxLODList_ptr_set_member
-};
 template <>
 struct create_val<List<GfxLOD> *>
 {
@@ -12357,7 +11809,7 @@ static SV f(CTX ctx,List<GfxLOD>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxLODList_ptr_funcs,obj,EXT->GfxLODList_ptr_typeID);
+RET STG::createNativeObject(GfxLODList_funcs,obj,EXT->GfxLODList_typeID);
 }
 };
 template <>
@@ -12368,12 +11820,12 @@ static List<GfxLOD> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxLODList_ptr_typeID)
+if(obj->typeID==EXT->GfxLODList_typeID)
 RET(List<GfxLOD>*)obj->data;
 else
- CATE(TE,"Value is not a GfxLODListRef."));
+ CATE(TE,"Value is not a GfxLODList."));
 } else
- CATE(TE,"Value is not a GfxLODListRef."));
+ CATE(TE,"Value is not a GfxLODList."));
 }
 };
 template <>
@@ -12382,7 +11834,7 @@ struct type_same<List<GfxLOD> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLODList_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxLODList_typeID;
 else
  RET false;
 }
@@ -12393,7 +11845,7 @@ struct type_same<const List<GfxLOD> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLODList_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxLODList_typeID;
 else
  RET false;
 }
@@ -12406,24 +11858,15 @@ static const List<GfxLOD> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxLODList_ptr_typeID)
+if(obj->typeID==EXT->GfxLODList_typeID)
 RET(List<GfxLOD>*)obj->data;
 else
- CATE(TE,"Value is not a GfxLODListRef."));
+ CATE(TE,"Value is not a GfxLODList."));
 } else
- CATE(TE,"Value is not a GfxLODListRef."));
+ CATE(TE,"Value is not a GfxLODList."));
 }
 };
 
-SV EntityList_ptr_copy(CTX,NO);
-void EntityList_ptr_destroy(CTX,NO);
-SV EntityList_ptr_get_member(CTX,NO,SV);
-void EntityList_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs EntityList_ptr_funcs={
-.destroy = EntityList_ptr_destroy,
-.getMember = EntityList_ptr_get_member,
-.setMember = EntityList_ptr_set_member
-};
 template <>
 struct create_val<List<Entity*> *>
 {
@@ -12432,7 +11875,7 @@ static SV f(CTX ctx,List<Entity*>*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(EntityList_ptr_funcs,obj,EXT->EntityList_ptr_typeID);
+RET STG::createNativeObject(EntityList_funcs,obj,EXT->EntityList_typeID);
 }
 };
 template <>
@@ -12443,12 +11886,12 @@ static List<Entity*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->EntityList_ptr_typeID)
+if(obj->typeID==EXT->EntityList_typeID)
 RET(List<Entity*>*)obj->data;
 else
- CATE(TE,"Value is not a EntityListRef."));
+ CATE(TE,"Value is not a EntityList."));
 } else
- CATE(TE,"Value is not a EntityListRef."));
+ CATE(TE,"Value is not a EntityList."));
 }
 };
 template <>
@@ -12457,7 +11900,7 @@ struct type_same<List<Entity*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->EntityList_ptr_typeID;
+RET((NO)head)->typeID==EXT->EntityList_typeID;
 else
  RET false;
 }
@@ -12468,7 +11911,7 @@ struct type_same<const List<Entity*> *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->EntityList_ptr_typeID;
+RET((NO)head)->typeID==EXT->EntityList_typeID;
 else
  RET false;
 }
@@ -12481,24 +11924,15 @@ static const List<Entity*> *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->EntityList_ptr_typeID)
+if(obj->typeID==EXT->EntityList_typeID)
 RET(List<Entity*>*)obj->data;
 else
- CATE(TE,"Value is not a EntityListRef."));
+ CATE(TE,"Value is not a EntityList."));
 } else
- CATE(TE,"Value is not a EntityListRef."));
+ CATE(TE,"Value is not a EntityList."));
 }
 };
 
-SV GfxShaderCombination_ptr_copy(CTX,NO);
-void GfxShaderCombination_ptr_destroy(CTX,NO);
-SV GfxShaderCombination_ptr_get_member(CTX,NO,SV);
-void GfxShaderCombination_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxShaderCombination_ptr_funcs={
-.destroy = GfxShaderCombination_ptr_destroy,
-.getMember = GfxShaderCombination_ptr_get_member,
-.setMember = GfxShaderCombination_ptr_set_member
-};
 template <>
 struct create_val<GfxShaderCombination *>
 {
@@ -12507,7 +11941,7 @@ static SV f(CTX ctx,GfxShaderCombination*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxShaderCombination_ptr_funcs,obj,EXT->GfxShaderCombination_ptr_typeID);
+RET STG::createNativeObject(GfxShaderCombination_funcs,obj,EXT->GfxShaderCombination_typeID);
 }
 };
 template <>
@@ -12518,12 +11952,12 @@ static GfxShaderCombination *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxShaderCombination_ptr_typeID)
+if(obj->typeID==EXT->GfxShaderCombination_typeID)
 RET(GfxShaderCombination*)obj->data;
 else
- CATE(TE,"Value is not a GfxShaderCombinationRef."));
+ CATE(TE,"Value is not a GfxShaderCombination."));
 } else
- CATE(TE,"Value is not a GfxShaderCombinationRef."));
+ CATE(TE,"Value is not a GfxShaderCombination."));
 }
 };
 template <>
@@ -12532,7 +11966,7 @@ struct type_same<GfxShaderCombination *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShaderCombination_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxShaderCombination_typeID;
 else
  RET false;
 }
@@ -12543,7 +11977,7 @@ struct type_same<const GfxShaderCombination *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShaderCombination_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxShaderCombination_typeID;
 else
  RET false;
 }
@@ -12556,24 +11990,15 @@ static const GfxShaderCombination *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxShaderCombination_ptr_typeID)
+if(obj->typeID==EXT->GfxShaderCombination_typeID)
 RET(GfxShaderCombination*)obj->data;
 else
- CATE(TE,"Value is not a GfxShaderCombinationRef."));
+ CATE(TE,"Value is not a GfxShaderCombination."));
 } else
- CATE(TE,"Value is not a GfxShaderCombinationRef."));
+ CATE(TE,"Value is not a GfxShaderCombination."));
 }
 };
 
-SV Matrix3x3_ptr_copy(CTX,NO);
-void Matrix3x3_ptr_destroy(CTX,NO);
-SV Matrix3x3_ptr_get_member(CTX,NO,SV);
-void Matrix3x3_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs Matrix3x3_ptr_funcs={
-.destroy = Matrix3x3_ptr_destroy,
-.getMember = Matrix3x3_ptr_get_member,
-.setMember = Matrix3x3_ptr_set_member
-};
 template <>
 struct create_val<Matrix3x3 *>
 {
@@ -12582,7 +12007,7 @@ static SV f(CTX ctx,Matrix3x3*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(Matrix3x3_ptr_funcs,obj,EXT->Matrix3x3_ptr_typeID);
+RET STG::createNativeObject(Matrix3x3_funcs,obj,EXT->Matrix3x3_typeID);
 }
 };
 template <>
@@ -12593,12 +12018,12 @@ static Matrix3x3 *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Matrix3x3_ptr_typeID)
+if(obj->typeID==EXT->Matrix3x3_typeID)
 RET(Matrix3x3*)obj->data;
 else
- CATE(TE,"Value is not a Matrix3x3Ref."));
+ CATE(TE,"Value is not a Matrix3x3."));
 } else
- CATE(TE,"Value is not a Matrix3x3Ref."));
+ CATE(TE,"Value is not a Matrix3x3."));
 }
 };
 template <>
@@ -12607,7 +12032,7 @@ struct type_same<Matrix3x3 *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix3x3_ptr_typeID;
+RET((NO)head)->typeID==EXT->Matrix3x3_typeID;
 else
  RET false;
 }
@@ -12618,7 +12043,7 @@ struct type_same<const Matrix3x3 *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix3x3_ptr_typeID;
+RET((NO)head)->typeID==EXT->Matrix3x3_typeID;
 else
  RET false;
 }
@@ -12631,24 +12056,15 @@ static const Matrix3x3 *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->Matrix3x3_ptr_typeID)
+if(obj->typeID==EXT->Matrix3x3_typeID)
 RET(Matrix3x3*)obj->data;
 else
- CATE(TE,"Value is not a Matrix3x3Ref."));
+ CATE(TE,"Value is not a Matrix3x3."));
 } else
- CATE(TE,"Value is not a Matrix3x3Ref."));
+ CATE(TE,"Value is not a Matrix3x3."));
 }
 };
 
-SV GfxDebugDrawer_ptr_copy(CTX,NO);
-void GfxDebugDrawer_ptr_destroy(CTX,NO);
-SV GfxDebugDrawer_ptr_get_member(CTX,NO,SV);
-void GfxDebugDrawer_ptr_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxDebugDrawer_ptr_funcs={
-.destroy = GfxDebugDrawer_ptr_destroy,
-.getMember = GfxDebugDrawer_ptr_get_member,
-.setMember = GfxDebugDrawer_ptr_set_member
-};
 template <>
 struct create_val<GfxDebugDrawer *>
 {
@@ -12657,7 +12073,7 @@ static SV f(CTX ctx,GfxDebugDrawer*obj)
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(GfxDebugDrawer_ptr_funcs,obj,EXT->GfxDebugDrawer_ptr_typeID);
+RET STG::createNativeObject(GfxDebugDrawer_funcs,obj,EXT->GfxDebugDrawer_typeID);
 }
 };
 template <>
@@ -12668,12 +12084,12 @@ static GfxDebugDrawer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxDebugDrawer_ptr_typeID)
+if(obj->typeID==EXT->GfxDebugDrawer_typeID)
 RET(GfxDebugDrawer*)obj->data;
 else
- CATE(TE,"Value is not a GfxDebugDrawerRef."));
+ CATE(TE,"Value is not a GfxDebugDrawer."));
 } else
- CATE(TE,"Value is not a GfxDebugDrawerRef."));
+ CATE(TE,"Value is not a GfxDebugDrawer."));
 }
 };
 template <>
@@ -12682,7 +12098,7 @@ struct type_same<GfxDebugDrawer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDebugDrawer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxDebugDrawer_typeID;
 else
  RET false;
 }
@@ -12693,7 +12109,7 @@ struct type_same<const GfxDebugDrawer *>
 static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDebugDrawer_ptr_typeID;
+RET((NO)head)->typeID==EXT->GfxDebugDrawer_typeID;
 else
  RET false;
 }
@@ -12706,12 +12122,12 @@ static const GfxDebugDrawer *f(CTX ctx,const SV head)
 if(head->type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)head;
-if(obj->typeID==EXT->GfxDebugDrawer_ptr_typeID)
+if(obj->typeID==EXT->GfxDebugDrawer_typeID)
 RET(GfxDebugDrawer*)obj->data;
 else
- CATE(TE,"Value is not a GfxDebugDrawerRef."));
+ CATE(TE,"Value is not a GfxDebugDrawer."));
 } else
- CATE(TE,"Value is not a GfxDebugDrawerRef."));
+ CATE(TE,"Value is not a GfxDebugDrawer."));
 }
 };
 
@@ -15239,7 +14655,7 @@ void StrStrMap_destroy(CTX ctx,NO f)
 if(!TS((SV)f,HashMap<String,String>))
 CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
 
-DELETE((HashMap<String,String>*)f->data);
+SCRIPT_DELETE((HashMap<String,String>*)f->data);
 }SV StrStrMap_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -15564,7 +14980,7 @@ void GfxApi_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxApi))
 CATE(TE,"GfxApi::__del__ expects GfxApi as first argument."));
 
-DELETE((GfxApi*)f->data);
+SCRIPT_DELETE((GfxApi*)f->data);
 }SV GfxApi_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -16728,7 +16144,7 @@ void GfxCompiledShader_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxCompiledShader))
 CATE(TE,"GfxCompiledShader::__del__ expects GfxCompiledShader as first argument."));
 
-DELETE((GfxCompiledShader*)f->data);
+SCRIPT_DELETE((GfxCompiledShader*)f->data);
 }SV GfxCompiledShader_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -16845,7 +16261,7 @@ void ScrollBar_destroy(CTX ctx,NO f)
 if(!TS((SV)f,ScrollBar))
 CATE(TE,"ScrollBar::__del__ expects ScrollBar as first argument."));
 
-DELETE((ScrollBar*)f->data);
+SCRIPT_DELETE((ScrollBar*)f->data);
 }SV ScrollBar_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16853,9 +16269,11 @@ CATE(VE,"ScrollBar's constructor" EAOE));
 if(!TS(a[0],ScrollBar))
 CATE(TE,"ScrollBar's constructor expects ScrollBar as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(ScrollBar_funcs,NEW(ScrollBar),EXT->ScrollBar_typeID);
-CATE(TE,UFOF("ScrollBar's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(ScrollBar));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ScrollBar_funcs,p,EXT->ScrollBar_typeID);
+}CATE(TE,UFOF("ScrollBar's constructor.")));
 RET CN;
 }
 
@@ -16963,7 +16381,7 @@ void GhostObjList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<GhostObject*>))
 CATE(TE,"GhostObjList::__del__ expects GhostObjList as first argument."));
 
-DELETE((List<GhostObject*>*)f->data);
+SCRIPT_DELETE((List<GhostObject*>*)f->data);
 }SV GhostObjList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16971,15 +16389,21 @@ CATE(VE,"GhostObjList's constructor" EAOE));
 if(!TS(a[0],List<GhostObject*>))
 CATE(TE,"GhostObjList's constructor expects GhostObjList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GhostObjList_funcs,NEW(List<GhostObject*>),EXT->GhostObjList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(GhostObjList_funcs,NEW(List<GhostObject*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->GhostObjList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<GhostObject*> &))
-RET STG::createNativeObject(GhostObjList_funcs,NEW(List<GhostObject*>,val_to_c<const List<GhostObject*> &>::f(ctx,a[1])),EXT->GhostObjList_typeID);
-CATE(TE,UFOF("GhostObjList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<GhostObject*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GhostObjList_funcs,p,EXT->GhostObjList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<GhostObject*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GhostObjList_funcs,p,EXT->GhostObjList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<GhostObject*> &)){
+void *p = (void *)NEW(TYPE(List<GhostObject*>),val_to_c<const List<GhostObject*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GhostObjList_funcs,p,EXT->GhostObjList_typeID);
+}CATE(TE,UFOF("GhostObjList's constructor.")));
 RET CN;
 }
 
@@ -17312,7 +16736,7 @@ void GPUTimer_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GPUTimer))
 CATE(TE,"GPUTimer::__del__ expects GPUTimer as first argument."));
 
-DELETE((GPUTimer*)f->data);
+SCRIPT_DELETE((GPUTimer*)f->data);
 }SV GPUTimer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -18318,7 +17742,7 @@ void UInt2_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T2<uint32_t>))
 CATE(TE,"UInt2::__del__ expects UInt2 as first argument."));
 
-DELETE((T2<uint32_t>*)f->data);
+SCRIPT_DELETE((T2<uint32_t>*)f->data);
 }SV UInt2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -18326,24 +17750,36 @@ CATE(VE,"UInt2's constructor" EAOE));
 if(!TS(a[0],T2<uint32_t>))
 CATE(TE,"UInt2's constructor expects UInt2 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],uint32_t))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt2_typeID);
-if(a.getCount()==3)
-if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2])),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<float> &))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<int32_t> &))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<uint32_t> &))
-RET STG::createNativeObject(UInt2_funcs,NEW(T2<uint32_t>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->UInt2_typeID);
-CATE(TE,UFOF("UInt2's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T2<uint32_t>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],uint32_t)){
+void *p = (void *)NEW(TYPE(T2<uint32_t>),val_to_c<uint32_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
+}if(a.getCount()==3)
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)){
+void *p = (void *)NEW(TYPE(T2<uint32_t>),val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<float> &)){
+void *p = (void *)NEW(TYPE(T2<uint32_t>),val_to_c<const T2<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<int32_t> &)){
+void *p = (void *)NEW(TYPE(T2<uint32_t>),val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T2<uint32_t>),val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
+}CATE(TE,UFOF("UInt2's constructor.")));
 RET CN;
 }
 
@@ -18842,7 +18278,7 @@ void LightList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<Light*>))
 CATE(TE,"LightList::__del__ expects LightList as first argument."));
 
-DELETE((List<Light*>*)f->data);
+SCRIPT_DELETE((List<Light*>*)f->data);
 }SV LightList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -18850,15 +18286,21 @@ CATE(VE,"LightList's constructor" EAOE));
 if(!TS(a[0],List<Light*>))
 CATE(TE,"LightList's constructor expects LightList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(LightList_funcs,NEW(List<Light*>),EXT->LightList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(LightList_funcs,NEW(List<Light*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->LightList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<Light*> &))
-RET STG::createNativeObject(LightList_funcs,NEW(List<Light*>,val_to_c<const List<Light*> &>::f(ctx,a[1])),EXT->LightList_typeID);
-CATE(TE,UFOF("LightList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<Light*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightList_funcs,p,EXT->LightList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<Light*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightList_funcs,p,EXT->LightList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<Light*> &)){
+void *p = (void *)NEW(TYPE(List<Light*>),val_to_c<const List<Light*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(LightList_funcs,p,EXT->LightList_typeID);
+}CATE(TE,UFOF("LightList's constructor.")));
 RET CN;
 }
 
@@ -19191,7 +18633,7 @@ void RenderStats_destroy(CTX ctx,NO f)
 if(!TS((SV)f,RenderStats))
 CATE(TE,"RenderStats::__del__ expects RenderStats as first argument."));
 
-DELETE((RenderStats*)f->data);
+SCRIPT_DELETE((RenderStats*)f->data);
 }SV RenderStats_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -19403,7 +18845,7 @@ void Filesystem_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Filesystem))
 CATE(TE,"Filesystem::__del__ expects Filesystem as first argument."));
 
-DELETE((Filesystem*)f->data);
+SCRIPT_DELETE((Filesystem*)f->data);
 }SV Filesystem_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -19411,9 +18853,11 @@ CATE(VE,"Filesystem's constructor" EAOE));
 if(!TS(a[0],Filesystem))
 CATE(TE,"Filesystem's constructor expects Filesystem as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Filesystem_funcs,NEW(Filesystem),EXT->Filesystem_typeID);
-CATE(TE,UFOF("Filesystem's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Filesystem));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Filesystem_funcs,p,EXT->Filesystem_typeID);
+}CATE(TE,UFOF("Filesystem's constructor.")));
 RET CN;
 }
 
@@ -19543,7 +18987,7 @@ void ResourceManager_destroy(CTX ctx,NO f)
 if(!TS((SV)f,ResourceManager))
 CATE(TE,"ResourceManager::__del__ expects ResourceManager as first argument."));
 
-DELETE((ResourceManager*)f->data);
+SCRIPT_DELETE((ResourceManager*)f->data);
 }SV ResourceManager_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -19551,9 +18995,11 @@ CATE(VE,"ResourceManager's constructor" EAOE));
 if(!TS(a[0],ResourceManager))
 CATE(TE,"ResourceManager's constructor expects ResourceManager as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(ResourceManager_funcs,NEW(ResourceManager),EXT->ResourceManager_typeID);
-CATE(TE,UFOF("ResourceManager's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(ResourceManager));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ResourceManager_funcs,p,EXT->ResourceManager_typeID);
+}CATE(TE,UFOF("ResourceManager's constructor.")));
 RET CN;
 }
 
@@ -20565,7 +20011,7 @@ void GfxRenderer_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxRenderer))
 CATE(TE,"GfxRenderer::__del__ expects GfxRenderer as first argument."));
 
-DELETE((GfxRenderer*)f->data);
+SCRIPT_DELETE((GfxRenderer*)f->data);
 }SV GfxRenderer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -21040,7 +20486,7 @@ void Float2_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T2<float>))
 CATE(TE,"Float2::__del__ expects Float2 as first argument."));
 
-DELETE((T2<float>*)f->data);
+SCRIPT_DELETE((T2<float>*)f->data);
 }SV Float2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21048,24 +20494,36 @@ CATE(VE,"Float2's constructor" EAOE));
 if(!TS(a[0],T2<float>))
 CATE(TE,"Float2's constructor expects Float2 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Float2_funcs,NEW(T2<float>),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],float))
-RET STG::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<float>::f(ctx,a[1])),EXT->Float2_typeID);
-if(a.getCount()==3)
-if(true&&TS(a[1],float)&&TS(a[2],float))
-RET STG::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2])),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<float> &))
-RET STG::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<int32_t> &))
-RET STG::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<uint32_t> &))
-RET STG::createNativeObject(Float2_funcs,NEW(T2<float>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->Float2_typeID);
-CATE(TE,UFOF("Float2's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T2<float>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],float)){
+void *p = (void *)NEW(TYPE(T2<float>),val_to_c<float>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
+}if(a.getCount()==3)
+if(true&&TS(a[1],float)&&TS(a[2],float)){
+void *p = (void *)NEW(TYPE(T2<float>),val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<float> &)){
+void *p = (void *)NEW(TYPE(T2<float>),val_to_c<const T2<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<int32_t> &)){
+void *p = (void *)NEW(TYPE(T2<float>),val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T2<float>),val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
+}CATE(TE,UFOF("Float2's constructor.")));
 RET CN;
 }
 
@@ -21564,7 +21022,7 @@ void GfxFramebuffer_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxFramebuffer))
 CATE(TE,"GfxFramebuffer::__del__ expects GfxFramebuffer as first argument."));
 
-DELETE((GfxFramebuffer*)f->data);
+SCRIPT_DELETE((GfxFramebuffer*)f->data);
 }SV GfxFramebuffer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -21872,7 +21330,7 @@ if(!TS((SV)f,Font))
 CATE(TE,"Font::__del__ expects Font as first argument."));
 
 Font*obj=(Font*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV Font_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21880,12 +21338,16 @@ CATE(VE,"Font's constructor" EAOE));
 if(!TS(a[0],Font))
 CATE(TE,"Font's constructor expects Font as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Font_funcs,NEW(Font),EXT->Font_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(Font_funcs,NEW(Font,val_to_c<const String &>::f(ctx,a[1])),EXT->Font_typeID);
-CATE(TE,UFOF("Font's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Font));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Font_funcs,p,EXT->Font_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(Font),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Font_funcs,p,EXT->Font_typeID);
+}CATE(TE,UFOF("Font's constructor.")));
 RET CN;
 }
 
@@ -22160,7 +21622,7 @@ void Event_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Event))
 CATE(TE,"Event::__del__ expects Event as first argument."));
 
-DELETE((Event*)f->data);
+SCRIPT_DELETE((Event*)f->data);
 }SV Event_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -22399,7 +21861,7 @@ void PhysicsWorld_destroy(CTX ctx,NO f)
 if(!TS((SV)f,PhysicsWorld))
 CATE(TE,"PhysicsWorld::__del__ expects PhysicsWorld as first argument."));
 
-DELETE((PhysicsWorld*)f->data);
+SCRIPT_DELETE((PhysicsWorld*)f->data);
 }SV PhysicsWorld_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -22407,9 +21869,11 @@ CATE(VE,"PhysicsWorld's constructor" EAOE));
 if(!TS(a[0],PhysicsWorld))
 CATE(TE,"PhysicsWorld's constructor expects PhysicsWorld as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(PhysicsWorld_funcs,NEW(PhysicsWorld),EXT->PhysicsWorld_typeID);
-CATE(TE,UFOF("PhysicsWorld's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(PhysicsWorld));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(PhysicsWorld_funcs,p,EXT->PhysicsWorld_typeID);
+}CATE(TE,UFOF("PhysicsWorld's constructor.")));
 RET CN;
 }
 
@@ -22704,7 +22168,7 @@ void Stats_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Stats))
 CATE(TE,"Stats::__del__ expects Stats as first argument."));
 
-DELETE((Stats*)f->data);
+SCRIPT_DELETE((Stats*)f->data);
 }SV Stats_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -22812,7 +22276,7 @@ void AudioSource_destroy(CTX ctx,NO f)
 if(!TS((SV)f,AudioSource))
 CATE(TE,"AudioSource::__del__ expects AudioSource as first argument."));
 
-DELETE((AudioSource*)f->data);
+SCRIPT_DELETE((AudioSource*)f->data);
 }SV AudioSource_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -22820,9 +22284,11 @@ CATE(VE,"AudioSource's constructor" EAOE));
 if(!TS(a[0],AudioSource))
 CATE(TE,"AudioSource's constructor expects AudioSource as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],Audio *))
-RET STG::createNativeObject(AudioSource_funcs,NEW(AudioSource,val_to_c<Audio *>::f(ctx,a[1])),EXT->AudioSource_typeID);
-CATE(TE,UFOF("AudioSource's constructor.")));
+if(true&&TS(a[1],Audio *)){
+void *p = (void *)NEW(TYPE(AudioSource),val_to_c<Audio *>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSource_funcs,p,EXT->AudioSource_typeID);
+}CATE(TE,UFOF("AudioSource's constructor.")));
 RET CN;
 }
 
@@ -23002,7 +22468,7 @@ void RayCastResultList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<RayCastResult>))
 CATE(TE,"RayCastResultList::__del__ expects RayCastResultList as first argument."));
 
-DELETE((List<RayCastResult>*)f->data);
+SCRIPT_DELETE((List<RayCastResult>*)f->data);
 }SV RayCastResultList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23010,15 +22476,21 @@ CATE(VE,"RayCastResultList's constructor" EAOE));
 if(!TS(a[0],List<RayCastResult>))
 CATE(TE,"RayCastResultList's constructor expects RayCastResultList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(RayCastResultList_funcs,NEW(List<RayCastResult>),EXT->RayCastResultList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(RayCastResultList_funcs,NEW(List<RayCastResult>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->RayCastResultList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<RayCastResult> &))
-RET STG::createNativeObject(RayCastResultList_funcs,NEW(List<RayCastResult>,val_to_c<const List<RayCastResult> &>::f(ctx,a[1])),EXT->RayCastResultList_typeID);
-CATE(TE,UFOF("RayCastResultList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<RayCastResult>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RayCastResultList_funcs,p,EXT->RayCastResultList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<RayCastResult>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RayCastResultList_funcs,p,EXT->RayCastResultList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<RayCastResult> &)){
+void *p = (void *)NEW(TYPE(List<RayCastResult>),val_to_c<const List<RayCastResult> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RayCastResultList_funcs,p,EXT->RayCastResultList_typeID);
+}CATE(TE,UFOF("RayCastResultList's constructor.")));
 RET CN;
 }
 
@@ -23351,7 +22823,7 @@ void Platform_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Platform))
 CATE(TE,"Platform::__del__ expects Platform as first argument."));
 
-DELETE((Platform*)f->data);
+SCRIPT_DELETE((Platform*)f->data);
 }SV Platform_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23359,9 +22831,11 @@ CATE(VE,"Platform's constructor" EAOE));
 if(!TS(a[0],Platform))
 CATE(TE,"Platform's constructor expects Platform as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Platform_funcs,NEW(Platform),EXT->Platform_typeID);
-CATE(TE,UFOF("Platform's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Platform));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Platform_funcs,p,EXT->Platform_typeID);
+}CATE(TE,UFOF("Platform's constructor.")));
 RET CN;
 }
 
@@ -23867,7 +23341,7 @@ void Camera_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Camera))
 CATE(TE,"Camera::__del__ expects Camera as first argument."));
 
-DELETE((Camera*)f->data);
+SCRIPT_DELETE((Camera*)f->data);
 }SV Camera_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -23875,9 +23349,11 @@ CATE(VE,"Camera's constructor" EAOE));
 if(!TS(a[0],Camera))
 CATE(TE,"Camera's constructor expects Camera as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Camera_funcs,NEW(Camera),EXT->Camera_typeID);
-CATE(TE,UFOF("Camera's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Camera));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Camera_funcs,p,EXT->Camera_typeID);
+}CATE(TE,UFOF("Camera's constructor.")));
 RET CN;
 }
 
@@ -24464,7 +23940,7 @@ if(!TS((SV)f,GfxMesh))
 CATE(TE,"GfxMesh::__del__ expects GfxMesh as first argument."));
 
 GfxMesh*obj=(GfxMesh*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV GfxMesh_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -24472,12 +23948,16 @@ CATE(VE,"GfxMesh's constructor" EAOE));
 if(!TS(a[0],GfxMesh))
 CATE(TE,"GfxMesh's constructor expects GfxMesh as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(GfxMesh_funcs,NEW(GfxMesh,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxMesh_typeID);
-if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxMesh_funcs,NEW(GfxMesh),EXT->GfxMesh_typeID);
-CATE(TE,UFOF("GfxMesh's constructor.")));
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(GfxMesh),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxMesh_funcs,p,EXT->GfxMesh_typeID);
+}if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(GfxMesh));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxMesh_funcs,p,EXT->GfxMesh_typeID);
+}CATE(TE,UFOF("GfxMesh's constructor.")));
 RET CN;
 }
 
@@ -24979,7 +24459,7 @@ if(!TS((SV)f,Resource))
 CATE(TE,"Resource::__del__ expects Resource as first argument."));
 
 Resource*obj=(Resource*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV Resource_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -25211,7 +24691,7 @@ if(!TS((SV)f,GfxShader))
 CATE(TE,"GfxShader::__del__ expects GfxShader as first argument."));
 
 GfxShader*obj=(GfxShader*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV GfxShader_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25219,12 +24699,16 @@ CATE(VE,"GfxShader's constructor" EAOE));
 if(!TS(a[0],GfxShader))
 CATE(TE,"GfxShader's constructor expects GfxShader as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(GfxShader_funcs,NEW(GfxShader,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxShader_typeID);
-if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxShader_funcs,NEW(GfxShader),EXT->GfxShader_typeID);
-CATE(TE,UFOF("GfxShader's constructor.")));
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(GfxShader),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxShader_funcs,p,EXT->GfxShader_typeID);
+}if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(GfxShader));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxShader_funcs,p,EXT->GfxShader_typeID);
+}CATE(TE,UFOF("GfxShader's constructor.")));
 RET CN;
 }
 
@@ -25537,7 +25021,7 @@ void Light_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Light))
 CATE(TE,"Light::__del__ expects Light as first argument."));
 
-DELETE((Light*)f->data);
+SCRIPT_DELETE((Light*)f->data);
 }SV Light_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25545,9 +25029,11 @@ CATE(VE,"Light's constructor" EAOE));
 if(!TS(a[0],Light))
 CATE(TE,"Light's constructor expects Light as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Light_funcs,NEW(Light),EXT->Light_typeID);
-CATE(TE,UFOF("Light's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Light));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Light_funcs,p,EXT->Light_typeID);
+}CATE(TE,UFOF("Light's constructor.")));
 RET CN;
 }
 
@@ -25954,7 +25440,7 @@ void TextureSampler_destroy(CTX ctx,NO f)
 if(!TS((SV)f,TextureSampler))
 CATE(TE,"TextureSampler::__del__ expects TextureSampler as first argument."));
 
-DELETE((TextureSampler*)f->data);
+SCRIPT_DELETE((TextureSampler*)f->data);
 }SV TextureSampler_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25962,15 +25448,21 @@ CATE(VE,"TextureSampler's constructor" EAOE));
 if(!TS(a[0],TextureSampler))
 CATE(TE,"TextureSampler's constructor expects TextureSampler as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(TextureSampler_funcs,NEW(TextureSampler),EXT->TextureSampler_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],GfxTexture *))
-RET STG::createNativeObject(TextureSampler_funcs,NEW(TextureSampler,val_to_c<GfxTexture *>::f(ctx,a[1])),EXT->TextureSampler_typeID);
-if(a.getCount()==7)
-if(true&&TS(a[1],float)&&TS(a[2],GfxFilter)&&TS(a[3],GfxFilter)&&TS(a[4],GfxMipmapMode)&&TS(a[5],GfxWrapMode)&&TS(a[6],bool))
-RET STG::createNativeObject(TextureSampler_funcs,NEW(TextureSampler,val_to_c<float>::f(ctx,a[1]),val_to_c<GfxFilter>::f(ctx,a[2]),val_to_c<GfxFilter>::f(ctx,a[3]),val_to_c<GfxMipmapMode>::f(ctx,a[4]),val_to_c<GfxWrapMode>::f(ctx,a[5]),val_to_c<bool>::f(ctx,a[6])),EXT->TextureSampler_typeID);
-CATE(TE,UFOF("TextureSampler's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(TextureSampler));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],GfxTexture *)){
+void *p = (void *)NEW(TYPE(TextureSampler),val_to_c<GfxTexture *>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
+}if(a.getCount()==7)
+if(true&&TS(a[1],float)&&TS(a[2],GfxFilter)&&TS(a[3],GfxFilter)&&TS(a[4],GfxMipmapMode)&&TS(a[5],GfxWrapMode)&&TS(a[6],bool)){
+void *p = (void *)NEW(TYPE(TextureSampler),val_to_c<float>::f(ctx,a[1]),val_to_c<GfxFilter>::f(ctx,a[2]),val_to_c<GfxFilter>::f(ctx,a[3]),val_to_c<GfxMipmapMode>::f(ctx,a[4]),val_to_c<GfxWrapMode>::f(ctx,a[5]),val_to_c<bool>::f(ctx,a[6]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
+}CATE(TE,UFOF("TextureSampler's constructor.")));
 RET CN;
 }
 
@@ -26086,7 +25578,7 @@ if(!TS((SV)f,Scene))
 CATE(TE,"Scene::__del__ expects Scene as first argument."));
 
 Scene*obj=(Scene*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV Scene_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -26094,12 +25586,16 @@ CATE(VE,"Scene's constructor" EAOE));
 if(!TS(a[0],Scene))
 CATE(TE,"Scene's constructor expects Scene as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Scene_funcs,NEW(Scene),EXT->Scene_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(Scene_funcs,NEW(Scene,val_to_c<const String &>::f(ctx,a[1])),EXT->Scene_typeID);
-CATE(TE,UFOF("Scene's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Scene));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Scene_funcs,p,EXT->Scene_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(Scene),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Scene_funcs,p,EXT->Scene_typeID);
+}CATE(TE,UFOF("Scene's constructor.")));
 RET CN;
 }
 
@@ -26578,7 +26074,7 @@ void Int3_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T3<int32_t>))
 CATE(TE,"Int3::__del__ expects Int3 as first argument."));
 
-DELETE((T3<int32_t>*)f->data);
+SCRIPT_DELETE((T3<int32_t>*)f->data);
 }SV Int3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -26586,24 +26082,36 @@ CATE(VE,"Int3's constructor" EAOE));
 if(!TS(a[0],T3<int32_t>))
 CATE(TE,"Int3's constructor expects Int3 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Int3_funcs,NEW(T3<int32_t>),EXT->Int3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],int32_t))
-RET STG::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<int32_t>::f(ctx,a[1])),EXT->Int3_typeID);
-if(a.getCount()==4)
-if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)&&TS(a[3],int32_t))
-RET STG::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]),val_to_c<int32_t>::f(ctx,a[3])),EXT->Int3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<float> &))
-RET STG::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->Int3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<int32_t> &))
-RET STG::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->Int3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<uint32_t> &))
-RET STG::createNativeObject(Int3_funcs,NEW(T3<int32_t>,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->Int3_typeID);
-CATE(TE,UFOF("Int3's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T3<int32_t>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],int32_t)){
+void *p = (void *)NEW(TYPE(T3<int32_t>),val_to_c<int32_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
+}if(a.getCount()==4)
+if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)&&TS(a[3],int32_t)){
+void *p = (void *)NEW(TYPE(T3<int32_t>),val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]),val_to_c<int32_t>::f(ctx,a[3]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<float> &)){
+void *p = (void *)NEW(TYPE(T3<int32_t>),val_to_c<const T3<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<int32_t> &)){
+void *p = (void *)NEW(TYPE(T3<int32_t>),val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T3<int32_t>),val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
+}CATE(TE,UFOF("Int3's constructor.")));
 RET CN;
 }
 
@@ -27509,7 +27017,7 @@ void ResizableData_destroy(CTX ctx,NO f)
 if(!TS((SV)f,ResizableData))
 CATE(TE,"ResizableData::__del__ expects ResizableData as first argument."));
 
-DELETE((ResizableData*)f->data);
+SCRIPT_DELETE((ResizableData*)f->data);
 }SV ResizableData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -27517,12 +27025,16 @@ CATE(VE,"ResizableData's constructor" EAOE));
 if(!TS(a[0],ResizableData))
 CATE(TE,"ResizableData's constructor expects ResizableData as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(ResizableData_funcs,NEW(ResizableData),EXT->ResizableData_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(ResizableData_funcs,NEW(ResizableData,val_to_c<std::size_t>::f(ctx,a[1])),EXT->ResizableData_typeID);
-CATE(TE,UFOF("ResizableData's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(ResizableData));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ResizableData_funcs,p,EXT->ResizableData_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(ResizableData),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ResizableData_funcs,p,EXT->ResizableData_typeID);
+}CATE(TE,UFOF("ResizableData's constructor.")));
 RET CN;
 }
 
@@ -28634,7 +28146,7 @@ void Int4_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T4<int32_t>))
 CATE(TE,"Int4::__del__ expects Int4 as first argument."));
 
-DELETE((T4<int32_t>*)f->data);
+SCRIPT_DELETE((T4<int32_t>*)f->data);
 }SV Int4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -28642,24 +28154,36 @@ CATE(VE,"Int4's constructor" EAOE));
 if(!TS(a[0],T4<int32_t>))
 CATE(TE,"Int4's constructor expects Int4 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Int4_funcs,NEW(T4<int32_t>),EXT->Int4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],int32_t))
-RET STG::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<int32_t>::f(ctx,a[1])),EXT->Int4_typeID);
-if(a.getCount()==5)
-if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)&&TS(a[3],int32_t)&&TS(a[4],int32_t))
-RET STG::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]),val_to_c<int32_t>::f(ctx,a[3]),val_to_c<int32_t>::f(ctx,a[4])),EXT->Int4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<float> &))
-RET STG::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->Int4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<int32_t> &))
-RET STG::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->Int4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<uint32_t> &))
-RET STG::createNativeObject(Int4_funcs,NEW(T4<int32_t>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->Int4_typeID);
-CATE(TE,UFOF("Int4's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T4<int32_t>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],int32_t)){
+void *p = (void *)NEW(TYPE(T4<int32_t>),val_to_c<int32_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
+}if(a.getCount()==5)
+if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)&&TS(a[3],int32_t)&&TS(a[4],int32_t)){
+void *p = (void *)NEW(TYPE(T4<int32_t>),val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]),val_to_c<int32_t>::f(ctx,a[3]),val_to_c<int32_t>::f(ctx,a[4]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<float> &)){
+void *p = (void *)NEW(TYPE(T4<int32_t>),val_to_c<const T4<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<int32_t> &)){
+void *p = (void *)NEW(TYPE(T4<int32_t>),val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T4<int32_t>),val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
+}CATE(TE,UFOF("Int4's constructor.")));
 RET CN;
 }
 
@@ -31378,7 +30902,7 @@ void Float3_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T3<float>))
 CATE(TE,"Float3::__del__ expects Float3 as first argument."));
 
-DELETE((T3<float>*)f->data);
+SCRIPT_DELETE((T3<float>*)f->data);
 }SV Float3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -31386,24 +30910,36 @@ CATE(VE,"Float3's constructor" EAOE));
 if(!TS(a[0],T3<float>))
 CATE(TE,"Float3's constructor expects Float3 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Float3_funcs,NEW(T3<float>),EXT->Float3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],float))
-RET STG::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<float>::f(ctx,a[1])),EXT->Float3_typeID);
-if(a.getCount()==4)
-if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float))
-RET STG::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3])),EXT->Float3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<float> &))
-RET STG::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->Float3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<int32_t> &))
-RET STG::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->Float3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<uint32_t> &))
-RET STG::createNativeObject(Float3_funcs,NEW(T3<float>,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->Float3_typeID);
-CATE(TE,UFOF("Float3's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T3<float>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],float)){
+void *p = (void *)NEW(TYPE(T3<float>),val_to_c<float>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
+}if(a.getCount()==4)
+if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)){
+void *p = (void *)NEW(TYPE(T3<float>),val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<float> &)){
+void *p = (void *)NEW(TYPE(T3<float>),val_to_c<const T3<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<int32_t> &)){
+void *p = (void *)NEW(TYPE(T3<float>),val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T3<float>),val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
+}CATE(TE,UFOF("Float3's constructor.")));
 RET CN;
 }
 
@@ -32309,7 +31845,7 @@ void GfxBuffer_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxBuffer))
 CATE(TE,"GfxBuffer::__del__ expects GfxBuffer as first argument."));
 
-DELETE((GfxBuffer*)f->data);
+SCRIPT_DELETE((GfxBuffer*)f->data);
 }SV GfxBuffer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -32445,7 +31981,7 @@ void Transform_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Transform))
 CATE(TE,"Transform::__del__ expects Transform as first argument."));
 
-DELETE((Transform*)f->data);
+SCRIPT_DELETE((Transform*)f->data);
 }SV Transform_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -32453,9 +31989,11 @@ CATE(VE,"Transform's constructor" EAOE));
 if(!TS(a[0],Transform))
 CATE(TE,"Transform's constructor expects Transform as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Transform_funcs,NEW(Transform),EXT->Transform_typeID);
-CATE(TE,UFOF("Transform's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Transform));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Transform_funcs,p,EXT->Transform_typeID);
+}CATE(TE,UFOF("Transform's constructor.")));
 RET CN;
 }
 
@@ -32552,7 +32090,7 @@ void AudioSourceList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<AudioSource*>))
 CATE(TE,"AudioSourceList::__del__ expects AudioSourceList as first argument."));
 
-DELETE((List<AudioSource*>*)f->data);
+SCRIPT_DELETE((List<AudioSource*>*)f->data);
 }SV AudioSourceList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -32560,15 +32098,21 @@ CATE(VE,"AudioSourceList's constructor" EAOE));
 if(!TS(a[0],List<AudioSource*>))
 CATE(TE,"AudioSourceList's constructor expects AudioSourceList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(AudioSourceList_funcs,NEW(List<AudioSource*>),EXT->AudioSourceList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(AudioSourceList_funcs,NEW(List<AudioSource*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->AudioSourceList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<AudioSource*> &))
-RET STG::createNativeObject(AudioSourceList_funcs,NEW(List<AudioSource*>,val_to_c<const List<AudioSource*> &>::f(ctx,a[1])),EXT->AudioSourceList_typeID);
-CATE(TE,UFOF("AudioSourceList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<AudioSource*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<AudioSource*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<AudioSource*> &)){
+void *p = (void *)NEW(TYPE(List<AudioSource*>),val_to_c<const List<AudioSource*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}CATE(TE,UFOF("AudioSourceList's constructor.")));
 RET CN;
 }
 
@@ -32902,7 +32446,7 @@ if(!TS((SV)f,GfxMaterial))
 CATE(TE,"GfxMaterial::__del__ expects GfxMaterial as first argument."));
 
 GfxMaterial*obj=(GfxMaterial*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV GfxMaterial_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -32910,12 +32454,16 @@ CATE(VE,"GfxMaterial's constructor" EAOE));
 if(!TS(a[0],GfxMaterial))
 CATE(TE,"GfxMaterial's constructor expects GfxMaterial as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxMaterial_funcs,NEW(GfxMaterial),EXT->GfxMaterial_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(GfxMaterial_funcs,NEW(GfxMaterial,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxMaterial_typeID);
-CATE(TE,UFOF("GfxMaterial's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(GfxMaterial));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxMaterial_funcs,p,EXT->GfxMaterial_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(GfxMaterial),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxMaterial_funcs,p,EXT->GfxMaterial_typeID);
+}CATE(TE,UFOF("GfxMaterial's constructor.")));
 RET CN;
 }
 
@@ -33565,7 +33113,7 @@ void Quaternion_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Quaternion))
 CATE(TE,"Quaternion::__del__ expects Quaternion as first argument."));
 
-DELETE((Quaternion*)f->data);
+SCRIPT_DELETE((Quaternion*)f->data);
 }SV Quaternion_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -33573,18 +33121,26 @@ CATE(VE,"Quaternion's constructor" EAOE));
 if(!TS(a[0],Quaternion))
 CATE(TE,"Quaternion's constructor expects Quaternion as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Quaternion_funcs,NEW(Quaternion),EXT->Quaternion_typeID);
-if(a.getCount()==3)
-if(true&&TS(a[1],const Direction3D &)&&TS(a[2],float))
-RET STG::createNativeObject(Quaternion_funcs,NEW(Quaternion,val_to_c<const Direction3D &>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2])),EXT->Quaternion_typeID);
-if(a.getCount()==5)
-if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float))
-RET STG::createNativeObject(Quaternion_funcs,NEW(Quaternion,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4])),EXT->Quaternion_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const Float3 &))
-RET STG::createNativeObject(Quaternion_funcs,NEW(Quaternion,val_to_c<const Float3 &>::f(ctx,a[1])),EXT->Quaternion_typeID);
-CATE(TE,UFOF("Quaternion's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Quaternion));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
+}if(a.getCount()==3)
+if(true&&TS(a[1],const Direction3D &)&&TS(a[2],float)){
+void *p = (void *)NEW(TYPE(Quaternion),val_to_c<const Direction3D &>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
+}if(a.getCount()==5)
+if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)){
+void *p = (void *)NEW(TYPE(Quaternion),val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const Float3 &)){
+void *p = (void *)NEW(TYPE(Quaternion),val_to_c<const Float3 &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
+}CATE(TE,UFOF("Quaternion's constructor.")));
 RET CN;
 }
 
@@ -34012,7 +33568,7 @@ void GfxMeshAttrib_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxMeshAttrib))
 CATE(TE,"GfxMeshAttrib::__del__ expects GfxMeshAttrib as first argument."));
 
-DELETE((GfxMeshAttrib*)f->data);
+SCRIPT_DELETE((GfxMeshAttrib*)f->data);
 }SV GfxMeshAttrib_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -34294,7 +33850,7 @@ void Int2_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T2<int32_t>))
 CATE(TE,"Int2::__del__ expects Int2 as first argument."));
 
-DELETE((T2<int32_t>*)f->data);
+SCRIPT_DELETE((T2<int32_t>*)f->data);
 }SV Int2_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -34302,24 +33858,36 @@ CATE(VE,"Int2's constructor" EAOE));
 if(!TS(a[0],T2<int32_t>))
 CATE(TE,"Int2's constructor expects Int2 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Int2_funcs,NEW(T2<int32_t>),EXT->Int2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],int32_t))
-RET STG::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<int32_t>::f(ctx,a[1])),EXT->Int2_typeID);
-if(a.getCount()==3)
-if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t))
-RET STG::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2])),EXT->Int2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<float> &))
-RET STG::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<const T2<float> &>::f(ctx,a[1])),EXT->Int2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<int32_t> &))
-RET STG::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<const T2<int32_t> &>::f(ctx,a[1])),EXT->Int2_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T2<uint32_t> &))
-RET STG::createNativeObject(Int2_funcs,NEW(T2<int32_t>,val_to_c<const T2<uint32_t> &>::f(ctx,a[1])),EXT->Int2_typeID);
-CATE(TE,UFOF("Int2's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T2<int32_t>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],int32_t)){
+void *p = (void *)NEW(TYPE(T2<int32_t>),val_to_c<int32_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
+}if(a.getCount()==3)
+if(true&&TS(a[1],int32_t)&&TS(a[2],int32_t)){
+void *p = (void *)NEW(TYPE(T2<int32_t>),val_to_c<int32_t>::f(ctx,a[1]),val_to_c<int32_t>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<float> &)){
+void *p = (void *)NEW(TYPE(T2<int32_t>),val_to_c<const T2<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<int32_t> &)){
+void *p = (void *)NEW(TYPE(T2<int32_t>),val_to_c<const T2<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T2<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T2<int32_t>),val_to_c<const T2<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
+}CATE(TE,UFOF("Int2's constructor.")));
 RET CN;
 }
 
@@ -34818,7 +34386,7 @@ void AudioWorld_destroy(CTX ctx,NO f)
 if(!TS((SV)f,AudioWorld))
 CATE(TE,"AudioWorld::__del__ expects AudioWorld as first argument."));
 
-DELETE((AudioWorld*)f->data);
+SCRIPT_DELETE((AudioWorld*)f->data);
 }SV AudioWorld_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -34826,9 +34394,11 @@ CATE(VE,"AudioWorld's constructor" EAOE));
 if(!TS(a[0],AudioWorld))
 CATE(TE,"AudioWorld's constructor expects AudioWorld as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(AudioWorld_funcs,NEW(AudioWorld),EXT->AudioWorld_typeID);
-CATE(TE,UFOF("AudioWorld's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(AudioWorld));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioWorld_funcs,p,EXT->AudioWorld_typeID);
+}CATE(TE,UFOF("AudioWorld's constructor.")));
 RET CN;
 }
 
@@ -35028,7 +34598,7 @@ void GuiPlacer_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GuiPlacer))
 CATE(TE,"GuiPlacer::__del__ expects GuiPlacer as first argument."));
 
-DELETE((GuiPlacer*)f->data);
+SCRIPT_DELETE((GuiPlacer*)f->data);
 }SV GuiPlacer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35036,9 +34606,11 @@ CATE(VE,"GuiPlacer's constructor" EAOE));
 if(!TS(a[0],GuiPlacer))
 CATE(TE,"GuiPlacer's constructor expects GuiPlacer as first argument."));
 if(a.getCount()==5)
-if(true&&TS(a[1],ImGui *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],size_t))
-RET STG::createNativeObject(GuiPlacer_funcs,NEW(GuiPlacer,val_to_c<ImGui *>::f(ctx,a[1]),val_to_c<int>::f(ctx,a[2]),val_to_c<int>::f(ctx,a[3]),val_to_c<size_t>::f(ctx,a[4])),EXT->GuiPlacer_typeID);
-CATE(TE,UFOF("GuiPlacer's constructor.")));
+if(true&&TS(a[1],ImGui *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],size_t)){
+void *p = (void *)NEW(TYPE(GuiPlacer),val_to_c<ImGui *>::f(ctx,a[1]),val_to_c<int>::f(ctx,a[2]),val_to_c<int>::f(ctx,a[3]),val_to_c<size_t>::f(ctx,a[4]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GuiPlacer_funcs,p,EXT->GuiPlacer_typeID);
+}CATE(TE,UFOF("GuiPlacer's constructor.")));
 RET CN;
 }
 
@@ -35269,7 +34841,7 @@ void ImGui_destroy(CTX ctx,NO f)
 if(!TS((SV)f,ImGui))
 CATE(TE,"ImGui::__del__ expects ImGui as first argument."));
 
-DELETE((ImGui*)f->data);
+SCRIPT_DELETE((ImGui*)f->data);
 }SV ImGui_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35277,9 +34849,11 @@ CATE(VE,"ImGui's constructor" EAOE));
 if(!TS(a[0],ImGui))
 CATE(TE,"ImGui's constructor expects ImGui as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(ImGui_funcs,NEW(ImGui),EXT->ImGui_typeID);
-CATE(TE,UFOF("ImGui's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(ImGui));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
+}CATE(TE,UFOF("ImGui's constructor.")));
 RET CN;
 }
 
@@ -35511,7 +35085,7 @@ void StringList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<String>))
 CATE(TE,"StringList::__del__ expects StringList as first argument."));
 
-DELETE((List<String>*)f->data);
+SCRIPT_DELETE((List<String>*)f->data);
 }SV StringList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35519,15 +35093,21 @@ CATE(VE,"StringList's constructor" EAOE));
 if(!TS(a[0],List<String>))
 CATE(TE,"StringList's constructor expects StringList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(StringList_funcs,NEW(List<String>),EXT->StringList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(StringList_funcs,NEW(List<String>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->StringList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<String> &))
-RET STG::createNativeObject(StringList_funcs,NEW(List<String>,val_to_c<const List<String> &>::f(ctx,a[1])),EXT->StringList_typeID);
-CATE(TE,UFOF("StringList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<String>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<String>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<String> &)){
+void *p = (void *)NEW(TYPE(List<String>),val_to_c<const List<String> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
+}CATE(TE,UFOF("StringList's constructor.")));
 RET CN;
 }
 
@@ -35860,7 +35440,7 @@ void Application_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Application))
 CATE(TE,"Application::__del__ expects Application as first argument."));
 
-DELETE((Application*)f->data);
+SCRIPT_DELETE((Application*)f->data);
 }SV Application_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35868,9 +35448,11 @@ CATE(VE,"Application's constructor" EAOE));
 if(!TS(a[0],Application))
 CATE(TE,"Application's constructor expects Application as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const char *))
-RET STG::createNativeObject(Application_funcs,NEW(Application,val_to_c<const char *>::f(ctx,a[1])),EXT->Application_typeID);
-CATE(TE,UFOF("Application's constructor.")));
+if(true&&TS(a[1],const char *)){
+void *p = (void *)NEW(TYPE(Application),val_to_c<const char *>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Application_funcs,p,EXT->Application_typeID);
+}CATE(TE,UFOF("Application's constructor.")));
 RET CN;
 }
 
@@ -36157,7 +35739,7 @@ void LightPointData_destroy(CTX ctx,NO f)
 if(!TS((SV)f,LightPointData))
 CATE(TE,"LightPointData::__del__ expects LightPointData as first argument."));
 
-DELETE((LightPointData*)f->data);
+SCRIPT_DELETE((LightPointData*)f->data);
 }SV LightPointData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -36241,7 +35823,7 @@ void Float4_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T4<float>))
 CATE(TE,"Float4::__del__ expects Float4 as first argument."));
 
-DELETE((T4<float>*)f->data);
+SCRIPT_DELETE((T4<float>*)f->data);
 }SV Float4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -36249,24 +35831,36 @@ CATE(VE,"Float4's constructor" EAOE));
 if(!TS(a[0],T4<float>))
 CATE(TE,"Float4's constructor expects Float4 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Float4_funcs,NEW(T4<float>),EXT->Float4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],float))
-RET STG::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<float>::f(ctx,a[1])),EXT->Float4_typeID);
-if(a.getCount()==5)
-if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float))
-RET STG::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4])),EXT->Float4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<float> &))
-RET STG::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->Float4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<int32_t> &))
-RET STG::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->Float4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<uint32_t> &))
-RET STG::createNativeObject(Float4_funcs,NEW(T4<float>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->Float4_typeID);
-CATE(TE,UFOF("Float4's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T4<float>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],float)){
+void *p = (void *)NEW(TYPE(T4<float>),val_to_c<float>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
+}if(a.getCount()==5)
+if(true&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)){
+void *p = (void *)NEW(TYPE(T4<float>),val_to_c<float>::f(ctx,a[1]),val_to_c<float>::f(ctx,a[2]),val_to_c<float>::f(ctx,a[3]),val_to_c<float>::f(ctx,a[4]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<float> &)){
+void *p = (void *)NEW(TYPE(T4<float>),val_to_c<const T4<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<int32_t> &)){
+void *p = (void *)NEW(TYPE(T4<float>),val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T4<float>),val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
+}CATE(TE,UFOF("Float4's constructor.")));
 RET CN;
 }
 
@@ -38985,7 +38579,7 @@ void FloatList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<float>))
 CATE(TE,"FloatList::__del__ expects FloatList as first argument."));
 
-DELETE((List<float>*)f->data);
+SCRIPT_DELETE((List<float>*)f->data);
 }SV FloatList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -38993,15 +38587,21 @@ CATE(VE,"FloatList's constructor" EAOE));
 if(!TS(a[0],List<float>))
 CATE(TE,"FloatList's constructor expects FloatList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(FloatList_funcs,NEW(List<float>),EXT->FloatList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(FloatList_funcs,NEW(List<float>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->FloatList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<float> &))
-RET STG::createNativeObject(FloatList_funcs,NEW(List<float>,val_to_c<const List<float> &>::f(ctx,a[1])),EXT->FloatList_typeID);
-CATE(TE,UFOF("FloatList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<float>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(FloatList_funcs,p,EXT->FloatList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<float>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(FloatList_funcs,p,EXT->FloatList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<float> &)){
+void *p = (void *)NEW(TYPE(List<float>),val_to_c<const List<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(FloatList_funcs,p,EXT->FloatList_typeID);
+}CATE(TE,UFOF("FloatList's constructor.")));
 RET CN;
 }
 
@@ -39334,7 +38934,7 @@ void Container_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Container))
 CATE(TE,"Container::__del__ expects Container as first argument."));
 
-DELETE((Container*)f->data);
+SCRIPT_DELETE((Container*)f->data);
 }SV Container_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -39342,9 +38942,11 @@ CATE(VE,"Container's constructor" EAOE));
 if(!TS(a[0],Container))
 CATE(TE,"Container's constructor expects Container as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Container_funcs,NEW(Container),EXT->Container_typeID);
-CATE(TE,UFOF("Container's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Container));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Container_funcs,p,EXT->Container_typeID);
+}CATE(TE,UFOF("Container's constructor.")));
 RET CN;
 }
 
@@ -39414,7 +39016,7 @@ void LightDirectionalData_destroy(CTX ctx,NO f)
 if(!TS((SV)f,LightDirectionalData))
 CATE(TE,"LightDirectionalData::__del__ expects LightDirectionalData as first argument."));
 
-DELETE((LightDirectionalData*)f->data);
+SCRIPT_DELETE((LightDirectionalData*)f->data);
 }SV LightDirectionalData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -39482,7 +39084,7 @@ void Matrix4x4_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Matrix4x4))
 CATE(TE,"Matrix4x4::__del__ expects Matrix4x4 as first argument."));
 
-DELETE((Matrix4x4*)f->data);
+SCRIPT_DELETE((Matrix4x4*)f->data);
 }SV Matrix4x4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -39490,15 +39092,21 @@ CATE(VE,"Matrix4x4's constructor" EAOE));
 if(!TS(a[0],Matrix4x4))
 CATE(TE,"Matrix4x4's constructor expects Matrix4x4 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4),EXT->Matrix4x4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const Matrix3x3 &))
-RET STG::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,val_to_c<const Matrix3x3 &>::f(ctx,a[1])),EXT->Matrix4x4_typeID);
-if(a.getCount()==5)
-if(true&&TS(a[1],const Float4 &)&&TS(a[2],const Float4 &)&&TS(a[3],const Float4 &)&&TS(a[4],const Float4 &))
-RET STG::createNativeObject(Matrix4x4_funcs,NEW(Matrix4x4,val_to_c<const Float4 &>::f(ctx,a[1]),val_to_c<const Float4 &>::f(ctx,a[2]),val_to_c<const Float4 &>::f(ctx,a[3]),val_to_c<const Float4 &>::f(ctx,a[4])),EXT->Matrix4x4_typeID);
-CATE(TE,UFOF("Matrix4x4's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Matrix4x4));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix4x4_funcs,p,EXT->Matrix4x4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const Matrix3x3 &)){
+void *p = (void *)NEW(TYPE(Matrix4x4),val_to_c<const Matrix3x3 &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix4x4_funcs,p,EXT->Matrix4x4_typeID);
+}if(a.getCount()==5)
+if(true&&TS(a[1],const Float4 &)&&TS(a[2],const Float4 &)&&TS(a[3],const Float4 &)&&TS(a[4],const Float4 &)){
+void *p = (void *)NEW(TYPE(Matrix4x4),val_to_c<const Float4 &>::f(ctx,a[1]),val_to_c<const Float4 &>::f(ctx,a[2]),val_to_c<const Float4 &>::f(ctx,a[3]),val_to_c<const Float4 &>::f(ctx,a[4]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix4x4_funcs,p,EXT->Matrix4x4_typeID);
+}CATE(TE,UFOF("Matrix4x4's constructor.")));
 RET CN;
 }
 
@@ -39881,7 +39489,7 @@ void Map_destroy(CTX ctx,NO f)
 if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>))
 CATE(TE,"Map::__del__ expects Map as first argument."));
 
-DELETE((HashMap<scripting::Value*,scripting::Value*>*)f->data);
+SCRIPT_DELETE((HashMap<scripting::Value*,scripting::Value*>*)f->data);
 }SV Map_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -40206,7 +39814,7 @@ void UInt3_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T3<uint32_t>))
 CATE(TE,"UInt3::__del__ expects UInt3 as first argument."));
 
-DELETE((T3<uint32_t>*)f->data);
+SCRIPT_DELETE((T3<uint32_t>*)f->data);
 }SV UInt3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -40214,24 +39822,36 @@ CATE(VE,"UInt3's constructor" EAOE));
 if(!TS(a[0],T3<uint32_t>))
 CATE(TE,"UInt3's constructor expects UInt3 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],uint32_t))
-RET STG::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt3_typeID);
-if(a.getCount()==4)
-if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t))
-RET STG::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3])),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<float> &))
-RET STG::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<const T3<float> &>::f(ctx,a[1])),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<int32_t> &))
-RET STG::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<const T3<int32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T3<uint32_t> &))
-RET STG::createNativeObject(UInt3_funcs,NEW(T3<uint32_t>,val_to_c<const T3<uint32_t> &>::f(ctx,a[1])),EXT->UInt3_typeID);
-CATE(TE,UFOF("UInt3's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T3<uint32_t>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],uint32_t)){
+void *p = (void *)NEW(TYPE(T3<uint32_t>),val_to_c<uint32_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
+}if(a.getCount()==4)
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t)){
+void *p = (void *)NEW(TYPE(T3<uint32_t>),val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<float> &)){
+void *p = (void *)NEW(TYPE(T3<uint32_t>),val_to_c<const T3<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<int32_t> &)){
+void *p = (void *)NEW(TYPE(T3<uint32_t>),val_to_c<const T3<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T3<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T3<uint32_t>),val_to_c<const T3<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
+}CATE(TE,UFOF("UInt3's constructor.")));
 RET CN;
 }
 
@@ -41137,7 +40757,7 @@ void LightSpotData_destroy(CTX ctx,NO f)
 if(!TS((SV)f,LightSpotData))
 CATE(TE,"LightSpotData::__del__ expects LightSpotData as first argument."));
 
-DELETE((LightSpotData*)f->data);
+SCRIPT_DELETE((LightSpotData*)f->data);
 }SV LightSpotData_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
@@ -41238,7 +40858,7 @@ if(!TS((SV)f,PhysicsShape))
 CATE(TE,"PhysicsShape::__del__ expects PhysicsShape as first argument."));
 
 PhysicsShape*obj=(PhysicsShape*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV PhysicsShape_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -41246,12 +40866,16 @@ CATE(VE,"PhysicsShape's constructor" EAOE));
 if(!TS(a[0],PhysicsShape))
 CATE(TE,"PhysicsShape's constructor expects PhysicsShape as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(PhysicsShape_funcs,NEW(PhysicsShape),EXT->PhysicsShape_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(PhysicsShape_funcs,NEW(PhysicsShape,val_to_c<const String &>::f(ctx,a[1])),EXT->PhysicsShape_typeID);
-CATE(TE,UFOF("PhysicsShape's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(PhysicsShape));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(PhysicsShape_funcs,p,EXT->PhysicsShape_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(PhysicsShape),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(PhysicsShape_funcs,p,EXT->PhysicsShape_typeID);
+}CATE(TE,UFOF("PhysicsShape's constructor.")));
 RET CN;
 }
 
@@ -41788,7 +41412,7 @@ void AudioDevice_destroy(CTX ctx,NO f)
 if(!TS((SV)f,AudioDevice))
 CATE(TE,"AudioDevice::__del__ expects AudioDevice as first argument."));
 
-DELETE((AudioDevice*)f->data);
+SCRIPT_DELETE((AudioDevice*)f->data);
 }SV AudioDevice_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -41796,9 +41420,11 @@ CATE(VE,"AudioDevice's constructor" EAOE));
 if(!TS(a[0],AudioDevice))
 CATE(TE,"AudioDevice's constructor expects AudioDevice as first argument."));
 if(a.getCount()==4)
-if(true&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t))
-RET STG::createNativeObject(AudioDevice_funcs,NEW(AudioDevice,val_to_c<size_t>::f(ctx,a[1]),val_to_c<size_t>::f(ctx,a[2]),val_to_c<size_t>::f(ctx,a[3])),EXT->AudioDevice_typeID);
-CATE(TE,UFOF("AudioDevice's constructor.")));
+if(true&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t)){
+void *p = (void *)NEW(TYPE(AudioDevice),val_to_c<size_t>::f(ctx,a[1]),val_to_c<size_t>::f(ctx,a[2]),val_to_c<size_t>::f(ctx,a[3]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioDevice_funcs,p,EXT->AudioDevice_typeID);
+}CATE(TE,UFOF("AudioDevice's constructor.")));
 RET CN;
 }
 
@@ -42113,7 +41739,7 @@ void RigidBodyList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<RigidBody*>))
 CATE(TE,"RigidBodyList::__del__ expects RigidBodyList as first argument."));
 
-DELETE((List<RigidBody*>*)f->data);
+SCRIPT_DELETE((List<RigidBody*>*)f->data);
 }SV RigidBodyList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -42121,15 +41747,21 @@ CATE(VE,"RigidBodyList's constructor" EAOE));
 if(!TS(a[0],List<RigidBody*>))
 CATE(TE,"RigidBodyList's constructor expects RigidBodyList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(RigidBodyList_funcs,NEW(List<RigidBody*>),EXT->RigidBodyList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(RigidBodyList_funcs,NEW(List<RigidBody*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->RigidBodyList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<RigidBody*> &))
-RET STG::createNativeObject(RigidBodyList_funcs,NEW(List<RigidBody*>,val_to_c<const List<RigidBody*> &>::f(ctx,a[1])),EXT->RigidBodyList_typeID);
-CATE(TE,UFOF("RigidBodyList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<RigidBody*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RigidBodyList_funcs,p,EXT->RigidBodyList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<RigidBody*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RigidBodyList_funcs,p,EXT->RigidBodyList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<RigidBody*> &)){
+void *p = (void *)NEW(TYPE(List<RigidBody*>),val_to_c<const List<RigidBody*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RigidBodyList_funcs,p,EXT->RigidBodyList_typeID);
+}CATE(TE,UFOF("RigidBodyList's constructor.")));
 RET CN;
 }
 
@@ -42462,7 +42094,7 @@ void UInt4_destroy(CTX ctx,NO f)
 if(!TS((SV)f,T4<uint32_t>))
 CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
 
-DELETE((T4<uint32_t>*)f->data);
+SCRIPT_DELETE((T4<uint32_t>*)f->data);
 }SV UInt4_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -42470,24 +42102,36 @@ CATE(VE,"UInt4's constructor" EAOE));
 if(!TS(a[0],T4<uint32_t>))
 CATE(TE,"UInt4's constructor expects UInt4 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],uint32_t))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==5)
-if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t)&&TS(a[4],uint32_t))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3]),val_to_c<uint32_t>::f(ctx,a[4])),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<float> &))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<float> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<int32_t> &))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<int32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const T4<uint32_t> &))
-RET STG::createNativeObject(UInt4_funcs,NEW(T4<uint32_t>,val_to_c<const T4<uint32_t> &>::f(ctx,a[1])),EXT->UInt4_typeID);
-CATE(TE,UFOF("UInt4's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(T4<uint32_t>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],uint32_t)){
+void *p = (void *)NEW(TYPE(T4<uint32_t>),val_to_c<uint32_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
+}if(a.getCount()==5)
+if(true&&TS(a[1],uint32_t)&&TS(a[2],uint32_t)&&TS(a[3],uint32_t)&&TS(a[4],uint32_t)){
+void *p = (void *)NEW(TYPE(T4<uint32_t>),val_to_c<uint32_t>::f(ctx,a[1]),val_to_c<uint32_t>::f(ctx,a[2]),val_to_c<uint32_t>::f(ctx,a[3]),val_to_c<uint32_t>::f(ctx,a[4]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<float> &)){
+void *p = (void *)NEW(TYPE(T4<uint32_t>),val_to_c<const T4<float> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<int32_t> &)){
+void *p = (void *)NEW(TYPE(T4<uint32_t>),val_to_c<const T4<int32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const T4<uint32_t> &)){
+void *p = (void *)NEW(TYPE(T4<uint32_t>),val_to_c<const T4<uint32_t> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
+}CATE(TE,UFOF("UInt4's constructor.")));
 RET CN;
 }
 
@@ -45206,7 +44850,7 @@ void RayCastResult_destroy(CTX ctx,NO f)
 if(!TS((SV)f,RayCastResult))
 CATE(TE,"RayCastResult::__del__ expects RayCastResult as first argument."));
 
-DELETE((RayCastResult*)f->data);
+SCRIPT_DELETE((RayCastResult*)f->data);
 }SV RayCastResult_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -45214,9 +44858,11 @@ CATE(VE,"RayCastResult's constructor" EAOE));
 if(!TS(a[0],RayCastResult))
 CATE(TE,"RayCastResult's constructor expects RayCastResult as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(RayCastResult_funcs,NEW(RayCastResult),EXT->RayCastResult_typeID);
-CATE(TE,UFOF("RayCastResult's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(RayCastResult));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RayCastResult_funcs,p,EXT->RayCastResult_typeID);
+}CATE(TE,UFOF("RayCastResult's constructor.")));
 RET CN;
 }
 
@@ -45351,7 +44997,7 @@ void GfxLOD_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxLOD))
 CATE(TE,"GfxLOD::__del__ expects GfxLOD as first argument."));
 
-DELETE((GfxLOD*)f->data);
+SCRIPT_DELETE((GfxLOD*)f->data);
 }SV GfxLOD_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -45359,9 +45005,11 @@ CATE(VE,"GfxLOD's constructor" EAOE));
 if(!TS(a[0],GfxLOD))
 CATE(TE,"GfxLOD's constructor expects GfxLOD as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxLOD_funcs,NEW(GfxLOD),EXT->GfxLOD_typeID);
-CATE(TE,UFOF("GfxLOD's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(GfxLOD));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxLOD_funcs,p,EXT->GfxLOD_typeID);
+}CATE(TE,UFOF("GfxLOD's constructor.")));
 RET CN;
 }
 
@@ -45458,7 +45106,7 @@ void File_destroy(CTX ctx,NO f)
 if(!TS((SV)f,File))
 CATE(TE,"File::__del__ expects File as first argument."));
 
-DELETE((File*)f->data);
+SCRIPT_DELETE((File*)f->data);
 }SV File_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -45466,9 +45114,11 @@ CATE(VE,"File's constructor" EAOE));
 if(!TS(a[0],File))
 CATE(TE,"File's constructor expects File as first argument."));
 if(a.getCount()==3)
-if(true&&TS(a[1],const char *)&&TS(a[2],const char *))
-RET STG::createNativeObject(File_funcs,NEW(File,val_to_c<const char *>::f(ctx,a[1]),val_to_c<const char *>::f(ctx,a[2])),EXT->File_typeID);
-CATE(TE,UFOF("File's constructor.")));
+if(true&&TS(a[1],const char *)&&TS(a[2],const char *)){
+void *p = (void *)NEW(TYPE(File),val_to_c<const char *>::f(ctx,a[1]),val_to_c<const char *>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(File_funcs,p,EXT->File_typeID);
+}CATE(TE,UFOF("File's constructor.")));
 RET CN;
 }
 
@@ -46289,7 +45939,7 @@ void AABB_destroy(CTX ctx,NO f)
 if(!TS((SV)f,AABB))
 CATE(TE,"AABB::__del__ expects AABB as first argument."));
 
-DELETE((AABB*)f->data);
+SCRIPT_DELETE((AABB*)f->data);
 }SV AABB_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46297,12 +45947,16 @@ CATE(VE,"AABB's constructor" EAOE));
 if(!TS(a[0],AABB))
 CATE(TE,"AABB's constructor expects AABB as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(AABB_funcs,NEW(AABB),EXT->AABB_typeID);
-if(a.getCount()==3)
-if(true&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &))
-RET STG::createNativeObject(AABB_funcs,NEW(AABB,val_to_c<const Position3D &>::f(ctx,a[1]),val_to_c<const Position3D &>::f(ctx,a[2])),EXT->AABB_typeID);
-CATE(TE,UFOF("AABB's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(AABB));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AABB_funcs,p,EXT->AABB_typeID);
+}if(a.getCount()==3)
+if(true&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &)){
+void *p = (void *)NEW(TYPE(AABB),val_to_c<const Position3D &>::f(ctx,a[1]),val_to_c<const Position3D &>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AABB_funcs,p,EXT->AABB_typeID);
+}CATE(TE,UFOF("AABB's constructor.")));
 RET CN;
 }
 
@@ -46435,7 +46089,7 @@ void RigidBodyConstructionInfo_destroy(CTX ctx,NO f)
 if(!TS((SV)f,RigidBodyConstructionInfo))
 CATE(TE,"RigidBodyConstructionInfo::__del__ expects RigidBodyConstructionInfo as first argument."));
 
-DELETE((RigidBodyConstructionInfo*)f->data);
+SCRIPT_DELETE((RigidBodyConstructionInfo*)f->data);
 }SV RigidBodyConstructionInfo_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46443,9 +46097,11 @@ CATE(VE,"RigidBodyConstructionInfo's constructor" EAOE));
 if(!TS(a[0],RigidBodyConstructionInfo))
 CATE(TE,"RigidBodyConstructionInfo's constructor expects RigidBodyConstructionInfo as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,NEW(RigidBodyConstructionInfo),EXT->RigidBodyConstructionInfo_typeID);
-CATE(TE,UFOF("RigidBodyConstructionInfo's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(RigidBodyConstructionInfo));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,p,EXT->RigidBodyConstructionInfo_typeID);
+}CATE(TE,UFOF("RigidBodyConstructionInfo's constructor.")));
 RET CN;
 }
 
@@ -46587,7 +46243,7 @@ void List_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<scripting::Value*>))
 CATE(TE,"List::__del__ expects List as first argument."));
 
-DELETE((List<scripting::Value*>*)f->data);
+SCRIPT_DELETE((List<scripting::Value*>*)f->data);
 }SV List_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46595,15 +46251,21 @@ CATE(VE,"List's constructor" EAOE));
 if(!TS(a[0],List<scripting::Value*>))
 CATE(TE,"List's constructor expects List as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(List_funcs,NEW(List<scripting::Value*>),EXT->List_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(List_funcs,NEW(List<scripting::Value*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->List_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<scripting::Value*> &))
-RET STG::createNativeObject(List_funcs,NEW(List<scripting::Value*>,val_to_c<const List<scripting::Value*> &>::f(ctx,a[1])),EXT->List_typeID);
-CATE(TE,UFOF("List's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<scripting::Value*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<scripting::Value*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<scripting::Value*> &)){
+void *p = (void *)NEW(TYPE(List<scripting::Value*>),val_to_c<const List<scripting::Value*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
+}CATE(TE,UFOF("List's constructor.")));
 RET CN;
 }
 
@@ -46937,7 +46599,7 @@ if(!TS((SV)f,Audio))
 CATE(TE,"Audio::__del__ expects Audio as first argument."));
 
 Audio*obj=(Audio*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV Audio_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -46945,12 +46607,16 @@ CATE(VE,"Audio's constructor" EAOE));
 if(!TS(a[0],Audio))
 CATE(TE,"Audio's constructor expects Audio as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Audio_funcs,NEW(Audio),EXT->Audio_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(Audio_funcs,NEW(Audio,val_to_c<const String &>::f(ctx,a[1])),EXT->Audio_typeID);
-CATE(TE,UFOF("Audio's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Audio));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Audio_funcs,p,EXT->Audio_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(Audio),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Audio_funcs,p,EXT->Audio_typeID);
+}CATE(TE,UFOF("Audio's constructor.")));
 RET CN;
 }
 
@@ -47356,7 +47022,7 @@ if(!TS((SV)f,GfxTexture))
 CATE(TE,"GfxTexture::__del__ expects GfxTexture as first argument."));
 
 GfxTexture*obj=(GfxTexture*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV GfxTexture_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -47364,12 +47030,16 @@ CATE(VE,"GfxTexture's constructor" EAOE));
 if(!TS(a[0],GfxTexture))
 CATE(TE,"GfxTexture's constructor expects GfxTexture as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(GfxTexture_funcs,NEW(GfxTexture,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxTexture_typeID);
-if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxTexture_funcs,NEW(GfxTexture),EXT->GfxTexture_typeID);
-CATE(TE,UFOF("GfxTexture's constructor.")));
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(GfxTexture),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxTexture_funcs,p,EXT->GfxTexture_typeID);
+}if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(GfxTexture));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxTexture_funcs,p,EXT->GfxTexture_typeID);
+}CATE(TE,UFOF("GfxTexture's constructor.")));
 RET CN;
 }
 
@@ -48101,7 +47771,7 @@ void GfxSubModelList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<GfxModel::SubModel>))
 CATE(TE,"GfxSubModelList::__del__ expects GfxSubModelList as first argument."));
 
-DELETE((List<GfxModel::SubModel>*)f->data);
+SCRIPT_DELETE((List<GfxModel::SubModel>*)f->data);
 }SV GfxSubModelList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -48109,15 +47779,21 @@ CATE(VE,"GfxSubModelList's constructor" EAOE));
 if(!TS(a[0],List<GfxModel::SubModel>))
 CATE(TE,"GfxSubModelList's constructor expects GfxSubModelList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>),EXT->GfxSubModelList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->GfxSubModelList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<GfxModel::SubModel> &))
-RET STG::createNativeObject(GfxSubModelList_funcs,NEW(List<GfxModel::SubModel>,val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1])),EXT->GfxSubModelList_typeID);
-CATE(TE,UFOF("GfxSubModelList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<GfxModel::SubModel>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxSubModelList_funcs,p,EXT->GfxSubModelList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<GfxModel::SubModel>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxSubModelList_funcs,p,EXT->GfxSubModelList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<GfxModel::SubModel> &)){
+void *p = (void *)NEW(TYPE(List<GfxModel::SubModel>),val_to_c<const List<GfxModel::SubModel> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxSubModelList_funcs,p,EXT->GfxSubModelList_typeID);
+}CATE(TE,UFOF("GfxSubModelList's constructor.")));
 RET CN;
 }
 
@@ -48451,7 +48127,7 @@ if(!TS((SV)f,GfxModel))
 CATE(TE,"GfxModel::__del__ expects GfxModel as first argument."));
 
 GfxModel*obj=(GfxModel*)f->data;
-if(obj!=nullptr){obj->release();}
+if(_scriptDeletePart(obj)){obj->release();}
 }SV GfxModel_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -48459,12 +48135,16 @@ CATE(VE,"GfxModel's constructor" EAOE));
 if(!TS(a[0],GfxModel))
 CATE(TE,"GfxModel's constructor expects GfxModel as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxModel_funcs,NEW(GfxModel),EXT->GfxModel_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const String &))
-RET STG::createNativeObject(GfxModel_funcs,NEW(GfxModel,val_to_c<const String &>::f(ctx,a[1])),EXT->GfxModel_typeID);
-CATE(TE,UFOF("GfxModel's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(GfxModel));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxModel_funcs,p,EXT->GfxModel_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(GfxModel),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxModel_funcs,p,EXT->GfxModel_typeID);
+}CATE(TE,UFOF("GfxModel's constructor.")));
 RET CN;
 }
 
@@ -48709,7 +48389,7 @@ void GfxLODList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<GfxLOD>))
 CATE(TE,"GfxLODList::__del__ expects GfxLODList as first argument."));
 
-DELETE((List<GfxLOD>*)f->data);
+SCRIPT_DELETE((List<GfxLOD>*)f->data);
 }SV GfxLODList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -48717,15 +48397,21 @@ CATE(VE,"GfxLODList's constructor" EAOE));
 if(!TS(a[0],List<GfxLOD>))
 CATE(TE,"GfxLODList's constructor expects GfxLODList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>),EXT->GfxLODList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->GfxLODList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<GfxLOD> &))
-RET STG::createNativeObject(GfxLODList_funcs,NEW(List<GfxLOD>,val_to_c<const List<GfxLOD> &>::f(ctx,a[1])),EXT->GfxLODList_typeID);
-CATE(TE,UFOF("GfxLODList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<GfxLOD>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxLODList_funcs,p,EXT->GfxLODList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<GfxLOD>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxLODList_funcs,p,EXT->GfxLODList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<GfxLOD> &)){
+void *p = (void *)NEW(TYPE(List<GfxLOD>),val_to_c<const List<GfxLOD> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxLODList_funcs,p,EXT->GfxLODList_typeID);
+}CATE(TE,UFOF("GfxLODList's constructor.")));
 RET CN;
 }
 
@@ -49058,7 +48744,7 @@ void EntityList_destroy(CTX ctx,NO f)
 if(!TS((SV)f,List<Entity*>))
 CATE(TE,"EntityList::__del__ expects EntityList as first argument."));
 
-DELETE((List<Entity*>*)f->data);
+SCRIPT_DELETE((List<Entity*>*)f->data);
 }SV EntityList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -49066,15 +48752,21 @@ CATE(VE,"EntityList's constructor" EAOE));
 if(!TS(a[0],List<Entity*>))
 CATE(TE,"EntityList's constructor expects EntityList as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(EntityList_funcs,NEW(List<Entity*>),EXT->EntityList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t))
-RET STG::createNativeObject(EntityList_funcs,NEW(List<Entity*>,val_to_c<std::size_t>::f(ctx,a[1])),EXT->EntityList_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const List<Entity*> &))
-RET STG::createNativeObject(EntityList_funcs,NEW(List<Entity*>,val_to_c<const List<Entity*> &>::f(ctx,a[1])),EXT->EntityList_typeID);
-CATE(TE,UFOF("EntityList's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(List<Entity*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(EntityList_funcs,p,EXT->EntityList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<Entity*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(EntityList_funcs,p,EXT->EntityList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<Entity*> &)){
+void *p = (void *)NEW(TYPE(List<Entity*>),val_to_c<const List<Entity*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(EntityList_funcs,p,EXT->EntityList_typeID);
+}CATE(TE,UFOF("EntityList's constructor.")));
 RET CN;
 }
 
@@ -49407,7 +49099,7 @@ void GfxShaderCombination_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxShaderCombination))
 CATE(TE,"GfxShaderCombination::__del__ expects GfxShaderCombination as first argument."));
 
-DELETE((GfxShaderCombination*)f->data);
+SCRIPT_DELETE((GfxShaderCombination*)f->data);
 }SV GfxShaderCombination_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -49415,9 +49107,11 @@ CATE(VE,"GfxShaderCombination's constructor" EAOE));
 if(!TS(a[0],GfxShaderCombination))
 CATE(TE,"GfxShaderCombination's constructor expects GfxShaderCombination as first argument."));
 if(a.getCount()==3)
-if(true&&TS(a[1],GfxShader *)&&TS(a[2],GfxShader *))
-RET STG::createNativeObject(GfxShaderCombination_funcs,NEW(GfxShaderCombination,val_to_c<GfxShader *>::f(ctx,a[1]),val_to_c<GfxShader *>::f(ctx,a[2])),EXT->GfxShaderCombination_typeID);
-CATE(TE,UFOF("GfxShaderCombination's constructor.")));
+if(true&&TS(a[1],GfxShader *)&&TS(a[2],GfxShader *)){
+void *p = (void *)NEW(TYPE(GfxShaderCombination),val_to_c<GfxShader *>::f(ctx,a[1]),val_to_c<GfxShader *>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxShaderCombination_funcs,p,EXT->GfxShaderCombination_typeID);
+}CATE(TE,UFOF("GfxShaderCombination's constructor.")));
 RET CN;
 }
 
@@ -49604,7 +49298,7 @@ void Matrix3x3_destroy(CTX ctx,NO f)
 if(!TS((SV)f,Matrix3x3))
 CATE(TE,"Matrix3x3::__del__ expects Matrix3x3 as first argument."));
 
-DELETE((Matrix3x3*)f->data);
+SCRIPT_DELETE((Matrix3x3*)f->data);
 }SV Matrix3x3_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -49612,15 +49306,21 @@ CATE(VE,"Matrix3x3's constructor" EAOE));
 if(!TS(a[0],Matrix3x3))
 CATE(TE,"Matrix3x3's constructor expects Matrix3x3 as first argument."));
 if(a.getCount()==1)
-if(true)
-RET STG::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3),EXT->Matrix3x3_typeID);
-if(a.getCount()==2)
-if(true&&TS(a[1],const Matrix4x4 &))
-RET STG::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,val_to_c<const Matrix4x4 &>::f(ctx,a[1])),EXT->Matrix3x3_typeID);
-if(a.getCount()==4)
-if(true&&TS(a[1],const Float3 &)&&TS(a[2],const Float3 &)&&TS(a[3],const Float3 &))
-RET STG::createNativeObject(Matrix3x3_funcs,NEW(Matrix3x3,val_to_c<const Float3 &>::f(ctx,a[1]),val_to_c<const Float3 &>::f(ctx,a[2]),val_to_c<const Float3 &>::f(ctx,a[3])),EXT->Matrix3x3_typeID);
-CATE(TE,UFOF("Matrix3x3's constructor.")));
+if(true){
+void *p = (void *)NEW(TYPE(Matrix3x3));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix3x3_funcs,p,EXT->Matrix3x3_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const Matrix4x4 &)){
+void *p = (void *)NEW(TYPE(Matrix3x3),val_to_c<const Matrix4x4 &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix3x3_funcs,p,EXT->Matrix3x3_typeID);
+}if(a.getCount()==4)
+if(true&&TS(a[1],const Float3 &)&&TS(a[2],const Float3 &)&&TS(a[3],const Float3 &)){
+void *p = (void *)NEW(TYPE(Matrix3x3),val_to_c<const Float3 &>::f(ctx,a[1]),val_to_c<const Float3 &>::f(ctx,a[2]),val_to_c<const Float3 &>::f(ctx,a[3]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Matrix3x3_funcs,p,EXT->Matrix3x3_typeID);
+}CATE(TE,UFOF("Matrix3x3's constructor.")));
 RET CN;
 }
 
@@ -49927,7 +49627,7 @@ void GfxDebugDrawer_destroy(CTX ctx,NO f)
 if(!TS((SV)f,GfxDebugDrawer))
 CATE(TE,"GfxDebugDrawer::__del__ expects GfxDebugDrawer as first argument."));
 
-DELETE((GfxDebugDrawer*)f->data);
+SCRIPT_DELETE((GfxDebugDrawer*)f->data);
 }SV GfxDebugDrawer_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -50129,6168 +49829,6 @@ CATE(TE,UFOF("doesFileExist")));
 RET CN;
 }
 
-SV GhostObject_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GhostObject;
-NO obj=(NO)GhostObject_new(ctx, args2);
-obj->funcs=GhostObject_ptr_funcs;
-obj->typeID=EXT->GhostObject_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GhostObject_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GhostObjectRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GhostObject*))
-CATE(TE,"GhostObjectRef::deref expects GhostObjectRef as first argument."));
-CATE(TE,"GhostObject objects are not copyable."));
-}
-SV GhostObject_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GhostObject::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GhostObject*))
-CATE(TE,"GhostObjectRef::refset expects GhostObjectRef as first argument."));
-CATE(TE,"GhostObject objects are not copyable."));
-RET CN;
-}
-
-void GhostObject_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GhostObject*))
-CATE(TE,"GhostObjectRef::__del__ expects GhostObjectRef as first argument."));
-}
-SV GhostObject_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GhostObject*))
-CATE(TE,FAE("GhostObjectRef's get method","GhostObjectRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GhostObjectPtr");
-EI(keyStr=="__new__")
-RET CNF(GhostObject_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GhostObject_ptr_new);
-else
-CATE(KE,"Unknown member for GhostObjectRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GhostObject_ptr_deref);
-if(keyStr=="refset")RET CNF(GhostObject_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GhostObject_funcs;
-obj.typeID=EXT->GhostObject_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GhostObject_get_member(ctx, &obj, key);
-}
-void GhostObject_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GhostObject*))
-CATE(TE,FAE("GhostObjectRef's set method","GhostObjectRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GhostObject_funcs;
-obj.typeID=EXT->GhostObject_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GhostObject_set_member(ctx, &obj, key, value);
-}
-SV StrStrMap_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->StrStrMap;
-NO obj=(NO)StrStrMap_new(ctx, args2);
-obj->funcs=StrStrMap_ptr_funcs;
-obj->typeID=EXT->StrStrMap_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV StrStrMap_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"StrStrMapRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,"StrStrMapRef::deref expects StrStrMapRef as first argument."));
-RET CV(*(HashMap<String,String> *)((NO)f)->data);
-}
-SV StrStrMap_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"StrStrMap::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,"StrStrMapRef::refset expects StrStrMapRef as first argument."));
-*((HashMap<String,String> *)((NO)f)->data) = val_to_c<HashMap<String,String>>::f(ctx,a[1]);
-RET CN;
-}
-
-void StrStrMap_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,"StrStrMapRef::__del__ expects StrStrMapRef as first argument."));
-SCRIPT_DELETE((HashMap<String,String> *)f->data);
-}
-SV StrStrMap_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,FAE("StrStrMapRef's get method","StrStrMapRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("StrStrMapPtr");
-EI(keyStr=="__new__")
-RET CNF(StrStrMap_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(StrStrMap_ptr_new);
-else
-CATE(KE,"Unknown member for StrStrMapRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(StrStrMap_ptr_deref);
-if(keyStr=="refset")RET CNF(StrStrMap_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=StrStrMap_funcs;
-obj.typeID=EXT->StrStrMap_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET StrStrMap_get_member(ctx, &obj, key);
-}
-void StrStrMap_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,HashMap<String,String>*))
-CATE(TE,FAE("StrStrMapRef's set method","StrStrMapRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=StrStrMap_funcs;
-obj.typeID=EXT->StrStrMap_typeID;
-obj.refCount=1;
-obj.data=f->data;
-StrStrMap_set_member(ctx, &obj, key, value);
-}
-SV GfxApi_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxApi;
-NO obj=(NO)GfxApi_new(ctx, args2);
-obj->funcs=GfxApi_ptr_funcs;
-obj->typeID=EXT->GfxApi_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxApi_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxApiRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxApi*))
-CATE(TE,"GfxApiRef::deref expects GfxApiRef as first argument."));
-CATE(TE,"GfxApi objects are not copyable."));
-}
-SV GfxApi_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxApi::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxApi*))
-CATE(TE,"GfxApiRef::refset expects GfxApiRef as first argument."));
-CATE(TE,"GfxApi objects are not copyable."));
-RET CN;
-}
-
-void GfxApi_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxApi*))
-CATE(TE,"GfxApiRef::__del__ expects GfxApiRef as first argument."));
-SCRIPT_DELETE((GfxApi *)f->data);
-}
-SV GfxApi_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxApi*))
-CATE(TE,FAE("GfxApiRef's get method","GfxApiRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxApiPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxApi_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxApi_ptr_new);
-else
-CATE(KE,"Unknown member for GfxApiRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxApi_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxApi_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxApi_funcs;
-obj.typeID=EXT->GfxApi_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxApi_get_member(ctx, &obj, key);
-}
-void GfxApi_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxApi*))
-CATE(TE,FAE("GfxApiRef's set method","GfxApiRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxApi_funcs;
-obj.typeID=EXT->GfxApi_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxApi_set_member(ctx, &obj, key, value);
-}
-SV GfxCompiledShader_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxCompiledShader;
-NO obj=(NO)GfxCompiledShader_new(ctx, args2);
-obj->funcs=GfxCompiledShader_ptr_funcs;
-obj->typeID=EXT->GfxCompiledShader_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxCompiledShader_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxCompiledShaderRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxCompiledShader*))
-CATE(TE,"GfxCompiledShaderRef::deref expects GfxCompiledShaderRef as first argument."));
-RET CV(*(GfxCompiledShader *)((NO)f)->data);
-}
-SV GfxCompiledShader_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxCompiledShader::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxCompiledShader*))
-CATE(TE,"GfxCompiledShaderRef::refset expects GfxCompiledShaderRef as first argument."));
-*((GfxCompiledShader *)((NO)f)->data) = val_to_c<GfxCompiledShader>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxCompiledShader_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxCompiledShader*))
-CATE(TE,"GfxCompiledShaderRef::__del__ expects GfxCompiledShaderRef as first argument."));
-SCRIPT_DELETE((GfxCompiledShader *)f->data);
-}
-SV GfxCompiledShader_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxCompiledShader*))
-CATE(TE,FAE("GfxCompiledShaderRef's get method","GfxCompiledShaderRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxCompiledShaderPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxCompiledShader_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxCompiledShader_ptr_new);
-else
-CATE(KE,"Unknown member for GfxCompiledShaderRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxCompiledShader_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxCompiledShader_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxCompiledShader_funcs;
-obj.typeID=EXT->GfxCompiledShader_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxCompiledShader_get_member(ctx, &obj, key);
-}
-void GfxCompiledShader_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxCompiledShader*))
-CATE(TE,FAE("GfxCompiledShaderRef's set method","GfxCompiledShaderRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxCompiledShader_funcs;
-obj.typeID=EXT->GfxCompiledShader_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxCompiledShader_set_member(ctx, &obj, key, value);
-}
-SV ScrollBar_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->ScrollBar;
-NO obj=(NO)ScrollBar_new(ctx, args2);
-obj->funcs=ScrollBar_ptr_funcs;
-obj->typeID=EXT->ScrollBar_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV ScrollBar_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ScrollBarRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,ScrollBar*))
-CATE(TE,"ScrollBarRef::deref expects ScrollBarRef as first argument."));
-RET CV(*(ScrollBar *)((NO)f)->data);
-}
-SV ScrollBar_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"ScrollBar::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,ScrollBar*))
-CATE(TE,"ScrollBarRef::refset expects ScrollBarRef as first argument."));
-*((ScrollBar *)((NO)f)->data) = val_to_c<ScrollBar>::f(ctx,a[1]);
-RET CN;
-}
-
-void ScrollBar_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,ScrollBar*))
-CATE(TE,"ScrollBarRef::__del__ expects ScrollBarRef as first argument."));
-SCRIPT_DELETE((ScrollBar *)f->data);
-}
-SV ScrollBar_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,ScrollBar*))
-CATE(TE,FAE("ScrollBarRef's get method","ScrollBarRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ScrollBarPtr");
-EI(keyStr=="__new__")
-RET CNF(ScrollBar_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(ScrollBar_ptr_new);
-else
-CATE(KE,"Unknown member for ScrollBarRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(ScrollBar_ptr_deref);
-if(keyStr=="refset")RET CNF(ScrollBar_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ScrollBar_funcs;
-obj.typeID=EXT->ScrollBar_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET ScrollBar_get_member(ctx, &obj, key);
-}
-void ScrollBar_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,ScrollBar*))
-CATE(TE,FAE("ScrollBarRef's set method","ScrollBarRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ScrollBar_funcs;
-obj.typeID=EXT->ScrollBar_typeID;
-obj.refCount=1;
-obj.data=f->data;
-ScrollBar_set_member(ctx, &obj, key, value);
-}
-SV GhostObjList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GhostObjList;
-NO obj=(NO)GhostObjList_new(ctx, args2);
-obj->funcs=GhostObjList_ptr_funcs;
-obj->typeID=EXT->GhostObjList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GhostObjList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GhostObjListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<GhostObject*>*))
-CATE(TE,"GhostObjListRef::deref expects GhostObjListRef as first argument."));
-RET CV(*(List<GhostObject*> *)((NO)f)->data);
-}
-SV GhostObjList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GhostObjList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<GhostObject*>*))
-CATE(TE,"GhostObjListRef::refset expects GhostObjListRef as first argument."));
-*((List<GhostObject*> *)((NO)f)->data) = val_to_c<List<GhostObject*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void GhostObjList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<GhostObject*>*))
-CATE(TE,"GhostObjListRef::__del__ expects GhostObjListRef as first argument."));
-SCRIPT_DELETE((List<GhostObject*> *)f->data);
-}
-SV GhostObjList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<GhostObject*>*))
-CATE(TE,FAE("GhostObjListRef's get method","GhostObjListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GhostObjListPtr");
-EI(keyStr=="__new__")
-RET CNF(GhostObjList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GhostObjList_ptr_new);
-else
-CATE(KE,"Unknown member for GhostObjListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GhostObjList_ptr_deref);
-if(keyStr=="refset")RET CNF(GhostObjList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GhostObjList_funcs;
-obj.typeID=EXT->GhostObjList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GhostObjList_get_member(ctx, &obj, key);
-}
-void GhostObjList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<GhostObject*>*))
-CATE(TE,FAE("GhostObjListRef's set method","GhostObjListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GhostObjList_funcs;
-obj.typeID=EXT->GhostObjList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GhostObjList_set_member(ctx, &obj, key, value);
-}
-SV GPUTimer_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GPUTimer;
-NO obj=(NO)GPUTimer_new(ctx, args2);
-obj->funcs=GPUTimer_ptr_funcs;
-obj->typeID=EXT->GPUTimer_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GPUTimer_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GPUTimerRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GPUTimer*))
-CATE(TE,"GPUTimerRef::deref expects GPUTimerRef as first argument."));
-CATE(TE,"GPUTimer objects are not copyable."));
-}
-SV GPUTimer_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GPUTimer::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GPUTimer*))
-CATE(TE,"GPUTimerRef::refset expects GPUTimerRef as first argument."));
-CATE(TE,"GPUTimer objects are not copyable."));
-RET CN;
-}
-
-void GPUTimer_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GPUTimer*))
-CATE(TE,"GPUTimerRef::__del__ expects GPUTimerRef as first argument."));
-SCRIPT_DELETE((GPUTimer *)f->data);
-}
-SV GPUTimer_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GPUTimer*))
-CATE(TE,FAE("GPUTimerRef's get method","GPUTimerRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GPUTimerPtr");
-EI(keyStr=="__new__")
-RET CNF(GPUTimer_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GPUTimer_ptr_new);
-else
-CATE(KE,"Unknown member for GPUTimerRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GPUTimer_ptr_deref);
-if(keyStr=="refset")RET CNF(GPUTimer_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GPUTimer_funcs;
-obj.typeID=EXT->GPUTimer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GPUTimer_get_member(ctx, &obj, key);
-}
-void GPUTimer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GPUTimer*))
-CATE(TE,FAE("GPUTimerRef's set method","GPUTimerRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GPUTimer_funcs;
-obj.typeID=EXT->GPUTimer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GPUTimer_set_member(ctx, &obj, key, value);
-}
-SV RigidBody_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RigidBody;
-NO obj=(NO)RigidBody_new(ctx, args2);
-obj->funcs=RigidBody_ptr_funcs;
-obj->typeID=EXT->RigidBody_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RigidBody_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RigidBodyRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,RigidBody*))
-CATE(TE,"RigidBodyRef::deref expects RigidBodyRef as first argument."));
-CATE(TE,"RigidBody objects are not copyable."));
-}
-SV RigidBody_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RigidBody::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,RigidBody*))
-CATE(TE,"RigidBodyRef::refset expects RigidBodyRef as first argument."));
-CATE(TE,"RigidBody objects are not copyable."));
-RET CN;
-}
-
-void RigidBody_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,RigidBody*))
-CATE(TE,"RigidBodyRef::__del__ expects RigidBodyRef as first argument."));
-}
-SV RigidBody_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,RigidBody*))
-CATE(TE,FAE("RigidBodyRef's get method","RigidBodyRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RigidBodyPtr");
-EI(keyStr=="__new__")
-RET CNF(RigidBody_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RigidBody_ptr_new);
-else
-CATE(KE,"Unknown member for RigidBodyRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RigidBody_ptr_deref);
-if(keyStr=="refset")RET CNF(RigidBody_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RigidBody_funcs;
-obj.typeID=EXT->RigidBody_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RigidBody_get_member(ctx, &obj, key);
-}
-void RigidBody_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,RigidBody*))
-CATE(TE,FAE("RigidBodyRef's set method","RigidBodyRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RigidBody_funcs;
-obj.typeID=EXT->RigidBody_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RigidBody_set_member(ctx, &obj, key, value);
-}
-SV UInt2_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->UInt2;
-NO obj=(NO)UInt2_new(ctx, args2);
-obj->funcs=UInt2_ptr_funcs;
-obj->typeID=EXT->UInt2_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV UInt2_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"UInt2Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,"UInt2Ref::deref expects UInt2Ref as first argument."));
-RET CV(*(T2<uint32_t> *)((NO)f)->data);
-}
-SV UInt2_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"UInt2::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,"UInt2Ref::refset expects UInt2Ref as first argument."));
-*((T2<uint32_t> *)((NO)f)->data) = val_to_c<T2<uint32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void UInt2_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,"UInt2Ref::__del__ expects UInt2Ref as first argument."));
-SCRIPT_DELETE((T2<uint32_t> *)f->data);
-}
-SV UInt2_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,FAE("UInt2Ref's get method","UInt2Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("UInt2Ptr");
-EI(keyStr=="__new__")
-RET CNF(UInt2_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(UInt2_ptr_new);
-else
-CATE(KE,"Unknown member for UInt2Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(UInt2_ptr_deref);
-if(keyStr=="refset")RET CNF(UInt2_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt2_funcs;
-obj.typeID=EXT->UInt2_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET UInt2_get_member(ctx, &obj, key);
-}
-void UInt2_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T2<uint32_t>*))
-CATE(TE,FAE("UInt2Ref's set method","UInt2Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt2_funcs;
-obj.typeID=EXT->UInt2_typeID;
-obj.refCount=1;
-obj.data=f->data;
-UInt2_set_member(ctx, &obj, key, value);
-}
-SV LightList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->LightList;
-NO obj=(NO)LightList_new(ctx, args2);
-obj->funcs=LightList_ptr_funcs;
-obj->typeID=EXT->LightList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV LightList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"LightListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<Light*>*))
-CATE(TE,"LightListRef::deref expects LightListRef as first argument."));
-RET CV(*(List<Light*> *)((NO)f)->data);
-}
-SV LightList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"LightList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<Light*>*))
-CATE(TE,"LightListRef::refset expects LightListRef as first argument."));
-*((List<Light*> *)((NO)f)->data) = val_to_c<List<Light*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void LightList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<Light*>*))
-CATE(TE,"LightListRef::__del__ expects LightListRef as first argument."));
-SCRIPT_DELETE((List<Light*> *)f->data);
-}
-SV LightList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<Light*>*))
-CATE(TE,FAE("LightListRef's get method","LightListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("LightListPtr");
-EI(keyStr=="__new__")
-RET CNF(LightList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(LightList_ptr_new);
-else
-CATE(KE,"Unknown member for LightListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(LightList_ptr_deref);
-if(keyStr=="refset")RET CNF(LightList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightList_funcs;
-obj.typeID=EXT->LightList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET LightList_get_member(ctx, &obj, key);
-}
-void LightList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<Light*>*))
-CATE(TE,FAE("LightListRef's set method","LightListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightList_funcs;
-obj.typeID=EXT->LightList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-LightList_set_member(ctx, &obj, key, value);
-}
-SV RenderStats_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RenderStats;
-NO obj=(NO)RenderStats_new(ctx, args2);
-obj->funcs=RenderStats_ptr_funcs;
-obj->typeID=EXT->RenderStats_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RenderStats_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RenderStatsRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,RenderStats*))
-CATE(TE,"RenderStatsRef::deref expects RenderStatsRef as first argument."));
-RET CV(*(RenderStats *)((NO)f)->data);
-}
-SV RenderStats_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RenderStats::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,RenderStats*))
-CATE(TE,"RenderStatsRef::refset expects RenderStatsRef as first argument."));
-*((RenderStats *)((NO)f)->data) = val_to_c<RenderStats>::f(ctx,a[1]);
-RET CN;
-}
-
-void RenderStats_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,RenderStats*))
-CATE(TE,"RenderStatsRef::__del__ expects RenderStatsRef as first argument."));
-SCRIPT_DELETE((RenderStats *)f->data);
-}
-SV RenderStats_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,RenderStats*))
-CATE(TE,FAE("RenderStatsRef's get method","RenderStatsRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RenderStatsPtr");
-EI(keyStr=="__new__")
-RET CNF(RenderStats_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RenderStats_ptr_new);
-else
-CATE(KE,"Unknown member for RenderStatsRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RenderStats_ptr_deref);
-if(keyStr=="refset")RET CNF(RenderStats_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RenderStats_funcs;
-obj.typeID=EXT->RenderStats_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RenderStats_get_member(ctx, &obj, key);
-}
-void RenderStats_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,RenderStats*))
-CATE(TE,FAE("RenderStatsRef's set method","RenderStatsRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RenderStats_funcs;
-obj.typeID=EXT->RenderStats_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RenderStats_set_member(ctx, &obj, key, value);
-}
-SV Filesystem_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Filesystem;
-NO obj=(NO)Filesystem_new(ctx, args2);
-obj->funcs=Filesystem_ptr_funcs;
-obj->typeID=EXT->Filesystem_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Filesystem_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"FilesystemRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Filesystem*))
-CATE(TE,"FilesystemRef::deref expects FilesystemRef as first argument."));
-RET CV(*(Filesystem *)((NO)f)->data);
-}
-SV Filesystem_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Filesystem::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Filesystem*))
-CATE(TE,"FilesystemRef::refset expects FilesystemRef as first argument."));
-*((Filesystem *)((NO)f)->data) = val_to_c<Filesystem>::f(ctx,a[1]);
-RET CN;
-}
-
-void Filesystem_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Filesystem*))
-CATE(TE,"FilesystemRef::__del__ expects FilesystemRef as first argument."));
-SCRIPT_DELETE((Filesystem *)f->data);
-}
-SV Filesystem_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Filesystem*))
-CATE(TE,FAE("FilesystemRef's get method","FilesystemRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("FilesystemPtr");
-EI(keyStr=="__new__")
-RET CNF(Filesystem_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Filesystem_ptr_new);
-else
-CATE(KE,"Unknown member for FilesystemRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Filesystem_ptr_deref);
-if(keyStr=="refset")RET CNF(Filesystem_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Filesystem_funcs;
-obj.typeID=EXT->Filesystem_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Filesystem_get_member(ctx, &obj, key);
-}
-void Filesystem_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Filesystem*))
-CATE(TE,FAE("FilesystemRef's set method","FilesystemRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Filesystem_funcs;
-obj.typeID=EXT->Filesystem_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Filesystem_set_member(ctx, &obj, key, value);
-}
-SV ResourceManager_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->ResourceManager;
-NO obj=(NO)ResourceManager_new(ctx, args2);
-obj->funcs=ResourceManager_ptr_funcs;
-obj->typeID=EXT->ResourceManager_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV ResourceManager_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ResourceManagerRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,ResourceManager*))
-CATE(TE,"ResourceManagerRef::deref expects ResourceManagerRef as first argument."));
-CATE(TE,"ResourceManager objects are not copyable."));
-}
-SV ResourceManager_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"ResourceManager::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,ResourceManager*))
-CATE(TE,"ResourceManagerRef::refset expects ResourceManagerRef as first argument."));
-CATE(TE,"ResourceManager objects are not copyable."));
-RET CN;
-}
-
-void ResourceManager_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,ResourceManager*))
-CATE(TE,"ResourceManagerRef::__del__ expects ResourceManagerRef as first argument."));
-SCRIPT_DELETE((ResourceManager *)f->data);
-}
-SV ResourceManager_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,ResourceManager*))
-CATE(TE,FAE("ResourceManagerRef's get method","ResourceManagerRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ResourceManagerPtr");
-EI(keyStr=="__new__")
-RET CNF(ResourceManager_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(ResourceManager_ptr_new);
-else
-CATE(KE,"Unknown member for ResourceManagerRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(ResourceManager_ptr_deref);
-if(keyStr=="refset")RET CNF(ResourceManager_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ResourceManager_funcs;
-obj.typeID=EXT->ResourceManager_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET ResourceManager_get_member(ctx, &obj, key);
-}
-void ResourceManager_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,ResourceManager*))
-CATE(TE,FAE("ResourceManagerRef's set method","ResourceManagerRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ResourceManager_funcs;
-obj.typeID=EXT->ResourceManager_typeID;
-obj.refCount=1;
-obj.data=f->data;
-ResourceManager_set_member(ctx, &obj, key, value);
-}
-SV Entity_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Entity;
-NO obj=(NO)Entity_new(ctx, args2);
-obj->funcs=Entity_ptr_funcs;
-obj->typeID=EXT->Entity_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Entity_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"EntityRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Entity*))
-CATE(TE,"EntityRef::deref expects EntityRef as first argument."));
-CATE(TE,"Entity objects are not copyable."));
-}
-SV Entity_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Entity::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Entity*))
-CATE(TE,"EntityRef::refset expects EntityRef as first argument."));
-CATE(TE,"Entity objects are not copyable."));
-RET CN;
-}
-
-void Entity_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Entity*))
-CATE(TE,"EntityRef::__del__ expects EntityRef as first argument."));
-}
-SV Entity_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Entity*))
-CATE(TE,FAE("EntityRef's get method","EntityRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("EntityPtr");
-EI(keyStr=="__new__")
-RET CNF(Entity_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Entity_ptr_new);
-else
-CATE(KE,"Unknown member for EntityRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Entity_ptr_deref);
-if(keyStr=="refset")RET CNF(Entity_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Entity_funcs;
-obj.typeID=EXT->Entity_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Entity_get_member(ctx, &obj, key);
-}
-void Entity_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Entity*))
-CATE(TE,FAE("EntityRef's set method","EntityRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Entity_funcs;
-obj.typeID=EXT->Entity_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Entity_set_member(ctx, &obj, key, value);
-}
-SV GfxRenderer_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxRenderer;
-NO obj=(NO)GfxRenderer_new(ctx, args2);
-obj->funcs=GfxRenderer_ptr_funcs;
-obj->typeID=EXT->GfxRenderer_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxRenderer_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxRendererRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxRenderer*))
-CATE(TE,"GfxRendererRef::deref expects GfxRendererRef as first argument."));
-RET CV(*(GfxRenderer *)((NO)f)->data);
-}
-SV GfxRenderer_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxRenderer::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxRenderer*))
-CATE(TE,"GfxRendererRef::refset expects GfxRendererRef as first argument."));
-*((GfxRenderer *)((NO)f)->data) = val_to_c<GfxRenderer>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxRenderer_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxRenderer*))
-CATE(TE,"GfxRendererRef::__del__ expects GfxRendererRef as first argument."));
-SCRIPT_DELETE((GfxRenderer *)f->data);
-}
-SV GfxRenderer_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxRenderer*))
-CATE(TE,FAE("GfxRendererRef's get method","GfxRendererRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxRendererPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxRenderer_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxRenderer_ptr_new);
-else
-CATE(KE,"Unknown member for GfxRendererRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxRenderer_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxRenderer_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxRenderer_funcs;
-obj.typeID=EXT->GfxRenderer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxRenderer_get_member(ctx, &obj, key);
-}
-void GfxRenderer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxRenderer*))
-CATE(TE,FAE("GfxRendererRef's set method","GfxRendererRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxRenderer_funcs;
-obj.typeID=EXT->GfxRenderer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxRenderer_set_member(ctx, &obj, key, value);
-}
-SV Float2_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Float2;
-NO obj=(NO)Float2_new(ctx, args2);
-obj->funcs=Float2_ptr_funcs;
-obj->typeID=EXT->Float2_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Float2_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Float2Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T2<float>*))
-CATE(TE,"Float2Ref::deref expects Float2Ref as first argument."));
-RET CV(*(T2<float> *)((NO)f)->data);
-}
-SV Float2_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Float2::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T2<float>*))
-CATE(TE,"Float2Ref::refset expects Float2Ref as first argument."));
-*((T2<float> *)((NO)f)->data) = val_to_c<T2<float>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Float2_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T2<float>*))
-CATE(TE,"Float2Ref::__del__ expects Float2Ref as first argument."));
-SCRIPT_DELETE((T2<float> *)f->data);
-}
-SV Float2_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T2<float>*))
-CATE(TE,FAE("Float2Ref's get method","Float2Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Float2Ptr");
-EI(keyStr=="__new__")
-RET CNF(Float2_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Float2_ptr_new);
-else
-CATE(KE,"Unknown member for Float2Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Float2_ptr_deref);
-if(keyStr=="refset")RET CNF(Float2_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Float2_funcs;
-obj.typeID=EXT->Float2_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Float2_get_member(ctx, &obj, key);
-}
-void Float2_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T2<float>*))
-CATE(TE,FAE("Float2Ref's set method","Float2Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Float2_funcs;
-obj.typeID=EXT->Float2_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Float2_set_member(ctx, &obj, key, value);
-}
-SV GfxFramebuffer_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxFramebuffer;
-NO obj=(NO)GfxFramebuffer_new(ctx, args2);
-obj->funcs=GfxFramebuffer_ptr_funcs;
-obj->typeID=EXT->GfxFramebuffer_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxFramebuffer_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxFramebufferRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxFramebuffer*))
-CATE(TE,"GfxFramebufferRef::deref expects GfxFramebufferRef as first argument."));
-CATE(TE,"GfxFramebuffer objects are not copyable."));
-}
-SV GfxFramebuffer_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxFramebuffer::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxFramebuffer*))
-CATE(TE,"GfxFramebufferRef::refset expects GfxFramebufferRef as first argument."));
-CATE(TE,"GfxFramebuffer objects are not copyable."));
-RET CN;
-}
-
-void GfxFramebuffer_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxFramebuffer*))
-CATE(TE,"GfxFramebufferRef::__del__ expects GfxFramebufferRef as first argument."));
-SCRIPT_DELETE((GfxFramebuffer *)f->data);
-}
-SV GfxFramebuffer_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxFramebuffer*))
-CATE(TE,FAE("GfxFramebufferRef's get method","GfxFramebufferRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxFramebufferPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxFramebuffer_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxFramebuffer_ptr_new);
-else
-CATE(KE,"Unknown member for GfxFramebufferRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxFramebuffer_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxFramebuffer_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxFramebuffer_funcs;
-obj.typeID=EXT->GfxFramebuffer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxFramebuffer_get_member(ctx, &obj, key);
-}
-void GfxFramebuffer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxFramebuffer*))
-CATE(TE,FAE("GfxFramebufferRef's set method","GfxFramebufferRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxFramebuffer_funcs;
-obj.typeID=EXT->GfxFramebuffer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxFramebuffer_set_member(ctx, &obj, key, value);
-}
-SV Font_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Font;
-NO obj=(NO)Font_new(ctx, args2);
-obj->funcs=Font_ptr_funcs;
-obj->typeID=EXT->Font_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Font_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"FontRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Font*))
-CATE(TE,"FontRef::deref expects FontRef as first argument."));
-CATE(TE,"Font objects are not copyable."));
-}
-SV Font_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Font::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Font*))
-CATE(TE,"FontRef::refset expects FontRef as first argument."));
-CATE(TE,"Font objects are not copyable."));
-RET CN;
-}
-
-void Font_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Font*))
-CATE(TE,"FontRef::__del__ expects FontRef as first argument."));
-Font*obj=(Font*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV Font_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Font*))
-CATE(TE,FAE("FontRef's get method","FontRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("FontPtr");
-EI(keyStr=="__new__")
-RET CNF(Font_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Font_ptr_new);
-else
-CATE(KE,"Unknown member for FontRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Font_ptr_deref);
-if(keyStr=="refset")RET CNF(Font_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Font_funcs;
-obj.typeID=EXT->Font_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Font_get_member(ctx, &obj, key);
-}
-void Font_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Font*))
-CATE(TE,FAE("FontRef's set method","FontRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Font_funcs;
-obj.typeID=EXT->Font_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Font_set_member(ctx, &obj, key, value);
-}
-SV Event_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Event;
-NO obj=(NO)Event_new(ctx, args2);
-obj->funcs=Event_ptr_funcs;
-obj->typeID=EXT->Event_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Event_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"EventRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Event*))
-CATE(TE,"EventRef::deref expects EventRef as first argument."));
-RET CV(*(Event *)((NO)f)->data);
-}
-SV Event_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Event::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Event*))
-CATE(TE,"EventRef::refset expects EventRef as first argument."));
-*((Event *)((NO)f)->data) = val_to_c<Event>::f(ctx,a[1]);
-RET CN;
-}
-
-void Event_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Event*))
-CATE(TE,"EventRef::__del__ expects EventRef as first argument."));
-SCRIPT_DELETE((Event *)f->data);
-}
-SV Event_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Event*))
-CATE(TE,FAE("EventRef's get method","EventRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("EventPtr");
-EI(keyStr=="__new__")
-RET CNF(Event_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Event_ptr_new);
-else
-CATE(KE,"Unknown member for EventRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Event_ptr_deref);
-if(keyStr=="refset")RET CNF(Event_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Event_funcs;
-obj.typeID=EXT->Event_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Event_get_member(ctx, &obj, key);
-}
-void Event_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Event*))
-CATE(TE,FAE("EventRef's set method","EventRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Event_funcs;
-obj.typeID=EXT->Event_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Event_set_member(ctx, &obj, key, value);
-}
-SV PhysicsWorld_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->PhysicsWorld;
-NO obj=(NO)PhysicsWorld_new(ctx, args2);
-obj->funcs=PhysicsWorld_ptr_funcs;
-obj->typeID=EXT->PhysicsWorld_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV PhysicsWorld_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"PhysicsWorldRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,PhysicsWorld*))
-CATE(TE,"PhysicsWorldRef::deref expects PhysicsWorldRef as first argument."));
-CATE(TE,"PhysicsWorld objects are not copyable."));
-}
-SV PhysicsWorld_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"PhysicsWorld::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,PhysicsWorld*))
-CATE(TE,"PhysicsWorldRef::refset expects PhysicsWorldRef as first argument."));
-CATE(TE,"PhysicsWorld objects are not copyable."));
-RET CN;
-}
-
-void PhysicsWorld_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,PhysicsWorld*))
-CATE(TE,"PhysicsWorldRef::__del__ expects PhysicsWorldRef as first argument."));
-SCRIPT_DELETE((PhysicsWorld *)f->data);
-}
-SV PhysicsWorld_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,PhysicsWorld*))
-CATE(TE,FAE("PhysicsWorldRef's get method","PhysicsWorldRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("PhysicsWorldPtr");
-EI(keyStr=="__new__")
-RET CNF(PhysicsWorld_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(PhysicsWorld_ptr_new);
-else
-CATE(KE,"Unknown member for PhysicsWorldRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(PhysicsWorld_ptr_deref);
-if(keyStr=="refset")RET CNF(PhysicsWorld_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=PhysicsWorld_funcs;
-obj.typeID=EXT->PhysicsWorld_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET PhysicsWorld_get_member(ctx, &obj, key);
-}
-void PhysicsWorld_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,PhysicsWorld*))
-CATE(TE,FAE("PhysicsWorldRef's set method","PhysicsWorldRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=PhysicsWorld_funcs;
-obj.typeID=EXT->PhysicsWorld_typeID;
-obj.refCount=1;
-obj.data=f->data;
-PhysicsWorld_set_member(ctx, &obj, key, value);
-}
-SV Stats_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Stats;
-NO obj=(NO)Stats_new(ctx, args2);
-obj->funcs=Stats_ptr_funcs;
-obj->typeID=EXT->Stats_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Stats_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"StatsRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Stats*))
-CATE(TE,"StatsRef::deref expects StatsRef as first argument."));
-RET CV(*(Stats *)((NO)f)->data);
-}
-SV Stats_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Stats::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Stats*))
-CATE(TE,"StatsRef::refset expects StatsRef as first argument."));
-*((Stats *)((NO)f)->data) = val_to_c<Stats>::f(ctx,a[1]);
-RET CN;
-}
-
-void Stats_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Stats*))
-CATE(TE,"StatsRef::__del__ expects StatsRef as first argument."));
-SCRIPT_DELETE((Stats *)f->data);
-}
-SV Stats_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Stats*))
-CATE(TE,FAE("StatsRef's get method","StatsRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("StatsPtr");
-EI(keyStr=="__new__")
-RET CNF(Stats_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Stats_ptr_new);
-else
-CATE(KE,"Unknown member for StatsRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Stats_ptr_deref);
-if(keyStr=="refset")RET CNF(Stats_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Stats_funcs;
-obj.typeID=EXT->Stats_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Stats_get_member(ctx, &obj, key);
-}
-void Stats_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Stats*))
-CATE(TE,FAE("StatsRef's set method","StatsRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Stats_funcs;
-obj.typeID=EXT->Stats_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Stats_set_member(ctx, &obj, key, value);
-}
-SV AudioSource_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->AudioSource;
-NO obj=(NO)AudioSource_new(ctx, args2);
-obj->funcs=AudioSource_ptr_funcs;
-obj->typeID=EXT->AudioSource_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV AudioSource_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"AudioSourceRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,AudioSource*))
-CATE(TE,"AudioSourceRef::deref expects AudioSourceRef as first argument."));
-RET CV(*(AudioSource *)((NO)f)->data);
-}
-SV AudioSource_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"AudioSource::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,AudioSource*))
-CATE(TE,"AudioSourceRef::refset expects AudioSourceRef as first argument."));
-*((AudioSource *)((NO)f)->data) = val_to_c<AudioSource>::f(ctx,a[1]);
-RET CN;
-}
-
-void AudioSource_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,AudioSource*))
-CATE(TE,"AudioSourceRef::__del__ expects AudioSourceRef as first argument."));
-SCRIPT_DELETE((AudioSource *)f->data);
-}
-SV AudioSource_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,AudioSource*))
-CATE(TE,FAE("AudioSourceRef's get method","AudioSourceRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("AudioSourcePtr");
-EI(keyStr=="__new__")
-RET CNF(AudioSource_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(AudioSource_ptr_new);
-else
-CATE(KE,"Unknown member for AudioSourceRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(AudioSource_ptr_deref);
-if(keyStr=="refset")RET CNF(AudioSource_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioSource_funcs;
-obj.typeID=EXT->AudioSource_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET AudioSource_get_member(ctx, &obj, key);
-}
-void AudioSource_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,AudioSource*))
-CATE(TE,FAE("AudioSourceRef's set method","AudioSourceRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioSource_funcs;
-obj.typeID=EXT->AudioSource_typeID;
-obj.refCount=1;
-obj.data=f->data;
-AudioSource_set_member(ctx, &obj, key, value);
-}
-SV RayCastResultList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RayCastResultList;
-NO obj=(NO)RayCastResultList_new(ctx, args2);
-obj->funcs=RayCastResultList_ptr_funcs;
-obj->typeID=EXT->RayCastResultList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RayCastResultList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RayCastResultListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<RayCastResult>*))
-CATE(TE,"RayCastResultListRef::deref expects RayCastResultListRef as first argument."));
-RET CV(*(List<RayCastResult> *)((NO)f)->data);
-}
-SV RayCastResultList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RayCastResultList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<RayCastResult>*))
-CATE(TE,"RayCastResultListRef::refset expects RayCastResultListRef as first argument."));
-*((List<RayCastResult> *)((NO)f)->data) = val_to_c<List<RayCastResult>>::f(ctx,a[1]);
-RET CN;
-}
-
-void RayCastResultList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<RayCastResult>*))
-CATE(TE,"RayCastResultListRef::__del__ expects RayCastResultListRef as first argument."));
-SCRIPT_DELETE((List<RayCastResult> *)f->data);
-}
-SV RayCastResultList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<RayCastResult>*))
-CATE(TE,FAE("RayCastResultListRef's get method","RayCastResultListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RayCastResultListPtr");
-EI(keyStr=="__new__")
-RET CNF(RayCastResultList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RayCastResultList_ptr_new);
-else
-CATE(KE,"Unknown member for RayCastResultListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RayCastResultList_ptr_deref);
-if(keyStr=="refset")RET CNF(RayCastResultList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RayCastResultList_funcs;
-obj.typeID=EXT->RayCastResultList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RayCastResultList_get_member(ctx, &obj, key);
-}
-void RayCastResultList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<RayCastResult>*))
-CATE(TE,FAE("RayCastResultListRef's set method","RayCastResultListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RayCastResultList_funcs;
-obj.typeID=EXT->RayCastResultList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RayCastResultList_set_member(ctx, &obj, key, value);
-}
-SV Platform_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Platform;
-NO obj=(NO)Platform_new(ctx, args2);
-obj->funcs=Platform_ptr_funcs;
-obj->typeID=EXT->Platform_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Platform_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"PlatformRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Platform*))
-CATE(TE,"PlatformRef::deref expects PlatformRef as first argument."));
-CATE(TE,"Platform objects are not copyable."));
-}
-SV Platform_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Platform::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Platform*))
-CATE(TE,"PlatformRef::refset expects PlatformRef as first argument."));
-CATE(TE,"Platform objects are not copyable."));
-RET CN;
-}
-
-void Platform_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Platform*))
-CATE(TE,"PlatformRef::__del__ expects PlatformRef as first argument."));
-SCRIPT_DELETE((Platform *)f->data);
-}
-SV Platform_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Platform*))
-CATE(TE,FAE("PlatformRef's get method","PlatformRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("PlatformPtr");
-EI(keyStr=="__new__")
-RET CNF(Platform_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Platform_ptr_new);
-else
-CATE(KE,"Unknown member for PlatformRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Platform_ptr_deref);
-if(keyStr=="refset")RET CNF(Platform_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Platform_funcs;
-obj.typeID=EXT->Platform_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Platform_get_member(ctx, &obj, key);
-}
-void Platform_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Platform*))
-CATE(TE,FAE("PlatformRef's set method","PlatformRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Platform_funcs;
-obj.typeID=EXT->Platform_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Platform_set_member(ctx, &obj, key, value);
-}
-SV Camera_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Camera;
-NO obj=(NO)Camera_new(ctx, args2);
-obj->funcs=Camera_ptr_funcs;
-obj->typeID=EXT->Camera_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Camera_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"CameraRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Camera*))
-CATE(TE,"CameraRef::deref expects CameraRef as first argument."));
-RET CV(*(Camera *)((NO)f)->data);
-}
-SV Camera_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Camera::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Camera*))
-CATE(TE,"CameraRef::refset expects CameraRef as first argument."));
-*((Camera *)((NO)f)->data) = val_to_c<Camera>::f(ctx,a[1]);
-RET CN;
-}
-
-void Camera_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Camera*))
-CATE(TE,"CameraRef::__del__ expects CameraRef as first argument."));
-SCRIPT_DELETE((Camera *)f->data);
-}
-SV Camera_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Camera*))
-CATE(TE,FAE("CameraRef's get method","CameraRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("CameraPtr");
-EI(keyStr=="__new__")
-RET CNF(Camera_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Camera_ptr_new);
-else
-CATE(KE,"Unknown member for CameraRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Camera_ptr_deref);
-if(keyStr=="refset")RET CNF(Camera_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Camera_funcs;
-obj.typeID=EXT->Camera_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Camera_get_member(ctx, &obj, key);
-}
-void Camera_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Camera*))
-CATE(TE,FAE("CameraRef's set method","CameraRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Camera_funcs;
-obj.typeID=EXT->Camera_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Camera_set_member(ctx, &obj, key, value);
-}
-SV GfxMesh_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxMesh;
-NO obj=(NO)GfxMesh_new(ctx, args2);
-obj->funcs=GfxMesh_ptr_funcs;
-obj->typeID=EXT->GfxMesh_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxMesh_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxMeshRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxMesh*))
-CATE(TE,"GfxMeshRef::deref expects GfxMeshRef as first argument."));
-CATE(TE,"GfxMesh objects are not copyable."));
-}
-SV GfxMesh_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxMesh::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxMesh*))
-CATE(TE,"GfxMeshRef::refset expects GfxMeshRef as first argument."));
-CATE(TE,"GfxMesh objects are not copyable."));
-RET CN;
-}
-
-void GfxMesh_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxMesh*))
-CATE(TE,"GfxMeshRef::__del__ expects GfxMeshRef as first argument."));
-GfxMesh*obj=(GfxMesh*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV GfxMesh_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxMesh*))
-CATE(TE,FAE("GfxMeshRef's get method","GfxMeshRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxMeshPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxMesh_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxMesh_ptr_new);
-else
-CATE(KE,"Unknown member for GfxMeshRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxMesh_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxMesh_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxMesh_funcs;
-obj.typeID=EXT->GfxMesh_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxMesh_get_member(ctx, &obj, key);
-}
-void GfxMesh_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxMesh*))
-CATE(TE,FAE("GfxMeshRef's set method","GfxMeshRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxMesh_funcs;
-obj.typeID=EXT->GfxMesh_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxMesh_set_member(ctx, &obj, key, value);
-}
-SV Resource_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Resource;
-NO obj=(NO)Resource_new(ctx, args2);
-obj->funcs=Resource_ptr_funcs;
-obj->typeID=EXT->Resource_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Resource_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ResourceRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Resource*))
-CATE(TE,"ResourceRef::deref expects ResourceRef as first argument."));
-CATE(TE,"Resource objects are not copyable."));
-}
-SV Resource_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Resource::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Resource*))
-CATE(TE,"ResourceRef::refset expects ResourceRef as first argument."));
-CATE(TE,"Resource objects are not copyable."));
-RET CN;
-}
-
-void Resource_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Resource*))
-CATE(TE,"ResourceRef::__del__ expects ResourceRef as first argument."));
-Resource*obj=(Resource*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV Resource_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Resource*))
-CATE(TE,FAE("ResourceRef's get method","ResourceRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ResourcePtr");
-EI(keyStr=="__new__")
-RET CNF(Resource_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Resource_ptr_new);
-else
-CATE(KE,"Unknown member for ResourceRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Resource_ptr_deref);
-if(keyStr=="refset")RET CNF(Resource_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Resource_funcs;
-obj.typeID=EXT->Resource_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Resource_get_member(ctx, &obj, key);
-}
-void Resource_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Resource*))
-CATE(TE,FAE("ResourceRef's set method","ResourceRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Resource_funcs;
-obj.typeID=EXT->Resource_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Resource_set_member(ctx, &obj, key, value);
-}
-SV GfxShader_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxShader;
-NO obj=(NO)GfxShader_new(ctx, args2);
-obj->funcs=GfxShader_ptr_funcs;
-obj->typeID=EXT->GfxShader_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxShader_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxShaderRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxShader*))
-CATE(TE,"GfxShaderRef::deref expects GfxShaderRef as first argument."));
-CATE(TE,"GfxShader objects are not copyable."));
-}
-SV GfxShader_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxShader::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxShader*))
-CATE(TE,"GfxShaderRef::refset expects GfxShaderRef as first argument."));
-CATE(TE,"GfxShader objects are not copyable."));
-RET CN;
-}
-
-void GfxShader_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxShader*))
-CATE(TE,"GfxShaderRef::__del__ expects GfxShaderRef as first argument."));
-GfxShader*obj=(GfxShader*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV GfxShader_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxShader*))
-CATE(TE,FAE("GfxShaderRef's get method","GfxShaderRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxShaderPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxShader_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxShader_ptr_new);
-else
-CATE(KE,"Unknown member for GfxShaderRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxShader_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxShader_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxShader_funcs;
-obj.typeID=EXT->GfxShader_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxShader_get_member(ctx, &obj, key);
-}
-void GfxShader_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxShader*))
-CATE(TE,FAE("GfxShaderRef's set method","GfxShaderRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxShader_funcs;
-obj.typeID=EXT->GfxShader_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxShader_set_member(ctx, &obj, key, value);
-}
-SV Light_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Light;
-NO obj=(NO)Light_new(ctx, args2);
-obj->funcs=Light_ptr_funcs;
-obj->typeID=EXT->Light_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Light_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"LightRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Light*))
-CATE(TE,"LightRef::deref expects LightRef as first argument."));
-CATE(TE,"Light objects are not copyable."));
-}
-SV Light_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Light::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Light*))
-CATE(TE,"LightRef::refset expects LightRef as first argument."));
-CATE(TE,"Light objects are not copyable."));
-RET CN;
-}
-
-void Light_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Light*))
-CATE(TE,"LightRef::__del__ expects LightRef as first argument."));
-SCRIPT_DELETE((Light *)f->data);
-}
-SV Light_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Light*))
-CATE(TE,FAE("LightRef's get method","LightRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("LightPtr");
-EI(keyStr=="__new__")
-RET CNF(Light_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Light_ptr_new);
-else
-CATE(KE,"Unknown member for LightRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Light_ptr_deref);
-if(keyStr=="refset")RET CNF(Light_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Light_funcs;
-obj.typeID=EXT->Light_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Light_get_member(ctx, &obj, key);
-}
-void Light_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Light*))
-CATE(TE,FAE("LightRef's set method","LightRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Light_funcs;
-obj.typeID=EXT->Light_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Light_set_member(ctx, &obj, key, value);
-}
-SV TextureSampler_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->TextureSampler;
-NO obj=(NO)TextureSampler_new(ctx, args2);
-obj->funcs=TextureSampler_ptr_funcs;
-obj->typeID=EXT->TextureSampler_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV TextureSampler_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"TextureSamplerRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,TextureSampler*))
-CATE(TE,"TextureSamplerRef::deref expects TextureSamplerRef as first argument."));
-RET CV(*(TextureSampler *)((NO)f)->data);
-}
-SV TextureSampler_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"TextureSampler::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,TextureSampler*))
-CATE(TE,"TextureSamplerRef::refset expects TextureSamplerRef as first argument."));
-*((TextureSampler *)((NO)f)->data) = val_to_c<TextureSampler>::f(ctx,a[1]);
-RET CN;
-}
-
-void TextureSampler_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,TextureSampler*))
-CATE(TE,"TextureSamplerRef::__del__ expects TextureSamplerRef as first argument."));
-SCRIPT_DELETE((TextureSampler *)f->data);
-}
-SV TextureSampler_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,TextureSampler*))
-CATE(TE,FAE("TextureSamplerRef's get method","TextureSamplerRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("TextureSamplerPtr");
-EI(keyStr=="__new__")
-RET CNF(TextureSampler_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(TextureSampler_ptr_new);
-else
-CATE(KE,"Unknown member for TextureSamplerRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(TextureSampler_ptr_deref);
-if(keyStr=="refset")RET CNF(TextureSampler_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=TextureSampler_funcs;
-obj.typeID=EXT->TextureSampler_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET TextureSampler_get_member(ctx, &obj, key);
-}
-void TextureSampler_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,TextureSampler*))
-CATE(TE,FAE("TextureSamplerRef's set method","TextureSamplerRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=TextureSampler_funcs;
-obj.typeID=EXT->TextureSampler_typeID;
-obj.refCount=1;
-obj.data=f->data;
-TextureSampler_set_member(ctx, &obj, key, value);
-}
-SV Scene_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Scene;
-NO obj=(NO)Scene_new(ctx, args2);
-obj->funcs=Scene_ptr_funcs;
-obj->typeID=EXT->Scene_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Scene_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"SceneRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Scene*))
-CATE(TE,"SceneRef::deref expects SceneRef as first argument."));
-CATE(TE,"Scene objects are not copyable."));
-}
-SV Scene_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Scene::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Scene*))
-CATE(TE,"SceneRef::refset expects SceneRef as first argument."));
-CATE(TE,"Scene objects are not copyable."));
-RET CN;
-}
-
-void Scene_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Scene*))
-CATE(TE,"SceneRef::__del__ expects SceneRef as first argument."));
-Scene*obj=(Scene*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV Scene_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Scene*))
-CATE(TE,FAE("SceneRef's get method","SceneRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ScenePtr");
-EI(keyStr=="__new__")
-RET CNF(Scene_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Scene_ptr_new);
-else
-CATE(KE,"Unknown member for SceneRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Scene_ptr_deref);
-if(keyStr=="refset")RET CNF(Scene_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Scene_funcs;
-obj.typeID=EXT->Scene_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Scene_get_member(ctx, &obj, key);
-}
-void Scene_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Scene*))
-CATE(TE,FAE("SceneRef's set method","SceneRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Scene_funcs;
-obj.typeID=EXT->Scene_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Scene_set_member(ctx, &obj, key, value);
-}
-SV Int3_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Int3;
-NO obj=(NO)Int3_new(ctx, args2);
-obj->funcs=Int3_ptr_funcs;
-obj->typeID=EXT->Int3_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Int3_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Int3Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T3<int32_t>*))
-CATE(TE,"Int3Ref::deref expects Int3Ref as first argument."));
-RET CV(*(T3<int32_t> *)((NO)f)->data);
-}
-SV Int3_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Int3::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T3<int32_t>*))
-CATE(TE,"Int3Ref::refset expects Int3Ref as first argument."));
-*((T3<int32_t> *)((NO)f)->data) = val_to_c<T3<int32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Int3_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T3<int32_t>*))
-CATE(TE,"Int3Ref::__del__ expects Int3Ref as first argument."));
-SCRIPT_DELETE((T3<int32_t> *)f->data);
-}
-SV Int3_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T3<int32_t>*))
-CATE(TE,FAE("Int3Ref's get method","Int3Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Int3Ptr");
-EI(keyStr=="__new__")
-RET CNF(Int3_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Int3_ptr_new);
-else
-CATE(KE,"Unknown member for Int3Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Int3_ptr_deref);
-if(keyStr=="refset")RET CNF(Int3_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Int3_funcs;
-obj.typeID=EXT->Int3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Int3_get_member(ctx, &obj, key);
-}
-void Int3_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T3<int32_t>*))
-CATE(TE,FAE("Int3Ref's set method","Int3Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Int3_funcs;
-obj.typeID=EXT->Int3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Int3_set_member(ctx, &obj, key, value);
-}
-SV ResizableData_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->ResizableData;
-NO obj=(NO)ResizableData_new(ctx, args2);
-obj->funcs=ResizableData_ptr_funcs;
-obj->typeID=EXT->ResizableData_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV ResizableData_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ResizableDataRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,ResizableData*))
-CATE(TE,"ResizableDataRef::deref expects ResizableDataRef as first argument."));
-RET CV(*(ResizableData *)((NO)f)->data);
-}
-SV ResizableData_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"ResizableData::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,ResizableData*))
-CATE(TE,"ResizableDataRef::refset expects ResizableDataRef as first argument."));
-*((ResizableData *)((NO)f)->data) = val_to_c<ResizableData>::f(ctx,a[1]);
-RET CN;
-}
-
-void ResizableData_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,ResizableData*))
-CATE(TE,"ResizableDataRef::__del__ expects ResizableDataRef as first argument."));
-SCRIPT_DELETE((ResizableData *)f->data);
-}
-SV ResizableData_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,ResizableData*))
-CATE(TE,FAE("ResizableDataRef's get method","ResizableDataRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ResizableDataPtr");
-EI(keyStr=="__new__")
-RET CNF(ResizableData_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(ResizableData_ptr_new);
-else
-CATE(KE,"Unknown member for ResizableDataRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(ResizableData_ptr_deref);
-if(keyStr=="refset")RET CNF(ResizableData_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ResizableData_funcs;
-obj.typeID=EXT->ResizableData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET ResizableData_get_member(ctx, &obj, key);
-}
-void ResizableData_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,ResizableData*))
-CATE(TE,FAE("ResizableDataRef's set method","ResizableDataRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ResizableData_funcs;
-obj.typeID=EXT->ResizableData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-ResizableData_set_member(ctx, &obj, key, value);
-}
-SV Int4_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Int4;
-NO obj=(NO)Int4_new(ctx, args2);
-obj->funcs=Int4_ptr_funcs;
-obj->typeID=EXT->Int4_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Int4_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Int4Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T4<int32_t>*))
-CATE(TE,"Int4Ref::deref expects Int4Ref as first argument."));
-RET CV(*(T4<int32_t> *)((NO)f)->data);
-}
-SV Int4_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Int4::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T4<int32_t>*))
-CATE(TE,"Int4Ref::refset expects Int4Ref as first argument."));
-*((T4<int32_t> *)((NO)f)->data) = val_to_c<T4<int32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Int4_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T4<int32_t>*))
-CATE(TE,"Int4Ref::__del__ expects Int4Ref as first argument."));
-SCRIPT_DELETE((T4<int32_t> *)f->data);
-}
-SV Int4_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T4<int32_t>*))
-CATE(TE,FAE("Int4Ref's get method","Int4Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Int4Ptr");
-EI(keyStr=="__new__")
-RET CNF(Int4_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Int4_ptr_new);
-else
-CATE(KE,"Unknown member for Int4Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Int4_ptr_deref);
-if(keyStr=="refset")RET CNF(Int4_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Int4_funcs;
-obj.typeID=EXT->Int4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Int4_get_member(ctx, &obj, key);
-}
-void Int4_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T4<int32_t>*))
-CATE(TE,FAE("Int4Ref's set method","Int4Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Int4_funcs;
-obj.typeID=EXT->Int4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Int4_set_member(ctx, &obj, key, value);
-}
-SV Float3_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Float3;
-NO obj=(NO)Float3_new(ctx, args2);
-obj->funcs=Float3_ptr_funcs;
-obj->typeID=EXT->Float3_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Float3_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Float3Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T3<float>*))
-CATE(TE,"Float3Ref::deref expects Float3Ref as first argument."));
-RET CV(*(T3<float> *)((NO)f)->data);
-}
-SV Float3_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Float3::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T3<float>*))
-CATE(TE,"Float3Ref::refset expects Float3Ref as first argument."));
-*((T3<float> *)((NO)f)->data) = val_to_c<T3<float>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Float3_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T3<float>*))
-CATE(TE,"Float3Ref::__del__ expects Float3Ref as first argument."));
-SCRIPT_DELETE((T3<float> *)f->data);
-}
-SV Float3_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T3<float>*))
-CATE(TE,FAE("Float3Ref's get method","Float3Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Float3Ptr");
-EI(keyStr=="__new__")
-RET CNF(Float3_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Float3_ptr_new);
-else
-CATE(KE,"Unknown member for Float3Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Float3_ptr_deref);
-if(keyStr=="refset")RET CNF(Float3_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Float3_funcs;
-obj.typeID=EXT->Float3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Float3_get_member(ctx, &obj, key);
-}
-void Float3_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T3<float>*))
-CATE(TE,FAE("Float3Ref's set method","Float3Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Float3_funcs;
-obj.typeID=EXT->Float3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Float3_set_member(ctx, &obj, key, value);
-}
-SV GfxBuffer_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxBuffer;
-NO obj=(NO)GfxBuffer_new(ctx, args2);
-obj->funcs=GfxBuffer_ptr_funcs;
-obj->typeID=EXT->GfxBuffer_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxBuffer_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxBufferRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxBuffer*))
-CATE(TE,"GfxBufferRef::deref expects GfxBufferRef as first argument."));
-CATE(TE,"GfxBuffer objects are not copyable."));
-}
-SV GfxBuffer_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxBuffer::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxBuffer*))
-CATE(TE,"GfxBufferRef::refset expects GfxBufferRef as first argument."));
-CATE(TE,"GfxBuffer objects are not copyable."));
-RET CN;
-}
-
-void GfxBuffer_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxBuffer*))
-CATE(TE,"GfxBufferRef::__del__ expects GfxBufferRef as first argument."));
-SCRIPT_DELETE((GfxBuffer *)f->data);
-}
-SV GfxBuffer_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxBuffer*))
-CATE(TE,FAE("GfxBufferRef's get method","GfxBufferRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxBufferPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxBuffer_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxBuffer_ptr_new);
-else
-CATE(KE,"Unknown member for GfxBufferRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxBuffer_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxBuffer_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxBuffer_funcs;
-obj.typeID=EXT->GfxBuffer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxBuffer_get_member(ctx, &obj, key);
-}
-void GfxBuffer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxBuffer*))
-CATE(TE,FAE("GfxBufferRef's set method","GfxBufferRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxBuffer_funcs;
-obj.typeID=EXT->GfxBuffer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxBuffer_set_member(ctx, &obj, key, value);
-}
-SV Transform_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Transform;
-NO obj=(NO)Transform_new(ctx, args2);
-obj->funcs=Transform_ptr_funcs;
-obj->typeID=EXT->Transform_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Transform_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"TransformRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Transform*))
-CATE(TE,"TransformRef::deref expects TransformRef as first argument."));
-RET CV(*(Transform *)((NO)f)->data);
-}
-SV Transform_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Transform::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Transform*))
-CATE(TE,"TransformRef::refset expects TransformRef as first argument."));
-*((Transform *)((NO)f)->data) = val_to_c<Transform>::f(ctx,a[1]);
-RET CN;
-}
-
-void Transform_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Transform*))
-CATE(TE,"TransformRef::__del__ expects TransformRef as first argument."));
-SCRIPT_DELETE((Transform *)f->data);
-}
-SV Transform_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Transform*))
-CATE(TE,FAE("TransformRef's get method","TransformRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("TransformPtr");
-EI(keyStr=="__new__")
-RET CNF(Transform_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Transform_ptr_new);
-else
-CATE(KE,"Unknown member for TransformRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Transform_ptr_deref);
-if(keyStr=="refset")RET CNF(Transform_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Transform_funcs;
-obj.typeID=EXT->Transform_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Transform_get_member(ctx, &obj, key);
-}
-void Transform_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Transform*))
-CATE(TE,FAE("TransformRef's set method","TransformRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Transform_funcs;
-obj.typeID=EXT->Transform_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Transform_set_member(ctx, &obj, key, value);
-}
-SV AudioSourceList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->AudioSourceList;
-NO obj=(NO)AudioSourceList_new(ctx, args2);
-obj->funcs=AudioSourceList_ptr_funcs;
-obj->typeID=EXT->AudioSourceList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV AudioSourceList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"AudioSourceListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<AudioSource*>*))
-CATE(TE,"AudioSourceListRef::deref expects AudioSourceListRef as first argument."));
-RET CV(*(List<AudioSource*> *)((NO)f)->data);
-}
-SV AudioSourceList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"AudioSourceList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<AudioSource*>*))
-CATE(TE,"AudioSourceListRef::refset expects AudioSourceListRef as first argument."));
-*((List<AudioSource*> *)((NO)f)->data) = val_to_c<List<AudioSource*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void AudioSourceList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<AudioSource*>*))
-CATE(TE,"AudioSourceListRef::__del__ expects AudioSourceListRef as first argument."));
-SCRIPT_DELETE((List<AudioSource*> *)f->data);
-}
-SV AudioSourceList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<AudioSource*>*))
-CATE(TE,FAE("AudioSourceListRef's get method","AudioSourceListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("AudioSourceListPtr");
-EI(keyStr=="__new__")
-RET CNF(AudioSourceList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(AudioSourceList_ptr_new);
-else
-CATE(KE,"Unknown member for AudioSourceListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(AudioSourceList_ptr_deref);
-if(keyStr=="refset")RET CNF(AudioSourceList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioSourceList_funcs;
-obj.typeID=EXT->AudioSourceList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET AudioSourceList_get_member(ctx, &obj, key);
-}
-void AudioSourceList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<AudioSource*>*))
-CATE(TE,FAE("AudioSourceListRef's set method","AudioSourceListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioSourceList_funcs;
-obj.typeID=EXT->AudioSourceList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-AudioSourceList_set_member(ctx, &obj, key, value);
-}
-SV GfxMaterial_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxMaterial;
-NO obj=(NO)GfxMaterial_new(ctx, args2);
-obj->funcs=GfxMaterial_ptr_funcs;
-obj->typeID=EXT->GfxMaterial_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxMaterial_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxMaterialRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxMaterial*))
-CATE(TE,"GfxMaterialRef::deref expects GfxMaterialRef as first argument."));
-CATE(TE,"GfxMaterial objects are not copyable."));
-}
-SV GfxMaterial_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxMaterial::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxMaterial*))
-CATE(TE,"GfxMaterialRef::refset expects GfxMaterialRef as first argument."));
-CATE(TE,"GfxMaterial objects are not copyable."));
-RET CN;
-}
-
-void GfxMaterial_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxMaterial*))
-CATE(TE,"GfxMaterialRef::__del__ expects GfxMaterialRef as first argument."));
-GfxMaterial*obj=(GfxMaterial*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV GfxMaterial_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxMaterial*))
-CATE(TE,FAE("GfxMaterialRef's get method","GfxMaterialRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxMaterialPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxMaterial_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxMaterial_ptr_new);
-else
-CATE(KE,"Unknown member for GfxMaterialRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxMaterial_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxMaterial_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxMaterial_funcs;
-obj.typeID=EXT->GfxMaterial_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxMaterial_get_member(ctx, &obj, key);
-}
-void GfxMaterial_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxMaterial*))
-CATE(TE,FAE("GfxMaterialRef's set method","GfxMaterialRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxMaterial_funcs;
-obj.typeID=EXT->GfxMaterial_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxMaterial_set_member(ctx, &obj, key, value);
-}
-SV Quaternion_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Quaternion;
-NO obj=(NO)Quaternion_new(ctx, args2);
-obj->funcs=Quaternion_ptr_funcs;
-obj->typeID=EXT->Quaternion_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Quaternion_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"QuaternionRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Quaternion*))
-CATE(TE,"QuaternionRef::deref expects QuaternionRef as first argument."));
-RET CV(*(Quaternion *)((NO)f)->data);
-}
-SV Quaternion_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Quaternion::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Quaternion*))
-CATE(TE,"QuaternionRef::refset expects QuaternionRef as first argument."));
-*((Quaternion *)((NO)f)->data) = val_to_c<Quaternion>::f(ctx,a[1]);
-RET CN;
-}
-
-void Quaternion_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Quaternion*))
-CATE(TE,"QuaternionRef::__del__ expects QuaternionRef as first argument."));
-SCRIPT_DELETE((Quaternion *)f->data);
-}
-SV Quaternion_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Quaternion*))
-CATE(TE,FAE("QuaternionRef's get method","QuaternionRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("QuaternionPtr");
-EI(keyStr=="__new__")
-RET CNF(Quaternion_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Quaternion_ptr_new);
-else
-CATE(KE,"Unknown member for QuaternionRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Quaternion_ptr_deref);
-if(keyStr=="refset")RET CNF(Quaternion_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Quaternion_funcs;
-obj.typeID=EXT->Quaternion_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Quaternion_get_member(ctx, &obj, key);
-}
-void Quaternion_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Quaternion*))
-CATE(TE,FAE("QuaternionRef's set method","QuaternionRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Quaternion_funcs;
-obj.typeID=EXT->Quaternion_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Quaternion_set_member(ctx, &obj, key, value);
-}
-SV GfxMeshAttrib_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxMeshAttrib;
-NO obj=(NO)GfxMeshAttrib_new(ctx, args2);
-obj->funcs=GfxMeshAttrib_ptr_funcs;
-obj->typeID=EXT->GfxMeshAttrib_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxMeshAttrib_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxMeshAttribRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxMeshAttrib*))
-CATE(TE,"GfxMeshAttribRef::deref expects GfxMeshAttribRef as first argument."));
-RET CV(*(GfxMeshAttrib *)((NO)f)->data);
-}
-SV GfxMeshAttrib_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxMeshAttrib::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxMeshAttrib*))
-CATE(TE,"GfxMeshAttribRef::refset expects GfxMeshAttribRef as first argument."));
-*((GfxMeshAttrib *)((NO)f)->data) = val_to_c<GfxMeshAttrib>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxMeshAttrib_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxMeshAttrib*))
-CATE(TE,"GfxMeshAttribRef::__del__ expects GfxMeshAttribRef as first argument."));
-SCRIPT_DELETE((GfxMeshAttrib *)f->data);
-}
-SV GfxMeshAttrib_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxMeshAttrib*))
-CATE(TE,FAE("GfxMeshAttribRef's get method","GfxMeshAttribRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxMeshAttribPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxMeshAttrib_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxMeshAttrib_ptr_new);
-else
-CATE(KE,"Unknown member for GfxMeshAttribRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxMeshAttrib_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxMeshAttrib_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxMeshAttrib_funcs;
-obj.typeID=EXT->GfxMeshAttrib_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxMeshAttrib_get_member(ctx, &obj, key);
-}
-void GfxMeshAttrib_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxMeshAttrib*))
-CATE(TE,FAE("GfxMeshAttribRef's set method","GfxMeshAttribRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxMeshAttrib_funcs;
-obj.typeID=EXT->GfxMeshAttrib_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxMeshAttrib_set_member(ctx, &obj, key, value);
-}
-SV RenderComponent_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RenderComponent;
-NO obj=(NO)RenderComponent_new(ctx, args2);
-obj->funcs=RenderComponent_ptr_funcs;
-obj->typeID=EXT->RenderComponent_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RenderComponent_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RenderComponentRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,RenderComponent*))
-CATE(TE,"RenderComponentRef::deref expects RenderComponentRef as first argument."));
-CATE(TE,"RenderComponent objects are not copyable."));
-}
-SV RenderComponent_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RenderComponent::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,RenderComponent*))
-CATE(TE,"RenderComponentRef::refset expects RenderComponentRef as first argument."));
-CATE(TE,"RenderComponent objects are not copyable."));
-RET CN;
-}
-
-void RenderComponent_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,RenderComponent*))
-CATE(TE,"RenderComponentRef::__del__ expects RenderComponentRef as first argument."));
-}
-SV RenderComponent_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,RenderComponent*))
-CATE(TE,FAE("RenderComponentRef's get method","RenderComponentRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RenderComponentPtr");
-EI(keyStr=="__new__")
-RET CNF(RenderComponent_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RenderComponent_ptr_new);
-else
-CATE(KE,"Unknown member for RenderComponentRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RenderComponent_ptr_deref);
-if(keyStr=="refset")RET CNF(RenderComponent_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RenderComponent_funcs;
-obj.typeID=EXT->RenderComponent_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RenderComponent_get_member(ctx, &obj, key);
-}
-void RenderComponent_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,RenderComponent*))
-CATE(TE,FAE("RenderComponentRef's set method","RenderComponentRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RenderComponent_funcs;
-obj.typeID=EXT->RenderComponent_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RenderComponent_set_member(ctx, &obj, key, value);
-}
-SV Int2_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Int2;
-NO obj=(NO)Int2_new(ctx, args2);
-obj->funcs=Int2_ptr_funcs;
-obj->typeID=EXT->Int2_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Int2_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Int2Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T2<int32_t>*))
-CATE(TE,"Int2Ref::deref expects Int2Ref as first argument."));
-RET CV(*(T2<int32_t> *)((NO)f)->data);
-}
-SV Int2_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Int2::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T2<int32_t>*))
-CATE(TE,"Int2Ref::refset expects Int2Ref as first argument."));
-*((T2<int32_t> *)((NO)f)->data) = val_to_c<T2<int32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Int2_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T2<int32_t>*))
-CATE(TE,"Int2Ref::__del__ expects Int2Ref as first argument."));
-SCRIPT_DELETE((T2<int32_t> *)f->data);
-}
-SV Int2_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T2<int32_t>*))
-CATE(TE,FAE("Int2Ref's get method","Int2Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Int2Ptr");
-EI(keyStr=="__new__")
-RET CNF(Int2_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Int2_ptr_new);
-else
-CATE(KE,"Unknown member for Int2Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Int2_ptr_deref);
-if(keyStr=="refset")RET CNF(Int2_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Int2_funcs;
-obj.typeID=EXT->Int2_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Int2_get_member(ctx, &obj, key);
-}
-void Int2_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T2<int32_t>*))
-CATE(TE,FAE("Int2Ref's set method","Int2Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Int2_funcs;
-obj.typeID=EXT->Int2_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Int2_set_member(ctx, &obj, key, value);
-}
-SV AudioWorld_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->AudioWorld;
-NO obj=(NO)AudioWorld_new(ctx, args2);
-obj->funcs=AudioWorld_ptr_funcs;
-obj->typeID=EXT->AudioWorld_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV AudioWorld_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"AudioWorldRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,AudioWorld*))
-CATE(TE,"AudioWorldRef::deref expects AudioWorldRef as first argument."));
-RET CV(*(AudioWorld *)((NO)f)->data);
-}
-SV AudioWorld_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"AudioWorld::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,AudioWorld*))
-CATE(TE,"AudioWorldRef::refset expects AudioWorldRef as first argument."));
-*((AudioWorld *)((NO)f)->data) = val_to_c<AudioWorld>::f(ctx,a[1]);
-RET CN;
-}
-
-void AudioWorld_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,AudioWorld*))
-CATE(TE,"AudioWorldRef::__del__ expects AudioWorldRef as first argument."));
-SCRIPT_DELETE((AudioWorld *)f->data);
-}
-SV AudioWorld_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,AudioWorld*))
-CATE(TE,FAE("AudioWorldRef's get method","AudioWorldRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("AudioWorldPtr");
-EI(keyStr=="__new__")
-RET CNF(AudioWorld_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(AudioWorld_ptr_new);
-else
-CATE(KE,"Unknown member for AudioWorldRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(AudioWorld_ptr_deref);
-if(keyStr=="refset")RET CNF(AudioWorld_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioWorld_funcs;
-obj.typeID=EXT->AudioWorld_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET AudioWorld_get_member(ctx, &obj, key);
-}
-void AudioWorld_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,AudioWorld*))
-CATE(TE,FAE("AudioWorldRef's set method","AudioWorldRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioWorld_funcs;
-obj.typeID=EXT->AudioWorld_typeID;
-obj.refCount=1;
-obj.data=f->data;
-AudioWorld_set_member(ctx, &obj, key, value);
-}
-SV GuiPlacer_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GuiPlacer;
-NO obj=(NO)GuiPlacer_new(ctx, args2);
-obj->funcs=GuiPlacer_ptr_funcs;
-obj->typeID=EXT->GuiPlacer_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GuiPlacer_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GuiPlacerRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GuiPlacer*))
-CATE(TE,"GuiPlacerRef::deref expects GuiPlacerRef as first argument."));
-RET CV(*(GuiPlacer *)((NO)f)->data);
-}
-SV GuiPlacer_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GuiPlacer::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GuiPlacer*))
-CATE(TE,"GuiPlacerRef::refset expects GuiPlacerRef as first argument."));
-*((GuiPlacer *)((NO)f)->data) = val_to_c<GuiPlacer>::f(ctx,a[1]);
-RET CN;
-}
-
-void GuiPlacer_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GuiPlacer*))
-CATE(TE,"GuiPlacerRef::__del__ expects GuiPlacerRef as first argument."));
-SCRIPT_DELETE((GuiPlacer *)f->data);
-}
-SV GuiPlacer_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GuiPlacer*))
-CATE(TE,FAE("GuiPlacerRef's get method","GuiPlacerRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GuiPlacerPtr");
-EI(keyStr=="__new__")
-RET CNF(GuiPlacer_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GuiPlacer_ptr_new);
-else
-CATE(KE,"Unknown member for GuiPlacerRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GuiPlacer_ptr_deref);
-if(keyStr=="refset")RET CNF(GuiPlacer_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GuiPlacer_funcs;
-obj.typeID=EXT->GuiPlacer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GuiPlacer_get_member(ctx, &obj, key);
-}
-void GuiPlacer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GuiPlacer*))
-CATE(TE,FAE("GuiPlacerRef's set method","GuiPlacerRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GuiPlacer_funcs;
-obj.typeID=EXT->GuiPlacer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GuiPlacer_set_member(ctx, &obj, key, value);
-}
-SV ImGui_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->ImGui;
-NO obj=(NO)ImGui_new(ctx, args2);
-obj->funcs=ImGui_ptr_funcs;
-obj->typeID=EXT->ImGui_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV ImGui_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ImGuiRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,ImGui*))
-CATE(TE,"ImGuiRef::deref expects ImGuiRef as first argument."));
-RET CV(*(ImGui *)((NO)f)->data);
-}
-SV ImGui_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"ImGui::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,ImGui*))
-CATE(TE,"ImGuiRef::refset expects ImGuiRef as first argument."));
-*((ImGui *)((NO)f)->data) = val_to_c<ImGui>::f(ctx,a[1]);
-RET CN;
-}
-
-void ImGui_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,ImGui*))
-CATE(TE,"ImGuiRef::__del__ expects ImGuiRef as first argument."));
-SCRIPT_DELETE((ImGui *)f->data);
-}
-SV ImGui_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,ImGui*))
-CATE(TE,FAE("ImGuiRef's get method","ImGuiRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ImGuiPtr");
-EI(keyStr=="__new__")
-RET CNF(ImGui_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(ImGui_ptr_new);
-else
-CATE(KE,"Unknown member for ImGuiRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(ImGui_ptr_deref);
-if(keyStr=="refset")RET CNF(ImGui_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ImGui_funcs;
-obj.typeID=EXT->ImGui_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET ImGui_get_member(ctx, &obj, key);
-}
-void ImGui_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,ImGui*))
-CATE(TE,FAE("ImGuiRef's set method","ImGuiRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=ImGui_funcs;
-obj.typeID=EXT->ImGui_typeID;
-obj.refCount=1;
-obj.data=f->data;
-ImGui_set_member(ctx, &obj, key, value);
-}
-SV StringList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->StringList;
-NO obj=(NO)StringList_new(ctx, args2);
-obj->funcs=StringList_ptr_funcs;
-obj->typeID=EXT->StringList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV StringList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"StringListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<String>*))
-CATE(TE,"StringListRef::deref expects StringListRef as first argument."));
-RET CV(*(List<String> *)((NO)f)->data);
-}
-SV StringList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"StringList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<String>*))
-CATE(TE,"StringListRef::refset expects StringListRef as first argument."));
-*((List<String> *)((NO)f)->data) = val_to_c<List<String>>::f(ctx,a[1]);
-RET CN;
-}
-
-void StringList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<String>*))
-CATE(TE,"StringListRef::__del__ expects StringListRef as first argument."));
-SCRIPT_DELETE((List<String> *)f->data);
-}
-SV StringList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<String>*))
-CATE(TE,FAE("StringListRef's get method","StringListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("StringListPtr");
-EI(keyStr=="__new__")
-RET CNF(StringList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(StringList_ptr_new);
-else
-CATE(KE,"Unknown member for StringListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(StringList_ptr_deref);
-if(keyStr=="refset")RET CNF(StringList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=StringList_funcs;
-obj.typeID=EXT->StringList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET StringList_get_member(ctx, &obj, key);
-}
-void StringList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<String>*))
-CATE(TE,FAE("StringListRef's set method","StringListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=StringList_funcs;
-obj.typeID=EXT->StringList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-StringList_set_member(ctx, &obj, key, value);
-}
-SV Application_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Application;
-NO obj=(NO)Application_new(ctx, args2);
-obj->funcs=Application_ptr_funcs;
-obj->typeID=EXT->Application_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Application_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ApplicationRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Application*))
-CATE(TE,"ApplicationRef::deref expects ApplicationRef as first argument."));
-CATE(TE,"Application objects are not copyable."));
-}
-SV Application_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Application::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Application*))
-CATE(TE,"ApplicationRef::refset expects ApplicationRef as first argument."));
-CATE(TE,"Application objects are not copyable."));
-RET CN;
-}
-
-void Application_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Application*))
-CATE(TE,"ApplicationRef::__del__ expects ApplicationRef as first argument."));
-SCRIPT_DELETE((Application *)f->data);
-}
-SV Application_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Application*))
-CATE(TE,FAE("ApplicationRef's get method","ApplicationRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ApplicationPtr");
-EI(keyStr=="__new__")
-RET CNF(Application_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Application_ptr_new);
-else
-CATE(KE,"Unknown member for ApplicationRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Application_ptr_deref);
-if(keyStr=="refset")RET CNF(Application_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Application_funcs;
-obj.typeID=EXT->Application_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Application_get_member(ctx, &obj, key);
-}
-void Application_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Application*))
-CATE(TE,FAE("ApplicationRef's set method","ApplicationRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Application_funcs;
-obj.typeID=EXT->Application_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Application_set_member(ctx, &obj, key, value);
-}
-SV LightPointData_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->LightPointData;
-NO obj=(NO)LightPointData_new(ctx, args2);
-obj->funcs=LightPointData_ptr_funcs;
-obj->typeID=EXT->LightPointData_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV LightPointData_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"LightPointDataRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,LightPointData*))
-CATE(TE,"LightPointDataRef::deref expects LightPointDataRef as first argument."));
-RET CV(*(LightPointData *)((NO)f)->data);
-}
-SV LightPointData_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"LightPointData::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,LightPointData*))
-CATE(TE,"LightPointDataRef::refset expects LightPointDataRef as first argument."));
-*((LightPointData *)((NO)f)->data) = val_to_c<LightPointData>::f(ctx,a[1]);
-RET CN;
-}
-
-void LightPointData_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,LightPointData*))
-CATE(TE,"LightPointDataRef::__del__ expects LightPointDataRef as first argument."));
-SCRIPT_DELETE((LightPointData *)f->data);
-}
-SV LightPointData_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,LightPointData*))
-CATE(TE,FAE("LightPointDataRef's get method","LightPointDataRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("LightPointDataPtr");
-EI(keyStr=="__new__")
-RET CNF(LightPointData_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(LightPointData_ptr_new);
-else
-CATE(KE,"Unknown member for LightPointDataRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(LightPointData_ptr_deref);
-if(keyStr=="refset")RET CNF(LightPointData_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightPointData_funcs;
-obj.typeID=EXT->LightPointData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET LightPointData_get_member(ctx, &obj, key);
-}
-void LightPointData_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,LightPointData*))
-CATE(TE,FAE("LightPointDataRef's set method","LightPointDataRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightPointData_funcs;
-obj.typeID=EXT->LightPointData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-LightPointData_set_member(ctx, &obj, key, value);
-}
-SV Float4_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Float4;
-NO obj=(NO)Float4_new(ctx, args2);
-obj->funcs=Float4_ptr_funcs;
-obj->typeID=EXT->Float4_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Float4_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Float4Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T4<float>*))
-CATE(TE,"Float4Ref::deref expects Float4Ref as first argument."));
-RET CV(*(T4<float> *)((NO)f)->data);
-}
-SV Float4_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Float4::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T4<float>*))
-CATE(TE,"Float4Ref::refset expects Float4Ref as first argument."));
-*((T4<float> *)((NO)f)->data) = val_to_c<T4<float>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Float4_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T4<float>*))
-CATE(TE,"Float4Ref::__del__ expects Float4Ref as first argument."));
-SCRIPT_DELETE((T4<float> *)f->data);
-}
-SV Float4_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T4<float>*))
-CATE(TE,FAE("Float4Ref's get method","Float4Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Float4Ptr");
-EI(keyStr=="__new__")
-RET CNF(Float4_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Float4_ptr_new);
-else
-CATE(KE,"Unknown member for Float4Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Float4_ptr_deref);
-if(keyStr=="refset")RET CNF(Float4_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Float4_funcs;
-obj.typeID=EXT->Float4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Float4_get_member(ctx, &obj, key);
-}
-void Float4_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T4<float>*))
-CATE(TE,FAE("Float4Ref's set method","Float4Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Float4_funcs;
-obj.typeID=EXT->Float4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Float4_set_member(ctx, &obj, key, value);
-}
-SV FloatList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->FloatList;
-NO obj=(NO)FloatList_new(ctx, args2);
-obj->funcs=FloatList_ptr_funcs;
-obj->typeID=EXT->FloatList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV FloatList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"FloatListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<float>*))
-CATE(TE,"FloatListRef::deref expects FloatListRef as first argument."));
-RET CV(*(List<float> *)((NO)f)->data);
-}
-SV FloatList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"FloatList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<float>*))
-CATE(TE,"FloatListRef::refset expects FloatListRef as first argument."));
-*((List<float> *)((NO)f)->data) = val_to_c<List<float>>::f(ctx,a[1]);
-RET CN;
-}
-
-void FloatList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<float>*))
-CATE(TE,"FloatListRef::__del__ expects FloatListRef as first argument."));
-SCRIPT_DELETE((List<float> *)f->data);
-}
-SV FloatList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<float>*))
-CATE(TE,FAE("FloatListRef's get method","FloatListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("FloatListPtr");
-EI(keyStr=="__new__")
-RET CNF(FloatList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(FloatList_ptr_new);
-else
-CATE(KE,"Unknown member for FloatListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(FloatList_ptr_deref);
-if(keyStr=="refset")RET CNF(FloatList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=FloatList_funcs;
-obj.typeID=EXT->FloatList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET FloatList_get_member(ctx, &obj, key);
-}
-void FloatList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<float>*))
-CATE(TE,FAE("FloatListRef's set method","FloatListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=FloatList_funcs;
-obj.typeID=EXT->FloatList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-FloatList_set_member(ctx, &obj, key, value);
-}
-SV Container_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Container;
-NO obj=(NO)Container_new(ctx, args2);
-obj->funcs=Container_ptr_funcs;
-obj->typeID=EXT->Container_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Container_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ContainerRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Container*))
-CATE(TE,"ContainerRef::deref expects ContainerRef as first argument."));
-RET CV(*(Container *)((NO)f)->data);
-}
-SV Container_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Container::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Container*))
-CATE(TE,"ContainerRef::refset expects ContainerRef as first argument."));
-*((Container *)((NO)f)->data) = val_to_c<Container>::f(ctx,a[1]);
-RET CN;
-}
-
-void Container_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Container*))
-CATE(TE,"ContainerRef::__del__ expects ContainerRef as first argument."));
-SCRIPT_DELETE((Container *)f->data);
-}
-SV Container_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Container*))
-CATE(TE,FAE("ContainerRef's get method","ContainerRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ContainerPtr");
-EI(keyStr=="__new__")
-RET CNF(Container_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Container_ptr_new);
-else
-CATE(KE,"Unknown member for ContainerRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Container_ptr_deref);
-if(keyStr=="refset")RET CNF(Container_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Container_funcs;
-obj.typeID=EXT->Container_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Container_get_member(ctx, &obj, key);
-}
-void Container_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Container*))
-CATE(TE,FAE("ContainerRef's set method","ContainerRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Container_funcs;
-obj.typeID=EXT->Container_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Container_set_member(ctx, &obj, key, value);
-}
-SV LightDirectionalData_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->LightDirectionalData;
-NO obj=(NO)LightDirectionalData_new(ctx, args2);
-obj->funcs=LightDirectionalData_ptr_funcs;
-obj->typeID=EXT->LightDirectionalData_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV LightDirectionalData_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"LightDirectionalDataRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,LightDirectionalData*))
-CATE(TE,"LightDirectionalDataRef::deref expects LightDirectionalDataRef as first argument."));
-RET CV(*(LightDirectionalData *)((NO)f)->data);
-}
-SV LightDirectionalData_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"LightDirectionalData::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,LightDirectionalData*))
-CATE(TE,"LightDirectionalDataRef::refset expects LightDirectionalDataRef as first argument."));
-*((LightDirectionalData *)((NO)f)->data) = val_to_c<LightDirectionalData>::f(ctx,a[1]);
-RET CN;
-}
-
-void LightDirectionalData_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,LightDirectionalData*))
-CATE(TE,"LightDirectionalDataRef::__del__ expects LightDirectionalDataRef as first argument."));
-SCRIPT_DELETE((LightDirectionalData *)f->data);
-}
-SV LightDirectionalData_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,LightDirectionalData*))
-CATE(TE,FAE("LightDirectionalDataRef's get method","LightDirectionalDataRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("LightDirectionalDataPtr");
-EI(keyStr=="__new__")
-RET CNF(LightDirectionalData_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(LightDirectionalData_ptr_new);
-else
-CATE(KE,"Unknown member for LightDirectionalDataRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(LightDirectionalData_ptr_deref);
-if(keyStr=="refset")RET CNF(LightDirectionalData_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightDirectionalData_funcs;
-obj.typeID=EXT->LightDirectionalData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET LightDirectionalData_get_member(ctx, &obj, key);
-}
-void LightDirectionalData_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,LightDirectionalData*))
-CATE(TE,FAE("LightDirectionalDataRef's set method","LightDirectionalDataRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightDirectionalData_funcs;
-obj.typeID=EXT->LightDirectionalData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-LightDirectionalData_set_member(ctx, &obj, key, value);
-}
-SV Matrix4x4_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Matrix4x4;
-NO obj=(NO)Matrix4x4_new(ctx, args2);
-obj->funcs=Matrix4x4_ptr_funcs;
-obj->typeID=EXT->Matrix4x4_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Matrix4x4_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Matrix4x4Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Matrix4x4*))
-CATE(TE,"Matrix4x4Ref::deref expects Matrix4x4Ref as first argument."));
-RET CV(*(Matrix4x4 *)((NO)f)->data);
-}
-SV Matrix4x4_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Matrix4x4::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Matrix4x4*))
-CATE(TE,"Matrix4x4Ref::refset expects Matrix4x4Ref as first argument."));
-*((Matrix4x4 *)((NO)f)->data) = val_to_c<Matrix4x4>::f(ctx,a[1]);
-RET CN;
-}
-
-void Matrix4x4_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Matrix4x4*))
-CATE(TE,"Matrix4x4Ref::__del__ expects Matrix4x4Ref as first argument."));
-SCRIPT_DELETE((Matrix4x4 *)f->data);
-}
-SV Matrix4x4_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Matrix4x4*))
-CATE(TE,FAE("Matrix4x4Ref's get method","Matrix4x4Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Matrix4x4Ptr");
-EI(keyStr=="__new__")
-RET CNF(Matrix4x4_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Matrix4x4_ptr_new);
-else
-CATE(KE,"Unknown member for Matrix4x4Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Matrix4x4_ptr_deref);
-if(keyStr=="refset")RET CNF(Matrix4x4_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Matrix4x4_funcs;
-obj.typeID=EXT->Matrix4x4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Matrix4x4_get_member(ctx, &obj, key);
-}
-void Matrix4x4_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Matrix4x4*))
-CATE(TE,FAE("Matrix4x4Ref's set method","Matrix4x4Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Matrix4x4_funcs;
-obj.typeID=EXT->Matrix4x4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Matrix4x4_set_member(ctx, &obj, key, value);
-}
-SV Map_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Map;
-NO obj=(NO)Map_new(ctx, args2);
-obj->funcs=Map_ptr_funcs;
-obj->typeID=EXT->Map_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Map_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"MapRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>*))
-CATE(TE,"MapRef::deref expects MapRef as first argument."));
-RET CV(*(HashMap<scripting::Value*,scripting::Value*> *)((NO)f)->data);
-}
-SV Map_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Map::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>*))
-CATE(TE,"MapRef::refset expects MapRef as first argument."));
-*((HashMap<scripting::Value*,scripting::Value*> *)((NO)f)->data) = val_to_c<HashMap<scripting::Value*,scripting::Value*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void Map_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>*))
-CATE(TE,"MapRef::__del__ expects MapRef as first argument."));
-SCRIPT_DELETE((HashMap<scripting::Value*,scripting::Value*> *)f->data);
-}
-SV Map_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>*))
-CATE(TE,FAE("MapRef's get method","MapRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("MapPtr");
-EI(keyStr=="__new__")
-RET CNF(Map_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Map_ptr_new);
-else
-CATE(KE,"Unknown member for MapRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Map_ptr_deref);
-if(keyStr=="refset")RET CNF(Map_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Map_funcs;
-obj.typeID=EXT->Map_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Map_get_member(ctx, &obj, key);
-}
-void Map_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>*))
-CATE(TE,FAE("MapRef's set method","MapRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Map_funcs;
-obj.typeID=EXT->Map_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Map_set_member(ctx, &obj, key, value);
-}
-SV UInt3_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->UInt3;
-NO obj=(NO)UInt3_new(ctx, args2);
-obj->funcs=UInt3_ptr_funcs;
-obj->typeID=EXT->UInt3_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV UInt3_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"UInt3Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T3<uint32_t>*))
-CATE(TE,"UInt3Ref::deref expects UInt3Ref as first argument."));
-RET CV(*(T3<uint32_t> *)((NO)f)->data);
-}
-SV UInt3_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"UInt3::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T3<uint32_t>*))
-CATE(TE,"UInt3Ref::refset expects UInt3Ref as first argument."));
-*((T3<uint32_t> *)((NO)f)->data) = val_to_c<T3<uint32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void UInt3_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T3<uint32_t>*))
-CATE(TE,"UInt3Ref::__del__ expects UInt3Ref as first argument."));
-SCRIPT_DELETE((T3<uint32_t> *)f->data);
-}
-SV UInt3_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T3<uint32_t>*))
-CATE(TE,FAE("UInt3Ref's get method","UInt3Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("UInt3Ptr");
-EI(keyStr=="__new__")
-RET CNF(UInt3_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(UInt3_ptr_new);
-else
-CATE(KE,"Unknown member for UInt3Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(UInt3_ptr_deref);
-if(keyStr=="refset")RET CNF(UInt3_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt3_funcs;
-obj.typeID=EXT->UInt3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET UInt3_get_member(ctx, &obj, key);
-}
-void UInt3_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T3<uint32_t>*))
-CATE(TE,FAE("UInt3Ref's set method","UInt3Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt3_funcs;
-obj.typeID=EXT->UInt3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-UInt3_set_member(ctx, &obj, key, value);
-}
-SV LightSpotData_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->LightSpotData;
-NO obj=(NO)LightSpotData_new(ctx, args2);
-obj->funcs=LightSpotData_ptr_funcs;
-obj->typeID=EXT->LightSpotData_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV LightSpotData_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"LightSpotDataRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,LightSpotData*))
-CATE(TE,"LightSpotDataRef::deref expects LightSpotDataRef as first argument."));
-RET CV(*(LightSpotData *)((NO)f)->data);
-}
-SV LightSpotData_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"LightSpotData::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,LightSpotData*))
-CATE(TE,"LightSpotDataRef::refset expects LightSpotDataRef as first argument."));
-*((LightSpotData *)((NO)f)->data) = val_to_c<LightSpotData>::f(ctx,a[1]);
-RET CN;
-}
-
-void LightSpotData_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,LightSpotData*))
-CATE(TE,"LightSpotDataRef::__del__ expects LightSpotDataRef as first argument."));
-SCRIPT_DELETE((LightSpotData *)f->data);
-}
-SV LightSpotData_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,LightSpotData*))
-CATE(TE,FAE("LightSpotDataRef's get method","LightSpotDataRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("LightSpotDataPtr");
-EI(keyStr=="__new__")
-RET CNF(LightSpotData_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(LightSpotData_ptr_new);
-else
-CATE(KE,"Unknown member for LightSpotDataRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(LightSpotData_ptr_deref);
-if(keyStr=="refset")RET CNF(LightSpotData_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightSpotData_funcs;
-obj.typeID=EXT->LightSpotData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET LightSpotData_get_member(ctx, &obj, key);
-}
-void LightSpotData_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,LightSpotData*))
-CATE(TE,FAE("LightSpotDataRef's set method","LightSpotDataRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=LightSpotData_funcs;
-obj.typeID=EXT->LightSpotData_typeID;
-obj.refCount=1;
-obj.data=f->data;
-LightSpotData_set_member(ctx, &obj, key, value);
-}
-SV PhysicsShape_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->PhysicsShape;
-NO obj=(NO)PhysicsShape_new(ctx, args2);
-obj->funcs=PhysicsShape_ptr_funcs;
-obj->typeID=EXT->PhysicsShape_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV PhysicsShape_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"PhysicsShapeRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,PhysicsShape*))
-CATE(TE,"PhysicsShapeRef::deref expects PhysicsShapeRef as first argument."));
-CATE(TE,"PhysicsShape objects are not copyable."));
-}
-SV PhysicsShape_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"PhysicsShape::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,PhysicsShape*))
-CATE(TE,"PhysicsShapeRef::refset expects PhysicsShapeRef as first argument."));
-CATE(TE,"PhysicsShape objects are not copyable."));
-RET CN;
-}
-
-void PhysicsShape_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,PhysicsShape*))
-CATE(TE,"PhysicsShapeRef::__del__ expects PhysicsShapeRef as first argument."));
-PhysicsShape*obj=(PhysicsShape*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV PhysicsShape_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,PhysicsShape*))
-CATE(TE,FAE("PhysicsShapeRef's get method","PhysicsShapeRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("PhysicsShapePtr");
-EI(keyStr=="__new__")
-RET CNF(PhysicsShape_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(PhysicsShape_ptr_new);
-else
-CATE(KE,"Unknown member for PhysicsShapeRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(PhysicsShape_ptr_deref);
-if(keyStr=="refset")RET CNF(PhysicsShape_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=PhysicsShape_funcs;
-obj.typeID=EXT->PhysicsShape_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET PhysicsShape_get_member(ctx, &obj, key);
-}
-void PhysicsShape_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,PhysicsShape*))
-CATE(TE,FAE("PhysicsShapeRef's set method","PhysicsShapeRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=PhysicsShape_funcs;
-obj.typeID=EXT->PhysicsShape_typeID;
-obj.refCount=1;
-obj.data=f->data;
-PhysicsShape_set_member(ctx, &obj, key, value);
-}
-SV AudioDevice_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->AudioDevice;
-NO obj=(NO)AudioDevice_new(ctx, args2);
-obj->funcs=AudioDevice_ptr_funcs;
-obj->typeID=EXT->AudioDevice_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV AudioDevice_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"AudioDeviceRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,AudioDevice*))
-CATE(TE,"AudioDeviceRef::deref expects AudioDeviceRef as first argument."));
-RET CV(*(AudioDevice *)((NO)f)->data);
-}
-SV AudioDevice_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"AudioDevice::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,AudioDevice*))
-CATE(TE,"AudioDeviceRef::refset expects AudioDeviceRef as first argument."));
-*((AudioDevice *)((NO)f)->data) = val_to_c<AudioDevice>::f(ctx,a[1]);
-RET CN;
-}
-
-void AudioDevice_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,AudioDevice*))
-CATE(TE,"AudioDeviceRef::__del__ expects AudioDeviceRef as first argument."));
-SCRIPT_DELETE((AudioDevice *)f->data);
-}
-SV AudioDevice_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,AudioDevice*))
-CATE(TE,FAE("AudioDeviceRef's get method","AudioDeviceRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("AudioDevicePtr");
-EI(keyStr=="__new__")
-RET CNF(AudioDevice_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(AudioDevice_ptr_new);
-else
-CATE(KE,"Unknown member for AudioDeviceRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(AudioDevice_ptr_deref);
-if(keyStr=="refset")RET CNF(AudioDevice_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioDevice_funcs;
-obj.typeID=EXT->AudioDevice_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET AudioDevice_get_member(ctx, &obj, key);
-}
-void AudioDevice_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,AudioDevice*))
-CATE(TE,FAE("AudioDeviceRef's set method","AudioDeviceRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AudioDevice_funcs;
-obj.typeID=EXT->AudioDevice_typeID;
-obj.refCount=1;
-obj.data=f->data;
-AudioDevice_set_member(ctx, &obj, key, value);
-}
-SV RigidBodyList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RigidBodyList;
-NO obj=(NO)RigidBodyList_new(ctx, args2);
-obj->funcs=RigidBodyList_ptr_funcs;
-obj->typeID=EXT->RigidBodyList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RigidBodyList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RigidBodyListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<RigidBody*>*))
-CATE(TE,"RigidBodyListRef::deref expects RigidBodyListRef as first argument."));
-RET CV(*(List<RigidBody*> *)((NO)f)->data);
-}
-SV RigidBodyList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RigidBodyList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<RigidBody*>*))
-CATE(TE,"RigidBodyListRef::refset expects RigidBodyListRef as first argument."));
-*((List<RigidBody*> *)((NO)f)->data) = val_to_c<List<RigidBody*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void RigidBodyList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<RigidBody*>*))
-CATE(TE,"RigidBodyListRef::__del__ expects RigidBodyListRef as first argument."));
-SCRIPT_DELETE((List<RigidBody*> *)f->data);
-}
-SV RigidBodyList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<RigidBody*>*))
-CATE(TE,FAE("RigidBodyListRef's get method","RigidBodyListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RigidBodyListPtr");
-EI(keyStr=="__new__")
-RET CNF(RigidBodyList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RigidBodyList_ptr_new);
-else
-CATE(KE,"Unknown member for RigidBodyListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RigidBodyList_ptr_deref);
-if(keyStr=="refset")RET CNF(RigidBodyList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RigidBodyList_funcs;
-obj.typeID=EXT->RigidBodyList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RigidBodyList_get_member(ctx, &obj, key);
-}
-void RigidBodyList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<RigidBody*>*))
-CATE(TE,FAE("RigidBodyListRef's set method","RigidBodyListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RigidBodyList_funcs;
-obj.typeID=EXT->RigidBodyList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RigidBodyList_set_member(ctx, &obj, key, value);
-}
-SV UInt4_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->UInt4;
-NO obj=(NO)UInt4_new(ctx, args2);
-obj->funcs=UInt4_ptr_funcs;
-obj->typeID=EXT->UInt4_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV UInt4_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"UInt4Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,"UInt4Ref::deref expects UInt4Ref as first argument."));
-RET CV(*(T4<uint32_t> *)((NO)f)->data);
-}
-SV UInt4_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"UInt4::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,"UInt4Ref::refset expects UInt4Ref as first argument."));
-*((T4<uint32_t> *)((NO)f)->data) = val_to_c<T4<uint32_t>>::f(ctx,a[1]);
-RET CN;
-}
-
-void UInt4_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,"UInt4Ref::__del__ expects UInt4Ref as first argument."));
-SCRIPT_DELETE((T4<uint32_t> *)f->data);
-}
-SV UInt4_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,FAE("UInt4Ref's get method","UInt4Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("UInt4Ptr");
-EI(keyStr=="__new__")
-RET CNF(UInt4_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(UInt4_ptr_new);
-else
-CATE(KE,"Unknown member for UInt4Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(UInt4_ptr_deref);
-if(keyStr=="refset")RET CNF(UInt4_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt4_funcs;
-obj.typeID=EXT->UInt4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET UInt4_get_member(ctx, &obj, key);
-}
-void UInt4_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,T4<uint32_t>*))
-CATE(TE,FAE("UInt4Ref's set method","UInt4Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=UInt4_funcs;
-obj.typeID=EXT->UInt4_typeID;
-obj.refCount=1;
-obj.data=f->data;
-UInt4_set_member(ctx, &obj, key, value);
-}
-SV RayCastResult_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RayCastResult;
-NO obj=(NO)RayCastResult_new(ctx, args2);
-obj->funcs=RayCastResult_ptr_funcs;
-obj->typeID=EXT->RayCastResult_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RayCastResult_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RayCastResultRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,RayCastResult*))
-CATE(TE,"RayCastResultRef::deref expects RayCastResultRef as first argument."));
-RET CV(*(RayCastResult *)((NO)f)->data);
-}
-SV RayCastResult_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RayCastResult::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,RayCastResult*))
-CATE(TE,"RayCastResultRef::refset expects RayCastResultRef as first argument."));
-*((RayCastResult *)((NO)f)->data) = val_to_c<RayCastResult>::f(ctx,a[1]);
-RET CN;
-}
-
-void RayCastResult_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,RayCastResult*))
-CATE(TE,"RayCastResultRef::__del__ expects RayCastResultRef as first argument."));
-SCRIPT_DELETE((RayCastResult *)f->data);
-}
-SV RayCastResult_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,RayCastResult*))
-CATE(TE,FAE("RayCastResultRef's get method","RayCastResultRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RayCastResultPtr");
-EI(keyStr=="__new__")
-RET CNF(RayCastResult_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RayCastResult_ptr_new);
-else
-CATE(KE,"Unknown member for RayCastResultRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RayCastResult_ptr_deref);
-if(keyStr=="refset")RET CNF(RayCastResult_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RayCastResult_funcs;
-obj.typeID=EXT->RayCastResult_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RayCastResult_get_member(ctx, &obj, key);
-}
-void RayCastResult_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,RayCastResult*))
-CATE(TE,FAE("RayCastResultRef's set method","RayCastResultRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RayCastResult_funcs;
-obj.typeID=EXT->RayCastResult_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RayCastResult_set_member(ctx, &obj, key, value);
-}
-SV GfxLOD_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxLOD;
-NO obj=(NO)GfxLOD_new(ctx, args2);
-obj->funcs=GfxLOD_ptr_funcs;
-obj->typeID=EXT->GfxLOD_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxLOD_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxLODRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxLOD*))
-CATE(TE,"GfxLODRef::deref expects GfxLODRef as first argument."));
-RET CV(*(GfxLOD *)((NO)f)->data);
-}
-SV GfxLOD_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxLOD::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxLOD*))
-CATE(TE,"GfxLODRef::refset expects GfxLODRef as first argument."));
-*((GfxLOD *)((NO)f)->data) = val_to_c<GfxLOD>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxLOD_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxLOD*))
-CATE(TE,"GfxLODRef::__del__ expects GfxLODRef as first argument."));
-SCRIPT_DELETE((GfxLOD *)f->data);
-}
-SV GfxLOD_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxLOD*))
-CATE(TE,FAE("GfxLODRef's get method","GfxLODRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxLODPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxLOD_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxLOD_ptr_new);
-else
-CATE(KE,"Unknown member for GfxLODRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxLOD_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxLOD_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxLOD_funcs;
-obj.typeID=EXT->GfxLOD_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxLOD_get_member(ctx, &obj, key);
-}
-void GfxLOD_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxLOD*))
-CATE(TE,FAE("GfxLODRef's set method","GfxLODRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxLOD_funcs;
-obj.typeID=EXT->GfxLOD_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxLOD_set_member(ctx, &obj, key, value);
-}
-SV File_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->File;
-NO obj=(NO)File_new(ctx, args2);
-obj->funcs=File_ptr_funcs;
-obj->typeID=EXT->File_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV File_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"FileRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,File*))
-CATE(TE,"FileRef::deref expects FileRef as first argument."));
-CATE(TE,"File objects are not copyable."));
-}
-SV File_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"File::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,File*))
-CATE(TE,"FileRef::refset expects FileRef as first argument."));
-CATE(TE,"File objects are not copyable."));
-RET CN;
-}
-
-void File_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,File*))
-CATE(TE,"FileRef::__del__ expects FileRef as first argument."));
-SCRIPT_DELETE((File *)f->data);
-}
-SV File_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,File*))
-CATE(TE,FAE("FileRef's get method","FileRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("FilePtr");
-EI(keyStr=="__new__")
-RET CNF(File_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(File_ptr_new);
-else
-CATE(KE,"Unknown member for FileRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(File_ptr_deref);
-if(keyStr=="refset")RET CNF(File_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=File_funcs;
-obj.typeID=EXT->File_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET File_get_member(ctx, &obj, key);
-}
-void File_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,File*))
-CATE(TE,FAE("FileRef's set method","FileRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=File_funcs;
-obj.typeID=EXT->File_typeID;
-obj.refCount=1;
-obj.data=f->data;
-File_set_member(ctx, &obj, key, value);
-}
-SV AABB_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->AABB;
-NO obj=(NO)AABB_new(ctx, args2);
-obj->funcs=AABB_ptr_funcs;
-obj->typeID=EXT->AABB_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV AABB_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"AABBRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,AABB*))
-CATE(TE,"AABBRef::deref expects AABBRef as first argument."));
-RET CV(*(AABB *)((NO)f)->data);
-}
-SV AABB_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"AABB::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,AABB*))
-CATE(TE,"AABBRef::refset expects AABBRef as first argument."));
-*((AABB *)((NO)f)->data) = val_to_c<AABB>::f(ctx,a[1]);
-RET CN;
-}
-
-void AABB_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,AABB*))
-CATE(TE,"AABBRef::__del__ expects AABBRef as first argument."));
-SCRIPT_DELETE((AABB *)f->data);
-}
-SV AABB_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,AABB*))
-CATE(TE,FAE("AABBRef's get method","AABBRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("AABBPtr");
-EI(keyStr=="__new__")
-RET CNF(AABB_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(AABB_ptr_new);
-else
-CATE(KE,"Unknown member for AABBRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(AABB_ptr_deref);
-if(keyStr=="refset")RET CNF(AABB_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AABB_funcs;
-obj.typeID=EXT->AABB_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET AABB_get_member(ctx, &obj, key);
-}
-void AABB_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,AABB*))
-CATE(TE,FAE("AABBRef's set method","AABBRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=AABB_funcs;
-obj.typeID=EXT->AABB_typeID;
-obj.refCount=1;
-obj.data=f->data;
-AABB_set_member(ctx, &obj, key, value);
-}
-SV RigidBodyConstructionInfo_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->RigidBodyConstructionInfo;
-NO obj=(NO)RigidBodyConstructionInfo_new(ctx, args2);
-obj->funcs=RigidBodyConstructionInfo_ptr_funcs;
-obj->typeID=EXT->RigidBodyConstructionInfo_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV RigidBodyConstructionInfo_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"RigidBodyConstructionInfoRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,RigidBodyConstructionInfo*))
-CATE(TE,"RigidBodyConstructionInfoRef::deref expects RigidBodyConstructionInfoRef as first argument."));
-RET CV(*(RigidBodyConstructionInfo *)((NO)f)->data);
-}
-SV RigidBodyConstructionInfo_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"RigidBodyConstructionInfo::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,RigidBodyConstructionInfo*))
-CATE(TE,"RigidBodyConstructionInfoRef::refset expects RigidBodyConstructionInfoRef as first argument."));
-*((RigidBodyConstructionInfo *)((NO)f)->data) = val_to_c<RigidBodyConstructionInfo>::f(ctx,a[1]);
-RET CN;
-}
-
-void RigidBodyConstructionInfo_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,RigidBodyConstructionInfo*))
-CATE(TE,"RigidBodyConstructionInfoRef::__del__ expects RigidBodyConstructionInfoRef as first argument."));
-SCRIPT_DELETE((RigidBodyConstructionInfo *)f->data);
-}
-SV RigidBodyConstructionInfo_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,RigidBodyConstructionInfo*))
-CATE(TE,FAE("RigidBodyConstructionInfoRef's get method","RigidBodyConstructionInfoRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("RigidBodyConstructionInfoPtr");
-EI(keyStr=="__new__")
-RET CNF(RigidBodyConstructionInfo_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(RigidBodyConstructionInfo_ptr_new);
-else
-CATE(KE,"Unknown member for RigidBodyConstructionInfoRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(RigidBodyConstructionInfo_ptr_deref);
-if(keyStr=="refset")RET CNF(RigidBodyConstructionInfo_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RigidBodyConstructionInfo_funcs;
-obj.typeID=EXT->RigidBodyConstructionInfo_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET RigidBodyConstructionInfo_get_member(ctx, &obj, key);
-}
-void RigidBodyConstructionInfo_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,RigidBodyConstructionInfo*))
-CATE(TE,FAE("RigidBodyConstructionInfoRef's set method","RigidBodyConstructionInfoRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=RigidBodyConstructionInfo_funcs;
-obj.typeID=EXT->RigidBodyConstructionInfo_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RigidBodyConstructionInfo_set_member(ctx, &obj, key, value);
-}
-SV List_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->List;
-NO obj=(NO)List_new(ctx, args2);
-obj->funcs=List_ptr_funcs;
-obj->typeID=EXT->List_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV List_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"ListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<scripting::Value*>*))
-CATE(TE,"ListRef::deref expects ListRef as first argument."));
-RET CV(*(List<scripting::Value*> *)((NO)f)->data);
-}
-SV List_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"List::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<scripting::Value*>*))
-CATE(TE,"ListRef::refset expects ListRef as first argument."));
-*((List<scripting::Value*> *)((NO)f)->data) = val_to_c<List<scripting::Value*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void List_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<scripting::Value*>*))
-CATE(TE,"ListRef::__del__ expects ListRef as first argument."));
-SCRIPT_DELETE((List<scripting::Value*> *)f->data);
-}
-SV List_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<scripting::Value*>*))
-CATE(TE,FAE("ListRef's get method","ListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("ListPtr");
-EI(keyStr=="__new__")
-RET CNF(List_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(List_ptr_new);
-else
-CATE(KE,"Unknown member for ListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(List_ptr_deref);
-if(keyStr=="refset")RET CNF(List_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=List_funcs;
-obj.typeID=EXT->List_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET List_get_member(ctx, &obj, key);
-}
-void List_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<scripting::Value*>*))
-CATE(TE,FAE("ListRef's set method","ListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=List_funcs;
-obj.typeID=EXT->List_typeID;
-obj.refCount=1;
-obj.data=f->data;
-List_set_member(ctx, &obj, key, value);
-}
-SV Audio_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Audio;
-NO obj=(NO)Audio_new(ctx, args2);
-obj->funcs=Audio_ptr_funcs;
-obj->typeID=EXT->Audio_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Audio_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"AudioRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Audio*))
-CATE(TE,"AudioRef::deref expects AudioRef as first argument."));
-CATE(TE,"Audio objects are not copyable."));
-}
-SV Audio_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Audio::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Audio*))
-CATE(TE,"AudioRef::refset expects AudioRef as first argument."));
-CATE(TE,"Audio objects are not copyable."));
-RET CN;
-}
-
-void Audio_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Audio*))
-CATE(TE,"AudioRef::__del__ expects AudioRef as first argument."));
-Audio*obj=(Audio*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV Audio_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Audio*))
-CATE(TE,FAE("AudioRef's get method","AudioRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("AudioPtr");
-EI(keyStr=="__new__")
-RET CNF(Audio_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Audio_ptr_new);
-else
-CATE(KE,"Unknown member for AudioRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(Audio_ptr_deref);
-if(keyStr=="refset")RET CNF(Audio_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Audio_funcs;
-obj.typeID=EXT->Audio_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Audio_get_member(ctx, &obj, key);
-}
-void Audio_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Audio*))
-CATE(TE,FAE("AudioRef's set method","AudioRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Audio_funcs;
-obj.typeID=EXT->Audio_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Audio_set_member(ctx, &obj, key, value);
-}
-SV GfxTexture_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxTexture;
-NO obj=(NO)GfxTexture_new(ctx, args2);
-obj->funcs=GfxTexture_ptr_funcs;
-obj->typeID=EXT->GfxTexture_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxTexture_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxTextureRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxTexture*))
-CATE(TE,"GfxTextureRef::deref expects GfxTextureRef as first argument."));
-CATE(TE,"GfxTexture objects are not copyable."));
-}
-SV GfxTexture_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxTexture::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxTexture*))
-CATE(TE,"GfxTextureRef::refset expects GfxTextureRef as first argument."));
-CATE(TE,"GfxTexture objects are not copyable."));
-RET CN;
-}
-
-void GfxTexture_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxTexture*))
-CATE(TE,"GfxTextureRef::__del__ expects GfxTextureRef as first argument."));
-GfxTexture*obj=(GfxTexture*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV GfxTexture_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxTexture*))
-CATE(TE,FAE("GfxTextureRef's get method","GfxTextureRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxTexturePtr");
-EI(keyStr=="__new__")
-RET CNF(GfxTexture_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxTexture_ptr_new);
-else
-CATE(KE,"Unknown member for GfxTextureRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxTexture_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxTexture_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxTexture_funcs;
-obj.typeID=EXT->GfxTexture_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxTexture_get_member(ctx, &obj, key);
-}
-void GfxTexture_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxTexture*))
-CATE(TE,FAE("GfxTextureRef's set method","GfxTextureRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxTexture_funcs;
-obj.typeID=EXT->GfxTexture_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxTexture_set_member(ctx, &obj, key, value);
-}
-SV GfxSubModelList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxSubModelList;
-NO obj=(NO)GfxSubModelList_new(ctx, args2);
-obj->funcs=GfxSubModelList_ptr_funcs;
-obj->typeID=EXT->GfxSubModelList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxSubModelList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxSubModelListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<GfxModel::SubModel>*))
-CATE(TE,"GfxSubModelListRef::deref expects GfxSubModelListRef as first argument."));
-RET CV(*(List<GfxModel::SubModel> *)((NO)f)->data);
-}
-SV GfxSubModelList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxSubModelList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<GfxModel::SubModel>*))
-CATE(TE,"GfxSubModelListRef::refset expects GfxSubModelListRef as first argument."));
-*((List<GfxModel::SubModel> *)((NO)f)->data) = val_to_c<List<GfxModel::SubModel>>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxSubModelList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<GfxModel::SubModel>*))
-CATE(TE,"GfxSubModelListRef::__del__ expects GfxSubModelListRef as first argument."));
-SCRIPT_DELETE((List<GfxModel::SubModel> *)f->data);
-}
-SV GfxSubModelList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<GfxModel::SubModel>*))
-CATE(TE,FAE("GfxSubModelListRef's get method","GfxSubModelListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxSubModelListPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxSubModelList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxSubModelList_ptr_new);
-else
-CATE(KE,"Unknown member for GfxSubModelListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxSubModelList_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxSubModelList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxSubModelList_funcs;
-obj.typeID=EXT->GfxSubModelList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxSubModelList_get_member(ctx, &obj, key);
-}
-void GfxSubModelList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<GfxModel::SubModel>*))
-CATE(TE,FAE("GfxSubModelListRef's set method","GfxSubModelListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxSubModelList_funcs;
-obj.typeID=EXT->GfxSubModelList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxSubModelList_set_member(ctx, &obj, key, value);
-}
-SV GfxModel_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxModel;
-NO obj=(NO)GfxModel_new(ctx, args2);
-obj->funcs=GfxModel_ptr_funcs;
-obj->typeID=EXT->GfxModel_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxModel_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxModelRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxModel*))
-CATE(TE,"GfxModelRef::deref expects GfxModelRef as first argument."));
-CATE(TE,"GfxModel objects are not copyable."));
-}
-SV GfxModel_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxModel::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxModel*))
-CATE(TE,"GfxModelRef::refset expects GfxModelRef as first argument."));
-CATE(TE,"GfxModel objects are not copyable."));
-RET CN;
-}
-
-void GfxModel_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxModel*))
-CATE(TE,"GfxModelRef::__del__ expects GfxModelRef as first argument."));
-GfxModel*obj=(GfxModel*)f->data;
-if(_scriptDeletePart(f->data) && (obj != NULL)) {obj->release();}
-}
-SV GfxModel_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxModel*))
-CATE(TE,FAE("GfxModelRef's get method","GfxModelRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxModelPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxModel_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxModel_ptr_new);
-else
-CATE(KE,"Unknown member for GfxModelRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxModel_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxModel_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxModel_funcs;
-obj.typeID=EXT->GfxModel_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxModel_get_member(ctx, &obj, key);
-}
-void GfxModel_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxModel*))
-CATE(TE,FAE("GfxModelRef's set method","GfxModelRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxModel_funcs;
-obj.typeID=EXT->GfxModel_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxModel_set_member(ctx, &obj, key, value);
-}
-SV GfxLODList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxLODList;
-NO obj=(NO)GfxLODList_new(ctx, args2);
-obj->funcs=GfxLODList_ptr_funcs;
-obj->typeID=EXT->GfxLODList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxLODList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxLODListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<GfxLOD>*))
-CATE(TE,"GfxLODListRef::deref expects GfxLODListRef as first argument."));
-RET CV(*(List<GfxLOD> *)((NO)f)->data);
-}
-SV GfxLODList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxLODList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<GfxLOD>*))
-CATE(TE,"GfxLODListRef::refset expects GfxLODListRef as first argument."));
-*((List<GfxLOD> *)((NO)f)->data) = val_to_c<List<GfxLOD>>::f(ctx,a[1]);
-RET CN;
-}
-
-void GfxLODList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<GfxLOD>*))
-CATE(TE,"GfxLODListRef::__del__ expects GfxLODListRef as first argument."));
-SCRIPT_DELETE((List<GfxLOD> *)f->data);
-}
-SV GfxLODList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<GfxLOD>*))
-CATE(TE,FAE("GfxLODListRef's get method","GfxLODListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxLODListPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxLODList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxLODList_ptr_new);
-else
-CATE(KE,"Unknown member for GfxLODListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxLODList_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxLODList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxLODList_funcs;
-obj.typeID=EXT->GfxLODList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxLODList_get_member(ctx, &obj, key);
-}
-void GfxLODList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<GfxLOD>*))
-CATE(TE,FAE("GfxLODListRef's set method","GfxLODListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxLODList_funcs;
-obj.typeID=EXT->GfxLODList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxLODList_set_member(ctx, &obj, key, value);
-}
-SV EntityList_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->EntityList;
-NO obj=(NO)EntityList_new(ctx, args2);
-obj->funcs=EntityList_ptr_funcs;
-obj->typeID=EXT->EntityList_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV EntityList_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"EntityListRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,List<Entity*>*))
-CATE(TE,"EntityListRef::deref expects EntityListRef as first argument."));
-RET CV(*(List<Entity*> *)((NO)f)->data);
-}
-SV EntityList_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"EntityList::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,List<Entity*>*))
-CATE(TE,"EntityListRef::refset expects EntityListRef as first argument."));
-*((List<Entity*> *)((NO)f)->data) = val_to_c<List<Entity*>>::f(ctx,a[1]);
-RET CN;
-}
-
-void EntityList_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,List<Entity*>*))
-CATE(TE,"EntityListRef::__del__ expects EntityListRef as first argument."));
-SCRIPT_DELETE((List<Entity*> *)f->data);
-}
-SV EntityList_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,List<Entity*>*))
-CATE(TE,FAE("EntityListRef's get method","EntityListRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("EntityListPtr");
-EI(keyStr=="__new__")
-RET CNF(EntityList_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(EntityList_ptr_new);
-else
-CATE(KE,"Unknown member for EntityListRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(EntityList_ptr_deref);
-if(keyStr=="refset")RET CNF(EntityList_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=EntityList_funcs;
-obj.typeID=EXT->EntityList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET EntityList_get_member(ctx, &obj, key);
-}
-void EntityList_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,List<Entity*>*))
-CATE(TE,FAE("EntityListRef's set method","EntityListRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=EntityList_funcs;
-obj.typeID=EXT->EntityList_typeID;
-obj.refCount=1;
-obj.data=f->data;
-EntityList_set_member(ctx, &obj, key, value);
-}
-SV GfxShaderCombination_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxShaderCombination;
-NO obj=(NO)GfxShaderCombination_new(ctx, args2);
-obj->funcs=GfxShaderCombination_ptr_funcs;
-obj->typeID=EXT->GfxShaderCombination_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxShaderCombination_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxShaderCombinationRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxShaderCombination*))
-CATE(TE,"GfxShaderCombinationRef::deref expects GfxShaderCombinationRef as first argument."));
-CATE(TE,"GfxShaderCombination objects are not copyable."));
-}
-SV GfxShaderCombination_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxShaderCombination::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxShaderCombination*))
-CATE(TE,"GfxShaderCombinationRef::refset expects GfxShaderCombinationRef as first argument."));
-CATE(TE,"GfxShaderCombination objects are not copyable."));
-RET CN;
-}
-
-void GfxShaderCombination_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxShaderCombination*))
-CATE(TE,"GfxShaderCombinationRef::__del__ expects GfxShaderCombinationRef as first argument."));
-SCRIPT_DELETE((GfxShaderCombination *)f->data);
-}
-SV GfxShaderCombination_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxShaderCombination*))
-CATE(TE,FAE("GfxShaderCombinationRef's get method","GfxShaderCombinationRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxShaderCombinationPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxShaderCombination_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxShaderCombination_ptr_new);
-else
-CATE(KE,"Unknown member for GfxShaderCombinationRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxShaderCombination_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxShaderCombination_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxShaderCombination_funcs;
-obj.typeID=EXT->GfxShaderCombination_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxShaderCombination_get_member(ctx, &obj, key);
-}
-void GfxShaderCombination_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxShaderCombination*))
-CATE(TE,FAE("GfxShaderCombinationRef's set method","GfxShaderCombinationRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxShaderCombination_funcs;
-obj.typeID=EXT->GfxShaderCombination_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxShaderCombination_set_member(ctx, &obj, key, value);
-}
-SV Matrix3x3_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->Matrix3x3;
-NO obj=(NO)Matrix3x3_new(ctx, args2);
-obj->funcs=Matrix3x3_ptr_funcs;
-obj->typeID=EXT->Matrix3x3_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV Matrix3x3_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"Matrix3x3Ref::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,Matrix3x3*))
-CATE(TE,"Matrix3x3Ref::deref expects Matrix3x3Ref as first argument."));
-RET CV(*(Matrix3x3 *)((NO)f)->data);
-}
-SV Matrix3x3_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"Matrix3x3::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,Matrix3x3*))
-CATE(TE,"Matrix3x3Ref::refset expects Matrix3x3Ref as first argument."));
-*((Matrix3x3 *)((NO)f)->data) = val_to_c<Matrix3x3>::f(ctx,a[1]);
-RET CN;
-}
-
-void Matrix3x3_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,Matrix3x3*))
-CATE(TE,"Matrix3x3Ref::__del__ expects Matrix3x3Ref as first argument."));
-SCRIPT_DELETE((Matrix3x3 *)f->data);
-}
-SV Matrix3x3_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,Matrix3x3*))
-CATE(TE,FAE("Matrix3x3Ref's get method","Matrix3x3Ref")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("Matrix3x3Ptr");
-EI(keyStr=="__new__")
-RET CNF(Matrix3x3_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(Matrix3x3_ptr_new);
-else
-CATE(KE,"Unknown member for Matrix3x3Ref."));
-} else
-{
-if(keyStr=="deref")RET CNF(Matrix3x3_ptr_deref);
-if(keyStr=="refset")RET CNF(Matrix3x3_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Matrix3x3_funcs;
-obj.typeID=EXT->Matrix3x3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET Matrix3x3_get_member(ctx, &obj, key);
-}
-void Matrix3x3_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,Matrix3x3*))
-CATE(TE,FAE("Matrix3x3Ref's set method","Matrix3x3Ref")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=Matrix3x3_funcs;
-obj.typeID=EXT->Matrix3x3_typeID;
-obj.refCount=1;
-obj.data=f->data;
-Matrix3x3_set_member(ctx, &obj, key, value);
-}
-SV GfxDebugDrawer_ptr_new(CTX ctx,const List<SV>&a)
-{
-List<SV> args2 = a.copy();
-args2[0]=EXT->GfxDebugDrawer;
-NO obj=(NO)GfxDebugDrawer_new(ctx, args2);
-obj->funcs=GfxDebugDrawer_ptr_funcs;
-obj->typeID=EXT->GfxDebugDrawer_ptr_typeID;
-setAllocInfo(obj->data, AllocInfo(true, false));
-RET(SV)obj;
-}
-SV GfxDebugDrawer_ptr_deref(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=1)
-CATE(VE,"GfxDebugDrawerRef::deref" EAOE));
-SV f=a[0];
-if(!TS((SV)f,GfxDebugDrawer*))
-CATE(TE,"GfxDebugDrawerRef::deref expects GfxDebugDrawerRef as first argument."));
-CATE(TE,"GfxDebugDrawer objects are not copyable."));
-}
-SV GfxDebugDrawer_ptr_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,"GfxDebugDrawer::refset expects two arguments."));
-SV f=a[0];
-if(!TS((SV)f,GfxDebugDrawer*))
-CATE(TE,"GfxDebugDrawerRef::refset expects GfxDebugDrawerRef as first argument."));
-CATE(TE,"GfxDebugDrawer objects are not copyable."));
-RET CN;
-}
-
-void GfxDebugDrawer_ptr_destroy(CTX ctx,NO f)
-{
-if(!TS((SV)f,GfxDebugDrawer*))
-CATE(TE,"GfxDebugDrawerRef::__del__ expects GfxDebugDrawerRef as first argument."));
-SCRIPT_DELETE((GfxDebugDrawer *)f->data);
-}
-SV GfxDebugDrawer_ptr_get_member(CTX ctx,NO f,SV key)
-{
-if(!TS((SV)f,GfxDebugDrawer*))
-CATE(TE,FAE("GfxDebugDrawerRef's get method","GfxDebugDrawerRef")));
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxDebugDrawerPtr");
-EI(keyStr=="__new__")
-RET CNF(GfxDebugDrawer_ptr_new);
-EI(keyStr=="__call__")
-RET CNF(GfxDebugDrawer_ptr_new);
-else
-CATE(KE,"Unknown member for GfxDebugDrawerRef."));
-} else
-{
-if(keyStr=="deref")RET CNF(GfxDebugDrawer_ptr_deref);
-if(keyStr=="refset")RET CNF(GfxDebugDrawer_ptr_set);
-}
-}
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxDebugDrawer_funcs;
-obj.typeID=EXT->GfxDebugDrawer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-RET GfxDebugDrawer_get_member(ctx, &obj, key);
-}
-void GfxDebugDrawer_ptr_set_member(CTX ctx,NO f,SV key,SV value)
-{
-if(!TS((SV)f,GfxDebugDrawer*))
-CATE(TE,FAE("GfxDebugDrawerRef's set method","GfxDebugDrawerRef")));
-STG::NativeObject obj;
-obj.head.type=STG::ValueType::NativeObject;
-obj.funcs=GfxDebugDrawer_funcs;
-obj.typeID=EXT->GfxDebugDrawer_typeID;
-obj.refCount=1;
-obj.data=f->data;
-GfxDebugDrawer_set_member(ctx, &obj, key, value);
-}
 namespace scripting
 {
 SV create(CTX ctx,const HashMap<String,String>& value){RET CV(value);}
@@ -56466,19 +50004,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GhostObject", ext->GhostObject);
     
     typeID = engine->createNewTypeID();
-    ext->GhostObject_ptr_typeID = typeID;
-    ext->GhostObject_ptr = scripting::createNativeObject(GhostObject_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GhostObjectRef", ext->GhostObject_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->StrStrMap_typeID = typeID;
     ext->StrStrMap = scripting::createNativeObject(StrStrMap_funcs, NULL, typeID);
     engine->getGlobalVars().set("StrStrMap", ext->StrStrMap);
-    
-    typeID = engine->createNewTypeID();
-    ext->StrStrMap_ptr_typeID = typeID;
-    ext->StrStrMap_ptr = scripting::createNativeObject(StrStrMap_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("StrStrMapRef", ext->StrStrMap_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxApi_typeID = typeID;
@@ -56486,19 +50014,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxApi", ext->GfxApi);
     
     typeID = engine->createNewTypeID();
-    ext->GfxApi_ptr_typeID = typeID;
-    ext->GfxApi_ptr = scripting::createNativeObject(GfxApi_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxApiRef", ext->GfxApi_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxCompiledShader_typeID = typeID;
     ext->GfxCompiledShader = scripting::createNativeObject(GfxCompiledShader_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxCompiledShader", ext->GfxCompiledShader);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxCompiledShader_ptr_typeID = typeID;
-    ext->GfxCompiledShader_ptr = scripting::createNativeObject(GfxCompiledShader_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxCompiledShaderRef", ext->GfxCompiledShader_ptr);
     
     typeID = engine->createNewTypeID();
     ext->ScrollBar_typeID = typeID;
@@ -56506,19 +50024,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("ScrollBar", ext->ScrollBar);
     
     typeID = engine->createNewTypeID();
-    ext->ScrollBar_ptr_typeID = typeID;
-    ext->ScrollBar_ptr = scripting::createNativeObject(ScrollBar_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ScrollBarRef", ext->ScrollBar_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GhostObjList_typeID = typeID;
     ext->GhostObjList = scripting::createNativeObject(GhostObjList_funcs, NULL, typeID);
     engine->getGlobalVars().set("GhostObjList", ext->GhostObjList);
-    
-    typeID = engine->createNewTypeID();
-    ext->GhostObjList_ptr_typeID = typeID;
-    ext->GhostObjList_ptr = scripting::createNativeObject(GhostObjList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GhostObjListRef", ext->GhostObjList_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GPUTimer_typeID = typeID;
@@ -56526,19 +50034,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GPUTimer", ext->GPUTimer);
     
     typeID = engine->createNewTypeID();
-    ext->GPUTimer_ptr_typeID = typeID;
-    ext->GPUTimer_ptr = scripting::createNativeObject(GPUTimer_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GPUTimerRef", ext->GPUTimer_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->RigidBody_typeID = typeID;
     ext->RigidBody = scripting::createNativeObject(RigidBody_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBody", ext->RigidBody);
-    
-    typeID = engine->createNewTypeID();
-    ext->RigidBody_ptr_typeID = typeID;
-    ext->RigidBody_ptr = scripting::createNativeObject(RigidBody_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RigidBodyRef", ext->RigidBody_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt2_typeID = typeID;
@@ -56546,19 +50044,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("UInt2", ext->UInt2);
     
     typeID = engine->createNewTypeID();
-    ext->UInt2_ptr_typeID = typeID;
-    ext->UInt2_ptr = scripting::createNativeObject(UInt2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt2Ref", ext->UInt2_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->LightList_typeID = typeID;
     ext->LightList = scripting::createNativeObject(LightList_funcs, NULL, typeID);
     engine->getGlobalVars().set("LightList", ext->LightList);
-    
-    typeID = engine->createNewTypeID();
-    ext->LightList_ptr_typeID = typeID;
-    ext->LightList_ptr = scripting::createNativeObject(LightList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("LightListRef", ext->LightList_ptr);
     
     typeID = engine->createNewTypeID();
     ext->RenderStats_typeID = typeID;
@@ -56566,19 +50054,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("RenderStats", ext->RenderStats);
     
     typeID = engine->createNewTypeID();
-    ext->RenderStats_ptr_typeID = typeID;
-    ext->RenderStats_ptr = scripting::createNativeObject(RenderStats_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RenderStatsRef", ext->RenderStats_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Filesystem_typeID = typeID;
     ext->Filesystem = scripting::createNativeObject(Filesystem_funcs, NULL, typeID);
     engine->getGlobalVars().set("Filesystem", ext->Filesystem);
-    
-    typeID = engine->createNewTypeID();
-    ext->Filesystem_ptr_typeID = typeID;
-    ext->Filesystem_ptr = scripting::createNativeObject(Filesystem_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("FilesystemRef", ext->Filesystem_ptr);
     
     typeID = engine->createNewTypeID();
     ext->ResourceManager_typeID = typeID;
@@ -56586,19 +50064,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("ResourceManager", ext->ResourceManager);
     
     typeID = engine->createNewTypeID();
-    ext->ResourceManager_ptr_typeID = typeID;
-    ext->ResourceManager_ptr = scripting::createNativeObject(ResourceManager_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ResourceManagerRef", ext->ResourceManager_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Entity_typeID = typeID;
     ext->Entity = scripting::createNativeObject(Entity_funcs, NULL, typeID);
     engine->getGlobalVars().set("Entity", ext->Entity);
-    
-    typeID = engine->createNewTypeID();
-    ext->Entity_ptr_typeID = typeID;
-    ext->Entity_ptr = scripting::createNativeObject(Entity_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("EntityRef", ext->Entity_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxRenderer_typeID = typeID;
@@ -56606,19 +50074,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxRenderer", ext->GfxRenderer);
     
     typeID = engine->createNewTypeID();
-    ext->GfxRenderer_ptr_typeID = typeID;
-    ext->GfxRenderer_ptr = scripting::createNativeObject(GfxRenderer_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxRendererRef", ext->GfxRenderer_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Float2_typeID = typeID;
     ext->Float2 = scripting::createNativeObject(Float2_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float2", ext->Float2);
-    
-    typeID = engine->createNewTypeID();
-    ext->Float2_ptr_typeID = typeID;
-    ext->Float2_ptr = scripting::createNativeObject(Float2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float2Ref", ext->Float2_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxFramebuffer_typeID = typeID;
@@ -56626,19 +50084,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxFramebuffer", ext->GfxFramebuffer);
     
     typeID = engine->createNewTypeID();
-    ext->GfxFramebuffer_ptr_typeID = typeID;
-    ext->GfxFramebuffer_ptr = scripting::createNativeObject(GfxFramebuffer_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxFramebufferRef", ext->GfxFramebuffer_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Font_typeID = typeID;
     ext->Font = scripting::createNativeObject(Font_funcs, NULL, typeID);
     engine->getGlobalVars().set("Font", ext->Font);
-    
-    typeID = engine->createNewTypeID();
-    ext->Font_ptr_typeID = typeID;
-    ext->Font_ptr = scripting::createNativeObject(Font_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("FontRef", ext->Font_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Event_typeID = typeID;
@@ -56646,19 +50094,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Event", ext->Event);
     
     typeID = engine->createNewTypeID();
-    ext->Event_ptr_typeID = typeID;
-    ext->Event_ptr = scripting::createNativeObject(Event_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("EventRef", ext->Event_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->PhysicsWorld_typeID = typeID;
     ext->PhysicsWorld = scripting::createNativeObject(PhysicsWorld_funcs, NULL, typeID);
     engine->getGlobalVars().set("PhysicsWorld", ext->PhysicsWorld);
-    
-    typeID = engine->createNewTypeID();
-    ext->PhysicsWorld_ptr_typeID = typeID;
-    ext->PhysicsWorld_ptr = scripting::createNativeObject(PhysicsWorld_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("PhysicsWorldRef", ext->PhysicsWorld_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Stats_typeID = typeID;
@@ -56666,19 +50104,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Stats", ext->Stats);
     
     typeID = engine->createNewTypeID();
-    ext->Stats_ptr_typeID = typeID;
-    ext->Stats_ptr = scripting::createNativeObject(Stats_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("StatsRef", ext->Stats_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->AudioSource_typeID = typeID;
     ext->AudioSource = scripting::createNativeObject(AudioSource_funcs, NULL, typeID);
     engine->getGlobalVars().set("AudioSource", ext->AudioSource);
-    
-    typeID = engine->createNewTypeID();
-    ext->AudioSource_ptr_typeID = typeID;
-    ext->AudioSource_ptr = scripting::createNativeObject(AudioSource_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AudioSourceRef", ext->AudioSource_ptr);
     
     typeID = engine->createNewTypeID();
     ext->RayCastResultList_typeID = typeID;
@@ -56686,19 +50114,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("RayCastResultList", ext->RayCastResultList);
     
     typeID = engine->createNewTypeID();
-    ext->RayCastResultList_ptr_typeID = typeID;
-    ext->RayCastResultList_ptr = scripting::createNativeObject(RayCastResultList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RayCastResultListRef", ext->RayCastResultList_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Platform_typeID = typeID;
     ext->Platform = scripting::createNativeObject(Platform_funcs, NULL, typeID);
     engine->getGlobalVars().set("Platform", ext->Platform);
-    
-    typeID = engine->createNewTypeID();
-    ext->Platform_ptr_typeID = typeID;
-    ext->Platform_ptr = scripting::createNativeObject(Platform_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("PlatformRef", ext->Platform_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Camera_typeID = typeID;
@@ -56706,19 +50124,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Camera", ext->Camera);
     
     typeID = engine->createNewTypeID();
-    ext->Camera_ptr_typeID = typeID;
-    ext->Camera_ptr = scripting::createNativeObject(Camera_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("CameraRef", ext->Camera_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxMesh_typeID = typeID;
     ext->GfxMesh = scripting::createNativeObject(GfxMesh_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxMesh", ext->GfxMesh);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxMesh_ptr_typeID = typeID;
-    ext->GfxMesh_ptr = scripting::createNativeObject(GfxMesh_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxMeshRef", ext->GfxMesh_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Resource_typeID = typeID;
@@ -56726,19 +50134,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Resource", ext->Resource);
     
     typeID = engine->createNewTypeID();
-    ext->Resource_ptr_typeID = typeID;
-    ext->Resource_ptr = scripting::createNativeObject(Resource_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ResourceRef", ext->Resource_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxShader_typeID = typeID;
     ext->GfxShader = scripting::createNativeObject(GfxShader_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxShader", ext->GfxShader);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxShader_ptr_typeID = typeID;
-    ext->GfxShader_ptr = scripting::createNativeObject(GfxShader_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxShaderRef", ext->GfxShader_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Light_typeID = typeID;
@@ -56746,19 +50144,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Light", ext->Light);
     
     typeID = engine->createNewTypeID();
-    ext->Light_ptr_typeID = typeID;
-    ext->Light_ptr = scripting::createNativeObject(Light_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("LightRef", ext->Light_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->TextureSampler_typeID = typeID;
     ext->TextureSampler = scripting::createNativeObject(TextureSampler_funcs, NULL, typeID);
     engine->getGlobalVars().set("TextureSampler", ext->TextureSampler);
-    
-    typeID = engine->createNewTypeID();
-    ext->TextureSampler_ptr_typeID = typeID;
-    ext->TextureSampler_ptr = scripting::createNativeObject(TextureSampler_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("TextureSamplerRef", ext->TextureSampler_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Scene_typeID = typeID;
@@ -56766,19 +50154,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Scene", ext->Scene);
     
     typeID = engine->createNewTypeID();
-    ext->Scene_ptr_typeID = typeID;
-    ext->Scene_ptr = scripting::createNativeObject(Scene_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("SceneRef", ext->Scene_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Int3_typeID = typeID;
     ext->Int3 = scripting::createNativeObject(Int3_funcs, NULL, typeID);
     engine->getGlobalVars().set("Int3", ext->Int3);
-    
-    typeID = engine->createNewTypeID();
-    ext->Int3_ptr_typeID = typeID;
-    ext->Int3_ptr = scripting::createNativeObject(Int3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int3Ref", ext->Int3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->ResizableData_typeID = typeID;
@@ -56786,19 +50164,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("ResizableData", ext->ResizableData);
     
     typeID = engine->createNewTypeID();
-    ext->ResizableData_ptr_typeID = typeID;
-    ext->ResizableData_ptr = scripting::createNativeObject(ResizableData_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ResizableDataRef", ext->ResizableData_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Int4_typeID = typeID;
     ext->Int4 = scripting::createNativeObject(Int4_funcs, NULL, typeID);
     engine->getGlobalVars().set("Int4", ext->Int4);
-    
-    typeID = engine->createNewTypeID();
-    ext->Int4_ptr_typeID = typeID;
-    ext->Int4_ptr = scripting::createNativeObject(Int4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int4Ref", ext->Int4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Float3_typeID = typeID;
@@ -56806,19 +50174,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Float3", ext->Float3);
     
     typeID = engine->createNewTypeID();
-    ext->Float3_ptr_typeID = typeID;
-    ext->Float3_ptr = scripting::createNativeObject(Float3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float3Ref", ext->Float3_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxBuffer_typeID = typeID;
     ext->GfxBuffer = scripting::createNativeObject(GfxBuffer_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxBuffer", ext->GfxBuffer);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxBuffer_ptr_typeID = typeID;
-    ext->GfxBuffer_ptr = scripting::createNativeObject(GfxBuffer_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxBufferRef", ext->GfxBuffer_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Transform_typeID = typeID;
@@ -56826,19 +50184,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Transform", ext->Transform);
     
     typeID = engine->createNewTypeID();
-    ext->Transform_ptr_typeID = typeID;
-    ext->Transform_ptr = scripting::createNativeObject(Transform_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("TransformRef", ext->Transform_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->AudioSourceList_typeID = typeID;
     ext->AudioSourceList = scripting::createNativeObject(AudioSourceList_funcs, NULL, typeID);
     engine->getGlobalVars().set("AudioSourceList", ext->AudioSourceList);
-    
-    typeID = engine->createNewTypeID();
-    ext->AudioSourceList_ptr_typeID = typeID;
-    ext->AudioSourceList_ptr = scripting::createNativeObject(AudioSourceList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AudioSourceListRef", ext->AudioSourceList_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxMaterial_typeID = typeID;
@@ -56846,19 +50194,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxMaterial", ext->GfxMaterial);
     
     typeID = engine->createNewTypeID();
-    ext->GfxMaterial_ptr_typeID = typeID;
-    ext->GfxMaterial_ptr = scripting::createNativeObject(GfxMaterial_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxMaterialRef", ext->GfxMaterial_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Quaternion_typeID = typeID;
     ext->Quaternion = scripting::createNativeObject(Quaternion_funcs, NULL, typeID);
     engine->getGlobalVars().set("Quaternion", ext->Quaternion);
-    
-    typeID = engine->createNewTypeID();
-    ext->Quaternion_ptr_typeID = typeID;
-    ext->Quaternion_ptr = scripting::createNativeObject(Quaternion_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("QuaternionRef", ext->Quaternion_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxMeshAttrib_typeID = typeID;
@@ -56866,19 +50204,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxMeshAttrib", ext->GfxMeshAttrib);
     
     typeID = engine->createNewTypeID();
-    ext->GfxMeshAttrib_ptr_typeID = typeID;
-    ext->GfxMeshAttrib_ptr = scripting::createNativeObject(GfxMeshAttrib_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxMeshAttribRef", ext->GfxMeshAttrib_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->RenderComponent_typeID = typeID;
     ext->RenderComponent = scripting::createNativeObject(RenderComponent_funcs, NULL, typeID);
     engine->getGlobalVars().set("RenderComponent", ext->RenderComponent);
-    
-    typeID = engine->createNewTypeID();
-    ext->RenderComponent_ptr_typeID = typeID;
-    ext->RenderComponent_ptr = scripting::createNativeObject(RenderComponent_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RenderComponentRef", ext->RenderComponent_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Int2_typeID = typeID;
@@ -56886,19 +50214,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Int2", ext->Int2);
     
     typeID = engine->createNewTypeID();
-    ext->Int2_ptr_typeID = typeID;
-    ext->Int2_ptr = scripting::createNativeObject(Int2_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Int2Ref", ext->Int2_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->AudioWorld_typeID = typeID;
     ext->AudioWorld = scripting::createNativeObject(AudioWorld_funcs, NULL, typeID);
     engine->getGlobalVars().set("AudioWorld", ext->AudioWorld);
-    
-    typeID = engine->createNewTypeID();
-    ext->AudioWorld_ptr_typeID = typeID;
-    ext->AudioWorld_ptr = scripting::createNativeObject(AudioWorld_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AudioWorldRef", ext->AudioWorld_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GuiPlacer_typeID = typeID;
@@ -56906,19 +50224,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GuiPlacer", ext->GuiPlacer);
     
     typeID = engine->createNewTypeID();
-    ext->GuiPlacer_ptr_typeID = typeID;
-    ext->GuiPlacer_ptr = scripting::createNativeObject(GuiPlacer_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GuiPlacerRef", ext->GuiPlacer_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->ImGui_typeID = typeID;
     ext->ImGui = scripting::createNativeObject(ImGui_funcs, NULL, typeID);
     engine->getGlobalVars().set("ImGui", ext->ImGui);
-    
-    typeID = engine->createNewTypeID();
-    ext->ImGui_ptr_typeID = typeID;
-    ext->ImGui_ptr = scripting::createNativeObject(ImGui_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ImGuiRef", ext->ImGui_ptr);
     
     typeID = engine->createNewTypeID();
     ext->StringList_typeID = typeID;
@@ -56926,19 +50234,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("StringList", ext->StringList);
     
     typeID = engine->createNewTypeID();
-    ext->StringList_ptr_typeID = typeID;
-    ext->StringList_ptr = scripting::createNativeObject(StringList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("StringListRef", ext->StringList_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Application_typeID = typeID;
     ext->Application = scripting::createNativeObject(Application_funcs, NULL, typeID);
     engine->getGlobalVars().set("Application", ext->Application);
-    
-    typeID = engine->createNewTypeID();
-    ext->Application_ptr_typeID = typeID;
-    ext->Application_ptr = scripting::createNativeObject(Application_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ApplicationRef", ext->Application_ptr);
     
     typeID = engine->createNewTypeID();
     ext->LightPointData_typeID = typeID;
@@ -56946,19 +50244,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("LightPointData", ext->LightPointData);
     
     typeID = engine->createNewTypeID();
-    ext->LightPointData_ptr_typeID = typeID;
-    ext->LightPointData_ptr = scripting::createNativeObject(LightPointData_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("LightPointDataRef", ext->LightPointData_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Float4_typeID = typeID;
     ext->Float4 = scripting::createNativeObject(Float4_funcs, NULL, typeID);
     engine->getGlobalVars().set("Float4", ext->Float4);
-    
-    typeID = engine->createNewTypeID();
-    ext->Float4_ptr_typeID = typeID;
-    ext->Float4_ptr = scripting::createNativeObject(Float4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Float4Ref", ext->Float4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->FloatList_typeID = typeID;
@@ -56966,19 +50254,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("FloatList", ext->FloatList);
     
     typeID = engine->createNewTypeID();
-    ext->FloatList_ptr_typeID = typeID;
-    ext->FloatList_ptr = scripting::createNativeObject(FloatList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("FloatListRef", ext->FloatList_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Container_typeID = typeID;
     ext->Container = scripting::createNativeObject(Container_funcs, NULL, typeID);
     engine->getGlobalVars().set("Container", ext->Container);
-    
-    typeID = engine->createNewTypeID();
-    ext->Container_ptr_typeID = typeID;
-    ext->Container_ptr = scripting::createNativeObject(Container_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ContainerRef", ext->Container_ptr);
     
     typeID = engine->createNewTypeID();
     ext->LightDirectionalData_typeID = typeID;
@@ -56986,19 +50264,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("LightDirectionalData", ext->LightDirectionalData);
     
     typeID = engine->createNewTypeID();
-    ext->LightDirectionalData_ptr_typeID = typeID;
-    ext->LightDirectionalData_ptr = scripting::createNativeObject(LightDirectionalData_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("LightDirectionalDataRef", ext->LightDirectionalData_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Matrix4x4_typeID = typeID;
     ext->Matrix4x4 = scripting::createNativeObject(Matrix4x4_funcs, NULL, typeID);
     engine->getGlobalVars().set("Matrix4x4", ext->Matrix4x4);
-    
-    typeID = engine->createNewTypeID();
-    ext->Matrix4x4_ptr_typeID = typeID;
-    ext->Matrix4x4_ptr = scripting::createNativeObject(Matrix4x4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Matrix4x4Ref", ext->Matrix4x4_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Map_typeID = typeID;
@@ -57006,19 +50274,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Map", ext->Map);
     
     typeID = engine->createNewTypeID();
-    ext->Map_ptr_typeID = typeID;
-    ext->Map_ptr = scripting::createNativeObject(Map_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("MapRef", ext->Map_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->UInt3_typeID = typeID;
     ext->UInt3 = scripting::createNativeObject(UInt3_funcs, NULL, typeID);
     engine->getGlobalVars().set("UInt3", ext->UInt3);
-    
-    typeID = engine->createNewTypeID();
-    ext->UInt3_ptr_typeID = typeID;
-    ext->UInt3_ptr = scripting::createNativeObject(UInt3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt3Ref", ext->UInt3_ptr);
     
     typeID = engine->createNewTypeID();
     ext->LightSpotData_typeID = typeID;
@@ -57026,19 +50284,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("LightSpotData", ext->LightSpotData);
     
     typeID = engine->createNewTypeID();
-    ext->LightSpotData_ptr_typeID = typeID;
-    ext->LightSpotData_ptr = scripting::createNativeObject(LightSpotData_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("LightSpotDataRef", ext->LightSpotData_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->PhysicsShape_typeID = typeID;
     ext->PhysicsShape = scripting::createNativeObject(PhysicsShape_funcs, NULL, typeID);
     engine->getGlobalVars().set("PhysicsShape", ext->PhysicsShape);
-    
-    typeID = engine->createNewTypeID();
-    ext->PhysicsShape_ptr_typeID = typeID;
-    ext->PhysicsShape_ptr = scripting::createNativeObject(PhysicsShape_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("PhysicsShapeRef", ext->PhysicsShape_ptr);
     
     typeID = engine->createNewTypeID();
     ext->AudioDevice_typeID = typeID;
@@ -57046,19 +50294,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AudioDevice", ext->AudioDevice);
     
     typeID = engine->createNewTypeID();
-    ext->AudioDevice_ptr_typeID = typeID;
-    ext->AudioDevice_ptr = scripting::createNativeObject(AudioDevice_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AudioDeviceRef", ext->AudioDevice_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->RigidBodyList_typeID = typeID;
     ext->RigidBodyList = scripting::createNativeObject(RigidBodyList_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBodyList", ext->RigidBodyList);
-    
-    typeID = engine->createNewTypeID();
-    ext->RigidBodyList_ptr_typeID = typeID;
-    ext->RigidBodyList_ptr = scripting::createNativeObject(RigidBodyList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RigidBodyListRef", ext->RigidBodyList_ptr);
     
     typeID = engine->createNewTypeID();
     ext->UInt4_typeID = typeID;
@@ -57066,19 +50304,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("UInt4", ext->UInt4);
     
     typeID = engine->createNewTypeID();
-    ext->UInt4_ptr_typeID = typeID;
-    ext->UInt4_ptr = scripting::createNativeObject(UInt4_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("UInt4Ref", ext->UInt4_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->RayCastResult_typeID = typeID;
     ext->RayCastResult = scripting::createNativeObject(RayCastResult_funcs, NULL, typeID);
     engine->getGlobalVars().set("RayCastResult", ext->RayCastResult);
-    
-    typeID = engine->createNewTypeID();
-    ext->RayCastResult_ptr_typeID = typeID;
-    ext->RayCastResult_ptr = scripting::createNativeObject(RayCastResult_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RayCastResultRef", ext->RayCastResult_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxLOD_typeID = typeID;
@@ -57086,19 +50314,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxLOD", ext->GfxLOD);
     
     typeID = engine->createNewTypeID();
-    ext->GfxLOD_ptr_typeID = typeID;
-    ext->GfxLOD_ptr = scripting::createNativeObject(GfxLOD_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxLODRef", ext->GfxLOD_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->File_typeID = typeID;
     ext->File = scripting::createNativeObject(File_funcs, NULL, typeID);
     engine->getGlobalVars().set("File", ext->File);
-    
-    typeID = engine->createNewTypeID();
-    ext->File_ptr_typeID = typeID;
-    ext->File_ptr = scripting::createNativeObject(File_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("FileRef", ext->File_ptr);
     
     typeID = engine->createNewTypeID();
     ext->AABB_typeID = typeID;
@@ -57106,19 +50324,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AABB", ext->AABB);
     
     typeID = engine->createNewTypeID();
-    ext->AABB_ptr_typeID = typeID;
-    ext->AABB_ptr = scripting::createNativeObject(AABB_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AABBRef", ext->AABB_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->RigidBodyConstructionInfo_typeID = typeID;
     ext->RigidBodyConstructionInfo = scripting::createNativeObject(RigidBodyConstructionInfo_funcs, NULL, typeID);
     engine->getGlobalVars().set("RigidBodyConstructionInfo", ext->RigidBodyConstructionInfo);
-    
-    typeID = engine->createNewTypeID();
-    ext->RigidBodyConstructionInfo_ptr_typeID = typeID;
-    ext->RigidBodyConstructionInfo_ptr = scripting::createNativeObject(RigidBodyConstructionInfo_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("RigidBodyConstructionInfoRef", ext->RigidBodyConstructionInfo_ptr);
     
     typeID = engine->createNewTypeID();
     ext->List_typeID = typeID;
@@ -57126,19 +50334,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("List", ext->List);
     
     typeID = engine->createNewTypeID();
-    ext->List_ptr_typeID = typeID;
-    ext->List_ptr = scripting::createNativeObject(List_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ListRef", ext->List_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->Audio_typeID = typeID;
     ext->Audio = scripting::createNativeObject(Audio_funcs, NULL, typeID);
     engine->getGlobalVars().set("Audio", ext->Audio);
-    
-    typeID = engine->createNewTypeID();
-    ext->Audio_ptr_typeID = typeID;
-    ext->Audio_ptr = scripting::createNativeObject(Audio_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AudioRef", ext->Audio_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxTexture_typeID = typeID;
@@ -57146,19 +50344,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxTexture", ext->GfxTexture);
     
     typeID = engine->createNewTypeID();
-    ext->GfxTexture_ptr_typeID = typeID;
-    ext->GfxTexture_ptr = scripting::createNativeObject(GfxTexture_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxTextureRef", ext->GfxTexture_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxSubModelList_typeID = typeID;
     ext->GfxSubModelList = scripting::createNativeObject(GfxSubModelList_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxSubModelList", ext->GfxSubModelList);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxSubModelList_ptr_typeID = typeID;
-    ext->GfxSubModelList_ptr = scripting::createNativeObject(GfxSubModelList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxSubModelListRef", ext->GfxSubModelList_ptr);
     
     typeID = engine->createNewTypeID();
     ext->GfxModel_typeID = typeID;
@@ -57166,19 +50354,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxModel", ext->GfxModel);
     
     typeID = engine->createNewTypeID();
-    ext->GfxModel_ptr_typeID = typeID;
-    ext->GfxModel_ptr = scripting::createNativeObject(GfxModel_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxModelRef", ext->GfxModel_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxLODList_typeID = typeID;
     ext->GfxLODList = scripting::createNativeObject(GfxLODList_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxLODList", ext->GfxLODList);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxLODList_ptr_typeID = typeID;
-    ext->GfxLODList_ptr = scripting::createNativeObject(GfxLODList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxLODListRef", ext->GfxLODList_ptr);
     
     typeID = engine->createNewTypeID();
     ext->EntityList_typeID = typeID;
@@ -57186,19 +50364,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("EntityList", ext->EntityList);
     
     typeID = engine->createNewTypeID();
-    ext->EntityList_ptr_typeID = typeID;
-    ext->EntityList_ptr = scripting::createNativeObject(EntityList_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("EntityListRef", ext->EntityList_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxShaderCombination_typeID = typeID;
     ext->GfxShaderCombination = scripting::createNativeObject(GfxShaderCombination_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxShaderCombination", ext->GfxShaderCombination);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxShaderCombination_ptr_typeID = typeID;
-    ext->GfxShaderCombination_ptr = scripting::createNativeObject(GfxShaderCombination_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxShaderCombinationRef", ext->GfxShaderCombination_ptr);
     
     typeID = engine->createNewTypeID();
     ext->Matrix3x3_typeID = typeID;
@@ -57206,19 +50374,9 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Matrix3x3", ext->Matrix3x3);
     
     typeID = engine->createNewTypeID();
-    ext->Matrix3x3_ptr_typeID = typeID;
-    ext->Matrix3x3_ptr = scripting::createNativeObject(Matrix3x3_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("Matrix3x3Ref", ext->Matrix3x3_ptr);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxDebugDrawer_typeID = typeID;
     ext->GfxDebugDrawer = scripting::createNativeObject(GfxDebugDrawer_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxDebugDrawer", ext->GfxDebugDrawer);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxDebugDrawer_ptr_typeID = typeID;
-    ext->GfxDebugDrawer_ptr = scripting::createNativeObject(GfxDebugDrawer_ptr_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxDebugDrawerRef", ext->GfxDebugDrawer_ptr);
     
     engine->getGlobalVars().set("getFileSys", scripting::createNativeFunction(getFileSys_binding));
     engine->getGlobalVars().set("getAudioDevice", scripting::createNativeFunction(getAudioDevice_binding));
