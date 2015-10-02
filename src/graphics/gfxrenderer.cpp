@@ -1030,7 +1030,7 @@ void GfxRenderer::render()
 
     for (auto light : lights)
     {
-        GfxShaderCombination *shaders;
+        GfxShaderCombination *shaders = (GfxShaderCombination *)42;
 
         switch (light->type)
         {

@@ -38,6 +38,7 @@ namespace scripting
             {
                 Call, //CallNode
                 GetMember, //LROpNode
+                GetMethod, //LROpNode
                 Assign, //LROpNode
                 Comma, //LROpNode
                 Add, //LROpNode

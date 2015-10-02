@@ -81,6 +81,12 @@
 #include "scripting/bytecodegen.h"
 #include <type_traits>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#pragma GCC diagnostic ignored "-Wreturn-type"
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+
 struct BindingsExt
 {
     int64_t GhostObject_typeID, GhostObject_ptr_typeID, StrStrMap_typeID, StrStrMap_ptr_typeID, GfxApi_typeID, GfxApi_ptr_typeID, GfxCompiledShader_typeID, GfxCompiledShader_ptr_typeID, ScrollBar_typeID, ScrollBar_ptr_typeID, GhostObjList_typeID, GhostObjList_ptr_typeID, GPUTimer_typeID, GPUTimer_ptr_typeID, RigidBody_typeID, RigidBody_ptr_typeID, UInt2_typeID, UInt2_ptr_typeID, LightList_typeID, LightList_ptr_typeID, RenderStats_typeID, RenderStats_ptr_typeID, Filesystem_typeID, Filesystem_ptr_typeID, ResourceManager_typeID, ResourceManager_ptr_typeID, Entity_typeID, Entity_ptr_typeID, GfxRenderer_typeID, GfxRenderer_ptr_typeID, Float2_typeID, Float2_ptr_typeID, GfxFramebuffer_typeID, GfxFramebuffer_ptr_typeID, Font_typeID, Font_ptr_typeID, Event_typeID, Event_ptr_typeID, PhysicsWorld_typeID, PhysicsWorld_ptr_typeID, Stats_typeID, Stats_ptr_typeID, AudioSource_typeID, AudioSource_ptr_typeID, RayCastResultList_typeID, RayCastResultList_ptr_typeID, Platform_typeID, Platform_ptr_typeID, Camera_typeID, Camera_ptr_typeID, GfxMesh_typeID, GfxMesh_ptr_typeID, Resource_typeID, Resource_ptr_typeID, GfxShader_typeID, GfxShader_ptr_typeID, Light_typeID, Light_ptr_typeID, TextureSampler_typeID, TextureSampler_ptr_typeID, Scene_typeID, Scene_ptr_typeID, Int3_typeID, Int3_ptr_typeID, ResizableData_typeID, ResizableData_ptr_typeID, Int4_typeID, Int4_ptr_typeID, Float3_typeID, Float3_ptr_typeID, GfxBuffer_typeID, GfxBuffer_ptr_typeID, Transform_typeID, Transform_ptr_typeID, AudioSourceList_typeID, AudioSourceList_ptr_typeID, GfxMaterial_typeID, GfxMaterial_ptr_typeID, Quaternion_typeID, Quaternion_ptr_typeID, GfxMeshAttrib_typeID, GfxMeshAttrib_ptr_typeID, RenderComponent_typeID, RenderComponent_ptr_typeID, Int2_typeID, Int2_ptr_typeID, AudioWorld_typeID, AudioWorld_ptr_typeID, GuiPlacer_typeID, GuiPlacer_ptr_typeID, ImGui_typeID, ImGui_ptr_typeID, StringList_typeID, StringList_ptr_typeID, Application_typeID, Application_ptr_typeID, LightPointData_typeID, LightPointData_ptr_typeID, Float4_typeID, Float4_ptr_typeID, FloatList_typeID, FloatList_ptr_typeID, Container_typeID, Container_ptr_typeID, LightDirectionalData_typeID, LightDirectionalData_ptr_typeID, Matrix4x4_typeID, Matrix4x4_ptr_typeID, Map_typeID, Map_ptr_typeID, UInt3_typeID, UInt3_ptr_typeID, LightSpotData_typeID, LightSpotData_ptr_typeID, PhysicsShape_typeID, PhysicsShape_ptr_typeID, AudioDevice_typeID, AudioDevice_ptr_typeID, RigidBodyList_typeID, RigidBodyList_ptr_typeID, UInt4_typeID, UInt4_ptr_typeID, RayCastResult_typeID, RayCastResult_ptr_typeID, GfxLOD_typeID, GfxLOD_ptr_typeID, File_typeID, File_ptr_typeID, AABB_typeID, AABB_ptr_typeID, RigidBodyConstructionInfo_typeID, RigidBodyConstructionInfo_ptr_typeID, List_typeID, List_ptr_typeID, Audio_typeID, Audio_ptr_typeID, GfxTexture_typeID, GfxTexture_ptr_typeID, GfxSubModelList_typeID, GfxSubModelList_ptr_typeID, GfxModel_typeID, GfxModel_ptr_typeID, GfxLODList_typeID, GfxLODList_ptr_typeID, EntityList_typeID, EntityList_ptr_typeID, GfxShaderCombination_typeID, GfxShaderCombination_ptr_typeID, Matrix3x3_typeID, Matrix3x3_ptr_typeID, GfxDebugDrawer_typeID, GfxDebugDrawer_ptr_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
@@ -106,6 +112,7 @@ struct BindingsExt
 #define EAOE " expects at least one argument."
 #define CN STG::createNil()
 #define CNF STG::createNativeFunction
+#define TYPE(...) __VA_ARGS__
 
 template <typename T>
 struct val_to_c {};
@@ -2191,8 +2198,7 @@ struct create_val<HashMap<String,String>>
 {
 static SV f(CTX ctx,const HashMap<String,String>&obj)
 {
-#define ghfj HashMap<String,String>
-RET STG::createNativeObject(StrStrMap_funcs,NEW(ghfj, obj),EXT->StrStrMap_typeID);
+RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>), obj),EXT->StrStrMap_typeID);
 }
 };
 template <>
@@ -2336,8 +2342,7 @@ struct create_val<GfxCompiledShader>
 {
 static SV f(CTX ctx,const GfxCompiledShader&obj)
 {
-#define ghfj GfxCompiledShader
-RET STG::createNativeObject(GfxCompiledShader_funcs,NEW(ghfj, obj),EXT->GfxCompiledShader_typeID);
+RET STG::createNativeObject(GfxCompiledShader_funcs,NEW(TYPE(GfxCompiledShader), obj),EXT->GfxCompiledShader_typeID);
 }
 };
 template <>
@@ -2397,8 +2402,7 @@ struct create_val<ScrollBar>
 {
 static SV f(CTX ctx,const ScrollBar&obj)
 {
-#define ghfj ScrollBar
-RET STG::createNativeObject(ScrollBar_funcs,NEW(ghfj, obj),EXT->ScrollBar_typeID);
+RET STG::createNativeObject(ScrollBar_funcs,NEW(TYPE(ScrollBar), obj),EXT->ScrollBar_typeID);
 }
 };
 template <>
@@ -2457,8 +2461,7 @@ struct create_val<List<GhostObject*>>
 {
 static SV f(CTX ctx,const List<GhostObject*>&obj)
 {
-#define ghfj List<GhostObject*>
-RET STG::createNativeObject(GhostObjList_funcs,NEW(ghfj, obj),EXT->GhostObjList_typeID);
+RET STG::createNativeObject(GhostObjList_funcs,NEW(TYPE(List<GhostObject*>), obj),EXT->GhostObjList_typeID);
 }
 };
 template <>
@@ -2617,8 +2620,7 @@ struct create_val<T2<uint32_t>>
 {
 static SV f(CTX ctx,const T2<uint32_t>&obj)
 {
-#define ghfj T2<uint32_t>
-RET STG::createNativeObject(UInt2_funcs,NEW(ghfj, obj),EXT->UInt2_typeID);
+RET STG::createNativeObject(UInt2_funcs,NEW(TYPE(T2<uint32_t>), obj),EXT->UInt2_typeID);
 }
 };
 template <>
@@ -2696,8 +2698,7 @@ struct create_val<List<Light*>>
 {
 static SV f(CTX ctx,const List<Light*>&obj)
 {
-#define ghfj List<Light*>
-RET STG::createNativeObject(LightList_funcs,NEW(ghfj, obj),EXT->LightList_typeID);
+RET STG::createNativeObject(LightList_funcs,NEW(TYPE(List<Light*>), obj),EXT->LightList_typeID);
 }
 };
 template <>
@@ -2769,8 +2770,7 @@ struct create_val<RenderStats>
 {
 static SV f(CTX ctx,const RenderStats&obj)
 {
-#define ghfj RenderStats
-RET STG::createNativeObject(RenderStats_funcs,NEW(ghfj, obj),EXT->RenderStats_typeID);
+RET STG::createNativeObject(RenderStats_funcs,NEW(TYPE(RenderStats), obj),EXT->RenderStats_typeID);
 }
 };
 template <>
@@ -2827,8 +2827,7 @@ struct create_val<Filesystem>
 {
 static SV f(CTX ctx,const Filesystem&obj)
 {
-#define ghfj Filesystem
-RET STG::createNativeObject(Filesystem_funcs,NEW(ghfj, obj),EXT->Filesystem_typeID);
+RET STG::createNativeObject(Filesystem_funcs,NEW(TYPE(Filesystem), obj),EXT->Filesystem_typeID);
 }
 };
 template <>
@@ -2976,8 +2975,7 @@ struct create_val<GfxRenderer>
 {
 static SV f(CTX ctx,const GfxRenderer&obj)
 {
-#define ghfj GfxRenderer
-RET STG::createNativeObject(GfxRenderer_funcs,NEW(ghfj, obj),EXT->GfxRenderer_typeID);
+RET STG::createNativeObject(GfxRenderer_funcs,NEW(TYPE(GfxRenderer), obj),EXT->GfxRenderer_typeID);
 }
 };
 template <>
@@ -3051,8 +3049,7 @@ struct create_val<T2<float>>
 {
 static SV f(CTX ctx,const T2<float>&obj)
 {
-#define ghfj T2<float>
-RET STG::createNativeObject(Float2_funcs,NEW(ghfj, obj),EXT->Float2_typeID);
+RET STG::createNativeObject(Float2_funcs,NEW(TYPE(T2<float>), obj),EXT->Float2_typeID);
 }
 };
 template <>
@@ -3194,8 +3191,7 @@ struct create_val<Event>
 {
 static SV f(CTX ctx,const Event&obj)
 {
-#define ghfj Event
-RET STG::createNativeObject(Event_funcs,NEW(ghfj, obj),EXT->Event_typeID);
+RET STG::createNativeObject(Event_funcs,NEW(TYPE(Event), obj),EXT->Event_typeID);
 }
 };
 template <>
@@ -3294,8 +3290,7 @@ struct create_val<Stats>
 {
 static SV f(CTX ctx,const Stats&obj)
 {
-#define ghfj Stats
-RET STG::createNativeObject(Stats_funcs,NEW(ghfj, obj),EXT->Stats_typeID);
+RET STG::createNativeObject(Stats_funcs,NEW(TYPE(Stats), obj),EXT->Stats_typeID);
 }
 };
 template <>
@@ -3352,8 +3347,7 @@ struct create_val<AudioSource>
 {
 static SV f(CTX ctx,const AudioSource&obj)
 {
-#define ghfj AudioSource
-RET STG::createNativeObject(AudioSource_funcs,NEW(ghfj, obj),EXT->AudioSource_typeID);
+RET STG::createNativeObject(AudioSource_funcs,NEW(TYPE(AudioSource), obj),EXT->AudioSource_typeID);
 }
 };
 template <>
@@ -3412,8 +3406,7 @@ struct create_val<List<RayCastResult>>
 {
 static SV f(CTX ctx,const List<RayCastResult>&obj)
 {
-#define ghfj List<RayCastResult>
-RET STG::createNativeObject(RayCastResultList_funcs,NEW(ghfj, obj),EXT->RayCastResultList_typeID);
+RET STG::createNativeObject(RayCastResultList_funcs,NEW(TYPE(List<RayCastResult>), obj),EXT->RayCastResultList_typeID);
 }
 };
 template <>
@@ -3529,8 +3522,7 @@ struct create_val<Camera>
 {
 static SV f(CTX ctx,const Camera&obj)
 {
-#define ghfj Camera
-RET STG::createNativeObject(Camera_funcs,NEW(ghfj, obj),EXT->Camera_typeID);
+RET STG::createNativeObject(Camera_funcs,NEW(TYPE(Camera), obj),EXT->Camera_typeID);
 }
 };
 template <>
@@ -3751,8 +3743,7 @@ struct create_val<TextureSampler>
 {
 static SV f(CTX ctx,const TextureSampler&obj)
 {
-#define ghfj TextureSampler
-RET STG::createNativeObject(TextureSampler_funcs,NEW(ghfj, obj),EXT->TextureSampler_typeID);
+RET STG::createNativeObject(TextureSampler_funcs,NEW(TYPE(TextureSampler), obj),EXT->TextureSampler_typeID);
 }
 };
 template <>
@@ -3853,8 +3844,7 @@ struct create_val<T3<int32_t>>
 {
 static SV f(CTX ctx,const T3<int32_t>&obj)
 {
-#define ghfj T3<int32_t>
-RET STG::createNativeObject(Int3_funcs,NEW(ghfj, obj),EXT->Int3_typeID);
+RET STG::createNativeObject(Int3_funcs,NEW(TYPE(T3<int32_t>), obj),EXT->Int3_typeID);
 }
 };
 template <>
@@ -3953,8 +3943,7 @@ struct create_val<ResizableData>
 {
 static SV f(CTX ctx,const ResizableData&obj)
 {
-#define ghfj ResizableData
-RET STG::createNativeObject(ResizableData_funcs,NEW(ghfj, obj),EXT->ResizableData_typeID);
+RET STG::createNativeObject(ResizableData_funcs,NEW(TYPE(ResizableData), obj),EXT->ResizableData_typeID);
 }
 };
 template <>
@@ -4067,8 +4056,7 @@ struct create_val<T4<int32_t>>
 {
 static SV f(CTX ctx,const T4<int32_t>&obj)
 {
-#define ghfj T4<int32_t>
-RET STG::createNativeObject(Int4_funcs,NEW(ghfj, obj),EXT->Int4_typeID);
+RET STG::createNativeObject(Int4_funcs,NEW(TYPE(T4<int32_t>), obj),EXT->Int4_typeID);
 }
 };
 template <>
@@ -4262,8 +4250,7 @@ struct create_val<T3<float>>
 {
 static SV f(CTX ctx,const T3<float>&obj)
 {
-#define ghfj T3<float>
-RET STG::createNativeObject(Float3_funcs,NEW(ghfj, obj),EXT->Float3_typeID);
+RET STG::createNativeObject(Float3_funcs,NEW(TYPE(T3<float>), obj),EXT->Float3_typeID);
 }
 };
 template <>
@@ -4386,8 +4373,7 @@ struct create_val<Transform>
 {
 static SV f(CTX ctx,const Transform&obj)
 {
-#define ghfj Transform
-RET STG::createNativeObject(Transform_funcs,NEW(ghfj, obj),EXT->Transform_typeID);
+RET STG::createNativeObject(Transform_funcs,NEW(TYPE(Transform), obj),EXT->Transform_typeID);
 }
 };
 template <>
@@ -4445,8 +4431,7 @@ struct create_val<List<AudioSource*>>
 {
 static SV f(CTX ctx,const List<AudioSource*>&obj)
 {
-#define ghfj List<AudioSource*>
-RET STG::createNativeObject(AudioSourceList_funcs,NEW(ghfj, obj),EXT->AudioSourceList_typeID);
+RET STG::createNativeObject(AudioSourceList_funcs,NEW(TYPE(List<AudioSource*>), obj),EXT->AudioSourceList_typeID);
 }
 };
 template <>
@@ -4562,8 +4547,7 @@ struct create_val<Quaternion>
 {
 static SV f(CTX ctx,const Quaternion&obj)
 {
-#define ghfj Quaternion
-RET STG::createNativeObject(Quaternion_funcs,NEW(ghfj, obj),EXT->Quaternion_typeID);
+RET STG::createNativeObject(Quaternion_funcs,NEW(TYPE(Quaternion), obj),EXT->Quaternion_typeID);
 }
 };
 template <>
@@ -4638,8 +4622,7 @@ struct create_val<GfxMeshAttrib>
 {
 static SV f(CTX ctx,const GfxMeshAttrib&obj)
 {
-#define ghfj GfxMeshAttrib
-RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(ghfj, obj),EXT->GfxMeshAttrib_typeID);
+RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(TYPE(GfxMeshAttrib), obj),EXT->GfxMeshAttrib_typeID);
 }
 };
 template <>
@@ -4723,8 +4706,7 @@ struct create_val<T2<int32_t>>
 {
 static SV f(CTX ctx,const T2<int32_t>&obj)
 {
-#define ghfj T2<int32_t>
-RET STG::createNativeObject(Int2_funcs,NEW(ghfj, obj),EXT->Int2_typeID);
+RET STG::createNativeObject(Int2_funcs,NEW(TYPE(T2<int32_t>), obj),EXT->Int2_typeID);
 }
 };
 template <>
@@ -4802,8 +4784,7 @@ struct create_val<AudioWorld>
 {
 static SV f(CTX ctx,const AudioWorld&obj)
 {
-#define ghfj AudioWorld
-RET STG::createNativeObject(AudioWorld_funcs,NEW(ghfj, obj),EXT->AudioWorld_typeID);
+RET STG::createNativeObject(AudioWorld_funcs,NEW(TYPE(AudioWorld), obj),EXT->AudioWorld_typeID);
 }
 };
 template <>
@@ -4866,8 +4847,7 @@ struct create_val<GuiPlacer>
 {
 static SV f(CTX ctx,const GuiPlacer&obj)
 {
-#define ghfj GuiPlacer
-RET STG::createNativeObject(GuiPlacer_funcs,NEW(ghfj, obj),EXT->GuiPlacer_typeID);
+RET STG::createNativeObject(GuiPlacer_funcs,NEW(TYPE(GuiPlacer), obj),EXT->GuiPlacer_typeID);
 }
 };
 template <>
@@ -4933,8 +4913,7 @@ struct create_val<ImGui>
 {
 static SV f(CTX ctx,const ImGui&obj)
 {
-#define ghfj ImGui
-RET STG::createNativeObject(ImGui_funcs,NEW(ghfj, obj),EXT->ImGui_typeID);
+RET STG::createNativeObject(ImGui_funcs,NEW(TYPE(ImGui), obj),EXT->ImGui_typeID);
 }
 };
 template <>
@@ -4999,8 +4978,7 @@ struct create_val<List<String>>
 {
 static SV f(CTX ctx,const List<String>&obj)
 {
-#define ghfj List<String>
-RET STG::createNativeObject(StringList_funcs,NEW(ghfj, obj),EXT->StringList_typeID);
+RET STG::createNativeObject(StringList_funcs,NEW(TYPE(List<String>), obj),EXT->StringList_typeID);
 }
 };
 template <>
@@ -5105,8 +5083,7 @@ struct create_val<LightPointData>
 {
 static SV f(CTX ctx,const LightPointData&obj)
 {
-#define ghfj LightPointData
-RET STG::createNativeObject(LightPointData_funcs,NEW(ghfj, obj),EXT->LightPointData_typeID);
+RET STG::createNativeObject(LightPointData_funcs,NEW(TYPE(LightPointData), obj),EXT->LightPointData_typeID);
 }
 };
 template <>
@@ -5163,8 +5140,7 @@ struct create_val<T4<float>>
 {
 static SV f(CTX ctx,const T4<float>&obj)
 {
-#define ghfj T4<float>
-RET STG::createNativeObject(Float4_funcs,NEW(ghfj, obj),EXT->Float4_typeID);
+RET STG::createNativeObject(Float4_funcs,NEW(TYPE(T4<float>), obj),EXT->Float4_typeID);
 }
 };
 template <>
@@ -5358,8 +5334,7 @@ struct create_val<List<float>>
 {
 static SV f(CTX ctx,const List<float>&obj)
 {
-#define ghfj List<float>
-RET STG::createNativeObject(FloatList_funcs,NEW(ghfj, obj),EXT->FloatList_typeID);
+RET STG::createNativeObject(FloatList_funcs,NEW(TYPE(List<float>), obj),EXT->FloatList_typeID);
 }
 };
 template <>
@@ -5431,8 +5406,7 @@ struct create_val<Container>
 {
 static SV f(CTX ctx,const Container&obj)
 {
-#define ghfj Container
-RET STG::createNativeObject(Container_funcs,NEW(ghfj, obj),EXT->Container_typeID);
+RET STG::createNativeObject(Container_funcs,NEW(TYPE(Container), obj),EXT->Container_typeID);
 }
 };
 template <>
@@ -5489,8 +5463,7 @@ struct create_val<LightDirectionalData>
 {
 static SV f(CTX ctx,const LightDirectionalData&obj)
 {
-#define ghfj LightDirectionalData
-RET STG::createNativeObject(LightDirectionalData_funcs,NEW(ghfj, obj),EXT->LightDirectionalData_typeID);
+RET STG::createNativeObject(LightDirectionalData_funcs,NEW(TYPE(LightDirectionalData), obj),EXT->LightDirectionalData_typeID);
 }
 };
 template <>
@@ -5547,8 +5520,7 @@ struct create_val<Matrix4x4>
 {
 static SV f(CTX ctx,const Matrix4x4&obj)
 {
-#define ghfj Matrix4x4
-RET STG::createNativeObject(Matrix4x4_funcs,NEW(ghfj, obj),EXT->Matrix4x4_typeID);
+RET STG::createNativeObject(Matrix4x4_funcs,NEW(TYPE(Matrix4x4), obj),EXT->Matrix4x4_typeID);
 }
 };
 template <>
@@ -5622,8 +5594,7 @@ struct create_val<HashMap<scripting::Value*,scripting::Value*>>
 {
 static SV f(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>&obj)
 {
-#define ghfj HashMap<scripting::Value*,scripting::Value*>
-RET STG::createNativeObject(Map_funcs,NEW(ghfj, obj),EXT->Map_typeID);
+RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>), obj),EXT->Map_typeID);
 }
 };
 template <>
@@ -5693,8 +5664,7 @@ struct create_val<T3<uint32_t>>
 {
 static SV f(CTX ctx,const T3<uint32_t>&obj)
 {
-#define ghfj T3<uint32_t>
-RET STG::createNativeObject(UInt3_funcs,NEW(ghfj, obj),EXT->UInt3_typeID);
+RET STG::createNativeObject(UInt3_funcs,NEW(TYPE(T3<uint32_t>), obj),EXT->UInt3_typeID);
 }
 };
 template <>
@@ -5793,8 +5763,7 @@ struct create_val<LightSpotData>
 {
 static SV f(CTX ctx,const LightSpotData&obj)
 {
-#define ghfj LightSpotData
-RET STG::createNativeObject(LightSpotData_funcs,NEW(ghfj, obj),EXT->LightSpotData_typeID);
+RET STG::createNativeObject(LightSpotData_funcs,NEW(TYPE(LightSpotData), obj),EXT->LightSpotData_typeID);
 }
 };
 template <>
@@ -5898,8 +5867,7 @@ struct create_val<AudioDevice>
 {
 static SV f(CTX ctx,const AudioDevice&obj)
 {
-#define ghfj AudioDevice
-RET STG::createNativeObject(AudioDevice_funcs,NEW(ghfj, obj),EXT->AudioDevice_typeID);
+RET STG::createNativeObject(AudioDevice_funcs,NEW(TYPE(AudioDevice), obj),EXT->AudioDevice_typeID);
 }
 };
 template <>
@@ -5969,8 +5937,7 @@ struct create_val<List<RigidBody*>>
 {
 static SV f(CTX ctx,const List<RigidBody*>&obj)
 {
-#define ghfj List<RigidBody*>
-RET STG::createNativeObject(RigidBodyList_funcs,NEW(ghfj, obj),EXT->RigidBodyList_typeID);
+RET STG::createNativeObject(RigidBodyList_funcs,NEW(TYPE(List<RigidBody*>), obj),EXT->RigidBodyList_typeID);
 }
 };
 template <>
@@ -6042,8 +6009,7 @@ struct create_val<T4<uint32_t>>
 {
 static SV f(CTX ctx,const T4<uint32_t>&obj)
 {
-#define ghfj T4<uint32_t>
-RET STG::createNativeObject(UInt4_funcs,NEW(ghfj, obj),EXT->UInt4_typeID);
+RET STG::createNativeObject(UInt4_funcs,NEW(TYPE(T4<uint32_t>), obj),EXT->UInt4_typeID);
 }
 };
 template <>
@@ -6237,8 +6203,7 @@ struct create_val<RayCastResult>
 {
 static SV f(CTX ctx,const RayCastResult&obj)
 {
-#define ghfj RayCastResult
-RET STG::createNativeObject(RayCastResult_funcs,NEW(ghfj, obj),EXT->RayCastResult_typeID);
+RET STG::createNativeObject(RayCastResult_funcs,NEW(TYPE(RayCastResult), obj),EXT->RayCastResult_typeID);
 }
 };
 template <>
@@ -6298,8 +6263,7 @@ struct create_val<GfxLOD>
 {
 static SV f(CTX ctx,const GfxLOD&obj)
 {
-#define ghfj GfxLOD
-RET STG::createNativeObject(GfxLOD_funcs,NEW(ghfj, obj),EXT->GfxLOD_typeID);
+RET STG::createNativeObject(GfxLOD_funcs,NEW(TYPE(GfxLOD), obj),EXT->GfxLOD_typeID);
 }
 };
 template <>
@@ -6418,8 +6382,7 @@ struct create_val<AABB>
 {
 static SV f(CTX ctx,const AABB&obj)
 {
-#define ghfj AABB
-RET STG::createNativeObject(AABB_funcs,NEW(ghfj, obj),EXT->AABB_typeID);
+RET STG::createNativeObject(AABB_funcs,NEW(TYPE(AABB), obj),EXT->AABB_typeID);
 }
 };
 template <>
@@ -6479,8 +6442,7 @@ struct create_val<RigidBodyConstructionInfo>
 {
 static SV f(CTX ctx,const RigidBodyConstructionInfo&obj)
 {
-#define ghfj RigidBodyConstructionInfo
-RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,NEW(ghfj, obj),EXT->RigidBodyConstructionInfo_typeID);
+RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,NEW(TYPE(RigidBodyConstructionInfo), obj),EXT->RigidBodyConstructionInfo_typeID);
 }
 };
 template <>
@@ -6537,8 +6499,7 @@ struct create_val<List<scripting::Value*>>
 {
 static SV f(CTX ctx,const List<scripting::Value*>&obj)
 {
-#define ghfj List<scripting::Value*>
-RET STG::createNativeObject(List_funcs,NEW(ghfj, obj),EXT->List_typeID);
+RET STG::createNativeObject(List_funcs,NEW(TYPE(List<scripting::Value*>), obj),EXT->List_typeID);
 }
 };
 template <>
@@ -6703,8 +6664,7 @@ struct create_val<List<GfxModel::SubModel>>
 {
 static SV f(CTX ctx,const List<GfxModel::SubModel>&obj)
 {
-#define ghfj List<GfxModel::SubModel>
-RET STG::createNativeObject(GfxSubModelList_funcs,NEW(ghfj, obj),EXT->GfxSubModelList_typeID);
+RET STG::createNativeObject(GfxSubModelList_funcs,NEW(TYPE(List<GfxModel::SubModel>), obj),EXT->GfxSubModelList_typeID);
 }
 };
 template <>
@@ -6805,8 +6765,7 @@ struct create_val<List<GfxLOD>>
 {
 static SV f(CTX ctx,const List<GfxLOD>&obj)
 {
-#define ghfj List<GfxLOD>
-RET STG::createNativeObject(GfxLODList_funcs,NEW(ghfj, obj),EXT->GfxLODList_typeID);
+RET STG::createNativeObject(GfxLODList_funcs,NEW(TYPE(List<GfxLOD>), obj),EXT->GfxLODList_typeID);
 }
 };
 template <>
@@ -6878,8 +6837,7 @@ struct create_val<List<Entity*>>
 {
 static SV f(CTX ctx,const List<Entity*>&obj)
 {
-#define ghfj List<Entity*>
-RET STG::createNativeObject(EntityList_funcs,NEW(ghfj, obj),EXT->EntityList_typeID);
+RET STG::createNativeObject(EntityList_funcs,NEW(TYPE(List<Entity*>), obj),EXT->EntityList_typeID);
 }
 };
 template <>
@@ -6978,8 +6936,7 @@ struct create_val<Matrix3x3>
 {
 static SV f(CTX ctx,const Matrix3x3&obj)
 {
-#define ghfj Matrix3x3
-RET STG::createNativeObject(Matrix3x3_funcs,NEW(ghfj, obj),EXT->Matrix3x3_typeID);
+RET STG::createNativeObject(Matrix3x3_funcs,NEW(TYPE(Matrix3x3), obj),EXT->Matrix3x3_typeID);
 }
 };
 template <>
@@ -15289,8 +15246,7 @@ if(a.getCount()!=1)
 CATE(VE,"StrStrMap's constructor" EAOE));
 if(!TS(a[0],HashMap<String,String>))
 CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
-#define fjis HashMap<String,String>
-RET STG::createNativeObject(StrStrMap_funcs,NEW(fjis),EXT->StrStrMap_typeID);
+RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>)),EXT->StrStrMap_typeID);
 }
 
 SV StrStrMap_get_member(CTX ctx,NO f,SV key)
@@ -19242,8 +19198,7 @@ if(a.getCount()!=1)
 CATE(VE,"RenderStats's constructor" EAOE));
 if(!TS(a[0],RenderStats))
 CATE(TE,"RenderStats's constructor expects RenderStats as first argument."));
-#define fjis RenderStats
-RET STG::createNativeObject(RenderStats_funcs,NEW(fjis),EXT->RenderStats_typeID);
+RET STG::createNativeObject(RenderStats_funcs,NEW(TYPE(RenderStats)),EXT->RenderStats_typeID);
 }
 
 SV RenderStats_get_member(CTX ctx,NO f,SV key)
@@ -22212,8 +22167,7 @@ if(a.getCount()!=1)
 CATE(VE,"Event's constructor" EAOE));
 if(!TS(a[0],Event))
 CATE(TE,"Event's constructor expects Event as first argument."));
-#define fjis Event
-RET STG::createNativeObject(Event_funcs,NEW(fjis),EXT->Event_typeID);
+RET STG::createNativeObject(Event_funcs,NEW(TYPE(Event)),EXT->Event_typeID);
 }
 
 SV Event_get_member(CTX ctx,NO f,SV key)
@@ -22757,8 +22711,7 @@ if(a.getCount()!=1)
 CATE(VE,"Stats's constructor" EAOE));
 if(!TS(a[0],Stats))
 CATE(TE,"Stats's constructor expects Stats as first argument."));
-#define fjis Stats
-RET STG::createNativeObject(Stats_funcs,NEW(fjis),EXT->Stats_typeID);
+RET STG::createNativeObject(Stats_funcs,NEW(TYPE(Stats)),EXT->Stats_typeID);
 }
 
 SV Stats_get_member(CTX ctx,NO f,SV key)
@@ -34066,8 +34019,7 @@ if(a.getCount()!=1)
 CATE(VE,"GfxMeshAttrib's constructor" EAOE));
 if(!TS(a[0],GfxMeshAttrib))
 CATE(TE,"GfxMeshAttrib's constructor expects GfxMeshAttrib as first argument."));
-#define fjis GfxMeshAttrib
-RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(fjis),EXT->GfxMeshAttrib_typeID);
+RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(TYPE(GfxMeshAttrib)),EXT->GfxMeshAttrib_typeID);
 }
 
 SV GfxMeshAttrib_get_member(CTX ctx,NO f,SV key)
@@ -36212,8 +36164,7 @@ if(a.getCount()!=1)
 CATE(VE,"LightPointData's constructor" EAOE));
 if(!TS(a[0],LightPointData))
 CATE(TE,"LightPointData's constructor expects LightPointData as first argument."));
-#define fjis LightPointData
-RET STG::createNativeObject(LightPointData_funcs,NEW(fjis),EXT->LightPointData_typeID);
+RET STG::createNativeObject(LightPointData_funcs,NEW(TYPE(LightPointData)),EXT->LightPointData_typeID);
 }
 
 SV LightPointData_get_member(CTX ctx,NO f,SV key)
@@ -39470,8 +39421,7 @@ if(a.getCount()!=1)
 CATE(VE,"LightDirectionalData's constructor" EAOE));
 if(!TS(a[0],LightDirectionalData))
 CATE(TE,"LightDirectionalData's constructor expects LightDirectionalData as first argument."));
-#define fjis LightDirectionalData
-RET STG::createNativeObject(LightDirectionalData_funcs,NEW(fjis),EXT->LightDirectionalData_typeID);
+RET STG::createNativeObject(LightDirectionalData_funcs,NEW(TYPE(LightDirectionalData)),EXT->LightDirectionalData_typeID);
 }
 
 SV LightDirectionalData_get_member(CTX ctx,NO f,SV key)
@@ -39938,8 +39888,7 @@ if(a.getCount()!=1)
 CATE(VE,"Map's constructor" EAOE));
 if(!TS(a[0],HashMap<scripting::Value*,scripting::Value*>))
 CATE(TE,"Map's constructor expects Map as first argument."));
-#define fjis HashMap<scripting::Value*,scripting::Value*>
-RET STG::createNativeObject(Map_funcs,NEW(fjis),EXT->Map_typeID);
+RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>)),EXT->Map_typeID);
 }
 
 SV Map_get_member(CTX ctx,NO f,SV key)
@@ -41195,8 +41144,7 @@ if(a.getCount()!=1)
 CATE(VE,"LightSpotData's constructor" EAOE));
 if(!TS(a[0],LightSpotData))
 CATE(TE,"LightSpotData's constructor expects LightSpotData as first argument."));
-#define fjis LightSpotData
-RET STG::createNativeObject(LightSpotData_funcs,NEW(fjis),EXT->LightSpotData_typeID);
+RET STG::createNativeObject(LightSpotData_funcs,NEW(TYPE(LightSpotData)),EXT->LightSpotData_typeID);
 }
 
 SV LightSpotData_get_member(CTX ctx,NO f,SV key)
@@ -57471,3 +57419,5 @@ void registerBindings(scripting::Engine *engine)
     engine->addExtension("bindings", ext);
 }
 }
+
+#pragma GCC diagnostic pop

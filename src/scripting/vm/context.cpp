@@ -128,14 +128,15 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         }
         case Opcode::StackPop:
         {
-            if (stack->getCount() == 0)
-            {
-                THROW(StackBoundsException);
-            }
+            destroy(this, popStack(*stack));
+            break;
+        }
+        case Opcode::StackDup:
+        {
+            Value *value = popStack(*stack);
 
-            destroy(this, (*stack)[stack->getCount()-1]);
-
-            stack->remove(stack->getCount()-1);
+            stack->append(createCopy(this, value));
+            stack->append(value);
             break;
         }
         case Opcode::LoadVar:

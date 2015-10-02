@@ -83,6 +83,7 @@ namespace scripting
         switch (type)
         {
         case Token::Dot:
+        case Token::Colon:
         {
             return 10;
         }
@@ -457,6 +458,10 @@ namespace scripting
                 case Token::Dot:
                 {
                     return NEW(LROpNode, ASTNode::GetMember, left, parse(precedence));
+                }
+                case Token::Colon:
+                {
+                    return NEW(LROpNode, ASTNode::GetMethod, left, parse(precedence));
                 }
                 case Token::Assign:
                 {

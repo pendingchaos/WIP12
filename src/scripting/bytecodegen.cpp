@@ -44,6 +44,7 @@ static const uint8_t opJumpIf = (uint8_t)Opcode::JumpIf;
 static const uint8_t opCall = (uint8_t)Opcode::Call;
 static const uint8_t opCallMethod = (uint8_t)Opcode::CallMethod;
 static const uint8_t opGetArg = (uint8_t)Opcode::GetArg;
+static const uint8_t opStackDup = (uint8_t)Opcode::StackDup;
 
 static bool _generateBytecode(ASTNode *node, ResizableData& data);
 
@@ -251,6 +252,45 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         }
 
         data.append(1, &opGetMember);
+        return true;
+    }
+    case ASTNode::GetMethod:
+    {
+        LROpNode *lrOp = (LROpNode *)node;
+
+        if (not _generateBytecode(lrOp->left, data))
+        {
+            THROW(ByteCodeGenException, "Value does not evaluate to anything");
+        }
+
+        data.append(1, &opStackDup);
+
+        if (lrOp->right->type == ASTNode::Identifier)
+        {
+            String name = ((IdentifierNode *)lrOp->right)->name;
+            uint32_t length = TO_LE_U32(name.getLength());
+
+            data.append(1, &opPushString);
+            data.append(4, &length);
+            data.append(name.getLength(), name.getData());
+        } else
+        {
+            THROW(ByteCodeGenException, "Invalid method name.");
+        }
+
+        data.append(1, &opGetMember);
+
+        int64_t argCount = TO_LE_S64(2);
+        data.append(1, &opPushInteger);
+        data.append(8, &argCount);
+
+        data.append(1, &opPushString);
+        uint32_t length = TO_LE_U32(11);
+        data.append(4, &length);
+        data.append(11, "__methodify");
+        data.append(1, &opLoadVar);
+
+        data.append(1, &opCall);
         return true;
     }
     case ASTNode::Assign:
@@ -586,6 +626,12 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     case ASTNode::StatementSplit:
     {
         THROW(ByteCodeGenException, "Trying to generate bytecode for StatementSplit AST node.");
+    }
+    case ASTNode::TryExcept:
+    {
+        //TODO
+        THROW(ByteCodeGenException, "Try/except has not been implemented yet.");
+        return false;
     }
     }
 }

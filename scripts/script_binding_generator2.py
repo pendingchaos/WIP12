@@ -464,6 +464,12 @@ bindings.write("""#include <stdint.h>
 #include "scripting/bytecodegen.h"
 #include <type_traits>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#pragma GCC diagnostic ignored "-Wreturn-type"
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+
 struct BindingsExt
 {
     int64_t """)
@@ -517,6 +523,7 @@ bindings.write("""
 #define EAOE " expects at least one argument."
 #define CN STG::createNil()
 #define CNF STG::createNativeFunction
+#define TYPE(...) __VA_ARGS__
 
 template <typename T>
 struct val_to_c {};
@@ -965,8 +972,7 @@ struct create_val<%s>
 {
 ????static SV f(CTX ctx,const %s&obj)
 ????{
-#define ghfj %s
-????????RET STG::createNativeObject(%s_funcs,NEW(ghfj, obj),EXT->%s_typeID);
+????????RET STG::createNativeObject(%s_funcs,NEW(TYPE(%s), obj),EXT->%s_typeID);
 ????}
 };
 template <>
@@ -997,7 +1003,7 @@ struct create_val<const %s>
 {
 ????static SV f(CTX ctx,const %s&obj) {return create_val<%s>::f(ctx,obj);}
 };
-""" % (class_.code_name, class_.code_name, class_.code_name, class_.name,
+""" % (class_.code_name, class_.code_name, class_.name, class_.code_name,
        class_.name, class_.code_name, class_.code_name, class_.name,
        class_.code_name, class_.name, class_.name, class_.code_name,
        class_.code_name, class_.code_name, class_.code_name, class_.code_name,
@@ -1214,11 +1220,10 @@ for class_ in classes.values():
 ????????CATE(VE,"%s's constructor" EAOE));
 ????if(!TS(a[0],%s))
 ????????CATE(TE,"%s's constructor expects %s as first argument."));
-#define fjis %s
-????RET STG::createNativeObject(%s_funcs,NEW(fjis),EXT->%s_typeID);
+????RET STG::createNativeObject(%s_funcs,NEW(TYPE(%s)),EXT->%s_typeID);
 }
 
-""") % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.code_name, class_.name, class_.name))
+""") % (class_.name, class_.name, class_.code_name, class_.name, class_.name, class_.name, class_.code_name, class_.name))
     else:
         bindings.write(s("""SV %s_new(CTX ctx,const List<SV>&a)
 {
@@ -1736,6 +1741,8 @@ void registerBindings(scripting::Engine *engine)
     engine->addExtension("bindings", ext);
 }
 }
+
+#pragma GCC diagnostic pop
 """)
 
 bindings.close()

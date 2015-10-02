@@ -1,7 +1,7 @@
 return class {
     __init__ = function(self, entity) {
         self.entity = entity;
-        self.scene = entity.getScene(entity);
+        self.scene = entity:getScene();
         
         self.angle = Float2(PI, 0.0);
         self.speed = 10.0;
@@ -13,20 +13,19 @@ return class {
         self.zoom = 1.0;
         self.onFloor = false;
         
-        body = entity.getRigidBody(entity);
-        body.setAngularFactor(body, Float3(0.0));
+        body = entity:getRigidBody();
+        body:setAngularFactor(Float3(0.0));
         
-        physicsWorld = self.scene.getPhysicsWorld(self.scene);
+        physicsWorld = self.scene:getPhysicsWorld();
         
         shape = PhysicsShapeRef();
-        shape.setCylinder(shape, Axis.Y, 0.1, 0.8);
-        self.feetGhost = physicsWorld.createGhostObject(physicsWorld, shape, 0xFFFF ); #TODO: A space is required.
+        shape:setCylinder(Axis.Y, 0.1, 0.8);
+        self.feetGhost = physicsWorld:createGhostObject(shape, 0xFFFF ); #TODO: A space is required.
     };
     
     __del__ = function(self)
     {
-        physicsWorld = self.scene.getPhysicsWorld(self.scene);
-        physicsWorld.destroyGhostObject(physicsWorld, self.feetGhost);
+        self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);
     };
     
     handleInput = function(self) {};
@@ -39,16 +38,16 @@ return class {
         pos = Float3(pos.x, pos.y - 2.2, pos.z);
         feetTransform.position = pos;
         
-        self.feetGhost.setTransform(self.feetGhost, feetTransform);
+        self.feetGhost:setTransform(feetTransform);
         
-        rigidBodies = self.feetGhost.getRigidBodyCollisions(self.feetGhost);
-        self.onFloor = rigidBodies.getCount(rigidBodies) != 0;
+        rigidBodies = self.feetGhost:getRigidBodyCollisions();
+        self.onFloor = rigidBodies:getCount() != 0;
     };
     
     fixedUpdate = function(self, timestep) {
         platform = getPlatform();
-        body = self.entity.getRigidBody(self.entity);
-        renderer = self.scene.getRenderer(self.scene);
+        body = self.entity:getRigidBody();
+        renderer = self.scene:getRenderer();
         
         cam = renderer.camera;
         
@@ -56,17 +55,17 @@ return class {
                      sin(self.angle.y),
                      cos(self.angle.y) * cos(self.angle.x));
         
-        cam.setDirection(cam, dir);
+        cam:setDirection(dir);
         
         right = Float3(sin(self.angle.x - PI/2.0),
                        0.0,
                        cos(self.angle.x - PI/2.0));
         
-        cam.setUp(cam, right.cross(right, dir));
+        cam:setUp(right.cross(right, dir));
         
         resSpeed = self.speed;
         
-        if platform.isKeyPressed(platform, Key.Space) {
+        if platform:isKeyPressed(Key.Space) {
             resSpeed = resSpeed * 2.0;
         };
         
@@ -74,25 +73,25 @@ return class {
         
         vel = Float3();
         
-        if platform.isKeyPressed(platform, Key.A) {
+        if platform:isKeyPressed(Key.A) {
             vel = vel - right*timestep*resSpeed;
         };
         
-        if platform.isKeyPressed(platform, Key.D) {
+        if platform:isKeyPressed(Key.D) {
             vel = vel + right*timestep*resSpeed;
         };
         
-        if platform.isKeyPressed(platform, Key.W) {
+        if platform:isKeyPressed(Key.W) {
             vel = vel + dir*timestep*resSpeed;
         };
         
-        if platform.isKeyPressed(platform, Key.S) {
+        if platform:isKeyPressed(Key.S) {
             vel = vel - dir*timestep*resSpeed;
         };
         
         vel.y = 0.0;
         
-        oldVel = body.getLinearVelocity(body);
+        oldVel = body:getLinearVelocity();
         newVel = oldVel + vel;
         
         if newVel.x > self.maxVel {
@@ -107,22 +106,22 @@ return class {
             vel.z = vel.z + (abs(newVel.z) - self.maxVel);
         };
         
-        body.setLinearVelocity(body, oldVel + vel);
+        body:setLinearVelocity(oldVel + vel);
         
-        if platform.isKeyPressed(platform, Key.Space) and self.onFloor {
-            vel = body.getLinearVelocity(body);
+        if platform:isKeyPressed(Key.Space) and self.onFloor {
+            vel = body:getLinearVelocity();
             vel.y = 10.0;
-            body.setLinearVelocity(body, vel);
+            body:setLinearVelocity(vel);
         };
         
-        if platform.isLeftMouseButtonPressed(platform) {
-            platform.setCursorVisible(platform, false);
+        if platform:isLeftMouseButtonPressed() {
+            platform:setCursorVisible(false);
             
-            w = platform.getWindowWidth(platform);
-            h = platform.getWindowHeight(platform);
-            pos = platform.getMousePosition(platform);
+            w = platform:getWindowWidth();
+            h = platform:getWindowHeight();
+            pos = platform:getMousePosition();
             
-            platform.setMousePosition(platform, Int2(w/2, h/2)); #TODO: Adding an extra ) does not raise an error.
+            platform:setMousePosition(Int2(w/2, h/2)); #TODO: Adding an extra ) does not raise an error.
             
             rel = Float2(w+0.0, h+0.0) / 2.0 - Float2(pos.x+0.0, pos.y+0.0);
             
@@ -139,7 +138,7 @@ return class {
             angVel.y = angVel.y + self.rotateSpeed*timestep*rel.y;
             self.angVel = angVel;
         } else {
-            platform.setCursorVisible(platform, true);
+            platform:setCursorVisible(true);
         };
         
         angVel = self.angVel;
@@ -157,15 +156,15 @@ return class {
         angle.y = min(angle.y, PI/2.0);
         self.angle = angle;
         
-        if platform.getMouseWheel(platform).y > 0.0 {
+        if platform:getMouseWheel().y > 0.0 {
             self.zoom = self.zoom - timestep;
-        } elif platform.getMouseWheel(platform).y < 0.0 {
+        } elif platform:getMouseWheel().y < 0.0 {
             self.zoom = self.zoom + timestep;
         };
         
         self.zoom = max(min(self.zoom, 1.7), 0.3);
         
-        cam.setFieldOfView(cam, self.zoom * 50.0);
+        cam:setFieldOfView(self.zoom * 50.0);
         
         angVel = self.angVel;
         angVel = angVel * timestep * 0.1;
@@ -179,7 +178,7 @@ return class {
         };
         self.angVel = angVel;
         
-        cam.setPosition(cam, self.entity.transform.position + Float3(0.0, 1.5, 0.0));
+        cam:setPosition(self.entity.transform.position + Float3(0.0, 1.5, 0.0));
         
         renderer.camera = cam;
     };

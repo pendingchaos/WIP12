@@ -308,6 +308,13 @@ static void printAST(size_t indent, scripting::ASTNode *node)
         printAST(indent+1, ((scripting::LROpNode *)node)->right);
         break;
     }
+    case scripting::ASTNode::GetMethod:
+    {
+        std::cout << "GetMethod:\n";
+        printAST(indent+1, ((scripting::LROpNode *)node)->left);
+        printAST(indent+1, ((scripting::LROpNode *)node)->right);
+        break;
+    }
     case scripting::ASTNode::Call:
     {
         scripting::CallNode *cnode = (scripting::CallNode *)node;
@@ -1077,7 +1084,7 @@ int main(int argc, const char *argv[])
     initBacktrace();
     initLoggingSystem();
 
-    int result;
+    int result = EXIT_FAILURE;
 
     try
     {

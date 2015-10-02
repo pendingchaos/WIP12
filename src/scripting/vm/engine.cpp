@@ -93,6 +93,59 @@ static Value *createClass(Context *ctx, const List<Value *>& args)
     return result;
 }
 
+static Value *methodCall(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() < 1)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "Method call requires at least 1 argument."));
+    }
+
+    if (args[0]->type != ValueType::Object)
+    {
+        ctx->throwException(createException(ExcType::TypeError, "Method call requires (method) object as first parameter."));
+    }
+
+    HashMap<String, Value *>& members = ((ObjectValue *)args[0])->members;
+
+    Value *func;
+    Value *obj;
+
+    try
+    {
+        func = members.get("__func__");
+        obj = members.get("__obj__");
+    } catch (LookupException& e)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "Invalid method object."));
+
+        assert(false);
+    }
+
+    List<Value *> args2;
+    args2.append(obj);
+    args2.append(args.getCount()-1, args.getData()+1);
+
+    return call(ctx, func, args2);
+}
+
+static Value *createMethod(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 2)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "__methodify takes 2 argument."));
+    }
+
+    Value *result = createObject();
+
+    HashMap<String, Value *>& resultMembers = ((ObjectValue *)result)->members;
+
+    resultMembers.set("__func__", createCopy(ctx, args[0]));
+    resultMembers.set("__obj__", createCopy(ctx, args[1]));
+    resultMembers.set("__call__", createNativeFunction(methodCall));
+
+    return result;
+}
+
 static double asNumber(Context *ctx, Value *value)
 {
     switch (value->type)
@@ -210,6 +263,7 @@ static Value *print(Context *ctx, const List<Value *>& args)
 Engine::Engine() : debugOutput(false), nextTypeID(LONG_LONG_MIN)
 {
     globalVars.set("__classify", createNativeFunction(createClass));
+    globalVars.set("__methodify", createNativeFunction(createMethod));
     globalVars.set("abs", createNativeFunction(mathAbs));
     globalVars.set("exp", createNativeFunction(mathFunc1<std::exp>::f));
     globalVars.set("exp2", createNativeFunction(mathFunc1<std::exp2>::f));

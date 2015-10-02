@@ -105,6 +105,11 @@ namespace scripting
                 result.append("stackPop\n");
                 break;
             }
+            case Opcode::StackDup:
+            {
+                result.append("stackDup\n");
+                break;
+            }
             case Opcode::LoadVar:
             {
                 result.append("loadVar\n");

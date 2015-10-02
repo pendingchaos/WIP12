@@ -6,6 +6,7 @@
 #include "resource.h"
 #include "memory.h"
 #include "scripting/bindings.h"
+#include <assert.h>
 
 class GfxShader;
 class GfxTexture;
@@ -84,6 +85,7 @@ class ResourceManager
             case ResType::PhysicsShapeType: return (Resource *)loadPhysicsShape(filename);
             case ResType::AudioType: return (Resource *)loadAudio(filename);
             case ResType::FontType: return (Resource *)loadFont(filename);
+            default: assert(false);
             }
         }
 
@@ -112,6 +114,7 @@ class ResourceManager
             case ResType::PhysicsShapeType: return (Resource *)loadPhysicsShapeAndCopy(filename);
             case ResType::AudioType: return (Resource *)loadAudioAndCopy(filename);
             case ResType::FontType: return (Resource *)loadFontAndCopy(filename);
+            default: assert(false);
             }
         }
 

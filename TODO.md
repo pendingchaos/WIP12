@@ -24,7 +24,6 @@
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
 - [ ] Finish the bytecode generator (scripting).
 - [ ] === operator (scripting).
-- [ ] Proper methods (scripting). (: like in Lua to get a function as a method)
 - [ ] Fix skeletal animation for the mesh converter.
 - [ ] Improve skeletal animation.
 - [ ] Get http://opengameart.org/content/soldier-10 to work. (Blender's Collada exporter is buggy)

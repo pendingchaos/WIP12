@@ -3,9 +3,8 @@ return class {
         resMgr = getResMgr();
         gfxApi = getGfxApi();
         
-        self.scene = resMgr.loadScene(resMgr, "resources/scenes/scene.bin");
-        self.font = resMgr.loadFont(resMgr,
-                                    "/usr/share/fonts/gnu-free/FreeSans.ttf");
+        self.scene = resMgr:loadScene("resources/scenes/scene.bin");
+        self.font = resMgr:loadFont("/usr/share/fonts/gnu-free/FreeSans.ttf");
         
         self.showExtraTimings = false;
         self.timingsUpdateCountdown = 0.0;
@@ -14,7 +13,7 @@ return class {
         self.extraTimings = "";
         self.textGPUTiming = 0.0;
         self.textCPUTiming = 0.0;
-        self.textTimer = gfxApi.createTimer(gfxApi);
+        self.textTimer = gfxApi:createTimer();
     };
     
     __del__ = function(self) {};
@@ -23,65 +22,64 @@ return class {
         platform = getPlatform();
         app = getApp();
         
-        while platform.eventsLeft(platform) {
-            event = platform.popEvent(platform);
+        while platform:eventsLeft() {
+            event = platform:popEvent();
             
             if event.type == EventType.Quit {
                 app.running = false;
             } elif event.type == EventType.KeyDown {
-                key = event.getKey(event);
+                key = event:getKey();
                 
                 if key == Key.F1 {
-                    fullscreen = platform.getFullscreen(platform);
-                    platform.setFullscreen(platform, not fullscreen);
+                    fullscreen = platform:getFullscreen();
+                    platform:setFullscreen(not fullscreen);
                 } elif key == Key.F2 {
                     self.showExtraTimings = not self.showExtraTimings;
                 } elif key == Key.F3 {
                     self.freezeTimings = not self.freezeTimings;
                 } elif key == Key.F4 {
-                    renderer = self.scene.getRenderer(self.scene);
+                    renderer = self.scene:getRenderer();
                     renderer.debugDraw = not renderer.debugDraw;
                 } elif key == Key.Escape {
-                    platform.setFullscreen(platform, false);
+                    platform:setFullscreen(false);
                 };
             };
         };
         
-        self.scene.handleInput(self.scene);
+        self.scene:handleInput();
     };
     
     update = function(self) {
-        self.scene.update(self.scene);
+        self.scene:update();
     };
     
     fixedUpdate = function(self, timestep) {
-        self.scene.fixedUpdate(self.scene, timestep)
+        self.scene:fixedUpdate(timestep)
     };
     
     preRender = function(self) {};
     
     postRender = function(self) {
         platform = getPlatform();
-        width = platform.getWindowWidth(platform);
-        height = platform.getWindowHeight(platform);
-        renderer = self.scene.getRenderer(self.scene);
+        width = platform:getWindowWidth();
+        height = platform:getWindowHeight();
+        renderer = self.scene:getRenderer();
         gfxApi = getGfxApi();
         app = getApp();
-        frametime = platform.getFrametime(platform);
+        frametime = platform:getFrametime();
         
-        gfxApi.setViewport(gfxApi, 0, 0, width, height);
+        gfxApi:setViewport(0, 0, width, height);
         
         self.timingsUpdateCountdown = self.timingsUpdateCountdown - frametime;
         
         if renderer.debugDraw {
-            world = self.scene.getPhysicsWorld(self.scene);
-            world.debugDraw(world);
+            self.scene:getPhysicsWorld():debugDraw();
         };
         
-        renderer.resize(renderer, UInt2(width, height));
-        renderer.render(renderer);
+        renderer:resize(UInt2(width, height));
+        renderer:render();
         
-        gfxStats = renderer.getStats(renderer);
+        gfxStats = renderer:getStats();
         
         if (self.timingsUpdateCountdown < 0.0) and (not self.freezeTimings) {
             self.timingsUpdateCountdown = 0.1;
@@ -93,20 +91,19 @@ CPU Frametime: %v ms
 Draw calls: %v
 ";
             
-            gpuFrametime = platform.getGPUFrametime(platform);
-            cpuFrametime = platform.getCPUFrametime(platform);
+            gpuFrametime = platform:getGPUFrametime();
+            cpuFrametime = platform:getCPUFrametime();
             
-            self.timings = format.format(format,
-                                         1.0 / frametime,
+            self.timings = format:format(1.0 / frametime,
                                          frametime * 1000.0,
                                          gpuFrametime * 1000.0,
                                          cpuFrametime * 1000.0,
                                          gfxStats.numDrawCalls);
             
-            cpuStats = app.getStats(app);
+            cpuStats = app:getStats();
             
             textTimer = self.textTimer;
-            if textTimer.resultAvailable(textTimer) {
+            if textTimer:resultAvailable() {
                 self.textGPUTiming = (0.0+textTimer.getResult(textTimer)) / textTimer.getResultResolution(textTimer);
             };
             
@@ -155,8 +152,7 @@ CPU Timings:
         Text: %v ms (%v%%)
     Audio: %v ms (%v%%)";
             
-            self.extraTimings = format.format(format,
-                                              gfxStats.gBufferTiming * 1000.0,
+            self.extraTimings = format:format(gfxStats.gBufferTiming * 1000.0,
                                               gfxStats.gBufferTiming / gpuFrametime * 100.0,
                                               gfxStats.ssaoTiming * 1000.0,
                                               gfxStats.ssaoTiming / gpuFrametime * 100.0,
@@ -212,24 +208,24 @@ CPU Timings:
                                               cpuStats.audio / cpuFrametime * 100.0);
         };
         
-        displayedText = self.timings.copy(self.timings);
+        displayedText = self.timings:copy();
         
         if self.showExtraTimings {
             #TODO: Why is the "displayedText = " needed?
-            displayedText = displayedText.append(displayedText, self.extraTimings);
+            displayedText = displayedText:append(self.extraTimings);
         };
         
-        self.textTimer.swap(self.textTimer);
-        self.textTimer.begin(self.textTimer);
-        start = platform.getTime(platform);
+        self.textTimer:swap();
+        self.textTimer:begin();
+        start = platform:getTime();
         
         y = height - 40.0;
         y = y / height;
         
-        self.font.render(self.font, 40, Float2(-1.0, y), displayedText, Float3(1.0));
+        self.font:render(40, Float2(-1.0, y), displayedText, Float3(1.0));
         
-        self.textCPUTiming = (platform.getTime(platform) - start + 0.0) / platform.getTimerFrequency(platform);
-        self.textTimer.end(self.textTimer);
+        self.textCPUTiming = (platform:getTime() - start + 0.0) / platform:getTimerFrequency();
+        self.textTimer:end();
     };
 };
 

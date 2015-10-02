@@ -284,6 +284,14 @@ float scrollBarLogic(int left,
     return brightness;
 }
 
+#pragma GCC push_options
+#pragma GCC optimize "-O0"
+static bool invalid(int left, int right, int bottom, int top)
+{
+    return left > right or bottom > top;
+}
+#pragma GCC pop_options
+
 void ImGui::verticalScrollBar(int left,
                               int right,
                               int bottom,
@@ -292,7 +300,7 @@ void ImGui::verticalScrollBar(int left,
                               bool rightRounded,
                               ScrollBar *state)
 {
-    if (left > right or bottom > top)
+    if (invalid(left, right, bottom, top))
     {
         return;
     }
@@ -338,7 +346,7 @@ void ImGui::horizontalScrollBar(int left,
                                 bool bottomRounded,
                                 ScrollBar *state)
 {
-    if (left > right or bottom > top)
+    if (invalid(left, right, bottom, top))
     {
         return;
     }
@@ -378,7 +386,7 @@ void ImGui::horizontalScrollBar(int left,
 
 bool ImGui::button(const char *text, int left, int right, int bottom, int top)
 {
-    if (left > right or bottom > top)
+    if (invalid(left, right, bottom, top))
     {
         return false;
     }
@@ -566,7 +574,7 @@ GuiPlacer::GuiPlacer(ImGui *gui_,
 
 bool GuiPlacer::button(const char *text, size_t width, size_t height)
 {
-    bool result;
+    bool result = false;
 
     switch (xOrigin)
     {

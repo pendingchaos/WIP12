@@ -42,6 +42,7 @@ struct Token
         RightBracket, //']'
         Ellipsis, //'...'
         Dot, //'.'
+        Colon, //':'
         Comma, //','
         Assign, //'='
         Add, //'+'

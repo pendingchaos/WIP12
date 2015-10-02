@@ -19,6 +19,7 @@ enum class Opcode
     PushString,
     PushException,
     StackPop,
+    StackDup,
 
     LoadVar,
     StoreVar,
