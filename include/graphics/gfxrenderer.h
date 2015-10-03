@@ -234,7 +234,6 @@ class GfxRenderer
         GPUTimer *fxaaTimer;
         GPUTimer *colorModifierTimer;
         GPUTimer *bloomTimer;
-        //GPUTimer *luminanceCalcTimer;
         GPUTimer *shadowmapTimer;
         GPUTimer *overlayTimer;
         GPUTimer *debugDrawTimer;
@@ -294,7 +293,6 @@ class GfxRenderer
         GfxCompiledShader *compiledTerrainTessControl;
         GfxCompiledShader *compiledTerrainTessEval;
         GfxCompiledShader *compiledTerrainFragment;
-        //float averageLuminance;
 
         size_t numLights;
         GfxBuffer *lightBuffer;
@@ -322,6 +320,8 @@ class GfxRenderer
                                       const Matrix4x4& viewMatrix,
                                       float autoBiasScale);
 
+        void fillMatrixTexture(const List<Matrix4x4>& matrices);
+
         GfxTexture *writeColorTexture;
         GfxTexture *readColorTexture;
         GfxTexture *depthTexture;
@@ -337,7 +337,6 @@ class GfxRenderer
         GfxTexture *bloom4Texture;
         GfxTexture *bloomDownsampleTexture;
         GfxTexture *geomNormalTexture;
-        //GfxTexture> luminanceTexture;
 
         GfxFramebuffer *readFramebuffer;
         GfxFramebuffer *writeFramebuffer;
@@ -350,7 +349,6 @@ class GfxRenderer
         GfxFramebuffer *bloom3Framebuffer;
         GfxFramebuffer *bloom4Framebuffer;
         GfxFramebuffer *bloomDownsampleFramebuffer;
-        //GfxFramebuffer *luminanceFramebuffer;
 
         struct Batch
         {
@@ -361,8 +359,8 @@ class GfxRenderer
         };
 
         List<Batch> batches;
-        //GfxTexture *matrixTexture;
-        GfxBuffer *instanceBuffer;
+        GfxTexture *matrixTexture;
+        //GfxBuffer *instanceBuffer;
 
         void swapFramebuffers();
 } BIND;

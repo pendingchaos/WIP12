@@ -60,13 +60,13 @@ class Scene : public Resource
             return entities;
         }
 
-        inline ScriptInstance *addScript(Script *script, const char *name) NO_BIND
+        ScriptInstance *addScript(Script *script)
         {
-            ScriptInstance *inst = findScriptInstanceByName(name);
+            ScriptInstance *inst = findScriptInstance(script->getFilename());
 
             if (inst == nullptr)
             {
-                ScriptInstance *new_ = script->createInstance(name, nullptr, this);
+                ScriptInstance *new_ = script->createInstance(nullptr, this);
 
                 scripts.append(new_);
 
@@ -76,7 +76,7 @@ class Scene : public Resource
             return nullptr;
         }
 
-        void removeScript(ScriptInstance *instance) NO_BIND
+        void removeScript(ScriptInstance *instance)
         {
             int index = scripts.find(instance);
 
@@ -88,16 +88,16 @@ class Scene : public Resource
             }
         }
 
-        inline const List<ScriptInstance *>& getScripts() const NO_BIND
+        inline const List<ScriptInstance *>& getScripts() const
         {
             return scripts;
         }
 
-        ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
+        ScriptInstance *findScriptInstance(const String& filename) const
         {
             for (auto script : scripts)
             {
-                if (script->getName() == name)
+                if (script->getScript()->getFilename() == filename)
                 {
                     return script;
                 }
@@ -105,53 +105,7 @@ class Scene : public Resource
 
             return nullptr;
         }
-
-        #ifdef IN_SCRIPT
-        template <typename T>
-        T *findScriptInstance() const
-        {
-            ScriptInstance *inst = findScriptInstanceByName(T::_name);
-
-            if (inst == nullptr)
-            {
-                return nullptr;
-            }
-
-            return (T *)inst->getPointer();
-        }
-
-        template <typename T>
-        inline T *findWithScript() const
-        {
-            return _findWithScript<T>(entities);
-        }
-        #endif
     private:
-        #ifdef IN_SCRIPT
-        template <typename T>
-        T *_findWithScript(const List<Entity *>& entities) const
-        {
-            for (auto entity : entities)
-            {
-                T *inst = entity->findScriptInstance<T>();
-
-                if (inst != nullptr)
-                {
-                    return inst;
-                }
-
-                inst = _findWithScript<T>(entity->getEntities());
-
-                if (inst != nullptr)
-                {
-                    return inst;
-                }
-            }
-
-            return nullptr;
-        }
-        #endif
-
         List<ScriptInstance *> scripts;
         GfxRenderer *renderer;
         AudioWorld *audioWorld;

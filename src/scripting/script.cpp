@@ -371,12 +371,10 @@ static void printAST(size_t indent, scripting::ASTNode *node)
     }
 }
 
-ScriptInstance::ScriptInstance(const char *name_,
-                               Script *script_,
+ScriptInstance::ScriptInstance(Script *script_,
                                scripting::Value *obj_,
                                Entity *entity_,
-                               Scene *scene_) : name(name_),
-                                                script(script_->copyRef<Script>()),
+                               Scene *scene_) : script(script_->copyRef<Script>()),
                                                 obj(obj_),
                                                 entity(entity_),
                                                 scene(scene_) {}
@@ -569,7 +567,7 @@ void Script::_load()
     }
 }
 
-ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *scene)
+ScriptInstance *Script::createInstance(Entity *entity, Scene *scene)
 {
     if (entity != nullptr)
     {
@@ -590,7 +588,7 @@ ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *
 
     try
     {
-        result = NEW(ScriptInstance, name, this, scripting::call(context, class_, args), entity, scene);
+        result = NEW(ScriptInstance, this, scripting::call(context, class_, args), entity, scene);
     } catch (scripting::UnhandledExcException& e)
     {
         scripting::Value *exc = e.getException();
@@ -602,7 +600,7 @@ ScriptInstance *Script::createInstance(const char *name, Entity *entity, Scene *
             log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
         }
 
-        result = NEW(ScriptInstance, name, this, nullptr, entity, scene);
+        result = NEW(ScriptInstance, this, nullptr, entity, scene);
     }
 
     instances.append(result);

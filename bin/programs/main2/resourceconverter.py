@@ -3,8 +3,8 @@ import random
 sys.path.append("../")
 from resconvlib import *
 
-worldSize = 10
-numDecors = 1000
+worldSize = 4
+numDecors = 100
 
 if __name__ == "__main__":
     conv = {}

@@ -10,8 +10,6 @@ layout (location=TEXCOORD) in vec2 uv_tangentSpace;
 out vec3 control_normal_worldSpace;
 out vec2 control_uv_tangentSpace;
 out vec3 control_position_worldSpace;
-
-uniform mat3 normalMatrix;
 #endif
 
 #ifdef SKELETAL_ANIMATION
@@ -31,7 +29,7 @@ uniform mat4 viewMatrix;
 out vec3 frag_position;
 #endif
 
-uniform mat4 worldMatrix;
+uniform sampler2D matrixTexture;
 
 #ifdef SKELETAL_ANIMATION
 layout (std140) uniform bonePositionData
@@ -47,6 +45,18 @@ layout (std140) uniform boneNormalData
 
 void main()
 {
+    mat4 worldMatrix = mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8, 0), 0),
+                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+1, 0), 0),
+                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+2, 0), 0),
+                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+3, 0), 0));
+
+#ifdef TESSELATION
+    mat3 normalMatrix = mat3(mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8+4, 0), 0),
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+5, 0), 0),
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+6, 0), 0),
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+7, 0), 0)));
+#endif
+    
 #ifdef SKELETAL_ANIMATION
     mat4 transform = boneMatrices[int(boneIndices.x)] * boneWeights.x;
     transform += boneMatrices[int(boneIndices.y)] * boneWeights.y;

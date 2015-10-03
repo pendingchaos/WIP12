@@ -72,8 +72,8 @@ class ScriptInstance
     public:
         ~ScriptInstance();
 
-        void serialize(Serializable& serialized);
-        void deserialize(const Serializable& serialized);
+        void serialize(Serializable& serialized) NO_BIND;
+        void deserialize(const Serializable& serialized) NO_BIND;
         void method(const String& name);
         void method(const String& name, float timestep);
 
@@ -107,30 +107,28 @@ class ScriptInstance
             return script;
         }
 
-        inline const String& getName() const
-        {
-            return name;
-        }
-
-        inline scripting::Value *getObject() const
+        inline scripting::Value *getObject() const NO_BIND
         {
             return obj;
         }
+
+        inline scripting::Value *getObj() const
+        {
+            return obj == nullptr ? scripting::createNil() : obj;
+        }
     private:
-        ScriptInstance(const char *name,
-                       Script *script,
+        ScriptInstance(Script *script,
                        scripting::Value *obj,
                        Entity *entity,
                        Scene *scene);
 
-        String name;
         Script *script;
         scripting::Value *obj;
         Entity *entity;
         Scene *scene;
 
         void destroy();
-};
+} BIND NOT_COPYABLE;
 
 class Script : public Resource
 {
@@ -148,10 +146,9 @@ class Script : public Resource
 
         virtual void removeContent();
 
-        //TODO: Get rid of name.
-        ScriptInstance *createInstance(const char *name, Entity *entity=nullptr, Scene *scene=nullptr);
+        ScriptInstance *createInstance(Entity *entity=nullptr, Scene *scene=nullptr) NO_BIND;
 
-        inline scripting::Context *getContext() const
+        inline scripting::Context *getContext() const NO_BIND
         {
             return context;
         }
@@ -163,6 +160,6 @@ class Script : public Resource
         List<ScriptInstance *> instances;
 
         void removeInstance(ScriptInstance *instance);
-} DESTROY(obj->release());
+} BIND DESTROY(obj->release());
 
 #endif // SCRIPT_H

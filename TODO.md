@@ -48,6 +48,7 @@
 - [ ] Fix black borders around normal mapped metallic objects (http://marmosetco.tumblr.com/post/81245981087 ?):
 ![screenshot](https://github.com/pendingchaos/WIP12/blob/bb30dd17101832bb91269d62e5e4c86a91d77d3e/metallic%20border%20bug.png)
 - [ ] Compiled shaders will be invalidated when a shader is reloaded.
+- [ ] Fix invalid texture dimensions for large matrix textures.
 
 ## Other
 - [ ] Texture types should be immutable.

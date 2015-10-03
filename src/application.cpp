@@ -192,7 +192,7 @@ void Application::_switchScripts()
     {
         DELETE(script);
 
-        script = nextScript->createInstance(nextScriptName.getData());
+        script = nextScript->createInstance();
 
         nextScript->release();
         nextScript = nullptr;

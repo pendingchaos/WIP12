@@ -55,7 +55,7 @@ struct _functionStruct
     bool (*f2)(const char * arg0);
     List<String> (*f3)(const char * arg0);
     void (*f4)(Application * arg0);
-    ScriptInstance * (*f5)( Script *obj, const char * arg0, Entity * arg1, Scene * arg2);
+    ScriptInstance * (*f5)( Script *obj, Entity * arg0, Scene * arg1);
     Matrix4x4 (*f6)(const Transform *obj);
     void (*f7)( Transform *obj);
     void (*f8)( Platform *obj, uint32_t arg0, uint32_t arg1);
@@ -256,8 +256,8 @@ struct _functionStruct
     void (*f203)( Matrix3x3 *obj);
     void (*f204)( Matrix3x3 *obj, const Matrix4x4 & arg0);
     void (*f205)( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
-    size_t (*f206)( Font *obj, size_t arg0, const char * arg1);
-    void (*f207)( Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4);
+    size_t (*f206)(const Font *obj, size_t arg0, const char * arg1);
+    void (*f207)(const Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4);
     void (*f208)( GfxDebugDrawer *obj, const Camera & arg0);
     void (*f209)( GfxDebugDrawer *obj, GfxApi * arg0);
     void (*f210)( GfxDebugDrawer *obj);
@@ -348,7 +348,7 @@ size_t f1(const String & arg0) {return getHash(arg0);}
 bool f2(const char * arg0) {return doesFileExist(arg0);}
 List<String> f3(const char * arg0) {return listFiles(arg0);}
 void f4(Application * arg0) { setApplication(arg0);}
-ScriptInstance * f5( Script *obj, const char * arg0, Entity * arg1, Scene * arg2) {return obj->createInstance(arg0, arg1, arg2);}
+ScriptInstance * f5( Script *obj, Entity * arg0, Scene * arg1) {return obj->createInstance(arg0, arg1);}
 Matrix4x4 f6(const Transform *obj) {return obj->createMatrix();}
 void f7( Transform *obj) {new (obj) Transform();}
 void f8( Platform *obj, uint32_t arg0, uint32_t arg1) { obj->initWindow(arg0, arg1);}
@@ -549,8 +549,8 @@ Matrix3x3 f202(float arg0) {return Matrix3x3::rotatez(arg0);}
 void f203( Matrix3x3 *obj) {new (obj) Matrix3x3();}
 void f204( Matrix3x3 *obj, const Matrix4x4 & arg0) {new (obj) Matrix3x3(arg0);}
 void f205( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2) {new (obj) Matrix3x3(arg0, arg1, arg2);}
-size_t f206( Font *obj, size_t arg0, const char * arg1) {return obj->predictWidth(arg0, arg1);}
-void f207( Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4) { obj->render(arg0, arg1, arg2, arg3, arg4);}
+size_t f206(const Font *obj, size_t arg0, const char * arg1) {return obj->predictWidth(arg0, arg1);}
+void f207(const Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4) { obj->render(arg0, arg1, arg2, arg3, arg4);}
 void f208( GfxDebugDrawer *obj, const Camera & arg0) { obj->render(arg0);}
 void f209( GfxDebugDrawer *obj, GfxApi * arg0) {new (obj) GfxDebugDrawer(arg0);}
 void f210( GfxDebugDrawer *obj) { obj->~GfxDebugDrawer();}

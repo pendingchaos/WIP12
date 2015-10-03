@@ -25,19 +25,7 @@ out gl_PerVertex
 uniform mat4 projectionViewMatrix;
 uniform vec3 cameraPosition;
 
-struct Instance
-{
-    mat4 worldMatrix;
-    mat4 normalMatrix;
-};
-
-layout (std140) uniform instanceData
-{
-    //16384 (minimum value of GL_MAX_UNIFORM_BLOCK_SIZE) / sizeof(Instance) (128) = 128
-    Instance instances[128];
-};
-
-//uniform sampler2D matrixTexture;
+uniform sampler2D matrixTexture;
 
 #ifdef SKELETAL_ANIMATION
 layout (std140) uniform bonePositionData
@@ -73,17 +61,14 @@ void main()
     vec3 norm_modelSpace = normal_modelSpace;
 #endif
 
-    mat4 worldMatrix = instances[gl_InstanceID].worldMatrix;
-    mat3 normalMatrix = mat3(instances[gl_InstanceID].normalMatrix);
-    
-    /*mat4 worldMatrix = mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8, 0), 0),
+    mat4 worldMatrix = mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8, 0), 0),
                             texelFetch(matrixTexture, ivec2(gl_InstanceID*8+1, 0), 0),
                             texelFetch(matrixTexture, ivec2(gl_InstanceID*8+2, 0), 0),
                             texelFetch(matrixTexture, ivec2(gl_InstanceID*8+3, 0), 0));
     mat3 normalMatrix = mat3(mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8+4, 0), 0),
                                   texelFetch(matrixTexture, ivec2(gl_InstanceID*8+5, 0), 0),
                                   texelFetch(matrixTexture, ivec2(gl_InstanceID*8+6, 0), 0),
-                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+7, 0), 0)));*/
+                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+7, 0), 0)));
     
     gl_Position = projectionViewMatrix * worldMatrix * vec4(pos_modelSpace, 1.0);
     frag_normal_worldSpace = normalize(normalMatrix * norm_modelSpace);

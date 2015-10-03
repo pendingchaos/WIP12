@@ -122,6 +122,17 @@ Draw calls: %v
                   gfxStats.debugDrawTiming +
                   self.textGPUTiming;
             
+            postRenderSum = gfxStats.shadowmapCPUTiming +
+                            gfxStats.gbufferCPUTiming +
+                            gfxStats.forwardCPUTiming +
+                            gfxStats.overlayCPUTiming +
+                            gfxStats.batchingCPUTiming +
+                            gfxStats.animationCPUTiming +
+                            gfxStats.deferredShadingCPUTiming +
+                            gfxStats.updateStatsCPUTiming +
+                            gfxStats.miscPostEffectsCPUTiming +
+                            self.textCPUTiming;
+            
             format = "GPU Timing:
     GBuffer: %v ms (%v%%)
     SSAO: %v ms (%v%%)
@@ -154,6 +165,7 @@ CPU Timings:
         Update stats: %v ms (%v%%)
         Misc post effects: %v ms (%v%%)
         Text: %v ms (%v%%)
+        Other: %v ms(%v%%)
     Audio: %v ms (%v%%)";
             
             self.extraTimings = format:format(gfxStats.gBufferTiming * 1000.0,
@@ -216,6 +228,8 @@ CPU Timings:
                                               gfxStats.miscPostEffectsCPUTiming / cpuFrametime * 100.0,
                                               self.textCPUTiming * 1000.0,
                                               self.textCPUTiming / cpuFrametime * 100.0,
+                                              (cpuStats.postRender - postRenderSum) * 1000.0,
+                                              (cpuStats.postRender - postRenderSum) / cpuStats.postRender * 100.0,
                                               cpuStats.audio * 1000.0,
                                               cpuStats.audio / cpuFrametime * 100.0);
         };

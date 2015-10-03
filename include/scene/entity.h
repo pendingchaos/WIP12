@@ -119,13 +119,13 @@ class Entity
         Entity(const String& name, Scene *scene);
         ~Entity();
     public:
-        ScriptInstance *addScript(Script *script, const char *name) NO_BIND
+        ScriptInstance *addScript(Script *script)
         {
-            ScriptInstance *inst = findScriptInstanceByName(name);
+            ScriptInstance *inst = findScriptInstance(script->getFilename());
 
             if (inst == nullptr)
             {
-                ScriptInstance *new_ = script->createInstance(name, this);
+                ScriptInstance *new_ = script->createInstance(this);
 
                 scripts.append(new_);
 
@@ -135,7 +135,7 @@ class Entity
             return nullptr;
         }
 
-        void removeScript(ScriptInstance *instance) NO_BIND
+        void removeScript(ScriptInstance *instance)
         {
             int index = scripts.find(instance);
 
@@ -147,16 +147,16 @@ class Entity
             }
         }
 
-        inline const List<ScriptInstance *>& getScripts() const NO_BIND
+        inline const List<ScriptInstance *>& getScripts() const
         {
             return scripts;
         }
 
-        ScriptInstance *findScriptInstanceByName(const char *name) const NO_BIND
+        ScriptInstance *findScriptInstance(const String& filename) const
         {
             for (auto script : scripts)
             {
-                if (script->getName() == name)
+                if (script->getScript()->getFilename() == filename)
                 {
                     return script;
                 }
@@ -164,21 +164,6 @@ class Entity
 
             return nullptr;
         }
-
-        #ifdef IN_SCRIPT
-        template <typename T>
-        T *findScriptInstance() const
-        {
-            ScriptInstance *inst = findScriptInstanceByName(T::_name);
-
-            if (inst == nullptr)
-            {
-                return nullptr;
-            }
-
-            return (T *)inst->getPointer();
-        }
-        #endif
 
         RigidBody *addRigidBody(const RigidBodyConstructionInfo& info,
                                 PhysicsShape *shape);

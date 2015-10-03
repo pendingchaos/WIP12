@@ -7,7 +7,7 @@ struct _functionStruct
     bool (*f2)(const char * arg0);
     List<String> (*f3)(const char * arg0);
     void (*f4)(Application * arg0);
-    ScriptInstance * (*f5)( Script *obj, const char * arg0, Entity * arg1, Scene * arg2);
+    ScriptInstance * (*f5)( Script *obj, Entity * arg0, Scene * arg1);
     Matrix4x4 (*f6)(const Transform *obj);
     void (*f7)( Transform *obj);
     void (*f8)( Platform *obj, uint32_t arg0, uint32_t arg1);
@@ -208,8 +208,8 @@ struct _functionStruct
     void (*f203)( Matrix3x3 *obj);
     void (*f204)( Matrix3x3 *obj, const Matrix4x4 & arg0);
     void (*f205)( Matrix3x3 *obj, const Float3 & arg0, const Float3 & arg1, const Float3 & arg2);
-    size_t (*f206)( Font *obj, size_t arg0, const char * arg1);
-    void (*f207)( Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4);
+    size_t (*f206)(const Font *obj, size_t arg0, const char * arg1);
+    void (*f207)(const Font *obj, size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4);
     void (*f208)( GfxDebugDrawer *obj, const Camera & arg0);
     void (*f209)( GfxDebugDrawer *obj, GfxApi * arg0);
     void (*f210)( GfxDebugDrawer *obj);
@@ -301,7 +301,7 @@ size_t getHash(const String & arg0) {return _functions->f1(arg0);}
 bool doesFileExist(const char * arg0) {return _functions->f2(arg0);}
 List<String> listFiles(const char * arg0) {return _functions->f3(arg0);}
 void setApplication(Application * arg0) { _functions->f4(arg0);}
-ScriptInstance * Script::createInstance(const char * arg0, Entity * arg1, Scene * arg2)  {return _functions->f5(this, arg0, arg1, arg2);}
+ScriptInstance * Script::createInstance(Entity * arg0, Scene * arg1)  {return _functions->f5(this, arg0, arg1);}
 Matrix4x4 Transform::createMatrix() const {return _functions->f6(this);}
  Transform::Transform()  { _functions->f7(this);}
 void Platform::initWindow(uint32_t arg0, uint32_t arg1)  { _functions->f8(this, arg0, arg1);}
@@ -502,8 +502,8 @@ Matrix3x3 Matrix3x3::rotatez(float arg0)  {return _functions->f202(arg0);}
  Matrix3x3::Matrix3x3()  { _functions->f203(this);}
  Matrix3x3::Matrix3x3(const Matrix4x4 & arg0)  { _functions->f204(this, arg0);}
  Matrix3x3::Matrix3x3(const Float3 & arg0, const Float3 & arg1, const Float3 & arg2)  { _functions->f205(this, arg0, arg1, arg2);}
-size_t Font::predictWidth(size_t arg0, const char * arg1)  {return _functions->f206(this, arg0, arg1);}
-void Font::render(size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4)  { _functions->f207(this, arg0, arg1, arg2, arg3, arg4);}
+size_t Font::predictWidth(size_t arg0, const char * arg1) const {return _functions->f206(this, arg0, arg1);}
+void Font::render(size_t arg0, const Float2 & arg1, const char * arg2, GfxFramebuffer * arg3, const Float3 & arg4) const { _functions->f207(this, arg0, arg1, arg2, arg3, arg4);}
 void GfxDebugDrawer::render(const Camera & arg0)  { _functions->f208(this, arg0);}
  GfxDebugDrawer::GfxDebugDrawer(GfxApi * arg0)  { _functions->f209(this, arg0);}
  GfxDebugDrawer::~GfxDebugDrawer()  { _functions->f210(this);}

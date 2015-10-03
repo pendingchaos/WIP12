@@ -25,6 +25,10 @@ class Resource(object):
 #It seems resources/textures folder is not on Github.
 try:
     os.makedirs("../main/resources/textures")
+except OSError:
+    pass
+
+try:
     os.makedirs("../main2/resources/textures")
 except OSError:
     pass

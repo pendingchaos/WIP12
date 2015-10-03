@@ -89,8 +89,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *GhostObject, *StrStrMap, *GfxApi, *GfxCompiledShader, *ScrollBar, *GhostObjList, *GPUTimer, *RigidBody, *UInt2, *LightList, *RenderStats, *Filesystem, *ResourceManager, *Entity, *GfxRenderer, *Float2, *GfxFramebuffer, *Font, *Event, *PhysicsWorld, *Stats, *AudioSource, *RayCastResultList, *Platform, *Camera, *GfxMesh, *Resource, *GfxShader, *Light, *TextureSampler, *Scene, *Int3, *ResizableData, *Int4, *Float3, *GfxBuffer, *Transform, *AudioSourceList, *GfxMaterial, *Quaternion, *GfxMeshAttrib, *RenderComponent, *Int2, *AudioWorld, *GuiPlacer, *ImGui, *StringList, *Application, *LightPointData, *Float4, *FloatList, *Container, *LightDirectionalData, *Matrix4x4, *Map, *UInt3, *LightSpotData, *PhysicsShape, *AudioDevice, *RigidBodyList, *UInt4, *RayCastResult, *GfxLOD, *File, *AABB, *RigidBodyConstructionInfo, *List, *Audio, *GfxTexture, *GfxSubModelList, *GfxModel, *GfxLODList, *EntityList, *GfxShaderCombination, *Matrix3x3, *GfxDebugDrawer, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *GhostObject, *StrStrMap, *GfxApi, *GfxCompiledShader, *ScrollBar, *GhostObjList, *GPUTimer, *RigidBody, *UInt2, *LightList, *RenderStats, *Filesystem, *ResourceManager, *Entity, *GfxRenderer, *Float2, *GfxFramebuffer, *Font, *Event, *PhysicsWorld, *Stats, *AudioSource, *Script, *RayCastResultList, *Platform, *Camera, *GfxMesh, *Resource, *GfxShader, *Light, *TextureSampler, *Scene, *Int3, *ResizableData, *Int4, *Float3, *GfxBuffer, *Transform, *AudioSourceList, *GfxMaterial, *Quaternion, *GfxMeshAttrib, *ScriptInstance, *RenderComponent, *Int2, *AudioWorld, *GuiPlacer, *ImGui, *StringList, *Application, *LightPointData, *Float4, *FloatList, *Container, *LightDirectionalData, *Matrix4x4, *Map, *ScriptInstanceList, *UInt3, *LightSpotData, *PhysicsShape, *AudioDevice, *RigidBodyList, *UInt4, *RayCastResult, *GfxLOD, *File, *AABB, *RigidBodyConstructionInfo, *List, *Audio, *GfxTexture, *GfxSubModelList, *GfxModel, *GfxLODList, *EntityList, *GfxShaderCombination, *Matrix3x3, *GfxDebugDrawer, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -2958,7 +2958,7 @@ else
 SV Entity_addScript(CTX ctx,const List<SV>&a);
 SV Entity_removeScript(CTX ctx,const List<SV>&a);
 SV Entity_getScripts(CTX ctx,const List<SV>&a);
-SV Entity_findScriptInstanceByName(CTX ctx,const List<SV>&a);
+SV Entity_findScriptInstance(CTX ctx,const List<SV>&a);
 SV Entity_addRigidBody(CTX ctx,const List<SV>&a);
 SV Entity_getRigidBody(CTX ctx,const List<SV>&a);
 SV Entity_removeRigidBody(CTX ctx,const List<SV>&a);
@@ -3419,6 +3419,37 @@ else
 
 SV AudioSource_getAudio(CTX ctx,const List<SV>&a);
 SV AudioSource_setAudio(CTX ctx,const List<SV>&a);
+void Script_destroy(CTX,NO);
+SV Script_get_member(CTX,NO,SV);
+void Script_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs Script_funcs={
+.destroy = Script_destroy,
+.getMember = Script_get_member,
+.setMember = Script_set_member
+};
+template <>
+struct type_same<Script>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Script_typeID;
+else
+ RET false;
+}
+};
+
+SV Script_removeContent(CTX ctx,const List<SV>&a);
+SV Script_createInstance(CTX ctx,const List<SV>&a);
+SV Script_getContext(CTX ctx,const List<SV>&a);
+SV Script_load(CTX ctx,const List<SV>&a);
+SV Script_save(CTX ctx,const List<SV>&a);
+SV Script_copy(CTX ctx,const List<SV>&a);
+SV Script_getType(CTX ctx,const List<SV>&a);
+SV Script_release(CTX ctx,const List<SV>&a);
+SV Script_getRefCount(CTX ctx,const List<SV>&a);
+SV Script_getFilename(CTX ctx,const List<SV>&a);
+SV Script_setFilename(CTX ctx,const List<SV>&a);
 void RayCastResultList_destroy(CTX,NO);
 SV RayCastResultList_get_member(CTX,NO,SV);
 void RayCastResultList_set_member(CTX,NO,SV,SV);
@@ -3855,7 +3886,7 @@ SV Scene_getEntities(CTX ctx,const List<SV>&a);
 SV Scene_addScript(CTX ctx,const List<SV>&a);
 SV Scene_removeScript(CTX ctx,const List<SV>&a);
 SV Scene_getScripts(CTX ctx,const List<SV>&a);
-SV Scene_findScriptInstanceByName(CTX ctx,const List<SV>&a);
+SV Scene_findScriptInstance(CTX ctx,const List<SV>&a);
 SV Scene_load(CTX ctx,const List<SV>&a);
 SV Scene_copy(CTX ctx,const List<SV>&a);
 SV Scene_getType(CTX ctx,const List<SV>&a);
@@ -4714,6 +4745,37 @@ else
 }
 };
 
+void ScriptInstance_destroy(CTX,NO);
+SV ScriptInstance_get_member(CTX,NO,SV);
+void ScriptInstance_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs ScriptInstance_funcs={
+.destroy = ScriptInstance_destroy,
+.getMember = ScriptInstance_get_member,
+.setMember = ScriptInstance_set_member
+};
+template <>
+struct type_same<ScriptInstance>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ScriptInstance_typeID;
+else
+ RET false;
+}
+};
+
+SV ScriptInstance_serialize(CTX ctx,const List<SV>&a);
+SV ScriptInstance_deserialize(CTX ctx,const List<SV>&a);
+SV ScriptInstance_method(CTX ctx,const List<SV>&a);
+SV ScriptInstance_handleInput(CTX ctx,const List<SV>&a);
+SV ScriptInstance_fixedUpdate(CTX ctx,const List<SV>&a);
+SV ScriptInstance_update(CTX ctx,const List<SV>&a);
+SV ScriptInstance_preRender(CTX ctx,const List<SV>&a);
+SV ScriptInstance_postRender(CTX ctx,const List<SV>&a);
+SV ScriptInstance_getScript(CTX ctx,const List<SV>&a);
+SV ScriptInstance_getObject(CTX ctx,const List<SV>&a);
+SV ScriptInstance_getObj(CTX ctx,const List<SV>&a);
 void RenderComponent_destroy(CTX,NO);
 SV RenderComponent_get_member(CTX,NO,SV);
 void RenderComponent_set_member(CTX,NO,SV,SV);
@@ -5723,6 +5785,80 @@ SV Map_removeEntry(CTX ctx,const List<SV>&a);
 SV Map_remove(CTX ctx,const List<SV>&a);
 SV Map_clear(CTX ctx,const List<SV>&a);
 SV Map_append(CTX ctx,const List<SV>&a);
+void ScriptInstanceList_destroy(CTX,NO);
+SV ScriptInstanceList_get_member(CTX,NO,SV);
+void ScriptInstanceList_set_member(CTX,NO,SV,SV);
+static const STG::NativeObjectFuncs ScriptInstanceList_funcs={
+.destroy = ScriptInstanceList_destroy,
+.getMember = ScriptInstanceList_get_member,
+.setMember = ScriptInstanceList_set_member
+};
+template <>
+struct create_val<List<ScriptInstance*>>
+{
+static SV f(CTX ctx,const List<ScriptInstance*>&obj)
+{
+void *p = (void *)NEW(TYPE(List<ScriptInstance*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ScriptInstanceList_funcs,p,EXT->ScriptInstanceList_typeID);
+}
+};
+template <>
+struct val_to_c<List<ScriptInstance*>>
+{
+static List<ScriptInstance*> f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ScriptInstanceList_typeID)
+RET*((List<ScriptInstance*>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to ScriptInstanceList."));
+} else
+ CATE(TE,"Value can not be converted to ScriptInstanceList."));
+}
+};
+
+template <>
+struct val_to_c<const List<ScriptInstance*>>
+{
+static List<ScriptInstance*> f(CTX ctx,const SV head) {return val_to_c<List<ScriptInstance*>>::f(ctx, head);}
+};
+
+template <>
+struct create_val<const List<ScriptInstance*>>
+{
+static SV f(CTX ctx,const List<ScriptInstance*>&obj) {return create_val<List<ScriptInstance*>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<List<ScriptInstance*>>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ScriptInstanceList_typeID;
+else
+ RET false;
+}
+};
+
+SV ScriptInstanceList___eq__(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList___neq__(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_get(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_set(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_getCount(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_getData(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_append(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_insert(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_remove(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_clear(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_find(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_copy(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_in(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_begin(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_end(CTX ctx,const List<SV>&a);
 void UInt3_destroy(CTX,NO);
 SV UInt3_get_member(CTX,NO,SV);
 void UInt3_set_member(CTX,NO,SV,SV);
@@ -8568,6 +8704,72 @@ else
 };
 
 template <>
+struct create_val<Script *>
+{
+static SV f(CTX ctx,Script*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(Script_funcs,obj,EXT->Script_typeID);
+}
+};
+template <>
+struct val_to_c<Script *>
+{
+static Script *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Script_typeID)
+RET(Script*)obj->data;
+else
+ CATE(TE,"Value is not a Script."));
+} else
+ CATE(TE,"Value is not a Script."));
+}
+};
+template <>
+struct type_same<Script *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Script_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const Script *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->Script_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const Script *>
+{
+static const Script *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->Script_typeID)
+RET(Script*)obj->data;
+else
+ CATE(TE,"Value is not a Script."));
+} else
+ CATE(TE,"Value is not a Script."));
+}
+};
+
+template <>
 struct create_val<List<RayCastResult> *>
 {
 static SV f(CTX ctx,List<RayCastResult>*obj)
@@ -9822,6 +10024,72 @@ else
 };
 
 template <>
+struct create_val<ScriptInstance *>
+{
+static SV f(CTX ctx,ScriptInstance*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(ScriptInstance_funcs,obj,EXT->ScriptInstance_typeID);
+}
+};
+template <>
+struct val_to_c<ScriptInstance *>
+{
+static ScriptInstance *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ScriptInstance_typeID)
+RET(ScriptInstance*)obj->data;
+else
+ CATE(TE,"Value is not a ScriptInstance."));
+} else
+ CATE(TE,"Value is not a ScriptInstance."));
+}
+};
+template <>
+struct type_same<ScriptInstance *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ScriptInstance_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const ScriptInstance *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ScriptInstance_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const ScriptInstance *>
+{
+static const ScriptInstance *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ScriptInstance_typeID)
+RET(ScriptInstance*)obj->data;
+else
+ CATE(TE,"Value is not a ScriptInstance."));
+} else
+ CATE(TE,"Value is not a ScriptInstance."));
+}
+};
+
+template <>
 struct create_val<RenderComponent *>
 {
 static SV f(CTX ctx,RenderComponent*obj)
@@ -10742,6 +11010,72 @@ else
  CATE(TE,"Value is not a Map."));
 } else
  CATE(TE,"Value is not a Map."));
+}
+};
+
+template <>
+struct create_val<List<ScriptInstance*> *>
+{
+static SV f(CTX ctx,List<ScriptInstance*>*obj)
+{
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(ScriptInstanceList_funcs,obj,EXT->ScriptInstanceList_typeID);
+}
+};
+template <>
+struct val_to_c<List<ScriptInstance*> *>
+{
+static List<ScriptInstance*> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ScriptInstanceList_typeID)
+RET(List<ScriptInstance*>*)obj->data;
+else
+ CATE(TE,"Value is not a ScriptInstanceList."));
+} else
+ CATE(TE,"Value is not a ScriptInstanceList."));
+}
+};
+template <>
+struct type_same<List<ScriptInstance*> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ScriptInstanceList_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const List<ScriptInstance*> *>
+{
+static bool f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+RET((NO)head)->typeID==EXT->ScriptInstanceList_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const List<ScriptInstance*> *>
+{
+static const List<ScriptInstance*> *f(CTX ctx,const SV head)
+{
+if(head->type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)head;
+if(obj->typeID==EXT->ScriptInstanceList_typeID)
+RET(List<ScriptInstance*>*)obj->data;
+else
+ CATE(TE,"Value is not a ScriptInstanceList."));
+} else
+ CATE(TE,"Value is not a ScriptInstanceList."));
 }
 };
 
@@ -19587,8 +19921,8 @@ RET CNF(Entity_addScript);
 RET CNF(Entity_removeScript);
  EI(keyStr == "getScripts")
 RET CNF(Entity_getScripts);
- EI(keyStr == "findScriptInstanceByName")
-RET CNF(Entity_findScriptInstanceByName);
+ EI(keyStr == "findScriptInstance")
+RET CNF(Entity_findScriptInstance);
  EI(keyStr == "addRigidBody")
 RET CNF(Entity_addRigidBody);
  EI(keyStr == "getRigidBody")
@@ -19733,17 +20067,6 @@ CATE(TE,UFOF("Entity::getRigidBody.")));
 RET CN;
 }
 
-SV Entity_findScriptInstanceByName(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Entity::findScriptInstanceByName" EAOE));
-Entity*f;
-f=(Entity*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Entity::findScriptInstanceByName.")));
-RET CN;
-}
-
 SV Entity_addOverlay(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -19785,6 +20108,12 @@ CATE(VE,"Entity::removeScript" EAOE));
 Entity*f;
 f=(Entity*)((NO)a[0])->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],ScriptInstance *))
+{
+( f->removeScript(val_to_c<std::remove_reference<ScriptInstance *>::type>::f(ctx,a[1])));
+RET CN;
+}
 CATE(TE,UFOF("Entity::removeScript.")));
 RET CN;
 }
@@ -19891,6 +20220,23 @@ CATE(TE,UFOF("Entity::removeRigidBody.")));
 RET CN;
 }
 
+SV Entity_findScriptInstance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::findScriptInstance" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Entity::findScriptInstance.")));
+RET CN;
+}
+
 SV Entity_addScript(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -19898,6 +20244,12 @@ CATE(VE,"Entity::addScript" EAOE));
 Entity*f;
 f=(Entity*)((NO)a[0])->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],Script *))
+{
+RET CV( f->addScript(val_to_c<std::remove_reference<Script *>::type>::f(ctx,a[1])));
+;
+}
 CATE(TE,UFOF("Entity::addScript.")));
 RET CN;
 }
@@ -20017,6 +20369,12 @@ CATE(VE,"Entity::getScripts" EAOE));
 Entity*f;
 f=(Entity*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getScripts());
+;
+}
 CATE(TE,UFOF("Entity::getScripts.")));
 RET CN;
 }
@@ -22492,6 +22850,281 @@ if(1&&TS(a[1],Audio *))
 RET CN;
 }
 CATE(TE,UFOF("AudioSource::setAudio.")));
+RET CN;
+}
+
+void Script_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,Script))
+CATE(TE,"Script::__del__ expects Script as first argument."));
+
+Script*obj=(Script*)f->data;
+if(_scriptDeletePart(obj)){obj->release();}
+}SV Script_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script's constructor" EAOE));
+if(!TS(a[0],Script))
+CATE(TE,"Script's constructor expects Script as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(Script));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Script_funcs,p,EXT->Script_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const String &)){
+void *p = (void *)NEW(TYPE(Script),val_to_c<const String &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Script_funcs,p,EXT->Script_typeID);
+}CATE(TE,UFOF("Script's constructor.")));
+RET CN;
+}
+
+SV Script_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Script");
+EI(keyStr=="__new__")
+RET CNF(Script_new);
+EI(keyStr=="__call__")
+RET CNF(Script_new);
+else
+ CATE(KE,"Unknown member for Script."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(Script_new);
+ EI(keyStr == "removeContent")
+RET CNF(Script_removeContent);
+ EI(keyStr == "createInstance")
+RET CNF(Script_createInstance);
+ EI(keyStr == "getContext")
+RET CNF(Script_getContext);
+ EI(keyStr == "load")
+RET CNF(Script_load);
+ EI(keyStr == "save")
+RET CNF(Script_save);
+ EI(keyStr == "copy")
+RET CNF(Script_copy);
+ EI(keyStr == "getType")
+RET CNF(Script_getType);
+ EI(keyStr == "release")
+RET CNF(Script_release);
+ EI(keyStr == "getRefCount")
+RET CNF(Script_getRefCount);
+ EI(keyStr == "getFilename")
+RET CNF(Script_getFilename);
+ EI(keyStr == "setFilename")
+RET CNF(Script_setFilename);
+ else
+ CATE(KE,"Unknown member for Script."));
+}
+}
+RET CN;
+}
+
+void Script_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for Script."));
+}
+}
+}
+
+SV Script_load(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::load" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->load());
+RET CN;
+}
+CATE(TE,UFOF("Script::load.")));
+RET CN;
+}
+
+SV Script_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::getFilename" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getFilename());
+;
+}
+CATE(TE,UFOF("Script::getFilename.")));
+RET CN;
+}
+
+SV Script_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::copy" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Script::copy.")));
+RET CN;
+}
+
+SV Script_createInstance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::createInstance" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Script::createInstance.")));
+RET CN;
+}
+
+SV Script_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::setFilename" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Script::setFilename.")));
+RET CN;
+}
+
+SV Script_getContext(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::getContext" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Script::getContext.")));
+RET CN;
+}
+
+SV Script_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::removeContent" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeContent());
+RET CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( f->removeContent());
+RET CN;
+}
+CATE(TE,UFOF("Script::removeContent.")));
+RET CN;
+}
+
+SV Script_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::getRefCount" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRefCount());
+;
+}
+CATE(TE,UFOF("Script::getRefCount.")));
+RET CN;
+}
+
+SV Script_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::release" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->release());
+RET CN;
+}
+CATE(TE,UFOF("Script::release.")));
+RET CN;
+}
+
+SV Script_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::getType" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getType());
+;
+}
+CATE(TE,UFOF("Script::getType.")));
+RET CN;
+}
+
+SV Script_save(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Script::save" EAOE));
+Script*f;
+f=(Script*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->save());
+RET CN;
+}
+CATE(TE,UFOF("Script::save.")));
 RET CN;
 }
 
@@ -25684,8 +26317,8 @@ RET CNF(Scene_addScript);
 RET CNF(Scene_removeScript);
  EI(keyStr == "getScripts")
 RET CNF(Scene_getScripts);
- EI(keyStr == "findScriptInstanceByName")
-RET CNF(Scene_findScriptInstanceByName);
+ EI(keyStr == "findScriptInstance")
+RET CNF(Scene_findScriptInstance);
  EI(keyStr == "load")
 RET CNF(Scene_load);
  EI(keyStr == "copy")
@@ -25756,17 +26389,6 @@ CATE(TE,UFOF("Scene::render.")));
 RET CN;
 }
 
-SV Scene_findScriptInstanceByName(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Scene::findScriptInstanceByName" EAOE));
-Scene*f;
-f=(Scene*)((NO)a[0])->data;
-
-CATE(TE,UFOF("Scene::findScriptInstanceByName.")));
-RET CN;
-}
-
 SV Scene_setFilename(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25808,6 +26430,12 @@ CATE(VE,"Scene::getScripts" EAOE));
 Scene*f;
 f=(Scene*)((NO)a[0])->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getScripts());
+;
+}
 CATE(TE,UFOF("Scene::getScripts.")));
 RET CN;
 }
@@ -25880,6 +26508,23 @@ CATE(TE,UFOF("Scene::removeEntity.")));
 RET CN;
 }
 
+SV Scene_findScriptInstance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Scene::findScriptInstance" EAOE));
+Scene*f;
+f=(Scene*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Scene::findScriptInstance.")));
+RET CN;
+}
+
 SV Scene_addScript(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25887,6 +26532,12 @@ CATE(VE,"Scene::addScript" EAOE));
 Scene*f;
 f=(Scene*)((NO)a[0])->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],Script *))
+{
+RET CV( f->addScript(val_to_c<std::remove_reference<Script *>::type>::f(ctx,a[1])));
+;
+}
 CATE(TE,UFOF("Scene::addScript.")));
 RET CN;
 }
@@ -26097,6 +26748,12 @@ CATE(VE,"Scene::removeScript" EAOE));
 Scene*f;
 f=(Scene*)((NO)a[0])->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],ScriptInstance *))
+{
+( f->removeScript(val_to_c<std::remove_reference<ScriptInstance *>::type>::f(ctx,a[1])));
+RET CN;
+}
 CATE(TE,UFOF("Scene::removeScript.")));
 RET CN;
 }
@@ -33679,6 +34336,263 @@ obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
 }
 }
 
+void ScriptInstance_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,ScriptInstance))
+CATE(TE,"ScriptInstance::__del__ expects ScriptInstance as first argument."));
+
+SCRIPT_DELETE((ScriptInstance*)f->data);
+}SV ScriptInstance_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()!=1)
+CATE(VE,"ScriptInstance's constructor" EAOE));
+if(!TS(a[0],ScriptInstance))
+CATE(TE,"ScriptInstance's constructor expects ScriptInstance as first argument."));
+CATE(TE,UFOF("ScriptInstance's constructor.")));
+}
+
+SV ScriptInstance_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("ScriptInstance");
+EI(keyStr=="__new__")
+RET CNF(ScriptInstance_new);
+EI(keyStr=="__call__")
+RET CNF(ScriptInstance_new);
+else
+ CATE(KE,"Unknown member for ScriptInstance."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(ScriptInstance_new);
+ EI(keyStr == "serialize")
+RET CNF(ScriptInstance_serialize);
+ EI(keyStr == "deserialize")
+RET CNF(ScriptInstance_deserialize);
+ EI(keyStr == "method")
+RET CNF(ScriptInstance_method);
+ EI(keyStr == "handleInput")
+RET CNF(ScriptInstance_handleInput);
+ EI(keyStr == "fixedUpdate")
+RET CNF(ScriptInstance_fixedUpdate);
+ EI(keyStr == "update")
+RET CNF(ScriptInstance_update);
+ EI(keyStr == "preRender")
+RET CNF(ScriptInstance_preRender);
+ EI(keyStr == "postRender")
+RET CNF(ScriptInstance_postRender);
+ EI(keyStr == "getScript")
+RET CNF(ScriptInstance_getScript);
+ EI(keyStr == "getObject")
+RET CNF(ScriptInstance_getObject);
+ EI(keyStr == "getObj")
+RET CNF(ScriptInstance_getObj);
+ else
+ CATE(KE,"Unknown member for ScriptInstance."));
+}
+}
+RET CN;
+}
+
+void ScriptInstance_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for ScriptInstance."));
+}
+}
+}
+
+SV ScriptInstance_postRender(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::postRender" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->postRender());
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstance::postRender.")));
+RET CN;
+}
+
+SV ScriptInstance_preRender(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::preRender" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->preRender());
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstance::preRender.")));
+RET CN;
+}
+
+SV ScriptInstance_handleInput(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::handleInput" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->handleInput());
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstance::handleInput.")));
+RET CN;
+}
+
+SV ScriptInstance_deserialize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::deserialize" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ScriptInstance::deserialize.")));
+RET CN;
+}
+
+SV ScriptInstance_serialize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::serialize" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ScriptInstance::serialize.")));
+RET CN;
+}
+
+SV ScriptInstance_update(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::update" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->update());
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstance::update.")));
+RET CN;
+}
+
+SV ScriptInstance_getObj(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::getObj" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getObj());
+;
+}
+CATE(TE,UFOF("ScriptInstance::getObj.")));
+RET CN;
+}
+
+SV ScriptInstance_getObject(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::getObject" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ScriptInstance::getObject.")));
+RET CN;
+}
+
+SV ScriptInstance_getScript(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::getScript" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getScript());
+;
+}
+CATE(TE,UFOF("ScriptInstance::getScript.")));
+RET CN;
+}
+
+SV ScriptInstance_fixedUpdate(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::fixedUpdate" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+( f->fixedUpdate(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstance::fixedUpdate.")));
+RET CN;
+}
+
+SV ScriptInstance_method(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::method" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+( f->method(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],const String &)&&TS(a[2],float))
+{
+( f->method(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstance::method.")));
+RET CN;
+}
+
 void RenderComponent_destroy(CTX ctx,NO f)
 {
 if(!TS((SV)f,RenderComponent))
@@ -39838,6 +40752,361 @@ auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value*, scripting
 RET CV(*f != v);
 }
 CATE(TE,UFOF("Map::__neq__.")));
+RET CN;
+}
+
+void ScriptInstanceList_destroy(CTX ctx,NO f)
+{
+if(!TS((SV)f,List<ScriptInstance*>))
+CATE(TE,"ScriptInstanceList::__del__ expects ScriptInstanceList as first argument."));
+
+SCRIPT_DELETE((List<ScriptInstance*>*)f->data);
+}SV ScriptInstanceList_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList's constructor" EAOE));
+if(!TS(a[0],List<ScriptInstance*>))
+CATE(TE,"ScriptInstanceList's constructor expects ScriptInstanceList as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(List<ScriptInstance*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ScriptInstanceList_funcs,p,EXT->ScriptInstanceList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<ScriptInstance*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ScriptInstanceList_funcs,p,EXT->ScriptInstanceList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<ScriptInstance*> &)){
+void *p = (void *)NEW(TYPE(List<ScriptInstance*>),val_to_c<const List<ScriptInstance*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ScriptInstanceList_funcs,p,EXT->ScriptInstanceList_typeID);
+}CATE(TE,UFOF("ScriptInstanceList's constructor.")));
+RET CN;
+}
+
+SV ScriptInstanceList_get_member(CTX ctx,NO f,SV key)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue *)key)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("ScriptInstanceList");
+EI(keyStr=="__new__")
+RET CNF(ScriptInstanceList_new);
+EI(keyStr=="__call__")
+RET CNF(ScriptInstanceList_new);
+else
+ CATE(KE,"Unknown member for ScriptInstanceList."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(ScriptInstanceList_new);
+ EI(keyStr == "__eq__")
+RET CNF(ScriptInstanceList___eq__);
+ EI(keyStr == "__neq__")
+RET CNF(ScriptInstanceList___neq__);
+ EI(keyStr == "get")
+RET CNF(ScriptInstanceList_get);
+ EI(keyStr == "set")
+RET CNF(ScriptInstanceList_set);
+ EI(keyStr == "getCount")
+RET CNF(ScriptInstanceList_getCount);
+ EI(keyStr == "getData")
+RET CNF(ScriptInstanceList_getData);
+ EI(keyStr == "append")
+RET CNF(ScriptInstanceList_append);
+ EI(keyStr == "insert")
+RET CNF(ScriptInstanceList_insert);
+ EI(keyStr == "remove")
+RET CNF(ScriptInstanceList_remove);
+ EI(keyStr == "clear")
+RET CNF(ScriptInstanceList_clear);
+ EI(keyStr == "find")
+RET CNF(ScriptInstanceList_find);
+ EI(keyStr == "copy")
+RET CNF(ScriptInstanceList_copy);
+ EI(keyStr == "in")
+RET CNF(ScriptInstanceList_in);
+ EI(keyStr == "begin")
+RET CNF(ScriptInstanceList_begin);
+ EI(keyStr == "end")
+RET CNF(ScriptInstanceList_end);
+ else
+ CATE(KE,"Unknown member for ScriptInstanceList."));
+}
+}
+RET CN;
+}
+
+void ScriptInstanceList_set_member(CTX ctx,NO f,SV key,SV value)
+{
+if (key->type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringValue*)key)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for ScriptInstanceList."));
+}
+}
+}
+
+SV ScriptInstanceList_insert(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::insert" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],ScriptInstance*))
+{
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<ScriptInstance*>::type>::f(ctx,a[2])));
+RET CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<ScriptInstance*> &))
+{
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<ScriptInstance*> &>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstanceList::insert.")));
+RET CN;
+}
+
+SV ScriptInstanceList_begin(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::begin" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ScriptInstanceList::begin.")));
+RET CN;
+}
+
+SV ScriptInstanceList_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::set" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],ScriptInstance*))
+{
+( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<ScriptInstance*>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstanceList::set.")));
+RET CN;
+}
+
+SV ScriptInstanceList_end(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::end" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ScriptInstanceList::end.")));
+RET CN;
+}
+
+SV ScriptInstanceList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::get" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("ScriptInstanceList::get.")));
+RET CN;
+}
+
+SV ScriptInstanceList_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::clear" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->clear());
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstanceList::clear.")));
+RET CN;
+}
+
+SV ScriptInstanceList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::copy" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("ScriptInstanceList::copy.")));
+RET CN;
+}
+
+SV ScriptInstanceList_remove(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::remove" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
+{
+( f->remove(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstanceList::remove.")));
+RET CN;
+}
+
+SV ScriptInstanceList_in(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::in" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],ScriptInstance*))
+{
+RET CV( f->in(val_to_c<std::remove_reference<ScriptInstance*>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("ScriptInstanceList::in.")));
+RET CN;
+}
+
+SV ScriptInstanceList_getCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::getCount" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getCount());
+;
+}
+CATE(TE,UFOF("ScriptInstanceList::getCount.")));
+RET CN;
+}
+
+SV ScriptInstanceList_getData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::getData" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("ScriptInstanceList::getData.")));
+RET CN;
+}
+
+SV ScriptInstanceList___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::__eq__" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<ScriptInstance*> &))
+{
+auto v=val_to_c<std::remove_reference<const List<ScriptInstance*> &>::type>::f(ctx,a[1]);
+RET CV(*f == v);
+}
+CATE(TE,UFOF("ScriptInstanceList::__eq__.")));
+RET CN;
+}
+
+SV ScriptInstanceList_find(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::find" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],ScriptInstance*))
+{
+RET CV( f->find(val_to_c<std::remove_reference<ScriptInstance*>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("ScriptInstanceList::find.")));
+RET CN;
+}
+
+SV ScriptInstanceList_append(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::append" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],ScriptInstance*))
+{
+( f->append(val_to_c<std::remove_reference<ScriptInstance*>::type>::f(ctx,a[1])));
+RET CN;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<ScriptInstance*> &))
+{
+( f->append(val_to_c<std::remove_reference<const List<ScriptInstance*> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstanceList::append.")));
+RET CN;
+}
+
+SV ScriptInstanceList___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::__neq__" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<ScriptInstance*> &))
+{
+auto v=val_to_c<std::remove_reference<const List<ScriptInstance*> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("ScriptInstanceList::__neq__.")));
 RET CN;
 }
 
@@ -49899,6 +51168,7 @@ SV create(CTX ctx,const Container& value){RET CV(value);}
 SV create(CTX ctx,const LightDirectionalData& value){RET CV(value);}
 SV create(CTX ctx,const Matrix4x4& value){RET CV(value);}
 SV create(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>& value){RET CV(value);}
+SV create(CTX ctx,const List<ScriptInstance*>& value){RET CV(value);}
 SV create(CTX ctx,const T3<uint32_t>& value){RET CV(value);}
 SV create(CTX ctx,const LightSpotData& value){RET CV(value);}
 SV create(CTX ctx,const AudioDevice& value){RET CV(value);}
@@ -49935,6 +51205,7 @@ SV create(CTX ctx,Event *value){RET CV(value);}
 SV create(CTX ctx,PhysicsWorld *value){RET CV(value);}
 SV create(CTX ctx,Stats *value){RET CV(value);}
 SV create(CTX ctx,AudioSource *value){RET CV(value);}
+SV create(CTX ctx,Script *value){RET CV(value);}
 SV create(CTX ctx,List<RayCastResult> *value){RET CV(value);}
 SV create(CTX ctx,Platform *value){RET CV(value);}
 SV create(CTX ctx,Camera *value){RET CV(value);}
@@ -49954,6 +51225,7 @@ SV create(CTX ctx,List<AudioSource*> *value){RET CV(value);}
 SV create(CTX ctx,GfxMaterial *value){RET CV(value);}
 SV create(CTX ctx,Quaternion *value){RET CV(value);}
 SV create(CTX ctx,GfxMeshAttrib *value){RET CV(value);}
+SV create(CTX ctx,ScriptInstance *value){RET CV(value);}
 SV create(CTX ctx,RenderComponent *value){RET CV(value);}
 SV create(CTX ctx,T2<int32_t> *value){RET CV(value);}
 SV create(CTX ctx,AudioWorld *value){RET CV(value);}
@@ -49968,6 +51240,7 @@ SV create(CTX ctx,Container *value){RET CV(value);}
 SV create(CTX ctx,LightDirectionalData *value){RET CV(value);}
 SV create(CTX ctx,Matrix4x4 *value){RET CV(value);}
 SV create(CTX ctx,HashMap<scripting::Value*,scripting::Value*> *value){RET CV(value);}
+SV create(CTX ctx,List<ScriptInstance*> *value){RET CV(value);}
 SV create(CTX ctx,T3<uint32_t> *value){RET CV(value);}
 SV create(CTX ctx,LightSpotData *value){RET CV(value);}
 SV create(CTX ctx,PhysicsShape *value){RET CV(value);}
@@ -50141,6 +51414,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("AudioSource", ext->AudioSource);
     
     typeID = engine->createNewTypeID();
+    ext->Script_typeID = typeID;
+    ext->Script = scripting::createNativeObject(Script_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Script", ext->Script);
+    
+    typeID = engine->createNewTypeID();
     ext->RayCastResultList_typeID = typeID;
     ext->RayCastResultList = scripting::createNativeObject(RayCastResultList_funcs, NULL, typeID);
     engine->getGlobalVars().set("RayCastResultList", ext->RayCastResultList);
@@ -50236,6 +51514,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GfxMeshAttrib", ext->GfxMeshAttrib);
     
     typeID = engine->createNewTypeID();
+    ext->ScriptInstance_typeID = typeID;
+    ext->ScriptInstance = scripting::createNativeObject(ScriptInstance_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ScriptInstance", ext->ScriptInstance);
+    
+    typeID = engine->createNewTypeID();
     ext->RenderComponent_typeID = typeID;
     ext->RenderComponent = scripting::createNativeObject(RenderComponent_funcs, NULL, typeID);
     engine->getGlobalVars().set("RenderComponent", ext->RenderComponent);
@@ -50304,6 +51587,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Map_typeID = typeID;
     ext->Map = scripting::createNativeObject(Map_funcs, NULL, typeID);
     engine->getGlobalVars().set("Map", ext->Map);
+    
+    typeID = engine->createNewTypeID();
+    ext->ScriptInstanceList_typeID = typeID;
+    ext->ScriptInstanceList = scripting::createNativeObject(ScriptInstanceList_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ScriptInstanceList", ext->ScriptInstanceList);
     
     typeID = engine->createNewTypeID();
     ext->UInt3_typeID = typeID;

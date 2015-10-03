@@ -345,7 +345,7 @@ void loadEntity(Entity *entity, File *file)
         String name((size_t)nameLen);
         file->read(nameLen, name.getData());
 
-        entity->addScript(resMgr->load<Script>(scriptFile), name.getData());
+        entity->addScript(resMgr->load<Script>(scriptFile));
     }
 
     uint32_t numChildren = file->readUInt32LE();
@@ -654,11 +654,7 @@ void Scene::_load()
             String scriptFile((size_t)scriptFileLen);
             file.read(scriptFileLen, scriptFile.getData());
 
-            uint32_t nameLen = file.readUInt32LE();
-            String name((size_t)nameLen);
-            file.read(nameLen, name.getData());
-
-            addScript(resMgr->load<Script>(scriptFile), name.getData());
+            addScript(resMgr->load<Script>(scriptFile));
         }
     } catch (FileException& e)
     {
@@ -1082,7 +1078,7 @@ void copyEntity(Entity *dest, Entity *source)
 
         inst->serialize(serialized);
 
-        ScriptInstance *new_ = dest->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+        ScriptInstance *new_ = dest->addScript(inst->getScript()->copyRef<Script>());
 
         try
         {
@@ -1097,7 +1093,7 @@ void copyEntity(Entity *dest, Entity *source)
 
             dest->removeScript(new_);
 
-            dest->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+            dest->addScript(inst->getScript()->copyRef<Script>());
         }
     }
 
@@ -1115,7 +1111,7 @@ Resource *Scene::_copy() const
 
     for (auto inst : scripts)
     {
-        scene->addScript(inst->getScript(), inst->getName().getData());
+        scene->addScript(inst->getScript());
     }
 
     scene->renderer->camera = renderer->camera;
@@ -1180,7 +1176,7 @@ Resource *Scene::_copy() const
 
         inst->serialize(serialized);
 
-        ScriptInstance *new_ = scene->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+        ScriptInstance *new_ = scene->addScript(inst->getScript()->copyRef<Script>());
 
         try
         {
@@ -1195,7 +1191,7 @@ Resource *Scene::_copy() const
 
             scene->removeScript(new_);
 
-            scene->addScript(inst->getScript()->copyRef<Script>(), inst->getName().getData());
+            scene->addScript(inst->getScript()->copyRef<Script>());
         }
     }
 

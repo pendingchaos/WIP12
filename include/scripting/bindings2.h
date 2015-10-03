@@ -112,6 +112,7 @@ namespace scripting
     Value *create(Context *ctx, const LightDirectionalData& value);
     Value *create(Context *ctx, const Matrix4x4& value);
     Value *create(Context *ctx, const HashMap<scripting::Value*,scripting::Value*>& value);
+    Value *create(Context *ctx, const List<ScriptInstance*>& value);
     Value *create(Context *ctx, const T3<uint32_t>& value);
     Value *create(Context *ctx, const LightSpotData& value);
     Value *create(Context *ctx, const AudioDevice& value);
@@ -148,6 +149,7 @@ namespace scripting
     Value *create(Context *ctx, PhysicsWorld *value);
     Value *create(Context *ctx, Stats *value);
     Value *create(Context *ctx, AudioSource *value);
+    Value *create(Context *ctx, Script *value);
     Value *create(Context *ctx, List<RayCastResult> *value);
     Value *create(Context *ctx, Platform *value);
     Value *create(Context *ctx, Camera *value);
@@ -167,6 +169,7 @@ namespace scripting
     Value *create(Context *ctx, GfxMaterial *value);
     Value *create(Context *ctx, Quaternion *value);
     Value *create(Context *ctx, GfxMeshAttrib *value);
+    Value *create(Context *ctx, ScriptInstance *value);
     Value *create(Context *ctx, RenderComponent *value);
     Value *create(Context *ctx, T2<int32_t> *value);
     Value *create(Context *ctx, AudioWorld *value);
@@ -181,6 +184,7 @@ namespace scripting
     Value *create(Context *ctx, LightDirectionalData *value);
     Value *create(Context *ctx, Matrix4x4 *value);
     Value *create(Context *ctx, HashMap<scripting::Value*,scripting::Value*> *value);
+    Value *create(Context *ctx, List<ScriptInstance*> *value);
     Value *create(Context *ctx, T3<uint32_t> *value);
     Value *create(Context *ctx, LightSpotData *value);
     Value *create(Context *ctx, PhysicsShape *value);

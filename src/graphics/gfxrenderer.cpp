@@ -159,7 +159,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     ssaoTexture = NEW(GfxTexture);
     ssaoBlurXTexture = NEW(GfxTexture);
     bloomBlurXTexture = NEW(GfxTexture);
-    //luminanceTexture = NEW(GfxTexture);
     ssaoRandomTexture = NEW(GfxTexture);
     bloom1Texture = NEW(GfxTexture);
     bloom2Texture = NEW(GfxTexture);
@@ -182,7 +181,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloom4Texture->setWrapMode(GfxWrapMode::Stretch);
     bloomDownsampleTexture->setWrapMode(GfxWrapMode::Stretch);
     geomNormalTexture->setWrapMode(GfxWrapMode::Stretch);
-    //luminanceTexture->setWrapMode(GfxWrapMode::Stretch);
 
     resize(640);
 
@@ -249,9 +247,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloomDownsampleFramebuffer = gfxApi->createFramebuffer();
     bloomDownsampleFramebuffer->addColorAttachment(0, bloomDownsampleTexture);
 
-    /*luminanceFramebuffer = gfxApi->createFramebuffer();
-    luminanceFramebuffer->addColorAttachment(0, luminanceTexture);*/
-
     gBufferTimer = gfxApi->createTimer();
     ssaoTimer = gfxApi->createTimer();
     ssaoBlurXTimer = gfxApi->createTimer();
@@ -262,14 +257,13 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     fxaaTimer = gfxApi->createTimer();
     colorModifierTimer = gfxApi->createTimer();
     bloomTimer = gfxApi->createTimer();
-    //luminanceCalcTimer = gfxApi->createTimer();
     shadowmapTimer = gfxApi->createTimer();
     overlayTimer = gfxApi->createTimer();
     debugDrawTimer = gfxApi->createTimer();
 
-    //matrixTexture = NEW(GfxTexture);
-    instanceBuffer = gfxApi->createBuffer();
-    instanceBuffer->allocData(16384, NULL, GfxBufferUsage::Dynamic);
+    matrixTexture = NEW(GfxTexture);
+    //instanceBuffer = gfxApi->createBuffer();
+    //instanceBuffer->allocData(16384, NULL, GfxBufferUsage::Dynamic);
 
     /*addTerrain(2.0f,
                32,
@@ -288,8 +282,8 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
 GfxRenderer::~GfxRenderer()
 {
-    //matrixTexture->release();
-    DELETE(instanceBuffer);
+    matrixTexture->release();
+    //DELETE(instanceBuffer);
 
     for (auto light : lights)
     {
@@ -1618,33 +1612,7 @@ void GfxRenderer::renderBatches(bool forward)
     {
         if (batch.material->isForward() == forward)
         {
-            List<Matrix4x4> worldMatrices = batch.worldMatrices;
-
-            /*uint8_t *matrixData = (uint8_t *)ALLOCATE(worldMatrices.getCount()*128);
-
-            for (size_t j = 0; j < worldMatrices.getCount(); ++j)
-            {
-                Matrix4x4 worldMatrix = worldMatrices[j];
-                Matrix4x4 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
-                worldMatrix = worldMatrix.transpose();
-                normalMatrix = normalMatrix.transpose();
-
-                std::memcpy(matrixData+j*128, (void *)&worldMatrix, 64);
-                std::memcpy(matrixData+j*128+64, (void *)&normalMatrix, 64);
-            }
-
-            matrixTexture->startCreation(GfxTexture::Texture2D,
-                                         false,
-                                         worldMatrices.getCount()*8,
-                                         1,
-                                         1,
-                                         255,
-                                         GfxTexture::Other,
-                                         GfxTexture::RGBAF32);
-
-            matrixTexture->allocMipmap(0, 1, matrixData);
-
-            DEALLOCATE(matrixData);*/
+            fillMatrixTexture(batch.worldMatrices);
 
             GfxMaterial *material = batch.material;
             GfxMesh *mesh = batch.mesh;
@@ -1749,8 +1717,7 @@ void GfxRenderer::renderBatches(bool forward)
                 gfxApi->addUBOBinding(vertex, "boneNormalData", batch.animState->getNormalMatrixBuffer());
             }
 
-            //gfxApi->addTextureBinding(vertex, "matrixTexture", matrixTexture);
-            gfxApi->addUBOBinding(vertex, "instanceData", instanceBuffer);
+            gfxApi->addTextureBinding(vertex, "matrixTexture", matrixTexture);
 
             gfxApi->setCullMode(mesh->cullMode);
 
@@ -1759,50 +1726,7 @@ void GfxRenderer::renderBatches(bool forward)
                 gfxApi->setTessPatchSize(3);
             }
 
-            for (size_t j = 0; j < worldMatrices.getCount()/128; ++j)
-            {
-                float instanceData[4096];
-
-                for (size_t k = 0; k < 128; ++k)
-                {
-                    Matrix4x4 worldMatrix = worldMatrices[j*128+k];
-                    Matrix4x4 normalMatrix = worldMatrix.inverse();
-                    worldMatrix = worldMatrix.transpose();
-
-                    std::memcpy(instanceData+k*32, &worldMatrix, 64);
-                    std::memcpy(instanceData+k*32+16, &normalMatrix, 64);
-                }
-
-                instanceBuffer->setData(0, 16384, instanceData);
-
-                gfxApi->draw(128);
-                ++stats.numDrawCalls;
-            }
-
-            size_t numDone = worldMatrices.getCount() / 128 * 128;
-            size_t numLeft = worldMatrices.getCount() % 128;
-
-            if (numLeft % 128 != 0)
-            {
-                float instanceData[numLeft*32];
-
-                for (size_t k = 0; k < numLeft; ++k)
-                {
-                    Matrix4x4 worldMatrix = worldMatrices[numDone+k];
-                    Matrix4x4 normalMatrix = worldMatrix.inverse();
-                    worldMatrix = worldMatrix.transpose();
-
-                    std::memcpy(instanceData+k*32, &worldMatrix, 64);
-                    std::memcpy(instanceData+k*32+16, &normalMatrix, 64);
-                }
-
-                instanceBuffer->setData(0, numLeft*128, instanceData);
-
-                gfxApi->draw(numLeft);
-                ++stats.numDrawCalls;
-            }
-
-            gfxApi->end(0);
+            gfxApi->end(batch.worldMatrices.getCount());
 
             if (batch.animState != nullptr)
             {
@@ -1846,6 +1770,8 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 {
     for (auto batch : batches)
     {
+        fillMatrixTexture(batch.worldMatrices);
+
         GfxMaterial *material = batch.material;
         GfxMesh *mesh = batch.mesh;
 
@@ -1977,7 +1903,10 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
         gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
 
-        gfxApi->setTessPatchSize(3);
+        if (useTesselation)
+        {
+            gfxApi->setTessPatchSize(3);
+        }
 
         if (batch.animState != nullptr)
         {
@@ -1989,20 +1918,10 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
             }
         }
 
-        for (auto worldMatrix : batch.worldMatrices)
-        {
-            gfxApi->uniform(vertexShader, "worldMatrix", worldMatrix);
+        gfxApi->addTextureBinding(vertexShader, "matrixTexture", matrixTexture);
 
-            if (useTesselation)
-            {
-                gfxApi->uniform(vertexShader, "normalMatrix", Matrix3x3(worldMatrix.inverse().transpose()));
-            }
-
-            gfxApi->draw();
-            ++stats.numDrawCalls;
-        }
-
-        gfxApi->end(0);
+        gfxApi->end(batch.worldMatrices.getCount());
+        ++stats.numDrawCalls;
     }
 }
 
@@ -2168,6 +2087,35 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
 
     gfxApi->end(terrain->getSizeInChunks() * terrain->getSizeInChunks());
     ++stats.numDrawCalls;
+}
+
+void GfxRenderer::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
+{
+    uint8_t *matrixData = (uint8_t *)ALLOCATE(worldMatrices.getCount()*128);
+
+    for (size_t j = 0; j < worldMatrices.getCount(); ++j)
+    {
+        Matrix4x4 worldMatrix = worldMatrices[j];
+        Matrix4x4 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
+        worldMatrix = worldMatrix.transpose();
+        normalMatrix = normalMatrix.transpose();
+
+        std::memcpy(matrixData+j*128, (void *)&worldMatrix, 64);
+        std::memcpy(matrixData+j*128+64, (void *)&normalMatrix, 64);
+    }
+
+    matrixTexture->startCreation(GfxTextureType::Texture2D,
+                                 false,
+                                 worldMatrices.getCount()*8,
+                                 1,
+                                 1,
+                                 255,
+                                 GfxTexPurpose::Other,
+                                 GfxTexFormat::RGBAF32);
+
+    matrixTexture->allocMipmap(0, 1, matrixData);
+
+    DEALLOCATE(matrixData);
 }
 
 void GfxRenderer::swapFramebuffers()
