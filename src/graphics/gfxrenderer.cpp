@@ -452,12 +452,6 @@ void GfxRenderer::updateStats()
         stats.bloomTiming = bloomTimer->getResult() / (float)bloomTimer->getResultResolution();
     }
 
-    /*luminanceCalcTimer->swap();
-    if (luminanceCalcTimer->resultAvailable())
-    {
-        stats.lumCalcTiming = luminanceCalcTimer->getResult() / (float)luminanceCalcTimer->getResultResolution();
-    }*/
-
     shadowmapTimer->swap();
     if (shadowmapTimer->resultAvailable())
     {
@@ -872,9 +866,10 @@ void GfxRenderer::render()
     batches.clear();
     batchEntities(scene->getEntities());
 
-    stats.batchingTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
+    stats.batchingCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
-    //TODO: Add a timing for this.
+    start = platform->getTime();
+
     for (auto batch : batches)
     {
         if (batch.animState != nullptr)
@@ -882,6 +877,8 @@ void GfxRenderer::render()
             batch.animState->updateMatrices();
         }
     }
+
+    stats.animationCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Shadowmaps
     start = platform->getTime();
@@ -930,24 +927,8 @@ void GfxRenderer::render()
     gBufferTimer->end();
     stats.gbufferCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
-    //Generate normals
-    /*gfxApi->setCurrentFramebuffer(geomNormalFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledGenerateNormalsFragment,
-                  quadMesh);
-
-    gfxApi->addTextureBinding(compiledGenerateNormalsFragment, "depthTexture", depthTexture);
-    gfxApi->uniform(compiledGenerateNormalsFragment, "viewProjectionMatrix", camera.getProjectionMatrix() * camera.getViewMatrix());
-
-    gfxApi->end(quadMesh->primitive,
-                quadMesh->numVertices,
-                quadMesh->winding);*/
-
     //SSAO
+    start = platform->getTime();
     ssaoTimer->begin();
 
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
@@ -969,8 +950,10 @@ void GfxRenderer::render()
     gfxApi->end();
 
     ssaoTimer->end();
+    stats.miscPostEffectsCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //SSAO Blur X
+    start = platform->getTime();
     ssaoBlurXTimer->begin();
 
     gfxApi->setCurrentFramebuffer(ssaoBlurXFramebuffer);
@@ -984,8 +967,10 @@ void GfxRenderer::render()
     ++stats.numDrawCalls;
 
     ssaoBlurXTimer->end();
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //SSAO Blur Y
+    start = platform->getTime();
     ssaoBlurYTimer->begin();
 
     gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
@@ -999,25 +984,11 @@ void GfxRenderer::render()
     ++stats.numDrawCalls;
 
     ssaoBlurYTimer->end();
-
-    /*//SSAO Upsample
-    ssaoUpsampleTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(ssaoFinalFramebuffer);
-    gfxApi->setViewport(0, 0, width, height);
-
-    gfxApi->begin(ssaoUpsample, quadMesh);
-
-    GfxCompiledShader *ssaoUpsampleFragment = ssaoUpsample->getCompiled(GfxShaderType::Fragment);
-    gfxApi->addTextureBinding(ssaoUpsampleFragment, "aoTexture", ssaoTexture);
-
-    gfxApi->end();
-    ++stats.numDrawCalls;
-
-    ssaoUpsampleTimer->end();*/
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Lighting using the G buffer
     deferredShadingTimer->begin();
+    start = platform->getTime();
 
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
     gfxApi->clearColor(0, Float4(0.0f));
@@ -1132,6 +1103,7 @@ void GfxRenderer::render()
         ++stats.numDrawCalls;
     }
 
+    stats.deferredShadingCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
     deferredShadingTimer->end();
 
     gfxApi->setBlendingEnabled(false);
@@ -1166,59 +1138,8 @@ void GfxRenderer::render()
 
     swapFramebuffers();
 
-    //Luminance calculation.
-    /*luminanceCalcTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(luminanceFramebuffer);
-
-    gfxApi->begin(compiledPostEffectVertex,
-                  nullptr,
-                  nullptr,
-                  nullptr,
-                  compiledLumCalcFragment,
-                  quadMesh);
-
-    gfxApi->addTextureBinding(compiledLumCalcFragment, "colorTexture", writeColorTexture);
-
-    gfxApi->end();
-    ++stats.numDrawCalls;
-
-    luminanceTexture->generateMipmaps();
-
-    size_t lumMipmapLevel = 0;
-    size_t lumWidth = TEX_COMPUTE_MIPMAP_SIZE(width, lumMipmapLevel);
-    size_t lumHeight = TEX_COMPUTE_MIPMAP_SIZE(height, lumMipmapLevel);
-
-    while (lumWidth != 1 and lumHeight != 1)
-    {
-        lumWidth /= 2;
-        lumHeight /= 2;
-        ++lumMipmapLevel;
-    }
-
-    float *lums = NEW_ARRAY(float, lumWidth*lumHeight);
-
-    luminanceTexture->getMipmap(lumMipmapLevel, 1, lums);
-
-    averageLuminance = 0.0f;
-
-    for (size_t x = 0; x < lumWidth; ++x)
-    {
-        for(size_t y = 0; y < lumHeight; ++y)
-        {
-            averageLuminance += lums[y*lumWidth+x];
-        }
-    }
-
-    DELETE_ARRAY(lums);
-
-    averageLuminance /= lumWidth * lumHeight;
-
-    averageLuminance = std::max(std::exp(averageLuminance), 0.001f);
-
-    luminanceCalcTimer->end();*/
-
     bloomTimer->begin();
+    start = platform->getTime();
 
     if (bloomEnabled)
     {
@@ -1308,9 +1229,11 @@ void GfxRenderer::render()
         swapFramebuffers();
     }
 
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
     bloomTimer->end();
 
     //Color modifiers.
+    start = platform->getTime();
     colorModifierTimer->begin();
 
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
@@ -1324,6 +1247,7 @@ void GfxRenderer::render()
     gfxApi->end();
     ++stats.numDrawCalls;
 
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
     colorModifierTimer->end();
 
     //Overlays
@@ -1368,6 +1292,7 @@ void GfxRenderer::render()
     stats.overlayCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Gamma correction
+    start = platform->getTime();
     gammaCorrectionTimer->begin();
 
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
@@ -1381,9 +1306,11 @@ void GfxRenderer::render()
 
     swapFramebuffers();
 
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
     gammaCorrectionTimer->end();
 
     //FXAA
+    start = platform->getTime();
     fxaaTimer->begin();
 
     gfxApi->setCurrentFramebuffer(nullptr);
@@ -1396,13 +1323,16 @@ void GfxRenderer::render()
     ++stats.numDrawCalls;
 
     fxaaTimer->end();
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
 
     readColorTexture = oldReadTex;
     writeColorTexture = oldWriteTex;
     readFramebuffer = oldReadFb;
     writeFramebuffer = oldWriteFb;
 
+    start = platform->getTime();
     updateStats();
+    stats.updateStatsCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 }
 
 AABB GfxRenderer::computeSceneAABB() const

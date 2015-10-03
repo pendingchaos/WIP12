@@ -1,7 +1,7 @@
 #include "scripting/vm/types.h"
 
 #include "scripting/vm/context.h"
-#include <assert.h>
+#include <SDL2/SDL_assert.h>
 #include "memory.h"
 
 namespace scripting
@@ -164,7 +164,7 @@ Value *createCopy(Context *context, const Value *value)
     }
     }
 
-    assert(false);
+    SDL_assert_release(false);
 
     return createNil();
 }
@@ -260,7 +260,7 @@ void destroy(Context *context, Value *value)
     }
     default:
     {
-        assert(false);
+        SDL_assert_release(false); //TODO: This triggered once.
     }
     }
 }

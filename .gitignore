@@ -9,3 +9,5 @@
 /WIP12.depend
 /include/scripting/scriptinclude.h.gch
 /bin/programs/main/resources/textures/*
+/bin/programs/main2/resources/textures/*
+/bin/programs/*.pyc

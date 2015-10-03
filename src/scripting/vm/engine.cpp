@@ -2,7 +2,7 @@
 
 #include "scripting/vm/context.h"
 #include <stdint.h>
-#include <assert.h>
+#include <SDL2/SDL_assert.h>
 #include <cmath>
 #include <iostream>
 
@@ -118,7 +118,7 @@ static Value *methodCall(Context *ctx, const List<Value *>& args)
     {
         ctx->throwException(createException(ExcType::ValueError, "Invalid method object."));
 
-        assert(false);
+        SDL_assert_release(false);
     }
 
     List<Value *> args2;
@@ -164,7 +164,7 @@ static double asNumber(Context *ctx, Value *value)
     }
     }
 
-    assert(false);
+    SDL_assert_release(false);
 }
 
 static Value *mathAbs(Context *ctx, const List<Value *>& args)
@@ -190,7 +190,7 @@ static Value *mathAbs(Context *ctx, const List<Value *>& args)
     }
     }
 
-    assert(false);
+    SDL_assert_release(false);
 }
 
 template <double (*F)(double)>

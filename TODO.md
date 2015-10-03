@@ -32,7 +32,6 @@
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
 - [ ] Make a GUI skinnable.
-- [ ] Get rid of <class>Ref.
 
 ## Bugs
 - [ ] POM with terrains freezes the computer.
@@ -60,6 +59,7 @@
     - [ ] Dithering? https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering?
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
+- [ ] The skybox takes up 100.7 megabytes.
 
 ## Performance Improvements
 - [ ] Instancing

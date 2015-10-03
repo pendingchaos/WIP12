@@ -3,7 +3,7 @@ return class {
         resMgr = getResMgr();
         gfxApi = getGfxApi();
         
-        self.scene = resMgr:loadScene("resources/scenes/scene.bin");
+        self.scene = resMgr:loadScene("resources/scenes/main.bin");
         self.font = resMgr:loadFont("/usr/share/fonts/gnu-free/FreeSans.ttf");
         
         self.showExtraTimings = false;

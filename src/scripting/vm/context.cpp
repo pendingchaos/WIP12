@@ -3,7 +3,7 @@
 #include "scripting/vm/engine.h"
 #include <cmath>
 #include <iostream> //TODO: Get rid of this.
-#include <cassert>
+#include <SDL2/SDL_assert.h>
 
 namespace scripting
 {
@@ -1172,7 +1172,7 @@ size_t toIndex(Context *ctx, Value *value)
         ctx->throwException(createException(ExcType::TypeError, "Invalid index type."));
     }
 
-    assert(false);
+    SDL_assert_release(false);
 }
 
 static Value *strEqual(Context *ctx, const List<Value *>& args)
@@ -1683,7 +1683,7 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     }
     }
 
-    assert(false);
+    SDL_assert_release(false);
 }
 
 void setMember(Context *ctx, Value *dest, Value *key, Value *value)
@@ -1747,7 +1747,7 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
     }
     }
 
-    assert(false);
+    SDL_assert_release(false);
 }
 
 Value *call(Context *ctx, Value *value, const List<Value *>& args)
@@ -1774,7 +1774,7 @@ Value *call(Context *ctx, Value *value, const List<Value *>& args)
     }
     }
 
-    assert(false);
+    SDL_assert_release(false);
 }
 
 Value *callMethod(Context *ctx, Value *obj, const String& methName, const List<Value *>& args)

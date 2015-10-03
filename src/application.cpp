@@ -102,7 +102,8 @@ void Application::updateFunction()
 
     uint64_t realTime = platform_->getTime();
 
-    while (simulationTime < realTime)
+    size_t num = 0;
+    while (simulationTime < realTime && num < 10)
     {
         if (script != nullptr)
         {
@@ -110,6 +111,13 @@ void Application::updateFunction()
         }
 
         simulationTime += fixedTimestep * timerFrequency;
+        ++num;
+    }
+
+    //Don't allow more than 10 per frame. //TODO: Make this configurable.
+    if (num == 10)
+    {
+        simulationTime = realTime;
     }
 
     end = platform_->getTime();

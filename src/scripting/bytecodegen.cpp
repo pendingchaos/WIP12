@@ -2,7 +2,6 @@
 
 #include "scripting/vm/bytecode.h"
 #include "scripting/parser/ast.h"
-#include <assert.h>
 
 namespace scripting
 {

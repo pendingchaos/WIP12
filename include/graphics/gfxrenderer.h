@@ -31,15 +31,19 @@ struct RenderStats
     float fxaaTiming;
     float colorModifierTiming;
     float bloomTiming;
-    //float lumCalcTiming;
     float shadowmapTiming;
     float overlayTiming;
     float debugDrawTiming;
+
     float shadowmapCPUTiming;
     float gbufferCPUTiming;
     float forwardCPUTiming;
     float overlayCPUTiming;
-    float batchingTiming;
+    float batchingCPUTiming;
+    float animationCPUTiming;
+    float deferredShadingCPUTiming;
+    float updateStatsCPUTiming;
+    float miscPostEffectsCPUTiming;
     size_t numDrawCalls;
 } BIND;
 

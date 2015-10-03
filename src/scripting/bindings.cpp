@@ -18734,10 +18734,26 @@ RET CV(obj->forwardCPUTiming);
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->overlayCPUTiming);
-} EI(keyStr=="batchingTiming")
+} EI(keyStr=="batchingCPUTiming")
 {
 RenderStats*obj=(RenderStats*)f->data;
-RET CV(obj->batchingTiming);
+RET CV(obj->batchingCPUTiming);
+} EI(keyStr=="animationCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->animationCPUTiming);
+} EI(keyStr=="deferredShadingCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->deferredShadingCPUTiming);
+} EI(keyStr=="updateStatsCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->updateStatsCPUTiming);
+} EI(keyStr=="miscPostEffectsCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+RET CV(obj->miscPostEffectsCPUTiming);
 } EI(keyStr=="numDrawCalls")
 {
 RenderStats*obj=(RenderStats*)f->data;
@@ -18826,10 +18842,26 @@ obj->forwardCPUTiming=val_to_c<decltype(obj->forwardCPUTiming)>::f(ctx,value);
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->overlayCPUTiming=val_to_c<decltype(obj->overlayCPUTiming)>::f(ctx,value);
-} EI(keyStr=="batchingTiming")
+} EI(keyStr=="batchingCPUTiming")
 {
 RenderStats*obj=(RenderStats*)f->data;
-obj->batchingTiming=val_to_c<decltype(obj->batchingTiming)>::f(ctx,value);
+obj->batchingCPUTiming=val_to_c<decltype(obj->batchingCPUTiming)>::f(ctx,value);
+} EI(keyStr=="animationCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->animationCPUTiming=val_to_c<decltype(obj->animationCPUTiming)>::f(ctx,value);
+} EI(keyStr=="deferredShadingCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->deferredShadingCPUTiming=val_to_c<decltype(obj->deferredShadingCPUTiming)>::f(ctx,value);
+} EI(keyStr=="updateStatsCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->updateStatsCPUTiming=val_to_c<decltype(obj->updateStatsCPUTiming)>::f(ctx,value);
+} EI(keyStr=="miscPostEffectsCPUTiming")
+{
+RenderStats*obj=(RenderStats*)f->data;
+obj->miscPostEffectsCPUTiming=val_to_c<decltype(obj->miscPostEffectsCPUTiming)>::f(ctx,value);
 } EI(keyStr=="numDrawCalls")
 {
 RenderStats*obj=(RenderStats*)f->data;

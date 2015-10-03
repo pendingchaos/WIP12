@@ -6,7 +6,9 @@
 #include "graphics/gputimer.h"
 #include "globals.h"
 
+#include <SDL2/SDL_assert.h>
 #include <cstdio>
+#include <iostream>
 
 struct toSDLKeycodeStruct {
     Key key;
@@ -149,9 +151,39 @@ MouseButton toMouseButton(Uint32 button)
     }
 }
 
+extern "C"
+{
+static SDL_assert_state assertionHandler(const SDL_assert_data *data, void *userdata)
+{
+    unsigned int depth;
+    const char **backtrace = getBacktrace(depth);
+
+    std::cout << "Backtrace for assertion \""
+              << data->condition
+              << "\" at "
+              << data->filename
+              << ':'
+              << data->linenum
+              << " in "
+              << data->function
+              << '\n';
+
+    for (size_t i = 0; i < depth; ++i)
+    {
+        std::cout << "    " << backtrace[i] << '\n';
+    }
+
+    std::cout << "Calling default assertion handler.\n";
+
+    return SDL_GetDefaultAssertionHandler()(data, userdata);
+}
+}
+
 Platform::Platform() : running(false), frametime(0.0f), gpuFrametime(0.0f), fullscreen(false)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
+
+    SDL_SetAssertionHandler(assertionHandler, nullptr);
 
     window = nullptr;
     context = nullptr;
