@@ -22,6 +22,8 @@
     - [ ] Automatic cast for things like Audio -> Resource for arguments.
     - [ ] Automatic cast for things like Resource -> Audio.
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
+    - [ ] [] operator.
+    - [ ] Unary - operator.
 - [ ] Finish the bytecode generator (scripting).
 - [ ] === operator (scripting).
 - [ ] Fix skeletal animation for the mesh converter.
@@ -61,6 +63,7 @@
 - [ ] Improve error and exception handling.
 - [ ] Get WIP12 running on OpenGL 3.3.
 - [ ] The skybox takes up 100.7 megabytes.
+- [ ] Fix memory leaks.
 
 ## Performance Improvements
 - [ ] Instancing

@@ -238,6 +238,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
 
+        //TODO: This would not work with a[b]
         if (lrOp->right->type == ASTNode::Identifier)
         {
             String name = ((IdentifierNode *)lrOp->right)->name;
@@ -248,7 +249,10 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
             data.append(name.getLength(), name.getData());
         } else
         {
-            THROW(ByteCodeGenException, "Invalid member name.");
+            if (not _generateBytecode(lrOp->right, data))
+            {
+                THROW(ByteCodeGenException, "Value does not evaluate to anything");
+            }
         }
 
         data.append(1, &opGetMember);

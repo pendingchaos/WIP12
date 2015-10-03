@@ -3,6 +3,7 @@ return class {
         self.entity = entity;
         self.scene = entity:getScene();
         
+        self.angle = Float2(PI, 0.0);
         self.speed = 10.0;
         self.zoom = 1.0;
         self.maxVel = 12.0;
@@ -29,6 +30,8 @@ return class {
     update = function(self) {};
     
     fixedUpdate = function(self, timestep) {
+        physicsWorld = self.scene:getPhysicsWorld();
+        
         feetTransform = self.entity.transform;
         
         pos = feetTransform.position;
@@ -46,13 +49,17 @@ return class {
         
         cam = renderer.camera;
         
-        dir = Float3(-1.0, -1.0, -1.0);
+        quat = Quaternion(Float3(0.0, self.angle.x, 0.0));
+        quat2 = Quaternion(Float3(self.angle.y, 0.0, 0.0));
         
+        dir = quat2:toMatrix() * Float4(-1.0, -1.0, -1.0, 1.0);
+        dir = quat:toMatrix() * dir;
+        dir = Float3(dir.x, dir.y, dir.z) / dir.w;
         cam:setDirection(dir);
         
-        right = Float3(1.0, 0.0, -1.0);
-        
-        cam:setUp(right:cross(dir));
+        right = quat:toMatrix() * Float4(1.0, 0.0, -1.0, 1.0);
+        right = Float3(right.x, right.y, right.z) / right.w;
+        cam:setUp(right.cross(right, dir));
         
         resSpeed = self.speed;
         
@@ -103,6 +110,35 @@ return class {
             body:setLinearVelocity(vel);
         };
         
+        if platform:isLeftMouseButtonPressed() {
+            platform:setCursorVisible(false);
+            
+            w = platform:getWindowWidth();
+            h = platform:getWindowHeight();
+            pos = platform:getMousePosition();
+            
+            platform:setMousePosition(Int2(w/2, h/2)); #TODO: Adding an extra ) does not raise an error.
+            
+            rel = Float2(w+0.0, h+0.0) / 2.0 - Float2(pos.x+0.0, pos.y+0.0);
+            
+            if (rel.x > -1.0) and (rel.x < 1.0) {
+                rel.x = 0.0;
+            };
+            
+            if (rel.y > -1.0) and (rel.y < 1.0) {
+                rel.y = 0.0;
+            };
+            
+            angle = self.angle;
+            angle.x = angle.x + 0.125*timestep*rel.x;
+            angle.y = angle.y + 0.125*timestep*rel.y;
+            angle.y = max(angle.y, 0.0);
+            angle.y = min(angle.y, PI/4.0);
+            self.angle = angle;
+        } else {
+            platform:setCursorVisible(true);
+        };
+        
         if platform:getMouseWheel().y > 0.0 {
             self.zoom = self.zoom - timestep;
         } elif platform:getMouseWheel().y < 0.0 {
@@ -113,9 +149,23 @@ return class {
         
         cam:setFieldOfView(self.zoom * 50.0);
         
-        cam:setPosition(self.entity.transform.position + Float3(5.0, 5.0, 5.0));
+        "maxDistance = 5.0;
+        hits = physicsWorld:castRay(self.entity.transform.position-dir, Float3(0.0)-dir, 999.0);
         
-        renderer.camera = cam;
+        if hits:getCount() == 0 {
+            distance = maxDistance;
+        } else {
+            distance = hits:get(0).distance;
+        };
+        
+        if distance < 1.2 {
+            distance = maxDistance;
+        };";
+        distance = 10.0;
+        
+        cam:setPosition(self.entity.transform.position - dir*distance);
+        
+        renderer.camera = cam; #TODO: This is needed
     };
     
     preRender = function(self) {};

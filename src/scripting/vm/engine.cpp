@@ -237,21 +237,58 @@ static Value *print(Context *ctx, const List<Value *>& args)
     {
         Value *head = args[i];
 
-        if (head->type == ValueType::StringType)
+        switch (head->type)
+        {
+        case ValueType::StringType:
         {
             std::cout << ((StringValue *)head)->value.getData() << ' ';
-        } else if (head->type == ValueType::Int)
+            break;
+        }
+        case ValueType::Int:
         {
             std::cout << ((IntValue *)head)->value << ' ';
-        } else if (head->type == ValueType::Float)
+            break;
+        }
+        case ValueType::Float:
         {
             std::cout << ((FloatValue *)head)->value << ' ';
-        } else if (head->type == ValueType::Boolean)
+            break;
+        }
+        case ValueType::Boolean:
         {
             std::cout << (((BooleanValue *)head)->value ? "true" : "false") << ' ';
-        } else
+            break;
+        }
+        case ValueType::Nil:
         {
-            ctx->throwException(createException(ExcType::TypeError, "Argument must be string, integer, float or boolean."));
+            std::cout << "nil ";
+            break;
+        }
+        case ValueType::Function:
+        {
+            std::cout << "<function> ";
+            break;
+        }
+        case ValueType::Object:
+        {
+            std::cout << "<object> ";
+            break;
+        }
+        case ValueType::NativeFunction:
+        {
+            std::cout << "<native function> ";
+            break;
+        }
+        case ValueType::NativeObject:
+        {
+            std::cout << "<native object> ";
+            break;
+        }
+        case ValueType::Exception:
+        {
+            std::cout << "<exception> ";
+            break;
+        }
         }
     }
 

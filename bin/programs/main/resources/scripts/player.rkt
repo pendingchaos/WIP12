@@ -69,8 +69,6 @@ return class {
             resSpeed = resSpeed * 2.0;
         };
         
-        moveDir = Float3(sin(self.angle.x), 0.0, cos(self.angle.x));
-        
         vel = Float3();
         
         if platform:isKeyPressed(Key.A) {

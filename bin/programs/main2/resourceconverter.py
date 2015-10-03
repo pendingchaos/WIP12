@@ -4,7 +4,8 @@ sys.path.append("../")
 from resconvlib import *
 
 worldSize = 4
-numDecors = 100
+numDecors = 25
+numCoins = 100
 
 if __name__ == "__main__":
     conv = {}
@@ -22,6 +23,7 @@ if __name__ == "__main__":
     conv["sphere.obj"] = Mesh(["source/sphere.obj"], "resources/meshes/sphere.bin")
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
     conv["decor.obj"] = Mesh(["source/decor.obj"], "resources/meshes/decor.bin")
+    conv["coin.obj"] = Mesh(["source/coin.obj"], "resources/meshes/coin.bin")
     
     # Materials
     mat = Material([], "resources/materials/player.bin")
@@ -45,6 +47,18 @@ if __name__ == "__main__":
     mat.albedo = [1.0, 0.1, 0.0, 1.0]
     conv["decor"] = mat
     
+    colors = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [1.0, 1.0, 0.0], [0.0, 1.0, 1.0], [1.0, 1.0, 1.0]]
+    
+    i = 0
+    for color in colors:
+        mat = Material([], "resources/materials/coin%d.bin" % (i))
+        mat.forward = False
+        mat.smoothness = random.randint(0, 100)/100.0 * 0.1 + 0.55
+        mat.metalMask = 1.0
+        mat.albedo = color+[1.0]
+        conv["coin%d" % (i)] = mat
+        i += 1
+    
     # Models
     model = Model([], "resources/models/player.bin")
     model.sub_models = [[Model.LOD(conv["sphere.obj"], conv["player"], 0.0, 9999.0)]]
@@ -57,6 +71,11 @@ if __name__ == "__main__":
     model = Model([], "resources/models/decor.bin")
     model.sub_models = [[Model.LOD(conv["decor.obj"], conv["decor"], 0.0, 9999.0)]]
     conv["decor model"] = model
+    
+    for i in range(len(colors)):
+        model = Model([], "resources/models/coin%d.bin" % (i))
+        model.sub_models = [[Model.LOD(conv["coin.obj"], conv["coin%d" % (i)], 0.0, 9999.0)]]
+        conv["coin model %d" % (i)] = model
     
     # Shapes
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
@@ -76,6 +95,10 @@ if __name__ == "__main__":
     decorShape.shape.children.append((PhysicsShape.Box([0.657, 1.012, 0.736]), 0, 0, 0, 1, -0.8684, 2.98209, -0.7068))
     decorShape.shape.children.append((PhysicsShape.Box([0.684, 2.021, 0.736]), 0, 0, 0, 1, 0.684, 2.021, 0.736))"""
     conv["decor shape"] = decorShape
+    
+    coinShape = PhysicsShape([], "resources/shapes/coin.bin")
+    coinShape.shape = PhysicsShape.Cylinder("y", 0.2, 1.0)
+    conv["coin shape"] = coinShape
     
     # Scene
     scene = Scene([], "resources/scenes/main.bin")
@@ -103,20 +126,38 @@ if __name__ == "__main__":
             scene.entities.append(floorEnt)
     
     # Player
-    cubeEnt = Scene.Entity("Player")
-    cubeEnt.transform.position = [0.0, 2.0, 0.0]
-    cubeEnt.transform.scale = [1.0, 1.0, 1.0]
-    cubeEnt.transform.orientation = [0.0, 0.0, 0.0]
-    cubeEnt.rigidBody = Scene.RigidBody()
-    cubeEnt.rigidBody.type_ = Scene.RigidBody.Type.Dynamic
-    cubeEnt.rigidBody.shape = playerShape
-    cubeEnt.rigidBody.linearSleepingThreshold = 0.0
-    cubeEnt.rigidBody.angularSleepingThreshold = 0.0
-    cubeEnt.rigidBody.linearDamping = 0.8
-    cubeEnt.rigidBody.mass = 100.0
-    cubeEnt.scripts.append(("resources/scripts/player.rkt", "Player"))
-    cubeEnt.model = conv["player model"]
-    scene.entities.append(cubeEnt)
+    playerEnt = Scene.Entity("Player")
+    playerEnt.transform.position = [0.0, 2.0, 0.0]
+    playerEnt.transform.scale = [1.0, 1.0, 1.0]
+    playerEnt.transform.orientation = [0.0, 0.0, 0.0]
+    playerEnt.rigidBody = Scene.RigidBody()
+    playerEnt.rigidBody.type_ = Scene.RigidBody.Type.Dynamic
+    playerEnt.rigidBody.shape = playerShape
+    playerEnt.rigidBody.linearSleepingThreshold = 0.0
+    playerEnt.rigidBody.angularSleepingThreshold = 0.0
+    playerEnt.rigidBody.linearDamping = 0.8
+    playerEnt.rigidBody.mass = 100.0
+    playerEnt.scripts.append(("resources/scripts/player.rkt", "Player"))
+    playerEnt.model = conv["player model"]
+    scene.entities.append(playerEnt)
+    
+    # Coins
+    for i in range(numCoins):
+        x = 0.0
+        z = 0.0
+        
+        while abs(x) < 3.0 and abs(z) < 3.0:
+            x = random.randint(-worldSize*800, worldSize*800) / 100.0
+            z = random.randint(-worldSize*800, worldSize*800) / 100.0
+        
+        coinEnt = Scene.Entity("Coin")
+        coinEnt.transform.position = [x, random.randint(100, 300) / 100.0, z]
+        coinEnt.transform.scale = [1.0, 1.0, 1.0]
+        coinEnt.transform.orientation = [random.randint(-20, 20), random.randint(-20, 20), random.randint(-20, 20)]
+        coinEnt.model = conv["coin model %d" % (random.randint(0, len(colors)-1))]
+        coinEnt.rigidBody = Scene.RigidBody()
+        coinEnt.rigidBody.shape = coinShape
+        scene.entities.append(coinEnt)
     
     # Decor
     for i in range(numDecors):
