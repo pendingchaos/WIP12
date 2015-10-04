@@ -119,6 +119,8 @@ class Matrix4x4
                                    const Direction3D& up);
 
         NO_BIND float data[4][4];
+    private:
+        inline Matrix4x4(int) {}
 } BIND;
 
 #endif // MATRIX4X4_H

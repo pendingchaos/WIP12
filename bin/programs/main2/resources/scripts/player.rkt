@@ -18,11 +18,15 @@ return class {
         shape = PhysicsShape();
         shape:setCylinder(Axis.Y, 0.1, 0.8);
         self.feetGhost = physicsWorld:createGhostObject(shape, 0xFFFF ); #TODO: A space is required.
+        
+        shape = PhysicsShape();
+        shape:setSphere(1.0);
+        self.collisionGhost = physicsWorld:createGhostObject(shape, 0xFFFF );
     };
     
     __del__ = function(self)
     {
-        self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);
+       self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);
     };
     
     handleInput = function(self) {};
@@ -39,9 +43,25 @@ return class {
         feetTransform.position = pos;
         
         self.feetGhost:setTransform(feetTransform);
+        self.collisionGhost:setTransform(self.entity.transform);
         
         rigidBodies = self.feetGhost:getRigidBodyCollisions();
         self.onFloor = rigidBodies:getCount() != 0;
+        
+        rigidBodies = self.collisionGhost:getRigidBodyCollisions();
+        i = 0;
+        while i < rigidBodies:getCount() {
+            entity = rigidBodies:get(i):getEntity();
+            inst = entity:findScriptInstanceObj("resources/scripts/coin.rkt");
+            
+            if not isNil(inst) {
+                obj = inst:getObj();
+                obj.shrinking = true;
+                # TODO: Why won't "inst:getObj():onCollect()" work?
+            };
+            
+            i = i + 1;
+        };
         
         platform = getPlatform();
         body = self.entity:getRigidBody();

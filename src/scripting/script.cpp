@@ -12,6 +12,7 @@
 #include "scripting/disasm.h"
 #include "scripting/bindings2.h"
 
+//TODO: Get rid of this
 static void printAST(size_t indent, scripting::ASTNode *node)
 {
     std::cout << "--------------------------------\n";
@@ -441,14 +442,6 @@ void ScriptInstance::method(const String& name, float timestep)
     }
 }
 
-void ScriptInstance::serialize(Serializable& serialized)
-{
-}
-
-void ScriptInstance::deserialize(const Serializable& serialized)
-{
-}
-
 void ScriptInstance::destroy()
 {
     if (obj != nullptr)
@@ -537,8 +530,8 @@ void Script::_load()
 
     scripting::Bytecode code(data);
 
-    //String disasm = scripting::disasm(code);
-    //std::cout << disasm.getData() << std::endl;
+    String disasm = scripting::disasm(code);
+    std::cout << disasm.getData() << std::endl;
 
     {
         context = NEW(scripting::Context, scriptEngine);

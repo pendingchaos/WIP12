@@ -17,9 +17,9 @@ GfxShader::GfxShader() : Resource(ResType::GfxShaderType),
 
 GfxShader::~GfxShader()
 {
-    for (size_t i = 0; i < compiled.getEntryCount(); ++i)
+    for (auto kv : compiled)
     {
-        GfxCompiledShader *shader = compiled.getValue(i);
+        GfxCompiledShader *shader = kv.second;
 
         glDeleteProgram(shader->getGLProgram());
         glDeleteShader(shader->getGLShader());
@@ -29,9 +29,9 @@ GfxShader::~GfxShader()
 
 void GfxShader::removeContent()
 {
-    for (size_t i = 0; i < compiled.getEntryCount(); ++i)
+    for (auto kv : compiled)
     {
-        GfxCompiledShader *shader = compiled.getValue(i);
+        GfxCompiledShader *shader = kv.second;
 
         glDeleteProgram(shader->getGLProgram());
         glDeleteShader(shader->getGLShader());
@@ -227,21 +227,21 @@ void GfxShader::compile(GfxShaderType type, const String& source_)
     shaderType = type;
     source = source_;
 
-    for (size_t i = 0; i < compiled.getEntryCount(); ++i)
+    for (auto kv : compiled)
     {
-        GfxCompiledShader *shader = compiled.getValue(i);
+        GfxCompiledShader *shader = kv.second;
 
         glDetachShader(shader->program, shader->glShader);
 
-        shader->glShader = _compile(shader->program, compiled.getKey(i));
+        shader->glShader = _compile(shader->program, kv.first);
     }
 }
 
 GfxCompiledShader *GfxShader::getCompiled(const HashMap<String, String>& defines) const
 {
-    int entry = compiled.findEntry(defines);
+    auto pos = compiled.find(defines);
 
-    if (entry == -1)
+    if (pos == compiled.end())
     {
         GLuint program = glCreateProgram();
         glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
@@ -253,14 +253,16 @@ GfxCompiledShader *GfxShader::getCompiled(const HashMap<String, String>& defines
         return shader;
     }
 
-    return compiled.getValue(entry);
+    return pos->second;
 }
 
 GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defines) const
 {
-    GLsizei numSources = defines.getEntryCount() + 4;
+    size_t defineCount = defines.getCount();
+
+    GLsizei numSources = defineCount + 4;
     const char *sources[numSources];
-    String defineSources[defines.getEntryCount()];
+    String defineSources[defineCount];
 
     unsigned int major = ((GfxGLApi *)gfxApi)->getOpenGLMajorVersion();
     unsigned int minor = ((GfxGLApi *)gfxApi)->getOpenGLMinorVersion();
@@ -300,17 +302,19 @@ GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defin
 "#define fma(a, b, c) ((a) * (b) + (c))\n"
 "#endif\n";
 
-    for (size_t i = 0; i < defines.getEntryCount(); ++i)
+    size_t i = 0;
+    for (auto kv : defines)
     {
         defineSources[i] = String::format("#define %s %s\n",
-                                          defines.getKey(i).getData(),
-                                          defines.getValue(i).getData());
+                                          kv.first.getData(),
+                                          kv.second.getData());
         sources[i+2] = defineSources[i].getData();
+        ++i;
     }
 
-    sources[defines.getEntryCount()+2] = "#line 1\n";
+    sources[defineCount+2] = "#line 1\n";
 
-    sources[defines.getEntryCount()+3] = source.getData();
+    sources[defineCount+3] = source.getData();
 
     GLuint result = 0;
     String infoLog;

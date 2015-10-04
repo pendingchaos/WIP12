@@ -1092,12 +1092,25 @@ int main(int argc, const char *argv[])
     } catch (std::exception& e)
     {
         log("Unhandled exception caught: %s\n", e.what());
+    } catch (scripting::UnhandledExcException& e)
+    {
+        scripting::Value *exc = e.getException();
+
+        log("Unhandled script exception:\n");
+
+        if (exc->type == scripting::ValueType::Exception)
+        {
+            log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+        }
     } catch (const Exception& e)
     {
         log("Unhandled exception caught: %s\n", e.getString());
         log("    File: %s\n", e.getFile());
         log("    Line: %d\n", e.getLine());
         log("    Function: %s\n", e.getFunction());
+    } catch (...)
+    {
+        log("Unhandled exception caught.");
     }
 
     deinitLoggingSystem();

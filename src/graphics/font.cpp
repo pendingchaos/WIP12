@@ -31,31 +31,31 @@ Font::~Font()
 
     quadMesh->release();
 
-    for (size_t i = 0; i < faces.getEntryCount(); ++i)
+    for (auto face : faces)
     {
-        HashMap<char, Glyph> glyphs = faces.getValue(i).glyphs;
+        HashMap<char, Glyph> glyphs = face.second.glyphs;
 
-        for (size_t j = 0; j < glyphs.getEntryCount(); ++j)
+        for (auto glyph : glyphs)
         {
-            glyphs.getValue(j).texture->release();
+            glyph.second.texture->release();
         }
 
-        FT_Done_Face(faces.getValue(i).face);
+        FT_Done_Face(face.second.face);
     }
 }
 
 void Font::removeContent()
 {
-    for (size_t i = 0; i < faces.getEntryCount(); ++i)
+    for (auto face : faces)
     {
-        HashMap<char, Glyph> glyphs = faces.getValue(i).glyphs;
+        HashMap<char, Glyph> glyphs = face.second.glyphs;
 
-        for (size_t j = 0; j < glyphs.getEntryCount(); ++j)
+        for (auto glyph : glyphs)
         {
-            glyphs.getValue(j).texture->release();
+            glyph.second.texture->release();
         }
 
-        FT_Done_Face(faces.getValue(i).face);
+        FT_Done_Face(face.second.face);
     }
 
     faces.clear();
@@ -63,9 +63,9 @@ void Font::removeContent()
 
 Font::Face *Font::getFace(size_t size) const
 {
-    int faceIndex = faces.findEntry(size);
+    auto pos = faces.find(size);
 
-    if (faceIndex == -1)
+    if (pos == faces.end())
     {
         Face newFace;
 
@@ -81,7 +81,7 @@ Font::Face *Font::getFace(size_t size) const
         return &faces.get(size);
     } else
     {
-        return &faces.getValue(faceIndex);
+        return &pos->second;
     }
 }
 
@@ -107,17 +107,17 @@ size_t Font::predictWidth(size_t size, const char *string) const
             continue;
         }
 
-        int glyphIndex = face->glyphs.findEntry(string[i]);
+        auto glyphPos = face->glyphs.find(string[i]);
         Glyph glyph;
 
-        if (glyphIndex == -1)
+        if (glyphPos == face->glyphs.end())
         {
             loadGlyph(*face, string[i]);
 
             glyph = face->glyphs.get(string[i]);
         } else
         {
-            glyph = face->glyphs.getValue(glyphIndex);
+            glyph = glyphPos->second;
         }
 
         lineWidth += glyph.xAdvance + glyph.bearing.x + glyph.size.x;
@@ -175,17 +175,17 @@ void Font::render(size_t size,
             continue;
         }
 
-        int glyphIndex = face->glyphs.findEntry(string[i]);
+        auto glyphPos = face->glyphs.find(string[i]);
         Glyph glyph;
 
-        if (glyphIndex == -1)
+        if (glyphPos == face->glyphs.end())
         {
             loadGlyph(*face, string[i]);
 
             glyph = face->glyphs.get(string[i]);
         } else
         {
-            glyph = face->glyphs.getValue(glyphIndex);
+            glyph = glyphPos->second;
         }
 
         Character character;
@@ -193,9 +193,9 @@ void Font::render(size_t size,
                                         y - (glyph.size.y - glyph.bearing.y) * onePixel.y);
         character.glyph = glyph;
 
-        int index = characters.findEntry(string[i]);
+        auto pos = characters.find(string[i]);
 
-        if (index == -1)
+        if (pos == characters.end())
         {
             List<Character> chars;
             chars.append(character);
@@ -203,22 +203,22 @@ void Font::render(size_t size,
             characters.set(string[i], chars);
         } else
         {
-            characters.getValue(index).append(character);
+            pos->second.append(character);
         }
 
         x += glyph.xAdvance * onePixel.x;
     }
 
-    for (size_t i = 0; i < characters.getEntryCount(); ++i)
+    for (auto kv : characters)
     {
         List<Position2D> positions;
 
-        for (auto character : characters.getValue(i))
+        for (auto character : kv.second)
         {
             positions.append(character.position);
         }
 
-        Glyph& glyph = characters.getValue(i)[0].glyph;
+        Glyph& glyph = kv.second[0].glyph;
 
         GfxCompiledShader *geometry = shaders->getCompiled(GfxShaderType::Geometry);
         GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);

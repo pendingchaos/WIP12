@@ -5,7 +5,7 @@ from resconvlib import *
 
 worldSize = 4
 numDecors = 25
-numCoins = 100
+numCoins = 100 # When fixed update performance is improved: Change to 100.
 
 if __name__ == "__main__":
     conv = {}
@@ -157,6 +157,7 @@ if __name__ == "__main__":
         coinEnt.model = conv["coin model %d" % (random.randint(0, len(colors)-1))]
         coinEnt.rigidBody = Scene.RigidBody()
         coinEnt.rigidBody.shape = coinShape
+        coinEnt.scripts.append(("resources/scripts/coin.rkt", "Coin"))
         scene.entities.append(coinEnt)
     
     # Decor

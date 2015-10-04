@@ -2246,17 +2246,18 @@ else
 
 SV StrStrMap___eq__(CTX ctx,const List<SV>&a);
 SV StrStrMap___neq__(CTX ctx,const List<SV>&a);
-SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a);
-SV StrStrMap_findEntry(CTX ctx,const List<SV>&a);
-SV StrStrMap_getKey(CTX ctx,const List<SV>&a);
-SV StrStrMap_getValue(CTX ctx,const List<SV>&a);
-SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a);
 SV StrStrMap_get(CTX ctx,const List<SV>&a);
 SV StrStrMap_set(CTX ctx,const List<SV>&a);
-SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a);
 SV StrStrMap_remove(CTX ctx,const List<SV>&a);
+SV StrStrMap_isEntry(CTX ctx,const List<SV>&a);
+SV StrStrMap_begin(CTX ctx,const List<SV>&a);
+SV StrStrMap_end(CTX ctx,const List<SV>&a);
+SV StrStrMap_find(CTX ctx,const List<SV>&a);
+SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a);
+SV StrStrMap_getCount(CTX ctx,const List<SV>&a);
+SV StrStrMap_getKey(CTX ctx,const List<SV>&a);
+SV StrStrMap_getValue(CTX ctx,const List<SV>&a);
 SV StrStrMap_clear(CTX ctx,const List<SV>&a);
-SV StrStrMap_append(CTX ctx,const List<SV>&a);
 void GfxApi_destroy(CTX,NO);
 SV GfxApi_get_member(CTX,NO,SV);
 void GfxApi_set_member(CTX,NO,SV,SV);
@@ -2959,6 +2960,7 @@ SV Entity_addScript(CTX ctx,const List<SV>&a);
 SV Entity_removeScript(CTX ctx,const List<SV>&a);
 SV Entity_getScripts(CTX ctx,const List<SV>&a);
 SV Entity_findScriptInstance(CTX ctx,const List<SV>&a);
+SV Entity_findScriptInstanceObj(CTX ctx,const List<SV>&a);
 SV Entity_addRigidBody(CTX ctx,const List<SV>&a);
 SV Entity_getRigidBody(CTX ctx,const List<SV>&a);
 SV Entity_removeRigidBody(CTX ctx,const List<SV>&a);
@@ -5774,17 +5776,18 @@ else
 
 SV Map___eq__(CTX ctx,const List<SV>&a);
 SV Map___neq__(CTX ctx,const List<SV>&a);
-SV Map_getEntryCount(CTX ctx,const List<SV>&a);
-SV Map_findEntry(CTX ctx,const List<SV>&a);
-SV Map_getKey(CTX ctx,const List<SV>&a);
-SV Map_getValue(CTX ctx,const List<SV>&a);
-SV Map_getKeyHash(CTX ctx,const List<SV>&a);
 SV Map_get(CTX ctx,const List<SV>&a);
 SV Map_set(CTX ctx,const List<SV>&a);
-SV Map_removeEntry(CTX ctx,const List<SV>&a);
 SV Map_remove(CTX ctx,const List<SV>&a);
+SV Map_isEntry(CTX ctx,const List<SV>&a);
+SV Map_begin(CTX ctx,const List<SV>&a);
+SV Map_end(CTX ctx,const List<SV>&a);
+SV Map_find(CTX ctx,const List<SV>&a);
+SV Map_removeEntry(CTX ctx,const List<SV>&a);
+SV Map_getCount(CTX ctx,const List<SV>&a);
+SV Map_getKey(CTX ctx,const List<SV>&a);
+SV Map_getValue(CTX ctx,const List<SV>&a);
 SV Map_clear(CTX ctx,const List<SV>&a);
-SV Map_append(CTX ctx,const List<SV>&a);
 void ScriptInstanceList_destroy(CTX,NO);
 SV ScriptInstanceList_get_member(CTX,NO,SV);
 void ScriptInstanceList_set_member(CTX,NO,SV,SV);
@@ -14992,11 +14995,17 @@ CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
 SCRIPT_DELETE((HashMap<String,String>*)f->data);
 }SV StrStrMap_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"StrStrMap's constructor" EAOE));
 if(!TS(a[0],HashMap<String,String>))
 CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
-RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>)),EXT->StrStrMap_typeID);
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(HashMap<String,String>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(StrStrMap_funcs,p,EXT->StrStrMap_typeID);
+}CATE(TE,UFOF("StrStrMap's constructor.")));
+RET CN;
 }
 
 SV StrStrMap_get_member(CTX ctx,NO f,SV key)
@@ -15026,28 +15035,30 @@ RET CNF(StrStrMap_new);
 RET CNF(StrStrMap___eq__);
  EI(keyStr == "__neq__")
 RET CNF(StrStrMap___neq__);
- EI(keyStr == "getEntryCount")
-RET CNF(StrStrMap_getEntryCount);
- EI(keyStr == "findEntry")
-RET CNF(StrStrMap_findEntry);
- EI(keyStr == "getKey")
-RET CNF(StrStrMap_getKey);
- EI(keyStr == "getValue")
-RET CNF(StrStrMap_getValue);
- EI(keyStr == "getKeyHash")
-RET CNF(StrStrMap_getKeyHash);
  EI(keyStr == "get")
 RET CNF(StrStrMap_get);
  EI(keyStr == "set")
 RET CNF(StrStrMap_set);
- EI(keyStr == "removeEntry")
-RET CNF(StrStrMap_removeEntry);
  EI(keyStr == "remove")
 RET CNF(StrStrMap_remove);
+ EI(keyStr == "isEntry")
+RET CNF(StrStrMap_isEntry);
+ EI(keyStr == "begin")
+RET CNF(StrStrMap_begin);
+ EI(keyStr == "end")
+RET CNF(StrStrMap_end);
+ EI(keyStr == "find")
+RET CNF(StrStrMap_find);
+ EI(keyStr == "removeEntry")
+RET CNF(StrStrMap_removeEntry);
+ EI(keyStr == "getCount")
+RET CNF(StrStrMap_getCount);
+ EI(keyStr == "getKey")
+RET CNF(StrStrMap_getKey);
+ EI(keyStr == "getValue")
+RET CNF(StrStrMap_getValue);
  EI(keyStr == "clear")
 RET CNF(StrStrMap_clear);
- EI(keyStr == "append")
-RET CNF(StrStrMap_append);
  else
  CATE(KE,"Unknown member for StrStrMap."));
 }
@@ -15070,20 +15081,14 @@ if(0) {} else
 }
 }
 
-SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
+SV StrStrMap_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::removeEntry" EAOE));
+CATE(VE,"StrStrMap::begin" EAOE));
 HashMap<String,String>*f;
 f=(HashMap<String,String>*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],int))
-{
-( f->removeEntry(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("StrStrMap::removeEntry.")));
+CATE(TE,UFOF("StrStrMap::begin.")));
 RET CN;
 }
 
@@ -15101,6 +15106,17 @@ RET CV( f->set(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1]), val_t
 ;
 }
 CATE(TE,UFOF("StrStrMap::set.")));
+RET CN;
+}
+
+SV StrStrMap_end(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::end" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("StrStrMap::end.")));
 RET CN;
 }
 
@@ -15127,20 +15143,20 @@ CATE(TE,UFOF("StrStrMap::get.")));
 RET CN;
 }
 
-SV StrStrMap_getEntryCount(CTX ctx,const List<SV>&a)
+SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::getEntryCount" EAOE));
+CATE(VE,"StrStrMap::getValue" EAOE));
 HashMap<String,String>*f;
 f=(HashMap<String,String>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
 {
-RET CV( f->getEntryCount());
+RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("StrStrMap::getEntryCount.")));
+CATE(TE,UFOF("StrStrMap::getValue.")));
 RET CN;
 }
 
@@ -15178,63 +15194,6 @@ CATE(TE,UFOF("StrStrMap::remove.")));
 RET CN;
 }
 
-SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"StrStrMap::getValue" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("StrStrMap::getValue.")));
-RET CN;
-}
-
-SV StrStrMap_getKeyHash(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"StrStrMap::getKeyHash" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getKeyHash(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("StrStrMap::getKeyHash.")));
-RET CN;
-}
-
-SV StrStrMap_append(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"StrStrMap::append" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
-{
-( f->append(val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("StrStrMap::append.")));
-RET CN;
-}
-
 SV StrStrMap_getKey(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -15248,13 +15207,52 @@ if(1&&TS(a[1],size_t))
 RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
+CATE(TE,UFOF("StrStrMap::getKey.")));
+RET CN;
+}
+
+SV StrStrMap_isEntry(CTX ctx,const List<SV>&a)
 {
-RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::isEntry" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],String))
+{
+RET CV( f->isEntry(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("StrStrMap::getKey.")));
+CATE(TE,UFOF("StrStrMap::isEntry.")));
+RET CN;
+}
+
+SV StrStrMap_getCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::getCount" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getCount());
+;
+}
+CATE(TE,UFOF("StrStrMap::getCount.")));
+RET CN;
+}
+
+SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StrStrMap::removeEntry" EAOE));
+HashMap<String,String>*f;
+f=(HashMap<String,String>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("StrStrMap::removeEntry.")));
 RET CN;
 }
 
@@ -15275,20 +15273,14 @@ CATE(TE,UFOF("StrStrMap::__eq__.")));
 RET CN;
 }
 
-SV StrStrMap_findEntry(CTX ctx,const List<SV>&a)
+SV StrStrMap_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"StrStrMap::findEntry" EAOE));
+CATE(VE,"StrStrMap::find" EAOE));
 HashMap<String,String>*f;
 f=(HashMap<String,String>*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],String))
-{
-RET CV( f->findEntry(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("StrStrMap::findEntry.")));
+CATE(TE,UFOF("StrStrMap::find.")));
 RET CN;
 }
 
@@ -19923,6 +19915,8 @@ RET CNF(Entity_removeScript);
 RET CNF(Entity_getScripts);
  EI(keyStr == "findScriptInstance")
 RET CNF(Entity_findScriptInstance);
+ EI(keyStr == "findScriptInstanceObj")
+RET CNF(Entity_findScriptInstanceObj);
  EI(keyStr == "addRigidBody")
 RET CNF(Entity_addRigidBody);
  EI(keyStr == "getRigidBody")
@@ -20152,6 +20146,23 @@ CATE(TE,UFOF("Entity::hasRigidBody.")));
 RET CN;
 }
 
+SV Entity_findScriptInstanceObj(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::findScriptInstanceObj" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->findScriptInstanceObj(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Entity::findScriptInstanceObj.")));
+RET CN;
+}
+
 SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -20227,12 +20238,6 @@ CATE(VE,"Entity::findScriptInstance" EAOE));
 Entity*f;
 f=(Entity*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
-{
-RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
-;
-}
 CATE(TE,UFOF("Entity::findScriptInstance.")));
 RET CN;
 }
@@ -40438,11 +40443,17 @@ CATE(TE,"Map::__del__ expects Map as first argument."));
 SCRIPT_DELETE((HashMap<scripting::Value*,scripting::Value*>*)f->data);
 }SV Map_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()!=1)
+if(a.getCount()<1)
 CATE(VE,"Map's constructor" EAOE));
 if(!TS(a[0],HashMap<scripting::Value*,scripting::Value*>))
 CATE(TE,"Map's constructor expects Map as first argument."));
-RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>)),EXT->Map_typeID);
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Map_funcs,p,EXT->Map_typeID);
+}CATE(TE,UFOF("Map's constructor.")));
+RET CN;
 }
 
 SV Map_get_member(CTX ctx,NO f,SV key)
@@ -40472,28 +40483,30 @@ RET CNF(Map_new);
 RET CNF(Map___eq__);
  EI(keyStr == "__neq__")
 RET CNF(Map___neq__);
- EI(keyStr == "getEntryCount")
-RET CNF(Map_getEntryCount);
- EI(keyStr == "findEntry")
-RET CNF(Map_findEntry);
- EI(keyStr == "getKey")
-RET CNF(Map_getKey);
- EI(keyStr == "getValue")
-RET CNF(Map_getValue);
- EI(keyStr == "getKeyHash")
-RET CNF(Map_getKeyHash);
  EI(keyStr == "get")
 RET CNF(Map_get);
  EI(keyStr == "set")
 RET CNF(Map_set);
- EI(keyStr == "removeEntry")
-RET CNF(Map_removeEntry);
  EI(keyStr == "remove")
 RET CNF(Map_remove);
+ EI(keyStr == "isEntry")
+RET CNF(Map_isEntry);
+ EI(keyStr == "begin")
+RET CNF(Map_begin);
+ EI(keyStr == "end")
+RET CNF(Map_end);
+ EI(keyStr == "find")
+RET CNF(Map_find);
+ EI(keyStr == "removeEntry")
+RET CNF(Map_removeEntry);
+ EI(keyStr == "getCount")
+RET CNF(Map_getCount);
+ EI(keyStr == "getKey")
+RET CNF(Map_getKey);
+ EI(keyStr == "getValue")
+RET CNF(Map_getValue);
  EI(keyStr == "clear")
 RET CNF(Map_clear);
- EI(keyStr == "append")
-RET CNF(Map_append);
  else
  CATE(KE,"Unknown member for Map."));
 }
@@ -40516,20 +40529,14 @@ if(0) {} else
 }
 }
 
-SV Map_removeEntry(CTX ctx,const List<SV>&a)
+SV Map_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Map::removeEntry" EAOE));
+CATE(VE,"Map::begin" EAOE));
 HashMap<scripting::Value*,scripting::Value*>*f;
 f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],int))
-{
-( f->removeEntry(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Map::removeEntry.")));
+CATE(TE,UFOF("Map::begin.")));
 RET CN;
 }
 
@@ -40547,6 +40554,17 @@ RET CV( f->set(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a
 ;
 }
 CATE(TE,UFOF("Map::set.")));
+RET CN;
+}
+
+SV Map_end(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Map::end" EAOE));
+HashMap<scripting::Value*,scripting::Value*>*f;
+f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Map::end.")));
 RET CN;
 }
 
@@ -40573,20 +40591,20 @@ CATE(TE,UFOF("Map::get.")));
 RET CN;
 }
 
-SV Map_getEntryCount(CTX ctx,const List<SV>&a)
+SV Map_getValue(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Map::getEntryCount" EAOE));
+CATE(VE,"Map::getValue" EAOE));
 HashMap<scripting::Value*,scripting::Value*>*f;
 f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
 {
-RET CV( f->getEntryCount());
+RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("Map::getEntryCount.")));
+CATE(TE,UFOF("Map::getValue.")));
 RET CN;
 }
 
@@ -40624,63 +40642,6 @@ CATE(TE,UFOF("Map::remove.")));
 RET CN;
 }
 
-SV Map_getValue(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Map::getValue" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getValue(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Map::getValue.")));
-RET CN;
-}
-
-SV Map_getKeyHash(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Map::getKeyHash" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->getKeyHash(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Map::getKeyHash.")));
-RET CN;
-}
-
-SV Map_append(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Map::append" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<scripting::Value*, scripting::Value*> &))
-{
-( f->append(val_to_c<std::remove_reference<const HashMap<scripting::Value*, scripting::Value*> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Map::append.")));
-RET CN;
-}
-
 SV Map_getKey(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -40694,13 +40655,52 @@ if(1&&TS(a[1],size_t))
 RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
+CATE(TE,UFOF("Map::getKey.")));
+RET CN;
+}
+
+SV Map_isEntry(CTX ctx,const List<SV>&a)
 {
-RET CV( f->getKey(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+if(a.getCount()<1)
+CATE(VE,"Map::isEntry" EAOE));
+HashMap<scripting::Value*,scripting::Value*>*f;
+f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],scripting::Value*))
+{
+RET CV( f->isEntry(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("Map::getKey.")));
+CATE(TE,UFOF("Map::isEntry.")));
+RET CN;
+}
+
+SV Map_getCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Map::getCount" EAOE));
+HashMap<scripting::Value*,scripting::Value*>*f;
+f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getCount());
+;
+}
+CATE(TE,UFOF("Map::getCount.")));
+RET CN;
+}
+
+SV Map_removeEntry(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Map::removeEntry" EAOE));
+HashMap<scripting::Value*,scripting::Value*>*f;
+f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+
+CATE(TE,UFOF("Map::removeEntry.")));
 RET CN;
 }
 
@@ -40721,20 +40721,14 @@ CATE(TE,UFOF("Map::__eq__.")));
 RET CN;
 }
 
-SV Map_findEntry(CTX ctx,const List<SV>&a)
+SV Map_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Map::findEntry" EAOE));
+CATE(VE,"Map::find" EAOE));
 HashMap<scripting::Value*,scripting::Value*>*f;
 f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
-{
-RET CV( f->findEntry(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Map::findEntry.")));
+CATE(TE,UFOF("Map::find.")));
 RET CN;
 }
 

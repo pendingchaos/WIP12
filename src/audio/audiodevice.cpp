@@ -107,9 +107,9 @@ void AudioDevice::runCallbacks(size_t numSamples)
         result[i] = 0.0f;
     }
 
-    for (size_t i = 0; i < callbacks.getEntryCount(); ++i)
+    for (auto kv : callbacks)
     {
-        const Callback& callback = callbacks.getValue(i);
+        const Callback& callback = kv.second;
 
         callback.function(result, numSamples, callback.data, this);
     }

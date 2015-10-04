@@ -41,16 +41,15 @@ static Value *classNew(Context *ctx, const List<Value *>& args)
     HashMap<String, Value *>& resultMembers = ((ObjectValue *)resultHead)->members;
     HashMap<String, Value *>& baseMembers = ((ObjectValue *)base)->members;
 
-    for (size_t i = 0; i < baseMembers.getEntryCount(); ++i)
+    for (auto kv : baseMembers)
     {
-        resultMembers.set(baseMembers.getKey(i), createCopy(ctx, baseMembers.getValue(i)));
+        resultMembers.set(kv.first, createCopy(ctx, kv.second));
     }
 
     resultMembers.set("__classTypeID__", createInt(((IntValue *)typeID)->value));
 
-    int entry = resultMembers.findEntry("__init__");
-
-    if (entry != -1)
+    auto pos = resultMembers.find("__init__");
+    if (pos != resultMembers.end())
     {
         destroy(ctx, callMethod(ctx, resultHead, "__init__", List<Value *>(args.getCount()-1, args.getData()+1)));
     } else
@@ -231,6 +230,16 @@ static double mathMax(double a, double b)
     return std::max(a, b);
 }
 
+static Value *isNil(Context *ctx, const List<Value *>& args)
+{
+    if (args.getCount() != 1)
+    {
+        ctx->throwException(createException(ExcType::ValueError, "isNil takes one argument."));
+    }
+
+    return createBoolean(args[0]->type == ValueType::Nil);
+}
+
 static Value *print(Context *ctx, const List<Value *>& args)
 {
     for (size_t i = 0; i < args.getCount(); ++i)
@@ -342,6 +351,7 @@ Engine::Engine() : debugOutput(false), nextTypeID(LONG_LONG_MIN)
     globalVars.set("PI_2", createFloat(M_PI_2));
     globalVars.set("PI_4", createFloat(M_PI_4));
 
+    globalVars.set("isNil", createNativeFunction(isNil));
     globalVars.set("print", createNativeFunction(print));
 }
 
@@ -349,16 +359,16 @@ Engine::~Engine()
 {
     Context *context = NEW(Context, this);
 
-    for (size_t i = 0; i < globalVars.getEntryCount(); ++i)
+    for (auto kv : globalVars)
     {
-        destroy(context, globalVars.getValue(i));
+        destroy(context, kv.second);
     }
 
     DELETE(context);
 
-    for (size_t i = 0; i < extensions.getEntryCount(); ++i)
+    for (auto kv : extensions)
     {
-        extensions.getValue(i).deinit(this, extensions.getValue(i).data);
+        kv.second.deinit(this, kv.second.data);
     }
 }
 

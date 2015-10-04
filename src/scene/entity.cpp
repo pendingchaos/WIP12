@@ -1,6 +1,7 @@
 #include "scene/entity.h"
 
 #include "scene/scene.h"
+#include "scripting/bindings2.h"
 #include "backtrace.h"
 
 Entity::Entity(const String& name_,
@@ -43,6 +44,13 @@ Entity::~Entity()
     }
 
     removeRigidBody();
+}
+
+scripting::Value *Entity::findScriptInstanceObj(const String& filename) const
+{
+    ScriptInstance *inst = findScriptInstance(filename);
+    //TODO: Use the current context.
+    return inst == nullptr ? scripting::createNil() : scripting::create(inst->getScript()->getContext(), inst);
 }
 
 RigidBody *Entity::addRigidBody(const RigidBodyConstructionInfo& info,

@@ -72,8 +72,6 @@ class ScriptInstance
     public:
         ~ScriptInstance();
 
-        void serialize(Serializable& serialized) NO_BIND;
-        void deserialize(const Serializable& serialized) NO_BIND;
         void method(const String& name);
         void method(const String& name, float timestep);
 

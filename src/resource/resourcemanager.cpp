@@ -16,24 +16,24 @@ ResourceManager::ResourceManager() {}
 
 ResourceManager::~ResourceManager()
 {
-    for (size_t i = 0; i < resources.getEntryCount(); ++i)
+    for (auto kv : resources)
     {
-        HashMap<String, Resource *> resources_ = resources.getValue(i);
+        HashMap<String, Resource *> resources_ = kv.second;
 
-        for (size_t j = 0; j < resources_.getEntryCount(); ++j)
+        for (auto kv_ : resources_)
         {
-            resources_.getValue(j)->release();
+            kv_.second->release();
         }
     }
 }
 
 bool ResourceManager::isResource(ResType type, const String& filename) const
 {
-    int entry = resources.findEntry(type);
+    auto pos = resources.find(type);
 
-    if (entry != -1)
+    if (pos != resources.end())
     {
-        return resources.getValue(entry).findEntry(filename) != -1;
+        return pos->second.isEntry(filename);
     }
 
     return false;
@@ -63,15 +63,15 @@ Font *ResourceManager::loadFontAndCopy(const String& filename) {return loadAndCo
 
 void ResourceManager::cleanupResources()
 {
-    for (size_t i = 0; i < resources.getEntryCount(); ++i)
+    for (auto kv : resources)
     {
-        HashMap<String, Resource *>& resources_ = resources.getValue(i);
+        HashMap<String, Resource *>& resources_ = kv.second;
 
         List<Resource *> toDelete;
 
-        for (size_t j = 0; j < resources_.getEntryCount(); ++j)
+        for (auto kv_ : resources_)
         {
-            Resource *resource = resources_.getValue(j);
+            Resource *resource = kv_.second;
 
             if (resource->getRefCount() == 1)
             {
@@ -81,20 +81,19 @@ void ResourceManager::cleanupResources()
 
         for (auto res : toDelete)
         {
-            int index = -1;
+            auto it = resources_.begin();
 
-            for (size_t i2 = 0; i2 < resources_.getEntryCount(); ++i2)
+            for (; it != resources_.end(); ++it)
             {
-                if (resources_.getValue(i2) == res)
+                if (it->second == res)
                 {
-                    index = i2;
                     break;
                 }
             }
 
-            if (index != -1)
+            if (it != resources_.end())
             {
-                resources_.removeEntry(index);
+                resources_.removeEntry(it);
             }
 
             res->release();

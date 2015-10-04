@@ -69,8 +69,8 @@ class_names = ["File",  "Filesystem", "Application", "Scene", "Entity",
 "GfxShaderCombination", "Exception", "ShaderCompileException", "FileException",
 "LookupException", "ResourceIOException", "LogEntry", "PhysicsShapeImpl",
 "Framebuffer", "Light", "Font", "GPUTimer", "Overlay", "AABB", "GhostObject",
-"Audio", "AudioDevice", "AudioWorld", "AudioSource", "SerializeException",
-"Serializable", "GfxAnimationState", "ImGui", "GuiPlacer"]
+"Audio", "AudioDevice", "AudioWorld", "AudioSource", "GfxAnimationState",
+"ImGui", "GuiPlacer"]
 
 function_names = ["getBacktrace", "log",
 "setApplication", "listFiles", "doesFileExist", "getLastModification",

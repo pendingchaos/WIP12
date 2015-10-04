@@ -210,14 +210,15 @@ void destroy(Context *context, Value *value)
 
             HashMap<String, Value *> members = ((ObjectValue *)value)->members;
 
-            if (members.findEntry("__del__") != -1)
+            auto pos = members.find("__del__");
+            if (pos != members.end())
             {
                 destroy(context, callMethod(context, value, "__del__", List<Value *>()));
             }
 
-            for (size_t i = 0; i < members.getEntryCount(); ++i)
+            for (auto kv : members)
             {
-                destroy(context, members.getValue(i));
+                destroy(context, kv.second);
             }
 
             DELETE(obj);

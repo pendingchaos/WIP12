@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 #include <iostream>
+#include <map>
 #include "backtrace.h"
 
 void *_alloc(size_t amount)
@@ -20,66 +21,27 @@ void *_alloc(size_t amount)
     return mem;
 }
 
-struct Allocation
-{
-    void *ptr;
-    AllocInfo info;
-};
-
-size_t numAllocs = 0;
-Allocation *allocs = nullptr;
-
-void _allocAtExit()
-{
-    free(allocs);
-}
+std::map<void *, AllocInfo> allocs;
 
 void setAllocInfo(void *ptr, AllocInfo info)
 {
-    if (allocs != nullptr)
-    {
-        for (size_t i = 0; i < numAllocs; ++i)
-        {
-            if (allocs[i].ptr == ptr)
-            {
-                allocs[i].info = info;
-                return;
-            }
-        }
-
-        allocs = (Allocation *)std::realloc(allocs, (numAllocs+1) * sizeof(Allocation));
-
-        allocs[numAllocs].ptr = ptr;
-        allocs[numAllocs++].info = info;
-    } else
-    {
-        allocs = (Allocation *)malloc(sizeof(Allocation));
-        allocs[0].ptr = ptr;
-        allocs[0].info = info;
-
-        std::atexit(_allocAtExit);
-    }
+    allocs[ptr] = info;
 }
 
 bool _allocDelete(void *ptr)
 {
-    if (allocs != nullptr)
-    {
-        for (size_t i = 0; i < numAllocs; ++i)
-        {
-            if (allocs[i].ptr == ptr and
-                not allocs[i].info.scriptRef)
-            {
-                std::memmove(allocs+i, allocs+i+1, (numAllocs-i-1) * sizeof(Allocation));
+    auto pos = allocs.find(ptr);
 
-                --numAllocs;
-                allocs = (Allocation *)std::realloc(allocs, numAllocs * sizeof(Allocation));
-                return true;
-            } else if (allocs[i].ptr == ptr)
-            {
-                allocs[i].info.cppRef = false;
-                return false;
-            }
+    if (pos != allocs.end())
+    {
+        if (not pos->second.scriptRef)
+        {
+            allocs.erase(pos);
+            return true;
+        } else
+        {
+            pos->second.cppRef = false;
+            return false;
         }
     }
 
@@ -88,24 +50,18 @@ bool _allocDelete(void *ptr)
 
 bool _scriptDeletePart(void *ptr)
 {
-    if (allocs != nullptr)
+    auto pos = allocs.find(ptr);
+
+    if (pos != allocs.end())
     {
-        for (size_t i = 0; i < numAllocs; ++i)
+        if (not pos->second.cppRef)
         {
-            if (allocs[i].ptr == ptr and
-                not allocs[i].info.cppRef)
-            {
-                std::memmove(allocs+i, allocs+i+1, (numAllocs-i-1) * sizeof(Allocation));
-
-                --numAllocs;
-                allocs = (Allocation *)std::realloc(allocs, numAllocs * sizeof(Allocation));
-
-                return true;
-            } else if (allocs[i].ptr == ptr)
-            {
-                allocs[i].info.scriptRef = false;
-                return false;
-            }
+            allocs.erase(pos);
+            return true;
+        } else
+        {
+            pos->second.scriptRef = false;
+            return false;
         }
     }
 
@@ -114,19 +70,12 @@ bool _scriptDeletePart(void *ptr)
 
 AllocInfo getAllocInfo(void *ptr)
 {
-    if (allocs == nullptr)
-    {
-        return AllocInfo();
-    } else
-    {
-        for (size_t i = 0; i < numAllocs; ++i)
-        {
-            if (allocs[i].ptr == ptr)
-            {
-                return allocs[i].info;
-            }
-        }
+    auto pos = allocs.find(ptr);
 
-        return AllocInfo();
+    if (pos != allocs.end())
+    {
+        return pos->second;
     }
+
+    return AllocInfo();
 }

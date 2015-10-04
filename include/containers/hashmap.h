@@ -7,6 +7,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <unordered_map>
 
 inline size_t getHash(const bool& value)
 {
@@ -73,6 +74,18 @@ size_t getHash(const T& value)
     return 0;
 }
 
+namespace std
+{
+    template <typename T>
+    struct hash
+    {
+        size_t operator () (const T& v) const
+        {
+            return getHash(v);
+        }
+    };
+};
+
 class LookupException : public Exception
 {
     public:
@@ -86,7 +99,6 @@ class LookupException : public Exception
         }
 };
 
-//TODO: This could be improved (performance-wise).
 template <typename Key,
           typename Value>
 class HashMap
@@ -95,21 +107,21 @@ class HashMap
         bool operator == (const HashMap<Key,
                                         Value>& other) const
         {
-            if (entries.getCount() != other.getEntryCount())
+            if (getCount() != other.getCount())
             {
                 return false;
             }
 
-            for (auto entry : entries)
+            for (auto kv : *this)
             {
-                int otherIndex = other.findEntry(entry.key);
+                auto otherPos = other.find(kv.first);
 
-                if (otherIndex == -1)
+                if (otherPos == other.end())
                 {
                     return false;
                 }
 
-                if (not (entry.value == other.entries[otherIndex].value))
+                if (kv.second != otherPos->second)
                 {
                     return false;
                 }
@@ -124,159 +136,114 @@ class HashMap
             return not (*this == other);
         }
 
-        inline size_t getEntryCount() const
+        const Value& get(const Key& key) const
         {
-            return entries.getCount();
-        }
-
-        /**
-         *Returns -1 if it can not be found.
-         */
-        inline int findEntry(const Key& key) const
-        {
-            return _findEntry(getHash(key), key);
-        }
-
-        inline const Key& getKey(size_t entry) const
-        {
-            return entries[entry].key;
-        }
-
-        inline Key& getKey(size_t entry)
-        {
-            return entries[entry].key;
-        }
-
-        inline const Value& getValue(size_t entry) const
-        {
-            return entries[entry].value;
-        }
-
-        inline Value& getValue(size_t entry)
-        {
-            return entries[entry].value;
-        }
-
-        inline size_t getKeyHash(size_t entry) const
-        {
-            return entries[entry].keyHash;
+            try
+            {
+                return data.at(key);
+            } catch (std::exception& e)
+            {
+                THROW(LookupException);
+            }
         }
 
         Value& get(const Key& key)
         {
-            int index = findEntry(key);
-
-            if (index == -1)
+            try
+            {
+                return data[key];
+            } catch (std::exception& e)
             {
                 THROW(LookupException);
             }
-
-            return entries[index].value;
         }
 
-        const Value& get(const Key& key) const
+        const Value& set(const Key& key, const Value& value)
         {
-            int index = findEntry(key);
-
-            if (index == -1)
-            {
-                THROW(LookupException);
-            }
-
-            return entries[index].value;
-        }
-
-        Value& set(const Key& key, const Value& value)
-        {
-            return _set(getHash(key), key, value);
-        }
-
-        void removeEntry(int entry)
-        {
-            if (entry == -1)
-            {
-                THROW(LookupException);
-            }
-
-            entries.remove(entry);
+            return data[key] = value;
         }
 
         void remove(const Key& key)
         {
-            int index = findEntry(key);
+            try
+            {
+                data.erase(data.find(key));
+            } catch (std::exception& e)
+            {
+                THROW(LookupException);
+            }
+        }
 
-            removeEntry(index);
+        bool isEntry(const Key& key) const
+        {
+            return data.find(key) != data.end();
+        }
+
+        inline typename std::unordered_map<Key, Value>::iterator begin() NO_BIND
+        {
+            return data.begin();
+        }
+
+        inline typename std::unordered_map<Key, Value>::iterator end() NO_BIND
+        {
+            return data.end();
+        }
+
+        inline typename std::unordered_map<Key, Value>::const_iterator begin() const NO_BIND
+        {
+            return data.begin();
+        }
+
+        inline typename std::unordered_map<Key, Value>::const_iterator end() const NO_BIND
+        {
+            return data.end();
+        }
+
+        typename std::unordered_map<Key, Value>::const_iterator find(const Key& key) const NO_BIND
+        {
+            return data.find(key);
+        }
+
+        typename std::unordered_map<Key, Value>::iterator find(const Key& key) NO_BIND
+        {
+            return data.find(key);
+        }
+
+        void removeEntry(const typename std::unordered_map<Key, Value>::iterator& it) NO_BIND
+        {
+            data.erase(it);
+        }
+
+        void removeEntry(const typename std::unordered_map<Key, Value>::const_iterator& it) NO_BIND
+        {
+            data.erase(it);
+        }
+
+        size_t getCount() const
+        {
+            return data.size();
+        }
+
+        const Key& getKey(size_t index) const
+        {
+            typename std::unordered_map<Key, Value>::const_iterator it = begin();
+            for (size_t i = 0; i < index; ++i) {++it;}
+            return it->first;
+        }
+
+        const Key& getValue(size_t index) const
+        {
+            typename std::unordered_map<Key, Value>::const_iterator it = begin();
+            for (size_t i = 0; i < index; ++i) {++it;}
+            return it->second;
         }
 
         void clear()
         {
-            entries.clear();
-        }
-
-        void append(const HashMap<Key, Value>& other)
-        {
-            for (auto entry : other.entries)
-            {
-                _set(entry.keyHash, entry.key, entry.value);
-            }
+            data.clear();
         }
     private:
-        int _findEntry(size_t hash, const Key& key) const
-        {
-            for (size_t i = 0; i < entries.getCount(); ++i)
-            {
-                if (entries[i].keyHash == hash)
-                {
-                    if (entries[i].key == key)
-                    {
-                        return i;
-                    }
-                }
-            }
-
-            return -1;
-        }
-
-        Value& _set(size_t hash, const Key& key, const Value& value)
-        {
-            int index = _findEntry(hash, key);
-
-            if (index == -1)
-            {
-                Entry entry;
-                entry.key = key;
-                entry.keyHash = hash;
-                entry.value = value;
-
-                entries.append(entry);
-
-                return entries[entries.getCount()-1].value;
-            } else
-            {
-                entries[index].value = value;
-
-                return entries[index].value;
-            }
-        }
-
-        struct Entry
-        {
-            Key key;
-            size_t keyHash;
-            Value value;
-
-            bool operator == (const Entry& other) const
-            {
-                if (keyHash == other.keyHash)
-                {
-                    return key == other.key and value == other.value;
-                }
-
-                return false;
-            }
-        };
-
-        List<Entry> entries;
+        std::unordered_map<Key, Value> data;
 };
 
 BIND_CLASS(HashMap)

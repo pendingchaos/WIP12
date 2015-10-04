@@ -1,6 +1,8 @@
 #include "scripting/vm/context.h"
 
 #include "scripting/vm/engine.h"
+#include "logging.h"
+
 #include <cmath>
 #include <iostream> //TODO: Get rid of this.
 #include <SDL2/SDL_assert.h>
@@ -37,9 +39,9 @@ void Context::reset()
 
         entry.stacks.clear();
 
-        for (size_t j = 0; j < entry.variables.getEntryCount(); ++j)
+        for (auto kv : entry.variables)
         {
-            destroy(this, entry.variables.getValue(j));
+            destroy(this, kv.second);
         }
 
         entry.variables.clear();
@@ -159,11 +161,10 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             {
                 HashMap<String, Value *>& vars = callStack[i].variables;
 
-                int entry = vars.findEntry(name);
-
-                if (entry != -1)
+                auto pos = vars.find(name);
+                if (pos != vars.end())
                 {
-                    stack->append(createCopy(this, vars.getValue(entry)));
+                    stack->append(createCopy(this, pos->second));
                     found = true;
                     break;
                 }
@@ -173,11 +174,11 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             {
                 HashMap<String, Value *>& vars = engine->getGlobalVars();
 
-                int entry = vars.findEntry(name);
+                auto pos = vars.find(name);
 
-                if (entry != -1)
+                if (pos != vars.end())
                 {
-                    stack->append(createCopy(this, vars.getValue(entry)));
+                    stack->append(createCopy(this, pos->second));
                 } else
                 {
                     throwException(createException(ExcType::KeyError, String::format("No such variable '%s'.", name.getData())));
@@ -208,11 +209,11 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             {
                 HashMap<String, Value *>& vars = callStack[i].variables;
 
-                int entry = vars.findEntry(name);
+                auto pos = vars.find(name);
 
-                if (entry != -1)
+                if (pos != vars.end())
                 {
-                    destroy(this, vars.getValue(entry));
+                    destroy(this, pos->second);
                     vars.set(name, value);
 
                     found = true;
@@ -224,11 +225,11 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             {
                 HashMap<String, Value *>& vars = engine->getGlobalVars();
 
-                int entry = vars.findEntry(name);
+                auto pos = vars.find(name);
 
-                if (entry != -1)
+                if (pos != vars.end())
                 {
-                    destroy(this, vars.getValue(entry));
+                    destroy(this, pos->second);
                     vars.set(name, value);
                 } else
                 {
@@ -259,11 +260,11 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             {
                 HashMap<String, Value *>& vars = callStack[i].variables;
 
-                int entry = vars.findEntry(name);
+                auto pos = vars.find(name);
 
-                if (entry != -1)
+                if (pos != vars.end())
                 {
-                    destroy(this, vars.getValue(entry));
+                    destroy(this, pos->second);
 
                     vars.remove(name);
                     found = true;
@@ -275,11 +276,11 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             {
                 HashMap<String, Value *>& vars = engine->getGlobalVars();
 
-                int entry = vars.findEntry(name);
+                auto pos = vars.find(name);
 
-                if (entry != -1)
+                if (pos != vars.end())
                 {
-                    destroy(this, vars.getValue(entry));
+                    destroy(this, pos->second);
 
                     vars.remove(name);
                 } else
@@ -593,7 +594,7 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject o
     stack->append(createBoolean(a op b));\
 } else\
 {\
-    throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
+    stack->append(createBoolean(false));\
 }\
 \
 destroy(this, bHead);\
@@ -865,11 +866,11 @@ break;
                 std::cout << "    Offset: " << entry.offset << std::endl;
                 std::cout << "    Variables: " << std::endl;
 
-                for (size_t j = 0; j < entry.variables.getEntryCount(); ++j)
+                for (auto kv : entry.variables)
                 {
-                    Value *head = entry.variables.getValue(j);
+                    Value *head = kv.second;
 
-                    std::cout << "        " << entry.variables.getKey(j).getData() << ": ";
+                    std::cout << "        " << kv.first.getData() << ": ";
 
                     switch (head->type)
                     {
@@ -1084,9 +1085,9 @@ void Context::popCallstack()
 
     callstackEntry.stacks.clear();
 
-    for (size_t i = 0; i < callstackEntry.variables.getEntryCount(); ++i)
+    for (auto kv : callstackEntry.variables)
     {
-        destroy(this, callstackEntry.variables.getValue(i));
+        destroy(this, kv.second);
     }
 
     callstackEntry.variables.clear();
@@ -1557,14 +1558,14 @@ Value *getMember(Context *ctx, Value *val, Value *key)
         HashMap<String, Value *> members = ((ObjectValue *)val)->members;
 
         String keyStr = ((StringValue *)key)->value;
-        int index = members.findEntry(keyStr);
+        auto pos = members.find(keyStr);
 
-        if (index == -1)
+        if (pos == members.end())
         {
             ctx->throwException(createException(ExcType::KeyError, String::format("Unknown member: '%s'", keyStr.getData())));
         }
 
-        return createCopy(ctx, members.getValue(index));
+        return createCopy(ctx, pos->second);
     }
     case ValueType::StringType:
     {
@@ -1701,9 +1702,10 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
 
         String name = ((StringValue *)key)->value;
 
-        if (members.findEntry(name) != -1)
+        auto pos = members.find(name);
+        if (pos != members.end())
         {
-            destroy(ctx, members.get(name));
+            destroy(ctx, pos->second);
         }
 
         members.set(name, createCopy(ctx, value));
@@ -1811,16 +1813,16 @@ bool isInstance(Context *ctx, Value *obj, Value *type)
         HashMap<String, Value *> objMembers = ((ObjectValue *)obj)->members;
         HashMap<String, Value *> typeMembers = ((ObjectValue *)type)->members;
 
-        int entry1 = objMembers.findEntry("__classTypeID__");
-        int entry2 = typeMembers.findEntry("__typeID__");
+        auto pos1 = objMembers.find("__classTypeID__");
+        auto pos2 = typeMembers.find("__typeID__");
 
-        if (entry1 == -1 or entry2 == -1)
+        if (pos1 == objMembers.end() or pos2 == typeMembers.end())
         {
             return false;
         }
 
-        Value *id1 = objMembers.getValue(entry1);
-        Value *id2 = objMembers.getValue(entry2);
+        Value *id1 = pos1->second;
+        Value *id2 = pos2->second;
 
         if (id1->type != ValueType::Int or id2->type != ValueType::Int)
         {

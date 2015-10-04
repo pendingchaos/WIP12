@@ -248,7 +248,7 @@ void loadEntity(Entity *entity, File *file)
             {
                 for (auto lod : subModel)
                 {
-                    if (lod.mesh->animations.findEntry(animName) != -1)
+                    if (lod.mesh->animations.isEntry(animName))
                     {
                         mesh = lod.mesh;
                     }
@@ -1072,7 +1072,8 @@ void copyEntity(Entity *dest, Entity *source)
         audio2->playing = audio->playing;
     }
 
-    for (auto inst : source->getScripts())
+    //TODO
+    /*for (auto inst : source->getScripts())
     {
         Serializable serialized;
 
@@ -1095,7 +1096,7 @@ void copyEntity(Entity *dest, Entity *source)
 
             dest->addScript(inst->getScript()->copyRef<Script>());
         }
-    }
+    }*/
 
     for (size_t i = 0; i < source->getEntities().getCount(); ++i)
     {
@@ -1170,7 +1171,8 @@ Resource *Scene::_copy() const
         copyEntity(scene->createEntity(entity->name.copy()), entity);
     }
 
-    for (auto inst : scripts)
+    //TODO:
+    /*for (auto inst : scripts)
     {
         Serializable serialized;
 
@@ -1193,7 +1195,7 @@ Resource *Scene::_copy() const
 
             scene->addScript(inst->getScript()->copyRef<Script>());
         }
-    }
+    }*/
 
     return (Resource *)scene;
 }

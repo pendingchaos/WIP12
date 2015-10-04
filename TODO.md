@@ -24,6 +24,7 @@
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
     - [ ] [] operator.
     - [ ] Unary - operator.
+    - [ ] Improve the == and != operator's behaviour.
 - [ ] Finish the bytecode generator (scripting).
 - [ ] === operator (scripting).
 - [ ] Fix skeletal animation for the mesh converter.
@@ -51,6 +52,7 @@
 ![screenshot](https://github.com/pendingchaos/WIP12/blob/bb30dd17101832bb91269d62e5e4c86a91d77d3e/metallic%20border%20bug.png)
 - [ ] Compiled shaders will be invalidated when a shader is reloaded.
 - [ ] Fix invalid texture dimensions for large matrix textures.
+- [ ] After a bunch of exceptions an assertion is triggered. (scripting)
 
 ## Other
 - [ ] Texture types should be immutable.

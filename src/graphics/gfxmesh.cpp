@@ -293,16 +293,16 @@ void GfxMesh::save()
             file.write(bone.children.getCount(), bone.children.getData());
         }
 
-        file.writeUInt32LE(animations.getEntryCount());
+        file.writeUInt32LE(animations.getCount());
 
-        for (size_t i = 0; i < animations.getEntryCount(); ++i)
+        for (auto kv : animations)
         {
-            const String& name = animations.getKey(i);
+            const String& name = kv.first;
 
             file.writeUInt32LE(name.getLength());
             file.write(name.getLength(), name.getData());
 
-            const GfxAnimation& anim = animations.getValue(i);
+            const GfxAnimation& anim = kv.second;
 
             file.writeUInt32LE(anim.fps);
             file.writeUInt32LE(anim.frames.getCount());

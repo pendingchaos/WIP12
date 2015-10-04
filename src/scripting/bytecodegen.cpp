@@ -30,6 +30,7 @@ static const uint8_t opBitXOr = (uint8_t)Opcode::BitXOr;
 static const uint8_t opLess = (uint8_t)Opcode::Less;
 static const uint8_t opGreater = (uint8_t)Opcode::Greater;
 static const uint8_t opEqual = (uint8_t)Opcode::Equal;
+static const uint8_t opNotEqual = (uint8_t)Opcode::NotEqual;
 static const uint8_t opLessEqual = (uint8_t)Opcode::LessEqual;
 static const uint8_t opGreaterEqual = (uint8_t)Opcode::GreaterEqual;
 static const uint8_t opShiftLeft = (uint8_t)Opcode::LeftShift;
@@ -155,8 +156,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     }
     case ASTNode::NotEqual:
     {
-        generateLROp((LROpNode *)node, data, opEqual);
-        data.append(1, &opBoolNot);
+        generateLROp((LROpNode *)node, data, opNotEqual);
         return true;
     }
     case ASTNode::LessEqual:
