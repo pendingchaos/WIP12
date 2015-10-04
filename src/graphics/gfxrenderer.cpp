@@ -185,12 +185,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     resize(640);
 
     ssaoRandomTexture->startCreation(GfxTextureType::Texture2D,
-                                     false,
                                      4,
                                      4,
                                      1,
-                                     0,
-                                     GfxTexPurpose::Other,
                                      GfxTexFormat::RGBF32_F16);
 
     const int NUM_DIRECTIONS = 8;
@@ -696,142 +693,100 @@ void GfxRenderer::resize(const UInt2& size)
         }
 
         readColorTexture->startCreation(GfxTextureType::Texture2D,
-                                        false,
                                         width,
                                         height,
                                         1,
-                                        0,
-                                        GfxTexPurpose::Other,
                                         GfxTexFormat::RGBF32_F16);
         readColorTexture->allocMipmap(0, 1, nullptr);
 
         writeColorTexture->startCreation(GfxTextureType::Texture2D,
-                                         false,
                                          width,
                                          height,
                                          1,
-                                         0,
-                                         GfxTexPurpose::Other,
                                          GfxTexFormat::RGBF32_F16);
         writeColorTexture->allocMipmap(0, 1, nullptr);
 
         depthTexture->startCreation(GfxTextureType::Texture2D,
-                                    false,
                                     width,
                                     height,
                                     1,
-                                    0,
-                                    GfxTexPurpose::Other,
                                     GfxTexFormat::DepthF32_F24);
         depthTexture->allocMipmap(0, 1, nullptr);
 
         materialTexture->startCreation(GfxTextureType::Texture2D,
-                                       false,
                                        width,
                                        height,
                                        1,
-                                       0,
-                                       GfxTexPurpose::Other,
                                        GfxTexFormat::RedGreenU8);
         materialTexture->allocMipmap(0, 1, nullptr);
 
         normalTexture->startCreation(GfxTextureType::Texture2D,
-                                     false,
                                      width,
                                      height,
                                      1,
-                                     0,
-                                     GfxTexPurpose::Other,
                                      GfxTexFormat::RGBI16);
         normalTexture->allocMipmap(0, 1, nullptr);
 
         ssaoTexture->startCreation(GfxTextureType::Texture2D,
-                                   false,
                                    width,
                                    height,
                                    1,
-                                   0,
-                                   GfxTexPurpose::Other,
                                    GfxTexFormat::RGBAF32_F16);
         ssaoTexture->allocMipmap(0, 1, nullptr);
 
         ssaoBlurXTexture->startCreation(GfxTextureType::Texture2D,
-                                        false,
                                         width,
                                         height,
                                         1,
-                                        0,
-                                        GfxTexPurpose::Other,
                                         GfxTexFormat::RGBAF32_F16);
         ssaoBlurXTexture->allocMipmap(0, 1, nullptr);
 
         bloomBlurXTexture->startCreation(GfxTextureType::Texture2D,
-                                         false,
                                          width/4,
                                          height/4,
                                          1,
-                                         0,
-                                         GfxTexPurpose::Other,
                                          GfxTexFormat::RGBF32_F16);
         bloomBlurXTexture->allocMipmap(0, 1, nullptr);
 
         bloom1Texture->startCreation(GfxTextureType::Texture2D,
-                                     false,
                                      width/4,
                                      height/4,
                                      1,
-                                     0,
-                                     GfxTexPurpose::Other,
                                      GfxTexFormat::RGBF32_F16);
         bloom1Texture->allocMipmap(0, 1, nullptr);
 
         bloom2Texture->startCreation(GfxTextureType::Texture2D,
-                                     false,
                                      width/4,
                                      height/4,
                                      1,
-                                     0,
-                                     GfxTexPurpose::Other,
                                      GfxTexFormat::RGBF32_F16);
         bloom2Texture->allocMipmap(0, 1, nullptr);
 
         bloom3Texture->startCreation(GfxTextureType::Texture2D,
-                                     false,
                                      width/4,
                                      height/4,
                                      1,
-                                     0,
-                                     GfxTexPurpose::Other,
                                      GfxTexFormat::RGBF32_F16);
         bloom3Texture->allocMipmap(0, 1, nullptr);
 
         bloom4Texture->startCreation(GfxTextureType::Texture2D,
-                                     false,
                                      width/4,
                                      height/4,
                                      1,
-                                     0,
-                                     GfxTexPurpose::Other,
                                      GfxTexFormat::RGBF32_F16);
         bloom4Texture->allocMipmap(0, 1, nullptr);
 
         bloomDownsampleTexture->startCreation(GfxTextureType::Texture2D,
-                                              false,
                                               width/4,
                                               height/4,
                                               1,
-                                              0,
-                                              GfxTexPurpose::Other,
                                               GfxTexFormat::RGBF32_F16);
         bloomDownsampleTexture->allocMipmap(0, 1, nullptr);
 
         geomNormalTexture->startCreation(GfxTextureType::Texture2D,
-                                         false,
                                          width,
                                          height,
                                          1,
-                                         0,
-                                         GfxTexPurpose::Other,
                                          GfxTexFormat::RGBI16);
         geomNormalTexture->allocMipmap(0, 1, nullptr);
     }
@@ -2135,12 +2090,9 @@ void GfxRenderer::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
     }
 
     matrixTexture->startCreation(GfxTextureType::Texture2D,
-                                 false,
                                  worldMatrices.getCount()*8,
                                  1,
                                  1,
-                                 255,
-                                 GfxTexPurpose::Other,
                                  GfxTexFormat::RGBAF32);
 
     matrixTexture->allocMipmap(0, 1, matrixData);

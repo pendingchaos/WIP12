@@ -17,10 +17,6 @@ static const GfxWrapMode wrapModes[] = {GfxWrapMode::Stretch,
                                         GfxWrapMode::Repeat,
                                         GfxWrapMode::Mirror};
 
-static const GfxTexPurpose purposes[] = {GfxTexPurpose::Color,
-                                         GfxTexPurpose::Normal,
-                                         GfxTexPurpose::Other};
-
 static const GfxTexFormat formats[] = {GfxTexFormat::AlphaU8,
                                        GfxTexFormat::AlphaI8,
                                        GfxTexFormat::AlphaU16,
@@ -183,8 +179,6 @@ GfxTexture::GfxTexture(const String& filename) : Resource(filename,
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    compressionQuality = 255;
-    purpose = GfxTexPurpose::Other;
     shadowmap = false;
 }
 
@@ -201,8 +195,6 @@ GfxTexture::GfxTexture() : Resource(ResType::GfxTextureType),
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    compressionQuality = 255;
-    purpose = GfxTexPurpose::Other;
     shadowmap = false;
 }
 
@@ -223,8 +215,6 @@ void GfxTexture::removeContent()
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    compressionQuality = 255;
-    purpose = GfxTexPurpose::Other;
     shadowmap = false;
 
     DELETE(impl);
@@ -232,30 +222,21 @@ void GfxTexture::removeContent()
 }
 
 void GfxTexture::startCreation(GfxTextureType type_,
-                               bool compress_,
                                unsigned int baseWidth_,
                                unsigned int baseHeight_,
                                unsigned int baseDepth_,
-                               uint8_t compressionQuality_,
-                               GfxTexPurpose purpose_,
                                GfxTexFormat format_)
 {
     textureType = type_;
-    compress = compress_;
     baseWidth = baseWidth_;
     baseHeight = baseHeight_;
     baseDepth = (type_ == GfxTextureType::Texture3D or type_ == GfxTextureType::Texture2DArray) ? baseDepth_ : 1;
-    compressionQuality = compressionQuality_;
-    purpose = purpose_;
     format = format_;
 
     impl->startCreation(textureType,
-                        compress,
                         baseWidth,
                         baseHeight,
                         baseDepth,
-                        compressionQuality,
-                        purpose,
                         format);
 }
 
@@ -370,14 +351,11 @@ void GfxTexture::_load()
                   "Unsupported version");
         }
 
-        bool compress = file.readUInt8() != 0;
-        uint8_t compressionQuality = file.readUInt8();
         GfxFilter minFilter = filters[file.readUInt8()];
         GfxFilter magFilter = filters[file.readUInt8()];
         float maxAnisotropy = file.readFloat32();
         GfxMipmapMode mipmapMode = mipmapModes[file.readUInt8()];
         GfxWrapMode wrapMode = wrapModes[file.readUInt8()];
-        GfxTexPurpose purpose = purposes[file.readUInt8()];
         GfxTexFormat format = formats[file.readUInt8()];
 
         GfxTextureType type = (GfxTextureType)file.readUInt8();
@@ -387,12 +365,9 @@ void GfxTexture::_load()
         uint32_t baseDepth = file.readUInt32LE();
 
         startCreation(type,
-                      compress,
                       baseWidth,
                       baseHeight,
                       baseDepth,
-                      compressionQuality,
-                      purpose,
                       format);
 
         setMinFilter(minFilter);
@@ -443,14 +418,11 @@ void GfxTexture::save()
 
         size_t numMipmaps = std::log2(std::min(baseWidth, baseHeight));
 
-        file.writeUInt8(compress);
-        file.writeUInt8(compressionQuality);
         file.writeUInt8((uint8_t)minFilter);
         file.writeUInt8((uint8_t)magFilter);
         file.writeFloat32(maximumAnisotropy);
         file.writeUInt8((uint8_t)mipmapMode);
         file.writeUInt8((uint8_t)wrapMode);
-        file.writeUInt8((uint8_t)purpose);
         file.writeUInt8((uint8_t)format);
         file.writeUInt8((uint8_t)textureType);
         file.writeUInt32LE(numMipmaps);
@@ -494,7 +466,6 @@ void GfxTexture::save()
 
                 void *data = ALLOCATE(amount);
 
-                //TODO: This won't work.
                 getMipmap(i, 1, data);
 
                 file.write(amount, data);
@@ -548,12 +519,9 @@ Resource *GfxTexture::_copy() const
     GfxTexture *texture = NEW(GfxTexture);
 
     texture->startCreation(textureType,
-                           compress,
                            baseWidth,
                            baseHeight,
                            baseDepth,
-                           compressionQuality,
-                           purpose,
                            format);
 
     if (textureType == GfxTextureType::Texture2D)

@@ -62,7 +62,6 @@
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
 #include "scripting/disasm.h"
-#include "scripting/bindings2.h"
 #include "scripting/script.h"
 #include "scripting/vm/engine.h"
 #include "scripting/vm/context.h"
@@ -88,8 +87,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxTexPurpose_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *GhostObject, *StrStrMap, *GfxApi, *GfxCompiledShader, *ScrollBar, *GhostObjList, *GPUTimer, *RigidBody, *UInt2, *LightList, *RenderStats, *Filesystem, *ResourceManager, *Entity, *GfxRenderer, *Float2, *GfxFramebuffer, *Font, *Event, *PhysicsWorld, *Stats, *AudioSource, *Script, *RayCastResultList, *Platform, *Camera, *GfxMesh, *Resource, *GfxShader, *Light, *TextureSampler, *Scene, *Int3, *ResizableData, *Int4, *Float3, *GfxBuffer, *Transform, *AudioSourceList, *GfxMaterial, *Quaternion, *GfxMeshAttrib, *ScriptInstance, *RenderComponent, *Int2, *AudioWorld, *GuiPlacer, *ImGui, *StringList, *Application, *LightPointData, *Float4, *FloatList, *Container, *LightDirectionalData, *Matrix4x4, *Map, *ScriptInstanceList, *UInt3, *LightSpotData, *PhysicsShape, *AudioDevice, *RigidBodyList, *UInt4, *RayCastResult, *GfxLOD, *File, *AABB, *RigidBodyConstructionInfo, *List, *Audio, *GfxTexture, *GfxSubModelList, *GfxModel, *GfxLODList, *EntityList, *GfxShaderCombination, *Matrix3x3, *GfxDebugDrawer, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxTexPurpose, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value *GhostObject, *StrStrMap, *GfxApi, *GfxCompiledShader, *ScrollBar, *GhostObjList, *GPUTimer, *RigidBody, *UInt2, *LightList, *RenderStats, *Filesystem, *ResourceManager, *Entity, *GfxRenderer, *Float2, *GfxFramebuffer, *Font, *Event, *PhysicsWorld, *Stats, *AudioSource, *Script, *RayCastResultList, *Platform, *Camera, *GfxMesh, *Resource, *GfxShader, *Light, *TextureSampler, *Scene, *Int3, *ResizableData, *Int4, *Float3, *GfxBuffer, *Transform, *AudioSourceList, *GfxMaterial, *Quaternion, *GfxMeshAttrib, *ScriptInstance, *RenderComponent, *Int2, *AudioWorld, *GuiPlacer, *ImGui, *StringList, *Application, *LightPointData, *Float4, *FloatList, *Container, *LightDirectionalData, *Matrix4x4, *Map, *ScriptInstanceList, *UInt3, *LightSpotData, *PhysicsShape, *AudioDevice, *RigidBodyList, *UInt4, *RayCastResult, *GfxLOD, *File, *AABB, *RigidBodyConstructionInfo, *List, *Audio, *GfxTexture, *GfxSubModelList, *GfxModel, *GfxLODList, *EntityList, *GfxShaderCombination, *Matrix3x3, *GfxDebugDrawer, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
 };
 
 
@@ -1026,49 +1025,6 @@ static bool f(CTX ctx,const SV head)
 {
 if(head->type==STG::ValueType::NativeObject)
 RET((NO)head)->typeID==EXT->GfxTexFormat_typeID;
-else
- RET false;
-}
-};void GfxTexPurpose_destroy(CTX,NO) {}
-SV GfxTexPurpose_get_member(CTX,NO,SV);
-void GfxTexPurpose_set_member(CTX,NO,SV,SV);
-static const STG::NativeObjectFuncs GfxTexPurpose_funcs={
-.destroy = GfxTexPurpose_destroy,
-.getMember = GfxTexPurpose_get_member,
-.setMember = GfxTexPurpose_set_member
-};
-template <>
-struct create_val<GfxTexPurpose>
-{
-static SV f(CTX ctx,GfxTexPurpose v)
-{
-RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)v,EXT->GfxTexPurpose_typeID);
-}
-};
-template <>
-struct val_to_c<GfxTexPurpose>
-{
-static GfxTexPurpose f(CTX ctx,const SV head)
-{
-if(head->type!=STG::ValueType::NativeObject)
-CATE(TE,"Value can not be converted to GfxTexPurpose."));
-
-NO obj=(NO)head;
-if(obj->typeID!=EXT->GfxTexPurpose_typeID)
-CATE(TE,"Value can not be converted to GfxTexPurpose."));
-size_t v=size_t(obj->data);
-if(v==0)return GfxTexPurpose::Color;
-if(v==2)return GfxTexPurpose::Other;
-if(v==1)return GfxTexPurpose::Normal;
-}
-};
-template <>
-struct type_same<GfxTexPurpose>
-{
-static bool f(CTX ctx,const SV head)
-{
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexPurpose_typeID;
 else
  RET false;
 }
@@ -6863,8 +6819,6 @@ SV GfxTexture_getWrapMode(CTX ctx,const List<SV>&a);
 SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a);
 SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a);
 SV GfxTexture_getBaseDepth(CTX ctx,const List<SV>&a);
-SV GfxTexture_getCompressionQuality(CTX ctx,const List<SV>&a);
-SV GfxTexture_getPurpose(CTX ctx,const List<SV>&a);
 SV GfxTexture_getFormat(CTX ctx,const List<SV>&a);
 SV GfxTexture_getShadowmap(CTX ctx,const List<SV>&a);
 SV GfxTexture_setMaximumAnisotropy(CTX ctx,const List<SV>&a);
@@ -13316,58 +13270,6 @@ else
 }
 }
 void GfxTexFormat_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
-SV GfxTexPurpose___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()!=2)
-CATE(VE,UFOF("GfxTexPurpose::__eq__")));
-size_t f;
-if(!TS(a[0],GfxTexPurpose))
-CATE(TE,FAE("GfxTexPurpose::GfxTexPurpose","GfxTexPurpose")));
-else
- f=(size_t)((NO)a[0])->data;
-size_t other;
-if(!TS(a[1],GfxTexPurpose))
-CATE(VE,UFOF("GfxTexPurpose::__eq__")));
-else
- other=(size_t)((NO)a[1])->data;
-return STG::createBoolean(f == other);
-}SV GfxTexPurpose_get_member(CTX ctx,NO f,SV key)
-{
-if (key->type==STG::ValueType::StringType)
-{
-String keyStr=((STG::StringValue *)key)->value;
-if(f->data==NULL)
-{
-if(keyStr=="__typeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxTexPurpose");
-EI(keyStr=="__eq__")
-RET CNF(GfxTexPurpose___eq__);
-EI(keyStr=="Color")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)0,EXT->GfxTexPurpose_typeID);
-EI(keyStr=="Other")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)2,EXT->GfxTexPurpose_typeID);
-EI(keyStr=="Normal")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)1,EXT->GfxTexPurpose_typeID);
-
-else
- CATE(KE,"Unknown enum."));
-} else
-{
-if(keyStr=="__classTypeID__")
-RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
-RET STG::createString("GfxTexPurpose");
-EI(keyStr=="__eq__")
-RET CNF(GfxTexPurpose___eq__);
-EI(keyStr=="Color")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)0,EXT->GfxTexPurpose_typeID);
-EI(keyStr=="Other")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)2,EXT->GfxTexPurpose_typeID);
-EI(keyStr=="Normal")RET STG::createNativeObject(GfxTexPurpose_funcs,(void *)1,EXT->GfxTexPurpose_typeID);
-
-else
- CATE(KE,"Unknown enum."));
-}
-}
-}
-void GfxTexPurpose_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
 SV GfxFace___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -25792,10 +25694,6 @@ RET CV(obj->shadowFixedBias);
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowRadius);
-} EI(keyStr=="scriptOwned")
-{
-Light*obj=(Light*)f->data;
-RET CV(obj->scriptOwned);
 } EI(keyStr=="shadowSplitDistances")
 {
 Light*obj=(Light*)f->data;
@@ -25868,10 +25766,6 @@ obj->shadowFixedBias=val_to_c<decltype(obj->shadowFixedBias)>::f(ctx,value);
 {
 Light*obj=(Light*)f->data;
 obj->shadowRadius=val_to_c<decltype(obj->shadowRadius)>::f(ctx,value);
-} EI(keyStr=="scriptOwned")
-{
-Light*obj=(Light*)f->data;
-obj->scriptOwned=val_to_c<decltype(obj->scriptOwned)>::f(ctx,value);
 } EI(keyStr=="shadowSplitDistances")
 {
 Light*obj=(Light*)f->data;
@@ -48405,10 +48299,6 @@ RET CNF(GfxTexture_getBaseWidth);
 RET CNF(GfxTexture_getBaseHeight);
  EI(keyStr == "getBaseDepth")
 RET CNF(GfxTexture_getBaseDepth);
- EI(keyStr == "getCompressionQuality")
-RET CNF(GfxTexture_getCompressionQuality);
- EI(keyStr == "getPurpose")
-RET CNF(GfxTexture_getPurpose);
  EI(keyStr == "getFormat")
 RET CNF(GfxTexture_getFormat);
  EI(keyStr == "getShadowmap")
@@ -48614,10 +48504,10 @@ CATE(VE,"GfxTexture::startCreation" EAOE));
 GfxTexture*f;
 f=(GfxTexture*)((NO)a[0])->data;
 
-if(a.getCount()==9)
-if(1&&TS(a[1],GfxTextureType)&&TS(a[2],bool)&&TS(a[3],unsigned int)&&TS(a[4],unsigned int)&&TS(a[5],unsigned int)&&TS(a[6],uint8_t)&&TS(a[7],GfxTexPurpose)&&TS(a[8],GfxTexFormat))
+if(a.getCount()==6)
+if(1&&TS(a[1],GfxTextureType)&&TS(a[2],unsigned int)&&TS(a[3],unsigned int)&&TS(a[4],unsigned int)&&TS(a[5],GfxTexFormat))
 {
-( f->startCreation(val_to_c<std::remove_reference<GfxTextureType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<uint8_t>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<GfxTexPurpose>::type>::f(ctx,a[7]), val_to_c<std::remove_reference<GfxTexFormat>::type>::f(ctx,a[8])));
+( f->startCreation(val_to_c<std::remove_reference<GfxTextureType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<unsigned int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<GfxTexFormat>::type>::f(ctx,a[5])));
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::startCreation.")));
@@ -48952,23 +48842,6 @@ CATE(TE,UFOF("GfxTexture::getMipmapFace.")));
 RET CN;
 }
 
-SV GfxTexture_getPurpose(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getPurpose" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getPurpose());
-;
-}
-CATE(TE,UFOF("GfxTexture::getPurpose.")));
-RET CN;
-}
-
 SV GfxTexture_getMaximumAnisotropy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -49034,23 +48907,6 @@ RET CV( f->getMagFilter());
 ;
 }
 CATE(TE,UFOF("GfxTexture::getMagFilter.")));
-RET CN;
-}
-
-SV GfxTexture_getCompressionQuality(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getCompressionQuality" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCompressionQuality());
-;
-}
-CATE(TE,UFOF("GfxTexture::getCompressionQuality.")));
 RET CN;
 }
 
@@ -51276,7 +51132,6 @@ SV create(CTX ctx,GfxFilter value){RET CV(value);}
 SV create(CTX ctx,GfxMipmapMode value){RET CV(value);}
 SV create(CTX ctx,GfxWrapMode value){RET CV(value);}
 SV create(CTX ctx,GfxTexFormat value){RET CV(value);}
-SV create(CTX ctx,GfxTexPurpose value){RET CV(value);}
 SV create(CTX ctx,GfxFace value){RET CV(value);}
 SV create(CTX ctx,GfxBufferUsage value){RET CV(value);}
 SV create(CTX ctx,GfxShaderType value){RET CV(value);}
@@ -51760,11 +51615,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GfxTexFormat_typeID = typeID;
     ext->GfxTexFormat = scripting::createNativeObject(GfxTexFormat_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxTexFormat", ext->GfxTexFormat);
-    
-    typeID = engine->createNewTypeID();
-    ext->GfxTexPurpose_typeID = typeID;
-    ext->GfxTexPurpose = scripting::createNativeObject(GfxTexPurpose_funcs, NULL, typeID);
-    engine->getGlobalVars().set("GfxTexPurpose", ext->GfxTexPurpose);
     
     typeID = engine->createNewTypeID();
     ext->GfxFace_typeID = typeID;

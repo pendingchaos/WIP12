@@ -9,28 +9,20 @@ tok.str = str_;\
 tokens.append(tok);\
 }
 
-#define TOKEN_KW(str_, type_) else if (input.startsWith(str_, offset))\
+bool isEnd(char c)
+{
+    return not (c >= 'a' and c <= 'z') and
+           not (c >= 'A' and c <= 'Z') and
+           not (c >= '1' and c <= '9') and
+           not (c == '_');
+}
+
+#define TOKEN_KW(str_, type_) else if (input.startsWith(str_, offset) and isEnd(*(input.getData()+offset+sizeof(str_)-1)))\
 {\
 Token tok;\
 tok.line = line;\
 tok.column = COLUMN;\
 offset += (sizeof str_) - 1;\
-if (offset < input.getLength())\
-{\
-    char c = input[offset+1];\
-    \
-    if (c >= 'a' and c <= 'z')\
-    {\
-        int TODO_Error;\
-    } else if (c >= 'A' and c <= 'Z')\
-    {\
-    } else if (c == '_')\
-    {\
-    } else\
-    {\
-        int TODO_Error;\
-    }\
-}\
 tok.type = type_;\
 tok.str = str_;\
 tokens.append(tok);\

@@ -157,7 +157,7 @@ struct _functionStruct
     void (*f104)( GuiPlacer *obj);
     void (*f105)( GuiPlacer *obj, XOrigin arg0, int arg1);
     void (*f106)( GuiPlacer *obj, ImGui * arg0, int arg1, int arg2, size_t arg3);
-    void (*f107)( GfxTexture *obj, GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7);
+    void (*f107)( GfxTexture *obj, GfxTextureType arg0, unsigned int arg1, unsigned int arg2, unsigned int arg3, GfxTexFormat arg4);
     void (*f108)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3);
     void (*f109)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2);
     void (*f110)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3);
@@ -426,7 +426,7 @@ void f103( GuiPlacer *obj, const GuiPlacer & arg0) { obj->advanceY(arg0);}
 void f104( GuiPlacer *obj) { obj->resetY();}
 void f105( GuiPlacer *obj, XOrigin arg0, int arg1) { obj->setXOrigin(arg0, arg1);}
 void f106( GuiPlacer *obj, ImGui * arg0, int arg1, int arg2, size_t arg3) {new (obj) GuiPlacer(arg0, arg1, arg2, arg3);}
-void f107( GfxTexture *obj, GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7) { obj->startCreation(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
+void f107( GfxTexture *obj, GfxTextureType arg0, unsigned int arg1, unsigned int arg2, unsigned int arg3, GfxTexFormat arg4) { obj->startCreation(arg0, arg1, arg2, arg3, arg4);}
 void f108( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3) { obj->allocMipmapFace(arg0, arg1, arg2, arg3);}
 void f109( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2) { obj->allocMipmap(arg0, arg1, arg2);}
 void f110(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3) { obj->getMipmapFace(arg0, arg1, arg2, arg3);}

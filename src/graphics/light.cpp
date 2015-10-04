@@ -20,12 +20,9 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
     if (type == GfxLightType::Spot)
     {
         shadowmap->startCreation(GfxTextureType::Texture2D,
-                                 false,
                                  resolution,
                                  resolution,
                                  1,
-                                 0,
-                                 GfxTexPurpose::Other,
                                  formats[(int)precision]);
 
         shadowmap->allocMipmap(0, 1, nullptr);
@@ -35,12 +32,9 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
     } else if (type == GfxLightType::Directional)
     {
         shadowmap->startCreation(GfxTextureType::Texture2DArray,
-                                 false,
                                  resolution,
                                  resolution,
                                  4,
-                                 0,
-                                 GfxTexPurpose::Other,
                                  formats[(int)precision]);
 
         shadowmap->allocMipmap(0, 1, nullptr);
@@ -57,12 +51,9 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
     } else
     {
         shadowmap->startCreation(GfxTextureType::CubeMap,
-                                 false,
                                  resolution,
                                  resolution,
                                  1,
-                                 0,
-                                 GfxTexPurpose::Other,
                                  formats[(int)precision]);
 
         shadowmap->allocMipmapFace(0, 1, GfxFace::PositiveX, nullptr);

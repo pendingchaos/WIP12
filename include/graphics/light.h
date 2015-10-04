@@ -60,7 +60,6 @@ class Light
                   shadowAutoBiasScale(1.0f),
                   shadowFixedBias(0.0f),
                   shadowRadius(4.0f),
-                  scriptOwned(false),
                   shadowSplitDistances(3.0f, 6.0f, 9.0f),
                   direction({Direction3D(0.0f, -1.0f, 0.0f)}),
                   shadowmap(nullptr) {point.singlePassShadowMap = true;}
@@ -76,7 +75,6 @@ class Light
         float shadowAutoBiasScale;
         float shadowFixedBias;
         float shadowRadius;
-        bool scriptOwned; //TODO: Get rid of this.
         Float3 shadowSplitDistances;
 
         LightDirectionalData direction;

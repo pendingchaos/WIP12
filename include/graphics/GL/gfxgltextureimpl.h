@@ -12,12 +12,9 @@ class GfxGLTextureImpl : public GfxTextureImpl
         virtual ~GfxGLTextureImpl();
 
         virtual void startCreation(GfxTextureType type,
-                                   bool compress,
                                    unsigned int baseWidth,
                                    unsigned int baseHeight,
                                    unsigned int baseDepth,
-                                   uint8_t compressionQuality,
-                                   GfxTexPurpose purpose,
                                    GfxTexFormat format);
 
         virtual void allocMipmapFace(unsigned int level,

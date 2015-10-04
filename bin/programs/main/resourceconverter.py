@@ -8,7 +8,7 @@ if __name__ == "__main__":
     conv["texture.png"] = Texture(["source/texture.png"], "resources/textures/texture.bin")
     conv["texture2.png"] = Texture(["source/texture2.png"], "resources/textures/texture2.bin")
     conv["normal.png"] = Texture(["source/normal.png"], "resources/textures/normal.bin")
-    conv["normal.png"].purpose = Texture.Purpose.Normal
+    conv["normal.png"].srgb = False
     conv["floor.png"] = Texture(["source/floor.png"], "resources/textures/floor.bin")
     conv["floor.png"].mag_filter = Texture.Filter.Nearest
     conv["Yokohama3"] = Texture(["source/Yokohama3/posx.jpg",
@@ -22,21 +22,21 @@ if __name__ == "__main__":
     conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
     conv["bricks2_disp.jpg"].max_anisotropy = 1.0
     conv["bricks2_normal.png"] = Texture(["source/bricks2_normal.png"], "resources/textures/bricks2_normal.bin")
-    conv["bricks2_normal.png"].purpose = Texture.Purpose.Normal
+    conv["bricks2_normal.png"].srgb = False
     conv["terrain.png"] = Texture(["source/terrain.png"], "resources/textures/terrain.bin")
     conv["terrain.png"].wrap_mode = Texture.WrapMode.Stretch
     conv["terrainWeight.png"] = Texture(["source/terrainWeight.png"], "resources/textures/terrainWeight.bin")
     conv["terrainWeight.png"].wrap_mode = Texture.WrapMode.Stretch
-    conv["terrainWeight.png"].purpose = Texture.Purpose.Other
+    conv["terrainWeight.png"].srgb = False
     conv["terrainWeight2.png"] = Texture(["source/terrainWeight2.png"], "resources/textures/terrainWeight2.bin")
     conv["terrainWeight2.png"].wrap_mode = Texture.WrapMode.Stretch
-    conv["terrainWeight2.png"].purpose = Texture.Purpose.Other
+    conv["terrainWeight2.png"].srgb = False
     conv["grassAlbedo.png"] = Texture(["source/grass/diffuse.tga"], "resources/textures/grassAlbedo.bin")
     conv["grassNormal.png"] = Texture(["source/grass/normal.tga"], "resources/textures/grassNormal.bin")
-    conv["grassNormal.png"].purpose = Texture.Purpose.Normal
+    conv["grassNormal.png"].srgb = False
     conv["rockAlbedo.png"] = Texture(["source/rock/diffuse.tga"], "resources/textures/rockAlbedo.bin")
     conv["rockNormal.png"] = Texture(["source/rock/normal.tga"], "resources/textures/rockNormal.bin")
-    conv["rockNormal.png"].purpose = Texture.Purpose.Normal
+    conv["rockNormal.png"].srgb = False
     
     conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
     conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
@@ -388,9 +388,9 @@ if __name__ == "__main__":
     cubeEnt.rigidBody.angularSleepingThreshold = 0.0
     cubeEnt.rigidBody.linearDamping = 0.8
     cubeEnt.rigidBody.mass = 100.0
-    #cubeEnt.scripts.append(("resources/scripts/entityscript.cpp", "Player"))
-    cubeEnt.scripts.append(("resources/scripts/player.rkt", "Player"))
-    #cubeEnt.scripts.append(("resources/scripts/lightscript.cpp", "PlayerLight"))
+    #cubeEnt.scripts.append("resources/scripts/entityscript.cpp")
+    cubeEnt.scripts.append("resources/scripts/player.rkt")
+    #cubeEnt.scripts.append("resources/scripts/lightscript.cpp")
     scene.entities.append(cubeEnt)
     
     clayEnt = Scene.Entity("Clay")

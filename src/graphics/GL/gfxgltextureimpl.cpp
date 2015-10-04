@@ -437,12 +437,9 @@ GfxGLTextureImpl::~GfxGLTextureImpl()
 }
 
 void GfxGLTextureImpl::startCreation(GfxTextureType type_,
-                                     bool compress_,
                                      unsigned int baseWidth_,
                                      unsigned int baseHeight_,
                                      unsigned int baseDepth_,
-                                     uint8_t compressionQuality_,
-                                     GfxTexPurpose purpose_,
                                      GfxTexFormat format_)
 {
     glDeleteTextures(1, &texture);

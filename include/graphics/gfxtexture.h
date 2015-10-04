@@ -139,14 +139,6 @@ enum class GfxTexFormat
     RedF32_F16
 } BIND ENUM_CLASS;
 
-//TODO: Get rid of this and the quality parameter.
-enum class GfxTexPurpose
-{
-    Color,
-    Normal,
-    Other
-} BIND ENUM_CLASS;
-
 enum class GfxFace
 {
     PositiveX,
@@ -169,12 +161,9 @@ class GfxTexture : public Resource
         virtual void removeContent();
 
         void startCreation(GfxTextureType type,
-                           bool compress,
                            unsigned int baseWidth,
                            unsigned int baseHeight,
                            unsigned int baseDepth,
-                           uint8_t compressionQuality,
-                           GfxTexPurpose purpose,
                            GfxTexFormat format);
 
         void allocMipmapFace(unsigned int level,
@@ -264,16 +253,6 @@ class GfxTexture : public Resource
             return baseDepth;
         }
 
-        inline uint8_t getCompressionQuality() const
-        {
-            return compressionQuality;
-        }
-
-        inline GfxTexPurpose getPurpose() const
-        {
-            return purpose;
-        }
-
         inline GfxTexFormat getFormat() const
         {
             return format;
@@ -309,8 +288,6 @@ class GfxTexture : public Resource
         unsigned int baseWidth;
         unsigned int baseHeight;
         unsigned int baseDepth;
-        uint8_t compressionQuality;
-        GfxTexPurpose purpose;
         GfxTexFormat format;
         bool shadowmap;
     protected:
@@ -329,12 +306,9 @@ class GfxTextureImpl
         virtual ~GfxTextureImpl() {}
 
         virtual void startCreation(GfxTextureType type,
-                                   bool compress,
                                    unsigned int baseWidth,
                                    unsigned int baseHeight,
                                    unsigned int baseDepth,
-                                   uint8_t compressionQuality,
-                                   GfxTexPurpose purpose,
                                    GfxTexFormat format)=0;
 
         virtual void allocMipmapFace(unsigned int level,

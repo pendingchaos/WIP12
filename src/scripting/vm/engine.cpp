@@ -306,7 +306,7 @@ static Value *print(Context *ctx, const List<Value *>& args)
     return createNil();
 }
 
-Engine::Engine() : debugOutput(false), nextTypeID(LONG_LONG_MIN)
+Engine::Engine() : nextTypeID(LONG_LONG_MIN)
 {
     globalVars.set("__classify", createNativeFunction(createClass));
     globalVars.set("__methodify", createNativeFunction(createMethod));

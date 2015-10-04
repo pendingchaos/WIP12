@@ -69,14 +69,12 @@ class Texture(Resource):
     def __init__(self, src_filenames, dest_filename):
         Resource.__init__(self, "texture", src_filenames, dest_filename)
         
-        self.compress = False
-        self.compression_quality = 1.0
         self.max_anisotropy = 4.0
         self.min_filter = Texture.Filter.Bilinear
         self.mag_filter = Texture.Filter.Bilinear
         self.mipmap_mode = Texture.MipmapMode.Linear
         self.wrap_mode = Texture.WrapMode.Repeat
-        self.purpose = Texture.Purpose.Color
+        self.srgb = True
     
     def convert(self):
         out = open(self.dest_filename+".temp", "wb")
@@ -110,7 +108,7 @@ class Texture(Resource):
         for i in xrange(len(faces)):
             faces[i] = faces[i].convert(["L", "RGBA", "RGB", "RGBA"][numChannels-1])
         
-        srgb = self.purpose == Texture.Purpose.Color
+        srgb = self.srgb
         
         try:
             srgb = srgb and (faces[0].info["gamma"] == 2.2)
@@ -125,9 +123,7 @@ class Texture(Resource):
         num_mipmaps = self.get_num_mipmaps(faces[0])
         
         out.write("texr\x01\x00")
-        out.write(struct.pack("<?BBBfBBBBBLLLL",
-                              self.compress,
-                              int(self.compression_quality*255.0),
+        out.write(struct.pack("<?BfBBBBLLLL",
                               {Texture.Filter.Nearest:0,
                                Texture.Filter.Bilinear:1}[self.min_filter],
                               {Texture.Filter.Nearest:0,
@@ -139,9 +135,6 @@ class Texture(Resource):
                               {Texture.WrapMode.Stretch:0,
                                Texture.WrapMode.Repeat:1,
                                Texture.WrapMode.Mirror:2}[self.wrap_mode],
-                              {Texture.Purpose.Color:0,
-                               Texture.Purpose.Normal:1,
-                               Texture.Purpose.Other:2}[self.purpose],
                               {"RGB": 54,
                                "RGBA": 55}[faces[0].mode] if srgb else \
                               {"L": 6,
@@ -741,10 +734,8 @@ class Scene(Resource):
             s += struct.pack("<L", len(self.scripts))
             
             for script in self.scripts:
-                s += struct.pack("<L", len(script[0]))
-                s += script[0]
-                s += struct.pack("<L", len(script[1]))
-                s += script[1]
+                s += struct.pack("<L", len(script))
+                s += script
             
             s += struct.pack("<L", len(self.entities))
             
@@ -908,10 +899,8 @@ class Scene(Resource):
         s += struct.pack("<L", len(self.scripts))
         
         for script in self.scripts:
-            s += struct.pack("<L", len(script[0]))
-            s += script[0]
-            s += struct.pack("<L", len(script[1]))
-            s += script[1]
+            s += struct.pack("<L", len(script))
+            s += script
         
         output.write(s)
         

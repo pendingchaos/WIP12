@@ -21,6 +21,7 @@ for root, dirnames, filenames in os.walk("../include"):
 
 files.remove("../include/scripting/scriptsidebindings.h")
 files.remove("../include/scripting/scriptinclude.h")
+files.remove("../include/scripting/bindings2.h")
 
 operators = {"operator+": "__add__",
              "operator-": "__sub__",
@@ -1595,7 +1596,6 @@ bindings.write("""#ifndef BINDINGS2_H
 
 """)
 
-files.remove("../include/scripting/bindings2.h")
 for file_ in files:
     bindings.write("#include \"%s\"\n" % (file_[11:]))
 

@@ -109,7 +109,7 @@ struct _functionStruct
     void (*f104)( GuiPlacer *obj);
     void (*f105)( GuiPlacer *obj, XOrigin arg0, int arg1);
     void (*f106)( GuiPlacer *obj, ImGui * arg0, int arg1, int arg2, size_t arg3);
-    void (*f107)( GfxTexture *obj, GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7);
+    void (*f107)( GfxTexture *obj, GfxTextureType arg0, unsigned int arg1, unsigned int arg2, unsigned int arg3, GfxTexFormat arg4);
     void (*f108)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3);
     void (*f109)( GfxTexture *obj, unsigned int arg0, unsigned int arg1, const void * arg2);
     void (*f110)(const GfxTexture *obj, unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3);
@@ -379,7 +379,7 @@ void GuiPlacer::advanceY(const GuiPlacer & arg0)  { _functions->f103(this, arg0)
 void GuiPlacer::resetY()  { _functions->f104(this);}
 void GuiPlacer::setXOrigin(XOrigin arg0, int arg1)  { _functions->f105(this, arg0, arg1);}
  GuiPlacer::GuiPlacer(ImGui * arg0, int arg1, int arg2, size_t arg3)  { _functions->f106(this, arg0, arg1, arg2, arg3);}
-void GfxTexture::startCreation(GfxTextureType arg0, bool arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, uint8_t arg5, GfxTexPurpose arg6, GfxTexFormat arg7)  { _functions->f107(this, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);}
+void GfxTexture::startCreation(GfxTextureType arg0, unsigned int arg1, unsigned int arg2, unsigned int arg3, GfxTexFormat arg4)  { _functions->f107(this, arg0, arg1, arg2, arg3, arg4);}
 void GfxTexture::allocMipmapFace(unsigned int arg0, unsigned int arg1, GfxFace arg2, const void * arg3)  { _functions->f108(this, arg0, arg1, arg2, arg3);}
 void GfxTexture::allocMipmap(unsigned int arg0, unsigned int arg1, const void * arg2)  { _functions->f109(this, arg0, arg1, arg2);}
 void GfxTexture::getMipmapFace(unsigned int arg0, unsigned int arg1, GfxFace arg2, void * arg3) const { _functions->f110(this, arg0, arg1, arg2, arg3);}

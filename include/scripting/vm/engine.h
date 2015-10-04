@@ -30,8 +30,6 @@ class Engine
             return globalVars;
         }
 
-        bool debugOutput;
-
         void addExtension(const String& name, const Extension& extension);
 
         inline const Extension& getExtension(const String& name) const

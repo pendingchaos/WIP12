@@ -215,7 +215,6 @@ namespace scripting
     Value *create(Context *ctx, GfxMipmapMode value);
     Value *create(Context *ctx, GfxWrapMode value);
     Value *create(Context *ctx, GfxTexFormat value);
-    Value *create(Context *ctx, GfxTexPurpose value);
     Value *create(Context *ctx, GfxFace value);
     Value *create(Context *ctx, GfxBufferUsage value);
     Value *create(Context *ctx, GfxShaderType value);

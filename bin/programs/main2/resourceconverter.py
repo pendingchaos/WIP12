@@ -137,7 +137,7 @@ if __name__ == "__main__":
     playerEnt.rigidBody.angularSleepingThreshold = 0.0
     playerEnt.rigidBody.linearDamping = 0.8
     playerEnt.rigidBody.mass = 100.0
-    playerEnt.scripts.append(("resources/scripts/player.rkt", "Player"))
+    playerEnt.scripts.append("resources/scripts/player.rkt")
     playerEnt.model = conv["player model"]
     scene.entities.append(playerEnt)
     
@@ -157,7 +157,7 @@ if __name__ == "__main__":
         coinEnt.model = conv["coin model %d" % (random.randint(0, len(colors)-1))]
         coinEnt.rigidBody = Scene.RigidBody()
         coinEnt.rigidBody.shape = coinShape
-        coinEnt.scripts.append(("resources/scripts/coin.rkt", "Coin"))
+        coinEnt.scripts.append("resources/scripts/coin.rkt")
         scene.entities.append(coinEnt)
     
     # Decor
