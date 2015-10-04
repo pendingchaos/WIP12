@@ -3,9 +3,13 @@
 
 #include "graphics/gfxtexture.h"
 
+class GfxGLFramebuffer;
+
 class GfxGLTextureImpl : public GfxTextureImpl
 {
     NO_COPY_INHERITED(GfxGLTextureImpl, GfxTextureImpl)
+
+    friend GfxGLFramebuffer;
 
     public:
         GfxGLTextureImpl();
@@ -68,6 +72,8 @@ class GfxGLTextureImpl : public GfxTextureImpl
         GfxFilter magFilter;
 
         void setMinFiltering();
+
+        List<GfxGLFramebuffer *> framebuffers;
 };
 
 #endif // GFXGLTEXTUREIMPL_H

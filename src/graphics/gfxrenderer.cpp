@@ -844,10 +844,11 @@ void GfxRenderer::render()
     gfxApi->setWriteDepth(true);
     gfxApi->setDepthFunction(GfxLess);
 
-    start = platform->getTime();
     gBufferTimer->begin();
 
+    start = platform->getTime();
     gfxApi->setCurrentFramebuffer(gBufferFramebuffer);
+    stats.gbufferCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     gfxApi->clearDepth();
 
@@ -861,7 +862,6 @@ void GfxRenderer::render()
     gfxApi->setDepthFunction(GfxAlways);
 
     gBufferTimer->end();
-    stats.gbufferCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //SSAO
     start = platform->getTime();

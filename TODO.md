@@ -92,5 +92,4 @@
 - [ ] Improve directional light performance.
     - [ ] Only do deferred shading where deferred objects are rendered.
 - [ ] Improve fixed update performance and find out what's not showing up on the renderer CPU timings.
-- [ ] gfxApi->setCurrentFramebuffer(gBufferFramebuffer) is _very_ slow at fullscreen.
-    - [ ] Not so bad with less attachments.
+    - [ ] Seems to be very slow with non-square framebuffers.

@@ -1,6 +1,7 @@
 #include "graphics/GL/gfxgltextureimpl.h"
 
 #include "logging.h"
+#include "graphics/GL/gfxglframebuffer.h"
 
 static GLenum internalFormats[] = {GL_R8,
                                    GL_R8_SNORM,
@@ -408,6 +409,7 @@ if (textureType == GfxTextureType::Texture2D or textureType == GfxTextureType::C
                  data);\
 }
 
+//TODO: The framebuffer list will not be copyied from the old texture impl when removeContent() is called.
 GfxGLTextureImpl::GfxGLTextureImpl()
 {
     textureType = GfxTextureType::Texture2D;
@@ -461,6 +463,11 @@ void GfxGLTextureImpl::startCreation(GfxTextureType type_,
     setShadowmap(shadowmap);
 
     END_TEXTURE_BINDING
+
+    for (auto fb : framebuffers)
+    {
+        fb->setDirty();
+    }
 }
 
 void GfxGLTextureImpl::allocMipmapFace(unsigned int level,

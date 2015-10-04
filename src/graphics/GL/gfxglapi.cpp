@@ -236,60 +236,16 @@ void GfxGLApi::setCurrentFramebuffer(GfxFramebuffer *framebuffer)
 {
     if (framebuffer != nullptr)
     {
-        glBindFramebuffer(GL_FRAMEBUFFER,
-                          ((GfxGLFramebuffer *)framebuffer)->getGLFramebuffer());
+        ((GfxGLFramebuffer *)framebuffer)->bind();
 
-        size_t numBuffers = framebuffer->getNumColorAttachments();
+        GLenum drawBuffers[framebuffer->getNumColorAttachments()];
 
-        for (size_t i = 0; i < numBuffers; ++i)
-        {
-            GfxTexture *texture = framebuffer->getColorAttachment(i);
-
-            if (framebuffer->getColorAttachmentLayer(i) >= 0)
-            {
-                glFramebufferTextureLayer(GL_FRAMEBUFFER,
-                                          GL_COLOR_ATTACHMENT0+framebuffer->getColorRT(i),
-                                          ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                                          framebuffer->getColorAttachmentMipmapLevel(i),
-                                          framebuffer->getColorAttachmentLayer(i));
-
-            } else
-            {
-                glFramebufferTexture(GL_FRAMEBUFFER,
-                                     GL_COLOR_ATTACHMENT0+framebuffer->getColorRT(i),
-                                     ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                                     framebuffer->getColorAttachmentMipmapLevel(i));
-            }
-        }
-
-        if (framebuffer->hasDepthAttachment())
-        {
-            GfxTexture *texture = framebuffer->getDepthTexture();
-
-            if (framebuffer->getDepthAttachmentLayer() >= 0)
-            {
-                glFramebufferTextureLayer(GL_FRAMEBUFFER,
-                                          GL_DEPTH_ATTACHMENT,
-                                          ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                                          framebuffer->getDepthTextureMipmapLevel(),
-                                          framebuffer->getDepthAttachmentLayer());
-            } else
-            {
-                glFramebufferTexture(GL_FRAMEBUFFER,
-                                     GL_DEPTH_ATTACHMENT,
-                                     ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
-                                     framebuffer->getDepthTextureMipmapLevel());
-            }
-        }
-
-        GLenum drawBuffers[numBuffers];
-
-        for (size_t i = 0; i < numBuffers; ++i)
+        for (size_t i = 0; i < framebuffer->getNumColorAttachments(); ++i)
         {
             drawBuffers[i] = GL_COLOR_ATTACHMENT0+i;
         }
 
-        glDrawBuffers(numBuffers, drawBuffers);
+        glDrawBuffers(framebuffer->getNumColorAttachments(), drawBuffers);
     } else
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);

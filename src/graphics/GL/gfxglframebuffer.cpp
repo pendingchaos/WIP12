@@ -8,7 +8,7 @@ glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 #define END_FRAMEBUFFER_BINDING glBindFramebuffer(GL_FRAMEBUFFER, lastFBO);
 
-GfxGLFramebuffer::GfxGLFramebuffer() : hasDepth(false)
+GfxGLFramebuffer::GfxGLFramebuffer() : hasDepth(false), dirty(true)
 {
     glGenFramebuffers(1, &fbo);
 }
@@ -27,26 +27,19 @@ void GfxGLFramebuffer::addColorAttachment(size_t rtIndex,
 
     attachment.mipmapLevel = mipmapLevel;
     attachment.rtIndex = rtIndex;
-    attachment.texture = texture;
+    attachment.texture = texture->copyRef<GfxTexture>();
     attachment.layer = layer;
 
     attachments.append(attachment);
+
+    ((GfxGLTextureImpl *)texture->getImpl())->framebuffers.append(this);
 }
 
 void GfxGLFramebuffer::removeColorAttachment(size_t index)
 {
-    const Attachment& attachment = attachments[index];
-
-    BEGIN_FRAMEBUFER_BINDING
-
-    glFramebufferTexture(GL_FRAMEBUFFER,
-                         GL_COLOR_ATTACHMENT0+attachment.rtIndex,
-                         0,
-                         0);
-
-    END_FRAMEBUFFER_BINDING
-
+    attachments[index].texture->release();
     attachments.remove(index);
+    dirty = true;
 }
 
 size_t GfxGLFramebuffer::getNumColorAttachments()
@@ -80,23 +73,18 @@ void GfxGLFramebuffer::setDepthAttachment(GfxTexture *texture,
 {
     hasDepth = true;
     depthAttachment.mipmapLevel = mipmapLevel;
-    depthAttachment.texture = texture;
+    depthAttachment.texture = texture->copyRef<GfxTexture>();
     depthAttachment.layer = layer;
+
+    ((GfxGLTextureImpl *)texture->getImpl())->framebuffers.append(this);
 }
 
 void GfxGLFramebuffer::removeDepthAttachment()
 {
-    BEGIN_FRAMEBUFER_BINDING
-
-    glFramebufferTexture(GL_FRAMEBUFFER,
-                         GL_DEPTH_ATTACHMENT,
-                         0,
-                         0);
-
-    END_FRAMEBUFFER_BINDING
-
     hasDepth = false;
+    depthAttachment.texture->release();
     depthAttachment.texture = nullptr;
+    dirty = true;
 }
 
 bool GfxGLFramebuffer::hasDepthAttachment()
@@ -117,4 +105,61 @@ size_t GfxGLFramebuffer::getDepthTextureMipmapLevel()
 int GfxGLFramebuffer::getDepthAttachmentLayer()
 {
     return depthAttachment.layer;
+}
+
+void GfxGLFramebuffer::bind()
+{
+    if (dirty)
+    {
+        glDeleteFramebuffers(1, &fbo);
+        glGenFramebuffers(1, &fbo);
+
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
+        for (auto attachment : attachments)
+        {
+            GfxTexture *texture = attachment.texture;
+
+            if (attachment.layer >= 0)
+            {
+                glFramebufferTextureLayer(GL_FRAMEBUFFER,
+                                          GL_COLOR_ATTACHMENT0+attachment.rtIndex,
+                                          ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
+                                          attachment.mipmapLevel,
+                                          attachment.layer);
+
+            } else
+            {
+                glFramebufferTexture(GL_FRAMEBUFFER,
+                                     GL_COLOR_ATTACHMENT0+attachment.rtIndex,
+                                     ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
+                                     attachment.mipmapLevel);
+            }
+        }
+
+        if (hasDepth)
+        {
+            GfxTexture *texture = depthAttachment.texture;
+
+            if (getDepthAttachmentLayer() >= 0)
+            {
+                glFramebufferTextureLayer(GL_FRAMEBUFFER,
+                                          GL_DEPTH_ATTACHMENT,
+                                          ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
+                                          depthAttachment.mipmapLevel,
+                                          depthAttachment.layer);
+            } else
+            {
+                glFramebufferTexture(GL_FRAMEBUFFER,
+                                     GL_DEPTH_ATTACHMENT,
+                                     ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture(),
+                                     depthAttachment.mipmapLevel);
+            }
+        }
+
+        dirty = false;
+    } else
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    }
 }

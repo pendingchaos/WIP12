@@ -34,6 +34,13 @@ class GfxGLFramebuffer : public GfxFramebuffer
         {
             return fbo;
         }
+
+        inline void setDirty()
+        {
+            dirty = true;
+        }
+
+        void bind();
     private:
         struct Attachment
         {
@@ -49,6 +56,7 @@ class GfxGLFramebuffer : public GfxFramebuffer
 
         bool hasDepth;
         Attachment depthAttachment;
+        bool dirty;
 };
 
 #endif // GFXGLFRAMEBUFFER_H
