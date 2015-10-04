@@ -244,7 +244,7 @@ void GfxTexture::startCreation(GfxTextureType type_,
     compress = compress_;
     baseWidth = baseWidth_;
     baseHeight = baseHeight_;
-    baseDepth = type_ == GfxTextureType::Texture3D ? baseDepth_ : 1;
+    baseDepth = (type_ == GfxTextureType::Texture3D or type_ == GfxTextureType::Texture2DArray) ? baseDepth_ : 1;
     compressionQuality = compressionQuality_;
     purpose = purpose_;
     format = format_;
@@ -494,6 +494,7 @@ void GfxTexture::save()
 
                 void *data = ALLOCATE(amount);
 
+                //TODO: This won't work.
                 getMipmap(i, 1, data);
 
                 file.write(amount, data);
@@ -529,6 +530,9 @@ void GfxTexture::save()
                     height /= 2;
                 }
             }
+        } else
+        {
+            //TODO
         }
     } catch (FileException& e)
     {

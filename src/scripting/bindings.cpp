@@ -774,6 +774,7 @@ NO obj=(NO)head;
 if(obj->typeID!=EXT->GfxTextureType_typeID)
 CATE(TE,"Value can not be converted to GfxTextureType."));
 size_t v=size_t(obj->data);
+if(v==3)return GfxTextureType::Texture2DArray;
 if(v==1)return GfxTextureType::CubeMap;
 if(v==2)return GfxTextureType::Texture3D;
 if(v==0)return GfxTextureType::Texture2D;
@@ -3782,9 +3783,7 @@ else
 SV Light_addShadowmap(CTX ctx,const List<SV>&a);
 SV Light_removeShadowmap(CTX ctx,const List<SV>&a);
 SV Light_getShadowmap(CTX ctx,const List<SV>&a);
-SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a);
-SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a);
-SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a);
+SV Light_getFramebuffers(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a);
 SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a);
 SV Light_getPointLightInfluence(CTX ctx,const List<SV>&a);
@@ -3792,6 +3791,8 @@ SV Light_getSpotLightInfluence(CTX ctx,const List<SV>&a);
 SV Light_updateMatrices(CTX ctx,const List<SV>&a);
 SV Light_getViewMatrix(CTX ctx,const List<SV>&a);
 SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a);
+SV Light_getCascadeViewMatrix(CTX ctx,const List<SV>&a);
+SV Light_getCascadeProjectionMatrix(CTX ctx,const List<SV>&a);
 void TextureSampler_destroy(CTX,NO);
 SV TextureSampler_get_member(CTX,NO,SV);
 void TextureSampler_set_member(CTX,NO,SV,SV);
@@ -6653,6 +6654,8 @@ else
 SV AABB_transform(CTX ctx,const List<SV>&a);
 SV AABB_extend(CTX ctx,const List<SV>&a);
 SV AABB_grow(CTX ctx,const List<SV>&a);
+SV AABB_getCorner(CTX ctx,const List<SV>&a);
+SV AABB_intersection(CTX ctx,const List<SV>&a);
 void RigidBodyConstructionInfo_destroy(CTX,NO);
 SV RigidBodyConstructionInfo_get_member(CTX,NO,SV);
 void RigidBodyConstructionInfo_set_member(CTX,NO,SV,SV);
@@ -12945,6 +12948,7 @@ EI(keyStr=="__name__")
 RET STG::createString("GfxTextureType");
 EI(keyStr=="__eq__")
 RET CNF(GfxTextureType___eq__);
+EI(keyStr=="Texture2DArray")RET STG::createNativeObject(GfxTextureType_funcs,(void *)3,EXT->GfxTextureType_typeID);
 EI(keyStr=="CubeMap")RET STG::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
 EI(keyStr=="Texture3D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
 EI(keyStr=="Texture2D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
@@ -12959,6 +12963,7 @@ EI(keyStr=="__name__")
 RET STG::createString("GfxTextureType");
 EI(keyStr=="__eq__")
 RET CNF(GfxTextureType___eq__);
+EI(keyStr=="Texture2DArray")RET STG::createNativeObject(GfxTextureType_funcs,(void *)3,EXT->GfxTextureType_typeID);
 EI(keyStr=="CubeMap")RET STG::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
 EI(keyStr=="Texture3D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
 EI(keyStr=="Texture2D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
@@ -25727,12 +25732,8 @@ RET CNF(Light_addShadowmap);
 RET CNF(Light_removeShadowmap);
  EI(keyStr == "getShadowmap")
 RET CNF(Light_getShadowmap);
- EI(keyStr == "getShadowmapFramebuffer")
-RET CNF(Light_getShadowmapFramebuffer);
- EI(keyStr == "getPointLightFramebuffers")
-RET CNF(Light_getPointLightFramebuffers);
- EI(keyStr == "getPointLightFramebuffer")
-RET CNF(Light_getPointLightFramebuffer);
+ EI(keyStr == "getFramebuffers")
+RET CNF(Light_getFramebuffers);
  EI(keyStr == "getShadowmapResolution")
 RET CNF(Light_getShadowmapResolution);
  EI(keyStr == "getShadowmapPrecision")
@@ -25747,6 +25748,10 @@ RET CNF(Light_updateMatrices);
 RET CNF(Light_getViewMatrix);
  EI(keyStr == "getProjectionMatrix")
 RET CNF(Light_getProjectionMatrix);
+ EI(keyStr == "getCascadeViewMatrix")
+RET CNF(Light_getCascadeViewMatrix);
+ EI(keyStr == "getCascadeProjectionMatrix")
+RET CNF(Light_getCascadeProjectionMatrix);
  EI(keyStr=="type")
 {
 Light*obj=(Light*)f->data;
@@ -25791,6 +25796,10 @@ RET CV(obj->shadowRadius);
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->scriptOwned);
+} EI(keyStr=="shadowSplitDistances")
+{
+Light*obj=(Light*)f->data;
+RET CV(obj->shadowSplitDistances);
 } EI(keyStr=="direction")
 {
 Light*obj=(Light*)f->data;
@@ -25863,6 +25872,10 @@ obj->shadowRadius=val_to_c<decltype(obj->shadowRadius)>::f(ctx,value);
 {
 Light*obj=(Light*)f->data;
 obj->scriptOwned=val_to_c<decltype(obj->scriptOwned)>::f(ctx,value);
+} EI(keyStr=="shadowSplitDistances")
+{
+Light*obj=(Light*)f->data;
+obj->shadowSplitDistances=val_to_c<decltype(obj->shadowSplitDistances)>::f(ctx,value);
 } EI(keyStr=="direction")
 {
 Light*obj=(Light*)f->data;
@@ -25895,23 +25908,6 @@ RET CV( f->getShadowmapResolution());
 ;
 }
 CATE(TE,UFOF("Light::getShadowmapResolution.")));
-RET CN;
-}
-
-SV Light_updateMatrices(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::updateMatrices" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxRenderer *))
-{
-( f->updateMatrices(val_to_c<std::remove_reference<GfxRenderer *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Light::updateMatrices.")));
 RET CN;
 }
 
@@ -25949,23 +25945,6 @@ CATE(TE,UFOF("Light::getShadowmap.")));
 RET CN;
 }
 
-SV Light_getPointLightFramebuffer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Light::getPointLightFramebuffer" EAOE));
-Light*f;
-f=(Light*)((NO)a[0])->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxFace))
-{
-RET CV( f->getPointLightFramebuffer(val_to_c<std::remove_reference<GfxFace>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Light::getPointLightFramebuffer.")));
-RET CN;
-}
-
 SV Light_getSpotLightInfluence(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25983,20 +25962,20 @@ CATE(TE,UFOF("Light::getSpotLightInfluence.")));
 RET CN;
 }
 
-SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
+SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Light::getViewMatrix" EAOE));
+CATE(VE,"Light::getShadowmapPrecision" EAOE));
 Light*f;
 f=(Light*)((NO)a[0])->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getViewMatrix());
+RET CV( f->getShadowmapPrecision());
 ;
 }
-CATE(TE,UFOF("Light::getViewMatrix.")));
+CATE(TE,UFOF("Light::getShadowmapPrecision.")));
 RET CN;
 }
 
@@ -26034,48 +26013,48 @@ CATE(TE,UFOF("Light::addShadowmap.")));
 RET CN;
 }
 
-SV Light_getShadowmapFramebuffer(CTX ctx,const List<SV>&a)
+SV Light_getCascadeProjectionMatrix(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Light::getShadowmapFramebuffer" EAOE));
+CATE(VE,"Light::getCascadeProjectionMatrix" EAOE));
 Light*f;
 f=(Light*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
 {
-RET CV( f->getShadowmapFramebuffer());
+RET CV( f->getCascadeProjectionMatrix(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
 ;
 }
-CATE(TE,UFOF("Light::getShadowmapFramebuffer.")));
+CATE(TE,UFOF("Light::getCascadeProjectionMatrix.")));
 RET CN;
 }
 
-SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
+SV Light_getFramebuffers(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Light::getShadowmapPrecision" EAOE));
+CATE(VE,"Light::getFramebuffers" EAOE));
 Light*f;
 f=(Light*)((NO)a[0])->data;
 
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShadowmapPrecision());
-;
-}
-CATE(TE,UFOF("Light::getShadowmapPrecision.")));
+CATE(TE,UFOF("Light::getFramebuffers.")));
 RET CN;
 }
 
-SV Light_getPointLightFramebuffers(CTX ctx,const List<SV>&a)
+SV Light_updateMatrices(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Light::getPointLightFramebuffers" EAOE));
+CATE(VE,"Light::updateMatrices" EAOE));
 Light*f;
 f=(Light*)((NO)a[0])->data;
 
-CATE(TE,UFOF("Light::getPointLightFramebuffers.")));
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxRenderer *))
+{
+( f->updateMatrices(val_to_c<std::remove_reference<GfxRenderer *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Light::updateMatrices.")));
 RET CN;
 }
 
@@ -26093,6 +26072,40 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("Light::removeShadowmap.")));
+RET CN;
+}
+
+SV Light_getCascadeViewMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getCascadeViewMatrix" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getCascadeViewMatrix(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Light::getCascadeViewMatrix.")));
+RET CN;
+}
+
+SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Light::getViewMatrix" EAOE));
+Light*f;
+f=(Light*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getViewMatrix());
+;
+}
+CATE(TE,UFOF("Light::getViewMatrix.")));
 RET CN;
 }
 
@@ -47243,6 +47256,10 @@ RET CNF(AABB_transform);
 RET CNF(AABB_extend);
  EI(keyStr == "grow")
 RET CNF(AABB_grow);
+ EI(keyStr == "getCorner")
+RET CNF(AABB_getCorner);
+ EI(keyStr == "intersection")
+RET CNF(AABB_intersection);
  EI(keyStr=="min")
 {
 AABB*obj=(AABB*)f->data;
@@ -47279,6 +47296,40 @@ obj->max=val_to_c<decltype(obj->max)>::f(ctx,value);
  CATE(KE,"Unknown member or member if read-only for AABB."));
 }
 }
+}
+
+SV AABB_getCorner(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AABB::getCorner" EAOE));
+AABB*f;
+f=(AABB*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getCorner(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("AABB::getCorner.")));
+RET CN;
+}
+
+SV AABB_intersection(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AABB::intersection" EAOE));
+AABB*f;
+f=(AABB*)((NO)a[0])->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const AABB &))
+{
+RET CV( f->intersection(val_to_c<std::remove_reference<const AABB &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("AABB::intersection.")));
+RET CN;
 }
 
 SV AABB_transform(CTX ctx,const List<SV>&a)

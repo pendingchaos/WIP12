@@ -35,6 +35,8 @@
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
 - [ ] Make a GUI skinnable.
+- [ ] Make the directional light cascade count configurable.
+- [ ] Complete terrain shadows.
 
 ## Bugs
 - [ ] POM with terrains freezes the computer.
@@ -66,6 +68,8 @@
 - [ ] Get WIP12 running on OpenGL 3.3.
 - [ ] The skybox takes up 100.7 megabytes.
 - [ ] Fix memory leaks.
+- [ ] Improve directional shadow quality.
+- [ ] Improve directional shadow transitions.
 
 ## Performance Improvements
 - [ ] Instancing
@@ -88,3 +92,5 @@
 - [ ] Improve directional light performance.
     - [ ] Only do deferred shading where deferred objects are rendered.
 - [ ] Improve fixed update performance and find out what's not showing up on the renderer CPU timings.
+- [ ] gfxApi->setCurrentFramebuffer(gBufferFramebuffer) is _very_ slow at fullscreen.
+    - [ ] Not so bad with less attachments.

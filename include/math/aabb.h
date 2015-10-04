@@ -4,6 +4,7 @@
 #include "math/t3.h"
 #include "math/matrix4x4.h"
 #include "scripting/bindings.h"
+#include "error.h"
 
 #include <algorithm>
 
@@ -36,7 +37,7 @@ class AABB
             return result;
         }
 
-        inline void extend(const Position3D& point)
+        void extend(const Position3D& point)
         {
             min.x = std::min(min.x, point.x);
             min.y = std::min(min.y, point.y);
@@ -57,6 +58,39 @@ class AABB
         {
             min -= amount;
             max += amount;
+        }
+
+        inline Position3D getCorner(size_t index)
+        {
+            if (index > 7)
+            {
+                THROW(BoundsException);
+            }
+
+            Position3D corners[] = {Position3D(min.x, min.y, min.z),
+                                    Position3D(min.x, min.y, max.z),
+                                    Position3D(min.x, max.y, min.z),
+                                    Position3D(min.x, max.y, max.z),
+                                    Position3D(max.x, min.y, min.z),
+                                    Position3D(max.x, min.y, max.z),
+                                    Position3D(max.x, max.y, min.z),
+                                    Position3D(max.x, max.y, max.z)};
+
+            return corners[index];
+        }
+
+        inline AABB intersection(const AABB& aabb)
+        {
+            AABB result;
+            result.min.x = std::max(min.x, aabb.min.x);
+            result.min.y = std::max(min.y, aabb.min.y);
+            result.min.z = std::max(min.z, aabb.min.z);
+
+            result.max.x = std::min(max.x, aabb.max.x);
+            result.max.y = std::min(max.y, aabb.max.y);
+            result.max.z = std::min(max.z, aabb.max.z);
+
+            return result;
         }
 
         Position3D min;

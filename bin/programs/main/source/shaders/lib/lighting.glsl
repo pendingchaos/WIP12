@@ -1,5 +1,3 @@
-#include "uniform.glsl"
-
 #ifndef LIGHTING_INCLUDED
 #define LIGHTING_INCLUDED
 
@@ -33,9 +31,9 @@ struct DirectionalLight
     vec4 negDir;
 };
 
-DECLUNIFORM(uint, numSpotLights)
-DECLUNIFORM(uint, numPointLights)
-DECLUNIFORM(uint, numDirectionalLights)
+uniform uint numSpotLights;
+uniform uint numPointLights;
+uniform uint numDirectionalLights;
 
 layout (std140) uniform lights_
 {
@@ -45,8 +43,8 @@ layout (std140) uniform lights_
 };
 #endif
 
-DECLUNIFORM(float, time)
-DECLUNIFORM(float, shadowRadius)
+uniform float time;
+uniform float shadowRadius;
 
 vec3 GGX(float nh, float roughness)
 {
@@ -130,7 +128,7 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
 //Interleaved gradient noise from Next Generation Post Processing in Call of Duty: Advanced Warfare.
 float shadowNoise(float scale)
 {
-    return -scale + 2.0 * scale * fract(52.9829189 * fract(dot(gl_FragCoord.xy + vec2(U(time) * scale, 0.0), vec2(0.06711056, 0.00583715))));
+    return -scale + 2.0 * scale * fract(52.9829189 * fract(dot(gl_FragCoord.xy + vec2(time * scale, 0.0), vec2(0.06711056, 0.00583715))));
 }
 
 #ifdef GL_ARB_gpu_shader5
@@ -141,16 +139,16 @@ float shadowNoise(float scale)
 
 #ifdef TEX_GATHER
 #define _BLOCKER_SAMPLE(samplePos) {\
-    vec2 offset = mat * samplePos * U(shadowRadius) / texSize;\
-    vec4 depths = textureGather(depthmap, shadowCoord.xy/shadowCoord.w + offset, 0);\
+    vec2 offset = mat * samplePos * radius / texSize;\
+    vec4 depths = textureGather(depthmap, vec3(shadowCoord.xy/shadowCoord.w + offset, cascade), 0);\
     vec4 factors = step(depths, vec4(shadowCoord.z/shadowCoord.w));\
     numBlockers += dot(factors, vec4(1.0));\
     avgBlockerDepth += dot(depths, factors);\
 }
 #else
 #define _BLOCKER_SAMPLE(samplePos) {\
-    vec2 offset = mat * samplePos * U(shadowRadius) / texSize;\
-    float depth = textureLod(depthmap, shadowCoord.xy/shadowCoord.w + offset, 0).r;\
+    vec2 offset = mat * samplePos * radius / texSize;\
+    float depth = textureLod(depthmap, vec3(shadowCoord.xy/shadowCoord.w + offset, cascade), 0).r;\
     float factor = step(depth, shadowCoord.z/shadowCoord.w);\
     numBlockers += factors;\
     avgBlockerDepth += depth * factor;\
@@ -160,12 +158,15 @@ float shadowNoise(float scale)
 //This seems to result in lower quality.
 //shadow += mix(mix(factors.x, factors.y, fract(coord.x)), mix(factors.w, factors.z, fract(coord.x)), fract(coord.y));
 
-#define _SHADOW_SAMPLE(samplePos) shadow += texture(shadowmap, shadowCoord.xyz + vec3(mat*samplePos*newRadius/texSize, 0.0)).r;
+#define _SHADOW_SAMPLE(samplePos) coord = shadowCoord.xyz + vec3(mat*samplePos*newRadius/texSize, 0.0);\
+shadow += texture(shadowmap, vec4(coord.xy, cascade, coord.z)).r;
 
 vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
                       vec3 albedo, float metallic, float roughness, vec3 normal, vec3 viewDir, float ao,
-                      vec4 shadowCoord, sampler2DShadow shadowmap, sampler2D depthmap)
+                      vec4 shadowCoord, sampler2DArrayShadow shadowmap, sampler2DArray depthmap, float cascade)
 {
+    float radius = shadowRadius / (cascade+1.0);
+    
     vec3 specular;
     float diffuse;
 
@@ -200,7 +201,7 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
     avgBlockerDepth /= numBlockers;
 
     float precent = clamp(abs(shadowCoord.z - avgBlockerDepth) / avgBlockerDepth, 0.0, 1.0);
-    float newRadius = precent * U(shadowRadius);
+    float newRadius = precent * radius;
 
     float shadow = 0.0;
 
@@ -212,6 +213,8 @@ vec3 directionalLight(vec3 lightNegDir, vec3 lightColor, float lightAmbient,
         shadow = 0.0;
     } else
     {
+        vec3 coord;
+        
         _SHADOW_SAMPLE(vec2(-0.7071, 0.7071))
         _SHADOW_SAMPLE(vec2(0.0, -0.875))
         _SHADOW_SAMPLE(vec2(0.5303, 0.5303))
@@ -485,7 +488,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
 {
     vec3 result = vec3(0.0);
     
-    for (uint i = 0; i < U(numSpotLights); ++i)
+    for (uint i = 0; i < numSpotLights; ++i)
     {
         SpotLight light = spotLights[i];
         
@@ -505,7 +508,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
                             position);
     }
     
-    for (uint i = 0; i < U(numPointLights); ++i)
+    for (uint i = 0; i < numPointLights; ++i)
     {
         PointLight light = pointLights[i];
         
@@ -522,7 +525,7 @@ vec3 lighting(vec3 albedo, float roughness, float metallic, vec3 normal, vec3 vi
                              position);
     }
     
-    for (uint i = 0; i < U(numDirectionalLights); ++i)
+    for (uint i = 0; i < numDirectionalLights; ++i)
     {
         DirectionalLight light = directionalLights[i];
         

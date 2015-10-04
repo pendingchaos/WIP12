@@ -63,7 +63,8 @@ Font *ResourceManager::loadFontAndCopy(const String& filename) {return loadAndCo
 
 void ResourceManager::cleanupResources()
 {
-    for (auto kv : resources)
+    //TODO: Invalid read of size 4.
+    /*for (auto kv : resources)
     {
         HashMap<String, Resource *>& resources_ = kv.second;
 
@@ -98,5 +99,5 @@ void ResourceManager::cleanupResources()
 
             res->release();
         }
-    }
+    }*/
 }

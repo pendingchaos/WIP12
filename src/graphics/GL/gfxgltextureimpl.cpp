@@ -352,8 +352,8 @@ static GLint swizzles[][4] = {{O, O, O, R},
 #undef O
 #undef Z
 
-GLenum textureTargets[] = {GL_TEXTURE_2D, GL_TEXTURE_CUBE_MAP, GL_TEXTURE_3D};
-GLenum textureBindingGets[] = {GL_TEXTURE_BINDING_2D, GL_TEXTURE_BINDING_CUBE_MAP, GL_TEXTURE_BINDING_3D};
+GLenum textureTargets[] = {GL_TEXTURE_2D, GL_TEXTURE_CUBE_MAP, GL_TEXTURE_3D, GL_TEXTURE_2D_ARRAY};
+GLenum textureBindingGets[] = {GL_TEXTURE_BINDING_2D, GL_TEXTURE_BINDING_CUBE_MAP, GL_TEXTURE_BINDING_3D, GL_TEXTURE_BINDING_2D_ARRAY};
 
 #define BEGIN_TEXTURE_BINDING GLint lastTexture;\
 GLenum target = textureTargets[(int)textureType];\
@@ -376,6 +376,19 @@ if (textureType == GfxTextureType::Texture2D or textureType == GfxTextureType::C
                  internalFormats[(int)format],\
                  width,\
                  height,\
+                 0,\
+                 formats[(int)format],\
+                 types[(int)format],\
+                 data);\
+} else if (textureType == GfxTextureType::Texture2DArray)\
+{\
+    unsigned int depth = TEX_COMPUTE_MIPMAP_SIZE(baseDepth, level);\
+    glTexImage3D(target,\
+                 level,\
+                 internalFormats[(int)format],\
+                 width,\
+                 height,\
+                 depth,\
                  0,\
                  formats[(int)format],\
                  types[(int)format],\
@@ -458,11 +471,6 @@ void GfxGLTextureImpl::allocMipmapFace(unsigned int level,
                                        GfxFace face,
                                        const void *data)
 {
-    WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTextureType::CubeMap,
-                  "Trying to allocate data for a cubemap "
-                  "face for a texture that is not a cubemap.")();
-
     if (textureType != GfxTextureType::CubeMap)
     {
         return;
@@ -485,12 +493,7 @@ void GfxGLTextureImpl::allocMipmap(unsigned int level,
                                    unsigned int pixelAlignment,
                                    const void *data)
 {
-    WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTextureType::Texture2D,
-                  "Trying to allocate data for a 2d texture "
-                  "for a texture that is not 2d.")();
-
-    if (textureType != GfxTextureType::Texture2D)
+    if (textureType == GfxTextureType::CubeMap)
     {
         return;
     }
@@ -505,11 +508,6 @@ void GfxGLTextureImpl::getMipmapFace(unsigned int level,
                                      GfxFace face,
                                      void *data)
 {
-    WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTextureType::CubeMap,
-                  "Trying to allocate data for a cubemap "
-                  "face for a texture that is not a cubemap.")();
-
     if (textureType != GfxTextureType::CubeMap)
     {
         return;
@@ -536,12 +534,7 @@ void GfxGLTextureImpl::getMipmap(unsigned int level,
                                  unsigned int pixelAlignment,
                                  void *data)
 {
-    WARN_IF_FALSE(CATEGORY_RENDER,
-                  textureType == GfxTextureType::Texture2D,
-                  "Trying to allocate data for a 2d texture "
-                  "for a texture that is not 2d.")();
-
-    if (textureType != GfxTextureType::Texture2D)
+    if (textureType != GfxTextureType::CubeMap)
     {
         return;
     }

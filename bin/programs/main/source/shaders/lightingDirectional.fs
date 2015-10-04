@@ -13,10 +13,10 @@ uniform sampler2D aoTexture;
 uniform mat4 viewProjection;
 
 #ifdef SHADOW_MAP
-uniform sampler2DShadow shadowmap;
-uniform sampler2D depthmap;
-uniform mat4 shadowmapViewMatrix;
-uniform mat4 shadowmapProjectionMatrix;
+uniform sampler2DArrayShadow shadowmap;
+uniform sampler2DArray depthmap;
+uniform mat4 shadowmapViewMatrices[4];
+uniform mat4 shadowmapProjectionMatrices[4];
 uniform float shadowMinBias;
 uniform float shadowBiasScale;
 uniform float shadowFixedBias;
@@ -27,6 +27,27 @@ uniform vec3 cameraPosition;
 uniform vec3 lightColor;
 uniform float lightAmbientStrength;
 uniform vec3 lightNegDir;
+
+bvec2 greater(vec2 a, vec2 b)
+{
+    return bvec2(a.x > b.x, a.y > b.y);
+}
+
+bvec2 less(vec2 a, vec2 b)
+{
+    return bvec2(a.x < b.x, a.y < b.y);
+}
+
+bool cascadeTest(in vec3 pos, in int index)
+{
+    vec4 pos_ = shadowmapProjectionMatrices[index] *
+                shadowmapViewMatrices[index] *
+                vec4(pos, 1.0);
+    pos_.xy /= pos_.w;
+    
+    bvec2 result = greater(pos_.xy, vec2(-1.0)) && less(pos_.xy, vec2(1.0));
+    return result.x && result.y;
+}
 
 void main()
 {
@@ -45,7 +66,28 @@ void main()
     vec3 viewDir = normalize(cameraPosition - position);
     
     #ifdef SHADOW_MAP
-    vec4 shadowCoord = shadowmapProjectionMatrix * shadowmapViewMatrix * vec4(position, 1.0);
+    uint cascade = 3;
+    
+    if (cascadeTest(position, 0))
+    {
+        cascade = 0;
+    } else if (cascadeTest(position, 1))
+    {
+        cascade = 1;
+    } else if (cascadeTest(position, 2))
+    {
+        cascade = 2;
+    }
+    
+    //vec3 cascadeColor = vec3[](vec3(1.0, 0.0, 0.0), vec3(1.0, 1.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 1.0))[cascade];
+    
+    //albedo = cascadeColor + vec3(0.1);
+    //metallic = 0.0;
+    //roughness = 1.0;
+    
+    vec4 shadowCoord = shadowmapProjectionMatrices[cascade] *
+                       shadowmapViewMatrices[cascade] *
+                       vec4(position, 1.0);
     
     shadowCoord.xyz /= shadowCoord.w;
     shadowCoord.z -= max(shadowBiasScale * (1.0 - dot(texture(geomNormalTexture, frag_uv).rgb, lightNegDir)), shadowMinBias);
@@ -59,7 +101,7 @@ void main()
     result_color.rgb = directionalLight(lightNegDir, lightColor, lightAmbientStrength,
                                         albedo, metallic, roughness, normal, viewDir, ao
     #ifdef SHADOW_MAP
-    , shadowCoord, shadowmap, depthmap
+    , shadowCoord, shadowmap, depthmap, float(cascade)
     #endif
     );
     result_color.a = 1.0;

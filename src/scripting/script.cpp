@@ -530,8 +530,8 @@ void Script::_load()
 
     scripting::Bytecode code(data);
 
-    String disasm = scripting::disasm(code);
-    std::cout << disasm.getData() << std::endl;
+    //String disasm = scripting::disasm(code);
+    //std::cout << disasm.getData() << std::endl;
 
     {
         context = NEW(scripting::Context, scriptEngine);

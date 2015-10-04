@@ -21,13 +21,14 @@ enum class GfxTextureType
 {
     Texture2D,
     CubeMap,
-    Texture3D
+    Texture3D,
+    Texture2DArray
 } BIND ENUM_CLASS;
 
 enum class GfxFilter
 {
     Nearest,
-        Bilinear
+    Bilinear
 } BIND ENUM_CLASS;
 
 enum class GfxMipmapMode

@@ -61,9 +61,9 @@ class Light
                   shadowFixedBias(0.0f),
                   shadowRadius(4.0f),
                   scriptOwned(false),
+                  shadowSplitDistances(3.0f, 6.0f, 9.0f),
                   direction({Direction3D(0.0f, -1.0f, 0.0f)}),
-                  shadowmap(nullptr),
-                  shadowmapFramebuffer(nullptr) {point.singlePassShadowMap = true;}
+                  shadowmap(nullptr) {point.singlePassShadowMap = true;}
         ~Light() {removeShadowmap();}
 
         GfxLightType type;
@@ -76,64 +76,24 @@ class Light
         float shadowAutoBiasScale;
         float shadowFixedBias;
         float shadowRadius;
-        bool scriptOwned;
+        bool scriptOwned; //TODO: Get rid of this.
+        Float3 shadowSplitDistances;
 
         LightDirectionalData direction;
         LightSpotData spot;
         LightPointData point;
 
         void addShadowmap(size_t resolution, GfxShadowmapPrecision quality);
-
-        inline void removeShadowmap()
-        {
-            if (shadowmap != nullptr)
-            {
-                DELETE(shadowmapFramebuffer);
-                shadowmapFramebuffer = nullptr;
-                shadowmap->release();
-                shadowmap = nullptr;
-
-                if (type == GfxLightType::Point)
-                {
-                    DELETE(pointLightFramebuffers[0]);
-                    DELETE(pointLightFramebuffers[1]);
-                    DELETE(pointLightFramebuffers[2]);
-                    DELETE(pointLightFramebuffers[3]);
-                    DELETE(pointLightFramebuffers[4]);
-                    DELETE(pointLightFramebuffers[5]);
-                    pointLightFramebuffers[0] = nullptr;
-                    pointLightFramebuffers[1] = nullptr;
-                    pointLightFramebuffers[2] = nullptr;
-                    pointLightFramebuffers[3] = nullptr;
-                    pointLightFramebuffers[4] = nullptr;
-                    pointLightFramebuffers[5] = nullptr;
-                }
-            }
-        }
+        void removeShadowmap();
 
         inline GfxTexture *getShadowmap() const
         {
             return shadowmap;
         }
 
-        inline GfxFramebuffer *getShadowmapFramebuffer() const
+        inline GfxFramebuffer *const *getFramebuffers() const NO_BIND
         {
-            return shadowmapFramebuffer;
-        }
-
-        inline GfxFramebuffer *const *getPointLightFramebuffers() const NO_BIND
-        {
-            return pointLightFramebuffers;
-        }
-
-        GfxFramebuffer *getPointLightFramebuffer(GfxFace face) const
-        {
-            if ((int)face > 5)
-            {
-                THROW(BoundsException);
-            }
-
-            return pointLightFramebuffers[(int)face];
+            return shadowmapFramebuffers;
         }
 
         inline size_t getShadowmapResolution() const
@@ -151,25 +111,35 @@ class Light
 
         void updateMatrices(GfxRenderer *renderer);
 
-        //These two functions only work with spot and directional lights.
+        //These two functions only work with directional lights.
         inline Matrix4x4 getViewMatrix() const
         {
-            return viewMatrix;
+            return viewMatrices[0];
         }
 
         inline Matrix4x4 getProjectionMatrix() const
         {
-            return projectionMatrix;
+            return projectionMatrices[0];
+        }
+
+        //These two methods only work with directional lights
+        inline Matrix4x4 getCascadeViewMatrix(size_t index) const
+        {
+            return viewMatrices[index];
+        }
+
+        inline Matrix4x4 getCascadeProjectionMatrix(size_t index) const
+        {
+            return projectionMatrices[index];
         }
     private:
         GfxTexture *shadowmap;
-        GfxFramebuffer *shadowmapFramebuffer;
-        GfxFramebuffer *pointLightFramebuffers[6];
+        GfxFramebuffer *shadowmapFramebuffers[6];
         size_t shadowmapResolution;
         GfxShadowmapPrecision shadowmapPrecision;
 
-        Matrix4x4 viewMatrix;
-        Matrix4x4 projectionMatrix;
+        Matrix4x4 viewMatrices[4];
+        Matrix4x4 projectionMatrices[4];
 } BIND NOT_COPYABLE;
 
 #endif // LIGHT_H

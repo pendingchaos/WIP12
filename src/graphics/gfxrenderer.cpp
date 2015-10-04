@@ -825,15 +825,6 @@ void GfxRenderer::resize(const UInt2& size)
                                               GfxTexFormat::RGBF32_F16);
         bloomDownsampleTexture->allocMipmap(0, 1, nullptr);
 
-        /*luminanceTexture->startCreation(GfxTextureType::Texture2D,
-                                        false,
-                                        width,
-                                        height,
-                                        0,
-                                        GfxTexPurpose::Other,
-                                        GfxTexFormat::RedF32_F16);
-        luminanceTexture->allocMipmap(0, 1, nullptr);*/
-
         geomNormalTexture->startCreation(GfxTextureType::Texture2D,
                                          false,
                                          width,
@@ -904,10 +895,6 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(gBufferFramebuffer);
 
     gfxApi->clearDepth();
-
-    gfxApi->clearColor(0, Float4(0.0f));
-    gfxApi->clearColor(1, Float4(0.0f));
-    gfxApi->clearColor(2, Float4(0.5f, 0.5f, 0.5f, 0.0f));
 
     renderBatches(false);
 
@@ -1051,16 +1038,47 @@ void GfxRenderer::render()
 
         if (light->getShadowmap() != nullptr)
         {
-            GfxTexture *shadowmap = light->getShadowmap();
-            gfxApi->addTextureBinding(fragment, "depthmap", shadowmap);
-            gfxApi->addTextureBinding(fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
-
-            gfxApi->uniform(fragment, "shadowmapViewMatrix", light->getViewMatrix());
-            gfxApi->uniform(fragment, "shadowmapProjectionMatrix", light->getProjectionMatrix());
             gfxApi->uniform(fragment, "shadowMinBias", light->shadowMinBias);
             gfxApi->uniform(fragment, "shadowBiasScale", light->shadowBiasScale);
             gfxApi->uniform(fragment, "shadowFixedBias", light->shadowFixedBias);
-            gfxApi->uniform(fragment, "shadowRadius", light->shadowRadius);
+
+            if (light->type == GfxLightType::Directional)
+            {
+                GfxTexture *shadowmap = light->getShadowmap();
+
+                gfxApi->uniform(fragment, "shadowRadius", light->shadowRadius);
+                gfxApi->addTextureBinding(fragment, "depthmap", shadowmap);
+                gfxApi->addTextureBinding(fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
+
+                Matrix4x4 view[4];
+                view[0] = light->getCascadeViewMatrix(0);
+                view[1] = light->getCascadeViewMatrix(1);
+                view[2] = light->getCascadeViewMatrix(2);
+                view[3] = light->getCascadeViewMatrix(3);
+
+                Matrix4x4 proj[4];
+                proj[0] = light->getCascadeProjectionMatrix(0);
+                proj[1] = light->getCascadeProjectionMatrix(1);
+                proj[2] = light->getCascadeProjectionMatrix(2);
+                proj[3] = light->getCascadeProjectionMatrix(3);
+
+                //TODO: Why doesn't gfxApi->uniform(fragment, "<name>", 4, <stuff>) work?
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[0]", view[0]);
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[1]", view[1]);
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[2]", view[2]);
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[3]", view[3]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[0]", proj[0]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[1]", proj[1]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[2]", proj[2]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[3]", proj[3]);
+            } else
+            {
+                GfxTexture *shadowmap = light->getShadowmap();
+
+                gfxApi->addTextureBinding(fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
+                gfxApi->uniform(fragment, "shadowmapViewMatrix", light->getViewMatrix());
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrix", light->getProjectionMatrix());
+            }
         }
 
         switch (light->type)
@@ -1766,7 +1784,7 @@ void GfxRenderer::renderSkybox()
 void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                                            const Matrix4x4& projectionMatrix,
                                            Light *light,
-                                           size_t cubemapFace)
+                                           size_t pass)
 {
     for (auto batch : batches)
     {
@@ -1862,7 +1880,7 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                 }
             } else
             {
-                Matrix4x4 viewMatrix = matrices[cubemapFace];
+                Matrix4x4 viewMatrix = matrices[pass];
 
                 if (not useTesselation)
                 {
@@ -1873,6 +1891,13 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                     gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
                     gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
                 }
+            }
+        } else if (light->type == GfxLightType::Directional)
+        {
+            if (not useTesselation)
+            {
+                gfxApi->uniform(vertexShader, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
+                gfxApi->uniform(vertexShader, "viewMatrix", light->getCascadeViewMatrix(pass));
             }
         } else
         {
@@ -1885,10 +1910,14 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
         if (useTesselation)
         {
-            if (light->type != GfxLightType::Point)
+            if (light->type == GfxLightType::Spot)
             {
                 gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
                 gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
+            } else if (light->type == GfxLightType::Directional)
+            {
+                gfxApi->uniform(tessEvalShader, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
+                gfxApi->uniform(tessEvalShader, "viewMatrix", light->getCascadeViewMatrix(pass));
             }
 
             gfxApi->uniform(tessControlShader, "minTessLevel", material->shadowMinTessLevel);
@@ -1935,26 +1964,27 @@ void GfxRenderer::renderShadowmap(Light *light)
 
     gfxApi->setViewport(0, 0, light->getShadowmapResolution(), light->getShadowmapResolution());
 
-    bool singlePass = light->type == GfxLightType::Point ? light->point.singlePassShadowMap : true;
+    size_t numPasses = 1;
 
-    for (size_t i = 0; i < (singlePass ? 1 : 6); ++i)
+    if (light->type == GfxLightType::Point)
     {
-        if (singlePass)
-        {
-            gfxApi->setCurrentFramebuffer(light->getShadowmapFramebuffer());
-        } else
-        {
-            gfxApi->setCurrentFramebuffer(light->getPointLightFramebuffers()[i]);
-        }
+        numPasses = light->point.singlePassShadowMap ? 1 : 6;
+    } else if (light->type == GfxLightType::Directional)
+    {
+        numPasses = 4;
+    }
 
+    for (size_t i = 0; i < numPasses; ++i)
+    {
+        gfxApi->setCurrentFramebuffer(light->getFramebuffers()[i]);
         gfxApi->clearDepth();
 
         renderBatchesToShadowmap(viewMatrix, projectionMatrix, light, i);
-    }
 
-    if (light->type != GfxLightType::Point)
-    {
-        renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
+        if (light->type != GfxLightType::Spot)
+        {
+            renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
+        }
     }
 
     gfxApi->popState();
