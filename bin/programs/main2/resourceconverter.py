@@ -5,7 +5,7 @@ from resconvlib import *
 
 worldSize = 4
 numDecors = 25
-numCoins = 100 # When fixed update performance is improved: Change to 100.
+numCoins = 100
 
 if __name__ == "__main__":
     conv = {}
