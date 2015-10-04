@@ -2,7 +2,6 @@
 #define SCRIPT_H
 
 #include "resource/resource.h"
-#include "serialization.h"
 #include "scripting/vm/context.h"
 #include "scripting/vm/types.h"
 

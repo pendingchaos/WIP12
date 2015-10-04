@@ -1,7 +1,6 @@
 //Generated from script_binding_generator2.py. Do not edit. Edit script_binding_generator2.py instead.
 #include "platform.h"
 #include "filesystem.h"
-#include "serialization.h"
 #include "misc_macros.h"
 #include "error.h"
 #include "globals.h"
@@ -4767,8 +4766,6 @@ else
 }
 };
 
-SV ScriptInstance_serialize(CTX ctx,const List<SV>&a);
-SV ScriptInstance_deserialize(CTX ctx,const List<SV>&a);
 SV ScriptInstance_method(CTX ctx,const List<SV>&a);
 SV ScriptInstance_handleInput(CTX ctx,const List<SV>&a);
 SV ScriptInstance_fixedUpdate(CTX ctx,const List<SV>&a);
@@ -14995,17 +14992,11 @@ CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
 SCRIPT_DELETE((HashMap<String,String>*)f->data);
 }SV StrStrMap_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()<1)
+if(a.getCount()!=1)
 CATE(VE,"StrStrMap's constructor" EAOE));
 if(!TS(a[0],HashMap<String,String>))
 CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
-if(a.getCount()==1)
-if(true){
-void *p = (void *)NEW(TYPE(HashMap<String,String>));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(StrStrMap_funcs,p,EXT->StrStrMap_typeID);
-}CATE(TE,UFOF("StrStrMap's constructor.")));
-RET CN;
+RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>)),EXT->StrStrMap_typeID);
 }
 
 SV StrStrMap_get_member(CTX ctx,NO f,SV key)
@@ -34379,10 +34370,6 @@ if(keyStr=="__classTypeID__")
 RET STG::createInt(f->typeID);
 EI(keyStr=="__init__")
 RET CNF(ScriptInstance_new);
- EI(keyStr == "serialize")
-RET CNF(ScriptInstance_serialize);
- EI(keyStr == "deserialize")
-RET CNF(ScriptInstance_deserialize);
  EI(keyStr == "method")
 RET CNF(ScriptInstance_method);
  EI(keyStr == "handleInput")
@@ -34471,28 +34458,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("ScriptInstance::handleInput.")));
-RET CN;
-}
-
-SV ScriptInstance_deserialize(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::deserialize" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
-
-CATE(TE,UFOF("ScriptInstance::deserialize.")));
-RET CN;
-}
-
-SV ScriptInstance_serialize(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::serialize" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
-
-CATE(TE,UFOF("ScriptInstance::serialize.")));
 RET CN;
 }
 
@@ -40443,17 +40408,11 @@ CATE(TE,"Map::__del__ expects Map as first argument."));
 SCRIPT_DELETE((HashMap<scripting::Value*,scripting::Value*>*)f->data);
 }SV Map_new(CTX ctx,const List<SV>&a)
 {
-if(a.getCount()<1)
+if(a.getCount()!=1)
 CATE(VE,"Map's constructor" EAOE));
 if(!TS(a[0],HashMap<scripting::Value*,scripting::Value*>))
 CATE(TE,"Map's constructor expects Map as first argument."));
-if(a.getCount()==1)
-if(true){
-void *p = (void *)NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(Map_funcs,p,EXT->Map_typeID);
-}CATE(TE,UFOF("Map's constructor.")));
-RET CN;
+RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>)),EXT->Map_typeID);
 }
 
 SV Map_get_member(CTX ctx,NO f,SV key)
