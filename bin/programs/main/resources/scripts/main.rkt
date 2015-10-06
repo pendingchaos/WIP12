@@ -81,7 +81,7 @@ return class {
         
         gfxStats = renderer:getStats();
         
-        if not self.freezeTimings {
+        if (self.timingsUpdateCountdown < 0.0) and (not self.freezeTimings) {
             self.timingsUpdateCountdown = 0.1;
             
             format = "FPS: %v

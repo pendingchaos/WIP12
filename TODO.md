@@ -70,6 +70,7 @@
 - [ ] Fix memory leaks.
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
+- [ ] The bloom looks nice without tonemapping.
 
 ## Performance Improvements
 - [ ] Instancing

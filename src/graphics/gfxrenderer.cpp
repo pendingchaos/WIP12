@@ -190,7 +190,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                      1,
                                      GfxTexFormat::RGBF32_F16);
 
-    const int NUM_DIRECTIONS = 8;
+    const int NUM_DIRECTIONS = 4;
 
     float random[48];
 
@@ -792,6 +792,82 @@ void GfxRenderer::resize(const UInt2& size)
     }
 }
 
+class PostEffect
+{
+    public:
+        PostEffect() : fb(nullptr), shaders(nullptr), gpuTimer(nullptr), quad(nullptr) {}
+
+        inline PostEffect& setFramebuffer(GfxFramebuffer *fb_)
+        {
+            fb = fb_;
+            return *this;
+        }
+
+        inline PostEffect& setShaders(GfxShaderCombination *shaders_)
+        {
+            shaders = shaders_;
+            return *this;
+        }
+
+        inline PostEffect& setGpuTimer(GPUTimer *timer)
+        {
+            gpuTimer = timer;
+            return *this;
+        }
+
+        inline PostEffect& setQuad(GfxMesh *quad_)
+        {
+            quad = quad_;
+            return *this;
+        }
+
+        PostEffect& begin()
+        {
+            start = platform->getTime();
+
+            if (gpuTimer != nullptr)
+            {
+                gpuTimer->begin();
+            }
+
+            gfxApi->setCurrentFramebuffer(fb);
+            gfxApi->begin(shaders, quad);
+            return *this;
+        }
+
+        uint64_t end()
+        {
+            gfxApi->draw();
+            gfxApi->end();
+
+            if (gpuTimer != nullptr)
+            {
+                gpuTimer->end();
+            }
+
+            return float(platform->getTime() - start) / platform->getTimerFrequency();
+        }
+
+        template <typename T>
+        PostEffect& uniform(const char *name, const T& v)
+        {
+            gfxApi->uniform(shaders->getCompiled(GfxShaderType::Fragment), name, v);
+            return *this;
+        }
+
+        PostEffect& texture(const char *name, GfxTexture *tex)
+        {
+            gfxApi->addTextureBinding(shaders->getCompiled(GfxShaderType::Fragment), name, tex, TextureSampler(tex));
+            return *this;
+        }
+    private:
+        GfxFramebuffer *fb;
+        GfxShaderCombination *shaders;
+        GPUTimer *gpuTimer;
+        GfxMesh *quad;
+        uint64_t start;
+};
+
 void GfxRenderer::render()
 {
     stats.numDrawCalls = 0;
@@ -864,67 +940,45 @@ void GfxRenderer::render()
     stats.gbufferCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //SSAO
-    start = platform->getTime();
-    ssaoTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
-
-    gfxApi->begin(ssao, quadMesh);
-
-    GfxCompiledShader *ssaoFragment = ssao->getCompiled(GfxShaderType::Fragment);
-
-    gfxApi->addTextureBinding(ssaoFragment, "depthTexture", depthTexture);
-    gfxApi->addTextureBinding(ssaoFragment, "normalTexture", normalTexture);
-    gfxApi->addTextureBinding(ssaoFragment, "randomTexture", ssaoRandomTexture);
-    gfxApi->uniform(ssaoFragment, "normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()));
-    gfxApi->uniform(ssaoFragment, "inverseProjectionMatrix", camera.getProjectionMatrix().inverse());
-    gfxApi->uniform(ssaoFragment, "radius", 1.0f);
-    gfxApi->uniform(ssaoFragment, "exponent", 1.5f);
-    gfxApi->uniform(ssaoFragment, "multiplier", 4.0f);
-    gfxApi->uniform(ssaoFragment, "cosAngleBias", 0.0833f);
-
-    gfxApi->draw();
-    gfxApi->end();
+    stats.miscPostEffectsCPUTiming =
+    PostEffect().setFramebuffer(ssaoFramebuffer)
+                .setShaders(ssao)
+                .setGpuTimer(ssaoTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("depthTexture", depthTexture)
+                .texture("normalTexture", normalTexture)
+                .texture("randomTexture", ssaoRandomTexture)
+                .uniform("normalMatrix", Matrix3x3(camera.getViewMatrix().inverse().transpose()))
+                .uniform("inverseProjectionMatrix", camera.getProjectionMatrix().inverse())
+                .uniform("radius", 1.0f)
+                .uniform("exponent", 1.5f)
+                .uniform("multiplier", 4.0f)
+                .uniform("cosAngleBias", 0.0833f)
+                .end();
     ++stats.numDrawCalls;
-
-    ssaoTimer->end();
-    stats.miscPostEffectsCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //SSAO Blur X
-    start = platform->getTime();
-    ssaoBlurXTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(ssaoBlurXFramebuffer);
-
-    gfxApi->begin(ssaoBlurX, quadMesh);
-
-    GfxCompiledShader *ssaoBlurXFragment = ssaoBlurX->getCompiled(GfxShaderType::Fragment);
-    gfxApi->addTextureBinding(ssaoBlurXFragment, "aoTexture", ssaoTexture);
-
-    gfxApi->draw();
-    gfxApi->end();
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(ssaoBlurXFramebuffer)
+                .setShaders(ssaoBlurX)
+                .setGpuTimer(ssaoBlurXTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("aoTexture", ssaoTexture)
+                .end();
     ++stats.numDrawCalls;
-
-    ssaoBlurXTimer->end();
-    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //SSAO Blur Y
-    start = platform->getTime();
-    ssaoBlurYTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(ssaoFramebuffer);
-
-    gfxApi->begin(ssaoBlurY, quadMesh);
-
-    GfxCompiledShader *ssaoBlurYFragment = ssaoBlurY->getCompiled(GfxShaderType::Fragment);
-    gfxApi->addTextureBinding(ssaoBlurYFragment, "aoTexture", ssaoBlurXTexture);
-
-    gfxApi->draw();
-    gfxApi->end();
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(ssaoFramebuffer)
+                .setShaders(ssaoBlurY)
+                .setGpuTimer(ssaoBlurYTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("aoTexture", ssaoBlurXTexture)
+                .end();
     ++stats.numDrawCalls;
-
-    ssaoBlurYTimer->end();
-    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Lighting using the G buffer
     deferredShadingTimer->begin();
@@ -1116,49 +1170,38 @@ void GfxRenderer::render()
     if (bloomEnabled)
     {
         //Downsample
-        gfxApi->setCurrentFramebuffer(bloomDownsampleFramebuffer);
         gfxApi->setViewport(0, 0, width/4, height/4);
-
-        gfxApi->begin(bloomDownsample, quadMesh);
-
-        GfxCompiledShader *bloomDownsampleFragment = bloomDownsample->getCompiled(GfxShaderType::Fragment);
-
-        gfxApi->addTextureBinding(bloomDownsampleFragment, "colorTexture", readColorTexture);
-        gfxApi->uniform(bloomDownsampleFragment, "threshold", bloomThreshold);
-
-        gfxApi->draw();
-        gfxApi->end();
+        PostEffect().setFramebuffer(bloomDownsampleFramebuffer)
+                .setShaders(bloomDownsample)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("colorTexture", readColorTexture)
+                .uniform("threshold", bloomThreshold)
+                .end();
         ++stats.numDrawCalls;
-
-        GfxCompiledShader *bloomBlurXFragment = bloomBlurX->getCompiled(GfxShaderType::Fragment);
-        GfxCompiledShader *bloomBlurYFragment = bloomBlurY->getCompiled(GfxShaderType::Fragment);
 
         #define BLOOM(framebuffer) {\
         int32_t radius = bloomRadiusPixels / 4;\
         float bloomSigma = radius / 3.0f;\
         \
-        gfxApi->setCurrentFramebuffer(bloomblurXFramebuffer);\
-\
-        gfxApi->begin(bloomBlurX, quadMesh);\
-\
-        gfxApi->addTextureBinding(bloomBlurXFragment, "bloomTexture", bloomDownsampleTexture);\
-        gfxApi->uniform(bloomBlurXFragment, "radius", (int32_t)radius);\
-        gfxApi->uniform(bloomBlurXFragment, "sigma", bloomSigma);\
-\
-        gfxApi->draw();\
-        gfxApi->end();\
+        PostEffect().setFramebuffer(bloomblurXFramebuffer)\
+                    .setShaders(bloomBlurX)\
+                    .setQuad(quadMesh)\
+                    .begin()\
+                    .texture("bloomTexture", bloomDownsampleTexture)\
+                    .uniform("radius", (int32_t)radius)\
+                    .uniform("sigma", bloomSigma)\
+                    .end();\
         ++stats.numDrawCalls;\
 \
-        gfxApi->setCurrentFramebuffer(framebuffer);\
-\
-        gfxApi->begin(bloomBlurY, quadMesh);\
-\
-        gfxApi->addTextureBinding(bloomBlurYFragment, "bloomTexture", bloomBlurXTexture);\
-        gfxApi->uniform(bloomBlurYFragment, "radius", (int32_t)radius);\
-        gfxApi->uniform(bloomBlurYFragment, "sigma", bloomSigma);\
-\
-        gfxApi->draw();\
-        gfxApi->end();\
+        PostEffect().setFramebuffer(framebuffer)\
+                    .setShaders(bloomBlurY)\
+                    .setQuad(quadMesh)\
+                    .begin()\
+                    .texture("bloomTexture", bloomBlurXTexture)\
+                    .uniform("radius", (int32_t)radius)\
+                    .uniform("sigma", bloomSigma)\
+                    .end();\
         ++stats.numDrawCalls;\
         }
 
@@ -1181,25 +1224,21 @@ void GfxRenderer::render()
         #undef BLOOM
 
         //Apply bloom
-        gfxApi->setCurrentFramebuffer(writeFramebuffer);
         gfxApi->setViewport(0, 0, width, height);
-
-        gfxApi->begin(applyBloom, quadMesh);
-
-        GfxCompiledShader *applyBloomFragment = applyBloom->getCompiled(GfxShaderType::Fragment);
-
-        gfxApi->addTextureBinding(applyBloomFragment, "colorTexture", readColorTexture);
-        gfxApi->addTextureBinding(applyBloomFragment, "bloom1Texture", bloom1Texture);
-        gfxApi->addTextureBinding(applyBloomFragment, "bloom2Texture", bloom2Texture);
-        gfxApi->addTextureBinding(applyBloomFragment, "bloom3Texture", bloom3Texture);
-        gfxApi->addTextureBinding(applyBloomFragment, "bloom4Texture", bloom4Texture);
-        gfxApi->uniform(applyBloomFragment, "bloom1Strength", bloom1Strength);
-        gfxApi->uniform(applyBloomFragment, "bloom2Strength", bloom2Strength);
-        gfxApi->uniform(applyBloomFragment, "bloom3Strength", bloom3Strength);
-        gfxApi->uniform(applyBloomFragment, "bloom4Strength", bloom4Strength);
-
-        gfxApi->draw();
-        gfxApi->end();
+        PostEffect().setFramebuffer(writeFramebuffer)
+                    .setShaders(applyBloom)
+                    .setQuad(quadMesh)
+                    .begin()
+                    .texture("colorTexture", readColorTexture)
+                    .texture("bloom1Texture", bloom1Texture)
+                    .texture("bloom2Texture", bloom2Texture)
+                    .texture("bloom3Texture", bloom3Texture)
+                    .texture("bloom4Texture", bloom4Texture)
+                    .uniform("bloom1Strength", bloom1Strength)
+                    .uniform("bloom2Strength", bloom2Strength)
+                    .uniform("bloom3Strength", bloom3Strength)
+                    .uniform("bloom4Strength", bloom4Strength)
+                    .end();
         ++stats.numDrawCalls;
 
         swapFramebuffers();
@@ -1209,23 +1248,15 @@ void GfxRenderer::render()
     bloomTimer->end();
 
     //Color modifiers.
-    start = platform->getTime();
-    colorModifierTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(writeFramebuffer);
-
-    gfxApi->begin(colorModify, quadMesh);
-
-    GfxCompiledShader *colorModifyFragment = colorModify->getCompiled(GfxShaderType::Fragment);
-
-    gfxApi->addTextureBinding(colorModifyFragment, "colorTexture", readColorTexture);
-
-    gfxApi->draw();
-    gfxApi->end();
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(writeFramebuffer)
+                .setShaders(colorModify)
+                .setGpuTimer(colorModifierTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("colorTexture", readColorTexture)
+                .end();
     ++stats.numDrawCalls;
-
-    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
-    colorModifierTimer->end();
 
     //Overlays
     start = platform->getTime();
@@ -1270,40 +1301,30 @@ void GfxRenderer::render()
     stats.overlayCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Gamma correction
-    start = platform->getTime();
-    gammaCorrectionTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(writeFramebuffer);
-
-    gfxApi->begin(gammaCorrection, quadMesh);
-
-    gfxApi->addTextureBinding(gammaCorrection->getCompiled(GfxShaderType::Fragment), "colorTexture", readColorTexture);
-
-    gfxApi->draw();
-    gfxApi->end();
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(writeFramebuffer)
+                .setShaders(gammaCorrection)
+                .setGpuTimer(gammaCorrectionTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("colorTexture", readColorTexture)
+                .end();
     ++stats.numDrawCalls;
 
     swapFramebuffers();
 
-    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
-    gammaCorrectionTimer->end();
-
     //FXAA
-    start = platform->getTime();
-    fxaaTimer->begin();
-
-    gfxApi->setCurrentFramebuffer(nullptr);
-
-    gfxApi->begin(fxaa, quadMesh);
-
-    gfxApi->addTextureBinding(fxaa->getCompiled(GfxShaderType::Fragment), "colorTexture", readColorTexture);
-
-    gfxApi->draw();
-    gfxApi->end();
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(nullptr)
+                .setShaders(fxaa)
+                .setGpuTimer(fxaaTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("colorTexture", readColorTexture)
+                .end();
     ++stats.numDrawCalls;
 
-    fxaaTimer->end();
-    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
+    swapFramebuffers();
 
     readColorTexture = oldReadTex;
     writeColorTexture = oldWriteTex;
