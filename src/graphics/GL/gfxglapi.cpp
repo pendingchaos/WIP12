@@ -456,16 +456,11 @@ void GfxGLApi::draw(size_t instanceCount)
     }
 }
 
-void GfxGLApi::end(size_t instanceCount)
+void GfxGLApi::end()
 {
     if (mesh == nullptr)
     {
         return;
-    }
-
-    if (instanceCount != 0)
-    {
-        draw(instanceCount);
     }
 
     END_DRAW

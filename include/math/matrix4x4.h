@@ -34,8 +34,14 @@ class Matrix4x4
                   const Float4& row4);
 
         Matrix4x4 operator * (const Matrix4x4& other) const;
-
         Float4 operator * (const Float4& other) const;
+
+        Float3 operator * (const Float3& other) const
+        {
+            Float4 other4(other.x, other.y, other.z, 1.0f);
+            other4 = *this * other4;
+            return other4.getXYZ() / other4.w;
+        }
 
         Matrix4x4 operator / (float other) const;
 
@@ -90,7 +96,7 @@ class Matrix4x4
         }
 
         Matrix4x4 transpose() const;
-
+        float determinant() const;
         Matrix4x4 inverse() const;
 
         static Matrix4x4 translate(const Float3& translation);

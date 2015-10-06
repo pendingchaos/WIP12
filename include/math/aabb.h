@@ -60,7 +60,7 @@ class AABB
             max += amount;
         }
 
-        inline Position3D getCorner(size_t index)
+        inline Position3D getCorner(size_t index) const
         {
             if (index > 7)
             {
@@ -79,7 +79,7 @@ class AABB
             return corners[index];
         }
 
-        inline AABB intersection(const AABB& aabb)
+        inline AABB intersection(const AABB& aabb) const
         {
             AABB result;
             result.min.x = std::max(min.x, aabb.min.x);

@@ -43,7 +43,7 @@ class GfxGLApi : public GfxApi
                            GfxCompiledShader *fragment,
                            GfxMesh *mesh);
         virtual void draw(size_t instanceCount=1);
-        virtual void end(size_t instanceCount=1);
+        virtual void end();
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value);
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value);

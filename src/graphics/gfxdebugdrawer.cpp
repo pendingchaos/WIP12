@@ -76,6 +76,7 @@ void GfxDebugDrawer::render(const Camera& camera)
     gfxApi->uniform(compiledVertex, "projectionMatrix", camera.getProjectionMatrix());
     gfxApi->uniform(compiledVertex, "viewMatrix", camera.getViewMatrix());
 
+    gfxApi->draw();
     gfxApi->end();
 
     lines.clear();

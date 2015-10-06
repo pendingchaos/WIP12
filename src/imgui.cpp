@@ -517,6 +517,7 @@ void ImGui::render()
             gfxApi->uniform(compiledFragment, "bottomLeftCornerRoundness", rect.bottomLeftCornerRoundness);
             gfxApi->uniform(compiledFragment, "bottomRightCornerRoundness", rect.bottomRightCornerRoundness);
 
+            gfxApi->draw();
             gfxApi->end();
 
             gfxApi->popState();

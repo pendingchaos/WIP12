@@ -232,7 +232,8 @@ void Font::render(size_t size,
             gfxApi->uniform(fragment, "color", color);
             gfxApi->addTextureBinding(fragment, "glyphTexture", glyph.texture);
 
-            gfxApi->end(100);
+            gfxApi->draw(100);
+            gfxApi->end();
         }
 
         if (positions.getCount() % 100 != 0)
@@ -246,7 +247,8 @@ void Font::render(size_t size,
             gfxApi->uniform(fragment, "color", color);
             gfxApi->addTextureBinding(fragment, "glyphTexture", glyph.texture);
 
-            gfxApi->end(positions.getCount() % 100);
+            gfxApi->draw(positions.getCount() % 100);
+            gfxApi->end();
         }
     }
 

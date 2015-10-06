@@ -883,7 +883,9 @@ void GfxRenderer::render()
     gfxApi->uniform(ssaoFragment, "multiplier", 4.0f);
     gfxApi->uniform(ssaoFragment, "cosAngleBias", 0.0833f);
 
+    gfxApi->draw();
     gfxApi->end();
+    ++stats.numDrawCalls;
 
     ssaoTimer->end();
     stats.miscPostEffectsCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
@@ -899,6 +901,7 @@ void GfxRenderer::render()
     GfxCompiledShader *ssaoBlurXFragment = ssaoBlurX->getCompiled(GfxShaderType::Fragment);
     gfxApi->addTextureBinding(ssaoBlurXFragment, "aoTexture", ssaoTexture);
 
+    gfxApi->draw();
     gfxApi->end();
     ++stats.numDrawCalls;
 
@@ -916,6 +919,7 @@ void GfxRenderer::render()
     GfxCompiledShader *ssaoBlurYFragment = ssaoBlurY->getCompiled(GfxShaderType::Fragment);
     gfxApi->addTextureBinding(ssaoBlurYFragment, "aoTexture", ssaoBlurXTexture);
 
+    gfxApi->draw();
     gfxApi->end();
     ++stats.numDrawCalls;
 
@@ -1066,6 +1070,7 @@ void GfxRenderer::render()
         }
         }
 
+        gfxApi->draw();
         gfxApi->end();
         ++stats.numDrawCalls;
     }
@@ -1121,6 +1126,7 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(bloomDownsampleFragment, "colorTexture", readColorTexture);
         gfxApi->uniform(bloomDownsampleFragment, "threshold", bloomThreshold);
 
+        gfxApi->draw();
         gfxApi->end();
         ++stats.numDrawCalls;
 
@@ -1139,6 +1145,7 @@ void GfxRenderer::render()
         gfxApi->uniform(bloomBlurXFragment, "radius", (int32_t)radius);\
         gfxApi->uniform(bloomBlurXFragment, "sigma", bloomSigma);\
 \
+        gfxApi->draw();\
         gfxApi->end();\
         ++stats.numDrawCalls;\
 \
@@ -1150,6 +1157,7 @@ void GfxRenderer::render()
         gfxApi->uniform(bloomBlurYFragment, "radius", (int32_t)radius);\
         gfxApi->uniform(bloomBlurYFragment, "sigma", bloomSigma);\
 \
+        gfxApi->draw();\
         gfxApi->end();\
         ++stats.numDrawCalls;\
         }
@@ -1190,6 +1198,7 @@ void GfxRenderer::render()
         gfxApi->uniform(applyBloomFragment, "bloom3Strength", bloom3Strength);
         gfxApi->uniform(applyBloomFragment, "bloom4Strength", bloom4Strength);
 
+        gfxApi->draw();
         gfxApi->end();
         ++stats.numDrawCalls;
 
@@ -1211,6 +1220,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(colorModifyFragment, "colorTexture", readColorTexture);
 
+    gfxApi->draw();
     gfxApi->end();
     ++stats.numDrawCalls;
 
@@ -1241,6 +1251,7 @@ void GfxRenderer::render()
                 gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Fragment), "color", comp->overlayData.color);
                 gfxApi->addTextureBinding(overlayShaders->getCompiled(GfxShaderType::Fragment), "colorTexture", comp->overlayTexture);
 
+                gfxApi->draw();
                 gfxApi->end();
                 ++stats.numDrawCalls;
                 break;
@@ -1268,6 +1279,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(gammaCorrection->getCompiled(GfxShaderType::Fragment), "colorTexture", readColorTexture);
 
+    gfxApi->draw();
     gfxApi->end();
     ++stats.numDrawCalls;
 
@@ -1286,6 +1298,7 @@ void GfxRenderer::render()
 
     gfxApi->addTextureBinding(fxaa->getCompiled(GfxShaderType::Fragment), "colorTexture", readColorTexture);
 
+    gfxApi->draw();
     gfxApi->end();
     ++stats.numDrawCalls;
 
@@ -1699,7 +1712,8 @@ void GfxRenderer::renderBatches(bool forward)
                 gfxApi->setTessPatchSize(3);
             }
 
-            gfxApi->end(batch.worldMatrices.getCount());
+            gfxApi->draw(batch.worldMatrices.getCount());
+            gfxApi->end();
 
             if (batch.animState != nullptr)
             {
@@ -1729,6 +1743,7 @@ void GfxRenderer::renderSkybox()
 
         gfxApi->addTextureBinding(compiledFS, "enviroment", skybox);
 
+        gfxApi->draw();
         gfxApi->end();
         ++stats.numDrawCalls;
 
@@ -1904,7 +1919,8 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
         gfxApi->addTextureBinding(vertexShader, "matrixTexture", matrixTexture);
 
-        gfxApi->end(batch.worldMatrices.getCount());
+        gfxApi->draw(batch.worldMatrices.getCount());
+        gfxApi->end();
         ++stats.numDrawCalls;
     }
 }
@@ -2027,7 +2043,8 @@ void GfxRenderer::renderTerrain()
 
         gfxApi->setTessPatchSize(4);
 
-        gfxApi->end(terrain->getSizeInChunks() * terrain->getSizeInChunks());
+        gfxApi->draw(terrain->getSizeInChunks() * terrain->getSizeInChunks());
+        gfxApi->end();
         ++stats.numDrawCalls;
 
         shaderComb->removeDefine(GfxShaderType::Fragment, "TERRAIN");
@@ -2070,7 +2087,8 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
 
     gfxApi->setTessPatchSize(4);
 
-    gfxApi->end(terrain->getSizeInChunks() * terrain->getSizeInChunks());
+    gfxApi->draw(terrain->getSizeInChunks() * terrain->getSizeInChunks());
+    gfxApi->end();
     ++stats.numDrawCalls;
 }
 

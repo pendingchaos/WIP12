@@ -80,7 +80,6 @@ void main()
     }
     
     //vec3 cascadeColor = vec3[](vec3(1.0, 0.0, 0.0), vec3(1.0, 1.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 1.0))[cascade];
-    
     //albedo = cascadeColor + vec3(0.1);
     //metallic = 0.0;
     //roughness = 1.0;

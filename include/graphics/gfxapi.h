@@ -102,7 +102,7 @@ class GfxApi
                            GfxMesh *mesh)=0;
         void begin(GfxShaderCombination *shaders, GfxMesh *mesh);
         virtual void draw(size_t instanceCount=1)=0;
-        virtual void end(size_t instanceCount=1)=0;
+        virtual void end()=0;
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value)=0;

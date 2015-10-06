@@ -827,5 +827,5 @@ if __name__ == "__main__":
         else:
             print res.src_filenames, "->", res.dest_filename
         
-        #if isinstance(res, Shader):
-        res.convert()
+        if isinstance(res, Shader):
+            res.convert()

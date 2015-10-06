@@ -5658,6 +5658,7 @@ SV Matrix4x4_get(CTX ctx,const List<SV>&a);
 SV Matrix4x4_set(CTX ctx,const List<SV>&a);
 SV Matrix4x4___eq__(CTX ctx,const List<SV>&a);
 SV Matrix4x4_transpose(CTX ctx,const List<SV>&a);
+SV Matrix4x4_determinant(CTX ctx,const List<SV>&a);
 SV Matrix4x4_inverse(CTX ctx,const List<SV>&a);
 SV Matrix4x4_translate(CTX ctx,const List<SV>&a);
 SV Matrix4x4_scale(CTX ctx,const List<SV>&a);
@@ -15572,10 +15573,10 @@ CATE(VE,"GfxApi::end" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0])->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
+if(a.getCount()==1)
+if(1)
 {
-( f->end(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+( f->end());
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::end.")));
@@ -39968,6 +39969,8 @@ RET CNF(Matrix4x4_set);
 RET CNF(Matrix4x4___eq__);
  EI(keyStr == "transpose")
 RET CNF(Matrix4x4_transpose);
+ EI(keyStr == "determinant")
+RET CNF(Matrix4x4_determinant);
  EI(keyStr == "inverse")
 RET CNF(Matrix4x4_inverse);
  EI(keyStr == "translate")
@@ -40026,6 +40029,23 @@ RET CV( f->perspective(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])
 ;
 }
 CATE(TE,UFOF("Matrix4x4::perspective.")));
+RET CN;
+}
+
+SV Matrix4x4_determinant(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Matrix4x4::determinant" EAOE));
+Matrix4x4*f;
+f=(Matrix4x4*)((NO)a[0])->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->determinant());
+;
+}
+CATE(TE,UFOF("Matrix4x4::determinant.")));
 RET CN;
 }
 
@@ -40216,6 +40236,12 @@ if(a.getCount()==2)
 if(1&&TS(a[1],const Float4 &))
 {
 auto v=val_to_c<std::remove_reference<const Float4 &>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],const Float3 &))
+{
+auto v=val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[1]);
 RET CV(*f * v);
 }
 CATE(TE,UFOF("Matrix4x4::__mul__.")));

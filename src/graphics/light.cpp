@@ -167,25 +167,18 @@ void Light::updateMatrices(GfxRenderer *renderer)
     {
         //This creates a projection matrix where the top and bottom is too high if line 110 is set to Float3(0.0f).
         /*Direction3D dir = direction.direction.normalize();
-
         Direction3D up(0.0f, 1.0f, 0.0f);
-
         if (std::abs(up.dot(dir)) >= 1.0f)
         {
             up = Direction3D(0.0f, 0.0f, 1.0f);
         }
-
         Direction3D left = dir.cross(up).normalize();
         up = dir.cross(left).normalize();
-
         viewMatrix = Matrix4x4::lookAtDir(Position3D(0.0f),
                                           dir,
                                           up);
-
         AABB casterBounds = renderer->computeShadowCasterAABB().transform(viewMatrix);
-
         Float3 shift = -(casterBounds.max + casterBounds.min);
-
         projectionMatrix = Matrix4x4::orthographic(casterBounds.min.x + shift.x,
                                                    casterBounds.max.x + shift.x,
                                                    casterBounds.min.y + shift.y,
@@ -194,56 +187,41 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                                    casterBounds.max.z);*/
 
         /*//Based on the algorithm from 0 A.D.
-
         //View
         Float3 z = direction.direction.normalize();
         Float3 y;
         Float3 x = Float3(0.0f);
-
         x -= z * z.dot(x);
-
         if (x.length() < 0.001f)
         {
             x = Float3(1.0f, 0.0f, 0.0f);
             x -= z * z.dot(x);
         }
-
         x = x.normalize();
         y = z.cross(x);
-
         viewMatrix = Matrix4x4();
-
         viewMatrix[0][0] = x.x;
         viewMatrix[0][1] = x.y;
         viewMatrix[0][2] = x.z;
-
         viewMatrix[1][0] = y.x;
         viewMatrix[1][1] = y.y;
         viewMatrix[1][2] = y.z;
-
         viewMatrix[2][0] = z.x;
         viewMatrix[2][1] = z.y;
         viewMatrix[2][2] = z.z;
-
         //Projection
         AABB casterBounds = renderer->computeShadowCasterAABB().transform(viewMatrix);
         AABB sceneBounds = renderer->computeSceneAABB().transform(viewMatrix);
-
         sceneBounds.min.z = casterBounds.min.z - 2.0f;
         sceneBounds.max.z = casterBounds.max.z + 2.0f;
-
         Float3 scale = sceneBounds.max - sceneBounds.min;
         Float3 shift = (sceneBounds.max + sceneBounds.min) * -0.5;
-
         scale.x = std::max(scale.x, 1.0f);
         scale.y = std::max(scale.y, 1.0f);
         scale.z = std::max(scale.z, 1.0f);
-
         scale = Float3(2.0f) / scale;
-
         Float2 offset(std::fmod(sceneBounds.min.x - viewMatrix[0][3], 2.0f / (scale.x * shadowmap->getBaseWidth())),
                       std::fmod(sceneBounds.min.y - viewMatrix[1][3], 2.0f / (scale.y * shadowmap->getBaseHeight())));
-
         projectionMatrix = Matrix4x4();
         projectionMatrix[0][0] = scale.x;
         projectionMatrix[0][3] = (shift.x + offset.x) * scale.x;
@@ -255,11 +233,8 @@ void Light::updateMatrices(GfxRenderer *renderer)
         #if 0
         //A bunch of magic.
         AABB aabb = renderer->computeShadowCasterAABB();
-
         const Camera& cam = renderer->camera;
-
         Matrix3x3 viewMat(cam.getViewMatrix());
-
         float maxDist = -(viewMat * aabb.getCorner(0)).z;
         maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(1)).z);
         maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(2)).z);
@@ -268,12 +243,10 @@ void Light::updateMatrices(GfxRenderer *renderer)
         maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(5)).z);
         maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(6)).z);
         maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(7)).z);
-
         float minDist = cam.getNear();
         float nearDist = minDist;
         float farDist = std::max(maxDist, minDist + 0.01f);
         float lambda = 0.5f; //TODO: What is this? //The number to mix between log and uniform split schemes?
-
         float splitDists[5] = {nearDist,
                                shadowSplitDistances.x,
                                shadowSplitDistances.y,
@@ -281,21 +254,17 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                farDist};
         /*splitDists[0] = nearDist;
         splitDists[4] = farDist;
-
         for (size_t i = 1; i < 4; ++i)
         {
             float f = i / 4.0f;
             float logDist = nearDist * powf(farDist / nearDist, f);
             float uniformDist = nearDist + (farDist - nearDist) * f;
-
             splitDists[i] = (1.0f-lambda)*uniformDist + lambda*logDist;
         }*/
-
         for (size_t i = 0; i < 4; ++i)
         {
             float prevSplitDist = splitDists[i];
             float splitDist = splitDists[i+1];
-
             //World space
             Float3 frustumCorners[8] = {Float3(-1.0f,  1.0f, 0.0f),
                                         Float3( 1.0f,  1.0f, 0.0f),
@@ -305,10 +274,8 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                         Float3( 1.0f,  1.0f, 1.0f),
                                         Float3( 1.0f, -1.0f, 1.0f),
                                         Float3(-1.0f, -1.0f, 1.0f)};
-
             Matrix4x4 inverseViewProj = cam.getProjectionMatrix() * cam.getViewMatrix(); //TODO: Is this correct?
             inverseViewProj = inverseViewProj.inverse();
-
             for (size_t j = 0; j < 8; ++j)
             {
                 Float4 corner = inverseViewProj * Float4(frustumCorners[j].x,
@@ -317,26 +284,21 @@ void Light::updateMatrices(GfxRenderer *renderer)
                                                          1.0f);
                 frustumCorners[j] = corner.getXYZ() / corner.w;
             }
-
             for (size_t j = 0; j < 4; ++j)
             {
                 Float3 cornerRay = frustumCorners[j+4] - frustumCorners[j];
                 Float3 nearCornerRay = cornerRay * prevSplitDist;
                 Float3 farCornerRay = cornerRay * splitDist;
-
                 frustumCorners[j+4] = frustumCorners[j] + farCornerRay;
                 frustumCorners[j] = frustumCorners[j] + nearCornerRay;
             }
-
             Float3 frustumCenter;
             for (size_t j = 0; j < 8; ++j)
             {
                 frustumCenter += frustumCorners[j];
             }
             frustumCenter /= 8.0f;
-
             Float3 upDir = cam.getDirection().cross(cam.getUp()).normalize();
-
             Float3 lightCamPos = frustumCenter;
             Matrix3x3 lightCamRot;
             Float3 row2 = -direction.direction;
@@ -352,10 +314,8 @@ void Light::updateMatrices(GfxRenderer *renderer)
             lightCamRot[1][0] = row1.y;
             lightCamRot[1][0] = row1.z;
             Matrix4x4 lightView = inverseRotationTranslation(lightCamRot, lightCamPos);
-
             Float3 minExtents(HUGE_VALF);
             Float3 maxExtents(HUGE_VALF);
-
             for (size_t j = 0; j < 8; ++j)
             {
                 Float3 corner = (lightView *
@@ -370,11 +330,8 @@ void Light::updateMatrices(GfxRenderer *renderer)
                 maxExtents.y = std::max(maxExtents.y, corner.y);
                 maxExtents.z = std::max(maxExtents.z, corner.z);
             }
-
             Float3 cascadeExtents = maxExtents - minExtents;
-
             Float3 shadowCamPos = frustumCenter + direction.direction * -minExtents.z;
-
             viewMatrices[i] = inverseRotationTranslation(lightCamRot, shadowCamPos);
             projectionMatrices[i] = Matrix4x4::orthographic(minExtents.x, maxExtents.x,
                                                             minExtents.y, maxExtents.y,

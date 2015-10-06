@@ -1,7 +1,7 @@
 #define PI 3.14159265f
 
 #define NUM_STEPS 4
-#define NUM_DIRECTIONS 8
+#define NUM_DIRECTIONS 4
 
 layout (location = 0) out vec4 result_ao;
 
