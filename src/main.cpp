@@ -1094,13 +1094,13 @@ int main(int argc, const char *argv[])
         log("Unhandled exception caught: %s\n", e.what());
     } catch (scripting::UnhandledExcException& e)
     {
-        scripting::Value *exc = e.getException();
+        scripting::Value exc = e.getException();
 
         log("Unhandled script exception:\n");
 
-        if (exc->type == scripting::ValueType::Exception)
+        if (exc.type == scripting::ValueType::Exception)
         {
-            log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+            log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
         }
     } catch (const Exception& e)
     {

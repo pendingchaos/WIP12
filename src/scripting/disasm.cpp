@@ -120,11 +120,6 @@ namespace scripting
                 result.append("storeVar\n");
                 break;
             }
-            case Opcode::DelVar:
-            {
-                result.append("delVar\n");
-                break;
-            }
             case Opcode::GetMember:
             {
                 result.append("getMember\n");
@@ -245,11 +240,6 @@ namespace scripting
             case Opcode::Call:
             {
                 result.append("call\n");
-                break;
-            }
-            case Opcode::CallMethod:
-            {
-                result.append("callMethod\n");
                 break;
             }
             case Opcode::Return:

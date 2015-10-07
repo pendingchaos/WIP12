@@ -59,8 +59,8 @@ class Context
             CallstackEntry(Bytecode bytecode_) : bytecode(bytecode_), offset(0) {}
 
             Bytecode bytecode;
-            HashMap<String, Value *> variables;
-            List<List<Value *>> stacks;
+            HashMap<String, Value> variables;
+            List<List<Value>> stacks;
             List<size_t> catchBlocks;
             size_t offset;
         };
@@ -88,21 +88,21 @@ class Context
             return engine;
         }
 
-        scripting::Value *getVariable(const String& name);
+        scripting::Value getVariable(const String& name);
 
         void reset();
-        Value *run(const Bytecode& bytecode, List<Value *> args);
-        void throwException(Value *exc);
+        Value run(const Bytecode& bytecode, List<Value> args);
+        void throwException(Value exc);
     private:
         void popCallstack();
-        Value *_run(const Bytecode& bytecode, List<Value *> args);
+        Value _run(const Bytecode& bytecode, List<Value> args);
         Engine *engine;
         size_t callStackSize;
         CallstackEntry callStack[SCRIPTING_MAX_CALLSTACK_SIZE];
-        Value *exception;
+        Value exception;
         jmp_buf jumpBuf;
 
-        Value *popStack(List<Value *>& stack);
+        Value popStack(List<Value>& stack);
 };
 
 class UnhandledExcException : public ExecutionException
@@ -112,7 +112,7 @@ class UnhandledExcException : public ExecutionException
                               size_t line_,
                               const char *function_,
                               Context *ctx_,
-                              Value *exception_);
+                              const Value& exception_);
         UnhandledExcException(const UnhandledExcException& other);
         virtual ~UnhandledExcException();
 
@@ -121,7 +121,7 @@ class UnhandledExcException : public ExecutionException
             return "Unhandled script exception.";
         }
 
-        inline Value *getException() const
+        inline Value getException() const
         {
             return exception;
         }
@@ -132,15 +132,15 @@ class UnhandledExcException : public ExecutionException
         }
     private:
         Context *ctx;
-        Value *exception;
+        Value exception;
 };
 
-size_t toIndex(Context *ctx, Value *value);
-Value *getMember(Context *ctx, Value *val, Value *key);
-void setMember(Context *ctx, Value *dest, Value *key, Value *value);
-Value *call(Context *ctx, Value *value, const List<Value *>& args);
-Value *callMethod(Context *ctx, Value *obj, const String& methName, const List<Value *>& args);
-bool isInstance(Context *ctx, Value *obj, Value *type);
+size_t toIndex(Context *ctx, const Value& value);
+Value getMember(Context *ctx, const Value& val, const Value& key);
+void setMember(Context *ctx, const Value& dest, const Value& key, const Value& value);
+Value call(Context *ctx, const Value& value, const List<Value>& args);
+Value callMethod(Context *ctx, const Value& obj, const String& methName, const List<Value>& args);
+bool isInstance(Context *ctx, const Value& obj, const Value& type);
 }
 
 #endif // SCRIPTING_CONTEXT_H

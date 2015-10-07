@@ -152,7 +152,7 @@ class Entity
             return scripts;
         }
 
-        ScriptInstance *findScriptInstance(const String& filename) const NO_BIND
+        ScriptInstance *findScriptInstance(const String& filename) const
         {
             for (auto script : scripts)
             {
@@ -165,7 +165,7 @@ class Entity
             return nullptr;
         }
 
-        scripting::Value *findScriptInstanceObj(const String& filename) const;
+        scripting::Value findScriptInstanceObj(const String& filename) const;
 
         RigidBody *addRigidBody(const RigidBodyConstructionInfo& info,
                                 PhysicsShape *shape);

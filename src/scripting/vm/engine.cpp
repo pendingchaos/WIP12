@@ -8,50 +8,54 @@
 
 namespace scripting
 {
-static Value *classNew(Context *ctx, const List<Value *>& args)
+static Value classNew(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() < 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "__new__/__call__ takes at least 1 argument."));
     }
 
-    Value *class_ = args[0];
+    Value class_ = args[0];
 
-    StringValue __base__;
-    __base__.head.type = ValueType::StringType;
+    StringData __base__;
+    Value __base__Val;
+    __base__Val.type = ValueType::StringType;
+    __base__Val.p = &__base__;
     __base__.value = "__base__";
-    Value *base = getMember(ctx, class_, (Value *)&__base__);
+    Value base = getMember(ctx, class_, __base__Val);
 
-    StringValue __typeID__;
-    __typeID__.head.type = ValueType::StringType;
+    StringData __typeID__;
+    Value __typeID__Val;
+    __typeID__Val.type = ValueType::StringType;
+    __typeID__Val.p = &__typeID__;
     __typeID__.value = "__typeID__";
-    Value *typeID = getMember(ctx, class_, (Value *)&__typeID__);
+    Value typeID = getMember(ctx, class_, __typeID__Val);
 
-    if (base->type != ValueType::Object)
+    if (base.type != ValueType::Object)
     {
         ctx->throwException(createException(ExcType::TypeError, "Class base must be an object."));
     }
 
-    if (typeID->type != ValueType::Int)
+    if (typeID.type != ValueType::Int)
     {
         ctx->throwException(createException(ExcType::TypeError, "Class type ID must be an integer."));
     }
 
-    Value *resultHead = createObject();
-    HashMap<String, Value *>& resultMembers = ((ObjectValue *)resultHead)->members;
-    HashMap<String, Value *>& baseMembers = ((ObjectValue *)base)->members;
+    Value resultHead = createObject();
+    HashMap<String, Value>& resultMembers = ((ObjectData *)resultHead.p)->members;
+    HashMap<String, Value>& baseMembers = ((ObjectData *)base.p)->members;
 
     for (auto kv : baseMembers)
     {
         resultMembers.set(kv.first, createCopy(ctx, kv.second));
     }
 
-    resultMembers.set("__classTypeID__", createInt(((IntValue *)typeID)->value));
+    resultMembers.set("__classTypeID__", createInt(typeID.i));
 
     auto pos = resultMembers.find("__init__");
     if (pos != resultMembers.end())
     {
-        destroy(ctx, callMethod(ctx, resultHead, "__init__", List<Value *>(args.getCount()-1, args.getData()+1)));
+        destroy(ctx, callMethod(ctx, resultHead, "__init__", List<Value>(args.getCount()-1, args.getData()+1)));
     } else
     {
         if (args.getCount() != 1)
@@ -66,23 +70,23 @@ static Value *classNew(Context *ctx, const List<Value *>& args)
     return resultHead;
 }
 
-static Value *createClass(Context *ctx, const List<Value *>& args)
+static Value createClass(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "__classify takes 1 argument."));
     }
 
-    Value *base = args[0];
+    Value base = args[0];
 
-    if (base->type != ValueType::Object)
+    if (base.type != ValueType::Object)
     {
         ctx->throwException(createException(ExcType::ValueError, "base must be an object."));
     }
 
-    Value *result = createObject();
+    Value result = createObject();
 
-    HashMap<String, Value *>& resultMembers = ((ObjectValue *)result)->members;
+    HashMap<String, Value>& resultMembers = ((ObjectData *)result.p)->members;
 
     resultMembers.set("__base__", createCopy(ctx, args[0]));
     resultMembers.set("__new__", createNativeFunction(classNew));
@@ -92,22 +96,22 @@ static Value *createClass(Context *ctx, const List<Value *>& args)
     return result;
 }
 
-static Value *methodCall(Context *ctx, const List<Value *>& args)
+static Value methodCall(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() < 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "Method call requires at least 1 argument."));
     }
 
-    if (args[0]->type != ValueType::Object)
+    if (args[0].type != ValueType::Object)
     {
         ctx->throwException(createException(ExcType::TypeError, "Method call requires (method) object as first parameter."));
     }
 
-    HashMap<String, Value *>& members = ((ObjectValue *)args[0])->members;
+    HashMap<String, Value>& members = ((ObjectData *)args[0].p)->members;
 
-    Value *func;
-    Value *obj;
+    Value func;
+    Value obj;
 
     try
     {
@@ -120,23 +124,23 @@ static Value *methodCall(Context *ctx, const List<Value *>& args)
         SDL_assert_release(false);
     }
 
-    List<Value *> args2;
+    List<Value> args2;
     args2.append(obj);
     args2.append(args.getCount()-1, args.getData()+1);
 
     return call(ctx, func, args2);
 }
 
-static Value *createMethod(Context *ctx, const List<Value *>& args)
+static Value createMethod(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "__methodify takes 2 argument."));
     }
 
-    Value *result = createObject();
+    Value result = createObject();
 
-    HashMap<String, Value *>& resultMembers = ((ObjectValue *)result)->members;
+    HashMap<String, Value>& resultMembers = ((ObjectData *)result.p)->members;
 
     resultMembers.set("__func__", createCopy(ctx, args[0]));
     resultMembers.set("__obj__", createCopy(ctx, args[1]));
@@ -145,17 +149,17 @@ static Value *createMethod(Context *ctx, const List<Value *>& args)
     return result;
 }
 
-static double asNumber(Context *ctx, Value *value)
+static double asNumber(Context *ctx, const Value& value)
 {
-    switch (value->type)
+    switch (value.type)
     {
     case ValueType::Float:
     {
-        return ((FloatValue *)value)->value;
+        return value.f;
     }
     case ValueType::Int:
     {
-        return ((IntValue *)value)->value;
+        return value.i;
     }
     default:
     {
@@ -166,22 +170,22 @@ static double asNumber(Context *ctx, Value *value)
     SDL_assert_release(false);
 }
 
-static Value *mathAbs(Context *ctx, const List<Value *>& args)
+static Value mathAbs(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "abs takes only one argument."));
     }
 
-    switch (args[0]->type)
+    switch (args[0].type)
     {
     case ValueType::Float:
     {
-        return createFloat(std::abs(((FloatValue *)args[0])->value));
+        return createFloat(std::abs(args[0].f));
     }
     case ValueType::Int:
     {
-        return createInt(std::llabs(((FloatValue *)args[0])->value));
+        return createInt(std::llabs(args[0].i));
     }
     default:
     {
@@ -195,7 +199,7 @@ static Value *mathAbs(Context *ctx, const List<Value *>& args)
 template <double (*F)(double)>
 struct mathFunc1
 {
-    static Value *f(Context *ctx, const List<Value *>& args)
+    static Value f(Context *ctx, const List<Value>& args)
     {
         if (args.getCount() != 1)
         {
@@ -209,7 +213,7 @@ struct mathFunc1
 template <double (*F)(double, double)>
 struct mathFunc2
 {
-    static Value *f(Context *ctx, const List<Value *>& args)
+    static Value f(Context *ctx, const List<Value>& args)
     {
         if (args.getCount() != 2)
         {
@@ -230,42 +234,42 @@ static double mathMax(double a, double b)
     return std::max(a, b);
 }
 
-static Value *isNil(Context *ctx, const List<Value *>& args)
+static Value isNil(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "isNil takes one argument."));
     }
 
-    return createBoolean(args[0]->type == ValueType::Nil);
+    return createBoolean(args[0].type == ValueType::Nil);
 }
 
-static Value *print(Context *ctx, const List<Value *>& args)
+static Value print(Context *ctx, const List<Value>& args)
 {
     for (size_t i = 0; i < args.getCount(); ++i)
     {
-        Value *head = args[i];
+        Value val = args[i];
 
-        switch (head->type)
+        switch (val.type)
         {
         case ValueType::StringType:
         {
-            std::cout << ((StringValue *)head)->value.getData() << ' ';
+            std::cout << ((StringData *)val.p)->value.getData() << ' ';
             break;
         }
         case ValueType::Int:
         {
-            std::cout << ((IntValue *)head)->value << ' ';
+            std::cout << val.i << ' ';
             break;
         }
         case ValueType::Float:
         {
-            std::cout << ((FloatValue *)head)->value << ' ';
+            std::cout << val.f << ' ';
             break;
         }
         case ValueType::Boolean:
         {
-            std::cout << (((BooleanValue *)head)->value ? "true" : "false") << ' ';
+            std::cout << (val.b ? "true" : "false") << ' ';
             break;
         }
         case ValueType::Nil:

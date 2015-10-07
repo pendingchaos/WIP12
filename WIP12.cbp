@@ -121,10 +121,8 @@
 		<Unit filename="include/imgui.h" />
 		<Unit filename="include/logging.h" />
 		<Unit filename="include/math/aabb.h" />
-		<Unit filename="include/math/frustum.h" />
 		<Unit filename="include/math/matrix3x3.h" />
 		<Unit filename="include/math/matrix4x4.h" />
-		<Unit filename="include/math/plane.h" />
 		<Unit filename="include/math/quaternion.h" />
 		<Unit filename="include/math/t2.h" />
 		<Unit filename="include/math/t3.h" />
@@ -149,15 +147,12 @@
 		<Unit filename="include/scripting/parser/ast.h" />
 		<Unit filename="include/scripting/parser/tokenizer.h" />
 		<Unit filename="include/scripting/script.h" />
-		<Unit filename="include/scripting/scriptinclude.h" />
-		<Unit filename="include/scripting/scriptsidebindings.h" />
 		<Unit filename="include/scripting/vm/bytecode.h" />
 		<Unit filename="include/scripting/vm/context.h" />
 		<Unit filename="include/scripting/vm/engine.h" />
 		<Unit filename="include/scripting/vm/types.h" />
 		<Unit filename="scripts/genGLFL.py" />
 		<Unit filename="scripts/gen_misc_macros.py" />
-		<Unit filename="scripts/script_binding_generator.py" />
 		<Unit filename="src/application.cpp" />
 		<Unit filename="src/audio/audio.cpp" />
 		<Unit filename="src/audio/audiodevice.cpp" />
@@ -196,10 +191,8 @@
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/aabb.cpp" />
-		<Unit filename="src/math/frustum.cpp" />
 		<Unit filename="src/math/matrix3x3.cpp" />
 		<Unit filename="src/math/matrix4x4.cpp" />
-		<Unit filename="src/math/plane.cpp" />
 		<Unit filename="src/math/quaternion.cpp" />
 		<Unit filename="src/math/t2.cpp" />
 		<Unit filename="src/math/t3.cpp" />
@@ -216,7 +209,6 @@
 		<Unit filename="src/scene/entity.cpp" />
 		<Unit filename="src/scene/scene.cpp" />
 		<Unit filename="src/scene/transform.cpp" />
-		<Unit filename="src/scripting/appsidebindings.cpp" />
 		<Unit filename="src/scripting/bindings.cpp" />
 		<Unit filename="src/scripting/bytecodegen.cpp" />
 		<Unit filename="src/scripting/disasm.cpp" />

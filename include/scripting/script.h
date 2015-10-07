@@ -104,23 +104,18 @@ class ScriptInstance
             return script;
         }
 
-        inline scripting::Value *getObject() const NO_BIND
+        inline scripting::Value getObj() const
         {
             return obj;
         }
-
-        inline scripting::Value *getObj() const
-        {
-            return obj == nullptr ? scripting::createNil() : obj;
-        }
     private:
         ScriptInstance(Script *script,
-                       scripting::Value *obj,
+                       const scripting::Value& obj,
                        Entity *entity,
                        Scene *scene);
 
         Script *script;
-        scripting::Value *obj;
+        scripting::Value obj;
         Entity *entity;
         Scene *scene;
 
@@ -153,7 +148,7 @@ class Script : public Resource
         virtual void _load();
     private:
         scripting::Context *context;
-        scripting::Value *class_;
+        scripting::Value class_;
         List<ScriptInstance *> instances;
 
         void removeInstance(ScriptInstance *instance);

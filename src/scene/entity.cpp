@@ -46,7 +46,7 @@ Entity::~Entity()
     removeRigidBody();
 }
 
-scripting::Value *Entity::findScriptInstanceObj(const String& filename) const
+scripting::Value Entity::findScriptInstanceObj(const String& filename) const
 {
     ScriptInstance *inst = findScriptInstance(filename);
     //TODO: Use the current context.

@@ -20,12 +20,12 @@ class Engine
         Engine();
         ~Engine();
 
-        inline const HashMap<String, Value *>& getGlobalVars() const
+        inline const HashMap<String, Value>& getGlobalVars() const
         {
             return globalVars;
         }
 
-        inline HashMap<String, Value *>& getGlobalVars()
+        inline HashMap<String, Value>& getGlobalVars()
         {
             return globalVars;
         }
@@ -42,7 +42,7 @@ class Engine
             return nextTypeID++;
         }
     private:
-        HashMap<String, Value *> globalVars;
+        HashMap<String, Value> globalVars;
         HashMap<String, Extension> extensions;
         int64_t nextTypeID;
 };

@@ -6,123 +6,148 @@
 
 namespace scripting
 {
-Value *createInt(int64_t num)
+//TODO: Improve this.
+bool Value::operator == (const Value& other) const
 {
-    IntValue *value = NEW(IntValue);
+    if (type == ValueType::Object and other.type == ValueType::Object)
+    {
+        return p == other.p;
+    } else if (type == ValueType::NativeObject and other.type == ValueType::NativeObject)
+    {
+        return p == other.p;
+    } else if (type == ValueType::StringType and other.type == ValueType::StringType)
+    {
+        return ((StringData *)p)->value == ((StringData *)other.p)->value;
+    } else if (type == ValueType::Float and other.type == ValueType::Float)
+    {
+        return f == other.f;
+    } else if (type == ValueType::Int and other.type == ValueType::Int)
+    {
+        return i == other.i;
+    } else if (type == ValueType::Float and other.type == ValueType::Int)
+    {
+        return f == other.i;
+    } else if (type == ValueType::Int and other.type == ValueType::Float)
+    {
+        return i == other.f;
+    } else if (type == ValueType::Boolean and other.type == ValueType::Boolean)
+    {
+        return b == other.b;
+    } else if (type == ValueType::Nil and other.type == ValueType::Nil)
+    {
+        return true;
+    } else if (type == ValueType::Function and other.type == ValueType::Function)
+    {
+        return ((FunctionData *)p)->bytecode.data == ((FunctionData *)p)->bytecode.data;
+    } else if (type == ValueType::NativeFunction and other.type == ValueType::NativeFunction)
+    {
+        return func == other.func;
+    } else if (type == ValueType::Exception and other.type == ValueType::Exception)
+    {
+        ExceptionData exc = *(ExceptionData *)p;
+        ExceptionData otherExc = *(ExceptionData *)other.p;
 
-    value->head.type = ValueType::Int;
-    value->value = num;
-
-    return (Value *)value;
+        return exc.type == otherExc.type and exc.error == otherExc.error;
+    } else
+    {
+        return false;
+    }
 }
 
-Value *createFloat(double num)
+Value createInt(int64_t num)
 {
-    FloatValue *value = NEW(FloatValue);
-
-    value->head.type = ValueType::Float;
-    value->value = num;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Int;
+    v.i = num;
+    return v;
 }
 
-Value *createBoolean(bool b)
+Value createFloat(double num)
 {
-    BooleanValue *value = NEW(BooleanValue);
-
-    value->head.type = ValueType::Boolean;
-    value->value = b;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Float;
+    v.f = num;
+    return v;
 }
 
-Value *createNil()
+Value createBoolean(bool b)
 {
-    NilValue *value = NEW(NilValue);
-
-    value->head.type = ValueType::Nil;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Boolean;
+    v.b = b;
+    return v;
 }
 
-Value *createFunction(Bytecode& bytecode)
+Value createNil()
 {
-    FunctionValue *value = NEW(FunctionValue, bytecode);
-
-    value->head.type = ValueType::Function;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Nil;
+    return v;
 }
 
-Value *createObject()
+Value createFunction(const Bytecode& bytecode)
 {
-    ObjectValue *value = NEW(ObjectValue);
-
-    value->head.type = ValueType::Object;
-    value->refCount = 1;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Function;
+    v.p = (void *)NEW(FunctionData, bytecode);
+    return v;
 }
 
-Value *createString(const String& str)
+Value createObject()
 {
-    StringValue *value = NEW(StringValue);
-
-    value->head.type = ValueType::StringType;
-    value->value = str;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Object;
+    v.p = (void *)NEW(ObjectData);
+    return v;
 }
 
-Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args))
+Value createString(const String& str)
 {
-    NativeFunction *value = NEW(NativeFunction);
-
-    value->head.type = ValueType::NativeFunction;
-    value->func = func;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::StringType;
+    v.p = (void *)NEW(StringData, str);
+    return v;
 }
 
-Value *createException(ExcType type, String error)
+Value createNativeFunction(Value (*func)(Context *ctx, const List<Value>& args))
 {
-    ExceptionValue *value = NEW(ExceptionValue);
-
-    value->head.type = ValueType::Exception;
-    value->type = type;
-    value->error = error;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::NativeFunction;
+    v.func = func;
+    return v;
 }
 
-Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID)
+Value createException(ExcType type, String error)
 {
-    NativeObject *value = NEW(NativeObject);
-
-    value->head.type = ValueType::NativeObject;
-    value->funcs = funcs;
-    value->data = data;
-    value->typeID = typeID;
-    value->refCount = 1;
-
-    return (Value *)value;
+    Value v;
+    v.type = ValueType::Exception;
+    v.p = (void *)NEW(ExceptionData, type, error);
+    return v;
 }
 
-Value *createCopy(Context *context, const Value *value)
+Value createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID)
 {
-    switch (value->type)
+    Value v;
+    v.type = ValueType::NativeObject;
+    v.p = (void *)NEW(NativeObjectData, funcs, data, typeID);
+    return v;
+}
+
+Value createCopy(Context *context, const Value& value)
+{
+    switch (value.type)
     {
     case ValueType::Int:
     {
-        return createInt(((IntValue *)value)->value);
+        return createInt(value.i);
     }
     case ValueType::Float:
     {
-        return createFloat(((FloatValue *)value)->value);
+        return createFloat(value.f);
     }
     case ValueType::Boolean:
     {
-        return createBoolean(((BooleanValue *)value)->value);
+        return createBoolean(value.b);
     }
     case ValueType::Nil:
     {
@@ -130,36 +155,29 @@ Value *createCopy(Context *context, const Value *value)
     }
     case ValueType::Function:
     {
-        return createFunction(((FunctionValue *)value)->bytecode);
+        return createFunction(((FunctionData *)value.p)->bytecode);
     }
     case ValueType::Object:
     {
-        ObjectValue *obj = ((ObjectValue *)value);
-
-        ++(obj->refCount);
-
-        return (Value *)obj;
+        ++(((ObjectData *)value.p)->refCount);
+        return value;
     }
     case ValueType::StringType:
     {
-        return createString(((StringValue *)value)->value);
+        return createString(((StringData *)value.p)->value);
     }
     case ValueType::NativeFunction:
     {
-        return createNativeFunction(((NativeFunction *)value)->func);
+        return createNativeFunction(value.func);
     }
     case ValueType::NativeObject:
     {
-        NativeObject *obj = ((NativeObject *)value);
-
-        ++(obj->refCount);
-
-        return (Value *)obj;
+        ++(((NativeObjectData *)value.p)->refCount);
+        return value;
     }
     case ValueType::Exception:
     {
-        ExceptionValue *exc = (ExceptionValue *)value;
-
+        ExceptionData *exc = (ExceptionData *)value.p;
         return createException(exc->type, exc->error);
     }
     }
@@ -169,38 +187,26 @@ Value *createCopy(Context *context, const Value *value)
     return createNil();
 }
 
-void destroy(Context *context, Value *value)
+void destroy(Context *context, const Value& value)
 {
-    switch (value->type)
+    switch (value.type)
     {
     case ValueType::Int:
-    {
-        DELETE((IntValue *)value);
-        break;
-    }
     case ValueType::Float:
-    {
-        DELETE((FloatValue *)value);
-        break;
-    }
     case ValueType::Boolean:
-    {
-        DELETE((BooleanValue *)value);
-        break;
-    }
     case ValueType::Nil:
+    case ValueType::NativeFunction:
     {
-        DELETE((NilValue *)value);
         break;
     }
     case ValueType::Function:
     {
-        DELETE((FunctionValue *)value);
+        DELETE((FunctionData *)value.p);
         break;
     }
     case ValueType::Object:
     {
-        ObjectValue *obj = (ObjectValue *)value;
+        ObjectData *obj = (ObjectData *)value.p;
 
         --obj->refCount;
 
@@ -208,12 +214,12 @@ void destroy(Context *context, Value *value)
         {
             obj->refCount = 1; //Hack
 
-            HashMap<String, Value *> members = ((ObjectValue *)value)->members;
+            HashMap<String, Value> members = ((ObjectData *)value.p)->members;
 
             auto pos = members.find("__del__");
             if (pos != members.end())
             {
-                destroy(context, callMethod(context, value, "__del__", List<Value *>()));
+                destroy(context, callMethod(context, value, "__del__", List<Value>()));
             }
 
             for (auto kv : members)
@@ -227,17 +233,12 @@ void destroy(Context *context, Value *value)
     }
     case ValueType::StringType:
     {
-        DELETE((StringValue *)value);
-        break;
-    }
-    case ValueType::NativeFunction:
-    {
-        DELETE((NativeFunction *)value);
+        DELETE((StringData *)value.p);
         break;
     }
     case ValueType::NativeObject:
     {
-        NativeObject *obj = (NativeObject *)value;
+        NativeObjectData *obj = (NativeObjectData *)value.p;
 
         --obj->refCount;
 
@@ -247,16 +248,16 @@ void destroy(Context *context, Value *value)
 
             if (obj->funcs.destroy != NULL)
             {
-                obj->funcs.destroy(context, obj);
+                obj->funcs.destroy(context, value);
             }
 
-            DELETE((NativeObject *)value);
+            DELETE(obj);
         }
         break;
     }
     case ValueType::Exception:
     {
-        DELETE((ExceptionValue *)value);
+        DELETE((ExceptionData *)value.p);
         break;
     }
     default:

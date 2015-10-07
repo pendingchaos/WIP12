@@ -27,24 +27,10 @@ struct NativeObject;
 
 struct NativeObjectFuncs
 {
-    void (*destroy)(Context *ctx, NativeObject *self);
-    Value *(*getMember)(Context *ctx, NativeObject *self, Value *key);
-    void (*setMember)(Context *ctx, NativeObject *self, Value *key, Value *value);
+    void (*destroy)(Context *ctx, const Value& self);
+    Value (*getMember)(Context *ctx, const Value& self, const Value& key);
+    void (*setMember)(Context *ctx, const Value& self, const Value& key, const Value& value);
 };
-
-Value *createInt(int64_t value);
-Value *createFloat(double value);
-Value *createBoolean(bool value);
-Value *createNil();
-Value *createFunction(Bytecode& bytecode);
-Value *createObject();
-Value *createReference(Value *value);
-Value *createString(const String& value);
-Value *createNativeFunction(Value *(*func)(Context *ctx, const List<Value *>& args));
-Value *createException(ExcType type, String error);
-Value *createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID);
-Value *createCopy(Context *context, const Value *value);
-void destroy(Context *context, Value *value);
 
 enum class ValueType
 {
@@ -63,74 +49,83 @@ enum class ValueType
 struct Value
 {
     ValueType type;
+    union
+    {
+        void *p;
+        int64_t i;
+        double f;
+        bool b;
+        Value (*func)(Context *ctx, const List<Value>& args);
+    };
+
+    bool operator == (const Value& other) const;
+
+    inline bool operator != (const Value& other) const
+    {
+        return not (*this == other);
+    }
 };
 
-struct IntValue
+struct FunctionData
 {
-    Value head;
-    int64_t value;
-};
+    inline FunctionData() {}
+    inline FunctionData(const Bytecode& bytecode_) : bytecode(bytecode_) {}
 
-struct FloatValue
-{
-    Value head;
-    double value;
-};
-
-struct BooleanValue
-{
-    Value head;
-    bool value;
-};
-
-struct NilValue
-{
-    Value head;
-};
-
-struct FunctionValue
-{
-    FunctionValue() {}
-    FunctionValue(Bytecode& bytecode_) : bytecode(bytecode_) {}
-
-    Value head;
     Bytecode bytecode;
 };
 
-struct ObjectValue
+struct ObjectData
 {
-    Value head;
-    HashMap<String, Value *> members;
+    inline ObjectData() : refCount(1) {}
+
+    HashMap<String, Value> members;
     uint64_t refCount;
 };
 
-struct StringValue
+struct StringData
 {
-    Value head;
+    StringData() {}
+    StringData(const String& str) : value(str) {}
+
     String value;
 };
 
-struct NativeFunction
+struct ExceptionData
 {
-    Value head;
-    Value *(*func)(Context *ctx, const List<Value *>& args);
-};
+    inline ExceptionData(ExcType type_, String error_) : type(type_), error(error_) {}
 
-struct ExceptionValue
-{
-    Value head;
     ExcType type;
     String error;
 };
 
-struct NativeObject
+struct NativeObjectData
 {
-    Value head;
+    inline NativeObjectData(NativeObjectFuncs funcs_,
+                            void *data_,
+                            int64_t typeID_) : funcs(funcs_),
+                                               typeID(typeID_),
+                                               refCount(1),
+                                               data(data_) {}
+
     NativeObjectFuncs funcs;
     int64_t typeID;
     uint64_t refCount;
     void *data;
 };
+
+Value createInt(int64_t value);
+Value createFloat(double value);
+Value createBoolean(bool value);
+Value createNil();
+Value createFunction(const Bytecode& bytecode);
+Value createObject();
+Value createReference(Value *value);
+Value createString(const String& value);
+Value createNativeFunction(Value (*func)(Context *ctx, const List<Value>& args));
+Value createException(ExcType type, String error);
+Value createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID);
+Value createCopy(Context *context, const Value& value);
+void destroy(Context *context, const Value& value);
 }
 
 #endif // SCRIPTING_TYPES_H

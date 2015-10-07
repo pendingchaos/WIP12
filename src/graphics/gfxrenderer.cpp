@@ -987,8 +987,6 @@ void GfxRenderer::render()
     gfxApi->setCurrentFramebuffer(writeFramebuffer);
     gfxApi->clearColor(0, Float4(0.0f));
 
-    Matrix4x4 viewProjection = (camera.getProjectionMatrix() * camera.getViewMatrix());
-
     gfxApi->setBlendingEnabled(true);
     gfxApi->setBlendFactors(GfxOne, GfxOne, GfxOne, GfxOne);
     gfxApi->setBlendMode(GfxAdd, GfxAdd);
@@ -1044,7 +1042,7 @@ void GfxRenderer::render()
         gfxApi->addTextureBinding(fragment, "geomNormalTexture", geomNormalTexture);
         gfxApi->addTextureBinding(fragment, "depthTexture", depthTexture);
         gfxApi->addTextureBinding(fragment, "aoTexture", ssaoTexture);
-        gfxApi->uniform(fragment, "viewProjection", viewProjection);
+        gfxApi->uniform(fragment, "viewProjection", camera.getProjectionMatrix() * camera.getViewMatrix());
         gfxApi->uniform(fragment, "lightColor", light->color * light->power);
         gfxApi->uniform(fragment, "lightAmbientStrength", light->ambientStrength);
         gfxApi->uniform(fragment, "cameraPosition", camera.getPosition());

@@ -49,11 +49,11 @@ void Context::reset()
     callStackSize = 0;
 }
 
-Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
+Value Context::_run(const Bytecode& bytecode, List<Value> args)
 {
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
     size_t& offset = callstackEntry.offset;
-    List<Value *> *stack = &callstackEntry.stacks[0];
+    List<Value> *stack = &callstackEntry.stacks[0];
 
     while (offset < bytecode.data.getSize())
     {
@@ -134,7 +134,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         }
         case Opcode::StackDup:
         {
-            Value *value = popStack(*stack);
+            Value value = popStack(*stack);
 
             stack->append(createCopy(this, value));
             stack->append(value);
@@ -142,23 +142,23 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         }
         case Opcode::LoadVar:
         {
-            Value *nameHead = popStack(*stack);
+            Value nameVal = popStack(*stack);
 
-            if (nameHead->type != ValueType::StringType)
+            if (nameVal.type != ValueType::StringType)
             {
-                destroy(this, nameHead);
+                destroy(this, nameVal);
 
                 throwException(createException(ExcType::TypeError, "Variable name must be String."));
                 break;
             }
 
-            String name = ((StringValue *)nameHead)->value;
+            String name = ((StringData *)nameVal.p)->value;
 
             bool found = false;
 
             for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
             {
-                HashMap<String, Value *>& vars = callStack[i].variables;
+                HashMap<String, Value>& vars = callStack[i].variables;
 
                 auto pos = vars.find(name);
                 if (pos != vars.end())
@@ -171,7 +171,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
 
             if (not found)
             {
-                HashMap<String, Value *>& vars = engine->getGlobalVars();
+                HashMap<String, Value>& vars = engine->getGlobalVars();
 
                 auto pos = vars.find(name);
 
@@ -184,29 +184,29 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
                 }
             }
 
-            destroy(this, nameHead);
+            destroy(this, nameVal);
             break;
         }
         case Opcode::StoreVar:
         {
-            Value *nameHead = popStack(*stack);
+            Value nameVal = popStack(*stack);
 
-            if (nameHead->type != ValueType::StringType)
+            if (nameVal.type != ValueType::StringType)
             {
-                destroy(this, nameHead);
+                destroy(this, nameVal);
 
                 throwException(createException(ExcType::TypeError, "Variable name must be String."));
                 break;
             }
 
-            Value *value = popStack(*stack);
+            Value value = popStack(*stack);
 
-            String name = ((StringValue *)nameHead)->value;
+            String name = ((StringData *)nameVal.p)->value;
             bool found = false;
 
             for (ptrdiff_t i = callStackSize-1; i >= 0; --i)
             {
-                HashMap<String, Value *>& vars = callStack[i].variables;
+                HashMap<String, Value>& vars = callStack[i].variables;
 
                 auto pos = vars.find(name);
 
@@ -222,7 +222,7 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
 
             if (not found)
             {
-                HashMap<String, Value *>& vars = engine->getGlobalVars();
+                HashMap<String, Value>& vars = engine->getGlobalVars();
 
                 auto pos = vars.find(name);
 
@@ -236,66 +236,13 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
                 }
             }
 
-            destroy(this, nameHead);
-            break;
-        }
-        case Opcode::DelVar:
-        {
-            Value *nameHead = popStack(*stack);
-
-            if (nameHead->type != ValueType::StringType)
-            {
-                destroy(this, nameHead);
-
-                throwException(createException(ExcType::TypeError, "Variable name must be String."));
-                break;
-            }
-
-            String name = ((StringValue *)nameHead)->value;
-
-            bool found = false;
-
-            for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
-            {
-                HashMap<String, Value *>& vars = callStack[i].variables;
-
-                auto pos = vars.find(name);
-
-                if (pos != vars.end())
-                {
-                    destroy(this, pos->second);
-
-                    vars.remove(name);
-                    found = true;
-                    break;
-                }
-            }
-
-            if (not found)
-            {
-                HashMap<String, Value *>& vars = engine->getGlobalVars();
-
-                auto pos = vars.find(name);
-
-                if (pos != vars.end())
-                {
-                    destroy(this, pos->second);
-
-                    vars.remove(name);
-                } else
-                {
-                    throwException(createException(ExcType::KeyError, "No such variable."));
-                }
-                break;
-            }
-
-            destroy(this, nameHead);
+            destroy(this, nameVal);
             break;
         }
         case Opcode::GetMember:
         {
-            Value *key = popStack(*stack);
-            Value *value = popStack(*stack);
+            Value key = popStack(*stack);
+            Value value = popStack(*stack);
 
             stack->append(getMember(this,
                                     value,
@@ -307,9 +254,9 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         }
         case Opcode::SetMember:
         {
-            Value *value = popStack(*stack);
-            Value *key = popStack(*stack);
-            Value *newValue = popStack(*stack);
+            Value value = popStack(*stack);
+            Value key = popStack(*stack);
+            Value newValue = popStack(*stack);
 
             setMember(this,
                       value,
@@ -324,9 +271,9 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
         }
         case Opcode::GetType:
         {
-            Value *value = popStack(*stack);
+            Value value = popStack(*stack);
 
-            switch (value->type)
+            switch (value.type)
             {
             case ValueType::Int:
             {
@@ -384,31 +331,31 @@ Value *Context::_run(const Bytecode& bytecode, List<Value *> args)
             break;
         }
 
-        #define ARITHMATIC_OP(iop, fop, funcName) Value *aHead = popStack(*stack);\
-Value *bHead = popStack(*stack);\
+        #define ARITHMATIC_OP(iop, fop, funcName) Value aVal = popStack(*stack);\
+Value bVal = popStack(*stack);\
 \
-if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject or\
-    bHead->type == ValueType::Object or bHead->type == ValueType::NativeObject)\
+if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject or\
+    bVal.type == ValueType::Object or bVal.type == ValueType::NativeObject)\
 {\
-    List<Value *> args;\
-    args.append(bHead);\
-    stack->append(callMethod(this, aHead, funcName, args));\
-} else if ((aHead->type == ValueType::Float or bHead->type == ValueType::Float) and (aHead->type == ValueType::Int or bHead->type == ValueType::Int))\
+    List<Value> args;\
+    args.append(bVal);\
+    stack->append(callMethod(this, aVal, funcName, args));\
+} else if ((aVal.type == ValueType::Float or bVal.type == ValueType::Float) and (aVal.type == ValueType::Int or bVal.type == ValueType::Int))\
 {\
-    double a = aHead->type == ValueType::Float ? ((FloatValue *)aHead)->value : ((IntValue *)aHead)->value;\
-    double b = bHead->type == ValueType::Float ? ((FloatValue *)bHead)->value : ((IntValue *)bHead)->value;\
+    double a = aVal.type == ValueType::Float ? aVal.f : aVal.i;\
+    double b = bVal.type == ValueType::Float ? bVal.f : bVal.i;\
     \
     stack->append(createFloat(fop));\
-} else if (aHead->type == ValueType::Int and bHead->type == ValueType::Int)\
+} else if (aVal.type == ValueType::Int and bVal.type == ValueType::Int)\
 {\
-    int64_t a = ((IntValue *)aHead)->value;\
-    int64_t b = ((IntValue *)bHead)->value;\
+    int64_t a = aVal.i;\
+    int64_t b = bVal.i;\
     \
     stack->append(createInt(iop));\
-} else if (aHead->type == ValueType::Float and bHead->type == ValueType::Float)\
+} else if (aVal.type == ValueType::Float and bVal.type == ValueType::Float)\
 {\
-    double a = ((FloatValue *)aHead)->value;\
-    double b = ((FloatValue *)bHead)->value;\
+    double a = aVal.f;\
+    double b = bVal.f;\
     \
     stack->append(createFloat(fop));\
 } else\
@@ -416,8 +363,8 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject o
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(iop)));\
 }\
 \
-destroy(this, aHead);\
-destroy(this, bHead);\
+destroy(this, aVal);\
+destroy(this, bVal);\
 \
 break;
 
@@ -444,96 +391,96 @@ break;
 
 #undef ARITHMATIC_OP
 
-#define TYPED_OP(type_, typeStruct, createFunc, op, funcName) Value *aHead = popStack(*stack);\
-Value *bHead = popStack(*stack);\
+#define TYPED_OP(type_, typeMem, createFunc, op, funcName) Value aVal = popStack(*stack);\
+Value bVal = popStack(*stack);\
 \
-if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
+if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
-    List<Value *> args;\
-    args.append(bHead);\
-    stack->append(callMethod(this, aHead, funcName, args));\
-} else if (aHead->type != type_ or bHead->type != type_)\
+    List<Value> args;\
+    args.append(bVal);\
+    stack->append(callMethod(this, aVal, funcName, args));\
+} else if (aVal.type != type_ or bVal.type != type_)\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
 } else\
 {\
-stack->append(createFunc(((typeStruct *)aHead)->value op ((typeStruct *)bHead)->value));\
+    stack->append(createFunc(aVal.typeMem op bVal.typeMem));\
 }\
 \
-destroy(this, aHead);\
-destroy(this, bHead);\
+destroy(this, aVal);\
+destroy(this, bVal);\
 \
 break;
 
         case Opcode::BoolAnd:
         {
-            TYPED_OP(ValueType::Boolean, BooleanValue, createBoolean, and, "__bland__")
+            TYPED_OP(ValueType::Boolean, b, createBoolean, and, "__bland__")
         }
         case Opcode::BoolOr:
         {
-            TYPED_OP(ValueType::Boolean, BooleanValue, createBoolean, or, "__blor__")
+            TYPED_OP(ValueType::Boolean, b, createBoolean, or, "__blor__")
         }
         case Opcode::BoolNot:
         {
-            Value *head = popStack(*stack);
+            Value val = popStack(*stack);
 
-            if (head->type == ValueType::Object or head->type == ValueType::NativeObject)
+            if (val.type == ValueType::Object or val.type == ValueType::NativeObject)
             {
-                stack->append(callMethod(this, head, "__blnot__", List<Value *>()));
-            } else if (head->type == ValueType::Boolean)
+                stack->append(callMethod(this, val, "__blnot__", List<Value>()));
+            } else if (val.type == ValueType::Boolean)
             {
-                stack->append(createBoolean(not ((BooleanValue *)head)->value));
+                stack->append(createBoolean(not val.b));
             } else
             {
                 throwException(createException(ExcType::TypeError, "Invalid operand type for not. Must be Boolean."));
             }
 
-            destroy(this, head);
+            destroy(this, val);
             break;
         }
         case Opcode::BitAnd:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, &, "__btand__")
+            TYPED_OP(ValueType::Int, i, createInt, &, "__btand__")
         }
         case Opcode::BitOr:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, |, "__btor__")
+            TYPED_OP(ValueType::Int, i, createInt, |, "__btor__")
         }
         case Opcode::BitXOr:
         {
-            TYPED_OP(ValueType::Int, IntValue, createInt, ^, "__btxor__")
+            TYPED_OP(ValueType::Int, i, createInt, ^, "__btxor__")
         }
 
 #undef TYPED_OP
 
-#define SHIFT_OP(op, funcName) Value *aHead = popStack(*stack);\
-Value *bHead = popStack(*stack);\
+#define SHIFT_OP(op, funcName) Value aVal = popStack(*stack);\
+Value bVal = popStack(*stack);\
 \
-if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject)\
+if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
-    List<Value *> args;\
-    args.append(bHead);\
-    stack->append(callMethod(this, aHead, funcName, args));\
-} else if (aHead->type != ValueType::Int or bHead->type != ValueType::Int)\
+    List<Value> args;\
+    args.append(bVal);\
+    stack->append(callMethod(this, aVal, funcName, args));\
+} else if (aVal.type != ValueType::Int or bVal.type != ValueType::Int)\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
 } else\
 {\
-    if (((IntValue *)aHead)->value < 0)\
+    if (aVal.i < 0)\
     {\
         throwException(createException(ExcType::ValueError, "Operand of shift can not be negative."));\
     }\
     \
-    if (((IntValue *)bHead)->value < 0)\
+    if (bVal.i < 0)\
     {\
         throwException(createException(ExcType::ValueError, "Operand of shift can not be negative."));\
     }\
-    uint64_t result = uint64_t(((IntValue *)aHead)->value) op uint64_t(((IntValue *)bHead)->value);\
+    uint64_t result = aVal.i op bVal.i;\
     stack->append(createInt(result));\
 }\
 \
-destroy(this, aHead);\
-destroy(this, bHead);\
+destroy(this, aVal);\
+destroy(this, bVal);\
 \
 break;
 
@@ -547,48 +494,48 @@ break;
         }
         case Opcode::BitNot:
         {
-            Value *head = popStack(*stack);
+            Value val = popStack(*stack);
 
-            if (head->type == ValueType::Object or head->type == ValueType::NativeObject)
+            if (val.type == ValueType::Object or val.type == ValueType::NativeObject)
             {
-                stack->append(callMethod(this, head, "__btnot__", List<Value *>()));
-            } else if (head->type == ValueType::Int)
+                stack->append(callMethod(this, val, "__btnot__", List<Value>()));
+            } else if (val.type == ValueType::Int)
             {
-                stack->append(createInt(~((BooleanValue *)head)->value));
+                stack->append(createInt(~val.i));
             } else
             {
                 throwException(createException(ExcType::TypeError, "Invalid operand type. Must be Int."));
             }
 
-            destroy(this, head);
+            destroy(this, val);
             break;
         }
 
-        #define COMPARE_OP(op, funcName) Value *aHead = popStack(*stack);\
-Value *bHead = popStack(*stack);\
+//TODO: Boolean == and !=.
+        #define COMPARE_OP(op, funcName) Value aVal = popStack(*stack);\
+Value bVal = popStack(*stack);\
 \
-if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject or\
-    bHead->type == ValueType::Object or bHead->type == ValueType::NativeObject)\
+if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
-    List<Value *> args;\
-    args.append(bHead);\
-    stack->append(callMethod(this, aHead, funcName, args));\
-} else if ((aHead->type == ValueType::Float or bHead->type == ValueType::Float) and (aHead->type == ValueType::Int or bHead->type == ValueType::Int))\
+    List<Value> args;\
+    args.append(bVal);\
+    stack->append(callMethod(this, aVal, funcName, args));\
+} else if ((aVal.type == ValueType::Float or bVal.type == ValueType::Float) and (aVal.type == ValueType::Int or bVal.type == ValueType::Int))\
 {\
-    double a = aHead->type == ValueType::Float ? ((FloatValue *)aHead)->value : ((IntValue *)aHead)->value;\
-    double b = bHead->type == ValueType::Float ? ((FloatValue *)bHead)->value : ((IntValue *)bHead)->value;\
+    double a = aVal.type == ValueType::Float ? aVal.f : aVal.i;\
+    double b = bVal.type == ValueType::Float ? bVal.f : bVal.i;\
     \
     stack->append(createBoolean(a op b));\
-} else if (aHead->type == ValueType::Int and bHead->type == ValueType::Int)\
+} else if (aVal.type == ValueType::Int and bVal.type == ValueType::Int)\
 {\
-    int64_t a = ((IntValue *)aHead)->value;\
-    int64_t b = ((IntValue *)bHead)->value;\
+    int64_t a = aVal.i;\
+    int64_t b = bVal.i;\
     \
     stack->append(createBoolean(a op b));\
-} else if (aHead->type == ValueType::Float and bHead->type == ValueType::Float)\
+} else if (aVal.type == ValueType::Float and bVal.type == ValueType::Float)\
 {\
-    double a = ((FloatValue *)aHead)->value;\
-    double b = ((FloatValue *)bHead)->value;\
+    double a = aVal.f;\
+    double b = bVal.f;\
     \
     stack->append(createBoolean(a op b));\
 } else\
@@ -596,8 +543,8 @@ if (aHead->type == ValueType::Object or aHead->type == ValueType::NativeObject o
     stack->append(createBoolean(false));\
 }\
 \
-destroy(this, bHead);\
-destroy(this, aHead);\
+destroy(this, bVal);\
+destroy(this, aVal);\
 \
 break;
 
@@ -630,80 +577,37 @@ break;
 
         case Opcode::Call:
         {
-            Value *head = popStack(*stack);
-            Value *argCountHead = popStack(*stack);
+            Value val = popStack(*stack);
+            Value argCountVal = popStack(*stack);
 
-            if (argCountHead->type != ValueType::Int)
+            if (argCountVal.type != ValueType::Int)
             {
                 throwException(createException(ExcType::TypeError, "Arguments count must be an integer."));
             }
 
-            int64_t argCount = ((IntValue *)argCountHead)->value;
+            int64_t argCount = argCountVal.i;
 
             if (argCount < 0)
             {
                 throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
             }
 
-            List<Value *> args;
+            List<Value> args;
 
             for (int64_t i = 0; i < argCount; ++i)
             {
                 args.append(popStack(*stack));
             }
 
-            stack->append(call(this, head, args));
+            stack->append(call(this, val, args));
 
             for (auto arg : args)
             {
                 destroy(this, arg);
             }
 
-            destroy(this, argCountHead);
-            destroy(this, head);
-            break;
-        }
-        case Opcode::CallMethod:
-        {
-            Value *head = popStack(*stack);
-            Value *nameHead = popStack(*stack);
-
-            if (nameHead->type != ValueType::StringType)
-            {
-                throwException(createException(ExcType::TypeError, "Method name must be string."));
-            }
-
-            Value *argCountHead = popStack(*stack);
-
-            if (argCountHead->type != ValueType::Int)
-            {
-                throwException(createException(ExcType::TypeError, "Arguments count must be an integer."));
-            }
-
-            int64_t argCount = ((IntValue *)argCountHead)->value;
-
-            if (argCount < 0)
-            {
-                throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
-            }
-
-            List<Value *> args;
-
-            for (int64_t i = 0; i < argCount; ++i)
-            {
-                args.append(popStack(*stack));
-            }
-
-            stack->append(callMethod(this, head, ((StringValue *)nameHead)->value, args));
-
-            for (auto arg : args)
-            {
-                destroy(this, arg);
-            }
-
-            destroy(this, argCountHead);
-            destroy(this, nameHead);
-            destroy(this, head);
+            destroy(this, argCountVal);
+            destroy(this, val);
             break;
         }
         case Opcode::Return:
@@ -717,9 +621,9 @@ break;
         }
         case Opcode::GetArg:
         {
-            Value *head = popStack(*stack);
+            Value val = popStack(*stack);
 
-            size_t index = toIndex(this, head);
+            size_t index = toIndex(this, val);
 
             if (index >= args.getCount())
             {
@@ -728,14 +632,14 @@ break;
 
             stack->append(createCopy(this, args[index]));
 
-            destroy(this, head);
+            destroy(this, val);
             break;
         }
         case Opcode::JumpIf:
         {
-            Value *head = popStack(*stack);
+            Value val = popStack(*stack);
 
-            if (head->type != ValueType::Boolean)
+            if (val.type != ValueType::Boolean)
             {
                 throwException(createException(ExcType::TypeError, "Jump condition is not a Boolean."));
             }
@@ -746,7 +650,7 @@ break;
             int32_t failure = bytecode.getInt32(offset);
             offset += 4;
 
-            if (((BooleanValue *)head)->value)
+            if (val.b)
             {
                 offset += success;
             } else
@@ -754,7 +658,7 @@ break;
                 offset += failure;
             }
 
-            destroy(this, head);
+            destroy(this, val);
             break;
         }
         case Opcode::Jump:
@@ -770,7 +674,7 @@ break;
             int32_t by = bytecode.getInt32(offset);
             offset += 4;
 
-            callstackEntry.stacks.append(List<Value *>());
+            callstackEntry.stacks.append(List<Value>());
             callstackEntry.catchBlocks.append(offset + by);
 
             stack = &callstackEntry.stacks[callstackEntry.stacks.getCount()-1];
@@ -806,7 +710,7 @@ break;
     return createNil();
 }
 
-Value *Context::run(const Bytecode& bytecode, List<Value *> args)
+Value Context::run(const Bytecode& bytecode, List<Value> args)
 {
     if (callStackSize == SCRIPTING_MAX_CALLSTACK_SIZE)
     {
@@ -816,12 +720,12 @@ Value *Context::run(const Bytecode& bytecode, List<Value *> args)
     callStack[callStackSize++] = CallstackEntry(bytecode);
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
 
-    callstackEntry.stacks.append(List<Value *>());
+    callstackEntry.stacks.append(List<Value>());
 
     //This may not be safe.
     if (!setjmp(jumpBuf))
     {
-        Value *result = _run(bytecode, args);
+        Value result = _run(bytecode, args);
 
         popCallstack();
 
@@ -848,7 +752,7 @@ Value *Context::run(const Bytecode& bytecode, List<Value *> args)
 
             entry->catchBlocks.remove(entry->catchBlocks.getCount()-1);
 
-            List<Value *>& stack = entry->stacks[entry->stacks.getCount()-1];
+            List<Value>& stack = entry->stacks[entry->stacks.getCount()-1];
 
             for (auto value : stack)
             {
@@ -858,7 +762,7 @@ Value *Context::run(const Bytecode& bytecode, List<Value *> args)
             entry->stacks.remove(entry->stacks.getCount()-1);
             entry->offset = offset;
 
-            Value *result = _run(entry->bytecode, List<Value *>());
+            Value result = _run(entry->bytecode, List<Value>());
 
             destroy(this, exception);
             exception = createNil();
@@ -866,7 +770,7 @@ Value *Context::run(const Bytecode& bytecode, List<Value *> args)
             return result;
         }
 
-        Value *exc = exception;
+        Value exc = exception;
 
         exception = createNil();
 
@@ -903,7 +807,7 @@ void Context::popCallstack()
     --callStackSize;
 }
 
-void Context::throwException(Value *exc)
+void Context::throwException(Value exc)
 {
     if (callStackSize > 0)
     {
@@ -917,14 +821,14 @@ void Context::throwException(Value *exc)
     }
 }
 
-Value *Context::popStack(List<Value *>& stack)
+Value Context::popStack(List<Value>& stack)
 {
     if (stack.getCount() == 0)
     {
         THROW(StackBoundsException);
     } else
     {
-        Value *result = stack[stack.getCount() - 1];
+        Value result = stack[stack.getCount() - 1];
         stack.remove(stack.getCount() - 1);
 
         return result;
@@ -935,7 +839,7 @@ UnhandledExcException::UnhandledExcException(const char *file_,
                                              size_t line_,
                                              const char *function_,
                                              Context *ctx_,
-                                             Value *exception_)
+                                             const Value& exception_)
  : ExecutionException(file_, line_, function_),
    ctx(ctx_),
    exception(exception_) {}
@@ -952,29 +856,25 @@ UnhandledExcException::~UnhandledExcException()
     destroy(ctx, exception);
 }
 
-size_t toIndex(Context *ctx, Value *value)
+size_t toIndex(Context *ctx, const Value& value)
 {
-    if (value->type == ValueType::Int)
+    if (value.type == ValueType::Int)
     {
-        int64_t i = ((IntValue *)value)->value;
-
-        if (i < 0)
+        if (value.i < 0)
         {
             ctx->throwException(createException(ExcType::ValueError, "Index should not be below zero."));
         } else
         {
-            return i;
+            return value.i;
         }
-    } else if (value->type == ValueType::Float)
+    } else if (value.type == ValueType::Float)
     {
-        double i = ((FloatValue *)value)->value;
-
-        if ((size_t)i < 0)
+        if ((size_t)value.f < 0)
         {
             ctx->throwException(createException(ExcType::ValueError, "Index should not be below zero."));
         } else
         {
-            return (size_t)i;
+            return (size_t)value.f;
         }
     } else
     {
@@ -984,91 +884,91 @@ size_t toIndex(Context *ctx, Value *value)
     SDL_assert_release(false);
 }
 
-static Value *strEqual(Context *ctx, const List<Value *>& args)
+static Value strEqual(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::__eq__ takes two arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::StringType)
+    if (args[1].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the second argument."));
     }
 
-    return createBoolean(((StringValue *)args[0])->value == ((StringValue *)args[1])->value);
+    return createBoolean(((StringData *)args[0].p)->value == ((StringData *)args[1].p)->value);
 }
 
-static Value *strNotEqual(Context *ctx, const List<Value *>& args)
+static Value strNotEqual(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::__eq__ takes two arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::StringType)
+    if (args[1].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the second argument."));
     }
 
-    return createBoolean(((StringValue *)args[0])->value != ((StringValue *)args[1])->value);
+    return createBoolean(((StringData *)args[0].p)->value != ((StringData *)args[1].p)->value);
 }
 
-static Value *strAppend(Context *ctx, const List<Value *>& args)
+static Value strAppend(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::append takes two arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::append takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::StringType)
+    if (args[1].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::append takes a string as the second argument."));
     }
 
-    return createString(((StringValue *)args[0])->value.append(((StringValue *)args[1])->value));
+    return createString(((StringData *)args[0].p)->value.append(((StringData *)args[1].p)->value));
 }
 
-static Value *strInsert(Context *ctx, const List<Value *>& args)
+static Value strInsert(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 3)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::insert takes three arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::insert takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::Int or args[1]->type != ValueType::Float)
+    if (args[1].type != ValueType::Int or args[1].type != ValueType::Float)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::insert takes a integer or float as the second argument."));
     }
 
-    if (args[2]->type != ValueType::StringType)
+    if (args[2].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::insert takes a string as the third argument."));
     }
 
-    String str = ((StringValue *)args[0])->value;
+    String str = ((StringData *)args[0].p)->value;
     size_t start = toIndex(ctx, args[1]);
-    String toInsert = ((StringValue *)args[2])->value;
+    String toInsert = ((StringData *)args[2].p)->value;
 
     if (start > str.getLength())
     {
@@ -1079,29 +979,29 @@ static Value *strInsert(Context *ctx, const List<Value *>& args)
     return createNil();
 }
 
-static Value *strRemove(Context *ctx, const List<Value *>& args)
+static Value strRemove(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 3)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::remove takes three arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::remove takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::Int and args[1]->type != ValueType::Float)
+    if (args[1].type != ValueType::Int and args[1].type != ValueType::Float)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::remove takes a integer or float as the second argument."));
     }
 
-    if (args[2]->type != ValueType::Int and args[2]->type != ValueType::Float)
+    if (args[2].type != ValueType::Int and args[2].type != ValueType::Float)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::remove takes a integer or float as the third argument."));
     }
 
-    String str = ((StringValue *)args[0])->value;
+    String str = ((StringData *)args[0].p)->value;
     size_t start = toIndex(ctx, args[1]);
     size_t count = toIndex(ctx, args[2]);
 
@@ -1114,88 +1014,88 @@ static Value *strRemove(Context *ctx, const List<Value *>& args)
     return createNil();
 }
 
-static Value *strClear(Context *ctx, const List<Value *>& args)
+static Value strClear(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::clear takes one argument."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::clear takes a string as the first argument."));
     }
 
-    ((StringValue *)args[0])->value.clear();
+    ((StringData *)args[0].p)->value.clear();
 
     return createNil();
 }
 
-static Value *strResize(Context *ctx, const List<Value *>& args)
+static Value strResize(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::resize takes two arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::resize takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::Int and args[1]->type != ValueType::Float)
+    if (args[1].type != ValueType::Int and args[1].type != ValueType::Float)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::resize takes a integer or float as the second argument."));
     }
 
-    ((StringValue *)args[0])->value.resize(toIndex(ctx, args[1]));
+    ((StringData *)args[0].p)->value.resize(toIndex(ctx, args[1]));
 
     return createNil();
 }
 
-static Value *strFind(Context *ctx, const List<Value *>& args)
+static Value strFind(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::find takes two arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::find takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::StringType)
+    if (args[1].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::find takes a string as the second argument."));
     }
 
-    return createInt(((StringValue *)args[0])->value.find(((StringValue *)args[1])->value));
+    return createInt(((StringData *)args[0].p)->value.find(((StringData *)args[1].p)->value));
 }
 
-static Value *strSubStr(Context *ctx, const List<Value *>& args)
+static Value strSubStr(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 3)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::subStr takes three arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::Int and args[1]->type != ValueType::Float)
+    if (args[1].type != ValueType::Int and args[1].type != ValueType::Float)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a integer or float as the second argument."));
     }
 
-    if (args[2]->type != ValueType::Int and args[2]->type != ValueType::Float)
+    if (args[2].type != ValueType::Int and args[2].type != ValueType::Float)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a integer or float as the third argument."));
     }
 
-    String str = ((StringValue *)args[0])->value;
+    String str = ((StringData *)args[0].p)->value;
     size_t offset = toIndex(ctx, args[1]);
     size_t length = toIndex(ctx, args[2]);
 
@@ -1207,56 +1107,56 @@ static Value *strSubStr(Context *ctx, const List<Value *>& args)
     return createString(str.subStr(offset, length));
 }
 
-static Value *strCopy(Context *ctx, const List<Value *>& args)
+static Value strCopy(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::copy takes one argument."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::copy takes a string as the first argument."));
     }
 
-    return createString(((StringValue *)args[0])->value.copy());
+    return createString(((StringData *)args[0].p)->value.copy());
 }
 
-static Value *strCopyFrom(Context *ctx, const List<Value *>& args)
+static Value strCopyFrom(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::copyFrom takes two arguments."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::copyFrom takes a string as the first argument."));
     }
 
-    if (args[1]->type != ValueType::StringType)
+    if (args[1].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::copyFrom takes a string as the second argument."));
     }
 
-    ((StringValue *)args[0])->value.copyFrom(((StringValue *)args[1])->value);
+    ((StringData *)args[0].p)->value.copyFrom(((StringData *)args[1].p)->value);
 
     return createNil();
 }
 
-static Value *strFormat(Context *ctx, const List<Value *>& args)
+static Value strFormat(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() < 1)
     {
         ctx->throwException(createException(ExcType::ValueError, "String::format takes at least one argument."));
     }
 
-    if (args[0]->type != ValueType::StringType)
+    if (args[0].type != ValueType::StringType)
     {
         ctx->throwException(createException(ExcType::TypeError, "String::format takes a string as the first argument."));
     }
 
-    String formatStr = ((StringValue *)args[0])->value;
+    String formatStr = ((StringData *)args[0].p)->value;
     String result;
     size_t argIndex = 1;
 
@@ -1283,23 +1183,23 @@ static Value *strFormat(Context *ctx, const List<Value *>& args)
                     ctx->throwException(createException(ExcType::ValueError, "Unable to get argument for format thingy."));
                 }
 
-                Value *v = args[argIndex++];
+                Value v = args[argIndex++];
 
-                switch (v->type)
+                switch (v.type)
                 {
                 case ValueType::Int:
                 {
-                    result.append(String::formatValue((long long int)((IntValue *)v)->value));
+                    result.append(String::formatValue((long long int)v.i));
                     break;
                 }
                 case ValueType::Float:
                 {
-                    result.append(String::format("%.2f", ((FloatValue *)v)->value));
+                    result.append(String::format("%.2f", v.f));
                     break;
                 }
                 case ValueType::Boolean:
                 {
-                    result.append(((BooleanValue *)v)->value ? "true" : "false");
+                    result.append(v.b ? "true" : "false");
                     break;
                 }
                 case ValueType::Nil:
@@ -1319,7 +1219,7 @@ static Value *strFormat(Context *ctx, const List<Value *>& args)
                 }
                 case ValueType::StringType:
                 {
-                    result.append(((StringValue *)v)->value);
+                    result.append(((StringData *)v.p)->value);
                     break;
                 }
                 case ValueType::NativeFunction:
@@ -1352,20 +1252,20 @@ static Value *strFormat(Context *ctx, const List<Value *>& args)
     return createString(result);
 }
 
-Value *getMember(Context *ctx, Value *val, Value *key)
+Value getMember(Context *ctx, const Value& val, const Value& key)
 {
-    switch (val->type)
+    switch (val.type)
     {
     case ValueType::Object:
     {
-        if (key->type != ValueType::StringType)
+        if (key.type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
 
-        HashMap<String, Value *> members = ((ObjectValue *)val)->members;
+        const HashMap<String, Value>& members = ((ObjectData *)val.p)->members;
 
-        String keyStr = ((StringValue *)key)->value;
+        String keyStr = ((StringData *)key.p)->value;
         auto pos = members.find(keyStr);
 
         if (pos == members.end())
@@ -1377,9 +1277,9 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     }
     case ValueType::StringType:
     {
-        if (key->type == ValueType::Int or key->type == ValueType::Float)
+        if (key.type == ValueType::Int or key.type == ValueType::Float)
         {
-            String str = ((StringValue *)val)->value;
+            String str = ((StringData *)val.p)->value;
 
             size_t index = toIndex(ctx, key);
 
@@ -1389,9 +1289,9 @@ Value *getMember(Context *ctx, Value *val, Value *key)
             }
 
             return createString(String(str[index]));
-        } else if (key->type == ValueType::StringType)
+        } else if (key.type == ValueType::StringType)
         {
-            String keyStr = ((StringValue *)key)->value;
+            String keyStr = ((StringData *)key.p)->value;
 
             if (keyStr == "__eq__")
             {
@@ -1401,7 +1301,7 @@ Value *getMember(Context *ctx, Value *val, Value *key)
                 return createNativeFunction(strNotEqual);
             } else if (keyStr == "length")
             {
-                return createInt(((StringValue *)val)->value.getLength());
+                return createInt(((StringData *)val.p)->value.getLength());
             } else if (keyStr == "append")
             {
                 return createNativeFunction(strAppend);
@@ -1443,19 +1343,18 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     }
     case ValueType::NativeObject:
     {
-        NativeObject *obj = (NativeObject *)val;
-
-        return obj->funcs.getMember(ctx, obj, key);
+        NativeObjectData *obj = (NativeObjectData *)val.p;
+        return obj->funcs.getMember(ctx, val, key);
     }
     case ValueType::Exception:
     {
-        if (key->type != ValueType::StringType)
+        if (key.type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
 
-        String name = ((StringValue *)key)->value;
-        ExceptionValue *exc = (ExceptionValue *)val;
+        String name = ((StringData *)key.p)->value;
+        ExceptionData *exc = (ExceptionData *)val.p;
 
         if (name == "type")
         {
@@ -1495,20 +1394,20 @@ Value *getMember(Context *ctx, Value *val, Value *key)
     SDL_assert_release(false);
 }
 
-void setMember(Context *ctx, Value *dest, Value *key, Value *value)
+void setMember(Context *ctx, const Value& dest, const Value& key, const Value& value)
 {
-    switch (dest->type)
+    switch (dest.type)
     {
     case ValueType::Object:
     {
-        if (key->type != ValueType::StringType)
+        if (key.type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "Member names must be String."));
         }
 
-        HashMap<String, Value *>& members = ((ObjectValue *)dest)->members;
+        HashMap<String, Value>& members = ((ObjectData *)dest.p)->members;
 
-        String name = ((StringValue *)key)->value;
+        String name = ((StringData *)key.p)->value;
 
         auto pos = members.find(name);
         if (pos != members.end())
@@ -1521,18 +1420,18 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
     }
     case ValueType::StringType:
     {
-        if (value->type != ValueType::StringType)
+        if (value.type != ValueType::StringType)
         {
             ctx->throwException(createException(ExcType::TypeError, "A string's character can only be set as a String."));
         } else
         {
-            if (((StringValue *)value)->value.getLength() != 1)
+            if (((StringData *)value.p)->value.getLength() != 1)
             {
                 ctx->throwException(createException(ExcType::ValueError, "String must of length 1."));
             }
         }
 
-        String str = ((StringValue *)dest)->value;
+        String str = ((StringData *)dest.p)->value;
 
         size_t index = toIndex(ctx, key);
 
@@ -1541,14 +1440,13 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
             ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
         }
 
-        str[index] = ((StringValue *)value)->value[0];
+        str[index] = ((StringData *)value.p)->value[0];
         return;
     }
     case ValueType::NativeObject:
     {
-        NativeObject *obj = (NativeObject *)dest;
-
-        obj->funcs.setMember(ctx, obj, key, value);
+        NativeObjectData *obj = (NativeObjectData *)dest.p;
+        obj->funcs.setMember(ctx, dest, key, value);
         return;
     }
     default:
@@ -1560,23 +1458,22 @@ void setMember(Context *ctx, Value *dest, Value *key, Value *value)
     SDL_assert_release(false);
 }
 
-Value *call(Context *ctx, Value *value, const List<Value *>& args)
+Value call(Context *ctx, const Value& value, const List<Value>& args)
 {
-    switch (value->type)
+    switch (value.type)
     {
     case ValueType::Function:
     {
-        return ctx->run(((FunctionValue *)value)->bytecode, args);
+        return ctx->run(((FunctionData *)value.p)->bytecode, args);
     }
     case ValueType::NativeFunction:
     {
-        return ((NativeFunction *)value)->func(ctx, args);
+        return value.func(ctx, args);
     }
     case ValueType::Object:
     case ValueType::NativeObject:
     {
-        Value *result = callMethod(ctx, value, "__call__", args);
-        return result;
+        return callMethod(ctx, value, "__call__", args);
     }
     default:
     {
@@ -1587,18 +1484,18 @@ Value *call(Context *ctx, Value *value, const List<Value *>& args)
     SDL_assert_release(false);
 }
 
-Value *callMethod(Context *ctx, Value *obj, const String& methName, const List<Value *>& args)
+Value callMethod(Context *ctx, const Value& obj, const String& methName, const List<Value>& args)
 {
-    List<Value *> args_;
+    List<Value> args_;
 
     args_.append(obj);
     args_.append(args);
 
-    Value *nameHead = createString(methName);
+    Value nameHead = createString(methName);
 
-    Value *funcHead = getMember(ctx, obj, nameHead);
+    Value funcHead = getMember(ctx, obj, nameHead);
 
-    Value *result = call(ctx, funcHead, args_);
+    Value result = call(ctx, funcHead, args_);
 
     destroy(ctx, funcHead);
     destroy(ctx, nameHead);
@@ -1606,20 +1503,20 @@ Value *callMethod(Context *ctx, Value *obj, const String& methName, const List<V
     return result;
 }
 
-bool isInstance(Context *ctx, Value *obj, Value *type)
+bool isInstance(Context *ctx, const Value& obj, const Value& type)
 {
-    if (obj->type != type->type)
+    if (obj.type != type.type)
     {
         return false;
     }
 
-    if (obj->type == ValueType::NativeObject)
+    if (obj.type == ValueType::NativeObject and type.type == ValueType::NativeObject)
     {
-        return ((NativeObject *)obj)->typeID == ((NativeObject *)type)->typeID;
-    } else if (obj->type == ValueType::Object)
+        return ((NativeObjectData *)obj.p)->typeID == ((NativeObjectData *)type.p)->typeID;
+    } else if (obj.type == ValueType::Object)
     {
-        HashMap<String, Value *> objMembers = ((ObjectValue *)obj)->members;
-        HashMap<String, Value *> typeMembers = ((ObjectValue *)type)->members;
+        HashMap<String, Value> objMembers = ((ObjectData *)obj.p)->members;
+        HashMap<String, Value> typeMembers = ((ObjectData *)type.p)->members;
 
         auto pos1 = objMembers.find("__classTypeID__");
         auto pos2 = typeMembers.find("__typeID__");
@@ -1629,15 +1526,15 @@ bool isInstance(Context *ctx, Value *obj, Value *type)
             return false;
         }
 
-        Value *id1 = pos1->second;
-        Value *id2 = pos2->second;
+        const Value& id1 = pos1->second;
+        const Value& id2 = pos2->second;
 
-        if (id1->type != ValueType::Int or id2->type != ValueType::Int)
+        if (id1.type != ValueType::Int or id2.type != ValueType::Int)
         {
             ctx->throwException(createException(ExcType::TypeError, "Type IDs must be integers."));
         }
 
-        return ((IntValue *)id1) == ((IntValue *)id2);
+        return id1.i == id2.i;
     } else
     {
         return false;

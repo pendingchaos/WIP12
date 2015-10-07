@@ -373,7 +373,7 @@ static void printAST(size_t indent, scripting::ASTNode *node)
 }
 
 ScriptInstance::ScriptInstance(Script *script_,
-                               scripting::Value *obj_,
+                               const scripting::Value& obj_,
                                Entity *entity_,
                                Scene *scene_) : script(script_->copyRef<Script>()),
                                                 obj(obj_),
@@ -392,20 +392,20 @@ void ScriptInstance::method(const String& name)
 {
     scripting::Context *ctx = script->getContext();
 
-    if (obj != nullptr)
+    if (obj.type != scripting::ValueType::Nil)
     {
         try
         {
-            scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, List<scripting::Value *>()));
+            scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, List<scripting::Value>()));
         } catch (scripting::UnhandledExcException& e)
         {
-            scripting::Value *exc = e.getException();
+            scripting::Value exc = e.getException();
 
             log("Unhandled script exception in %s\n", script->getFilename().getData());
 
-            if (exc->type == scripting::ValueType::Exception)
+            if (exc.type == scripting::ValueType::Exception)
             {
-                log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+                log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
             }
             std::exit(1);
         }
@@ -416,11 +416,11 @@ void ScriptInstance::method(const String& name, float timestep)
 {
     scripting::Context *ctx = script->getContext();
 
-    if (obj != nullptr)
+    if (obj.type != scripting::ValueType::Nil)
     {
-        scripting::Value *arg = scripting::createFloat(timestep);
+        scripting::Value arg = scripting::createFloat(timestep);
 
-        List<scripting::Value *> args;
+        List<scripting::Value> args;
         args.append(arg);
 
         try
@@ -428,13 +428,13 @@ void ScriptInstance::method(const String& name, float timestep)
             scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, args));
         } catch (scripting::UnhandledExcException& e)
         {
-            scripting::Value *exc = e.getException();
+            scripting::Value exc = e.getException();
 
             log("Unhandled script exception in %s\n", script->getFilename().getData());
 
-            if (exc->type == scripting::ValueType::Exception)
+            if (exc.type == scripting::ValueType::Exception)
             {
-                log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+                log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
             }
         }
 
@@ -444,10 +444,10 @@ void ScriptInstance::method(const String& name, float timestep)
 
 void ScriptInstance::destroy()
 {
-    if (obj != nullptr)
+    if (obj.type != scripting::ValueType::Nil)
     {
         scripting::destroy(script->getContext(), obj);
-        obj = nullptr;
+        obj = scripting::createNil();
     }
 }
 
@@ -538,17 +538,17 @@ void Script::_load()
 
         try
         {
-            class_ = context->run(code, List<scripting::Value *>());
+            class_ = context->run(code, List<scripting::Value>());
         } catch (scripting::UnhandledExcException& e)
         {
-            scripting::Value *exc = e.getException();
+            scripting::Value exc = e.getException();
 
-            if (exc->type == scripting::ValueType::Exception)
+            if (exc.type == scripting::ValueType::Exception)
             {
                 THROW(ResourceIOException,
                       "script",
                       getFilename(),
-                      ((scripting::ExceptionValue *)exc)->error.getData());
+                      ((scripting::ExceptionData *)exc.p)->error.getData());
             } else
             {
                 THROW(ResourceIOException,
@@ -567,7 +567,7 @@ ScriptInstance *Script::createInstance(Entity *entity, Scene *scene)
         scene = entity->getScene();
     }
 
-    List<scripting::Value *> args;
+    List<scripting::Value> args;
 
     if (entity != nullptr)
     {
@@ -584,16 +584,16 @@ ScriptInstance *Script::createInstance(Entity *entity, Scene *scene)
         result = NEW(ScriptInstance, this, scripting::call(context, class_, args), entity, scene);
     } catch (scripting::UnhandledExcException& e)
     {
-        scripting::Value *exc = e.getException();
+        scripting::Value exc = e.getException();
 
         log("Unhandled script exception in %s\n", getFilename().getData());
 
-        if (exc->type == scripting::ValueType::Exception)
+        if (exc.type == scripting::ValueType::Exception)
         {
-            log("    %s\n", ((scripting::ExceptionValue *)exc)->error.getData());
+            log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
         }
 
-        result = NEW(ScriptInstance, this, nullptr, entity, scene);
+        result = NEW(ScriptInstance, this, scripting::createNil(), entity, scene);
     }
 
     instances.append(result);

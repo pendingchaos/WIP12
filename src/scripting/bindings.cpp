@@ -57,7 +57,6 @@
 #include "containers/hashmap.h"
 #include "containers/list.h"
 #include "containers/string.h"
-#include "scripting/script_old.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
@@ -88,13 +87,13 @@
 struct BindingsExt
 {
     int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value *GhostObject, *StrStrMap, *GfxApi, *GfxCompiledShader, *ScrollBar, *GhostObjList, *GPUTimer, *RigidBody, *UInt2, *LightList, *RenderStats, *Filesystem, *ResourceManager, *Entity, *GfxRenderer, *Float2, *GfxFramebuffer, *Font, *Event, *PhysicsWorld, *Stats, *AudioSource, *Script, *RayCastResultList, *Platform, *Camera, *GfxMesh, *Resource, *GfxShader, *Light, *TextureSampler, *Scene, *Int3, *ResizableData, *Int4, *Float3, *GfxBuffer, *Transform, *AudioSourceList, *GfxMaterial, *Quaternion, *GfxMeshAttrib, *ScriptInstance, *RenderComponent, *Int2, *AudioWorld, *GuiPlacer, *ImGui, *StringList, *Application, *LightPointData, *Float4, *FloatList, *Container, *LightDirectionalData, *Matrix4x4, *Map, *ScriptInstanceList, *UInt3, *LightSpotData, *PhysicsShape, *AudioDevice, *RigidBodyList, *UInt4, *RayCastResult, *GfxLOD, *File, *AABB, *RigidBodyConstructionInfo, *List, *Audio, *GfxTexture, *GfxSubModelList, *GfxModel, *GfxLODList, *EntityList, *GfxShaderCombination, *Matrix3x3, *GfxDebugDrawer, *Key, *MouseButton, *EventType, *FileOrigin, *ResType, *GfxTextureType, *GfxFilter, *GfxMipmapMode, *GfxWrapMode, *GfxTexFormat, *GfxFace, *GfxBufferUsage, *GfxShaderType, *GfxPrimitive, *GfxDepthFunction, *GfxBlendMode, *GfxBlendFactor, *GfxCullMode, *GfxWinding, *GfxVertexAttribPurpose, *GfxVertexAttribType, *GfxMeshIndexDataType, *GfxMeshAttribType, *GfxMeshAttribDataType, *XOrigin, *GfxShadowmapPrecision, *GfxLightType, *GfxDriver, *CameraType, *Axis, *RigidBodyType, *PhysicsObjectType, *RenderMode;
+    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, ImGui, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, ScriptInstanceList, UInt3, LightSpotData, PhysicsShape, AudioDevice, RigidBodyList, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
 };
 
 
 #define CATE ctx->throwException(scripting::createException
-#define SV scripting::Value*
-#define NO scripting::NativeObject*
+#define SV scripting::Value
+#define NO scripting::NativeObjectData*
 #define CV(expr) create_val<std::remove_const<std::remove_reference<decltype(expr)>::type>::type>::f(ctx, expr)
 #define TS(expr, ...) type_same<std::remove_reference<__VA_ARGS__>::type>::f(ctx, expr)
 #define VE scripting::ExcType::ValueError
@@ -115,7 +114,7 @@ struct BindingsExt
 template <typename T>
 struct val_to_c {};
 
-#define VAL_TO_C_INT(T, T2, min, max) template <>struct val_to_c<T2>{    static T f(scripting::Context *ctx, const SV head)    {        int64_t v;                if (head->type == scripting::ValueType::Int)        {            v = ((scripting::IntValue *)head)->value;        } else if (head->type == scripting::ValueType::Float)        {            v = ((scripting::FloatValue *)head)->value;        } else        {            CATE(scripting::ExcType::TypeError, "Value can not be converted to int."));        }                if (v < min or v > max)        {            CATE(scripting::ExcType::TypeError, "Value out of bounds."));        }                return v;    }};
+#define VAL_TO_C_INT(T, T2, min, max) template <>struct val_to_c<T2>{    static T f(scripting::Context *ctx, const SV& val)    {        int64_t v;                if (val.type == scripting::ValueType::Int)        {            v = val.i;        } else if (val.type == scripting::ValueType::Float)        {            v = val.f;        } else        {            CATE(scripting::ExcType::TypeError, "Value can not be converted to int."));        }                if (v < min or v > max)        {            CATE(scripting::ExcType::TypeError, "Value out of bounds."));        }                return v;    }};
 
 VAL_TO_C_INT(uint8_t, uint8_t, 0, UINT8_MAX)
 VAL_TO_C_INT(int8_t, int8_t, INT8_MIN, INT8_MAX)
@@ -137,14 +136,14 @@ VAL_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
 template <>
 struct val_to_c<float>
 {
-    static float f(scripting::Context *ctx, const SV head)
+    static float f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::Int)
+        if (val.type == scripting::ValueType::Int)
         {
-            return (float)((scripting::IntValue *)head)->value;
-        } else if (head->type == scripting::ValueType::Float)
+            return val.i;
+        } else if (val.type == scripting::ValueType::Float)
         {
-            return (float)((scripting::FloatValue *)head)->value;
+            return val.f;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
@@ -155,14 +154,14 @@ struct val_to_c<float>
 template <>
 struct val_to_c<double>
 {
-    static double f(scripting::Context *ctx, const SV head)
+    static double f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::Int)
+        if (val.type == scripting::ValueType::Int)
         {
-            return ((scripting::IntValue *)head)->value;
-        } else if (head->type == scripting::ValueType::Float)
+            return val.i;
+        } else if (val.type == scripting::ValueType::Float)
         {
-            return ((scripting::FloatValue *)head)->value;
+            return val.f;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
@@ -173,11 +172,11 @@ struct val_to_c<double>
 template <>
 struct val_to_c<bool>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::Boolean)
+        if (val.type == scripting::ValueType::Boolean)
         {
-            return ((scripting::BooleanValue *)head)->value;
+            return val.b;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to bool."));
@@ -188,11 +187,11 @@ struct val_to_c<bool>
 template <>
 struct val_to_c<String>
 {
-    static String f(scripting::Context *ctx, const SV head)
+    static String f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringValue *)head)->value;
+            return ((scripting::StringData *)val.p)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -203,11 +202,11 @@ struct val_to_c<String>
 template <>
 struct val_to_c<const String>
 {
-    static const String f(scripting::Context *ctx, const SV head)
+    static const String f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringValue *)head)->value;
+            return ((scripting::StringData *)val.p)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -218,11 +217,11 @@ struct val_to_c<const String>
 template <>
 struct val_to_c<const char *>
 {
-    static const char *f(scripting::Context *ctx, const SV head)
+    static const char *f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringValue *)head)->value.getData();
+            return ((scripting::StringData *)val.p)->value.getData();
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -233,13 +232,13 @@ struct val_to_c<const char *>
 template <>
 struct val_to_c<char>
 {
-    static char f(scripting::Context *ctx, const SV head)
+    static char f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            if (((scripting::StringValue *)head)->value.getLength() == 1)
+            if (((scripting::StringData *)val.p)->value.getLength() == 1)
             {
-                return ((scripting::StringValue *)head)->value[0];
+                return ((scripting::StringData *)val.p)->value[0];
             } else
             {
                 CATE(scripting::ExcType::ValueError, "Value can not be converted to character."));
@@ -254,35 +253,35 @@ struct val_to_c<char>
 template <>
 struct val_to_c<SV>
 {
-    static SV f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
 template <>
 struct val_to_c<const SV>
 {
-    static SV f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
 template <>
 struct val_to_c<const SV&>
 {
-    static SV f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
 template <typename T>
 struct val_to_c<const T&> {
-    static T f(scripting::Context *ctx, const SV head)
+    static T f(scripting::Context *ctx, const SV& val)
     {
-        return val_to_c<T>::f(ctx, head);
+        return val_to_c<T>::f(ctx, val);
     }
 };
 
@@ -294,9 +293,9 @@ struct create_val {};
 template <>
 struct create_val<SV>
 {
-    static scripting::Value *f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
@@ -346,25 +345,25 @@ struct type_same;
 template <typename T>
 struct type_same<const T&>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        return type_same<T>::f(ctx, head);
+        return type_same<T>::f(ctx, val);
     }
 };
 
 template <typename T>
 struct type_same<const T>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        return type_same<T>::f(ctx, head);
+        return type_same<T>::f(ctx, val);
     }
 };
 
 template <>
 struct type_same<SV>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
         return true;
     }
@@ -373,7 +372,7 @@ struct type_same<SV>
 template <>
 struct type_same<const SV&>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
         return true;
     }
@@ -382,7 +381,7 @@ struct type_same<const SV&>
 template <>
 struct type_same<const SV>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
         return true;
     }
@@ -391,11 +390,11 @@ struct type_same<const SV>
 template <>
 struct type_same<char>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((const scripting::StringValue *)head)->value.getLength() == 1;
+            return ((const scripting::StringData *)val.p)->value.getLength() == 1;
         } else
         {
             return false;
@@ -403,7 +402,7 @@ struct type_same<char>
     }
 };
 
-#define TYPE_SAME_HELPER(T, enumValue) template <>struct type_same<T>{    static bool f(scripting::Context *ctx, const SV head)    {        return head->type == scripting::ValueType::enumValue;    }};
+#define TYPE_SAME_HELPER(T, enumValue) template <>struct type_same<T>{    static bool f(scripting::Context *ctx, const SV& val)    {        return val.type == scripting::ValueType::enumValue;    }};
 
 TYPE_SAME_HELPER(uint8_t, Int)
 TYPE_SAME_HELPER(int8_t, Int)
@@ -420,11 +419,11 @@ TYPE_SAME_HELPER(String, StringType)
 TYPE_SAME_HELPER(const char *, StringType)
 
 template <typename T>
-T *own(scripting::Context *ctx, SV value)
+T *own(scripting::Context *ctx, const SV& value)
 {
     if (type_same<T *>::f(ctx, value))
     {
-        void *ptr = ((NO)value)->data;
+        void *ptr = ((NO)value.p)->data;
         AllocInfo i = getAllocInfo(ptr);
         i.cppRef = true;
         setAllocInfo(ptr, i);
@@ -434,9 +433,9 @@ T *own(scripting::Context *ctx, SV value)
 
     CATE(scripting::ExcType::TypeError, "Argument's value can not be converted."));
 }
-void Key_destroy(CTX,NO) {}
-SV Key_get_member(CTX,NO,SV);
-void Key_set_member(CTX,NO,SV,SV);
+void Key_destroy(CTX,const SV&) {}
+SV Key_get_member(CTX,const SV&,const SV&);
+void Key_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Key_funcs={
 .destroy = Key_destroy,
 .getMember = Key_get_member,
@@ -453,12 +452,12 @@ RET STG::createNativeObject(Key_funcs,(void *)v,EXT->Key_typeID);
 template <>
 struct val_to_c<Key>
 {
-static Key f(CTX ctx,const SV head)
+static Key f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to Key."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->Key_typeID)
 CATE(TE,"Value can not be converted to Key."));
 size_t v=size_t(obj->data);
@@ -552,16 +551,16 @@ if(v==288)return Key::RightShift;
 template <>
 struct type_same<Key>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Key_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Key_typeID;
 else
  RET false;
 }
-};void MouseButton_destroy(CTX,NO) {}
-SV MouseButton_get_member(CTX,NO,SV);
-void MouseButton_set_member(CTX,NO,SV,SV);
+};void MouseButton_destroy(CTX,const SV&) {}
+SV MouseButton_get_member(CTX,const SV&,const SV&);
+void MouseButton_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs MouseButton_funcs={
 .destroy = MouseButton_destroy,
 .getMember = MouseButton_get_member,
@@ -578,12 +577,12 @@ RET STG::createNativeObject(MouseButton_funcs,(void *)v,EXT->MouseButton_typeID)
 template <>
 struct val_to_c<MouseButton>
 {
-static MouseButton f(CTX ctx,const SV head)
+static MouseButton f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to MouseButton."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->MouseButton_typeID)
 CATE(TE,"Value can not be converted to MouseButton."));
 size_t v=size_t(obj->data);
@@ -596,16 +595,16 @@ if(v==0)return MouseButton::Left;
 template <>
 struct type_same<MouseButton>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->MouseButton_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->MouseButton_typeID;
 else
  RET false;
 }
-};void EventType_destroy(CTX,NO) {}
-SV EventType_get_member(CTX,NO,SV);
-void EventType_set_member(CTX,NO,SV,SV);
+};void EventType_destroy(CTX,const SV&) {}
+SV EventType_get_member(CTX,const SV&,const SV&);
+void EventType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs EventType_funcs={
 .destroy = EventType_destroy,
 .getMember = EventType_get_member,
@@ -622,12 +621,12 @@ RET STG::createNativeObject(EventType_funcs,(void *)v,EXT->EventType_typeID);
 template <>
 struct val_to_c<EventType>
 {
-static EventType f(CTX ctx,const SV head)
+static EventType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to EventType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->EventType_typeID)
 CATE(TE,"Value can not be converted to EventType."));
 size_t v=size_t(obj->data);
@@ -645,16 +644,16 @@ if(v==6)return EventType::MouseButtonUp;
 template <>
 struct type_same<EventType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->EventType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->EventType_typeID;
 else
  RET false;
 }
-};void FileOrigin_destroy(CTX,NO) {}
-SV FileOrigin_get_member(CTX,NO,SV);
-void FileOrigin_set_member(CTX,NO,SV,SV);
+};void FileOrigin_destroy(CTX,const SV&) {}
+SV FileOrigin_get_member(CTX,const SV&,const SV&);
+void FileOrigin_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs FileOrigin_funcs={
 .destroy = FileOrigin_destroy,
 .getMember = FileOrigin_get_member,
@@ -671,12 +670,12 @@ RET STG::createNativeObject(FileOrigin_funcs,(void *)v,EXT->FileOrigin_typeID);
 template <>
 struct val_to_c<FileOrigin>
 {
-static FileOrigin f(CTX ctx,const SV head)
+static FileOrigin f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to FileOrigin."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->FileOrigin_typeID)
 CATE(TE,"Value can not be converted to FileOrigin."));
 size_t v=size_t(obj->data);
@@ -688,16 +687,16 @@ if(v==2)return FileOrigin::End;
 template <>
 struct type_same<FileOrigin>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->FileOrigin_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->FileOrigin_typeID;
 else
  RET false;
 }
-};void ResType_destroy(CTX,NO) {}
-SV ResType_get_member(CTX,NO,SV);
-void ResType_set_member(CTX,NO,SV,SV);
+};void ResType_destroy(CTX,const SV&) {}
+SV ResType_get_member(CTX,const SV&,const SV&);
+void ResType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ResType_funcs={
 .destroy = ResType_destroy,
 .getMember = ResType_get_member,
@@ -714,12 +713,12 @@ RET STG::createNativeObject(ResType_funcs,(void *)v,EXT->ResType_typeID);
 template <>
 struct val_to_c<ResType>
 {
-static ResType f(CTX ctx,const SV head)
+static ResType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to ResType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->ResType_typeID)
 CATE(TE,"Value can not be converted to ResType."));
 size_t v=size_t(obj->data);
@@ -738,16 +737,16 @@ if(v==5)return ResType::SceneType;
 template <>
 struct type_same<ResType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResType_typeID;
 else
  RET false;
 }
-};void GfxTextureType_destroy(CTX,NO) {}
-SV GfxTextureType_get_member(CTX,NO,SV);
-void GfxTextureType_set_member(CTX,NO,SV,SV);
+};void GfxTextureType_destroy(CTX,const SV&) {}
+SV GfxTextureType_get_member(CTX,const SV&,const SV&);
+void GfxTextureType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxTextureType_funcs={
 .destroy = GfxTextureType_destroy,
 .getMember = GfxTextureType_get_member,
@@ -764,12 +763,12 @@ RET STG::createNativeObject(GfxTextureType_funcs,(void *)v,EXT->GfxTextureType_t
 template <>
 struct val_to_c<GfxTextureType>
 {
-static GfxTextureType f(CTX ctx,const SV head)
+static GfxTextureType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxTextureType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxTextureType_typeID)
 CATE(TE,"Value can not be converted to GfxTextureType."));
 size_t v=size_t(obj->data);
@@ -782,16 +781,16 @@ if(v==0)return GfxTextureType::Texture2D;
 template <>
 struct type_same<GfxTextureType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTextureType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxTextureType_typeID;
 else
  RET false;
 }
-};void GfxFilter_destroy(CTX,NO) {}
-SV GfxFilter_get_member(CTX,NO,SV);
-void GfxFilter_set_member(CTX,NO,SV,SV);
+};void GfxFilter_destroy(CTX,const SV&) {}
+SV GfxFilter_get_member(CTX,const SV&,const SV&);
+void GfxFilter_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxFilter_funcs={
 .destroy = GfxFilter_destroy,
 .getMember = GfxFilter_get_member,
@@ -808,12 +807,12 @@ RET STG::createNativeObject(GfxFilter_funcs,(void *)v,EXT->GfxFilter_typeID);
 template <>
 struct val_to_c<GfxFilter>
 {
-static GfxFilter f(CTX ctx,const SV head)
+static GfxFilter f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxFilter."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxFilter_typeID)
 CATE(TE,"Value can not be converted to GfxFilter."));
 size_t v=size_t(obj->data);
@@ -824,16 +823,16 @@ if(v==0)return GfxFilter::Nearest;
 template <>
 struct type_same<GfxFilter>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFilter_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxFilter_typeID;
 else
  RET false;
 }
-};void GfxMipmapMode_destroy(CTX,NO) {}
-SV GfxMipmapMode_get_member(CTX,NO,SV);
-void GfxMipmapMode_set_member(CTX,NO,SV,SV);
+};void GfxMipmapMode_destroy(CTX,const SV&) {}
+SV GfxMipmapMode_get_member(CTX,const SV&,const SV&);
+void GfxMipmapMode_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMipmapMode_funcs={
 .destroy = GfxMipmapMode_destroy,
 .getMember = GfxMipmapMode_get_member,
@@ -850,12 +849,12 @@ RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)v,EXT->GfxMipmapMode_typ
 template <>
 struct val_to_c<GfxMipmapMode>
 {
-static GfxMipmapMode f(CTX ctx,const SV head)
+static GfxMipmapMode f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxMipmapMode."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxMipmapMode_typeID)
 CATE(TE,"Value can not be converted to GfxMipmapMode."));
 size_t v=size_t(obj->data);
@@ -867,16 +866,16 @@ if(v==2)return GfxMipmapMode::Linear;
 template <>
 struct type_same<GfxMipmapMode>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMipmapMode_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMipmapMode_typeID;
 else
  RET false;
 }
-};void GfxWrapMode_destroy(CTX,NO) {}
-SV GfxWrapMode_get_member(CTX,NO,SV);
-void GfxWrapMode_set_member(CTX,NO,SV,SV);
+};void GfxWrapMode_destroy(CTX,const SV&) {}
+SV GfxWrapMode_get_member(CTX,const SV&,const SV&);
+void GfxWrapMode_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxWrapMode_funcs={
 .destroy = GfxWrapMode_destroy,
 .getMember = GfxWrapMode_get_member,
@@ -893,12 +892,12 @@ RET STG::createNativeObject(GfxWrapMode_funcs,(void *)v,EXT->GfxWrapMode_typeID)
 template <>
 struct val_to_c<GfxWrapMode>
 {
-static GfxWrapMode f(CTX ctx,const SV head)
+static GfxWrapMode f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxWrapMode."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxWrapMode_typeID)
 CATE(TE,"Value can not be converted to GfxWrapMode."));
 size_t v=size_t(obj->data);
@@ -910,16 +909,16 @@ if(v==2)return GfxWrapMode::Mirror;
 template <>
 struct type_same<GfxWrapMode>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxWrapMode_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxWrapMode_typeID;
 else
  RET false;
 }
-};void GfxTexFormat_destroy(CTX,NO) {}
-SV GfxTexFormat_get_member(CTX,NO,SV);
-void GfxTexFormat_set_member(CTX,NO,SV,SV);
+};void GfxTexFormat_destroy(CTX,const SV&) {}
+SV GfxTexFormat_get_member(CTX,const SV&,const SV&);
+void GfxTexFormat_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxTexFormat_funcs={
 .destroy = GfxTexFormat_destroy,
 .getMember = GfxTexFormat_get_member,
@@ -936,12 +935,12 @@ RET STG::createNativeObject(GfxTexFormat_funcs,(void *)v,EXT->GfxTexFormat_typeI
 template <>
 struct val_to_c<GfxTexFormat>
 {
-static GfxTexFormat f(CTX ctx,const SV head)
+static GfxTexFormat f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxTexFormat."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxTexFormat_typeID)
 CATE(TE,"Value can not be converted to GfxTexFormat."));
 size_t v=size_t(obj->data);
@@ -1021,16 +1020,16 @@ if(v==5)return GfxTexFormat::AlphaF32_F16;
 template <>
 struct type_same<GfxTexFormat>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexFormat_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxTexFormat_typeID;
 else
  RET false;
 }
-};void GfxFace_destroy(CTX,NO) {}
-SV GfxFace_get_member(CTX,NO,SV);
-void GfxFace_set_member(CTX,NO,SV,SV);
+};void GfxFace_destroy(CTX,const SV&) {}
+SV GfxFace_get_member(CTX,const SV&,const SV&);
+void GfxFace_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxFace_funcs={
 .destroy = GfxFace_destroy,
 .getMember = GfxFace_get_member,
@@ -1047,12 +1046,12 @@ RET STG::createNativeObject(GfxFace_funcs,(void *)v,EXT->GfxFace_typeID);
 template <>
 struct val_to_c<GfxFace>
 {
-static GfxFace f(CTX ctx,const SV head)
+static GfxFace f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxFace."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxFace_typeID)
 CATE(TE,"Value can not be converted to GfxFace."));
 size_t v=size_t(obj->data);
@@ -1067,16 +1066,16 @@ if(v==3)return GfxFace::NegativeY;
 template <>
 struct type_same<GfxFace>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFace_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxFace_typeID;
 else
  RET false;
 }
-};void GfxBufferUsage_destroy(CTX,NO) {}
-SV GfxBufferUsage_get_member(CTX,NO,SV);
-void GfxBufferUsage_set_member(CTX,NO,SV,SV);
+};void GfxBufferUsage_destroy(CTX,const SV&) {}
+SV GfxBufferUsage_get_member(CTX,const SV&,const SV&);
+void GfxBufferUsage_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxBufferUsage_funcs={
 .destroy = GfxBufferUsage_destroy,
 .getMember = GfxBufferUsage_get_member,
@@ -1093,12 +1092,12 @@ RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)v,EXT->GfxBufferUsage_t
 template <>
 struct val_to_c<GfxBufferUsage>
 {
-static GfxBufferUsage f(CTX ctx,const SV head)
+static GfxBufferUsage f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxBufferUsage."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxBufferUsage_typeID)
 CATE(TE,"Value can not be converted to GfxBufferUsage."));
 size_t v=size_t(obj->data);
@@ -1110,16 +1109,16 @@ if(v==0)return GfxBufferUsage::Stream;
 template <>
 struct type_same<GfxBufferUsage>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBufferUsage_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxBufferUsage_typeID;
 else
  RET false;
 }
-};void GfxShaderType_destroy(CTX,NO) {}
-SV GfxShaderType_get_member(CTX,NO,SV);
-void GfxShaderType_set_member(CTX,NO,SV,SV);
+};void GfxShaderType_destroy(CTX,const SV&) {}
+SV GfxShaderType_get_member(CTX,const SV&,const SV&);
+void GfxShaderType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxShaderType_funcs={
 .destroy = GfxShaderType_destroy,
 .getMember = GfxShaderType_get_member,
@@ -1136,12 +1135,12 @@ RET STG::createNativeObject(GfxShaderType_funcs,(void *)v,EXT->GfxShaderType_typ
 template <>
 struct val_to_c<GfxShaderType>
 {
-static GfxShaderType f(CTX ctx,const SV head)
+static GfxShaderType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxShaderType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxShaderType_typeID)
 CATE(TE,"Value can not be converted to GfxShaderType."));
 size_t v=size_t(obj->data);
@@ -1156,16 +1155,16 @@ if(v==2)return GfxShaderType::TessEval;
 template <>
 struct type_same<GfxShaderType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShaderType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShaderType_typeID;
 else
  RET false;
 }
-};void GfxPrimitive_destroy(CTX,NO) {}
-SV GfxPrimitive_get_member(CTX,NO,SV);
-void GfxPrimitive_set_member(CTX,NO,SV,SV);
+};void GfxPrimitive_destroy(CTX,const SV&) {}
+SV GfxPrimitive_get_member(CTX,const SV&,const SV&);
+void GfxPrimitive_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxPrimitive_funcs={
 .destroy = GfxPrimitive_destroy,
 .getMember = GfxPrimitive_get_member,
@@ -1182,12 +1181,12 @@ RET STG::createNativeObject(GfxPrimitive_funcs,(void *)v,EXT->GfxPrimitive_typeI
 template <>
 struct val_to_c<GfxPrimitive>
 {
-static GfxPrimitive f(CTX ctx,const SV head)
+static GfxPrimitive f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxPrimitive."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxPrimitive_typeID)
 CATE(TE,"Value can not be converted to GfxPrimitive."));
 size_t v=size_t(obj->data);
@@ -1204,16 +1203,16 @@ if(v==7)return GfxPatches;
 template <>
 struct type_same<GfxPrimitive>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxPrimitive_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxPrimitive_typeID;
 else
  RET false;
 }
-};void GfxDepthFunction_destroy(CTX,NO) {}
-SV GfxDepthFunction_get_member(CTX,NO,SV);
-void GfxDepthFunction_set_member(CTX,NO,SV,SV);
+};void GfxDepthFunction_destroy(CTX,const SV&) {}
+SV GfxDepthFunction_get_member(CTX,const SV&,const SV&);
+void GfxDepthFunction_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxDepthFunction_funcs={
 .destroy = GfxDepthFunction_destroy,
 .getMember = GfxDepthFunction_get_member,
@@ -1230,12 +1229,12 @@ RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)v,EXT->GfxDepthFuncti
 template <>
 struct val_to_c<GfxDepthFunction>
 {
-static GfxDepthFunction f(CTX ctx,const SV head)
+static GfxDepthFunction f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxDepthFunction."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxDepthFunction_typeID)
 CATE(TE,"Value can not be converted to GfxDepthFunction."));
 size_t v=size_t(obj->data);
@@ -1252,16 +1251,16 @@ if(v==5)return GfxNotEqual;
 template <>
 struct type_same<GfxDepthFunction>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDepthFunction_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxDepthFunction_typeID;
 else
  RET false;
 }
-};void GfxBlendMode_destroy(CTX,NO) {}
-SV GfxBlendMode_get_member(CTX,NO,SV);
-void GfxBlendMode_set_member(CTX,NO,SV,SV);
+};void GfxBlendMode_destroy(CTX,const SV&) {}
+SV GfxBlendMode_get_member(CTX,const SV&,const SV&);
+void GfxBlendMode_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxBlendMode_funcs={
 .destroy = GfxBlendMode_destroy,
 .getMember = GfxBlendMode_get_member,
@@ -1278,12 +1277,12 @@ RET STG::createNativeObject(GfxBlendMode_funcs,(void *)v,EXT->GfxBlendMode_typeI
 template <>
 struct val_to_c<GfxBlendMode>
 {
-static GfxBlendMode f(CTX ctx,const SV head)
+static GfxBlendMode f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxBlendMode."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxBlendMode_typeID)
 CATE(TE,"Value can not be converted to GfxBlendMode."));
 size_t v=size_t(obj->data);
@@ -1295,16 +1294,16 @@ if(v==1)return GfxSubtract;
 template <>
 struct type_same<GfxBlendMode>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBlendMode_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxBlendMode_typeID;
 else
  RET false;
 }
-};void GfxBlendFactor_destroy(CTX,NO) {}
-SV GfxBlendFactor_get_member(CTX,NO,SV);
-void GfxBlendFactor_set_member(CTX,NO,SV,SV);
+};void GfxBlendFactor_destroy(CTX,const SV&) {}
+SV GfxBlendFactor_get_member(CTX,const SV&,const SV&);
+void GfxBlendFactor_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxBlendFactor_funcs={
 .destroy = GfxBlendFactor_destroy,
 .getMember = GfxBlendFactor_get_member,
@@ -1321,12 +1320,12 @@ RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)v,EXT->GfxBlendFactor_t
 template <>
 struct val_to_c<GfxBlendFactor>
 {
-static GfxBlendFactor f(CTX ctx,const SV head)
+static GfxBlendFactor f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxBlendFactor."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxBlendFactor_typeID)
 CATE(TE,"Value can not be converted to GfxBlendFactor."));
 size_t v=size_t(obj->data);
@@ -1349,16 +1348,16 @@ if(v==9)return GfxOneMinusDstAlpha;
 template <>
 struct type_same<GfxBlendFactor>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBlendFactor_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxBlendFactor_typeID;
 else
  RET false;
 }
-};void GfxCullMode_destroy(CTX,NO) {}
-SV GfxCullMode_get_member(CTX,NO,SV);
-void GfxCullMode_set_member(CTX,NO,SV,SV);
+};void GfxCullMode_destroy(CTX,const SV&) {}
+SV GfxCullMode_get_member(CTX,const SV&,const SV&);
+void GfxCullMode_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxCullMode_funcs={
 .destroy = GfxCullMode_destroy,
 .getMember = GfxCullMode_get_member,
@@ -1375,12 +1374,12 @@ RET STG::createNativeObject(GfxCullMode_funcs,(void *)v,EXT->GfxCullMode_typeID)
 template <>
 struct val_to_c<GfxCullMode>
 {
-static GfxCullMode f(CTX ctx,const SV head)
+static GfxCullMode f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxCullMode."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxCullMode_typeID)
 CATE(TE,"Value can not be converted to GfxCullMode."));
 size_t v=size_t(obj->data);
@@ -1392,16 +1391,16 @@ if(v==1)return GfxCullFront;
 template <>
 struct type_same<GfxCullMode>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxCullMode_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxCullMode_typeID;
 else
  RET false;
 }
-};void GfxWinding_destroy(CTX,NO) {}
-SV GfxWinding_get_member(CTX,NO,SV);
-void GfxWinding_set_member(CTX,NO,SV,SV);
+};void GfxWinding_destroy(CTX,const SV&) {}
+SV GfxWinding_get_member(CTX,const SV&,const SV&);
+void GfxWinding_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxWinding_funcs={
 .destroy = GfxWinding_destroy,
 .getMember = GfxWinding_get_member,
@@ -1418,12 +1417,12 @@ RET STG::createNativeObject(GfxWinding_funcs,(void *)v,EXT->GfxWinding_typeID);
 template <>
 struct val_to_c<GfxWinding>
 {
-static GfxWinding f(CTX ctx,const SV head)
+static GfxWinding f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxWinding."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxWinding_typeID)
 CATE(TE,"Value can not be converted to GfxWinding."));
 size_t v=size_t(obj->data);
@@ -1434,16 +1433,16 @@ if(v==0)return GfxCW;
 template <>
 struct type_same<GfxWinding>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxWinding_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxWinding_typeID;
 else
  RET false;
 }
-};void GfxVertexAttribPurpose_destroy(CTX,NO) {}
-SV GfxVertexAttribPurpose_get_member(CTX,NO,SV);
-void GfxVertexAttribPurpose_set_member(CTX,NO,SV,SV);
+};void GfxVertexAttribPurpose_destroy(CTX,const SV&) {}
+SV GfxVertexAttribPurpose_get_member(CTX,const SV&,const SV&);
+void GfxVertexAttribPurpose_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxVertexAttribPurpose_funcs={
 .destroy = GfxVertexAttribPurpose_destroy,
 .getMember = GfxVertexAttribPurpose_get_member,
@@ -1460,12 +1459,12 @@ RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)v,EXT->GfxVerte
 template <>
 struct val_to_c<GfxVertexAttribPurpose>
 {
-static GfxVertexAttribPurpose f(CTX ctx,const SV head)
+static GfxVertexAttribPurpose f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxVertexAttribPurpose."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxVertexAttribPurpose_typeID)
 CATE(TE,"Value can not be converted to GfxVertexAttribPurpose."));
 size_t v=size_t(obj->data);
@@ -1479,16 +1478,16 @@ if(v==3)return GfxColor;
 template <>
 struct type_same<GfxVertexAttribPurpose>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxVertexAttribPurpose_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxVertexAttribPurpose_typeID;
 else
  RET false;
 }
-};void GfxVertexAttribType_destroy(CTX,NO) {}
-SV GfxVertexAttribType_get_member(CTX,NO,SV);
-void GfxVertexAttribType_set_member(CTX,NO,SV,SV);
+};void GfxVertexAttribType_destroy(CTX,const SV&) {}
+SV GfxVertexAttribType_get_member(CTX,const SV&,const SV&);
+void GfxVertexAttribType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxVertexAttribType_funcs={
 .destroy = GfxVertexAttribType_destroy,
 .getMember = GfxVertexAttribType_get_member,
@@ -1505,12 +1504,12 @@ RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)v,EXT->GfxVertexAt
 template <>
 struct val_to_c<GfxVertexAttribType>
 {
-static GfxVertexAttribType f(CTX ctx,const SV head)
+static GfxVertexAttribType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxVertexAttribType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxVertexAttribType_typeID)
 CATE(TE,"Value can not be converted to GfxVertexAttribType."));
 size_t v=size_t(obj->data);
@@ -1534,16 +1533,16 @@ if(v==12)return GfxNormalizedUnsignedShort;
 template <>
 struct type_same<GfxVertexAttribType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxVertexAttribType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxVertexAttribType_typeID;
 else
  RET false;
 }
-};void GfxMeshIndexDataType_destroy(CTX,NO) {}
-SV GfxMeshIndexDataType_get_member(CTX,NO,SV);
-void GfxMeshIndexDataType_set_member(CTX,NO,SV,SV);
+};void GfxMeshIndexDataType_destroy(CTX,const SV&) {}
+SV GfxMeshIndexDataType_get_member(CTX,const SV&,const SV&);
+void GfxMeshIndexDataType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMeshIndexDataType_funcs={
 .destroy = GfxMeshIndexDataType_destroy,
 .getMember = GfxMeshIndexDataType_get_member,
@@ -1560,12 +1559,12 @@ RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)v,EXT->GfxMeshInd
 template <>
 struct val_to_c<GfxMeshIndexDataType>
 {
-static GfxMeshIndexDataType f(CTX ctx,const SV head)
+static GfxMeshIndexDataType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxMeshIndexDataType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxMeshIndexDataType_typeID)
 CATE(TE,"Value can not be converted to GfxMeshIndexDataType."));
 size_t v=size_t(obj->data);
@@ -1577,16 +1576,16 @@ if(v==1)return GfxMeshIndexDataType::U16;
 template <>
 struct type_same<GfxMeshIndexDataType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshIndexDataType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMeshIndexDataType_typeID;
 else
  RET false;
 }
-};void GfxMeshAttribType_destroy(CTX,NO) {}
-SV GfxMeshAttribType_get_member(CTX,NO,SV);
-void GfxMeshAttribType_set_member(CTX,NO,SV,SV);
+};void GfxMeshAttribType_destroy(CTX,const SV&) {}
+SV GfxMeshAttribType_get_member(CTX,const SV&,const SV&);
+void GfxMeshAttribType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMeshAttribType_funcs={
 .destroy = GfxMeshAttribType_destroy,
 .getMember = GfxMeshAttribType_get_member,
@@ -1603,12 +1602,12 @@ RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)v,EXT->GfxMeshAttrib
 template <>
 struct val_to_c<GfxMeshAttribType>
 {
-static GfxMeshAttribType f(CTX ctx,const SV head)
+static GfxMeshAttribType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxMeshAttribType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxMeshAttribType_typeID)
 CATE(TE,"Value can not be converted to GfxMeshAttribType."));
 size_t v=size_t(obj->data);
@@ -1624,16 +1623,16 @@ if(v==5)return GfxMeshAttribType::BoneIndex;
 template <>
 struct type_same<GfxMeshAttribType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttribType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMeshAttribType_typeID;
 else
  RET false;
 }
-};void GfxMeshAttribDataType_destroy(CTX,NO) {}
-SV GfxMeshAttribDataType_get_member(CTX,NO,SV);
-void GfxMeshAttribDataType_set_member(CTX,NO,SV,SV);
+};void GfxMeshAttribDataType_destroy(CTX,const SV&) {}
+SV GfxMeshAttribDataType_get_member(CTX,const SV&,const SV&);
+void GfxMeshAttribDataType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMeshAttribDataType_funcs={
 .destroy = GfxMeshAttribDataType_destroy,
 .getMember = GfxMeshAttribDataType_get_member,
@@ -1650,12 +1649,12 @@ RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)v,EXT->GfxMeshAt
 template <>
 struct val_to_c<GfxMeshAttribDataType>
 {
-static GfxMeshAttribDataType f(CTX ctx,const SV head)
+static GfxMeshAttribDataType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxMeshAttribDataType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxMeshAttribDataType_typeID)
 CATE(TE,"Value can not be converted to GfxMeshAttribDataType."));
 size_t v=size_t(obj->data);
@@ -1720,16 +1719,16 @@ if(v==44)return GfxMeshAttribDataType::S16_1Norm;
 template <>
 struct type_same<GfxMeshAttribDataType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttribDataType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMeshAttribDataType_typeID;
 else
  RET false;
 }
-};void XOrigin_destroy(CTX,NO) {}
-SV XOrigin_get_member(CTX,NO,SV);
-void XOrigin_set_member(CTX,NO,SV,SV);
+};void XOrigin_destroy(CTX,const SV&) {}
+SV XOrigin_get_member(CTX,const SV&,const SV&);
+void XOrigin_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs XOrigin_funcs={
 .destroy = XOrigin_destroy,
 .getMember = XOrigin_get_member,
@@ -1746,12 +1745,12 @@ RET STG::createNativeObject(XOrigin_funcs,(void *)v,EXT->XOrigin_typeID);
 template <>
 struct val_to_c<XOrigin>
 {
-static XOrigin f(CTX ctx,const SV head)
+static XOrigin f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to XOrigin."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->XOrigin_typeID)
 CATE(TE,"Value can not be converted to XOrigin."));
 size_t v=size_t(obj->data);
@@ -1762,16 +1761,16 @@ if(v==0)return XOrigin::Left;
 template <>
 struct type_same<XOrigin>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->XOrigin_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->XOrigin_typeID;
 else
  RET false;
 }
-};void GfxShadowmapPrecision_destroy(CTX,NO) {}
-SV GfxShadowmapPrecision_get_member(CTX,NO,SV);
-void GfxShadowmapPrecision_set_member(CTX,NO,SV,SV);
+};void GfxShadowmapPrecision_destroy(CTX,const SV&) {}
+SV GfxShadowmapPrecision_get_member(CTX,const SV&,const SV&);
+void GfxShadowmapPrecision_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxShadowmapPrecision_funcs={
 .destroy = GfxShadowmapPrecision_destroy,
 .getMember = GfxShadowmapPrecision_get_member,
@@ -1788,12 +1787,12 @@ RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)v,EXT->GfxShadow
 template <>
 struct val_to_c<GfxShadowmapPrecision>
 {
-static GfxShadowmapPrecision f(CTX ctx,const SV head)
+static GfxShadowmapPrecision f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxShadowmapPrecision."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxShadowmapPrecision_typeID)
 CATE(TE,"Value can not be converted to GfxShadowmapPrecision."));
 size_t v=size_t(obj->data);
@@ -1805,16 +1804,16 @@ if(v==0)return GfxShadowmapPrecision::Low;
 template <>
 struct type_same<GfxShadowmapPrecision>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShadowmapPrecision_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShadowmapPrecision_typeID;
 else
  RET false;
 }
-};void GfxLightType_destroy(CTX,NO) {}
-SV GfxLightType_get_member(CTX,NO,SV);
-void GfxLightType_set_member(CTX,NO,SV,SV);
+};void GfxLightType_destroy(CTX,const SV&) {}
+SV GfxLightType_get_member(CTX,const SV&,const SV&);
+void GfxLightType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxLightType_funcs={
 .destroy = GfxLightType_destroy,
 .getMember = GfxLightType_get_member,
@@ -1831,12 +1830,12 @@ RET STG::createNativeObject(GfxLightType_funcs,(void *)v,EXT->GfxLightType_typeI
 template <>
 struct val_to_c<GfxLightType>
 {
-static GfxLightType f(CTX ctx,const SV head)
+static GfxLightType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxLightType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxLightType_typeID)
 CATE(TE,"Value can not be converted to GfxLightType."));
 size_t v=size_t(obj->data);
@@ -1848,16 +1847,16 @@ if(v==0)return GfxLightType::Directional;
 template <>
 struct type_same<GfxLightType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLightType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLightType_typeID;
 else
  RET false;
 }
-};void GfxDriver_destroy(CTX,NO) {}
-SV GfxDriver_get_member(CTX,NO,SV);
-void GfxDriver_set_member(CTX,NO,SV,SV);
+};void GfxDriver_destroy(CTX,const SV&) {}
+SV GfxDriver_get_member(CTX,const SV&,const SV&);
+void GfxDriver_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxDriver_funcs={
 .destroy = GfxDriver_destroy,
 .getMember = GfxDriver_get_member,
@@ -1874,12 +1873,12 @@ RET STG::createNativeObject(GfxDriver_funcs,(void *)v,EXT->GfxDriver_typeID);
 template <>
 struct val_to_c<GfxDriver>
 {
-static GfxDriver f(CTX ctx,const SV head)
+static GfxDriver f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to GfxDriver."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->GfxDriver_typeID)
 CATE(TE,"Value can not be converted to GfxDriver."));
 size_t v=size_t(obj->data);
@@ -1891,16 +1890,16 @@ if(v==0)return GfxDriver::Nvidia;
 template <>
 struct type_same<GfxDriver>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDriver_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxDriver_typeID;
 else
  RET false;
 }
-};void CameraType_destroy(CTX,NO) {}
-SV CameraType_get_member(CTX,NO,SV);
-void CameraType_set_member(CTX,NO,SV,SV);
+};void CameraType_destroy(CTX,const SV&) {}
+SV CameraType_get_member(CTX,const SV&,const SV&);
+void CameraType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs CameraType_funcs={
 .destroy = CameraType_destroy,
 .getMember = CameraType_get_member,
@@ -1917,12 +1916,12 @@ RET STG::createNativeObject(CameraType_funcs,(void *)v,EXT->CameraType_typeID);
 template <>
 struct val_to_c<CameraType>
 {
-static CameraType f(CTX ctx,const SV head)
+static CameraType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to CameraType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->CameraType_typeID)
 CATE(TE,"Value can not be converted to CameraType."));
 size_t v=size_t(obj->data);
@@ -1933,16 +1932,16 @@ if(v==1)return CameraType::Orthographic;
 template <>
 struct type_same<CameraType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->CameraType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->CameraType_typeID;
 else
  RET false;
 }
-};void Axis_destroy(CTX,NO) {}
-SV Axis_get_member(CTX,NO,SV);
-void Axis_set_member(CTX,NO,SV,SV);
+};void Axis_destroy(CTX,const SV&) {}
+SV Axis_get_member(CTX,const SV&,const SV&);
+void Axis_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Axis_funcs={
 .destroy = Axis_destroy,
 .getMember = Axis_get_member,
@@ -1959,12 +1958,12 @@ RET STG::createNativeObject(Axis_funcs,(void *)v,EXT->Axis_typeID);
 template <>
 struct val_to_c<Axis>
 {
-static Axis f(CTX ctx,const SV head)
+static Axis f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to Axis."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->Axis_typeID)
 CATE(TE,"Value can not be converted to Axis."));
 size_t v=size_t(obj->data);
@@ -1976,16 +1975,16 @@ if(v==2)return Axis::Z;
 template <>
 struct type_same<Axis>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Axis_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Axis_typeID;
 else
  RET false;
 }
-};void RigidBodyType_destroy(CTX,NO) {}
-SV RigidBodyType_get_member(CTX,NO,SV);
-void RigidBodyType_set_member(CTX,NO,SV,SV);
+};void RigidBodyType_destroy(CTX,const SV&) {}
+SV RigidBodyType_get_member(CTX,const SV&,const SV&);
+void RigidBodyType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RigidBodyType_funcs={
 .destroy = RigidBodyType_destroy,
 .getMember = RigidBodyType_get_member,
@@ -2002,12 +2001,12 @@ RET STG::createNativeObject(RigidBodyType_funcs,(void *)v,EXT->RigidBodyType_typ
 template <>
 struct val_to_c<RigidBodyType>
 {
-static RigidBodyType f(CTX ctx,const SV head)
+static RigidBodyType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to RigidBodyType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->RigidBodyType_typeID)
 CATE(TE,"Value can not be converted to RigidBodyType."));
 size_t v=size_t(obj->data);
@@ -2019,16 +2018,16 @@ if(v==2)return RigidBodyType::Kinematic;
 template <>
 struct type_same<RigidBodyType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyType_typeID;
 else
  RET false;
 }
-};void PhysicsObjectType_destroy(CTX,NO) {}
-SV PhysicsObjectType_get_member(CTX,NO,SV);
-void PhysicsObjectType_set_member(CTX,NO,SV,SV);
+};void PhysicsObjectType_destroy(CTX,const SV&) {}
+SV PhysicsObjectType_get_member(CTX,const SV&,const SV&);
+void PhysicsObjectType_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs PhysicsObjectType_funcs={
 .destroy = PhysicsObjectType_destroy,
 .getMember = PhysicsObjectType_get_member,
@@ -2045,12 +2044,12 @@ RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)v,EXT->PhysicsObject
 template <>
 struct val_to_c<PhysicsObjectType>
 {
-static PhysicsObjectType f(CTX ctx,const SV head)
+static PhysicsObjectType f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to PhysicsObjectType."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->PhysicsObjectType_typeID)
 CATE(TE,"Value can not be converted to PhysicsObjectType."));
 size_t v=size_t(obj->data);
@@ -2061,16 +2060,16 @@ if(v==1)return PhysicsObjectType::Ghost;
 template <>
 struct type_same<PhysicsObjectType>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsObjectType_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsObjectType_typeID;
 else
  RET false;
 }
-};void RenderMode_destroy(CTX,NO) {}
-SV RenderMode_get_member(CTX,NO,SV);
-void RenderMode_set_member(CTX,NO,SV,SV);
+};void RenderMode_destroy(CTX,const SV&) {}
+SV RenderMode_get_member(CTX,const SV&,const SV&);
+void RenderMode_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RenderMode_funcs={
 .destroy = RenderMode_destroy,
 .getMember = RenderMode_get_member,
@@ -2087,12 +2086,12 @@ RET STG::createNativeObject(RenderMode_funcs,(void *)v,EXT->RenderMode_typeID);
 template <>
 struct val_to_c<RenderMode>
 {
-static RenderMode f(CTX ctx,const SV head)
+static RenderMode f(CTX ctx,const SV val)
 {
-if(head->type!=STG::ValueType::NativeObject)
+if(val.type!=STG::ValueType::NativeObject)
 CATE(TE,"Value can not be converted to RenderMode."));
 
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID!=EXT->RenderMode_typeID)
 CATE(TE,"Value can not be converted to RenderMode."));
 size_t v=size_t(obj->data);
@@ -2104,16 +2103,16 @@ if(v==2)return RenderMode::Overlay;
 template <>
 struct type_same<RenderMode>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderMode_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderMode_typeID;
 else
  RET false;
 }
-};void GhostObject_destroy(CTX,NO);
-SV GhostObject_get_member(CTX,NO,SV);
-void GhostObject_set_member(CTX,NO,SV,SV);
+};void GhostObject_destroy(CTX,const SV&);
+SV GhostObject_get_member(CTX,const SV&,const SV&);
+void GhostObject_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GhostObject_funcs={
 .destroy = GhostObject_destroy,
 .getMember = GhostObject_get_member,
@@ -2122,10 +2121,10 @@ static const STG::NativeObjectFuncs GhostObject_funcs={
 template <>
 struct type_same<GhostObject>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GhostObject_typeID;
 else
  RET false;
 }
@@ -2141,9 +2140,9 @@ SV GhostObject_getCollisions(CTX ctx,const List<SV>&a);
 SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a);
 SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a);
 SV GhostObject_getShape(CTX ctx,const List<SV>&a);
-void StrStrMap_destroy(CTX,NO);
-SV StrStrMap_get_member(CTX,NO,SV);
-void StrStrMap_set_member(CTX,NO,SV,SV);
+void StrStrMap_destroy(CTX,const SV&);
+SV StrStrMap_get_member(CTX,const SV&,const SV&);
+void StrStrMap_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs StrStrMap_funcs={
 .destroy = StrStrMap_destroy,
 .getMember = StrStrMap_get_member,
@@ -2162,11 +2161,11 @@ RET STG::createNativeObject(StrStrMap_funcs,p,EXT->StrStrMap_typeID);
 template <>
 struct val_to_c<HashMap<String,String>>
 {
-static HashMap<String,String> f(CTX ctx,const SV head)
+static HashMap<String,String> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->StrStrMap_typeID)
 RET*((HashMap<String,String>*)obj->data);
 else
@@ -2179,7 +2178,7 @@ else
 template <>
 struct val_to_c<const HashMap<String,String>>
 {
-static HashMap<String,String> f(CTX ctx,const SV head) {return val_to_c<HashMap<String,String>>::f(ctx, head);}
+static HashMap<String,String> f(CTX ctx,const SV val) {return val_to_c<HashMap<String,String>>::f(ctx, val);}
 };
 
 template <>
@@ -2191,10 +2190,10 @@ static SV f(CTX ctx,const HashMap<String,String>&obj) {return create_val<HashMap
 template <>
 struct type_same<HashMap<String,String>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->StrStrMap_typeID;
 else
  RET false;
 }
@@ -2214,9 +2213,9 @@ SV StrStrMap_getCount(CTX ctx,const List<SV>&a);
 SV StrStrMap_getKey(CTX ctx,const List<SV>&a);
 SV StrStrMap_getValue(CTX ctx,const List<SV>&a);
 SV StrStrMap_clear(CTX ctx,const List<SV>&a);
-void GfxApi_destroy(CTX,NO);
-SV GfxApi_get_member(CTX,NO,SV);
-void GfxApi_set_member(CTX,NO,SV,SV);
+void GfxApi_destroy(CTX,const SV&);
+SV GfxApi_get_member(CTX,const SV&,const SV&);
+void GfxApi_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxApi_funcs={
 .destroy = GfxApi_destroy,
 .getMember = GfxApi_get_member,
@@ -2225,10 +2224,10 @@ static const STG::NativeObjectFuncs GfxApi_funcs={
 template <>
 struct type_same<GfxApi>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxApi_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxApi_typeID;
 else
  RET false;
 }
@@ -2288,9 +2287,9 @@ SV GfxApi_setScissorEnabled(CTX ctx,const List<SV>&a);
 SV GfxApi_getScissorEnabled(CTX ctx,const List<SV>&a);
 SV GfxApi_setTessPatchSize(CTX ctx,const List<SV>&a);
 SV GfxApi_getTessPatchSize(CTX ctx,const List<SV>&a);
-void GfxCompiledShader_destroy(CTX,NO);
-SV GfxCompiledShader_get_member(CTX,NO,SV);
-void GfxCompiledShader_set_member(CTX,NO,SV,SV);
+void GfxCompiledShader_destroy(CTX,const SV&);
+SV GfxCompiledShader_get_member(CTX,const SV&,const SV&);
+void GfxCompiledShader_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxCompiledShader_funcs={
 .destroy = GfxCompiledShader_destroy,
 .getMember = GfxCompiledShader_get_member,
@@ -2309,11 +2308,11 @@ RET STG::createNativeObject(GfxCompiledShader_funcs,p,EXT->GfxCompiledShader_typ
 template <>
 struct val_to_c<GfxCompiledShader>
 {
-static GfxCompiledShader f(CTX ctx,const SV head)
+static GfxCompiledShader f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxCompiledShader_typeID)
 RET*((GfxCompiledShader*)obj->data);
 else
@@ -2326,7 +2325,7 @@ else
 template <>
 struct val_to_c<const GfxCompiledShader>
 {
-static GfxCompiledShader f(CTX ctx,const SV head) {return val_to_c<GfxCompiledShader>::f(ctx, head);}
+static GfxCompiledShader f(CTX ctx,const SV val) {return val_to_c<GfxCompiledShader>::f(ctx, val);}
 };
 
 template <>
@@ -2338,10 +2337,10 @@ static SV f(CTX ctx,const GfxCompiledShader&obj) {return create_val<GfxCompiledS
 template <>
 struct type_same<GfxCompiledShader>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxCompiledShader_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxCompiledShader_typeID;
 else
  RET false;
 }
@@ -2350,9 +2349,9 @@ else
 SV GfxCompiledShader_getShader(CTX ctx,const List<SV>&a);
 SV GfxCompiledShader_getGLProgram(CTX ctx,const List<SV>&a);
 SV GfxCompiledShader_getGLShader(CTX ctx,const List<SV>&a);
-void ScrollBar_destroy(CTX,NO);
-SV ScrollBar_get_member(CTX,NO,SV);
-void ScrollBar_set_member(CTX,NO,SV,SV);
+void ScrollBar_destroy(CTX,const SV&);
+SV ScrollBar_get_member(CTX,const SV&,const SV&);
+void ScrollBar_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ScrollBar_funcs={
 .destroy = ScrollBar_destroy,
 .getMember = ScrollBar_get_member,
@@ -2371,11 +2370,11 @@ RET STG::createNativeObject(ScrollBar_funcs,p,EXT->ScrollBar_typeID);
 template <>
 struct val_to_c<ScrollBar>
 {
-static ScrollBar f(CTX ctx,const SV head)
+static ScrollBar f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScrollBar_typeID)
 RET*((ScrollBar*)obj->data);
 else
@@ -2388,7 +2387,7 @@ else
 template <>
 struct val_to_c<const ScrollBar>
 {
-static ScrollBar f(CTX ctx,const SV head) {return val_to_c<ScrollBar>::f(ctx, head);}
+static ScrollBar f(CTX ctx,const SV val) {return val_to_c<ScrollBar>::f(ctx, val);}
 };
 
 template <>
@@ -2400,10 +2399,10 @@ static SV f(CTX ctx,const ScrollBar&obj) {return create_val<ScrollBar>::f(ctx,ob
 template <>
 struct type_same<ScrollBar>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScrollBar_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScrollBar_typeID;
 else
  RET false;
 }
@@ -2411,9 +2410,9 @@ else
 
 SV ScrollBar_getValue(CTX ctx,const List<SV>&a);
 SV ScrollBar_setValue(CTX ctx,const List<SV>&a);
-void GhostObjList_destroy(CTX,NO);
-SV GhostObjList_get_member(CTX,NO,SV);
-void GhostObjList_set_member(CTX,NO,SV,SV);
+void GhostObjList_destroy(CTX,const SV&);
+SV GhostObjList_get_member(CTX,const SV&,const SV&);
+void GhostObjList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GhostObjList_funcs={
 .destroy = GhostObjList_destroy,
 .getMember = GhostObjList_get_member,
@@ -2432,11 +2431,11 @@ RET STG::createNativeObject(GhostObjList_funcs,p,EXT->GhostObjList_typeID);
 template <>
 struct val_to_c<List<GhostObject*>>
 {
-static List<GhostObject*> f(CTX ctx,const SV head)
+static List<GhostObject*> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GhostObjList_typeID)
 RET*((List<GhostObject*>*)obj->data);
 else
@@ -2449,7 +2448,7 @@ else
 template <>
 struct val_to_c<const List<GhostObject*>>
 {
-static List<GhostObject*> f(CTX ctx,const SV head) {return val_to_c<List<GhostObject*>>::f(ctx, head);}
+static List<GhostObject*> f(CTX ctx,const SV val) {return val_to_c<List<GhostObject*>>::f(ctx, val);}
 };
 
 template <>
@@ -2461,10 +2460,10 @@ static SV f(CTX ctx,const List<GhostObject*>&obj) {return create_val<List<GhostO
 template <>
 struct type_same<List<GhostObject*>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObjList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GhostObjList_typeID;
 else
  RET false;
 }
@@ -2485,9 +2484,9 @@ SV GhostObjList_copy(CTX ctx,const List<SV>&a);
 SV GhostObjList_in(CTX ctx,const List<SV>&a);
 SV GhostObjList_begin(CTX ctx,const List<SV>&a);
 SV GhostObjList_end(CTX ctx,const List<SV>&a);
-void GPUTimer_destroy(CTX,NO);
-SV GPUTimer_get_member(CTX,NO,SV);
-void GPUTimer_set_member(CTX,NO,SV,SV);
+void GPUTimer_destroy(CTX,const SV&);
+SV GPUTimer_get_member(CTX,const SV&,const SV&);
+void GPUTimer_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GPUTimer_funcs={
 .destroy = GPUTimer_destroy,
 .getMember = GPUTimer_get_member,
@@ -2496,10 +2495,10 @@ static const STG::NativeObjectFuncs GPUTimer_funcs={
 template <>
 struct type_same<GPUTimer>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GPUTimer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GPUTimer_typeID;
 else
  RET false;
 }
@@ -2511,9 +2510,9 @@ SV GPUTimer_getResultResolution(CTX ctx,const List<SV>&a);
 SV GPUTimer_begin(CTX ctx,const List<SV>&a);
 SV GPUTimer_end(CTX ctx,const List<SV>&a);
 SV GPUTimer_swap(CTX ctx,const List<SV>&a);
-void RigidBody_destroy(CTX,NO);
-SV RigidBody_get_member(CTX,NO,SV);
-void RigidBody_set_member(CTX,NO,SV,SV);
+void RigidBody_destroy(CTX,const SV&);
+SV RigidBody_get_member(CTX,const SV&,const SV&);
+void RigidBody_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RigidBody_funcs={
 .destroy = RigidBody_destroy,
 .getMember = RigidBody_get_member,
@@ -2522,10 +2521,10 @@ static const STG::NativeObjectFuncs RigidBody_funcs={
 template <>
 struct type_same<RigidBody>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBody_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBody_typeID;
 else
  RET false;
 }
@@ -2572,9 +2571,9 @@ SV RigidBody_getCollisionMask(CTX ctx,const List<SV>&a);
 SV RigidBody_setShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getShape(CTX ctx,const List<SV>&a);
 SV RigidBody_getEntity(CTX ctx,const List<SV>&a);
-void UInt2_destroy(CTX,NO);
-SV UInt2_get_member(CTX,NO,SV);
-void UInt2_set_member(CTX,NO,SV,SV);
+void UInt2_destroy(CTX,const SV&);
+SV UInt2_get_member(CTX,const SV&,const SV&);
+void UInt2_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs UInt2_funcs={
 .destroy = UInt2_destroy,
 .getMember = UInt2_get_member,
@@ -2593,11 +2592,11 @@ RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
 template <>
 struct val_to_c<T2<uint32_t>>
 {
-static T2<uint32_t> f(CTX ctx,const SV head)
+static T2<uint32_t> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt2_typeID)
 RET*((T2<uint32_t>*)obj->data);
 else
@@ -2610,7 +2609,7 @@ else
 template <>
 struct val_to_c<const T2<uint32_t>>
 {
-static T2<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T2<uint32_t>>::f(ctx, head);}
+static T2<uint32_t> f(CTX ctx,const SV val) {return val_to_c<T2<uint32_t>>::f(ctx, val);}
 };
 
 template <>
@@ -2622,10 +2621,10 @@ static SV f(CTX ctx,const T2<uint32_t>&obj) {return create_val<T2<uint32_t>>::f(
 template <>
 struct type_same<T2<uint32_t>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt2_typeID;
 else
  RET false;
 }
@@ -2652,9 +2651,9 @@ SV UInt2_getXY(CTX ctx,const List<SV>&a);
 SV UInt2_setXY(CTX ctx,const List<SV>&a);
 SV UInt2_getYX(CTX ctx,const List<SV>&a);
 SV UInt2_setYX(CTX ctx,const List<SV>&a);
-void LightList_destroy(CTX,NO);
-SV LightList_get_member(CTX,NO,SV);
-void LightList_set_member(CTX,NO,SV,SV);
+void LightList_destroy(CTX,const SV&);
+SV LightList_get_member(CTX,const SV&,const SV&);
+void LightList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs LightList_funcs={
 .destroy = LightList_destroy,
 .getMember = LightList_get_member,
@@ -2673,11 +2672,11 @@ RET STG::createNativeObject(LightList_funcs,p,EXT->LightList_typeID);
 template <>
 struct val_to_c<List<Light*>>
 {
-static List<Light*> f(CTX ctx,const SV head)
+static List<Light*> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightList_typeID)
 RET*((List<Light*>*)obj->data);
 else
@@ -2690,7 +2689,7 @@ else
 template <>
 struct val_to_c<const List<Light*>>
 {
-static List<Light*> f(CTX ctx,const SV head) {return val_to_c<List<Light*>>::f(ctx, head);}
+static List<Light*> f(CTX ctx,const SV val) {return val_to_c<List<Light*>>::f(ctx, val);}
 };
 
 template <>
@@ -2702,10 +2701,10 @@ static SV f(CTX ctx,const List<Light*>&obj) {return create_val<List<Light*>>::f(
 template <>
 struct type_same<List<Light*>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightList_typeID;
 else
  RET false;
 }
@@ -2726,9 +2725,9 @@ SV LightList_copy(CTX ctx,const List<SV>&a);
 SV LightList_in(CTX ctx,const List<SV>&a);
 SV LightList_begin(CTX ctx,const List<SV>&a);
 SV LightList_end(CTX ctx,const List<SV>&a);
-void RenderStats_destroy(CTX,NO);
-SV RenderStats_get_member(CTX,NO,SV);
-void RenderStats_set_member(CTX,NO,SV,SV);
+void RenderStats_destroy(CTX,const SV&);
+SV RenderStats_get_member(CTX,const SV&,const SV&);
+void RenderStats_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RenderStats_funcs={
 .destroy = RenderStats_destroy,
 .getMember = RenderStats_get_member,
@@ -2747,11 +2746,11 @@ RET STG::createNativeObject(RenderStats_funcs,p,EXT->RenderStats_typeID);
 template <>
 struct val_to_c<RenderStats>
 {
-static RenderStats f(CTX ctx,const SV head)
+static RenderStats f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RenderStats_typeID)
 RET*((RenderStats*)obj->data);
 else
@@ -2764,7 +2763,7 @@ else
 template <>
 struct val_to_c<const RenderStats>
 {
-static RenderStats f(CTX ctx,const SV head) {return val_to_c<RenderStats>::f(ctx, head);}
+static RenderStats f(CTX ctx,const SV val) {return val_to_c<RenderStats>::f(ctx, val);}
 };
 
 template <>
@@ -2776,18 +2775,18 @@ static SV f(CTX ctx,const RenderStats&obj) {return create_val<RenderStats>::f(ct
 template <>
 struct type_same<RenderStats>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderStats_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderStats_typeID;
 else
  RET false;
 }
 };
 
-void Filesystem_destroy(CTX,NO);
-SV Filesystem_get_member(CTX,NO,SV);
-void Filesystem_set_member(CTX,NO,SV,SV);
+void Filesystem_destroy(CTX,const SV&);
+SV Filesystem_get_member(CTX,const SV&,const SV&);
+void Filesystem_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Filesystem_funcs={
 .destroy = Filesystem_destroy,
 .getMember = Filesystem_get_member,
@@ -2806,11 +2805,11 @@ RET STG::createNativeObject(Filesystem_funcs,p,EXT->Filesystem_typeID);
 template <>
 struct val_to_c<Filesystem>
 {
-static Filesystem f(CTX ctx,const SV head)
+static Filesystem f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Filesystem_typeID)
 RET*((Filesystem*)obj->data);
 else
@@ -2823,7 +2822,7 @@ else
 template <>
 struct val_to_c<const Filesystem>
 {
-static Filesystem f(CTX ctx,const SV head) {return val_to_c<Filesystem>::f(ctx, head);}
+static Filesystem f(CTX ctx,const SV val) {return val_to_c<Filesystem>::f(ctx, val);}
 };
 
 template <>
@@ -2835,10 +2834,10 @@ static SV f(CTX ctx,const Filesystem&obj) {return create_val<Filesystem>::f(ctx,
 template <>
 struct type_same<Filesystem>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Filesystem_typeID;
 else
  RET false;
 }
@@ -2848,9 +2847,9 @@ SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a);
 SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a);
 SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a);
 SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a);
-void ResourceManager_destroy(CTX,NO);
-SV ResourceManager_get_member(CTX,NO,SV);
-void ResourceManager_set_member(CTX,NO,SV,SV);
+void ResourceManager_destroy(CTX,const SV&);
+SV ResourceManager_get_member(CTX,const SV&,const SV&);
+void ResourceManager_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ResourceManager_funcs={
 .destroy = ResourceManager_destroy,
 .getMember = ResourceManager_get_member,
@@ -2859,10 +2858,10 @@ static const STG::NativeObjectFuncs ResourceManager_funcs={
 template <>
 struct type_same<ResourceManager>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResourceManager_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResourceManager_typeID;
 else
  RET false;
 }
@@ -2892,9 +2891,9 @@ SV ResourceManager_loadFontAndCopy(CTX ctx,const List<SV>&a);
 SV ResourceManager_loadAndCopy(CTX ctx,const List<SV>&a);
 SV ResourceManager_isResource(CTX ctx,const List<SV>&a);
 SV ResourceManager_cleanupResources(CTX ctx,const List<SV>&a);
-void Entity_destroy(CTX,NO);
-SV Entity_get_member(CTX,NO,SV);
-void Entity_set_member(CTX,NO,SV,SV);
+void Entity_destroy(CTX,const SV&);
+SV Entity_get_member(CTX,const SV&,const SV&);
+void Entity_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Entity_funcs={
 .destroy = Entity_destroy,
 .getMember = Entity_get_member,
@@ -2903,10 +2902,10 @@ static const STG::NativeObjectFuncs Entity_funcs={
 template <>
 struct type_same<Entity>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Entity_typeID;
 else
  RET false;
 }
@@ -2936,9 +2935,9 @@ SV Entity_getFinalTransform(CTX ctx,const List<SV>&a);
 SV Entity_getAudioSources(CTX ctx,const List<SV>&a);
 SV Entity_addAudioSource(CTX ctx,const List<SV>&a);
 SV Entity_removeAudioSource(CTX ctx,const List<SV>&a);
-void GfxRenderer_destroy(CTX,NO);
-SV GfxRenderer_get_member(CTX,NO,SV);
-void GfxRenderer_set_member(CTX,NO,SV,SV);
+void GfxRenderer_destroy(CTX,const SV&);
+SV GfxRenderer_get_member(CTX,const SV&,const SV&);
+void GfxRenderer_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxRenderer_funcs={
 .destroy = GfxRenderer_destroy,
 .getMember = GfxRenderer_get_member,
@@ -2957,11 +2956,11 @@ RET STG::createNativeObject(GfxRenderer_funcs,p,EXT->GfxRenderer_typeID);
 template <>
 struct val_to_c<GfxRenderer>
 {
-static GfxRenderer f(CTX ctx,const SV head)
+static GfxRenderer f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxRenderer_typeID)
 RET*((GfxRenderer*)obj->data);
 else
@@ -2974,7 +2973,7 @@ else
 template <>
 struct val_to_c<const GfxRenderer>
 {
-static GfxRenderer f(CTX ctx,const SV head) {return val_to_c<GfxRenderer>::f(ctx, head);}
+static GfxRenderer f(CTX ctx,const SV val) {return val_to_c<GfxRenderer>::f(ctx, val);}
 };
 
 template <>
@@ -2986,10 +2985,10 @@ static SV f(CTX ctx,const GfxRenderer&obj) {return create_val<GfxRenderer>::f(ct
 template <>
 struct type_same<GfxRenderer>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxRenderer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxRenderer_typeID;
 else
  RET false;
 }
@@ -3012,9 +3011,9 @@ SV GfxRenderer_getSkybox(CTX ctx,const List<SV>&a);
 SV GfxRenderer_addTerrain(CTX ctx,const List<SV>&a);
 SV GfxRenderer_removeTerrain(CTX ctx,const List<SV>&a);
 SV GfxRenderer_getTerrain(CTX ctx,const List<SV>&a);
-void Float2_destroy(CTX,NO);
-SV Float2_get_member(CTX,NO,SV);
-void Float2_set_member(CTX,NO,SV,SV);
+void Float2_destroy(CTX,const SV&);
+SV Float2_get_member(CTX,const SV&,const SV&);
+void Float2_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Float2_funcs={
 .destroy = Float2_destroy,
 .getMember = Float2_get_member,
@@ -3033,11 +3032,11 @@ RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
 template <>
 struct val_to_c<T2<float>>
 {
-static T2<float> f(CTX ctx,const SV head)
+static T2<float> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float2_typeID)
 RET*((T2<float>*)obj->data);
 else
@@ -3050,7 +3049,7 @@ else
 template <>
 struct val_to_c<const T2<float>>
 {
-static T2<float> f(CTX ctx,const SV head) {return val_to_c<T2<float>>::f(ctx, head);}
+static T2<float> f(CTX ctx,const SV val) {return val_to_c<T2<float>>::f(ctx, val);}
 };
 
 template <>
@@ -3062,10 +3061,10 @@ static SV f(CTX ctx,const T2<float>&obj) {return create_val<T2<float>>::f(ctx,ob
 template <>
 struct type_same<T2<float>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float2_typeID;
 else
  RET false;
 }
@@ -3092,9 +3091,9 @@ SV Float2_getXY(CTX ctx,const List<SV>&a);
 SV Float2_setXY(CTX ctx,const List<SV>&a);
 SV Float2_getYX(CTX ctx,const List<SV>&a);
 SV Float2_setYX(CTX ctx,const List<SV>&a);
-void GfxFramebuffer_destroy(CTX,NO);
-SV GfxFramebuffer_get_member(CTX,NO,SV);
-void GfxFramebuffer_set_member(CTX,NO,SV,SV);
+void GfxFramebuffer_destroy(CTX,const SV&);
+SV GfxFramebuffer_get_member(CTX,const SV&,const SV&);
+void GfxFramebuffer_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxFramebuffer_funcs={
 .destroy = GfxFramebuffer_destroy,
 .getMember = GfxFramebuffer_get_member,
@@ -3103,10 +3102,10 @@ static const STG::NativeObjectFuncs GfxFramebuffer_funcs={
 template <>
 struct type_same<GfxFramebuffer>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFramebuffer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxFramebuffer_typeID;
 else
  RET false;
 }
@@ -3125,9 +3124,9 @@ SV GfxFramebuffer_hasDepthAttachment(CTX ctx,const List<SV>&a);
 SV GfxFramebuffer_getDepthTexture(CTX ctx,const List<SV>&a);
 SV GfxFramebuffer_getDepthTextureMipmapLevel(CTX ctx,const List<SV>&a);
 SV GfxFramebuffer_getDepthAttachmentLayer(CTX ctx,const List<SV>&a);
-void Font_destroy(CTX,NO);
-SV Font_get_member(CTX,NO,SV);
-void Font_set_member(CTX,NO,SV,SV);
+void Font_destroy(CTX,const SV&);
+SV Font_get_member(CTX,const SV&,const SV&);
+void Font_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Font_funcs={
 .destroy = Font_destroy,
 .getMember = Font_get_member,
@@ -3136,10 +3135,10 @@ static const STG::NativeObjectFuncs Font_funcs={
 template <>
 struct type_same<Font>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Font_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Font_typeID;
 else
  RET false;
 }
@@ -3156,9 +3155,9 @@ SV Font_release(CTX ctx,const List<SV>&a);
 SV Font_getRefCount(CTX ctx,const List<SV>&a);
 SV Font_getFilename(CTX ctx,const List<SV>&a);
 SV Font_setFilename(CTX ctx,const List<SV>&a);
-void Event_destroy(CTX,NO);
-SV Event_get_member(CTX,NO,SV);
-void Event_set_member(CTX,NO,SV,SV);
+void Event_destroy(CTX,const SV&);
+SV Event_get_member(CTX,const SV&,const SV&);
+void Event_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Event_funcs={
 .destroy = Event_destroy,
 .getMember = Event_get_member,
@@ -3177,11 +3176,11 @@ RET STG::createNativeObject(Event_funcs,p,EXT->Event_typeID);
 template <>
 struct val_to_c<Event>
 {
-static Event f(CTX ctx,const SV head)
+static Event f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Event_typeID)
 RET*((Event*)obj->data);
 else
@@ -3194,7 +3193,7 @@ else
 template <>
 struct val_to_c<const Event>
 {
-static Event f(CTX ctx,const SV head) {return val_to_c<Event>::f(ctx, head);}
+static Event f(CTX ctx,const SV val) {return val_to_c<Event>::f(ctx, val);}
 };
 
 template <>
@@ -3206,10 +3205,10 @@ static SV f(CTX ctx,const Event&obj) {return create_val<Event>::f(ctx,obj);}
 template <>
 struct type_same<Event>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Event_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Event_typeID;
 else
  RET false;
 }
@@ -3224,9 +3223,9 @@ SV Event_getRelX(CTX ctx,const List<SV>&a);
 SV Event_getRelY(CTX ctx,const List<SV>&a);
 SV Event_getButton(CTX ctx,const List<SV>&a);
 SV Event_getDoubleClicked(CTX ctx,const List<SV>&a);
-void PhysicsWorld_destroy(CTX,NO);
-SV PhysicsWorld_get_member(CTX,NO,SV);
-void PhysicsWorld_set_member(CTX,NO,SV,SV);
+void PhysicsWorld_destroy(CTX,const SV&);
+SV PhysicsWorld_get_member(CTX,const SV&,const SV&);
+void PhysicsWorld_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs PhysicsWorld_funcs={
 .destroy = PhysicsWorld_destroy,
 .getMember = PhysicsWorld_get_member,
@@ -3235,10 +3234,10 @@ static const STG::NativeObjectFuncs PhysicsWorld_funcs={
 template <>
 struct type_same<PhysicsWorld>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsWorld_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsWorld_typeID;
 else
  RET false;
 }
@@ -3257,9 +3256,9 @@ SV PhysicsWorld_stepSimulation(CTX ctx,const List<SV>&a);
 SV PhysicsWorld_debugDraw(CTX ctx,const List<SV>&a);
 SV PhysicsWorld_castRay(CTX ctx,const List<SV>&a);
 SV PhysicsWorld_getBulletWorld(CTX ctx,const List<SV>&a);
-void Stats_destroy(CTX,NO);
-SV Stats_get_member(CTX,NO,SV);
-void Stats_set_member(CTX,NO,SV,SV);
+void Stats_destroy(CTX,const SV&);
+SV Stats_get_member(CTX,const SV&,const SV&);
+void Stats_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Stats_funcs={
 .destroy = Stats_destroy,
 .getMember = Stats_get_member,
@@ -3278,11 +3277,11 @@ RET STG::createNativeObject(Stats_funcs,p,EXT->Stats_typeID);
 template <>
 struct val_to_c<Stats>
 {
-static Stats f(CTX ctx,const SV head)
+static Stats f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Stats_typeID)
 RET*((Stats*)obj->data);
 else
@@ -3295,7 +3294,7 @@ else
 template <>
 struct val_to_c<const Stats>
 {
-static Stats f(CTX ctx,const SV head) {return val_to_c<Stats>::f(ctx, head);}
+static Stats f(CTX ctx,const SV val) {return val_to_c<Stats>::f(ctx, val);}
 };
 
 template <>
@@ -3307,18 +3306,18 @@ static SV f(CTX ctx,const Stats&obj) {return create_val<Stats>::f(ctx,obj);}
 template <>
 struct type_same<Stats>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Stats_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Stats_typeID;
 else
  RET false;
 }
 };
 
-void AudioSource_destroy(CTX,NO);
-SV AudioSource_get_member(CTX,NO,SV);
-void AudioSource_set_member(CTX,NO,SV,SV);
+void AudioSource_destroy(CTX,const SV&);
+SV AudioSource_get_member(CTX,const SV&,const SV&);
+void AudioSource_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs AudioSource_funcs={
 .destroy = AudioSource_destroy,
 .getMember = AudioSource_get_member,
@@ -3337,11 +3336,11 @@ RET STG::createNativeObject(AudioSource_funcs,p,EXT->AudioSource_typeID);
 template <>
 struct val_to_c<AudioSource>
 {
-static AudioSource f(CTX ctx,const SV head)
+static AudioSource f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioSource_typeID)
 RET*((AudioSource*)obj->data);
 else
@@ -3354,7 +3353,7 @@ else
 template <>
 struct val_to_c<const AudioSource>
 {
-static AudioSource f(CTX ctx,const SV head) {return val_to_c<AudioSource>::f(ctx, head);}
+static AudioSource f(CTX ctx,const SV val) {return val_to_c<AudioSource>::f(ctx, val);}
 };
 
 template <>
@@ -3366,10 +3365,10 @@ static SV f(CTX ctx,const AudioSource&obj) {return create_val<AudioSource>::f(ct
 template <>
 struct type_same<AudioSource>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSource_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSource_typeID;
 else
  RET false;
 }
@@ -3377,9 +3376,9 @@ else
 
 SV AudioSource_getAudio(CTX ctx,const List<SV>&a);
 SV AudioSource_setAudio(CTX ctx,const List<SV>&a);
-void Script_destroy(CTX,NO);
-SV Script_get_member(CTX,NO,SV);
-void Script_set_member(CTX,NO,SV,SV);
+void Script_destroy(CTX,const SV&);
+SV Script_get_member(CTX,const SV&,const SV&);
+void Script_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Script_funcs={
 .destroy = Script_destroy,
 .getMember = Script_get_member,
@@ -3388,10 +3387,10 @@ static const STG::NativeObjectFuncs Script_funcs={
 template <>
 struct type_same<Script>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Script_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Script_typeID;
 else
  RET false;
 }
@@ -3408,9 +3407,9 @@ SV Script_release(CTX ctx,const List<SV>&a);
 SV Script_getRefCount(CTX ctx,const List<SV>&a);
 SV Script_getFilename(CTX ctx,const List<SV>&a);
 SV Script_setFilename(CTX ctx,const List<SV>&a);
-void RayCastResultList_destroy(CTX,NO);
-SV RayCastResultList_get_member(CTX,NO,SV);
-void RayCastResultList_set_member(CTX,NO,SV,SV);
+void RayCastResultList_destroy(CTX,const SV&);
+SV RayCastResultList_get_member(CTX,const SV&,const SV&);
+void RayCastResultList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RayCastResultList_funcs={
 .destroy = RayCastResultList_destroy,
 .getMember = RayCastResultList_get_member,
@@ -3429,11 +3428,11 @@ RET STG::createNativeObject(RayCastResultList_funcs,p,EXT->RayCastResultList_typ
 template <>
 struct val_to_c<List<RayCastResult>>
 {
-static List<RayCastResult> f(CTX ctx,const SV head)
+static List<RayCastResult> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RayCastResultList_typeID)
 RET*((List<RayCastResult>*)obj->data);
 else
@@ -3446,7 +3445,7 @@ else
 template <>
 struct val_to_c<const List<RayCastResult>>
 {
-static List<RayCastResult> f(CTX ctx,const SV head) {return val_to_c<List<RayCastResult>>::f(ctx, head);}
+static List<RayCastResult> f(CTX ctx,const SV val) {return val_to_c<List<RayCastResult>>::f(ctx, val);}
 };
 
 template <>
@@ -3458,10 +3457,10 @@ static SV f(CTX ctx,const List<RayCastResult>&obj) {return create_val<List<RayCa
 template <>
 struct type_same<List<RayCastResult>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResultList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RayCastResultList_typeID;
 else
  RET false;
 }
@@ -3482,9 +3481,9 @@ SV RayCastResultList_copy(CTX ctx,const List<SV>&a);
 SV RayCastResultList_in(CTX ctx,const List<SV>&a);
 SV RayCastResultList_begin(CTX ctx,const List<SV>&a);
 SV RayCastResultList_end(CTX ctx,const List<SV>&a);
-void Platform_destroy(CTX,NO);
-SV Platform_get_member(CTX,NO,SV);
-void Platform_set_member(CTX,NO,SV,SV);
+void Platform_destroy(CTX,const SV&);
+SV Platform_get_member(CTX,const SV&,const SV&);
+void Platform_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Platform_funcs={
 .destroy = Platform_destroy,
 .getMember = Platform_get_member,
@@ -3493,10 +3492,10 @@ static const STG::NativeObjectFuncs Platform_funcs={
 template <>
 struct type_same<Platform>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Platform_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Platform_typeID;
 else
  RET false;
 }
@@ -3526,9 +3525,9 @@ SV Platform_setFullscreen(CTX ctx,const List<SV>&a);
 SV Platform_getFrametime(CTX ctx,const List<SV>&a);
 SV Platform_getGPUFrametime(CTX ctx,const List<SV>&a);
 SV Platform_getCPUFrametime(CTX ctx,const List<SV>&a);
-void Camera_destroy(CTX,NO);
-SV Camera_get_member(CTX,NO,SV);
-void Camera_set_member(CTX,NO,SV,SV);
+void Camera_destroy(CTX,const SV&);
+SV Camera_get_member(CTX,const SV&,const SV&);
+void Camera_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Camera_funcs={
 .destroy = Camera_destroy,
 .getMember = Camera_get_member,
@@ -3547,11 +3546,11 @@ RET STG::createNativeObject(Camera_funcs,p,EXT->Camera_typeID);
 template <>
 struct val_to_c<Camera>
 {
-static Camera f(CTX ctx,const SV head)
+static Camera f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Camera_typeID)
 RET*((Camera*)obj->data);
 else
@@ -3564,7 +3563,7 @@ else
 template <>
 struct val_to_c<const Camera>
 {
-static Camera f(CTX ctx,const SV head) {return val_to_c<Camera>::f(ctx, head);}
+static Camera f(CTX ctx,const SV val) {return val_to_c<Camera>::f(ctx, val);}
 };
 
 template <>
@@ -3576,10 +3575,10 @@ static SV f(CTX ctx,const Camera&obj) {return create_val<Camera>::f(ctx,obj);}
 template <>
 struct type_same<Camera>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Camera_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Camera_typeID;
 else
  RET false;
 }
@@ -3613,9 +3612,9 @@ SV Camera_getNear(CTX ctx,const List<SV>&a);
 SV Camera_getFar(CTX ctx,const List<SV>&a);
 SV Camera_getViewMatrix(CTX ctx,const List<SV>&a);
 SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a);
-void GfxMesh_destroy(CTX,NO);
-SV GfxMesh_get_member(CTX,NO,SV);
-void GfxMesh_set_member(CTX,NO,SV,SV);
+void GfxMesh_destroy(CTX,const SV&);
+SV GfxMesh_get_member(CTX,const SV&,const SV&);
+void GfxMesh_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMesh_funcs={
 .destroy = GfxMesh_destroy,
 .getMember = GfxMesh_get_member,
@@ -3624,10 +3623,10 @@ static const STG::NativeObjectFuncs GfxMesh_funcs={
 template <>
 struct type_same<GfxMesh>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMesh_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMesh_typeID;
 else
  RET false;
 }
@@ -3654,9 +3653,9 @@ SV GfxMesh_release(CTX ctx,const List<SV>&a);
 SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxMesh_getFilename(CTX ctx,const List<SV>&a);
 SV GfxMesh_setFilename(CTX ctx,const List<SV>&a);
-void Resource_destroy(CTX,NO);
-SV Resource_get_member(CTX,NO,SV);
-void Resource_set_member(CTX,NO,SV,SV);
+void Resource_destroy(CTX,const SV&);
+SV Resource_get_member(CTX,const SV&,const SV&);
+void Resource_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Resource_funcs={
 .destroy = Resource_destroy,
 .getMember = Resource_get_member,
@@ -3665,10 +3664,10 @@ static const STG::NativeObjectFuncs Resource_funcs={
 template <>
 struct type_same<Resource>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Resource_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Resource_typeID;
 else
  RET false;
 }
@@ -3683,9 +3682,9 @@ SV Resource_release(CTX ctx,const List<SV>&a);
 SV Resource_getRefCount(CTX ctx,const List<SV>&a);
 SV Resource_getFilename(CTX ctx,const List<SV>&a);
 SV Resource_setFilename(CTX ctx,const List<SV>&a);
-void GfxShader_destroy(CTX,NO);
-SV GfxShader_get_member(CTX,NO,SV);
-void GfxShader_set_member(CTX,NO,SV,SV);
+void GfxShader_destroy(CTX,const SV&);
+SV GfxShader_get_member(CTX,const SV&,const SV&);
+void GfxShader_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxShader_funcs={
 .destroy = GfxShader_destroy,
 .getMember = GfxShader_get_member,
@@ -3694,10 +3693,10 @@ static const STG::NativeObjectFuncs GfxShader_funcs={
 template <>
 struct type_same<GfxShader>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShader_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShader_typeID;
 else
  RET false;
 }
@@ -3716,9 +3715,9 @@ SV GfxShader_release(CTX ctx,const List<SV>&a);
 SV GfxShader_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxShader_getFilename(CTX ctx,const List<SV>&a);
 SV GfxShader_setFilename(CTX ctx,const List<SV>&a);
-void Light_destroy(CTX,NO);
-SV Light_get_member(CTX,NO,SV);
-void Light_set_member(CTX,NO,SV,SV);
+void Light_destroy(CTX,const SV&);
+SV Light_get_member(CTX,const SV&,const SV&);
+void Light_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Light_funcs={
 .destroy = Light_destroy,
 .getMember = Light_get_member,
@@ -3727,10 +3726,10 @@ static const STG::NativeObjectFuncs Light_funcs={
 template <>
 struct type_same<Light>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Light_typeID;
 else
  RET false;
 }
@@ -3749,9 +3748,9 @@ SV Light_getViewMatrix(CTX ctx,const List<SV>&a);
 SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a);
 SV Light_getCascadeViewMatrix(CTX ctx,const List<SV>&a);
 SV Light_getCascadeProjectionMatrix(CTX ctx,const List<SV>&a);
-void TextureSampler_destroy(CTX,NO);
-SV TextureSampler_get_member(CTX,NO,SV);
-void TextureSampler_set_member(CTX,NO,SV,SV);
+void TextureSampler_destroy(CTX,const SV&);
+SV TextureSampler_get_member(CTX,const SV&,const SV&);
+void TextureSampler_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs TextureSampler_funcs={
 .destroy = TextureSampler_destroy,
 .getMember = TextureSampler_get_member,
@@ -3770,11 +3769,11 @@ RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
 template <>
 struct val_to_c<TextureSampler>
 {
-static TextureSampler f(CTX ctx,const SV head)
+static TextureSampler f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->TextureSampler_typeID)
 RET*((TextureSampler*)obj->data);
 else
@@ -3787,7 +3786,7 @@ else
 template <>
 struct val_to_c<const TextureSampler>
 {
-static TextureSampler f(CTX ctx,const SV head) {return val_to_c<TextureSampler>::f(ctx, head);}
+static TextureSampler f(CTX ctx,const SV val) {return val_to_c<TextureSampler>::f(ctx, val);}
 };
 
 template <>
@@ -3799,19 +3798,19 @@ static SV f(CTX ctx,const TextureSampler&obj) {return create_val<TextureSampler>
 template <>
 struct type_same<TextureSampler>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->TextureSampler_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->TextureSampler_typeID;
 else
  RET false;
 }
 };
 
 SV TextureSampler_createShadowmap(CTX ctx,const List<SV>&a);
-void Scene_destroy(CTX,NO);
-SV Scene_get_member(CTX,NO,SV);
-void Scene_set_member(CTX,NO,SV,SV);
+void Scene_destroy(CTX,const SV&);
+SV Scene_get_member(CTX,const SV&,const SV&);
+void Scene_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Scene_funcs={
 .destroy = Scene_destroy,
 .getMember = Scene_get_member,
@@ -3820,10 +3819,10 @@ static const STG::NativeObjectFuncs Scene_funcs={
 template <>
 struct type_same<Scene>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Scene_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Scene_typeID;
 else
  RET false;
 }
@@ -3852,9 +3851,9 @@ SV Scene_release(CTX ctx,const List<SV>&a);
 SV Scene_getRefCount(CTX ctx,const List<SV>&a);
 SV Scene_getFilename(CTX ctx,const List<SV>&a);
 SV Scene_setFilename(CTX ctx,const List<SV>&a);
-void Int3_destroy(CTX,NO);
-SV Int3_get_member(CTX,NO,SV);
-void Int3_set_member(CTX,NO,SV,SV);
+void Int3_destroy(CTX,const SV&);
+SV Int3_get_member(CTX,const SV&,const SV&);
+void Int3_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Int3_funcs={
 .destroy = Int3_destroy,
 .getMember = Int3_get_member,
@@ -3873,11 +3872,11 @@ RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
 template <>
 struct val_to_c<T3<int32_t>>
 {
-static T3<int32_t> f(CTX ctx,const SV head)
+static T3<int32_t> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int3_typeID)
 RET*((T3<int32_t>*)obj->data);
 else
@@ -3890,7 +3889,7 @@ else
 template <>
 struct val_to_c<const T3<int32_t>>
 {
-static T3<int32_t> f(CTX ctx,const SV head) {return val_to_c<T3<int32_t>>::f(ctx, head);}
+static T3<int32_t> f(CTX ctx,const SV val) {return val_to_c<T3<int32_t>>::f(ctx, val);}
 };
 
 template <>
@@ -3902,10 +3901,10 @@ static SV f(CTX ctx,const T3<int32_t>&obj) {return create_val<T3<int32_t>>::f(ct
 template <>
 struct type_same<T3<int32_t>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int3_typeID;
 else
  RET false;
 }
@@ -3953,9 +3952,9 @@ SV Int3_getZXY(CTX ctx,const List<SV>&a);
 SV Int3_setZXY(CTX ctx,const List<SV>&a);
 SV Int3_getZYX(CTX ctx,const List<SV>&a);
 SV Int3_setZYX(CTX ctx,const List<SV>&a);
-void ResizableData_destroy(CTX,NO);
-SV ResizableData_get_member(CTX,NO,SV);
-void ResizableData_set_member(CTX,NO,SV,SV);
+void ResizableData_destroy(CTX,const SV&);
+SV ResizableData_get_member(CTX,const SV&,const SV&);
+void ResizableData_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ResizableData_funcs={
 .destroy = ResizableData_destroy,
 .getMember = ResizableData_get_member,
@@ -3974,11 +3973,11 @@ RET STG::createNativeObject(ResizableData_funcs,p,EXT->ResizableData_typeID);
 template <>
 struct val_to_c<ResizableData>
 {
-static ResizableData f(CTX ctx,const SV head)
+static ResizableData f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ResizableData_typeID)
 RET*((ResizableData*)obj->data);
 else
@@ -3991,7 +3990,7 @@ else
 template <>
 struct val_to_c<const ResizableData>
 {
-static ResizableData f(CTX ctx,const SV head) {return val_to_c<ResizableData>::f(ctx, head);}
+static ResizableData f(CTX ctx,const SV val) {return val_to_c<ResizableData>::f(ctx, val);}
 };
 
 template <>
@@ -4003,10 +4002,10 @@ static SV f(CTX ctx,const ResizableData&obj) {return create_val<ResizableData>::
 template <>
 struct type_same<ResizableData>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResizableData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResizableData_typeID;
 else
  RET false;
 }
@@ -4068,9 +4067,9 @@ SV ResizableData_setUInt64BE(CTX ctx,const List<SV>&a);
 SV ResizableData_setInt64BE(CTX ctx,const List<SV>&a);
 SV ResizableData_getChar(CTX ctx,const List<SV>&a);
 SV ResizableData_setChar(CTX ctx,const List<SV>&a);
-void Int4_destroy(CTX,NO);
-SV Int4_get_member(CTX,NO,SV);
-void Int4_set_member(CTX,NO,SV,SV);
+void Int4_destroy(CTX,const SV&);
+SV Int4_get_member(CTX,const SV&,const SV&);
+void Int4_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Int4_funcs={
 .destroy = Int4_destroy,
 .getMember = Int4_get_member,
@@ -4089,11 +4088,11 @@ RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
 template <>
 struct val_to_c<T4<int32_t>>
 {
-static T4<int32_t> f(CTX ctx,const SV head)
+static T4<int32_t> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int4_typeID)
 RET*((T4<int32_t>*)obj->data);
 else
@@ -4106,7 +4105,7 @@ else
 template <>
 struct val_to_c<const T4<int32_t>>
 {
-static T4<int32_t> f(CTX ctx,const SV head) {return val_to_c<T4<int32_t>>::f(ctx, head);}
+static T4<int32_t> f(CTX ctx,const SV val) {return val_to_c<T4<int32_t>>::f(ctx, val);}
 };
 
 template <>
@@ -4118,10 +4117,10 @@ static SV f(CTX ctx,const T4<int32_t>&obj) {return create_val<T4<int32_t>>::f(ct
 template <>
 struct type_same<T4<int32_t>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int4_typeID;
 else
  RET false;
 }
@@ -4264,9 +4263,9 @@ SV Int4_getWXZY(CTX ctx,const List<SV>&a);
 SV Int4_setWXZY(CTX ctx,const List<SV>&a);
 SV Int4_getWXYZ(CTX ctx,const List<SV>&a);
 SV Int4_setWXYZ(CTX ctx,const List<SV>&a);
-void Float3_destroy(CTX,NO);
-SV Float3_get_member(CTX,NO,SV);
-void Float3_set_member(CTX,NO,SV,SV);
+void Float3_destroy(CTX,const SV&);
+SV Float3_get_member(CTX,const SV&,const SV&);
+void Float3_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Float3_funcs={
 .destroy = Float3_destroy,
 .getMember = Float3_get_member,
@@ -4285,11 +4284,11 @@ RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
 template <>
 struct val_to_c<T3<float>>
 {
-static T3<float> f(CTX ctx,const SV head)
+static T3<float> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float3_typeID)
 RET*((T3<float>*)obj->data);
 else
@@ -4302,7 +4301,7 @@ else
 template <>
 struct val_to_c<const T3<float>>
 {
-static T3<float> f(CTX ctx,const SV head) {return val_to_c<T3<float>>::f(ctx, head);}
+static T3<float> f(CTX ctx,const SV val) {return val_to_c<T3<float>>::f(ctx, val);}
 };
 
 template <>
@@ -4314,10 +4313,10 @@ static SV f(CTX ctx,const T3<float>&obj) {return create_val<T3<float>>::f(ctx,ob
 template <>
 struct type_same<T3<float>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float3_typeID;
 else
  RET false;
 }
@@ -4365,9 +4364,9 @@ SV Float3_getZXY(CTX ctx,const List<SV>&a);
 SV Float3_setZXY(CTX ctx,const List<SV>&a);
 SV Float3_getZYX(CTX ctx,const List<SV>&a);
 SV Float3_setZYX(CTX ctx,const List<SV>&a);
-void GfxBuffer_destroy(CTX,NO);
-SV GfxBuffer_get_member(CTX,NO,SV);
-void GfxBuffer_set_member(CTX,NO,SV,SV);
+void GfxBuffer_destroy(CTX,const SV&);
+SV GfxBuffer_get_member(CTX,const SV&,const SV&);
+void GfxBuffer_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxBuffer_funcs={
 .destroy = GfxBuffer_destroy,
 .getMember = GfxBuffer_get_member,
@@ -4376,10 +4375,10 @@ static const STG::NativeObjectFuncs GfxBuffer_funcs={
 template <>
 struct type_same<GfxBuffer>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBuffer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxBuffer_typeID;
 else
  RET false;
 }
@@ -4389,9 +4388,9 @@ SV GfxBuffer_allocData(CTX ctx,const List<SV>&a);
 SV GfxBuffer_setData(CTX ctx,const List<SV>&a);
 SV GfxBuffer_getData(CTX ctx,const List<SV>&a);
 SV GfxBuffer_getSize(CTX ctx,const List<SV>&a);
-void Transform_destroy(CTX,NO);
-SV Transform_get_member(CTX,NO,SV);
-void Transform_set_member(CTX,NO,SV,SV);
+void Transform_destroy(CTX,const SV&);
+SV Transform_get_member(CTX,const SV&,const SV&);
+void Transform_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Transform_funcs={
 .destroy = Transform_destroy,
 .getMember = Transform_get_member,
@@ -4410,11 +4409,11 @@ RET STG::createNativeObject(Transform_funcs,p,EXT->Transform_typeID);
 template <>
 struct val_to_c<Transform>
 {
-static Transform f(CTX ctx,const SV head)
+static Transform f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Transform_typeID)
 RET*((Transform*)obj->data);
 else
@@ -4427,7 +4426,7 @@ else
 template <>
 struct val_to_c<const Transform>
 {
-static Transform f(CTX ctx,const SV head) {return val_to_c<Transform>::f(ctx, head);}
+static Transform f(CTX ctx,const SV val) {return val_to_c<Transform>::f(ctx, val);}
 };
 
 template <>
@@ -4439,19 +4438,19 @@ static SV f(CTX ctx,const Transform&obj) {return create_val<Transform>::f(ctx,ob
 template <>
 struct type_same<Transform>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Transform_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Transform_typeID;
 else
  RET false;
 }
 };
 
 SV Transform_createMatrix(CTX ctx,const List<SV>&a);
-void AudioSourceList_destroy(CTX,NO);
-SV AudioSourceList_get_member(CTX,NO,SV);
-void AudioSourceList_set_member(CTX,NO,SV,SV);
+void AudioSourceList_destroy(CTX,const SV&);
+SV AudioSourceList_get_member(CTX,const SV&,const SV&);
+void AudioSourceList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs AudioSourceList_funcs={
 .destroy = AudioSourceList_destroy,
 .getMember = AudioSourceList_get_member,
@@ -4470,11 +4469,11 @@ RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID)
 template <>
 struct val_to_c<List<AudioSource*>>
 {
-static List<AudioSource*> f(CTX ctx,const SV head)
+static List<AudioSource*> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioSourceList_typeID)
 RET*((List<AudioSource*>*)obj->data);
 else
@@ -4487,7 +4486,7 @@ else
 template <>
 struct val_to_c<const List<AudioSource*>>
 {
-static List<AudioSource*> f(CTX ctx,const SV head) {return val_to_c<List<AudioSource*>>::f(ctx, head);}
+static List<AudioSource*> f(CTX ctx,const SV val) {return val_to_c<List<AudioSource*>>::f(ctx, val);}
 };
 
 template <>
@@ -4499,10 +4498,10 @@ static SV f(CTX ctx,const List<AudioSource*>&obj) {return create_val<List<AudioS
 template <>
 struct type_same<List<AudioSource*>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSourceList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
 else
  RET false;
 }
@@ -4523,9 +4522,9 @@ SV AudioSourceList_copy(CTX ctx,const List<SV>&a);
 SV AudioSourceList_in(CTX ctx,const List<SV>&a);
 SV AudioSourceList_begin(CTX ctx,const List<SV>&a);
 SV AudioSourceList_end(CTX ctx,const List<SV>&a);
-void GfxMaterial_destroy(CTX,NO);
-SV GfxMaterial_get_member(CTX,NO,SV);
-void GfxMaterial_set_member(CTX,NO,SV,SV);
+void GfxMaterial_destroy(CTX,const SV&);
+SV GfxMaterial_get_member(CTX,const SV&,const SV&);
+void GfxMaterial_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMaterial_funcs={
 .destroy = GfxMaterial_destroy,
 .getMember = GfxMaterial_get_member,
@@ -4534,10 +4533,10 @@ static const STG::NativeObjectFuncs GfxMaterial_funcs={
 template <>
 struct type_same<GfxMaterial>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMaterial_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMaterial_typeID;
 else
  RET false;
 }
@@ -4567,9 +4566,9 @@ SV GfxMaterial_release(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getFilename(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setFilename(CTX ctx,const List<SV>&a);
-void Quaternion_destroy(CTX,NO);
-SV Quaternion_get_member(CTX,NO,SV);
-void Quaternion_set_member(CTX,NO,SV,SV);
+void Quaternion_destroy(CTX,const SV&);
+SV Quaternion_get_member(CTX,const SV&,const SV&);
+void Quaternion_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Quaternion_funcs={
 .destroy = Quaternion_destroy,
 .getMember = Quaternion_get_member,
@@ -4588,11 +4587,11 @@ RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
 template <>
 struct val_to_c<Quaternion>
 {
-static Quaternion f(CTX ctx,const SV head)
+static Quaternion f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Quaternion_typeID)
 RET*((Quaternion*)obj->data);
 else
@@ -4605,7 +4604,7 @@ else
 template <>
 struct val_to_c<const Quaternion>
 {
-static Quaternion f(CTX ctx,const SV head) {return val_to_c<Quaternion>::f(ctx, head);}
+static Quaternion f(CTX ctx,const SV val) {return val_to_c<Quaternion>::f(ctx, val);}
 };
 
 template <>
@@ -4617,10 +4616,10 @@ static SV f(CTX ctx,const Quaternion&obj) {return create_val<Quaternion>::f(ctx,
 template <>
 struct type_same<Quaternion>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Quaternion_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Quaternion_typeID;
 else
  RET false;
 }
@@ -4644,9 +4643,9 @@ SV Quaternion_setAxis(CTX ctx,const List<SV>&a);
 SV Quaternion_setAxisAndAngle(CTX ctx,const List<SV>&a);
 SV Quaternion_setEulerAngles(CTX ctx,const List<SV>&a);
 SV Quaternion_getEulerAngles(CTX ctx,const List<SV>&a);
-void GfxMeshAttrib_destroy(CTX,NO);
-SV GfxMeshAttrib_get_member(CTX,NO,SV);
-void GfxMeshAttrib_set_member(CTX,NO,SV,SV);
+void GfxMeshAttrib_destroy(CTX,const SV&);
+SV GfxMeshAttrib_get_member(CTX,const SV&,const SV&);
+void GfxMeshAttrib_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxMeshAttrib_funcs={
 .destroy = GfxMeshAttrib_destroy,
 .getMember = GfxMeshAttrib_get_member,
@@ -4665,11 +4664,11 @@ RET STG::createNativeObject(GfxMeshAttrib_funcs,p,EXT->GfxMeshAttrib_typeID);
 template <>
 struct val_to_c<GfxMeshAttrib>
 {
-static GfxMeshAttrib f(CTX ctx,const SV head)
+static GfxMeshAttrib f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMeshAttrib_typeID)
 RET*((GfxMeshAttrib*)obj->data);
 else
@@ -4682,7 +4681,7 @@ else
 template <>
 struct val_to_c<const GfxMeshAttrib>
 {
-static GfxMeshAttrib f(CTX ctx,const SV head) {return val_to_c<GfxMeshAttrib>::f(ctx, head);}
+static GfxMeshAttrib f(CTX ctx,const SV val) {return val_to_c<GfxMeshAttrib>::f(ctx, val);}
 };
 
 template <>
@@ -4694,18 +4693,18 @@ static SV f(CTX ctx,const GfxMeshAttrib&obj) {return create_val<GfxMeshAttrib>::
 template <>
 struct type_same<GfxMeshAttrib>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttrib_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMeshAttrib_typeID;
 else
  RET false;
 }
 };
 
-void ScriptInstance_destroy(CTX,NO);
-SV ScriptInstance_get_member(CTX,NO,SV);
-void ScriptInstance_set_member(CTX,NO,SV,SV);
+void ScriptInstance_destroy(CTX,const SV&);
+SV ScriptInstance_get_member(CTX,const SV&,const SV&);
+void ScriptInstance_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ScriptInstance_funcs={
 .destroy = ScriptInstance_destroy,
 .getMember = ScriptInstance_get_member,
@@ -4714,10 +4713,10 @@ static const STG::NativeObjectFuncs ScriptInstance_funcs={
 template <>
 struct type_same<ScriptInstance>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScriptInstance_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScriptInstance_typeID;
 else
  RET false;
 }
@@ -4730,11 +4729,10 @@ SV ScriptInstance_update(CTX ctx,const List<SV>&a);
 SV ScriptInstance_preRender(CTX ctx,const List<SV>&a);
 SV ScriptInstance_postRender(CTX ctx,const List<SV>&a);
 SV ScriptInstance_getScript(CTX ctx,const List<SV>&a);
-SV ScriptInstance_getObject(CTX ctx,const List<SV>&a);
 SV ScriptInstance_getObj(CTX ctx,const List<SV>&a);
-void RenderComponent_destroy(CTX,NO);
-SV RenderComponent_get_member(CTX,NO,SV);
-void RenderComponent_set_member(CTX,NO,SV,SV);
+void RenderComponent_destroy(CTX,const SV&);
+SV RenderComponent_get_member(CTX,const SV&,const SV&);
+void RenderComponent_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RenderComponent_funcs={
 .destroy = RenderComponent_destroy,
 .getMember = RenderComponent_get_member,
@@ -4743,10 +4741,10 @@ static const STG::NativeObjectFuncs RenderComponent_funcs={
 template <>
 struct type_same<RenderComponent>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderComponent_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderComponent_typeID;
 else
  RET false;
 }
@@ -4759,9 +4757,9 @@ SV RenderComponent_setOverlayColor(CTX ctx,const List<SV>&a);
 SV RenderComponent_setAnimationState(CTX ctx,const List<SV>&a);
 SV RenderComponent_removeAnimationState(CTX ctx,const List<SV>&a);
 SV RenderComponent_getAnimationState(CTX ctx,const List<SV>&a);
-void Int2_destroy(CTX,NO);
-SV Int2_get_member(CTX,NO,SV);
-void Int2_set_member(CTX,NO,SV,SV);
+void Int2_destroy(CTX,const SV&);
+SV Int2_get_member(CTX,const SV&,const SV&);
+void Int2_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Int2_funcs={
 .destroy = Int2_destroy,
 .getMember = Int2_get_member,
@@ -4780,11 +4778,11 @@ RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
 template <>
 struct val_to_c<T2<int32_t>>
 {
-static T2<int32_t> f(CTX ctx,const SV head)
+static T2<int32_t> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int2_typeID)
 RET*((T2<int32_t>*)obj->data);
 else
@@ -4797,7 +4795,7 @@ else
 template <>
 struct val_to_c<const T2<int32_t>>
 {
-static T2<int32_t> f(CTX ctx,const SV head) {return val_to_c<T2<int32_t>>::f(ctx, head);}
+static T2<int32_t> f(CTX ctx,const SV val) {return val_to_c<T2<int32_t>>::f(ctx, val);}
 };
 
 template <>
@@ -4809,10 +4807,10 @@ static SV f(CTX ctx,const T2<int32_t>&obj) {return create_val<T2<int32_t>>::f(ct
 template <>
 struct type_same<T2<int32_t>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int2_typeID;
 else
  RET false;
 }
@@ -4839,9 +4837,9 @@ SV Int2_getXY(CTX ctx,const List<SV>&a);
 SV Int2_setXY(CTX ctx,const List<SV>&a);
 SV Int2_getYX(CTX ctx,const List<SV>&a);
 SV Int2_setYX(CTX ctx,const List<SV>&a);
-void AudioWorld_destroy(CTX,NO);
-SV AudioWorld_get_member(CTX,NO,SV);
-void AudioWorld_set_member(CTX,NO,SV,SV);
+void AudioWorld_destroy(CTX,const SV&);
+SV AudioWorld_get_member(CTX,const SV&,const SV&);
+void AudioWorld_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs AudioWorld_funcs={
 .destroy = AudioWorld_destroy,
 .getMember = AudioWorld_get_member,
@@ -4860,11 +4858,11 @@ RET STG::createNativeObject(AudioWorld_funcs,p,EXT->AudioWorld_typeID);
 template <>
 struct val_to_c<AudioWorld>
 {
-static AudioWorld f(CTX ctx,const SV head)
+static AudioWorld f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioWorld_typeID)
 RET*((AudioWorld*)obj->data);
 else
@@ -4877,7 +4875,7 @@ else
 template <>
 struct val_to_c<const AudioWorld>
 {
-static AudioWorld f(CTX ctx,const SV head) {return val_to_c<AudioWorld>::f(ctx, head);}
+static AudioWorld f(CTX ctx,const SV val) {return val_to_c<AudioWorld>::f(ctx, val);}
 };
 
 template <>
@@ -4889,10 +4887,10 @@ static SV f(CTX ctx,const AudioWorld&obj) {return create_val<AudioWorld>::f(ctx,
 template <>
 struct type_same<AudioWorld>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioWorld_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioWorld_typeID;
 else
  RET false;
 }
@@ -4904,9 +4902,9 @@ SV AudioWorld_clearSources(CTX ctx,const List<SV>&a);
 SV AudioWorld_getSources(CTX ctx,const List<SV>&a);
 SV AudioWorld_addToAudioDevice(CTX ctx,const List<SV>&a);
 SV AudioWorld_removeFromAudioDevice(CTX ctx,const List<SV>&a);
-void GuiPlacer_destroy(CTX,NO);
-SV GuiPlacer_get_member(CTX,NO,SV);
-void GuiPlacer_set_member(CTX,NO,SV,SV);
+void GuiPlacer_destroy(CTX,const SV&);
+SV GuiPlacer_get_member(CTX,const SV&,const SV&);
+void GuiPlacer_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GuiPlacer_funcs={
 .destroy = GuiPlacer_destroy,
 .getMember = GuiPlacer_get_member,
@@ -4925,11 +4923,11 @@ RET STG::createNativeObject(GuiPlacer_funcs,p,EXT->GuiPlacer_typeID);
 template <>
 struct val_to_c<GuiPlacer>
 {
-static GuiPlacer f(CTX ctx,const SV head)
+static GuiPlacer f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GuiPlacer_typeID)
 RET*((GuiPlacer*)obj->data);
 else
@@ -4942,7 +4940,7 @@ else
 template <>
 struct val_to_c<const GuiPlacer>
 {
-static GuiPlacer f(CTX ctx,const SV head) {return val_to_c<GuiPlacer>::f(ctx, head);}
+static GuiPlacer f(CTX ctx,const SV val) {return val_to_c<GuiPlacer>::f(ctx, val);}
 };
 
 template <>
@@ -4954,10 +4952,10 @@ static SV f(CTX ctx,const GuiPlacer&obj) {return create_val<GuiPlacer>::f(ctx,ob
 template <>
 struct type_same<GuiPlacer>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GuiPlacer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GuiPlacer_typeID;
 else
  RET false;
 }
@@ -4972,9 +4970,9 @@ SV GuiPlacer_setXOrigin(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getXOriginMode(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getXOrigin(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getPadding(CTX ctx,const List<SV>&a);
-void ImGui_destroy(CTX,NO);
-SV ImGui_get_member(CTX,NO,SV);
-void ImGui_set_member(CTX,NO,SV,SV);
+void ImGui_destroy(CTX,const SV&);
+SV ImGui_get_member(CTX,const SV&,const SV&);
+void ImGui_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ImGui_funcs={
 .destroy = ImGui_destroy,
 .getMember = ImGui_get_member,
@@ -4993,11 +4991,11 @@ RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
 template <>
 struct val_to_c<ImGui>
 {
-static ImGui f(CTX ctx,const SV head)
+static ImGui f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ImGui_typeID)
 RET*((ImGui*)obj->data);
 else
@@ -5010,7 +5008,7 @@ else
 template <>
 struct val_to_c<const ImGui>
 {
-static ImGui f(CTX ctx,const SV head) {return val_to_c<ImGui>::f(ctx, head);}
+static ImGui f(CTX ctx,const SV val) {return val_to_c<ImGui>::f(ctx, val);}
 };
 
 template <>
@@ -5022,10 +5020,10 @@ static SV f(CTX ctx,const ImGui&obj) {return create_val<ImGui>::f(ctx,obj);}
 template <>
 struct type_same<ImGui>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ImGui_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ImGui_typeID;
 else
  RET false;
 }
@@ -5039,9 +5037,9 @@ SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a);
 SV ImGui_button(CTX ctx,const List<SV>&a);
 SV ImGui_label(CTX ctx,const List<SV>&a);
 SV ImGui_render(CTX ctx,const List<SV>&a);
-void StringList_destroy(CTX,NO);
-SV StringList_get_member(CTX,NO,SV);
-void StringList_set_member(CTX,NO,SV,SV);
+void StringList_destroy(CTX,const SV&);
+SV StringList_get_member(CTX,const SV&,const SV&);
+void StringList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs StringList_funcs={
 .destroy = StringList_destroy,
 .getMember = StringList_get_member,
@@ -5060,11 +5058,11 @@ RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 template <>
 struct val_to_c<List<String>>
 {
-static List<String> f(CTX ctx,const SV head)
+static List<String> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->StringList_typeID)
 RET*((List<String>*)obj->data);
 else
@@ -5077,7 +5075,7 @@ else
 template <>
 struct val_to_c<const List<String>>
 {
-static List<String> f(CTX ctx,const SV head) {return val_to_c<List<String>>::f(ctx, head);}
+static List<String> f(CTX ctx,const SV val) {return val_to_c<List<String>>::f(ctx, val);}
 };
 
 template <>
@@ -5089,10 +5087,10 @@ static SV f(CTX ctx,const List<String>&obj) {return create_val<List<String>>::f(
 template <>
 struct type_same<List<String>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StringList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->StringList_typeID;
 else
  RET false;
 }
@@ -5113,9 +5111,9 @@ SV StringList_copy(CTX ctx,const List<SV>&a);
 SV StringList_in(CTX ctx,const List<SV>&a);
 SV StringList_begin(CTX ctx,const List<SV>&a);
 SV StringList_end(CTX ctx,const List<SV>&a);
-void Application_destroy(CTX,NO);
-SV Application_get_member(CTX,NO,SV);
-void Application_set_member(CTX,NO,SV,SV);
+void Application_destroy(CTX,const SV&);
+SV Application_get_member(CTX,const SV&,const SV&);
+void Application_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Application_funcs={
 .destroy = Application_destroy,
 .getMember = Application_get_member,
@@ -5124,10 +5122,10 @@ static const STG::NativeObjectFuncs Application_funcs={
 template <>
 struct type_same<Application>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Application_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Application_typeID;
 else
  RET false;
 }
@@ -5146,9 +5144,9 @@ SV Application_setNextScript(CTX ctx,const List<SV>&a);
 SV Application_getNextScript(CTX ctx,const List<SV>&a);
 SV Application_getScript(CTX ctx,const List<SV>&a);
 SV Application_getStats(CTX ctx,const List<SV>&a);
-void LightPointData_destroy(CTX,NO);
-SV LightPointData_get_member(CTX,NO,SV);
-void LightPointData_set_member(CTX,NO,SV,SV);
+void LightPointData_destroy(CTX,const SV&);
+SV LightPointData_get_member(CTX,const SV&,const SV&);
+void LightPointData_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs LightPointData_funcs={
 .destroy = LightPointData_destroy,
 .getMember = LightPointData_get_member,
@@ -5167,11 +5165,11 @@ RET STG::createNativeObject(LightPointData_funcs,p,EXT->LightPointData_typeID);
 template <>
 struct val_to_c<LightPointData>
 {
-static LightPointData f(CTX ctx,const SV head)
+static LightPointData f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightPointData_typeID)
 RET*((LightPointData*)obj->data);
 else
@@ -5184,7 +5182,7 @@ else
 template <>
 struct val_to_c<const LightPointData>
 {
-static LightPointData f(CTX ctx,const SV head) {return val_to_c<LightPointData>::f(ctx, head);}
+static LightPointData f(CTX ctx,const SV val) {return val_to_c<LightPointData>::f(ctx, val);}
 };
 
 template <>
@@ -5196,18 +5194,18 @@ static SV f(CTX ctx,const LightPointData&obj) {return create_val<LightPointData>
 template <>
 struct type_same<LightPointData>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightPointData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightPointData_typeID;
 else
  RET false;
 }
 };
 
-void Float4_destroy(CTX,NO);
-SV Float4_get_member(CTX,NO,SV);
-void Float4_set_member(CTX,NO,SV,SV);
+void Float4_destroy(CTX,const SV&);
+SV Float4_get_member(CTX,const SV&,const SV&);
+void Float4_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Float4_funcs={
 .destroy = Float4_destroy,
 .getMember = Float4_get_member,
@@ -5226,11 +5224,11 @@ RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
 template <>
 struct val_to_c<T4<float>>
 {
-static T4<float> f(CTX ctx,const SV head)
+static T4<float> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float4_typeID)
 RET*((T4<float>*)obj->data);
 else
@@ -5243,7 +5241,7 @@ else
 template <>
 struct val_to_c<const T4<float>>
 {
-static T4<float> f(CTX ctx,const SV head) {return val_to_c<T4<float>>::f(ctx, head);}
+static T4<float> f(CTX ctx,const SV val) {return val_to_c<T4<float>>::f(ctx, val);}
 };
 
 template <>
@@ -5255,10 +5253,10 @@ static SV f(CTX ctx,const T4<float>&obj) {return create_val<T4<float>>::f(ctx,ob
 template <>
 struct type_same<T4<float>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float4_typeID;
 else
  RET false;
 }
@@ -5401,9 +5399,9 @@ SV Float4_getWXZY(CTX ctx,const List<SV>&a);
 SV Float4_setWXZY(CTX ctx,const List<SV>&a);
 SV Float4_getWXYZ(CTX ctx,const List<SV>&a);
 SV Float4_setWXYZ(CTX ctx,const List<SV>&a);
-void FloatList_destroy(CTX,NO);
-SV FloatList_get_member(CTX,NO,SV);
-void FloatList_set_member(CTX,NO,SV,SV);
+void FloatList_destroy(CTX,const SV&);
+SV FloatList_get_member(CTX,const SV&,const SV&);
+void FloatList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs FloatList_funcs={
 .destroy = FloatList_destroy,
 .getMember = FloatList_get_member,
@@ -5422,11 +5420,11 @@ RET STG::createNativeObject(FloatList_funcs,p,EXT->FloatList_typeID);
 template <>
 struct val_to_c<List<float>>
 {
-static List<float> f(CTX ctx,const SV head)
+static List<float> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->FloatList_typeID)
 RET*((List<float>*)obj->data);
 else
@@ -5439,7 +5437,7 @@ else
 template <>
 struct val_to_c<const List<float>>
 {
-static List<float> f(CTX ctx,const SV head) {return val_to_c<List<float>>::f(ctx, head);}
+static List<float> f(CTX ctx,const SV val) {return val_to_c<List<float>>::f(ctx, val);}
 };
 
 template <>
@@ -5451,10 +5449,10 @@ static SV f(CTX ctx,const List<float>&obj) {return create_val<List<float>>::f(ct
 template <>
 struct type_same<List<float>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->FloatList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->FloatList_typeID;
 else
  RET false;
 }
@@ -5475,9 +5473,9 @@ SV FloatList_copy(CTX ctx,const List<SV>&a);
 SV FloatList_in(CTX ctx,const List<SV>&a);
 SV FloatList_begin(CTX ctx,const List<SV>&a);
 SV FloatList_end(CTX ctx,const List<SV>&a);
-void Container_destroy(CTX,NO);
-SV Container_get_member(CTX,NO,SV);
-void Container_set_member(CTX,NO,SV,SV);
+void Container_destroy(CTX,const SV&);
+SV Container_get_member(CTX,const SV&,const SV&);
+void Container_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Container_funcs={
 .destroy = Container_destroy,
 .getMember = Container_get_member,
@@ -5496,11 +5494,11 @@ RET STG::createNativeObject(Container_funcs,p,EXT->Container_typeID);
 template <>
 struct val_to_c<Container>
 {
-static Container f(CTX ctx,const SV head)
+static Container f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Container_typeID)
 RET*((Container*)obj->data);
 else
@@ -5513,7 +5511,7 @@ else
 template <>
 struct val_to_c<const Container>
 {
-static Container f(CTX ctx,const SV head) {return val_to_c<Container>::f(ctx, head);}
+static Container f(CTX ctx,const SV val) {return val_to_c<Container>::f(ctx, val);}
 };
 
 template <>
@@ -5525,18 +5523,18 @@ static SV f(CTX ctx,const Container&obj) {return create_val<Container>::f(ctx,ob
 template <>
 struct type_same<Container>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Container_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Container_typeID;
 else
  RET false;
 }
 };
 
-void LightDirectionalData_destroy(CTX,NO);
-SV LightDirectionalData_get_member(CTX,NO,SV);
-void LightDirectionalData_set_member(CTX,NO,SV,SV);
+void LightDirectionalData_destroy(CTX,const SV&);
+SV LightDirectionalData_get_member(CTX,const SV&,const SV&);
+void LightDirectionalData_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs LightDirectionalData_funcs={
 .destroy = LightDirectionalData_destroy,
 .getMember = LightDirectionalData_get_member,
@@ -5555,11 +5553,11 @@ RET STG::createNativeObject(LightDirectionalData_funcs,p,EXT->LightDirectionalDa
 template <>
 struct val_to_c<LightDirectionalData>
 {
-static LightDirectionalData f(CTX ctx,const SV head)
+static LightDirectionalData f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightDirectionalData_typeID)
 RET*((LightDirectionalData*)obj->data);
 else
@@ -5572,7 +5570,7 @@ else
 template <>
 struct val_to_c<const LightDirectionalData>
 {
-static LightDirectionalData f(CTX ctx,const SV head) {return val_to_c<LightDirectionalData>::f(ctx, head);}
+static LightDirectionalData f(CTX ctx,const SV val) {return val_to_c<LightDirectionalData>::f(ctx, val);}
 };
 
 template <>
@@ -5584,18 +5582,18 @@ static SV f(CTX ctx,const LightDirectionalData&obj) {return create_val<LightDire
 template <>
 struct type_same<LightDirectionalData>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightDirectionalData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightDirectionalData_typeID;
 else
  RET false;
 }
 };
 
-void Matrix4x4_destroy(CTX,NO);
-SV Matrix4x4_get_member(CTX,NO,SV);
-void Matrix4x4_set_member(CTX,NO,SV,SV);
+void Matrix4x4_destroy(CTX,const SV&);
+SV Matrix4x4_get_member(CTX,const SV&,const SV&);
+void Matrix4x4_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Matrix4x4_funcs={
 .destroy = Matrix4x4_destroy,
 .getMember = Matrix4x4_get_member,
@@ -5614,11 +5612,11 @@ RET STG::createNativeObject(Matrix4x4_funcs,p,EXT->Matrix4x4_typeID);
 template <>
 struct val_to_c<Matrix4x4>
 {
-static Matrix4x4 f(CTX ctx,const SV head)
+static Matrix4x4 f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Matrix4x4_typeID)
 RET*((Matrix4x4*)obj->data);
 else
@@ -5631,7 +5629,7 @@ else
 template <>
 struct val_to_c<const Matrix4x4>
 {
-static Matrix4x4 f(CTX ctx,const SV head) {return val_to_c<Matrix4x4>::f(ctx, head);}
+static Matrix4x4 f(CTX ctx,const SV val) {return val_to_c<Matrix4x4>::f(ctx, val);}
 };
 
 template <>
@@ -5643,10 +5641,10 @@ static SV f(CTX ctx,const Matrix4x4&obj) {return create_val<Matrix4x4>::f(ctx,ob
 template <>
 struct type_same<Matrix4x4>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix4x4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Matrix4x4_typeID;
 else
  RET false;
 }
@@ -5670,34 +5668,34 @@ SV Matrix4x4_perspective(CTX ctx,const List<SV>&a);
 SV Matrix4x4_orthographic(CTX ctx,const List<SV>&a);
 SV Matrix4x4_lookAt(CTX ctx,const List<SV>&a);
 SV Matrix4x4_lookAtDir(CTX ctx,const List<SV>&a);
-void Map_destroy(CTX,NO);
-SV Map_get_member(CTX,NO,SV);
-void Map_set_member(CTX,NO,SV,SV);
+void Map_destroy(CTX,const SV&);
+SV Map_get_member(CTX,const SV&,const SV&);
+void Map_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Map_funcs={
 .destroy = Map_destroy,
 .getMember = Map_get_member,
 .setMember = Map_set_member
 };
 template <>
-struct create_val<HashMap<scripting::Value*,scripting::Value*>>
+struct create_val<HashMap<scripting::Value,scripting::Value>>
 {
-static SV f(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>&obj)
+static SV f(CTX ctx,const HashMap<scripting::Value,scripting::Value>&obj)
 {
-void *p = (void *)NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>), obj);
+void *p = (void *)NEW(TYPE(HashMap<scripting::Value,scripting::Value>), obj);
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Map_funcs,p,EXT->Map_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<scripting::Value*,scripting::Value*>>
+struct val_to_c<HashMap<scripting::Value,scripting::Value>>
 {
-static HashMap<scripting::Value*,scripting::Value*> f(CTX ctx,const SV head)
+static HashMap<scripting::Value,scripting::Value> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Map_typeID)
-RET*((HashMap<scripting::Value*,scripting::Value*>*)obj->data);
+RET*((HashMap<scripting::Value,scripting::Value>*)obj->data);
 else
  CATE(TE,"Value can not be converted to Map."));
 } else
@@ -5706,24 +5704,24 @@ else
 };
 
 template <>
-struct val_to_c<const HashMap<scripting::Value*,scripting::Value*>>
+struct val_to_c<const HashMap<scripting::Value,scripting::Value>>
 {
-static HashMap<scripting::Value*,scripting::Value*> f(CTX ctx,const SV head) {return val_to_c<HashMap<scripting::Value*,scripting::Value*>>::f(ctx, head);}
+static HashMap<scripting::Value,scripting::Value> f(CTX ctx,const SV val) {return val_to_c<HashMap<scripting::Value,scripting::Value>>::f(ctx, val);}
 };
 
 template <>
-struct create_val<const HashMap<scripting::Value*,scripting::Value*>>
+struct create_val<const HashMap<scripting::Value,scripting::Value>>
 {
-static SV f(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>&obj) {return create_val<HashMap<scripting::Value*,scripting::Value*>>::f(ctx,obj);}
+static SV f(CTX ctx,const HashMap<scripting::Value,scripting::Value>&obj) {return create_val<HashMap<scripting::Value,scripting::Value>>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<HashMap<scripting::Value*,scripting::Value*>>
+struct type_same<HashMap<scripting::Value,scripting::Value>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Map_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Map_typeID;
 else
  RET false;
 }
@@ -5743,9 +5741,9 @@ SV Map_getCount(CTX ctx,const List<SV>&a);
 SV Map_getKey(CTX ctx,const List<SV>&a);
 SV Map_getValue(CTX ctx,const List<SV>&a);
 SV Map_clear(CTX ctx,const List<SV>&a);
-void ScriptInstanceList_destroy(CTX,NO);
-SV ScriptInstanceList_get_member(CTX,NO,SV);
-void ScriptInstanceList_set_member(CTX,NO,SV,SV);
+void ScriptInstanceList_destroy(CTX,const SV&);
+SV ScriptInstanceList_get_member(CTX,const SV&,const SV&);
+void ScriptInstanceList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs ScriptInstanceList_funcs={
 .destroy = ScriptInstanceList_destroy,
 .getMember = ScriptInstanceList_get_member,
@@ -5764,11 +5762,11 @@ RET STG::createNativeObject(ScriptInstanceList_funcs,p,EXT->ScriptInstanceList_t
 template <>
 struct val_to_c<List<ScriptInstance*>>
 {
-static List<ScriptInstance*> f(CTX ctx,const SV head)
+static List<ScriptInstance*> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScriptInstanceList_typeID)
 RET*((List<ScriptInstance*>*)obj->data);
 else
@@ -5781,7 +5779,7 @@ else
 template <>
 struct val_to_c<const List<ScriptInstance*>>
 {
-static List<ScriptInstance*> f(CTX ctx,const SV head) {return val_to_c<List<ScriptInstance*>>::f(ctx, head);}
+static List<ScriptInstance*> f(CTX ctx,const SV val) {return val_to_c<List<ScriptInstance*>>::f(ctx, val);}
 };
 
 template <>
@@ -5793,10 +5791,10 @@ static SV f(CTX ctx,const List<ScriptInstance*>&obj) {return create_val<List<Scr
 template <>
 struct type_same<List<ScriptInstance*>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScriptInstanceList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScriptInstanceList_typeID;
 else
  RET false;
 }
@@ -5817,9 +5815,9 @@ SV ScriptInstanceList_copy(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_in(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_begin(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_end(CTX ctx,const List<SV>&a);
-void UInt3_destroy(CTX,NO);
-SV UInt3_get_member(CTX,NO,SV);
-void UInt3_set_member(CTX,NO,SV,SV);
+void UInt3_destroy(CTX,const SV&);
+SV UInt3_get_member(CTX,const SV&,const SV&);
+void UInt3_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs UInt3_funcs={
 .destroy = UInt3_destroy,
 .getMember = UInt3_get_member,
@@ -5838,11 +5836,11 @@ RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
 template <>
 struct val_to_c<T3<uint32_t>>
 {
-static T3<uint32_t> f(CTX ctx,const SV head)
+static T3<uint32_t> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt3_typeID)
 RET*((T3<uint32_t>*)obj->data);
 else
@@ -5855,7 +5853,7 @@ else
 template <>
 struct val_to_c<const T3<uint32_t>>
 {
-static T3<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T3<uint32_t>>::f(ctx, head);}
+static T3<uint32_t> f(CTX ctx,const SV val) {return val_to_c<T3<uint32_t>>::f(ctx, val);}
 };
 
 template <>
@@ -5867,10 +5865,10 @@ static SV f(CTX ctx,const T3<uint32_t>&obj) {return create_val<T3<uint32_t>>::f(
 template <>
 struct type_same<T3<uint32_t>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt3_typeID;
 else
  RET false;
 }
@@ -5918,9 +5916,9 @@ SV UInt3_getZXY(CTX ctx,const List<SV>&a);
 SV UInt3_setZXY(CTX ctx,const List<SV>&a);
 SV UInt3_getZYX(CTX ctx,const List<SV>&a);
 SV UInt3_setZYX(CTX ctx,const List<SV>&a);
-void LightSpotData_destroy(CTX,NO);
-SV LightSpotData_get_member(CTX,NO,SV);
-void LightSpotData_set_member(CTX,NO,SV,SV);
+void LightSpotData_destroy(CTX,const SV&);
+SV LightSpotData_get_member(CTX,const SV&,const SV&);
+void LightSpotData_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs LightSpotData_funcs={
 .destroy = LightSpotData_destroy,
 .getMember = LightSpotData_get_member,
@@ -5939,11 +5937,11 @@ RET STG::createNativeObject(LightSpotData_funcs,p,EXT->LightSpotData_typeID);
 template <>
 struct val_to_c<LightSpotData>
 {
-static LightSpotData f(CTX ctx,const SV head)
+static LightSpotData f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightSpotData_typeID)
 RET*((LightSpotData*)obj->data);
 else
@@ -5956,7 +5954,7 @@ else
 template <>
 struct val_to_c<const LightSpotData>
 {
-static LightSpotData f(CTX ctx,const SV head) {return val_to_c<LightSpotData>::f(ctx, head);}
+static LightSpotData f(CTX ctx,const SV val) {return val_to_c<LightSpotData>::f(ctx, val);}
 };
 
 template <>
@@ -5968,18 +5966,18 @@ static SV f(CTX ctx,const LightSpotData&obj) {return create_val<LightSpotData>::
 template <>
 struct type_same<LightSpotData>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightSpotData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightSpotData_typeID;
 else
  RET false;
 }
 };
 
-void PhysicsShape_destroy(CTX,NO);
-SV PhysicsShape_get_member(CTX,NO,SV);
-void PhysicsShape_set_member(CTX,NO,SV,SV);
+void PhysicsShape_destroy(CTX,const SV&);
+SV PhysicsShape_get_member(CTX,const SV&,const SV&);
+void PhysicsShape_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs PhysicsShape_funcs={
 .destroy = PhysicsShape_destroy,
 .getMember = PhysicsShape_get_member,
@@ -5988,10 +5986,10 @@ static const STG::NativeObjectFuncs PhysicsShape_funcs={
 template <>
 struct type_same<PhysicsShape>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsShape_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsShape_typeID;
 else
  RET false;
 }
@@ -6024,9 +6022,9 @@ SV PhysicsShape_release(CTX ctx,const List<SV>&a);
 SV PhysicsShape_getRefCount(CTX ctx,const List<SV>&a);
 SV PhysicsShape_getFilename(CTX ctx,const List<SV>&a);
 SV PhysicsShape_setFilename(CTX ctx,const List<SV>&a);
-void AudioDevice_destroy(CTX,NO);
-SV AudioDevice_get_member(CTX,NO,SV);
-void AudioDevice_set_member(CTX,NO,SV,SV);
+void AudioDevice_destroy(CTX,const SV&);
+SV AudioDevice_get_member(CTX,const SV&,const SV&);
+void AudioDevice_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs AudioDevice_funcs={
 .destroy = AudioDevice_destroy,
 .getMember = AudioDevice_get_member,
@@ -6045,11 +6043,11 @@ RET STG::createNativeObject(AudioDevice_funcs,p,EXT->AudioDevice_typeID);
 template <>
 struct val_to_c<AudioDevice>
 {
-static AudioDevice f(CTX ctx,const SV head)
+static AudioDevice f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioDevice_typeID)
 RET*((AudioDevice*)obj->data);
 else
@@ -6062,7 +6060,7 @@ else
 template <>
 struct val_to_c<const AudioDevice>
 {
-static AudioDevice f(CTX ctx,const SV head) {return val_to_c<AudioDevice>::f(ctx, head);}
+static AudioDevice f(CTX ctx,const SV val) {return val_to_c<AudioDevice>::f(ctx, val);}
 };
 
 template <>
@@ -6074,10 +6072,10 @@ static SV f(CTX ctx,const AudioDevice&obj) {return create_val<AudioDevice>::f(ct
 template <>
 struct type_same<AudioDevice>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioDevice_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioDevice_typeID;
 else
  RET false;
 }
@@ -6096,9 +6094,9 @@ SV AudioDevice_pause(CTX ctx,const List<SV>&a);
 SV AudioDevice_play(CTX ctx,const List<SV>&a);
 SV AudioDevice_getPaused(CTX ctx,const List<SV>&a);
 SV AudioDevice_runCallbacks(CTX ctx,const List<SV>&a);
-void RigidBodyList_destroy(CTX,NO);
-SV RigidBodyList_get_member(CTX,NO,SV);
-void RigidBodyList_set_member(CTX,NO,SV,SV);
+void RigidBodyList_destroy(CTX,const SV&);
+SV RigidBodyList_get_member(CTX,const SV&,const SV&);
+void RigidBodyList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RigidBodyList_funcs={
 .destroy = RigidBodyList_destroy,
 .getMember = RigidBodyList_get_member,
@@ -6117,11 +6115,11 @@ RET STG::createNativeObject(RigidBodyList_funcs,p,EXT->RigidBodyList_typeID);
 template <>
 struct val_to_c<List<RigidBody*>>
 {
-static List<RigidBody*> f(CTX ctx,const SV head)
+static List<RigidBody*> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBodyList_typeID)
 RET*((List<RigidBody*>*)obj->data);
 else
@@ -6134,7 +6132,7 @@ else
 template <>
 struct val_to_c<const List<RigidBody*>>
 {
-static List<RigidBody*> f(CTX ctx,const SV head) {return val_to_c<List<RigidBody*>>::f(ctx, head);}
+static List<RigidBody*> f(CTX ctx,const SV val) {return val_to_c<List<RigidBody*>>::f(ctx, val);}
 };
 
 template <>
@@ -6146,10 +6144,10 @@ static SV f(CTX ctx,const List<RigidBody*>&obj) {return create_val<List<RigidBod
 template <>
 struct type_same<List<RigidBody*>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyList_typeID;
 else
  RET false;
 }
@@ -6170,9 +6168,9 @@ SV RigidBodyList_copy(CTX ctx,const List<SV>&a);
 SV RigidBodyList_in(CTX ctx,const List<SV>&a);
 SV RigidBodyList_begin(CTX ctx,const List<SV>&a);
 SV RigidBodyList_end(CTX ctx,const List<SV>&a);
-void UInt4_destroy(CTX,NO);
-SV UInt4_get_member(CTX,NO,SV);
-void UInt4_set_member(CTX,NO,SV,SV);
+void UInt4_destroy(CTX,const SV&);
+SV UInt4_get_member(CTX,const SV&,const SV&);
+void UInt4_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs UInt4_funcs={
 .destroy = UInt4_destroy,
 .getMember = UInt4_get_member,
@@ -6191,11 +6189,11 @@ RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
 template <>
 struct val_to_c<T4<uint32_t>>
 {
-static T4<uint32_t> f(CTX ctx,const SV head)
+static T4<uint32_t> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt4_typeID)
 RET*((T4<uint32_t>*)obj->data);
 else
@@ -6208,7 +6206,7 @@ else
 template <>
 struct val_to_c<const T4<uint32_t>>
 {
-static T4<uint32_t> f(CTX ctx,const SV head) {return val_to_c<T4<uint32_t>>::f(ctx, head);}
+static T4<uint32_t> f(CTX ctx,const SV val) {return val_to_c<T4<uint32_t>>::f(ctx, val);}
 };
 
 template <>
@@ -6220,10 +6218,10 @@ static SV f(CTX ctx,const T4<uint32_t>&obj) {return create_val<T4<uint32_t>>::f(
 template <>
 struct type_same<T4<uint32_t>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt4_typeID;
 else
  RET false;
 }
@@ -6366,9 +6364,9 @@ SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
 SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
-void RayCastResult_destroy(CTX,NO);
-SV RayCastResult_get_member(CTX,NO,SV);
-void RayCastResult_set_member(CTX,NO,SV,SV);
+void RayCastResult_destroy(CTX,const SV&);
+SV RayCastResult_get_member(CTX,const SV&,const SV&);
+void RayCastResult_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RayCastResult_funcs={
 .destroy = RayCastResult_destroy,
 .getMember = RayCastResult_get_member,
@@ -6387,11 +6385,11 @@ RET STG::createNativeObject(RayCastResult_funcs,p,EXT->RayCastResult_typeID);
 template <>
 struct val_to_c<RayCastResult>
 {
-static RayCastResult f(CTX ctx,const SV head)
+static RayCastResult f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RayCastResult_typeID)
 RET*((RayCastResult*)obj->data);
 else
@@ -6404,7 +6402,7 @@ else
 template <>
 struct val_to_c<const RayCastResult>
 {
-static RayCastResult f(CTX ctx,const SV head) {return val_to_c<RayCastResult>::f(ctx, head);}
+static RayCastResult f(CTX ctx,const SV val) {return val_to_c<RayCastResult>::f(ctx, val);}
 };
 
 template <>
@@ -6416,10 +6414,10 @@ static SV f(CTX ctx,const RayCastResult&obj) {return create_val<RayCastResult>::
 template <>
 struct type_same<RayCastResult>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResult_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RayCastResult_typeID;
 else
  RET false;
 }
@@ -6428,9 +6426,9 @@ else
 SV RayCastResult_getRigidBody(CTX ctx,const List<SV>&a);
 SV RayCastResult_getGhost(CTX ctx,const List<SV>&a);
 SV RayCastResult___eq__(CTX ctx,const List<SV>&a);
-void GfxLOD_destroy(CTX,NO);
-SV GfxLOD_get_member(CTX,NO,SV);
-void GfxLOD_set_member(CTX,NO,SV,SV);
+void GfxLOD_destroy(CTX,const SV&);
+SV GfxLOD_get_member(CTX,const SV&,const SV&);
+void GfxLOD_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxLOD_funcs={
 .destroy = GfxLOD_destroy,
 .getMember = GfxLOD_get_member,
@@ -6449,11 +6447,11 @@ RET STG::createNativeObject(GfxLOD_funcs,p,EXT->GfxLOD_typeID);
 template <>
 struct val_to_c<GfxLOD>
 {
-static GfxLOD f(CTX ctx,const SV head)
+static GfxLOD f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxLOD_typeID)
 RET*((GfxLOD*)obj->data);
 else
@@ -6466,7 +6464,7 @@ else
 template <>
 struct val_to_c<const GfxLOD>
 {
-static GfxLOD f(CTX ctx,const SV head) {return val_to_c<GfxLOD>::f(ctx, head);}
+static GfxLOD f(CTX ctx,const SV val) {return val_to_c<GfxLOD>::f(ctx, val);}
 };
 
 template <>
@@ -6478,19 +6476,19 @@ static SV f(CTX ctx,const GfxLOD&obj) {return create_val<GfxLOD>::f(ctx,obj);}
 template <>
 struct type_same<GfxLOD>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLOD_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLOD_typeID;
 else
  RET false;
 }
 };
 
 SV GfxLOD___eq__(CTX ctx,const List<SV>&a);
-void File_destroy(CTX,NO);
-SV File_get_member(CTX,NO,SV);
-void File_set_member(CTX,NO,SV,SV);
+void File_destroy(CTX,const SV&);
+SV File_get_member(CTX,const SV&,const SV&);
+void File_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs File_funcs={
 .destroy = File_destroy,
 .getMember = File_get_member,
@@ -6499,10 +6497,10 @@ static const STG::NativeObjectFuncs File_funcs={
 template <>
 struct type_same<File>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->File_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->File_typeID;
 else
  RET false;
 }
@@ -6549,9 +6547,9 @@ SV File_writeFloat32(CTX ctx,const List<SV>&a);
 SV File_printf(CTX ctx,const List<SV>&a);
 SV File_vprintf(CTX ctx,const List<SV>&a);
 SV File_writeChar(CTX ctx,const List<SV>&a);
-void AABB_destroy(CTX,NO);
-SV AABB_get_member(CTX,NO,SV);
-void AABB_set_member(CTX,NO,SV,SV);
+void AABB_destroy(CTX,const SV&);
+SV AABB_get_member(CTX,const SV&,const SV&);
+void AABB_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs AABB_funcs={
 .destroy = AABB_destroy,
 .getMember = AABB_get_member,
@@ -6570,11 +6568,11 @@ RET STG::createNativeObject(AABB_funcs,p,EXT->AABB_typeID);
 template <>
 struct val_to_c<AABB>
 {
-static AABB f(CTX ctx,const SV head)
+static AABB f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AABB_typeID)
 RET*((AABB*)obj->data);
 else
@@ -6587,7 +6585,7 @@ else
 template <>
 struct val_to_c<const AABB>
 {
-static AABB f(CTX ctx,const SV head) {return val_to_c<AABB>::f(ctx, head);}
+static AABB f(CTX ctx,const SV val) {return val_to_c<AABB>::f(ctx, val);}
 };
 
 template <>
@@ -6599,10 +6597,10 @@ static SV f(CTX ctx,const AABB&obj) {return create_val<AABB>::f(ctx,obj);}
 template <>
 struct type_same<AABB>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AABB_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AABB_typeID;
 else
  RET false;
 }
@@ -6613,9 +6611,9 @@ SV AABB_extend(CTX ctx,const List<SV>&a);
 SV AABB_grow(CTX ctx,const List<SV>&a);
 SV AABB_getCorner(CTX ctx,const List<SV>&a);
 SV AABB_intersection(CTX ctx,const List<SV>&a);
-void RigidBodyConstructionInfo_destroy(CTX,NO);
-SV RigidBodyConstructionInfo_get_member(CTX,NO,SV);
-void RigidBodyConstructionInfo_set_member(CTX,NO,SV,SV);
+void RigidBodyConstructionInfo_destroy(CTX,const SV&);
+SV RigidBodyConstructionInfo_get_member(CTX,const SV&,const SV&);
+void RigidBodyConstructionInfo_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs RigidBodyConstructionInfo_funcs={
 .destroy = RigidBodyConstructionInfo_destroy,
 .getMember = RigidBodyConstructionInfo_get_member,
@@ -6634,11 +6632,11 @@ RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,p,EXT->RigidBodyCons
 template <>
 struct val_to_c<RigidBodyConstructionInfo>
 {
-static RigidBodyConstructionInfo f(CTX ctx,const SV head)
+static RigidBodyConstructionInfo f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBodyConstructionInfo_typeID)
 RET*((RigidBodyConstructionInfo*)obj->data);
 else
@@ -6651,7 +6649,7 @@ else
 template <>
 struct val_to_c<const RigidBodyConstructionInfo>
 {
-static RigidBodyConstructionInfo f(CTX ctx,const SV head) {return val_to_c<RigidBodyConstructionInfo>::f(ctx, head);}
+static RigidBodyConstructionInfo f(CTX ctx,const SV val) {return val_to_c<RigidBodyConstructionInfo>::f(ctx, val);}
 };
 
 template <>
@@ -6663,43 +6661,43 @@ static SV f(CTX ctx,const RigidBodyConstructionInfo&obj) {return create_val<Rigi
 template <>
 struct type_same<RigidBodyConstructionInfo>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyConstructionInfo_typeID;
 else
  RET false;
 }
 };
 
-void List_destroy(CTX,NO);
-SV List_get_member(CTX,NO,SV);
-void List_set_member(CTX,NO,SV,SV);
+void List_destroy(CTX,const SV&);
+SV List_get_member(CTX,const SV&,const SV&);
+void List_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs List_funcs={
 .destroy = List_destroy,
 .getMember = List_get_member,
 .setMember = List_set_member
 };
 template <>
-struct create_val<List<scripting::Value*>>
+struct create_val<List<scripting::Value>>
 {
-static SV f(CTX ctx,const List<scripting::Value*>&obj)
+static SV f(CTX ctx,const List<scripting::Value>&obj)
 {
-void *p = (void *)NEW(TYPE(List<scripting::Value*>), obj);
+void *p = (void *)NEW(TYPE(List<scripting::Value>), obj);
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }
 };
 template <>
-struct val_to_c<List<scripting::Value*>>
+struct val_to_c<List<scripting::Value>>
 {
-static List<scripting::Value*> f(CTX ctx,const SV head)
+static List<scripting::Value> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->List_typeID)
-RET*((List<scripting::Value*>*)obj->data);
+RET*((List<scripting::Value>*)obj->data);
 else
  CATE(TE,"Value can not be converted to List."));
 } else
@@ -6708,24 +6706,24 @@ else
 };
 
 template <>
-struct val_to_c<const List<scripting::Value*>>
+struct val_to_c<const List<scripting::Value>>
 {
-static List<scripting::Value*> f(CTX ctx,const SV head) {return val_to_c<List<scripting::Value*>>::f(ctx, head);}
+static List<scripting::Value> f(CTX ctx,const SV val) {return val_to_c<List<scripting::Value>>::f(ctx, val);}
 };
 
 template <>
-struct create_val<const List<scripting::Value*>>
+struct create_val<const List<scripting::Value>>
 {
-static SV f(CTX ctx,const List<scripting::Value*>&obj) {return create_val<List<scripting::Value*>>::f(ctx,obj);}
+static SV f(CTX ctx,const List<scripting::Value>&obj) {return create_val<List<scripting::Value>>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<List<scripting::Value*>>
+struct type_same<List<scripting::Value>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->List_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->List_typeID;
 else
  RET false;
 }
@@ -6746,9 +6744,9 @@ SV List_copy(CTX ctx,const List<SV>&a);
 SV List_in(CTX ctx,const List<SV>&a);
 SV List_begin(CTX ctx,const List<SV>&a);
 SV List_end(CTX ctx,const List<SV>&a);
-void Audio_destroy(CTX,NO);
-SV Audio_get_member(CTX,NO,SV);
-void Audio_set_member(CTX,NO,SV,SV);
+void Audio_destroy(CTX,const SV&);
+SV Audio_get_member(CTX,const SV&,const SV&);
+void Audio_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Audio_funcs={
 .destroy = Audio_destroy,
 .getMember = Audio_get_member,
@@ -6757,10 +6755,10 @@ static const STG::NativeObjectFuncs Audio_funcs={
 template <>
 struct type_same<Audio>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Audio_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Audio_typeID;
 else
  RET false;
 }
@@ -6783,9 +6781,9 @@ SV Audio_release(CTX ctx,const List<SV>&a);
 SV Audio_getRefCount(CTX ctx,const List<SV>&a);
 SV Audio_getFilename(CTX ctx,const List<SV>&a);
 SV Audio_setFilename(CTX ctx,const List<SV>&a);
-void GfxTexture_destroy(CTX,NO);
-SV GfxTexture_get_member(CTX,NO,SV);
-void GfxTexture_set_member(CTX,NO,SV,SV);
+void GfxTexture_destroy(CTX,const SV&);
+SV GfxTexture_get_member(CTX,const SV&,const SV&);
+void GfxTexture_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxTexture_funcs={
 .destroy = GfxTexture_destroy,
 .getMember = GfxTexture_get_member,
@@ -6794,10 +6792,10 @@ static const STG::NativeObjectFuncs GfxTexture_funcs={
 template <>
 struct type_same<GfxTexture>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexture_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxTexture_typeID;
 else
  RET false;
 }
@@ -6837,9 +6835,9 @@ SV GfxTexture_release(CTX ctx,const List<SV>&a);
 SV GfxTexture_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxTexture_getFilename(CTX ctx,const List<SV>&a);
 SV GfxTexture_setFilename(CTX ctx,const List<SV>&a);
-void GfxSubModelList_destroy(CTX,NO);
-SV GfxSubModelList_get_member(CTX,NO,SV);
-void GfxSubModelList_set_member(CTX,NO,SV,SV);
+void GfxSubModelList_destroy(CTX,const SV&);
+SV GfxSubModelList_get_member(CTX,const SV&,const SV&);
+void GfxSubModelList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxSubModelList_funcs={
 .destroy = GfxSubModelList_destroy,
 .getMember = GfxSubModelList_get_member,
@@ -6858,11 +6856,11 @@ RET STG::createNativeObject(GfxSubModelList_funcs,p,EXT->GfxSubModelList_typeID)
 template <>
 struct val_to_c<List<GfxModel::SubModel>>
 {
-static List<GfxModel::SubModel> f(CTX ctx,const SV head)
+static List<GfxModel::SubModel> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxSubModelList_typeID)
 RET*((List<GfxModel::SubModel>*)obj->data);
 else
@@ -6875,7 +6873,7 @@ else
 template <>
 struct val_to_c<const List<GfxModel::SubModel>>
 {
-static List<GfxModel::SubModel> f(CTX ctx,const SV head) {return val_to_c<List<GfxModel::SubModel>>::f(ctx, head);}
+static List<GfxModel::SubModel> f(CTX ctx,const SV val) {return val_to_c<List<GfxModel::SubModel>>::f(ctx, val);}
 };
 
 template <>
@@ -6887,10 +6885,10 @@ static SV f(CTX ctx,const List<GfxModel::SubModel>&obj) {return create_val<List<
 template <>
 struct type_same<List<GfxModel::SubModel>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxSubModelList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxSubModelList_typeID;
 else
  RET false;
 }
@@ -6911,9 +6909,9 @@ SV GfxSubModelList_copy(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_in(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_begin(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_end(CTX ctx,const List<SV>&a);
-void GfxModel_destroy(CTX,NO);
-SV GfxModel_get_member(CTX,NO,SV);
-void GfxModel_set_member(CTX,NO,SV,SV);
+void GfxModel_destroy(CTX,const SV&);
+SV GfxModel_get_member(CTX,const SV&,const SV&);
+void GfxModel_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxModel_funcs={
 .destroy = GfxModel_destroy,
 .getMember = GfxModel_get_member,
@@ -6922,10 +6920,10 @@ static const STG::NativeObjectFuncs GfxModel_funcs={
 template <>
 struct type_same<GfxModel>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxModel_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxModel_typeID;
 else
  RET false;
 }
@@ -6940,9 +6938,9 @@ SV GfxModel_release(CTX ctx,const List<SV>&a);
 SV GfxModel_getRefCount(CTX ctx,const List<SV>&a);
 SV GfxModel_getFilename(CTX ctx,const List<SV>&a);
 SV GfxModel_setFilename(CTX ctx,const List<SV>&a);
-void GfxLODList_destroy(CTX,NO);
-SV GfxLODList_get_member(CTX,NO,SV);
-void GfxLODList_set_member(CTX,NO,SV,SV);
+void GfxLODList_destroy(CTX,const SV&);
+SV GfxLODList_get_member(CTX,const SV&,const SV&);
+void GfxLODList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxLODList_funcs={
 .destroy = GfxLODList_destroy,
 .getMember = GfxLODList_get_member,
@@ -6961,11 +6959,11 @@ RET STG::createNativeObject(GfxLODList_funcs,p,EXT->GfxLODList_typeID);
 template <>
 struct val_to_c<List<GfxLOD>>
 {
-static List<GfxLOD> f(CTX ctx,const SV head)
+static List<GfxLOD> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxLODList_typeID)
 RET*((List<GfxLOD>*)obj->data);
 else
@@ -6978,7 +6976,7 @@ else
 template <>
 struct val_to_c<const List<GfxLOD>>
 {
-static List<GfxLOD> f(CTX ctx,const SV head) {return val_to_c<List<GfxLOD>>::f(ctx, head);}
+static List<GfxLOD> f(CTX ctx,const SV val) {return val_to_c<List<GfxLOD>>::f(ctx, val);}
 };
 
 template <>
@@ -6990,10 +6988,10 @@ static SV f(CTX ctx,const List<GfxLOD>&obj) {return create_val<List<GfxLOD>>::f(
 template <>
 struct type_same<List<GfxLOD>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLODList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLODList_typeID;
 else
  RET false;
 }
@@ -7014,9 +7012,9 @@ SV GfxLODList_copy(CTX ctx,const List<SV>&a);
 SV GfxLODList_in(CTX ctx,const List<SV>&a);
 SV GfxLODList_begin(CTX ctx,const List<SV>&a);
 SV GfxLODList_end(CTX ctx,const List<SV>&a);
-void EntityList_destroy(CTX,NO);
-SV EntityList_get_member(CTX,NO,SV);
-void EntityList_set_member(CTX,NO,SV,SV);
+void EntityList_destroy(CTX,const SV&);
+SV EntityList_get_member(CTX,const SV&,const SV&);
+void EntityList_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs EntityList_funcs={
 .destroy = EntityList_destroy,
 .getMember = EntityList_get_member,
@@ -7035,11 +7033,11 @@ RET STG::createNativeObject(EntityList_funcs,p,EXT->EntityList_typeID);
 template <>
 struct val_to_c<List<Entity*>>
 {
-static List<Entity*> f(CTX ctx,const SV head)
+static List<Entity*> f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->EntityList_typeID)
 RET*((List<Entity*>*)obj->data);
 else
@@ -7052,7 +7050,7 @@ else
 template <>
 struct val_to_c<const List<Entity*>>
 {
-static List<Entity*> f(CTX ctx,const SV head) {return val_to_c<List<Entity*>>::f(ctx, head);}
+static List<Entity*> f(CTX ctx,const SV val) {return val_to_c<List<Entity*>>::f(ctx, val);}
 };
 
 template <>
@@ -7064,10 +7062,10 @@ static SV f(CTX ctx,const List<Entity*>&obj) {return create_val<List<Entity*>>::
 template <>
 struct type_same<List<Entity*>>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->EntityList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->EntityList_typeID;
 else
  RET false;
 }
@@ -7088,9 +7086,9 @@ SV EntityList_copy(CTX ctx,const List<SV>&a);
 SV EntityList_in(CTX ctx,const List<SV>&a);
 SV EntityList_begin(CTX ctx,const List<SV>&a);
 SV EntityList_end(CTX ctx,const List<SV>&a);
-void GfxShaderCombination_destroy(CTX,NO);
-SV GfxShaderCombination_get_member(CTX,NO,SV);
-void GfxShaderCombination_set_member(CTX,NO,SV,SV);
+void GfxShaderCombination_destroy(CTX,const SV&);
+SV GfxShaderCombination_get_member(CTX,const SV&,const SV&);
+void GfxShaderCombination_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxShaderCombination_funcs={
 .destroy = GfxShaderCombination_destroy,
 .getMember = GfxShaderCombination_get_member,
@@ -7099,10 +7097,10 @@ static const STG::NativeObjectFuncs GfxShaderCombination_funcs={
 template <>
 struct type_same<GfxShaderCombination>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShaderCombination_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShaderCombination_typeID;
 else
  RET false;
 }
@@ -7115,9 +7113,9 @@ SV GfxShaderCombination_getShader(CTX ctx,const List<SV>&a);
 SV GfxShaderCombination_setShader(CTX ctx,const List<SV>&a);
 SV GfxShaderCombination_getCompiled(CTX ctx,const List<SV>&a);
 SV GfxShaderCombination_getGLPipeline(CTX ctx,const List<SV>&a);
-void Matrix3x3_destroy(CTX,NO);
-SV Matrix3x3_get_member(CTX,NO,SV);
-void Matrix3x3_set_member(CTX,NO,SV,SV);
+void Matrix3x3_destroy(CTX,const SV&);
+SV Matrix3x3_get_member(CTX,const SV&,const SV&);
+void Matrix3x3_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs Matrix3x3_funcs={
 .destroy = Matrix3x3_destroy,
 .getMember = Matrix3x3_get_member,
@@ -7136,11 +7134,11 @@ RET STG::createNativeObject(Matrix3x3_funcs,p,EXT->Matrix3x3_typeID);
 template <>
 struct val_to_c<Matrix3x3>
 {
-static Matrix3x3 f(CTX ctx,const SV head)
+static Matrix3x3 f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Matrix3x3_typeID)
 RET*((Matrix3x3*)obj->data);
 else
@@ -7153,7 +7151,7 @@ else
 template <>
 struct val_to_c<const Matrix3x3>
 {
-static Matrix3x3 f(CTX ctx,const SV head) {return val_to_c<Matrix3x3>::f(ctx, head);}
+static Matrix3x3 f(CTX ctx,const SV val) {return val_to_c<Matrix3x3>::f(ctx, val);}
 };
 
 template <>
@@ -7165,10 +7163,10 @@ static SV f(CTX ctx,const Matrix3x3&obj) {return create_val<Matrix3x3>::f(ctx,ob
 template <>
 struct type_same<Matrix3x3>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix3x3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Matrix3x3_typeID;
 else
  RET false;
 }
@@ -7187,9 +7185,9 @@ SV Matrix3x3_rotate(CTX ctx,const List<SV>&a);
 SV Matrix3x3_rotatex(CTX ctx,const List<SV>&a);
 SV Matrix3x3_rotatey(CTX ctx,const List<SV>&a);
 SV Matrix3x3_rotatez(CTX ctx,const List<SV>&a);
-void GfxDebugDrawer_destroy(CTX,NO);
-SV GfxDebugDrawer_get_member(CTX,NO,SV);
-void GfxDebugDrawer_set_member(CTX,NO,SV,SV);
+void GfxDebugDrawer_destroy(CTX,const SV&);
+SV GfxDebugDrawer_get_member(CTX,const SV&,const SV&);
+void GfxDebugDrawer_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs GfxDebugDrawer_funcs={
 .destroy = GfxDebugDrawer_destroy,
 .getMember = GfxDebugDrawer_get_member,
@@ -7198,10 +7196,10 @@ static const STG::NativeObjectFuncs GfxDebugDrawer_funcs={
 template <>
 struct type_same<GfxDebugDrawer>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDebugDrawer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxDebugDrawer_typeID;
 else
  RET false;
 }
@@ -7223,11 +7221,11 @@ RET STG::createNativeObject(GhostObject_funcs,obj,EXT->GhostObject_typeID);
 template <>
 struct val_to_c<GhostObject *>
 {
-static GhostObject *f(CTX ctx,const SV head)
+static GhostObject *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GhostObject_typeID)
 RET(GhostObject*)obj->data;
 else
@@ -7239,10 +7237,10 @@ else
 template <>
 struct type_same<GhostObject *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GhostObject_typeID;
 else
  RET false;
 }
@@ -7250,10 +7248,10 @@ else
 template <>
 struct type_same<const GhostObject *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObject_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GhostObject_typeID;
 else
  RET false;
 }
@@ -7261,11 +7259,11 @@ else
 template <>
 struct val_to_c<const GhostObject *>
 {
-static const GhostObject *f(CTX ctx,const SV head)
+static const GhostObject *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GhostObject_typeID)
 RET(GhostObject*)obj->data;
 else
@@ -7289,11 +7287,11 @@ RET STG::createNativeObject(StrStrMap_funcs,obj,EXT->StrStrMap_typeID);
 template <>
 struct val_to_c<HashMap<String,String> *>
 {
-static HashMap<String,String> *f(CTX ctx,const SV head)
+static HashMap<String,String> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->StrStrMap_typeID)
 RET(HashMap<String,String>*)obj->data;
 else
@@ -7305,10 +7303,10 @@ else
 template <>
 struct type_same<HashMap<String,String> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->StrStrMap_typeID;
 else
  RET false;
 }
@@ -7316,10 +7314,10 @@ else
 template <>
 struct type_same<const HashMap<String,String> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StrStrMap_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->StrStrMap_typeID;
 else
  RET false;
 }
@@ -7327,11 +7325,11 @@ else
 template <>
 struct val_to_c<const HashMap<String,String> *>
 {
-static const HashMap<String,String> *f(CTX ctx,const SV head)
+static const HashMap<String,String> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->StrStrMap_typeID)
 RET(HashMap<String,String>*)obj->data;
 else
@@ -7355,11 +7353,11 @@ RET STG::createNativeObject(GfxApi_funcs,obj,EXT->GfxApi_typeID);
 template <>
 struct val_to_c<GfxApi *>
 {
-static GfxApi *f(CTX ctx,const SV head)
+static GfxApi *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxApi_typeID)
 RET(GfxApi*)obj->data;
 else
@@ -7371,10 +7369,10 @@ else
 template <>
 struct type_same<GfxApi *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxApi_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxApi_typeID;
 else
  RET false;
 }
@@ -7382,10 +7380,10 @@ else
 template <>
 struct type_same<const GfxApi *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxApi_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxApi_typeID;
 else
  RET false;
 }
@@ -7393,11 +7391,11 @@ else
 template <>
 struct val_to_c<const GfxApi *>
 {
-static const GfxApi *f(CTX ctx,const SV head)
+static const GfxApi *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxApi_typeID)
 RET(GfxApi*)obj->data;
 else
@@ -7421,11 +7419,11 @@ RET STG::createNativeObject(GfxCompiledShader_funcs,obj,EXT->GfxCompiledShader_t
 template <>
 struct val_to_c<GfxCompiledShader *>
 {
-static GfxCompiledShader *f(CTX ctx,const SV head)
+static GfxCompiledShader *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxCompiledShader_typeID)
 RET(GfxCompiledShader*)obj->data;
 else
@@ -7437,10 +7435,10 @@ else
 template <>
 struct type_same<GfxCompiledShader *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxCompiledShader_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxCompiledShader_typeID;
 else
  RET false;
 }
@@ -7448,10 +7446,10 @@ else
 template <>
 struct type_same<const GfxCompiledShader *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxCompiledShader_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxCompiledShader_typeID;
 else
  RET false;
 }
@@ -7459,11 +7457,11 @@ else
 template <>
 struct val_to_c<const GfxCompiledShader *>
 {
-static const GfxCompiledShader *f(CTX ctx,const SV head)
+static const GfxCompiledShader *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxCompiledShader_typeID)
 RET(GfxCompiledShader*)obj->data;
 else
@@ -7487,11 +7485,11 @@ RET STG::createNativeObject(ScrollBar_funcs,obj,EXT->ScrollBar_typeID);
 template <>
 struct val_to_c<ScrollBar *>
 {
-static ScrollBar *f(CTX ctx,const SV head)
+static ScrollBar *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScrollBar_typeID)
 RET(ScrollBar*)obj->data;
 else
@@ -7503,10 +7501,10 @@ else
 template <>
 struct type_same<ScrollBar *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScrollBar_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScrollBar_typeID;
 else
  RET false;
 }
@@ -7514,10 +7512,10 @@ else
 template <>
 struct type_same<const ScrollBar *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScrollBar_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScrollBar_typeID;
 else
  RET false;
 }
@@ -7525,11 +7523,11 @@ else
 template <>
 struct val_to_c<const ScrollBar *>
 {
-static const ScrollBar *f(CTX ctx,const SV head)
+static const ScrollBar *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScrollBar_typeID)
 RET(ScrollBar*)obj->data;
 else
@@ -7553,11 +7551,11 @@ RET STG::createNativeObject(GhostObjList_funcs,obj,EXT->GhostObjList_typeID);
 template <>
 struct val_to_c<List<GhostObject*> *>
 {
-static List<GhostObject*> *f(CTX ctx,const SV head)
+static List<GhostObject*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GhostObjList_typeID)
 RET(List<GhostObject*>*)obj->data;
 else
@@ -7569,10 +7567,10 @@ else
 template <>
 struct type_same<List<GhostObject*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObjList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GhostObjList_typeID;
 else
  RET false;
 }
@@ -7580,10 +7578,10 @@ else
 template <>
 struct type_same<const List<GhostObject*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GhostObjList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GhostObjList_typeID;
 else
  RET false;
 }
@@ -7591,11 +7589,11 @@ else
 template <>
 struct val_to_c<const List<GhostObject*> *>
 {
-static const List<GhostObject*> *f(CTX ctx,const SV head)
+static const List<GhostObject*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GhostObjList_typeID)
 RET(List<GhostObject*>*)obj->data;
 else
@@ -7619,11 +7617,11 @@ RET STG::createNativeObject(GPUTimer_funcs,obj,EXT->GPUTimer_typeID);
 template <>
 struct val_to_c<GPUTimer *>
 {
-static GPUTimer *f(CTX ctx,const SV head)
+static GPUTimer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GPUTimer_typeID)
 RET(GPUTimer*)obj->data;
 else
@@ -7635,10 +7633,10 @@ else
 template <>
 struct type_same<GPUTimer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GPUTimer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GPUTimer_typeID;
 else
  RET false;
 }
@@ -7646,10 +7644,10 @@ else
 template <>
 struct type_same<const GPUTimer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GPUTimer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GPUTimer_typeID;
 else
  RET false;
 }
@@ -7657,11 +7655,11 @@ else
 template <>
 struct val_to_c<const GPUTimer *>
 {
-static const GPUTimer *f(CTX ctx,const SV head)
+static const GPUTimer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GPUTimer_typeID)
 RET(GPUTimer*)obj->data;
 else
@@ -7685,11 +7683,11 @@ RET STG::createNativeObject(RigidBody_funcs,obj,EXT->RigidBody_typeID);
 template <>
 struct val_to_c<RigidBody *>
 {
-static RigidBody *f(CTX ctx,const SV head)
+static RigidBody *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBody_typeID)
 RET(RigidBody*)obj->data;
 else
@@ -7701,10 +7699,10 @@ else
 template <>
 struct type_same<RigidBody *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBody_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBody_typeID;
 else
  RET false;
 }
@@ -7712,10 +7710,10 @@ else
 template <>
 struct type_same<const RigidBody *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBody_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBody_typeID;
 else
  RET false;
 }
@@ -7723,11 +7721,11 @@ else
 template <>
 struct val_to_c<const RigidBody *>
 {
-static const RigidBody *f(CTX ctx,const SV head)
+static const RigidBody *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBody_typeID)
 RET(RigidBody*)obj->data;
 else
@@ -7751,11 +7749,11 @@ RET STG::createNativeObject(UInt2_funcs,obj,EXT->UInt2_typeID);
 template <>
 struct val_to_c<T2<uint32_t> *>
 {
-static T2<uint32_t> *f(CTX ctx,const SV head)
+static T2<uint32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt2_typeID)
 RET(T2<uint32_t>*)obj->data;
 else
@@ -7767,10 +7765,10 @@ else
 template <>
 struct type_same<T2<uint32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt2_typeID;
 else
  RET false;
 }
@@ -7778,10 +7776,10 @@ else
 template <>
 struct type_same<const T2<uint32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt2_typeID;
 else
  RET false;
 }
@@ -7789,11 +7787,11 @@ else
 template <>
 struct val_to_c<const T2<uint32_t> *>
 {
-static const T2<uint32_t> *f(CTX ctx,const SV head)
+static const T2<uint32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt2_typeID)
 RET(T2<uint32_t>*)obj->data;
 else
@@ -7817,11 +7815,11 @@ RET STG::createNativeObject(LightList_funcs,obj,EXT->LightList_typeID);
 template <>
 struct val_to_c<List<Light*> *>
 {
-static List<Light*> *f(CTX ctx,const SV head)
+static List<Light*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightList_typeID)
 RET(List<Light*>*)obj->data;
 else
@@ -7833,10 +7831,10 @@ else
 template <>
 struct type_same<List<Light*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightList_typeID;
 else
  RET false;
 }
@@ -7844,10 +7842,10 @@ else
 template <>
 struct type_same<const List<Light*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightList_typeID;
 else
  RET false;
 }
@@ -7855,11 +7853,11 @@ else
 template <>
 struct val_to_c<const List<Light*> *>
 {
-static const List<Light*> *f(CTX ctx,const SV head)
+static const List<Light*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightList_typeID)
 RET(List<Light*>*)obj->data;
 else
@@ -7883,11 +7881,11 @@ RET STG::createNativeObject(RenderStats_funcs,obj,EXT->RenderStats_typeID);
 template <>
 struct val_to_c<RenderStats *>
 {
-static RenderStats *f(CTX ctx,const SV head)
+static RenderStats *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RenderStats_typeID)
 RET(RenderStats*)obj->data;
 else
@@ -7899,10 +7897,10 @@ else
 template <>
 struct type_same<RenderStats *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderStats_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderStats_typeID;
 else
  RET false;
 }
@@ -7910,10 +7908,10 @@ else
 template <>
 struct type_same<const RenderStats *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderStats_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderStats_typeID;
 else
  RET false;
 }
@@ -7921,11 +7919,11 @@ else
 template <>
 struct val_to_c<const RenderStats *>
 {
-static const RenderStats *f(CTX ctx,const SV head)
+static const RenderStats *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RenderStats_typeID)
 RET(RenderStats*)obj->data;
 else
@@ -7949,11 +7947,11 @@ RET STG::createNativeObject(Filesystem_funcs,obj,EXT->Filesystem_typeID);
 template <>
 struct val_to_c<Filesystem *>
 {
-static Filesystem *f(CTX ctx,const SV head)
+static Filesystem *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Filesystem_typeID)
 RET(Filesystem*)obj->data;
 else
@@ -7965,10 +7963,10 @@ else
 template <>
 struct type_same<Filesystem *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Filesystem_typeID;
 else
  RET false;
 }
@@ -7976,10 +7974,10 @@ else
 template <>
 struct type_same<const Filesystem *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Filesystem_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Filesystem_typeID;
 else
  RET false;
 }
@@ -7987,11 +7985,11 @@ else
 template <>
 struct val_to_c<const Filesystem *>
 {
-static const Filesystem *f(CTX ctx,const SV head)
+static const Filesystem *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Filesystem_typeID)
 RET(Filesystem*)obj->data;
 else
@@ -8015,11 +8013,11 @@ RET STG::createNativeObject(ResourceManager_funcs,obj,EXT->ResourceManager_typeI
 template <>
 struct val_to_c<ResourceManager *>
 {
-static ResourceManager *f(CTX ctx,const SV head)
+static ResourceManager *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ResourceManager_typeID)
 RET(ResourceManager*)obj->data;
 else
@@ -8031,10 +8029,10 @@ else
 template <>
 struct type_same<ResourceManager *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResourceManager_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResourceManager_typeID;
 else
  RET false;
 }
@@ -8042,10 +8040,10 @@ else
 template <>
 struct type_same<const ResourceManager *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResourceManager_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResourceManager_typeID;
 else
  RET false;
 }
@@ -8053,11 +8051,11 @@ else
 template <>
 struct val_to_c<const ResourceManager *>
 {
-static const ResourceManager *f(CTX ctx,const SV head)
+static const ResourceManager *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ResourceManager_typeID)
 RET(ResourceManager*)obj->data;
 else
@@ -8081,11 +8079,11 @@ RET STG::createNativeObject(Entity_funcs,obj,EXT->Entity_typeID);
 template <>
 struct val_to_c<Entity *>
 {
-static Entity *f(CTX ctx,const SV head)
+static Entity *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Entity_typeID)
 RET(Entity*)obj->data;
 else
@@ -8097,10 +8095,10 @@ else
 template <>
 struct type_same<Entity *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Entity_typeID;
 else
  RET false;
 }
@@ -8108,10 +8106,10 @@ else
 template <>
 struct type_same<const Entity *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Entity_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Entity_typeID;
 else
  RET false;
 }
@@ -8119,11 +8117,11 @@ else
 template <>
 struct val_to_c<const Entity *>
 {
-static const Entity *f(CTX ctx,const SV head)
+static const Entity *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Entity_typeID)
 RET(Entity*)obj->data;
 else
@@ -8147,11 +8145,11 @@ RET STG::createNativeObject(GfxRenderer_funcs,obj,EXT->GfxRenderer_typeID);
 template <>
 struct val_to_c<GfxRenderer *>
 {
-static GfxRenderer *f(CTX ctx,const SV head)
+static GfxRenderer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxRenderer_typeID)
 RET(GfxRenderer*)obj->data;
 else
@@ -8163,10 +8161,10 @@ else
 template <>
 struct type_same<GfxRenderer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxRenderer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxRenderer_typeID;
 else
  RET false;
 }
@@ -8174,10 +8172,10 @@ else
 template <>
 struct type_same<const GfxRenderer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxRenderer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxRenderer_typeID;
 else
  RET false;
 }
@@ -8185,11 +8183,11 @@ else
 template <>
 struct val_to_c<const GfxRenderer *>
 {
-static const GfxRenderer *f(CTX ctx,const SV head)
+static const GfxRenderer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxRenderer_typeID)
 RET(GfxRenderer*)obj->data;
 else
@@ -8213,11 +8211,11 @@ RET STG::createNativeObject(Float2_funcs,obj,EXT->Float2_typeID);
 template <>
 struct val_to_c<T2<float> *>
 {
-static T2<float> *f(CTX ctx,const SV head)
+static T2<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float2_typeID)
 RET(T2<float>*)obj->data;
 else
@@ -8229,10 +8227,10 @@ else
 template <>
 struct type_same<T2<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float2_typeID;
 else
  RET false;
 }
@@ -8240,10 +8238,10 @@ else
 template <>
 struct type_same<const T2<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float2_typeID;
 else
  RET false;
 }
@@ -8251,11 +8249,11 @@ else
 template <>
 struct val_to_c<const T2<float> *>
 {
-static const T2<float> *f(CTX ctx,const SV head)
+static const T2<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float2_typeID)
 RET(T2<float>*)obj->data;
 else
@@ -8279,11 +8277,11 @@ RET STG::createNativeObject(GfxFramebuffer_funcs,obj,EXT->GfxFramebuffer_typeID)
 template <>
 struct val_to_c<GfxFramebuffer *>
 {
-static GfxFramebuffer *f(CTX ctx,const SV head)
+static GfxFramebuffer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxFramebuffer_typeID)
 RET(GfxFramebuffer*)obj->data;
 else
@@ -8295,10 +8293,10 @@ else
 template <>
 struct type_same<GfxFramebuffer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFramebuffer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxFramebuffer_typeID;
 else
  RET false;
 }
@@ -8306,10 +8304,10 @@ else
 template <>
 struct type_same<const GfxFramebuffer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxFramebuffer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxFramebuffer_typeID;
 else
  RET false;
 }
@@ -8317,11 +8315,11 @@ else
 template <>
 struct val_to_c<const GfxFramebuffer *>
 {
-static const GfxFramebuffer *f(CTX ctx,const SV head)
+static const GfxFramebuffer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxFramebuffer_typeID)
 RET(GfxFramebuffer*)obj->data;
 else
@@ -8345,11 +8343,11 @@ RET STG::createNativeObject(Font_funcs,obj,EXT->Font_typeID);
 template <>
 struct val_to_c<Font *>
 {
-static Font *f(CTX ctx,const SV head)
+static Font *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Font_typeID)
 RET(Font*)obj->data;
 else
@@ -8361,10 +8359,10 @@ else
 template <>
 struct type_same<Font *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Font_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Font_typeID;
 else
  RET false;
 }
@@ -8372,10 +8370,10 @@ else
 template <>
 struct type_same<const Font *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Font_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Font_typeID;
 else
  RET false;
 }
@@ -8383,11 +8381,11 @@ else
 template <>
 struct val_to_c<const Font *>
 {
-static const Font *f(CTX ctx,const SV head)
+static const Font *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Font_typeID)
 RET(Font*)obj->data;
 else
@@ -8411,11 +8409,11 @@ RET STG::createNativeObject(Event_funcs,obj,EXT->Event_typeID);
 template <>
 struct val_to_c<Event *>
 {
-static Event *f(CTX ctx,const SV head)
+static Event *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Event_typeID)
 RET(Event*)obj->data;
 else
@@ -8427,10 +8425,10 @@ else
 template <>
 struct type_same<Event *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Event_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Event_typeID;
 else
  RET false;
 }
@@ -8438,10 +8436,10 @@ else
 template <>
 struct type_same<const Event *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Event_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Event_typeID;
 else
  RET false;
 }
@@ -8449,11 +8447,11 @@ else
 template <>
 struct val_to_c<const Event *>
 {
-static const Event *f(CTX ctx,const SV head)
+static const Event *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Event_typeID)
 RET(Event*)obj->data;
 else
@@ -8477,11 +8475,11 @@ RET STG::createNativeObject(PhysicsWorld_funcs,obj,EXT->PhysicsWorld_typeID);
 template <>
 struct val_to_c<PhysicsWorld *>
 {
-static PhysicsWorld *f(CTX ctx,const SV head)
+static PhysicsWorld *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->PhysicsWorld_typeID)
 RET(PhysicsWorld*)obj->data;
 else
@@ -8493,10 +8491,10 @@ else
 template <>
 struct type_same<PhysicsWorld *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsWorld_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsWorld_typeID;
 else
  RET false;
 }
@@ -8504,10 +8502,10 @@ else
 template <>
 struct type_same<const PhysicsWorld *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsWorld_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsWorld_typeID;
 else
  RET false;
 }
@@ -8515,11 +8513,11 @@ else
 template <>
 struct val_to_c<const PhysicsWorld *>
 {
-static const PhysicsWorld *f(CTX ctx,const SV head)
+static const PhysicsWorld *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->PhysicsWorld_typeID)
 RET(PhysicsWorld*)obj->data;
 else
@@ -8543,11 +8541,11 @@ RET STG::createNativeObject(Stats_funcs,obj,EXT->Stats_typeID);
 template <>
 struct val_to_c<Stats *>
 {
-static Stats *f(CTX ctx,const SV head)
+static Stats *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Stats_typeID)
 RET(Stats*)obj->data;
 else
@@ -8559,10 +8557,10 @@ else
 template <>
 struct type_same<Stats *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Stats_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Stats_typeID;
 else
  RET false;
 }
@@ -8570,10 +8568,10 @@ else
 template <>
 struct type_same<const Stats *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Stats_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Stats_typeID;
 else
  RET false;
 }
@@ -8581,11 +8579,11 @@ else
 template <>
 struct val_to_c<const Stats *>
 {
-static const Stats *f(CTX ctx,const SV head)
+static const Stats *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Stats_typeID)
 RET(Stats*)obj->data;
 else
@@ -8609,11 +8607,11 @@ RET STG::createNativeObject(AudioSource_funcs,obj,EXT->AudioSource_typeID);
 template <>
 struct val_to_c<AudioSource *>
 {
-static AudioSource *f(CTX ctx,const SV head)
+static AudioSource *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioSource_typeID)
 RET(AudioSource*)obj->data;
 else
@@ -8625,10 +8623,10 @@ else
 template <>
 struct type_same<AudioSource *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSource_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSource_typeID;
 else
  RET false;
 }
@@ -8636,10 +8634,10 @@ else
 template <>
 struct type_same<const AudioSource *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSource_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSource_typeID;
 else
  RET false;
 }
@@ -8647,11 +8645,11 @@ else
 template <>
 struct val_to_c<const AudioSource *>
 {
-static const AudioSource *f(CTX ctx,const SV head)
+static const AudioSource *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioSource_typeID)
 RET(AudioSource*)obj->data;
 else
@@ -8675,11 +8673,11 @@ RET STG::createNativeObject(Script_funcs,obj,EXT->Script_typeID);
 template <>
 struct val_to_c<Script *>
 {
-static Script *f(CTX ctx,const SV head)
+static Script *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Script_typeID)
 RET(Script*)obj->data;
 else
@@ -8691,10 +8689,10 @@ else
 template <>
 struct type_same<Script *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Script_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Script_typeID;
 else
  RET false;
 }
@@ -8702,10 +8700,10 @@ else
 template <>
 struct type_same<const Script *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Script_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Script_typeID;
 else
  RET false;
 }
@@ -8713,11 +8711,11 @@ else
 template <>
 struct val_to_c<const Script *>
 {
-static const Script *f(CTX ctx,const SV head)
+static const Script *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Script_typeID)
 RET(Script*)obj->data;
 else
@@ -8741,11 +8739,11 @@ RET STG::createNativeObject(RayCastResultList_funcs,obj,EXT->RayCastResultList_t
 template <>
 struct val_to_c<List<RayCastResult> *>
 {
-static List<RayCastResult> *f(CTX ctx,const SV head)
+static List<RayCastResult> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RayCastResultList_typeID)
 RET(List<RayCastResult>*)obj->data;
 else
@@ -8757,10 +8755,10 @@ else
 template <>
 struct type_same<List<RayCastResult> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResultList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RayCastResultList_typeID;
 else
  RET false;
 }
@@ -8768,10 +8766,10 @@ else
 template <>
 struct type_same<const List<RayCastResult> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResultList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RayCastResultList_typeID;
 else
  RET false;
 }
@@ -8779,11 +8777,11 @@ else
 template <>
 struct val_to_c<const List<RayCastResult> *>
 {
-static const List<RayCastResult> *f(CTX ctx,const SV head)
+static const List<RayCastResult> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RayCastResultList_typeID)
 RET(List<RayCastResult>*)obj->data;
 else
@@ -8807,11 +8805,11 @@ RET STG::createNativeObject(Platform_funcs,obj,EXT->Platform_typeID);
 template <>
 struct val_to_c<Platform *>
 {
-static Platform *f(CTX ctx,const SV head)
+static Platform *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Platform_typeID)
 RET(Platform*)obj->data;
 else
@@ -8823,10 +8821,10 @@ else
 template <>
 struct type_same<Platform *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Platform_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Platform_typeID;
 else
  RET false;
 }
@@ -8834,10 +8832,10 @@ else
 template <>
 struct type_same<const Platform *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Platform_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Platform_typeID;
 else
  RET false;
 }
@@ -8845,11 +8843,11 @@ else
 template <>
 struct val_to_c<const Platform *>
 {
-static const Platform *f(CTX ctx,const SV head)
+static const Platform *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Platform_typeID)
 RET(Platform*)obj->data;
 else
@@ -8873,11 +8871,11 @@ RET STG::createNativeObject(Camera_funcs,obj,EXT->Camera_typeID);
 template <>
 struct val_to_c<Camera *>
 {
-static Camera *f(CTX ctx,const SV head)
+static Camera *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Camera_typeID)
 RET(Camera*)obj->data;
 else
@@ -8889,10 +8887,10 @@ else
 template <>
 struct type_same<Camera *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Camera_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Camera_typeID;
 else
  RET false;
 }
@@ -8900,10 +8898,10 @@ else
 template <>
 struct type_same<const Camera *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Camera_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Camera_typeID;
 else
  RET false;
 }
@@ -8911,11 +8909,11 @@ else
 template <>
 struct val_to_c<const Camera *>
 {
-static const Camera *f(CTX ctx,const SV head)
+static const Camera *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Camera_typeID)
 RET(Camera*)obj->data;
 else
@@ -8939,11 +8937,11 @@ RET STG::createNativeObject(GfxMesh_funcs,obj,EXT->GfxMesh_typeID);
 template <>
 struct val_to_c<GfxMesh *>
 {
-static GfxMesh *f(CTX ctx,const SV head)
+static GfxMesh *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMesh_typeID)
 RET(GfxMesh*)obj->data;
 else
@@ -8955,10 +8953,10 @@ else
 template <>
 struct type_same<GfxMesh *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMesh_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMesh_typeID;
 else
  RET false;
 }
@@ -8966,10 +8964,10 @@ else
 template <>
 struct type_same<const GfxMesh *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMesh_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMesh_typeID;
 else
  RET false;
 }
@@ -8977,11 +8975,11 @@ else
 template <>
 struct val_to_c<const GfxMesh *>
 {
-static const GfxMesh *f(CTX ctx,const SV head)
+static const GfxMesh *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMesh_typeID)
 RET(GfxMesh*)obj->data;
 else
@@ -9005,11 +9003,11 @@ RET STG::createNativeObject(Resource_funcs,obj,EXT->Resource_typeID);
 template <>
 struct val_to_c<Resource *>
 {
-static Resource *f(CTX ctx,const SV head)
+static Resource *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Resource_typeID)
 RET(Resource*)obj->data;
 else
@@ -9021,10 +9019,10 @@ else
 template <>
 struct type_same<Resource *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Resource_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Resource_typeID;
 else
  RET false;
 }
@@ -9032,10 +9030,10 @@ else
 template <>
 struct type_same<const Resource *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Resource_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Resource_typeID;
 else
  RET false;
 }
@@ -9043,11 +9041,11 @@ else
 template <>
 struct val_to_c<const Resource *>
 {
-static const Resource *f(CTX ctx,const SV head)
+static const Resource *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Resource_typeID)
 RET(Resource*)obj->data;
 else
@@ -9071,11 +9069,11 @@ RET STG::createNativeObject(GfxShader_funcs,obj,EXT->GfxShader_typeID);
 template <>
 struct val_to_c<GfxShader *>
 {
-static GfxShader *f(CTX ctx,const SV head)
+static GfxShader *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxShader_typeID)
 RET(GfxShader*)obj->data;
 else
@@ -9087,10 +9085,10 @@ else
 template <>
 struct type_same<GfxShader *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShader_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShader_typeID;
 else
  RET false;
 }
@@ -9098,10 +9096,10 @@ else
 template <>
 struct type_same<const GfxShader *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShader_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShader_typeID;
 else
  RET false;
 }
@@ -9109,11 +9107,11 @@ else
 template <>
 struct val_to_c<const GfxShader *>
 {
-static const GfxShader *f(CTX ctx,const SV head)
+static const GfxShader *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxShader_typeID)
 RET(GfxShader*)obj->data;
 else
@@ -9137,11 +9135,11 @@ RET STG::createNativeObject(Light_funcs,obj,EXT->Light_typeID);
 template <>
 struct val_to_c<Light *>
 {
-static Light *f(CTX ctx,const SV head)
+static Light *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Light_typeID)
 RET(Light*)obj->data;
 else
@@ -9153,10 +9151,10 @@ else
 template <>
 struct type_same<Light *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Light_typeID;
 else
  RET false;
 }
@@ -9164,10 +9162,10 @@ else
 template <>
 struct type_same<const Light *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Light_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Light_typeID;
 else
  RET false;
 }
@@ -9175,11 +9173,11 @@ else
 template <>
 struct val_to_c<const Light *>
 {
-static const Light *f(CTX ctx,const SV head)
+static const Light *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Light_typeID)
 RET(Light*)obj->data;
 else
@@ -9203,11 +9201,11 @@ RET STG::createNativeObject(TextureSampler_funcs,obj,EXT->TextureSampler_typeID)
 template <>
 struct val_to_c<TextureSampler *>
 {
-static TextureSampler *f(CTX ctx,const SV head)
+static TextureSampler *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->TextureSampler_typeID)
 RET(TextureSampler*)obj->data;
 else
@@ -9219,10 +9217,10 @@ else
 template <>
 struct type_same<TextureSampler *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->TextureSampler_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->TextureSampler_typeID;
 else
  RET false;
 }
@@ -9230,10 +9228,10 @@ else
 template <>
 struct type_same<const TextureSampler *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->TextureSampler_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->TextureSampler_typeID;
 else
  RET false;
 }
@@ -9241,11 +9239,11 @@ else
 template <>
 struct val_to_c<const TextureSampler *>
 {
-static const TextureSampler *f(CTX ctx,const SV head)
+static const TextureSampler *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->TextureSampler_typeID)
 RET(TextureSampler*)obj->data;
 else
@@ -9269,11 +9267,11 @@ RET STG::createNativeObject(Scene_funcs,obj,EXT->Scene_typeID);
 template <>
 struct val_to_c<Scene *>
 {
-static Scene *f(CTX ctx,const SV head)
+static Scene *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Scene_typeID)
 RET(Scene*)obj->data;
 else
@@ -9285,10 +9283,10 @@ else
 template <>
 struct type_same<Scene *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Scene_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Scene_typeID;
 else
  RET false;
 }
@@ -9296,10 +9294,10 @@ else
 template <>
 struct type_same<const Scene *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Scene_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Scene_typeID;
 else
  RET false;
 }
@@ -9307,11 +9305,11 @@ else
 template <>
 struct val_to_c<const Scene *>
 {
-static const Scene *f(CTX ctx,const SV head)
+static const Scene *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Scene_typeID)
 RET(Scene*)obj->data;
 else
@@ -9335,11 +9333,11 @@ RET STG::createNativeObject(Int3_funcs,obj,EXT->Int3_typeID);
 template <>
 struct val_to_c<T3<int32_t> *>
 {
-static T3<int32_t> *f(CTX ctx,const SV head)
+static T3<int32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int3_typeID)
 RET(T3<int32_t>*)obj->data;
 else
@@ -9351,10 +9349,10 @@ else
 template <>
 struct type_same<T3<int32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int3_typeID;
 else
  RET false;
 }
@@ -9362,10 +9360,10 @@ else
 template <>
 struct type_same<const T3<int32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int3_typeID;
 else
  RET false;
 }
@@ -9373,11 +9371,11 @@ else
 template <>
 struct val_to_c<const T3<int32_t> *>
 {
-static const T3<int32_t> *f(CTX ctx,const SV head)
+static const T3<int32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int3_typeID)
 RET(T3<int32_t>*)obj->data;
 else
@@ -9401,11 +9399,11 @@ RET STG::createNativeObject(ResizableData_funcs,obj,EXT->ResizableData_typeID);
 template <>
 struct val_to_c<ResizableData *>
 {
-static ResizableData *f(CTX ctx,const SV head)
+static ResizableData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ResizableData_typeID)
 RET(ResizableData*)obj->data;
 else
@@ -9417,10 +9415,10 @@ else
 template <>
 struct type_same<ResizableData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResizableData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResizableData_typeID;
 else
  RET false;
 }
@@ -9428,10 +9426,10 @@ else
 template <>
 struct type_same<const ResizableData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ResizableData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ResizableData_typeID;
 else
  RET false;
 }
@@ -9439,11 +9437,11 @@ else
 template <>
 struct val_to_c<const ResizableData *>
 {
-static const ResizableData *f(CTX ctx,const SV head)
+static const ResizableData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ResizableData_typeID)
 RET(ResizableData*)obj->data;
 else
@@ -9467,11 +9465,11 @@ RET STG::createNativeObject(Int4_funcs,obj,EXT->Int4_typeID);
 template <>
 struct val_to_c<T4<int32_t> *>
 {
-static T4<int32_t> *f(CTX ctx,const SV head)
+static T4<int32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int4_typeID)
 RET(T4<int32_t>*)obj->data;
 else
@@ -9483,10 +9481,10 @@ else
 template <>
 struct type_same<T4<int32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int4_typeID;
 else
  RET false;
 }
@@ -9494,10 +9492,10 @@ else
 template <>
 struct type_same<const T4<int32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int4_typeID;
 else
  RET false;
 }
@@ -9505,11 +9503,11 @@ else
 template <>
 struct val_to_c<const T4<int32_t> *>
 {
-static const T4<int32_t> *f(CTX ctx,const SV head)
+static const T4<int32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int4_typeID)
 RET(T4<int32_t>*)obj->data;
 else
@@ -9533,11 +9531,11 @@ RET STG::createNativeObject(Float3_funcs,obj,EXT->Float3_typeID);
 template <>
 struct val_to_c<T3<float> *>
 {
-static T3<float> *f(CTX ctx,const SV head)
+static T3<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float3_typeID)
 RET(T3<float>*)obj->data;
 else
@@ -9549,10 +9547,10 @@ else
 template <>
 struct type_same<T3<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float3_typeID;
 else
  RET false;
 }
@@ -9560,10 +9558,10 @@ else
 template <>
 struct type_same<const T3<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float3_typeID;
 else
  RET false;
 }
@@ -9571,11 +9569,11 @@ else
 template <>
 struct val_to_c<const T3<float> *>
 {
-static const T3<float> *f(CTX ctx,const SV head)
+static const T3<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float3_typeID)
 RET(T3<float>*)obj->data;
 else
@@ -9599,11 +9597,11 @@ RET STG::createNativeObject(GfxBuffer_funcs,obj,EXT->GfxBuffer_typeID);
 template <>
 struct val_to_c<GfxBuffer *>
 {
-static GfxBuffer *f(CTX ctx,const SV head)
+static GfxBuffer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxBuffer_typeID)
 RET(GfxBuffer*)obj->data;
 else
@@ -9615,10 +9613,10 @@ else
 template <>
 struct type_same<GfxBuffer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBuffer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxBuffer_typeID;
 else
  RET false;
 }
@@ -9626,10 +9624,10 @@ else
 template <>
 struct type_same<const GfxBuffer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxBuffer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxBuffer_typeID;
 else
  RET false;
 }
@@ -9637,11 +9635,11 @@ else
 template <>
 struct val_to_c<const GfxBuffer *>
 {
-static const GfxBuffer *f(CTX ctx,const SV head)
+static const GfxBuffer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxBuffer_typeID)
 RET(GfxBuffer*)obj->data;
 else
@@ -9665,11 +9663,11 @@ RET STG::createNativeObject(Transform_funcs,obj,EXT->Transform_typeID);
 template <>
 struct val_to_c<Transform *>
 {
-static Transform *f(CTX ctx,const SV head)
+static Transform *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Transform_typeID)
 RET(Transform*)obj->data;
 else
@@ -9681,10 +9679,10 @@ else
 template <>
 struct type_same<Transform *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Transform_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Transform_typeID;
 else
  RET false;
 }
@@ -9692,10 +9690,10 @@ else
 template <>
 struct type_same<const Transform *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Transform_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Transform_typeID;
 else
  RET false;
 }
@@ -9703,11 +9701,11 @@ else
 template <>
 struct val_to_c<const Transform *>
 {
-static const Transform *f(CTX ctx,const SV head)
+static const Transform *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Transform_typeID)
 RET(Transform*)obj->data;
 else
@@ -9731,11 +9729,11 @@ RET STG::createNativeObject(AudioSourceList_funcs,obj,EXT->AudioSourceList_typeI
 template <>
 struct val_to_c<List<AudioSource*> *>
 {
-static List<AudioSource*> *f(CTX ctx,const SV head)
+static List<AudioSource*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioSourceList_typeID)
 RET(List<AudioSource*>*)obj->data;
 else
@@ -9747,10 +9745,10 @@ else
 template <>
 struct type_same<List<AudioSource*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSourceList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
 else
  RET false;
 }
@@ -9758,10 +9756,10 @@ else
 template <>
 struct type_same<const List<AudioSource*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioSourceList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
 else
  RET false;
 }
@@ -9769,11 +9767,11 @@ else
 template <>
 struct val_to_c<const List<AudioSource*> *>
 {
-static const List<AudioSource*> *f(CTX ctx,const SV head)
+static const List<AudioSource*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioSourceList_typeID)
 RET(List<AudioSource*>*)obj->data;
 else
@@ -9797,11 +9795,11 @@ RET STG::createNativeObject(GfxMaterial_funcs,obj,EXT->GfxMaterial_typeID);
 template <>
 struct val_to_c<GfxMaterial *>
 {
-static GfxMaterial *f(CTX ctx,const SV head)
+static GfxMaterial *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMaterial_typeID)
 RET(GfxMaterial*)obj->data;
 else
@@ -9813,10 +9811,10 @@ else
 template <>
 struct type_same<GfxMaterial *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMaterial_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMaterial_typeID;
 else
  RET false;
 }
@@ -9824,10 +9822,10 @@ else
 template <>
 struct type_same<const GfxMaterial *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMaterial_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMaterial_typeID;
 else
  RET false;
 }
@@ -9835,11 +9833,11 @@ else
 template <>
 struct val_to_c<const GfxMaterial *>
 {
-static const GfxMaterial *f(CTX ctx,const SV head)
+static const GfxMaterial *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMaterial_typeID)
 RET(GfxMaterial*)obj->data;
 else
@@ -9863,11 +9861,11 @@ RET STG::createNativeObject(Quaternion_funcs,obj,EXT->Quaternion_typeID);
 template <>
 struct val_to_c<Quaternion *>
 {
-static Quaternion *f(CTX ctx,const SV head)
+static Quaternion *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Quaternion_typeID)
 RET(Quaternion*)obj->data;
 else
@@ -9879,10 +9877,10 @@ else
 template <>
 struct type_same<Quaternion *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Quaternion_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Quaternion_typeID;
 else
  RET false;
 }
@@ -9890,10 +9888,10 @@ else
 template <>
 struct type_same<const Quaternion *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Quaternion_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Quaternion_typeID;
 else
  RET false;
 }
@@ -9901,11 +9899,11 @@ else
 template <>
 struct val_to_c<const Quaternion *>
 {
-static const Quaternion *f(CTX ctx,const SV head)
+static const Quaternion *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Quaternion_typeID)
 RET(Quaternion*)obj->data;
 else
@@ -9929,11 +9927,11 @@ RET STG::createNativeObject(GfxMeshAttrib_funcs,obj,EXT->GfxMeshAttrib_typeID);
 template <>
 struct val_to_c<GfxMeshAttrib *>
 {
-static GfxMeshAttrib *f(CTX ctx,const SV head)
+static GfxMeshAttrib *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMeshAttrib_typeID)
 RET(GfxMeshAttrib*)obj->data;
 else
@@ -9945,10 +9943,10 @@ else
 template <>
 struct type_same<GfxMeshAttrib *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttrib_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMeshAttrib_typeID;
 else
  RET false;
 }
@@ -9956,10 +9954,10 @@ else
 template <>
 struct type_same<const GfxMeshAttrib *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxMeshAttrib_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxMeshAttrib_typeID;
 else
  RET false;
 }
@@ -9967,11 +9965,11 @@ else
 template <>
 struct val_to_c<const GfxMeshAttrib *>
 {
-static const GfxMeshAttrib *f(CTX ctx,const SV head)
+static const GfxMeshAttrib *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxMeshAttrib_typeID)
 RET(GfxMeshAttrib*)obj->data;
 else
@@ -9995,11 +9993,11 @@ RET STG::createNativeObject(ScriptInstance_funcs,obj,EXT->ScriptInstance_typeID)
 template <>
 struct val_to_c<ScriptInstance *>
 {
-static ScriptInstance *f(CTX ctx,const SV head)
+static ScriptInstance *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScriptInstance_typeID)
 RET(ScriptInstance*)obj->data;
 else
@@ -10011,10 +10009,10 @@ else
 template <>
 struct type_same<ScriptInstance *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScriptInstance_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScriptInstance_typeID;
 else
  RET false;
 }
@@ -10022,10 +10020,10 @@ else
 template <>
 struct type_same<const ScriptInstance *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScriptInstance_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScriptInstance_typeID;
 else
  RET false;
 }
@@ -10033,11 +10031,11 @@ else
 template <>
 struct val_to_c<const ScriptInstance *>
 {
-static const ScriptInstance *f(CTX ctx,const SV head)
+static const ScriptInstance *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScriptInstance_typeID)
 RET(ScriptInstance*)obj->data;
 else
@@ -10061,11 +10059,11 @@ RET STG::createNativeObject(RenderComponent_funcs,obj,EXT->RenderComponent_typeI
 template <>
 struct val_to_c<RenderComponent *>
 {
-static RenderComponent *f(CTX ctx,const SV head)
+static RenderComponent *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RenderComponent_typeID)
 RET(RenderComponent*)obj->data;
 else
@@ -10077,10 +10075,10 @@ else
 template <>
 struct type_same<RenderComponent *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderComponent_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderComponent_typeID;
 else
  RET false;
 }
@@ -10088,10 +10086,10 @@ else
 template <>
 struct type_same<const RenderComponent *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RenderComponent_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderComponent_typeID;
 else
  RET false;
 }
@@ -10099,11 +10097,11 @@ else
 template <>
 struct val_to_c<const RenderComponent *>
 {
-static const RenderComponent *f(CTX ctx,const SV head)
+static const RenderComponent *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RenderComponent_typeID)
 RET(RenderComponent*)obj->data;
 else
@@ -10127,11 +10125,11 @@ RET STG::createNativeObject(Int2_funcs,obj,EXT->Int2_typeID);
 template <>
 struct val_to_c<T2<int32_t> *>
 {
-static T2<int32_t> *f(CTX ctx,const SV head)
+static T2<int32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int2_typeID)
 RET(T2<int32_t>*)obj->data;
 else
@@ -10143,10 +10141,10 @@ else
 template <>
 struct type_same<T2<int32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int2_typeID;
 else
  RET false;
 }
@@ -10154,10 +10152,10 @@ else
 template <>
 struct type_same<const T2<int32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Int2_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Int2_typeID;
 else
  RET false;
 }
@@ -10165,11 +10163,11 @@ else
 template <>
 struct val_to_c<const T2<int32_t> *>
 {
-static const T2<int32_t> *f(CTX ctx,const SV head)
+static const T2<int32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Int2_typeID)
 RET(T2<int32_t>*)obj->data;
 else
@@ -10193,11 +10191,11 @@ RET STG::createNativeObject(AudioWorld_funcs,obj,EXT->AudioWorld_typeID);
 template <>
 struct val_to_c<AudioWorld *>
 {
-static AudioWorld *f(CTX ctx,const SV head)
+static AudioWorld *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioWorld_typeID)
 RET(AudioWorld*)obj->data;
 else
@@ -10209,10 +10207,10 @@ else
 template <>
 struct type_same<AudioWorld *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioWorld_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioWorld_typeID;
 else
  RET false;
 }
@@ -10220,10 +10218,10 @@ else
 template <>
 struct type_same<const AudioWorld *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioWorld_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioWorld_typeID;
 else
  RET false;
 }
@@ -10231,11 +10229,11 @@ else
 template <>
 struct val_to_c<const AudioWorld *>
 {
-static const AudioWorld *f(CTX ctx,const SV head)
+static const AudioWorld *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioWorld_typeID)
 RET(AudioWorld*)obj->data;
 else
@@ -10259,11 +10257,11 @@ RET STG::createNativeObject(GuiPlacer_funcs,obj,EXT->GuiPlacer_typeID);
 template <>
 struct val_to_c<GuiPlacer *>
 {
-static GuiPlacer *f(CTX ctx,const SV head)
+static GuiPlacer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GuiPlacer_typeID)
 RET(GuiPlacer*)obj->data;
 else
@@ -10275,10 +10273,10 @@ else
 template <>
 struct type_same<GuiPlacer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GuiPlacer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GuiPlacer_typeID;
 else
  RET false;
 }
@@ -10286,10 +10284,10 @@ else
 template <>
 struct type_same<const GuiPlacer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GuiPlacer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GuiPlacer_typeID;
 else
  RET false;
 }
@@ -10297,11 +10295,11 @@ else
 template <>
 struct val_to_c<const GuiPlacer *>
 {
-static const GuiPlacer *f(CTX ctx,const SV head)
+static const GuiPlacer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GuiPlacer_typeID)
 RET(GuiPlacer*)obj->data;
 else
@@ -10325,11 +10323,11 @@ RET STG::createNativeObject(ImGui_funcs,obj,EXT->ImGui_typeID);
 template <>
 struct val_to_c<ImGui *>
 {
-static ImGui *f(CTX ctx,const SV head)
+static ImGui *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ImGui_typeID)
 RET(ImGui*)obj->data;
 else
@@ -10341,10 +10339,10 @@ else
 template <>
 struct type_same<ImGui *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ImGui_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ImGui_typeID;
 else
  RET false;
 }
@@ -10352,10 +10350,10 @@ else
 template <>
 struct type_same<const ImGui *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ImGui_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ImGui_typeID;
 else
  RET false;
 }
@@ -10363,11 +10361,11 @@ else
 template <>
 struct val_to_c<const ImGui *>
 {
-static const ImGui *f(CTX ctx,const SV head)
+static const ImGui *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ImGui_typeID)
 RET(ImGui*)obj->data;
 else
@@ -10391,11 +10389,11 @@ RET STG::createNativeObject(StringList_funcs,obj,EXT->StringList_typeID);
 template <>
 struct val_to_c<List<String> *>
 {
-static List<String> *f(CTX ctx,const SV head)
+static List<String> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->StringList_typeID)
 RET(List<String>*)obj->data;
 else
@@ -10407,10 +10405,10 @@ else
 template <>
 struct type_same<List<String> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StringList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->StringList_typeID;
 else
  RET false;
 }
@@ -10418,10 +10416,10 @@ else
 template <>
 struct type_same<const List<String> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->StringList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->StringList_typeID;
 else
  RET false;
 }
@@ -10429,11 +10427,11 @@ else
 template <>
 struct val_to_c<const List<String> *>
 {
-static const List<String> *f(CTX ctx,const SV head)
+static const List<String> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->StringList_typeID)
 RET(List<String>*)obj->data;
 else
@@ -10457,11 +10455,11 @@ RET STG::createNativeObject(Application_funcs,obj,EXT->Application_typeID);
 template <>
 struct val_to_c<Application *>
 {
-static Application *f(CTX ctx,const SV head)
+static Application *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Application_typeID)
 RET(Application*)obj->data;
 else
@@ -10473,10 +10471,10 @@ else
 template <>
 struct type_same<Application *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Application_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Application_typeID;
 else
  RET false;
 }
@@ -10484,10 +10482,10 @@ else
 template <>
 struct type_same<const Application *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Application_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Application_typeID;
 else
  RET false;
 }
@@ -10495,11 +10493,11 @@ else
 template <>
 struct val_to_c<const Application *>
 {
-static const Application *f(CTX ctx,const SV head)
+static const Application *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Application_typeID)
 RET(Application*)obj->data;
 else
@@ -10523,11 +10521,11 @@ RET STG::createNativeObject(LightPointData_funcs,obj,EXT->LightPointData_typeID)
 template <>
 struct val_to_c<LightPointData *>
 {
-static LightPointData *f(CTX ctx,const SV head)
+static LightPointData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightPointData_typeID)
 RET(LightPointData*)obj->data;
 else
@@ -10539,10 +10537,10 @@ else
 template <>
 struct type_same<LightPointData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightPointData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightPointData_typeID;
 else
  RET false;
 }
@@ -10550,10 +10548,10 @@ else
 template <>
 struct type_same<const LightPointData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightPointData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightPointData_typeID;
 else
  RET false;
 }
@@ -10561,11 +10559,11 @@ else
 template <>
 struct val_to_c<const LightPointData *>
 {
-static const LightPointData *f(CTX ctx,const SV head)
+static const LightPointData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightPointData_typeID)
 RET(LightPointData*)obj->data;
 else
@@ -10589,11 +10587,11 @@ RET STG::createNativeObject(Float4_funcs,obj,EXT->Float4_typeID);
 template <>
 struct val_to_c<T4<float> *>
 {
-static T4<float> *f(CTX ctx,const SV head)
+static T4<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float4_typeID)
 RET(T4<float>*)obj->data;
 else
@@ -10605,10 +10603,10 @@ else
 template <>
 struct type_same<T4<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float4_typeID;
 else
  RET false;
 }
@@ -10616,10 +10614,10 @@ else
 template <>
 struct type_same<const T4<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Float4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Float4_typeID;
 else
  RET false;
 }
@@ -10627,11 +10625,11 @@ else
 template <>
 struct val_to_c<const T4<float> *>
 {
-static const T4<float> *f(CTX ctx,const SV head)
+static const T4<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Float4_typeID)
 RET(T4<float>*)obj->data;
 else
@@ -10655,11 +10653,11 @@ RET STG::createNativeObject(FloatList_funcs,obj,EXT->FloatList_typeID);
 template <>
 struct val_to_c<List<float> *>
 {
-static List<float> *f(CTX ctx,const SV head)
+static List<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->FloatList_typeID)
 RET(List<float>*)obj->data;
 else
@@ -10671,10 +10669,10 @@ else
 template <>
 struct type_same<List<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->FloatList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->FloatList_typeID;
 else
  RET false;
 }
@@ -10682,10 +10680,10 @@ else
 template <>
 struct type_same<const List<float> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->FloatList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->FloatList_typeID;
 else
  RET false;
 }
@@ -10693,11 +10691,11 @@ else
 template <>
 struct val_to_c<const List<float> *>
 {
-static const List<float> *f(CTX ctx,const SV head)
+static const List<float> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->FloatList_typeID)
 RET(List<float>*)obj->data;
 else
@@ -10721,11 +10719,11 @@ RET STG::createNativeObject(Container_funcs,obj,EXT->Container_typeID);
 template <>
 struct val_to_c<Container *>
 {
-static Container *f(CTX ctx,const SV head)
+static Container *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Container_typeID)
 RET(Container*)obj->data;
 else
@@ -10737,10 +10735,10 @@ else
 template <>
 struct type_same<Container *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Container_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Container_typeID;
 else
  RET false;
 }
@@ -10748,10 +10746,10 @@ else
 template <>
 struct type_same<const Container *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Container_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Container_typeID;
 else
  RET false;
 }
@@ -10759,11 +10757,11 @@ else
 template <>
 struct val_to_c<const Container *>
 {
-static const Container *f(CTX ctx,const SV head)
+static const Container *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Container_typeID)
 RET(Container*)obj->data;
 else
@@ -10787,11 +10785,11 @@ RET STG::createNativeObject(LightDirectionalData_funcs,obj,EXT->LightDirectional
 template <>
 struct val_to_c<LightDirectionalData *>
 {
-static LightDirectionalData *f(CTX ctx,const SV head)
+static LightDirectionalData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightDirectionalData_typeID)
 RET(LightDirectionalData*)obj->data;
 else
@@ -10803,10 +10801,10 @@ else
 template <>
 struct type_same<LightDirectionalData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightDirectionalData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightDirectionalData_typeID;
 else
  RET false;
 }
@@ -10814,10 +10812,10 @@ else
 template <>
 struct type_same<const LightDirectionalData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightDirectionalData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightDirectionalData_typeID;
 else
  RET false;
 }
@@ -10825,11 +10823,11 @@ else
 template <>
 struct val_to_c<const LightDirectionalData *>
 {
-static const LightDirectionalData *f(CTX ctx,const SV head)
+static const LightDirectionalData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightDirectionalData_typeID)
 RET(LightDirectionalData*)obj->data;
 else
@@ -10853,11 +10851,11 @@ RET STG::createNativeObject(Matrix4x4_funcs,obj,EXT->Matrix4x4_typeID);
 template <>
 struct val_to_c<Matrix4x4 *>
 {
-static Matrix4x4 *f(CTX ctx,const SV head)
+static Matrix4x4 *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Matrix4x4_typeID)
 RET(Matrix4x4*)obj->data;
 else
@@ -10869,10 +10867,10 @@ else
 template <>
 struct type_same<Matrix4x4 *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix4x4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Matrix4x4_typeID;
 else
  RET false;
 }
@@ -10880,10 +10878,10 @@ else
 template <>
 struct type_same<const Matrix4x4 *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix4x4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Matrix4x4_typeID;
 else
  RET false;
 }
@@ -10891,11 +10889,11 @@ else
 template <>
 struct val_to_c<const Matrix4x4 *>
 {
-static const Matrix4x4 *f(CTX ctx,const SV head)
+static const Matrix4x4 *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Matrix4x4_typeID)
 RET(Matrix4x4*)obj->data;
 else
@@ -10906,9 +10904,9 @@ else
 };
 
 template <>
-struct create_val<HashMap<scripting::Value*,scripting::Value*> *>
+struct create_val<HashMap<scripting::Value,scripting::Value> *>
 {
-static SV f(CTX ctx,HashMap<scripting::Value*,scripting::Value*>*obj)
+static SV f(CTX ctx,HashMap<scripting::Value,scripting::Value>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
@@ -10917,15 +10915,15 @@ RET STG::createNativeObject(Map_funcs,obj,EXT->Map_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<scripting::Value*,scripting::Value*> *>
+struct val_to_c<HashMap<scripting::Value,scripting::Value> *>
 {
-static HashMap<scripting::Value*,scripting::Value*> *f(CTX ctx,const SV head)
+static HashMap<scripting::Value,scripting::Value> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Map_typeID)
-RET(HashMap<scripting::Value*,scripting::Value*>*)obj->data;
+RET(HashMap<scripting::Value,scripting::Value>*)obj->data;
 else
  CATE(TE,"Value is not a Map."));
 } else
@@ -10933,37 +10931,37 @@ else
 }
 };
 template <>
-struct type_same<HashMap<scripting::Value*,scripting::Value*> *>
+struct type_same<HashMap<scripting::Value,scripting::Value> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Map_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Map_typeID;
 else
  RET false;
 }
 };
 template <>
-struct type_same<const HashMap<scripting::Value*,scripting::Value*> *>
+struct type_same<const HashMap<scripting::Value,scripting::Value> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Map_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Map_typeID;
 else
  RET false;
 }
 };
 template <>
-struct val_to_c<const HashMap<scripting::Value*,scripting::Value*> *>
+struct val_to_c<const HashMap<scripting::Value,scripting::Value> *>
 {
-static const HashMap<scripting::Value*,scripting::Value*> *f(CTX ctx,const SV head)
+static const HashMap<scripting::Value,scripting::Value> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Map_typeID)
-RET(HashMap<scripting::Value*,scripting::Value*>*)obj->data;
+RET(HashMap<scripting::Value,scripting::Value>*)obj->data;
 else
  CATE(TE,"Value is not a Map."));
 } else
@@ -10985,11 +10983,11 @@ RET STG::createNativeObject(ScriptInstanceList_funcs,obj,EXT->ScriptInstanceList
 template <>
 struct val_to_c<List<ScriptInstance*> *>
 {
-static List<ScriptInstance*> *f(CTX ctx,const SV head)
+static List<ScriptInstance*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScriptInstanceList_typeID)
 RET(List<ScriptInstance*>*)obj->data;
 else
@@ -11001,10 +10999,10 @@ else
 template <>
 struct type_same<List<ScriptInstance*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScriptInstanceList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScriptInstanceList_typeID;
 else
  RET false;
 }
@@ -11012,10 +11010,10 @@ else
 template <>
 struct type_same<const List<ScriptInstance*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->ScriptInstanceList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ScriptInstanceList_typeID;
 else
  RET false;
 }
@@ -11023,11 +11021,11 @@ else
 template <>
 struct val_to_c<const List<ScriptInstance*> *>
 {
-static const List<ScriptInstance*> *f(CTX ctx,const SV head)
+static const List<ScriptInstance*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->ScriptInstanceList_typeID)
 RET(List<ScriptInstance*>*)obj->data;
 else
@@ -11051,11 +11049,11 @@ RET STG::createNativeObject(UInt3_funcs,obj,EXT->UInt3_typeID);
 template <>
 struct val_to_c<T3<uint32_t> *>
 {
-static T3<uint32_t> *f(CTX ctx,const SV head)
+static T3<uint32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt3_typeID)
 RET(T3<uint32_t>*)obj->data;
 else
@@ -11067,10 +11065,10 @@ else
 template <>
 struct type_same<T3<uint32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt3_typeID;
 else
  RET false;
 }
@@ -11078,10 +11076,10 @@ else
 template <>
 struct type_same<const T3<uint32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt3_typeID;
 else
  RET false;
 }
@@ -11089,11 +11087,11 @@ else
 template <>
 struct val_to_c<const T3<uint32_t> *>
 {
-static const T3<uint32_t> *f(CTX ctx,const SV head)
+static const T3<uint32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt3_typeID)
 RET(T3<uint32_t>*)obj->data;
 else
@@ -11117,11 +11115,11 @@ RET STG::createNativeObject(LightSpotData_funcs,obj,EXT->LightSpotData_typeID);
 template <>
 struct val_to_c<LightSpotData *>
 {
-static LightSpotData *f(CTX ctx,const SV head)
+static LightSpotData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightSpotData_typeID)
 RET(LightSpotData*)obj->data;
 else
@@ -11133,10 +11131,10 @@ else
 template <>
 struct type_same<LightSpotData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightSpotData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightSpotData_typeID;
 else
  RET false;
 }
@@ -11144,10 +11142,10 @@ else
 template <>
 struct type_same<const LightSpotData *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->LightSpotData_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->LightSpotData_typeID;
 else
  RET false;
 }
@@ -11155,11 +11153,11 @@ else
 template <>
 struct val_to_c<const LightSpotData *>
 {
-static const LightSpotData *f(CTX ctx,const SV head)
+static const LightSpotData *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->LightSpotData_typeID)
 RET(LightSpotData*)obj->data;
 else
@@ -11183,11 +11181,11 @@ RET STG::createNativeObject(PhysicsShape_funcs,obj,EXT->PhysicsShape_typeID);
 template <>
 struct val_to_c<PhysicsShape *>
 {
-static PhysicsShape *f(CTX ctx,const SV head)
+static PhysicsShape *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->PhysicsShape_typeID)
 RET(PhysicsShape*)obj->data;
 else
@@ -11199,10 +11197,10 @@ else
 template <>
 struct type_same<PhysicsShape *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsShape_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsShape_typeID;
 else
  RET false;
 }
@@ -11210,10 +11208,10 @@ else
 template <>
 struct type_same<const PhysicsShape *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->PhysicsShape_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->PhysicsShape_typeID;
 else
  RET false;
 }
@@ -11221,11 +11219,11 @@ else
 template <>
 struct val_to_c<const PhysicsShape *>
 {
-static const PhysicsShape *f(CTX ctx,const SV head)
+static const PhysicsShape *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->PhysicsShape_typeID)
 RET(PhysicsShape*)obj->data;
 else
@@ -11249,11 +11247,11 @@ RET STG::createNativeObject(AudioDevice_funcs,obj,EXT->AudioDevice_typeID);
 template <>
 struct val_to_c<AudioDevice *>
 {
-static AudioDevice *f(CTX ctx,const SV head)
+static AudioDevice *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioDevice_typeID)
 RET(AudioDevice*)obj->data;
 else
@@ -11265,10 +11263,10 @@ else
 template <>
 struct type_same<AudioDevice *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioDevice_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioDevice_typeID;
 else
  RET false;
 }
@@ -11276,10 +11274,10 @@ else
 template <>
 struct type_same<const AudioDevice *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AudioDevice_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioDevice_typeID;
 else
  RET false;
 }
@@ -11287,11 +11285,11 @@ else
 template <>
 struct val_to_c<const AudioDevice *>
 {
-static const AudioDevice *f(CTX ctx,const SV head)
+static const AudioDevice *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AudioDevice_typeID)
 RET(AudioDevice*)obj->data;
 else
@@ -11315,11 +11313,11 @@ RET STG::createNativeObject(RigidBodyList_funcs,obj,EXT->RigidBodyList_typeID);
 template <>
 struct val_to_c<List<RigidBody*> *>
 {
-static List<RigidBody*> *f(CTX ctx,const SV head)
+static List<RigidBody*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBodyList_typeID)
 RET(List<RigidBody*>*)obj->data;
 else
@@ -11331,10 +11329,10 @@ else
 template <>
 struct type_same<List<RigidBody*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyList_typeID;
 else
  RET false;
 }
@@ -11342,10 +11340,10 @@ else
 template <>
 struct type_same<const List<RigidBody*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyList_typeID;
 else
  RET false;
 }
@@ -11353,11 +11351,11 @@ else
 template <>
 struct val_to_c<const List<RigidBody*> *>
 {
-static const List<RigidBody*> *f(CTX ctx,const SV head)
+static const List<RigidBody*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBodyList_typeID)
 RET(List<RigidBody*>*)obj->data;
 else
@@ -11381,11 +11379,11 @@ RET STG::createNativeObject(UInt4_funcs,obj,EXT->UInt4_typeID);
 template <>
 struct val_to_c<T4<uint32_t> *>
 {
-static T4<uint32_t> *f(CTX ctx,const SV head)
+static T4<uint32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt4_typeID)
 RET(T4<uint32_t>*)obj->data;
 else
@@ -11397,10 +11395,10 @@ else
 template <>
 struct type_same<T4<uint32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt4_typeID;
 else
  RET false;
 }
@@ -11408,10 +11406,10 @@ else
 template <>
 struct type_same<const T4<uint32_t> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->UInt4_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->UInt4_typeID;
 else
  RET false;
 }
@@ -11419,11 +11417,11 @@ else
 template <>
 struct val_to_c<const T4<uint32_t> *>
 {
-static const T4<uint32_t> *f(CTX ctx,const SV head)
+static const T4<uint32_t> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->UInt4_typeID)
 RET(T4<uint32_t>*)obj->data;
 else
@@ -11447,11 +11445,11 @@ RET STG::createNativeObject(RayCastResult_funcs,obj,EXT->RayCastResult_typeID);
 template <>
 struct val_to_c<RayCastResult *>
 {
-static RayCastResult *f(CTX ctx,const SV head)
+static RayCastResult *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RayCastResult_typeID)
 RET(RayCastResult*)obj->data;
 else
@@ -11463,10 +11461,10 @@ else
 template <>
 struct type_same<RayCastResult *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResult_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RayCastResult_typeID;
 else
  RET false;
 }
@@ -11474,10 +11472,10 @@ else
 template <>
 struct type_same<const RayCastResult *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RayCastResult_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RayCastResult_typeID;
 else
  RET false;
 }
@@ -11485,11 +11483,11 @@ else
 template <>
 struct val_to_c<const RayCastResult *>
 {
-static const RayCastResult *f(CTX ctx,const SV head)
+static const RayCastResult *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RayCastResult_typeID)
 RET(RayCastResult*)obj->data;
 else
@@ -11513,11 +11511,11 @@ RET STG::createNativeObject(GfxLOD_funcs,obj,EXT->GfxLOD_typeID);
 template <>
 struct val_to_c<GfxLOD *>
 {
-static GfxLOD *f(CTX ctx,const SV head)
+static GfxLOD *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxLOD_typeID)
 RET(GfxLOD*)obj->data;
 else
@@ -11529,10 +11527,10 @@ else
 template <>
 struct type_same<GfxLOD *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLOD_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLOD_typeID;
 else
  RET false;
 }
@@ -11540,10 +11538,10 @@ else
 template <>
 struct type_same<const GfxLOD *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLOD_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLOD_typeID;
 else
  RET false;
 }
@@ -11551,11 +11549,11 @@ else
 template <>
 struct val_to_c<const GfxLOD *>
 {
-static const GfxLOD *f(CTX ctx,const SV head)
+static const GfxLOD *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxLOD_typeID)
 RET(GfxLOD*)obj->data;
 else
@@ -11579,11 +11577,11 @@ RET STG::createNativeObject(File_funcs,obj,EXT->File_typeID);
 template <>
 struct val_to_c<File *>
 {
-static File *f(CTX ctx,const SV head)
+static File *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->File_typeID)
 RET(File*)obj->data;
 else
@@ -11595,10 +11593,10 @@ else
 template <>
 struct type_same<File *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->File_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->File_typeID;
 else
  RET false;
 }
@@ -11606,10 +11604,10 @@ else
 template <>
 struct type_same<const File *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->File_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->File_typeID;
 else
  RET false;
 }
@@ -11617,11 +11615,11 @@ else
 template <>
 struct val_to_c<const File *>
 {
-static const File *f(CTX ctx,const SV head)
+static const File *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->File_typeID)
 RET(File*)obj->data;
 else
@@ -11645,11 +11643,11 @@ RET STG::createNativeObject(AABB_funcs,obj,EXT->AABB_typeID);
 template <>
 struct val_to_c<AABB *>
 {
-static AABB *f(CTX ctx,const SV head)
+static AABB *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AABB_typeID)
 RET(AABB*)obj->data;
 else
@@ -11661,10 +11659,10 @@ else
 template <>
 struct type_same<AABB *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AABB_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AABB_typeID;
 else
  RET false;
 }
@@ -11672,10 +11670,10 @@ else
 template <>
 struct type_same<const AABB *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->AABB_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AABB_typeID;
 else
  RET false;
 }
@@ -11683,11 +11681,11 @@ else
 template <>
 struct val_to_c<const AABB *>
 {
-static const AABB *f(CTX ctx,const SV head)
+static const AABB *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->AABB_typeID)
 RET(AABB*)obj->data;
 else
@@ -11711,11 +11709,11 @@ RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,obj,EXT->RigidBodyCo
 template <>
 struct val_to_c<RigidBodyConstructionInfo *>
 {
-static RigidBodyConstructionInfo *f(CTX ctx,const SV head)
+static RigidBodyConstructionInfo *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBodyConstructionInfo_typeID)
 RET(RigidBodyConstructionInfo*)obj->data;
 else
@@ -11727,10 +11725,10 @@ else
 template <>
 struct type_same<RigidBodyConstructionInfo *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyConstructionInfo_typeID;
 else
  RET false;
 }
@@ -11738,10 +11736,10 @@ else
 template <>
 struct type_same<const RigidBodyConstructionInfo *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->RigidBodyConstructionInfo_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RigidBodyConstructionInfo_typeID;
 else
  RET false;
 }
@@ -11749,11 +11747,11 @@ else
 template <>
 struct val_to_c<const RigidBodyConstructionInfo *>
 {
-static const RigidBodyConstructionInfo *f(CTX ctx,const SV head)
+static const RigidBodyConstructionInfo *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->RigidBodyConstructionInfo_typeID)
 RET(RigidBodyConstructionInfo*)obj->data;
 else
@@ -11764,9 +11762,9 @@ else
 };
 
 template <>
-struct create_val<List<scripting::Value*> *>
+struct create_val<List<scripting::Value> *>
 {
-static SV f(CTX ctx,List<scripting::Value*>*obj)
+static SV f(CTX ctx,List<scripting::Value>*obj)
 {
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
@@ -11775,15 +11773,15 @@ RET STG::createNativeObject(List_funcs,obj,EXT->List_typeID);
 }
 };
 template <>
-struct val_to_c<List<scripting::Value*> *>
+struct val_to_c<List<scripting::Value> *>
 {
-static List<scripting::Value*> *f(CTX ctx,const SV head)
+static List<scripting::Value> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->List_typeID)
-RET(List<scripting::Value*>*)obj->data;
+RET(List<scripting::Value>*)obj->data;
 else
  CATE(TE,"Value is not a List."));
 } else
@@ -11791,37 +11789,37 @@ else
 }
 };
 template <>
-struct type_same<List<scripting::Value*> *>
+struct type_same<List<scripting::Value> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->List_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->List_typeID;
 else
  RET false;
 }
 };
 template <>
-struct type_same<const List<scripting::Value*> *>
+struct type_same<const List<scripting::Value> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->List_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->List_typeID;
 else
  RET false;
 }
 };
 template <>
-struct val_to_c<const List<scripting::Value*> *>
+struct val_to_c<const List<scripting::Value> *>
 {
-static const List<scripting::Value*> *f(CTX ctx,const SV head)
+static const List<scripting::Value> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->List_typeID)
-RET(List<scripting::Value*>*)obj->data;
+RET(List<scripting::Value>*)obj->data;
 else
  CATE(TE,"Value is not a List."));
 } else
@@ -11843,11 +11841,11 @@ RET STG::createNativeObject(Audio_funcs,obj,EXT->Audio_typeID);
 template <>
 struct val_to_c<Audio *>
 {
-static Audio *f(CTX ctx,const SV head)
+static Audio *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Audio_typeID)
 RET(Audio*)obj->data;
 else
@@ -11859,10 +11857,10 @@ else
 template <>
 struct type_same<Audio *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Audio_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Audio_typeID;
 else
  RET false;
 }
@@ -11870,10 +11868,10 @@ else
 template <>
 struct type_same<const Audio *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Audio_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Audio_typeID;
 else
  RET false;
 }
@@ -11881,11 +11879,11 @@ else
 template <>
 struct val_to_c<const Audio *>
 {
-static const Audio *f(CTX ctx,const SV head)
+static const Audio *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Audio_typeID)
 RET(Audio*)obj->data;
 else
@@ -11909,11 +11907,11 @@ RET STG::createNativeObject(GfxTexture_funcs,obj,EXT->GfxTexture_typeID);
 template <>
 struct val_to_c<GfxTexture *>
 {
-static GfxTexture *f(CTX ctx,const SV head)
+static GfxTexture *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxTexture_typeID)
 RET(GfxTexture*)obj->data;
 else
@@ -11925,10 +11923,10 @@ else
 template <>
 struct type_same<GfxTexture *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexture_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxTexture_typeID;
 else
  RET false;
 }
@@ -11936,10 +11934,10 @@ else
 template <>
 struct type_same<const GfxTexture *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxTexture_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxTexture_typeID;
 else
  RET false;
 }
@@ -11947,11 +11945,11 @@ else
 template <>
 struct val_to_c<const GfxTexture *>
 {
-static const GfxTexture *f(CTX ctx,const SV head)
+static const GfxTexture *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxTexture_typeID)
 RET(GfxTexture*)obj->data;
 else
@@ -11975,11 +11973,11 @@ RET STG::createNativeObject(GfxSubModelList_funcs,obj,EXT->GfxSubModelList_typeI
 template <>
 struct val_to_c<List<GfxModel::SubModel> *>
 {
-static List<GfxModel::SubModel> *f(CTX ctx,const SV head)
+static List<GfxModel::SubModel> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxSubModelList_typeID)
 RET(List<GfxModel::SubModel>*)obj->data;
 else
@@ -11991,10 +11989,10 @@ else
 template <>
 struct type_same<List<GfxModel::SubModel> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxSubModelList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxSubModelList_typeID;
 else
  RET false;
 }
@@ -12002,10 +12000,10 @@ else
 template <>
 struct type_same<const List<GfxModel::SubModel> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxSubModelList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxSubModelList_typeID;
 else
  RET false;
 }
@@ -12013,11 +12011,11 @@ else
 template <>
 struct val_to_c<const List<GfxModel::SubModel> *>
 {
-static const List<GfxModel::SubModel> *f(CTX ctx,const SV head)
+static const List<GfxModel::SubModel> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxSubModelList_typeID)
 RET(List<GfxModel::SubModel>*)obj->data;
 else
@@ -12041,11 +12039,11 @@ RET STG::createNativeObject(GfxModel_funcs,obj,EXT->GfxModel_typeID);
 template <>
 struct val_to_c<GfxModel *>
 {
-static GfxModel *f(CTX ctx,const SV head)
+static GfxModel *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxModel_typeID)
 RET(GfxModel*)obj->data;
 else
@@ -12057,10 +12055,10 @@ else
 template <>
 struct type_same<GfxModel *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxModel_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxModel_typeID;
 else
  RET false;
 }
@@ -12068,10 +12066,10 @@ else
 template <>
 struct type_same<const GfxModel *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxModel_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxModel_typeID;
 else
  RET false;
 }
@@ -12079,11 +12077,11 @@ else
 template <>
 struct val_to_c<const GfxModel *>
 {
-static const GfxModel *f(CTX ctx,const SV head)
+static const GfxModel *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxModel_typeID)
 RET(GfxModel*)obj->data;
 else
@@ -12107,11 +12105,11 @@ RET STG::createNativeObject(GfxLODList_funcs,obj,EXT->GfxLODList_typeID);
 template <>
 struct val_to_c<List<GfxLOD> *>
 {
-static List<GfxLOD> *f(CTX ctx,const SV head)
+static List<GfxLOD> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxLODList_typeID)
 RET(List<GfxLOD>*)obj->data;
 else
@@ -12123,10 +12121,10 @@ else
 template <>
 struct type_same<List<GfxLOD> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLODList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLODList_typeID;
 else
  RET false;
 }
@@ -12134,10 +12132,10 @@ else
 template <>
 struct type_same<const List<GfxLOD> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxLODList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxLODList_typeID;
 else
  RET false;
 }
@@ -12145,11 +12143,11 @@ else
 template <>
 struct val_to_c<const List<GfxLOD> *>
 {
-static const List<GfxLOD> *f(CTX ctx,const SV head)
+static const List<GfxLOD> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxLODList_typeID)
 RET(List<GfxLOD>*)obj->data;
 else
@@ -12173,11 +12171,11 @@ RET STG::createNativeObject(EntityList_funcs,obj,EXT->EntityList_typeID);
 template <>
 struct val_to_c<List<Entity*> *>
 {
-static List<Entity*> *f(CTX ctx,const SV head)
+static List<Entity*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->EntityList_typeID)
 RET(List<Entity*>*)obj->data;
 else
@@ -12189,10 +12187,10 @@ else
 template <>
 struct type_same<List<Entity*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->EntityList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->EntityList_typeID;
 else
  RET false;
 }
@@ -12200,10 +12198,10 @@ else
 template <>
 struct type_same<const List<Entity*> *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->EntityList_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->EntityList_typeID;
 else
  RET false;
 }
@@ -12211,11 +12209,11 @@ else
 template <>
 struct val_to_c<const List<Entity*> *>
 {
-static const List<Entity*> *f(CTX ctx,const SV head)
+static const List<Entity*> *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->EntityList_typeID)
 RET(List<Entity*>*)obj->data;
 else
@@ -12239,11 +12237,11 @@ RET STG::createNativeObject(GfxShaderCombination_funcs,obj,EXT->GfxShaderCombina
 template <>
 struct val_to_c<GfxShaderCombination *>
 {
-static GfxShaderCombination *f(CTX ctx,const SV head)
+static GfxShaderCombination *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxShaderCombination_typeID)
 RET(GfxShaderCombination*)obj->data;
 else
@@ -12255,10 +12253,10 @@ else
 template <>
 struct type_same<GfxShaderCombination *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShaderCombination_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShaderCombination_typeID;
 else
  RET false;
 }
@@ -12266,10 +12264,10 @@ else
 template <>
 struct type_same<const GfxShaderCombination *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxShaderCombination_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxShaderCombination_typeID;
 else
  RET false;
 }
@@ -12277,11 +12275,11 @@ else
 template <>
 struct val_to_c<const GfxShaderCombination *>
 {
-static const GfxShaderCombination *f(CTX ctx,const SV head)
+static const GfxShaderCombination *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxShaderCombination_typeID)
 RET(GfxShaderCombination*)obj->data;
 else
@@ -12305,11 +12303,11 @@ RET STG::createNativeObject(Matrix3x3_funcs,obj,EXT->Matrix3x3_typeID);
 template <>
 struct val_to_c<Matrix3x3 *>
 {
-static Matrix3x3 *f(CTX ctx,const SV head)
+static Matrix3x3 *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Matrix3x3_typeID)
 RET(Matrix3x3*)obj->data;
 else
@@ -12321,10 +12319,10 @@ else
 template <>
 struct type_same<Matrix3x3 *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix3x3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Matrix3x3_typeID;
 else
  RET false;
 }
@@ -12332,10 +12330,10 @@ else
 template <>
 struct type_same<const Matrix3x3 *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->Matrix3x3_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Matrix3x3_typeID;
 else
  RET false;
 }
@@ -12343,11 +12341,11 @@ else
 template <>
 struct val_to_c<const Matrix3x3 *>
 {
-static const Matrix3x3 *f(CTX ctx,const SV head)
+static const Matrix3x3 *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->Matrix3x3_typeID)
 RET(Matrix3x3*)obj->data;
 else
@@ -12371,11 +12369,11 @@ RET STG::createNativeObject(GfxDebugDrawer_funcs,obj,EXT->GfxDebugDrawer_typeID)
 template <>
 struct val_to_c<GfxDebugDrawer *>
 {
-static GfxDebugDrawer *f(CTX ctx,const SV head)
+static GfxDebugDrawer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxDebugDrawer_typeID)
 RET(GfxDebugDrawer*)obj->data;
 else
@@ -12387,10 +12385,10 @@ else
 template <>
 struct type_same<GfxDebugDrawer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDebugDrawer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxDebugDrawer_typeID;
 else
  RET false;
 }
@@ -12398,10 +12396,10 @@ else
 template <>
 struct type_same<const GfxDebugDrawer *>
 {
-static bool f(CTX ctx,const SV head)
+static bool f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
-RET((NO)head)->typeID==EXT->GfxDebugDrawer_typeID;
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxDebugDrawer_typeID;
 else
  RET false;
 }
@@ -12409,11 +12407,11 @@ else
 template <>
 struct val_to_c<const GfxDebugDrawer *>
 {
-static const GfxDebugDrawer *f(CTX ctx,const SV head)
+static const GfxDebugDrawer *f(CTX ctx,const SV& val)
 {
-if(head->type==STG::ValueType::NativeObject)
+if(val.type==STG::ValueType::NativeObject)
 {
-NO obj=(NO)head;
+NO obj=(NO)val.p;
 if(obj->typeID==EXT->GfxDebugDrawer_typeID)
 RET(GfxDebugDrawer*)obj->data;
 else
@@ -12431,18 +12429,19 @@ size_t f;
 if(!TS(a[0],Key))
 CATE(TE,FAE("Key::Key","Key")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],Key))
 CATE(VE,UFOF("Key::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV Key_get_member(CTX ctx,NO f,SV key)
+}SV Key_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12638,7 +12637,7 @@ else
 }
 }
 }
-void Key_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void Key_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV MouseButton___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12647,18 +12646,19 @@ size_t f;
 if(!TS(a[0],MouseButton))
 CATE(TE,FAE("MouseButton::MouseButton","MouseButton")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],MouseButton))
 CATE(VE,UFOF("MouseButton::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV MouseButton_get_member(CTX ctx,NO f,SV key)
+}SV MouseButton_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12692,7 +12692,7 @@ else
 }
 }
 }
-void MouseButton_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void MouseButton_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV EventType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12701,18 +12701,19 @@ size_t f;
 if(!TS(a[0],EventType))
 CATE(TE,FAE("EventType::EventType","EventType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],EventType))
 CATE(VE,UFOF("EventType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV EventType_get_member(CTX ctx,NO f,SV key)
+}SV EventType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12756,7 +12757,7 @@ else
 }
 }
 }
-void EventType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void EventType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV FileOrigin___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12765,18 +12766,19 @@ size_t f;
 if(!TS(a[0],FileOrigin))
 CATE(TE,FAE("FileOrigin::FileOrigin","FileOrigin")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],FileOrigin))
 CATE(VE,UFOF("FileOrigin::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV FileOrigin_get_member(CTX ctx,NO f,SV key)
+}SV FileOrigin_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12808,7 +12810,7 @@ else
 }
 }
 }
-void FileOrigin_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void FileOrigin_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV ResType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12817,18 +12819,19 @@ size_t f;
 if(!TS(a[0],ResType))
 CATE(TE,FAE("ResType::ResType","ResType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],ResType))
 CATE(VE,UFOF("ResType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV ResType_get_member(CTX ctx,NO f,SV key)
+}SV ResType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12874,7 +12877,7 @@ else
 }
 }
 }
-void ResType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void ResType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxTextureType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12883,18 +12886,19 @@ size_t f;
 if(!TS(a[0],GfxTextureType))
 CATE(TE,FAE("GfxTextureType::GfxTextureType","GfxTextureType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxTextureType))
 CATE(VE,UFOF("GfxTextureType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxTextureType_get_member(CTX ctx,NO f,SV key)
+}SV GfxTextureType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12928,7 +12932,7 @@ else
 }
 }
 }
-void GfxTextureType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxTextureType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxFilter___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12937,18 +12941,19 @@ size_t f;
 if(!TS(a[0],GfxFilter))
 CATE(TE,FAE("GfxFilter::GfxFilter","GfxFilter")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxFilter))
 CATE(VE,UFOF("GfxFilter::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxFilter_get_member(CTX ctx,NO f,SV key)
+}SV GfxFilter_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -12978,7 +12983,7 @@ else
 }
 }
 }
-void GfxFilter_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxFilter_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxMipmapMode___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -12987,18 +12992,19 @@ size_t f;
 if(!TS(a[0],GfxMipmapMode))
 CATE(TE,FAE("GfxMipmapMode::GfxMipmapMode","GfxMipmapMode")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxMipmapMode))
 CATE(VE,UFOF("GfxMipmapMode::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxMipmapMode_get_member(CTX ctx,NO f,SV key)
+}SV GfxMipmapMode_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13030,7 +13036,7 @@ else
 }
 }
 }
-void GfxMipmapMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxMipmapMode_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxWrapMode___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13039,18 +13045,19 @@ size_t f;
 if(!TS(a[0],GfxWrapMode))
 CATE(TE,FAE("GfxWrapMode::GfxWrapMode","GfxWrapMode")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxWrapMode))
 CATE(VE,UFOF("GfxWrapMode::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxWrapMode_get_member(CTX ctx,NO f,SV key)
+}SV GfxWrapMode_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13082,7 +13089,7 @@ else
 }
 }
 }
-void GfxWrapMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxWrapMode_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxTexFormat___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13091,18 +13098,19 @@ size_t f;
 if(!TS(a[0],GfxTexFormat))
 CATE(TE,FAE("GfxTexFormat::GfxTexFormat","GfxTexFormat")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxTexFormat))
 CATE(VE,UFOF("GfxTexFormat::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxTexFormat_get_member(CTX ctx,NO f,SV key)
+}SV GfxTexFormat_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13270,7 +13278,7 @@ else
 }
 }
 }
-void GfxTexFormat_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxTexFormat_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxFace___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13279,18 +13287,19 @@ size_t f;
 if(!TS(a[0],GfxFace))
 CATE(TE,FAE("GfxFace::GfxFace","GfxFace")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxFace))
 CATE(VE,UFOF("GfxFace::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxFace_get_member(CTX ctx,NO f,SV key)
+}SV GfxFace_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13328,7 +13337,7 @@ else
 }
 }
 }
-void GfxFace_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxFace_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxBufferUsage___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13337,18 +13346,19 @@ size_t f;
 if(!TS(a[0],GfxBufferUsage))
 CATE(TE,FAE("GfxBufferUsage::GfxBufferUsage","GfxBufferUsage")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxBufferUsage))
 CATE(VE,UFOF("GfxBufferUsage::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxBufferUsage_get_member(CTX ctx,NO f,SV key)
+}SV GfxBufferUsage_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13380,7 +13390,7 @@ else
 }
 }
 }
-void GfxBufferUsage_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxBufferUsage_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxShaderType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13389,18 +13399,19 @@ size_t f;
 if(!TS(a[0],GfxShaderType))
 CATE(TE,FAE("GfxShaderType::GfxShaderType","GfxShaderType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxShaderType))
 CATE(VE,UFOF("GfxShaderType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxShaderType_get_member(CTX ctx,NO f,SV key)
+}SV GfxShaderType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13438,7 +13449,7 @@ else
 }
 }
 }
-void GfxShaderType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxShaderType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxPrimitive___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13447,18 +13458,19 @@ size_t f;
 if(!TS(a[0],GfxPrimitive))
 CATE(TE,FAE("GfxPrimitive::GfxPrimitive","GfxPrimitive")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxPrimitive))
 CATE(VE,UFOF("GfxPrimitive::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxPrimitive_get_member(CTX ctx,NO f,SV key)
+}SV GfxPrimitive_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13500,7 +13512,7 @@ else
 }
 }
 }
-void GfxPrimitive_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxPrimitive_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxDepthFunction___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13509,18 +13521,19 @@ size_t f;
 if(!TS(a[0],GfxDepthFunction))
 CATE(TE,FAE("GfxDepthFunction::GfxDepthFunction","GfxDepthFunction")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxDepthFunction))
 CATE(VE,UFOF("GfxDepthFunction::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxDepthFunction_get_member(CTX ctx,NO f,SV key)
+}SV GfxDepthFunction_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13562,7 +13575,7 @@ else
 }
 }
 }
-void GfxDepthFunction_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxDepthFunction_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxBlendMode___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13571,18 +13584,19 @@ size_t f;
 if(!TS(a[0],GfxBlendMode))
 CATE(TE,FAE("GfxBlendMode::GfxBlendMode","GfxBlendMode")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxBlendMode))
 CATE(VE,UFOF("GfxBlendMode::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxBlendMode_get_member(CTX ctx,NO f,SV key)
+}SV GfxBlendMode_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13614,7 +13628,7 @@ else
 }
 }
 }
-void GfxBlendMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxBlendMode_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxBlendFactor___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13623,18 +13637,19 @@ size_t f;
 if(!TS(a[0],GfxBlendFactor))
 CATE(TE,FAE("GfxBlendFactor::GfxBlendFactor","GfxBlendFactor")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxBlendFactor))
 CATE(VE,UFOF("GfxBlendFactor::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxBlendFactor_get_member(CTX ctx,NO f,SV key)
+}SV GfxBlendFactor_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13688,7 +13703,7 @@ else
 }
 }
 }
-void GfxBlendFactor_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxBlendFactor_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxCullMode___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13697,18 +13712,19 @@ size_t f;
 if(!TS(a[0],GfxCullMode))
 CATE(TE,FAE("GfxCullMode::GfxCullMode","GfxCullMode")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxCullMode))
 CATE(VE,UFOF("GfxCullMode::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxCullMode_get_member(CTX ctx,NO f,SV key)
+}SV GfxCullMode_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13740,7 +13756,7 @@ else
 }
 }
 }
-void GfxCullMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxCullMode_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxWinding___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13749,18 +13765,19 @@ size_t f;
 if(!TS(a[0],GfxWinding))
 CATE(TE,FAE("GfxWinding::GfxWinding","GfxWinding")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxWinding))
 CATE(VE,UFOF("GfxWinding::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxWinding_get_member(CTX ctx,NO f,SV key)
+}SV GfxWinding_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13790,7 +13807,7 @@ else
 }
 }
 }
-void GfxWinding_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxWinding_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxVertexAttribPurpose___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13799,18 +13816,19 @@ size_t f;
 if(!TS(a[0],GfxVertexAttribPurpose))
 CATE(TE,FAE("GfxVertexAttribPurpose::GfxVertexAttribPurpose","GfxVertexAttribPurpose")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxVertexAttribPurpose))
 CATE(VE,UFOF("GfxVertexAttribPurpose::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxVertexAttribPurpose_get_member(CTX ctx,NO f,SV key)
+}SV GfxVertexAttribPurpose_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13846,7 +13864,7 @@ else
 }
 }
 }
-void GfxVertexAttribPurpose_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxVertexAttribPurpose_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxVertexAttribType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13855,18 +13873,19 @@ size_t f;
 if(!TS(a[0],GfxVertexAttribType))
 CATE(TE,FAE("GfxVertexAttribType::GfxVertexAttribType","GfxVertexAttribType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxVertexAttribType))
 CATE(VE,UFOF("GfxVertexAttribType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxVertexAttribType_get_member(CTX ctx,NO f,SV key)
+}SV GfxVertexAttribType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13922,7 +13941,7 @@ else
 }
 }
 }
-void GfxVertexAttribType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxVertexAttribType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxMeshIndexDataType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13931,18 +13950,19 @@ size_t f;
 if(!TS(a[0],GfxMeshIndexDataType))
 CATE(TE,FAE("GfxMeshIndexDataType::GfxMeshIndexDataType","GfxMeshIndexDataType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxMeshIndexDataType))
 CATE(VE,UFOF("GfxMeshIndexDataType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxMeshIndexDataType_get_member(CTX ctx,NO f,SV key)
+}SV GfxMeshIndexDataType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -13974,7 +13994,7 @@ else
 }
 }
 }
-void GfxMeshIndexDataType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxMeshIndexDataType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxMeshAttribType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -13983,18 +14003,19 @@ size_t f;
 if(!TS(a[0],GfxMeshAttribType))
 CATE(TE,FAE("GfxMeshAttribType::GfxMeshAttribType","GfxMeshAttribType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxMeshAttribType))
 CATE(VE,UFOF("GfxMeshAttribType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxMeshAttribType_get_member(CTX ctx,NO f,SV key)
+}SV GfxMeshAttribType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14034,7 +14055,7 @@ else
 }
 }
 }
-void GfxMeshAttribType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxMeshAttribType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxMeshAttribDataType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14043,18 +14064,19 @@ size_t f;
 if(!TS(a[0],GfxMeshAttribDataType))
 CATE(TE,FAE("GfxMeshAttribDataType::GfxMeshAttribDataType","GfxMeshAttribDataType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxMeshAttribDataType))
 CATE(VE,UFOF("GfxMeshAttribDataType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxMeshAttribDataType_get_member(CTX ctx,NO f,SV key)
+}SV GfxMeshAttribDataType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14192,7 +14214,7 @@ else
 }
 }
 }
-void GfxMeshAttribDataType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxMeshAttribDataType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV XOrigin___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14201,18 +14223,19 @@ size_t f;
 if(!TS(a[0],XOrigin))
 CATE(TE,FAE("XOrigin::XOrigin","XOrigin")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],XOrigin))
 CATE(VE,UFOF("XOrigin::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV XOrigin_get_member(CTX ctx,NO f,SV key)
+}SV XOrigin_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14242,7 +14265,7 @@ else
 }
 }
 }
-void XOrigin_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void XOrigin_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxShadowmapPrecision___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14251,18 +14274,19 @@ size_t f;
 if(!TS(a[0],GfxShadowmapPrecision))
 CATE(TE,FAE("GfxShadowmapPrecision::GfxShadowmapPrecision","GfxShadowmapPrecision")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxShadowmapPrecision))
 CATE(VE,UFOF("GfxShadowmapPrecision::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxShadowmapPrecision_get_member(CTX ctx,NO f,SV key)
+}SV GfxShadowmapPrecision_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14294,7 +14318,7 @@ else
 }
 }
 }
-void GfxShadowmapPrecision_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxShadowmapPrecision_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxLightType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14303,18 +14327,19 @@ size_t f;
 if(!TS(a[0],GfxLightType))
 CATE(TE,FAE("GfxLightType::GfxLightType","GfxLightType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxLightType))
 CATE(VE,UFOF("GfxLightType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxLightType_get_member(CTX ctx,NO f,SV key)
+}SV GfxLightType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14346,7 +14371,7 @@ else
 }
 }
 }
-void GfxLightType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxLightType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV GfxDriver___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14355,18 +14380,19 @@ size_t f;
 if(!TS(a[0],GfxDriver))
 CATE(TE,FAE("GfxDriver::GfxDriver","GfxDriver")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],GfxDriver))
 CATE(VE,UFOF("GfxDriver::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV GfxDriver_get_member(CTX ctx,NO f,SV key)
+}SV GfxDriver_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14398,7 +14424,7 @@ else
 }
 }
 }
-void GfxDriver_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void GfxDriver_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV CameraType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14407,18 +14433,19 @@ size_t f;
 if(!TS(a[0],CameraType))
 CATE(TE,FAE("CameraType::CameraType","CameraType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],CameraType))
 CATE(VE,UFOF("CameraType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV CameraType_get_member(CTX ctx,NO f,SV key)
+}SV CameraType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14448,7 +14475,7 @@ else
 }
 }
 }
-void CameraType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void CameraType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV Axis___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14457,18 +14484,19 @@ size_t f;
 if(!TS(a[0],Axis))
 CATE(TE,FAE("Axis::Axis","Axis")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],Axis))
 CATE(VE,UFOF("Axis::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV Axis_get_member(CTX ctx,NO f,SV key)
+}SV Axis_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14500,7 +14528,7 @@ else
 }
 }
 }
-void Axis_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void Axis_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV RigidBodyType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14509,18 +14537,19 @@ size_t f;
 if(!TS(a[0],RigidBodyType))
 CATE(TE,FAE("RigidBodyType::RigidBodyType","RigidBodyType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],RigidBodyType))
 CATE(VE,UFOF("RigidBodyType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV RigidBodyType_get_member(CTX ctx,NO f,SV key)
+}SV RigidBodyType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14552,7 +14581,7 @@ else
 }
 }
 }
-void RigidBodyType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void RigidBodyType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV PhysicsObjectType___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14561,18 +14590,19 @@ size_t f;
 if(!TS(a[0],PhysicsObjectType))
 CATE(TE,FAE("PhysicsObjectType::PhysicsObjectType","PhysicsObjectType")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],PhysicsObjectType))
 CATE(VE,UFOF("PhysicsObjectType::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV PhysicsObjectType_get_member(CTX ctx,NO f,SV key)
+}SV PhysicsObjectType_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14602,7 +14632,7 @@ else
 }
 }
 }
-void PhysicsObjectType_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
+void PhysicsObjectType_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
 SV RenderMode___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=2)
@@ -14611,18 +14641,19 @@ size_t f;
 if(!TS(a[0],RenderMode))
 CATE(TE,FAE("RenderMode::RenderMode","RenderMode")));
 else
- f=(size_t)((NO)a[0])->data;
+ f=(size_t)((NO)a[0].p)->data;
 size_t other;
 if(!TS(a[1],RenderMode))
 CATE(VE,UFOF("RenderMode::__eq__")));
 else
- other=(size_t)((NO)a[1])->data;
+ other=(size_t)((NO)a[1].p)->data;
 return STG::createBoolean(f == other);
-}SV RenderMode_get_member(CTX ctx,NO f,SV key)
+}SV RenderMode_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData *)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14654,10 +14685,11 @@ else
 }
 }
 }
-void RenderMode_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}
-void GhostObject_destroy(CTX ctx,NO f)
+void RenderMode_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}
+void GhostObject_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GhostObject))
+NO f=(NO)f_.p;
+if(!TS(f_,GhostObject))
 CATE(TE,"GhostObject::__del__ expects GhostObject as first argument."));
 
 }SV GhostObject_new(CTX ctx,const List<SV>&a)
@@ -14669,11 +14701,12 @@ CATE(TE,"GhostObject's constructor expects GhostObject as first argument."));
 CATE(TE,UFOF("GhostObject's constructor.")));
 }
 
-SV GhostObject_get_member(CTX ctx,NO f,SV key)
+SV GhostObject_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14719,11 +14752,12 @@ RET CNF(GhostObject_getShape);
 RET CN;
 }
 
-void GhostObject_set_member(CTX ctx,NO f,SV key,SV value)
+void GhostObject_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -14739,7 +14773,7 @@ SV GhostObject_getTransform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getTransform" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -14756,7 +14790,7 @@ SV GhostObject_setTransform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::setTransform" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Transform &))
@@ -14773,7 +14807,7 @@ SV GhostObject_getGhostCollisions(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getGhostCollisions" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -14790,7 +14824,7 @@ SV GhostObject_getCollisions(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getCollisions" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GhostObject::getCollisions.")));
 RET CN;
@@ -14801,7 +14835,7 @@ SV GhostObject_getBulletGhostObject(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getBulletGhostObject" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GhostObject::getBulletGhostObject.")));
 RET CN;
@@ -14812,7 +14846,7 @@ SV GhostObject_getWorld(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getWorld" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -14829,7 +14863,7 @@ SV GhostObject_getShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getShape" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -14846,7 +14880,7 @@ SV GhostObject_getRigidBodyCollisions(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getRigidBodyCollisions" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -14863,7 +14897,7 @@ SV GhostObject_getCollisionMask(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::getCollisionMask" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -14880,7 +14914,7 @@ SV GhostObject_setShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObject::setShape" EAOE));
 GhostObject*f;
-f=(GhostObject*)((NO)a[0])->data;
+f=(GhostObject*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],PhysicsShape *))
@@ -14892,9 +14926,10 @@ CATE(TE,UFOF("GhostObject::setShape.")));
 RET CN;
 }
 
-void StrStrMap_destroy(CTX ctx,NO f)
+void StrStrMap_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,HashMap<String,String>))
+NO f=(NO)f_.p;
+if(!TS(f_,HashMap<String,String>))
 CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
 
 SCRIPT_DELETE((HashMap<String,String>*)f->data);
@@ -14907,11 +14942,12 @@ CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
 RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>)),EXT->StrStrMap_typeID);
 }
 
-SV StrStrMap_get_member(CTX ctx,NO f,SV key)
+SV StrStrMap_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -14965,11 +15001,12 @@ RET CNF(StrStrMap_clear);
 RET CN;
 }
 
-void StrStrMap_set_member(CTX ctx,NO f,SV key,SV value)
+void StrStrMap_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -14985,7 +15022,7 @@ SV StrStrMap_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::begin" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::begin.")));
 RET CN;
@@ -14996,7 +15033,7 @@ SV StrStrMap_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::set" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],String)&&TS(a[2],String))
@@ -15013,7 +15050,7 @@ SV StrStrMap_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::end" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::end.")));
 RET CN;
@@ -15024,7 +15061,7 @@ SV StrStrMap_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::get" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],String))
@@ -15047,7 +15084,7 @@ SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::getValue" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -15064,7 +15101,7 @@ SV StrStrMap_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::clear" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15081,7 +15118,7 @@ SV StrStrMap_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::remove" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],String))
@@ -15098,7 +15135,7 @@ SV StrStrMap_getKey(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::getKey" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -15115,7 +15152,7 @@ SV StrStrMap_isEntry(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::isEntry" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],String))
@@ -15132,7 +15169,7 @@ SV StrStrMap_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::getCount" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15149,7 +15186,7 @@ SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::removeEntry" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::removeEntry.")));
 RET CN;
@@ -15160,7 +15197,7 @@ SV StrStrMap___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::__eq__" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const HashMap<String, String> &))
@@ -15177,7 +15214,7 @@ SV StrStrMap_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::find" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::find.")));
 RET CN;
@@ -15188,7 +15225,7 @@ SV StrStrMap___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::__neq__" EAOE));
 HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0])->data;
+f=(HashMap<String,String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const HashMap<String, String> &))
@@ -15200,9 +15237,10 @@ CATE(TE,UFOF("StrStrMap::__neq__.")));
 RET CN;
 }
 
-void GfxApi_destroy(CTX ctx,NO f)
+void GfxApi_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxApi))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxApi))
 CATE(TE,"GfxApi::__del__ expects GfxApi as first argument."));
 
 SCRIPT_DELETE((GfxApi*)f->data);
@@ -15215,11 +15253,12 @@ CATE(TE,"GfxApi's constructor expects GfxApi as first argument."));
 CATE(TE,UFOF("GfxApi's constructor.")));
 }
 
-SV GfxApi_get_member(CTX ctx,NO f,SV key)
+SV GfxApi_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -15353,11 +15392,12 @@ RET CNF(GfxApi_getTessPatchSize);
 RET CN;
 }
 
-void GfxApi_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxApi_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -15373,7 +15413,7 @@ SV GfxApi_getScissorWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getScissorWidth" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15390,7 +15430,7 @@ SV GfxApi_setDepthFunction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setDepthFunction" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxDepthFunction))
@@ -15407,7 +15447,7 @@ SV GfxApi_setCurrentFramebuffer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setCurrentFramebuffer" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxFramebuffer *))
@@ -15424,7 +15464,7 @@ SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::createTextureImpl" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxApi::createTextureImpl.")));
 RET CN;
@@ -15435,7 +15475,7 @@ SV GfxApi_draw(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::draw" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -15452,7 +15492,7 @@ SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::tesselationSupported" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15469,7 +15509,7 @@ SV GfxApi_popState(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::popState" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15486,7 +15526,7 @@ SV GfxApi_getBlendModeAlpha(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendModeAlpha" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15503,7 +15543,7 @@ SV GfxApi_getDepthFunction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getDepthFunction" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15520,7 +15560,7 @@ SV GfxApi_pushState(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::pushState" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15537,7 +15577,7 @@ SV GfxApi_getViewportLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getViewportLeft" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15554,7 +15594,7 @@ SV GfxApi_getWriteDepth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getWriteDepth" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15571,7 +15611,7 @@ SV GfxApi_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::end" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15588,7 +15628,7 @@ SV GfxApi_getScissorLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getScissorLeft" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15605,7 +15645,7 @@ SV GfxApi_setScissor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setScissor" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],uint16_t)&&TS(a[2],uint16_t)&&TS(a[3],uint16_t)&&TS(a[4],uint16_t))
@@ -15622,7 +15662,7 @@ SV GfxApi_resetState(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::resetState" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15639,7 +15679,7 @@ SV GfxApi_getBlendDstFactorAlpha(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendDstFactorAlpha" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15656,7 +15696,7 @@ SV GfxApi_getBlendConstantColorR(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendConstantColorR" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15673,7 +15713,7 @@ SV GfxApi_uniform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::uniform" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],float))
@@ -15756,7 +15796,7 @@ SV GfxApi_getTessPatchSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getTessPatchSize" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15773,7 +15813,7 @@ SV GfxApi_addUBOBinding(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::addUBOBinding" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const GfxBuffer *))
@@ -15790,7 +15830,7 @@ SV GfxApi_getBlendModeRGB(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendModeRGB" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15807,7 +15847,7 @@ SV GfxApi_setScissorEnabled(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setScissorEnabled" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -15824,7 +15864,7 @@ SV GfxApi_getBlendConstantColorG(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendConstantColorG" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15841,7 +15881,7 @@ SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::createFramebuffer" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15858,7 +15898,7 @@ SV GfxApi_getBlendConstantColorA(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendConstantColorA" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15875,7 +15915,7 @@ SV GfxApi_getBlendConstantColorB(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendConstantColorB" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15892,7 +15932,7 @@ SV GfxApi_getBlendSrcFactorRGB(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendSrcFactorRGB" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15909,7 +15949,7 @@ SV GfxApi_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::begin" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==7)
 if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *)&&TS(a[4],GfxCompiledShader *)&&TS(a[5],GfxCompiledShader *)&&TS(a[6],GfxMesh *))
@@ -15932,7 +15972,7 @@ SV GfxApi_setTessPatchSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setTessPatchSize" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -15949,7 +15989,7 @@ SV GfxApi_getViewportWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getViewportWidth" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15966,7 +16006,7 @@ SV GfxApi_setBlendFactors(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setBlendFactors" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],GfxBlendFactor)&&TS(a[2],GfxBlendFactor)&&TS(a[3],GfxBlendFactor)&&TS(a[4],GfxBlendFactor))
@@ -15983,7 +16023,7 @@ SV GfxApi_getViewportBottom(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getViewportBottom" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16000,7 +16040,7 @@ SV GfxApi_getDriver(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getDriver" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16017,7 +16057,7 @@ SV GfxApi_setBlendMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setBlendMode" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],GfxBlendMode)&&TS(a[2],GfxBlendMode))
@@ -16034,7 +16074,7 @@ SV GfxApi_setWriteDepth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setWriteDepth" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -16051,7 +16091,7 @@ SV GfxApi_createBuffer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::createBuffer" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16068,7 +16108,7 @@ SV GfxApi_getScissorEnabled(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getScissorEnabled" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16085,7 +16125,7 @@ SV GfxApi_getCullMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getCullMode" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16102,7 +16142,7 @@ SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendConstantColor" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxApi::getBlendConstantColor.")));
 RET CN;
@@ -16113,7 +16153,7 @@ SV GfxApi_clearDepth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::clearDepth" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -16130,7 +16170,7 @@ SV GfxApi_setBlendConstantColor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setBlendConstantColor" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],uint8_t)&&TS(a[2],uint8_t)&&TS(a[3],uint8_t)&&TS(a[4],uint8_t))
@@ -16147,7 +16187,7 @@ SV GfxApi_setBlendingEnabled(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setBlendingEnabled" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -16164,7 +16204,7 @@ SV GfxApi_getBlendSrcFactorAlpha(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendSrcFactorAlpha" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16181,7 +16221,7 @@ SV GfxApi_createTimer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::createTimer" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16198,7 +16238,7 @@ SV GfxApi_getScissorBottom(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getScissorBottom" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16215,7 +16255,7 @@ SV GfxApi_getBlendDstFactorRGB(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getBlendDstFactorRGB" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16232,7 +16272,7 @@ SV GfxApi_setCullMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setCullMode" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxCullMode))
@@ -16249,7 +16289,7 @@ SV GfxApi_setViewport(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::setViewport" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],uint16_t)&&TS(a[2],uint16_t)&&TS(a[3],uint16_t)&&TS(a[4],uint16_t))
@@ -16266,7 +16306,7 @@ SV GfxApi_addTextureBinding(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::addTextureBinding" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *)&&TS(a[4],TextureSampler))
@@ -16289,7 +16329,7 @@ SV GfxApi_getViewportHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getViewportHeight" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16306,7 +16346,7 @@ SV GfxApi_getScissorHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::getScissorHeight" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16323,7 +16363,7 @@ SV GfxApi_isBlendingEnabled(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::isBlendingEnabled" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16340,7 +16380,7 @@ SV GfxApi_clearColor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxApi::clearColor" EAOE));
 GfxApi*f;
-f=(GfxApi*)((NO)a[0])->data;
+f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],Float4))
@@ -16364,9 +16404,10 @@ CATE(TE,UFOF("GfxApi::clearColor.")));
 RET CN;
 }
 
-void GfxCompiledShader_destroy(CTX ctx,NO f)
+void GfxCompiledShader_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxCompiledShader))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxCompiledShader))
 CATE(TE,"GfxCompiledShader::__del__ expects GfxCompiledShader as first argument."));
 
 SCRIPT_DELETE((GfxCompiledShader*)f->data);
@@ -16379,11 +16420,12 @@ CATE(TE,"GfxCompiledShader's constructor expects GfxCompiledShader as first argu
 CATE(TE,UFOF("GfxCompiledShader's constructor.")));
 }
 
-SV GfxCompiledShader_get_member(CTX ctx,NO f,SV key)
+SV GfxCompiledShader_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -16415,11 +16457,12 @@ RET CNF(GfxCompiledShader_getGLShader);
 RET CN;
 }
 
-void GfxCompiledShader_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxCompiledShader_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -16435,7 +16478,7 @@ SV GfxCompiledShader_getGLShader(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxCompiledShader::getGLShader" EAOE));
 GfxCompiledShader*f;
-f=(GfxCompiledShader*)((NO)a[0])->data;
+f=(GfxCompiledShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16452,7 +16495,7 @@ SV GfxCompiledShader_getShader(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxCompiledShader::getShader" EAOE));
 GfxCompiledShader*f;
-f=(GfxCompiledShader*)((NO)a[0])->data;
+f=(GfxCompiledShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16469,7 +16512,7 @@ SV GfxCompiledShader_getGLProgram(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxCompiledShader::getGLProgram" EAOE));
 GfxCompiledShader*f;
-f=(GfxCompiledShader*)((NO)a[0])->data;
+f=(GfxCompiledShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16481,9 +16524,10 @@ CATE(TE,UFOF("GfxCompiledShader::getGLProgram.")));
 RET CN;
 }
 
-void ScrollBar_destroy(CTX ctx,NO f)
+void ScrollBar_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,ScrollBar))
+NO f=(NO)f_.p;
+if(!TS(f_,ScrollBar))
 CATE(TE,"ScrollBar::__del__ expects ScrollBar as first argument."));
 
 SCRIPT_DELETE((ScrollBar*)f->data);
@@ -16502,11 +16546,12 @@ RET STG::createNativeObject(ScrollBar_funcs,p,EXT->ScrollBar_typeID);
 RET CN;
 }
 
-SV ScrollBar_get_member(CTX ctx,NO f,SV key)
+SV ScrollBar_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -16544,11 +16589,12 @@ RET CV(obj->barSize);
 RET CN;
 }
 
-void ScrollBar_set_member(CTX ctx,NO f,SV key,SV value)
+void ScrollBar_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -16572,7 +16618,7 @@ SV ScrollBar_setValue(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScrollBar::setValue" EAOE));
 ScrollBar*f;
-f=(ScrollBar*)((NO)a[0])->data;
+f=(ScrollBar*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -16589,7 +16635,7 @@ SV ScrollBar_getValue(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScrollBar::getValue" EAOE));
 ScrollBar*f;
-f=(ScrollBar*)((NO)a[0])->data;
+f=(ScrollBar*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16601,9 +16647,10 @@ CATE(TE,UFOF("ScrollBar::getValue.")));
 RET CN;
 }
 
-void GhostObjList_destroy(CTX ctx,NO f)
+void GhostObjList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<GhostObject*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<GhostObject*>))
 CATE(TE,"GhostObjList::__del__ expects GhostObjList as first argument."));
 
 SCRIPT_DELETE((List<GhostObject*>*)f->data);
@@ -16632,11 +16679,12 @@ RET STG::createNativeObject(GhostObjList_funcs,p,EXT->GhostObjList_typeID);
 RET CN;
 }
 
-SV GhostObjList_get_member(CTX ctx,NO f,SV key)
+SV GhostObjList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -16692,11 +16740,12 @@ RET CNF(GhostObjList_end);
 RET CN;
 }
 
-void GhostObjList_set_member(CTX ctx,NO f,SV key,SV value)
+void GhostObjList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -16712,7 +16761,7 @@ SV GhostObjList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::insert" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],GhostObject*))
@@ -16735,7 +16784,7 @@ SV GhostObjList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::begin" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GhostObjList::begin.")));
 RET CN;
@@ -16746,7 +16795,7 @@ SV GhostObjList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::set" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],GhostObject*))
@@ -16763,7 +16812,7 @@ SV GhostObjList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::end" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GhostObjList::end.")));
 RET CN;
@@ -16774,7 +16823,7 @@ SV GhostObjList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::get" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -16791,7 +16840,7 @@ SV GhostObjList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::clear" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16808,7 +16857,7 @@ SV GhostObjList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::copy" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16825,7 +16874,7 @@ SV GhostObjList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::remove" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -16842,7 +16891,7 @@ SV GhostObjList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::in" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GhostObject*))
@@ -16859,7 +16908,7 @@ SV GhostObjList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::getCount" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -16876,7 +16925,7 @@ SV GhostObjList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::getData" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GhostObjList::getData.")));
 RET CN;
@@ -16887,7 +16936,7 @@ SV GhostObjList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::__eq__" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<GhostObject*> &))
@@ -16904,7 +16953,7 @@ SV GhostObjList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::find" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GhostObject*))
@@ -16921,7 +16970,7 @@ SV GhostObjList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::append" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GhostObject*))
@@ -16944,7 +16993,7 @@ SV GhostObjList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GhostObjList::__neq__" EAOE));
 List<GhostObject*>*f;
-f=(List<GhostObject*>*)((NO)a[0])->data;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<GhostObject*> &))
@@ -16956,9 +17005,10 @@ CATE(TE,UFOF("GhostObjList::__neq__.")));
 RET CN;
 }
 
-void GPUTimer_destroy(CTX ctx,NO f)
+void GPUTimer_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GPUTimer))
+NO f=(NO)f_.p;
+if(!TS(f_,GPUTimer))
 CATE(TE,"GPUTimer::__del__ expects GPUTimer as first argument."));
 
 SCRIPT_DELETE((GPUTimer*)f->data);
@@ -16971,11 +17021,12 @@ CATE(TE,"GPUTimer's constructor expects GPUTimer as first argument."));
 CATE(TE,UFOF("GPUTimer's constructor.")));
 }
 
-SV GPUTimer_get_member(CTX ctx,NO f,SV key)
+SV GPUTimer_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -17013,11 +17064,12 @@ RET CNF(GPUTimer_swap);
 RET CN;
 }
 
-void GPUTimer_set_member(CTX ctx,NO f,SV key,SV value)
+void GPUTimer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -17033,7 +17085,7 @@ SV GPUTimer_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::begin" EAOE));
 GPUTimer*f;
-f=(GPUTimer*)((NO)a[0])->data;
+f=(GPUTimer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17050,7 +17102,7 @@ SV GPUTimer_resultAvailable(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::resultAvailable" EAOE));
 GPUTimer*f;
-f=(GPUTimer*)((NO)a[0])->data;
+f=(GPUTimer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17067,7 +17119,7 @@ SV GPUTimer_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::end" EAOE));
 GPUTimer*f;
-f=(GPUTimer*)((NO)a[0])->data;
+f=(GPUTimer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17084,7 +17136,7 @@ SV GPUTimer_getResultResolution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::getResultResolution" EAOE));
 GPUTimer*f;
-f=(GPUTimer*)((NO)a[0])->data;
+f=(GPUTimer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17101,7 +17153,7 @@ SV GPUTimer_getResult(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::getResult" EAOE));
 GPUTimer*f;
-f=(GPUTimer*)((NO)a[0])->data;
+f=(GPUTimer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17118,7 +17170,7 @@ SV GPUTimer_swap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GPUTimer::swap" EAOE));
 GPUTimer*f;
-f=(GPUTimer*)((NO)a[0])->data;
+f=(GPUTimer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17130,9 +17182,10 @@ CATE(TE,UFOF("GPUTimer::swap.")));
 RET CN;
 }
 
-void RigidBody_destroy(CTX ctx,NO f)
+void RigidBody_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,RigidBody))
+NO f=(NO)f_.p;
+if(!TS(f_,RigidBody))
 CATE(TE,"RigidBody::__del__ expects RigidBody as first argument."));
 
 }SV RigidBody_new(CTX ctx,const List<SV>&a)
@@ -17144,11 +17197,12 @@ CATE(TE,"RigidBody's constructor expects RigidBody as first argument."));
 CATE(TE,UFOF("RigidBody's constructor.")));
 }
 
-SV RigidBody_get_member(CTX ctx,NO f,SV key)
+SV RigidBody_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -17256,11 +17310,12 @@ RET CNF(RigidBody_getEntity);
 RET CN;
 }
 
-void RigidBody_set_member(CTX ctx,NO f,SV key,SV value)
+void RigidBody_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -17276,7 +17331,7 @@ SV RigidBody_setGravity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setGravity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -17293,7 +17348,7 @@ SV RigidBody_getFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getFriction" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17310,7 +17365,7 @@ SV RigidBody_getRollingFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getRollingFriction" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17327,7 +17382,7 @@ SV RigidBody_setAngularFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularFactor" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -17344,7 +17399,7 @@ SV RigidBody_getVelocityOfPoint(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getVelocityOfPoint" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Position3D &))
@@ -17361,7 +17416,7 @@ SV RigidBody_setTransform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setTransform" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Matrix4x4 &))
@@ -17378,7 +17433,7 @@ SV RigidBody_getMass(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getMass" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17395,7 +17450,7 @@ SV RigidBody_setFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setFriction" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17412,7 +17467,7 @@ SV RigidBody_clearForces(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::clearForces" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17429,7 +17484,7 @@ SV RigidBody_applyImpulse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyImpulse" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const Vector3D &)&&TS(a[2],const Position3D &))
@@ -17446,7 +17501,7 @@ SV RigidBody_applyTorque(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyTorque" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -17463,7 +17518,7 @@ SV RigidBody_setLinearFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearFactor" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -17480,7 +17535,7 @@ SV RigidBody_setLinearDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearDamping" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17497,7 +17552,7 @@ SV RigidBody_getLinearFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearFactor" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17514,7 +17569,7 @@ SV RigidBody_setAngularDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularDamping" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17531,7 +17586,7 @@ SV RigidBody_getWorld(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getWorld" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17548,7 +17603,7 @@ SV RigidBody_getAngularVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularVelocity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17565,7 +17620,7 @@ SV RigidBody_getShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getShape" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17582,7 +17637,7 @@ SV RigidBody_setAngularSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularSleepingThreshold" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17599,7 +17654,7 @@ SV RigidBody_applyTorqueImpulse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyTorqueImpulse" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -17616,7 +17671,7 @@ SV RigidBody_setLinearVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearVelocity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -17633,7 +17688,7 @@ SV RigidBody_getCollisionMask(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getCollisionMask" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17650,7 +17705,7 @@ SV RigidBody_getLinearVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearVelocity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17667,7 +17722,7 @@ SV RigidBody_setAngularVelocity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setAngularVelocity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -17684,7 +17739,7 @@ SV RigidBody_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getType" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17701,7 +17756,7 @@ SV RigidBody_getAngularSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularSleepingThreshold" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17718,7 +17773,7 @@ SV RigidBody_setLinearSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setLinearSleepingThreshold" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17735,7 +17790,7 @@ SV RigidBody_setRollingFriction(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setRollingFriction" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17752,7 +17807,7 @@ SV RigidBody_getGravity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getGravity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17769,7 +17824,7 @@ SV RigidBody_setMass(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setMass" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17786,7 +17841,7 @@ SV RigidBody_applyCentralImpulse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyCentralImpulse" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -17803,7 +17858,7 @@ SV RigidBody_getBulletRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getBulletRigidBody" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RigidBody::getBulletRigidBody.")));
 RET CN;
@@ -17814,7 +17869,7 @@ SV RigidBody_getRestitution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getRestitution" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17831,7 +17886,7 @@ SV RigidBody_getAngularFactor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularFactor" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17848,7 +17903,7 @@ SV RigidBody_getAngularDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getAngularDamping" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17865,7 +17920,7 @@ SV RigidBody_getLinearSleepingThreshold(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearSleepingThreshold" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17882,7 +17937,7 @@ SV RigidBody_applyForce(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::applyForce" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const Vector3D &)&&TS(a[2],const Position3D &))
@@ -17899,7 +17954,7 @@ SV RigidBody_getEntity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getEntity" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17916,7 +17971,7 @@ SV RigidBody_setRestitution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setRestitution" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -17933,7 +17988,7 @@ SV RigidBody_setShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::setShape" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],PhysicsShape *))
@@ -17950,7 +18005,7 @@ SV RigidBody_getLinearDamping(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBody::getLinearDamping" EAOE));
 RigidBody*f;
-f=(RigidBody*)((NO)a[0])->data;
+f=(RigidBody*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -17962,9 +18017,10 @@ CATE(TE,UFOF("RigidBody::getLinearDamping.")));
 RET CN;
 }
 
-void UInt2_destroy(CTX ctx,NO f)
+void UInt2_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T2<uint32_t>))
+NO f=(NO)f_.p;
+if(!TS(f_,T2<uint32_t>))
 CATE(TE,"UInt2::__del__ expects UInt2 as first argument."));
 
 SCRIPT_DELETE((T2<uint32_t>*)f->data);
@@ -18008,11 +18064,12 @@ RET STG::createNativeObject(UInt2_funcs,p,EXT->UInt2_typeID);
 RET CN;
 }
 
-SV UInt2_get_member(CTX ctx,NO f,SV key)
+SV UInt2_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -18088,11 +18145,12 @@ RET CV(obj->y);
 RET CN;
 }
 
-void UInt2_set_member(CTX ctx,NO f,SV key,SV value)
+void UInt2_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -18116,7 +18174,7 @@ SV UInt2_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::normalize" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18133,7 +18191,7 @@ SV UInt2_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::distance" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18150,7 +18208,7 @@ SV UInt2_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::lengthSquared" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18167,7 +18225,7 @@ SV UInt2___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__leq__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18184,7 +18242,7 @@ SV UInt2_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::setYX" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18201,7 +18259,7 @@ SV UInt2___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__grtr__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18218,7 +18276,7 @@ SV UInt2_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::sum" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18235,7 +18293,7 @@ SV UInt2_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::getXY" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18252,7 +18310,7 @@ SV UInt2_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::length" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18269,7 +18327,7 @@ SV UInt2_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::getYX" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18286,7 +18344,7 @@ SV UInt2___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__div__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18309,7 +18367,7 @@ SV UInt2_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::setXY" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18326,7 +18384,7 @@ SV UInt2___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__mul__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18349,7 +18407,7 @@ SV UInt2___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__add__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18372,7 +18430,7 @@ SV UInt2___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__less__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18389,7 +18447,7 @@ SV UInt2___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__sub__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18412,7 +18470,7 @@ SV UInt2___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__geq__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18429,7 +18487,7 @@ SV UInt2_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::distanceSquared" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18446,7 +18504,7 @@ SV UInt2___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__eq__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18463,7 +18521,7 @@ SV UInt2_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::dot" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18486,7 +18544,7 @@ SV UInt2___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt2::__neq__" EAOE));
 T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0])->data;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -18498,9 +18556,10 @@ CATE(TE,UFOF("UInt2::__neq__.")));
 RET CN;
 }
 
-void LightList_destroy(CTX ctx,NO f)
+void LightList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<Light*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<Light*>))
 CATE(TE,"LightList::__del__ expects LightList as first argument."));
 
 SCRIPT_DELETE((List<Light*>*)f->data);
@@ -18529,11 +18588,12 @@ RET STG::createNativeObject(LightList_funcs,p,EXT->LightList_typeID);
 RET CN;
 }
 
-SV LightList_get_member(CTX ctx,NO f,SV key)
+SV LightList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -18589,11 +18649,12 @@ RET CNF(LightList_end);
 RET CN;
 }
 
-void LightList_set_member(CTX ctx,NO f,SV key,SV value)
+void LightList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -18609,7 +18670,7 @@ SV LightList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::insert" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],Light*))
@@ -18632,7 +18693,7 @@ SV LightList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::begin" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("LightList::begin.")));
 RET CN;
@@ -18643,7 +18704,7 @@ SV LightList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::set" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],Light*))
@@ -18660,7 +18721,7 @@ SV LightList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::end" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("LightList::end.")));
 RET CN;
@@ -18671,7 +18732,7 @@ SV LightList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::get" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -18688,7 +18749,7 @@ SV LightList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::clear" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18705,7 +18766,7 @@ SV LightList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::copy" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18722,7 +18783,7 @@ SV LightList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::remove" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -18739,7 +18800,7 @@ SV LightList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::in" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Light*))
@@ -18756,7 +18817,7 @@ SV LightList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::getCount" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -18773,7 +18834,7 @@ SV LightList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::getData" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("LightList::getData.")));
 RET CN;
@@ -18784,7 +18845,7 @@ SV LightList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::__eq__" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<Light*> &))
@@ -18801,7 +18862,7 @@ SV LightList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::find" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Light*))
@@ -18818,7 +18879,7 @@ SV LightList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::append" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Light*))
@@ -18841,7 +18902,7 @@ SV LightList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"LightList::__neq__" EAOE));
 List<Light*>*f;
-f=(List<Light*>*)((NO)a[0])->data;
+f=(List<Light*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<Light*> &))
@@ -18853,9 +18914,10 @@ CATE(TE,UFOF("LightList::__neq__.")));
 RET CN;
 }
 
-void RenderStats_destroy(CTX ctx,NO f)
+void RenderStats_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,RenderStats))
+NO f=(NO)f_.p;
+if(!TS(f_,RenderStats))
 CATE(TE,"RenderStats::__del__ expects RenderStats as first argument."));
 
 SCRIPT_DELETE((RenderStats*)f->data);
@@ -18868,11 +18930,12 @@ CATE(TE,"RenderStats's constructor expects RenderStats as first argument."));
 RET STG::createNativeObject(RenderStats_funcs,NEW(TYPE(RenderStats)),EXT->RenderStats_typeID);
 }
 
-SV RenderStats_get_member(CTX ctx,NO f,SV key)
+SV RenderStats_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -18990,11 +19053,12 @@ RET CV(obj->numDrawCalls);
 RET CN;
 }
 
-void RenderStats_set_member(CTX ctx,NO f,SV key,SV value)
+void RenderStats_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19097,9 +19161,10 @@ obj->numDrawCalls=val_to_c<decltype(obj->numDrawCalls)>::f(ctx,value);
 }
 }
 
-void Filesystem_destroy(CTX ctx,NO f)
+void Filesystem_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Filesystem))
+NO f=(NO)f_.p;
+if(!TS(f_,Filesystem))
 CATE(TE,"Filesystem::__del__ expects Filesystem as first argument."));
 
 SCRIPT_DELETE((Filesystem*)f->data);
@@ -19118,11 +19183,12 @@ RET STG::createNativeObject(Filesystem_funcs,p,EXT->Filesystem_typeID);
 RET CN;
 }
 
-SV Filesystem_get_member(CTX ctx,NO f,SV key)
+SV Filesystem_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -19156,11 +19222,12 @@ RET CNF(Filesystem_getAbsolutePath);
 RET CN;
 }
 
-void Filesystem_set_member(CTX ctx,NO f,SV key,SV value)
+void Filesystem_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19176,7 +19243,7 @@ SV Filesystem_addSearchPath(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::addSearchPath" EAOE));
 Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
+f=(Filesystem*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19193,7 +19260,7 @@ SV Filesystem_pushSearchPaths(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::pushSearchPaths" EAOE));
 Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
+f=(Filesystem*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -19210,7 +19277,7 @@ SV Filesystem_popSearchPaths(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::popSearchPaths" EAOE));
 Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
+f=(Filesystem*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -19227,7 +19294,7 @@ SV Filesystem_getAbsolutePath(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Filesystem::getAbsolutePath" EAOE));
 Filesystem*f;
-f=(Filesystem*)((NO)a[0])->data;
+f=(Filesystem*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const char *))
@@ -19239,9 +19306,10 @@ CATE(TE,UFOF("Filesystem::getAbsolutePath.")));
 RET CN;
 }
 
-void ResourceManager_destroy(CTX ctx,NO f)
+void ResourceManager_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,ResourceManager))
+NO f=(NO)f_.p;
+if(!TS(f_,ResourceManager))
 CATE(TE,"ResourceManager::__del__ expects ResourceManager as first argument."));
 
 SCRIPT_DELETE((ResourceManager*)f->data);
@@ -19260,11 +19328,12 @@ RET STG::createNativeObject(ResourceManager_funcs,p,EXT->ResourceManager_typeID)
 RET CN;
 }
 
-SV ResourceManager_get_member(CTX ctx,NO f,SV key)
+SV ResourceManager_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -19338,11 +19407,12 @@ RET CNF(ResourceManager_cleanupResources);
 RET CN;
 }
 
-void ResourceManager_set_member(CTX ctx,NO f,SV key,SV value)
+void ResourceManager_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19358,7 +19428,7 @@ SV ResourceManager_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::load" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
@@ -19376,7 +19446,7 @@ SV ResourceManager_loadPhysicsShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadPhysicsShape" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19394,7 +19464,7 @@ SV ResourceManager_loadFont(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadFont" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19412,7 +19482,7 @@ SV ResourceManager_loadPhysicsShapeAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadPhysicsShapeAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19430,7 +19500,7 @@ SV ResourceManager_loadAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
@@ -19448,7 +19518,7 @@ SV ResourceManager_loadModel(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadModel" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19466,7 +19536,7 @@ SV ResourceManager_loadMeshAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadMeshAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19484,7 +19554,7 @@ SV ResourceManager_cleanupResources(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::cleanupResources" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -19501,7 +19571,7 @@ SV ResourceManager_loadScene(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadScene" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19519,7 +19589,7 @@ SV ResourceManager_loadAudioAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadAudioAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19537,7 +19607,7 @@ SV ResourceManager_loadAudio(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadAudio" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19555,7 +19625,7 @@ SV ResourceManager_loadShader(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadShader" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19573,7 +19643,7 @@ SV ResourceManager_loadTexture(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadTexture" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19591,7 +19661,7 @@ SV ResourceManager_loadMaterialAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadMaterialAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19609,7 +19679,7 @@ SV ResourceManager_loadMaterial(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadMaterial" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19627,7 +19697,7 @@ SV ResourceManager_loadScriptAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadScriptAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ResourceManager::loadScriptAndCopy.")));
 RET CN;
@@ -19638,7 +19708,7 @@ SV ResourceManager_loadShaderAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadShaderAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19656,7 +19726,7 @@ SV ResourceManager_loadScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadScript" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ResourceManager::loadScript.")));
 RET CN;
@@ -19667,7 +19737,7 @@ SV ResourceManager_loadFontAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadFontAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19685,7 +19755,7 @@ SV ResourceManager_loadSceneAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadSceneAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19703,7 +19773,7 @@ SV ResourceManager_loadMesh(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadMesh" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19721,7 +19791,7 @@ SV ResourceManager_loadModelAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadModelAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19739,7 +19809,7 @@ SV ResourceManager_isResource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::isResource" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
@@ -19756,7 +19826,7 @@ SV ResourceManager_loadTextureAndCopy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResourceManager::loadTextureAndCopy" EAOE));
 ResourceManager*f;
-f=(ResourceManager*)((NO)a[0])->data;
+f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -19769,9 +19839,10 @@ CATE(TE,UFOF("ResourceManager::loadTextureAndCopy.")));
 RET CN;
 }
 
-void Entity_destroy(CTX ctx,NO f)
+void Entity_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Entity))
+NO f=(NO)f_.p;
+if(!TS(f_,Entity))
 CATE(TE,"Entity::__del__ expects Entity as first argument."));
 
 }SV Entity_new(CTX ctx,const List<SV>&a)
@@ -19783,11 +19854,12 @@ CATE(TE,"Entity's constructor expects Entity as first argument."));
 CATE(TE,UFOF("Entity's constructor.")));
 }
 
-SV Entity_get_member(CTX ctx,NO f,SV key)
+SV Entity_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -19869,11 +19941,12 @@ RET CV(obj->transform);
 RET CN;
 }
 
-void Entity_set_member(CTX ctx,NO f,SV key,SV value)
+void Entity_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19897,7 +19970,7 @@ SV Entity_getFinalTransform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getFinalTransform" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -19914,7 +19987,7 @@ SV Entity_removeAudioSource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::removeAudioSource" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -19931,7 +20004,7 @@ SV Entity_getAudioSources(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getAudioSources" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -19948,7 +20021,7 @@ SV Entity_getRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getRigidBody" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -19965,7 +20038,7 @@ SV Entity_addOverlay(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::addOverlay" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -19982,7 +20055,7 @@ SV Entity_addRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::addRigidBody" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const RigidBodyConstructionInfo &)&&TS(a[2],PhysicsShape *))
@@ -19999,7 +20072,7 @@ SV Entity_removeScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::removeScript" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],ScriptInstance *))
@@ -20016,7 +20089,7 @@ SV Entity_createEntity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::createEntity" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -20033,7 +20106,7 @@ SV Entity_hasRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::hasRigidBody" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20050,7 +20123,7 @@ SV Entity_findScriptInstanceObj(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::findScriptInstanceObj" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -20067,7 +20140,7 @@ SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::updateFinalTransform" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20084,7 +20157,7 @@ SV Entity_removeRenderComponent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::removeRenderComponent" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20101,7 +20174,7 @@ SV Entity_removeEntity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::removeEntity" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -20118,7 +20191,7 @@ SV Entity_removeRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::removeRigidBody" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20135,8 +20208,14 @@ SV Entity_findScriptInstance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::findScriptInstance" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
 CATE(TE,UFOF("Entity::findScriptInstance.")));
 RET CN;
 }
@@ -20146,7 +20225,7 @@ SV Entity_addScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::addScript" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Script *))
@@ -20163,7 +20242,7 @@ SV Entity_getEntities(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getEntities" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20180,7 +20259,7 @@ SV Entity_hasRenderComponent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::hasRenderComponent" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20197,7 +20276,7 @@ SV Entity_addAudioSource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::addAudioSource" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Audio *))
@@ -20214,7 +20293,7 @@ SV Entity_getRenderComponent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getRenderComponent" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20237,7 +20316,7 @@ SV Entity_addModel(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::addModel" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],GfxModel *)&&TS(a[2],bool))
@@ -20254,7 +20333,7 @@ SV Entity_getParent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getParent" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20271,7 +20350,7 @@ SV Entity_getScripts(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getScripts" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20288,7 +20367,7 @@ SV Entity_getScene(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Entity::getScene" EAOE));
 Entity*f;
-f=(Entity*)((NO)a[0])->data;
+f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20300,9 +20379,10 @@ CATE(TE,UFOF("Entity::getScene.")));
 RET CN;
 }
 
-void GfxRenderer_destroy(CTX ctx,NO f)
+void GfxRenderer_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxRenderer))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxRenderer))
 CATE(TE,"GfxRenderer::__del__ expects GfxRenderer as first argument."));
 
 SCRIPT_DELETE((GfxRenderer*)f->data);
@@ -20315,11 +20395,12 @@ CATE(TE,"GfxRenderer's constructor expects GfxRenderer as first argument."));
 CATE(TE,UFOF("GfxRenderer's constructor.")));
 }
 
-SV GfxRenderer_get_member(CTX ctx,NO f,SV key)
+SV GfxRenderer_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -20431,11 +20512,12 @@ RET CV(obj->ssaoRadius);
 RET CN;
 }
 
-void GfxRenderer_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxRenderer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -20503,7 +20585,7 @@ SV GfxRenderer_getLightBuffer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::getLightBuffer" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20520,7 +20602,7 @@ SV GfxRenderer_updateColorModifierShader(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::updateColorModifierShader" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20537,7 +20619,7 @@ SV GfxRenderer_render(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::render" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20554,7 +20636,7 @@ SV GfxRenderer_addTerrain(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::addTerrain" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxRenderer::addTerrain.")));
 RET CN;
@@ -20565,7 +20647,7 @@ SV GfxRenderer_getTerrain(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::getTerrain" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxRenderer::getTerrain.")));
 RET CN;
@@ -20576,7 +20658,7 @@ SV GfxRenderer_setSkybox(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::setSkybox" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -20593,7 +20675,7 @@ SV GfxRenderer_getSkybox(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::getSkybox" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20610,7 +20692,7 @@ SV GfxRenderer_removeTerrain(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::removeTerrain" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20627,7 +20709,7 @@ SV GfxRenderer_getNumLights(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::getNumLights" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20644,7 +20726,7 @@ SV GfxRenderer_computeSceneAABB(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::computeSceneAABB" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20661,7 +20743,7 @@ SV GfxRenderer_getStats(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::getStats" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20678,7 +20760,7 @@ SV GfxRenderer_computeShadowCasterAABB(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::computeShadowCasterAABB" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20695,7 +20777,7 @@ SV GfxRenderer_addLight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::addLight" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20712,7 +20794,7 @@ SV GfxRenderer_getLights(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::getLights" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20729,7 +20811,7 @@ SV GfxRenderer_updateStats(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::updateStats" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20746,7 +20828,7 @@ SV GfxRenderer_resize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::resize" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const UInt2 &))
@@ -20763,7 +20845,7 @@ SV GfxRenderer_removeLight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxRenderer::removeLight" EAOE));
 GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0])->data;
+f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -20775,9 +20857,10 @@ CATE(TE,UFOF("GfxRenderer::removeLight.")));
 RET CN;
 }
 
-void Float2_destroy(CTX ctx,NO f)
+void Float2_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T2<float>))
+NO f=(NO)f_.p;
+if(!TS(f_,T2<float>))
 CATE(TE,"Float2::__del__ expects Float2 as first argument."));
 
 SCRIPT_DELETE((T2<float>*)f->data);
@@ -20821,11 +20904,12 @@ RET STG::createNativeObject(Float2_funcs,p,EXT->Float2_typeID);
 RET CN;
 }
 
-SV Float2_get_member(CTX ctx,NO f,SV key)
+SV Float2_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -20901,11 +20985,12 @@ RET CV(obj->y);
 RET CN;
 }
 
-void Float2_set_member(CTX ctx,NO f,SV key,SV value)
+void Float2_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -20929,7 +21014,7 @@ SV Float2_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::normalize" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20946,7 +21031,7 @@ SV Float2_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::distance" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -20963,7 +21048,7 @@ SV Float2_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::lengthSquared" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -20980,7 +21065,7 @@ SV Float2___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__leq__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -20997,7 +21082,7 @@ SV Float2_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::setYX" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21014,7 +21099,7 @@ SV Float2___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__grtr__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21031,7 +21116,7 @@ SV Float2_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::sum" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21048,7 +21133,7 @@ SV Float2_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::getXY" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21065,7 +21150,7 @@ SV Float2_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::length" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21082,7 +21167,7 @@ SV Float2_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::getYX" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21099,7 +21184,7 @@ SV Float2___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__div__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21122,7 +21207,7 @@ SV Float2_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::setXY" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21139,7 +21224,7 @@ SV Float2___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__mul__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21162,7 +21247,7 @@ SV Float2___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__add__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21185,7 +21270,7 @@ SV Float2___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__less__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21202,7 +21287,7 @@ SV Float2___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__sub__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21225,7 +21310,7 @@ SV Float2___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__geq__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21242,7 +21327,7 @@ SV Float2_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::distanceSquared" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21259,7 +21344,7 @@ SV Float2___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__eq__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21276,7 +21361,7 @@ SV Float2_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::dot" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21299,7 +21384,7 @@ SV Float2___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float2::__neq__" EAOE));
 T2<float>*f;
-f=(T2<float>*)((NO)a[0])->data;
+f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -21311,9 +21396,10 @@ CATE(TE,UFOF("Float2::__neq__.")));
 RET CN;
 }
 
-void GfxFramebuffer_destroy(CTX ctx,NO f)
+void GfxFramebuffer_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxFramebuffer))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxFramebuffer))
 CATE(TE,"GfxFramebuffer::__del__ expects GfxFramebuffer as first argument."));
 
 SCRIPT_DELETE((GfxFramebuffer*)f->data);
@@ -21326,11 +21412,12 @@ CATE(TE,"GfxFramebuffer's constructor expects GfxFramebuffer as first argument."
 CATE(TE,UFOF("GfxFramebuffer's constructor.")));
 }
 
-SV GfxFramebuffer_get_member(CTX ctx,NO f,SV key)
+SV GfxFramebuffer_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -21382,11 +21469,12 @@ RET CNF(GfxFramebuffer_getDepthAttachmentLayer);
 RET CN;
 }
 
-void GfxFramebuffer_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxFramebuffer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -21402,7 +21490,7 @@ SV GfxFramebuffer_getDepthTextureMipmapLevel(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getDepthTextureMipmapLevel" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21419,7 +21507,7 @@ SV GfxFramebuffer_removeDepthAttachment(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::removeDepthAttachment" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21436,7 +21524,7 @@ SV GfxFramebuffer_getColorAttachmentLayer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getColorAttachmentLayer" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -21453,7 +21541,7 @@ SV GfxFramebuffer_getColorAttachment(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getColorAttachment" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -21470,7 +21558,7 @@ SV GfxFramebuffer_setDepthAttachment(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::setDepthAttachment" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],GfxTexture *)&&TS(a[2],size_t)&&TS(a[3],int))
@@ -21487,7 +21575,7 @@ SV GfxFramebuffer_removeColorAttachment(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::removeColorAttachment" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -21504,7 +21592,7 @@ SV GfxFramebuffer_getDepthAttachmentLayer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getDepthAttachmentLayer" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21521,7 +21609,7 @@ SV GfxFramebuffer_getColorRT(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getColorRT" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -21538,7 +21626,7 @@ SV GfxFramebuffer_getDepthTexture(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getDepthTexture" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21555,7 +21643,7 @@ SV GfxFramebuffer_getColorAttachmentMipmapLevel(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getColorAttachmentMipmapLevel" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -21572,7 +21660,7 @@ SV GfxFramebuffer_hasDepthAttachment(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::hasDepthAttachment" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21589,7 +21677,7 @@ SV GfxFramebuffer_addColorAttachment(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::addColorAttachment" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],size_t)&&TS(a[2],GfxTexture *)&&TS(a[3],size_t)&&TS(a[4],int))
@@ -21606,7 +21694,7 @@ SV GfxFramebuffer_getNumColorAttachments(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxFramebuffer::getNumColorAttachments" EAOE));
 GfxFramebuffer*f;
-f=(GfxFramebuffer*)((NO)a[0])->data;
+f=(GfxFramebuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21618,9 +21706,10 @@ CATE(TE,UFOF("GfxFramebuffer::getNumColorAttachments.")));
 RET CN;
 }
 
-void Font_destroy(CTX ctx,NO f)
+void Font_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Font))
+NO f=(NO)f_.p;
+if(!TS(f_,Font))
 CATE(TE,"Font::__del__ expects Font as first argument."));
 
 Font*obj=(Font*)f->data;
@@ -21645,11 +21734,12 @@ RET STG::createNativeObject(Font_funcs,p,EXT->Font_typeID);
 RET CN;
 }
 
-SV Font_get_member(CTX ctx,NO f,SV key)
+SV Font_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -21697,11 +21787,12 @@ RET CNF(Font_setFilename);
 RET CN;
 }
 
-void Font_set_member(CTX ctx,NO f,SV key,SV value)
+void Font_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -21717,7 +21808,7 @@ SV Font_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::load" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21734,7 +21825,7 @@ SV Font_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::getFilename" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21751,7 +21842,7 @@ SV Font_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::copy" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21768,7 +21859,7 @@ SV Font_render(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::render" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==6)
 if(1&&TS(a[1],size_t)&&TS(a[2],const Float2 &)&&TS(a[3],const char *)&&TS(a[4],GfxFramebuffer *)&&TS(a[5],const Float3 &))
@@ -21791,7 +21882,7 @@ SV Font_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::getType" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21808,7 +21899,7 @@ SV Font_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::setFilename" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -21825,7 +21916,7 @@ SV Font_predictWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::predictWidth" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],const char *))
@@ -21842,7 +21933,7 @@ SV Font_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::removeContent" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21865,7 +21956,7 @@ SV Font_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::getRefCount" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21882,7 +21973,7 @@ SV Font_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::release" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21899,7 +21990,7 @@ SV Font_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Font::save" EAOE));
 Font*f;
-f=(Font*)((NO)a[0])->data;
+f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -21911,9 +22002,10 @@ CATE(TE,UFOF("Font::save.")));
 RET CN;
 }
 
-void Event_destroy(CTX ctx,NO f)
+void Event_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Event))
+NO f=(NO)f_.p;
+if(!TS(f_,Event))
 CATE(TE,"Event::__del__ expects Event as first argument."));
 
 SCRIPT_DELETE((Event*)f->data);
@@ -21926,11 +22018,12 @@ CATE(TE,"Event's constructor expects Event as first argument."));
 RET STG::createNativeObject(Event_funcs,NEW(TYPE(Event)),EXT->Event_typeID);
 }
 
-SV Event_get_member(CTX ctx,NO f,SV key)
+SV Event_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -21978,11 +22071,12 @@ RET CV(obj->type);
 RET CN;
 }
 
-void Event_set_member(CTX ctx,NO f,SV key,SV value)
+void Event_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22002,7 +22096,7 @@ SV Event_getX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getX" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22019,7 +22113,7 @@ SV Event_getButton(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getButton" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22036,7 +22130,7 @@ SV Event_getRelX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getRelX" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22053,7 +22147,7 @@ SV Event_getHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getHeight" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22070,7 +22164,7 @@ SV Event_getRelY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getRelY" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22087,7 +22181,7 @@ SV Event_getKey(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getKey" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22104,7 +22198,7 @@ SV Event_getWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getWidth" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22121,7 +22215,7 @@ SV Event_getY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getY" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22138,7 +22232,7 @@ SV Event_getDoubleClicked(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Event::getDoubleClicked" EAOE));
 Event*f;
-f=(Event*)((NO)a[0])->data;
+f=(Event*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22150,9 +22244,10 @@ CATE(TE,UFOF("Event::getDoubleClicked.")));
 RET CN;
 }
 
-void PhysicsWorld_destroy(CTX ctx,NO f)
+void PhysicsWorld_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,PhysicsWorld))
+NO f=(NO)f_.p;
+if(!TS(f_,PhysicsWorld))
 CATE(TE,"PhysicsWorld::__del__ expects PhysicsWorld as first argument."));
 
 SCRIPT_DELETE((PhysicsWorld*)f->data);
@@ -22171,11 +22266,12 @@ RET STG::createNativeObject(PhysicsWorld_funcs,p,EXT->PhysicsWorld_typeID);
 RET CN;
 }
 
-SV PhysicsWorld_get_member(CTX ctx,NO f,SV key)
+SV PhysicsWorld_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -22227,11 +22323,12 @@ RET CNF(PhysicsWorld_getBulletWorld);
 RET CN;
 }
 
-void PhysicsWorld_set_member(CTX ctx,NO f,SV key,SV value)
+void PhysicsWorld_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22247,7 +22344,7 @@ SV PhysicsWorld_setGravity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::setGravity" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -22264,7 +22361,7 @@ SV PhysicsWorld_stepSimulation(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::stepSimulation" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],float)&&TS(a[2],size_t)&&TS(a[3],float))
@@ -22281,7 +22378,7 @@ SV PhysicsWorld_castRay(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::castRay" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Direction3D &)&&TS(a[3],float))
@@ -22298,7 +22395,7 @@ SV PhysicsWorld_getGhostObjects(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::getGhostObjects" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22315,7 +22412,7 @@ SV PhysicsWorld_getBulletWorld(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::getBulletWorld" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsWorld::getBulletWorld.")));
 RET CN;
@@ -22326,7 +22423,7 @@ SV PhysicsWorld_addDebugDrawer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::addDebugDrawer" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22343,7 +22440,7 @@ SV PhysicsWorld_createRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::createRigidBody" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const RigidBodyConstructionInfo &)&&TS(a[2],PhysicsShape *))
@@ -22360,7 +22457,7 @@ SV PhysicsWorld_getRigidBodies(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::getRigidBodies" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22377,7 +22474,7 @@ SV PhysicsWorld_getGravity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::getGravity" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22394,7 +22491,7 @@ SV PhysicsWorld_destroyGhostObject(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::destroyGhostObject" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GhostObject *))
@@ -22411,7 +22508,7 @@ SV PhysicsWorld_createGhostObject(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::createGhostObject" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],PhysicsShape *)&&TS(a[2],unsigned short))
@@ -22428,7 +22525,7 @@ SV PhysicsWorld_destroyRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::destroyRigidBody" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RigidBody *))
@@ -22445,7 +22542,7 @@ SV PhysicsWorld_debugDraw(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsWorld::debugDraw" EAOE));
 PhysicsWorld*f;
-f=(PhysicsWorld*)((NO)a[0])->data;
+f=(PhysicsWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22457,9 +22554,10 @@ CATE(TE,UFOF("PhysicsWorld::debugDraw.")));
 RET CN;
 }
 
-void Stats_destroy(CTX ctx,NO f)
+void Stats_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Stats))
+NO f=(NO)f_.p;
+if(!TS(f_,Stats))
 CATE(TE,"Stats::__del__ expects Stats as first argument."));
 
 SCRIPT_DELETE((Stats*)f->data);
@@ -22472,11 +22570,12 @@ CATE(TE,"Stats's constructor expects Stats as first argument."));
 RET STG::createNativeObject(Stats_funcs,NEW(TYPE(Stats)),EXT->Stats_typeID);
 }
 
-SV Stats_get_member(CTX ctx,NO f,SV key)
+SV Stats_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -22526,11 +22625,12 @@ RET CV(obj->audio);
 RET CN;
 }
 
-void Stats_set_member(CTX ctx,NO f,SV key,SV value)
+void Stats_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22565,9 +22665,10 @@ obj->audio=val_to_c<decltype(obj->audio)>::f(ctx,value);
 }
 }
 
-void AudioSource_destroy(CTX ctx,NO f)
+void AudioSource_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,AudioSource))
+NO f=(NO)f_.p;
+if(!TS(f_,AudioSource))
 CATE(TE,"AudioSource::__del__ expects AudioSource as first argument."));
 
 SCRIPT_DELETE((AudioSource*)f->data);
@@ -22586,11 +22687,12 @@ RET STG::createNativeObject(AudioSource_funcs,p,EXT->AudioSource_typeID);
 RET CN;
 }
 
-SV AudioSource_get_member(CTX ctx,NO f,SV key)
+SV AudioSource_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -22664,11 +22766,12 @@ RET CV(obj->playing);
 RET CN;
 }
 
-void AudioSource_set_member(CTX ctx,NO f,SV key,SV value)
+void AudioSource_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22728,7 +22831,7 @@ SV AudioSource_getAudio(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSource::getAudio" EAOE));
 AudioSource*f;
-f=(AudioSource*)((NO)a[0])->data;
+f=(AudioSource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22745,7 +22848,7 @@ SV AudioSource_setAudio(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSource::setAudio" EAOE));
 AudioSource*f;
-f=(AudioSource*)((NO)a[0])->data;
+f=(AudioSource*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Audio *))
@@ -22757,9 +22860,10 @@ CATE(TE,UFOF("AudioSource::setAudio.")));
 RET CN;
 }
 
-void Script_destroy(CTX ctx,NO f)
+void Script_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Script))
+NO f=(NO)f_.p;
+if(!TS(f_,Script))
 CATE(TE,"Script::__del__ expects Script as first argument."));
 
 Script*obj=(Script*)f->data;
@@ -22784,11 +22888,12 @@ RET STG::createNativeObject(Script_funcs,p,EXT->Script_typeID);
 RET CN;
 }
 
-SV Script_get_member(CTX ctx,NO f,SV key)
+SV Script_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -22836,11 +22941,12 @@ RET CNF(Script_setFilename);
 RET CN;
 }
 
-void Script_set_member(CTX ctx,NO f,SV key,SV value)
+void Script_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22856,7 +22962,7 @@ SV Script_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::load" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22873,7 +22979,7 @@ SV Script_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::getFilename" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22890,7 +22996,7 @@ SV Script_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::copy" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22907,7 +23013,7 @@ SV Script_createInstance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::createInstance" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Script::createInstance.")));
 RET CN;
@@ -22918,7 +23024,7 @@ SV Script_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::setFilename" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -22935,7 +23041,7 @@ SV Script_getContext(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::getContext" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Script::getContext.")));
 RET CN;
@@ -22946,7 +23052,7 @@ SV Script_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::removeContent" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22969,7 +23075,7 @@ SV Script_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::getRefCount" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -22986,7 +23092,7 @@ SV Script_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::release" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23003,7 +23109,7 @@ SV Script_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::getType" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23020,7 +23126,7 @@ SV Script_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Script::save" EAOE));
 Script*f;
-f=(Script*)((NO)a[0])->data;
+f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23032,9 +23138,10 @@ CATE(TE,UFOF("Script::save.")));
 RET CN;
 }
 
-void RayCastResultList_destroy(CTX ctx,NO f)
+void RayCastResultList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<RayCastResult>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<RayCastResult>))
 CATE(TE,"RayCastResultList::__del__ expects RayCastResultList as first argument."));
 
 SCRIPT_DELETE((List<RayCastResult>*)f->data);
@@ -23063,11 +23170,12 @@ RET STG::createNativeObject(RayCastResultList_funcs,p,EXT->RayCastResultList_typ
 RET CN;
 }
 
-SV RayCastResultList_get_member(CTX ctx,NO f,SV key)
+SV RayCastResultList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -23123,11 +23231,12 @@ RET CNF(RayCastResultList_end);
 RET CN;
 }
 
-void RayCastResultList_set_member(CTX ctx,NO f,SV key,SV value)
+void RayCastResultList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -23143,7 +23252,7 @@ SV RayCastResultList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::insert" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],RayCastResult))
@@ -23166,7 +23275,7 @@ SV RayCastResultList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::begin" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RayCastResultList::begin.")));
 RET CN;
@@ -23177,7 +23286,7 @@ SV RayCastResultList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::set" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],RayCastResult))
@@ -23194,7 +23303,7 @@ SV RayCastResultList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::end" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RayCastResultList::end.")));
 RET CN;
@@ -23205,7 +23314,7 @@ SV RayCastResultList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::get" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -23222,7 +23331,7 @@ SV RayCastResultList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::clear" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23239,7 +23348,7 @@ SV RayCastResultList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::copy" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23256,7 +23365,7 @@ SV RayCastResultList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::remove" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -23273,7 +23382,7 @@ SV RayCastResultList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::in" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RayCastResult))
@@ -23290,7 +23399,7 @@ SV RayCastResultList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::getCount" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23307,7 +23416,7 @@ SV RayCastResultList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::getData" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RayCastResultList::getData.")));
 RET CN;
@@ -23318,7 +23427,7 @@ SV RayCastResultList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::__eq__" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<RayCastResult> &))
@@ -23335,7 +23444,7 @@ SV RayCastResultList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::find" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RayCastResult))
@@ -23352,7 +23461,7 @@ SV RayCastResultList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::append" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RayCastResult))
@@ -23375,7 +23484,7 @@ SV RayCastResultList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResultList::__neq__" EAOE));
 List<RayCastResult>*f;
-f=(List<RayCastResult>*)((NO)a[0])->data;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<RayCastResult> &))
@@ -23387,9 +23496,10 @@ CATE(TE,UFOF("RayCastResultList::__neq__.")));
 RET CN;
 }
 
-void Platform_destroy(CTX ctx,NO f)
+void Platform_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Platform))
+NO f=(NO)f_.p;
+if(!TS(f_,Platform))
 CATE(TE,"Platform::__del__ expects Platform as first argument."));
 
 SCRIPT_DELETE((Platform*)f->data);
@@ -23408,11 +23518,12 @@ RET STG::createNativeObject(Platform_funcs,p,EXT->Platform_typeID);
 RET CN;
 }
 
-SV Platform_get_member(CTX ctx,NO f,SV key)
+SV Platform_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -23490,11 +23601,12 @@ RET CV(obj->running);
 RET CN;
 }
 
-void Platform_set_member(CTX ctx,NO f,SV key,SV value)
+void Platform_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -23514,7 +23626,7 @@ SV Platform_setFullscreen(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::setFullscreen" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -23531,7 +23643,7 @@ SV Platform_getTime(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getTime" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23548,7 +23660,7 @@ SV Platform_eventsLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::eventsLeft" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23565,7 +23677,7 @@ SV Platform_setMousePosition(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::setMousePosition" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Int2))
@@ -23582,7 +23694,7 @@ SV Platform_getMousePosition(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getMousePosition" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23599,7 +23711,7 @@ SV Platform_setCursorVisible(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::setCursorVisible" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -23616,7 +23728,7 @@ SV Platform_isRightMouseButtonPressed(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::isRightMouseButtonPressed" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23633,7 +23745,7 @@ SV Platform_getFullscreen(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getFullscreen" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23650,7 +23762,7 @@ SV Platform_getFrametime(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getFrametime" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23667,7 +23779,7 @@ SV Platform_initWindow(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::initWindow" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],uint32_t)&&TS(a[2],uint32_t))
@@ -23684,7 +23796,7 @@ SV Platform_isKeyPressed(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::isKeyPressed" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Key))
@@ -23701,7 +23813,7 @@ SV Platform_destroyWindow(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::destroyWindow" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23718,7 +23830,7 @@ SV Platform_run(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::run" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Platform::run.")));
 RET CN;
@@ -23729,7 +23841,7 @@ SV Platform_getWindowWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getWindowWidth" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23746,7 +23858,7 @@ SV Platform_popEvent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::popEvent" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23763,7 +23875,7 @@ SV Platform_getTimerFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getTimerFrequency" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23780,7 +23892,7 @@ SV Platform_getWindowHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getWindowHeight" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23797,7 +23909,7 @@ SV Platform_getMouseWheel(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getMouseWheel" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23814,7 +23926,7 @@ SV Platform_isMiddleMouseButtonPressed(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::isMiddleMouseButtonPressed" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23831,7 +23943,7 @@ SV Platform_pollEvent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::pollEvent" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Platform::pollEvent.")));
 RET CN;
@@ -23842,7 +23954,7 @@ SV Platform_isLeftMouseButtonPressed(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::isLeftMouseButtonPressed" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23859,7 +23971,7 @@ SV Platform_isCursorVisible(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::isCursorVisible" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23876,7 +23988,7 @@ SV Platform_getCPUFrametime(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getCPUFrametime" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23893,7 +24005,7 @@ SV Platform_getGPUFrametime(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Platform::getGPUFrametime" EAOE));
 Platform*f;
-f=(Platform*)((NO)a[0])->data;
+f=(Platform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -23905,9 +24017,10 @@ CATE(TE,UFOF("Platform::getGPUFrametime.")));
 RET CN;
 }
 
-void Camera_destroy(CTX ctx,NO f)
+void Camera_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Camera))
+NO f=(NO)f_.p;
+if(!TS(f_,Camera))
 CATE(TE,"Camera::__del__ expects Camera as first argument."));
 
 SCRIPT_DELETE((Camera*)f->data);
@@ -23926,11 +24039,12 @@ RET STG::createNativeObject(Camera_funcs,p,EXT->Camera_typeID);
 RET CN;
 }
 
-SV Camera_get_member(CTX ctx,NO f,SV key)
+SV Camera_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -24012,11 +24126,12 @@ RET CNF(Camera_getProjectionMatrix);
 RET CN;
 }
 
-void Camera_set_member(CTX ctx,NO f,SV key,SV value)
+void Camera_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -24032,7 +24147,7 @@ SV Camera_setBottom(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setBottom" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24049,7 +24164,7 @@ SV Camera_getRight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getRight" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24066,7 +24181,7 @@ SV Camera_setTop(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setTop" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24083,7 +24198,7 @@ SV Camera_getWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getWidth" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24100,7 +24215,7 @@ SV Camera_getDirection(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getDirection" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24117,7 +24232,7 @@ SV Camera_getFieldOfView(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getFieldOfView" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24134,7 +24249,7 @@ SV Camera_setWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setWidth" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24151,7 +24266,7 @@ SV Camera_setType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setType" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],CameraType))
@@ -24168,7 +24283,7 @@ SV Camera_setDirection(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setDirection" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Direction3D &))
@@ -24185,7 +24300,7 @@ SV Camera_getLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getLeft" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24202,7 +24317,7 @@ SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getProjectionMatrix" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24219,7 +24334,7 @@ SV Camera_getHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getHeight" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24236,7 +24351,7 @@ SV Camera_setFar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setFar" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24253,7 +24368,7 @@ SV Camera_setFieldOfView(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setFieldOfView" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24270,7 +24385,7 @@ SV Camera_getTop(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getTop" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24287,7 +24402,7 @@ SV Camera_getBottom(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getBottom" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24304,7 +24419,7 @@ SV Camera_getFar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getFar" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24321,7 +24436,7 @@ SV Camera_setUp(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setUp" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Direction3D &))
@@ -24338,7 +24453,7 @@ SV Camera_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getType" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24355,7 +24470,7 @@ SV Camera_setNear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setNear" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24372,7 +24487,7 @@ SV Camera_setPosition(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setPosition" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Position3D &))
@@ -24389,7 +24504,7 @@ SV Camera_setLeft(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setLeft" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24406,7 +24521,7 @@ SV Camera_getPosition(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getPosition" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24423,7 +24538,7 @@ SV Camera_setHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setHeight" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24440,7 +24555,7 @@ SV Camera_getViewMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getViewMatrix" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24457,7 +24572,7 @@ SV Camera_getNear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getNear" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24474,7 +24589,7 @@ SV Camera_setRight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::setRight" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -24491,7 +24606,7 @@ SV Camera_getUp(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Camera::getUp" EAOE));
 Camera*f;
-f=(Camera*)((NO)a[0])->data;
+f=(Camera*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24503,9 +24618,10 @@ CATE(TE,UFOF("Camera::getUp.")));
 RET CN;
 }
 
-void GfxMesh_destroy(CTX ctx,NO f)
+void GfxMesh_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxMesh))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxMesh))
 CATE(TE,"GfxMesh::__del__ expects GfxMesh as first argument."));
 
 GfxMesh*obj=(GfxMesh*)f->data;
@@ -24530,11 +24646,12 @@ RET STG::createNativeObject(GfxMesh_funcs,p,EXT->GfxMesh_typeID);
 RET CN;
 }
 
-SV GfxMesh_get_member(CTX ctx,NO f,SV key)
+SV GfxMesh_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -24626,11 +24743,12 @@ RET CV(obj->winding);
 RET CN;
 }
 
-void GfxMesh_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxMesh_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -24670,7 +24788,7 @@ SV GfxMesh_getAttribs(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getAttribs" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxMesh::getAttribs.")));
 RET CN;
@@ -24681,7 +24799,7 @@ SV GfxMesh_getGLIndexBuffer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getGLIndexBuffer" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24698,7 +24816,7 @@ SV GfxMesh_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getType" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24715,7 +24833,7 @@ SV GfxMesh_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::copy" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24732,7 +24850,7 @@ SV GfxMesh_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::setFilename" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -24749,7 +24867,7 @@ SV GfxMesh_removeAttribute(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::removeAttribute" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxMeshAttribType))
@@ -24766,7 +24884,7 @@ SV GfxMesh_getAttrib(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getAttrib" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -24783,7 +24901,7 @@ SV GfxMesh_removeIndices(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::removeIndices" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24800,7 +24918,7 @@ SV GfxMesh_getAttribCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getAttribCount" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24817,7 +24935,7 @@ SV GfxMesh_setAttribute(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::setAttribute" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const GfxMeshAttrib &))
@@ -24834,7 +24952,7 @@ SV GfxMesh_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::load" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24851,7 +24969,7 @@ SV GfxMesh_getGLVAO(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getGLVAO" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24868,7 +24986,7 @@ SV GfxMesh_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::removeContent" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24891,7 +25009,7 @@ SV GfxMesh_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getRefCount" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24908,7 +25026,7 @@ SV GfxMesh_getIndices(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getIndices" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxMesh::getIndices.")));
 RET CN;
@@ -24919,7 +25037,7 @@ SV GfxMesh_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::release" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24936,7 +25054,7 @@ SV GfxMesh_getIndexed(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getIndexed" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24953,7 +25071,7 @@ SV GfxMesh_addIndices(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::addIndices" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],size_t)&&TS(a[2],GfxMeshIndexDataType)&&TS(a[3],const ResizableData &))
@@ -24970,7 +25088,7 @@ SV GfxMesh_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::save" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -24993,7 +25111,7 @@ SV GfxMesh_getIndexType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getIndexType" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25010,7 +25128,7 @@ SV GfxMesh_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMesh::getFilename" EAOE));
 GfxMesh*f;
-f=(GfxMesh*)((NO)a[0])->data;
+f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25022,9 +25140,10 @@ CATE(TE,UFOF("GfxMesh::getFilename.")));
 RET CN;
 }
 
-void Resource_destroy(CTX ctx,NO f)
+void Resource_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Resource))
+NO f=(NO)f_.p;
+if(!TS(f_,Resource))
 CATE(TE,"Resource::__del__ expects Resource as first argument."));
 
 Resource*obj=(Resource*)f->data;
@@ -25038,11 +25157,12 @@ CATE(TE,"Resource's constructor expects Resource as first argument."));
 CATE(TE,UFOF("Resource's constructor.")));
 }
 
-SV Resource_get_member(CTX ctx,NO f,SV key)
+SV Resource_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -25086,11 +25206,12 @@ RET CNF(Resource_setFilename);
 RET CN;
 }
 
-void Resource_set_member(CTX ctx,NO f,SV key,SV value)
+void Resource_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -25106,7 +25227,7 @@ SV Resource_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::load" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25123,7 +25244,7 @@ SV Resource_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getFilename" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25140,7 +25261,7 @@ SV Resource_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::copy" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25157,7 +25278,7 @@ SV Resource_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getType" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25174,7 +25295,7 @@ SV Resource_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::setFilename" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -25191,7 +25312,7 @@ SV Resource_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::removeContent" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25208,7 +25329,7 @@ SV Resource_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::getRefCount" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25225,7 +25346,7 @@ SV Resource_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::release" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25242,7 +25363,7 @@ SV Resource_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Resource::save" EAOE));
 Resource*f;
-f=(Resource*)((NO)a[0])->data;
+f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25254,9 +25375,10 @@ CATE(TE,UFOF("Resource::save.")));
 RET CN;
 }
 
-void GfxShader_destroy(CTX ctx,NO f)
+void GfxShader_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxShader))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxShader))
 CATE(TE,"GfxShader::__del__ expects GfxShader as first argument."));
 
 GfxShader*obj=(GfxShader*)f->data;
@@ -25281,11 +25403,12 @@ RET STG::createNativeObject(GfxShader_funcs,p,EXT->GfxShader_typeID);
 RET CN;
 }
 
-SV GfxShader_get_member(CTX ctx,NO f,SV key)
+SV GfxShader_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -25337,11 +25460,12 @@ RET CNF(GfxShader_setFilename);
 RET CN;
 }
 
-void GfxShader_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxShader_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -25357,7 +25481,7 @@ SV GfxShader_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::load" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25374,7 +25498,7 @@ SV GfxShader_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::getFilename" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25391,7 +25515,7 @@ SV GfxShader_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::copy" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25408,7 +25532,7 @@ SV GfxShader_getCompiled(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::getCompiled" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const HashMap<String, String> &))
@@ -25425,7 +25549,7 @@ SV GfxShader_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::getType" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25442,7 +25566,7 @@ SV GfxShader_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::setFilename" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -25459,7 +25583,7 @@ SV GfxShader_compile(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::compile" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
@@ -25476,7 +25600,7 @@ SV GfxShader_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::removeContent" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25499,7 +25623,7 @@ SV GfxShader_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::getRefCount" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25516,7 +25640,7 @@ SV GfxShader_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::release" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25533,7 +25657,7 @@ SV GfxShader_getSource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::getSource" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25550,7 +25674,7 @@ SV GfxShader_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::save" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25573,7 +25697,7 @@ SV GfxShader_getShaderType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShader::getShaderType" EAOE));
 GfxShader*f;
-f=(GfxShader*)((NO)a[0])->data;
+f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25585,9 +25709,10 @@ CATE(TE,UFOF("GfxShader::getShaderType.")));
 RET CN;
 }
 
-void Light_destroy(CTX ctx,NO f)
+void Light_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Light))
+NO f=(NO)f_.p;
+if(!TS(f_,Light))
 CATE(TE,"Light::__del__ expects Light as first argument."));
 
 SCRIPT_DELETE((Light*)f->data);
@@ -25606,11 +25731,12 @@ RET STG::createNativeObject(Light_funcs,p,EXT->Light_typeID);
 RET CN;
 }
 
-SV Light_get_member(CTX ctx,NO f,SV key)
+SV Light_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -25718,11 +25844,12 @@ RET CV(obj->point);
 RET CN;
 }
 
-void Light_set_member(CTX ctx,NO f,SV key,SV value)
+void Light_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -25794,7 +25921,7 @@ SV Light_getShadowmapResolution(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmapResolution" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25811,7 +25938,7 @@ SV Light_getPointLightInfluence(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getPointLightInfluence" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -25828,7 +25955,7 @@ SV Light_getShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmap" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25845,7 +25972,7 @@ SV Light_getSpotLightInfluence(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getSpotLightInfluence" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -25862,7 +25989,7 @@ SV Light_getShadowmapPrecision(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getShadowmapPrecision" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25879,7 +26006,7 @@ SV Light_getProjectionMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getProjectionMatrix" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25896,7 +26023,7 @@ SV Light_addShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::addShadowmap" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],GfxShadowmapPrecision))
@@ -25913,7 +26040,7 @@ SV Light_getCascadeProjectionMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getCascadeProjectionMatrix" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -25930,7 +26057,7 @@ SV Light_getFramebuffers(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getFramebuffers" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Light::getFramebuffers.")));
 RET CN;
@@ -25941,7 +26068,7 @@ SV Light_updateMatrices(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::updateMatrices" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxRenderer *))
@@ -25958,7 +26085,7 @@ SV Light_removeShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::removeShadowmap" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -25975,7 +26102,7 @@ SV Light_getCascadeViewMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getCascadeViewMatrix" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -25992,7 +26119,7 @@ SV Light_getViewMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Light::getViewMatrix" EAOE));
 Light*f;
-f=(Light*)((NO)a[0])->data;
+f=(Light*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26004,9 +26131,10 @@ CATE(TE,UFOF("Light::getViewMatrix.")));
 RET CN;
 }
 
-void TextureSampler_destroy(CTX ctx,NO f)
+void TextureSampler_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,TextureSampler))
+NO f=(NO)f_.p;
+if(!TS(f_,TextureSampler))
 CATE(TE,"TextureSampler::__del__ expects TextureSampler as first argument."));
 
 SCRIPT_DELETE((TextureSampler*)f->data);
@@ -26035,11 +26163,12 @@ RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
 RET CN;
 }
 
-SV TextureSampler_get_member(CTX ctx,NO f,SV key)
+SV TextureSampler_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -26091,11 +26220,12 @@ RET CV(obj->shadowmap);
 RET CN;
 }
 
-void TextureSampler_set_member(CTX ctx,NO f,SV key,SV value)
+void TextureSampler_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -26135,15 +26265,16 @@ SV TextureSampler_createShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"TextureSampler::createShadowmap" EAOE));
 TextureSampler*f;
-f=(TextureSampler*)((NO)a[0])->data;
+f=(TextureSampler*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("TextureSampler::createShadowmap.")));
 RET CN;
 }
 
-void Scene_destroy(CTX ctx,NO f)
+void Scene_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Scene))
+NO f=(NO)f_.p;
+if(!TS(f_,Scene))
 CATE(TE,"Scene::__del__ expects Scene as first argument."));
 
 Scene*obj=(Scene*)f->data;
@@ -26168,11 +26299,12 @@ RET STG::createNativeObject(Scene_funcs,p,EXT->Scene_typeID);
 RET CN;
 }
 
-SV Scene_get_member(CTX ctx,NO f,SV key)
+SV Scene_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -26244,11 +26376,12 @@ RET CNF(Scene_setFilename);
 RET CN;
 }
 
-void Scene_set_member(CTX ctx,NO f,SV key,SV value)
+void Scene_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -26264,7 +26397,7 @@ SV Scene_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::load" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26281,7 +26414,7 @@ SV Scene_render(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::render" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26298,7 +26431,7 @@ SV Scene_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::setFilename" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -26315,7 +26448,7 @@ SV Scene_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getRefCount" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26332,7 +26465,7 @@ SV Scene_getScripts(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getScripts" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26349,7 +26482,7 @@ SV Scene_createEntity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::createEntity" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -26366,7 +26499,7 @@ SV Scene_getRenderer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getRenderer" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26383,7 +26516,7 @@ SV Scene_handleInput(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::handleInput" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26400,7 +26533,7 @@ SV Scene_removeEntity(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::removeEntity" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -26417,7 +26550,7 @@ SV Scene_findScriptInstance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::findScriptInstance" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -26434,7 +26567,7 @@ SV Scene_addScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::addScript" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Script *))
@@ -26451,7 +26584,7 @@ SV Scene_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::save" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26474,7 +26607,7 @@ SV Scene_getEntities(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getEntities" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26491,7 +26624,7 @@ SV Scene_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getFilename" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26508,7 +26641,7 @@ SV Scene_getAudioWorld(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getAudioWorld" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26525,7 +26658,7 @@ SV Scene_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getType" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26542,7 +26675,7 @@ SV Scene_update(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::update" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26559,7 +26692,7 @@ SV Scene_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::removeContent" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26582,7 +26715,7 @@ SV Scene_fixedUpdate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::fixedUpdate" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -26599,7 +26732,7 @@ SV Scene_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::copy" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26616,7 +26749,7 @@ SV Scene_getPhysicsWorld(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::getPhysicsWorld" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26633,7 +26766,7 @@ SV Scene_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::release" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26650,7 +26783,7 @@ SV Scene_removeScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Scene::removeScript" EAOE));
 Scene*f;
-f=(Scene*)((NO)a[0])->data;
+f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],ScriptInstance *))
@@ -26662,9 +26795,10 @@ CATE(TE,UFOF("Scene::removeScript.")));
 RET CN;
 }
 
-void Int3_destroy(CTX ctx,NO f)
+void Int3_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T3<int32_t>))
+NO f=(NO)f_.p;
+if(!TS(f_,T3<int32_t>))
 CATE(TE,"Int3::__del__ expects Int3 as first argument."));
 
 SCRIPT_DELETE((T3<int32_t>*)f->data);
@@ -26708,11 +26842,12 @@ RET STG::createNativeObject(Int3_funcs,p,EXT->Int3_typeID);
 RET CN;
 }
 
-SV Int3_get_member(CTX ctx,NO f,SV key)
+SV Int3_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -26834,11 +26969,12 @@ RET CV(obj->z);
 RET CN;
 }
 
-void Int3_set_member(CTX ctx,NO f,SV key,SV value)
+void Int3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -26866,7 +27002,7 @@ SV Int3_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYZX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -26883,7 +27019,7 @@ SV Int3_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZXY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26900,7 +27036,7 @@ SV Int3_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -26917,7 +27053,7 @@ SV Int3_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -26934,7 +27070,7 @@ SV Int3_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZYX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -26951,7 +27087,7 @@ SV Int3_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -26968,7 +27104,7 @@ SV Int3_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::distanceSquared" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -26985,7 +27121,7 @@ SV Int3_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::normalize" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27002,7 +27138,7 @@ SV Int3_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27019,7 +27155,7 @@ SV Int3___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__leq__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27036,7 +27172,7 @@ SV Int3_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXZY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27053,7 +27189,7 @@ SV Int3_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::sum" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27070,7 +27206,7 @@ SV Int3_cross(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::cross" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27087,7 +27223,7 @@ SV Int3_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXYZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27104,7 +27240,7 @@ SV Int3___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__less__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27121,7 +27257,7 @@ SV Int3___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__neq__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27138,7 +27274,7 @@ SV Int3_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27155,7 +27291,7 @@ SV Int3_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::lengthSquared" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27172,7 +27308,7 @@ SV Int3_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZYX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27189,7 +27325,7 @@ SV Int3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__div__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27212,7 +27348,7 @@ SV Int3_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -27229,7 +27365,7 @@ SV Int3_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -27246,7 +27382,7 @@ SV Int3_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -27263,7 +27399,7 @@ SV Int3___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__add__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27286,7 +27422,7 @@ SV Int3_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -27303,7 +27439,7 @@ SV Int3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__eq__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27320,7 +27456,7 @@ SV Int3_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setZXY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27337,7 +27473,7 @@ SV Int3_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setYXZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27354,7 +27490,7 @@ SV Int3_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27371,7 +27507,7 @@ SV Int3_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::distance" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27388,7 +27524,7 @@ SV Int3_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27405,7 +27541,7 @@ SV Int3___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__grtr__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27422,7 +27558,7 @@ SV Int3_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getXZY" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27439,7 +27575,7 @@ SV Int3_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::setXYZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27456,7 +27592,7 @@ SV Int3_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYZX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27473,7 +27609,7 @@ SV Int3_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::length" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27490,7 +27626,7 @@ SV Int3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__mul__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27513,7 +27649,7 @@ SV Int3_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getYXZ" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27530,7 +27666,7 @@ SV Int3_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::getZX" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27547,7 +27683,7 @@ SV Int3___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__sub__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27570,7 +27706,7 @@ SV Int3___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::__geq__" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27587,7 +27723,7 @@ SV Int3_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int3::dot" EAOE));
 T3<int32_t>*f;
-f=(T3<int32_t>*)((NO)a[0])->data;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -27605,9 +27741,10 @@ CATE(TE,UFOF("Int3::dot.")));
 RET CN;
 }
 
-void ResizableData_destroy(CTX ctx,NO f)
+void ResizableData_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,ResizableData))
+NO f=(NO)f_.p;
+if(!TS(f_,ResizableData))
 CATE(TE,"ResizableData::__del__ expects ResizableData as first argument."));
 
 SCRIPT_DELETE((ResizableData*)f->data);
@@ -27631,11 +27768,12 @@ RET STG::createNativeObject(ResizableData_funcs,p,EXT->ResizableData_typeID);
 RET CN;
 }
 
-SV ResizableData_get_member(CTX ctx,NO f,SV key)
+SV ResizableData_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -27773,11 +27911,12 @@ RET CNF(ResizableData_setChar);
 RET CN;
 }
 
-void ResizableData_set_member(CTX ctx,NO f,SV key,SV value)
+void ResizableData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -27793,7 +27932,7 @@ SV ResizableData_getInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt64BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -27810,7 +27949,7 @@ SV ResizableData_setUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt8" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint8_t))
@@ -27827,7 +27966,7 @@ SV ResizableData_getUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt64BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -27844,7 +27983,7 @@ SV ResizableData_getUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt16BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -27861,7 +28000,7 @@ SV ResizableData_getUInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt64" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -27878,7 +28017,7 @@ SV ResizableData_getSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getSize" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -27895,7 +28034,7 @@ SV ResizableData_setUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt16BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint16_t))
@@ -27912,7 +28051,7 @@ SV ResizableData_setFloat32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setFloat32" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],float))
@@ -27929,7 +28068,7 @@ SV ResizableData_getUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt8" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -27946,7 +28085,7 @@ SV ResizableData_setInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt16" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int16_t))
@@ -27963,7 +28102,7 @@ SV ResizableData_setInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt64" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int64_t))
@@ -27980,7 +28119,7 @@ SV ResizableData_getInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt16LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -27997,7 +28136,7 @@ SV ResizableData_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::append" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const ResizableData &))
@@ -28014,7 +28153,7 @@ SV ResizableData___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::__neq__" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const ResizableData &))
@@ -28031,7 +28170,7 @@ SV ResizableData_getInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt64" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28048,7 +28187,7 @@ SV ResizableData_getFloat64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getFloat64" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28065,7 +28204,7 @@ SV ResizableData_setInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt64BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int64_t))
@@ -28082,7 +28221,7 @@ SV ResizableData_setInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt32" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int32_t))
@@ -28099,7 +28238,7 @@ SV ResizableData_getInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt64LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28116,7 +28255,7 @@ SV ResizableData_setInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt32LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int32_t))
@@ -28133,7 +28272,7 @@ SV ResizableData_setUInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt32" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint32_t))
@@ -28150,7 +28289,7 @@ SV ResizableData_setChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setChar" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],char))
@@ -28167,7 +28306,7 @@ SV ResizableData_setUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt64LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint64_t))
@@ -28184,7 +28323,7 @@ SV ResizableData_setUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt64BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint64_t))
@@ -28201,7 +28340,7 @@ SV ResizableData_setUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt16LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint16_t))
@@ -28218,7 +28357,7 @@ SV ResizableData_setUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt32LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint32_t))
@@ -28235,7 +28374,7 @@ SV ResizableData_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getData" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ResizableData::getData.")));
 RET CN;
@@ -28246,7 +28385,7 @@ SV ResizableData_setUInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt16" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint16_t))
@@ -28263,7 +28402,7 @@ SV ResizableData_getUInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt32" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28280,7 +28419,7 @@ SV ResizableData_setInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt16LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int16_t))
@@ -28297,7 +28436,7 @@ SV ResizableData_getUInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt16" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28314,7 +28453,7 @@ SV ResizableData_getUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt16LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28331,7 +28470,7 @@ SV ResizableData_setInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt32BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int32_t))
@@ -28348,7 +28487,7 @@ SV ResizableData_getUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt64LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28365,7 +28504,7 @@ SV ResizableData_setFloat64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setFloat64" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],double))
@@ -28382,7 +28521,7 @@ SV ResizableData_getUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt32BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28399,7 +28538,7 @@ SV ResizableData_setInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt16BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int16_t))
@@ -28416,7 +28555,7 @@ SV ResizableData_getInt32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt32" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28433,7 +28572,7 @@ SV ResizableData_getInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt32BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28450,7 +28589,7 @@ SV ResizableData_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::copy" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -28467,7 +28606,7 @@ SV ResizableData___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::__eq__" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const ResizableData &))
@@ -28484,7 +28623,7 @@ SV ResizableData_resize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::resize" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],std::size_t))
@@ -28501,7 +28640,7 @@ SV ResizableData_getFloat32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getFloat32" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28518,7 +28657,7 @@ SV ResizableData_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::insert" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],const ResizableData &))
@@ -28535,7 +28674,7 @@ SV ResizableData_getInt16(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt16" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28552,7 +28691,7 @@ SV ResizableData_getInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt16BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28569,7 +28708,7 @@ SV ResizableData_setUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt32BE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint32_t))
@@ -28586,7 +28725,7 @@ SV ResizableData_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::clear" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -28603,7 +28742,7 @@ SV ResizableData_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::remove" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -28620,7 +28759,7 @@ SV ResizableData_setUInt64(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setUInt64" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],uint64_t))
@@ -28637,7 +28776,7 @@ SV ResizableData_setInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt64LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int64_t))
@@ -28654,7 +28793,7 @@ SV ResizableData_setInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::setInt8" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],int8_t))
@@ -28671,7 +28810,7 @@ SV ResizableData_getUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getUInt32LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28688,7 +28827,7 @@ SV ResizableData_getInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt8" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28705,7 +28844,7 @@ SV ResizableData_getInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getInt32LE" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28722,7 +28861,7 @@ SV ResizableData_getChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ResizableData::getChar" EAOE));
 ResizableData*f;
-f=(ResizableData*)((NO)a[0])->data;
+f=(ResizableData*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -28734,9 +28873,10 @@ CATE(TE,UFOF("ResizableData::getChar.")));
 RET CN;
 }
 
-void Int4_destroy(CTX ctx,NO f)
+void Int4_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T4<int32_t>))
+NO f=(NO)f_.p;
+if(!TS(f_,T4<int32_t>))
 CATE(TE,"Int4::__del__ expects Int4 as first argument."));
 
 SCRIPT_DELETE((T4<int32_t>*)f->data);
@@ -28780,11 +28920,12 @@ RET STG::createNativeObject(Int4_funcs,p,EXT->Int4_typeID);
 RET CN;
 }
 
-SV Int4_get_member(CTX ctx,NO f,SV key)
+SV Int4_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -29100,11 +29241,12 @@ RET CV(obj->w);
 RET CN;
 }
 
-void Int4_set_member(CTX ctx,NO f,SV key,SV value)
+void Int4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -29136,7 +29278,7 @@ SV Int4_setZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29153,7 +29295,7 @@ SV Int4_setWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29170,7 +29312,7 @@ SV Int4_setWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29187,7 +29329,7 @@ SV Int4_getZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29204,7 +29346,7 @@ SV Int4_getZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29221,7 +29363,7 @@ SV Int4_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29238,7 +29380,7 @@ SV Int4_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::distanceSquared" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29255,7 +29397,7 @@ SV Int4_getYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29272,7 +29414,7 @@ SV Int4_setYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29289,7 +29431,7 @@ SV Int4_getYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29306,7 +29448,7 @@ SV Int4_getWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29323,7 +29465,7 @@ SV Int4_getZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29340,7 +29482,7 @@ SV Int4_setXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29357,7 +29499,7 @@ SV Int4_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -29374,7 +29516,7 @@ SV Int4_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -29391,7 +29533,7 @@ SV Int4_getZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29408,7 +29550,7 @@ SV Int4_getXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29425,7 +29567,7 @@ SV Int4_setZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -29442,7 +29584,7 @@ SV Int4_setZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29459,7 +29601,7 @@ SV Int4_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29476,7 +29618,7 @@ SV Int4_getXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29493,7 +29635,7 @@ SV Int4_setYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29510,7 +29652,7 @@ SV Int4_getWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29527,7 +29669,7 @@ SV Int4_getWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29544,7 +29686,7 @@ SV Int4_getWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29561,7 +29703,7 @@ SV Int4_setXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29578,7 +29720,7 @@ SV Int4_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29595,7 +29737,7 @@ SV Int4_setWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29612,7 +29754,7 @@ SV Int4_setZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29629,7 +29771,7 @@ SV Int4_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29646,7 +29788,7 @@ SV Int4_setXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29663,7 +29805,7 @@ SV Int4_getZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29680,7 +29822,7 @@ SV Int4_setYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29697,7 +29839,7 @@ SV Int4_getYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29714,7 +29856,7 @@ SV Int4___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__leq__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29731,7 +29873,7 @@ SV Int4_getYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29748,7 +29890,7 @@ SV Int4_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::sum" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29765,7 +29907,7 @@ SV Int4_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29782,7 +29924,7 @@ SV Int4_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29799,7 +29941,7 @@ SV Int4_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29816,7 +29958,7 @@ SV Int4_getXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29833,7 +29975,7 @@ SV Int4_setYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29850,7 +29992,7 @@ SV Int4_setWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29867,7 +30009,7 @@ SV Int4_setWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29884,7 +30026,7 @@ SV Int4_setZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29901,7 +30043,7 @@ SV Int4_getXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29918,7 +30060,7 @@ SV Int4_setWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -29935,7 +30077,7 @@ SV Int4_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -29952,7 +30094,7 @@ SV Int4_getXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29969,7 +30111,7 @@ SV Int4_getYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -29986,7 +30128,7 @@ SV Int4_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30003,7 +30145,7 @@ SV Int4_setXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30020,7 +30162,7 @@ SV Int4_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::length" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30037,7 +30179,7 @@ SV Int4_setWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30054,7 +30196,7 @@ SV Int4_getYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30071,7 +30213,7 @@ SV Int4_setXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30088,7 +30230,7 @@ SV Int4_setXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30105,7 +30247,7 @@ SV Int4_getWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30122,7 +30264,7 @@ SV Int4_getWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30139,7 +30281,7 @@ SV Int4_getZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30156,7 +30298,7 @@ SV Int4_getXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXYZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30173,7 +30315,7 @@ SV Int4_setZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30190,7 +30332,7 @@ SV Int4_setZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30207,7 +30349,7 @@ SV Int4_setWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -30224,7 +30366,7 @@ SV Int4_setWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -30241,7 +30383,7 @@ SV Int4_setWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -30258,7 +30400,7 @@ SV Int4_getZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30275,7 +30417,7 @@ SV Int4_getZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30292,7 +30434,7 @@ SV Int4_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30309,7 +30451,7 @@ SV Int4_setYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30326,7 +30468,7 @@ SV Int4_getXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30343,7 +30485,7 @@ SV Int4_getXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30360,7 +30502,7 @@ SV Int4___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__less__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30377,7 +30519,7 @@ SV Int4_getZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30394,7 +30536,7 @@ SV Int4_setWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30411,7 +30553,7 @@ SV Int4_setWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30428,7 +30570,7 @@ SV Int4_setZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZYXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30445,7 +30587,7 @@ SV Int4_getYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30462,7 +30604,7 @@ SV Int4_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30479,7 +30621,7 @@ SV Int4_getXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30496,7 +30638,7 @@ SV Int4_setYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYXWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30513,7 +30655,7 @@ SV Int4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__eq__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30530,7 +30672,7 @@ SV Int4_getWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30547,7 +30689,7 @@ SV Int4_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::distance" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30564,7 +30706,7 @@ SV Int4_getXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30581,7 +30723,7 @@ SV Int4_setYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30598,7 +30740,7 @@ SV Int4_getZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZWXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30615,7 +30757,7 @@ SV Int4_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30632,7 +30774,7 @@ SV Int4_getYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30649,7 +30791,7 @@ SV Int4_setZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30666,7 +30808,7 @@ SV Int4___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__sub__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30689,7 +30831,7 @@ SV Int4_getYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYXWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30706,7 +30848,7 @@ SV Int4_setXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30723,7 +30865,7 @@ SV Int4_setYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30740,7 +30882,7 @@ SV Int4_setYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30757,7 +30899,7 @@ SV Int4_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -30774,7 +30916,7 @@ SV Int4_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -30791,7 +30933,7 @@ SV Int4_setYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -30808,7 +30950,7 @@ SV Int4_getWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30825,7 +30967,7 @@ SV Int4___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__neq__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30842,7 +30984,7 @@ SV Int4_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::normalize" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30859,7 +31001,7 @@ SV Int4_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30876,7 +31018,7 @@ SV Int4_setXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30893,7 +31035,7 @@ SV Int4_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -30910,7 +31052,7 @@ SV Int4_setXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYZW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30927,7 +31069,7 @@ SV Int4_getYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30944,7 +31086,7 @@ SV Int4_setWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWXYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -30961,7 +31103,7 @@ SV Int4_getYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYWXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -30978,7 +31120,7 @@ SV Int4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__mul__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31001,7 +31143,7 @@ SV Int4_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31018,7 +31160,7 @@ SV Int4_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::lengthSquared" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31035,7 +31177,7 @@ SV Int4_getWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31052,7 +31194,7 @@ SV Int4_getWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31069,7 +31211,7 @@ SV Int4_getWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31086,7 +31228,7 @@ SV Int4_getWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31103,7 +31245,7 @@ SV Int4_getWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31120,7 +31262,7 @@ SV Int4_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -31137,7 +31279,7 @@ SV Int4_getZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getZXYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31154,7 +31296,7 @@ SV Int4___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__add__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31177,7 +31319,7 @@ SV Int4_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -31194,7 +31336,7 @@ SV Int4_getWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWYZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31211,7 +31353,7 @@ SV Int4_setXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -31228,7 +31370,7 @@ SV Int4_getWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getWXZY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31245,7 +31387,7 @@ SV Int4_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31262,7 +31404,7 @@ SV Int4_setZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZXWY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31279,7 +31421,7 @@ SV Int4_setXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -31296,7 +31438,7 @@ SV Int4_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31313,7 +31455,7 @@ SV Int4_setWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWZXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31330,7 +31472,7 @@ SV Int4___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__grtr__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31347,7 +31489,7 @@ SV Int4_setZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setZWXY" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31364,7 +31506,7 @@ SV Int4_getXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::getXW" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31381,7 +31523,7 @@ SV Int4_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setXYZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<int32_t> &))
@@ -31398,7 +31540,7 @@ SV Int4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__div__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31421,7 +31563,7 @@ SV Int4_setWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setWYZX" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31438,7 +31580,7 @@ SV Int4_setYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::setYWXZ" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31455,7 +31597,7 @@ SV Int4___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::__geq__" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31472,7 +31614,7 @@ SV Int4_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int4::dot" EAOE));
 T4<int32_t>*f;
-f=(T4<int32_t>*)((NO)a[0])->data;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<int32_t> &))
@@ -31490,9 +31632,10 @@ CATE(TE,UFOF("Int4::dot.")));
 RET CN;
 }
 
-void Float3_destroy(CTX ctx,NO f)
+void Float3_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T3<float>))
+NO f=(NO)f_.p;
+if(!TS(f_,T3<float>))
 CATE(TE,"Float3::__del__ expects Float3 as first argument."));
 
 SCRIPT_DELETE((T3<float>*)f->data);
@@ -31536,11 +31679,12 @@ RET STG::createNativeObject(Float3_funcs,p,EXT->Float3_typeID);
 RET CN;
 }
 
-SV Float3_get_member(CTX ctx,NO f,SV key)
+SV Float3_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -31662,11 +31806,12 @@ RET CV(obj->z);
 RET CN;
 }
 
-void Float3_set_member(CTX ctx,NO f,SV key,SV value)
+void Float3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -31694,7 +31839,7 @@ SV Float3_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYZX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31711,7 +31856,7 @@ SV Float3_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZXY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31728,7 +31873,7 @@ SV Float3_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -31745,7 +31890,7 @@ SV Float3_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -31762,7 +31907,7 @@ SV Float3_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZYX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31779,7 +31924,7 @@ SV Float3_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31796,7 +31941,7 @@ SV Float3_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::distanceSquared" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31813,7 +31958,7 @@ SV Float3_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::normalize" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31830,7 +31975,7 @@ SV Float3_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31847,7 +31992,7 @@ SV Float3___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__leq__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31864,7 +32009,7 @@ SV Float3_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXZY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31881,7 +32026,7 @@ SV Float3_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::sum" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31898,7 +32043,7 @@ SV Float3_cross(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::cross" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31915,7 +32060,7 @@ SV Float3_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXYZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31932,7 +32077,7 @@ SV Float3___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__less__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31949,7 +32094,7 @@ SV Float3___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__neq__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -31966,7 +32111,7 @@ SV Float3_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -31983,7 +32128,7 @@ SV Float3_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::lengthSquared" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32000,7 +32145,7 @@ SV Float3_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZYX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32017,7 +32162,7 @@ SV Float3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__div__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32040,7 +32185,7 @@ SV Float3_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -32057,7 +32202,7 @@ SV Float3_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -32074,7 +32219,7 @@ SV Float3_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -32091,7 +32236,7 @@ SV Float3___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__add__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32114,7 +32259,7 @@ SV Float3_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -32131,7 +32276,7 @@ SV Float3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__eq__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32148,7 +32293,7 @@ SV Float3_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setZXY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32165,7 +32310,7 @@ SV Float3_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setYXZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32182,7 +32327,7 @@ SV Float3_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32199,7 +32344,7 @@ SV Float3_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::distance" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32216,7 +32361,7 @@ SV Float3_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32233,7 +32378,7 @@ SV Float3___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__grtr__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32250,7 +32395,7 @@ SV Float3_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getXZY" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32267,7 +32412,7 @@ SV Float3_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::setXYZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32284,7 +32429,7 @@ SV Float3_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYZX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32301,7 +32446,7 @@ SV Float3_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::length" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32318,7 +32463,7 @@ SV Float3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__mul__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32341,7 +32486,7 @@ SV Float3_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getYXZ" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32358,7 +32503,7 @@ SV Float3_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::getZX" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32375,7 +32520,7 @@ SV Float3___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__sub__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32398,7 +32543,7 @@ SV Float3___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::__geq__" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32415,7 +32560,7 @@ SV Float3_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float3::dot" EAOE));
 T3<float>*f;
-f=(T3<float>*)((NO)a[0])->data;
+f=(T3<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -32433,9 +32578,10 @@ CATE(TE,UFOF("Float3::dot.")));
 RET CN;
 }
 
-void GfxBuffer_destroy(CTX ctx,NO f)
+void GfxBuffer_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxBuffer))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxBuffer))
 CATE(TE,"GfxBuffer::__del__ expects GfxBuffer as first argument."));
 
 SCRIPT_DELETE((GfxBuffer*)f->data);
@@ -32448,11 +32594,12 @@ CATE(TE,"GfxBuffer's constructor expects GfxBuffer as first argument."));
 CATE(TE,UFOF("GfxBuffer's constructor.")));
 }
 
-SV GfxBuffer_get_member(CTX ctx,NO f,SV key)
+SV GfxBuffer_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -32486,11 +32633,12 @@ RET CNF(GfxBuffer_getSize);
 RET CN;
 }
 
-void GfxBuffer_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxBuffer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -32506,7 +32654,7 @@ SV GfxBuffer_getSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::getSize" EAOE));
 GfxBuffer*f;
-f=(GfxBuffer*)((NO)a[0])->data;
+f=(GfxBuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32523,7 +32671,7 @@ SV GfxBuffer_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::getData" EAOE));
 GfxBuffer*f;
-f=(GfxBuffer*)((NO)a[0])->data;
+f=(GfxBuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
@@ -32540,7 +32688,7 @@ SV GfxBuffer_allocData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::allocData" EAOE));
 GfxBuffer*f;
-f=(GfxBuffer*)((NO)a[0])->data;
+f=(GfxBuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const ResizableData &)&&TS(a[2],GfxBufferUsage))
@@ -32557,7 +32705,7 @@ SV GfxBuffer_setData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxBuffer::setData" EAOE));
 GfxBuffer*f;
-f=(GfxBuffer*)((NO)a[0])->data;
+f=(GfxBuffer*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],const ResizableData &))
@@ -32569,9 +32717,10 @@ CATE(TE,UFOF("GfxBuffer::setData.")));
 RET CN;
 }
 
-void Transform_destroy(CTX ctx,NO f)
+void Transform_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Transform))
+NO f=(NO)f_.p;
+if(!TS(f_,Transform))
 CATE(TE,"Transform::__del__ expects Transform as first argument."));
 
 SCRIPT_DELETE((Transform*)f->data);
@@ -32590,11 +32739,12 @@ RET STG::createNativeObject(Transform_funcs,p,EXT->Transform_typeID);
 RET CN;
 }
 
-SV Transform_get_member(CTX ctx,NO f,SV key)
+SV Transform_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -32634,11 +32784,12 @@ RET CV(obj->position);
 RET CN;
 }
 
-void Transform_set_member(CTX ctx,NO f,SV key,SV value)
+void Transform_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -32666,7 +32817,7 @@ SV Transform_createMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Transform::createMatrix" EAOE));
 Transform*f;
-f=(Transform*)((NO)a[0])->data;
+f=(Transform*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32678,9 +32829,10 @@ CATE(TE,UFOF("Transform::createMatrix.")));
 RET CN;
 }
 
-void AudioSourceList_destroy(CTX ctx,NO f)
+void AudioSourceList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<AudioSource*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<AudioSource*>))
 CATE(TE,"AudioSourceList::__del__ expects AudioSourceList as first argument."));
 
 SCRIPT_DELETE((List<AudioSource*>*)f->data);
@@ -32709,11 +32861,12 @@ RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID)
 RET CN;
 }
 
-SV AudioSourceList_get_member(CTX ctx,NO f,SV key)
+SV AudioSourceList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -32769,11 +32922,12 @@ RET CNF(AudioSourceList_end);
 RET CN;
 }
 
-void AudioSourceList_set_member(CTX ctx,NO f,SV key,SV value)
+void AudioSourceList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -32789,7 +32943,7 @@ SV AudioSourceList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::insert" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],AudioSource*))
@@ -32812,7 +32966,7 @@ SV AudioSourceList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::begin" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("AudioSourceList::begin.")));
 RET CN;
@@ -32823,7 +32977,7 @@ SV AudioSourceList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::set" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],AudioSource*))
@@ -32840,7 +32994,7 @@ SV AudioSourceList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::end" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("AudioSourceList::end.")));
 RET CN;
@@ -32851,7 +33005,7 @@ SV AudioSourceList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::get" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -32868,7 +33022,7 @@ SV AudioSourceList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::clear" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32885,7 +33039,7 @@ SV AudioSourceList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::copy" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32902,7 +33056,7 @@ SV AudioSourceList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::remove" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -32919,7 +33073,7 @@ SV AudioSourceList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::in" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],AudioSource*))
@@ -32936,7 +33090,7 @@ SV AudioSourceList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::getCount" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -32953,7 +33107,7 @@ SV AudioSourceList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::getData" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("AudioSourceList::getData.")));
 RET CN;
@@ -32964,7 +33118,7 @@ SV AudioSourceList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::__eq__" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<AudioSource*> &))
@@ -32981,7 +33135,7 @@ SV AudioSourceList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::find" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],AudioSource*))
@@ -32998,7 +33152,7 @@ SV AudioSourceList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::append" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],AudioSource*))
@@ -33021,7 +33175,7 @@ SV AudioSourceList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioSourceList::__neq__" EAOE));
 List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0])->data;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<AudioSource*> &))
@@ -33033,9 +33187,10 @@ CATE(TE,UFOF("AudioSourceList::__neq__.")));
 RET CN;
 }
 
-void GfxMaterial_destroy(CTX ctx,NO f)
+void GfxMaterial_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxMaterial))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxMaterial))
 CATE(TE,"GfxMaterial::__del__ expects GfxMaterial as first argument."));
 
 GfxMaterial*obj=(GfxMaterial*)f->data;
@@ -33060,11 +33215,12 @@ RET STG::createNativeObject(GfxMaterial_funcs,p,EXT->GfxMaterial_typeID);
 RET CN;
 }
 
-SV GfxMaterial_get_member(CTX ctx,NO f,SV key)
+SV GfxMaterial_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -33202,11 +33358,12 @@ RET CV(obj->shadowMaxTessLevel);
 RET CN;
 }
 
-void GfxMaterial_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxMaterial_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -33286,7 +33443,7 @@ SV GfxMaterial_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::load" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33303,7 +33460,7 @@ SV GfxMaterial_setAlbedoMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setAlbedoMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -33320,7 +33477,7 @@ SV GfxMaterial_setPOMHeightMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setPOMHeightMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -33337,7 +33494,7 @@ SV GfxMaterial_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setFilename" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -33354,7 +33511,7 @@ SV GfxMaterial_setForward(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setForward" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -33371,7 +33528,7 @@ SV GfxMaterial_getNormalMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getNormalMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33388,7 +33545,7 @@ SV GfxMaterial_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::save" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33411,7 +33568,7 @@ SV GfxMaterial_setNormalMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setNormalMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -33428,7 +33585,7 @@ SV GfxMaterial_getDisplacementMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getDisplacementMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33445,7 +33602,7 @@ SV GfxMaterial_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getFilename" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33462,7 +33619,7 @@ SV GfxMaterial_getPOMHeightMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getPOMHeightMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33479,7 +33636,7 @@ SV GfxMaterial_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getRefCount" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33496,7 +33653,7 @@ SV GfxMaterial_getMaterialMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getMaterialMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33513,7 +33670,7 @@ SV GfxMaterial_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getType" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33530,7 +33687,7 @@ SV GfxMaterial_setParallaxHeightMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setParallaxHeightMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -33547,7 +33704,7 @@ SV GfxMaterial_getParallaxHeightMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getParallaxHeightMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33564,7 +33721,7 @@ SV GfxMaterial_isForward(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::isForward" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33581,7 +33738,7 @@ SV GfxMaterial_setMaterialMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setMaterialMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -33598,7 +33755,7 @@ SV GfxMaterial_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::copy" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33615,7 +33772,7 @@ SV GfxMaterial_setDisplacementMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::setDisplacementMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxTexture *))
@@ -33632,7 +33789,7 @@ SV GfxMaterial_getShaderComb(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getShaderComb" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33649,7 +33806,7 @@ SV GfxMaterial_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::removeContent" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33672,7 +33829,7 @@ SV GfxMaterial_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::release" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33689,7 +33846,7 @@ SV GfxMaterial_getAlbedoMap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxMaterial::getAlbedoMap" EAOE));
 GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0])->data;
+f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33701,9 +33858,10 @@ CATE(TE,UFOF("GfxMaterial::getAlbedoMap.")));
 RET CN;
 }
 
-void Quaternion_destroy(CTX ctx,NO f)
+void Quaternion_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Quaternion))
+NO f=(NO)f_.p;
+if(!TS(f_,Quaternion))
 CATE(TE,"Quaternion::__del__ expects Quaternion as first argument."));
 
 SCRIPT_DELETE((Quaternion*)f->data);
@@ -33737,11 +33895,12 @@ RET STG::createNativeObject(Quaternion_funcs,p,EXT->Quaternion_typeID);
 RET CN;
 }
 
-SV Quaternion_get_member(CTX ctx,NO f,SV key)
+SV Quaternion_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -33819,11 +33978,12 @@ RET CV(obj->w);
 RET CN;
 }
 
-void Quaternion_set_member(CTX ctx,NO f,SV key,SV value)
+void Quaternion_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -33855,7 +34015,7 @@ SV Quaternion_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::normalize" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33872,7 +34032,7 @@ SV Quaternion_setEulerAngles(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setEulerAngles" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -33889,7 +34049,7 @@ SV Quaternion_getAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getAngle" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33906,7 +34066,7 @@ SV Quaternion_getAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33923,7 +34083,7 @@ SV Quaternion_setAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setAngle" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -33940,7 +34100,7 @@ SV Quaternion_setYAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setYAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -33957,7 +34117,7 @@ SV Quaternion_getEulerAngles(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getEulerAngles" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -33974,7 +34134,7 @@ SV Quaternion_setAxisAndAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setAxisAndAngle" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const Direction3D &)&&TS(a[2],float))
@@ -33991,7 +34151,7 @@ SV Quaternion_getAxisAndAngle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getAxisAndAngle" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34008,7 +34168,7 @@ SV Quaternion_setAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Direction3D &))
@@ -34025,7 +34185,7 @@ SV Quaternion___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::__mul__" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Quaternion &))
@@ -34042,7 +34202,7 @@ SV Quaternion_getYAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getYAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34059,7 +34219,7 @@ SV Quaternion_getXAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getXAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34076,7 +34236,7 @@ SV Quaternion_toMatrix(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::toMatrix" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34093,7 +34253,7 @@ SV Quaternion_setZAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setZAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -34110,7 +34270,7 @@ SV Quaternion_setXAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::setXAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -34127,7 +34287,7 @@ SV Quaternion___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::__eq__" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Quaternion &))
@@ -34144,7 +34304,7 @@ SV Quaternion_getZAxis(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Quaternion::getZAxis" EAOE));
 Quaternion*f;
-f=(Quaternion*)((NO)a[0])->data;
+f=(Quaternion*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34156,9 +34316,10 @@ CATE(TE,UFOF("Quaternion::getZAxis.")));
 RET CN;
 }
 
-void GfxMeshAttrib_destroy(CTX ctx,NO f)
+void GfxMeshAttrib_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxMeshAttrib))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxMeshAttrib))
 CATE(TE,"GfxMeshAttrib::__del__ expects GfxMeshAttrib as first argument."));
 
 SCRIPT_DELETE((GfxMeshAttrib*)f->data);
@@ -34171,11 +34332,12 @@ CATE(TE,"GfxMeshAttrib's constructor expects GfxMeshAttrib as first argument."))
 RET STG::createNativeObject(GfxMeshAttrib_funcs,NEW(TYPE(GfxMeshAttrib)),EXT->GfxMeshAttrib_typeID);
 }
 
-SV GfxMeshAttrib_get_member(CTX ctx,NO f,SV key)
+SV GfxMeshAttrib_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -34213,11 +34375,12 @@ RET CV(obj->data);
 RET CN;
 }
 
-void GfxMeshAttrib_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxMeshAttrib_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -34240,9 +34403,10 @@ obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
 }
 }
 
-void ScriptInstance_destroy(CTX ctx,NO f)
+void ScriptInstance_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,ScriptInstance))
+NO f=(NO)f_.p;
+if(!TS(f_,ScriptInstance))
 CATE(TE,"ScriptInstance::__del__ expects ScriptInstance as first argument."));
 
 SCRIPT_DELETE((ScriptInstance*)f->data);
@@ -34255,11 +34419,12 @@ CATE(TE,"ScriptInstance's constructor expects ScriptInstance as first argument."
 CATE(TE,UFOF("ScriptInstance's constructor.")));
 }
 
-SV ScriptInstance_get_member(CTX ctx,NO f,SV key)
+SV ScriptInstance_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -34292,8 +34457,6 @@ RET CNF(ScriptInstance_preRender);
 RET CNF(ScriptInstance_postRender);
  EI(keyStr == "getScript")
 RET CNF(ScriptInstance_getScript);
- EI(keyStr == "getObject")
-RET CNF(ScriptInstance_getObject);
  EI(keyStr == "getObj")
 RET CNF(ScriptInstance_getObj);
  else
@@ -34303,11 +34466,12 @@ RET CNF(ScriptInstance_getObj);
 RET CN;
 }
 
-void ScriptInstance_set_member(CTX ctx,NO f,SV key,SV value)
+void ScriptInstance_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -34323,7 +34487,7 @@ SV ScriptInstance_postRender(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::postRender" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34340,7 +34504,7 @@ SV ScriptInstance_preRender(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::preRender" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34357,7 +34521,7 @@ SV ScriptInstance_handleInput(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::handleInput" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34374,7 +34538,7 @@ SV ScriptInstance_update(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::update" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34391,7 +34555,7 @@ SV ScriptInstance_getObj(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::getObj" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34403,23 +34567,12 @@ CATE(TE,UFOF("ScriptInstance::getObj.")));
 RET CN;
 }
 
-SV ScriptInstance_getObject(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::getObject" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
-
-CATE(TE,UFOF("ScriptInstance::getObject.")));
-RET CN;
-}
-
 SV ScriptInstance_getScript(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::getScript" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34436,7 +34589,7 @@ SV ScriptInstance_fixedUpdate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::fixedUpdate" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -34453,7 +34606,7 @@ SV ScriptInstance_method(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstance::method" EAOE));
 ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0])->data;
+f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -34471,9 +34624,10 @@ CATE(TE,UFOF("ScriptInstance::method.")));
 RET CN;
 }
 
-void RenderComponent_destroy(CTX ctx,NO f)
+void RenderComponent_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,RenderComponent))
+NO f=(NO)f_.p;
+if(!TS(f_,RenderComponent))
 CATE(TE,"RenderComponent::__del__ expects RenderComponent as first argument."));
 
 }SV RenderComponent_new(CTX ctx,const List<SV>&a)
@@ -34485,11 +34639,12 @@ CATE(TE,"RenderComponent's constructor expects RenderComponent as first argument
 CATE(TE,UFOF("RenderComponent's constructor.")));
 }
 
-SV RenderComponent_get_member(CTX ctx,NO f,SV key)
+SV RenderComponent_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -34541,11 +34696,12 @@ RET CV(obj->overlayTexture);
 RET CN;
 }
 
-void RenderComponent_set_member(CTX ctx,NO f,SV key,SV value)
+void RenderComponent_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -34573,7 +34729,7 @@ SV RenderComponent_setOverlayColor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::setOverlayColor" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -34590,7 +34746,7 @@ SV RenderComponent_getOverlayColor(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::getOverlayColor" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34607,7 +34763,7 @@ SV RenderComponent_setShadowCaster(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::setShadowCaster" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -34624,7 +34780,7 @@ SV RenderComponent_getShadowCaster(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::getShadowCaster" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34641,7 +34797,7 @@ SV RenderComponent_setAnimationState(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::setAnimationState" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RenderComponent::setAnimationState.")));
 RET CN;
@@ -34652,7 +34808,7 @@ SV RenderComponent_getAnimationState(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::getAnimationState" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RenderComponent::getAnimationState.")));
 RET CN;
@@ -34663,15 +34819,16 @@ SV RenderComponent_removeAnimationState(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RenderComponent::removeAnimationState" EAOE));
 RenderComponent*f;
-f=(RenderComponent*)((NO)a[0])->data;
+f=(RenderComponent*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RenderComponent::removeAnimationState.")));
 RET CN;
 }
 
-void Int2_destroy(CTX ctx,NO f)
+void Int2_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T2<int32_t>))
+NO f=(NO)f_.p;
+if(!TS(f_,T2<int32_t>))
 CATE(TE,"Int2::__del__ expects Int2 as first argument."));
 
 SCRIPT_DELETE((T2<int32_t>*)f->data);
@@ -34715,11 +34872,12 @@ RET STG::createNativeObject(Int2_funcs,p,EXT->Int2_typeID);
 RET CN;
 }
 
-SV Int2_get_member(CTX ctx,NO f,SV key)
+SV Int2_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -34795,11 +34953,12 @@ RET CV(obj->y);
 RET CN;
 }
 
-void Int2_set_member(CTX ctx,NO f,SV key,SV value)
+void Int2_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -34823,7 +34982,7 @@ SV Int2_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::normalize" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34840,7 +34999,7 @@ SV Int2_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::distance" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -34857,7 +35016,7 @@ SV Int2_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::lengthSquared" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34874,7 +35033,7 @@ SV Int2___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__leq__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -34891,7 +35050,7 @@ SV Int2_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::setYX" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -34908,7 +35067,7 @@ SV Int2___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__grtr__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -34925,7 +35084,7 @@ SV Int2_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::sum" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34942,7 +35101,7 @@ SV Int2_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::getXY" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34959,7 +35118,7 @@ SV Int2_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::length" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34976,7 +35135,7 @@ SV Int2_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::getYX" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -34993,7 +35152,7 @@ SV Int2___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__div__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35016,7 +35175,7 @@ SV Int2_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::setXY" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35033,7 +35192,7 @@ SV Int2___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__mul__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35056,7 +35215,7 @@ SV Int2___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__add__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35079,7 +35238,7 @@ SV Int2___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__less__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35096,7 +35255,7 @@ SV Int2___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__sub__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35119,7 +35278,7 @@ SV Int2___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__geq__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35136,7 +35295,7 @@ SV Int2_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::distanceSquared" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35153,7 +35312,7 @@ SV Int2___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__eq__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35170,7 +35329,7 @@ SV Int2_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::dot" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35193,7 +35352,7 @@ SV Int2___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Int2::__neq__" EAOE));
 T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0])->data;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
@@ -35205,9 +35364,10 @@ CATE(TE,UFOF("Int2::__neq__.")));
 RET CN;
 }
 
-void AudioWorld_destroy(CTX ctx,NO f)
+void AudioWorld_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,AudioWorld))
+NO f=(NO)f_.p;
+if(!TS(f_,AudioWorld))
 CATE(TE,"AudioWorld::__del__ expects AudioWorld as first argument."));
 
 SCRIPT_DELETE((AudioWorld*)f->data);
@@ -35226,11 +35386,12 @@ RET STG::createNativeObject(AudioWorld_funcs,p,EXT->AudioWorld_typeID);
 RET CN;
 }
 
-SV AudioWorld_get_member(CTX ctx,NO f,SV key)
+SV AudioWorld_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -35284,11 +35445,12 @@ RET CV(obj->speedOfSound);
 RET CN;
 }
 
-void AudioWorld_set_member(CTX ctx,NO f,SV key,SV value)
+void AudioWorld_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -35320,7 +35482,7 @@ SV AudioWorld_destroySource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::destroySource" EAOE));
 AudioWorld*f;
-f=(AudioWorld*)((NO)a[0])->data;
+f=(AudioWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],AudioSource *))
@@ -35337,7 +35499,7 @@ SV AudioWorld_getSources(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::getSources" EAOE));
 AudioWorld*f;
-f=(AudioWorld*)((NO)a[0])->data;
+f=(AudioWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35354,7 +35516,7 @@ SV AudioWorld_addToAudioDevice(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::addToAudioDevice" EAOE));
 AudioWorld*f;
-f=(AudioWorld*)((NO)a[0])->data;
+f=(AudioWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],AudioDevice *))
@@ -35371,7 +35533,7 @@ SV AudioWorld_createSource(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::createSource" EAOE));
 AudioWorld*f;
-f=(AudioWorld*)((NO)a[0])->data;
+f=(AudioWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Audio *))
@@ -35388,7 +35550,7 @@ SV AudioWorld_removeFromAudioDevice(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::removeFromAudioDevice" EAOE));
 AudioWorld*f;
-f=(AudioWorld*)((NO)a[0])->data;
+f=(AudioWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],AudioDevice *))
@@ -35405,7 +35567,7 @@ SV AudioWorld_clearSources(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioWorld::clearSources" EAOE));
 AudioWorld*f;
-f=(AudioWorld*)((NO)a[0])->data;
+f=(AudioWorld*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35417,9 +35579,10 @@ CATE(TE,UFOF("AudioWorld::clearSources.")));
 RET CN;
 }
 
-void GuiPlacer_destroy(CTX ctx,NO f)
+void GuiPlacer_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GuiPlacer))
+NO f=(NO)f_.p;
+if(!TS(f_,GuiPlacer))
 CATE(TE,"GuiPlacer::__del__ expects GuiPlacer as first argument."));
 
 SCRIPT_DELETE((GuiPlacer*)f->data);
@@ -35438,11 +35601,12 @@ RET STG::createNativeObject(GuiPlacer_funcs,p,EXT->GuiPlacer_typeID);
 RET CN;
 }
 
-SV GuiPlacer_get_member(CTX ctx,NO f,SV key)
+SV GuiPlacer_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -35486,11 +35650,12 @@ RET CNF(GuiPlacer_getPadding);
 RET CN;
 }
 
-void GuiPlacer_set_member(CTX ctx,NO f,SV key,SV value)
+void GuiPlacer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -35506,7 +35671,7 @@ SV GuiPlacer_advanceY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::advanceY" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35529,7 +35694,7 @@ SV GuiPlacer_placer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::placer" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
@@ -35546,7 +35711,7 @@ SV GuiPlacer_getPadding(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::getPadding" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35563,7 +35728,7 @@ SV GuiPlacer_button(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::button" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],const char *)&&TS(a[2],size_t)&&TS(a[3],size_t))
@@ -35580,7 +35745,7 @@ SV GuiPlacer_label(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::label" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const char *))
@@ -35597,7 +35762,7 @@ SV GuiPlacer_resetY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::resetY" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35614,7 +35779,7 @@ SV GuiPlacer_getXOriginMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::getXOriginMode" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35631,7 +35796,7 @@ SV GuiPlacer_setXOrigin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::setXOrigin" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],XOrigin)&&TS(a[2],int))
@@ -35648,7 +35813,7 @@ SV GuiPlacer_getXOrigin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GuiPlacer::getXOrigin" EAOE));
 GuiPlacer*f;
-f=(GuiPlacer*)((NO)a[0])->data;
+f=(GuiPlacer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35660,9 +35825,10 @@ CATE(TE,UFOF("GuiPlacer::getXOrigin.")));
 RET CN;
 }
 
-void ImGui_destroy(CTX ctx,NO f)
+void ImGui_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,ImGui))
+NO f=(NO)f_.p;
+if(!TS(f_,ImGui))
 CATE(TE,"ImGui::__del__ expects ImGui as first argument."));
 
 SCRIPT_DELETE((ImGui*)f->data);
@@ -35681,11 +35847,12 @@ RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
 RET CN;
 }
 
-SV ImGui_get_member(CTX ctx,NO f,SV key)
+SV ImGui_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -35743,11 +35910,12 @@ RET CV(obj->scrollSpeed);
 RET CN;
 }
 
-void ImGui_set_member(CTX ctx,NO f,SV key,SV value)
+void ImGui_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -35779,7 +35947,7 @@ SV ImGui_endContainer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::endContainer" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Container *))
@@ -35796,7 +35964,7 @@ SV ImGui_render(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::render" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -35813,7 +35981,7 @@ SV ImGui_beginContainer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::beginContainer" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ImGui::beginContainer.")));
 RET CN;
@@ -35824,7 +35992,7 @@ SV ImGui_button(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::button" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==6)
 if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],int))
@@ -35841,7 +36009,7 @@ SV ImGui_label(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::label" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==6)
 if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],bool)&&TS(a[5],bool))
@@ -35858,7 +36026,7 @@ SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::verticalScrollBar" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==8)
 if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
@@ -35875,7 +36043,7 @@ SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::horizontalScrollBar" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==8)
 if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
@@ -35892,7 +36060,7 @@ SV ImGui_rectangle(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ImGui::rectangle" EAOE));
 ImGui*f;
-f=(ImGui*)((NO)a[0])->data;
+f=(ImGui*)((NO)a[0].p)->data;
 
 if(a.getCount()==11)
 if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],float)&&TS(a[6],float)&&TS(a[7],float)&&TS(a[8],float)&&TS(a[9],Float3)&&TS(a[10],Float4))
@@ -35904,9 +36072,10 @@ CATE(TE,UFOF("ImGui::rectangle.")));
 RET CN;
 }
 
-void StringList_destroy(CTX ctx,NO f)
+void StringList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<String>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<String>))
 CATE(TE,"StringList::__del__ expects StringList as first argument."));
 
 SCRIPT_DELETE((List<String>*)f->data);
@@ -35935,11 +36104,12 @@ RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 RET CN;
 }
 
-SV StringList_get_member(CTX ctx,NO f,SV key)
+SV StringList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -35995,11 +36165,12 @@ RET CNF(StringList_end);
 RET CN;
 }
 
-void StringList_set_member(CTX ctx,NO f,SV key,SV value)
+void StringList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -36015,7 +36186,7 @@ SV StringList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::insert" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],String))
@@ -36038,7 +36209,7 @@ SV StringList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::begin" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StringList::begin.")));
 RET CN;
@@ -36049,7 +36220,7 @@ SV StringList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::set" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],String))
@@ -36066,7 +36237,7 @@ SV StringList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::end" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StringList::end.")));
 RET CN;
@@ -36077,7 +36248,7 @@ SV StringList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::get" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -36094,7 +36265,7 @@ SV StringList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::clear" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36111,7 +36282,7 @@ SV StringList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::copy" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36128,7 +36299,7 @@ SV StringList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::remove" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -36145,7 +36316,7 @@ SV StringList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::in" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],String))
@@ -36162,7 +36333,7 @@ SV StringList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::getCount" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36179,7 +36350,7 @@ SV StringList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::getData" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StringList::getData.")));
 RET CN;
@@ -36190,7 +36361,7 @@ SV StringList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::__eq__" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<String> &))
@@ -36207,7 +36378,7 @@ SV StringList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::find" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],String))
@@ -36224,7 +36395,7 @@ SV StringList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::append" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],String))
@@ -36247,7 +36418,7 @@ SV StringList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"StringList::__neq__" EAOE));
 List<String>*f;
-f=(List<String>*)((NO)a[0])->data;
+f=(List<String>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<String> &))
@@ -36259,9 +36430,10 @@ CATE(TE,UFOF("StringList::__neq__.")));
 RET CN;
 }
 
-void Application_destroy(CTX ctx,NO f)
+void Application_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Application))
+NO f=(NO)f_.p;
+if(!TS(f_,Application))
 CATE(TE,"Application::__del__ expects Application as first argument."));
 
 SCRIPT_DELETE((Application*)f->data);
@@ -36280,11 +36452,12 @@ RET STG::createNativeObject(Application_funcs,p,EXT->Application_typeID);
 RET CN;
 }
 
-SV Application_get_member(CTX ctx,NO f,SV key)
+SV Application_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -36344,11 +36517,12 @@ RET CV(obj->running);
 RET CN;
 }
 
-void Application_set_member(CTX ctx,NO f,SV key,SV value)
+void Application_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -36372,7 +36546,7 @@ SV Application_getAudioDevice(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getAudioDevice" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36389,7 +36563,7 @@ SV Application_getGfxApi(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getGfxApi" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36406,7 +36580,7 @@ SV Application_getResourceManager(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getResourceManager" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36423,7 +36597,7 @@ SV Application_mainloop(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::mainloop" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36440,7 +36614,7 @@ SV Application_getFilesystem(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getFilesystem" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36457,7 +36631,7 @@ SV Application_getPlatform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getPlatform" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36474,7 +36648,7 @@ SV Application_getNextScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getNextScript" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Application::getNextScript.")));
 RET CN;
@@ -36485,7 +36659,7 @@ SV Application_getScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getScript" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Application::getScript.")));
 RET CN;
@@ -36496,7 +36670,7 @@ SV Application_getStats(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getStats" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36513,7 +36687,7 @@ SV Application_setNextScript(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::setNextScript" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Application::setNextScript.")));
 RET CN;
@@ -36524,7 +36698,7 @@ SV Application_getDebugDrawer(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getDebugDrawer" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36541,7 +36715,7 @@ SV Application_getScriptEngine(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getScriptEngine" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Application::getScriptEngine.")));
 RET CN;
@@ -36552,15 +36726,16 @@ SV Application_getFreeType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Application::getFreeType" EAOE));
 Application*f;
-f=(Application*)((NO)a[0])->data;
+f=(Application*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Application::getFreeType.")));
 RET CN;
 }
 
-void LightPointData_destroy(CTX ctx,NO f)
+void LightPointData_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,LightPointData))
+NO f=(NO)f_.p;
+if(!TS(f_,LightPointData))
 CATE(TE,"LightPointData::__del__ expects LightPointData as first argument."));
 
 SCRIPT_DELETE((LightPointData*)f->data);
@@ -36573,11 +36748,12 @@ CATE(TE,"LightPointData's constructor expects LightPointData as first argument."
 RET STG::createNativeObject(LightPointData_funcs,NEW(TYPE(LightPointData)),EXT->LightPointData_typeID);
 }
 
-SV LightPointData_get_member(CTX ctx,NO f,SV key)
+SV LightPointData_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -36615,11 +36791,12 @@ RET CV(obj->singlePassShadowMap);
 RET CN;
 }
 
-void LightPointData_set_member(CTX ctx,NO f,SV key,SV value)
+void LightPointData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -36642,9 +36819,10 @@ obj->singlePassShadowMap=val_to_c<decltype(obj->singlePassShadowMap)>::f(ctx,val
 }
 }
 
-void Float4_destroy(CTX ctx,NO f)
+void Float4_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T4<float>))
+NO f=(NO)f_.p;
+if(!TS(f_,T4<float>))
 CATE(TE,"Float4::__del__ expects Float4 as first argument."));
 
 SCRIPT_DELETE((T4<float>*)f->data);
@@ -36688,11 +36866,12 @@ RET STG::createNativeObject(Float4_funcs,p,EXT->Float4_typeID);
 RET CN;
 }
 
-SV Float4_get_member(CTX ctx,NO f,SV key)
+SV Float4_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -37008,11 +37187,12 @@ RET CV(obj->w);
 RET CN;
 }
 
-void Float4_set_member(CTX ctx,NO f,SV key,SV value)
+void Float4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -37044,7 +37224,7 @@ SV Float4_setZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37061,7 +37241,7 @@ SV Float4_setWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37078,7 +37258,7 @@ SV Float4_setWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37095,7 +37275,7 @@ SV Float4_getZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37112,7 +37292,7 @@ SV Float4_getZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37129,7 +37309,7 @@ SV Float4_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37146,7 +37326,7 @@ SV Float4_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::distanceSquared" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37163,7 +37343,7 @@ SV Float4_getYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37180,7 +37360,7 @@ SV Float4_setYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37197,7 +37377,7 @@ SV Float4_getYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37214,7 +37394,7 @@ SV Float4_getWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37231,7 +37411,7 @@ SV Float4_getZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37248,7 +37428,7 @@ SV Float4_setXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37265,7 +37445,7 @@ SV Float4_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -37282,7 +37462,7 @@ SV Float4_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -37299,7 +37479,7 @@ SV Float4_getZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37316,7 +37496,7 @@ SV Float4_getXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37333,7 +37513,7 @@ SV Float4_setZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -37350,7 +37530,7 @@ SV Float4_setZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37367,7 +37547,7 @@ SV Float4_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37384,7 +37564,7 @@ SV Float4_getXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37401,7 +37581,7 @@ SV Float4_setYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37418,7 +37598,7 @@ SV Float4_getWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37435,7 +37615,7 @@ SV Float4_getWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37452,7 +37632,7 @@ SV Float4_getWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37469,7 +37649,7 @@ SV Float4_setXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37486,7 +37666,7 @@ SV Float4_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37503,7 +37683,7 @@ SV Float4_setWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37520,7 +37700,7 @@ SV Float4_setZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37537,7 +37717,7 @@ SV Float4_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37554,7 +37734,7 @@ SV Float4_setXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37571,7 +37751,7 @@ SV Float4_getZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37588,7 +37768,7 @@ SV Float4_setYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37605,7 +37785,7 @@ SV Float4_getYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37622,7 +37802,7 @@ SV Float4___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__leq__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37639,7 +37819,7 @@ SV Float4_getYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37656,7 +37836,7 @@ SV Float4_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::sum" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37673,7 +37853,7 @@ SV Float4_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37690,7 +37870,7 @@ SV Float4_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37707,7 +37887,7 @@ SV Float4_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37724,7 +37904,7 @@ SV Float4_getXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37741,7 +37921,7 @@ SV Float4_setYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37758,7 +37938,7 @@ SV Float4_setWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37775,7 +37955,7 @@ SV Float4_setWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37792,7 +37972,7 @@ SV Float4_setZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37809,7 +37989,7 @@ SV Float4_getXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37826,7 +38006,7 @@ SV Float4_setWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37843,7 +38023,7 @@ SV Float4_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37860,7 +38040,7 @@ SV Float4_getXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37877,7 +38057,7 @@ SV Float4_getYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37894,7 +38074,7 @@ SV Float4_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37911,7 +38091,7 @@ SV Float4_setXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37928,7 +38108,7 @@ SV Float4_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::length" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37945,7 +38125,7 @@ SV Float4_setWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -37962,7 +38142,7 @@ SV Float4_getYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -37979,7 +38159,7 @@ SV Float4_setXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -37996,7 +38176,7 @@ SV Float4_setXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38013,7 +38193,7 @@ SV Float4_getWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38030,7 +38210,7 @@ SV Float4_getWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38047,7 +38227,7 @@ SV Float4_getZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38064,7 +38244,7 @@ SV Float4_getXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXYZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38081,7 +38261,7 @@ SV Float4_setZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38098,7 +38278,7 @@ SV Float4_setZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38115,7 +38295,7 @@ SV Float4_setWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -38132,7 +38312,7 @@ SV Float4_setWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -38149,7 +38329,7 @@ SV Float4_setWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -38166,7 +38346,7 @@ SV Float4_getZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38183,7 +38363,7 @@ SV Float4_getZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38200,7 +38380,7 @@ SV Float4_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38217,7 +38397,7 @@ SV Float4_setYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38234,7 +38414,7 @@ SV Float4_getXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38251,7 +38431,7 @@ SV Float4_getXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38268,7 +38448,7 @@ SV Float4___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__less__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38285,7 +38465,7 @@ SV Float4_getZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38302,7 +38482,7 @@ SV Float4_setWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38319,7 +38499,7 @@ SV Float4_setWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38336,7 +38516,7 @@ SV Float4_setZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZYXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38353,7 +38533,7 @@ SV Float4_getYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38370,7 +38550,7 @@ SV Float4_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38387,7 +38567,7 @@ SV Float4_getXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38404,7 +38584,7 @@ SV Float4_setYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYXWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38421,7 +38601,7 @@ SV Float4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__eq__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38438,7 +38618,7 @@ SV Float4_getWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38455,7 +38635,7 @@ SV Float4_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::distance" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38472,7 +38652,7 @@ SV Float4_getXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38489,7 +38669,7 @@ SV Float4_setYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38506,7 +38686,7 @@ SV Float4_getZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZWXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38523,7 +38703,7 @@ SV Float4_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38540,7 +38720,7 @@ SV Float4_getYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38557,7 +38737,7 @@ SV Float4_setZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38574,7 +38754,7 @@ SV Float4___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__sub__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38597,7 +38777,7 @@ SV Float4_getYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYXWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38614,7 +38794,7 @@ SV Float4_setXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38631,7 +38811,7 @@ SV Float4_setYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38648,7 +38828,7 @@ SV Float4_setYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38665,7 +38845,7 @@ SV Float4_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -38682,7 +38862,7 @@ SV Float4_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -38699,7 +38879,7 @@ SV Float4_setYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -38716,7 +38896,7 @@ SV Float4_getWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38733,7 +38913,7 @@ SV Float4___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__neq__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38750,7 +38930,7 @@ SV Float4_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::normalize" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38767,7 +38947,7 @@ SV Float4_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38784,7 +38964,7 @@ SV Float4_setXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38801,7 +38981,7 @@ SV Float4_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -38818,7 +38998,7 @@ SV Float4_setXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYZW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38835,7 +39015,7 @@ SV Float4_getYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38852,7 +39032,7 @@ SV Float4_setWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWXYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38869,7 +39049,7 @@ SV Float4_getYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYWXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38886,7 +39066,7 @@ SV Float4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__mul__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -38909,7 +39089,7 @@ SV Float4_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38926,7 +39106,7 @@ SV Float4_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::lengthSquared" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38943,7 +39123,7 @@ SV Float4_getWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38960,7 +39140,7 @@ SV Float4_getWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38977,7 +39157,7 @@ SV Float4_getWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -38994,7 +39174,7 @@ SV Float4_getWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39011,7 +39191,7 @@ SV Float4_getWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39028,7 +39208,7 @@ SV Float4_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -39045,7 +39225,7 @@ SV Float4_getZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getZXYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39062,7 +39242,7 @@ SV Float4___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__add__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39085,7 +39265,7 @@ SV Float4_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -39102,7 +39282,7 @@ SV Float4_getWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWYZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39119,7 +39299,7 @@ SV Float4_setXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
@@ -39136,7 +39316,7 @@ SV Float4_getWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getWXZY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39153,7 +39333,7 @@ SV Float4_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39170,7 +39350,7 @@ SV Float4_setZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZXWY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39187,7 +39367,7 @@ SV Float4_setXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -39204,7 +39384,7 @@ SV Float4_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39221,7 +39401,7 @@ SV Float4_setWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWZXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39238,7 +39418,7 @@ SV Float4___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__grtr__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39255,7 +39435,7 @@ SV Float4_setZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setZWXY" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39272,7 +39452,7 @@ SV Float4_getXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::getXW" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39289,7 +39469,7 @@ SV Float4_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setXYZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<float> &))
@@ -39306,7 +39486,7 @@ SV Float4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__div__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39329,7 +39509,7 @@ SV Float4_setWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setWYZX" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39346,7 +39526,7 @@ SV Float4_setYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::setYWXZ" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39363,7 +39543,7 @@ SV Float4___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::__geq__" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39380,7 +39560,7 @@ SV Float4_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Float4::dot" EAOE));
 T4<float>*f;
-f=(T4<float>*)((NO)a[0])->data;
+f=(T4<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<float> &))
@@ -39398,9 +39578,10 @@ CATE(TE,UFOF("Float4::dot.")));
 RET CN;
 }
 
-void FloatList_destroy(CTX ctx,NO f)
+void FloatList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<float>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<float>))
 CATE(TE,"FloatList::__del__ expects FloatList as first argument."));
 
 SCRIPT_DELETE((List<float>*)f->data);
@@ -39429,11 +39610,12 @@ RET STG::createNativeObject(FloatList_funcs,p,EXT->FloatList_typeID);
 RET CN;
 }
 
-SV FloatList_get_member(CTX ctx,NO f,SV key)
+SV FloatList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -39489,11 +39671,12 @@ RET CNF(FloatList_end);
 RET CN;
 }
 
-void FloatList_set_member(CTX ctx,NO f,SV key,SV value)
+void FloatList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -39509,7 +39692,7 @@ SV FloatList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::insert" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],float))
@@ -39532,7 +39715,7 @@ SV FloatList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::begin" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("FloatList::begin.")));
 RET CN;
@@ -39543,7 +39726,7 @@ SV FloatList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::set" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],float))
@@ -39560,7 +39743,7 @@ SV FloatList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::end" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("FloatList::end.")));
 RET CN;
@@ -39571,7 +39754,7 @@ SV FloatList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::get" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -39588,7 +39771,7 @@ SV FloatList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::clear" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39605,7 +39788,7 @@ SV FloatList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::copy" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39622,7 +39805,7 @@ SV FloatList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::remove" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -39639,7 +39822,7 @@ SV FloatList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::in" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -39656,7 +39839,7 @@ SV FloatList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::getCount" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -39673,7 +39856,7 @@ SV FloatList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::getData" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("FloatList::getData.")));
 RET CN;
@@ -39684,7 +39867,7 @@ SV FloatList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::__eq__" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<float> &))
@@ -39701,7 +39884,7 @@ SV FloatList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::find" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -39718,7 +39901,7 @@ SV FloatList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::append" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -39741,7 +39924,7 @@ SV FloatList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"FloatList::__neq__" EAOE));
 List<float>*f;
-f=(List<float>*)((NO)a[0])->data;
+f=(List<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<float> &))
@@ -39753,9 +39936,10 @@ CATE(TE,UFOF("FloatList::__neq__.")));
 RET CN;
 }
 
-void Container_destroy(CTX ctx,NO f)
+void Container_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Container))
+NO f=(NO)f_.p;
+if(!TS(f_,Container))
 CATE(TE,"Container::__del__ expects Container as first argument."));
 
 SCRIPT_DELETE((Container*)f->data);
@@ -39774,11 +39958,12 @@ RET STG::createNativeObject(Container_funcs,p,EXT->Container_typeID);
 RET CN;
 }
 
-SV Container_get_member(CTX ctx,NO f,SV key)
+SV Container_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -39812,11 +39997,12 @@ RET CV(obj->horizonal);
 RET CN;
 }
 
-void Container_set_member(CTX ctx,NO f,SV key,SV value)
+void Container_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -39835,9 +40021,10 @@ obj->horizonal=val_to_c<decltype(obj->horizonal)>::f(ctx,value);
 }
 }
 
-void LightDirectionalData_destroy(CTX ctx,NO f)
+void LightDirectionalData_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,LightDirectionalData))
+NO f=(NO)f_.p;
+if(!TS(f_,LightDirectionalData))
 CATE(TE,"LightDirectionalData::__del__ expects LightDirectionalData as first argument."));
 
 SCRIPT_DELETE((LightDirectionalData*)f->data);
@@ -39850,11 +40037,12 @@ CATE(TE,"LightDirectionalData's constructor expects LightDirectionalData as firs
 RET STG::createNativeObject(LightDirectionalData_funcs,NEW(TYPE(LightDirectionalData)),EXT->LightDirectionalData_typeID);
 }
 
-SV LightDirectionalData_get_member(CTX ctx,NO f,SV key)
+SV LightDirectionalData_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -39884,11 +40072,12 @@ RET CV(obj->direction);
 RET CN;
 }
 
-void LightDirectionalData_set_member(CTX ctx,NO f,SV key,SV value)
+void LightDirectionalData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -39903,9 +40092,10 @@ obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
 }
 }
 
-void Matrix4x4_destroy(CTX ctx,NO f)
+void Matrix4x4_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Matrix4x4))
+NO f=(NO)f_.p;
+if(!TS(f_,Matrix4x4))
 CATE(TE,"Matrix4x4::__del__ expects Matrix4x4 as first argument."));
 
 SCRIPT_DELETE((Matrix4x4*)f->data);
@@ -39934,11 +40124,12 @@ RET STG::createNativeObject(Matrix4x4_funcs,p,EXT->Matrix4x4_typeID);
 RET CN;
 }
 
-SV Matrix4x4_get_member(CTX ctx,NO f,SV key)
+SV Matrix4x4_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -40000,11 +40191,12 @@ RET CNF(Matrix4x4_lookAtDir);
 RET CN;
 }
 
-void Matrix4x4_set_member(CTX ctx,NO f,SV key,SV value)
+void Matrix4x4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -40020,7 +40212,7 @@ SV Matrix4x4_perspective(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::perspective" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float))
@@ -40037,7 +40229,7 @@ SV Matrix4x4_determinant(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::determinant" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40054,7 +40246,7 @@ SV Matrix4x4_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::set" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],float))
@@ -40071,7 +40263,7 @@ SV Matrix4x4_lookAtDir(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::lookAtDir" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Direction3D &)&&TS(a[3],const Direction3D &))
@@ -40088,7 +40280,7 @@ SV Matrix4x4_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::get" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
@@ -40105,7 +40297,7 @@ SV Matrix4x4_transpose(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::transpose" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40122,7 +40314,7 @@ SV Matrix4x4_rotatez(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotatez" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -40139,7 +40331,7 @@ SV Matrix4x4_rotatex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotatex" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -40156,7 +40348,7 @@ SV Matrix4x4_rotatey(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotatey" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -40173,7 +40365,7 @@ SV Matrix4x4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::__div__" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -40190,7 +40382,7 @@ SV Matrix4x4_inverse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::inverse" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40207,7 +40399,7 @@ SV Matrix4x4_lookAt(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::lookAt" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &)&&TS(a[3],const Direction3D &))
@@ -40224,7 +40416,7 @@ SV Matrix4x4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::__mul__" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Matrix4x4 &))
@@ -40253,7 +40445,7 @@ SV Matrix4x4_orthographic(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::orthographic" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==7)
 if(1&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)&&TS(a[5],float)&&TS(a[6],float))
@@ -40270,7 +40462,7 @@ SV Matrix4x4_translate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::translate" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -40287,7 +40479,7 @@ SV Matrix4x4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::__eq__" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Matrix4x4 &))
@@ -40304,7 +40496,7 @@ SV Matrix4x4_rotate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::rotate" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -40321,7 +40513,7 @@ SV Matrix4x4_scale(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix4x4::scale" EAOE));
 Matrix4x4*f;
-f=(Matrix4x4*)((NO)a[0])->data;
+f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -40333,26 +40525,28 @@ CATE(TE,UFOF("Matrix4x4::scale.")));
 RET CN;
 }
 
-void Map_destroy(CTX ctx,NO f)
+void Map_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,HashMap<scripting::Value*,scripting::Value*>))
+NO f=(NO)f_.p;
+if(!TS(f_,HashMap<scripting::Value,scripting::Value>))
 CATE(TE,"Map::__del__ expects Map as first argument."));
 
-SCRIPT_DELETE((HashMap<scripting::Value*,scripting::Value*>*)f->data);
+SCRIPT_DELETE((HashMap<scripting::Value,scripting::Value>*)f->data);
 }SV Map_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"Map's constructor" EAOE));
-if(!TS(a[0],HashMap<scripting::Value*,scripting::Value*>))
+if(!TS(a[0],HashMap<scripting::Value,scripting::Value>))
 CATE(TE,"Map's constructor expects Map as first argument."));
-RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value*,scripting::Value*>)),EXT->Map_typeID);
+RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value,scripting::Value>)),EXT->Map_typeID);
 }
 
-SV Map_get_member(CTX ctx,NO f,SV key)
+SV Map_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -40406,11 +40600,12 @@ RET CNF(Map_clear);
 RET CN;
 }
 
-void Map_set_member(CTX ctx,NO f,SV key,SV value)
+void Map_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -40425,8 +40620,8 @@ SV Map_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::begin" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::begin.")));
 RET CN;
@@ -40436,13 +40631,13 @@ SV Map_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::set" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],scripting::Value*)&&TS(a[2],scripting::Value*))
+if(1&&TS(a[1],scripting::Value)&&TS(a[2],scripting::Value))
 {
-RET CV( f->set(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[2])));
+RET CV( f->set(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[2])));
 ;
 }
 CATE(TE,UFOF("Map::set.")));
@@ -40453,8 +40648,8 @@ SV Map_end(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::end" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::end.")));
 RET CN;
@@ -40464,19 +40659,19 @@ SV Map_get(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::get" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-RET CV( f->get(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+RET CV( f->get(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 ;
 }
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-RET CV( f->get(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+RET CV( f->get(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Map::get.")));
@@ -40487,8 +40682,8 @@ SV Map_getValue(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::getValue" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -40504,8 +40699,8 @@ SV Map_clear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::clear" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40521,13 +40716,13 @@ SV Map_remove(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::remove" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-( f->remove(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+( f->remove(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Map::remove.")));
@@ -40538,8 +40733,8 @@ SV Map_getKey(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::getKey" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -40555,13 +40750,13 @@ SV Map_isEntry(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::isEntry" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-RET CV( f->isEntry(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+RET CV( f->isEntry(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Map::isEntry.")));
@@ -40572,8 +40767,8 @@ SV Map_getCount(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::getCount" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40589,8 +40784,8 @@ SV Map_removeEntry(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::removeEntry" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::removeEntry.")));
 RET CN;
@@ -40600,13 +40795,13 @@ SV Map___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::__eq__" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<scripting::Value*, scripting::Value*> &))
+if(1&&TS(a[1],const HashMap<scripting::Value, scripting::Value> &))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value*, scripting::Value*> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value, scripting::Value> &>::type>::f(ctx,a[1]);
 RET CV(*f == v);
 }
 CATE(TE,UFOF("Map::__eq__.")));
@@ -40617,8 +40812,8 @@ SV Map_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::find" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::find.")));
 RET CN;
@@ -40628,22 +40823,23 @@ SV Map___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::__neq__" EAOE));
-HashMap<scripting::Value*,scripting::Value*>*f;
-f=(HashMap<scripting::Value*,scripting::Value*>*)((NO)a[0])->data;
+HashMap<scripting::Value,scripting::Value>*f;
+f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<scripting::Value*, scripting::Value*> &))
+if(1&&TS(a[1],const HashMap<scripting::Value, scripting::Value> &))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value*, scripting::Value*> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value, scripting::Value> &>::type>::f(ctx,a[1]);
 RET CV(*f != v);
 }
 CATE(TE,UFOF("Map::__neq__.")));
 RET CN;
 }
 
-void ScriptInstanceList_destroy(CTX ctx,NO f)
+void ScriptInstanceList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<ScriptInstance*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<ScriptInstance*>))
 CATE(TE,"ScriptInstanceList::__del__ expects ScriptInstanceList as first argument."));
 
 SCRIPT_DELETE((List<ScriptInstance*>*)f->data);
@@ -40672,11 +40868,12 @@ RET STG::createNativeObject(ScriptInstanceList_funcs,p,EXT->ScriptInstanceList_t
 RET CN;
 }
 
-SV ScriptInstanceList_get_member(CTX ctx,NO f,SV key)
+SV ScriptInstanceList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -40732,11 +40929,12 @@ RET CNF(ScriptInstanceList_end);
 RET CN;
 }
 
-void ScriptInstanceList_set_member(CTX ctx,NO f,SV key,SV value)
+void ScriptInstanceList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -40752,7 +40950,7 @@ SV ScriptInstanceList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::insert" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],ScriptInstance*))
@@ -40775,7 +40973,7 @@ SV ScriptInstanceList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::begin" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ScriptInstanceList::begin.")));
 RET CN;
@@ -40786,7 +40984,7 @@ SV ScriptInstanceList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::set" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],ScriptInstance*))
@@ -40803,7 +41001,7 @@ SV ScriptInstanceList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::end" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ScriptInstanceList::end.")));
 RET CN;
@@ -40814,7 +41012,7 @@ SV ScriptInstanceList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::get" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -40831,7 +41029,7 @@ SV ScriptInstanceList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::clear" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40848,7 +41046,7 @@ SV ScriptInstanceList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::copy" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40865,7 +41063,7 @@ SV ScriptInstanceList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::remove" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -40882,7 +41080,7 @@ SV ScriptInstanceList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::in" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],ScriptInstance*))
@@ -40899,7 +41097,7 @@ SV ScriptInstanceList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::getCount" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -40916,7 +41114,7 @@ SV ScriptInstanceList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::getData" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("ScriptInstanceList::getData.")));
 RET CN;
@@ -40927,7 +41125,7 @@ SV ScriptInstanceList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::__eq__" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<ScriptInstance*> &))
@@ -40944,7 +41142,7 @@ SV ScriptInstanceList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::find" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],ScriptInstance*))
@@ -40961,7 +41159,7 @@ SV ScriptInstanceList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::append" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],ScriptInstance*))
@@ -40984,7 +41182,7 @@ SV ScriptInstanceList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"ScriptInstanceList::__neq__" EAOE));
 List<ScriptInstance*>*f;
-f=(List<ScriptInstance*>*)((NO)a[0])->data;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<ScriptInstance*> &))
@@ -40996,9 +41194,10 @@ CATE(TE,UFOF("ScriptInstanceList::__neq__.")));
 RET CN;
 }
 
-void UInt3_destroy(CTX ctx,NO f)
+void UInt3_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T3<uint32_t>))
+NO f=(NO)f_.p;
+if(!TS(f_,T3<uint32_t>))
 CATE(TE,"UInt3::__del__ expects UInt3 as first argument."));
 
 SCRIPT_DELETE((T3<uint32_t>*)f->data);
@@ -41042,11 +41241,12 @@ RET STG::createNativeObject(UInt3_funcs,p,EXT->UInt3_typeID);
 RET CN;
 }
 
-SV UInt3_get_member(CTX ctx,NO f,SV key)
+SV UInt3_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -41168,11 +41368,12 @@ RET CV(obj->z);
 RET CN;
 }
 
-void UInt3_set_member(CTX ctx,NO f,SV key,SV value)
+void UInt3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -41200,7 +41401,7 @@ SV UInt3_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYZX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41217,7 +41418,7 @@ SV UInt3_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZXY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41234,7 +41435,7 @@ SV UInt3_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -41251,7 +41452,7 @@ SV UInt3_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -41268,7 +41469,7 @@ SV UInt3_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZYX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41285,7 +41486,7 @@ SV UInt3_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41302,7 +41503,7 @@ SV UInt3_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::distanceSquared" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41319,7 +41520,7 @@ SV UInt3_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::normalize" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41336,7 +41537,7 @@ SV UInt3_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41353,7 +41554,7 @@ SV UInt3___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__leq__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41370,7 +41571,7 @@ SV UInt3_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXZY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41387,7 +41588,7 @@ SV UInt3_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::sum" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41404,7 +41605,7 @@ SV UInt3_cross(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::cross" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41421,7 +41622,7 @@ SV UInt3_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXYZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41438,7 +41639,7 @@ SV UInt3___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__less__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41455,7 +41656,7 @@ SV UInt3___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__neq__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41472,7 +41673,7 @@ SV UInt3_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41489,7 +41690,7 @@ SV UInt3_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::lengthSquared" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41506,7 +41707,7 @@ SV UInt3_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZYX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41523,7 +41724,7 @@ SV UInt3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__div__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41546,7 +41747,7 @@ SV UInt3_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -41563,7 +41764,7 @@ SV UInt3_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -41580,7 +41781,7 @@ SV UInt3_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -41597,7 +41798,7 @@ SV UInt3___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__add__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41620,7 +41821,7 @@ SV UInt3_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -41637,7 +41838,7 @@ SV UInt3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__eq__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41654,7 +41855,7 @@ SV UInt3_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setZXY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41671,7 +41872,7 @@ SV UInt3_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setYXZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41688,7 +41889,7 @@ SV UInt3_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41705,7 +41906,7 @@ SV UInt3_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::distance" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41722,7 +41923,7 @@ SV UInt3_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41739,7 +41940,7 @@ SV UInt3___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__grtr__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41756,7 +41957,7 @@ SV UInt3_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getXZY" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41773,7 +41974,7 @@ SV UInt3_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::setXYZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41790,7 +41991,7 @@ SV UInt3_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYZX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41807,7 +42008,7 @@ SV UInt3_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::length" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41824,7 +42025,7 @@ SV UInt3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__mul__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41847,7 +42048,7 @@ SV UInt3_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getYXZ" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41864,7 +42065,7 @@ SV UInt3_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::getZX" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41881,7 +42082,7 @@ SV UInt3___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__sub__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41904,7 +42105,7 @@ SV UInt3___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::__geq__" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41921,7 +42122,7 @@ SV UInt3_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt3::dot" EAOE));
 T3<uint32_t>*f;
-f=(T3<uint32_t>*)((NO)a[0])->data;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -41939,9 +42140,10 @@ CATE(TE,UFOF("UInt3::dot.")));
 RET CN;
 }
 
-void LightSpotData_destroy(CTX ctx,NO f)
+void LightSpotData_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,LightSpotData))
+NO f=(NO)f_.p;
+if(!TS(f_,LightSpotData))
 CATE(TE,"LightSpotData::__del__ expects LightSpotData as first argument."));
 
 SCRIPT_DELETE((LightSpotData*)f->data);
@@ -41954,11 +42156,12 @@ CATE(TE,"LightSpotData's constructor expects LightSpotData as first argument."))
 RET STG::createNativeObject(LightSpotData_funcs,NEW(TYPE(LightSpotData)),EXT->LightSpotData_typeID);
 }
 
-SV LightSpotData_get_member(CTX ctx,NO f,SV key)
+SV LightSpotData_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -42004,11 +42207,12 @@ RET CV(obj->radius);
 RET CN;
 }
 
-void LightSpotData_set_member(CTX ctx,NO f,SV key,SV value)
+void LightSpotData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -42039,9 +42243,10 @@ obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
 }
 }
 
-void PhysicsShape_destroy(CTX ctx,NO f)
+void PhysicsShape_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,PhysicsShape))
+NO f=(NO)f_.p;
+if(!TS(f_,PhysicsShape))
 CATE(TE,"PhysicsShape::__del__ expects PhysicsShape as first argument."));
 
 PhysicsShape*obj=(PhysicsShape*)f->data;
@@ -42066,11 +42271,12 @@ RET STG::createNativeObject(PhysicsShape_funcs,p,EXT->PhysicsShape_typeID);
 RET CN;
 }
 
-SV PhysicsShape_get_member(CTX ctx,NO f,SV key)
+SV PhysicsShape_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -42150,11 +42356,12 @@ RET CNF(PhysicsShape_setFilename);
 RET CN;
 }
 
-void PhysicsShape_set_member(CTX ctx,NO f,SV key,SV value)
+void PhysicsShape_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -42170,7 +42377,7 @@ SV PhysicsShape_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::load" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42187,7 +42394,7 @@ SV PhysicsShape_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setFilename" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -42204,7 +42411,7 @@ SV PhysicsShape_setScale(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setScale" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -42221,7 +42428,7 @@ SV PhysicsShape_setEmpty(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setEmpty" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42238,7 +42445,7 @@ SV PhysicsShape_getImpl(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getImpl" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::getImpl.")));
 RET CN;
@@ -42249,7 +42456,7 @@ SV PhysicsShape_setCompound(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setCompound" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::setCompound.")));
 RET CN;
@@ -42260,7 +42467,7 @@ SV PhysicsShape_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::save" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42283,7 +42490,7 @@ SV PhysicsShape_setPlane(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setPlane" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],const Vector3D &)&&TS(a[2],float))
@@ -42300,7 +42507,7 @@ SV PhysicsShape_setCapsule(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setCapsule" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],Axis)&&TS(a[2],float)&&TS(a[3],float))
@@ -42317,7 +42524,7 @@ SV PhysicsShape_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getFilename" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42334,7 +42541,7 @@ SV PhysicsShape_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getRefCount" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42351,7 +42558,7 @@ SV PhysicsShape_setBox(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setBox" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -42368,7 +42575,7 @@ SV PhysicsShape_setConvexHull(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setConvexHull" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::setConvexHull.")));
 RET CN;
@@ -42379,7 +42586,7 @@ SV PhysicsShape_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getType" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42396,7 +42603,7 @@ SV PhysicsShape_getMargin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getMargin" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42413,7 +42620,7 @@ SV PhysicsShape_setStaticTriangleMesh(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setStaticTriangleMesh" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::setStaticTriangleMesh.")));
 RET CN;
@@ -42424,7 +42631,7 @@ SV PhysicsShape_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::removeContent" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42447,7 +42654,7 @@ SV PhysicsShape_setMargin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setMargin" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -42464,7 +42671,7 @@ SV PhysicsShape_getScale(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getScale" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42481,7 +42688,7 @@ SV PhysicsShape_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::copy" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42498,7 +42705,7 @@ SV PhysicsShape_getBulletShape(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getBulletShape" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::getBulletShape.")));
 RET CN;
@@ -42509,7 +42716,7 @@ SV PhysicsShape_setCylinder(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setCylinder" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],Axis)&&TS(a[2],float)&&TS(a[3],float))
@@ -42526,7 +42733,7 @@ SV PhysicsShape_setCone(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setCone" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],Axis)&&TS(a[2],float)&&TS(a[3],float))
@@ -42543,7 +42750,7 @@ SV PhysicsShape_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::release" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42560,7 +42767,7 @@ SV PhysicsShape_setHeightfield(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setHeightfield" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::setHeightfield.")));
 RET CN;
@@ -42571,7 +42778,7 @@ SV PhysicsShape_setSphere(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::setSphere" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -42588,15 +42795,16 @@ SV PhysicsShape_getShapeType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"PhysicsShape::getShapeType" EAOE));
 PhysicsShape*f;
-f=(PhysicsShape*)((NO)a[0])->data;
+f=(PhysicsShape*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("PhysicsShape::getShapeType.")));
 RET CN;
 }
 
-void AudioDevice_destroy(CTX ctx,NO f)
+void AudioDevice_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,AudioDevice))
+NO f=(NO)f_.p;
+if(!TS(f_,AudioDevice))
 CATE(TE,"AudioDevice::__del__ expects AudioDevice as first argument."));
 
 SCRIPT_DELETE((AudioDevice*)f->data);
@@ -42615,11 +42823,12 @@ RET STG::createNativeObject(AudioDevice_funcs,p,EXT->AudioDevice_typeID);
 RET CN;
 }
 
-SV AudioDevice_get_member(CTX ctx,NO f,SV key)
+SV AudioDevice_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -42675,11 +42884,12 @@ RET CV(obj->volume);
 RET CN;
 }
 
-void AudioDevice_set_member(CTX ctx,NO f,SV key,SV value)
+void AudioDevice_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -42699,7 +42909,7 @@ SV AudioDevice_getIndex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getIndex" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42716,7 +42926,7 @@ SV AudioDevice_getFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getFrequency" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42733,7 +42943,7 @@ SV AudioDevice_pause(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::pause" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42750,7 +42960,7 @@ SV AudioDevice_runCallbacks(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::runCallbacks" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -42767,7 +42977,7 @@ SV AudioDevice_getName(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getName" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42790,7 +43000,7 @@ SV AudioDevice_getPaused(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getPaused" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42807,7 +43017,7 @@ SV AudioDevice_setIndex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::setIndex" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -42824,7 +43034,7 @@ SV AudioDevice_play(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::play" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42841,7 +43051,7 @@ SV AudioDevice_getSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getSamples" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42858,7 +43068,7 @@ SV AudioDevice_setFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::setFrequency" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -42875,7 +43085,7 @@ SV AudioDevice_getNumQueuedSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getNumQueuedSamples" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42892,7 +43102,7 @@ SV AudioDevice_getDeviceCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::getDeviceCount" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -42909,7 +43119,7 @@ SV AudioDevice_setSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AudioDevice::setSamples" EAOE));
 AudioDevice*f;
-f=(AudioDevice*)((NO)a[0])->data;
+f=(AudioDevice*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -42921,9 +43131,10 @@ CATE(TE,UFOF("AudioDevice::setSamples.")));
 RET CN;
 }
 
-void RigidBodyList_destroy(CTX ctx,NO f)
+void RigidBodyList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<RigidBody*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<RigidBody*>))
 CATE(TE,"RigidBodyList::__del__ expects RigidBodyList as first argument."));
 
 SCRIPT_DELETE((List<RigidBody*>*)f->data);
@@ -42952,11 +43163,12 @@ RET STG::createNativeObject(RigidBodyList_funcs,p,EXT->RigidBodyList_typeID);
 RET CN;
 }
 
-SV RigidBodyList_get_member(CTX ctx,NO f,SV key)
+SV RigidBodyList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -43012,11 +43224,12 @@ RET CNF(RigidBodyList_end);
 RET CN;
 }
 
-void RigidBodyList_set_member(CTX ctx,NO f,SV key,SV value)
+void RigidBodyList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -43032,7 +43245,7 @@ SV RigidBodyList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::insert" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],RigidBody*))
@@ -43055,7 +43268,7 @@ SV RigidBodyList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::begin" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RigidBodyList::begin.")));
 RET CN;
@@ -43066,7 +43279,7 @@ SV RigidBodyList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::set" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],RigidBody*))
@@ -43083,7 +43296,7 @@ SV RigidBodyList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::end" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RigidBodyList::end.")));
 RET CN;
@@ -43094,7 +43307,7 @@ SV RigidBodyList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::get" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -43111,7 +43324,7 @@ SV RigidBodyList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::clear" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43128,7 +43341,7 @@ SV RigidBodyList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::copy" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43145,7 +43358,7 @@ SV RigidBodyList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::remove" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -43162,7 +43375,7 @@ SV RigidBodyList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::in" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RigidBody*))
@@ -43179,7 +43392,7 @@ SV RigidBodyList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::getCount" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43196,7 +43409,7 @@ SV RigidBodyList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::getData" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("RigidBodyList::getData.")));
 RET CN;
@@ -43207,7 +43420,7 @@ SV RigidBodyList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::__eq__" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<RigidBody*> &))
@@ -43224,7 +43437,7 @@ SV RigidBodyList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::find" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RigidBody*))
@@ -43241,7 +43454,7 @@ SV RigidBodyList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::append" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],RigidBody*))
@@ -43264,7 +43477,7 @@ SV RigidBodyList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RigidBodyList::__neq__" EAOE));
 List<RigidBody*>*f;
-f=(List<RigidBody*>*)((NO)a[0])->data;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<RigidBody*> &))
@@ -43276,9 +43489,10 @@ CATE(TE,UFOF("RigidBodyList::__neq__.")));
 RET CN;
 }
 
-void UInt4_destroy(CTX ctx,NO f)
+void UInt4_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,T4<uint32_t>))
+NO f=(NO)f_.p;
+if(!TS(f_,T4<uint32_t>))
 CATE(TE,"UInt4::__del__ expects UInt4 as first argument."));
 
 SCRIPT_DELETE((T4<uint32_t>*)f->data);
@@ -43322,11 +43536,12 @@ RET STG::createNativeObject(UInt4_funcs,p,EXT->UInt4_typeID);
 RET CN;
 }
 
-SV UInt4_get_member(CTX ctx,NO f,SV key)
+SV UInt4_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -43642,11 +43857,12 @@ RET CV(obj->w);
 RET CN;
 }
 
-void UInt4_set_member(CTX ctx,NO f,SV key,SV value)
+void UInt4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -43678,7 +43894,7 @@ SV UInt4_setZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -43695,7 +43911,7 @@ SV UInt4_setWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -43712,7 +43928,7 @@ SV UInt4_setWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -43729,7 +43945,7 @@ SV UInt4_getZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43746,7 +43962,7 @@ SV UInt4_getZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43763,7 +43979,7 @@ SV UInt4_getZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43780,7 +43996,7 @@ SV UInt4_distanceSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::distanceSquared" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -43797,7 +44013,7 @@ SV UInt4_getYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43814,7 +44030,7 @@ SV UInt4_setYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -43831,7 +44047,7 @@ SV UInt4_getYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43848,7 +44064,7 @@ SV UInt4_getWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43865,7 +44081,7 @@ SV UInt4_getZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43882,7 +44098,7 @@ SV UInt4_setXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -43899,7 +44115,7 @@ SV UInt4_setZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -43916,7 +44132,7 @@ SV UInt4_setZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -43933,7 +44149,7 @@ SV UInt4_getZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43950,7 +44166,7 @@ SV UInt4_getXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -43967,7 +44183,7 @@ SV UInt4_setZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -43984,7 +44200,7 @@ SV UInt4_setZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44001,7 +44217,7 @@ SV UInt4_getYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44018,7 +44234,7 @@ SV UInt4_getXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44035,7 +44251,7 @@ SV UInt4_setYXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44052,7 +44268,7 @@ SV UInt4_getWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44069,7 +44285,7 @@ SV UInt4_getWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44086,7 +44302,7 @@ SV UInt4_getWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44103,7 +44319,7 @@ SV UInt4_setXWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44120,7 +44336,7 @@ SV UInt4_getZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44137,7 +44353,7 @@ SV UInt4_setWZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44154,7 +44370,7 @@ SV UInt4_setZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44171,7 +44387,7 @@ SV UInt4_setZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44188,7 +44404,7 @@ SV UInt4_setXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44205,7 +44421,7 @@ SV UInt4_getZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44222,7 +44438,7 @@ SV UInt4_setYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44239,7 +44455,7 @@ SV UInt4_getYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44256,7 +44472,7 @@ SV UInt4___leq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__leq__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44273,7 +44489,7 @@ SV UInt4_getYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44290,7 +44506,7 @@ SV UInt4_sum(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::sum" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44307,7 +44523,7 @@ SV UInt4_setYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44324,7 +44540,7 @@ SV UInt4_getXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44341,7 +44557,7 @@ SV UInt4_getZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44358,7 +44574,7 @@ SV UInt4_getXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44375,7 +44591,7 @@ SV UInt4_setYWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44392,7 +44608,7 @@ SV UInt4_setWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44409,7 +44625,7 @@ SV UInt4_setWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44426,7 +44642,7 @@ SV UInt4_setZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44443,7 +44659,7 @@ SV UInt4_getXWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44460,7 +44676,7 @@ SV UInt4_setWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44477,7 +44693,7 @@ SV UInt4_setZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44494,7 +44710,7 @@ SV UInt4_getXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44511,7 +44727,7 @@ SV UInt4_getYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44528,7 +44744,7 @@ SV UInt4_getYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44545,7 +44761,7 @@ SV UInt4_setXYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44562,7 +44778,7 @@ SV UInt4_length(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::length" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44579,7 +44795,7 @@ SV UInt4_setWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44596,7 +44812,7 @@ SV UInt4_getYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44613,7 +44829,7 @@ SV UInt4_setXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44630,7 +44846,7 @@ SV UInt4_setXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44647,7 +44863,7 @@ SV UInt4_getWYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44664,7 +44880,7 @@ SV UInt4_getWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44681,7 +44897,7 @@ SV UInt4_getZYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44698,7 +44914,7 @@ SV UInt4_getXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXYZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44715,7 +44931,7 @@ SV UInt4_setZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44732,7 +44948,7 @@ SV UInt4_setZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44749,7 +44965,7 @@ SV UInt4_setWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -44766,7 +44982,7 @@ SV UInt4_setWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -44783,7 +44999,7 @@ SV UInt4_setWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -44800,7 +45016,7 @@ SV UInt4_getZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44817,7 +45033,7 @@ SV UInt4_getZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44834,7 +45050,7 @@ SV UInt4_setYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44851,7 +45067,7 @@ SV UInt4_setYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44868,7 +45084,7 @@ SV UInt4_getXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44885,7 +45101,7 @@ SV UInt4_getXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44902,7 +45118,7 @@ SV UInt4___less__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__less__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44919,7 +45135,7 @@ SV UInt4_getZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -44936,7 +45152,7 @@ SV UInt4_setWZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44953,7 +45169,7 @@ SV UInt4_setWZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -44970,7 +45186,7 @@ SV UInt4_setZYXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZYXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -44987,7 +45203,7 @@ SV UInt4_getYZWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45004,7 +45220,7 @@ SV UInt4_getZYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45021,7 +45237,7 @@ SV UInt4_getXZYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45038,7 +45254,7 @@ SV UInt4_setYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYXWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45055,7 +45271,7 @@ SV UInt4___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__eq__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45072,7 +45288,7 @@ SV UInt4_getWYXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45089,7 +45305,7 @@ SV UInt4_distance(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::distance" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45106,7 +45322,7 @@ SV UInt4_getXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45123,7 +45339,7 @@ SV UInt4_setYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45140,7 +45356,7 @@ SV UInt4_getZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZWXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45157,7 +45373,7 @@ SV UInt4_getXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45174,7 +45390,7 @@ SV UInt4_getYZXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45191,7 +45407,7 @@ SV UInt4_setZWYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45208,7 +45424,7 @@ SV UInt4___sub__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__sub__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45231,7 +45447,7 @@ SV UInt4_getYXWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYXWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45248,7 +45464,7 @@ SV UInt4_setXZWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45265,7 +45481,7 @@ SV UInt4_setYWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -45282,7 +45498,7 @@ SV UInt4_setYWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -45299,7 +45515,7 @@ SV UInt4_setYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -45316,7 +45532,7 @@ SV UInt4_setYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -45333,7 +45549,7 @@ SV UInt4_setYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -45350,7 +45566,7 @@ SV UInt4_getWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45367,7 +45583,7 @@ SV UInt4___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__neq__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45384,7 +45600,7 @@ SV UInt4_normalize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::normalize" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45401,7 +45617,7 @@ SV UInt4_getYX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45418,7 +45634,7 @@ SV UInt4_setXZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -45435,7 +45651,7 @@ SV UInt4_setXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -45452,7 +45668,7 @@ SV UInt4_setXYZW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYZW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45469,7 +45685,7 @@ SV UInt4_getYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45486,7 +45702,7 @@ SV UInt4_setWXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWXYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45503,7 +45719,7 @@ SV UInt4_getYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYWXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45520,7 +45736,7 @@ SV UInt4___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__mul__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45543,7 +45759,7 @@ SV UInt4_getYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45560,7 +45776,7 @@ SV UInt4_lengthSquared(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::lengthSquared" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45577,7 +45793,7 @@ SV UInt4_getWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45594,7 +45810,7 @@ SV UInt4_getWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45611,7 +45827,7 @@ SV UInt4_getWX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45628,7 +45844,7 @@ SV UInt4_getWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45645,7 +45861,7 @@ SV UInt4_getWZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45662,7 +45878,7 @@ SV UInt4_setXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -45679,7 +45895,7 @@ SV UInt4_getZXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getZXYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45696,7 +45912,7 @@ SV UInt4___add__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__add__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45719,7 +45935,7 @@ SV UInt4_setXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -45736,7 +45952,7 @@ SV UInt4_getWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWYZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45753,7 +45969,7 @@ SV UInt4_setXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
@@ -45770,7 +45986,7 @@ SV UInt4_getWXZY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getWXZY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45787,7 +46003,7 @@ SV UInt4_getXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45804,7 +46020,7 @@ SV UInt4_setZXWY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZXWY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45821,7 +46037,7 @@ SV UInt4_setXYW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -45838,7 +46054,7 @@ SV UInt4_getXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45855,7 +46071,7 @@ SV UInt4_setWZXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWZXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45872,7 +46088,7 @@ SV UInt4___grtr__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__grtr__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45889,7 +46105,7 @@ SV UInt4_setZWXY(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setZWXY" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45906,7 +46122,7 @@ SV UInt4_getXW(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::getXW" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -45923,7 +46139,7 @@ SV UInt4_setXYZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setXYZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T3<uint32_t> &))
@@ -45940,7 +46156,7 @@ SV UInt4___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__div__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45963,7 +46179,7 @@ SV UInt4_setWYZX(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setWYZX" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45980,7 +46196,7 @@ SV UInt4_setYWXZ(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::setYWXZ" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -45997,7 +46213,7 @@ SV UInt4___geq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::__geq__" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -46014,7 +46230,7 @@ SV UInt4_dot(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"UInt4::dot" EAOE));
 T4<uint32_t>*f;
-f=(T4<uint32_t>*)((NO)a[0])->data;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const T4<uint32_t> &))
@@ -46032,9 +46248,10 @@ CATE(TE,UFOF("UInt4::dot.")));
 RET CN;
 }
 
-void RayCastResult_destroy(CTX ctx,NO f)
+void RayCastResult_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,RayCastResult))
+NO f=(NO)f_.p;
+if(!TS(f_,RayCastResult))
 CATE(TE,"RayCastResult::__del__ expects RayCastResult as first argument."));
 
 SCRIPT_DELETE((RayCastResult*)f->data);
@@ -46053,11 +46270,12 @@ RET STG::createNativeObject(RayCastResult_funcs,p,EXT->RayCastResult_typeID);
 RET CN;
 }
 
-SV RayCastResult_get_member(CTX ctx,NO f,SV key)
+SV RayCastResult_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -46101,11 +46319,12 @@ RET CV(obj->objType);
 RET CN;
 }
 
-void RayCastResult_set_member(CTX ctx,NO f,SV key,SV value)
+void RayCastResult_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -46133,7 +46352,7 @@ SV RayCastResult_getRigidBody(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResult::getRigidBody" EAOE));
 RayCastResult*f;
-f=(RayCastResult*)((NO)a[0])->data;
+f=(RayCastResult*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46150,7 +46369,7 @@ SV RayCastResult___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResult::__eq__" EAOE));
 RayCastResult*f;
-f=(RayCastResult*)((NO)a[0])->data;
+f=(RayCastResult*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const RayCastResult &))
@@ -46167,7 +46386,7 @@ SV RayCastResult_getGhost(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"RayCastResult::getGhost" EAOE));
 RayCastResult*f;
-f=(RayCastResult*)((NO)a[0])->data;
+f=(RayCastResult*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46179,9 +46398,10 @@ CATE(TE,UFOF("RayCastResult::getGhost.")));
 RET CN;
 }
 
-void GfxLOD_destroy(CTX ctx,NO f)
+void GfxLOD_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxLOD))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxLOD))
 CATE(TE,"GfxLOD::__del__ expects GfxLOD as first argument."));
 
 SCRIPT_DELETE((GfxLOD*)f->data);
@@ -46200,11 +46420,12 @@ RET STG::createNativeObject(GfxLOD_funcs,p,EXT->GfxLOD_typeID);
 RET CN;
 }
 
-SV GfxLOD_get_member(CTX ctx,NO f,SV key)
+SV GfxLOD_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -46244,11 +46465,12 @@ RET CV(obj->worldMatrix);
 RET CN;
 }
 
-void GfxLOD_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxLOD_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -46276,7 +46498,7 @@ SV GfxLOD___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLOD::__eq__" EAOE));
 GfxLOD*f;
-f=(GfxLOD*)((NO)a[0])->data;
+f=(GfxLOD*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const GfxLOD &))
@@ -46288,9 +46510,10 @@ CATE(TE,UFOF("GfxLOD::__eq__.")));
 RET CN;
 }
 
-void File_destroy(CTX ctx,NO f)
+void File_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,File))
+NO f=(NO)f_.p;
+if(!TS(f_,File))
 CATE(TE,"File::__del__ expects File as first argument."));
 
 SCRIPT_DELETE((File*)f->data);
@@ -46309,11 +46532,12 @@ RET STG::createNativeObject(File_funcs,p,EXT->File_typeID);
 RET CN;
 }
 
-SV File_get_member(CTX ctx,NO f,SV key)
+SV File_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -46421,11 +46645,12 @@ RET CNF(File_writeChar);
 RET CN;
 }
 
-void File_set_member(CTX ctx,NO f,SV key,SV value)
+void File_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -46441,7 +46666,7 @@ SV File_readFloat32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readFloat32" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46458,7 +46683,7 @@ SV File_printf(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::printf" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("File::printf.")));
 RET CN;
@@ -46469,7 +46694,7 @@ SV File_readUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt8" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46486,7 +46711,7 @@ SV File_getSize(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::getSize" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46503,7 +46728,7 @@ SV File_readInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt32LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46520,7 +46745,7 @@ SV File_flush(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::flush" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46537,7 +46762,7 @@ SV File_writeChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeChar" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],char))
@@ -46554,7 +46779,7 @@ SV File_seek(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::seek" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],long)&&TS(a[2],FileOrigin))
@@ -46571,7 +46796,7 @@ SV File_readInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt8" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46588,7 +46813,7 @@ SV File_readInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt32BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46605,7 +46830,7 @@ SV File_writeInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt32BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int32_t))
@@ -46622,7 +46847,7 @@ SV File_readInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt64LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46639,7 +46864,7 @@ SV File_writeUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt32BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint32_t))
@@ -46656,7 +46881,7 @@ SV File_writeUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt64LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint64_t))
@@ -46673,7 +46898,7 @@ SV File_write(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::write" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const ResizableData &))
@@ -46690,7 +46915,7 @@ SV File_writeFloat32(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeFloat32" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -46707,7 +46932,7 @@ SV File_writeInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt64BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int64_t))
@@ -46724,7 +46949,7 @@ SV File_readUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt32LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46741,7 +46966,7 @@ SV File_tell(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::tell" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46758,7 +46983,7 @@ SV File_writeUInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt32LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint32_t))
@@ -46775,7 +47000,7 @@ SV File_vprintf(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::vprintf" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("File::vprintf.")));
 RET CN;
@@ -46786,7 +47011,7 @@ SV File_writeUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt64BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint64_t))
@@ -46803,7 +47028,7 @@ SV File_read(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::read" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -46820,7 +47045,7 @@ SV File_readInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt64BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46837,7 +47062,7 @@ SV File_writeInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt16LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int16_t))
@@ -46854,7 +47079,7 @@ SV File_isAtEndOfFile(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::isAtEndOfFile" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46871,7 +47096,7 @@ SV File_writeInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt64LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int64_t))
@@ -46888,7 +47113,7 @@ SV File_readUInt32BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt32BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46905,7 +47130,7 @@ SV File_readChar(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readChar" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46922,7 +47147,7 @@ SV File_readUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt16BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46939,7 +47164,7 @@ SV File_writeInt32LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt32LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int32_t))
@@ -46956,7 +47181,7 @@ SV File_readUInt64LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt64LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -46973,7 +47198,7 @@ SV File_writeUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt16LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint16_t))
@@ -46990,7 +47215,7 @@ SV File_writeInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt8" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int8_t))
@@ -47007,7 +47232,7 @@ SV File_readInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt16BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47024,7 +47249,7 @@ SV File_writeUInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt16BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint16_t))
@@ -47041,7 +47266,7 @@ SV File_writeUInt8(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeUInt8" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],uint8_t))
@@ -47058,7 +47283,7 @@ SV File_readInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readInt16LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47075,7 +47300,7 @@ SV File_readUInt16LE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt16LE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47092,7 +47317,7 @@ SV File_readUInt64BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::readUInt64BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47109,7 +47334,7 @@ SV File_writeInt16BE(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"File::writeInt16BE" EAOE));
 File*f;
-f=(File*)((NO)a[0])->data;
+f=(File*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],int16_t))
@@ -47121,9 +47346,10 @@ CATE(TE,UFOF("File::writeInt16BE.")));
 RET CN;
 }
 
-void AABB_destroy(CTX ctx,NO f)
+void AABB_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,AABB))
+NO f=(NO)f_.p;
+if(!TS(f_,AABB))
 CATE(TE,"AABB::__del__ expects AABB as first argument."));
 
 SCRIPT_DELETE((AABB*)f->data);
@@ -47147,11 +47373,12 @@ RET STG::createNativeObject(AABB_funcs,p,EXT->AABB_typeID);
 RET CN;
 }
 
-SV AABB_get_member(CTX ctx,NO f,SV key)
+SV AABB_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -47195,11 +47422,12 @@ RET CV(obj->max);
 RET CN;
 }
 
-void AABB_set_member(CTX ctx,NO f,SV key,SV value)
+void AABB_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -47223,7 +47451,7 @@ SV AABB_getCorner(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::getCorner" EAOE));
 AABB*f;
-f=(AABB*)((NO)a[0])->data;
+f=(AABB*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -47240,7 +47468,7 @@ SV AABB_intersection(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::intersection" EAOE));
 AABB*f;
-f=(AABB*)((NO)a[0])->data;
+f=(AABB*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const AABB &))
@@ -47257,7 +47485,7 @@ SV AABB_transform(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::transform" EAOE));
 AABB*f;
-f=(AABB*)((NO)a[0])->data;
+f=(AABB*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Matrix4x4 &))
@@ -47274,7 +47502,7 @@ SV AABB_extend(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::extend" EAOE));
 AABB*f;
-f=(AABB*)((NO)a[0])->data;
+f=(AABB*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Position3D &))
@@ -47297,7 +47525,7 @@ SV AABB_grow(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"AABB::grow" EAOE));
 AABB*f;
-f=(AABB*)((NO)a[0])->data;
+f=(AABB*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Vector3D &))
@@ -47309,9 +47537,10 @@ CATE(TE,UFOF("AABB::grow.")));
 RET CN;
 }
 
-void RigidBodyConstructionInfo_destroy(CTX ctx,NO f)
+void RigidBodyConstructionInfo_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,RigidBodyConstructionInfo))
+NO f=(NO)f_.p;
+if(!TS(f_,RigidBodyConstructionInfo))
 CATE(TE,"RigidBodyConstructionInfo::__del__ expects RigidBodyConstructionInfo as first argument."));
 
 SCRIPT_DELETE((RigidBodyConstructionInfo*)f->data);
@@ -47330,11 +47559,12 @@ RET STG::createNativeObject(RigidBodyConstructionInfo_funcs,p,EXT->RigidBodyCons
 RET CN;
 }
 
-SV RigidBodyConstructionInfo_get_member(CTX ctx,NO f,SV key)
+SV RigidBodyConstructionInfo_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -47404,11 +47634,12 @@ RET CV(obj->collisionMask);
 RET CN;
 }
 
-void RigidBodyConstructionInfo_set_member(CTX ctx,NO f,SV key,SV value)
+void RigidBodyConstructionInfo_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -47463,42 +47694,44 @@ obj->collisionMask=val_to_c<decltype(obj->collisionMask)>::f(ctx,value);
 }
 }
 
-void List_destroy(CTX ctx,NO f)
+void List_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<scripting::Value*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<scripting::Value>))
 CATE(TE,"List::__del__ expects List as first argument."));
 
-SCRIPT_DELETE((List<scripting::Value*>*)f->data);
+SCRIPT_DELETE((List<scripting::Value>*)f->data);
 }SV List_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List's constructor" EAOE));
-if(!TS(a[0],List<scripting::Value*>))
+if(!TS(a[0],List<scripting::Value>))
 CATE(TE,"List's constructor expects List as first argument."));
 if(a.getCount()==1)
 if(true){
-void *p = (void *)NEW(TYPE(List<scripting::Value*>));
+void *p = (void *)NEW(TYPE(List<scripting::Value>));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }if(a.getCount()==2)
 if(true&&TS(a[1],std::size_t)){
-void *p = (void *)NEW(TYPE(List<scripting::Value*>),val_to_c<std::size_t>::f(ctx,a[1]));
+void *p = (void *)NEW(TYPE(List<scripting::Value>),val_to_c<std::size_t>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const List<scripting::Value*> &)){
-void *p = (void *)NEW(TYPE(List<scripting::Value*>),val_to_c<const List<scripting::Value*> &>::f(ctx,a[1]));
+if(true&&TS(a[1],const List<scripting::Value> &)){
+void *p = (void *)NEW(TYPE(List<scripting::Value>),val_to_c<const List<scripting::Value> &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }CATE(TE,UFOF("List's constructor.")));
 RET CN;
 }
 
-SV List_get_member(CTX ctx,NO f,SV key)
+SV List_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -47554,11 +47787,12 @@ RET CNF(List_end);
 RET CN;
 }
 
-void List_set_member(CTX ctx,NO f,SV key,SV value)
+void List_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -47573,19 +47807,19 @@ SV List_insert(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::insert" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],scripting::Value*))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],scripting::Value))
 {
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[2])));
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[2])));
 RET CN;
 }
 if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<scripting::Value*> &))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<scripting::Value> &))
 {
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<scripting::Value*> &>::type>::f(ctx,a[2])));
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("List::insert.")));
@@ -47596,8 +47830,8 @@ SV List_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::begin" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("List::begin.")));
 RET CN;
@@ -47607,13 +47841,13 @@ SV List_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::set" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],scripting::Value*))
+if(1&&TS(a[1],size_t)&&TS(a[2],scripting::Value))
 {
-( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[2])));
+( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("List::set.")));
@@ -47624,8 +47858,8 @@ SV List_end(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::end" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("List::end.")));
 RET CN;
@@ -47635,8 +47869,8 @@ SV List_get(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::get" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -47652,8 +47886,8 @@ SV List_clear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::clear" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47669,8 +47903,8 @@ SV List_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::copy" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47686,8 +47920,8 @@ SV List_remove(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::remove" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -47703,13 +47937,13 @@ SV List_in(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::in" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-RET CV( f->in(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+RET CV( f->in(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("List::in.")));
@@ -47720,8 +47954,8 @@ SV List_getCount(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::getCount" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -47737,8 +47971,8 @@ SV List_getData(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::getData" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("List::getData.")));
 RET CN;
@@ -47748,13 +47982,13 @@ SV List___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::__eq__" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<scripting::Value*> &))
+if(1&&TS(a[1],const List<scripting::Value> &))
 {
-auto v=val_to_c<std::remove_reference<const List<scripting::Value*> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[1]);
 RET CV(*f == v);
 }
 CATE(TE,UFOF("List::__eq__.")));
@@ -47765,13 +47999,13 @@ SV List_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::find" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-RET CV( f->find(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+RET CV( f->find(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("List::find.")));
@@ -47782,19 +48016,19 @@ SV List_append(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::append" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value*))
+if(1&&TS(a[1],scripting::Value))
 {
-( f->append(val_to_c<std::remove_reference<scripting::Value*>::type>::f(ctx,a[1])));
+( f->append(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
 RET CN;
 }
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<scripting::Value*> &))
+if(1&&TS(a[1],const List<scripting::Value> &))
 {
-( f->append(val_to_c<std::remove_reference<const List<scripting::Value*> &>::type>::f(ctx,a[1])));
+( f->append(val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("List::append.")));
@@ -47805,22 +48039,23 @@ SV List___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::__neq__" EAOE));
-List<scripting::Value*>*f;
-f=(List<scripting::Value*>*)((NO)a[0])->data;
+List<scripting::Value>*f;
+f=(List<scripting::Value>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<scripting::Value*> &))
+if(1&&TS(a[1],const List<scripting::Value> &))
 {
-auto v=val_to_c<std::remove_reference<const List<scripting::Value*> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[1]);
 RET CV(*f != v);
 }
 CATE(TE,UFOF("List::__neq__.")));
 RET CN;
 }
 
-void Audio_destroy(CTX ctx,NO f)
+void Audio_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Audio))
+NO f=(NO)f_.p;
+if(!TS(f_,Audio))
 CATE(TE,"Audio::__del__ expects Audio as first argument."));
 
 Audio*obj=(Audio*)f->data;
@@ -47845,11 +48080,12 @@ RET STG::createNativeObject(Audio_funcs,p,EXT->Audio_typeID);
 RET CN;
 }
 
-SV Audio_get_member(CTX ctx,NO f,SV key)
+SV Audio_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -47917,11 +48153,12 @@ RET CV(obj->data);
 RET CN;
 }
 
-void Audio_set_member(CTX ctx,NO f,SV key,SV value)
+void Audio_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -47945,7 +48182,7 @@ SV Audio_getSampleIndex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getSampleIndex" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -47968,7 +48205,7 @@ SV Audio_changeSampleFrequency(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::changeSampleFrequency" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t))
@@ -47985,7 +48222,7 @@ SV Audio_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::save" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48002,7 +48239,7 @@ SV Audio_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::setFilename" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -48019,7 +48256,7 @@ SV Audio_setMonoSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::setMonoSample" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],float))
@@ -48036,7 +48273,7 @@ SV Audio_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getType" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48053,7 +48290,7 @@ SV Audio_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::load" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48070,7 +48307,7 @@ SV Audio_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::copy" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48087,7 +48324,7 @@ SV Audio_getMonoSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getMonoSample" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -48104,7 +48341,7 @@ SV Audio_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::release" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48121,7 +48358,7 @@ SV Audio_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::removeContent" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48144,7 +48381,7 @@ SV Audio_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getRefCount" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48161,7 +48398,7 @@ SV Audio_getDuration(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getDuration" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48178,7 +48415,7 @@ SV Audio_getNumSamples(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getNumSamples" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48195,7 +48432,7 @@ SV Audio_getSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getSample" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
@@ -48212,7 +48449,7 @@ SV Audio_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::getFilename" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48229,7 +48466,7 @@ SV Audio_setSample(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Audio::setSample" EAOE));
 Audio*f;
-f=(Audio*)((NO)a[0])->data;
+f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],float))
@@ -48241,9 +48478,10 @@ CATE(TE,UFOF("Audio::setSample.")));
 RET CN;
 }
 
-void GfxTexture_destroy(CTX ctx,NO f)
+void GfxTexture_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxTexture))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxTexture))
 CATE(TE,"GfxTexture::__del__ expects GfxTexture as first argument."));
 
 GfxTexture*obj=(GfxTexture*)f->data;
@@ -48268,11 +48506,12 @@ RET STG::createNativeObject(GfxTexture_funcs,p,EXT->GfxTexture_typeID);
 RET CN;
 }
 
-SV GfxTexture_get_member(CTX ctx,NO f,SV key)
+SV GfxTexture_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -48366,11 +48605,12 @@ RET CNF(GfxTexture_setFilename);
 RET CN;
 }
 
-void GfxTexture_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxTexture_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -48386,7 +48626,7 @@ SV GfxTexture_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::load" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48403,7 +48643,7 @@ SV GfxTexture_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getFilename" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48420,7 +48660,7 @@ SV GfxTexture_setShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setShadowmap" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],bool))
@@ -48437,7 +48677,7 @@ SV GfxTexture_setMinFilter(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setMinFilter" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxFilter))
@@ -48454,7 +48694,7 @@ SV GfxTexture_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::copy" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48471,7 +48711,7 @@ SV GfxTexture_allocMipmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::allocMipmap" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],unsigned int)&&TS(a[2],unsigned int)&&TS(a[3],GfxFace)&&TS(a[4],const ResizableData &))
@@ -48494,7 +48734,7 @@ SV GfxTexture_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getRefCount" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48511,7 +48751,7 @@ SV GfxTexture_getBaseDepth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getBaseDepth" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48528,7 +48768,7 @@ SV GfxTexture_startCreation(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::startCreation" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==6)
 if(1&&TS(a[1],GfxTextureType)&&TS(a[2],unsigned int)&&TS(a[3],unsigned int)&&TS(a[4],unsigned int)&&TS(a[5],GfxTexFormat))
@@ -48545,7 +48785,7 @@ SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getBaseWidth" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48562,7 +48802,7 @@ SV GfxTexture_generateMipmaps(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::generateMipmaps" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48579,7 +48819,7 @@ SV GfxTexture_getMipmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getMipmap" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxTexture::getMipmap.")));
 RET CN;
@@ -48590,7 +48830,7 @@ SV GfxTexture_getShadowmap(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getShadowmap" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48607,7 +48847,7 @@ SV GfxTexture_getImpl(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getImpl" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxTexture::getImpl.")));
 RET CN;
@@ -48618,7 +48858,7 @@ SV GfxTexture_getMinFilter(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getMinFilter" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48635,7 +48875,7 @@ SV GfxTexture_allocMipmapFace(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::allocMipmapFace" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxTexture::allocMipmapFace.")));
 RET CN;
@@ -48646,7 +48886,7 @@ SV GfxTexture_setMipmapMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setMipmapMode" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxMipmapMode))
@@ -48663,7 +48903,7 @@ SV GfxTexture_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::save" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48686,7 +48926,7 @@ SV GfxTexture_getMipmapMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getMipmapMode" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48703,7 +48943,7 @@ SV GfxTexture_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getType" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48720,7 +48960,7 @@ SV GfxTexture_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setFilename" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -48737,7 +48977,7 @@ SV GfxTexture_shouldCompress(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::shouldCompress" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48754,7 +48994,7 @@ SV GfxTexture_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::removeContent" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48777,7 +49017,7 @@ SV GfxTexture_setWrapMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setWrapMode" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxWrapMode))
@@ -48794,7 +49034,7 @@ SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getBaseHeight" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48811,7 +49051,7 @@ SV GfxTexture_setMaximumAnisotropy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setMaximumAnisotropy" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -48828,7 +49068,7 @@ SV GfxTexture_getTextureType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getTextureType" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48845,7 +49085,7 @@ SV GfxTexture_getFormat(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getFormat" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48862,7 +49102,7 @@ SV GfxTexture_getMipmapFace(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getMipmapFace" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxTexture::getMipmapFace.")));
 RET CN;
@@ -48873,7 +49113,7 @@ SV GfxTexture_getMaximumAnisotropy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getMaximumAnisotropy" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48890,7 +49130,7 @@ SV GfxTexture_setMagFilter(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::setMagFilter" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxFilter))
@@ -48907,7 +49147,7 @@ SV GfxTexture_getWrapMode(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getWrapMode" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48924,7 +49164,7 @@ SV GfxTexture_getMagFilter(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::getMagFilter" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48941,7 +49181,7 @@ SV GfxTexture_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxTexture::release" EAOE));
 GfxTexture*f;
-f=(GfxTexture*)((NO)a[0])->data;
+f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -48953,9 +49193,10 @@ CATE(TE,UFOF("GfxTexture::release.")));
 RET CN;
 }
 
-void GfxSubModelList_destroy(CTX ctx,NO f)
+void GfxSubModelList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<GfxModel::SubModel>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<GfxModel::SubModel>))
 CATE(TE,"GfxSubModelList::__del__ expects GfxSubModelList as first argument."));
 
 SCRIPT_DELETE((List<GfxModel::SubModel>*)f->data);
@@ -48984,11 +49225,12 @@ RET STG::createNativeObject(GfxSubModelList_funcs,p,EXT->GfxSubModelList_typeID)
 RET CN;
 }
 
-SV GfxSubModelList_get_member(CTX ctx,NO f,SV key)
+SV GfxSubModelList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -49044,11 +49286,12 @@ RET CNF(GfxSubModelList_end);
 RET CN;
 }
 
-void GfxSubModelList_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxSubModelList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -49064,7 +49307,7 @@ SV GfxSubModelList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::insert" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],GfxModel::SubModel))
@@ -49087,7 +49330,7 @@ SV GfxSubModelList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::begin" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxSubModelList::begin.")));
 RET CN;
@@ -49098,7 +49341,7 @@ SV GfxSubModelList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::set" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],GfxModel::SubModel))
@@ -49115,7 +49358,7 @@ SV GfxSubModelList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::end" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxSubModelList::end.")));
 RET CN;
@@ -49126,7 +49369,7 @@ SV GfxSubModelList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::get" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -49143,7 +49386,7 @@ SV GfxSubModelList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::clear" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49160,7 +49403,7 @@ SV GfxSubModelList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::copy" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49177,7 +49420,7 @@ SV GfxSubModelList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::remove" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -49194,7 +49437,7 @@ SV GfxSubModelList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::in" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxModel::SubModel))
@@ -49211,7 +49454,7 @@ SV GfxSubModelList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::getCount" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49228,7 +49471,7 @@ SV GfxSubModelList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::getData" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxSubModelList::getData.")));
 RET CN;
@@ -49239,7 +49482,7 @@ SV GfxSubModelList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::__eq__" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<GfxModel::SubModel> &))
@@ -49256,7 +49499,7 @@ SV GfxSubModelList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::find" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxModel::SubModel))
@@ -49273,7 +49516,7 @@ SV GfxSubModelList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::append" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxModel::SubModel))
@@ -49296,7 +49539,7 @@ SV GfxSubModelList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxSubModelList::__neq__" EAOE));
 List<GfxModel::SubModel>*f;
-f=(List<GfxModel::SubModel>*)((NO)a[0])->data;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<GfxModel::SubModel> &))
@@ -49308,9 +49551,10 @@ CATE(TE,UFOF("GfxSubModelList::__neq__.")));
 RET CN;
 }
 
-void GfxModel_destroy(CTX ctx,NO f)
+void GfxModel_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxModel))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxModel))
 CATE(TE,"GfxModel::__del__ expects GfxModel as first argument."));
 
 GfxModel*obj=(GfxModel*)f->data;
@@ -49335,11 +49579,12 @@ RET STG::createNativeObject(GfxModel_funcs,p,EXT->GfxModel_typeID);
 RET CN;
 }
 
-SV GfxModel_get_member(CTX ctx,NO f,SV key)
+SV GfxModel_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -49387,11 +49632,12 @@ RET CV(obj->subModels);
 RET CN;
 }
 
-void GfxModel_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxModel_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -49411,7 +49657,7 @@ SV GfxModel_load(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::load" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49428,7 +49674,7 @@ SV GfxModel_getFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getFilename" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49445,7 +49691,7 @@ SV GfxModel_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::copy" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49462,7 +49708,7 @@ SV GfxModel_getType(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getType" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49479,7 +49725,7 @@ SV GfxModel_setFilename(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::setFilename" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const String &))
@@ -49496,7 +49742,7 @@ SV GfxModel_removeContent(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::removeContent" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49519,7 +49765,7 @@ SV GfxModel_getRefCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::getRefCount" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49536,7 +49782,7 @@ SV GfxModel_release(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::release" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49553,7 +49799,7 @@ SV GfxModel_save(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxModel::save" EAOE));
 GfxModel*f;
-f=(GfxModel*)((NO)a[0])->data;
+f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49571,9 +49817,10 @@ CATE(TE,UFOF("GfxModel::save.")));
 RET CN;
 }
 
-void GfxLODList_destroy(CTX ctx,NO f)
+void GfxLODList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<GfxLOD>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<GfxLOD>))
 CATE(TE,"GfxLODList::__del__ expects GfxLODList as first argument."));
 
 SCRIPT_DELETE((List<GfxLOD>*)f->data);
@@ -49602,11 +49849,12 @@ RET STG::createNativeObject(GfxLODList_funcs,p,EXT->GfxLODList_typeID);
 RET CN;
 }
 
-SV GfxLODList_get_member(CTX ctx,NO f,SV key)
+SV GfxLODList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -49662,11 +49910,12 @@ RET CNF(GfxLODList_end);
 RET CN;
 }
 
-void GfxLODList_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxLODList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -49682,7 +49931,7 @@ SV GfxLODList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::insert" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],GfxLOD))
@@ -49705,7 +49954,7 @@ SV GfxLODList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::begin" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxLODList::begin.")));
 RET CN;
@@ -49716,7 +49965,7 @@ SV GfxLODList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::set" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],GfxLOD))
@@ -49733,7 +49982,7 @@ SV GfxLODList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::end" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxLODList::end.")));
 RET CN;
@@ -49744,7 +49993,7 @@ SV GfxLODList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::get" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -49761,7 +50010,7 @@ SV GfxLODList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::clear" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49778,7 +50027,7 @@ SV GfxLODList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::copy" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49795,7 +50044,7 @@ SV GfxLODList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::remove" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -49812,7 +50061,7 @@ SV GfxLODList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::in" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxLOD))
@@ -49829,7 +50078,7 @@ SV GfxLODList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::getCount" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49846,7 +50095,7 @@ SV GfxLODList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::getData" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("GfxLODList::getData.")));
 RET CN;
@@ -49857,7 +50106,7 @@ SV GfxLODList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::__eq__" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<GfxLOD> &))
@@ -49874,7 +50123,7 @@ SV GfxLODList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::find" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxLOD))
@@ -49891,7 +50140,7 @@ SV GfxLODList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::append" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxLOD))
@@ -49914,7 +50163,7 @@ SV GfxLODList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxLODList::__neq__" EAOE));
 List<GfxLOD>*f;
-f=(List<GfxLOD>*)((NO)a[0])->data;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<GfxLOD> &))
@@ -49926,9 +50175,10 @@ CATE(TE,UFOF("GfxLODList::__neq__.")));
 RET CN;
 }
 
-void EntityList_destroy(CTX ctx,NO f)
+void EntityList_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,List<Entity*>))
+NO f=(NO)f_.p;
+if(!TS(f_,List<Entity*>))
 CATE(TE,"EntityList::__del__ expects EntityList as first argument."));
 
 SCRIPT_DELETE((List<Entity*>*)f->data);
@@ -49957,11 +50207,12 @@ RET STG::createNativeObject(EntityList_funcs,p,EXT->EntityList_typeID);
 RET CN;
 }
 
-SV EntityList_get_member(CTX ctx,NO f,SV key)
+SV EntityList_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -50017,11 +50268,12 @@ RET CNF(EntityList_end);
 RET CN;
 }
 
-void EntityList_set_member(CTX ctx,NO f,SV key,SV value)
+void EntityList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -50037,7 +50289,7 @@ SV EntityList_insert(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::insert" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],Entity*))
@@ -50060,7 +50312,7 @@ SV EntityList_begin(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::begin" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("EntityList::begin.")));
 RET CN;
@@ -50071,7 +50323,7 @@ SV EntityList_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::set" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],Entity*))
@@ -50088,7 +50340,7 @@ SV EntityList_end(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::end" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("EntityList::end.")));
 RET CN;
@@ -50099,7 +50351,7 @@ SV EntityList_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::get" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -50116,7 +50368,7 @@ SV EntityList_clear(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::clear" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -50133,7 +50385,7 @@ SV EntityList_copy(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::copy" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -50150,7 +50402,7 @@ SV EntityList_remove(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::remove" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -50167,7 +50419,7 @@ SV EntityList_in(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::in" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Entity*))
@@ -50184,7 +50436,7 @@ SV EntityList_getCount(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::getCount" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -50201,7 +50453,7 @@ SV EntityList_getData(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::getData" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("EntityList::getData.")));
 RET CN;
@@ -50212,7 +50464,7 @@ SV EntityList___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::__eq__" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<Entity*> &))
@@ -50229,7 +50481,7 @@ SV EntityList_find(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::find" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Entity*))
@@ -50246,7 +50498,7 @@ SV EntityList_append(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::append" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],Entity*))
@@ -50269,7 +50521,7 @@ SV EntityList___neq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"EntityList::__neq__" EAOE));
 List<Entity*>*f;
-f=(List<Entity*>*)((NO)a[0])->data;
+f=(List<Entity*>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const List<Entity*> &))
@@ -50281,9 +50533,10 @@ CATE(TE,UFOF("EntityList::__neq__.")));
 RET CN;
 }
 
-void GfxShaderCombination_destroy(CTX ctx,NO f)
+void GfxShaderCombination_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxShaderCombination))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxShaderCombination))
 CATE(TE,"GfxShaderCombination::__del__ expects GfxShaderCombination as first argument."));
 
 SCRIPT_DELETE((GfxShaderCombination*)f->data);
@@ -50302,11 +50555,12 @@ RET STG::createNativeObject(GfxShaderCombination_funcs,p,EXT->GfxShaderCombinati
 RET CN;
 }
 
-SV GfxShaderCombination_get_member(CTX ctx,NO f,SV key)
+SV GfxShaderCombination_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -50346,11 +50600,12 @@ RET CNF(GfxShaderCombination_getGLPipeline);
 RET CN;
 }
 
-void GfxShaderCombination_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxShaderCombination_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -50366,7 +50621,7 @@ SV GfxShaderCombination_setShader(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::setShader" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],GfxShaderType)&&TS(a[2],GfxShader *))
@@ -50383,7 +50638,7 @@ SV GfxShaderCombination_getShader(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::getShader" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxShaderType))
@@ -50400,7 +50655,7 @@ SV GfxShaderCombination_getCompiled(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::getCompiled" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],GfxShaderType))
@@ -50417,7 +50672,7 @@ SV GfxShaderCombination_getDefine(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::getDefine" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
@@ -50434,7 +50689,7 @@ SV GfxShaderCombination_removeDefine(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::removeDefine" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
@@ -50451,7 +50706,7 @@ SV GfxShaderCombination_getGLPipeline(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::getGLPipeline" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -50468,7 +50723,7 @@ SV GfxShaderCombination_setDefine(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxShaderCombination::setDefine" EAOE));
 GfxShaderCombination*f;
-f=(GfxShaderCombination*)((NO)a[0])->data;
+f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &)&&TS(a[3],const String &))
@@ -50480,9 +50735,10 @@ CATE(TE,UFOF("GfxShaderCombination::setDefine.")));
 RET CN;
 }
 
-void Matrix3x3_destroy(CTX ctx,NO f)
+void Matrix3x3_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,Matrix3x3))
+NO f=(NO)f_.p;
+if(!TS(f_,Matrix3x3))
 CATE(TE,"Matrix3x3::__del__ expects Matrix3x3 as first argument."));
 
 SCRIPT_DELETE((Matrix3x3*)f->data);
@@ -50511,11 +50767,12 @@ RET STG::createNativeObject(Matrix3x3_funcs,p,EXT->Matrix3x3_typeID);
 RET CN;
 }
 
-SV Matrix3x3_get_member(CTX ctx,NO f,SV key)
+SV Matrix3x3_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -50567,11 +50824,12 @@ RET CNF(Matrix3x3_rotatez);
 RET CN;
 }
 
-void Matrix3x3_set_member(CTX ctx,NO f,SV key,SV value)
+void Matrix3x3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -50587,7 +50845,7 @@ SV Matrix3x3_set(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::set" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],float))
@@ -50604,7 +50862,7 @@ SV Matrix3x3_get(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::get" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],size_t)&&TS(a[2],size_t))
@@ -50621,7 +50879,7 @@ SV Matrix3x3_transpose(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::transpose" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -50638,7 +50896,7 @@ SV Matrix3x3_rotatez(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotatez" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -50655,7 +50913,7 @@ SV Matrix3x3_rotatex(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotatex" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -50672,7 +50930,7 @@ SV Matrix3x3_rotatey(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotatey" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -50689,7 +50947,7 @@ SV Matrix3x3___div__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::__div__" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -50706,7 +50964,7 @@ SV Matrix3x3_inverse(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::inverse" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -50723,7 +50981,7 @@ SV Matrix3x3___mul__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::__mul__" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Matrix3x3 &))
@@ -50746,7 +51004,7 @@ SV Matrix3x3_translate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::translate" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float2 &))
@@ -50763,7 +51021,7 @@ SV Matrix3x3___eq__(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::__eq__" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Matrix3x3 &))
@@ -50780,7 +51038,7 @@ SV Matrix3x3_rotate(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::rotate" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],float))
@@ -50797,7 +51055,7 @@ SV Matrix3x3_scale(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"Matrix3x3::scale" EAOE));
 Matrix3x3*f;
-f=(Matrix3x3*)((NO)a[0])->data;
+f=(Matrix3x3*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Float3 &))
@@ -50809,9 +51067,10 @@ CATE(TE,UFOF("Matrix3x3::scale.")));
 RET CN;
 }
 
-void GfxDebugDrawer_destroy(CTX ctx,NO f)
+void GfxDebugDrawer_destroy(CTX ctx,const SV&f_)
 {
-if(!TS((SV)f,GfxDebugDrawer))
+NO f=(NO)f_.p;
+if(!TS(f_,GfxDebugDrawer))
 CATE(TE,"GfxDebugDrawer::__del__ expects GfxDebugDrawer as first argument."));
 
 SCRIPT_DELETE((GfxDebugDrawer*)f->data);
@@ -50825,11 +51084,12 @@ CATE(TE,UFOF("GfxDebugDrawer's constructor.")));
 RET CN;
 }
 
-SV GfxDebugDrawer_get_member(CTX ctx,NO f,SV key)
+SV GfxDebugDrawer_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue *)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 {
 if(keyStr=="__typeID__")
@@ -50859,11 +51119,12 @@ RET CNF(GfxDebugDrawer_render);
 RET CN;
 }
 
-void GfxDebugDrawer_set_member(CTX ctx,NO f,SV key,SV value)
+void GfxDebugDrawer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-if (key->type==STG::ValueType::StringType)
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringValue*)key)->value;
+String keyStr=((STG::StringData*)key.p)->value;
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -50879,7 +51140,7 @@ SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxDebugDrawer::addLine" EAOE));
 GfxDebugDrawer*f;
-f=(GfxDebugDrawer*)((NO)a[0])->data;
+f=(GfxDebugDrawer*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
 if(1&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &)&&TS(a[3],const Float4 &)&&TS(a[4],const Float4 &))
@@ -50896,7 +51157,7 @@ SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a)
 if(a.getCount()<1)
 CATE(VE,"GfxDebugDrawer::render" EAOE));
 GfxDebugDrawer*f;
-f=(GfxDebugDrawer*)((NO)a[0])->data;
+f=(GfxDebugDrawer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],const Camera &))
@@ -51053,7 +51314,7 @@ SV create(CTX ctx,const List<float>& value){RET CV(value);}
 SV create(CTX ctx,const Container& value){RET CV(value);}
 SV create(CTX ctx,const LightDirectionalData& value){RET CV(value);}
 SV create(CTX ctx,const Matrix4x4& value){RET CV(value);}
-SV create(CTX ctx,const HashMap<scripting::Value*,scripting::Value*>& value){RET CV(value);}
+SV create(CTX ctx,const HashMap<scripting::Value,scripting::Value>& value){RET CV(value);}
 SV create(CTX ctx,const List<ScriptInstance*>& value){RET CV(value);}
 SV create(CTX ctx,const T3<uint32_t>& value){RET CV(value);}
 SV create(CTX ctx,const LightSpotData& value){RET CV(value);}
@@ -51064,7 +51325,7 @@ SV create(CTX ctx,const RayCastResult& value){RET CV(value);}
 SV create(CTX ctx,const GfxLOD& value){RET CV(value);}
 SV create(CTX ctx,const AABB& value){RET CV(value);}
 SV create(CTX ctx,const RigidBodyConstructionInfo& value){RET CV(value);}
-SV create(CTX ctx,const List<scripting::Value*>& value){RET CV(value);}
+SV create(CTX ctx,const List<scripting::Value>& value){RET CV(value);}
 SV create(CTX ctx,const List<GfxModel::SubModel>& value){RET CV(value);}
 SV create(CTX ctx,const List<GfxLOD>& value){RET CV(value);}
 SV create(CTX ctx,const List<Entity*>& value){RET CV(value);}
@@ -51125,7 +51386,7 @@ SV create(CTX ctx,List<float> *value){RET CV(value);}
 SV create(CTX ctx,Container *value){RET CV(value);}
 SV create(CTX ctx,LightDirectionalData *value){RET CV(value);}
 SV create(CTX ctx,Matrix4x4 *value){RET CV(value);}
-SV create(CTX ctx,HashMap<scripting::Value*,scripting::Value*> *value){RET CV(value);}
+SV create(CTX ctx,HashMap<scripting::Value,scripting::Value> *value){RET CV(value);}
 SV create(CTX ctx,List<ScriptInstance*> *value){RET CV(value);}
 SV create(CTX ctx,T3<uint32_t> *value){RET CV(value);}
 SV create(CTX ctx,LightSpotData *value){RET CV(value);}
@@ -51138,7 +51399,7 @@ SV create(CTX ctx,GfxLOD *value){RET CV(value);}
 SV create(CTX ctx,File *value){RET CV(value);}
 SV create(CTX ctx,AABB *value){RET CV(value);}
 SV create(CTX ctx,RigidBodyConstructionInfo *value){RET CV(value);}
-SV create(CTX ctx,List<scripting::Value*> *value){RET CV(value);}
+SV create(CTX ctx,List<scripting::Value> *value){RET CV(value);}
 SV create(CTX ctx,Audio *value){RET CV(value);}
 SV create(CTX ctx,GfxTexture *value){RET CV(value);}
 SV create(CTX ctx,List<GfxModel::SubModel> *value){RET CV(value);}

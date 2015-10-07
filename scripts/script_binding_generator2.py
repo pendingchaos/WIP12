@@ -19,8 +19,6 @@ for root, dirnames, filenames in os.walk("../include"):
     for filename in fnmatch.filter(filenames, "*.h"):
         files.append(os.path.join(root, filename))
 
-files.remove("../include/scripting/scriptsidebindings.h")
-files.remove("../include/scripting/scriptinclude.h")
 files.remove("../include/scripting/bindings2.h")
 
 operators = {"operator+": "__add__",
@@ -470,6 +468,7 @@ bindings.write("""#include <stdint.h>
 #pragma GCC diagnostic ignored "-Wreturn-type"
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 
 struct BindingsExt
 {
@@ -493,11 +492,11 @@ names = []
 
 for class_ in classes.keys():
     if classes[class_].script_public:
-        names.append("*"+class_)
+        names.append(class_)
 
 for enum in enums:
     if enum.script_public:
-        names.append("*"+enum.name)
+        names.append(enum.name)
 
 bindings.write(", ".join(names))
 
@@ -505,8 +504,8 @@ bindings.write(";\n};\n\n")
 
 bindings.write("""
 #define CATE ctx->throwException(scripting::createException
-#define SV scripting::Value*
-#define NO scripting::NativeObject*
+#define SV scripting::Value
+#define NO scripting::NativeObjectData*
 #define CV(expr) create_val<std::remove_const<std::remove_reference<decltype(expr)>::type>::type>::f(ctx, expr)
 #define TS(expr, ...) type_same<std::remove_reference<__VA_ARGS__>::type>::f(ctx, expr)
 #define VE scripting::ExcType::ValueError
@@ -530,16 +529,16 @@ struct val_to_c {};
 #define VAL_TO_C_INT(T, T2, min, max) template <>\
 struct val_to_c<T2>\
 {\
-    static T f(scripting::Context *ctx, const SV head)\
+    static T f(scripting::Context *ctx, const SV& val)\
     {\
         int64_t v;\
         \
-        if (head->type == scripting::ValueType::Int)\
+        if (val.type == scripting::ValueType::Int)\
         {\
-            v = ((scripting::IntValue *)head)->value;\
-        } else if (head->type == scripting::ValueType::Float)\
+            v = val.i;\
+        } else if (val.type == scripting::ValueType::Float)\
         {\
-            v = ((scripting::FloatValue *)head)->value;\
+            v = val.f;\
         } else\
         {\
             CATE(scripting::ExcType::TypeError, "Value can not be converted to int."));\
@@ -574,14 +573,14 @@ VAL_TO_C_INT(int64_t, const int64_t&, INT64_MIN, INT64_MAX)
 template <>
 struct val_to_c<float>
 {
-    static float f(scripting::Context *ctx, const SV head)
+    static float f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::Int)
+        if (val.type == scripting::ValueType::Int)
         {
-            return (float)((scripting::IntValue *)head)->value;
-        } else if (head->type == scripting::ValueType::Float)
+            return val.i;
+        } else if (val.type == scripting::ValueType::Float)
         {
-            return (float)((scripting::FloatValue *)head)->value;
+            return val.f;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
@@ -592,14 +591,14 @@ struct val_to_c<float>
 template <>
 struct val_to_c<double>
 {
-    static double f(scripting::Context *ctx, const SV head)
+    static double f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::Int)
+        if (val.type == scripting::ValueType::Int)
         {
-            return ((scripting::IntValue *)head)->value;
-        } else if (head->type == scripting::ValueType::Float)
+            return val.i;
+        } else if (val.type == scripting::ValueType::Float)
         {
-            return ((scripting::FloatValue *)head)->value;
+            return val.f;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to float."));
@@ -610,11 +609,11 @@ struct val_to_c<double>
 template <>
 struct val_to_c<bool>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::Boolean)
+        if (val.type == scripting::ValueType::Boolean)
         {
-            return ((scripting::BooleanValue *)head)->value;
+            return val.b;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to bool."));
@@ -625,11 +624,11 @@ struct val_to_c<bool>
 template <>
 struct val_to_c<String>
 {
-    static String f(scripting::Context *ctx, const SV head)
+    static String f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringValue *)head)->value;
+            return ((scripting::StringData *)val.p)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -640,11 +639,11 @@ struct val_to_c<String>
 template <>
 struct val_to_c<const String>
 {
-    static const String f(scripting::Context *ctx, const SV head)
+    static const String f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringValue *)head)->value;
+            return ((scripting::StringData *)val.p)->value;
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -655,11 +654,11 @@ struct val_to_c<const String>
 template <>
 struct val_to_c<const char *>
 {
-    static const char *f(scripting::Context *ctx, const SV head)
+    static const char *f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringValue *)head)->value.getData();
+            return ((scripting::StringData *)val.p)->value.getData();
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -670,13 +669,13 @@ struct val_to_c<const char *>
 template <>
 struct val_to_c<char>
 {
-    static char f(scripting::Context *ctx, const SV head)
+    static char f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            if (((scripting::StringValue *)head)->value.getLength() == 1)
+            if (((scripting::StringData *)val.p)->value.getLength() == 1)
             {
-                return ((scripting::StringValue *)head)->value[0];
+                return ((scripting::StringData *)val.p)->value[0];
             } else
             {
                 CATE(scripting::ExcType::ValueError, "Value can not be converted to character."));
@@ -691,35 +690,35 @@ struct val_to_c<char>
 template <>
 struct val_to_c<SV>
 {
-    static SV f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
 template <>
 struct val_to_c<const SV>
 {
-    static SV f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
 template <>
 struct val_to_c<const SV&>
 {
-    static SV f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
 template <typename T>
 struct val_to_c<const T&> {
-    static T f(scripting::Context *ctx, const SV head)
+    static T f(scripting::Context *ctx, const SV& val)
     {
-        return val_to_c<T>::f(ctx, head);
+        return val_to_c<T>::f(ctx, val);
     }
 };
 
@@ -738,9 +737,9 @@ struct create_val<T>\
 template <>
 struct create_val<SV>
 {
-    static scripting::Value *f(scripting::Context *ctx, const SV head)
+    static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, head);
+        return scripting::createCopy(ctx, val);
     }
 };
 
@@ -790,25 +789,25 @@ struct type_same;
 template <typename T>
 struct type_same<const T&>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        return type_same<T>::f(ctx, head);
+        return type_same<T>::f(ctx, val);
     }
 };
 
 template <typename T>
 struct type_same<const T>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        return type_same<T>::f(ctx, head);
+        return type_same<T>::f(ctx, val);
     }
 };
 
 template <>
 struct type_same<SV>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
         return true;
     }
@@ -817,7 +816,7 @@ struct type_same<SV>
 template <>
 struct type_same<const SV&>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
         return true;
     }
@@ -826,7 +825,7 @@ struct type_same<const SV&>
 template <>
 struct type_same<const SV>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
         return true;
     }
@@ -835,11 +834,11 @@ struct type_same<const SV>
 template <>
 struct type_same<char>
 {
-    static bool f(scripting::Context *ctx, const SV head)
+    static bool f(scripting::Context *ctx, const SV& val)
     {
-        if (head->type == scripting::ValueType::StringType)
+        if (val.type == scripting::ValueType::StringType)
         {
-            return ((const scripting::StringValue *)head)->value.getLength() == 1;
+            return ((const scripting::StringData *)val.p)->value.getLength() == 1;
         } else
         {
             return false;
@@ -850,9 +849,9 @@ struct type_same<char>
 #define TYPE_SAME_HELPER(T, enumValue) template <>\
 struct type_same<T>\
 {\
-    static bool f(scripting::Context *ctx, const SV head)\
+    static bool f(scripting::Context *ctx, const SV& val)\
     {\
-        return head->type == scripting::ValueType::enumValue;\
+        return val.type == scripting::ValueType::enumValue;\
     }\
 };
 
@@ -871,11 +870,11 @@ TYPE_SAME_HELPER(String, StringType)
 TYPE_SAME_HELPER(const char *, StringType)
 
 template <typename T>
-T *own(scripting::Context *ctx, SV value)
+T *own(scripting::Context *ctx, const SV& value)
 {
     if (type_same<T *>::f(ctx, value))
     {
-        void *ptr = ((NO)value)->data;
+        void *ptr = ((NO)value.p)->data;
         AllocInfo i = getAllocInfo(ptr);
         i.cppRef = true;
         setAllocInfo(ptr, i);
@@ -893,9 +892,9 @@ for enum in enums:
     
     print "Bindings will be generated for %s" % enum.name
     
-    bindings.write(s("""void %s_destroy(CTX,NO) {}
-SV %s_get_member(CTX,NO,SV);
-void %s_set_member(CTX,NO,SV,SV);
+    bindings.write(s("""void %s_destroy(CTX,const SV&) {}
+SV %s_get_member(CTX,const SV&,const SV&);
+void %s_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs %s_funcs={
 ????.destroy = %s_destroy,
 ????.getMember = %s_get_member,
@@ -916,12 +915,12 @@ struct create_val<%s>
 template <>
 struct val_to_c<%s>
 {
-????static %s f(CTX ctx,const SV head)
+????static %s f(CTX ctx,const SV val)
 ????{
-????????if(head->type!=STG::ValueType::NativeObject)
+????????if(val.type!=STG::ValueType::NativeObject)
 ????????????CATE(TE,"Value can not be converted to %s."));
 ????????
-????????NO obj=(NO)head;
+????????NO obj=(NO)val.p;
 ????????if(obj->typeID!=EXT->%s_typeID)
 ????????????CATE(TE,"Value can not be converted to %s."));
 ????????????size_t v=size_t(obj->data);
@@ -939,10 +938,10 @@ struct val_to_c<%s>
     bindings.write(s("""template <>
 struct type_same<%s>
 {
-????static bool f(CTX ctx,const SV head)
+????static bool f(CTX ctx,const SV val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
-????????????RET((NO)head)->typeID==EXT->%s_typeID;
+????????if(val.type==STG::ValueType::NativeObject)
+????????????RET((NO)val.p)->typeID==EXT->%s_typeID;
 ????????else
 ???????????? RET false;
 ????}
@@ -954,9 +953,9 @@ for class_ in classes.values():
 
     print "Bindings will be generated for %s" % class_.name
 
-    bindings.write(s("""void %s_destroy(CTX,NO);
-SV %s_get_member(CTX,NO,SV);
-void %s_set_member(CTX,NO,SV,SV);
+    bindings.write(s("""void %s_destroy(CTX,const SV&);
+SV %s_get_member(CTX,const SV&,const SV&);
+void %s_set_member(CTX,const SV&,const SV&,const SV&);
 static const STG::NativeObjectFuncs %s_funcs={
 ????.destroy = %s_destroy,
 ????.getMember = %s_get_member,
@@ -978,11 +977,11 @@ struct create_val<%s>
 template <>
 struct val_to_c<%s>
 {
-????static %s f(CTX ctx,const SV head)
+????static %s f(CTX ctx,const SV& val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
+????????if(val.type==STG::ValueType::NativeObject)
 ????????{
-????????????NO obj=(NO)head;
+????????????NO obj=(NO)val.p;
 ????????????if(obj->typeID==EXT->%s_typeID)
 ????????????????RET*((%s*)obj->data);
 ????????????else
@@ -995,7 +994,7 @@ struct val_to_c<%s>
 template <>
 struct val_to_c<const %s>
 {
-????static %s f(CTX ctx,const SV head) {return val_to_c<%s>::f(ctx, head);}
+????static %s f(CTX ctx,const SV val) {return val_to_c<%s>::f(ctx, val);}
 };
 
 template <>
@@ -1013,10 +1012,10 @@ struct create_val<const %s>
 template <>
 struct type_same<%s>
 {
-????static bool f(CTX ctx,const SV head)
+????static bool f(CTX ctx,const SV val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
-????????????RET((NO)head)->typeID==EXT->%s_typeID;
+????????if(val.type==STG::ValueType::NativeObject)
+????????????RET((NO)val.p)->typeID==EXT->%s_typeID;
 ????????else
 ???????????? RET false;
 ????}
@@ -1053,11 +1052,11 @@ struct create_val<%s *>
 template <>
 struct val_to_c<%s *>
 {
-????static %s *f(CTX ctx,const SV head)
+????static %s *f(CTX ctx,const SV& val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
+????????if(val.type==STG::ValueType::NativeObject)
 ????????{
-????????????NO obj=(NO)head;
+????????????NO obj=(NO)val.p;
 ????????????if(obj->typeID==EXT->%s_typeID)
 ????????????????RET(%s*)obj->data;
 ????????????else
@@ -1069,10 +1068,10 @@ struct val_to_c<%s *>
 template <>
 struct type_same<%s *>
 {
-????static bool f(CTX ctx,const SV head)
+????static bool f(CTX ctx,const SV& val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
-????????????RET((NO)head)->typeID==EXT->%s_typeID;
+????????if(val.type==STG::ValueType::NativeObject)
+????????????RET((NO)val.p)->typeID==EXT->%s_typeID;
 ????????else
 ???????????? RET false;
 ????}
@@ -1080,10 +1079,10 @@ struct type_same<%s *>
 template <>
 struct type_same<const %s *>
 {
-????static bool f(CTX ctx,const SV head)
+????static bool f(CTX ctx,const SV& val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
-????????????RET((NO)head)->typeID==EXT->%s_typeID;
+????????if(val.type==STG::ValueType::NativeObject)
+????????????RET((NO)val.p)->typeID==EXT->%s_typeID;
 ????????else
 ???????????? RET false;
 ????}
@@ -1091,11 +1090,11 @@ struct type_same<const %s *>
 template <>
 struct val_to_c<const %s *>
 {
-????static const %s *f(CTX ctx,const SV head)
+????static const %s *f(CTX ctx,const SV& val)
 ????{
-????????if(head->type==STG::ValueType::NativeObject)
+????????if(val.type==STG::ValueType::NativeObject)
 ????????{
-????????????NO obj=(NO)head;
+????????????NO obj=(NO)val.p;
 ????????????if(obj->typeID==EXT->%s_typeID)
 ????????????????RET(%s*)obj->data;
 ????????????else
@@ -1127,20 +1126,21 @@ for enum in enums:
 ????if(!TS(a[0],%s))
 ????????CATE(TE,FAE("%s::%s","%s")));
 ????else
-???????? f=(size_t)((NO)a[0])->data;
+???????? f=(size_t)((NO)a[0].p)->data;
 ????size_t other;
 ????if(!TS(a[1],%s))
 ????????CATE(VE,UFOF("%s::__eq__")));
 ????else
-???????? other=(size_t)((NO)a[1])->data;
+???????? other=(size_t)((NO)a[1].p)->data;
 ????return STG::createBoolean(f == other);
 }""") % (enum.name, enum.name, enum.name, enum.name, enum.name, enum.name, enum.name, enum.name))
 
-    bindings.write(s("""SV %s_get_member(CTX ctx,NO f,SV key)
+    bindings.write(s("""SV %s_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-????if (key->type==STG::ValueType::StringType)
+????NO f=(NO)f_.p;
+????if (key.type==STG::ValueType::StringType)
 ????{
-????????String keyStr=((STG::StringValue *)key)->value;
+????????String keyStr=((STG::StringData *)key.p)->value;
 ????????if(f->data==NULL)
 ????????{
 ????????????if(keyStr=="__typeID__")
@@ -1168,15 +1168,16 @@ for enum in enums:
 }
 """ % (enum.name, enum.name, enum.name, ev, enum.name, enum.name, ev)))
 
-    bindings.write(s("""void %s_set_member(CTX ctx,NO,SV,SV){CATE(KE,"Enums are read-only."));}\n""" % (enum.name)))
+    bindings.write(s("""void %s_set_member(CTX ctx,const SV&,const SV&,const SV&){CATE(KE,"Enums are read-only."));}\n""" % (enum.name)))
 
 for class_ in classes.values():
     if not class_.script_public:
         continue
 
-    bindings.write(s("""void %s_destroy(CTX ctx,NO f)
+    bindings.write(s("""void %s_destroy(CTX ctx,const SV&f_)
 {
-????if(!TS((SV)f,%s))
+????NO f=(NO)f_.p;
+????if(!TS(f_,%s))
 ????????CATE(TE,"%s::__del__ expects %s as first argument."));
 
 """) % (class_.name, class_.code_name, class_.name, class_.name))
@@ -1250,11 +1251,12 @@ for class_ in classes.values():
 
 """) % class_.name)
 
-    bindings.write(s("""SV %s_get_member(CTX ctx,NO f,SV key)
+    bindings.write(s("""SV %s_get_member(CTX ctx,const SV&f_,const SV&key)
 {
-????if (key->type==STG::ValueType::StringType)
+????NO f=(NO)f_.p;
+????if (key.type==STG::ValueType::StringType)
 ????{
-????????String keyStr=((STG::StringValue *)key)->value;
+????????String keyStr=((STG::StringData*)key.p)->value;
 ????????if(f->data==NULL)
 ????????{
 ????????????if(keyStr=="__typeID__")
@@ -1314,11 +1316,12 @@ for class_ in classes.values():
 
 """ % (class_.name)))
 
-    bindings.write(s("""void %s_set_member(CTX ctx,NO f,SV key,SV value)
+    bindings.write(s("""void %s_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 {
-????if (key->type==STG::ValueType::StringType)
+????NO f=(NO)f_.p;
+????if (key.type==STG::ValueType::StringType)
 ????{
-????????String keyStr=((STG::StringValue*)key)->value;
+????????String keyStr=((STG::StringData*)key.p)->value;
 ????????if(f->data==NULL)
 ????????????CATE(KE,"Native classes are read-only."));
 ????????else
@@ -1357,7 +1360,7 @@ for class_ in classes.values():
 ????if(a.getCount()<1)
 ????????CATE(VE,"%s::%s" EAOE));
 ????%s*f;
-????f=(%s*)((NO)a[0])->data;
+????f=(%s*)((NO)a[0].p)->data;
 
 """) % (class_.name, methods_[0].name, class_.name, methods_[0].name, class_.code_name, class_.code_name))
 
@@ -1608,19 +1611,19 @@ for class_ in classes.values():
     if not class_.script_public or not class_.copyable:
         continue
     
-    bindings.write("    Value *create(Context *ctx, const %s& value);\n" % (class_.code_name))
+    bindings.write("    Value create(Context *ctx, const %s& value);\n" % (class_.code_name))
 
 for class_ in classes.values():
     if not class_.script_public:
         continue
     
-    bindings.write("    Value *create(Context *ctx, %s *value);\n" % (class_.code_name))
+    bindings.write("    Value create(Context *ctx, %s *value);\n" % (class_.code_name))
 
 for enum in enums:
     if not enum.script_public:
         continue
     
-    bindings.write("    Value *create(Context *ctx, %s value);\n" % (enum.name))
+    bindings.write("    Value create(Context *ctx, %s value);\n" % (enum.name))
 
 bindings.write("""};
 

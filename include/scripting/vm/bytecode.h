@@ -23,7 +23,6 @@ enum class Opcode
 
     LoadVar,
     StoreVar,
-    DelVar,
 
     GetMember,
     SetMember,
@@ -52,7 +51,6 @@ enum class Opcode
     GreaterEqual,
 
     Call,
-    CallMethod,
     Return,
     GetArgCount,
     GetArg,

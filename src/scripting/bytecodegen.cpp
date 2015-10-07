@@ -39,11 +39,9 @@ static const uint8_t opBoolNot = (uint8_t)Opcode::BoolNot;
 static const uint8_t opBitNot = (uint8_t)Opcode::BitNot;
 static const uint8_t opReturn = (uint8_t)Opcode::Return;
 static const uint8_t opThrow = (uint8_t)Opcode::Throw;
-static const uint8_t opDelVar = (uint8_t)Opcode::DelVar;
 static const uint8_t opJump = (uint8_t)Opcode::Jump;
 static const uint8_t opJumpIf = (uint8_t)Opcode::JumpIf;
 static const uint8_t opCall = (uint8_t)Opcode::Call;
-static const uint8_t opCallMethod = (uint8_t)Opcode::CallMethod;
 static const uint8_t opGetArg = (uint8_t)Opcode::GetArg;
 static const uint8_t opStackDup = (uint8_t)Opcode::StackDup;
 
