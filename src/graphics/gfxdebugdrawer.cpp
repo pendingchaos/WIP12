@@ -8,10 +8,10 @@
 GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
 {
     vertex = resMgr->load<GfxShader>(
-    "resources/shaders/debugDrawVertex.bin");
+    "resources/shaders/debugDraw.vs.bin");
 
     fragment = resMgr->load<GfxShader>(
-    "resources/shaders/debugDrawFragment.bin");
+    "resources/shaders/debugDraw.fs.bin");
 
     compiledVertex = vertex->getCompiled();
     compiledFragment = fragment->getCompiled();

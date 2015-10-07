@@ -18,7 +18,7 @@
 
 static GfxShaderCombination *createPostShader(const char *filename)
 {
-    GfxShader *vertex = resMgr->load<GfxShader>("resources/shaders/postEffectVertex.bin");
+    GfxShader *vertex = resMgr->load<GfxShader>("resources/shaders/postEffect.vs.bin");
     GfxShader *fragment = resMgr->load<GfxShader>(filename);
 
     auto result = NEW(GfxShaderCombination, vertex, fragment);
@@ -51,55 +51,54 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
                                           terrain(nullptr)
 {
     skyboxShaders = NEW(GfxShaderCombination,
-                        resMgr->load<GfxShader>("resources/shaders/skyboxVertex.bin"),
-                        resMgr->load<GfxShader>("resources/shaders/skyboxFragment.bin"));
+                        resMgr->load<GfxShader>("resources/shaders/skybox.vs.bin"),
+                        resMgr->load<GfxShader>("resources/shaders/skybox.fs.bin"));
     skyboxShaders->getShader(GfxShaderType::Vertex)->release();
     skyboxShaders->getShader(GfxShaderType::Fragment)->release();
     skyboxMesh = resMgr->load<GfxMesh>("resources/meshes/cube.bin");
 
-    lightingDirectional = createPostShader("resources/shaders/lightingDirectional.bin");
-    lightingDirectionalShadow = createPostShader("resources/shaders/lightingDirectional.bin");
+    lightingDirectional = createPostShader("resources/shaders/lightingDirectional.fs.bin");
+    lightingDirectionalShadow = createPostShader("resources/shaders/lightingDirectional.fs.bin");
     lightingDirectionalShadow->setDefine(GfxShaderType::Fragment, "SHADOW_MAP", "1");
 
-    lightingPoint = createPostShader("resources/shaders/lightingPoint.bin");
-    lightingPointShadow = createPostShader("resources/shaders/lightingPoint.bin");
+    lightingPoint = createPostShader("resources/shaders/lightingPoint.fs.bin");
+    lightingPointShadow = createPostShader("resources/shaders/lightingPoint.fs.bin");
     lightingPointShadow->setDefine(GfxShaderType::Fragment, "SHADOW_MAP", "1");
 
-    lightingSpot = createPostShader("resources/shaders/lightingSpot.bin");
-    lightingSpotShadow = createPostShader("resources/shaders/lightingSpot.bin");
+    lightingSpot = createPostShader("resources/shaders/lightingSpot.fs.bin");
+    lightingSpotShadow = createPostShader("resources/shaders/lightingSpot.fs.bin");
     lightingSpotShadow->setDefine(GfxShaderType::Fragment, "SHADOW_MAP", "1");
 
-    fxaa = createPostShader("resources/shaders/fxaaFragment.bin");
-    ssao = createPostShader("resources/shaders/ssaoFragment.bin");
-    ssaoBlurX = createPostShader("resources/shaders/ssaoBlurXFragment.bin");
-    ssaoBlurY = createPostShader("resources/shaders/ssaoBlurYFragment.bin");
-    bloomBlurX = createPostShader("resources/shaders/bloomBlurXFragment.bin");
-    bloomBlurY = createPostShader("resources/shaders/bloomBlurYFragment.bin");
-    lumCalc = createPostShader("resources/shaders/lumCalcFragment.bin");
-    tonemap = createPostShader("resources/shaders/tonemapFragment.bin");
-    applyBloom = createPostShader("resources/shaders/applyBloomFragment.bin");
-    bloomDownsample = createPostShader("resources/shaders/bloomDownsampleFragment.bin");
-    gammaCorrection = createPostShader("resources/shaders/gammaCorrectionFragment.bin");
+    fxaa = createPostShader("resources/shaders/fxaa.fs.bin");
+    ssao = createPostShader("resources/shaders/ssao.fs.bin");
+    ssaoBlurX = createPostShader("resources/shaders/ssaoBlurX.fs.bin");
+    ssaoBlurY = createPostShader("resources/shaders/ssaoBlurY.fs.bin");
+    bloomBlurX = createPostShader("resources/shaders/bloomBlurX.fs.bin");
+    bloomBlurY = createPostShader("resources/shaders/bloomBlurY.fs.bin");
+    tonemap = createPostShader("resources/shaders/tonemap.fs.bin");
+    applyBloom = createPostShader("resources/shaders/applyBloom.fs.bin");
+    bloomDownsample = createPostShader("resources/shaders/bloomDownsample.fs.bin");
+    gammaCorrection = createPostShader("resources/shaders/gammaCorrection.fs.bin");
 
-    terrainVertex = resMgr->load<GfxShader>("resources/shaders/terrainVertex.bin");
-    terrainTessControl = resMgr->load<GfxShader>("resources/shaders/terrainTessControl.bin");
-    terrainTessEval = resMgr->load<GfxShader>("resources/shaders/terrainTessEval.bin");
-    terrainFragment = resMgr->load<GfxShader>("resources/shaders/terrainFragment.bin");
+    terrainVertex = resMgr->load<GfxShader>("resources/shaders/terrain.vs.bin");
+    terrainTessControl = resMgr->load<GfxShader>("resources/shaders/terrain.tcs.bin");
+    terrainTessEval = resMgr->load<GfxShader>("resources/shaders/terrain.tes.bin");
+    terrainFragment = resMgr->load<GfxShader>("resources/shaders/terrain.fs.bin");
 
     if (gfxApi->tesselationSupported())
     {
-        shadowmapTessControl = resMgr->load<GfxShader>("resources/shaders/shadowmapControl.bin");
-        shadowmapTessEval = resMgr->load<GfxShader>("resources/shaders/shadowmapEval.bin");
+        shadowmapTessControl = resMgr->load<GfxShader>("resources/shaders/shadowmap.tcs.bin");
+        shadowmapTessEval = resMgr->load<GfxShader>("resources/shaders/shadowmap.tes.bin");
     }
 
-    shadowmapVertex = resMgr->load<GfxShader>("resources/shaders/shadowmapVertex.bin");
-    pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmapGeometry.bin");
-    shadowmapFragment = resMgr->load<GfxShader>("resources/shaders/shadowmapFragment.bin");
-    pointShadowmapFragment = resMgr->load<GfxShader>("resources/shaders/pointShadowmapFragment.bin");
+    shadowmapVertex = resMgr->load<GfxShader>("resources/shaders/shadowmap.vs.bin");
+    pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmap.gs.bin");
+    shadowmapFragment = resMgr->load<GfxShader>("resources/shaders/shadowmap.fs.bin");
+    pointShadowmapFragment = resMgr->load<GfxShader>("resources/shaders/pointShadowmap.fs.bin");
 
     overlayShaders = NEW(GfxShaderCombination,
-                         resMgr->load<GfxShader>("resources/shaders/overlayVertex.bin"),
-                         resMgr->load<GfxShader>("resources/shaders/overlayFragment.bin"));
+                         resMgr->load<GfxShader>("resources/shaders/overlay.vs.bin"),
+                         resMgr->load<GfxShader>("resources/shaders/overlay.fs.bin"));
     overlayShaders->getShader(GfxShaderType::Vertex)->release();
     overlayShaders->getShader(GfxShaderType::Fragment)->release();
 
@@ -107,7 +106,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     updateColorModifierShader();
 
     colorModify = NEW(GfxShaderCombination,
-                      resMgr->load<GfxShader>("resources/shaders/postEffectVertex.bin"),
+                      resMgr->load<GfxShader>("resources/shaders/postEffect.vs.bin"),
                       colorModifierFragment);
     colorModify->getShader(GfxShaderType::Vertex)->release();
 
@@ -302,7 +301,6 @@ GfxRenderer::~GfxRenderer()
     DELETE(fxaaTimer);
     DELETE(colorModifierTimer);
     DELETE(bloomTimer);
-    //DELETE(luminanceCalcTimer);
     DELETE(shadowmapTimer);
     DELETE(overlayTimer);
     DELETE(debugDrawTimer);
@@ -318,7 +316,6 @@ GfxRenderer::~GfxRenderer()
     DELETE(bloom3Framebuffer);
     DELETE(bloom4Framebuffer);
     DELETE(bloomDownsampleFramebuffer);
-    //DELETE(luminanceFramebuffer);
 
     DELETE(lightBuffer);
 
@@ -329,7 +326,6 @@ GfxRenderer::~GfxRenderer()
     bloom2Texture->release();
     bloom1Texture->release();
     ssaoRandomTexture->release();
-    //luminanceTexture->release();
     bloomBlurXTexture->release();
     ssaoBlurXTexture->release();
     ssaoTexture->release();
@@ -355,7 +351,6 @@ GfxRenderer::~GfxRenderer()
     DELETE(bloomBlurX);
     DELETE(bloomBlurY);
     DELETE(tonemap);
-    DELETE(lumCalc);
     DELETE(bloomDownsample);
     DELETE(gammaCorrection);
     DELETE(applyBloom);
@@ -521,16 +516,6 @@ in vec2 frag_uv;
 
 uniform sampler2D colorTexture;
 
-vec3 reinhard(vec3 color)
-{
-    return color / (color + 1.0);
-}
-vec3 reinhardBrightnessOnly(vec3 color)
-{
-    vec3 xyY = RGBToxyY(color);
-    xyY.z /= xyY.z + 1.0;
-    return xyYToRGB(xyY);
-}
 vec3 vignette(vec3 color, float radius, float softness, float intensity)
 {
     float vignette = distance(vec2(0.5), frag_uv);
@@ -584,17 +569,6 @@ void main()
     {
         switch (modifier.type)
         {
-        case ColorModifier::ReinhardTonemapping:
-        {
-            if (modifier.reinhardTonemap.brightnessOnly)
-            {
-                source.append("result_color = reinhardBrightnessOnly(result_color);");
-            } else
-            {
-                source.append("result_color = reinhard(result_color);");
-            }
-            break;
-        }
         case ColorModifier::Vignette:
         {
             source.append(String::format("result_color = vignette(result_color, %f, %f, %f);",
@@ -1221,8 +1195,41 @@ void GfxRenderer::render()
 
         #undef BLOOM
 
-        //Apply bloom
         gfxApi->setViewport(0, 0, width, height);
+    }
+
+    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
+    bloomTimer->end();
+
+    //Tonemapping.
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(writeFramebuffer)
+                .setShaders(tonemap)
+                //.setGpuTimer(tonemapTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("colorTexture", readColorTexture)
+                .end();
+    ++stats.numDrawCalls;
+
+    swapFramebuffers();
+
+    //Color modifiers.
+    stats.miscPostEffectsCPUTiming +=
+    PostEffect().setFramebuffer(writeFramebuffer)
+                .setShaders(colorModify)
+                .setGpuTimer(colorModifierTimer)
+                .setQuad(quadMesh)
+                .begin()
+                .texture("colorTexture", readColorTexture)
+                .end();
+    ++stats.numDrawCalls;
+
+    swapFramebuffers();
+
+    if (bloomEnabled)
+    {
+        //Apply bloom
         PostEffect().setFramebuffer(writeFramebuffer)
                     .setShaders(applyBloom)
                     .setQuad(quadMesh)
@@ -1238,23 +1245,7 @@ void GfxRenderer::render()
                     .uniform("bloom4Strength", bloom4Strength)
                     .end();
         ++stats.numDrawCalls;
-
-        swapFramebuffers();
     }
-
-    stats.miscPostEffectsCPUTiming += float(platform->getTime() - start) / platform->getTimerFrequency();
-    bloomTimer->end();
-
-    //Color modifiers.
-    stats.miscPostEffectsCPUTiming +=
-    PostEffect().setFramebuffer(writeFramebuffer)
-                .setShaders(colorModify)
-                .setGpuTimer(colorModifierTimer)
-                .setQuad(quadMesh)
-                .begin()
-                .texture("colorTexture", readColorTexture)
-                .end();
-    ++stats.numDrawCalls;
 
     //Overlays
     start = platform->getTime();

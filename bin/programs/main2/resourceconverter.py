@@ -110,11 +110,6 @@ if __name__ == "__main__":
     scene.camera.far = 5.0
     scene.camera.far = 100.0
     
-    modifier = Scene.ColorModifier()
-    modifier.type_ = Scene.ColorModifier.Type.ReinhardTonemap
-    modifier.brightnessOnly = True
-    scene.colorModifiers.append(modifier)
-    
     # Floor
     for x in range(-worldSize, worldSize+1):
         for z in range(-worldSize, worldSize+1):

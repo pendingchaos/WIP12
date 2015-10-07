@@ -71,8 +71,6 @@
 - [ ] Fix memory leaks.
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
-- [ ] The bloom looks nice without tonemapping.
-    - [ ] Seperate color modifiers and tonemapping.
 - [ ] Cleanup code.
 
 ## Performance Improvements
@@ -91,7 +89,7 @@
         - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
     - [ ] lightingSpot.bin:
         - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
-    - [ ] ssaoFragment.bin:
+    - [ ] ssao.fs.bin:
         - [ ] SIMD16 shader failed to compile, falling back to SIMD8 at a 10-20% performance cost: FS compile failed: Failure to register allocate.  Reduce number of live scalar values to avoid this.
 - [ ] Improve directional light performance.
     - [ ] Only do deferred shading where deferred objects are rendered.

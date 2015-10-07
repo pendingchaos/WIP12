@@ -802,20 +802,17 @@ class Scene(Resource):
             self.contrast = 1.0
         
         def convert(self):
-            s = struct.pack("<B", {Scene.ColorModifier.Type.ReinhardTonemap: 0,
-                                   Scene.ColorModifier.Type.Vignette: 1,
-                                   Scene.ColorModifier.Type.HueShift: 2,
-                                   Scene.ColorModifier.Type.SaturationShift: 3,
-                                   Scene.ColorModifier.Type.BrightnessShift: 4,
-                                   Scene.ColorModifier.Type.Contrast: 5,
-                                   Scene.ColorModifier.Type.Multiply: 6,
-                                   Scene.ColorModifier.Type.HueReplace: 7,
-                                   Scene.ColorModifier.Type.SaturationReplace: 8,
-                                   Scene.ColorModifier.Type.BrightnessReplace: 9}[self.type_])
+            s = struct.pack("<B", {Scene.ColorModifier.Type.Vignette: 0,
+                                   Scene.ColorModifier.Type.HueShift: 1,
+                                   Scene.ColorModifier.Type.SaturationShift: 2,
+                                   Scene.ColorModifier.Type.BrightnessShift: 3,
+                                   Scene.ColorModifier.Type.Contrast: 4,
+                                   Scene.ColorModifier.Type.Multiply: 5,
+                                   Scene.ColorModifier.Type.HueReplace: 6,
+                                   Scene.ColorModifier.Type.SaturationReplace: 7,
+                                   Scene.ColorModifier.Type.BrightnessReplace: 8}[self.type_])
             
-            if self.type_ == Scene.ColorModifier.Type.ReinhardTonemap:
-                s += struct.pack("<B", self.brightnessOnly)
-            elif self.type_ == Scene.ColorModifier.Type.Vignette:
+            if self.type_ == Scene.ColorModifier.Type.Vignette:
                 s += struct.pack("<fff", self.radius, self.softness, self.intensity)
             elif self.type_ == Scene.ColorModifier.Type.HueShift:
                 s += struct.pack("<f", self.hue)

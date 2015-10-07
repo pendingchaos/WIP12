@@ -38,120 +38,114 @@ if __name__ == "__main__":
     conv["rockNormal.png"] = Texture(["source/rock/normal.tga"], "resources/textures/rockNormal.bin")
     conv["rockNormal.png"].srgb = False
     
-    conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDrawVertex.bin")
-    conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDrawFragment.bin")
+    conv["debugDraw.vs"] = Shader(["source/shaders/debugDraw.vs"], "../../resources/shaders/debugDraw.vs.bin")
+    conv["debugDraw.fs"] = Shader(["source/shaders/debugDraw.fs"], "../../resources/shaders/debugDraw.fs.bin")
     conv["debugDraw.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["skyboxVertex.vs"] = Shader(["source/shaders/skyboxVertex.vs"], "../../resources/shaders/skyboxVertex.bin")
-    conv["skyboxFragment.fs"] = Shader(["source/shaders/skyboxFragment.fs"], "../../resources/shaders/skyboxFragment.bin")
-    conv["skyboxFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["skybox.vs"] = Shader(["source/shaders/skybox.vs"], "../../resources/shaders/skybox.vs.bin")
+    conv["skybox.fs"] = Shader(["source/shaders/skybox.fs"], "../../resources/shaders/skybox.fs.bin")
+    conv["skybox.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["forwardFragment.fs"] = Shader(["source/shaders/forwardFragment.fs"], "../../resources/shaders/forwardFragment.bin")
-    conv["forwardFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["forward.fs"] = Shader(["source/shaders/forward.fs"], "../../resources/shaders/forward.fs.bin")
+    conv["forward.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["objectVertex.vs"] = Shader(["source/shaders/objectVertex.vs"], "../../resources/shaders/objectVertex.bin")
+    conv["object.vs"] = Shader(["source/shaders/object.vs"], "../../resources/shaders/object.vs.bin")
     
-    conv["gbufferFragment.fs"] = Shader(["source/shaders/gbufferFragment.fs"], "../../resources/shaders/gbufferFragment.bin")
-    conv["gbufferFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["gbuffer.fs"] = Shader(["source/shaders/gbuffer.fs"], "../../resources/shaders/gbuffer.fs.bin")
+    conv["gbuffer.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["objectTessControl.tcs"] = Shader(["source/shaders/objectTessControl.tcs"], "../../resources/shaders/objectTessControl.bin")
-    conv["objectTessControl.tcs"].stage_ = Shader.Stage.TessControl
+    conv["object.tcs"] = Shader(["source/shaders/object.tcs"], "../../resources/shaders/object.tcs.bin")
+    conv["object.tcs"].stage_ = Shader.Stage.TessControl
     
-    conv["objectTessEval.tes"] = Shader(["source/shaders/objectTessEval.tes"], "../../resources/shaders/objectTessEval.bin")
-    conv["objectTessEval.tes"].stage_ = Shader.Stage.TessEval
+    conv["object.tes"] = Shader(["source/shaders/object.tes"], "../../resources/shaders/object.tes.bin")
+    conv["object.tes"].stage_ = Shader.Stage.TessEval
     
-    conv["fxaaFragment.fs"] = Shader(["source/shaders/fxaaFragment.fs"], "../../resources/shaders/fxaaFragment.bin")
-    conv["fxaaFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["fxaa.fs"] = Shader(["source/shaders/fxaa.fs"], "../../resources/shaders/fxaa.fs.bin")
+    conv["fxaa.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["lightingDirectional.fs"] = Shader(["source/shaders/lightingDirectional.fs"], "../../resources/shaders/lightingDirectional.bin")
+    conv["lightingDirectional.fs"] = Shader(["source/shaders/lightingDirectional.fs"], "../../resources/shaders/lightingDirectional.fs.bin")
     conv["lightingDirectional.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["lightingPoint.fs"] = Shader(["source/shaders/lightingPoint.fs"], "../../resources/shaders/lightingPoint.bin")
+    conv["lightingPoint.fs"] = Shader(["source/shaders/lightingPoint.fs"], "../../resources/shaders/lightingPoint.fs.bin")
     conv["lightingPoint.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["lightingSpot.fs"] = Shader(["source/shaders/lightingSpot.fs"], "../../resources/shaders/lightingSpot.bin")
+    conv["lightingSpot.fs"] = Shader(["source/shaders/lightingSpot.fs"], "../../resources/shaders/lightingSpot.fs.bin")
     conv["lightingSpot.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["ssaoFragment.fs"] = Shader(["source/shaders/ssaoFragment.fs"], "../../resources/shaders/ssaoFragment.bin")
-    conv["ssaoFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["ssao.fs"] = Shader(["source/shaders/ssao.fs"], "../../resources/shaders/ssao.fs.bin")
+    conv["ssao.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["ssaoBlurXFragment.fs"] = Shader(["source/shaders/ssaoBlurXFragment.fs"], "../../resources/shaders/ssaoBlurXFragment.bin")
-    conv["ssaoBlurXFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["ssaoBlurX.fs"] = Shader(["source/shaders/ssaoBlurX.fs"], "../../resources/shaders/ssaoBlurX.fs.bin")
+    conv["ssaoBlurX.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["ssaoBlurYFragment.fs"] = Shader(["source/shaders/ssaoBlurYFragment.fs"], "../../resources/shaders/ssaoBlurYFragment.bin")
-    conv["ssaoBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["ssaoBlurY.fs"] = Shader(["source/shaders/ssaoBlurY.fs"], "../../resources/shaders/ssaoBlurY.fs.bin")
+    conv["ssaoBlurY.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["bloomBlurXFragment.fs"] = Shader(["source/shaders/bloomBlurXFragment.fs"], "../../resources/shaders/bloomBlurXFragment.bin")
-    conv["bloomBlurXFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["bloomBlurX.fs"] = Shader(["source/shaders/bloomBlurX.fs"], "../../resources/shaders/bloomBlurX.fs.bin")
+    conv["bloomBlurX.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["bloomBlurYFragment.fs"] = Shader(["source/shaders/bloomBlurYFragment.fs"], "../../resources/shaders/bloomBlurYFragment.bin")
-    conv["bloomBlurYFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["bloomBlurY.fs"] = Shader(["source/shaders/bloomBlurY.fs"], "../../resources/shaders/bloomBlurY.fs.bin")
+    conv["bloomBlurY.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["lumCalcFragment.fs"] = Shader(["source/shaders/lumCalcFragment.fs"], "../../resources/shaders/lumCalcFragment.bin")
-    conv["lumCalcFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["postEffect.vs"] = Shader(["source/shaders/postEffect.vs"], "../../resources/shaders/postEffect.vs.bin")
     
-    conv["tonemapFragment.fs"] = Shader(["source/shaders/tonemapFragment.fs"], "../../resources/shaders/tonemapFragment.bin")
-    conv["tonemapFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["shadowmap.vs"] = Shader(["source/shaders/shadowmap.vs"], "../../resources/shaders/shadowmap.vs.bin")
     
-    conv["postEffectVertex.vs"] = Shader(["source/shaders/postEffectVertex.vs"], "../../resources/shaders/postEffectVertex.bin")
+    conv["shadowmap.tcs"] = Shader(["source/shaders/shadowmap.tcs"], "../../resources/shaders/shadowmap.tcs.bin")
+    conv["shadowmap.tcs"].stage_ = Shader.Stage.TessControl
     
-    conv["shadowmapVertex.vs"] = Shader(["source/shaders/shadowmapVertex.vs"], "../../resources/shaders/shadowmapVertex.bin")
+    conv["shadowmap.tes"] = Shader(["source/shaders/shadowmap.tes"], "../../resources/shaders/shadowmap.tes.bin")
+    conv["shadowmap.tes"].stage_ = Shader.Stage.TessEval
     
-    conv["shadowmapControl.tcs"] = Shader(["source/shaders/shadowmapControl.tcs"], "../../resources/shaders/shadowmapControl.bin")
-    conv["shadowmapControl.tcs"].stage_ = Shader.Stage.TessControl
+    conv["pointShadowmap.gs"] = Shader(["source/shaders/pointShadowmap.gs"], "../../resources/shaders/pointShadowmap.gs.bin")
+    conv["pointShadowmap.gs"].stage_ = Shader.Stage.Geometry
     
-    conv["shadowmapEval.tes"] = Shader(["source/shaders/shadowmapEval.tes"], "../../resources/shaders/shadowmapEval.bin")
-    conv["shadowmapEval.tes"].stage_ = Shader.Stage.TessEval
+    conv["shadowmap.fs"] = Shader(["source/shaders/shadowmap.fs"], "../../resources/shaders/shadowmap.fs.bin")
+    conv["shadowmap.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["pointShadowmapGeometry.gs"] = Shader(["source/shaders/pointShadowmapGeometry.gs"], "../../resources/shaders/pointShadowmapGeometry.bin")
-    conv["pointShadowmapGeometry.gs"].stage_ = Shader.Stage.Geometry
+    conv["pointShadowmap.fs"] = Shader(["source/shaders/pointShadowmap.fs"], "../../resources/shaders/pointShadowmap.fs.bin")
+    conv["pointShadowmap.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["shadowmapFragment.fs"] = Shader(["source/shaders/shadowmapFragment.fs"], "../../resources/shaders/shadowmapFragment.bin")
-    conv["shadowmapFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["font.fs"] = Shader(["source/shaders/font.fs"], "../../resources/shaders/font.fs.bin")
+    conv["font.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["pointShadowmapFragment.fs"] = Shader(["source/shaders/pointShadowmapFragment.fs"], "../../resources/shaders/pointShadowmapFragment.bin")
-    conv["pointShadowmapFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["font.gs"] = Shader(["source/shaders/font.gs"], "../../resources/shaders/font.gs.bin")
+    conv["font.gs"].stage_ = Shader.Stage.Geometry
     
-    conv["fontFragment.fs"] = Shader(["source/shaders/fontFragment.fs"], "../../resources/shaders/fontFragment.bin")
-    conv["fontFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["fontVertex.vs"] = Shader(["source/shaders/font.vs"], "../../resources/shaders/font.vs.bin")
     
-    conv["fontGeometry.gs"] = Shader(["source/shaders/fontGeometry.gs"], "../../resources/shaders/fontGeometry.bin")
-    conv["fontGeometry.gs"].stage_ = Shader.Stage.Geometry
+    conv["overlayVertex.vs"] = Shader(["source/shaders/overlay.vs"], "../../resources/shaders/overlay.vs.bin")
     
-    conv["fontVertex.vs"] = Shader(["source/shaders/fontVertex.vs"], "../../resources/shaders/fontVertex.bin")
-    
-    conv["overlayVertex.vs"] = Shader(["source/shaders/overlayVertex.vs"], "../../resources/shaders/overlayVertex.bin")
-    
-    conv["overlayFragment.fs"] = Shader(["source/shaders/overlayFragment.fs"], "../../resources/shaders/overlayFragment.bin")
+    conv["overlayFragment.fs"] = Shader(["source/shaders/overlay.fs"], "../../resources/shaders/overlay.fs.bin")
     conv["overlayFragment.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["gammaCorrectionFragment.fs"] = Shader(["source/shaders/gammaCorrectionFragment.fs"], "../../resources/shaders/gammaCorrectionFragment.bin")
-    conv["gammaCorrectionFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["gammaCorrection.fs"] = Shader(["source/shaders/gammaCorrection.fs"], "../../resources/shaders/gammaCorrection.fs.bin")
+    conv["gammaCorrection.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["applyBloomFragment.fs"] = Shader(["source/shaders/applyBloomFragment.fs"], "../../resources/shaders/applyBloomFragment.bin")
-    conv["applyBloomFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["applyBloom.fs"] = Shader(["source/shaders/applyBloom.fs"], "../../resources/shaders/applyBloom.fs.bin")
+    conv["applyBloom.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["applyBloomFragment.fs"] = Shader(["source/shaders/applyBloomFragment.fs"], "../../resources/shaders/applyBloomFragment.bin")
-    conv["applyBloomFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["bloomDownsample.fs"] = Shader(["source/shaders/bloomDownsample.fs"], "../../resources/shaders/bloomDownsample.fs.bin")
+    conv["bloomDownsample.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["bloomDownsampleFragment.fs"] = Shader(["source/shaders/bloomDownsampleFragment.fs"], "../../resources/shaders/bloomDownsampleFragment.bin")
-    conv["bloomDownsampleFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["tonemap.fs"] = Shader(["source/shaders/tonemap.fs"], "../../resources/shaders/tonemap.fs.bin")
+    conv["tonemap.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["terrainVertex.vs"] = Shader(["source/shaders/terrainVertex.vs"], "../../resources/shaders/terrainVertex.bin")
+    conv["terrain.vs"] = Shader(["source/shaders/terrain.vs"], "../../resources/shaders/terrain.vs.bin")
     
-    conv["terrainTessControl.tcs"] = Shader(["source/shaders/terrainTessControl.tcs"], "../../resources/shaders/terrainTessControl.bin")
-    conv["terrainTessControl.tcs"].stage_ = Shader.Stage.TessControl
+    conv["terrain.tcs"] = Shader(["source/shaders/terrain.tcs"], "../../resources/shaders/terrain.tcs.bin")
+    conv["terrain.tcs"].stage_ = Shader.Stage.TessControl
     
-    conv["terrainTessEval.tes"] = Shader(["source/shaders/terrainTessEval.tes"], "../../resources/shaders/terrainTessEval.bin")
-    conv["terrainTessEval.tes"].stage_ = Shader.Stage.TessEval
+    conv["terrain.tes"] = Shader(["source/shaders/terrain.tes"], "../../resources/shaders/terrain.tes.bin")
+    conv["terrain.tes"].stage_ = Shader.Stage.TessEval
     
-    conv["terrainFragment.fs"] = Shader(["source/shaders/terrainFragment.fs"], "../../resources/shaders/terrainFragment.bin")
-    conv["terrainFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["terrain.fs"] = Shader(["source/shaders/terrain.fs"], "../../resources/shaders/terrain.fs.bin")
+    conv["terrain.fs"].stage_ = Shader.Stage.Fragment
     
-    conv["guiVertex.vs"] = Shader(["source/shaders/guiVertex.vs"], "../../resources/shaders/guiVertex.bin")
+    conv["gui.vs"] = Shader(["source/shaders/gui.vs"], "../../resources/shaders/gui.vs.bin")
     
-    conv["guiFragment.fs"] = Shader(["source/shaders/guiFragment.fs"], "../../resources/shaders/guiFragment.bin")
-    conv["guiFragment.fs"].stage_ = Shader.Stage.Fragment
+    conv["gui.fs"] = Shader(["source/shaders/gui.fs"], "../../resources/shaders/gui.fs.bin")
+    conv["gui.fs"].stage_ = Shader.Stage.Fragment
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
     conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
@@ -359,11 +353,6 @@ if __name__ == "__main__":
     scene.camera.position = [-4.0, 4.0, 4.0]
     scene.camera.direction = [4.0, -2.0, -4.0]
     scene.camera.up = [0.0, 1.0, 0.0]
-    
-    modifier = Scene.ColorModifier()
-    modifier.type_ = Scene.ColorModifier.Type.ReinhardTonemap
-    modifier.brightnessOnly = True
-    scene.colorModifiers.append(modifier)
     
     modifier = Scene.ColorModifier()
     modifier.type_ = Scene.ColorModifier.Type.SaturationShift

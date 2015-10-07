@@ -11,9 +11,9 @@ Font::Font(const String& filename) : Resource(filename, ResType::FontType)
     quadMesh->primitive = GfxPoints;
     quadMesh->numVertices = 1;
 
-    GfxShader *vertex = resMgr->load<GfxShader>("resources/shaders/fontVertex.bin");
-    GfxShader *geometry = resMgr->load<GfxShader>("resources/shaders/fontGeometry.bin");
-    GfxShader *fragment = resMgr->load<GfxShader>("resources/shaders/fontFragment.bin");
+    GfxShader *vertex = resMgr->load<GfxShader>("resources/shaders/font.vs.bin");
+    GfxShader *geometry = resMgr->load<GfxShader>("resources/shaders/font.gs.bin");
+    GfxShader *fragment = resMgr->load<GfxShader>("resources/shaders/font.fs.bin");
 
     shaders = NEW(GfxShaderCombination, vertex, fragment);
     shaders->setShader(GfxShaderType::Geometry, geometry);

@@ -24,8 +24,8 @@ GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
                              forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
-                     resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
-                     resMgr->load<GfxShader>("resources/shaders/forwardFragment.bin"));
+                     resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
+                     resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
 }
 
 GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
@@ -54,8 +54,8 @@ GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
                                                    forward(true)
 {
     shaderComb = NEW(GfxShaderCombination,
-                     resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
-                     resMgr->load<GfxShader>("resources/shaders/forwardFragment.bin"));
+                     resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
+                     resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
 }
 
 GfxMaterial::~GfxMaterial()
@@ -222,8 +222,8 @@ void GfxMaterial::setDisplacementMap(GfxTexture *texture)
             shaderComb->getShader(GfxShaderType::TessEval)->release();
         }
 
-        shaderComb->setShader(GfxShaderType::TessControl, resMgr->load<GfxShader>("resources/shaders/objectTessControl.bin"));
-        shaderComb->setShader(GfxShaderType::TessEval, resMgr->load<GfxShader>("resources/shaders/objectTessEval.bin"));
+        shaderComb->setShader(GfxShaderType::TessControl, resMgr->load<GfxShader>("resources/shaders/object.tcs.bin"));
+        shaderComb->setShader(GfxShaderType::TessEval, resMgr->load<GfxShader>("resources/shaders/object.tes.bin"));
     }
 }
 
@@ -249,13 +249,13 @@ void GfxMaterial::setForward(bool forward_)
     if (forward)
     {
         shaderComb = NEW(GfxShaderCombination,
-                         resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
-                         resMgr->load<GfxShader>("resources/shaders/forwardFragment.bin"));
+                         resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
+                         resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
     } else
     {
         shaderComb = NEW(GfxShaderCombination,
-                         resMgr->load<GfxShader>("resources/shaders/objectVertex.bin"),
-                         resMgr->load<GfxShader>("resources/shaders/gbufferFragment.bin"));
+                         resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
+                         resMgr->load<GfxShader>("resources/shaders/gbuffer.fs.bin"));
     }
 
     setDisplacementMap(displacementMap);

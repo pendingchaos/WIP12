@@ -48,8 +48,8 @@ ImGui::ImGui() : textSize(30),
 
     mesh->numVertices = 6;
 
-    vertexShader = resMgr->load<GfxShader>("resources/shaders/guiVertex.bin");
-    fragmentShader = resMgr->load<GfxShader>("resources/shaders/guiFragment.bin");
+    vertexShader = resMgr->load<GfxShader>("resources/shaders/gui.vs.bin");
+    fragmentShader = resMgr->load<GfxShader>("resources/shaders/gui.fs.bin");
 
     compiledVertex = vertexShader->getCompiled();
     compiledFragment = fragmentShader->getCompiled();

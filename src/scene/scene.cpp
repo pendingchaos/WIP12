@@ -474,11 +474,6 @@ void Scene::_load()
 
             switch (type)
             {
-            case GfxRenderer::ColorModifier::ReinhardTonemapping:
-            {
-                modifier.reinhardTonemap.brightnessOnly = file.readUInt8() != 0;
-                break;
-            }
             case GfxRenderer::ColorModifier::Vignette:
             {
                 modifier.vignette.radius = file.readFloat32();
@@ -846,11 +841,6 @@ void Scene::save()
 
             switch (modifier.type)
             {
-            case GfxRenderer::ColorModifier::ReinhardTonemapping:
-            {
-                file.writeUInt8(modifier.reinhardTonemap.brightnessOnly ? 1 : 0);
-                break;
-            }
             case GfxRenderer::ColorModifier::Vignette:
             {
                 file.writeFloat32(modifier.vignette.radius);

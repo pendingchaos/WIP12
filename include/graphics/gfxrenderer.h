@@ -58,7 +58,6 @@ class GfxRenderer
         {
             enum Type
             {
-                ReinhardTonemapping,
                 Vignette,
                 HueShift,
                 SaturationShift,
@@ -74,10 +73,6 @@ class GfxRenderer
 
             union
             {
-                struct
-                {
-                    bool brightnessOnly;
-                } reinhardTonemap;
                 struct
                 {
                     float radius;
@@ -259,7 +254,6 @@ class GfxRenderer
         GfxShaderCombination *bloomBlurX;
         GfxShaderCombination *bloomBlurY;
         GfxShaderCombination *tonemap;
-        GfxShaderCombination *lumCalc;
         GfxShaderCombination *gammaCorrection;
         GfxShaderCombination *applyBloom;
         GfxShaderCombination *bloomDownsample;
