@@ -11,13 +11,13 @@ if __name__ == "__main__":
     conv["normal.png"].srgb = False
     conv["floor.png"] = Texture(["source/floor.png"], "resources/textures/floor.bin")
     conv["floor.png"].mag_filter = Texture.Filter.Nearest
-    conv["Yokohama3"] = Texture(["source/Yokohama3/posx.jpg",
-                                 "source/Yokohama3/negx.jpg",
-                                 "source/Yokohama3/posy.jpg",
-                                 "source/Yokohama3/negy.jpg",
-                                 "source/Yokohama3/posz.jpg",
-                                 "source/Yokohama3/negz.jpg"],
-                                 "resources/textures/Yokohama3.bin")
+    conv["skybox"] = Texture(["source/skybox/posx.png",
+                              "source/skybox/negx.png",
+                              "source/skybox/posy.png",
+                              "source/skybox/negy.png",
+                              "source/skybox/posz.png",
+                              "source/skybox/negz.png"],
+                              "resources/textures/skybox.bin")
     conv["bricks2.jpg"] = Texture(["source/bricks2.jpg"], "resources/textures/bricks2.bin")
     conv["bricks2_disp.jpg"] = Texture(["source/bricks2_disp.jpg"], "resources/textures/bricks2_disp.bin")
     conv["bricks2_disp.jpg"].max_anisotropy = 1.0
@@ -355,7 +355,7 @@ if __name__ == "__main__":
     
     scene = Scene([], "resources/scenes/scene.bin")
     conv["scene"] = scene
-    scene.skybox = conv["Yokohama3"]
+    scene.skybox = conv["skybox"]
     scene.camera.position = [-4.0, 4.0, 4.0]
     scene.camera.direction = [4.0, -2.0, -4.0]
     scene.camera.up = [0.0, 1.0, 0.0]
@@ -827,5 +827,5 @@ if __name__ == "__main__":
         else:
             print res.src_filenames, "->", res.dest_filename
         
-        if isinstance(res, Shader):
-            res.convert()
+        #if isinstance(res, Shader):
+        res.convert()

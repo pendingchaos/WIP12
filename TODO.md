@@ -24,7 +24,8 @@
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
     - [ ] [] operator.
     - [ ] Unary - operator.
-    - [ ] Improve the == and != operator's behaviour.
+- [ ] Improve the == and != operator's behaviour. (scripting)
+- [ ] Casts. (scripting)
 - [ ] Finish the bytecode generator (scripting).
 - [ ] === operator (scripting).
 - [ ] Fix skeletal animation for the mesh converter.
@@ -65,12 +66,14 @@
 - [ ] Fix banding in darkly lit areas, on metallic surfaces and point light lit areas.
     - [ ] Dithering? https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering?
 - [ ] Improve error and exception handling.
+    - Get rid of exceptions?
 - [ ] Get WIP12 running on OpenGL 3.3.
-- [ ] The skybox takes up 100.7 megabytes.
 - [ ] Fix memory leaks.
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
 - [ ] The bloom looks nice without tonemapping.
+    - [ ] Seperate color modifiers and tonemapping.
+- [ ] Cleanup code.
 
 ## Performance Improvements
 - [ ] Instancing
@@ -93,4 +96,4 @@
 - [ ] Improve directional light performance.
     - [ ] Only do deferred shading where deferred objects are rendered.
 - [ ] Improve fixed update performance and find out what's not showing up on the renderer CPU timings.
-    - [ ] Seems to be very slow with non-square framebuffers.
+    - [ ] Framebuffer bindings seems to be very slow with non-square framebuffers.
