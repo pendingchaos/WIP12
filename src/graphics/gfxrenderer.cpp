@@ -1205,7 +1205,7 @@ void GfxRenderer::render()
     stats.miscPostEffectsCPUTiming +=
     PostEffect().setFramebuffer(writeFramebuffer)
                 .setShaders(tonemap)
-                //.setGpuTimer(tonemapTimer)
+                //.setGpuTimer(tonemapTimer) //TODO
                 .setQuad(quadMesh)
                 .begin()
                 .texture("colorTexture", readColorTexture)

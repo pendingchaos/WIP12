@@ -72,6 +72,7 @@
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
 - [ ] Cleanup code.
+- [ ] A proper shaderball.
 
 ## Performance Improvements
 - [ ] Instancing
