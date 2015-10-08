@@ -135,7 +135,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     case ASTNode::Modulo:
     {
         generateLROp((LROpNode *)node, data, opModulo);
-        return false;
+        return true;
     }
     case ASTNode::Less:
     {

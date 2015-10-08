@@ -352,8 +352,6 @@ Engine::Engine() : nextTypeID(LONG_LONG_MIN)
     globalVars.set("INF", createFloat(INFINITY));
     globalVars.set("NAN", createFloat(NAN));
     globalVars.set("PI", createFloat(M_PI));
-    globalVars.set("PI_2", createFloat(M_PI_2));
-    globalVars.set("PI_4", createFloat(M_PI_4));
 
     globalVars.set("isNil", createNativeFunction(isNil));
     globalVars.set("print", createNativeFunction(print));

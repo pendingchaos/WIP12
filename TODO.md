@@ -58,6 +58,9 @@
 - [ ] Fix invalid texture dimensions for large matrix textures.
 - [ ] After a bunch of exceptions an assertion is triggered. (scripting)
 - [ ] Point light shadowmaps do not work.
+- [ ] Changing the collision shape of an object crashes the program.
+- [ ] Removing a rigid body does not remove a rigid body.
+- [ ] Static objects can not be moved at runtime.
 
 ## Other
 - [ ] Texture types should be immutable.

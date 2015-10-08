@@ -22,28 +22,45 @@ return class {
         shape = PhysicsShape();
         shape:setSphere(1.0);
         self.collisionGhost = physicsWorld:createGhostObject(shape, 0xFFFF );
+        
+        shape = PhysicsShape();
+        shape:setSphere(0.75);
+        self.attackGhost = physicsWorld:createGhostObject(shape, 0xFFFF );
     };
     
     __del__ = function(self)
     {
-       self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);
+        self.scene:getPhysicsWorld():destroyGhostObject(self.attackGhost);
+        self.scene:getPhysicsWorld():destroyGhostObject(self.collisionGhost);
+        self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);
     };
     
     handleInput = function(self) {};
     
     update = function(self) {};
     
-    fixedUpdate = function(self, timestep) {
-        physicsWorld = self.scene:getPhysicsWorld();
+    updateGhosts = function(self, viewDir) {
+        dir2 = Float3(viewDir.x, 0.0, viewDir.z):normalize();
         
         feetTransform = self.entity.transform;
-        
         pos = feetTransform.position;
         pos = Float3(pos.x, pos.y - 1.33, pos.z);
         feetTransform.position = pos;
         
+        attackTransform = self.entity.transform;
+        pos = attackTransform.position + dir2;
+        attackTransform.position = pos;
+        
         self.feetGhost:setTransform(feetTransform);
         self.collisionGhost:setTransform(self.entity.transform);
+        self.attackGhost:setTransform(attackTransform);
+    };
+    
+    fixedUpdate = function(self, timestep) {
+        physicsWorld = self.scene:getPhysicsWorld();
+        platform = getPlatform();
+        body = self.entity:getRigidBody();
+        renderer = self.scene:getRenderer();
         
         rigidBodies = self.feetGhost:getRigidBodyCollisions();
         self.onFloor = rigidBodies:getCount() != 0;
@@ -55,8 +72,8 @@ return class {
             inst = entity:findScriptInstanceObj("resources/scripts/coin.rkt");
             
             if not isNil(inst) {
-                #inst.shrinking = true;
-                inst:onCollect();
+                inst.shrinking = true;
+                #inst:onCollect();
                 # TODO: Why won't "inst:onCollect()" work?
                 # Unhandled script exception:
                 #    Unknown member: 'scene'
@@ -67,9 +84,21 @@ return class {
             i = i + 1;
         };
         
-        platform = getPlatform();
-        body = self.entity:getRigidBody();
-        renderer = self.scene:getRenderer();
+        if platform:isRightMouseButtonPressed() {
+            rigidBodies = self.attackGhost:getRigidBodyCollisions();
+            
+            i = 0;
+            while i < rigidBodies:getCount() {
+                entity = rigidBodies:get(i):getEntity();
+                inst = entity:findScriptInstanceObj("resources/scripts/monkey.rkt");
+                
+                if not isNil(inst) {
+                    inst.attacked = true;
+                };
+                
+                i = i + 1;
+            };
+        };
         
         cam = renderer.camera;
         
@@ -79,7 +108,10 @@ return class {
         dir = quat2:toMatrix() * Float4(-1.0, -1.0, -1.0, 1.0);
         dir = quat:toMatrix() * dir;
         dir = Float3(dir.x, dir.y, dir.z) / dir.w;
+        dir = dir:normalize();
         cam:setDirection(dir);
+        
+        self:updateGhosts(dir);
         
         right = quat:toMatrix() * Float4(1.0, 0.0, -1.0, 1.0);
         right = Float3(right.x, right.y, right.z) / right.w;

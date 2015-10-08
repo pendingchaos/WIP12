@@ -5,7 +5,8 @@ from resconvlib import *
 
 worldSize = 4
 numDecors = 25
-numCoins = 100
+numCoins = 50
+numMonkeys = 10
 
 if __name__ == "__main__":
     conv = {}
@@ -24,6 +25,8 @@ if __name__ == "__main__":
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
     conv["decor.obj"] = Mesh(["source/decor.obj"], "resources/meshes/decor.bin")
     conv["coin.obj"] = Mesh(["source/coin.obj"], "resources/meshes/coin.bin")
+    conv["monkey_lod0.obj"] = Mesh(["source/monkey_lod0.obj"], "resources/meshes/monkey_lod0.bin")
+    conv["monkey_lod1.obj"] = Mesh(["source/monkey_lod1.obj"], "resources/meshes/monkey_lod1.bin")
     
     # Materials
     mat = Material([], "resources/materials/player.bin")
@@ -46,6 +49,13 @@ if __name__ == "__main__":
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.1, 0.0, 1.0]
     conv["decor"] = mat
+    
+    mat = Material([], "resources/materials/monkey.bin")
+    mat.forward = False
+    mat.smoothness = 0.3
+    mat.metalMask = 1.0
+    mat.albedo = [1.0, 1.0, 1.0, 1.0]
+    conv["monkey"] = mat
     
     colors = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [1.0, 1.0, 0.0], [0.0, 1.0, 1.0], [1.0, 1.0, 1.0]]
     
@@ -71,6 +81,11 @@ if __name__ == "__main__":
     model = Model([], "resources/models/decor.bin")
     model.sub_models = [[Model.LOD(conv["decor.obj"], conv["decor"], 0.0, 9999.0)]]
     conv["decor model"] = model
+    
+    model = Model([], "resources/models/monkey.bin")
+    model.sub_models = [[Model.LOD(conv["monkey_lod0.obj"], conv["monkey"], 0.0, 20.0),
+                         Model.LOD(conv["monkey_lod1.obj"], conv["monkey"], 20.0, 9999.0)]]
+    conv["monkey model"] = model
     
     for i in range(len(colors)):
         model = Model([], "resources/models/coin%d.bin" % (i))
@@ -99,6 +114,10 @@ if __name__ == "__main__":
     coinShape = PhysicsShape([], "resources/shapes/coin.bin")
     coinShape.shape = PhysicsShape.Cylinder("y", 0.2, 1.0)
     conv["coin shape"] = coinShape
+    
+    monkeyShape = PhysicsShape([], "resources/shapes/monkey.bin")
+    monkeyShape.shape = PhysicsShape.Cylinder("y", 4.0, 2.0)
+    conv["monkey shape"] = monkeyShape
     
     # Scene
     scene = Scene([], "resources/scenes/main.bin")
@@ -151,7 +170,9 @@ if __name__ == "__main__":
         coinEnt.transform.orientation = [random.randint(-20, 20), random.randint(-20, 20), random.randint(-20, 20)]
         coinEnt.model = conv["coin model %d" % (random.randint(0, len(colors)-1))]
         coinEnt.rigidBody = Scene.RigidBody()
+        coinEnt.rigidBody.type_ = Scene.RigidBody.Type.Dynamic
         coinEnt.rigidBody.shape = coinShape
+        coinEnt.rigidBody.mass = float("inf")
         coinEnt.scripts.append("resources/scripts/coin.rkt")
         scene.entities.append(coinEnt)
     
@@ -172,6 +193,30 @@ if __name__ == "__main__":
         decorent.rigidBody.shape = decorShape
         scene.entities.append(decorent)
     
+    # Monkeys
+    for i in range(numMonkeys):
+        x = 0.0
+        z = 0.0
+        
+        while abs(x) < 6.0 and abs(z) < 6.0:
+            x = random.randint(-worldSize*800, worldSize*800) / 100.0
+            z = random.randint(-worldSize*800, worldSize*800) / 100.0
+        
+        monkeyEnt = Scene.Entity("Monkey%d" % (i))
+        monkeyEnt.transform.position = [x, 2.0, z]
+        monkeyEnt.transform.scale = [2.0, 2.0, 2.0]
+        monkeyEnt.transform.orientation = [0.0, random.randint(0, 36000)/100.0, 0.0]
+        monkeyEnt.model = conv["monkey model"]
+        monkeyEnt.rigidBody = Scene.RigidBody()
+        monkeyEnt.rigidBody.type_ = Scene.RigidBody.Type.Dynamic
+        monkeyEnt.rigidBody.shape = monkeyShape
+        monkeyEnt.rigidBody.linearSleepingThreshold = 0.0
+        monkeyEnt.rigidBody.angularSleepingThreshold = 0.0
+        monkeyEnt.rigidBody.linearDamping = 0.8
+        monkeyEnt.rigidBody.mass = 100.0
+        monkeyEnt.scripts.append("resources/scripts/monkey.rkt")
+        scene.entities.append(monkeyEnt)
+    
     # Sun
     light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [1.0, -1.0, -1.0]
@@ -179,12 +224,12 @@ if __name__ == "__main__":
     light.shadowmap = True
     light.shadowmap_near = 0.1
     light.shadowmap_far = 100.0
-    light.shadow_min_bias = 0.0
-    light.shadow_bias_scale = 0.0
-    light.shadow_auto_bias_scale = 1.0
+    light.shadow_min_bias = 0.001
+    light.shadow_bias_scale = 0.01
+    light.shadow_auto_bias_scale = 0.75
     light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
-    light.shadow_radius = 32
+    light.shadow_radius = 64
     scene.lights.append(light)
     
     for res in conv.values():

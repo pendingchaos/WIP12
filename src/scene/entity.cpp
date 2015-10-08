@@ -86,12 +86,17 @@ void Entity::removeEntity(size_t index)
 
 void Entity::updateFinalTransform()
 {
+    Transform transformNoScale = transform;
+    transformNoScale.scale = Float3(1.0f);
+
     if (parent != nullptr)
     {
         finalTransform = parent->getFinalTransform() * transform.createMatrix();
+        finalTransformNoScale = parent->getFinalTransformNoScale() * transformNoScale.createMatrix();
     } else
     {
         finalTransform = transform.createMatrix();
+        finalTransformNoScale = transformNoScale.createMatrix();
     }
 
     for (auto child : entities)

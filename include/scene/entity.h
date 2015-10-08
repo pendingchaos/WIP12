@@ -252,6 +252,11 @@ class Entity
             return finalTransform;
         }
 
+        inline const Matrix4x4& getFinalTransformNoScale() const
+        {
+            return finalTransformNoScale;
+        }
+
         inline const List<AudioSource *>& getAudioSources() const
         {
             return audioSources;
@@ -271,6 +276,7 @@ class Entity
         List<Entity *> entities;
         Entity *parent;
         Matrix4x4 finalTransform;
+        Matrix4x4 finalTransformNoScale;
         List<AudioSource *> audioSources;
 
     NO_COPY(Entity);

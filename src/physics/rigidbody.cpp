@@ -14,7 +14,7 @@ class MotionState : public btMotionState
         {
             if (entity != nullptr)
             {
-                Matrix4x4 mat = entity->getFinalTransform();
+                Matrix4x4 mat = entity->getFinalTransformNoScale();
 
                 otherTransform.setOrigin(btVector3(mat[0][3],
                                                    mat[1][3],
@@ -45,7 +45,7 @@ class MotionState : public btMotionState
                     entity->transform.orientation = orientation;
                 } else
                 {
-                    Matrix4x4 parentMat = entity->getParent()->getFinalTransform().inverse().transpose();
+                    Matrix4x4 parentMat = entity->getParent()->getFinalTransformNoScale();
 
                     btTransform parentTransform;
 
@@ -110,7 +110,7 @@ RigidBody::RigidBody(const RigidBodyConstructionInfo& info,
 
     if (entity != nullptr)
     {
-        setTransform(entity->getFinalTransform());
+        setTransform(entity->getFinalTransformNoScale());
     }
 
     switch (info.type)
@@ -371,9 +371,9 @@ void RigidBody::setShape(PhysicsShape *shape_)
 
 void RigidBody::updateShape()
 {
-    rigidBody->setCollisionShape(shape->getBulletShape());
+    //rigidBody->setCollisionShape(shape->getBulletShape());
 
-    btVector3 localInertia;
+    btVector3 localInertia(0.0f, 0.0f, 0.0f);
     shape->getBulletShape()->calculateLocalInertia(getMass(), localInertia);
 
     rigidBody->setMassProps(getMass(), localInertia);
