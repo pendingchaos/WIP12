@@ -3,6 +3,7 @@
 
 #include "math/t3.h"
 #include "math/matrix4x4.h"
+#include "math/frustum.h"
 #include "scripting/bindings.h"
 
 enum class CameraType
@@ -108,9 +109,15 @@ class Camera
         {
             return projectionMatrix;
         }
+
+        inline Frustum getFrustum() const
+        {
+            return frustum;
+        }
     private:
         Matrix4x4 viewMatrix;
         Matrix4x4 projectionMatrix;
+        Frustum frustum;
 
         CameraType type;
 
@@ -140,6 +147,7 @@ class Camera
 
         void createViewMatrix();
         void createProjectionMatrix();
+        void createFrustum();
 } BIND;
 
 #endif // CAMERA_H

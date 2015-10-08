@@ -56,6 +56,7 @@
 - [ ] Compiled shaders will be invalidated when a shader is reloaded.
 - [ ] Fix invalid texture dimensions for large matrix textures.
 - [ ] After a bunch of exceptions an assertion is triggered. (scripting)
+- [ ] Point light shadowmaps do not work.
 
 ## Other
 - [ ] Texture types should be immutable.

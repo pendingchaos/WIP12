@@ -104,12 +104,12 @@ class Light
             return shadowmapPrecision;
         }
 
-        float getPointLightInfluence(float cutoff=0.039) const;
-        float getSpotLightInfluence(float cutoff=0.039) const;
+        float getPointLightInfluence(float cutoff=0.001f) const;
+        float getSpotLightInfluence(float cutoff=0.001f) const;
 
         void updateMatrices(GfxRenderer *renderer);
 
-        //These two functions only work with directional lights.
+        //These two functions only work with spot lights.
         inline Matrix4x4 getViewMatrix() const
         {
             return viewMatrices[0];

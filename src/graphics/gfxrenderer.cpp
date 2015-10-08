@@ -967,6 +967,8 @@ void GfxRenderer::render()
 
     for (auto light : lights)
     {
+        gfxApi->pushState();
+
         GfxShaderCombination *shaders = (GfxShaderCombination *)42;
 
         switch (light->type)
@@ -991,6 +993,37 @@ void GfxRenderer::render()
             {
                 shaders = lightingPoint;
             }
+
+            float influence = light->getPointLightInfluence(0.003921f);
+
+            //Enable when Frustum is fixed.
+            //if (not camera.getFrustum().sphereIntersection(light->point.position, influence))
+            //{
+            //    gfxApi->popState();
+            //    continue;
+            //}
+
+            AABB aabb(light->point.position - influence,
+                      light->point.position + influence);
+
+            debugDrawer->addBox(aabb, Float4(0.0f, 1.0f, 0.0f, 1.0f));
+
+            aabb = aabb.transform(camera.getProjectionMatrix() *
+                                  camera.getViewMatrix());
+
+            float hw = width / 2.0f;
+            float hh = height / 2.0f;
+
+            aabb.min.x = std::max(aabb.min.x, -1.0f) * hw + hw;
+            aabb.min.y = std::max(aabb.min.y, -1.0f) * hh + hh;
+            aabb.max.x = std::min(aabb.max.x,  1.0f) * hw + hw;
+            aabb.max.y = std::min(aabb.max.y,  1.0f) * hh + hh;
+
+            gfxApi->setScissorEnabled(true);
+            gfxApi->setScissor(aabb.min.x,
+                               aabb.min.y,
+                               aabb.max.x-aabb.min.x,
+                               aabb.max.y-aabb.min.y);
             break;
         }
         case GfxLightType::Spot:
@@ -1099,6 +1132,8 @@ void GfxRenderer::render()
         gfxApi->draw();
         gfxApi->end();
         ++stats.numDrawCalls;
+
+        gfxApi->popState();
     }
 
     stats.deferredShadingCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();

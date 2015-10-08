@@ -28,6 +28,24 @@ GfxDebugDrawer::~GfxDebugDrawer()
     vertex->release();
 }
 
+void GfxDebugDrawer::addBox(const AABB& aabb, const Float4& color)
+{
+    addLine(aabb.min, Position3D(aabb.min.x, aabb.min.y, aabb.max.z), color, color);
+    addLine(aabb.min, Position3D(aabb.max.x, aabb.min.y, aabb.min.z), color, color);
+    addLine(Position3D(aabb.min.x, aabb.min.y, aabb.max.z), Position3D(aabb.max.x, aabb.min.y, aabb.max.z), color, color);
+    addLine(Position3D(aabb.max.x, aabb.min.y, aabb.min.z), Position3D(aabb.max.x, aabb.min.y, aabb.max.z), color, color);
+
+    addLine(Position3D(aabb.min.x, aabb.max.y, aabb.min.z), Position3D(aabb.min.x, aabb.max.y, aabb.max.z), color, color);
+    addLine(Position3D(aabb.min.x, aabb.max.y, aabb.min.z), Position3D(aabb.max.x, aabb.max.y, aabb.min.z), color, color);
+    addLine(Position3D(aabb.min.x, aabb.max.y, aabb.max.z), Position3D(aabb.max.x, aabb.max.y, aabb.max.z), color, color);
+    addLine(Position3D(aabb.max.x, aabb.max.y, aabb.min.z), Position3D(aabb.max.x, aabb.max.y, aabb.max.z), color, color);
+
+    addLine(aabb.min, Position3D(aabb.min.x, aabb.max.y, aabb.min.z), color, color);
+    addLine(Position3D(aabb.max.x, aabb.min.y, aabb.min.z), Position3D(aabb.max.x, aabb.max.y, aabb.min.z), color, color);
+    addLine(Position3D(aabb.min.x, aabb.min.y, aabb.max.z), Position3D(aabb.min.x, aabb.max.y, aabb.max.z), color, color);
+    addLine(Position3D(aabb.max.x, aabb.min.y, aabb.max.z), Position3D(aabb.max.x, aabb.max.y, aabb.max.z), color, color);
+}
+
 void GfxDebugDrawer::render(const Camera& camera)
 {
     ResizableData positionData(lines.getCount()*2*12);
@@ -51,11 +69,11 @@ void GfxDebugDrawer::render(const Camera& camera)
         color[0] = line.startColor.x * 255.0f;
         color[1] = line.startColor.y * 255.0f;
         color[2] = line.startColor.z * 255.0f;
-        color[3] = 255;
+        color[3] = line.startColor.w * 255.0f;
         color[4] = line.endColor.x * 255.0f;
         color[5] = line.endColor.y * 255.0f;
         color[6] = line.endColor.z * 255.0f;
-        color[7] = 255;
+        color[7] = line.endColor.w * 255.0f;
     }
 
     GfxMeshAttrib attrib;

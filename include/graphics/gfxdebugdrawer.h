@@ -6,6 +6,7 @@
 #include "graphics/gfxshader.h"
 #include "math/t3.h"
 #include "math/t4.h"
+#include "math/aabb.h"
 #include "scripting/bindings.h"
 
 class GfxApi;
@@ -25,6 +26,8 @@ class GfxDebugDrawer
         {
             lines.append((Line){startColor, startPos, endColor, endPos});
         }
+
+        void addBox(const AABB& aabb, const Float4& color);
 
         void render(const Camera& camera);
     private:
