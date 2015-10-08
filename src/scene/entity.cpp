@@ -49,8 +49,7 @@ Entity::~Entity()
 scripting::Value Entity::findScriptInstanceObj(const String& filename) const
 {
     ScriptInstance *inst = findScriptInstance(filename);
-    //TODO: Use the current context.
-    return inst == nullptr ? scripting::createNil() : scripting::create(inst->getScript()->getContext(), inst);
+    return inst == nullptr ? scripting::createNil() : inst->getObj();
 }
 
 RigidBody *Entity::addRigidBody(const RigidBodyConstructionInfo& info,

@@ -50,6 +50,8 @@
 #include "math/aabb.h"
 #include "math/t2.h"
 #include "math/t3.h"
+#include "math/frustum.h"
+#include "math/plane.h"
 #include "math/t4.h"
 #include "math/matrix4x4.h"
 #include "math/matrix3x3.h"
@@ -110,9 +112,11 @@ namespace scripting
     Value create(Context *ctx, const LightDirectionalData& value);
     Value create(Context *ctx, const Matrix4x4& value);
     Value create(Context *ctx, const HashMap<scripting::Value,scripting::Value>& value);
+    Value create(Context *ctx, const Frustum& value);
     Value create(Context *ctx, const List<ScriptInstance*>& value);
     Value create(Context *ctx, const T3<uint32_t>& value);
     Value create(Context *ctx, const LightSpotData& value);
+    Value create(Context *ctx, const Plane& value);
     Value create(Context *ctx, const AudioDevice& value);
     Value create(Context *ctx, const List<RigidBody*>& value);
     Value create(Context *ctx, const T4<uint32_t>& value);
@@ -182,9 +186,11 @@ namespace scripting
     Value create(Context *ctx, LightDirectionalData *value);
     Value create(Context *ctx, Matrix4x4 *value);
     Value create(Context *ctx, HashMap<scripting::Value,scripting::Value> *value);
+    Value create(Context *ctx, Frustum *value);
     Value create(Context *ctx, List<ScriptInstance*> *value);
     Value create(Context *ctx, T3<uint32_t> *value);
     Value create(Context *ctx, LightSpotData *value);
+    Value create(Context *ctx, Plane *value);
     Value create(Context *ctx, PhysicsShape *value);
     Value create(Context *ctx, AudioDevice *value);
     Value create(Context *ctx, List<RigidBody*> *value);

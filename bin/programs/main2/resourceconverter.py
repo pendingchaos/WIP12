@@ -4,8 +4,8 @@ sys.path.append("../")
 from resconvlib import *
 
 worldSize = 4
-numDecors = 0
-numCoins = 0
+numDecors = 25
+numCoins = 100
 
 if __name__ == "__main__":
     conv = {}
@@ -173,7 +173,7 @@ if __name__ == "__main__":
         scene.entities.append(decorent)
     
     # Sun
-    """light = Scene.Light(Scene.Light.Type.Directional)
+    light = Scene.Light(Scene.Light.Type.Directional)
     light.direction = [1.0, -1.0, -1.0]
     light.color = [1.0, 1.0, 0.8]
     light.shadowmap = True
@@ -185,27 +185,7 @@ if __name__ == "__main__":
     light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     light.shadow_radius = 32
-    scene.lights.append(light)"""
-    
-    for i in range(256):
-        x = random.randint(-worldSize*800, worldSize*800) / 100.0
-        y = random.randint(100, 1000) / 100.0
-        z = random.randint(-worldSize*800, worldSize*800) / 100.0
-        
-        light = Scene.Light(Scene.Light.Type.Point)
-        light.position = [x, y, z]
-        light.radius = 0.25
-        light.power = 2.0
-        light.ambient_strength = 0.0
-        light.color = [1.0, 1.0, 1.0]
-        #light.shadowmap = True
-        #light.shadowmap_near = 0.1
-        #light.shadow_min_bias = 0.005
-        #light.shadow_bias_scale = 0.05
-        #light.shadow_auto_bias_scale = 0.65
-        #light.shadowmap_resolution = 1024
-        #light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
-        scene.lights.append(light)
+    scene.lights.append(light)
     
     for res in conv.values():
         if len(res.src_filenames) == 1:

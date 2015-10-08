@@ -47,6 +47,8 @@
 #include "math/aabb.h"
 #include "math/t2.h"
 #include "math/t3.h"
+#include "math/frustum.h"
+#include "math/plane.h"
 #include "math/t4.h"
 #include "math/matrix4x4.h"
 #include "math/matrix3x3.h"
@@ -83,11 +85,12 @@
 #pragma GCC diagnostic ignored "-Wreturn-type"
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, ImGui, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, ScriptInstanceList, UInt3, LightSpotData, PhysicsShape, AudioDevice, RigidBodyList, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, ImGui, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
 };
 
 
@@ -3612,6 +3615,7 @@ SV Camera_getNear(CTX ctx,const List<SV>&a);
 SV Camera_getFar(CTX ctx,const List<SV>&a);
 SV Camera_getViewMatrix(CTX ctx,const List<SV>&a);
 SV Camera_getProjectionMatrix(CTX ctx,const List<SV>&a);
+SV Camera_getFrustum(CTX ctx,const List<SV>&a);
 void GfxMesh_destroy(CTX,const SV&);
 SV GfxMesh_get_member(CTX,const SV&,const SV&);
 void GfxMesh_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5741,6 +5745,73 @@ SV Map_getCount(CTX ctx,const List<SV>&a);
 SV Map_getKey(CTX ctx,const List<SV>&a);
 SV Map_getValue(CTX ctx,const List<SV>&a);
 SV Map_clear(CTX ctx,const List<SV>&a);
+void Frustum_destroy(CTX,const SV&);
+SV Frustum_get_member(CTX,const SV&,const SV&);
+void Frustum_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs Frustum_funcs={
+.destroy = Frustum_destroy,
+.getMember = Frustum_get_member,
+.setMember = Frustum_set_member
+};
+template <>
+struct create_val<Frustum>
+{
+static SV f(CTX ctx,const Frustum&obj)
+{
+void *p = (void *)NEW(TYPE(Frustum), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Frustum_funcs,p,EXT->Frustum_typeID);
+}
+};
+template <>
+struct val_to_c<Frustum>
+{
+static Frustum f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->Frustum_typeID)
+RET*((Frustum*)obj->data);
+else
+ CATE(TE,"Value can not be converted to Frustum."));
+} else
+ CATE(TE,"Value can not be converted to Frustum."));
+}
+};
+
+template <>
+struct val_to_c<const Frustum>
+{
+static Frustum f(CTX ctx,const SV val) {return val_to_c<Frustum>::f(ctx, val);}
+};
+
+template <>
+struct create_val<const Frustum>
+{
+static SV f(CTX ctx,const Frustum&obj) {return create_val<Frustum>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<Frustum>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Frustum_typeID;
+else
+ RET false;
+}
+};
+
+SV Frustum_getOrigin(CTX ctx,const List<SV>&a);
+SV Frustum_getCorner(CTX ctx,const List<SV>&a);
+SV Frustum_getPlane(CTX ctx,const List<SV>&a);
+SV Frustum_view(CTX ctx,const List<SV>&a);
+SV Frustum_box(CTX ctx,const List<SV>&a);
+SV Frustum_getAABB(CTX ctx,const List<SV>&a);
+SV Frustum_sphereIntersection(CTX ctx,const List<SV>&a);
+SV Frustum_aabbIntersection(CTX ctx,const List<SV>&a);
 void ScriptInstanceList_destroy(CTX,const SV&);
 SV ScriptInstanceList_get_member(CTX,const SV&,const SV&);
 void ScriptInstanceList_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5975,6 +6046,66 @@ else
 }
 };
 
+void Plane_destroy(CTX,const SV&);
+SV Plane_get_member(CTX,const SV&,const SV&);
+void Plane_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs Plane_funcs={
+.destroy = Plane_destroy,
+.getMember = Plane_get_member,
+.setMember = Plane_set_member
+};
+template <>
+struct create_val<Plane>
+{
+static SV f(CTX ctx,const Plane&obj)
+{
+void *p = (void *)NEW(TYPE(Plane), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Plane_funcs,p,EXT->Plane_typeID);
+}
+};
+template <>
+struct val_to_c<Plane>
+{
+static Plane f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->Plane_typeID)
+RET*((Plane*)obj->data);
+else
+ CATE(TE,"Value can not be converted to Plane."));
+} else
+ CATE(TE,"Value can not be converted to Plane."));
+}
+};
+
+template <>
+struct val_to_c<const Plane>
+{
+static Plane f(CTX ctx,const SV val) {return val_to_c<Plane>::f(ctx, val);}
+};
+
+template <>
+struct create_val<const Plane>
+{
+static SV f(CTX ctx,const Plane&obj) {return create_val<Plane>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<Plane>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Plane_typeID;
+else
+ RET false;
+}
+};
+
+SV Plane_distanceToPoint(CTX ctx,const List<SV>&a);
 void PhysicsShape_destroy(CTX,const SV&);
 SV PhysicsShape_get_member(CTX,const SV&,const SV&);
 void PhysicsShape_set_member(CTX,const SV&,const SV&,const SV&);
@@ -7206,12 +7337,15 @@ else
 };
 
 SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a);
+SV GfxDebugDrawer_addBox(CTX ctx,const List<SV>&a);
 SV GfxDebugDrawer_render(CTX ctx,const List<SV>&a);
 template <>
 struct create_val<GhostObject *>
 {
 static SV f(CTX ctx,GhostObject*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7278,6 +7412,8 @@ struct create_val<HashMap<String,String> *>
 {
 static SV f(CTX ctx,HashMap<String,String>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7344,6 +7480,8 @@ struct create_val<GfxApi *>
 {
 static SV f(CTX ctx,GfxApi*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7410,6 +7548,8 @@ struct create_val<GfxCompiledShader *>
 {
 static SV f(CTX ctx,GfxCompiledShader*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7476,6 +7616,8 @@ struct create_val<ScrollBar *>
 {
 static SV f(CTX ctx,ScrollBar*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7542,6 +7684,8 @@ struct create_val<List<GhostObject*> *>
 {
 static SV f(CTX ctx,List<GhostObject*>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7608,6 +7752,8 @@ struct create_val<GPUTimer *>
 {
 static SV f(CTX ctx,GPUTimer*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7674,6 +7820,8 @@ struct create_val<RigidBody *>
 {
 static SV f(CTX ctx,RigidBody*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7740,6 +7888,8 @@ struct create_val<T2<uint32_t> *>
 {
 static SV f(CTX ctx,T2<uint32_t>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7806,6 +7956,8 @@ struct create_val<List<Light*> *>
 {
 static SV f(CTX ctx,List<Light*>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7872,6 +8024,8 @@ struct create_val<RenderStats *>
 {
 static SV f(CTX ctx,RenderStats*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -7938,6 +8092,8 @@ struct create_val<Filesystem *>
 {
 static SV f(CTX ctx,Filesystem*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8004,6 +8160,8 @@ struct create_val<ResourceManager *>
 {
 static SV f(CTX ctx,ResourceManager*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8070,6 +8228,8 @@ struct create_val<Entity *>
 {
 static SV f(CTX ctx,Entity*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8136,6 +8296,8 @@ struct create_val<GfxRenderer *>
 {
 static SV f(CTX ctx,GfxRenderer*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8202,6 +8364,8 @@ struct create_val<T2<float> *>
 {
 static SV f(CTX ctx,T2<float>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8268,6 +8432,8 @@ struct create_val<GfxFramebuffer *>
 {
 static SV f(CTX ctx,GfxFramebuffer*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8334,6 +8500,8 @@ struct create_val<Font *>
 {
 static SV f(CTX ctx,Font*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8400,6 +8568,8 @@ struct create_val<Event *>
 {
 static SV f(CTX ctx,Event*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8466,6 +8636,8 @@ struct create_val<PhysicsWorld *>
 {
 static SV f(CTX ctx,PhysicsWorld*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8532,6 +8704,8 @@ struct create_val<Stats *>
 {
 static SV f(CTX ctx,Stats*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8598,6 +8772,8 @@ struct create_val<AudioSource *>
 {
 static SV f(CTX ctx,AudioSource*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8664,6 +8840,8 @@ struct create_val<Script *>
 {
 static SV f(CTX ctx,Script*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8730,6 +8908,8 @@ struct create_val<List<RayCastResult> *>
 {
 static SV f(CTX ctx,List<RayCastResult>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8796,6 +8976,8 @@ struct create_val<Platform *>
 {
 static SV f(CTX ctx,Platform*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8862,6 +9044,8 @@ struct create_val<Camera *>
 {
 static SV f(CTX ctx,Camera*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8928,6 +9112,8 @@ struct create_val<GfxMesh *>
 {
 static SV f(CTX ctx,GfxMesh*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -8994,6 +9180,8 @@ struct create_val<Resource *>
 {
 static SV f(CTX ctx,Resource*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9060,6 +9248,8 @@ struct create_val<GfxShader *>
 {
 static SV f(CTX ctx,GfxShader*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9126,6 +9316,8 @@ struct create_val<Light *>
 {
 static SV f(CTX ctx,Light*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9192,6 +9384,8 @@ struct create_val<TextureSampler *>
 {
 static SV f(CTX ctx,TextureSampler*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9258,6 +9452,8 @@ struct create_val<Scene *>
 {
 static SV f(CTX ctx,Scene*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9324,6 +9520,8 @@ struct create_val<T3<int32_t> *>
 {
 static SV f(CTX ctx,T3<int32_t>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9390,6 +9588,8 @@ struct create_val<ResizableData *>
 {
 static SV f(CTX ctx,ResizableData*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9456,6 +9656,8 @@ struct create_val<T4<int32_t> *>
 {
 static SV f(CTX ctx,T4<int32_t>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9522,6 +9724,8 @@ struct create_val<T3<float> *>
 {
 static SV f(CTX ctx,T3<float>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9588,6 +9792,8 @@ struct create_val<GfxBuffer *>
 {
 static SV f(CTX ctx,GfxBuffer*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9654,6 +9860,8 @@ struct create_val<Transform *>
 {
 static SV f(CTX ctx,Transform*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9720,6 +9928,8 @@ struct create_val<List<AudioSource*> *>
 {
 static SV f(CTX ctx,List<AudioSource*>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9786,6 +9996,8 @@ struct create_val<GfxMaterial *>
 {
 static SV f(CTX ctx,GfxMaterial*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9852,6 +10064,8 @@ struct create_val<Quaternion *>
 {
 static SV f(CTX ctx,Quaternion*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9918,6 +10132,8 @@ struct create_val<GfxMeshAttrib *>
 {
 static SV f(CTX ctx,GfxMeshAttrib*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -9984,6 +10200,8 @@ struct create_val<ScriptInstance *>
 {
 static SV f(CTX ctx,ScriptInstance*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10050,6 +10268,8 @@ struct create_val<RenderComponent *>
 {
 static SV f(CTX ctx,RenderComponent*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10116,6 +10336,8 @@ struct create_val<T2<int32_t> *>
 {
 static SV f(CTX ctx,T2<int32_t>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10182,6 +10404,8 @@ struct create_val<AudioWorld *>
 {
 static SV f(CTX ctx,AudioWorld*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10248,6 +10472,8 @@ struct create_val<GuiPlacer *>
 {
 static SV f(CTX ctx,GuiPlacer*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10314,6 +10540,8 @@ struct create_val<ImGui *>
 {
 static SV f(CTX ctx,ImGui*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10380,6 +10608,8 @@ struct create_val<List<String> *>
 {
 static SV f(CTX ctx,List<String>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10446,6 +10676,8 @@ struct create_val<Application *>
 {
 static SV f(CTX ctx,Application*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10512,6 +10744,8 @@ struct create_val<LightPointData *>
 {
 static SV f(CTX ctx,LightPointData*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10578,6 +10812,8 @@ struct create_val<T4<float> *>
 {
 static SV f(CTX ctx,T4<float>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10644,6 +10880,8 @@ struct create_val<List<float> *>
 {
 static SV f(CTX ctx,List<float>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10710,6 +10948,8 @@ struct create_val<Container *>
 {
 static SV f(CTX ctx,Container*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10776,6 +11016,8 @@ struct create_val<LightDirectionalData *>
 {
 static SV f(CTX ctx,LightDirectionalData*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10842,6 +11084,8 @@ struct create_val<Matrix4x4 *>
 {
 static SV f(CTX ctx,Matrix4x4*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10908,6 +11152,8 @@ struct create_val<HashMap<scripting::Value,scripting::Value> *>
 {
 static SV f(CTX ctx,HashMap<scripting::Value,scripting::Value>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -10970,10 +11216,80 @@ else
 };
 
 template <>
+struct create_val<Frustum *>
+{
+static SV f(CTX ctx,Frustum*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(Frustum_funcs,obj,EXT->Frustum_typeID);
+}
+};
+template <>
+struct val_to_c<Frustum *>
+{
+static Frustum *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->Frustum_typeID)
+RET(Frustum*)obj->data;
+else
+ CATE(TE,"Value is not a Frustum."));
+} else
+ CATE(TE,"Value is not a Frustum."));
+}
+};
+template <>
+struct type_same<Frustum *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Frustum_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const Frustum *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Frustum_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const Frustum *>
+{
+static const Frustum *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->Frustum_typeID)
+RET(Frustum*)obj->data;
+else
+ CATE(TE,"Value is not a Frustum."));
+} else
+ CATE(TE,"Value is not a Frustum."));
+}
+};
+
+template <>
 struct create_val<List<ScriptInstance*> *>
 {
 static SV f(CTX ctx,List<ScriptInstance*>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11040,6 +11356,8 @@ struct create_val<T3<uint32_t> *>
 {
 static SV f(CTX ctx,T3<uint32_t>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11106,6 +11424,8 @@ struct create_val<LightSpotData *>
 {
 static SV f(CTX ctx,LightSpotData*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11168,10 +11488,80 @@ else
 };
 
 template <>
+struct create_val<Plane *>
+{
+static SV f(CTX ctx,Plane*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(Plane_funcs,obj,EXT->Plane_typeID);
+}
+};
+template <>
+struct val_to_c<Plane *>
+{
+static Plane *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->Plane_typeID)
+RET(Plane*)obj->data;
+else
+ CATE(TE,"Value is not a Plane."));
+} else
+ CATE(TE,"Value is not a Plane."));
+}
+};
+template <>
+struct type_same<Plane *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Plane_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const Plane *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->Plane_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const Plane *>
+{
+static const Plane *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->Plane_typeID)
+RET(Plane*)obj->data;
+else
+ CATE(TE,"Value is not a Plane."));
+} else
+ CATE(TE,"Value is not a Plane."));
+}
+};
+
+template <>
 struct create_val<PhysicsShape *>
 {
 static SV f(CTX ctx,PhysicsShape*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11238,6 +11628,8 @@ struct create_val<AudioDevice *>
 {
 static SV f(CTX ctx,AudioDevice*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11304,6 +11696,8 @@ struct create_val<List<RigidBody*> *>
 {
 static SV f(CTX ctx,List<RigidBody*>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11370,6 +11764,8 @@ struct create_val<T4<uint32_t> *>
 {
 static SV f(CTX ctx,T4<uint32_t>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11436,6 +11832,8 @@ struct create_val<RayCastResult *>
 {
 static SV f(CTX ctx,RayCastResult*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11502,6 +11900,8 @@ struct create_val<GfxLOD *>
 {
 static SV f(CTX ctx,GfxLOD*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11568,6 +11968,8 @@ struct create_val<File *>
 {
 static SV f(CTX ctx,File*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11634,6 +12036,8 @@ struct create_val<AABB *>
 {
 static SV f(CTX ctx,AABB*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11700,6 +12104,8 @@ struct create_val<RigidBodyConstructionInfo *>
 {
 static SV f(CTX ctx,RigidBodyConstructionInfo*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11766,6 +12172,8 @@ struct create_val<List<scripting::Value> *>
 {
 static SV f(CTX ctx,List<scripting::Value>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11832,6 +12240,8 @@ struct create_val<Audio *>
 {
 static SV f(CTX ctx,Audio*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11898,6 +12308,8 @@ struct create_val<GfxTexture *>
 {
 static SV f(CTX ctx,GfxTexture*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -11964,6 +12376,8 @@ struct create_val<List<GfxModel::SubModel> *>
 {
 static SV f(CTX ctx,List<GfxModel::SubModel>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -12030,6 +12444,8 @@ struct create_val<GfxModel *>
 {
 static SV f(CTX ctx,GfxModel*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -12096,6 +12512,8 @@ struct create_val<List<GfxLOD> *>
 {
 static SV f(CTX ctx,List<GfxLOD>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -12162,6 +12580,8 @@ struct create_val<List<Entity*> *>
 {
 static SV f(CTX ctx,List<Entity*>*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -12228,6 +12648,8 @@ struct create_val<GfxShaderCombination *>
 {
 static SV f(CTX ctx,GfxShaderCombination*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -12294,6 +12716,8 @@ struct create_val<Matrix3x3 *>
 {
 static SV f(CTX ctx,Matrix3x3*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -12360,6 +12784,8 @@ struct create_val<GfxDebugDrawer *>
 {
 static SV f(CTX ctx,GfxDebugDrawer*obj)
 {
+if (obj == nullptr)
+RET CN;
 AllocInfo i=getAllocInfo((void*)obj);
 i.scriptRef = true;
 setAllocInfo((void *)obj, i);
@@ -24119,6 +24545,8 @@ RET CNF(Camera_getFar);
 RET CNF(Camera_getViewMatrix);
  EI(keyStr == "getProjectionMatrix")
 RET CNF(Camera_getProjectionMatrix);
+ EI(keyStr == "getFrustum")
+RET CNF(Camera_getFrustum);
  else
  CATE(KE,"Unknown member for Camera."));
 }
@@ -24598,6 +25026,23 @@ if(1&&TS(a[1],float))
 RET CN;
 }
 CATE(TE,UFOF("Camera::setRight.")));
+RET CN;
+}
+
+SV Camera_getFrustum(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::getFrustum" EAOE));
+Camera*f;
+f=(Camera*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getFrustum());
+;
+}
+CATE(TE,UFOF("Camera::getFrustum.")));
 RET CN;
 }
 
@@ -40836,6 +41281,238 @@ CATE(TE,UFOF("Map::__neq__.")));
 RET CN;
 }
 
+void Frustum_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,Frustum))
+CATE(TE,"Frustum::__del__ expects Frustum as first argument."));
+
+SCRIPT_DELETE((Frustum*)f->data);
+}SV Frustum_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum's constructor" EAOE));
+if(!TS(a[0],Frustum))
+CATE(TE,"Frustum's constructor expects Frustum as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(Frustum));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Frustum_funcs,p,EXT->Frustum_typeID);
+}if(a.getCount()==10)
+if(true&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D)&&TS(a[3],const Position3D)&&TS(a[4],const Position3D)&&TS(a[5],const Position3D)&&TS(a[6],const Position3D)&&TS(a[7],const Position3D)&&TS(a[8],const Position3D)&&TS(a[9],const Position3D)){
+void *p = (void *)NEW(TYPE(Frustum),val_to_c<const Position3D &>::f(ctx,a[1]),val_to_c<const Position3D>::f(ctx,a[2]),val_to_c<const Position3D>::f(ctx,a[3]),val_to_c<const Position3D>::f(ctx,a[4]),val_to_c<const Position3D>::f(ctx,a[5]),val_to_c<const Position3D>::f(ctx,a[6]),val_to_c<const Position3D>::f(ctx,a[7]),val_to_c<const Position3D>::f(ctx,a[8]),val_to_c<const Position3D>::f(ctx,a[9]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Frustum_funcs,p,EXT->Frustum_typeID);
+}CATE(TE,UFOF("Frustum's constructor.")));
+RET CN;
+}
+
+SV Frustum_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringData*)key.p)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Frustum");
+EI(keyStr=="__new__")
+RET CNF(Frustum_new);
+EI(keyStr=="__call__")
+RET CNF(Frustum_new);
+else
+ CATE(KE,"Unknown member for Frustum."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(Frustum_new);
+ EI(keyStr == "getOrigin")
+RET CNF(Frustum_getOrigin);
+ EI(keyStr == "getCorner")
+RET CNF(Frustum_getCorner);
+ EI(keyStr == "getPlane")
+RET CNF(Frustum_getPlane);
+ EI(keyStr == "view")
+RET CNF(Frustum_view);
+ EI(keyStr == "box")
+RET CNF(Frustum_box);
+ EI(keyStr == "getAABB")
+RET CNF(Frustum_getAABB);
+ EI(keyStr == "sphereIntersection")
+RET CNF(Frustum_sphereIntersection);
+ EI(keyStr == "aabbIntersection")
+RET CNF(Frustum_aabbIntersection);
+ else
+ CATE(KE,"Unknown member for Frustum."));
+}
+}
+RET CN;
+}
+
+void Frustum_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringData*)key.p)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for Frustum."));
+}
+}
+}
+
+SV Frustum_box(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::box" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==8)
+if(1&&TS(a[1],const Matrix4x4 &)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)&&TS(a[5],float)&&TS(a[6],float)&&TS(a[7],float))
+{
+RET CV( f->box(val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[7])));
+;
+}
+CATE(TE,UFOF("Frustum::box.")));
+RET CN;
+}
+
+SV Frustum_getCorner(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::getCorner" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getCorner(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Frustum::getCorner.")));
+RET CN;
+}
+
+SV Frustum_sphereIntersection(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::sphereIntersection" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],const Position3D &)&&TS(a[2],float))
+{
+RET CV( f->sphereIntersection(val_to_c<std::remove_reference<const Position3D &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("Frustum::sphereIntersection.")));
+RET CN;
+}
+
+SV Frustum_getOrigin(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::getOrigin" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getOrigin());
+;
+}
+CATE(TE,UFOF("Frustum::getOrigin.")));
+RET CN;
+}
+
+SV Frustum_getPlane(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::getPlane" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->getPlane(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Frustum::getPlane.")));
+RET CN;
+}
+
+SV Frustum_getAABB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::getAABB" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getAABB());
+;
+}
+CATE(TE,UFOF("Frustum::getAABB.")));
+RET CN;
+}
+
+SV Frustum_aabbIntersection(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::aabbIntersection" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const AABB &))
+{
+RET CV( f->aabbIntersection(val_to_c<std::remove_reference<const AABB &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Frustum::aabbIntersection.")));
+RET CN;
+}
+
+SV Frustum_view(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Frustum::view" EAOE));
+Frustum*f;
+f=(Frustum*)((NO)a[0].p)->data;
+
+if(a.getCount()==6)
+if(1&&TS(a[1],const Matrix4x4 &)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)&&TS(a[5],float))
+{
+RET CV( f->view(val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[5])));
+;
+}
+if(a.getCount()==8)
+if(1&&TS(a[1],const Matrix4x4 &)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],float)&&TS(a[5],float)&&TS(a[6],float)&&TS(a[7],float))
+{
+RET CV( f->view(val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[7])));
+;
+}
+CATE(TE,UFOF("Frustum::view.")));
+RET CN;
+}
+
 void ScriptInstanceList_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
@@ -42241,6 +42918,115 @@ obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
  CATE(KE,"Unknown member or member if read-only for LightSpotData."));
 }
 }
+}
+
+void Plane_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,Plane))
+CATE(TE,"Plane::__del__ expects Plane as first argument."));
+
+SCRIPT_DELETE((Plane*)f->data);
+}SV Plane_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Plane's constructor" EAOE));
+if(!TS(a[0],Plane))
+CATE(TE,"Plane's constructor expects Plane as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(Plane));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Plane_funcs,p,EXT->Plane_typeID);
+}if(a.getCount()==4)
+if(true&&TS(a[1],const Position3D &)&&TS(a[2],const Position3D &)&&TS(a[3],const Position3D &)){
+void *p = (void *)NEW(TYPE(Plane),val_to_c<const Position3D &>::f(ctx,a[1]),val_to_c<const Position3D &>::f(ctx,a[2]),val_to_c<const Position3D &>::f(ctx,a[3]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(Plane_funcs,p,EXT->Plane_typeID);
+}CATE(TE,UFOF("Plane's constructor.")));
+RET CN;
+}
+
+SV Plane_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringData*)key.p)->value;
+if(f->data==NULL)
+{
+if(keyStr=="__typeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__name__")
+RET STG::createString("Plane");
+EI(keyStr=="__new__")
+RET CNF(Plane_new);
+EI(keyStr=="__call__")
+RET CNF(Plane_new);
+else
+ CATE(KE,"Unknown member for Plane."));
+} else
+{
+if(keyStr=="__classTypeID__")
+RET STG::createInt(f->typeID);
+EI(keyStr=="__init__")
+RET CNF(Plane_new);
+ EI(keyStr == "distanceToPoint")
+RET CNF(Plane_distanceToPoint);
+ EI(keyStr=="normal")
+{
+Plane*obj=(Plane*)f->data;
+RET CV(obj->normal);
+} EI(keyStr=="distance")
+{
+Plane*obj=(Plane*)f->data;
+RET CV(obj->distance);
+} else
+ CATE(KE,"Unknown member for Plane."));
+}
+}
+RET CN;
+}
+
+void Plane_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+String keyStr=((STG::StringData*)key.p)->value;
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr=="normal")
+{
+Plane*obj=(Plane*)f->data;
+obj->normal=val_to_c<decltype(obj->normal)>::f(ctx,value);
+} EI(keyStr=="distance")
+{
+Plane*obj=(Plane*)f->data;
+obj->distance=val_to_c<decltype(obj->distance)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only for Plane."));
+}
+}
+}
+
+SV Plane_distanceToPoint(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Plane::distanceToPoint" EAOE));
+Plane*f;
+f=(Plane*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Position3D &))
+{
+RET CV( f->distanceToPoint(val_to_c<std::remove_reference<const Position3D &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Plane::distanceToPoint.")));
+RET CN;
 }
 
 void PhysicsShape_destroy(CTX ctx,const SV&f_)
@@ -51110,6 +51896,8 @@ EI(keyStr=="__init__")
 RET CNF(GfxDebugDrawer_new);
  EI(keyStr == "addLine")
 RET CNF(GfxDebugDrawer_addLine);
+ EI(keyStr == "addBox")
+RET CNF(GfxDebugDrawer_addBox);
  EI(keyStr == "render")
 RET CNF(GfxDebugDrawer_render);
  else
@@ -51133,6 +51921,23 @@ if(0) {} else
  CATE(KE,"Unknown member or member if read-only for GfxDebugDrawer."));
 }
 }
+}
+
+SV GfxDebugDrawer_addBox(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxDebugDrawer::addBox" EAOE));
+GfxDebugDrawer*f;
+f=(GfxDebugDrawer*)((NO)a[0].p)->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],const AABB &)&&TS(a[2],const Float4 &))
+{
+( f->addBox(val_to_c<std::remove_reference<const AABB &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Float4 &>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("GfxDebugDrawer::addBox.")));
+RET CN;
 }
 
 SV GfxDebugDrawer_addLine(CTX ctx,const List<SV>&a)
@@ -51315,9 +52120,11 @@ SV create(CTX ctx,const Container& value){RET CV(value);}
 SV create(CTX ctx,const LightDirectionalData& value){RET CV(value);}
 SV create(CTX ctx,const Matrix4x4& value){RET CV(value);}
 SV create(CTX ctx,const HashMap<scripting::Value,scripting::Value>& value){RET CV(value);}
+SV create(CTX ctx,const Frustum& value){RET CV(value);}
 SV create(CTX ctx,const List<ScriptInstance*>& value){RET CV(value);}
 SV create(CTX ctx,const T3<uint32_t>& value){RET CV(value);}
 SV create(CTX ctx,const LightSpotData& value){RET CV(value);}
+SV create(CTX ctx,const Plane& value){RET CV(value);}
 SV create(CTX ctx,const AudioDevice& value){RET CV(value);}
 SV create(CTX ctx,const List<RigidBody*>& value){RET CV(value);}
 SV create(CTX ctx,const T4<uint32_t>& value){RET CV(value);}
@@ -51387,9 +52194,11 @@ SV create(CTX ctx,Container *value){RET CV(value);}
 SV create(CTX ctx,LightDirectionalData *value){RET CV(value);}
 SV create(CTX ctx,Matrix4x4 *value){RET CV(value);}
 SV create(CTX ctx,HashMap<scripting::Value,scripting::Value> *value){RET CV(value);}
+SV create(CTX ctx,Frustum *value){RET CV(value);}
 SV create(CTX ctx,List<ScriptInstance*> *value){RET CV(value);}
 SV create(CTX ctx,T3<uint32_t> *value){RET CV(value);}
 SV create(CTX ctx,LightSpotData *value){RET CV(value);}
+SV create(CTX ctx,Plane *value){RET CV(value);}
 SV create(CTX ctx,PhysicsShape *value){RET CV(value);}
 SV create(CTX ctx,AudioDevice *value){RET CV(value);}
 SV create(CTX ctx,List<RigidBody*> *value){RET CV(value);}
@@ -51735,6 +52544,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Map", ext->Map);
     
     typeID = engine->createNewTypeID();
+    ext->Frustum_typeID = typeID;
+    ext->Frustum = scripting::createNativeObject(Frustum_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Frustum", ext->Frustum);
+    
+    typeID = engine->createNewTypeID();
     ext->ScriptInstanceList_typeID = typeID;
     ext->ScriptInstanceList = scripting::createNativeObject(ScriptInstanceList_funcs, NULL, typeID);
     engine->getGlobalVars().set("ScriptInstanceList", ext->ScriptInstanceList);
@@ -51748,6 +52562,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->LightSpotData_typeID = typeID;
     ext->LightSpotData = scripting::createNativeObject(LightSpotData_funcs, NULL, typeID);
     engine->getGlobalVars().set("LightSpotData", ext->LightSpotData);
+    
+    typeID = engine->createNewTypeID();
+    ext->Plane_typeID = typeID;
+    ext->Plane = scripting::createNativeObject(Plane_funcs, NULL, typeID);
+    engine->getGlobalVars().set("Plane", ext->Plane);
     
     typeID = engine->createNewTypeID();
     ext->PhysicsShape_typeID = typeID;

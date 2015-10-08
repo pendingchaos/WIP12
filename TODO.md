@@ -24,6 +24,7 @@
     - [ ] Bind Pose, AnimationFrame, Animation, Bone.
     - [ ] [] operator.
     - [ ] Unary - operator.
+    - [ ] Improve the == and != operator's behaviour. (scripting)
 - [ ] Improve the == and != operator's behaviour. (scripting)
 - [ ] Casts. (scripting)
 - [ ] Finish the bytecode generator (scripting).

@@ -55,9 +55,13 @@ return class {
             inst = entity:findScriptInstanceObj("resources/scripts/coin.rkt");
             
             if not isNil(inst) {
-                obj = inst:getObj();
-                obj.shrinking = true;
-                # TODO: Why won't "inst:getObj():onCollect()" work?
+                #inst.shrinking = true;
+                inst:onCollect();
+                # TODO: Why won't "inst:onCollect()" work?
+                # Unhandled script exception:
+                #    Unknown member: 'scene'
+                # In this function.
+                # Throws a std::bad_alloc without showing the script exception.
             };
             
             i = i + 1;
