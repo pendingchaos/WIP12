@@ -14,8 +14,6 @@ return class {
     fixedUpdate = function(self, timestep)
     {
         if self.shrinking {
-            //TODO: Remove the rigid body.
-            
             entity = self.entity;
             transform = entity.transform;
             transform.scale = transform.scale * 0.9;

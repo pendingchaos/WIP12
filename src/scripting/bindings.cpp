@@ -2654,6 +2654,7 @@ SV UInt2_getXY(CTX ctx,const List<SV>&a);
 SV UInt2_setXY(CTX ctx,const List<SV>&a);
 SV UInt2_getYX(CTX ctx,const List<SV>&a);
 SV UInt2_setYX(CTX ctx,const List<SV>&a);
+SV UInt2_copy(CTX ctx,const List<SV>&a);
 void LightList_destroy(CTX,const SV&);
 SV LightList_get_member(CTX,const SV&,const SV&);
 void LightList_set_member(CTX,const SV&,const SV&,const SV&);
@@ -2931,10 +2932,12 @@ SV Entity_hasRenderComponent(CTX ctx,const List<SV>&a);
 SV Entity_getScene(CTX ctx,const List<SV>&a);
 SV Entity_createEntity(CTX ctx,const List<SV>&a);
 SV Entity_removeEntity(CTX ctx,const List<SV>&a);
+SV Entity_findEntity(CTX ctx,const List<SV>&a);
 SV Entity_getEntities(CTX ctx,const List<SV>&a);
 SV Entity_getParent(CTX ctx,const List<SV>&a);
 SV Entity_updateFinalTransform(CTX ctx,const List<SV>&a);
 SV Entity_getFinalTransform(CTX ctx,const List<SV>&a);
+SV Entity_getFinalTransformNoScale(CTX ctx,const List<SV>&a);
 SV Entity_getAudioSources(CTX ctx,const List<SV>&a);
 SV Entity_addAudioSource(CTX ctx,const List<SV>&a);
 SV Entity_removeAudioSource(CTX ctx,const List<SV>&a);
@@ -3094,6 +3097,7 @@ SV Float2_getXY(CTX ctx,const List<SV>&a);
 SV Float2_setXY(CTX ctx,const List<SV>&a);
 SV Float2_getYX(CTX ctx,const List<SV>&a);
 SV Float2_setYX(CTX ctx,const List<SV>&a);
+SV Float2_copy(CTX ctx,const List<SV>&a);
 void GfxFramebuffer_destroy(CTX,const SV&);
 SV GfxFramebuffer_get_member(CTX,const SV&,const SV&);
 void GfxFramebuffer_set_member(CTX,const SV&,const SV&,const SV&);
@@ -3843,6 +3847,7 @@ SV Scene_getAudioWorld(CTX ctx,const List<SV>&a);
 SV Scene_save(CTX ctx,const List<SV>&a);
 SV Scene_createEntity(CTX ctx,const List<SV>&a);
 SV Scene_removeEntity(CTX ctx,const List<SV>&a);
+SV Scene_findEntity(CTX ctx,const List<SV>&a);
 SV Scene_getEntities(CTX ctx,const List<SV>&a);
 SV Scene_addScript(CTX ctx,const List<SV>&a);
 SV Scene_removeScript(CTX ctx,const List<SV>&a);
@@ -3956,6 +3961,7 @@ SV Int3_getZXY(CTX ctx,const List<SV>&a);
 SV Int3_setZXY(CTX ctx,const List<SV>&a);
 SV Int3_getZYX(CTX ctx,const List<SV>&a);
 SV Int3_setZYX(CTX ctx,const List<SV>&a);
+SV Int3_copy(CTX ctx,const List<SV>&a);
 void ResizableData_destroy(CTX,const SV&);
 SV ResizableData_get_member(CTX,const SV&,const SV&);
 void ResizableData_set_member(CTX,const SV&,const SV&,const SV&);
@@ -4267,6 +4273,7 @@ SV Int4_getWXZY(CTX ctx,const List<SV>&a);
 SV Int4_setWXZY(CTX ctx,const List<SV>&a);
 SV Int4_getWXYZ(CTX ctx,const List<SV>&a);
 SV Int4_setWXYZ(CTX ctx,const List<SV>&a);
+SV Int4_copy(CTX ctx,const List<SV>&a);
 void Float3_destroy(CTX,const SV&);
 SV Float3_get_member(CTX,const SV&,const SV&);
 void Float3_set_member(CTX,const SV&,const SV&,const SV&);
@@ -4368,6 +4375,7 @@ SV Float3_getZXY(CTX ctx,const List<SV>&a);
 SV Float3_setZXY(CTX ctx,const List<SV>&a);
 SV Float3_getZYX(CTX ctx,const List<SV>&a);
 SV Float3_setZYX(CTX ctx,const List<SV>&a);
+SV Float3_copy(CTX ctx,const List<SV>&a);
 void GfxBuffer_destroy(CTX,const SV&);
 SV GfxBuffer_get_member(CTX,const SV&,const SV&);
 void GfxBuffer_set_member(CTX,const SV&,const SV&,const SV&);
@@ -4841,6 +4849,7 @@ SV Int2_getXY(CTX ctx,const List<SV>&a);
 SV Int2_setXY(CTX ctx,const List<SV>&a);
 SV Int2_getYX(CTX ctx,const List<SV>&a);
 SV Int2_setYX(CTX ctx,const List<SV>&a);
+SV Int2_copy(CTX ctx,const List<SV>&a);
 void AudioWorld_destroy(CTX,const SV&);
 SV AudioWorld_get_member(CTX,const SV&,const SV&);
 void AudioWorld_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5403,6 +5412,7 @@ SV Float4_getWXZY(CTX ctx,const List<SV>&a);
 SV Float4_setWXZY(CTX ctx,const List<SV>&a);
 SV Float4_getWXYZ(CTX ctx,const List<SV>&a);
 SV Float4_setWXYZ(CTX ctx,const List<SV>&a);
+SV Float4_copy(CTX ctx,const List<SV>&a);
 void FloatList_destroy(CTX,const SV&);
 SV FloatList_get_member(CTX,const SV&,const SV&);
 void FloatList_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5987,6 +5997,7 @@ SV UInt3_getZXY(CTX ctx,const List<SV>&a);
 SV UInt3_setZXY(CTX ctx,const List<SV>&a);
 SV UInt3_getZYX(CTX ctx,const List<SV>&a);
 SV UInt3_setZYX(CTX ctx,const List<SV>&a);
+SV UInt3_copy(CTX ctx,const List<SV>&a);
 void LightSpotData_destroy(CTX,const SV&);
 SV LightSpotData_get_member(CTX,const SV&,const SV&);
 void LightSpotData_set_member(CTX,const SV&,const SV&,const SV&);
@@ -6495,6 +6506,7 @@ SV UInt4_getWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_setWXZY(CTX ctx,const List<SV>&a);
 SV UInt4_getWXYZ(CTX ctx,const List<SV>&a);
 SV UInt4_setWXYZ(CTX ctx,const List<SV>&a);
+SV UInt4_copy(CTX ctx,const List<SV>&a);
 void RayCastResult_destroy(CTX,const SV&);
 SV RayCastResult_get_member(CTX,const SV&,const SV&);
 void RayCastResult_set_member(CTX,const SV&,const SV&,const SV&);
@@ -18556,6 +18568,8 @@ RET CNF(UInt2_setXY);
 RET CNF(UInt2_getYX);
  EI(keyStr == "setYX")
 RET CNF(UInt2_setYX);
+ EI(keyStr == "copy")
+RET CNF(UInt2_copy);
  EI(keyStr=="x")
 {
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
@@ -18595,6 +18609,40 @@ obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 }
 }
 
+SV UInt2_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::setYX" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+( f->setYX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("UInt2::setYX.")));
+RET CN;
+}
+
+SV UInt2_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::distanceSquared" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt2::distanceSquared.")));
+RET CN;
+}
+
 SV UInt2_normalize(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -18612,37 +18660,20 @@ CATE(TE,UFOF("UInt2::normalize.")));
 RET CN;
 }
 
-SV UInt2_distance(CTX ctx,const List<SV>&a)
+SV UInt2_getYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt2::distance" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-RET CV( f->distance(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt2::distance.")));
-RET CN;
-}
-
-SV UInt2_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::lengthSquared" EAOE));
+CATE(VE,"UInt2::getYX" EAOE));
 T2<uint32_t>*f;
 f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->lengthSquared());
+RET CV( f->getYX());
 ;
 }
-CATE(TE,UFOF("UInt2::lengthSquared.")));
+CATE(TE,UFOF("UInt2::getYX.")));
 RET CN;
 }
 
@@ -18663,40 +18694,6 @@ CATE(TE,UFOF("UInt2::__leq__.")));
 RET CN;
 }
 
-SV UInt2_setYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::setYX" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-( f->setYX(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("UInt2::setYX.")));
-RET CN;
-}
-
-SV UInt2___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__grtr__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f > v);
-}
-CATE(TE,UFOF("UInt2::__grtr__.")));
-RET CN;
-}
-
 SV UInt2_sum(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -18711,57 +18708,6 @@ RET CV( f->sum());
 ;
 }
 CATE(TE,UFOF("UInt2::sum.")));
-RET CN;
-}
-
-SV UInt2_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::getXY" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXY());
-;
-}
-CATE(TE,UFOF("UInt2::getXY.")));
-RET CN;
-}
-
-SV UInt2_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::length" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->length());
-;
-}
-CATE(TE,UFOF("UInt2::length.")));
-RET CN;
-}
-
-SV UInt2_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::getYX" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYX());
-;
-}
-CATE(TE,UFOF("UInt2::getYX.")));
 RET CN;
 }
 
@@ -18788,6 +18734,57 @@ CATE(TE,UFOF("UInt2::__div__.")));
 RET CN;
 }
 
+SV UInt2___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__less__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f < v);
+}
+CATE(TE,UFOF("UInt2::__less__.")));
+RET CN;
+}
+
+SV UInt2___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__neq__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("UInt2::__neq__.")));
+RET CN;
+}
+
+SV UInt2_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::lengthSquared" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->lengthSquared());
+;
+}
+CATE(TE,UFOF("UInt2::lengthSquared.")));
+RET CN;
+}
+
 SV UInt2_setXY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -18802,29 +18799,6 @@ if(1&&TS(a[1],const T2<uint32_t> &))
 RET CN;
 }
 CATE(TE,UFOF("UInt2::setXY.")));
-RET CN;
-}
-
-SV UInt2___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__mul__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],uint32_t))
-{
-auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-CATE(TE,UFOF("UInt2::__mul__.")));
 RET CN;
 }
 
@@ -18851,10 +18825,27 @@ CATE(TE,UFOF("UInt2::__add__.")));
 RET CN;
 }
 
-SV UInt2___less__(CTX ctx,const List<SV>&a)
+SV UInt2_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"UInt2::__less__" EAOE));
+CATE(VE,"UInt2::copy" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("UInt2::copy.")));
+RET CN;
+}
+
+SV UInt2___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__eq__" EAOE));
 T2<uint32_t>*f;
 f=(T2<uint32_t>*)((NO)a[0].p)->data;
 
@@ -18862,9 +18853,100 @@ if(a.getCount()==2)
 if(1&&TS(a[1],const T2<uint32_t> &))
 {
 auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f < v);
+RET CV(*f == v);
 }
-CATE(TE,UFOF("UInt2::__less__.")));
+CATE(TE,UFOF("UInt2::__eq__.")));
+RET CN;
+}
+
+SV UInt2_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::getXY" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXY());
+;
+}
+CATE(TE,UFOF("UInt2::getXY.")));
+RET CN;
+}
+
+SV UInt2_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::distance" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+RET CV( f->distance(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("UInt2::distance.")));
+RET CN;
+}
+
+SV UInt2___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__grtr__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f > v);
+}
+CATE(TE,UFOF("UInt2::__grtr__.")));
+RET CN;
+}
+
+SV UInt2_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::length" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->length());
+;
+}
+CATE(TE,UFOF("UInt2::length.")));
+RET CN;
+}
+
+SV UInt2___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt2::__mul__" EAOE));
+T2<uint32_t>*f;
+f=(T2<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<uint32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],uint32_t))
+{
+auto v=val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+CATE(TE,UFOF("UInt2::__mul__.")));
 RET CN;
 }
 
@@ -18908,40 +18990,6 @@ CATE(TE,UFOF("UInt2::__geq__.")));
 RET CN;
 }
 
-SV UInt2_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::distanceSquared" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("UInt2::distanceSquared.")));
-RET CN;
-}
-
-SV UInt2___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__eq__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
-}
-CATE(TE,UFOF("UInt2::__eq__.")));
-RET CN;
-}
-
 SV UInt2_dot(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -18962,23 +19010,6 @@ RET CV( f->dot());
 ;
 }
 CATE(TE,UFOF("UInt2::dot.")));
-RET CN;
-}
-
-SV UInt2___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"UInt2::__neq__" EAOE));
-T2<uint32_t>*f;
-f=(T2<uint32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<uint32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<uint32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
-}
-CATE(TE,UFOF("UInt2::__neq__.")));
 RET CN;
 }
 
@@ -20338,6 +20369,8 @@ RET CNF(Entity_getScene);
 RET CNF(Entity_createEntity);
  EI(keyStr == "removeEntity")
 RET CNF(Entity_removeEntity);
+ EI(keyStr == "findEntity")
+RET CNF(Entity_findEntity);
  EI(keyStr == "getEntities")
 RET CNF(Entity_getEntities);
  EI(keyStr == "getParent")
@@ -20346,6 +20379,8 @@ RET CNF(Entity_getParent);
 RET CNF(Entity_updateFinalTransform);
  EI(keyStr == "getFinalTransform")
 RET CNF(Entity_getFinalTransform);
+ EI(keyStr == "getFinalTransformNoScale")
+RET CNF(Entity_getFinalTransformNoScale);
  EI(keyStr == "getAudioSources")
 RET CNF(Entity_getAudioSources);
  EI(keyStr == "addAudioSource")
@@ -20459,6 +20494,23 @@ CATE(TE,UFOF("Entity::getRigidBody.")));
 RET CN;
 }
 
+SV Entity_getFinalTransformNoScale(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::getFinalTransformNoScale" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getFinalTransformNoScale());
+;
+}
+CATE(TE,UFOF("Entity::getFinalTransformNoScale.")));
+RET CN;
+}
+
 SV Entity_addOverlay(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -20507,6 +20559,23 @@ if(1&&TS(a[1],ScriptInstance *))
 RET CN;
 }
 CATE(TE,UFOF("Entity::removeScript.")));
+RET CN;
+}
+
+SV Entity_findEntity(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Entity::findEntity" EAOE));
+Entity*f;
+f=(Entity*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->findEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Entity::findEntity.")));
 RET CN;
 }
 
@@ -21396,6 +21465,8 @@ RET CNF(Float2_setXY);
 RET CNF(Float2_getYX);
  EI(keyStr == "setYX")
 RET CNF(Float2_setYX);
+ EI(keyStr == "copy")
+RET CNF(Float2_copy);
  EI(keyStr=="x")
 {
 T2<float>*obj=(T2<float>*)f->data;
@@ -21435,6 +21506,40 @@ obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 }
 }
 
+SV Float2_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::setYX" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+( f->setYX(val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Float2::setYX.")));
+RET CN;
+}
+
+SV Float2_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::distanceSquared" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Float2::distanceSquared.")));
+RET CN;
+}
+
 SV Float2_normalize(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21452,37 +21557,20 @@ CATE(TE,UFOF("Float2::normalize.")));
 RET CN;
 }
 
-SV Float2_distance(CTX ctx,const List<SV>&a)
+SV Float2_getYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Float2::distance" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-RET CV( f->distance(val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Float2::distance.")));
-RET CN;
-}
-
-SV Float2_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::lengthSquared" EAOE));
+CATE(VE,"Float2::getYX" EAOE));
 T2<float>*f;
 f=(T2<float>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->lengthSquared());
+RET CV( f->getYX());
 ;
 }
-CATE(TE,UFOF("Float2::lengthSquared.")));
+CATE(TE,UFOF("Float2::getYX.")));
 RET CN;
 }
 
@@ -21503,40 +21591,6 @@ CATE(TE,UFOF("Float2::__leq__.")));
 RET CN;
 }
 
-SV Float2_setYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::setYX" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-( f->setYX(val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Float2::setYX.")));
-RET CN;
-}
-
-SV Float2___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__grtr__" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
-RET CV(*f > v);
-}
-CATE(TE,UFOF("Float2::__grtr__.")));
-RET CN;
-}
-
 SV Float2_sum(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21551,57 +21605,6 @@ RET CV( f->sum());
 ;
 }
 CATE(TE,UFOF("Float2::sum.")));
-RET CN;
-}
-
-SV Float2_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::getXY" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXY());
-;
-}
-CATE(TE,UFOF("Float2::getXY.")));
-RET CN;
-}
-
-SV Float2_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::length" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->length());
-;
-}
-CATE(TE,UFOF("Float2::length.")));
-RET CN;
-}
-
-SV Float2_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::getYX" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYX());
-;
-}
-CATE(TE,UFOF("Float2::getYX.")));
 RET CN;
 }
 
@@ -21628,6 +21631,57 @@ CATE(TE,UFOF("Float2::__div__.")));
 RET CN;
 }
 
+SV Float2___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__less__" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
+RET CV(*f < v);
+}
+CATE(TE,UFOF("Float2::__less__.")));
+RET CN;
+}
+
+SV Float2___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__neq__" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("Float2::__neq__.")));
+RET CN;
+}
+
+SV Float2_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::lengthSquared" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->lengthSquared());
+;
+}
+CATE(TE,UFOF("Float2::lengthSquared.")));
+RET CN;
+}
+
 SV Float2_setXY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21642,29 +21696,6 @@ if(1&&TS(a[1],const T2<float> &))
 RET CN;
 }
 CATE(TE,UFOF("Float2::setXY.")));
-RET CN;
-}
-
-SV Float2___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__mul__" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],float))
-{
-auto v=val_to_c<std::remove_reference<float>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-CATE(TE,UFOF("Float2::__mul__.")));
 RET CN;
 }
 
@@ -21691,10 +21722,27 @@ CATE(TE,UFOF("Float2::__add__.")));
 RET CN;
 }
 
-SV Float2___less__(CTX ctx,const List<SV>&a)
+SV Float2_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Float2::__less__" EAOE));
+CATE(VE,"Float2::copy" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Float2::copy.")));
+RET CN;
+}
+
+SV Float2___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__eq__" EAOE));
 T2<float>*f;
 f=(T2<float>*)((NO)a[0].p)->data;
 
@@ -21702,9 +21750,100 @@ if(a.getCount()==2)
 if(1&&TS(a[1],const T2<float> &))
 {
 auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
-RET CV(*f < v);
+RET CV(*f == v);
 }
-CATE(TE,UFOF("Float2::__less__.")));
+CATE(TE,UFOF("Float2::__eq__.")));
+RET CN;
+}
+
+SV Float2_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::getXY" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXY());
+;
+}
+CATE(TE,UFOF("Float2::getXY.")));
+RET CN;
+}
+
+SV Float2_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::distance" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+RET CV( f->distance(val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Float2::distance.")));
+RET CN;
+}
+
+SV Float2___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__grtr__" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
+RET CV(*f > v);
+}
+CATE(TE,UFOF("Float2::__grtr__.")));
+RET CN;
+}
+
+SV Float2_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::length" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->length());
+;
+}
+CATE(TE,UFOF("Float2::length.")));
+RET CN;
+}
+
+SV Float2___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float2::__mul__" EAOE));
+T2<float>*f;
+f=(T2<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<float> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+auto v=val_to_c<std::remove_reference<float>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+CATE(TE,UFOF("Float2::__mul__.")));
 RET CN;
 }
 
@@ -21748,40 +21887,6 @@ CATE(TE,UFOF("Float2::__geq__.")));
 RET CN;
 }
 
-SV Float2_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::distanceSquared" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Float2::distanceSquared.")));
-RET CN;
-}
-
-SV Float2___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__eq__" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
-}
-CATE(TE,UFOF("Float2::__eq__.")));
-RET CN;
-}
-
 SV Float2_dot(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21802,23 +21907,6 @@ RET CV( f->dot());
 ;
 }
 CATE(TE,UFOF("Float2::dot.")));
-RET CN;
-}
-
-SV Float2___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Float2::__neq__" EAOE));
-T2<float>*f;
-f=(T2<float>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<float> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<float> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
-}
-CATE(TE,UFOF("Float2::__neq__.")));
 RET CN;
 }
 
@@ -26790,6 +26878,8 @@ RET CNF(Scene_save);
 RET CNF(Scene_createEntity);
  EI(keyStr == "removeEntity")
 RET CNF(Scene_removeEntity);
+ EI(keyStr == "findEntity")
+RET CNF(Scene_findEntity);
  EI(keyStr == "getEntities")
 RET CNF(Scene_getEntities);
  EI(keyStr == "addScript")
@@ -26919,6 +27009,23 @@ RET CV( f->getScripts());
 ;
 }
 CATE(TE,UFOF("Scene::getScripts.")));
+RET CN;
+}
+
+SV Scene_findEntity(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Scene::findEntity" EAOE));
+Scene*f;
+f=(Scene*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const String &))
+{
+RET CV( f->findEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Scene::findEntity.")));
 RET CN;
 }
 
@@ -27395,6 +27502,8 @@ RET CNF(Int3_setZXY);
 RET CNF(Int3_getZYX);
  EI(keyStr == "setZYX")
 RET CNF(Int3_setZYX);
+ EI(keyStr == "copy")
+RET CNF(Int3_copy);
  EI(keyStr=="x")
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
@@ -27876,6 +27985,23 @@ if(1&&TS(a[1],const T2<int32_t> &))
 RET CN;
 }
 CATE(TE,UFOF("Int3::setXZ.")));
+RET CN;
+}
+
+SV Int3_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int3::copy" EAOE));
+T3<int32_t>*f;
+f=(T3<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Int3::copy.")));
 RET CN;
 }
 
@@ -29663,6 +29789,8 @@ RET CNF(Int4_setWXZY);
 RET CNF(Int4_getWXYZ);
  EI(keyStr == "setWXYZ")
 RET CNF(Int4_setWXYZ);
+ EI(keyStr == "copy")
+RET CNF(Int4_copy);
  EI(keyStr=="x")
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
@@ -31095,6 +31223,23 @@ CATE(TE,UFOF("Int4::setYXWZ.")));
 RET CN;
 }
 
+SV Int4_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int4::copy" EAOE));
+T4<int32_t>*f;
+f=(T4<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Int4::copy.")));
+RET CN;
+}
+
 SV Int4___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -32232,6 +32377,8 @@ RET CNF(Float3_setZXY);
 RET CNF(Float3_getZYX);
  EI(keyStr == "setZYX")
 RET CNF(Float3_setZYX);
+ EI(keyStr == "copy")
+RET CNF(Float3_copy);
  EI(keyStr=="x")
 {
 T3<float>*obj=(T3<float>*)f->data;
@@ -32713,6 +32860,23 @@ if(1&&TS(a[1],const T2<float> &))
 RET CN;
 }
 CATE(TE,UFOF("Float3::setXZ.")));
+RET CN;
+}
+
+SV Float3_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float3::copy" EAOE));
+T3<float>*f;
+f=(T3<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Float3::copy.")));
 RET CN;
 }
 
@@ -35383,6 +35547,8 @@ RET CNF(Int2_setXY);
 RET CNF(Int2_getYX);
  EI(keyStr == "setYX")
 RET CNF(Int2_setYX);
+ EI(keyStr == "copy")
+RET CNF(Int2_copy);
  EI(keyStr=="x")
 {
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
@@ -35422,6 +35588,40 @@ obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
 }
 }
 
+SV Int2_setYX(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::setYX" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+( f->setYX(val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Int2::setYX.")));
+RET CN;
+}
+
+SV Int2_distanceSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::distanceSquared" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Int2::distanceSquared.")));
+RET CN;
+}
+
 SV Int2_normalize(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35439,37 +35639,20 @@ CATE(TE,UFOF("Int2::normalize.")));
 RET CN;
 }
 
-SV Int2_distance(CTX ctx,const List<SV>&a)
+SV Int2_getYX(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Int2::distance" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-RET CV( f->distance(val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Int2::distance.")));
-RET CN;
-}
-
-SV Int2_lengthSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::lengthSquared" EAOE));
+CATE(VE,"Int2::getYX" EAOE));
 T2<int32_t>*f;
 f=(T2<int32_t>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->lengthSquared());
+RET CV( f->getYX());
 ;
 }
-CATE(TE,UFOF("Int2::lengthSquared.")));
+CATE(TE,UFOF("Int2::getYX.")));
 RET CN;
 }
 
@@ -35490,40 +35673,6 @@ CATE(TE,UFOF("Int2::__leq__.")));
 RET CN;
 }
 
-SV Int2_setYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::setYX" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-( f->setYX(val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("Int2::setYX.")));
-RET CN;
-}
-
-SV Int2___grtr__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::__grtr__" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f > v);
-}
-CATE(TE,UFOF("Int2::__grtr__.")));
-RET CN;
-}
-
 SV Int2_sum(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35538,57 +35687,6 @@ RET CV( f->sum());
 ;
 }
 CATE(TE,UFOF("Int2::sum.")));
-RET CN;
-}
-
-SV Int2_getXY(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::getXY" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getXY());
-;
-}
-CATE(TE,UFOF("Int2::getXY.")));
-RET CN;
-}
-
-SV Int2_length(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::length" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->length());
-;
-}
-CATE(TE,UFOF("Int2::length.")));
-RET CN;
-}
-
-SV Int2_getYX(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::getYX" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getYX());
-;
-}
-CATE(TE,UFOF("Int2::getYX.")));
 RET CN;
 }
 
@@ -35615,6 +35713,57 @@ CATE(TE,UFOF("Int2::__div__.")));
 RET CN;
 }
 
+SV Int2___less__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::__less__" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f < v);
+}
+CATE(TE,UFOF("Int2::__less__.")));
+RET CN;
+}
+
+SV Int2___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::__neq__" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("Int2::__neq__.")));
+RET CN;
+}
+
+SV Int2_lengthSquared(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::lengthSquared" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->lengthSquared());
+;
+}
+CATE(TE,UFOF("Int2::lengthSquared.")));
+RET CN;
+}
+
 SV Int2_setXY(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35629,29 +35778,6 @@ if(1&&TS(a[1],const T2<int32_t> &))
 RET CN;
 }
 CATE(TE,UFOF("Int2::setXY.")));
-RET CN;
-}
-
-SV Int2___mul__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::__mul__" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],int32_t))
-{
-auto v=val_to_c<std::remove_reference<int32_t>::type>::f(ctx,a[1]);
-RET CV(*f * v);
-}
-CATE(TE,UFOF("Int2::__mul__.")));
 RET CN;
 }
 
@@ -35678,10 +35804,27 @@ CATE(TE,UFOF("Int2::__add__.")));
 RET CN;
 }
 
-SV Int2___less__(CTX ctx,const List<SV>&a)
+SV Int2_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Int2::__less__" EAOE));
+CATE(VE,"Int2::copy" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Int2::copy.")));
+RET CN;
+}
+
+SV Int2___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::__eq__" EAOE));
 T2<int32_t>*f;
 f=(T2<int32_t>*)((NO)a[0].p)->data;
 
@@ -35689,9 +35832,100 @@ if(a.getCount()==2)
 if(1&&TS(a[1],const T2<int32_t> &))
 {
 auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f < v);
+RET CV(*f == v);
 }
-CATE(TE,UFOF("Int2::__less__.")));
+CATE(TE,UFOF("Int2::__eq__.")));
+RET CN;
+}
+
+SV Int2_getXY(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::getXY" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getXY());
+;
+}
+CATE(TE,UFOF("Int2::getXY.")));
+RET CN;
+}
+
+SV Int2_distance(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::distance" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+RET CV( f->distance(val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Int2::distance.")));
+RET CN;
+}
+
+SV Int2___grtr__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::__grtr__" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f > v);
+}
+CATE(TE,UFOF("Int2::__grtr__.")));
+RET CN;
+}
+
+SV Int2_length(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::length" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->length());
+;
+}
+CATE(TE,UFOF("Int2::length.")));
+RET CN;
+}
+
+SV Int2___mul__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Int2::__mul__" EAOE));
+T2<int32_t>*f;
+f=(T2<int32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const T2<int32_t> &))
+{
+auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],int32_t))
+{
+auto v=val_to_c<std::remove_reference<int32_t>::type>::f(ctx,a[1]);
+RET CV(*f * v);
+}
+CATE(TE,UFOF("Int2::__mul__.")));
 RET CN;
 }
 
@@ -35735,40 +35969,6 @@ CATE(TE,UFOF("Int2::__geq__.")));
 RET CN;
 }
 
-SV Int2_distanceSquared(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::distanceSquared" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-RET CV( f->distanceSquared(val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("Int2::distanceSquared.")));
-RET CN;
-}
-
-SV Int2___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::__eq__" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
-}
-CATE(TE,UFOF("Int2::__eq__.")));
-RET CN;
-}
-
 SV Int2_dot(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35789,23 +35989,6 @@ RET CV( f->dot());
 ;
 }
 CATE(TE,UFOF("Int2::dot.")));
-RET CN;
-}
-
-SV Int2___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"Int2::__neq__" EAOE));
-T2<int32_t>*f;
-f=(T2<int32_t>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const T2<int32_t> &))
-{
-auto v=val_to_c<std::remove_reference<const T2<int32_t> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
-}
-CATE(TE,UFOF("Int2::__neq__.")));
 RET CN;
 }
 
@@ -37609,6 +37792,8 @@ RET CNF(Float4_setWXZY);
 RET CNF(Float4_getWXYZ);
  EI(keyStr == "setWXYZ")
 RET CNF(Float4_setWXYZ);
+ EI(keyStr == "copy")
+RET CNF(Float4_copy);
  EI(keyStr=="x")
 {
 T4<float>*obj=(T4<float>*)f->data;
@@ -39038,6 +39223,23 @@ if(1&&TS(a[1],const T4<float> &))
 RET CN;
 }
 CATE(TE,UFOF("Float4::setYXWZ.")));
+RET CN;
+}
+
+SV Float4_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Float4::copy" EAOE));
+T4<float>*f;
+f=(T4<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("Float4::copy.")));
 RET CN;
 }
 
@@ -42026,6 +42228,8 @@ RET CNF(UInt3_setZXY);
 RET CNF(UInt3_getZYX);
  EI(keyStr == "setZYX")
 RET CNF(UInt3_setZYX);
+ EI(keyStr == "copy")
+RET CNF(UInt3_copy);
  EI(keyStr=="x")
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
@@ -42507,6 +42711,23 @@ if(1&&TS(a[1],const T2<uint32_t> &))
 RET CN;
 }
 CATE(TE,UFOF("UInt3::setXZ.")));
+RET CN;
+}
+
+SV UInt3_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt3::copy" EAOE));
+T3<uint32_t>*f;
+f=(T3<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("UInt3::copy.")));
 RET CN;
 }
 
@@ -44620,6 +44841,8 @@ RET CNF(UInt4_setWXZY);
 RET CNF(UInt4_getWXYZ);
  EI(keyStr == "setWXYZ")
 RET CNF(UInt4_setWXYZ);
+ EI(keyStr == "copy")
+RET CNF(UInt4_copy);
  EI(keyStr=="x")
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
@@ -46049,6 +46272,23 @@ if(1&&TS(a[1],const T4<uint32_t> &))
 RET CN;
 }
 CATE(TE,UFOF("UInt4::setYXWZ.")));
+RET CN;
+}
+
+SV UInt4_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"UInt4::copy" EAOE));
+T4<uint32_t>*f;
+f=(T4<uint32_t>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("UInt4::copy.")));
 RET CN;
 }
 

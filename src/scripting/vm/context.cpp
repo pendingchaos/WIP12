@@ -515,7 +515,7 @@ break;
         #define COMPARE_OP(op, funcName) Value aVal = popStack(*stack);\
 Value bVal = popStack(*stack);\
 \
-if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
+if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject or aVal.type == ValueType::StringType)\
 {\
     List<Value> args;\
     args.append(bVal);\
@@ -908,17 +908,17 @@ static Value strNotEqual(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
-        ctx->throwException(createException(ExcType::ValueError, "String::__eq__ takes two arguments."));
+        ctx->throwException(createException(ExcType::ValueError, "String::__neq__ takes two arguments."));
     }
 
     if (args[0].type != ValueType::StringType)
     {
-        ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the first argument."));
+        ctx->throwException(createException(ExcType::TypeError, "String::__neq__ takes a string as the first argument."));
     }
 
     if (args[1].type != ValueType::StringType)
     {
-        ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the second argument."));
+        ctx->throwException(createException(ExcType::TypeError, "String::__neq__ takes a string as the second argument."));
     }
 
     return createBoolean(((StringData *)args[0].p)->value != ((StringData *)args[1].p)->value);

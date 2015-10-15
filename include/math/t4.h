@@ -332,6 +332,11 @@ class T4
         #undef SWIZZLE3
         #undef SWIZZLE4
 
+        inline T4 copy() const
+        {
+            return T4(x, y, z, w);
+        }
+
         T x, y, z, w;
 };
 

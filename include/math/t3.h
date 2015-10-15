@@ -267,6 +267,11 @@ class T3
         #undef SWIZZLE2
         #undef SWIZZLE3
 
+        inline T3 copy() const
+        {
+            return T3(x, y, z);
+        }
+
         T x, y, z;
 };
 

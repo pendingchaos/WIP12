@@ -28,8 +28,6 @@ return class {
         self.playerGhost:setTransform(self.entity.transform);
         
         if self.attacked {
-            //TODO: Remove the rigid body.
-            
             entity = self.entity;
             transform = entity.transform;
             transform.scale = transform.scale * 0.9;
@@ -55,13 +53,11 @@ return class {
             rigidBodies = self.playerGhost:getRigidBodyCollisions();
             i = 0;
             while i < rigidBodies:getCount() {
-                entity = rigidBodies:get(i):getEntity();
-                inst = entity:findScriptInstanceObj("resources/scripts/player.rkt");
-                
-                if not isNil(inst) {
+                player = rigidBodies:get(i):getEntity();
+                if player.name == "Player" {
                     entity = self.entity;
                     
-                    dir = inst.entity.transform.position - entity.transform.position;
+                    dir = player.transform.position - entity.transform.position;
                     dir.y = 0.0;
                     dir = dir:normalize();
                     

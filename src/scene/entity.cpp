@@ -84,6 +84,26 @@ void Entity::removeEntity(size_t index)
     entities.remove(index);
 }
 
+Entity *Entity::findEntity(const String& name)
+{
+    for (auto entity : entities)
+    {
+        if (entity->name == name)
+        {
+            return entity;
+        }
+
+        Entity *result = entity->findEntity(name);
+
+        if (result != nullptr)
+        {
+            return result;
+        }
+    }
+
+    return nullptr;
+}
+
 void Entity::updateFinalTransform()
 {
     Transform transformNoScale = transform;

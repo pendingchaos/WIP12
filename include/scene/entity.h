@@ -234,6 +234,7 @@ class Entity
 
         Entity *createEntity(const String& name);
         void removeEntity(size_t index);
+        Entity *findEntity(const String& name);
 
         inline const List<Entity *>& getEntities() const
         {

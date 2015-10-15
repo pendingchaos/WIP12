@@ -51,7 +51,6 @@
 					<Add option="-O2" />
 					<Add option="-pg" />
 					<Add option="-g" />
-					<Add option="-O2" />
 					<Add option="-DDEBUG" />
 				</Compiler>
 				<Linker>
@@ -122,8 +121,10 @@
 		<Unit filename="include/imgui.h" />
 		<Unit filename="include/logging.h" />
 		<Unit filename="include/math/aabb.h" />
+		<Unit filename="include/math/frustum.h" />
 		<Unit filename="include/math/matrix3x3.h" />
 		<Unit filename="include/math/matrix4x4.h" />
+		<Unit filename="include/math/plane.h" />
 		<Unit filename="include/math/quaternion.h" />
 		<Unit filename="include/math/t2.h" />
 		<Unit filename="include/math/t3.h" />
@@ -192,8 +193,10 @@
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/aabb.cpp" />
+		<Unit filename="src/math/frustum.cpp" />
 		<Unit filename="src/math/matrix3x3.cpp" />
 		<Unit filename="src/math/matrix4x4.cpp" />
+		<Unit filename="src/math/plane.cpp" />
 		<Unit filename="src/math/quaternion.cpp" />
 		<Unit filename="src/math/t2.cpp" />
 		<Unit filename="src/math/t3.cpp" />

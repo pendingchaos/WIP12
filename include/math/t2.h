@@ -232,6 +232,11 @@ class T2
             y = yx.x;
         }
 
+        inline T2 copy() const
+        {
+            return T2(x, y);
+        }
+
         T x, y;
 };
 

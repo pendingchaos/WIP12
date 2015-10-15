@@ -993,6 +993,26 @@ void Scene::removeEntity(size_t index)
     entities.remove(index);
 }
 
+Entity *Scene::findEntity(const String& name)
+{
+    for (auto entity : entities)
+    {
+        if (entity->name == name)
+        {
+            return entity;
+        }
+
+        Entity *result = entity->findEntity(name);
+
+        if (result != nullptr)
+        {
+            return result;
+        }
+    }
+
+    return nullptr;
+}
+
 void copyEntity(Entity *dest, Entity *source)
 {
     dest->transform = source->transform;
