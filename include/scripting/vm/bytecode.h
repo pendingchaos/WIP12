@@ -26,7 +26,6 @@ enum class Opcode
 
     GetMember,
     SetMember,
-    GetType,
 
     Add,
     Subtract,

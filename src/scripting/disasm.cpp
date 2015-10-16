@@ -132,11 +132,6 @@ namespace scripting
                 break;
                 break;
             }
-            case Opcode::GetType:
-            {
-                result.append("getType\n");
-                break;
-            }
             case Opcode::Add:
             {
                 result.append("add\n");

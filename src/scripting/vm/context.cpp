@@ -49,42 +49,65 @@ void Context::reset()
     callStackSize = 0;
 }
 
+#define USE_COMPUTED_GOTO
+
+#ifdef USE_COMPUTED_GOTO
+#define BEGIN {BREAK
+#define END } end:;
+#define BREAK goto* offset >= bytecode.data.getSize() ?\
+                    &&end :\
+                    dispatchTable[bytecode.getUInt8(offset++)];
+#define CASE(name) name:
+#else
+#define BEGIN while (offset < bytecode.data.getSize()){Opcode opcode = bytecode.getOpcode(offset++); switch (opcode) {
+#define END }}
+#define BREAK break;
+#define CASE(name) case Opcode::name:
+#endif
+
 Value Context::_run(const Bytecode& bytecode, List<Value> args)
 {
+#ifdef USE_COMPUTED_GOTO
+static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil, &&PushFunc,
+                                &&PushObject, &&PushString, &&PushException, &&StackPop,
+                                &&StackDup, &&LoadVar, &&StoreVar, &&GetMember, &&SetMember,
+                                &&Add, &&Subtract, &&Multiply, &&Divide, &&Modulo,
+                                &&BoolAnd, &&BoolOr, &&BoolNot, &&BitAnd, &&BitOr, &&BitNot,
+                                &&BitXOr, &&LeftShift, &&RightShift, &&Less, &&Greater, &&Equal,
+                                &&NotEqual, &&LessEqual, &&GreaterEqual, &&Call, &&Return,
+                                &&GetArgCount, &&GetArg, &&JumpIf, &&Jump, &&Try, &&EndTry,
+                                &&Throw, &&GetException};
+#endif
+
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
     size_t& offset = callstackEntry.offset;
     List<Value> *stack = &callstackEntry.stacks[0];
 
-    while (offset < bytecode.data.getSize())
-    {
-        Opcode opcode = bytecode.getOpcode(offset++);
-
-        switch (opcode)
-        {
-        case Opcode::PushInt:
+    BEGIN
+        CASE(PushInt)
         {
             stack->append(createInt(bytecode.getInt64(offset)));
             offset += 8;
-            break;
+            BREAK
         }
-        case Opcode::PushFloat:
+        CASE(PushFloat)
         {
             stack->append(createFloat(bytecode.getDouble(offset)));
             offset += 8;
-            break;
+            BREAK
         }
-        case Opcode::PushBoolean:
+        CASE(PushBoolean)
         {
             stack->append(createBoolean(bytecode.getBoolean(offset)));
             offset += 1;
-            break;
+            BREAK
         }
-        case Opcode::PushNil:
+        CASE(PushNil)
         {
             stack->append(createNil());
-            break;
+            BREAK
         }
-        case Opcode::PushFunc:
+        CASE(PushFunc)
         {
             size_t size = bytecode.getUInt32(offset);
             offset += 4;
@@ -95,14 +118,14 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
             Bytecode code(data);
 
             stack->append(createFunction(code));
-            break;
+            BREAK
         }
-        case Opcode::PushObject:
+        CASE(PushObject)
         {
             stack->append(createObject());
-            break;
+            BREAK
         }
-        case Opcode::PushString:
+        CASE(PushString)
         {
             size_t length = bytecode.getUInt32(offset);
             offset += 4;
@@ -111,9 +134,9 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
             offset += length;
 
             stack->append(createString(String(length, (const char *)data.getData())));
-            break;
+            BREAK
         }
-        case Opcode::PushException:
+        CASE(PushException)
         {
             ExcType type = (ExcType)bytecode.getUInt8(offset);
             offset += 1;
@@ -125,22 +148,22 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
             offset += length;
 
             stack->append(createException(type, String(length, (const char *)data.getData())));
-            break;
+            BREAK
         }
-        case Opcode::StackPop:
+        CASE(StackPop)
         {
             destroy(this, popStack(*stack));
-            break;
+            BREAK
         }
-        case Opcode::StackDup:
+        CASE(StackDup)
         {
             Value value = popStack(*stack);
 
             stack->append(createCopy(this, value));
             stack->append(value);
-            break;
+            BREAK
         }
-        case Opcode::LoadVar:
+        CASE(LoadVar)
         {
             Value nameVal = popStack(*stack);
 
@@ -149,7 +172,7 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
                 destroy(this, nameVal);
 
                 throwException(createException(ExcType::TypeError, "Variable name must be String."));
-                break;
+                BREAK
             }
 
             String name = ((StringData *)nameVal.p)->value;
@@ -165,7 +188,7 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
                 {
                     stack->append(createCopy(this, pos->second));
                     found = true;
-                    break;
+                    BREAK
                 }
             }
 
@@ -185,9 +208,9 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
             }
 
             destroy(this, nameVal);
-            break;
+            BREAK
         }
-        case Opcode::StoreVar:
+        CASE(StoreVar)
         {
             Value nameVal = popStack(*stack);
 
@@ -196,7 +219,7 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
                 destroy(this, nameVal);
 
                 throwException(createException(ExcType::TypeError, "Variable name must be String."));
-                break;
+                BREAK
             }
 
             Value value = popStack(*stack);
@@ -216,7 +239,7 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
                     vars.set(name, value);
 
                     found = true;
-                    break;
+                    BREAK
                 }
             }
 
@@ -237,9 +260,9 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
             }
 
             destroy(this, nameVal);
-            break;
+            BREAK
         }
-        case Opcode::GetMember:
+        CASE(GetMember)
         {
             Value key = popStack(*stack);
             Value value = popStack(*stack);
@@ -250,9 +273,9 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
 
             destroy(this, value);
             destroy(this, key);
-            break;
+            BREAK
         }
-        case Opcode::SetMember:
+        CASE(SetMember)
         {
             Value value = popStack(*stack);
             Value key = popStack(*stack);
@@ -267,68 +290,7 @@ Value Context::_run(const Bytecode& bytecode, List<Value> args)
 
             destroy(this, newValue);
             destroy(this, key);
-            break;
-        }
-        case Opcode::GetType:
-        {
-            Value value = popStack(*stack);
-
-            switch (value.type)
-            {
-            case ValueType::Int:
-            {
-                stack->append(createString("int"));
-                break;
-            }
-            case ValueType::Float:
-            {
-                stack->append(createString("float"));
-                break;
-            }
-            case ValueType::Boolean:
-            {
-                stack->append(createString("bool"));
-                break;
-            }
-            case ValueType::Nil:
-            {
-                stack->append(createString("nil"));
-                break;
-            }
-            case ValueType::Function:
-            {
-                stack->append(createString("func"));
-                break;
-            }
-            case ValueType::Object:
-            {
-                stack->append(createString("obj"));
-                break;
-            }
-            case ValueType::StringType:
-            {
-                stack->append(createString("str"));
-                break;
-            }
-            case ValueType::NativeFunction:
-            {
-                stack->append(createString("native_func"));
-                break;
-            }
-            case ValueType::NativeObject:
-            {
-                stack->append(createString("native_obj"));
-                break;
-            }
-            case ValueType::Exception:
-            {
-                stack->append(createString("exception"));
-                break;
-            }
-            }
-
-            destroy(this, value);
-            break;
+            BREAK
         }
 
         #define ARITHMATIC_OP(iop, fop, funcName) Value aVal = popStack(*stack);\
@@ -366,25 +328,25 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject or\
 destroy(this, aVal);\
 destroy(this, bVal);\
 \
-break;
+BREAK
 
-        case Opcode::Add:
+        CASE(Add)
         {
             ARITHMATIC_OP(a + b, a + b, "__add__")
         }
-        case Opcode::Subtract:
+        CASE(Subtract)
         {
             ARITHMATIC_OP(a - b, a - b, "__sub__")
         }
-        case Opcode::Multiply:
+        CASE(Multiply)
         {
             ARITHMATIC_OP(a * b, a * b, "__mul__")
         }
-        case Opcode::Divide:
+        CASE(Divide)
         {
             ARITHMATIC_OP(a / b, a / b, "__div__")
         }
-        case Opcode::Modulo:
+        CASE(Modulo)
         {
             ARITHMATIC_OP(a % b, std::fmod(a, b), "__mod__")
         }
@@ -410,17 +372,17 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 destroy(this, aVal);\
 destroy(this, bVal);\
 \
-break;
+BREAK
 
-        case Opcode::BoolAnd:
+        CASE(BoolAnd)
         {
             TYPED_OP(ValueType::Boolean, b, createBoolean, and, "__bland__")
         }
-        case Opcode::BoolOr:
+        CASE(BoolOr)
         {
             TYPED_OP(ValueType::Boolean, b, createBoolean, or, "__blor__")
         }
-        case Opcode::BoolNot:
+        CASE(BoolNot)
         {
             Value val = popStack(*stack);
 
@@ -436,17 +398,17 @@ break;
             }
 
             destroy(this, val);
-            break;
+            BREAK
         }
-        case Opcode::BitAnd:
+        CASE(BitAnd)
         {
             TYPED_OP(ValueType::Int, i, createInt, &, "__btand__")
         }
-        case Opcode::BitOr:
+        CASE(BitOr)
         {
             TYPED_OP(ValueType::Int, i, createInt, |, "__btor__")
         }
-        case Opcode::BitXOr:
+        CASE(BitXOr)
         {
             TYPED_OP(ValueType::Int, i, createInt, ^, "__btxor__")
         }
@@ -482,17 +444,17 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 destroy(this, aVal);\
 destroy(this, bVal);\
 \
-break;
+BREAK
 
-        case Opcode::LeftShift:
+        CASE(LeftShift)
         {
             SHIFT_OP(<<, "__shl__")
         }
-        case Opcode::RightShift:
+        CASE(RightShift)
         {
             SHIFT_OP(>>, "__shr__")
         }
-        case Opcode::BitNot:
+        CASE(BitNot)
         {
             Value val = popStack(*stack);
 
@@ -508,7 +470,7 @@ break;
             }
 
             destroy(this, val);
-            break;
+            BREAK
         }
 
 //TODO: Boolean == and !=.
@@ -546,36 +508,36 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject or aV
 destroy(this, bVal);\
 destroy(this, aVal);\
 \
-break;
+BREAK
 
-        case Opcode::Less:
+        CASE(Less)
         {
             COMPARE_OP(<, "__less__")
         }
-        case Opcode::Greater:
+        CASE(Greater)
         {
             COMPARE_OP(>, "__grtr__")
         }
-        case Opcode::Equal:
+        CASE(Equal)
         {
             COMPARE_OP(==, "__eq__")
         }
-        case Opcode::NotEqual:
+        CASE(NotEqual)
         {
             COMPARE_OP(!=, "__neq__")
         }
-        case Opcode::LessEqual:
+        CASE(LessEqual)
         {
             COMPARE_OP(<=, "__leq__")
         }
-        case Opcode::GreaterEqual:
+        CASE(GreaterEqual)
         {
             COMPARE_OP(>=, "__geq__")
         }
 
 #undef COMPARE_OP
 
-        case Opcode::Call:
+        CASE(Call)
         {
             Value val = popStack(*stack);
             Value argCountVal = popStack(*stack);
@@ -608,18 +570,18 @@ break;
 
             destroy(this, argCountVal);
             destroy(this, val);
-            break;
+            BREAK
         }
-        case Opcode::Return:
+        CASE(Return)
         {
             return popStack(*stack);
         }
-        case Opcode::GetArgCount:
+        CASE(GetArgCount)
         {
             stack->append(createInt(args.getCount()));
-            break;
+            BREAK
         }
-        case Opcode::GetArg:
+        CASE(GetArg)
         {
             Value val = popStack(*stack);
 
@@ -633,9 +595,9 @@ break;
             stack->append(createCopy(this, args[index]));
 
             destroy(this, val);
-            break;
+            BREAK
         }
-        case Opcode::JumpIf:
+        CASE(JumpIf)
         {
             Value val = popStack(*stack);
 
@@ -659,17 +621,17 @@ break;
             }
 
             destroy(this, val);
-            break;
+            BREAK
         }
-        case Opcode::Jump:
+        CASE(Jump)
         {
             int32_t by = bytecode.getInt32(offset);
             offset += 4;
 
             offset += by;
-            break;
+            BREAK
         }
-        case Opcode::Try:
+        CASE(Try)
         {
             int32_t by = bytecode.getInt32(offset);
             offset += 4;
@@ -678,9 +640,9 @@ break;
             callstackEntry.catchBlocks.append(offset + by);
 
             stack = &callstackEntry.stacks[callstackEntry.stacks.getCount()-1];
-            break;
+            BREAK
         }
-        case Opcode::EndTry:
+        CASE(EndTry)
         {
             if (callstackEntry.stacks.getCount() > 1)
             {
@@ -692,20 +654,19 @@ break;
             {
                 THROW(CallstackBoundsException)
             }
-            break;
+            BREAK
         }
-        case Opcode::Throw:
+        CASE(Throw)
         {
             throwException(popStack(*stack));
-            break;
+            BREAK
         }
-        case Opcode::GetException:
+        CASE(GetException)
         {
             stack->append(createCopy(this, exception));
-            break;
+            BREAK
         }
-        }
-    }
+    END
 
     return createNil();
 }
