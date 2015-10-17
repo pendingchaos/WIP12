@@ -518,11 +518,11 @@ void Script::_load()
 
     //printAST(0, ast);
 
-    ResizableData data;
+    scripting::Bytecode code;
 
     try
     {
-        data = scripting::generateBytecode(ast);
+        code = scripting::generateBytecode(ast);
     } catch (const scripting::ByteCodeGenException& e)
     {
         THROW(ResourceIOException,
@@ -533,9 +533,7 @@ void Script::_load()
 
     DELETE(ast);
 
-    scripting::Bytecode code(data);
-
-    //String disasm = scripting::disasm(code);
+    //Str disasm = scripting::disasm(code);
     //std::cout << disasm.getData() << std::endl;
 
     {

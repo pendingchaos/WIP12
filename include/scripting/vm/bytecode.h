@@ -2,6 +2,8 @@
 #define SCRIPTING_BYTECODE_H
 
 #include "containers/resizabledata.h"
+#include "containers/list.h"
+#include "containers/string.h"
 #include "error.h"
 #include "endian_utils.h"
 #include <stdint.h>
@@ -161,6 +163,7 @@ class Bytecode
         }
 
         ResizableData data;
+        List<Str> strings;
 };
 }
 

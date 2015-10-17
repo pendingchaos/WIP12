@@ -2,7 +2,7 @@
 #define BYTECODEGEN_H
 
 #include "scripting/parser.h"
-#include "containers/resizabledata.h"
+#include "scripting/vm/bytecode.h"
 
 namespace scripting
 {
@@ -27,7 +27,7 @@ class ByteCodeGenException : public Exception
         //size_t scriptColumn;
 };
 
-ResizableData generateBytecode(ASTNode *ast);
+Bytecode generateBytecode(ASTNode *ast);
 };
 
 #endif // BYTECODEGEN_H

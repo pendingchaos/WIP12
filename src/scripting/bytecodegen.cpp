@@ -45,16 +45,16 @@ static const uint8_t opCall = (uint8_t)Opcode::Call;
 static const uint8_t opGetArg = (uint8_t)Opcode::GetArg;
 static const uint8_t opStackDup = (uint8_t)Opcode::StackDup;
 
-static bool _generateBytecode(ASTNode *node, ResizableData& data);
+static bool _generateBytecode(ASTNode *node, ResizableData& data, List<Str>& strings);
 
-static void generateLROp(LROpNode *node, ResizableData& data, uint8_t opcode)
+static void generateLROp(LROpNode *node, ResizableData& data, uint8_t opcode, List<Str>& strings)
 {
-    if (not _generateBytecode(node->right, data))
+    if (not _generateBytecode(node->right, data, strings))
     {
         THROW(ByteCodeGenException, "Argument does not evaluate to anything");
     }
 
-    if (not _generateBytecode(node->left, data))
+    if (not _generateBytecode(node->left, data, strings))
     {
         THROW(ByteCodeGenException, "Argument does not evaluate to anything");
     }
@@ -62,7 +62,25 @@ static void generateLROp(LROpNode *node, ResizableData& data, uint8_t opcode)
     data.append(1, &opcode);
 }
 
-static void generateObject(ASTNode *node, ResizableData& data)
+static void pushString(Str str, ResizableData& data, List<Str>& strings)
+{
+    int index = strings.find(str);
+
+    if (index == -1)
+    {
+        uint32_t index2 = TO_LE_U32(strings.getCount());
+        data.append(1, &opPushString);
+        data.append(4, &index2);
+        strings.append(str);
+    } else
+    {
+        uint32_t index2 = TO_LE_U32(index);
+        data.append(1, &opPushString);
+        data.append(4, &index2);
+    }
+}
+
+static void generateObject(ASTNode *node, ResizableData& data, List<Str>& strings)
 {
     List<ASTNode *> nodes;
 
@@ -86,17 +104,14 @@ static void generateObject(ASTNode *node, ResizableData& data)
 
         LROpNode *assign = (LROpNode *)assign_;
 
-        if (not _generateBytecode(assign->right, data))
+        if (not _generateBytecode(assign->right, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
 
         Str memberName = ((IdentifierNode *)assign->left)->name;
 
-        uint32_t length = TO_LE_U32(memberName.getLength());
-        data.append(1, &opPushString);
-        data.append(4, &length);
-        data.append(memberName.getLength(), memberName.getData());
+        pushString(memberName, data, strings);
     }
 
     data.append(1, &opPushObject);
@@ -108,98 +123,98 @@ static void generateObject(ASTNode *node, ResizableData& data)
 }
 
 //Returns true if it pushed something onto the stack.
-static bool _generateBytecode(ASTNode *node, ResizableData& data)
+static bool _generateBytecode(ASTNode *node, ResizableData& data, List<Str>& strings)
 {
     switch (node->type)
     {
     case ASTNode::Add:
     {
-        generateLROp((LROpNode *)node, data, opAdd);
+        generateLROp((LROpNode *)node, data, opAdd, strings);
         return true;
     }
     case ASTNode::Subtract:
     {
-        generateLROp((LROpNode *)node, data, opSubtract);
+        generateLROp((LROpNode *)node, data, opSubtract, strings);
         return true;
     }
     case ASTNode::Multiply:
     {
-        generateLROp((LROpNode *)node, data, opMultiply);
+        generateLROp((LROpNode *)node, data, opMultiply, strings);
         return true;
     }
     case ASTNode::Divide:
     {
-        generateLROp((LROpNode *)node, data, opDivide);
+        generateLROp((LROpNode *)node, data, opDivide, strings);
         return true;
     }
     case ASTNode::Modulo:
     {
-        generateLROp((LROpNode *)node, data, opModulo);
+        generateLROp((LROpNode *)node, data, opModulo, strings);
         return true;
     }
     case ASTNode::Less:
     {
-        generateLROp((LROpNode *)node, data, opLess);
+        generateLROp((LROpNode *)node, data, opLess, strings);
         return true;
     }
     case ASTNode::Greater:
     {
-        generateLROp((LROpNode *)node, data, opGreater);
+        generateLROp((LROpNode *)node, data, opGreater, strings);
         return true;
     }
     case ASTNode::Equal:
     {
-        generateLROp((LROpNode *)node, data, opEqual);
+        generateLROp((LROpNode *)node, data, opEqual, strings);
         return true;
     }
     case ASTNode::NotEqual:
     {
-        generateLROp((LROpNode *)node, data, opNotEqual);
+        generateLROp((LROpNode *)node, data, opNotEqual, strings);
         return true;
     }
     case ASTNode::LessEqual:
     {
-        generateLROp((LROpNode *)node, data, opLessEqual);
+        generateLROp((LROpNode *)node, data, opLessEqual, strings);
         return true;
     }
     case ASTNode::GreaterEqual:
     {
-        generateLROp((LROpNode *)node, data, opGreaterEqual);
+        generateLROp((LROpNode *)node, data, opGreaterEqual, strings);
         return true;
     }
     case ASTNode::BoolAnd:
     {
-        generateLROp((LROpNode *)node, data, opBoolAnd);
+        generateLROp((LROpNode *)node, data, opBoolAnd, strings);
         return true;
     }
     case ASTNode::BoolOr:
     {
-        generateLROp((LROpNode *)node, data, opBoolOr);
+        generateLROp((LROpNode *)node, data, opBoolOr, strings);
         return true;
     }
     case ASTNode::BitAnd:
     {
-        generateLROp((LROpNode *)node, data, opBitAnd);
+        generateLROp((LROpNode *)node, data, opBitAnd, strings);
         return true;
     }
     case ASTNode::BitOr:
     {
-        generateLROp((LROpNode *)node, data, opBitOr);
+        generateLROp((LROpNode *)node, data, opBitOr, strings);
         return true;
     }
     case ASTNode::BitXOr:
     {
-        generateLROp((LROpNode *)node, data, opBitXOr);
+        generateLROp((LROpNode *)node, data, opBitXOr, strings);
         return true;
     }
     case ASTNode::LeftShift:
     {
-        generateLROp((LROpNode *)node, data, opShiftLeft);
+        generateLROp((LROpNode *)node, data, opShiftLeft, strings);
         return true;
     }
     case ASTNode::RightShift:
     {
-        generateLROp((LROpNode *)node, data, opShiftRight);
+        generateLROp((LROpNode *)node, data, opShiftRight, strings);
         return true;
     }
     case ASTNode::Call:
@@ -208,7 +223,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
 
         for (ptrdiff_t i = cNode->args.getCount()-1; i >= 0; --i)
         {
-            if (not _generateBytecode(cNode->args[i], data))
+            if (not _generateBytecode(cNode->args[i], data, strings))
             {
                 THROW(ByteCodeGenException, "Argument in function call does not evaluate to anything.");
             }
@@ -219,7 +234,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         data.append(1, &opPushInteger);
         data.append(8, &argCount);
 
-        if (not _generateBytecode(cNode->callable, data))
+        if (not _generateBytecode(cNode->callable, data, strings))
         {
             THROW(ByteCodeGenException, "Function in function call does not evaluate to anything");
         }
@@ -231,7 +246,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         LROpNode *lrOp = (LROpNode *)node;
 
-        if (not _generateBytecode(lrOp->left, data))
+        if (not _generateBytecode(lrOp->left, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -240,14 +255,11 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         if (lrOp->right->type == ASTNode::Identifier)
         {
             Str name = ((IdentifierNode *)lrOp->right)->name;
-            uint32_t length = TO_LE_U32(name.getLength());
 
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(name.getLength(), name.getData());
+            pushString(name, data, strings);
         } else
         {
-            if (not _generateBytecode(lrOp->right, data))
+            if (not _generateBytecode(lrOp->right, data, strings))
             {
                 THROW(ByteCodeGenException, "Value does not evaluate to anything");
             }
@@ -260,7 +272,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         LROpNode *lrOp = (LROpNode *)node;
 
-        if (not _generateBytecode(lrOp->left, data))
+        if (not _generateBytecode(lrOp->left, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -270,11 +282,8 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         if (lrOp->right->type == ASTNode::Identifier)
         {
             Str name = ((IdentifierNode *)lrOp->right)->name;
-            uint32_t length = TO_LE_U32(name.getLength());
 
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(name.getLength(), name.getData());
+            pushString(name, data, strings);
         } else
         {
             THROW(ByteCodeGenException, "Invalid method name.");
@@ -286,10 +295,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         data.append(1, &opPushInteger);
         data.append(8, &argCount);
 
-        data.append(1, &opPushString);
-        uint32_t length = TO_LE_U32(11);
-        data.append(4, &length);
-        data.append(11, "__methodify");
+        pushString("__methodify", data, strings);
         data.append(1, &opLoadVar);
 
         data.append(1, &opCall);
@@ -302,18 +308,14 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         //TODO: Allow stuff like "a.b.c = 5;"
         if (lrOp->left->type == ASTNode::Identifier)
         {
-            if (not _generateBytecode(lrOp->right, data))
+            if (not _generateBytecode(lrOp->right, data, strings))
             {
                 THROW(ByteCodeGenException, "Value does not evaluate to anything");
             }
 
             IdentifierNode *id = (IdentifierNode *)lrOp->left;
 
-            uint32_t length = TO_LE_U32(id->name.getLength());
-
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(id->name.getLength(), id->name.getData());
+            pushString(id->name, data, strings);
 
             data.append(1, &opStoreVar);
         } else if (lrOp->left->type == ASTNode::GetMember)
@@ -330,22 +332,16 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
                 THROW(ByteCodeGenException, "Invalid member name.");
             }
 
-            if (not _generateBytecode(lrOp->right, data))
+            if (not _generateBytecode(lrOp->right, data, strings))
             {
                 THROW(ByteCodeGenException, "Value does not evaluate to anything");
             }
 
             Str key = ((IdentifierNode *)getMember->right)->name;
-            uint32_t length = TO_LE_U32(key.getLength());
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(key.getLength(), key.getData());
+            pushString(key, data, strings);
 
             Str obj = ((IdentifierNode *)getMember->left)->name;
-            length = TO_LE_U32(obj.getLength());
-            data.append(1, &opPushString);
-            data.append(4, &length);
-            data.append(obj.getLength(), obj.getData());
+            pushString(obj, data, strings);
             data.append(1, &opLoadVar);
 
             data.append(1, &opSetMember);
@@ -357,7 +353,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
 
-        if (not _generateBytecode(op->operand, data))
+        if (not _generateBytecode(op->operand, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -372,7 +368,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     case ASTNode::BoolNot:
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
-        if (not _generateBytecode(op->operand, data))
+        if (not _generateBytecode(op->operand, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -382,7 +378,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     case ASTNode::BitNot:
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
-        if (not _generateBytecode(op->operand, data))
+        if (not _generateBytecode(op->operand, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -424,16 +420,13 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         StringNode *str = (StringNode *)node;
 
-        uint32_t length = TO_LE_U32(str->content.getLength());
-        data.append(1, &opPushString);
-        data.append(4, &length);
-        data.append(str->content.getLength(), str->content.getData());
+        pushString(str->content, data, strings);
         return true;
     }
     case ASTNode::Throw:
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
-        if (not _generateBytecode(op->operand, data))
+        if (not _generateBytecode(op->operand, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -443,7 +436,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     case ASTNode::Return:
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
-        if (not _generateBytecode(op->operand, data))
+        if (not _generateBytecode(op->operand, data, strings))
         {
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
@@ -454,10 +447,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         IdentifierNode *id = (IdentifierNode *)node;
 
-        uint32_t length = TO_LE_U32(id->name.getLength());
-        data.append(1, &opPushString);
-        data.append(4, &length);
-        data.append(id->name.getLength(), id->name.getData());
+        pushString(id->name, data, strings);
         data.append(1, &opLoadVar);
         return true;
     }
@@ -475,16 +465,12 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
 
             bodyData.append(1, &opGetArg);
 
-            uint32_t length = TO_LE_U32(func->args[i].getLength());
-
-            bodyData.append(1, &opPushString);
-            bodyData.append(4, &length);
-            bodyData.append(func->args[i].getLength(), func->args[i].getData());
+            pushString(func->args[i], bodyData, strings);
 
             bodyData.append(1, &opStoreVar);
         }
 
-        if (_generateBytecode(func->body, bodyData))
+        if (_generateBytecode(func->body, bodyData, strings))
         {
             bodyData.append(1, &opStackPop);
         }
@@ -499,16 +485,13 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     case ASTNode::Class:
     {
         SingleOperandNode *op = (SingleOperandNode *)node;
-        generateObject(op->operand, data);
+        generateObject(op->operand, data, strings);
 
         int64_t argCount = TO_LE_S64(1);
         data.append(1, &opPushInteger);
         data.append(8, &argCount);
 
-        data.append(1, &opPushString);
-        uint32_t length = TO_LE_U32(10);
-        data.append(4, &length);
-        data.append(10, "__classify");
+        pushString("__classify", data, strings);
         data.append(1, &opLoadVar);
 
         data.append(1, &opCall);
@@ -519,7 +502,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     {
         for (auto statement : ((StatementsNode *)node)->statements)
         {
-            if (_generateBytecode(statement, data))
+            if (_generateBytecode(statement, data, strings))
             {
                 data.append(1, &opStackPop);
             }
@@ -550,7 +533,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
             ASTNode *body = bodies[i];
 
             ResizableData bodyData;
-            if (_generateBytecode(body, bodyData))
+            if (_generateBytecode(body, bodyData, strings))
             {
                 bodyData.append(1, &opStackPop);
             }
@@ -558,7 +541,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
 
             bodyData.resize(bodyData.getSize()+4);
 
-            if (not _generateBytecode(cond, data))
+            if (not _generateBytecode(cond, data, strings))
             {
                 THROW(ByteCodeGenException, "Condition does not evaluate to anything");
             }
@@ -576,7 +559,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         //Else
         if (ifNode->else_ != nullptr)
         {
-            if (_generateBytecode(ifNode->else_, data))
+            if (_generateBytecode(ifNode->else_, data, strings))
             {
                 data.append(1, &opStackPop);
             }
@@ -596,13 +579,13 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         WhileNode *whileNode = (WhileNode *)node;
 
         ResizableData condData;
-        if (not _generateBytecode(whileNode->cond, condData))
+        if (not _generateBytecode(whileNode->cond, condData, strings))
         {
             THROW(ByteCodeGenException, "While condition does not evaluate to anything.");
         }
 
         ResizableData data2;
-        if (_generateBytecode(whileNode->block, data2))
+        if (_generateBytecode(whileNode->block, data2, strings))
         {
             data2.append(1, &opStackPop);
         }
@@ -638,15 +621,19 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
     }
 }
 
-ResizableData generateBytecode(ASTNode *ast)
+Bytecode generateBytecode(ASTNode *ast)
 {
     ResizableData data;
+    List<Str> strings;
 
-    if (_generateBytecode(ast, data))
+    if (_generateBytecode(ast, data, strings))
     {
         data.append(1, &opStackPop);
     }
 
-    return data;
+    Bytecode bc(data);
+    bc.strings = strings;
+
+    return bc;
 }
 }

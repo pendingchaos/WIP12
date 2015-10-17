@@ -1,5 +1,5 @@
 #include "scripting/disasm.h"
-
+#include <iostream>
 #include "scripting/vm/types.h"
 
 namespace scripting
@@ -65,6 +65,7 @@ namespace scripting
                 offset += size;
 
                 Bytecode code(data);
+                code.strings = bytecode.strings;
 
                 result = result + "pushFunc\n";
                 result = result + indent(disasm(code));
@@ -77,13 +78,10 @@ namespace scripting
             }
             case Opcode::PushString:
             {
-                size_t length = bytecode.getUInt32(offset);
+                uint32_t index = bytecode.getUInt32(offset);
                 offset += 4;
 
-                Str str(length, (const char *)bytecode.getData(offset, length).getData());
-                offset += length;
-
-                result = result + Str::format("pushString '%s'\n", str.getData());
+                result = result + Str::format("pushString '%s'\n", bytecode.strings[index].getData());
                 break;
             }
             case Opcode::PushException:

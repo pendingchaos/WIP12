@@ -137,6 +137,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             offset += size;
 
             Bytecode code(data);
+            code.strings = bytecode.strings;
 
             stack->values[stack->size++] = createFunction(code);
             BREAK
@@ -158,13 +159,16 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                 THROW(StackBoundsException);
             }
 
-            size_t length = bytecode.getUInt32(offset);
+            size_t index = bytecode.getUInt32(offset);
             offset += 4;
 
-            ResizableData data = bytecode.getData(offset, length);
-            offset += length;
-
-            stack->values[stack->size++] = createString(Str(length, (const char *)data.getData()));
+            if (index >= bytecode.strings.getCount())
+            {
+                stack->values[stack->size++] = createString("");
+            } else
+            {
+                stack->values[stack->size++] = createString(bytecode.strings[index]);
+            }
             BREAK
         }
         CASE(PushException)
