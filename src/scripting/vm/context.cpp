@@ -30,9 +30,9 @@ void Context::reset()
 
         for (auto stack : entry.stacks)
         {
-            for (auto value : stack)
+            for (size_t i = 0; i < stack.size; ++i)
             {
-                destroy(this, value);
+                destroy(this, stack.values[i]);
             }
         }
 
@@ -81,34 +81,55 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
     size_t& offset = callstackEntry.offset;
-    List<Value> *stack = &callstackEntry.stacks[0];
+    Stack *stack = &callstackEntry.stacks[0];
 
     BEGIN
         CASE(PushInt)
         {
-            stack->append(createInt(bytecode.getInt64(offset)));
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+            stack->values[stack->size++] = createInt(bytecode.getInt64(offset));
             offset += 8;
             BREAK
         }
         CASE(PushFloat)
         {
-            stack->append(createFloat(bytecode.getDouble(offset)));
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+            stack->values[stack->size++] = createFloat(bytecode.getDouble(offset));
             offset += 8;
             BREAK
         }
         CASE(PushBoolean)
         {
-            stack->append(createBoolean(bytecode.getBoolean(offset)));
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+            stack->values[stack->size++] = createBoolean(bytecode.getBoolean(offset));
             offset += 1;
             BREAK
         }
         CASE(PushNil)
         {
-            stack->append(createNil());
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+            stack->values[stack->size++] = createNil();
             BREAK
         }
         CASE(PushFunc)
         {
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+
             size_t size = bytecode.getUInt32(offset);
             offset += 4;
 
@@ -117,27 +138,42 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
             Bytecode code(data);
 
-            stack->append(createFunction(code));
+            stack->values[stack->size++] = createFunction(code);
             BREAK
         }
         CASE(PushObject)
         {
-            stack->append(createObject());
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+
+            stack->values[stack->size++] = createObject();
             BREAK
         }
         CASE(PushString)
         {
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+
             size_t length = bytecode.getUInt32(offset);
             offset += 4;
 
             ResizableData data = bytecode.getData(offset, length);
             offset += length;
 
-            stack->append(createString(Str(length, (const char *)data.getData())));
+            stack->values[stack->size++] = createString(Str(length, (const char *)data.getData()));
             BREAK
         }
         CASE(PushException)
         {
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+
             ExcType type = (ExcType)bytecode.getUInt8(offset);
             offset += 1;
 
@@ -147,7 +183,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             ResizableData data = bytecode.getData(offset, length);
             offset += length;
 
-            stack->append(createException(type, Str(length, (const char *)data.getData())));
+            stack->values[stack->size++] = createException(type, Str(length, (const char *)data.getData()));
             BREAK
         }
         CASE(StackPop)
@@ -157,10 +193,15 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
         }
         CASE(StackDup)
         {
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+
             Value value = popStack(*stack);
 
-            stack->append(createCopy(this, value));
-            stack->append(value);
+            stack->values[stack->size++] = createCopy(this, value);
+            stack->values[stack->size++] = value;
             BREAK
         }
         CASE(LoadVar)
@@ -186,7 +227,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                 auto pos = vars.find(name);
                 if (pos != vars.end())
                 {
-                    stack->append(createCopy(this, pos->second));
+                    stack->values[stack->size++] = createCopy(this, pos->second);
                     found = true;
                     BREAK
                 }
@@ -200,7 +241,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
                 if (pos != vars.end())
                 {
-                    stack->append(createCopy(this, pos->second));
+                    stack->values[stack->size++] = createCopy(this, pos->second);
                 } else
                 {
                     throwException(createException(ExcType::KeyError, Str::format("No such variable '%s'.", name.getData())));
@@ -267,9 +308,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             Value key = popStack(*stack);
             Value value = popStack(*stack);
 
-            stack->append(getMember(this,
-                                    value,
-                                    key));
+            stack->values[stack->size++] = getMember(this, value, key);
 
             destroy(this, value);
             destroy(this, key);
@@ -286,7 +325,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                       key,
                       newValue);
 
-            stack->append(value);
+            stack->values[stack->size++] = value;
 
             destroy(this, newValue);
             destroy(this, key);
@@ -302,25 +341,25 @@ if (aVal.type == ValueType::Object or\
 {\
     List<Value> args;\
     args.append(bVal);\
-    stack->append(callMethod(this, aVal, funcName, args));\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
 } else if ((aVal.type == ValueType::Float or bVal.type == ValueType::Float) and (aVal.type == ValueType::Int or bVal.type == ValueType::Int))\
 {\
     double a = aVal.type == ValueType::Float ? aVal.f : aVal.i;\
     double b = bVal.type == ValueType::Float ? bVal.f : bVal.i;\
     \
-    stack->append(createFloat(fop));\
+    stack->values[stack->size++] = createFloat(fop);\
 } else if (aVal.type == ValueType::Int and bVal.type == ValueType::Int)\
 {\
     int64_t a = aVal.i;\
     int64_t b = bVal.i;\
     \
-    stack->append(createInt(iop));\
+    stack->values[stack->size++] = createInt(iop);\
 } else if (aVal.type == ValueType::Float and bVal.type == ValueType::Float)\
 {\
     double a = aVal.f;\
     double b = bVal.f;\
     \
-    stack->append(createFloat(fop));\
+    stack->values[stack->size++] = createFloat(fop);\
 } else\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(iop)));\
@@ -361,13 +400,13 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
     List<Value> args;\
     args.append(bVal);\
-    stack->append(callMethod(this, aVal, funcName, args));\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
 } else if (aVal.type != type_ or bVal.type != type_)\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
 } else\
 {\
-    stack->append(createFunc(aVal.typeMem op bVal.typeMem));\
+    stack->values[stack->size++] = createFunc(aVal.typeMem op bVal.typeMem);\
 }\
 \
 destroy(this, aVal);\
@@ -389,10 +428,10 @@ BREAK
 
             if (val.type == ValueType::Object or val.type == ValueType::NativeObject)
             {
-                stack->append(callMethod(this, val, "__blnot__", List<Value>()));
+                stack->values[stack->size++] = callMethod(this, val, "__blnot__", List<Value>());
             } else if (val.type == ValueType::Boolean)
             {
-                stack->append(createBoolean(not val.b));
+                stack->values[stack->size++] = createBoolean(not val.b);
             } else
             {
                 throwException(createException(ExcType::TypeError, "Invalid operand type for not. Must be Boolean."));
@@ -423,7 +462,7 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
     List<Value> args;\
     args.append(bVal);\
-    stack->append(callMethod(this, aVal, funcName, args));\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
 } else if (aVal.type != ValueType::Int or bVal.type != ValueType::Int)\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
@@ -439,7 +478,7 @@ if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
         throwException(createException(ExcType::ValueError, "Operand of shift can not be negative."));\
     }\
     uint64_t result = aVal.i op bVal.i;\
-    stack->append(createInt(result));\
+    stack->values[stack->size++] = createInt(result);\
 }\
 \
 destroy(this, aVal);\
@@ -461,10 +500,10 @@ BREAK
 
             if (val.type == ValueType::Object or val.type == ValueType::NativeObject)
             {
-                stack->append(callMethod(this, val, "__btnot__", List<Value>()));
+                stack->values[stack->size++] = callMethod(this, val, "__btnot__", List<Value>());
             } else if (val.type == ValueType::Int)
             {
-                stack->append(createInt(~val.i));
+                stack->values[stack->size++] = createInt(~val.i);
             } else
             {
                 throwException(createException(ExcType::TypeError, "Invalid operand type. Must be Int."));
@@ -484,28 +523,28 @@ if (aVal.type == ValueType::Object or\
 {\
     List<Value> args;\
     args.append(bVal);\
-    stack->append(callMethod(this, aVal, funcName, args));\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
 } else if ((aVal.type == ValueType::Float or bVal.type == ValueType::Float) and (aVal.type == ValueType::Int or bVal.type == ValueType::Int))\
 {\
     double a = aVal.type == ValueType::Float ? aVal.f : aVal.i;\
     double b = bVal.type == ValueType::Float ? bVal.f : bVal.i;\
     \
-    stack->append(createBoolean(a op b));\
+    stack->values[stack->size++] = createBoolean(a op b);\
 } else if (aVal.type == ValueType::Int and bVal.type == ValueType::Int)\
 {\
     int64_t a = aVal.i;\
     int64_t b = bVal.i;\
     \
-    stack->append(createBoolean(a op b));\
+    stack->values[stack->size++] = createBoolean(a op b);\
 } else if (aVal.type == ValueType::Float and bVal.type == ValueType::Float)\
 {\
     double a = aVal.f;\
     double b = bVal.f;\
     \
-    stack->append(createBoolean(a op b));\
+    stack->values[stack->size++] = createBoolean(a op b);\
 } else\
 {\
-    stack->append(createBoolean(false));\
+    stack->values[stack->size++] = createBoolean(false);\
 }\
 \
 destroy(this, bVal);\
@@ -564,7 +603,7 @@ BREAK
                 args.append(popStack(*stack));
             }
 
-            stack->append(call(this, val, args));
+            stack->values[stack->size++] = call(this, val, args);
 
             for (auto arg : args)
             {
@@ -581,7 +620,7 @@ BREAK
         }
         CASE(GetArgCount)
         {
-            stack->append(createInt(args.getCount()));
+            stack->values[stack->size++] = createInt(args.getCount());
             BREAK
         }
         CASE(GetArg)
@@ -595,7 +634,7 @@ BREAK
                 throwException(createException(ExcType::IndexError, "Arg index is out of bounds."));
             }
 
-            stack->append(createCopy(this, args[index]));
+            stack->values[stack->size++] = createCopy(this, args[index]);
 
             destroy(this, val);
             BREAK
@@ -639,7 +678,7 @@ BREAK
             int32_t by = bytecode.getInt32(offset);
             offset += 4;
 
-            callstackEntry.stacks.append(List<Value>());
+            callstackEntry.stacks.append(Stack());
             callstackEntry.catchBlocks.append(offset + by);
 
             stack = &callstackEntry.stacks[callstackEntry.stacks.getCount()-1];
@@ -666,7 +705,11 @@ BREAK
         }
         CASE(GetException)
         {
-            stack->append(createCopy(this, exception));
+            if (stack->size == SCRIPTING_MAX_STACK_SIZE)
+            {
+                THROW(StackBoundsException);
+            }
+            stack->values[stack->size++] = createCopy(this, exception);
             BREAK
         }
     END
@@ -683,8 +726,7 @@ Value Context::run(const Bytecode& bytecode, List<Value> args)
 
     callStack[callStackSize++] = CallstackEntry(bytecode);
     CallstackEntry& callstackEntry = callStack[callStackSize-1];
-
-    callstackEntry.stacks.append(List<Value>());
+    callstackEntry.stacks.append(Stack());
 
     //This may not be safe.
     if (!setjmp(jumpBuf))
@@ -716,11 +758,11 @@ Value Context::run(const Bytecode& bytecode, List<Value> args)
 
             entry->catchBlocks.remove(entry->catchBlocks.getCount()-1);
 
-            List<Value>& stack = entry->stacks[entry->stacks.getCount()-1];
+            Stack& stack = entry->stacks[entry->stacks.getCount()-1];
 
-            for (auto value : stack)
+            for (size_t i = 0; i < stack.size; ++i)
             {
-                destroy(this, value);
+                destroy(this, stack.values[i]);
             }
 
             entry->stacks.remove(entry->stacks.getCount()-1);
@@ -753,9 +795,9 @@ void Context::popCallstack()
 
     for (auto stack : callstackEntry.stacks)
     {
-        for (auto value : stack)
+        for (size_t i = 0; i < stack.size; ++i)
         {
-            destroy(this, value);
+            destroy(this, stack.values[i]);
         }
     }
 
@@ -785,17 +827,14 @@ void Context::throwException(Value exc)
     }
 }
 
-Value Context::popStack(List<Value>& stack)
+Value Context::popStack(Stack& stack)
 {
-    if (stack.getCount() == 0)
+    if (stack.size == 0)
     {
         THROW(StackBoundsException);
     } else
     {
-        Value result = stack[stack.getCount() - 1];
-        stack.remove(stack.getCount() - 1);
-
-        return result;
+        return stack.values[--stack.size];
     }
 }
 

@@ -6,6 +6,7 @@
 #include <setjmp.h>
 
 #define SCRIPTING_MAX_CALLSTACK_SIZE 256
+#define SCRIPTING_MAX_STACK_SIZE 128
 
 namespace scripting
 {
@@ -53,6 +54,14 @@ class CallstackBoundsException : public ExecutionException
 class Context
 {
     public:
+        struct Stack
+        {
+            Stack() : size(0) {}
+
+            size_t size;
+            Value values[SCRIPTING_MAX_STACK_SIZE];
+        };
+
         struct CallstackEntry
         {
             CallstackEntry() : offset(0) {}
@@ -60,7 +69,7 @@ class Context
 
             Bytecode bytecode;
             HashMap<Str, Value> variables;
-            List<List<Value>> stacks;
+            List<Stack> stacks;
             List<size_t> catchBlocks;
             size_t offset;
         };
@@ -102,7 +111,7 @@ class Context
         Value exception;
         jmp_buf jumpBuf;
 
-        Value popStack(List<Value>& stack);
+        Value popStack(Stack& stack);
 };
 
 class UnhandledExcException : public ExecutionException
