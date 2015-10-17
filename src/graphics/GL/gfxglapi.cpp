@@ -74,7 +74,7 @@ static void printOpenGLInfo()
 
     for (GLint i = 0; i < numExtensions; ++i)
     {
-        log("Extension %d: %s", i, (const char *)glGetStringi(GL_EXTENSIONS, i));
+        log("Extension %d: %s\n", i, (const char *)glGetStringi(GL_EXTENSIONS, i));
     }
 }
 

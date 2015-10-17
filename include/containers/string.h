@@ -55,7 +55,6 @@ class Str
     public:
         Str();
         Str(const char *str);
-        Str(size_t length);
         Str(size_t length, const char *data);
         Str(char c);
         Str(const Str& a, const Str& b);

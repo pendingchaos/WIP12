@@ -47,13 +47,6 @@ Str::Str(const char *str)
     std::memcpy(_getData(), str, length+1);
 }
 
-Str::Str(size_t length)
-{
-    allocate(length);
-    _getData()[length] = '\x00';
-    setHash(calcHash(getData()));
-}
-
 Str::Str(size_t length, const char *data)
 {
     allocate(length);
