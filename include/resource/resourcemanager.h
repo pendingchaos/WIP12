@@ -26,7 +26,7 @@ class ResourceManager
         ~ResourceManager();
 
         template <typename T>
-        T *load(const String& filename) NO_BIND
+        T *load(const Str& filename) NO_BIND
         {
             if (isResource(getType<T>(), filename))
             {
@@ -39,7 +39,7 @@ class ResourceManager
 
             resource->load();
 
-            HashMap<String, Resource *> *resources_;
+            HashMap<Str, Resource *> *resources_;
 
             ResType type = resource->getType();
 
@@ -48,7 +48,7 @@ class ResourceManager
                 resources_ = &resources.get(type);
             } catch (const LookupException& e)
             {
-                resources.set(type, HashMap<String, Resource *>());
+                resources.set(type, HashMap<Str, Resource *>());
 
                 resources_ = &resources.get(type);
             }
@@ -60,18 +60,18 @@ class ResourceManager
             return (T *)res->copyRef<Resource>();
         }
 
-        GfxShader *loadShader(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxTexture *loadTexture(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxMesh *loadMesh(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxMaterial *loadMaterial(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxModel *loadModel(const String& filename) RET_PTR_NO_CPP_REF;
-        Scene *loadScene(const String& filename) RET_PTR_NO_CPP_REF;
-        Script *loadScript(const String& filename) NO_BIND;
-        PhysicsShape *loadPhysicsShape(const String& filename) RET_PTR_NO_CPP_REF;
-        Audio *loadAudio(const String& filename) RET_PTR_NO_CPP_REF;
-        Font *loadFont(const String& filename) RET_PTR_NO_CPP_REF;
+        GfxShader *loadShader(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxTexture *loadTexture(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxMesh *loadMesh(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxMaterial *loadMaterial(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxModel *loadModel(const Str& filename) RET_PTR_NO_CPP_REF;
+        Scene *loadScene(const Str& filename) RET_PTR_NO_CPP_REF;
+        Script *loadScript(const Str& filename) NO_BIND;
+        PhysicsShape *loadPhysicsShape(const Str& filename) RET_PTR_NO_CPP_REF;
+        Audio *loadAudio(const Str& filename) RET_PTR_NO_CPP_REF;
+        Font *loadFont(const Str& filename) RET_PTR_NO_CPP_REF;
 
-        Resource *load(ResType type, const String& filename) RET_PTR_NO_CPP_REF
+        Resource *load(ResType type, const Str& filename) RET_PTR_NO_CPP_REF
         {
             switch (type)
             {
@@ -89,18 +89,18 @@ class ResourceManager
             }
         }
 
-        GfxShader *loadShaderAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxTexture *loadTextureAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxMesh *loadMeshAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxMaterial *loadMaterialAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        GfxModel *loadModelAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        Scene *loadSceneAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        Script *loadScriptAndCopy(const String& filename) NO_BIND;
-        PhysicsShape *loadPhysicsShapeAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        Audio *loadAudioAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
-        Font *loadFontAndCopy(const String& filename) RET_PTR_NO_CPP_REF;
+        GfxShader *loadShaderAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxTexture *loadTextureAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxMesh *loadMeshAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxMaterial *loadMaterialAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        GfxModel *loadModelAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        Scene *loadSceneAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        Script *loadScriptAndCopy(const Str& filename) NO_BIND;
+        PhysicsShape *loadPhysicsShapeAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        Audio *loadAudioAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
+        Font *loadFontAndCopy(const Str& filename) RET_PTR_NO_CPP_REF;
 
-        Resource *loadAndCopy(ResType type, const String& filename) RET_PTR_NO_CPP_REF
+        Resource *loadAndCopy(ResType type, const Str& filename) RET_PTR_NO_CPP_REF
         {
             switch (type)
             {
@@ -119,7 +119,7 @@ class ResourceManager
         }
 
         template <typename T>
-        T *loadAndCopy(const String& filename) NO_BIND
+        T *loadAndCopy(const Str& filename) NO_BIND
         {
             T *res = load<T>(filename);
             res->release();
@@ -127,11 +127,11 @@ class ResourceManager
             return (T *)res->copy();
         }
 
-        bool isResource(ResType type, const String& filename) const;
+        bool isResource(ResType type, const Str& filename) const;
 
         void cleanupResources();
     private:
-        HashMap<ResType, HashMap<String, Resource *>> resources;
+        HashMap<ResType, HashMap<Str, Resource *>> resources;
 
         template <typename T>
         inline ResType getType() const

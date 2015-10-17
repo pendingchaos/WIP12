@@ -1035,7 +1035,7 @@ int main(int argc, const char *argv[])
 
         ResizableData data = generateBytecode(ast);
 
-        String disasm = scripting::disasm(data);
+        Str disasm = scripting::disasm(data);
 
         std::cout << disasm.getData();
 

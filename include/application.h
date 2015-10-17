@@ -125,7 +125,7 @@ class Application
 
         ScriptInstance *script;
         Script *nextScript;
-        String nextScriptName;
+        Str nextScriptName;
         uint64_t simulationTime;
 
         void _switchScripts();

@@ -9,7 +9,7 @@ Resource::Resource(ResType type_) : filename(""),
                                     type(type_),
                                     refCount(1) {}
 
-Resource::Resource(const String& filename_,
+Resource::Resource(const Str& filename_,
                    ResType type_) : filename(filename_),
                                     type(type_),
                                     refCount(1) {}
@@ -25,7 +25,7 @@ void Resource::load()
 
     fileSys->pushSearchPaths();
 
-    String absFile = fileSys->getAbsolutePath(filename.getData());
+    Str absFile = fileSys->getAbsolutePath(filename.getData());
 
     int index = absFile.findLast('/');
 

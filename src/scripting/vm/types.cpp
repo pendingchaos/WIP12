@@ -17,7 +17,7 @@ bool Value::operator == (const Value& other) const
         return p == other.p;
     } else if (type == ValueType::StringType and other.type == ValueType::StringType)
     {
-        return ((StringData *)p)->value == ((StringData *)other.p)->value;
+        return getStr() == other.getStr();
     } else if (type == ValueType::Float and other.type == ValueType::Float)
     {
         return f == other.f;
@@ -101,11 +101,11 @@ Value createObject()
     return v;
 }
 
-Value createString(const String& str)
+Value createString(const Str& str)
 {
     Value v;
     v.type = ValueType::StringType;
-    v.p = (void *)NEW(StringData, str);
+    new ((Str *)v.s) Str(str);
     return v;
 }
 
@@ -117,7 +117,7 @@ Value createNativeFunction(Value (*func)(Context *ctx, const List<Value>& args))
     return v;
 }
 
-Value createException(ExcType type, String error)
+Value createException(ExcType type, Str error)
 {
     Value v;
     v.type = ValueType::Exception;
@@ -164,7 +164,7 @@ Value createCopy(Context *context, const Value& value)
     }
     case ValueType::StringType:
     {
-        return createString(((StringData *)value.p)->value);
+        return createString(value.getStr());
     }
     case ValueType::NativeFunction:
     {
@@ -214,7 +214,7 @@ void destroy(Context *context, const Value& value)
         {
             obj->refCount = 1; //Hack
 
-            HashMap<String, Value> members = ((ObjectData *)value.p)->members;
+            HashMap<Str, Value> members = ((ObjectData *)value.p)->members;
 
             auto pos = members.find("__del__");
             if (pos != members.end())
@@ -233,7 +233,7 @@ void destroy(Context *context, const Value& value)
     }
     case ValueType::StringType:
     {
-        DELETE((StringData *)value.p);
+        ((Str *)value.s)->~Str();
         break;
     }
     case ValueType::NativeObject:

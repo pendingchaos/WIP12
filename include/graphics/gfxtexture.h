@@ -154,7 +154,7 @@ class GfxTexture : public Resource
     public:
         static const ResType resource_type = ResType::GfxTextureType;
 
-        GfxTexture(const String& filename);
+        GfxTexture(const Str& filename);
         GfxTexture();
         virtual ~GfxTexture();
 

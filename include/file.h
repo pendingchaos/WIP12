@@ -20,8 +20,8 @@ class FileException : public Exception
         FileException(const char *file_,
                       size_t line_,
                       const char *function_,
-                      String filename_,
-                      String problem_) : Exception(file_, line_, function_),
+                      Str filename_,
+                      Str problem_) : Exception(file_, line_, function_),
                                          filename(filename_),
                                          problem(problem_) {}
 
@@ -39,23 +39,23 @@ class FileException : public Exception
             return string;
         }
 
-        inline const String& getFilename() const
+        inline const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const String& getProblem() const
+        inline const Str& getProblem() const
         {
             return problem;
         }
     private:
-        String filename;
-        String problem;
+        Str filename;
+        Str problem;
 };
 
 time_t getLastFileModification(const char *filename);
 bool doesFileExist(const char *filename) BIND;
-List<String> listFiles(const char *directory) BIND;
+List<Str> listFiles(const char *directory) BIND;
 
 enum class FileOrigin
 {
@@ -99,65 +99,37 @@ class File
         size_t getSize();
 
         uint8_t readUInt8();
-
         int8_t readInt8();
-
         uint16_t readUInt16LE();
-
         int16_t readInt16LE();
-
         uint32_t readUInt32LE();
-
         int32_t readInt32LE();
-
         uint64_t readUInt64LE();
-
         int64_t readInt64LE();
-
         uint16_t readUInt16BE();
-
         int16_t readInt16BE();
-
         uint32_t readUInt32BE();
-
         int32_t readInt32BE();
-
         uint64_t readUInt64BE();
-
         int64_t readInt64BE();
-
         float readFloat32();
-
         char readChar();
+        Str readStr(size_t length);
 
         void writeUInt8(uint8_t value);
-
         void writeInt8(int8_t value);
-
         void writeUInt16LE(uint16_t value);
-
         void writeInt16LE(int16_t value);
-
         void writeUInt32LE(uint32_t value);
-
         void writeInt32LE(int32_t value);
-
         void writeUInt64LE(uint64_t value);
-
         void writeInt64LE(int64_t value);
-
         void writeUInt16BE(uint16_t value);
-
         void writeInt16BE(int16_t value);
-
         void writeUInt32BE(uint32_t value);
-
         void writeInt32BE(int32_t value);
-
         void writeUInt64BE(uint64_t value);
-
         void writeInt64BE(int64_t value);
-
         void writeFloat32(float value);
 
         void printf(const char *format, ...) NO_BIND;
@@ -167,7 +139,7 @@ class File
         void writeChar(char value);
     private:
         FILE *file;
-        String filename;
+        Str filename;
 } BIND NOT_COPYABLE;
 
 #endif // FILE_H

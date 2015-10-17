@@ -15,11 +15,11 @@ class Filesystem
         void pushSearchPaths();
         void popSearchPaths();
 
-        void addSearchPath(const String& path);
+        void addSearchPath(const Str& path);
 
-        String getAbsolutePath(const char *path) const;
+        Str getAbsolutePath(const char *path) const;
     private:
-        List<List<String > > searchPaths;
+        List<List<Str > > searchPaths;
 } BIND;
 
 #endif // FILESYSTEM_H

@@ -21,7 +21,7 @@ class GfxMaterial : public Resource
         static const ResType resource_type = ResType::GfxMaterialType;
 
         GfxMaterial();
-        GfxMaterial(const String& filename);
+        GfxMaterial(const Str& filename);
 
         virtual ~GfxMaterial();
 

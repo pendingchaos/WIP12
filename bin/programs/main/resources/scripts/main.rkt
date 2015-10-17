@@ -234,11 +234,9 @@ CPU Timings:
                                               cpuStats.audio / cpuFrametime * 100.0);
         };
         
-        displayedText = self.timings:copy();
-        
+        displayedText = self.timings;
         if self.showExtraTimings {
-            #TODO: Why is the "displayedText = " needed?
-            displayedText = displayedText:append(self.extraTimings);
+            displayedText = displayedText + self.extraTimings;
         };
         
         self.textTimer:swap();

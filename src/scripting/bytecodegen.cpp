@@ -91,7 +91,7 @@ static void generateObject(ASTNode *node, ResizableData& data)
             THROW(ByteCodeGenException, "Value does not evaluate to anything");
         }
 
-        String memberName = ((IdentifierNode *)assign->left)->name;
+        Str memberName = ((IdentifierNode *)assign->left)->name;
 
         uint32_t length = TO_LE_U32(memberName.getLength());
         data.append(1, &opPushString);
@@ -239,7 +239,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
         //TODO: This would not work with a[b]
         if (lrOp->right->type == ASTNode::Identifier)
         {
-            String name = ((IdentifierNode *)lrOp->right)->name;
+            Str name = ((IdentifierNode *)lrOp->right)->name;
             uint32_t length = TO_LE_U32(name.getLength());
 
             data.append(1, &opPushString);
@@ -269,7 +269,7 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
 
         if (lrOp->right->type == ASTNode::Identifier)
         {
-            String name = ((IdentifierNode *)lrOp->right)->name;
+            Str name = ((IdentifierNode *)lrOp->right)->name;
             uint32_t length = TO_LE_U32(name.getLength());
 
             data.append(1, &opPushString);
@@ -335,13 +335,13 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data)
                 THROW(ByteCodeGenException, "Value does not evaluate to anything");
             }
 
-            String key = ((IdentifierNode *)getMember->right)->name;
+            Str key = ((IdentifierNode *)getMember->right)->name;
             uint32_t length = TO_LE_U32(key.getLength());
             data.append(1, &opPushString);
             data.append(4, &length);
             data.append(key.getLength(), key.getData());
 
-            String obj = ((IdentifierNode *)getMember->left)->name;
+            Str obj = ((IdentifierNode *)getMember->left)->name;
             length = TO_LE_U32(obj.getLength());
             data.append(1, &opPushString);
             data.append(4, &length);

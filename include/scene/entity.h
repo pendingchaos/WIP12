@@ -84,7 +84,7 @@ class RenderComponent
         }
 
         void setAnimationState(GfxMesh *mesh,
-                               const String& animName) NO_BIND
+                               const Str& animName) NO_BIND
         {
             if (animation != nullptr)
             {
@@ -116,7 +116,7 @@ class Entity
     friend Scene;
 
     private:
-        Entity(const String& name, Scene *scene);
+        Entity(const Str& name, Scene *scene);
         ~Entity();
     public:
         ScriptInstance *addScript(Script *script)
@@ -152,7 +152,7 @@ class Entity
             return scripts;
         }
 
-        ScriptInstance *findScriptInstance(const String& filename) const
+        ScriptInstance *findScriptInstance(const Str& filename) const
         {
             for (auto script : scripts)
             {
@@ -165,7 +165,7 @@ class Entity
             return nullptr;
         }
 
-        scripting::Value findScriptInstanceObj(const String& filename) const;
+        scripting::Value findScriptInstanceObj(const Str& filename) const;
 
         RigidBody *addRigidBody(const RigidBodyConstructionInfo& info,
                                 PhysicsShape *shape);
@@ -232,9 +232,9 @@ class Entity
             return scene;
         }
 
-        Entity *createEntity(const String& name);
+        Entity *createEntity(const Str& name);
         void removeEntity(size_t index);
-        Entity *findEntity(const String& name);
+        Entity *findEntity(const Str& name);
 
         inline const List<Entity *>& getEntities() const
         {
@@ -266,7 +266,7 @@ class Entity
         AudioSource *addAudioSource(Audio *audio);
         void removeAudioSource(size_t index);
 
-        String name;
+        Str name;
         Transform transform;
     private:
         List<ScriptInstance *> scripts;

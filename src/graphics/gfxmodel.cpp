@@ -15,7 +15,7 @@ GfxLOD::GfxLOD(float minDistance_,
 
 GfxModel::GfxModel() : Resource(ResType::GfxModelType) {}
 
-GfxModel::GfxModel(const String& filename) : Resource(filename,
+GfxModel::GfxModel(const Str& filename) : Resource(filename,
                                                       ResType::GfxModelType) {}
 
 GfxModel::~GfxModel()
@@ -78,8 +78,8 @@ void GfxModel::save()
             file.writeFloat32(lod.worldMatrix[3][2]);
             file.writeFloat32(lod.worldMatrix[3][3]);
 
-            const String& mesh = lod.mesh->getFilename();
-            const String& material = lod.material->getFilename();
+            const Str& mesh = lod.mesh->getFilename();
+            const Str& material = lod.material->getFilename();
 
             if (mesh.getLength() == 0)
             {
@@ -161,12 +161,10 @@ void GfxModel::_load()
                 float r3c3 = file.readFloat32();
 
                 uint32_t meshLen = file.readUInt32LE();
-                String mesh((size_t)meshLen);
-                file.read(meshLen, mesh.getData());
+                Str mesh = file.readStr(meshLen);
 
                 uint32_t materialLen = file.readUInt32LE();
-                String material((size_t)materialLen);
-                file.read(materialLen, material.getData());
+                Str material = file.readStr(materialLen);
 
                 subModel.append(GfxLOD(minDistance,
                                        maxDistance,

@@ -24,15 +24,15 @@ class ShaderCompileException : public Exception
         ShaderCompileException(const char *file_,
                                size_t line_,
                                const char *function_,
-                               const String& infoLog_) : Exception(file_, line_, function_),
-                                                         infoLog(infoLog_.copy()) {}
+                               const Str& infoLog_) : Exception(file_, line_, function_),
+                                                        infoLog(infoLog_) {}
 
         virtual const char* getString() const
         {
             return static_cast<const char *>(infoLog.getData());
         }
     private:
-        String infoLog;
+        Str infoLog;
 };
 
 class GfxCompiledShader;
@@ -54,7 +54,7 @@ class GfxShader : public Resource
     public:
         static const ResType resource_type = ResType::GfxShaderType;
 
-        GfxShader(const String& filename);
+        GfxShader(const Str& filename);
         GfxShader();
         ~GfxShader();
 
@@ -62,9 +62,9 @@ class GfxShader : public Resource
 
         virtual void save();
 
-        void compile(GfxShaderType type, const String& source);
+        void compile(GfxShaderType type, const Str& source);
 
-        inline const String& getSource() const
+        inline const Str& getSource() const
         {
             return source;
         }
@@ -74,15 +74,15 @@ class GfxShader : public Resource
             return shaderType;
         }
 
-        GfxCompiledShader *getCompiled(const HashMap<String, String>& defines=HashMap<String, String>()) const;
+        GfxCompiledShader *getCompiled(const HashMap<Str, Str>& defines=HashMap<Str, Str>()) const;
     private:
         virtual void _load();
         virtual Resource *_copy() const;
-        GLuint _compile(GLuint program, const HashMap<String, String >& defines) const;
+        GLuint _compile(GLuint program, const HashMap<Str, Str >& defines) const;
 
         GfxShaderType shaderType;
-        mutable HashMap<HashMap<String, String>, GfxCompiledShader *> compiled;
-        String source;
+        mutable HashMap<HashMap<Str, Str>, GfxCompiledShader *> compiled;
+        Str source;
 } DESTROY(obj->release()) BIND;
 
 class GfxCompiledShader
@@ -123,9 +123,9 @@ class GfxShaderCombination
                              GfxShader *fragment);
         ~GfxShaderCombination();
 
-        void setDefine(GfxShaderType shader, const String& name, const String& content);
-        const String& getDefine(GfxShaderType shader, const String& name) const;
-        void removeDefine(GfxShaderType shader, const String& name);
+        void setDefine(GfxShaderType shader, const Str& name, const Str& content);
+        const Str& getDefine(GfxShaderType shader, const Str& name) const;
+        void removeDefine(GfxShaderType shader, const Str& name);
 
         GfxShader *getShader(GfxShaderType type) const;
         void setShader(GfxShaderType type, GfxShader *shader);
@@ -139,7 +139,7 @@ class GfxShaderCombination
     private:
         void compile(size_t index) const;
 
-        HashMap<String, String> defines[5];
+        HashMap<Str, Str> defines[5];
         GfxShader *shaders[5];
         mutable GfxCompiledShader *compiled[5];
         mutable bool dirty[5];

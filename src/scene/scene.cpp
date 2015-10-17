@@ -21,7 +21,7 @@ Scene::Scene() : Resource(ResType::SceneType)
     audioWorld->addToAudioDevice(audioDevice);
 }
 
-Scene::Scene(const String& filename) : Resource(filename,
+Scene::Scene(const Str& filename) : Resource(filename,
                                                 ResType::SceneType)
 {
     physicsWorld = NEW(PhysicsWorld);
@@ -226,9 +226,7 @@ void loadEntity(Entity *entity, File *file)
     if (useModel)
     {
         uint32_t modelFileLen = file->readUInt32LE();
-
-        String modelFile((size_t)modelFileLen);
-        file->read(modelFileLen, modelFile.getData());
+        Str modelFile = file->readStr(modelFileLen);
 
         bool shadowCaster = file->readUInt8() != 0;
 
@@ -238,8 +236,7 @@ void loadEntity(Entity *entity, File *file)
         {
             uint32_t animNameLen = file->readUInt32LE();
 
-            String animName((size_t)animNameLen);
-            file->read(animNameLen, animName.getData());
+            Str animName = file->readStr(animNameLen);
 
             GfxModel *model = entity->getRenderComponent()->model;
             GfxMesh *mesh = nullptr;
@@ -269,9 +266,7 @@ void loadEntity(Entity *entity, File *file)
     } else if (useOverlay)
     {
         uint32_t textureFileLen = file->readUInt32LE();
-
-        String textureFile((size_t)textureFileLen);
-        file->read(textureFileLen, textureFile.getData());
+        Str textureFile = file->readStr(textureFileLen);
 
         float red = file->readFloat32();
         float green = file->readFloat32();
@@ -327,8 +322,7 @@ void loadEntity(Entity *entity, File *file)
         info.collisionMask = collisionMask;
 
         uint32_t length = file->readUInt32LE();
-        String shape((size_t)length);
-        file->read(length, shape.getData());
+        Str shape = file->readStr(length);
 
         entity->addRigidBody(info, resMgr->load<PhysicsShape>(shape));
     }
@@ -338,8 +332,7 @@ void loadEntity(Entity *entity, File *file)
     for (size_t i = 0; i < numScripts; ++i)
     {
         uint32_t scriptFileLen = file->readUInt32LE();
-        String scriptFile((size_t)scriptFileLen);
-        file->read(scriptFileLen, scriptFile.getData());
+        Str scriptFile = file->readStr(scriptFileLen);
 
         entity->addScript(resMgr->load<Script>(scriptFile));
     }
@@ -349,8 +342,7 @@ void loadEntity(Entity *entity, File *file)
     for (size_t i = 0; i < numChildren; ++i)
     {
         uint32_t nameLen = file->readUInt32LE();
-        String name((size_t)nameLen);
-        file->read(nameLen, name.getData());
+        Str name = file->readStr(nameLen);
 
         Entity *child = entity->createEntity(name);
 
@@ -439,8 +431,7 @@ void Scene::_load()
         }
 
         uint32_t skyboxFileLen = file.readUInt32LE();
-        String skyboxFile((size_t)skyboxFileLen);
-        file.read(skyboxFileLen, skyboxFile.getData());
+        Str skyboxFile = file.readStr(skyboxFileLen);
 
         if (skyboxFileLen != 0)
         {
@@ -542,8 +533,7 @@ void Scene::_load()
         for (uint32_t i = 0; i < numEntities; ++i)
         {
             uint32_t nameLen = file.readUInt32LE();
-            String name((size_t)nameLen);
-            file.read(nameLen, name.getData());
+            Str name = file.readStr(nameLen);
 
             Entity *entity = createEntity(name);
 
@@ -642,8 +632,7 @@ void Scene::_load()
         for (size_t i = 0; i < numScripts; ++i)
         {
             uint32_t scriptFileLen = file.readUInt32LE();
-            String scriptFile((size_t)scriptFileLen);
-            file.read(scriptFileLen, scriptFile.getData());
+            Str scriptFile = file.readStr(scriptFileLen);
 
             addScript(resMgr->load<Script>(scriptFile));
         }
@@ -656,7 +645,7 @@ void Scene::_load()
     }
 }
 
-void saveEntity(Entity *entity, File *file, const String& filename)
+void saveEntity(Entity *entity, File *file, const Str& filename)
 {
     file->writeUInt32LE(entity->name.getLength());
     file->write(entity->name.getLength(), entity->name.getData());
@@ -707,8 +696,8 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
             if (animState != nullptr)
             {
-                file->writeUInt32LE(animState->animName.getLength());
-                file->write(animState->animName.getLength(), animState->animName.getData());
+                file->writeUInt32LE(animState->getAnimName().getLength());
+                file->write(animState->getAnimName().getLength(), animState->getAnimName().getData());
             }
         }
     }
@@ -730,7 +719,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
         file->writeFloat32(body->getAngularSleepingThreshold());
         file->writeInt16LE(body->getCollisionMask());
 
-        String shapeFilename = body->getShape()->getFilename();
+        Str shapeFilename = body->getShape()->getFilename();
 
         if (shapeFilename.getLength() == 0)
         {
@@ -751,7 +740,7 @@ void saveEntity(Entity *entity, File *file, const String& filename)
 
     for (auto scriptInst : entity->getScripts())
     {
-        String filename = scriptInst->getScript()->getFilename();
+        Str filename = scriptInst->getScript()->getFilename();
 
         file->writeUInt32LE(filename.getLength());
         file->write(filename.getLength(), filename.getData());
@@ -963,7 +952,7 @@ void Scene::save()
 
         for (auto scriptInst : scripts)
         {
-            String filename = scriptInst->getScript()->getFilename();
+            Str filename = scriptInst->getScript()->getFilename();
 
             file.writeUInt32LE(filename.getLength());
             file.write(filename.getLength(), filename.getData());
@@ -977,7 +966,7 @@ void Scene::save()
     }
 }
 
-Entity *Scene::createEntity(const String& name)
+Entity *Scene::createEntity(const Str& name)
 {
     Entity *entity = NEW(Entity, name, this);
 
@@ -993,7 +982,7 @@ void Scene::removeEntity(size_t index)
     entities.remove(index);
 }
 
-Entity *Scene::findEntity(const String& name)
+Entity *Scene::findEntity(const Str& name)
 {
     for (auto entity : entities)
     {
@@ -1103,7 +1092,7 @@ void copyEntity(Entity *dest, Entity *source)
     {
         Entity *entity = source->getEntities()[i];
 
-        copyEntity(dest->createEntity(entity->name.copy()), entity);
+        copyEntity(dest->createEntity(entity->name), entity);
     }
 }
 
@@ -1164,7 +1153,7 @@ Resource *Scene::_copy() const
 
     for (auto entity : entities)
     {
-        copyEntity(scene->createEntity(entity->name.copy()), entity);
+        copyEntity(scene->createEntity(entity->name), entity);
     }
 
     //TODO:

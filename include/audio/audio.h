@@ -11,7 +11,7 @@ class Audio : public Resource
         static const ResType resource_type = ResType::AudioType;
 
         Audio();
-        Audio(const String& filename);
+        Audio(const Str& filename);
         virtual ~Audio();
 
         virtual void removeContent();

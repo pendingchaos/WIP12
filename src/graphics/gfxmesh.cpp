@@ -7,7 +7,7 @@
 
 static const size_t indexTypeSizes[] = {1, 2, 4};
 
-GfxMesh::GfxMesh(const String& filename) : Resource(filename,
+GfxMesh::GfxMesh(const Str& filename) : Resource(filename,
                                                     ResType::GfxMeshType),
                                            numVertices(0),
                                            numIndices(0),
@@ -297,7 +297,7 @@ void GfxMesh::save()
 
         for (auto kv : animations)
         {
-            const String& name = kv.first;
+            const Str& name = kv.first;
 
             file.writeUInt32LE(name.getLength());
             file.write(name.getLength(), name.getData());
@@ -449,8 +449,9 @@ void GfxMesh::_load()
 
         for (size_t i = 0; i < numAnimations; ++i)
         {
-            String name((size_t)file.readUInt32LE());
-            file.read(name.getLength(), name.getData());
+            size_t nameLen = file.readUInt32LE();
+            char name[nameLen];
+            file.read(nameLen, name);
 
             GfxAnimation animation;
             animation.fps = file.readUInt32LE();
@@ -481,7 +482,7 @@ void GfxMesh::_load()
                 animation.frames[j] = frame;
             }
 
-            animations.set(name, animation);
+            animations.set(Str(nameLen, name), animation);
         }
     } catch (const FileException& e)
     {
@@ -516,9 +517,9 @@ Resource *GfxMesh::_copy() const
 }
 
 GfxAnimationState::GfxAnimationState(GfxMesh *mesh_,
-                                     const String& animName_) : animName(animName_.copy()),
-                                                                timeOffset(0.0f),
-                                                                mesh(mesh_->copyRef<GfxMesh>())
+                                     const Str& animName_) : timeOffset(0.0f),
+                                                             animName(animName_),
+                                                             mesh(mesh_->copyRef<GfxMesh>())
 {
     matrixBuffer = gfxApi->createBuffer();
     normalMatrixBuffer = gfxApi->createBuffer();

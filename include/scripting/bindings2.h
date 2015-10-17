@@ -76,7 +76,7 @@
 
 namespace scripting
 {
-    Value create(Context *ctx, const HashMap<String,String>& value);
+    Value create(Context *ctx, const HashMap<Str,Str>& value);
     Value create(Context *ctx, const GfxCompiledShader& value);
     Value create(Context *ctx, const ScrollBar& value);
     Value create(Context *ctx, const List<GhostObject*>& value);
@@ -104,7 +104,7 @@ namespace scripting
     Value create(Context *ctx, const AudioWorld& value);
     Value create(Context *ctx, const GuiPlacer& value);
     Value create(Context *ctx, const ImGui& value);
-    Value create(Context *ctx, const List<String>& value);
+    Value create(Context *ctx, const List<Str>& value);
     Value create(Context *ctx, const LightPointData& value);
     Value create(Context *ctx, const T4<float>& value);
     Value create(Context *ctx, const List<float>& value);
@@ -130,7 +130,7 @@ namespace scripting
     Value create(Context *ctx, const List<Entity*>& value);
     Value create(Context *ctx, const Matrix3x3& value);
     Value create(Context *ctx, GhostObject *value);
-    Value create(Context *ctx, HashMap<String,String> *value);
+    Value create(Context *ctx, HashMap<Str,Str> *value);
     Value create(Context *ctx, GfxApi *value);
     Value create(Context *ctx, GfxCompiledShader *value);
     Value create(Context *ctx, ScrollBar *value);
@@ -161,6 +161,7 @@ namespace scripting
     Value create(Context *ctx, Light *value);
     Value create(Context *ctx, TextureSampler *value);
     Value create(Context *ctx, Scene *value);
+    Value create(Context *ctx, GfxAnimationState *value);
     Value create(Context *ctx, T3<int32_t> *value);
     Value create(Context *ctx, ResizableData *value);
     Value create(Context *ctx, T4<int32_t> *value);
@@ -177,7 +178,7 @@ namespace scripting
     Value create(Context *ctx, AudioWorld *value);
     Value create(Context *ctx, GuiPlacer *value);
     Value create(Context *ctx, ImGui *value);
-    Value create(Context *ctx, List<String> *value);
+    Value create(Context *ctx, List<Str> *value);
     Value create(Context *ctx, Application *value);
     Value create(Context *ctx, LightPointData *value);
     Value create(Context *ctx, T4<float> *value);

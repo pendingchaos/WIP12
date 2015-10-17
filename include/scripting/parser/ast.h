@@ -129,9 +129,9 @@ namespace scripting
     class IdentifierNode : public ASTNode
     {
         public:
-            IdentifierNode(const ::String& name_) : ASTNode(ASTNode::Identifier), name(name_) {}
+            IdentifierNode(::Str name_) : ASTNode(ASTNode::Identifier), name(name_) {}
 
-            const ::String name;
+            const ::Str name;
     };
 
     class SingleOperandNode : public ASTNode
@@ -201,9 +201,9 @@ namespace scripting
     class StringNode : public ASTNode
     {
         public:
-            StringNode(const ::String& content_) : ASTNode(ASTNode::String), content(content_) {}
+            StringNode(const ::Str& content_) : ASTNode(ASTNode::String), content(content_) {}
 
-            const ::String content;
+            const ::Str content;
     };
 
     class IfNode : public ASTNode
@@ -310,7 +310,7 @@ namespace scripting
             }
 
             ASTNode *body;
-            ::List<::String> args;
+            ::List<::Str> args;
     };
 
     class CallNode : public ASTNode
@@ -344,7 +344,7 @@ namespace scripting
     };
 
     ASTNode *parse(const List<Token>& tokens);
-    ASTNode *parse(const String& source);
+    ASTNode *parse(const Str& source);
 };
 
 #endif // AST_H

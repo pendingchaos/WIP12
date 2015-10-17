@@ -17,9 +17,9 @@ class ResourceIOException : public Exception
         ResourceIOException(const char *file_,
                             size_t line_,
                             const char *function_,
-                            const String& resourceType_,
-                            const String& filename_,
-                            const String& problem_) : Exception(file_, line_, function_),
+                            const Str& resourceType_,
+                            const Str& filename_,
+                            const Str& problem_) : Exception(file_, line_, function_),
                                                       resourceType(resourceType_),
                                                       filename(filename_),
                                                       problem(problem_) {}
@@ -39,24 +39,24 @@ class ResourceIOException : public Exception
             return string;
         }
 
-        inline const String& getResourceType() const
+        inline const Str& getResourceType() const
         {
             return resourceType;
         }
 
-        inline const String& getFilename() const
+        inline const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const String& getProblem() const
+        inline const Str& getProblem() const
         {
             return problem;
         }
     private:
-        String resourceType;
-        String filename;
-        String problem;
+        Str resourceType;
+        Str filename;
+        Str problem;
 };
 
 enum class ResType
@@ -122,21 +122,19 @@ class Resource
             return (const T *)this;
         }
 
-        inline const String& getFilename() const
+        inline const Str& getFilename() const
         {
             return filename;
         }
 
-        inline void setFilename(const String& filename_)
+        inline void setFilename(const Str& filename_)
         {
             removeContent();
-
-            filename = filename_.copy();
-
+            filename = filename_;
             load();
         }
     private:
-        String filename;
+        Str filename;
 
         ResType type;
         mutable uint32_t refCount;
@@ -145,7 +143,7 @@ class Resource
         virtual Resource *_copy() const {return nullptr;}
 
         Resource(ResType type);
-        Resource(const String& filename,
+        Resource(const Str& filename,
                  ResType type);
 
     NO_COPY(Resource)

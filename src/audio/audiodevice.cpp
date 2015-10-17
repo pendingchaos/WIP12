@@ -44,12 +44,12 @@ AudioDevice::~AudioDevice()
     SDL_CloseAudioDevice(id);
 }
 
-String AudioDevice::getName()
+Str AudioDevice::getName()
 {
     return SDL_GetAudioDeviceName(index, false);
 }
 
-String AudioDevice::getName(size_t index)
+Str AudioDevice::getName(size_t index)
 {
     return SDL_GetAudioDeviceName(index, false);
 }

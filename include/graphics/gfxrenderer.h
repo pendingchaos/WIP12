@@ -13,7 +13,7 @@
 #include "scripting/bindings.h"
 
 class Matrix4x4;
-class String;
+class Str;
 class GfxFramebuffer;
 class GPUTimer;
 class GfxTerrain;

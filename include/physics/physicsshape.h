@@ -397,7 +397,7 @@ class PhysicsShape : public Resource
         static const ResType resource_type = ResType::PhysicsShapeType;
 
         PhysicsShape();
-        PhysicsShape(const String& filename);
+        PhysicsShape(const Str& filename);
         virtual ~PhysicsShape();
 
         virtual void removeContent()

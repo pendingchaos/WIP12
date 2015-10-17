@@ -8,7 +8,7 @@
 GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
                              smoothness(0.5f),
                              metalMask(0.0f),
-                             parallaxStrength(0.0F),
+                             parallaxStrength(0.0f),
                              albedo(1.0f),
                              pomMinLayers(8),
                              pomMaxLayers(32),
@@ -28,11 +28,11 @@ GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
                      resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
 }
 
-GfxMaterial::GfxMaterial(const String& filename) : Resource(filename,
+GfxMaterial::GfxMaterial(const Str& filename) : Resource(filename,
                                                             ResType::GfxMaterialType),
                                                    smoothness(0.5f),
                                                    metalMask(0.0f),
-                                                   parallaxStrength(0.0F),
+                                                   parallaxStrength(0.0f),
                                                    albedo(1.0f),
                                                    pomMinLayers(8),
                                                    pomMaxLayers(32),
@@ -141,7 +141,7 @@ void GfxMaterial::save()
 
     if (albedoMap != nullptr)
     {
-        String filename = albedoMap->getFilename();
+        Str filename = albedoMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -152,7 +152,7 @@ void GfxMaterial::save()
 
     if (materialMap != nullptr)
     {
-        String filename = materialMap->getFilename();
+        Str filename = materialMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -163,7 +163,7 @@ void GfxMaterial::save()
 
     if (normalMap != nullptr)
     {
-        String filename = normalMap->getFilename();
+        Str filename = normalMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -174,7 +174,7 @@ void GfxMaterial::save()
 
     if (parallaxHeightMap != nullptr)
     {
-        String filename = parallaxHeightMap->getFilename();
+        Str filename = parallaxHeightMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -185,7 +185,7 @@ void GfxMaterial::save()
 
     if (pomHeightMap != nullptr)
     {
-        String filename = pomHeightMap->getFilename();
+        Str filename = pomHeightMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -196,7 +196,7 @@ void GfxMaterial::save()
 
     if (displacementMap != nullptr)
     {
-        String filename = displacementMap->getFilename();
+        Str filename = displacementMap->getFilename();
 
         file.writeUInt32LE(filename.getLength());
         file.write(filename.getLength(), filename.getData());
@@ -321,48 +321,42 @@ void GfxMaterial::_load()
         uint32_t len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
+            Str tex = file.readStr(len);
             setAlbedoMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
+            Str tex = file.readStr(len);
             setMaterialMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
+            Str tex = file.readStr(len);
             setNormalMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
+            Str tex = file.readStr(len);
             setParallaxHeightMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
+            Str tex = file.readStr(len);
             setPOMHeightMap(resMgr->load<GfxTexture>(tex));
         }
 
         len = file.readUInt32LE();
         if (len != 0)
         {
-            String tex((size_t)len);
-            file.read(len, tex.getData());
+            Str tex = file.readStr(len);
             setDisplacementMap(resMgr->load<GfxTexture>(tex));
         }
     } catch (FileException& e)

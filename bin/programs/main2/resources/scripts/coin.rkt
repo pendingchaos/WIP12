@@ -1,6 +1,5 @@
 return class {
-    __init__ = function(self, entity)
-    {
+    __init__ = function(self, entity) {
         self.entity = entity;
         self.shrinking = false;
         self.entity:getRigidBody():setGravity(Float3(0.0));
@@ -11,8 +10,7 @@ return class {
     handleInput = function(self) {};
     update = function(self) {};
     
-    fixedUpdate = function(self, timestep)
-    {
+    fixedUpdate = function(self, timestep) {
         if self.shrinking {
             entity = self.entity;
             transform = entity.transform;

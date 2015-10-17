@@ -13,7 +13,7 @@ time_t getLastFileModification(const char *filename)
 {
     struct stat status;
 
-    String fullFilename = fileSys != nullptr ? fileSys->getAbsolutePath(filename) : filename;
+    Str fullFilename = fileSys != nullptr ? fileSys->getAbsolutePath(filename) : filename;
 
     if (fullFilename.getLength() == 0)
     {
@@ -31,16 +31,16 @@ time_t getLastFileModification(const char *filename)
 
 bool doesFileExist(const char *filename)
 {
-    String fullFilename = fileSys != nullptr ? fileSys->getAbsolutePath(filename) : filename;
+    Str fullFilename = fileSys != nullptr ? fileSys->getAbsolutePath(filename) : filename;
 
     struct stat status;
 
     return stat(fullFilename.getData(), &status) != -1;
 }
 
-List<String> listFiles(const char *directory)
+List<Str> listFiles(const char *directory)
 {
-    List<String> result;
+    List<Str> result;
 
     DIR *dir = opendir(directory);
 
@@ -55,7 +55,7 @@ List<String> listFiles(const char *directory)
     {
         struct stat status;
 
-        String fullName = String::format("%s/%s", directory, ent->d_name);
+        Str fullName = Str::format("%s/%s", directory, ent->d_name);
 
         if (stat(fullName.getData(), &status) == -1)
         {
@@ -440,6 +440,19 @@ char File::readChar()
     }
 
     return static_cast<char>(value);
+}
+
+Str File::readStr(size_t length)
+{
+    if (file == nullptr)
+    {
+        THROW(FileException, filename, "File invalid");
+    }
+
+    char data[length];
+    read(length, data);
+
+    return Str(length, data);
 }
 
 void File::writeUInt8(uint8_t value)

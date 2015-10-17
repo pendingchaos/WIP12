@@ -89,8 +89,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, ImGui, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, GfxAnimationState_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, GfxAnimationState, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, ImGui, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
 };
 
 
@@ -188,13 +188,13 @@ struct val_to_c<bool>
 };
 
 template <>
-struct val_to_c<String>
+struct val_to_c<Str>
 {
-    static String f(scripting::Context *ctx, const SV& val)
+    static Str f(scripting::Context *ctx, const SV& val)
     {
         if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringData *)val.p)->value;
+            return val.getStr();
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -203,13 +203,13 @@ struct val_to_c<String>
 };
 
 template <>
-struct val_to_c<const String>
+struct val_to_c<const Str>
 {
-    static const String f(scripting::Context *ctx, const SV& val)
+    static const Str f(scripting::Context *ctx, const SV& val)
     {
         if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringData *)val.p)->value;
+            return val.getStr();
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -224,7 +224,7 @@ struct val_to_c<const char *>
     {
         if (val.type == scripting::ValueType::StringType)
         {
-            return ((scripting::StringData *)val.p)->value.getData();
+            return val.getStr().getData();
         } else
         {
             CATE(scripting::ExcType::TypeError, "Value can not be converted to string."));
@@ -239,9 +239,9 @@ struct val_to_c<char>
     {
         if (val.type == scripting::ValueType::StringType)
         {
-            if (((scripting::StringData *)val.p)->value.getLength() == 1)
+            if (val.getStr().getLength() == 1)
             {
-                return ((scripting::StringData *)val.p)->value[0];
+                return val.getStr()[0];
             } else
             {
                 CATE(scripting::ExcType::ValueError, "Value can not be converted to character."));
@@ -307,7 +307,7 @@ struct create_val<const char *>
 {
     static SV f(scripting::Context *ctx, const char *data)
     {
-        return scripting::createString(String(data));
+        return scripting::createString(Str(data));
     }
 };
 
@@ -316,14 +316,14 @@ struct create_val<char>
 {
     static SV f(scripting::Context *ctx, char data)
     {
-        return scripting::createString(String(data));
+        return scripting::createString(Str(data));
     }
 };
 
 template <>
-struct create_val<const String>
+struct create_val<const Str>
 {
-    static SV f(scripting::Context *ctx, const String& data)
+    static SV f(scripting::Context *ctx, const Str& data)
     {
         return scripting::createString(data);
     }
@@ -340,7 +340,7 @@ CREATE_VAL(int64_t, createInt)
 CREATE_VAL(float, createFloat)
 CREATE_VAL(double, createFloat)
 CREATE_VAL(bool, createBoolean)
-CREATE_VAL(String, createString)
+CREATE_VAL(Str, createString)
 
 template <typename T>
 struct type_same;
@@ -397,7 +397,7 @@ struct type_same<char>
     {
         if (val.type == scripting::ValueType::StringType)
         {
-            return ((const scripting::StringData *)val.p)->value.getLength() == 1;
+            return val.getStr().getLength() == 1;
         } else
         {
             return false;
@@ -418,7 +418,7 @@ TYPE_SAME_HELPER(int64_t, Int)
 TYPE_SAME_HELPER(float, Float)
 TYPE_SAME_HELPER(double, Float)
 TYPE_SAME_HELPER(bool, Boolean)
-TYPE_SAME_HELPER(String, StringType)
+TYPE_SAME_HELPER(Str, StringType)
 TYPE_SAME_HELPER(const char *, StringType)
 
 template <typename T>
@@ -2152,25 +2152,25 @@ static const STG::NativeObjectFuncs StrStrMap_funcs={
 .setMember = StrStrMap_set_member
 };
 template <>
-struct create_val<HashMap<String,String>>
+struct create_val<HashMap<Str,Str>>
 {
-static SV f(CTX ctx,const HashMap<String,String>&obj)
+static SV f(CTX ctx,const HashMap<Str,Str>&obj)
 {
-void *p = (void *)NEW(TYPE(HashMap<String,String>), obj);
+void *p = (void *)NEW(TYPE(HashMap<Str,Str>), obj);
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(StrStrMap_funcs,p,EXT->StrStrMap_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<String,String>>
+struct val_to_c<HashMap<Str,Str>>
 {
-static HashMap<String,String> f(CTX ctx,const SV& val)
+static HashMap<Str,Str> f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->StrStrMap_typeID)
-RET*((HashMap<String,String>*)obj->data);
+RET*((HashMap<Str,Str>*)obj->data);
 else
  CATE(TE,"Value can not be converted to StrStrMap."));
 } else
@@ -2179,19 +2179,19 @@ else
 };
 
 template <>
-struct val_to_c<const HashMap<String,String>>
+struct val_to_c<const HashMap<Str,Str>>
 {
-static HashMap<String,String> f(CTX ctx,const SV val) {return val_to_c<HashMap<String,String>>::f(ctx, val);}
+static HashMap<Str,Str> f(CTX ctx,const SV val) {return val_to_c<HashMap<Str,Str>>::f(ctx, val);}
 };
 
 template <>
-struct create_val<const HashMap<String,String>>
+struct create_val<const HashMap<Str,Str>>
 {
-static SV f(CTX ctx,const HashMap<String,String>&obj) {return create_val<HashMap<String,String>>::f(ctx,obj);}
+static SV f(CTX ctx,const HashMap<Str,Str>&obj) {return create_val<HashMap<Str,Str>>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<HashMap<String,String>>
+struct type_same<HashMap<Str,Str>>
 {
 static bool f(CTX ctx,const SV val)
 {
@@ -3860,6 +3860,31 @@ SV Scene_release(CTX ctx,const List<SV>&a);
 SV Scene_getRefCount(CTX ctx,const List<SV>&a);
 SV Scene_getFilename(CTX ctx,const List<SV>&a);
 SV Scene_setFilename(CTX ctx,const List<SV>&a);
+void GfxAnimationState_destroy(CTX,const SV&);
+SV GfxAnimationState_get_member(CTX,const SV&,const SV&);
+void GfxAnimationState_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs GfxAnimationState_funcs={
+.destroy = GfxAnimationState_destroy,
+.getMember = GfxAnimationState_get_member,
+.setMember = GfxAnimationState_set_member
+};
+template <>
+struct type_same<GfxAnimationState>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxAnimationState_typeID;
+else
+ RET false;
+}
+};
+
+SV GfxAnimationState_updateMatrices(CTX ctx,const List<SV>&a);
+SV GfxAnimationState_getAnimName(CTX ctx,const List<SV>&a);
+SV GfxAnimationState_getMesh(CTX ctx,const List<SV>&a);
+SV GfxAnimationState_getMatrixBuffer(CTX ctx,const List<SV>&a);
+SV GfxAnimationState_getNormalMatrixBuffer(CTX ctx,const List<SV>&a);
 void Int3_destroy(CTX,const SV&);
 SV Int3_get_member(CTX,const SV&,const SV&);
 void Int3_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5059,25 +5084,25 @@ static const STG::NativeObjectFuncs StringList_funcs={
 .setMember = StringList_set_member
 };
 template <>
-struct create_val<List<String>>
+struct create_val<List<Str>>
 {
-static SV f(CTX ctx,const List<String>&obj)
+static SV f(CTX ctx,const List<Str>&obj)
 {
-void *p = (void *)NEW(TYPE(List<String>), obj);
+void *p = (void *)NEW(TYPE(List<Str>), obj);
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 }
 };
 template <>
-struct val_to_c<List<String>>
+struct val_to_c<List<Str>>
 {
-static List<String> f(CTX ctx,const SV& val)
+static List<Str> f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->StringList_typeID)
-RET*((List<String>*)obj->data);
+RET*((List<Str>*)obj->data);
 else
  CATE(TE,"Value can not be converted to StringList."));
 } else
@@ -5086,19 +5111,19 @@ else
 };
 
 template <>
-struct val_to_c<const List<String>>
+struct val_to_c<const List<Str>>
 {
-static List<String> f(CTX ctx,const SV val) {return val_to_c<List<String>>::f(ctx, val);}
+static List<Str> f(CTX ctx,const SV val) {return val_to_c<List<Str>>::f(ctx, val);}
 };
 
 template <>
-struct create_val<const List<String>>
+struct create_val<const List<Str>>
 {
-static SV f(CTX ctx,const List<String>&obj) {return create_val<List<String>>::f(ctx,obj);}
+static SV f(CTX ctx,const List<Str>&obj) {return create_val<List<Str>>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<List<String>>
+struct type_same<List<Str>>
 {
 static bool f(CTX ctx,const SV val)
 {
@@ -6672,6 +6697,7 @@ SV File_readUInt64BE(CTX ctx,const List<SV>&a);
 SV File_readInt64BE(CTX ctx,const List<SV>&a);
 SV File_readFloat32(CTX ctx,const List<SV>&a);
 SV File_readChar(CTX ctx,const List<SV>&a);
+SV File_readStr(CTX ctx,const List<SV>&a);
 SV File_writeUInt8(CTX ctx,const List<SV>&a);
 SV File_writeInt8(CTX ctx,const List<SV>&a);
 SV File_writeUInt16LE(CTX ctx,const List<SV>&a);
@@ -7420,9 +7446,9 @@ else
 };
 
 template <>
-struct create_val<HashMap<String,String> *>
+struct create_val<HashMap<Str,Str> *>
 {
-static SV f(CTX ctx,HashMap<String,String>*obj)
+static SV f(CTX ctx,HashMap<Str,Str>*obj)
 {
 if (obj == nullptr)
 RET CN;
@@ -7433,15 +7459,15 @@ RET STG::createNativeObject(StrStrMap_funcs,obj,EXT->StrStrMap_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<String,String> *>
+struct val_to_c<HashMap<Str,Str> *>
 {
-static HashMap<String,String> *f(CTX ctx,const SV& val)
+static HashMap<Str,Str> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->StrStrMap_typeID)
-RET(HashMap<String,String>*)obj->data;
+RET(HashMap<Str,Str>*)obj->data;
 else
  CATE(TE,"Value is not a StrStrMap."));
 } else
@@ -7449,7 +7475,7 @@ else
 }
 };
 template <>
-struct type_same<HashMap<String,String> *>
+struct type_same<HashMap<Str,Str> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -7460,7 +7486,7 @@ else
 }
 };
 template <>
-struct type_same<const HashMap<String,String> *>
+struct type_same<const HashMap<Str,Str> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -7471,15 +7497,15 @@ else
 }
 };
 template <>
-struct val_to_c<const HashMap<String,String> *>
+struct val_to_c<const HashMap<Str,Str> *>
 {
-static const HashMap<String,String> *f(CTX ctx,const SV& val)
+static const HashMap<Str,Str> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->StrStrMap_typeID)
-RET(HashMap<String,String>*)obj->data;
+RET(HashMap<Str,Str>*)obj->data;
 else
  CATE(TE,"Value is not a StrStrMap."));
 } else
@@ -9528,6 +9554,74 @@ else
 };
 
 template <>
+struct create_val<GfxAnimationState *>
+{
+static SV f(CTX ctx,GfxAnimationState*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(GfxAnimationState_funcs,obj,EXT->GfxAnimationState_typeID);
+}
+};
+template <>
+struct val_to_c<GfxAnimationState *>
+{
+static GfxAnimationState *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->GfxAnimationState_typeID)
+RET(GfxAnimationState*)obj->data;
+else
+ CATE(TE,"Value is not a GfxAnimationState."));
+} else
+ CATE(TE,"Value is not a GfxAnimationState."));
+}
+};
+template <>
+struct type_same<GfxAnimationState *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxAnimationState_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const GfxAnimationState *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->GfxAnimationState_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const GfxAnimationState *>
+{
+static const GfxAnimationState *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->GfxAnimationState_typeID)
+RET(GfxAnimationState*)obj->data;
+else
+ CATE(TE,"Value is not a GfxAnimationState."));
+} else
+ CATE(TE,"Value is not a GfxAnimationState."));
+}
+};
+
+template <>
 struct create_val<T3<int32_t> *>
 {
 static SV f(CTX ctx,T3<int32_t>*obj)
@@ -10616,9 +10710,9 @@ else
 };
 
 template <>
-struct create_val<List<String> *>
+struct create_val<List<Str> *>
 {
-static SV f(CTX ctx,List<String>*obj)
+static SV f(CTX ctx,List<Str>*obj)
 {
 if (obj == nullptr)
 RET CN;
@@ -10629,15 +10723,15 @@ RET STG::createNativeObject(StringList_funcs,obj,EXT->StringList_typeID);
 }
 };
 template <>
-struct val_to_c<List<String> *>
+struct val_to_c<List<Str> *>
 {
-static List<String> *f(CTX ctx,const SV& val)
+static List<Str> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->StringList_typeID)
-RET(List<String>*)obj->data;
+RET(List<Str>*)obj->data;
 else
  CATE(TE,"Value is not a StringList."));
 } else
@@ -10645,7 +10739,7 @@ else
 }
 };
 template <>
-struct type_same<List<String> *>
+struct type_same<List<Str> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -10656,7 +10750,7 @@ else
 }
 };
 template <>
-struct type_same<const List<String> *>
+struct type_same<const List<Str> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -10667,15 +10761,15 @@ else
 }
 };
 template <>
-struct val_to_c<const List<String> *>
+struct val_to_c<const List<Str> *>
 {
-static const List<String> *f(CTX ctx,const SV& val)
+static const List<Str> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->StringList_typeID)
-RET(List<String>*)obj->data;
+RET(List<Str>*)obj->data;
 else
  CATE(TE,"Value is not a StringList."));
 } else
@@ -12879,196 +12973,196 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Key");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Key___eq__);
-EI(keyStr=="ScrollLock")RET STG::createNativeObject(Key_funcs,(void *)271,EXT->Key_typeID);
-EI(keyStr=="RightBracket")RET STG::createNativeObject(Key_funcs,(void *)93,EXT->Key_typeID);
-EI(keyStr=="Pause")RET STG::createNativeObject(Key_funcs,(void *)274,EXT->Key_typeID);
-EI(keyStr=="Backslash")RET STG::createNativeObject(Key_funcs,(void *)92,EXT->Key_typeID);
-EI(keyStr=="LeftBracket")RET STG::createNativeObject(Key_funcs,(void *)91,EXT->Key_typeID);
-EI(keyStr=="Space")RET STG::createNativeObject(Key_funcs,(void *)32,EXT->Key_typeID);
-EI(keyStr=="Menu")RET STG::createNativeObject(Key_funcs,(void *)292,EXT->Key_typeID);
-EI(keyStr=="Enter")RET STG::createNativeObject(Key_funcs,(void *)257,EXT->Key_typeID);
-EI(keyStr=="F3")RET STG::createNativeObject(Key_funcs,(void *)277,EXT->Key_typeID);
-EI(keyStr=="_2")RET STG::createNativeObject(Key_funcs,(void *)50,EXT->Key_typeID);
-EI(keyStr=="RightControl")RET STG::createNativeObject(Key_funcs,(void *)289,EXT->Key_typeID);
-EI(keyStr=="Backspace")RET STG::createNativeObject(Key_funcs,(void *)259,EXT->Key_typeID);
-EI(keyStr=="Slash")RET STG::createNativeObject(Key_funcs,(void *)47,EXT->Key_typeID);
-EI(keyStr=="X")RET STG::createNativeObject(Key_funcs,(void *)120,EXT->Key_typeID);
-EI(keyStr=="End")RET STG::createNativeObject(Key_funcs,(void *)269,EXT->Key_typeID);
-EI(keyStr=="Up")RET STG::createNativeObject(Key_funcs,(void *)265,EXT->Key_typeID);
-EI(keyStr=="RightSuper")RET STG::createNativeObject(Key_funcs,(void *)291,EXT->Key_typeID);
-EI(keyStr=="F9")RET STG::createNativeObject(Key_funcs,(void *)283,EXT->Key_typeID);
-EI(keyStr=="LeftSuper")RET STG::createNativeObject(Key_funcs,(void *)287,EXT->Key_typeID);
-EI(keyStr=="PrintScreen")RET STG::createNativeObject(Key_funcs,(void *)273,EXT->Key_typeID);
-EI(keyStr=="Z")RET STG::createNativeObject(Key_funcs,(void *)122,EXT->Key_typeID);
-EI(keyStr=="RightAlt")RET STG::createNativeObject(Key_funcs,(void *)290,EXT->Key_typeID);
-EI(keyStr=="F5")RET STG::createNativeObject(Key_funcs,(void *)279,EXT->Key_typeID);
-EI(keyStr=="PageUp")RET STG::createNativeObject(Key_funcs,(void *)266,EXT->Key_typeID);
-EI(keyStr=="LeftShift")RET STG::createNativeObject(Key_funcs,(void *)284,EXT->Key_typeID);
-EI(keyStr=="F7")RET STG::createNativeObject(Key_funcs,(void *)281,EXT->Key_typeID);
-EI(keyStr=="LeftAlt")RET STG::createNativeObject(Key_funcs,(void *)286,EXT->Key_typeID);
-EI(keyStr=="LeftControl")RET STG::createNativeObject(Key_funcs,(void *)285,EXT->Key_typeID);
-EI(keyStr=="Unknown")RET STG::createNativeObject(Key_funcs,(void *)293,EXT->Key_typeID);
-EI(keyStr=="Left")RET STG::createNativeObject(Key_funcs,(void *)263,EXT->Key_typeID);
-EI(keyStr=="A")RET STG::createNativeObject(Key_funcs,(void *)97,EXT->Key_typeID);
-EI(keyStr=="Insert")RET STG::createNativeObject(Key_funcs,(void *)260,EXT->Key_typeID);
-EI(keyStr=="C")RET STG::createNativeObject(Key_funcs,(void *)99,EXT->Key_typeID);
-EI(keyStr=="B")RET STG::createNativeObject(Key_funcs,(void *)98,EXT->Key_typeID);
-EI(keyStr=="E")RET STG::createNativeObject(Key_funcs,(void *)101,EXT->Key_typeID);
-EI(keyStr=="D")RET STG::createNativeObject(Key_funcs,(void *)100,EXT->Key_typeID);
-EI(keyStr=="G")RET STG::createNativeObject(Key_funcs,(void *)103,EXT->Key_typeID);
-EI(keyStr=="F")RET STG::createNativeObject(Key_funcs,(void *)102,EXT->Key_typeID);
-EI(keyStr=="I")RET STG::createNativeObject(Key_funcs,(void *)105,EXT->Key_typeID);
-EI(keyStr=="H")RET STG::createNativeObject(Key_funcs,(void *)104,EXT->Key_typeID);
-EI(keyStr=="K")RET STG::createNativeObject(Key_funcs,(void *)107,EXT->Key_typeID);
-EI(keyStr=="J")RET STG::createNativeObject(Key_funcs,(void *)106,EXT->Key_typeID);
-EI(keyStr=="M")RET STG::createNativeObject(Key_funcs,(void *)109,EXT->Key_typeID);
-EI(keyStr=="Equal")RET STG::createNativeObject(Key_funcs,(void *)61,EXT->Key_typeID);
-EI(keyStr=="O")RET STG::createNativeObject(Key_funcs,(void *)111,EXT->Key_typeID);
-EI(keyStr=="L")RET STG::createNativeObject(Key_funcs,(void *)108,EXT->Key_typeID);
-EI(keyStr=="Q")RET STG::createNativeObject(Key_funcs,(void *)113,EXT->Key_typeID);
-EI(keyStr=="P")RET STG::createNativeObject(Key_funcs,(void *)112,EXT->Key_typeID);
-EI(keyStr=="S")RET STG::createNativeObject(Key_funcs,(void *)115,EXT->Key_typeID);
-EI(keyStr=="R")RET STG::createNativeObject(Key_funcs,(void *)114,EXT->Key_typeID);
-EI(keyStr=="U")RET STG::createNativeObject(Key_funcs,(void *)117,EXT->Key_typeID);
-EI(keyStr=="T")RET STG::createNativeObject(Key_funcs,(void *)116,EXT->Key_typeID);
-EI(keyStr=="W")RET STG::createNativeObject(Key_funcs,(void *)119,EXT->Key_typeID);
-EI(keyStr=="V")RET STG::createNativeObject(Key_funcs,(void *)118,EXT->Key_typeID);
-EI(keyStr=="Y")RET STG::createNativeObject(Key_funcs,(void *)121,EXT->Key_typeID);
-EI(keyStr=="Apostrophe")RET STG::createNativeObject(Key_funcs,(void *)39,EXT->Key_typeID);
-EI(keyStr=="NumLock")RET STG::createNativeObject(Key_funcs,(void *)272,EXT->Key_typeID);
-EI(keyStr=="N")RET STG::createNativeObject(Key_funcs,(void *)110,EXT->Key_typeID);
-EI(keyStr=="CapsLock")RET STG::createNativeObject(Key_funcs,(void *)270,EXT->Key_typeID);
-EI(keyStr=="Minus")RET STG::createNativeObject(Key_funcs,(void *)45,EXT->Key_typeID);
-EI(keyStr=="Delete")RET STG::createNativeObject(Key_funcs,(void *)261,EXT->Key_typeID);
-EI(keyStr=="F1")RET STG::createNativeObject(Key_funcs,(void *)275,EXT->Key_typeID);
-EI(keyStr=="F2")RET STG::createNativeObject(Key_funcs,(void *)276,EXT->Key_typeID);
-EI(keyStr=="Right")RET STG::createNativeObject(Key_funcs,(void *)262,EXT->Key_typeID);
-EI(keyStr=="F4")RET STG::createNativeObject(Key_funcs,(void *)278,EXT->Key_typeID);
-EI(keyStr=="_9")RET STG::createNativeObject(Key_funcs,(void *)57,EXT->Key_typeID);
-EI(keyStr=="Semicolon")RET STG::createNativeObject(Key_funcs,(void *)59,EXT->Key_typeID);
-EI(keyStr=="_8")RET STG::createNativeObject(Key_funcs,(void *)56,EXT->Key_typeID);
-EI(keyStr=="_7")RET STG::createNativeObject(Key_funcs,(void *)55,EXT->Key_typeID);
-EI(keyStr=="_6")RET STG::createNativeObject(Key_funcs,(void *)54,EXT->Key_typeID);
-EI(keyStr=="_5")RET STG::createNativeObject(Key_funcs,(void *)53,EXT->Key_typeID);
-EI(keyStr=="_4")RET STG::createNativeObject(Key_funcs,(void *)52,EXT->Key_typeID);
-EI(keyStr=="_3")RET STG::createNativeObject(Key_funcs,(void *)51,EXT->Key_typeID);
-EI(keyStr=="Period")RET STG::createNativeObject(Key_funcs,(void *)46,EXT->Key_typeID);
-EI(keyStr=="_1")RET STG::createNativeObject(Key_funcs,(void *)49,EXT->Key_typeID);
-EI(keyStr=="_0")RET STG::createNativeObject(Key_funcs,(void *)48,EXT->Key_typeID);
-EI(keyStr=="Down")RET STG::createNativeObject(Key_funcs,(void *)264,EXT->Key_typeID);
-EI(keyStr=="F8")RET STG::createNativeObject(Key_funcs,(void *)282,EXT->Key_typeID);
-EI(keyStr=="Comma")RET STG::createNativeObject(Key_funcs,(void *)44,EXT->Key_typeID);
-EI(keyStr=="PageDown")RET STG::createNativeObject(Key_funcs,(void *)267,EXT->Key_typeID);
-EI(keyStr=="Tab")RET STG::createNativeObject(Key_funcs,(void *)258,EXT->Key_typeID);
-EI(keyStr=="Escape")RET STG::createNativeObject(Key_funcs,(void *)256,EXT->Key_typeID);
-EI(keyStr=="Home")RET STG::createNativeObject(Key_funcs,(void *)268,EXT->Key_typeID);
-EI(keyStr=="F6")RET STG::createNativeObject(Key_funcs,(void *)280,EXT->Key_typeID);
-EI(keyStr=="RightShift")RET STG::createNativeObject(Key_funcs,(void *)288,EXT->Key_typeID);
+EI(keyStr.equals("ScrollLock", CPL_STR_HASH("ScrollLock")))RET STG::createNativeObject(Key_funcs,(void *)271,EXT->Key_typeID);
+EI(keyStr.equals("RightBracket", CPL_STR_HASH("RightBracket")))RET STG::createNativeObject(Key_funcs,(void *)93,EXT->Key_typeID);
+EI(keyStr.equals("Pause", CPL_STR_HASH("Pause")))RET STG::createNativeObject(Key_funcs,(void *)274,EXT->Key_typeID);
+EI(keyStr.equals("Backslash", CPL_STR_HASH("Backslash")))RET STG::createNativeObject(Key_funcs,(void *)92,EXT->Key_typeID);
+EI(keyStr.equals("LeftBracket", CPL_STR_HASH("LeftBracket")))RET STG::createNativeObject(Key_funcs,(void *)91,EXT->Key_typeID);
+EI(keyStr.equals("Space", CPL_STR_HASH("Space")))RET STG::createNativeObject(Key_funcs,(void *)32,EXT->Key_typeID);
+EI(keyStr.equals("Menu", CPL_STR_HASH("Menu")))RET STG::createNativeObject(Key_funcs,(void *)292,EXT->Key_typeID);
+EI(keyStr.equals("Enter", CPL_STR_HASH("Enter")))RET STG::createNativeObject(Key_funcs,(void *)257,EXT->Key_typeID);
+EI(keyStr.equals("F3", CPL_STR_HASH("F3")))RET STG::createNativeObject(Key_funcs,(void *)277,EXT->Key_typeID);
+EI(keyStr.equals("_2", CPL_STR_HASH("_2")))RET STG::createNativeObject(Key_funcs,(void *)50,EXT->Key_typeID);
+EI(keyStr.equals("RightControl", CPL_STR_HASH("RightControl")))RET STG::createNativeObject(Key_funcs,(void *)289,EXT->Key_typeID);
+EI(keyStr.equals("Backspace", CPL_STR_HASH("Backspace")))RET STG::createNativeObject(Key_funcs,(void *)259,EXT->Key_typeID);
+EI(keyStr.equals("Slash", CPL_STR_HASH("Slash")))RET STG::createNativeObject(Key_funcs,(void *)47,EXT->Key_typeID);
+EI(keyStr.equals("X", CPL_STR_HASH("X")))RET STG::createNativeObject(Key_funcs,(void *)120,EXT->Key_typeID);
+EI(keyStr.equals("End", CPL_STR_HASH("End")))RET STG::createNativeObject(Key_funcs,(void *)269,EXT->Key_typeID);
+EI(keyStr.equals("Up", CPL_STR_HASH("Up")))RET STG::createNativeObject(Key_funcs,(void *)265,EXT->Key_typeID);
+EI(keyStr.equals("RightSuper", CPL_STR_HASH("RightSuper")))RET STG::createNativeObject(Key_funcs,(void *)291,EXT->Key_typeID);
+EI(keyStr.equals("F9", CPL_STR_HASH("F9")))RET STG::createNativeObject(Key_funcs,(void *)283,EXT->Key_typeID);
+EI(keyStr.equals("LeftSuper", CPL_STR_HASH("LeftSuper")))RET STG::createNativeObject(Key_funcs,(void *)287,EXT->Key_typeID);
+EI(keyStr.equals("PrintScreen", CPL_STR_HASH("PrintScreen")))RET STG::createNativeObject(Key_funcs,(void *)273,EXT->Key_typeID);
+EI(keyStr.equals("Z", CPL_STR_HASH("Z")))RET STG::createNativeObject(Key_funcs,(void *)122,EXT->Key_typeID);
+EI(keyStr.equals("RightAlt", CPL_STR_HASH("RightAlt")))RET STG::createNativeObject(Key_funcs,(void *)290,EXT->Key_typeID);
+EI(keyStr.equals("F5", CPL_STR_HASH("F5")))RET STG::createNativeObject(Key_funcs,(void *)279,EXT->Key_typeID);
+EI(keyStr.equals("PageUp", CPL_STR_HASH("PageUp")))RET STG::createNativeObject(Key_funcs,(void *)266,EXT->Key_typeID);
+EI(keyStr.equals("LeftShift", CPL_STR_HASH("LeftShift")))RET STG::createNativeObject(Key_funcs,(void *)284,EXT->Key_typeID);
+EI(keyStr.equals("F7", CPL_STR_HASH("F7")))RET STG::createNativeObject(Key_funcs,(void *)281,EXT->Key_typeID);
+EI(keyStr.equals("LeftAlt", CPL_STR_HASH("LeftAlt")))RET STG::createNativeObject(Key_funcs,(void *)286,EXT->Key_typeID);
+EI(keyStr.equals("LeftControl", CPL_STR_HASH("LeftControl")))RET STG::createNativeObject(Key_funcs,(void *)285,EXT->Key_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(Key_funcs,(void *)293,EXT->Key_typeID);
+EI(keyStr.equals("Left", CPL_STR_HASH("Left")))RET STG::createNativeObject(Key_funcs,(void *)263,EXT->Key_typeID);
+EI(keyStr.equals("A", CPL_STR_HASH("A")))RET STG::createNativeObject(Key_funcs,(void *)97,EXT->Key_typeID);
+EI(keyStr.equals("Insert", CPL_STR_HASH("Insert")))RET STG::createNativeObject(Key_funcs,(void *)260,EXT->Key_typeID);
+EI(keyStr.equals("C", CPL_STR_HASH("C")))RET STG::createNativeObject(Key_funcs,(void *)99,EXT->Key_typeID);
+EI(keyStr.equals("B", CPL_STR_HASH("B")))RET STG::createNativeObject(Key_funcs,(void *)98,EXT->Key_typeID);
+EI(keyStr.equals("E", CPL_STR_HASH("E")))RET STG::createNativeObject(Key_funcs,(void *)101,EXT->Key_typeID);
+EI(keyStr.equals("D", CPL_STR_HASH("D")))RET STG::createNativeObject(Key_funcs,(void *)100,EXT->Key_typeID);
+EI(keyStr.equals("G", CPL_STR_HASH("G")))RET STG::createNativeObject(Key_funcs,(void *)103,EXT->Key_typeID);
+EI(keyStr.equals("F", CPL_STR_HASH("F")))RET STG::createNativeObject(Key_funcs,(void *)102,EXT->Key_typeID);
+EI(keyStr.equals("I", CPL_STR_HASH("I")))RET STG::createNativeObject(Key_funcs,(void *)105,EXT->Key_typeID);
+EI(keyStr.equals("H", CPL_STR_HASH("H")))RET STG::createNativeObject(Key_funcs,(void *)104,EXT->Key_typeID);
+EI(keyStr.equals("K", CPL_STR_HASH("K")))RET STG::createNativeObject(Key_funcs,(void *)107,EXT->Key_typeID);
+EI(keyStr.equals("J", CPL_STR_HASH("J")))RET STG::createNativeObject(Key_funcs,(void *)106,EXT->Key_typeID);
+EI(keyStr.equals("M", CPL_STR_HASH("M")))RET STG::createNativeObject(Key_funcs,(void *)109,EXT->Key_typeID);
+EI(keyStr.equals("Equal", CPL_STR_HASH("Equal")))RET STG::createNativeObject(Key_funcs,(void *)61,EXT->Key_typeID);
+EI(keyStr.equals("O", CPL_STR_HASH("O")))RET STG::createNativeObject(Key_funcs,(void *)111,EXT->Key_typeID);
+EI(keyStr.equals("L", CPL_STR_HASH("L")))RET STG::createNativeObject(Key_funcs,(void *)108,EXT->Key_typeID);
+EI(keyStr.equals("Q", CPL_STR_HASH("Q")))RET STG::createNativeObject(Key_funcs,(void *)113,EXT->Key_typeID);
+EI(keyStr.equals("P", CPL_STR_HASH("P")))RET STG::createNativeObject(Key_funcs,(void *)112,EXT->Key_typeID);
+EI(keyStr.equals("S", CPL_STR_HASH("S")))RET STG::createNativeObject(Key_funcs,(void *)115,EXT->Key_typeID);
+EI(keyStr.equals("R", CPL_STR_HASH("R")))RET STG::createNativeObject(Key_funcs,(void *)114,EXT->Key_typeID);
+EI(keyStr.equals("U", CPL_STR_HASH("U")))RET STG::createNativeObject(Key_funcs,(void *)117,EXT->Key_typeID);
+EI(keyStr.equals("T", CPL_STR_HASH("T")))RET STG::createNativeObject(Key_funcs,(void *)116,EXT->Key_typeID);
+EI(keyStr.equals("W", CPL_STR_HASH("W")))RET STG::createNativeObject(Key_funcs,(void *)119,EXT->Key_typeID);
+EI(keyStr.equals("V", CPL_STR_HASH("V")))RET STG::createNativeObject(Key_funcs,(void *)118,EXT->Key_typeID);
+EI(keyStr.equals("Y", CPL_STR_HASH("Y")))RET STG::createNativeObject(Key_funcs,(void *)121,EXT->Key_typeID);
+EI(keyStr.equals("Apostrophe", CPL_STR_HASH("Apostrophe")))RET STG::createNativeObject(Key_funcs,(void *)39,EXT->Key_typeID);
+EI(keyStr.equals("NumLock", CPL_STR_HASH("NumLock")))RET STG::createNativeObject(Key_funcs,(void *)272,EXT->Key_typeID);
+EI(keyStr.equals("N", CPL_STR_HASH("N")))RET STG::createNativeObject(Key_funcs,(void *)110,EXT->Key_typeID);
+EI(keyStr.equals("CapsLock", CPL_STR_HASH("CapsLock")))RET STG::createNativeObject(Key_funcs,(void *)270,EXT->Key_typeID);
+EI(keyStr.equals("Minus", CPL_STR_HASH("Minus")))RET STG::createNativeObject(Key_funcs,(void *)45,EXT->Key_typeID);
+EI(keyStr.equals("Delete", CPL_STR_HASH("Delete")))RET STG::createNativeObject(Key_funcs,(void *)261,EXT->Key_typeID);
+EI(keyStr.equals("F1", CPL_STR_HASH("F1")))RET STG::createNativeObject(Key_funcs,(void *)275,EXT->Key_typeID);
+EI(keyStr.equals("F2", CPL_STR_HASH("F2")))RET STG::createNativeObject(Key_funcs,(void *)276,EXT->Key_typeID);
+EI(keyStr.equals("Right", CPL_STR_HASH("Right")))RET STG::createNativeObject(Key_funcs,(void *)262,EXT->Key_typeID);
+EI(keyStr.equals("F4", CPL_STR_HASH("F4")))RET STG::createNativeObject(Key_funcs,(void *)278,EXT->Key_typeID);
+EI(keyStr.equals("_9", CPL_STR_HASH("_9")))RET STG::createNativeObject(Key_funcs,(void *)57,EXT->Key_typeID);
+EI(keyStr.equals("Semicolon", CPL_STR_HASH("Semicolon")))RET STG::createNativeObject(Key_funcs,(void *)59,EXT->Key_typeID);
+EI(keyStr.equals("_8", CPL_STR_HASH("_8")))RET STG::createNativeObject(Key_funcs,(void *)56,EXT->Key_typeID);
+EI(keyStr.equals("_7", CPL_STR_HASH("_7")))RET STG::createNativeObject(Key_funcs,(void *)55,EXT->Key_typeID);
+EI(keyStr.equals("_6", CPL_STR_HASH("_6")))RET STG::createNativeObject(Key_funcs,(void *)54,EXT->Key_typeID);
+EI(keyStr.equals("_5", CPL_STR_HASH("_5")))RET STG::createNativeObject(Key_funcs,(void *)53,EXT->Key_typeID);
+EI(keyStr.equals("_4", CPL_STR_HASH("_4")))RET STG::createNativeObject(Key_funcs,(void *)52,EXT->Key_typeID);
+EI(keyStr.equals("_3", CPL_STR_HASH("_3")))RET STG::createNativeObject(Key_funcs,(void *)51,EXT->Key_typeID);
+EI(keyStr.equals("Period", CPL_STR_HASH("Period")))RET STG::createNativeObject(Key_funcs,(void *)46,EXT->Key_typeID);
+EI(keyStr.equals("_1", CPL_STR_HASH("_1")))RET STG::createNativeObject(Key_funcs,(void *)49,EXT->Key_typeID);
+EI(keyStr.equals("_0", CPL_STR_HASH("_0")))RET STG::createNativeObject(Key_funcs,(void *)48,EXT->Key_typeID);
+EI(keyStr.equals("Down", CPL_STR_HASH("Down")))RET STG::createNativeObject(Key_funcs,(void *)264,EXT->Key_typeID);
+EI(keyStr.equals("F8", CPL_STR_HASH("F8")))RET STG::createNativeObject(Key_funcs,(void *)282,EXT->Key_typeID);
+EI(keyStr.equals("Comma", CPL_STR_HASH("Comma")))RET STG::createNativeObject(Key_funcs,(void *)44,EXT->Key_typeID);
+EI(keyStr.equals("PageDown", CPL_STR_HASH("PageDown")))RET STG::createNativeObject(Key_funcs,(void *)267,EXT->Key_typeID);
+EI(keyStr.equals("Tab", CPL_STR_HASH("Tab")))RET STG::createNativeObject(Key_funcs,(void *)258,EXT->Key_typeID);
+EI(keyStr.equals("Escape", CPL_STR_HASH("Escape")))RET STG::createNativeObject(Key_funcs,(void *)256,EXT->Key_typeID);
+EI(keyStr.equals("Home", CPL_STR_HASH("Home")))RET STG::createNativeObject(Key_funcs,(void *)268,EXT->Key_typeID);
+EI(keyStr.equals("F6", CPL_STR_HASH("F6")))RET STG::createNativeObject(Key_funcs,(void *)280,EXT->Key_typeID);
+EI(keyStr.equals("RightShift", CPL_STR_HASH("RightShift")))RET STG::createNativeObject(Key_funcs,(void *)288,EXT->Key_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Key");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Key___eq__);
-EI(keyStr=="ScrollLock")RET STG::createNativeObject(Key_funcs,(void *)271,EXT->Key_typeID);
-EI(keyStr=="RightBracket")RET STG::createNativeObject(Key_funcs,(void *)93,EXT->Key_typeID);
-EI(keyStr=="Pause")RET STG::createNativeObject(Key_funcs,(void *)274,EXT->Key_typeID);
-EI(keyStr=="Backslash")RET STG::createNativeObject(Key_funcs,(void *)92,EXT->Key_typeID);
-EI(keyStr=="LeftBracket")RET STG::createNativeObject(Key_funcs,(void *)91,EXT->Key_typeID);
-EI(keyStr=="Space")RET STG::createNativeObject(Key_funcs,(void *)32,EXT->Key_typeID);
-EI(keyStr=="Menu")RET STG::createNativeObject(Key_funcs,(void *)292,EXT->Key_typeID);
-EI(keyStr=="Enter")RET STG::createNativeObject(Key_funcs,(void *)257,EXT->Key_typeID);
-EI(keyStr=="F3")RET STG::createNativeObject(Key_funcs,(void *)277,EXT->Key_typeID);
-EI(keyStr=="_2")RET STG::createNativeObject(Key_funcs,(void *)50,EXT->Key_typeID);
-EI(keyStr=="RightControl")RET STG::createNativeObject(Key_funcs,(void *)289,EXT->Key_typeID);
-EI(keyStr=="Backspace")RET STG::createNativeObject(Key_funcs,(void *)259,EXT->Key_typeID);
-EI(keyStr=="Slash")RET STG::createNativeObject(Key_funcs,(void *)47,EXT->Key_typeID);
-EI(keyStr=="X")RET STG::createNativeObject(Key_funcs,(void *)120,EXT->Key_typeID);
-EI(keyStr=="End")RET STG::createNativeObject(Key_funcs,(void *)269,EXT->Key_typeID);
-EI(keyStr=="Up")RET STG::createNativeObject(Key_funcs,(void *)265,EXT->Key_typeID);
-EI(keyStr=="RightSuper")RET STG::createNativeObject(Key_funcs,(void *)291,EXT->Key_typeID);
-EI(keyStr=="F9")RET STG::createNativeObject(Key_funcs,(void *)283,EXT->Key_typeID);
-EI(keyStr=="LeftSuper")RET STG::createNativeObject(Key_funcs,(void *)287,EXT->Key_typeID);
-EI(keyStr=="PrintScreen")RET STG::createNativeObject(Key_funcs,(void *)273,EXT->Key_typeID);
-EI(keyStr=="Z")RET STG::createNativeObject(Key_funcs,(void *)122,EXT->Key_typeID);
-EI(keyStr=="RightAlt")RET STG::createNativeObject(Key_funcs,(void *)290,EXT->Key_typeID);
-EI(keyStr=="F5")RET STG::createNativeObject(Key_funcs,(void *)279,EXT->Key_typeID);
-EI(keyStr=="PageUp")RET STG::createNativeObject(Key_funcs,(void *)266,EXT->Key_typeID);
-EI(keyStr=="LeftShift")RET STG::createNativeObject(Key_funcs,(void *)284,EXT->Key_typeID);
-EI(keyStr=="F7")RET STG::createNativeObject(Key_funcs,(void *)281,EXT->Key_typeID);
-EI(keyStr=="LeftAlt")RET STG::createNativeObject(Key_funcs,(void *)286,EXT->Key_typeID);
-EI(keyStr=="LeftControl")RET STG::createNativeObject(Key_funcs,(void *)285,EXT->Key_typeID);
-EI(keyStr=="Unknown")RET STG::createNativeObject(Key_funcs,(void *)293,EXT->Key_typeID);
-EI(keyStr=="Left")RET STG::createNativeObject(Key_funcs,(void *)263,EXT->Key_typeID);
-EI(keyStr=="A")RET STG::createNativeObject(Key_funcs,(void *)97,EXT->Key_typeID);
-EI(keyStr=="Insert")RET STG::createNativeObject(Key_funcs,(void *)260,EXT->Key_typeID);
-EI(keyStr=="C")RET STG::createNativeObject(Key_funcs,(void *)99,EXT->Key_typeID);
-EI(keyStr=="B")RET STG::createNativeObject(Key_funcs,(void *)98,EXT->Key_typeID);
-EI(keyStr=="E")RET STG::createNativeObject(Key_funcs,(void *)101,EXT->Key_typeID);
-EI(keyStr=="D")RET STG::createNativeObject(Key_funcs,(void *)100,EXT->Key_typeID);
-EI(keyStr=="G")RET STG::createNativeObject(Key_funcs,(void *)103,EXT->Key_typeID);
-EI(keyStr=="F")RET STG::createNativeObject(Key_funcs,(void *)102,EXT->Key_typeID);
-EI(keyStr=="I")RET STG::createNativeObject(Key_funcs,(void *)105,EXT->Key_typeID);
-EI(keyStr=="H")RET STG::createNativeObject(Key_funcs,(void *)104,EXT->Key_typeID);
-EI(keyStr=="K")RET STG::createNativeObject(Key_funcs,(void *)107,EXT->Key_typeID);
-EI(keyStr=="J")RET STG::createNativeObject(Key_funcs,(void *)106,EXT->Key_typeID);
-EI(keyStr=="M")RET STG::createNativeObject(Key_funcs,(void *)109,EXT->Key_typeID);
-EI(keyStr=="Equal")RET STG::createNativeObject(Key_funcs,(void *)61,EXT->Key_typeID);
-EI(keyStr=="O")RET STG::createNativeObject(Key_funcs,(void *)111,EXT->Key_typeID);
-EI(keyStr=="L")RET STG::createNativeObject(Key_funcs,(void *)108,EXT->Key_typeID);
-EI(keyStr=="Q")RET STG::createNativeObject(Key_funcs,(void *)113,EXT->Key_typeID);
-EI(keyStr=="P")RET STG::createNativeObject(Key_funcs,(void *)112,EXT->Key_typeID);
-EI(keyStr=="S")RET STG::createNativeObject(Key_funcs,(void *)115,EXT->Key_typeID);
-EI(keyStr=="R")RET STG::createNativeObject(Key_funcs,(void *)114,EXT->Key_typeID);
-EI(keyStr=="U")RET STG::createNativeObject(Key_funcs,(void *)117,EXT->Key_typeID);
-EI(keyStr=="T")RET STG::createNativeObject(Key_funcs,(void *)116,EXT->Key_typeID);
-EI(keyStr=="W")RET STG::createNativeObject(Key_funcs,(void *)119,EXT->Key_typeID);
-EI(keyStr=="V")RET STG::createNativeObject(Key_funcs,(void *)118,EXT->Key_typeID);
-EI(keyStr=="Y")RET STG::createNativeObject(Key_funcs,(void *)121,EXT->Key_typeID);
-EI(keyStr=="Apostrophe")RET STG::createNativeObject(Key_funcs,(void *)39,EXT->Key_typeID);
-EI(keyStr=="NumLock")RET STG::createNativeObject(Key_funcs,(void *)272,EXT->Key_typeID);
-EI(keyStr=="N")RET STG::createNativeObject(Key_funcs,(void *)110,EXT->Key_typeID);
-EI(keyStr=="CapsLock")RET STG::createNativeObject(Key_funcs,(void *)270,EXT->Key_typeID);
-EI(keyStr=="Minus")RET STG::createNativeObject(Key_funcs,(void *)45,EXT->Key_typeID);
-EI(keyStr=="Delete")RET STG::createNativeObject(Key_funcs,(void *)261,EXT->Key_typeID);
-EI(keyStr=="F1")RET STG::createNativeObject(Key_funcs,(void *)275,EXT->Key_typeID);
-EI(keyStr=="F2")RET STG::createNativeObject(Key_funcs,(void *)276,EXT->Key_typeID);
-EI(keyStr=="Right")RET STG::createNativeObject(Key_funcs,(void *)262,EXT->Key_typeID);
-EI(keyStr=="F4")RET STG::createNativeObject(Key_funcs,(void *)278,EXT->Key_typeID);
-EI(keyStr=="_9")RET STG::createNativeObject(Key_funcs,(void *)57,EXT->Key_typeID);
-EI(keyStr=="Semicolon")RET STG::createNativeObject(Key_funcs,(void *)59,EXT->Key_typeID);
-EI(keyStr=="_8")RET STG::createNativeObject(Key_funcs,(void *)56,EXT->Key_typeID);
-EI(keyStr=="_7")RET STG::createNativeObject(Key_funcs,(void *)55,EXT->Key_typeID);
-EI(keyStr=="_6")RET STG::createNativeObject(Key_funcs,(void *)54,EXT->Key_typeID);
-EI(keyStr=="_5")RET STG::createNativeObject(Key_funcs,(void *)53,EXT->Key_typeID);
-EI(keyStr=="_4")RET STG::createNativeObject(Key_funcs,(void *)52,EXT->Key_typeID);
-EI(keyStr=="_3")RET STG::createNativeObject(Key_funcs,(void *)51,EXT->Key_typeID);
-EI(keyStr=="Period")RET STG::createNativeObject(Key_funcs,(void *)46,EXT->Key_typeID);
-EI(keyStr=="_1")RET STG::createNativeObject(Key_funcs,(void *)49,EXT->Key_typeID);
-EI(keyStr=="_0")RET STG::createNativeObject(Key_funcs,(void *)48,EXT->Key_typeID);
-EI(keyStr=="Down")RET STG::createNativeObject(Key_funcs,(void *)264,EXT->Key_typeID);
-EI(keyStr=="F8")RET STG::createNativeObject(Key_funcs,(void *)282,EXT->Key_typeID);
-EI(keyStr=="Comma")RET STG::createNativeObject(Key_funcs,(void *)44,EXT->Key_typeID);
-EI(keyStr=="PageDown")RET STG::createNativeObject(Key_funcs,(void *)267,EXT->Key_typeID);
-EI(keyStr=="Tab")RET STG::createNativeObject(Key_funcs,(void *)258,EXT->Key_typeID);
-EI(keyStr=="Escape")RET STG::createNativeObject(Key_funcs,(void *)256,EXT->Key_typeID);
-EI(keyStr=="Home")RET STG::createNativeObject(Key_funcs,(void *)268,EXT->Key_typeID);
-EI(keyStr=="F6")RET STG::createNativeObject(Key_funcs,(void *)280,EXT->Key_typeID);
-EI(keyStr=="RightShift")RET STG::createNativeObject(Key_funcs,(void *)288,EXT->Key_typeID);
+EI(keyStr.equals("ScrollLock", CPL_STR_HASH("ScrollLock")))RET STG::createNativeObject(Key_funcs,(void *)271,EXT->Key_typeID);
+EI(keyStr.equals("RightBracket", CPL_STR_HASH("RightBracket")))RET STG::createNativeObject(Key_funcs,(void *)93,EXT->Key_typeID);
+EI(keyStr.equals("Pause", CPL_STR_HASH("Pause")))RET STG::createNativeObject(Key_funcs,(void *)274,EXT->Key_typeID);
+EI(keyStr.equals("Backslash", CPL_STR_HASH("Backslash")))RET STG::createNativeObject(Key_funcs,(void *)92,EXT->Key_typeID);
+EI(keyStr.equals("LeftBracket", CPL_STR_HASH("LeftBracket")))RET STG::createNativeObject(Key_funcs,(void *)91,EXT->Key_typeID);
+EI(keyStr.equals("Space", CPL_STR_HASH("Space")))RET STG::createNativeObject(Key_funcs,(void *)32,EXT->Key_typeID);
+EI(keyStr.equals("Menu", CPL_STR_HASH("Menu")))RET STG::createNativeObject(Key_funcs,(void *)292,EXT->Key_typeID);
+EI(keyStr.equals("Enter", CPL_STR_HASH("Enter")))RET STG::createNativeObject(Key_funcs,(void *)257,EXT->Key_typeID);
+EI(keyStr.equals("F3", CPL_STR_HASH("F3")))RET STG::createNativeObject(Key_funcs,(void *)277,EXT->Key_typeID);
+EI(keyStr.equals("_2", CPL_STR_HASH("_2")))RET STG::createNativeObject(Key_funcs,(void *)50,EXT->Key_typeID);
+EI(keyStr.equals("RightControl", CPL_STR_HASH("RightControl")))RET STG::createNativeObject(Key_funcs,(void *)289,EXT->Key_typeID);
+EI(keyStr.equals("Backspace", CPL_STR_HASH("Backspace")))RET STG::createNativeObject(Key_funcs,(void *)259,EXT->Key_typeID);
+EI(keyStr.equals("Slash", CPL_STR_HASH("Slash")))RET STG::createNativeObject(Key_funcs,(void *)47,EXT->Key_typeID);
+EI(keyStr.equals("X", CPL_STR_HASH("X")))RET STG::createNativeObject(Key_funcs,(void *)120,EXT->Key_typeID);
+EI(keyStr.equals("End", CPL_STR_HASH("End")))RET STG::createNativeObject(Key_funcs,(void *)269,EXT->Key_typeID);
+EI(keyStr.equals("Up", CPL_STR_HASH("Up")))RET STG::createNativeObject(Key_funcs,(void *)265,EXT->Key_typeID);
+EI(keyStr.equals("RightSuper", CPL_STR_HASH("RightSuper")))RET STG::createNativeObject(Key_funcs,(void *)291,EXT->Key_typeID);
+EI(keyStr.equals("F9", CPL_STR_HASH("F9")))RET STG::createNativeObject(Key_funcs,(void *)283,EXT->Key_typeID);
+EI(keyStr.equals("LeftSuper", CPL_STR_HASH("LeftSuper")))RET STG::createNativeObject(Key_funcs,(void *)287,EXT->Key_typeID);
+EI(keyStr.equals("PrintScreen", CPL_STR_HASH("PrintScreen")))RET STG::createNativeObject(Key_funcs,(void *)273,EXT->Key_typeID);
+EI(keyStr.equals("Z", CPL_STR_HASH("Z")))RET STG::createNativeObject(Key_funcs,(void *)122,EXT->Key_typeID);
+EI(keyStr.equals("RightAlt", CPL_STR_HASH("RightAlt")))RET STG::createNativeObject(Key_funcs,(void *)290,EXT->Key_typeID);
+EI(keyStr.equals("F5", CPL_STR_HASH("F5")))RET STG::createNativeObject(Key_funcs,(void *)279,EXT->Key_typeID);
+EI(keyStr.equals("PageUp", CPL_STR_HASH("PageUp")))RET STG::createNativeObject(Key_funcs,(void *)266,EXT->Key_typeID);
+EI(keyStr.equals("LeftShift", CPL_STR_HASH("LeftShift")))RET STG::createNativeObject(Key_funcs,(void *)284,EXT->Key_typeID);
+EI(keyStr.equals("F7", CPL_STR_HASH("F7")))RET STG::createNativeObject(Key_funcs,(void *)281,EXT->Key_typeID);
+EI(keyStr.equals("LeftAlt", CPL_STR_HASH("LeftAlt")))RET STG::createNativeObject(Key_funcs,(void *)286,EXT->Key_typeID);
+EI(keyStr.equals("LeftControl", CPL_STR_HASH("LeftControl")))RET STG::createNativeObject(Key_funcs,(void *)285,EXT->Key_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(Key_funcs,(void *)293,EXT->Key_typeID);
+EI(keyStr.equals("Left", CPL_STR_HASH("Left")))RET STG::createNativeObject(Key_funcs,(void *)263,EXT->Key_typeID);
+EI(keyStr.equals("A", CPL_STR_HASH("A")))RET STG::createNativeObject(Key_funcs,(void *)97,EXT->Key_typeID);
+EI(keyStr.equals("Insert", CPL_STR_HASH("Insert")))RET STG::createNativeObject(Key_funcs,(void *)260,EXT->Key_typeID);
+EI(keyStr.equals("C", CPL_STR_HASH("C")))RET STG::createNativeObject(Key_funcs,(void *)99,EXT->Key_typeID);
+EI(keyStr.equals("B", CPL_STR_HASH("B")))RET STG::createNativeObject(Key_funcs,(void *)98,EXT->Key_typeID);
+EI(keyStr.equals("E", CPL_STR_HASH("E")))RET STG::createNativeObject(Key_funcs,(void *)101,EXT->Key_typeID);
+EI(keyStr.equals("D", CPL_STR_HASH("D")))RET STG::createNativeObject(Key_funcs,(void *)100,EXT->Key_typeID);
+EI(keyStr.equals("G", CPL_STR_HASH("G")))RET STG::createNativeObject(Key_funcs,(void *)103,EXT->Key_typeID);
+EI(keyStr.equals("F", CPL_STR_HASH("F")))RET STG::createNativeObject(Key_funcs,(void *)102,EXT->Key_typeID);
+EI(keyStr.equals("I", CPL_STR_HASH("I")))RET STG::createNativeObject(Key_funcs,(void *)105,EXT->Key_typeID);
+EI(keyStr.equals("H", CPL_STR_HASH("H")))RET STG::createNativeObject(Key_funcs,(void *)104,EXT->Key_typeID);
+EI(keyStr.equals("K", CPL_STR_HASH("K")))RET STG::createNativeObject(Key_funcs,(void *)107,EXT->Key_typeID);
+EI(keyStr.equals("J", CPL_STR_HASH("J")))RET STG::createNativeObject(Key_funcs,(void *)106,EXT->Key_typeID);
+EI(keyStr.equals("M", CPL_STR_HASH("M")))RET STG::createNativeObject(Key_funcs,(void *)109,EXT->Key_typeID);
+EI(keyStr.equals("Equal", CPL_STR_HASH("Equal")))RET STG::createNativeObject(Key_funcs,(void *)61,EXT->Key_typeID);
+EI(keyStr.equals("O", CPL_STR_HASH("O")))RET STG::createNativeObject(Key_funcs,(void *)111,EXT->Key_typeID);
+EI(keyStr.equals("L", CPL_STR_HASH("L")))RET STG::createNativeObject(Key_funcs,(void *)108,EXT->Key_typeID);
+EI(keyStr.equals("Q", CPL_STR_HASH("Q")))RET STG::createNativeObject(Key_funcs,(void *)113,EXT->Key_typeID);
+EI(keyStr.equals("P", CPL_STR_HASH("P")))RET STG::createNativeObject(Key_funcs,(void *)112,EXT->Key_typeID);
+EI(keyStr.equals("S", CPL_STR_HASH("S")))RET STG::createNativeObject(Key_funcs,(void *)115,EXT->Key_typeID);
+EI(keyStr.equals("R", CPL_STR_HASH("R")))RET STG::createNativeObject(Key_funcs,(void *)114,EXT->Key_typeID);
+EI(keyStr.equals("U", CPL_STR_HASH("U")))RET STG::createNativeObject(Key_funcs,(void *)117,EXT->Key_typeID);
+EI(keyStr.equals("T", CPL_STR_HASH("T")))RET STG::createNativeObject(Key_funcs,(void *)116,EXT->Key_typeID);
+EI(keyStr.equals("W", CPL_STR_HASH("W")))RET STG::createNativeObject(Key_funcs,(void *)119,EXT->Key_typeID);
+EI(keyStr.equals("V", CPL_STR_HASH("V")))RET STG::createNativeObject(Key_funcs,(void *)118,EXT->Key_typeID);
+EI(keyStr.equals("Y", CPL_STR_HASH("Y")))RET STG::createNativeObject(Key_funcs,(void *)121,EXT->Key_typeID);
+EI(keyStr.equals("Apostrophe", CPL_STR_HASH("Apostrophe")))RET STG::createNativeObject(Key_funcs,(void *)39,EXT->Key_typeID);
+EI(keyStr.equals("NumLock", CPL_STR_HASH("NumLock")))RET STG::createNativeObject(Key_funcs,(void *)272,EXT->Key_typeID);
+EI(keyStr.equals("N", CPL_STR_HASH("N")))RET STG::createNativeObject(Key_funcs,(void *)110,EXT->Key_typeID);
+EI(keyStr.equals("CapsLock", CPL_STR_HASH("CapsLock")))RET STG::createNativeObject(Key_funcs,(void *)270,EXT->Key_typeID);
+EI(keyStr.equals("Minus", CPL_STR_HASH("Minus")))RET STG::createNativeObject(Key_funcs,(void *)45,EXT->Key_typeID);
+EI(keyStr.equals("Delete", CPL_STR_HASH("Delete")))RET STG::createNativeObject(Key_funcs,(void *)261,EXT->Key_typeID);
+EI(keyStr.equals("F1", CPL_STR_HASH("F1")))RET STG::createNativeObject(Key_funcs,(void *)275,EXT->Key_typeID);
+EI(keyStr.equals("F2", CPL_STR_HASH("F2")))RET STG::createNativeObject(Key_funcs,(void *)276,EXT->Key_typeID);
+EI(keyStr.equals("Right", CPL_STR_HASH("Right")))RET STG::createNativeObject(Key_funcs,(void *)262,EXT->Key_typeID);
+EI(keyStr.equals("F4", CPL_STR_HASH("F4")))RET STG::createNativeObject(Key_funcs,(void *)278,EXT->Key_typeID);
+EI(keyStr.equals("_9", CPL_STR_HASH("_9")))RET STG::createNativeObject(Key_funcs,(void *)57,EXT->Key_typeID);
+EI(keyStr.equals("Semicolon", CPL_STR_HASH("Semicolon")))RET STG::createNativeObject(Key_funcs,(void *)59,EXT->Key_typeID);
+EI(keyStr.equals("_8", CPL_STR_HASH("_8")))RET STG::createNativeObject(Key_funcs,(void *)56,EXT->Key_typeID);
+EI(keyStr.equals("_7", CPL_STR_HASH("_7")))RET STG::createNativeObject(Key_funcs,(void *)55,EXT->Key_typeID);
+EI(keyStr.equals("_6", CPL_STR_HASH("_6")))RET STG::createNativeObject(Key_funcs,(void *)54,EXT->Key_typeID);
+EI(keyStr.equals("_5", CPL_STR_HASH("_5")))RET STG::createNativeObject(Key_funcs,(void *)53,EXT->Key_typeID);
+EI(keyStr.equals("_4", CPL_STR_HASH("_4")))RET STG::createNativeObject(Key_funcs,(void *)52,EXT->Key_typeID);
+EI(keyStr.equals("_3", CPL_STR_HASH("_3")))RET STG::createNativeObject(Key_funcs,(void *)51,EXT->Key_typeID);
+EI(keyStr.equals("Period", CPL_STR_HASH("Period")))RET STG::createNativeObject(Key_funcs,(void *)46,EXT->Key_typeID);
+EI(keyStr.equals("_1", CPL_STR_HASH("_1")))RET STG::createNativeObject(Key_funcs,(void *)49,EXT->Key_typeID);
+EI(keyStr.equals("_0", CPL_STR_HASH("_0")))RET STG::createNativeObject(Key_funcs,(void *)48,EXT->Key_typeID);
+EI(keyStr.equals("Down", CPL_STR_HASH("Down")))RET STG::createNativeObject(Key_funcs,(void *)264,EXT->Key_typeID);
+EI(keyStr.equals("F8", CPL_STR_HASH("F8")))RET STG::createNativeObject(Key_funcs,(void *)282,EXT->Key_typeID);
+EI(keyStr.equals("Comma", CPL_STR_HASH("Comma")))RET STG::createNativeObject(Key_funcs,(void *)44,EXT->Key_typeID);
+EI(keyStr.equals("PageDown", CPL_STR_HASH("PageDown")))RET STG::createNativeObject(Key_funcs,(void *)267,EXT->Key_typeID);
+EI(keyStr.equals("Tab", CPL_STR_HASH("Tab")))RET STG::createNativeObject(Key_funcs,(void *)258,EXT->Key_typeID);
+EI(keyStr.equals("Escape", CPL_STR_HASH("Escape")))RET STG::createNativeObject(Key_funcs,(void *)256,EXT->Key_typeID);
+EI(keyStr.equals("Home", CPL_STR_HASH("Home")))RET STG::createNativeObject(Key_funcs,(void *)268,EXT->Key_typeID);
+EI(keyStr.equals("F6", CPL_STR_HASH("F6")))RET STG::createNativeObject(Key_funcs,(void *)280,EXT->Key_typeID);
+EI(keyStr.equals("RightShift", CPL_STR_HASH("RightShift")))RET STG::createNativeObject(Key_funcs,(void *)288,EXT->Key_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13096,34 +13190,34 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("MouseButton");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(MouseButton___eq__);
-EI(keyStr=="Middle")RET STG::createNativeObject(MouseButton_funcs,(void *)1,EXT->MouseButton_typeID);
-EI(keyStr=="Right")RET STG::createNativeObject(MouseButton_funcs,(void *)2,EXT->MouseButton_typeID);
-EI(keyStr=="Unknown")RET STG::createNativeObject(MouseButton_funcs,(void *)3,EXT->MouseButton_typeID);
-EI(keyStr=="Left")RET STG::createNativeObject(MouseButton_funcs,(void *)0,EXT->MouseButton_typeID);
+EI(keyStr.equals("Middle", CPL_STR_HASH("Middle")))RET STG::createNativeObject(MouseButton_funcs,(void *)1,EXT->MouseButton_typeID);
+EI(keyStr.equals("Right", CPL_STR_HASH("Right")))RET STG::createNativeObject(MouseButton_funcs,(void *)2,EXT->MouseButton_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(MouseButton_funcs,(void *)3,EXT->MouseButton_typeID);
+EI(keyStr.equals("Left", CPL_STR_HASH("Left")))RET STG::createNativeObject(MouseButton_funcs,(void *)0,EXT->MouseButton_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("MouseButton");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(MouseButton___eq__);
-EI(keyStr=="Middle")RET STG::createNativeObject(MouseButton_funcs,(void *)1,EXT->MouseButton_typeID);
-EI(keyStr=="Right")RET STG::createNativeObject(MouseButton_funcs,(void *)2,EXT->MouseButton_typeID);
-EI(keyStr=="Unknown")RET STG::createNativeObject(MouseButton_funcs,(void *)3,EXT->MouseButton_typeID);
-EI(keyStr=="Left")RET STG::createNativeObject(MouseButton_funcs,(void *)0,EXT->MouseButton_typeID);
+EI(keyStr.equals("Middle", CPL_STR_HASH("Middle")))RET STG::createNativeObject(MouseButton_funcs,(void *)1,EXT->MouseButton_typeID);
+EI(keyStr.equals("Right", CPL_STR_HASH("Right")))RET STG::createNativeObject(MouseButton_funcs,(void *)2,EXT->MouseButton_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(MouseButton_funcs,(void *)3,EXT->MouseButton_typeID);
+EI(keyStr.equals("Left", CPL_STR_HASH("Left")))RET STG::createNativeObject(MouseButton_funcs,(void *)0,EXT->MouseButton_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13151,44 +13245,44 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("EventType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(EventType___eq__);
-EI(keyStr=="WindowResize")RET STG::createNativeObject(EventType_funcs,(void *)1,EXT->EventType_typeID);
-EI(keyStr=="Quit")RET STG::createNativeObject(EventType_funcs,(void *)0,EXT->EventType_typeID);
-EI(keyStr=="MouseWheel")RET STG::createNativeObject(EventType_funcs,(void *)7,EXT->EventType_typeID);
-EI(keyStr=="MouseMotion")RET STG::createNativeObject(EventType_funcs,(void *)4,EXT->EventType_typeID);
-EI(keyStr=="Unknown")RET STG::createNativeObject(EventType_funcs,(void *)8,EXT->EventType_typeID);
-EI(keyStr=="MouseButtonDown")RET STG::createNativeObject(EventType_funcs,(void *)5,EXT->EventType_typeID);
-EI(keyStr=="KeyUp")RET STG::createNativeObject(EventType_funcs,(void *)3,EXT->EventType_typeID);
-EI(keyStr=="KeyDown")RET STG::createNativeObject(EventType_funcs,(void *)2,EXT->EventType_typeID);
-EI(keyStr=="MouseButtonUp")RET STG::createNativeObject(EventType_funcs,(void *)6,EXT->EventType_typeID);
+EI(keyStr.equals("WindowResize", CPL_STR_HASH("WindowResize")))RET STG::createNativeObject(EventType_funcs,(void *)1,EXT->EventType_typeID);
+EI(keyStr.equals("Quit", CPL_STR_HASH("Quit")))RET STG::createNativeObject(EventType_funcs,(void *)0,EXT->EventType_typeID);
+EI(keyStr.equals("MouseWheel", CPL_STR_HASH("MouseWheel")))RET STG::createNativeObject(EventType_funcs,(void *)7,EXT->EventType_typeID);
+EI(keyStr.equals("MouseMotion", CPL_STR_HASH("MouseMotion")))RET STG::createNativeObject(EventType_funcs,(void *)4,EXT->EventType_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(EventType_funcs,(void *)8,EXT->EventType_typeID);
+EI(keyStr.equals("MouseButtonDown", CPL_STR_HASH("MouseButtonDown")))RET STG::createNativeObject(EventType_funcs,(void *)5,EXT->EventType_typeID);
+EI(keyStr.equals("KeyUp", CPL_STR_HASH("KeyUp")))RET STG::createNativeObject(EventType_funcs,(void *)3,EXT->EventType_typeID);
+EI(keyStr.equals("KeyDown", CPL_STR_HASH("KeyDown")))RET STG::createNativeObject(EventType_funcs,(void *)2,EXT->EventType_typeID);
+EI(keyStr.equals("MouseButtonUp", CPL_STR_HASH("MouseButtonUp")))RET STG::createNativeObject(EventType_funcs,(void *)6,EXT->EventType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("EventType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(EventType___eq__);
-EI(keyStr=="WindowResize")RET STG::createNativeObject(EventType_funcs,(void *)1,EXT->EventType_typeID);
-EI(keyStr=="Quit")RET STG::createNativeObject(EventType_funcs,(void *)0,EXT->EventType_typeID);
-EI(keyStr=="MouseWheel")RET STG::createNativeObject(EventType_funcs,(void *)7,EXT->EventType_typeID);
-EI(keyStr=="MouseMotion")RET STG::createNativeObject(EventType_funcs,(void *)4,EXT->EventType_typeID);
-EI(keyStr=="Unknown")RET STG::createNativeObject(EventType_funcs,(void *)8,EXT->EventType_typeID);
-EI(keyStr=="MouseButtonDown")RET STG::createNativeObject(EventType_funcs,(void *)5,EXT->EventType_typeID);
-EI(keyStr=="KeyUp")RET STG::createNativeObject(EventType_funcs,(void *)3,EXT->EventType_typeID);
-EI(keyStr=="KeyDown")RET STG::createNativeObject(EventType_funcs,(void *)2,EXT->EventType_typeID);
-EI(keyStr=="MouseButtonUp")RET STG::createNativeObject(EventType_funcs,(void *)6,EXT->EventType_typeID);
+EI(keyStr.equals("WindowResize", CPL_STR_HASH("WindowResize")))RET STG::createNativeObject(EventType_funcs,(void *)1,EXT->EventType_typeID);
+EI(keyStr.equals("Quit", CPL_STR_HASH("Quit")))RET STG::createNativeObject(EventType_funcs,(void *)0,EXT->EventType_typeID);
+EI(keyStr.equals("MouseWheel", CPL_STR_HASH("MouseWheel")))RET STG::createNativeObject(EventType_funcs,(void *)7,EXT->EventType_typeID);
+EI(keyStr.equals("MouseMotion", CPL_STR_HASH("MouseMotion")))RET STG::createNativeObject(EventType_funcs,(void *)4,EXT->EventType_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(EventType_funcs,(void *)8,EXT->EventType_typeID);
+EI(keyStr.equals("MouseButtonDown", CPL_STR_HASH("MouseButtonDown")))RET STG::createNativeObject(EventType_funcs,(void *)5,EXT->EventType_typeID);
+EI(keyStr.equals("KeyUp", CPL_STR_HASH("KeyUp")))RET STG::createNativeObject(EventType_funcs,(void *)3,EXT->EventType_typeID);
+EI(keyStr.equals("KeyDown", CPL_STR_HASH("KeyDown")))RET STG::createNativeObject(EventType_funcs,(void *)2,EXT->EventType_typeID);
+EI(keyStr.equals("MouseButtonUp", CPL_STR_HASH("MouseButtonUp")))RET STG::createNativeObject(EventType_funcs,(void *)6,EXT->EventType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13216,32 +13310,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("FileOrigin");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(FileOrigin___eq__);
-EI(keyStr=="Current")RET STG::createNativeObject(FileOrigin_funcs,(void *)1,EXT->FileOrigin_typeID);
-EI(keyStr=="Set")RET STG::createNativeObject(FileOrigin_funcs,(void *)0,EXT->FileOrigin_typeID);
-EI(keyStr=="End")RET STG::createNativeObject(FileOrigin_funcs,(void *)2,EXT->FileOrigin_typeID);
+EI(keyStr.equals("Current", CPL_STR_HASH("Current")))RET STG::createNativeObject(FileOrigin_funcs,(void *)1,EXT->FileOrigin_typeID);
+EI(keyStr.equals("Set", CPL_STR_HASH("Set")))RET STG::createNativeObject(FileOrigin_funcs,(void *)0,EXT->FileOrigin_typeID);
+EI(keyStr.equals("End", CPL_STR_HASH("End")))RET STG::createNativeObject(FileOrigin_funcs,(void *)2,EXT->FileOrigin_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("FileOrigin");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(FileOrigin___eq__);
-EI(keyStr=="Current")RET STG::createNativeObject(FileOrigin_funcs,(void *)1,EXT->FileOrigin_typeID);
-EI(keyStr=="Set")RET STG::createNativeObject(FileOrigin_funcs,(void *)0,EXT->FileOrigin_typeID);
-EI(keyStr=="End")RET STG::createNativeObject(FileOrigin_funcs,(void *)2,EXT->FileOrigin_typeID);
+EI(keyStr.equals("Current", CPL_STR_HASH("Current")))RET STG::createNativeObject(FileOrigin_funcs,(void *)1,EXT->FileOrigin_typeID);
+EI(keyStr.equals("Set", CPL_STR_HASH("Set")))RET STG::createNativeObject(FileOrigin_funcs,(void *)0,EXT->FileOrigin_typeID);
+EI(keyStr.equals("End", CPL_STR_HASH("End")))RET STG::createNativeObject(FileOrigin_funcs,(void *)2,EXT->FileOrigin_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13269,46 +13363,46 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ResType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(ResType___eq__);
-EI(keyStr=="GfxMaterialType")RET STG::createNativeObject(ResType_funcs,(void *)3,EXT->ResType_typeID);
-EI(keyStr=="ScriptType")RET STG::createNativeObject(ResType_funcs,(void *)6,EXT->ResType_typeID);
-EI(keyStr=="GfxTextureType")RET STG::createNativeObject(ResType_funcs,(void *)1,EXT->ResType_typeID);
-EI(keyStr=="GfxMeshType")RET STG::createNativeObject(ResType_funcs,(void *)2,EXT->ResType_typeID);
-EI(keyStr=="AudioType")RET STG::createNativeObject(ResType_funcs,(void *)8,EXT->ResType_typeID);
-EI(keyStr=="FontType")RET STG::createNativeObject(ResType_funcs,(void *)9,EXT->ResType_typeID);
-EI(keyStr=="GfxModelType")RET STG::createNativeObject(ResType_funcs,(void *)4,EXT->ResType_typeID);
-EI(keyStr=="PhysicsShapeType")RET STG::createNativeObject(ResType_funcs,(void *)7,EXT->ResType_typeID);
-EI(keyStr=="GfxShaderType")RET STG::createNativeObject(ResType_funcs,(void *)0,EXT->ResType_typeID);
-EI(keyStr=="SceneType")RET STG::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
+EI(keyStr.equals("GfxMaterialType", CPL_STR_HASH("GfxMaterialType")))RET STG::createNativeObject(ResType_funcs,(void *)3,EXT->ResType_typeID);
+EI(keyStr.equals("ScriptType", CPL_STR_HASH("ScriptType")))RET STG::createNativeObject(ResType_funcs,(void *)6,EXT->ResType_typeID);
+EI(keyStr.equals("GfxTextureType", CPL_STR_HASH("GfxTextureType")))RET STG::createNativeObject(ResType_funcs,(void *)1,EXT->ResType_typeID);
+EI(keyStr.equals("GfxMeshType", CPL_STR_HASH("GfxMeshType")))RET STG::createNativeObject(ResType_funcs,(void *)2,EXT->ResType_typeID);
+EI(keyStr.equals("AudioType", CPL_STR_HASH("AudioType")))RET STG::createNativeObject(ResType_funcs,(void *)8,EXT->ResType_typeID);
+EI(keyStr.equals("FontType", CPL_STR_HASH("FontType")))RET STG::createNativeObject(ResType_funcs,(void *)9,EXT->ResType_typeID);
+EI(keyStr.equals("GfxModelType", CPL_STR_HASH("GfxModelType")))RET STG::createNativeObject(ResType_funcs,(void *)4,EXT->ResType_typeID);
+EI(keyStr.equals("PhysicsShapeType", CPL_STR_HASH("PhysicsShapeType")))RET STG::createNativeObject(ResType_funcs,(void *)7,EXT->ResType_typeID);
+EI(keyStr.equals("GfxShaderType", CPL_STR_HASH("GfxShaderType")))RET STG::createNativeObject(ResType_funcs,(void *)0,EXT->ResType_typeID);
+EI(keyStr.equals("SceneType", CPL_STR_HASH("SceneType")))RET STG::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ResType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(ResType___eq__);
-EI(keyStr=="GfxMaterialType")RET STG::createNativeObject(ResType_funcs,(void *)3,EXT->ResType_typeID);
-EI(keyStr=="ScriptType")RET STG::createNativeObject(ResType_funcs,(void *)6,EXT->ResType_typeID);
-EI(keyStr=="GfxTextureType")RET STG::createNativeObject(ResType_funcs,(void *)1,EXT->ResType_typeID);
-EI(keyStr=="GfxMeshType")RET STG::createNativeObject(ResType_funcs,(void *)2,EXT->ResType_typeID);
-EI(keyStr=="AudioType")RET STG::createNativeObject(ResType_funcs,(void *)8,EXT->ResType_typeID);
-EI(keyStr=="FontType")RET STG::createNativeObject(ResType_funcs,(void *)9,EXT->ResType_typeID);
-EI(keyStr=="GfxModelType")RET STG::createNativeObject(ResType_funcs,(void *)4,EXT->ResType_typeID);
-EI(keyStr=="PhysicsShapeType")RET STG::createNativeObject(ResType_funcs,(void *)7,EXT->ResType_typeID);
-EI(keyStr=="GfxShaderType")RET STG::createNativeObject(ResType_funcs,(void *)0,EXT->ResType_typeID);
-EI(keyStr=="SceneType")RET STG::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
+EI(keyStr.equals("GfxMaterialType", CPL_STR_HASH("GfxMaterialType")))RET STG::createNativeObject(ResType_funcs,(void *)3,EXT->ResType_typeID);
+EI(keyStr.equals("ScriptType", CPL_STR_HASH("ScriptType")))RET STG::createNativeObject(ResType_funcs,(void *)6,EXT->ResType_typeID);
+EI(keyStr.equals("GfxTextureType", CPL_STR_HASH("GfxTextureType")))RET STG::createNativeObject(ResType_funcs,(void *)1,EXT->ResType_typeID);
+EI(keyStr.equals("GfxMeshType", CPL_STR_HASH("GfxMeshType")))RET STG::createNativeObject(ResType_funcs,(void *)2,EXT->ResType_typeID);
+EI(keyStr.equals("AudioType", CPL_STR_HASH("AudioType")))RET STG::createNativeObject(ResType_funcs,(void *)8,EXT->ResType_typeID);
+EI(keyStr.equals("FontType", CPL_STR_HASH("FontType")))RET STG::createNativeObject(ResType_funcs,(void *)9,EXT->ResType_typeID);
+EI(keyStr.equals("GfxModelType", CPL_STR_HASH("GfxModelType")))RET STG::createNativeObject(ResType_funcs,(void *)4,EXT->ResType_typeID);
+EI(keyStr.equals("PhysicsShapeType", CPL_STR_HASH("PhysicsShapeType")))RET STG::createNativeObject(ResType_funcs,(void *)7,EXT->ResType_typeID);
+EI(keyStr.equals("GfxShaderType", CPL_STR_HASH("GfxShaderType")))RET STG::createNativeObject(ResType_funcs,(void *)0,EXT->ResType_typeID);
+EI(keyStr.equals("SceneType", CPL_STR_HASH("SceneType")))RET STG::createNativeObject(ResType_funcs,(void *)5,EXT->ResType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13336,34 +13430,34 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxTextureType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxTextureType___eq__);
-EI(keyStr=="Texture2DArray")RET STG::createNativeObject(GfxTextureType_funcs,(void *)3,EXT->GfxTextureType_typeID);
-EI(keyStr=="CubeMap")RET STG::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
-EI(keyStr=="Texture3D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
-EI(keyStr=="Texture2D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("Texture2DArray", CPL_STR_HASH("Texture2DArray")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)3,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("CubeMap", CPL_STR_HASH("CubeMap")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("Texture3D", CPL_STR_HASH("Texture3D")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("Texture2D", CPL_STR_HASH("Texture2D")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxTextureType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxTextureType___eq__);
-EI(keyStr=="Texture2DArray")RET STG::createNativeObject(GfxTextureType_funcs,(void *)3,EXT->GfxTextureType_typeID);
-EI(keyStr=="CubeMap")RET STG::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
-EI(keyStr=="Texture3D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
-EI(keyStr=="Texture2D")RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("Texture2DArray", CPL_STR_HASH("Texture2DArray")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)3,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("CubeMap", CPL_STR_HASH("CubeMap")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)1,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("Texture3D", CPL_STR_HASH("Texture3D")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)2,EXT->GfxTextureType_typeID);
+EI(keyStr.equals("Texture2D", CPL_STR_HASH("Texture2D")))RET STG::createNativeObject(GfxTextureType_funcs,(void *)0,EXT->GfxTextureType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13391,30 +13485,30 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxFilter");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxFilter___eq__);
-EI(keyStr=="Bilinear")RET STG::createNativeObject(GfxFilter_funcs,(void *)1,EXT->GfxFilter_typeID);
-EI(keyStr=="Nearest")RET STG::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
+EI(keyStr.equals("Bilinear", CPL_STR_HASH("Bilinear")))RET STG::createNativeObject(GfxFilter_funcs,(void *)1,EXT->GfxFilter_typeID);
+EI(keyStr.equals("Nearest", CPL_STR_HASH("Nearest")))RET STG::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxFilter");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxFilter___eq__);
-EI(keyStr=="Bilinear")RET STG::createNativeObject(GfxFilter_funcs,(void *)1,EXT->GfxFilter_typeID);
-EI(keyStr=="Nearest")RET STG::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
+EI(keyStr.equals("Bilinear", CPL_STR_HASH("Bilinear")))RET STG::createNativeObject(GfxFilter_funcs,(void *)1,EXT->GfxFilter_typeID);
+EI(keyStr.equals("Nearest", CPL_STR_HASH("Nearest")))RET STG::createNativeObject(GfxFilter_funcs,(void *)0,EXT->GfxFilter_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13442,32 +13536,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMipmapMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMipmapMode___eq__);
-EI(keyStr=="Nearest")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)1,EXT->GfxMipmapMode_typeID);
-EI(keyStr=="None")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT->GfxMipmapMode_typeID);
-EI(keyStr=="Linear")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
+EI(keyStr.equals("Nearest", CPL_STR_HASH("Nearest")))RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)1,EXT->GfxMipmapMode_typeID);
+EI(keyStr.equals("None", CPL_STR_HASH("None")))RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT->GfxMipmapMode_typeID);
+EI(keyStr.equals("Linear", CPL_STR_HASH("Linear")))RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMipmapMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMipmapMode___eq__);
-EI(keyStr=="Nearest")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)1,EXT->GfxMipmapMode_typeID);
-EI(keyStr=="None")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT->GfxMipmapMode_typeID);
-EI(keyStr=="Linear")RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
+EI(keyStr.equals("Nearest", CPL_STR_HASH("Nearest")))RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)1,EXT->GfxMipmapMode_typeID);
+EI(keyStr.equals("None", CPL_STR_HASH("None")))RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)0,EXT->GfxMipmapMode_typeID);
+EI(keyStr.equals("Linear", CPL_STR_HASH("Linear")))RET STG::createNativeObject(GfxMipmapMode_funcs,(void *)2,EXT->GfxMipmapMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13495,32 +13589,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxWrapMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxWrapMode___eq__);
-EI(keyStr=="Stretch")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)0,EXT->GfxWrapMode_typeID);
-EI(keyStr=="Repeat")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT->GfxWrapMode_typeID);
-EI(keyStr=="Mirror")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
+EI(keyStr.equals("Stretch", CPL_STR_HASH("Stretch")))RET STG::createNativeObject(GfxWrapMode_funcs,(void *)0,EXT->GfxWrapMode_typeID);
+EI(keyStr.equals("Repeat", CPL_STR_HASH("Repeat")))RET STG::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT->GfxWrapMode_typeID);
+EI(keyStr.equals("Mirror", CPL_STR_HASH("Mirror")))RET STG::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxWrapMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxWrapMode___eq__);
-EI(keyStr=="Stretch")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)0,EXT->GfxWrapMode_typeID);
-EI(keyStr=="Repeat")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT->GfxWrapMode_typeID);
-EI(keyStr=="Mirror")RET STG::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
+EI(keyStr.equals("Stretch", CPL_STR_HASH("Stretch")))RET STG::createNativeObject(GfxWrapMode_funcs,(void *)0,EXT->GfxWrapMode_typeID);
+EI(keyStr.equals("Repeat", CPL_STR_HASH("Repeat")))RET STG::createNativeObject(GfxWrapMode_funcs,(void *)1,EXT->GfxWrapMode_typeID);
+EI(keyStr.equals("Mirror", CPL_STR_HASH("Mirror")))RET STG::createNativeObject(GfxWrapMode_funcs,(void *)2,EXT->GfxWrapMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13548,168 +13642,168 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxTexFormat");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxTexFormat___eq__);
-EI(keyStr=="RGBAF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)29,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)13,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)9,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)1,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int2_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)36,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)70,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)34,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt2_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)39,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)12,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt2_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)41,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)19,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)68,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)67,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)7,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int2_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)38,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)26,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)23,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)62,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)65,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int3_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)42,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)30,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)8,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)3,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)21,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)11,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)6,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)31,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt2_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)37,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int3_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)44,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)24,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)20,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)16,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)28,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt3_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)43,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int4_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)48,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)14,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int2_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)40,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)33,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt4_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)49,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)2,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)60,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)17,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int3_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)46,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)64,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)18,EXT->GfxTexFormat_typeID);
-EI(keyStr=="SRGBU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)54,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)59,EXT->GfxTexFormat_typeID);
-EI(keyStr=="DepthF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)58,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)4,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)35,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)0,EXT->GfxTexFormat_typeID);
-EI(keyStr=="DepthF32_F24")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)57,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)69,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)63,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int4_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)50,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)25,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt4_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)53,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt4_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)51,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt3_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)45,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt3_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)47,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)66,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int4_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)52,EXT->GfxTexFormat_typeID);
-EI(keyStr=="SRGBAU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)55,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)10,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)22,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)32,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)61,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)15,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)27,EXT->GfxTexFormat_typeID);
-EI(keyStr=="DepthF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)56,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAF32_F16", CPL_STR_HASH("RGBAF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)29,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaI8", CPL_STR_HASH("LuminanceAlphaI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)13,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceI16", CPL_STR_HASH("LuminanceI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)9,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaI8", CPL_STR_HASH("AlphaI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)1,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int2_8", CPL_STR_HASH("Int2_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)36,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedF32_F16", CPL_STR_HASH("RedF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)70,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int_32", CPL_STR_HASH("Int_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)34,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt2_16", CPL_STR_HASH("UInt2_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)39,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaU8", CPL_STR_HASH("LuminanceAlphaU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)12,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt2_32", CPL_STR_HASH("UInt2_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)41,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBI8", CPL_STR_HASH("RGBI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)19,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedI16", CPL_STR_HASH("RedI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)68,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedU16", CPL_STR_HASH("RedU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)67,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceI8", CPL_STR_HASH("LuminanceI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)7,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int2_16", CPL_STR_HASH("Int2_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)38,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAU16", CPL_STR_HASH("RGBAU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)26,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBF32_F16", CPL_STR_HASH("RGBF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)23,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenI16", CPL_STR_HASH("RedGreenI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)62,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedU8", CPL_STR_HASH("RedU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)65,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int3_8", CPL_STR_HASH("Int3_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)42,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int_8", CPL_STR_HASH("Int_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)30,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceU16", CPL_STR_HASH("LuminanceU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)8,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaI16", CPL_STR_HASH("AlphaI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)3,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBI16", CPL_STR_HASH("RGBI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)21,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceF32_F16", CPL_STR_HASH("LuminanceF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)11,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceU8", CPL_STR_HASH("LuminanceU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)6,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt_8", CPL_STR_HASH("UInt_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)31,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt2_8", CPL_STR_HASH("UInt2_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)37,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int3_16", CPL_STR_HASH("Int3_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)44,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAU8", CPL_STR_HASH("RGBAU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)24,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBU16", CPL_STR_HASH("RGBU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)20,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaF32", CPL_STR_HASH("LuminanceAlphaF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)16,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAF32", CPL_STR_HASH("RGBAF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)28,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt3_8", CPL_STR_HASH("UInt3_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)43,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int4_8", CPL_STR_HASH("Int4_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)48,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaU16", CPL_STR_HASH("LuminanceAlphaU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)14,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int2_32", CPL_STR_HASH("Int2_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)40,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt_16", CPL_STR_HASH("UInt_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)33,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt4_8", CPL_STR_HASH("UInt4_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)49,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaU16", CPL_STR_HASH("AlphaU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)2,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenI8", CPL_STR_HASH("RedGreenI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)60,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaF32_F16", CPL_STR_HASH("LuminanceAlphaF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)17,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int3_32", CPL_STR_HASH("Int3_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)46,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenF32_F16", CPL_STR_HASH("RedGreenF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)64,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBU8", CPL_STR_HASH("RGBU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)18,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("SRGBU8", CPL_STR_HASH("SRGBU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)54,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenU8", CPL_STR_HASH("RedGreenU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)59,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("DepthF32", CPL_STR_HASH("DepthF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)58,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaF32", CPL_STR_HASH("AlphaF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)4,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt_32", CPL_STR_HASH("UInt_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)35,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaU8", CPL_STR_HASH("AlphaU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)0,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("DepthF32_F24", CPL_STR_HASH("DepthF32_F24")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)57,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedF32", CPL_STR_HASH("RedF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)69,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenF32", CPL_STR_HASH("RedGreenF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)63,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int4_16", CPL_STR_HASH("Int4_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)50,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAI8", CPL_STR_HASH("RGBAI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)25,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt4_32", CPL_STR_HASH("UInt4_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)53,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt4_16", CPL_STR_HASH("UInt4_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)51,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt3_16", CPL_STR_HASH("UInt3_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)45,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt3_32", CPL_STR_HASH("UInt3_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)47,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedI8", CPL_STR_HASH("RedI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)66,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int4_32", CPL_STR_HASH("Int4_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)52,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("SRGBAU8", CPL_STR_HASH("SRGBAU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)55,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceF32", CPL_STR_HASH("LuminanceF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)10,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBF32", CPL_STR_HASH("RGBF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)22,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int_16", CPL_STR_HASH("Int_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)32,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenU16", CPL_STR_HASH("RedGreenU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)61,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaI16", CPL_STR_HASH("LuminanceAlphaI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)15,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAI16", CPL_STR_HASH("RGBAI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)27,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("DepthF32_F16", CPL_STR_HASH("DepthF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)56,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaF32_F16", CPL_STR_HASH("AlphaF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxTexFormat");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxTexFormat___eq__);
-EI(keyStr=="RGBAF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)29,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)13,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)9,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)1,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int2_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)36,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)70,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)34,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt2_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)39,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)12,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt2_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)41,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)19,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)68,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)67,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)7,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int2_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)38,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)26,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)23,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)62,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)65,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int3_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)42,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)30,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)8,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)3,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)21,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)11,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)6,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)31,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt2_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)37,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int3_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)44,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)24,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)20,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)16,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)28,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt3_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)43,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int4_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)48,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)14,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int2_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)40,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)33,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt4_8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)49,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)2,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)60,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)17,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int3_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)46,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)64,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)18,EXT->GfxTexFormat_typeID);
-EI(keyStr=="SRGBU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)54,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)59,EXT->GfxTexFormat_typeID);
-EI(keyStr=="DepthF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)58,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)4,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)35,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)0,EXT->GfxTexFormat_typeID);
-EI(keyStr=="DepthF32_F24")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)57,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)69,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)63,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int4_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)50,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)25,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt4_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)53,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt4_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)51,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt3_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)45,EXT->GfxTexFormat_typeID);
-EI(keyStr=="UInt3_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)47,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedI8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)66,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int4_32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)52,EXT->GfxTexFormat_typeID);
-EI(keyStr=="SRGBAU8")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)55,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)10,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBF32")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)22,EXT->GfxTexFormat_typeID);
-EI(keyStr=="Int_16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)32,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RedGreenU16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)61,EXT->GfxTexFormat_typeID);
-EI(keyStr=="LuminanceAlphaI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)15,EXT->GfxTexFormat_typeID);
-EI(keyStr=="RGBAI16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)27,EXT->GfxTexFormat_typeID);
-EI(keyStr=="DepthF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)56,EXT->GfxTexFormat_typeID);
-EI(keyStr=="AlphaF32_F16")RET STG::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAF32_F16", CPL_STR_HASH("RGBAF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)29,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaI8", CPL_STR_HASH("LuminanceAlphaI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)13,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceI16", CPL_STR_HASH("LuminanceI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)9,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaI8", CPL_STR_HASH("AlphaI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)1,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int2_8", CPL_STR_HASH("Int2_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)36,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedF32_F16", CPL_STR_HASH("RedF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)70,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int_32", CPL_STR_HASH("Int_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)34,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt2_16", CPL_STR_HASH("UInt2_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)39,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaU8", CPL_STR_HASH("LuminanceAlphaU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)12,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt2_32", CPL_STR_HASH("UInt2_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)41,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBI8", CPL_STR_HASH("RGBI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)19,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedI16", CPL_STR_HASH("RedI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)68,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedU16", CPL_STR_HASH("RedU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)67,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceI8", CPL_STR_HASH("LuminanceI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)7,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int2_16", CPL_STR_HASH("Int2_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)38,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAU16", CPL_STR_HASH("RGBAU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)26,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBF32_F16", CPL_STR_HASH("RGBF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)23,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenI16", CPL_STR_HASH("RedGreenI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)62,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedU8", CPL_STR_HASH("RedU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)65,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int3_8", CPL_STR_HASH("Int3_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)42,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int_8", CPL_STR_HASH("Int_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)30,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceU16", CPL_STR_HASH("LuminanceU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)8,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaI16", CPL_STR_HASH("AlphaI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)3,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBI16", CPL_STR_HASH("RGBI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)21,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceF32_F16", CPL_STR_HASH("LuminanceF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)11,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceU8", CPL_STR_HASH("LuminanceU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)6,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt_8", CPL_STR_HASH("UInt_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)31,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt2_8", CPL_STR_HASH("UInt2_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)37,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int3_16", CPL_STR_HASH("Int3_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)44,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAU8", CPL_STR_HASH("RGBAU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)24,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBU16", CPL_STR_HASH("RGBU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)20,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaF32", CPL_STR_HASH("LuminanceAlphaF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)16,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAF32", CPL_STR_HASH("RGBAF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)28,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt3_8", CPL_STR_HASH("UInt3_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)43,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int4_8", CPL_STR_HASH("Int4_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)48,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaU16", CPL_STR_HASH("LuminanceAlphaU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)14,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int2_32", CPL_STR_HASH("Int2_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)40,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt_16", CPL_STR_HASH("UInt_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)33,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt4_8", CPL_STR_HASH("UInt4_8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)49,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaU16", CPL_STR_HASH("AlphaU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)2,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenI8", CPL_STR_HASH("RedGreenI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)60,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaF32_F16", CPL_STR_HASH("LuminanceAlphaF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)17,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int3_32", CPL_STR_HASH("Int3_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)46,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenF32_F16", CPL_STR_HASH("RedGreenF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)64,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBU8", CPL_STR_HASH("RGBU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)18,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("SRGBU8", CPL_STR_HASH("SRGBU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)54,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenU8", CPL_STR_HASH("RedGreenU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)59,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("DepthF32", CPL_STR_HASH("DepthF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)58,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaF32", CPL_STR_HASH("AlphaF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)4,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt_32", CPL_STR_HASH("UInt_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)35,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaU8", CPL_STR_HASH("AlphaU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)0,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("DepthF32_F24", CPL_STR_HASH("DepthF32_F24")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)57,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedF32", CPL_STR_HASH("RedF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)69,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenF32", CPL_STR_HASH("RedGreenF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)63,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int4_16", CPL_STR_HASH("Int4_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)50,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAI8", CPL_STR_HASH("RGBAI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)25,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt4_32", CPL_STR_HASH("UInt4_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)53,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt4_16", CPL_STR_HASH("UInt4_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)51,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt3_16", CPL_STR_HASH("UInt3_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)45,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("UInt3_32", CPL_STR_HASH("UInt3_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)47,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedI8", CPL_STR_HASH("RedI8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)66,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int4_32", CPL_STR_HASH("Int4_32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)52,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("SRGBAU8", CPL_STR_HASH("SRGBAU8")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)55,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceF32", CPL_STR_HASH("LuminanceF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)10,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBF32", CPL_STR_HASH("RGBF32")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)22,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("Int_16", CPL_STR_HASH("Int_16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)32,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RedGreenU16", CPL_STR_HASH("RedGreenU16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)61,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("LuminanceAlphaI16", CPL_STR_HASH("LuminanceAlphaI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)15,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("RGBAI16", CPL_STR_HASH("RGBAI16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)27,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("DepthF32_F16", CPL_STR_HASH("DepthF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)56,EXT->GfxTexFormat_typeID);
+EI(keyStr.equals("AlphaF32_F16", CPL_STR_HASH("AlphaF32_F16")))RET STG::createNativeObject(GfxTexFormat_funcs,(void *)5,EXT->GfxTexFormat_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13737,38 +13831,38 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxFace");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxFace___eq__);
-EI(keyStr=="PositiveZ")RET STG::createNativeObject(GfxFace_funcs,(void *)4,EXT->GfxFace_typeID);
-EI(keyStr=="PositiveX")RET STG::createNativeObject(GfxFace_funcs,(void *)0,EXT->GfxFace_typeID);
-EI(keyStr=="PositiveY")RET STG::createNativeObject(GfxFace_funcs,(void *)2,EXT->GfxFace_typeID);
-EI(keyStr=="NegativeZ")RET STG::createNativeObject(GfxFace_funcs,(void *)5,EXT->GfxFace_typeID);
-EI(keyStr=="NegativeX")RET STG::createNativeObject(GfxFace_funcs,(void *)1,EXT->GfxFace_typeID);
-EI(keyStr=="NegativeY")RET STG::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
+EI(keyStr.equals("PositiveZ", CPL_STR_HASH("PositiveZ")))RET STG::createNativeObject(GfxFace_funcs,(void *)4,EXT->GfxFace_typeID);
+EI(keyStr.equals("PositiveX", CPL_STR_HASH("PositiveX")))RET STG::createNativeObject(GfxFace_funcs,(void *)0,EXT->GfxFace_typeID);
+EI(keyStr.equals("PositiveY", CPL_STR_HASH("PositiveY")))RET STG::createNativeObject(GfxFace_funcs,(void *)2,EXT->GfxFace_typeID);
+EI(keyStr.equals("NegativeZ", CPL_STR_HASH("NegativeZ")))RET STG::createNativeObject(GfxFace_funcs,(void *)5,EXT->GfxFace_typeID);
+EI(keyStr.equals("NegativeX", CPL_STR_HASH("NegativeX")))RET STG::createNativeObject(GfxFace_funcs,(void *)1,EXT->GfxFace_typeID);
+EI(keyStr.equals("NegativeY", CPL_STR_HASH("NegativeY")))RET STG::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxFace");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxFace___eq__);
-EI(keyStr=="PositiveZ")RET STG::createNativeObject(GfxFace_funcs,(void *)4,EXT->GfxFace_typeID);
-EI(keyStr=="PositiveX")RET STG::createNativeObject(GfxFace_funcs,(void *)0,EXT->GfxFace_typeID);
-EI(keyStr=="PositiveY")RET STG::createNativeObject(GfxFace_funcs,(void *)2,EXT->GfxFace_typeID);
-EI(keyStr=="NegativeZ")RET STG::createNativeObject(GfxFace_funcs,(void *)5,EXT->GfxFace_typeID);
-EI(keyStr=="NegativeX")RET STG::createNativeObject(GfxFace_funcs,(void *)1,EXT->GfxFace_typeID);
-EI(keyStr=="NegativeY")RET STG::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
+EI(keyStr.equals("PositiveZ", CPL_STR_HASH("PositiveZ")))RET STG::createNativeObject(GfxFace_funcs,(void *)4,EXT->GfxFace_typeID);
+EI(keyStr.equals("PositiveX", CPL_STR_HASH("PositiveX")))RET STG::createNativeObject(GfxFace_funcs,(void *)0,EXT->GfxFace_typeID);
+EI(keyStr.equals("PositiveY", CPL_STR_HASH("PositiveY")))RET STG::createNativeObject(GfxFace_funcs,(void *)2,EXT->GfxFace_typeID);
+EI(keyStr.equals("NegativeZ", CPL_STR_HASH("NegativeZ")))RET STG::createNativeObject(GfxFace_funcs,(void *)5,EXT->GfxFace_typeID);
+EI(keyStr.equals("NegativeX", CPL_STR_HASH("NegativeX")))RET STG::createNativeObject(GfxFace_funcs,(void *)1,EXT->GfxFace_typeID);
+EI(keyStr.equals("NegativeY", CPL_STR_HASH("NegativeY")))RET STG::createNativeObject(GfxFace_funcs,(void *)3,EXT->GfxFace_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13796,32 +13890,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBufferUsage");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxBufferUsage___eq__);
-EI(keyStr=="Dynamic")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)2,EXT->GfxBufferUsage_typeID);
-EI(keyStr=="Static")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)1,EXT->GfxBufferUsage_typeID);
-EI(keyStr=="Stream")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
+EI(keyStr.equals("Dynamic", CPL_STR_HASH("Dynamic")))RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)2,EXT->GfxBufferUsage_typeID);
+EI(keyStr.equals("Static", CPL_STR_HASH("Static")))RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)1,EXT->GfxBufferUsage_typeID);
+EI(keyStr.equals("Stream", CPL_STR_HASH("Stream")))RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBufferUsage");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxBufferUsage___eq__);
-EI(keyStr=="Dynamic")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)2,EXT->GfxBufferUsage_typeID);
-EI(keyStr=="Static")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)1,EXT->GfxBufferUsage_typeID);
-EI(keyStr=="Stream")RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
+EI(keyStr.equals("Dynamic", CPL_STR_HASH("Dynamic")))RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)2,EXT->GfxBufferUsage_typeID);
+EI(keyStr.equals("Static", CPL_STR_HASH("Static")))RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)1,EXT->GfxBufferUsage_typeID);
+EI(keyStr.equals("Stream", CPL_STR_HASH("Stream")))RET STG::createNativeObject(GfxBufferUsage_funcs,(void *)0,EXT->GfxBufferUsage_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13849,38 +13943,38 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxShaderType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxShaderType___eq__);
-EI(keyStr=="Compute")RET STG::createNativeObject(GfxShaderType_funcs,(void *)5,EXT->GfxShaderType_typeID);
-EI(keyStr=="Geometry")RET STG::createNativeObject(GfxShaderType_funcs,(void *)3,EXT->GfxShaderType_typeID);
-EI(keyStr=="Vertex")RET STG::createNativeObject(GfxShaderType_funcs,(void *)0,EXT->GfxShaderType_typeID);
-EI(keyStr=="Fragment")RET STG::createNativeObject(GfxShaderType_funcs,(void *)4,EXT->GfxShaderType_typeID);
-EI(keyStr=="TessControl")RET STG::createNativeObject(GfxShaderType_funcs,(void *)1,EXT->GfxShaderType_typeID);
-EI(keyStr=="TessEval")RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Compute", CPL_STR_HASH("Compute")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)5,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Geometry", CPL_STR_HASH("Geometry")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)3,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Vertex", CPL_STR_HASH("Vertex")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)0,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Fragment", CPL_STR_HASH("Fragment")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)4,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("TessControl", CPL_STR_HASH("TessControl")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)1,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("TessEval", CPL_STR_HASH("TessEval")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxShaderType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxShaderType___eq__);
-EI(keyStr=="Compute")RET STG::createNativeObject(GfxShaderType_funcs,(void *)5,EXT->GfxShaderType_typeID);
-EI(keyStr=="Geometry")RET STG::createNativeObject(GfxShaderType_funcs,(void *)3,EXT->GfxShaderType_typeID);
-EI(keyStr=="Vertex")RET STG::createNativeObject(GfxShaderType_funcs,(void *)0,EXT->GfxShaderType_typeID);
-EI(keyStr=="Fragment")RET STG::createNativeObject(GfxShaderType_funcs,(void *)4,EXT->GfxShaderType_typeID);
-EI(keyStr=="TessControl")RET STG::createNativeObject(GfxShaderType_funcs,(void *)1,EXT->GfxShaderType_typeID);
-EI(keyStr=="TessEval")RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Compute", CPL_STR_HASH("Compute")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)5,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Geometry", CPL_STR_HASH("Geometry")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)3,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Vertex", CPL_STR_HASH("Vertex")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)0,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("Fragment", CPL_STR_HASH("Fragment")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)4,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("TessControl", CPL_STR_HASH("TessControl")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)1,EXT->GfxShaderType_typeID);
+EI(keyStr.equals("TessEval", CPL_STR_HASH("TessEval")))RET STG::createNativeObject(GfxShaderType_funcs,(void *)2,EXT->GfxShaderType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13908,42 +14002,42 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxPrimitive");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxPrimitive___eq__);
-EI(keyStr=="GfxLineStrip")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)1,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxTriangleFan")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)5,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxTriangles")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)6,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxPoints")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)0,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxLines")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)3,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxLineLoop")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)2,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxTriangleStrip")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)4,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxPatches")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxLineStrip", CPL_STR_HASH("GfxLineStrip")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)1,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxTriangleFan", CPL_STR_HASH("GfxTriangleFan")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)5,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxTriangles", CPL_STR_HASH("GfxTriangles")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)6,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxPoints", CPL_STR_HASH("GfxPoints")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)0,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxLines", CPL_STR_HASH("GfxLines")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)3,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxLineLoop", CPL_STR_HASH("GfxLineLoop")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)2,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxTriangleStrip", CPL_STR_HASH("GfxTriangleStrip")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)4,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxPatches", CPL_STR_HASH("GfxPatches")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxPrimitive");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxPrimitive___eq__);
-EI(keyStr=="GfxLineStrip")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)1,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxTriangleFan")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)5,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxTriangles")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)6,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxPoints")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)0,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxLines")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)3,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxLineLoop")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)2,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxTriangleStrip")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)4,EXT->GfxPrimitive_typeID);
-EI(keyStr=="GfxPatches")RET STG::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxLineStrip", CPL_STR_HASH("GfxLineStrip")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)1,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxTriangleFan", CPL_STR_HASH("GfxTriangleFan")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)5,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxTriangles", CPL_STR_HASH("GfxTriangles")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)6,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxPoints", CPL_STR_HASH("GfxPoints")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)0,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxLines", CPL_STR_HASH("GfxLines")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)3,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxLineLoop", CPL_STR_HASH("GfxLineLoop")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)2,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxTriangleStrip", CPL_STR_HASH("GfxTriangleStrip")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)4,EXT->GfxPrimitive_typeID);
+EI(keyStr.equals("GfxPatches", CPL_STR_HASH("GfxPatches")))RET STG::createNativeObject(GfxPrimitive_funcs,(void *)7,EXT->GfxPrimitive_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -13971,42 +14065,42 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxDepthFunction");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxDepthFunction___eq__);
-EI(keyStr=="GfxGreaterEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)6,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxNever")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)0,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxLessEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)3,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxAlways")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)7,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxLess")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)1,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxGreater")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)4,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)2,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxNotEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)5,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxGreaterEqual", CPL_STR_HASH("GfxGreaterEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)6,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxNever", CPL_STR_HASH("GfxNever")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)0,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxLessEqual", CPL_STR_HASH("GfxLessEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)3,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxAlways", CPL_STR_HASH("GfxAlways")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)7,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxLess", CPL_STR_HASH("GfxLess")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)1,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxGreater", CPL_STR_HASH("GfxGreater")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)4,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxEqual", CPL_STR_HASH("GfxEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)2,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxNotEqual", CPL_STR_HASH("GfxNotEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)5,EXT->GfxDepthFunction_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxDepthFunction");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxDepthFunction___eq__);
-EI(keyStr=="GfxGreaterEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)6,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxNever")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)0,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxLessEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)3,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxAlways")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)7,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxLess")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)1,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxGreater")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)4,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)2,EXT->GfxDepthFunction_typeID);
-EI(keyStr=="GfxNotEqual")RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)5,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxGreaterEqual", CPL_STR_HASH("GfxGreaterEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)6,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxNever", CPL_STR_HASH("GfxNever")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)0,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxLessEqual", CPL_STR_HASH("GfxLessEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)3,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxAlways", CPL_STR_HASH("GfxAlways")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)7,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxLess", CPL_STR_HASH("GfxLess")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)1,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxGreater", CPL_STR_HASH("GfxGreater")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)4,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxEqual", CPL_STR_HASH("GfxEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)2,EXT->GfxDepthFunction_typeID);
+EI(keyStr.equals("GfxNotEqual", CPL_STR_HASH("GfxNotEqual")))RET STG::createNativeObject(GfxDepthFunction_funcs,(void *)5,EXT->GfxDepthFunction_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14034,32 +14128,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBlendMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxBlendMode___eq__);
-EI(keyStr=="GfxReverseSubtract")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)2,EXT->GfxBlendMode_typeID);
-EI(keyStr=="GfxAdd")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)0,EXT->GfxBlendMode_typeID);
-EI(keyStr=="GfxSubtract")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)1,EXT->GfxBlendMode_typeID);
+EI(keyStr.equals("GfxReverseSubtract", CPL_STR_HASH("GfxReverseSubtract")))RET STG::createNativeObject(GfxBlendMode_funcs,(void *)2,EXT->GfxBlendMode_typeID);
+EI(keyStr.equals("GfxAdd", CPL_STR_HASH("GfxAdd")))RET STG::createNativeObject(GfxBlendMode_funcs,(void *)0,EXT->GfxBlendMode_typeID);
+EI(keyStr.equals("GfxSubtract", CPL_STR_HASH("GfxSubtract")))RET STG::createNativeObject(GfxBlendMode_funcs,(void *)1,EXT->GfxBlendMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBlendMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxBlendMode___eq__);
-EI(keyStr=="GfxReverseSubtract")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)2,EXT->GfxBlendMode_typeID);
-EI(keyStr=="GfxAdd")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)0,EXT->GfxBlendMode_typeID);
-EI(keyStr=="GfxSubtract")RET STG::createNativeObject(GfxBlendMode_funcs,(void *)1,EXT->GfxBlendMode_typeID);
+EI(keyStr.equals("GfxReverseSubtract", CPL_STR_HASH("GfxReverseSubtract")))RET STG::createNativeObject(GfxBlendMode_funcs,(void *)2,EXT->GfxBlendMode_typeID);
+EI(keyStr.equals("GfxAdd", CPL_STR_HASH("GfxAdd")))RET STG::createNativeObject(GfxBlendMode_funcs,(void *)0,EXT->GfxBlendMode_typeID);
+EI(keyStr.equals("GfxSubtract", CPL_STR_HASH("GfxSubtract")))RET STG::createNativeObject(GfxBlendMode_funcs,(void *)1,EXT->GfxBlendMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14087,54 +14181,54 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBlendFactor");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxBlendFactor___eq__);
-EI(keyStr=="GfxZero")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)0,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxSrcColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)2,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusSrcAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)7,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxConstantAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)12,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxDstAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)8,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxSrcAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)6,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusDstColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)5,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxDstColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)4,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusConstantColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)11,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusSrcColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)3,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxConstantColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)10,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusConstantAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)13,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOne")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)1,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusDstAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)9,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxZero", CPL_STR_HASH("GfxZero")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)0,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxSrcColor", CPL_STR_HASH("GfxSrcColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)2,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusSrcAlpha", CPL_STR_HASH("GfxOneMinusSrcAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)7,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxConstantAlpha", CPL_STR_HASH("GfxConstantAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)12,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxDstAlpha", CPL_STR_HASH("GfxDstAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)8,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxSrcAlpha", CPL_STR_HASH("GfxSrcAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)6,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusDstColor", CPL_STR_HASH("GfxOneMinusDstColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)5,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxDstColor", CPL_STR_HASH("GfxDstColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)4,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusConstantColor", CPL_STR_HASH("GfxOneMinusConstantColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)11,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusSrcColor", CPL_STR_HASH("GfxOneMinusSrcColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)3,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxConstantColor", CPL_STR_HASH("GfxConstantColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)10,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusConstantAlpha", CPL_STR_HASH("GfxOneMinusConstantAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)13,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOne", CPL_STR_HASH("GfxOne")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)1,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusDstAlpha", CPL_STR_HASH("GfxOneMinusDstAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)9,EXT->GfxBlendFactor_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBlendFactor");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxBlendFactor___eq__);
-EI(keyStr=="GfxZero")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)0,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxSrcColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)2,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusSrcAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)7,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxConstantAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)12,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxDstAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)8,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxSrcAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)6,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusDstColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)5,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxDstColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)4,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusConstantColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)11,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusSrcColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)3,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxConstantColor")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)10,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusConstantAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)13,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOne")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)1,EXT->GfxBlendFactor_typeID);
-EI(keyStr=="GfxOneMinusDstAlpha")RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)9,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxZero", CPL_STR_HASH("GfxZero")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)0,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxSrcColor", CPL_STR_HASH("GfxSrcColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)2,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusSrcAlpha", CPL_STR_HASH("GfxOneMinusSrcAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)7,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxConstantAlpha", CPL_STR_HASH("GfxConstantAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)12,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxDstAlpha", CPL_STR_HASH("GfxDstAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)8,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxSrcAlpha", CPL_STR_HASH("GfxSrcAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)6,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusDstColor", CPL_STR_HASH("GfxOneMinusDstColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)5,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxDstColor", CPL_STR_HASH("GfxDstColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)4,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusConstantColor", CPL_STR_HASH("GfxOneMinusConstantColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)11,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusSrcColor", CPL_STR_HASH("GfxOneMinusSrcColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)3,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxConstantColor", CPL_STR_HASH("GfxConstantColor")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)10,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusConstantAlpha", CPL_STR_HASH("GfxOneMinusConstantAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)13,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOne", CPL_STR_HASH("GfxOne")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)1,EXT->GfxBlendFactor_typeID);
+EI(keyStr.equals("GfxOneMinusDstAlpha", CPL_STR_HASH("GfxOneMinusDstAlpha")))RET STG::createNativeObject(GfxBlendFactor_funcs,(void *)9,EXT->GfxBlendFactor_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14162,32 +14256,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxCullMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxCullMode___eq__);
-EI(keyStr=="GfxCullNone")RET STG::createNativeObject(GfxCullMode_funcs,(void *)0,EXT->GfxCullMode_typeID);
-EI(keyStr=="GfxCullBack")RET STG::createNativeObject(GfxCullMode_funcs,(void *)2,EXT->GfxCullMode_typeID);
-EI(keyStr=="GfxCullFront")RET STG::createNativeObject(GfxCullMode_funcs,(void *)1,EXT->GfxCullMode_typeID);
+EI(keyStr.equals("GfxCullNone", CPL_STR_HASH("GfxCullNone")))RET STG::createNativeObject(GfxCullMode_funcs,(void *)0,EXT->GfxCullMode_typeID);
+EI(keyStr.equals("GfxCullBack", CPL_STR_HASH("GfxCullBack")))RET STG::createNativeObject(GfxCullMode_funcs,(void *)2,EXT->GfxCullMode_typeID);
+EI(keyStr.equals("GfxCullFront", CPL_STR_HASH("GfxCullFront")))RET STG::createNativeObject(GfxCullMode_funcs,(void *)1,EXT->GfxCullMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxCullMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxCullMode___eq__);
-EI(keyStr=="GfxCullNone")RET STG::createNativeObject(GfxCullMode_funcs,(void *)0,EXT->GfxCullMode_typeID);
-EI(keyStr=="GfxCullBack")RET STG::createNativeObject(GfxCullMode_funcs,(void *)2,EXT->GfxCullMode_typeID);
-EI(keyStr=="GfxCullFront")RET STG::createNativeObject(GfxCullMode_funcs,(void *)1,EXT->GfxCullMode_typeID);
+EI(keyStr.equals("GfxCullNone", CPL_STR_HASH("GfxCullNone")))RET STG::createNativeObject(GfxCullMode_funcs,(void *)0,EXT->GfxCullMode_typeID);
+EI(keyStr.equals("GfxCullBack", CPL_STR_HASH("GfxCullBack")))RET STG::createNativeObject(GfxCullMode_funcs,(void *)2,EXT->GfxCullMode_typeID);
+EI(keyStr.equals("GfxCullFront", CPL_STR_HASH("GfxCullFront")))RET STG::createNativeObject(GfxCullMode_funcs,(void *)1,EXT->GfxCullMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14215,30 +14309,30 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxWinding");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxWinding___eq__);
-EI(keyStr=="GfxCCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)1,EXT->GfxWinding_typeID);
-EI(keyStr=="GfxCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)0,EXT->GfxWinding_typeID);
+EI(keyStr.equals("GfxCCW", CPL_STR_HASH("GfxCCW")))RET STG::createNativeObject(GfxWinding_funcs,(void *)1,EXT->GfxWinding_typeID);
+EI(keyStr.equals("GfxCW", CPL_STR_HASH("GfxCW")))RET STG::createNativeObject(GfxWinding_funcs,(void *)0,EXT->GfxWinding_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxWinding");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxWinding___eq__);
-EI(keyStr=="GfxCCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)1,EXT->GfxWinding_typeID);
-EI(keyStr=="GfxCW")RET STG::createNativeObject(GfxWinding_funcs,(void *)0,EXT->GfxWinding_typeID);
+EI(keyStr.equals("GfxCCW", CPL_STR_HASH("GfxCCW")))RET STG::createNativeObject(GfxWinding_funcs,(void *)1,EXT->GfxWinding_typeID);
+EI(keyStr.equals("GfxCW", CPL_STR_HASH("GfxCW")))RET STG::createNativeObject(GfxWinding_funcs,(void *)0,EXT->GfxWinding_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14266,36 +14360,36 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxVertexAttribPurpose");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxVertexAttribPurpose___eq__);
-EI(keyStr=="GfxTexCoord")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)4,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxTangent")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)2,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxPosition")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)0,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxNormal")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)1,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxColor")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)3,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxTexCoord", CPL_STR_HASH("GfxTexCoord")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)4,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxTangent", CPL_STR_HASH("GfxTangent")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)2,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxPosition", CPL_STR_HASH("GfxPosition")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)0,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxNormal", CPL_STR_HASH("GfxNormal")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)1,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxColor", CPL_STR_HASH("GfxColor")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)3,EXT->GfxVertexAttribPurpose_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxVertexAttribPurpose");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxVertexAttribPurpose___eq__);
-EI(keyStr=="GfxTexCoord")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)4,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxTangent")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)2,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxPosition")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)0,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxNormal")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)1,EXT->GfxVertexAttribPurpose_typeID);
-EI(keyStr=="GfxColor")RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)3,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxTexCoord", CPL_STR_HASH("GfxTexCoord")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)4,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxTangent", CPL_STR_HASH("GfxTangent")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)2,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxPosition", CPL_STR_HASH("GfxPosition")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)0,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxNormal", CPL_STR_HASH("GfxNormal")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)1,EXT->GfxVertexAttribPurpose_typeID);
+EI(keyStr.equals("GfxColor", CPL_STR_HASH("GfxColor")))RET STG::createNativeObject(GfxVertexAttribPurpose_funcs,(void *)3,EXT->GfxVertexAttribPurpose_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14323,56 +14417,56 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxVertexAttribType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxVertexAttribType___eq__);
-EI(keyStr=="GfxUnsignedInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)8,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedUnsignedByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)10,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxFloat")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)1,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedUnsignedInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)14,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)5,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)7,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)3,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)9,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxUnsignedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)6,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxDouble")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)2,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxHalfFloat")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)0,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)11,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)13,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxUnsignedByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)4,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedUnsignedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)12,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxUnsignedInteger", CPL_STR_HASH("GfxUnsignedInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)8,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedUnsignedByte", CPL_STR_HASH("GfxNormalizedUnsignedByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)10,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxFloat", CPL_STR_HASH("GfxFloat")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)1,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedUnsignedInteger", CPL_STR_HASH("GfxNormalizedUnsignedInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)14,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxShort", CPL_STR_HASH("GfxShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)5,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxInteger", CPL_STR_HASH("GfxInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)7,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxByte", CPL_STR_HASH("GfxByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)3,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedByte", CPL_STR_HASH("GfxNormalizedByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)9,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxUnsignedShort", CPL_STR_HASH("GfxUnsignedShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)6,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxDouble", CPL_STR_HASH("GfxDouble")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)2,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxHalfFloat", CPL_STR_HASH("GfxHalfFloat")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)0,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedShort", CPL_STR_HASH("GfxNormalizedShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)11,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedInteger", CPL_STR_HASH("GfxNormalizedInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)13,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxUnsignedByte", CPL_STR_HASH("GfxUnsignedByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)4,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedUnsignedShort", CPL_STR_HASH("GfxNormalizedUnsignedShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)12,EXT->GfxVertexAttribType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxVertexAttribType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxVertexAttribType___eq__);
-EI(keyStr=="GfxUnsignedInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)8,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedUnsignedByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)10,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxFloat")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)1,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedUnsignedInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)14,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)5,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)7,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)3,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)9,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxUnsignedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)6,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxDouble")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)2,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxHalfFloat")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)0,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)11,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedInteger")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)13,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxUnsignedByte")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)4,EXT->GfxVertexAttribType_typeID);
-EI(keyStr=="GfxNormalizedUnsignedShort")RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)12,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxUnsignedInteger", CPL_STR_HASH("GfxUnsignedInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)8,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedUnsignedByte", CPL_STR_HASH("GfxNormalizedUnsignedByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)10,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxFloat", CPL_STR_HASH("GfxFloat")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)1,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedUnsignedInteger", CPL_STR_HASH("GfxNormalizedUnsignedInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)14,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxShort", CPL_STR_HASH("GfxShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)5,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxInteger", CPL_STR_HASH("GfxInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)7,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxByte", CPL_STR_HASH("GfxByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)3,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedByte", CPL_STR_HASH("GfxNormalizedByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)9,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxUnsignedShort", CPL_STR_HASH("GfxUnsignedShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)6,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxDouble", CPL_STR_HASH("GfxDouble")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)2,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxHalfFloat", CPL_STR_HASH("GfxHalfFloat")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)0,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedShort", CPL_STR_HASH("GfxNormalizedShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)11,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedInteger", CPL_STR_HASH("GfxNormalizedInteger")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)13,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxUnsignedByte", CPL_STR_HASH("GfxUnsignedByte")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)4,EXT->GfxVertexAttribType_typeID);
+EI(keyStr.equals("GfxNormalizedUnsignedShort", CPL_STR_HASH("GfxNormalizedUnsignedShort")))RET STG::createNativeObject(GfxVertexAttribType_funcs,(void *)12,EXT->GfxVertexAttribType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14400,32 +14494,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshIndexDataType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMeshIndexDataType___eq__);
-EI(keyStr=="U32")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)2,EXT->GfxMeshIndexDataType_typeID);
-EI(keyStr=="U8")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0,EXT->GfxMeshIndexDataType_typeID);
-EI(keyStr=="U16")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr.equals("U32", CPL_STR_HASH("U32")))RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)2,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr.equals("U8", CPL_STR_HASH("U8")))RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr.equals("U16", CPL_STR_HASH("U16")))RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshIndexDataType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMeshIndexDataType___eq__);
-EI(keyStr=="U32")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)2,EXT->GfxMeshIndexDataType_typeID);
-EI(keyStr=="U8")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0,EXT->GfxMeshIndexDataType_typeID);
-EI(keyStr=="U16")RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr.equals("U32", CPL_STR_HASH("U32")))RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)2,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr.equals("U8", CPL_STR_HASH("U8")))RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)0,EXT->GfxMeshIndexDataType_typeID);
+EI(keyStr.equals("U16", CPL_STR_HASH("U16")))RET STG::createNativeObject(GfxMeshIndexDataType_funcs,(void *)1,EXT->GfxMeshIndexDataType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14453,40 +14547,40 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshAttribType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMeshAttribType___eq__);
-EI(keyStr=="Normal")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)1,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="Color")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)3,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="TexCoord")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)4,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="Tangent")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)2,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="BoneWeight")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)6,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="Position")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)0,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="BoneIndex")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)5,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Normal", CPL_STR_HASH("Normal")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)1,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Color", CPL_STR_HASH("Color")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)3,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("TexCoord", CPL_STR_HASH("TexCoord")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)4,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Tangent", CPL_STR_HASH("Tangent")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)2,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("BoneWeight", CPL_STR_HASH("BoneWeight")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)6,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Position", CPL_STR_HASH("Position")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)0,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("BoneIndex", CPL_STR_HASH("BoneIndex")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)5,EXT->GfxMeshAttribType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshAttribType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMeshAttribType___eq__);
-EI(keyStr=="Normal")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)1,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="Color")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)3,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="TexCoord")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)4,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="Tangent")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)2,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="BoneWeight")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)6,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="Position")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)0,EXT->GfxMeshAttribType_typeID);
-EI(keyStr=="BoneIndex")RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)5,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Normal", CPL_STR_HASH("Normal")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)1,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Color", CPL_STR_HASH("Color")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)3,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("TexCoord", CPL_STR_HASH("TexCoord")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)4,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Tangent", CPL_STR_HASH("Tangent")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)2,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("BoneWeight", CPL_STR_HASH("BoneWeight")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)6,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("Position", CPL_STR_HASH("Position")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)0,EXT->GfxMeshAttribType_typeID);
+EI(keyStr.equals("BoneIndex", CPL_STR_HASH("BoneIndex")))RET STG::createNativeObject(GfxMeshAttribType_funcs,(void *)5,EXT->GfxMeshAttribType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14514,138 +14608,138 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshAttribDataType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMeshAttribDataType___eq__);
-EI(keyStr=="S32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)54,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)21,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)22,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)20,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)37,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)23,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)53,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)42,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)55,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)38,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)25,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)26,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)24,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)27,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)36,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)9,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)10,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)8,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)39,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)11,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)34,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)2,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)1,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)0,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)52,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)3,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)50,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)41,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)40,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)33,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)35,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)51,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)48,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)45,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)19,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)16,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)17,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)18,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)47,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)32,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)31,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)12,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)13,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)14,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)15,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)28,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)29,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)30,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)49,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)46,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)4,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)6,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)5,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)7,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)43,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_3Norm", CPL_STR_HASH("S32_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)54,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_2", CPL_STR_HASH("S16_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)21,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_3", CPL_STR_HASH("S16_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)22,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_1", CPL_STR_HASH("S16_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)20,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_2Norm", CPL_STR_HASH("S8_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)37,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_4", CPL_STR_HASH("S16_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)23,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_2Norm", CPL_STR_HASH("S32_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)53,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_3Norm", CPL_STR_HASH("U16_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)42,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_4Norm", CPL_STR_HASH("S32_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)55,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_3Norm", CPL_STR_HASH("S8_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)38,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_2", CPL_STR_HASH("U32_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)25,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_3", CPL_STR_HASH("U32_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)26,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_1", CPL_STR_HASH("U32_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)24,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_4", CPL_STR_HASH("U32_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)27,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_1Norm", CPL_STR_HASH("S8_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)36,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_2", CPL_STR_HASH("U8_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)9,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_3", CPL_STR_HASH("U8_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)10,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_1", CPL_STR_HASH("U8_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)8,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_4Norm", CPL_STR_HASH("S8_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)39,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_4", CPL_STR_HASH("U8_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)11,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_3Norm", CPL_STR_HASH("U8_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)34,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_3", CPL_STR_HASH("F16_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)2,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_2", CPL_STR_HASH("F16_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)1,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_1", CPL_STR_HASH("F16_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)0,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_1Norm", CPL_STR_HASH("S32_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)52,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_4", CPL_STR_HASH("F16_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)3,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_3Norm", CPL_STR_HASH("U32_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)50,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_2Norm", CPL_STR_HASH("U16_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)41,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_1Norm", CPL_STR_HASH("U16_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)40,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_2Norm", CPL_STR_HASH("U8_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)33,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_4Norm", CPL_STR_HASH("U8_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)35,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_4Norm", CPL_STR_HASH("U32_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)51,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_1Norm", CPL_STR_HASH("U32_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)48,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_2Norm", CPL_STR_HASH("S16_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)45,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_4", CPL_STR_HASH("U16_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)19,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_1", CPL_STR_HASH("U16_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)16,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_2", CPL_STR_HASH("U16_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)17,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_3", CPL_STR_HASH("U16_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)18,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_4Norm", CPL_STR_HASH("S16_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)47,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_1Norm", CPL_STR_HASH("U8_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)32,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_4", CPL_STR_HASH("S32_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)31,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_1", CPL_STR_HASH("S8_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)12,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_2", CPL_STR_HASH("S8_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)13,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_3", CPL_STR_HASH("S8_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)14,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_4", CPL_STR_HASH("S8_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)15,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_1", CPL_STR_HASH("S32_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)28,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_2", CPL_STR_HASH("S32_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)29,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_3", CPL_STR_HASH("S32_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)30,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_2Norm", CPL_STR_HASH("U32_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)49,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_3Norm", CPL_STR_HASH("S16_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)46,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_1", CPL_STR_HASH("F32_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)4,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_3", CPL_STR_HASH("F32_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)6,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_2", CPL_STR_HASH("F32_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)5,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_4", CPL_STR_HASH("F32_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)7,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_4Norm", CPL_STR_HASH("U16_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)43,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_1Norm", CPL_STR_HASH("S16_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshAttribDataType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxMeshAttribDataType___eq__);
-EI(keyStr=="S32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)54,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)21,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)22,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)20,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)37,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)23,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)53,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)42,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)55,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)38,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)25,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)26,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)24,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)27,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)36,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)9,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)10,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)8,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)39,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)11,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)34,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)2,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)1,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)0,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)52,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)3,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)50,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)41,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)40,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)33,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)35,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)51,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)48,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)45,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)19,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)16,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)17,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)18,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)47,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U8_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)32,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)31,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)12,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)13,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)14,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S8_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)15,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)28,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)29,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)30,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U32_2Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)49,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_3Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)46,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_1")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)4,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_3")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)6,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_2")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)5,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="F32_4")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)7,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="U16_4Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)43,EXT->GfxMeshAttribDataType_typeID);
-EI(keyStr=="S16_1Norm")RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_3Norm", CPL_STR_HASH("S32_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)54,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_2", CPL_STR_HASH("S16_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)21,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_3", CPL_STR_HASH("S16_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)22,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_1", CPL_STR_HASH("S16_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)20,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_2Norm", CPL_STR_HASH("S8_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)37,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_4", CPL_STR_HASH("S16_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)23,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_2Norm", CPL_STR_HASH("S32_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)53,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_3Norm", CPL_STR_HASH("U16_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)42,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_4Norm", CPL_STR_HASH("S32_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)55,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_3Norm", CPL_STR_HASH("S8_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)38,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_2", CPL_STR_HASH("U32_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)25,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_3", CPL_STR_HASH("U32_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)26,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_1", CPL_STR_HASH("U32_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)24,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_4", CPL_STR_HASH("U32_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)27,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_1Norm", CPL_STR_HASH("S8_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)36,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_2", CPL_STR_HASH("U8_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)9,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_3", CPL_STR_HASH("U8_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)10,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_1", CPL_STR_HASH("U8_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)8,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_4Norm", CPL_STR_HASH("S8_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)39,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_4", CPL_STR_HASH("U8_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)11,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_3Norm", CPL_STR_HASH("U8_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)34,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_3", CPL_STR_HASH("F16_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)2,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_2", CPL_STR_HASH("F16_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)1,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_1", CPL_STR_HASH("F16_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)0,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_1Norm", CPL_STR_HASH("S32_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)52,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F16_4", CPL_STR_HASH("F16_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)3,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_3Norm", CPL_STR_HASH("U32_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)50,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_2Norm", CPL_STR_HASH("U16_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)41,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_1Norm", CPL_STR_HASH("U16_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)40,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_2Norm", CPL_STR_HASH("U8_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)33,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_4Norm", CPL_STR_HASH("U8_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)35,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_4Norm", CPL_STR_HASH("U32_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)51,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_1Norm", CPL_STR_HASH("U32_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)48,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_2Norm", CPL_STR_HASH("S16_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)45,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_4", CPL_STR_HASH("U16_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)19,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_1", CPL_STR_HASH("U16_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)16,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_2", CPL_STR_HASH("U16_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)17,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_3", CPL_STR_HASH("U16_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)18,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_4Norm", CPL_STR_HASH("S16_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)47,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U8_1Norm", CPL_STR_HASH("U8_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)32,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_4", CPL_STR_HASH("S32_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)31,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_1", CPL_STR_HASH("S8_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)12,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_2", CPL_STR_HASH("S8_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)13,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_3", CPL_STR_HASH("S8_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)14,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S8_4", CPL_STR_HASH("S8_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)15,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_1", CPL_STR_HASH("S32_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)28,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_2", CPL_STR_HASH("S32_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)29,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S32_3", CPL_STR_HASH("S32_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)30,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U32_2Norm", CPL_STR_HASH("U32_2Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)49,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_3Norm", CPL_STR_HASH("S16_3Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)46,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_1", CPL_STR_HASH("F32_1")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)4,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_3", CPL_STR_HASH("F32_3")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)6,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_2", CPL_STR_HASH("F32_2")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)5,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("F32_4", CPL_STR_HASH("F32_4")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)7,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("U16_4Norm", CPL_STR_HASH("U16_4Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)43,EXT->GfxMeshAttribDataType_typeID);
+EI(keyStr.equals("S16_1Norm", CPL_STR_HASH("S16_1Norm")))RET STG::createNativeObject(GfxMeshAttribDataType_funcs,(void *)44,EXT->GfxMeshAttribDataType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14673,30 +14767,30 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("XOrigin");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(XOrigin___eq__);
-EI(keyStr=="Right")RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOrigin_typeID);
-EI(keyStr=="Left")RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
+EI(keyStr.equals("Right", CPL_STR_HASH("Right")))RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOrigin_typeID);
+EI(keyStr.equals("Left", CPL_STR_HASH("Left")))RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("XOrigin");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(XOrigin___eq__);
-EI(keyStr=="Right")RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOrigin_typeID);
-EI(keyStr=="Left")RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
+EI(keyStr.equals("Right", CPL_STR_HASH("Right")))RET STG::createNativeObject(XOrigin_funcs,(void *)1,EXT->XOrigin_typeID);
+EI(keyStr.equals("Left", CPL_STR_HASH("Left")))RET STG::createNativeObject(XOrigin_funcs,(void *)0,EXT->XOrigin_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14724,32 +14818,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxShadowmapPrecision");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxShadowmapPrecision___eq__);
-EI(keyStr=="High")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)2,EXT->GfxShadowmapPrecision_typeID);
-EI(keyStr=="Medium")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)1,EXT->GfxShadowmapPrecision_typeID);
-EI(keyStr=="Low")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr.equals("High", CPL_STR_HASH("High")))RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)2,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr.equals("Medium", CPL_STR_HASH("Medium")))RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)1,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr.equals("Low", CPL_STR_HASH("Low")))RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxShadowmapPrecision");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxShadowmapPrecision___eq__);
-EI(keyStr=="High")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)2,EXT->GfxShadowmapPrecision_typeID);
-EI(keyStr=="Medium")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)1,EXT->GfxShadowmapPrecision_typeID);
-EI(keyStr=="Low")RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr.equals("High", CPL_STR_HASH("High")))RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)2,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr.equals("Medium", CPL_STR_HASH("Medium")))RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)1,EXT->GfxShadowmapPrecision_typeID);
+EI(keyStr.equals("Low", CPL_STR_HASH("Low")))RET STG::createNativeObject(GfxShadowmapPrecision_funcs,(void *)0,EXT->GfxShadowmapPrecision_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14777,32 +14871,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxLightType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxLightType___eq__);
-EI(keyStr=="Point")RET STG::createNativeObject(GfxLightType_funcs,(void *)2,EXT->GfxLightType_typeID);
-EI(keyStr=="Spot")RET STG::createNativeObject(GfxLightType_funcs,(void *)1,EXT->GfxLightType_typeID);
-EI(keyStr=="Directional")RET STG::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
+EI(keyStr.equals("Point", CPL_STR_HASH("Point")))RET STG::createNativeObject(GfxLightType_funcs,(void *)2,EXT->GfxLightType_typeID);
+EI(keyStr.equals("Spot", CPL_STR_HASH("Spot")))RET STG::createNativeObject(GfxLightType_funcs,(void *)1,EXT->GfxLightType_typeID);
+EI(keyStr.equals("Directional", CPL_STR_HASH("Directional")))RET STG::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxLightType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxLightType___eq__);
-EI(keyStr=="Point")RET STG::createNativeObject(GfxLightType_funcs,(void *)2,EXT->GfxLightType_typeID);
-EI(keyStr=="Spot")RET STG::createNativeObject(GfxLightType_funcs,(void *)1,EXT->GfxLightType_typeID);
-EI(keyStr=="Directional")RET STG::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
+EI(keyStr.equals("Point", CPL_STR_HASH("Point")))RET STG::createNativeObject(GfxLightType_funcs,(void *)2,EXT->GfxLightType_typeID);
+EI(keyStr.equals("Spot", CPL_STR_HASH("Spot")))RET STG::createNativeObject(GfxLightType_funcs,(void *)1,EXT->GfxLightType_typeID);
+EI(keyStr.equals("Directional", CPL_STR_HASH("Directional")))RET STG::createNativeObject(GfxLightType_funcs,(void *)0,EXT->GfxLightType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14830,32 +14924,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxDriver");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxDriver___eq__);
-EI(keyStr=="Unknown")RET STG::createNativeObject(GfxDriver_funcs,(void *)2,EXT->GfxDriver_typeID);
-EI(keyStr=="Mesa")RET STG::createNativeObject(GfxDriver_funcs,(void *)1,EXT->GfxDriver_typeID);
-EI(keyStr=="Nvidia")RET STG::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(GfxDriver_funcs,(void *)2,EXT->GfxDriver_typeID);
+EI(keyStr.equals("Mesa", CPL_STR_HASH("Mesa")))RET STG::createNativeObject(GfxDriver_funcs,(void *)1,EXT->GfxDriver_typeID);
+EI(keyStr.equals("Nvidia", CPL_STR_HASH("Nvidia")))RET STG::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxDriver");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxDriver___eq__);
-EI(keyStr=="Unknown")RET STG::createNativeObject(GfxDriver_funcs,(void *)2,EXT->GfxDriver_typeID);
-EI(keyStr=="Mesa")RET STG::createNativeObject(GfxDriver_funcs,(void *)1,EXT->GfxDriver_typeID);
-EI(keyStr=="Nvidia")RET STG::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
+EI(keyStr.equals("Unknown", CPL_STR_HASH("Unknown")))RET STG::createNativeObject(GfxDriver_funcs,(void *)2,EXT->GfxDriver_typeID);
+EI(keyStr.equals("Mesa", CPL_STR_HASH("Mesa")))RET STG::createNativeObject(GfxDriver_funcs,(void *)1,EXT->GfxDriver_typeID);
+EI(keyStr.equals("Nvidia", CPL_STR_HASH("Nvidia")))RET STG::createNativeObject(GfxDriver_funcs,(void *)0,EXT->GfxDriver_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14883,30 +14977,30 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("CameraType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(CameraType___eq__);
-EI(keyStr=="Perspective")RET STG::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
-EI(keyStr=="Orthographic")RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
+EI(keyStr.equals("Perspective", CPL_STR_HASH("Perspective")))RET STG::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
+EI(keyStr.equals("Orthographic", CPL_STR_HASH("Orthographic")))RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("CameraType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(CameraType___eq__);
-EI(keyStr=="Perspective")RET STG::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
-EI(keyStr=="Orthographic")RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
+EI(keyStr.equals("Perspective", CPL_STR_HASH("Perspective")))RET STG::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
+EI(keyStr.equals("Orthographic", CPL_STR_HASH("Orthographic")))RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14934,32 +15028,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Axis");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Axis___eq__);
-EI(keyStr=="Y")RET STG::createNativeObject(Axis_funcs,(void *)1,EXT->Axis_typeID);
-EI(keyStr=="X")RET STG::createNativeObject(Axis_funcs,(void *)0,EXT->Axis_typeID);
-EI(keyStr=="Z")RET STG::createNativeObject(Axis_funcs,(void *)2,EXT->Axis_typeID);
+EI(keyStr.equals("Y", CPL_STR_HASH("Y")))RET STG::createNativeObject(Axis_funcs,(void *)1,EXT->Axis_typeID);
+EI(keyStr.equals("X", CPL_STR_HASH("X")))RET STG::createNativeObject(Axis_funcs,(void *)0,EXT->Axis_typeID);
+EI(keyStr.equals("Z", CPL_STR_HASH("Z")))RET STG::createNativeObject(Axis_funcs,(void *)2,EXT->Axis_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Axis");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Axis___eq__);
-EI(keyStr=="Y")RET STG::createNativeObject(Axis_funcs,(void *)1,EXT->Axis_typeID);
-EI(keyStr=="X")RET STG::createNativeObject(Axis_funcs,(void *)0,EXT->Axis_typeID);
-EI(keyStr=="Z")RET STG::createNativeObject(Axis_funcs,(void *)2,EXT->Axis_typeID);
+EI(keyStr.equals("Y", CPL_STR_HASH("Y")))RET STG::createNativeObject(Axis_funcs,(void *)1,EXT->Axis_typeID);
+EI(keyStr.equals("X", CPL_STR_HASH("X")))RET STG::createNativeObject(Axis_funcs,(void *)0,EXT->Axis_typeID);
+EI(keyStr.equals("Z", CPL_STR_HASH("Z")))RET STG::createNativeObject(Axis_funcs,(void *)2,EXT->Axis_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -14987,32 +15081,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RigidBodyType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RigidBodyType___eq__);
-EI(keyStr=="Dynamic")RET STG::createNativeObject(RigidBodyType_funcs,(void *)1,EXT->RigidBodyType_typeID);
-EI(keyStr=="Static")RET STG::createNativeObject(RigidBodyType_funcs,(void *)0,EXT->RigidBodyType_typeID);
-EI(keyStr=="Kinematic")RET STG::createNativeObject(RigidBodyType_funcs,(void *)2,EXT->RigidBodyType_typeID);
+EI(keyStr.equals("Dynamic", CPL_STR_HASH("Dynamic")))RET STG::createNativeObject(RigidBodyType_funcs,(void *)1,EXT->RigidBodyType_typeID);
+EI(keyStr.equals("Static", CPL_STR_HASH("Static")))RET STG::createNativeObject(RigidBodyType_funcs,(void *)0,EXT->RigidBodyType_typeID);
+EI(keyStr.equals("Kinematic", CPL_STR_HASH("Kinematic")))RET STG::createNativeObject(RigidBodyType_funcs,(void *)2,EXT->RigidBodyType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RigidBodyType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RigidBodyType___eq__);
-EI(keyStr=="Dynamic")RET STG::createNativeObject(RigidBodyType_funcs,(void *)1,EXT->RigidBodyType_typeID);
-EI(keyStr=="Static")RET STG::createNativeObject(RigidBodyType_funcs,(void *)0,EXT->RigidBodyType_typeID);
-EI(keyStr=="Kinematic")RET STG::createNativeObject(RigidBodyType_funcs,(void *)2,EXT->RigidBodyType_typeID);
+EI(keyStr.equals("Dynamic", CPL_STR_HASH("Dynamic")))RET STG::createNativeObject(RigidBodyType_funcs,(void *)1,EXT->RigidBodyType_typeID);
+EI(keyStr.equals("Static", CPL_STR_HASH("Static")))RET STG::createNativeObject(RigidBodyType_funcs,(void *)0,EXT->RigidBodyType_typeID);
+EI(keyStr.equals("Kinematic", CPL_STR_HASH("Kinematic")))RET STG::createNativeObject(RigidBodyType_funcs,(void *)2,EXT->RigidBodyType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -15040,30 +15134,30 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("PhysicsObjectType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(PhysicsObjectType___eq__);
-EI(keyStr=="Body")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)0,EXT->PhysicsObjectType_typeID);
-EI(keyStr=="Ghost")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
+EI(keyStr.equals("Body", CPL_STR_HASH("Body")))RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)0,EXT->PhysicsObjectType_typeID);
+EI(keyStr.equals("Ghost", CPL_STR_HASH("Ghost")))RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("PhysicsObjectType");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(PhysicsObjectType___eq__);
-EI(keyStr=="Body")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)0,EXT->PhysicsObjectType_typeID);
-EI(keyStr=="Ghost")RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
+EI(keyStr.equals("Body", CPL_STR_HASH("Body")))RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)0,EXT->PhysicsObjectType_typeID);
+EI(keyStr.equals("Ghost", CPL_STR_HASH("Ghost")))RET STG::createNativeObject(PhysicsObjectType_funcs,(void *)1,EXT->PhysicsObjectType_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -15091,32 +15185,32 @@ return STG::createBoolean(f == other);
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData *)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RenderMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RenderMode___eq__);
-EI(keyStr=="Nothing")RET STG::createNativeObject(RenderMode_funcs,(void *)0,EXT->RenderMode_typeID);
-EI(keyStr=="Model")RET STG::createNativeObject(RenderMode_funcs,(void *)1,EXT->RenderMode_typeID);
-EI(keyStr=="Overlay")RET STG::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
+EI(keyStr.equals("Nothing", CPL_STR_HASH("Nothing")))RET STG::createNativeObject(RenderMode_funcs,(void *)0,EXT->RenderMode_typeID);
+EI(keyStr.equals("Model", CPL_STR_HASH("Model")))RET STG::createNativeObject(RenderMode_funcs,(void *)1,EXT->RenderMode_typeID);
+EI(keyStr.equals("Overlay", CPL_STR_HASH("Overlay")))RET STG::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RenderMode");
-EI(keyStr=="__eq__")
+EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RenderMode___eq__);
-EI(keyStr=="Nothing")RET STG::createNativeObject(RenderMode_funcs,(void *)0,EXT->RenderMode_typeID);
-EI(keyStr=="Model")RET STG::createNativeObject(RenderMode_funcs,(void *)1,EXT->RenderMode_typeID);
-EI(keyStr=="Overlay")RET STG::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
+EI(keyStr.equals("Nothing", CPL_STR_HASH("Nothing")))RET STG::createNativeObject(RenderMode_funcs,(void *)0,EXT->RenderMode_typeID);
+EI(keyStr.equals("Model", CPL_STR_HASH("Model")))RET STG::createNativeObject(RenderMode_funcs,(void *)1,EXT->RenderMode_typeID);
+EI(keyStr.equals("Overlay", CPL_STR_HASH("Overlay")))RET STG::createNativeObject(RenderMode_funcs,(void *)2,EXT->RenderMode_typeID);
 
 else
  CATE(KE,"Unknown enum."));
@@ -15144,44 +15238,44 @@ SV GhostObject_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GhostObject");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GhostObject_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GhostObject_new);
 else
  CATE(KE,"Unknown member for GhostObject."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GhostObject_new);
- EI(keyStr == "getBulletGhostObject")
+ EI(keyStr.equals("getBulletGhostObject", CPL_STR_HASH("getBulletGhostObject")))
 RET CNF(GhostObject_getBulletGhostObject);
- EI(keyStr == "getTransform")
+ EI(keyStr.equals("getTransform", CPL_STR_HASH("getTransform")))
 RET CNF(GhostObject_getTransform);
- EI(keyStr == "setTransform")
+ EI(keyStr.equals("setTransform", CPL_STR_HASH("setTransform")))
 RET CNF(GhostObject_setTransform);
- EI(keyStr == "getWorld")
+ EI(keyStr.equals("getWorld", CPL_STR_HASH("getWorld")))
 RET CNF(GhostObject_getWorld);
- EI(keyStr == "getCollisionMask")
+ EI(keyStr.equals("getCollisionMask", CPL_STR_HASH("getCollisionMask")))
 RET CNF(GhostObject_getCollisionMask);
- EI(keyStr == "setShape")
+ EI(keyStr.equals("setShape", CPL_STR_HASH("setShape")))
 RET CNF(GhostObject_setShape);
- EI(keyStr == "getCollisions")
+ EI(keyStr.equals("getCollisions", CPL_STR_HASH("getCollisions")))
 RET CNF(GhostObject_getCollisions);
- EI(keyStr == "getRigidBodyCollisions")
+ EI(keyStr.equals("getRigidBodyCollisions", CPL_STR_HASH("getRigidBodyCollisions")))
 RET CNF(GhostObject_getRigidBodyCollisions);
- EI(keyStr == "getGhostCollisions")
+ EI(keyStr.equals("getGhostCollisions", CPL_STR_HASH("getGhostCollisions")))
 RET CNF(GhostObject_getGhostCollisions);
- EI(keyStr == "getShape")
+ EI(keyStr.equals("getShape", CPL_STR_HASH("getShape")))
 RET CNF(GhostObject_getShape);
  else
  CATE(KE,"Unknown member for GhostObject."));
@@ -15195,7 +15289,7 @@ void GhostObject_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -15367,17 +15461,17 @@ RET CN;
 void StrStrMap_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
-if(!TS(f_,HashMap<String,String>))
+if(!TS(f_,HashMap<Str,Str>))
 CATE(TE,"StrStrMap::__del__ expects StrStrMap as first argument."));
 
-SCRIPT_DELETE((HashMap<String,String>*)f->data);
+SCRIPT_DELETE((HashMap<Str,Str>*)f->data);
 }SV StrStrMap_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"StrStrMap's constructor" EAOE));
-if(!TS(a[0],HashMap<String,String>))
+if(!TS(a[0],HashMap<Str,Str>))
 CATE(TE,"StrStrMap's constructor expects StrStrMap as first argument."));
-RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<String,String>)),EXT->StrStrMap_typeID);
+RET STG::createNativeObject(StrStrMap_funcs,NEW(TYPE(HashMap<Str,Str>)),EXT->StrStrMap_typeID);
 }
 
 SV StrStrMap_get_member(CTX ctx,const SV&f_,const SV&key)
@@ -15385,52 +15479,52 @@ SV StrStrMap_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("StrStrMap");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(StrStrMap_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(StrStrMap_new);
 else
  CATE(KE,"Unknown member for StrStrMap."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(StrStrMap_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(StrStrMap___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(StrStrMap___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(StrStrMap_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(StrStrMap_set);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(StrStrMap_remove);
- EI(keyStr == "isEntry")
+ EI(keyStr.equals("isEntry", CPL_STR_HASH("isEntry")))
 RET CNF(StrStrMap_isEntry);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(StrStrMap_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(StrStrMap_end);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(StrStrMap_find);
- EI(keyStr == "removeEntry")
+ EI(keyStr.equals("removeEntry", CPL_STR_HASH("removeEntry")))
 RET CNF(StrStrMap_removeEntry);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(StrStrMap_getCount);
- EI(keyStr == "getKey")
+ EI(keyStr.equals("getKey", CPL_STR_HASH("getKey")))
 RET CNF(StrStrMap_getKey);
- EI(keyStr == "getValue")
+ EI(keyStr.equals("getValue", CPL_STR_HASH("getValue")))
 RET CNF(StrStrMap_getValue);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(StrStrMap_clear);
  else
  CATE(KE,"Unknown member for StrStrMap."));
@@ -15444,7 +15538,7 @@ void StrStrMap_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -15459,8 +15553,8 @@ SV StrStrMap_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::begin" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::begin.")));
 RET CN;
@@ -15470,13 +15564,13 @@ SV StrStrMap_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::set" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],String)&&TS(a[2],String))
+if(1&&TS(a[1],Str)&&TS(a[2],Str))
 {
-RET CV( f->set(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<String>::type>::f(ctx,a[2])));
+RET CV( f->set(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Str>::type>::f(ctx,a[2])));
 ;
 }
 CATE(TE,UFOF("StrStrMap::set.")));
@@ -15487,8 +15581,8 @@ SV StrStrMap_end(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::end" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::end.")));
 RET CN;
@@ -15498,19 +15592,19 @@ SV StrStrMap_get(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::get" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-RET CV( f->get(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+RET CV( f->get(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 ;
 }
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-RET CV( f->get(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+RET CV( f->get(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("StrStrMap::get.")));
@@ -15521,8 +15615,8 @@ SV StrStrMap_getValue(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::getValue" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -15538,8 +15632,8 @@ SV StrStrMap_clear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::clear" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15555,13 +15649,13 @@ SV StrStrMap_remove(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::remove" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-( f->remove(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+( f->remove(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("StrStrMap::remove.")));
@@ -15572,8 +15666,8 @@ SV StrStrMap_getKey(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::getKey" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -15589,13 +15683,13 @@ SV StrStrMap_isEntry(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::isEntry" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-RET CV( f->isEntry(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+RET CV( f->isEntry(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("StrStrMap::isEntry.")));
@@ -15606,8 +15700,8 @@ SV StrStrMap_getCount(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::getCount" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -15623,8 +15717,8 @@ SV StrStrMap_removeEntry(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::removeEntry" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::removeEntry.")));
 RET CN;
@@ -15634,13 +15728,13 @@ SV StrStrMap___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::__eq__" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
+if(1&&TS(a[1],const HashMap<Str, Str> &))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const HashMap<Str, Str> &>::type>::f(ctx,a[1]);
 RET CV(*f == v);
 }
 CATE(TE,UFOF("StrStrMap::__eq__.")));
@@ -15651,8 +15745,8 @@ SV StrStrMap_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::find" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StrStrMap::find.")));
 RET CN;
@@ -15662,13 +15756,13 @@ SV StrStrMap___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StrStrMap::__neq__" EAOE));
-HashMap<String,String>*f;
-f=(HashMap<String,String>*)((NO)a[0].p)->data;
+HashMap<Str,Str>*f;
+f=(HashMap<Str,Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
+if(1&&TS(a[1],const HashMap<Str, Str> &))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const HashMap<Str, Str> &>::type>::f(ctx,a[1]);
 RET CV(*f != v);
 }
 CATE(TE,UFOF("StrStrMap::__neq__.")));
@@ -15696,132 +15790,132 @@ SV GfxApi_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxApi");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxApi_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxApi_new);
 else
  CATE(KE,"Unknown member for GfxApi."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxApi_new);
- EI(keyStr == "getDriver")
+ EI(keyStr.equals("getDriver", CPL_STR_HASH("getDriver")))
 RET CNF(GfxApi_getDriver);
- EI(keyStr == "tesselationSupported")
+ EI(keyStr.equals("tesselationSupported", CPL_STR_HASH("tesselationSupported")))
 RET CNF(GfxApi_tesselationSupported);
- EI(keyStr == "createBuffer")
+ EI(keyStr.equals("createBuffer", CPL_STR_HASH("createBuffer")))
 RET CNF(GfxApi_createBuffer);
- EI(keyStr == "createTextureImpl")
+ EI(keyStr.equals("createTextureImpl", CPL_STR_HASH("createTextureImpl")))
 RET CNF(GfxApi_createTextureImpl);
- EI(keyStr == "createFramebuffer")
+ EI(keyStr.equals("createFramebuffer", CPL_STR_HASH("createFramebuffer")))
 RET CNF(GfxApi_createFramebuffer);
- EI(keyStr == "createTimer")
+ EI(keyStr.equals("createTimer", CPL_STR_HASH("createTimer")))
 RET CNF(GfxApi_createTimer);
- EI(keyStr == "setCurrentFramebuffer")
+ EI(keyStr.equals("setCurrentFramebuffer", CPL_STR_HASH("setCurrentFramebuffer")))
 RET CNF(GfxApi_setCurrentFramebuffer);
- EI(keyStr == "clearDepth")
+ EI(keyStr.equals("clearDepth", CPL_STR_HASH("clearDepth")))
 RET CNF(GfxApi_clearDepth);
- EI(keyStr == "clearColor")
+ EI(keyStr.equals("clearColor", CPL_STR_HASH("clearColor")))
 RET CNF(GfxApi_clearColor);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GfxApi_begin);
- EI(keyStr == "draw")
+ EI(keyStr.equals("draw", CPL_STR_HASH("draw")))
 RET CNF(GfxApi_draw);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GfxApi_end);
- EI(keyStr == "uniform")
+ EI(keyStr.equals("uniform", CPL_STR_HASH("uniform")))
 RET CNF(GfxApi_uniform);
- EI(keyStr == "addUBOBinding")
+ EI(keyStr.equals("addUBOBinding", CPL_STR_HASH("addUBOBinding")))
 RET CNF(GfxApi_addUBOBinding);
- EI(keyStr == "addTextureBinding")
+ EI(keyStr.equals("addTextureBinding", CPL_STR_HASH("addTextureBinding")))
 RET CNF(GfxApi_addTextureBinding);
- EI(keyStr == "pushState")
+ EI(keyStr.equals("pushState", CPL_STR_HASH("pushState")))
 RET CNF(GfxApi_pushState);
- EI(keyStr == "popState")
+ EI(keyStr.equals("popState", CPL_STR_HASH("popState")))
 RET CNF(GfxApi_popState);
- EI(keyStr == "resetState")
+ EI(keyStr.equals("resetState", CPL_STR_HASH("resetState")))
 RET CNF(GfxApi_resetState);
- EI(keyStr == "setBlendingEnabled")
+ EI(keyStr.equals("setBlendingEnabled", CPL_STR_HASH("setBlendingEnabled")))
 RET CNF(GfxApi_setBlendingEnabled);
- EI(keyStr == "isBlendingEnabled")
+ EI(keyStr.equals("isBlendingEnabled", CPL_STR_HASH("isBlendingEnabled")))
 RET CNF(GfxApi_isBlendingEnabled);
- EI(keyStr == "setBlendConstantColor")
+ EI(keyStr.equals("setBlendConstantColor", CPL_STR_HASH("setBlendConstantColor")))
 RET CNF(GfxApi_setBlendConstantColor);
- EI(keyStr == "getBlendConstantColor")
+ EI(keyStr.equals("getBlendConstantColor", CPL_STR_HASH("getBlendConstantColor")))
 RET CNF(GfxApi_getBlendConstantColor);
- EI(keyStr == "getBlendConstantColorR")
+ EI(keyStr.equals("getBlendConstantColorR", CPL_STR_HASH("getBlendConstantColorR")))
 RET CNF(GfxApi_getBlendConstantColorR);
- EI(keyStr == "getBlendConstantColorG")
+ EI(keyStr.equals("getBlendConstantColorG", CPL_STR_HASH("getBlendConstantColorG")))
 RET CNF(GfxApi_getBlendConstantColorG);
- EI(keyStr == "getBlendConstantColorB")
+ EI(keyStr.equals("getBlendConstantColorB", CPL_STR_HASH("getBlendConstantColorB")))
 RET CNF(GfxApi_getBlendConstantColorB);
- EI(keyStr == "getBlendConstantColorA")
+ EI(keyStr.equals("getBlendConstantColorA", CPL_STR_HASH("getBlendConstantColorA")))
 RET CNF(GfxApi_getBlendConstantColorA);
- EI(keyStr == "setBlendFactors")
+ EI(keyStr.equals("setBlendFactors", CPL_STR_HASH("setBlendFactors")))
 RET CNF(GfxApi_setBlendFactors);
- EI(keyStr == "getBlendSrcFactorRGB")
+ EI(keyStr.equals("getBlendSrcFactorRGB", CPL_STR_HASH("getBlendSrcFactorRGB")))
 RET CNF(GfxApi_getBlendSrcFactorRGB);
- EI(keyStr == "getBlendSrcFactorAlpha")
+ EI(keyStr.equals("getBlendSrcFactorAlpha", CPL_STR_HASH("getBlendSrcFactorAlpha")))
 RET CNF(GfxApi_getBlendSrcFactorAlpha);
- EI(keyStr == "getBlendDstFactorRGB")
+ EI(keyStr.equals("getBlendDstFactorRGB", CPL_STR_HASH("getBlendDstFactorRGB")))
 RET CNF(GfxApi_getBlendDstFactorRGB);
- EI(keyStr == "getBlendDstFactorAlpha")
+ EI(keyStr.equals("getBlendDstFactorAlpha", CPL_STR_HASH("getBlendDstFactorAlpha")))
 RET CNF(GfxApi_getBlendDstFactorAlpha);
- EI(keyStr == "setBlendMode")
+ EI(keyStr.equals("setBlendMode", CPL_STR_HASH("setBlendMode")))
 RET CNF(GfxApi_setBlendMode);
- EI(keyStr == "getBlendModeRGB")
+ EI(keyStr.equals("getBlendModeRGB", CPL_STR_HASH("getBlendModeRGB")))
 RET CNF(GfxApi_getBlendModeRGB);
- EI(keyStr == "getBlendModeAlpha")
+ EI(keyStr.equals("getBlendModeAlpha", CPL_STR_HASH("getBlendModeAlpha")))
 RET CNF(GfxApi_getBlendModeAlpha);
- EI(keyStr == "setWriteDepth")
+ EI(keyStr.equals("setWriteDepth", CPL_STR_HASH("setWriteDepth")))
 RET CNF(GfxApi_setWriteDepth);
- EI(keyStr == "getWriteDepth")
+ EI(keyStr.equals("getWriteDepth", CPL_STR_HASH("getWriteDepth")))
 RET CNF(GfxApi_getWriteDepth);
- EI(keyStr == "setDepthFunction")
+ EI(keyStr.equals("setDepthFunction", CPL_STR_HASH("setDepthFunction")))
 RET CNF(GfxApi_setDepthFunction);
- EI(keyStr == "getDepthFunction")
+ EI(keyStr.equals("getDepthFunction", CPL_STR_HASH("getDepthFunction")))
 RET CNF(GfxApi_getDepthFunction);
- EI(keyStr == "setCullMode")
+ EI(keyStr.equals("setCullMode", CPL_STR_HASH("setCullMode")))
 RET CNF(GfxApi_setCullMode);
- EI(keyStr == "getCullMode")
+ EI(keyStr.equals("getCullMode", CPL_STR_HASH("getCullMode")))
 RET CNF(GfxApi_getCullMode);
- EI(keyStr == "setViewport")
+ EI(keyStr.equals("setViewport", CPL_STR_HASH("setViewport")))
 RET CNF(GfxApi_setViewport);
- EI(keyStr == "getViewportLeft")
+ EI(keyStr.equals("getViewportLeft", CPL_STR_HASH("getViewportLeft")))
 RET CNF(GfxApi_getViewportLeft);
- EI(keyStr == "getViewportBottom")
+ EI(keyStr.equals("getViewportBottom", CPL_STR_HASH("getViewportBottom")))
 RET CNF(GfxApi_getViewportBottom);
- EI(keyStr == "getViewportWidth")
+ EI(keyStr.equals("getViewportWidth", CPL_STR_HASH("getViewportWidth")))
 RET CNF(GfxApi_getViewportWidth);
- EI(keyStr == "getViewportHeight")
+ EI(keyStr.equals("getViewportHeight", CPL_STR_HASH("getViewportHeight")))
 RET CNF(GfxApi_getViewportHeight);
- EI(keyStr == "setScissor")
+ EI(keyStr.equals("setScissor", CPL_STR_HASH("setScissor")))
 RET CNF(GfxApi_setScissor);
- EI(keyStr == "getScissorLeft")
+ EI(keyStr.equals("getScissorLeft", CPL_STR_HASH("getScissorLeft")))
 RET CNF(GfxApi_getScissorLeft);
- EI(keyStr == "getScissorBottom")
+ EI(keyStr.equals("getScissorBottom", CPL_STR_HASH("getScissorBottom")))
 RET CNF(GfxApi_getScissorBottom);
- EI(keyStr == "getScissorWidth")
+ EI(keyStr.equals("getScissorWidth", CPL_STR_HASH("getScissorWidth")))
 RET CNF(GfxApi_getScissorWidth);
- EI(keyStr == "getScissorHeight")
+ EI(keyStr.equals("getScissorHeight", CPL_STR_HASH("getScissorHeight")))
 RET CNF(GfxApi_getScissorHeight);
- EI(keyStr == "setScissorEnabled")
+ EI(keyStr.equals("setScissorEnabled", CPL_STR_HASH("setScissorEnabled")))
 RET CNF(GfxApi_setScissorEnabled);
- EI(keyStr == "getScissorEnabled")
+ EI(keyStr.equals("getScissorEnabled", CPL_STR_HASH("getScissorEnabled")))
 RET CNF(GfxApi_getScissorEnabled);
- EI(keyStr == "setTessPatchSize")
+ EI(keyStr.equals("setTessPatchSize", CPL_STR_HASH("setTessPatchSize")))
 RET CNF(GfxApi_setTessPatchSize);
- EI(keyStr == "getTessPatchSize")
+ EI(keyStr.equals("getTessPatchSize", CPL_STR_HASH("getTessPatchSize")))
 RET CNF(GfxApi_getTessPatchSize);
  else
  CATE(KE,"Unknown member for GfxApi."));
@@ -15835,7 +15929,7 @@ void GfxApi_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -16863,30 +16957,30 @@ SV GfxCompiledShader_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxCompiledShader");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxCompiledShader_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxCompiledShader_new);
 else
  CATE(KE,"Unknown member for GfxCompiledShader."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxCompiledShader_new);
- EI(keyStr == "getShader")
+ EI(keyStr.equals("getShader", CPL_STR_HASH("getShader")))
 RET CNF(GfxCompiledShader_getShader);
- EI(keyStr == "getGLProgram")
+ EI(keyStr.equals("getGLProgram", CPL_STR_HASH("getGLProgram")))
 RET CNF(GfxCompiledShader_getGLProgram);
- EI(keyStr == "getGLShader")
+ EI(keyStr.equals("getGLShader", CPL_STR_HASH("getGLShader")))
 RET CNF(GfxCompiledShader_getGLShader);
  else
  CATE(KE,"Unknown member for GfxCompiledShader."));
@@ -16900,7 +16994,7 @@ void GfxCompiledShader_set_member(CTX ctx,const SV&f_,const SV&key,const SV&valu
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -16989,34 +17083,34 @@ SV ScrollBar_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ScrollBar");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(ScrollBar_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(ScrollBar_new);
 else
  CATE(KE,"Unknown member for ScrollBar."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ScrollBar_new);
- EI(keyStr == "getValue")
+ EI(keyStr.equals("getValue", CPL_STR_HASH("getValue")))
 RET CNF(ScrollBar_getValue);
- EI(keyStr == "setValue")
+ EI(keyStr.equals("setValue", CPL_STR_HASH("setValue")))
 RET CNF(ScrollBar_setValue);
- EI(keyStr=="center")
+ EI(keyStr.equals("center", CPL_STR_HASH("center")))
 {
 ScrollBar*obj=(ScrollBar*)f->data;
 RET CV(obj->center);
-} EI(keyStr=="barSize")
+} EI(keyStr.equals("barSize", CPL_STR_HASH("barSize")))
 {
 ScrollBar*obj=(ScrollBar*)f->data;
 RET CV(obj->barSize);
@@ -17032,16 +17126,16 @@ void ScrollBar_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="center")
+if(0) {} EI(keyStr.equals("center", CPL_STR_HASH("center")))
 {
 ScrollBar*obj=(ScrollBar*)f->data;
 obj->center=val_to_c<decltype(obj->center)>::f(ctx,value);
-} EI(keyStr=="barSize")
+} EI(keyStr.equals("barSize", CPL_STR_HASH("barSize")))
 {
 ScrollBar*obj=(ScrollBar*)f->data;
 obj->barSize=val_to_c<decltype(obj->barSize)>::f(ctx,value);
@@ -17122,54 +17216,54 @@ SV GhostObjList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GhostObjList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GhostObjList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GhostObjList_new);
 else
  CATE(KE,"Unknown member for GhostObjList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GhostObjList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GhostObjList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(GhostObjList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(GhostObjList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(GhostObjList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(GhostObjList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(GhostObjList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(GhostObjList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(GhostObjList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(GhostObjList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(GhostObjList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(GhostObjList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GhostObjList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(GhostObjList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GhostObjList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GhostObjList_end);
  else
  CATE(KE,"Unknown member for GhostObjList."));
@@ -17183,7 +17277,7 @@ void GhostObjList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -17464,36 +17558,36 @@ SV GPUTimer_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GPUTimer");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GPUTimer_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GPUTimer_new);
 else
  CATE(KE,"Unknown member for GPUTimer."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GPUTimer_new);
- EI(keyStr == "resultAvailable")
+ EI(keyStr.equals("resultAvailable", CPL_STR_HASH("resultAvailable")))
 RET CNF(GPUTimer_resultAvailable);
- EI(keyStr == "getResult")
+ EI(keyStr.equals("getResult", CPL_STR_HASH("getResult")))
 RET CNF(GPUTimer_getResult);
- EI(keyStr == "getResultResolution")
+ EI(keyStr.equals("getResultResolution", CPL_STR_HASH("getResultResolution")))
 RET CNF(GPUTimer_getResultResolution);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GPUTimer_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GPUTimer_end);
- EI(keyStr == "swap")
+ EI(keyStr.equals("swap", CPL_STR_HASH("swap")))
 RET CNF(GPUTimer_swap);
  else
  CATE(KE,"Unknown member for GPUTimer."));
@@ -17507,7 +17601,7 @@ void GPUTimer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -17640,106 +17734,106 @@ SV RigidBody_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RigidBody");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RigidBody_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RigidBody_new);
 else
  CATE(KE,"Unknown member for RigidBody."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RigidBody_new);
- EI(keyStr == "getBulletRigidBody")
+ EI(keyStr.equals("getBulletRigidBody", CPL_STR_HASH("getBulletRigidBody")))
 RET CNF(RigidBody_getBulletRigidBody);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(RigidBody_getType);
- EI(keyStr == "getGravity")
+ EI(keyStr.equals("getGravity", CPL_STR_HASH("getGravity")))
 RET CNF(RigidBody_getGravity);
- EI(keyStr == "setGravity")
+ EI(keyStr.equals("setGravity", CPL_STR_HASH("setGravity")))
 RET CNF(RigidBody_setGravity);
- EI(keyStr == "setLinearDamping")
+ EI(keyStr.equals("setLinearDamping", CPL_STR_HASH("setLinearDamping")))
 RET CNF(RigidBody_setLinearDamping);
- EI(keyStr == "getLinearDamping")
+ EI(keyStr.equals("getLinearDamping", CPL_STR_HASH("getLinearDamping")))
 RET CNF(RigidBody_getLinearDamping);
- EI(keyStr == "setAngularDamping")
+ EI(keyStr.equals("setAngularDamping", CPL_STR_HASH("setAngularDamping")))
 RET CNF(RigidBody_setAngularDamping);
- EI(keyStr == "getAngularDamping")
+ EI(keyStr.equals("getAngularDamping", CPL_STR_HASH("getAngularDamping")))
 RET CNF(RigidBody_getAngularDamping);
- EI(keyStr == "setMass")
+ EI(keyStr.equals("setMass", CPL_STR_HASH("setMass")))
 RET CNF(RigidBody_setMass);
- EI(keyStr == "getMass")
+ EI(keyStr.equals("getMass", CPL_STR_HASH("getMass")))
 RET CNF(RigidBody_getMass);
- EI(keyStr == "getLinearSleepingThreshold")
+ EI(keyStr.equals("getLinearSleepingThreshold", CPL_STR_HASH("getLinearSleepingThreshold")))
 RET CNF(RigidBody_getLinearSleepingThreshold);
- EI(keyStr == "setLinearSleepingThreshold")
+ EI(keyStr.equals("setLinearSleepingThreshold", CPL_STR_HASH("setLinearSleepingThreshold")))
 RET CNF(RigidBody_setLinearSleepingThreshold);
- EI(keyStr == "getAngularSleepingThreshold")
+ EI(keyStr.equals("getAngularSleepingThreshold", CPL_STR_HASH("getAngularSleepingThreshold")))
 RET CNF(RigidBody_getAngularSleepingThreshold);
- EI(keyStr == "setAngularSleepingThreshold")
+ EI(keyStr.equals("setAngularSleepingThreshold", CPL_STR_HASH("setAngularSleepingThreshold")))
 RET CNF(RigidBody_setAngularSleepingThreshold);
- EI(keyStr == "applyTorque")
+ EI(keyStr.equals("applyTorque", CPL_STR_HASH("applyTorque")))
 RET CNF(RigidBody_applyTorque);
- EI(keyStr == "applyForce")
+ EI(keyStr.equals("applyForce", CPL_STR_HASH("applyForce")))
 RET CNF(RigidBody_applyForce);
- EI(keyStr == "applyCentralImpulse")
+ EI(keyStr.equals("applyCentralImpulse", CPL_STR_HASH("applyCentralImpulse")))
 RET CNF(RigidBody_applyCentralImpulse);
- EI(keyStr == "applyTorqueImpulse")
+ EI(keyStr.equals("applyTorqueImpulse", CPL_STR_HASH("applyTorqueImpulse")))
 RET CNF(RigidBody_applyTorqueImpulse);
- EI(keyStr == "applyImpulse")
+ EI(keyStr.equals("applyImpulse", CPL_STR_HASH("applyImpulse")))
 RET CNF(RigidBody_applyImpulse);
- EI(keyStr == "clearForces")
+ EI(keyStr.equals("clearForces", CPL_STR_HASH("clearForces")))
 RET CNF(RigidBody_clearForces);
- EI(keyStr == "getLinearVelocity")
+ EI(keyStr.equals("getLinearVelocity", CPL_STR_HASH("getLinearVelocity")))
 RET CNF(RigidBody_getLinearVelocity);
- EI(keyStr == "setLinearVelocity")
+ EI(keyStr.equals("setLinearVelocity", CPL_STR_HASH("setLinearVelocity")))
 RET CNF(RigidBody_setLinearVelocity);
- EI(keyStr == "getAngularVelocity")
+ EI(keyStr.equals("getAngularVelocity", CPL_STR_HASH("getAngularVelocity")))
 RET CNF(RigidBody_getAngularVelocity);
- EI(keyStr == "setAngularVelocity")
+ EI(keyStr.equals("setAngularVelocity", CPL_STR_HASH("setAngularVelocity")))
 RET CNF(RigidBody_setAngularVelocity);
- EI(keyStr == "getVelocityOfPoint")
+ EI(keyStr.equals("getVelocityOfPoint", CPL_STR_HASH("getVelocityOfPoint")))
 RET CNF(RigidBody_getVelocityOfPoint);
- EI(keyStr == "getRestitution")
+ EI(keyStr.equals("getRestitution", CPL_STR_HASH("getRestitution")))
 RET CNF(RigidBody_getRestitution);
- EI(keyStr == "setRestitution")
+ EI(keyStr.equals("setRestitution", CPL_STR_HASH("setRestitution")))
 RET CNF(RigidBody_setRestitution);
- EI(keyStr == "getFriction")
+ EI(keyStr.equals("getFriction", CPL_STR_HASH("getFriction")))
 RET CNF(RigidBody_getFriction);
- EI(keyStr == "setFriction")
+ EI(keyStr.equals("setFriction", CPL_STR_HASH("setFriction")))
 RET CNF(RigidBody_setFriction);
- EI(keyStr == "getRollingFriction")
+ EI(keyStr.equals("getRollingFriction", CPL_STR_HASH("getRollingFriction")))
 RET CNF(RigidBody_getRollingFriction);
- EI(keyStr == "setRollingFriction")
+ EI(keyStr.equals("setRollingFriction", CPL_STR_HASH("setRollingFriction")))
 RET CNF(RigidBody_setRollingFriction);
- EI(keyStr == "getLinearFactor")
+ EI(keyStr.equals("getLinearFactor", CPL_STR_HASH("getLinearFactor")))
 RET CNF(RigidBody_getLinearFactor);
- EI(keyStr == "setLinearFactor")
+ EI(keyStr.equals("setLinearFactor", CPL_STR_HASH("setLinearFactor")))
 RET CNF(RigidBody_setLinearFactor);
- EI(keyStr == "getAngularFactor")
+ EI(keyStr.equals("getAngularFactor", CPL_STR_HASH("getAngularFactor")))
 RET CNF(RigidBody_getAngularFactor);
- EI(keyStr == "setAngularFactor")
+ EI(keyStr.equals("setAngularFactor", CPL_STR_HASH("setAngularFactor")))
 RET CNF(RigidBody_setAngularFactor);
- EI(keyStr == "setTransform")
+ EI(keyStr.equals("setTransform", CPL_STR_HASH("setTransform")))
 RET CNF(RigidBody_setTransform);
- EI(keyStr == "getWorld")
+ EI(keyStr.equals("getWorld", CPL_STR_HASH("getWorld")))
 RET CNF(RigidBody_getWorld);
- EI(keyStr == "getCollisionMask")
+ EI(keyStr.equals("getCollisionMask", CPL_STR_HASH("getCollisionMask")))
 RET CNF(RigidBody_getCollisionMask);
- EI(keyStr == "setShape")
+ EI(keyStr.equals("setShape", CPL_STR_HASH("setShape")))
 RET CNF(RigidBody_setShape);
- EI(keyStr == "getShape")
+ EI(keyStr.equals("getShape", CPL_STR_HASH("getShape")))
 RET CNF(RigidBody_getShape);
- EI(keyStr == "getEntity")
+ EI(keyStr.equals("getEntity", CPL_STR_HASH("getEntity")))
 RET CNF(RigidBody_getEntity);
  else
  CATE(KE,"Unknown member for RigidBody."));
@@ -17753,7 +17847,7 @@ void RigidBody_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -18507,74 +18601,74 @@ SV UInt2_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("UInt2");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(UInt2_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(UInt2_new);
 else
  CATE(KE,"Unknown member for UInt2."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(UInt2_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(UInt2___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(UInt2___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(UInt2___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(UInt2___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(UInt2___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(UInt2___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(UInt2___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(UInt2___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(UInt2___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(UInt2___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(UInt2_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(UInt2_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(UInt2_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(UInt2_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(UInt2_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(UInt2_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(UInt2_normalize);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(UInt2_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(UInt2_setXY);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(UInt2_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(UInt2_setYX);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(UInt2_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
 RET CV(obj->y);
@@ -18590,16 +18684,16 @@ void UInt2_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T2<uint32_t>*obj=(T2<uint32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
@@ -19050,54 +19144,54 @@ SV LightList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("LightList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(LightList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(LightList_new);
 else
  CATE(KE,"Unknown member for LightList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(LightList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(LightList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(LightList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(LightList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(LightList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(LightList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(LightList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(LightList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(LightList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(LightList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(LightList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(LightList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(LightList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(LightList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(LightList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(LightList_end);
  else
  CATE(KE,"Unknown member for LightList."));
@@ -19111,7 +19205,7 @@ void LightList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19392,114 +19486,114 @@ SV RenderStats_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RenderStats");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RenderStats_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RenderStats_new);
 else
  CATE(KE,"Unknown member for RenderStats."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RenderStats_new);
- EI(keyStr=="gBufferTiming")
+ EI(keyStr.equals("gBufferTiming", CPL_STR_HASH("gBufferTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->gBufferTiming);
-} EI(keyStr=="ssaoTiming")
+} EI(keyStr.equals("ssaoTiming", CPL_STR_HASH("ssaoTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->ssaoTiming);
-} EI(keyStr=="ssaoBlurXTiming")
+} EI(keyStr.equals("ssaoBlurXTiming", CPL_STR_HASH("ssaoBlurXTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->ssaoBlurXTiming);
-} EI(keyStr=="ssaoBlurYTiming")
+} EI(keyStr.equals("ssaoBlurYTiming", CPL_STR_HASH("ssaoBlurYTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->ssaoBlurYTiming);
-} EI(keyStr=="deferredShadingTiming")
+} EI(keyStr.equals("deferredShadingTiming", CPL_STR_HASH("deferredShadingTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->deferredShadingTiming);
-} EI(keyStr=="forwardTiming")
+} EI(keyStr.equals("forwardTiming", CPL_STR_HASH("forwardTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->forwardTiming);
-} EI(keyStr=="gammaCorrectionTiming")
+} EI(keyStr.equals("gammaCorrectionTiming", CPL_STR_HASH("gammaCorrectionTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->gammaCorrectionTiming);
-} EI(keyStr=="fxaaTiming")
+} EI(keyStr.equals("fxaaTiming", CPL_STR_HASH("fxaaTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->fxaaTiming);
-} EI(keyStr=="colorModifierTiming")
+} EI(keyStr.equals("colorModifierTiming", CPL_STR_HASH("colorModifierTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->colorModifierTiming);
-} EI(keyStr=="bloomTiming")
+} EI(keyStr.equals("bloomTiming", CPL_STR_HASH("bloomTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->bloomTiming);
-} EI(keyStr=="shadowmapTiming")
+} EI(keyStr.equals("shadowmapTiming", CPL_STR_HASH("shadowmapTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->shadowmapTiming);
-} EI(keyStr=="overlayTiming")
+} EI(keyStr.equals("overlayTiming", CPL_STR_HASH("overlayTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->overlayTiming);
-} EI(keyStr=="debugDrawTiming")
+} EI(keyStr.equals("debugDrawTiming", CPL_STR_HASH("debugDrawTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->debugDrawTiming);
-} EI(keyStr=="shadowmapCPUTiming")
+} EI(keyStr.equals("shadowmapCPUTiming", CPL_STR_HASH("shadowmapCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->shadowmapCPUTiming);
-} EI(keyStr=="gbufferCPUTiming")
+} EI(keyStr.equals("gbufferCPUTiming", CPL_STR_HASH("gbufferCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->gbufferCPUTiming);
-} EI(keyStr=="forwardCPUTiming")
+} EI(keyStr.equals("forwardCPUTiming", CPL_STR_HASH("forwardCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->forwardCPUTiming);
-} EI(keyStr=="overlayCPUTiming")
+} EI(keyStr.equals("overlayCPUTiming", CPL_STR_HASH("overlayCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->overlayCPUTiming);
-} EI(keyStr=="batchingCPUTiming")
+} EI(keyStr.equals("batchingCPUTiming", CPL_STR_HASH("batchingCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->batchingCPUTiming);
-} EI(keyStr=="animationCPUTiming")
+} EI(keyStr.equals("animationCPUTiming", CPL_STR_HASH("animationCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->animationCPUTiming);
-} EI(keyStr=="deferredShadingCPUTiming")
+} EI(keyStr.equals("deferredShadingCPUTiming", CPL_STR_HASH("deferredShadingCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->deferredShadingCPUTiming);
-} EI(keyStr=="updateStatsCPUTiming")
+} EI(keyStr.equals("updateStatsCPUTiming", CPL_STR_HASH("updateStatsCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->updateStatsCPUTiming);
-} EI(keyStr=="miscPostEffectsCPUTiming")
+} EI(keyStr.equals("miscPostEffectsCPUTiming", CPL_STR_HASH("miscPostEffectsCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->miscPostEffectsCPUTiming);
-} EI(keyStr=="numDrawCalls")
+} EI(keyStr.equals("numDrawCalls", CPL_STR_HASH("numDrawCalls")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 RET CV(obj->numDrawCalls);
@@ -19515,100 +19609,100 @@ void RenderStats_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="gBufferTiming")
+if(0) {} EI(keyStr.equals("gBufferTiming", CPL_STR_HASH("gBufferTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->gBufferTiming=val_to_c<decltype(obj->gBufferTiming)>::f(ctx,value);
-} EI(keyStr=="ssaoTiming")
+} EI(keyStr.equals("ssaoTiming", CPL_STR_HASH("ssaoTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->ssaoTiming=val_to_c<decltype(obj->ssaoTiming)>::f(ctx,value);
-} EI(keyStr=="ssaoBlurXTiming")
+} EI(keyStr.equals("ssaoBlurXTiming", CPL_STR_HASH("ssaoBlurXTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->ssaoBlurXTiming=val_to_c<decltype(obj->ssaoBlurXTiming)>::f(ctx,value);
-} EI(keyStr=="ssaoBlurYTiming")
+} EI(keyStr.equals("ssaoBlurYTiming", CPL_STR_HASH("ssaoBlurYTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->ssaoBlurYTiming=val_to_c<decltype(obj->ssaoBlurYTiming)>::f(ctx,value);
-} EI(keyStr=="deferredShadingTiming")
+} EI(keyStr.equals("deferredShadingTiming", CPL_STR_HASH("deferredShadingTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->deferredShadingTiming=val_to_c<decltype(obj->deferredShadingTiming)>::f(ctx,value);
-} EI(keyStr=="forwardTiming")
+} EI(keyStr.equals("forwardTiming", CPL_STR_HASH("forwardTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->forwardTiming=val_to_c<decltype(obj->forwardTiming)>::f(ctx,value);
-} EI(keyStr=="gammaCorrectionTiming")
+} EI(keyStr.equals("gammaCorrectionTiming", CPL_STR_HASH("gammaCorrectionTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->gammaCorrectionTiming=val_to_c<decltype(obj->gammaCorrectionTiming)>::f(ctx,value);
-} EI(keyStr=="fxaaTiming")
+} EI(keyStr.equals("fxaaTiming", CPL_STR_HASH("fxaaTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->fxaaTiming=val_to_c<decltype(obj->fxaaTiming)>::f(ctx,value);
-} EI(keyStr=="colorModifierTiming")
+} EI(keyStr.equals("colorModifierTiming", CPL_STR_HASH("colorModifierTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->colorModifierTiming=val_to_c<decltype(obj->colorModifierTiming)>::f(ctx,value);
-} EI(keyStr=="bloomTiming")
+} EI(keyStr.equals("bloomTiming", CPL_STR_HASH("bloomTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->bloomTiming=val_to_c<decltype(obj->bloomTiming)>::f(ctx,value);
-} EI(keyStr=="shadowmapTiming")
+} EI(keyStr.equals("shadowmapTiming", CPL_STR_HASH("shadowmapTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->shadowmapTiming=val_to_c<decltype(obj->shadowmapTiming)>::f(ctx,value);
-} EI(keyStr=="overlayTiming")
+} EI(keyStr.equals("overlayTiming", CPL_STR_HASH("overlayTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->overlayTiming=val_to_c<decltype(obj->overlayTiming)>::f(ctx,value);
-} EI(keyStr=="debugDrawTiming")
+} EI(keyStr.equals("debugDrawTiming", CPL_STR_HASH("debugDrawTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->debugDrawTiming=val_to_c<decltype(obj->debugDrawTiming)>::f(ctx,value);
-} EI(keyStr=="shadowmapCPUTiming")
+} EI(keyStr.equals("shadowmapCPUTiming", CPL_STR_HASH("shadowmapCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->shadowmapCPUTiming=val_to_c<decltype(obj->shadowmapCPUTiming)>::f(ctx,value);
-} EI(keyStr=="gbufferCPUTiming")
+} EI(keyStr.equals("gbufferCPUTiming", CPL_STR_HASH("gbufferCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->gbufferCPUTiming=val_to_c<decltype(obj->gbufferCPUTiming)>::f(ctx,value);
-} EI(keyStr=="forwardCPUTiming")
+} EI(keyStr.equals("forwardCPUTiming", CPL_STR_HASH("forwardCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->forwardCPUTiming=val_to_c<decltype(obj->forwardCPUTiming)>::f(ctx,value);
-} EI(keyStr=="overlayCPUTiming")
+} EI(keyStr.equals("overlayCPUTiming", CPL_STR_HASH("overlayCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->overlayCPUTiming=val_to_c<decltype(obj->overlayCPUTiming)>::f(ctx,value);
-} EI(keyStr=="batchingCPUTiming")
+} EI(keyStr.equals("batchingCPUTiming", CPL_STR_HASH("batchingCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->batchingCPUTiming=val_to_c<decltype(obj->batchingCPUTiming)>::f(ctx,value);
-} EI(keyStr=="animationCPUTiming")
+} EI(keyStr.equals("animationCPUTiming", CPL_STR_HASH("animationCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->animationCPUTiming=val_to_c<decltype(obj->animationCPUTiming)>::f(ctx,value);
-} EI(keyStr=="deferredShadingCPUTiming")
+} EI(keyStr.equals("deferredShadingCPUTiming", CPL_STR_HASH("deferredShadingCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->deferredShadingCPUTiming=val_to_c<decltype(obj->deferredShadingCPUTiming)>::f(ctx,value);
-} EI(keyStr=="updateStatsCPUTiming")
+} EI(keyStr.equals("updateStatsCPUTiming", CPL_STR_HASH("updateStatsCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->updateStatsCPUTiming=val_to_c<decltype(obj->updateStatsCPUTiming)>::f(ctx,value);
-} EI(keyStr=="miscPostEffectsCPUTiming")
+} EI(keyStr.equals("miscPostEffectsCPUTiming", CPL_STR_HASH("miscPostEffectsCPUTiming")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->miscPostEffectsCPUTiming=val_to_c<decltype(obj->miscPostEffectsCPUTiming)>::f(ctx,value);
-} EI(keyStr=="numDrawCalls")
+} EI(keyStr.equals("numDrawCalls", CPL_STR_HASH("numDrawCalls")))
 {
 RenderStats*obj=(RenderStats*)f->data;
 obj->numDrawCalls=val_to_c<decltype(obj->numDrawCalls)>::f(ctx,value);
@@ -19645,32 +19739,32 @@ SV Filesystem_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Filesystem");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Filesystem_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Filesystem_new);
 else
  CATE(KE,"Unknown member for Filesystem."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Filesystem_new);
- EI(keyStr == "pushSearchPaths")
+ EI(keyStr.equals("pushSearchPaths", CPL_STR_HASH("pushSearchPaths")))
 RET CNF(Filesystem_pushSearchPaths);
- EI(keyStr == "popSearchPaths")
+ EI(keyStr.equals("popSearchPaths", CPL_STR_HASH("popSearchPaths")))
 RET CNF(Filesystem_popSearchPaths);
- EI(keyStr == "addSearchPath")
+ EI(keyStr.equals("addSearchPath", CPL_STR_HASH("addSearchPath")))
 RET CNF(Filesystem_addSearchPath);
- EI(keyStr == "getAbsolutePath")
+ EI(keyStr.equals("getAbsolutePath", CPL_STR_HASH("getAbsolutePath")))
 RET CNF(Filesystem_getAbsolutePath);
  else
  CATE(KE,"Unknown member for Filesystem."));
@@ -19684,7 +19778,7 @@ void Filesystem_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19703,9 +19797,9 @@ Filesystem*f;
 f=(Filesystem*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->addSearchPath(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->addSearchPath(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Filesystem::addSearchPath.")));
@@ -19790,72 +19884,72 @@ SV ResourceManager_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ResourceManager");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(ResourceManager_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(ResourceManager_new);
 else
  CATE(KE,"Unknown member for ResourceManager."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ResourceManager_new);
- EI(keyStr == "loadShader")
+ EI(keyStr.equals("loadShader", CPL_STR_HASH("loadShader")))
 RET CNF(ResourceManager_loadShader);
- EI(keyStr == "loadTexture")
+ EI(keyStr.equals("loadTexture", CPL_STR_HASH("loadTexture")))
 RET CNF(ResourceManager_loadTexture);
- EI(keyStr == "loadMesh")
+ EI(keyStr.equals("loadMesh", CPL_STR_HASH("loadMesh")))
 RET CNF(ResourceManager_loadMesh);
- EI(keyStr == "loadMaterial")
+ EI(keyStr.equals("loadMaterial", CPL_STR_HASH("loadMaterial")))
 RET CNF(ResourceManager_loadMaterial);
- EI(keyStr == "loadModel")
+ EI(keyStr.equals("loadModel", CPL_STR_HASH("loadModel")))
 RET CNF(ResourceManager_loadModel);
- EI(keyStr == "loadScene")
+ EI(keyStr.equals("loadScene", CPL_STR_HASH("loadScene")))
 RET CNF(ResourceManager_loadScene);
- EI(keyStr == "loadScript")
+ EI(keyStr.equals("loadScript", CPL_STR_HASH("loadScript")))
 RET CNF(ResourceManager_loadScript);
- EI(keyStr == "loadPhysicsShape")
+ EI(keyStr.equals("loadPhysicsShape", CPL_STR_HASH("loadPhysicsShape")))
 RET CNF(ResourceManager_loadPhysicsShape);
- EI(keyStr == "loadAudio")
+ EI(keyStr.equals("loadAudio", CPL_STR_HASH("loadAudio")))
 RET CNF(ResourceManager_loadAudio);
- EI(keyStr == "loadFont")
+ EI(keyStr.equals("loadFont", CPL_STR_HASH("loadFont")))
 RET CNF(ResourceManager_loadFont);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(ResourceManager_load);
- EI(keyStr == "loadShaderAndCopy")
+ EI(keyStr.equals("loadShaderAndCopy", CPL_STR_HASH("loadShaderAndCopy")))
 RET CNF(ResourceManager_loadShaderAndCopy);
- EI(keyStr == "loadTextureAndCopy")
+ EI(keyStr.equals("loadTextureAndCopy", CPL_STR_HASH("loadTextureAndCopy")))
 RET CNF(ResourceManager_loadTextureAndCopy);
- EI(keyStr == "loadMeshAndCopy")
+ EI(keyStr.equals("loadMeshAndCopy", CPL_STR_HASH("loadMeshAndCopy")))
 RET CNF(ResourceManager_loadMeshAndCopy);
- EI(keyStr == "loadMaterialAndCopy")
+ EI(keyStr.equals("loadMaterialAndCopy", CPL_STR_HASH("loadMaterialAndCopy")))
 RET CNF(ResourceManager_loadMaterialAndCopy);
- EI(keyStr == "loadModelAndCopy")
+ EI(keyStr.equals("loadModelAndCopy", CPL_STR_HASH("loadModelAndCopy")))
 RET CNF(ResourceManager_loadModelAndCopy);
- EI(keyStr == "loadSceneAndCopy")
+ EI(keyStr.equals("loadSceneAndCopy", CPL_STR_HASH("loadSceneAndCopy")))
 RET CNF(ResourceManager_loadSceneAndCopy);
- EI(keyStr == "loadScriptAndCopy")
+ EI(keyStr.equals("loadScriptAndCopy", CPL_STR_HASH("loadScriptAndCopy")))
 RET CNF(ResourceManager_loadScriptAndCopy);
- EI(keyStr == "loadPhysicsShapeAndCopy")
+ EI(keyStr.equals("loadPhysicsShapeAndCopy", CPL_STR_HASH("loadPhysicsShapeAndCopy")))
 RET CNF(ResourceManager_loadPhysicsShapeAndCopy);
- EI(keyStr == "loadAudioAndCopy")
+ EI(keyStr.equals("loadAudioAndCopy", CPL_STR_HASH("loadAudioAndCopy")))
 RET CNF(ResourceManager_loadAudioAndCopy);
- EI(keyStr == "loadFontAndCopy")
+ EI(keyStr.equals("loadFontAndCopy", CPL_STR_HASH("loadFontAndCopy")))
 RET CNF(ResourceManager_loadFontAndCopy);
- EI(keyStr == "loadAndCopy")
+ EI(keyStr.equals("loadAndCopy", CPL_STR_HASH("loadAndCopy")))
 RET CNF(ResourceManager_loadAndCopy);
- EI(keyStr == "isResource")
+ EI(keyStr.equals("isResource", CPL_STR_HASH("isResource")))
 RET CNF(ResourceManager_isResource);
- EI(keyStr == "cleanupResources")
+ EI(keyStr.equals("cleanupResources", CPL_STR_HASH("cleanupResources")))
 RET CNF(ResourceManager_cleanupResources);
  else
  CATE(KE,"Unknown member for ResourceManager."));
@@ -19869,7 +19963,7 @@ void ResourceManager_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -19888,9 +19982,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
+if(1&&TS(a[1],ResType)&&TS(a[2],const Str &))
 {
-Resource * r=f->load(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2]));
+Resource * r=f->load(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -19906,9 +20000,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-PhysicsShape * r=f->loadPhysicsShape(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+PhysicsShape * r=f->loadPhysicsShape(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -19924,9 +20018,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-Font * r=f->loadFont(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+Font * r=f->loadFont(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -19942,9 +20036,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-PhysicsShape * r=f->loadPhysicsShapeAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+PhysicsShape * r=f->loadPhysicsShapeAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -19960,9 +20054,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
+if(1&&TS(a[1],ResType)&&TS(a[2],const Str &))
 {
-Resource * r=f->loadAndCopy(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2]));
+Resource * r=f->loadAndCopy(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -19978,9 +20072,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxModel * r=f->loadModel(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxModel * r=f->loadModel(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -19996,9 +20090,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxMesh * r=f->loadMeshAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxMesh * r=f->loadMeshAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20031,9 +20125,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-Scene * r=f->loadScene(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+Scene * r=f->loadScene(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20049,9 +20143,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-Audio * r=f->loadAudioAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+Audio * r=f->loadAudioAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20067,9 +20161,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-Audio * r=f->loadAudio(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+Audio * r=f->loadAudio(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20085,9 +20179,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxShader * r=f->loadShader(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxShader * r=f->loadShader(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20103,9 +20197,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxTexture * r=f->loadTexture(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxTexture * r=f->loadTexture(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20121,9 +20215,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxMaterial * r=f->loadMaterialAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxMaterial * r=f->loadMaterialAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20139,9 +20233,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxMaterial * r=f->loadMaterial(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxMaterial * r=f->loadMaterial(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20168,9 +20262,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxShader * r=f->loadShaderAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxShader * r=f->loadShaderAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20197,9 +20291,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-Font * r=f->loadFontAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+Font * r=f->loadFontAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20215,9 +20309,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-Scene * r=f->loadSceneAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+Scene * r=f->loadSceneAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20233,9 +20327,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxMesh * r=f->loadMesh(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxMesh * r=f->loadMesh(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20251,9 +20345,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxModel * r=f->loadModelAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxModel * r=f->loadModelAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20269,9 +20363,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],ResType)&&TS(a[2],const String &))
+if(1&&TS(a[1],ResType)&&TS(a[2],const Str &))
 {
-RET CV( f->isResource(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
+RET CV( f->isResource(val_to_c<std::remove_reference<ResType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2])));
 ;
 }
 CATE(TE,UFOF("ResourceManager::isResource.")));
@@ -20286,9 +20380,9 @@ ResourceManager*f;
 f=(ResourceManager*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-GfxTexture * r=f->loadTextureAndCopy(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]));
+GfxTexture * r=f->loadTextureAndCopy(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]));
 setAllocInfo((void*)r,AllocInfo(true,false));
 RET CV(r);
 }
@@ -20316,82 +20410,82 @@ SV Entity_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Entity");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Entity_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Entity_new);
 else
  CATE(KE,"Unknown member for Entity."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Entity_new);
- EI(keyStr == "addScript")
+ EI(keyStr.equals("addScript", CPL_STR_HASH("addScript")))
 RET CNF(Entity_addScript);
- EI(keyStr == "removeScript")
+ EI(keyStr.equals("removeScript", CPL_STR_HASH("removeScript")))
 RET CNF(Entity_removeScript);
- EI(keyStr == "getScripts")
+ EI(keyStr.equals("getScripts", CPL_STR_HASH("getScripts")))
 RET CNF(Entity_getScripts);
- EI(keyStr == "findScriptInstance")
+ EI(keyStr.equals("findScriptInstance", CPL_STR_HASH("findScriptInstance")))
 RET CNF(Entity_findScriptInstance);
- EI(keyStr == "findScriptInstanceObj")
+ EI(keyStr.equals("findScriptInstanceObj", CPL_STR_HASH("findScriptInstanceObj")))
 RET CNF(Entity_findScriptInstanceObj);
- EI(keyStr == "addRigidBody")
+ EI(keyStr.equals("addRigidBody", CPL_STR_HASH("addRigidBody")))
 RET CNF(Entity_addRigidBody);
- EI(keyStr == "getRigidBody")
+ EI(keyStr.equals("getRigidBody", CPL_STR_HASH("getRigidBody")))
 RET CNF(Entity_getRigidBody);
- EI(keyStr == "removeRigidBody")
+ EI(keyStr.equals("removeRigidBody", CPL_STR_HASH("removeRigidBody")))
 RET CNF(Entity_removeRigidBody);
- EI(keyStr == "hasRigidBody")
+ EI(keyStr.equals("hasRigidBody", CPL_STR_HASH("hasRigidBody")))
 RET CNF(Entity_hasRigidBody);
- EI(keyStr == "addModel")
+ EI(keyStr.equals("addModel", CPL_STR_HASH("addModel")))
 RET CNF(Entity_addModel);
- EI(keyStr == "addOverlay")
+ EI(keyStr.equals("addOverlay", CPL_STR_HASH("addOverlay")))
 RET CNF(Entity_addOverlay);
- EI(keyStr == "removeRenderComponent")
+ EI(keyStr.equals("removeRenderComponent", CPL_STR_HASH("removeRenderComponent")))
 RET CNF(Entity_removeRenderComponent);
- EI(keyStr == "getRenderComponent")
+ EI(keyStr.equals("getRenderComponent", CPL_STR_HASH("getRenderComponent")))
 RET CNF(Entity_getRenderComponent);
- EI(keyStr == "hasRenderComponent")
+ EI(keyStr.equals("hasRenderComponent", CPL_STR_HASH("hasRenderComponent")))
 RET CNF(Entity_hasRenderComponent);
- EI(keyStr == "getScene")
+ EI(keyStr.equals("getScene", CPL_STR_HASH("getScene")))
 RET CNF(Entity_getScene);
- EI(keyStr == "createEntity")
+ EI(keyStr.equals("createEntity", CPL_STR_HASH("createEntity")))
 RET CNF(Entity_createEntity);
- EI(keyStr == "removeEntity")
+ EI(keyStr.equals("removeEntity", CPL_STR_HASH("removeEntity")))
 RET CNF(Entity_removeEntity);
- EI(keyStr == "findEntity")
+ EI(keyStr.equals("findEntity", CPL_STR_HASH("findEntity")))
 RET CNF(Entity_findEntity);
- EI(keyStr == "getEntities")
+ EI(keyStr.equals("getEntities", CPL_STR_HASH("getEntities")))
 RET CNF(Entity_getEntities);
- EI(keyStr == "getParent")
+ EI(keyStr.equals("getParent", CPL_STR_HASH("getParent")))
 RET CNF(Entity_getParent);
- EI(keyStr == "updateFinalTransform")
+ EI(keyStr.equals("updateFinalTransform", CPL_STR_HASH("updateFinalTransform")))
 RET CNF(Entity_updateFinalTransform);
- EI(keyStr == "getFinalTransform")
+ EI(keyStr.equals("getFinalTransform", CPL_STR_HASH("getFinalTransform")))
 RET CNF(Entity_getFinalTransform);
- EI(keyStr == "getFinalTransformNoScale")
+ EI(keyStr.equals("getFinalTransformNoScale", CPL_STR_HASH("getFinalTransformNoScale")))
 RET CNF(Entity_getFinalTransformNoScale);
- EI(keyStr == "getAudioSources")
+ EI(keyStr.equals("getAudioSources", CPL_STR_HASH("getAudioSources")))
 RET CNF(Entity_getAudioSources);
- EI(keyStr == "addAudioSource")
+ EI(keyStr.equals("addAudioSource", CPL_STR_HASH("addAudioSource")))
 RET CNF(Entity_addAudioSource);
- EI(keyStr == "removeAudioSource")
+ EI(keyStr.equals("removeAudioSource", CPL_STR_HASH("removeAudioSource")))
 RET CNF(Entity_removeAudioSource);
- EI(keyStr=="name")
+ EI(keyStr.equals("name", CPL_STR_HASH("name")))
 {
 Entity*obj=(Entity*)f->data;
 RET CV(obj->name);
-} EI(keyStr=="transform")
+} EI(keyStr.equals("transform", CPL_STR_HASH("transform")))
 {
 Entity*obj=(Entity*)f->data;
 RET CV(obj->transform);
@@ -20407,16 +20501,16 @@ void Entity_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="name")
+if(0) {} EI(keyStr.equals("name", CPL_STR_HASH("name")))
 {
 Entity*obj=(Entity*)f->data;
 obj->name=val_to_c<decltype(obj->name)>::f(ctx,value);
-} EI(keyStr=="transform")
+} EI(keyStr.equals("transform", CPL_STR_HASH("transform")))
 {
 Entity*obj=(Entity*)f->data;
 obj->transform=val_to_c<decltype(obj->transform)>::f(ctx,value);
@@ -20570,9 +20664,9 @@ Entity*f;
 f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->findEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->findEntity(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Entity::findEntity.")));
@@ -20587,9 +20681,9 @@ Entity*f;
 f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->createEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->createEntity(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Entity::createEntity.")));
@@ -20621,9 +20715,9 @@ Entity*f;
 f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->findScriptInstanceObj(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->findScriptInstanceObj(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Entity::findScriptInstanceObj.")));
@@ -20706,9 +20800,9 @@ Entity*f;
 f=(Entity*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Entity::findScriptInstance.")));
@@ -20895,108 +20989,108 @@ SV GfxRenderer_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxRenderer");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxRenderer_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxRenderer_new);
 else
  CATE(KE,"Unknown member for GfxRenderer."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxRenderer_new);
- EI(keyStr == "resize")
+ EI(keyStr.equals("resize", CPL_STR_HASH("resize")))
 RET CNF(GfxRenderer_resize);
- EI(keyStr == "render")
+ EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(GfxRenderer_render);
- EI(keyStr == "getNumLights")
+ EI(keyStr.equals("getNumLights", CPL_STR_HASH("getNumLights")))
 RET CNF(GfxRenderer_getNumLights);
- EI(keyStr == "getLightBuffer")
+ EI(keyStr.equals("getLightBuffer", CPL_STR_HASH("getLightBuffer")))
 RET CNF(GfxRenderer_getLightBuffer);
- EI(keyStr == "getStats")
+ EI(keyStr.equals("getStats", CPL_STR_HASH("getStats")))
 RET CNF(GfxRenderer_getStats);
- EI(keyStr == "addLight")
+ EI(keyStr.equals("addLight", CPL_STR_HASH("addLight")))
 RET CNF(GfxRenderer_addLight);
- EI(keyStr == "removeLight")
+ EI(keyStr.equals("removeLight", CPL_STR_HASH("removeLight")))
 RET CNF(GfxRenderer_removeLight);
- EI(keyStr == "getLights")
+ EI(keyStr.equals("getLights", CPL_STR_HASH("getLights")))
 RET CNF(GfxRenderer_getLights);
- EI(keyStr == "computeSceneAABB")
+ EI(keyStr.equals("computeSceneAABB", CPL_STR_HASH("computeSceneAABB")))
 RET CNF(GfxRenderer_computeSceneAABB);
- EI(keyStr == "computeShadowCasterAABB")
+ EI(keyStr.equals("computeShadowCasterAABB", CPL_STR_HASH("computeShadowCasterAABB")))
 RET CNF(GfxRenderer_computeShadowCasterAABB);
- EI(keyStr == "updateStats")
+ EI(keyStr.equals("updateStats", CPL_STR_HASH("updateStats")))
 RET CNF(GfxRenderer_updateStats);
- EI(keyStr == "updateColorModifierShader")
+ EI(keyStr.equals("updateColorModifierShader", CPL_STR_HASH("updateColorModifierShader")))
 RET CNF(GfxRenderer_updateColorModifierShader);
- EI(keyStr == "setSkybox")
+ EI(keyStr.equals("setSkybox", CPL_STR_HASH("setSkybox")))
 RET CNF(GfxRenderer_setSkybox);
- EI(keyStr == "getSkybox")
+ EI(keyStr.equals("getSkybox", CPL_STR_HASH("getSkybox")))
 RET CNF(GfxRenderer_getSkybox);
- EI(keyStr == "addTerrain")
+ EI(keyStr.equals("addTerrain", CPL_STR_HASH("addTerrain")))
 RET CNF(GfxRenderer_addTerrain);
- EI(keyStr == "removeTerrain")
+ EI(keyStr.equals("removeTerrain", CPL_STR_HASH("removeTerrain")))
 RET CNF(GfxRenderer_removeTerrain);
- EI(keyStr == "getTerrain")
+ EI(keyStr.equals("getTerrain", CPL_STR_HASH("getTerrain")))
 RET CNF(GfxRenderer_getTerrain);
- EI(keyStr=="camera")
+ EI(keyStr.equals("camera", CPL_STR_HASH("camera")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->camera);
-} EI(keyStr=="debugDraw")
+} EI(keyStr.equals("debugDraw", CPL_STR_HASH("debugDraw")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->debugDraw);
-} EI(keyStr=="bloomThreshold")
+} EI(keyStr.equals("bloomThreshold", CPL_STR_HASH("bloomThreshold")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloomThreshold);
-} EI(keyStr=="bloom1Radius")
+} EI(keyStr.equals("bloom1Radius", CPL_STR_HASH("bloom1Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom1Radius);
-} EI(keyStr=="bloom2Radius")
+} EI(keyStr.equals("bloom2Radius", CPL_STR_HASH("bloom2Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom2Radius);
-} EI(keyStr=="bloom3Radius")
+} EI(keyStr.equals("bloom3Radius", CPL_STR_HASH("bloom3Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom3Radius);
-} EI(keyStr=="bloom4Radius")
+} EI(keyStr.equals("bloom4Radius", CPL_STR_HASH("bloom4Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom4Radius);
-} EI(keyStr=="bloom1Strength")
+} EI(keyStr.equals("bloom1Strength", CPL_STR_HASH("bloom1Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom1Strength);
-} EI(keyStr=="bloom2Strength")
+} EI(keyStr.equals("bloom2Strength", CPL_STR_HASH("bloom2Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom2Strength);
-} EI(keyStr=="bloom3Strength")
+} EI(keyStr.equals("bloom3Strength", CPL_STR_HASH("bloom3Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom3Strength);
-} EI(keyStr=="bloom4Strength")
+} EI(keyStr.equals("bloom4Strength", CPL_STR_HASH("bloom4Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloom4Strength);
-} EI(keyStr=="bloomEnabled")
+} EI(keyStr.equals("bloomEnabled", CPL_STR_HASH("bloomEnabled")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->bloomEnabled);
-} EI(keyStr=="ssaoRadius")
+} EI(keyStr.equals("ssaoRadius", CPL_STR_HASH("ssaoRadius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 RET CV(obj->ssaoRadius);
@@ -21012,60 +21106,60 @@ void GfxRenderer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="camera")
+if(0) {} EI(keyStr.equals("camera", CPL_STR_HASH("camera")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->camera=val_to_c<decltype(obj->camera)>::f(ctx,value);
-} EI(keyStr=="debugDraw")
+} EI(keyStr.equals("debugDraw", CPL_STR_HASH("debugDraw")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->debugDraw=val_to_c<decltype(obj->debugDraw)>::f(ctx,value);
-} EI(keyStr=="bloomThreshold")
+} EI(keyStr.equals("bloomThreshold", CPL_STR_HASH("bloomThreshold")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloomThreshold=val_to_c<decltype(obj->bloomThreshold)>::f(ctx,value);
-} EI(keyStr=="bloom1Radius")
+} EI(keyStr.equals("bloom1Radius", CPL_STR_HASH("bloom1Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom1Radius=val_to_c<decltype(obj->bloom1Radius)>::f(ctx,value);
-} EI(keyStr=="bloom2Radius")
+} EI(keyStr.equals("bloom2Radius", CPL_STR_HASH("bloom2Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom2Radius=val_to_c<decltype(obj->bloom2Radius)>::f(ctx,value);
-} EI(keyStr=="bloom3Radius")
+} EI(keyStr.equals("bloom3Radius", CPL_STR_HASH("bloom3Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom3Radius=val_to_c<decltype(obj->bloom3Radius)>::f(ctx,value);
-} EI(keyStr=="bloom4Radius")
+} EI(keyStr.equals("bloom4Radius", CPL_STR_HASH("bloom4Radius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom4Radius=val_to_c<decltype(obj->bloom4Radius)>::f(ctx,value);
-} EI(keyStr=="bloom1Strength")
+} EI(keyStr.equals("bloom1Strength", CPL_STR_HASH("bloom1Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom1Strength=val_to_c<decltype(obj->bloom1Strength)>::f(ctx,value);
-} EI(keyStr=="bloom2Strength")
+} EI(keyStr.equals("bloom2Strength", CPL_STR_HASH("bloom2Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom2Strength=val_to_c<decltype(obj->bloom2Strength)>::f(ctx,value);
-} EI(keyStr=="bloom3Strength")
+} EI(keyStr.equals("bloom3Strength", CPL_STR_HASH("bloom3Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom3Strength=val_to_c<decltype(obj->bloom3Strength)>::f(ctx,value);
-} EI(keyStr=="bloom4Strength")
+} EI(keyStr.equals("bloom4Strength", CPL_STR_HASH("bloom4Strength")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloom4Strength=val_to_c<decltype(obj->bloom4Strength)>::f(ctx,value);
-} EI(keyStr=="bloomEnabled")
+} EI(keyStr.equals("bloomEnabled", CPL_STR_HASH("bloomEnabled")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->bloomEnabled=val_to_c<decltype(obj->bloomEnabled)>::f(ctx,value);
-} EI(keyStr=="ssaoRadius")
+} EI(keyStr.equals("ssaoRadius", CPL_STR_HASH("ssaoRadius")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
 obj->ssaoRadius=val_to_c<decltype(obj->ssaoRadius)>::f(ctx,value);
@@ -21404,74 +21498,74 @@ SV Float2_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Float2");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Float2_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Float2_new);
 else
  CATE(KE,"Unknown member for Float2."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Float2_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(Float2___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(Float2___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Float2___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Float2___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Float2___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Float2___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(Float2___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(Float2___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(Float2___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(Float2___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(Float2_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(Float2_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(Float2_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(Float2_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(Float2_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(Float2_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Float2_normalize);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(Float2_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(Float2_setXY);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(Float2_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(Float2_setYX);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Float2_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T2<float>*obj=(T2<float>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T2<float>*obj=(T2<float>*)f->data;
 RET CV(obj->y);
@@ -21487,16 +21581,16 @@ void Float2_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T2<float>*obj=(T2<float>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T2<float>*obj=(T2<float>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
@@ -21931,50 +22025,50 @@ SV GfxFramebuffer_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxFramebuffer");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxFramebuffer_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxFramebuffer_new);
 else
  CATE(KE,"Unknown member for GfxFramebuffer."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxFramebuffer_new);
- EI(keyStr == "addColorAttachment")
+ EI(keyStr.equals("addColorAttachment", CPL_STR_HASH("addColorAttachment")))
 RET CNF(GfxFramebuffer_addColorAttachment);
- EI(keyStr == "removeColorAttachment")
+ EI(keyStr.equals("removeColorAttachment", CPL_STR_HASH("removeColorAttachment")))
 RET CNF(GfxFramebuffer_removeColorAttachment);
- EI(keyStr == "getNumColorAttachments")
+ EI(keyStr.equals("getNumColorAttachments", CPL_STR_HASH("getNumColorAttachments")))
 RET CNF(GfxFramebuffer_getNumColorAttachments);
- EI(keyStr == "getColorRT")
+ EI(keyStr.equals("getColorRT", CPL_STR_HASH("getColorRT")))
 RET CNF(GfxFramebuffer_getColorRT);
- EI(keyStr == "getColorAttachment")
+ EI(keyStr.equals("getColorAttachment", CPL_STR_HASH("getColorAttachment")))
 RET CNF(GfxFramebuffer_getColorAttachment);
- EI(keyStr == "getColorAttachmentMipmapLevel")
+ EI(keyStr.equals("getColorAttachmentMipmapLevel", CPL_STR_HASH("getColorAttachmentMipmapLevel")))
 RET CNF(GfxFramebuffer_getColorAttachmentMipmapLevel);
- EI(keyStr == "getColorAttachmentLayer")
+ EI(keyStr.equals("getColorAttachmentLayer", CPL_STR_HASH("getColorAttachmentLayer")))
 RET CNF(GfxFramebuffer_getColorAttachmentLayer);
- EI(keyStr == "setDepthAttachment")
+ EI(keyStr.equals("setDepthAttachment", CPL_STR_HASH("setDepthAttachment")))
 RET CNF(GfxFramebuffer_setDepthAttachment);
- EI(keyStr == "removeDepthAttachment")
+ EI(keyStr.equals("removeDepthAttachment", CPL_STR_HASH("removeDepthAttachment")))
 RET CNF(GfxFramebuffer_removeDepthAttachment);
- EI(keyStr == "hasDepthAttachment")
+ EI(keyStr.equals("hasDepthAttachment", CPL_STR_HASH("hasDepthAttachment")))
 RET CNF(GfxFramebuffer_hasDepthAttachment);
- EI(keyStr == "getDepthTexture")
+ EI(keyStr.equals("getDepthTexture", CPL_STR_HASH("getDepthTexture")))
 RET CNF(GfxFramebuffer_getDepthTexture);
- EI(keyStr == "getDepthTextureMipmapLevel")
+ EI(keyStr.equals("getDepthTextureMipmapLevel", CPL_STR_HASH("getDepthTextureMipmapLevel")))
 RET CNF(GfxFramebuffer_getDepthTextureMipmapLevel);
- EI(keyStr == "getDepthAttachmentLayer")
+ EI(keyStr.equals("getDepthAttachmentLayer", CPL_STR_HASH("getDepthAttachmentLayer")))
 RET CNF(GfxFramebuffer_getDepthAttachmentLayer);
  else
  CATE(KE,"Unknown member for GfxFramebuffer."));
@@ -21988,7 +22082,7 @@ void GfxFramebuffer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22240,8 +22334,8 @@ void *p = (void *)NEW(TYPE(Font));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Font_funcs,p,EXT->Font_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(Font),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(Font),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Font_funcs,p,EXT->Font_typeID);
 }CATE(TE,UFOF("Font's constructor.")));
@@ -22253,46 +22347,46 @@ SV Font_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Font");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Font_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Font_new);
 else
  CATE(KE,"Unknown member for Font."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Font_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(Font_removeContent);
- EI(keyStr == "predictWidth")
+ EI(keyStr.equals("predictWidth", CPL_STR_HASH("predictWidth")))
 RET CNF(Font_predictWidth);
- EI(keyStr == "render")
+ EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(Font_render);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(Font_load);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(Font_save);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Font_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Font_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(Font_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(Font_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(Font_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(Font_setFilename);
  else
  CATE(KE,"Unknown member for Font."));
@@ -22306,7 +22400,7 @@ void Font_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -22416,9 +22510,9 @@ Font*f;
 f=(Font*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Font::setFilename.")));
@@ -22537,44 +22631,44 @@ SV Event_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Event");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Event_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Event_new);
 else
  CATE(KE,"Unknown member for Event."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Event_new);
- EI(keyStr == "getWidth")
+ EI(keyStr.equals("getWidth", CPL_STR_HASH("getWidth")))
 RET CNF(Event_getWidth);
- EI(keyStr == "getHeight")
+ EI(keyStr.equals("getHeight", CPL_STR_HASH("getHeight")))
 RET CNF(Event_getHeight);
- EI(keyStr == "getKey")
+ EI(keyStr.equals("getKey", CPL_STR_HASH("getKey")))
 RET CNF(Event_getKey);
- EI(keyStr == "getX")
+ EI(keyStr.equals("getX", CPL_STR_HASH("getX")))
 RET CNF(Event_getX);
- EI(keyStr == "getY")
+ EI(keyStr.equals("getY", CPL_STR_HASH("getY")))
 RET CNF(Event_getY);
- EI(keyStr == "getRelX")
+ EI(keyStr.equals("getRelX", CPL_STR_HASH("getRelX")))
 RET CNF(Event_getRelX);
- EI(keyStr == "getRelY")
+ EI(keyStr.equals("getRelY", CPL_STR_HASH("getRelY")))
 RET CNF(Event_getRelY);
- EI(keyStr == "getButton")
+ EI(keyStr.equals("getButton", CPL_STR_HASH("getButton")))
 RET CNF(Event_getButton);
- EI(keyStr == "getDoubleClicked")
+ EI(keyStr.equals("getDoubleClicked", CPL_STR_HASH("getDoubleClicked")))
 RET CNF(Event_getDoubleClicked);
- EI(keyStr=="type")
+ EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 Event*obj=(Event*)f->data;
 RET CV(obj->type);
@@ -22590,12 +22684,12 @@ void Event_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="type")
+if(0) {} EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 Event*obj=(Event*)f->data;
 obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
@@ -22785,50 +22879,50 @@ SV PhysicsWorld_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("PhysicsWorld");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(PhysicsWorld_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(PhysicsWorld_new);
 else
  CATE(KE,"Unknown member for PhysicsWorld."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(PhysicsWorld_new);
- EI(keyStr == "addDebugDrawer")
+ EI(keyStr.equals("addDebugDrawer", CPL_STR_HASH("addDebugDrawer")))
 RET CNF(PhysicsWorld_addDebugDrawer);
- EI(keyStr == "setGravity")
+ EI(keyStr.equals("setGravity", CPL_STR_HASH("setGravity")))
 RET CNF(PhysicsWorld_setGravity);
- EI(keyStr == "getGravity")
+ EI(keyStr.equals("getGravity", CPL_STR_HASH("getGravity")))
 RET CNF(PhysicsWorld_getGravity);
- EI(keyStr == "getRigidBodies")
+ EI(keyStr.equals("getRigidBodies", CPL_STR_HASH("getRigidBodies")))
 RET CNF(PhysicsWorld_getRigidBodies);
- EI(keyStr == "getGhostObjects")
+ EI(keyStr.equals("getGhostObjects", CPL_STR_HASH("getGhostObjects")))
 RET CNF(PhysicsWorld_getGhostObjects);
- EI(keyStr == "createRigidBody")
+ EI(keyStr.equals("createRigidBody", CPL_STR_HASH("createRigidBody")))
 RET CNF(PhysicsWorld_createRigidBody);
- EI(keyStr == "destroyRigidBody")
+ EI(keyStr.equals("destroyRigidBody", CPL_STR_HASH("destroyRigidBody")))
 RET CNF(PhysicsWorld_destroyRigidBody);
- EI(keyStr == "createGhostObject")
+ EI(keyStr.equals("createGhostObject", CPL_STR_HASH("createGhostObject")))
 RET CNF(PhysicsWorld_createGhostObject);
- EI(keyStr == "destroyGhostObject")
+ EI(keyStr.equals("destroyGhostObject", CPL_STR_HASH("destroyGhostObject")))
 RET CNF(PhysicsWorld_destroyGhostObject);
- EI(keyStr == "stepSimulation")
+ EI(keyStr.equals("stepSimulation", CPL_STR_HASH("stepSimulation")))
 RET CNF(PhysicsWorld_stepSimulation);
- EI(keyStr == "debugDraw")
+ EI(keyStr.equals("debugDraw", CPL_STR_HASH("debugDraw")))
 RET CNF(PhysicsWorld_debugDraw);
- EI(keyStr == "castRay")
+ EI(keyStr.equals("castRay", CPL_STR_HASH("castRay")))
 RET CNF(PhysicsWorld_castRay);
- EI(keyStr == "getBulletWorld")
+ EI(keyStr.equals("getBulletWorld", CPL_STR_HASH("getBulletWorld")))
 RET CNF(PhysicsWorld_getBulletWorld);
  else
  CATE(KE,"Unknown member for PhysicsWorld."));
@@ -22842,7 +22936,7 @@ void PhysicsWorld_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -23089,46 +23183,46 @@ SV Stats_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Stats");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Stats_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Stats_new);
 else
  CATE(KE,"Unknown member for Stats."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Stats_new);
- EI(keyStr=="handleInput")
+ EI(keyStr.equals("handleInput", CPL_STR_HASH("handleInput")))
 {
 Stats*obj=(Stats*)f->data;
 RET CV(obj->handleInput);
-} EI(keyStr=="update")
+} EI(keyStr.equals("update", CPL_STR_HASH("update")))
 {
 Stats*obj=(Stats*)f->data;
 RET CV(obj->update);
-} EI(keyStr=="fixedUpdate")
+} EI(keyStr.equals("fixedUpdate", CPL_STR_HASH("fixedUpdate")))
 {
 Stats*obj=(Stats*)f->data;
 RET CV(obj->fixedUpdate);
-} EI(keyStr=="preRender")
+} EI(keyStr.equals("preRender", CPL_STR_HASH("preRender")))
 {
 Stats*obj=(Stats*)f->data;
 RET CV(obj->preRender);
-} EI(keyStr=="postRender")
+} EI(keyStr.equals("postRender", CPL_STR_HASH("postRender")))
 {
 Stats*obj=(Stats*)f->data;
 RET CV(obj->postRender);
-} EI(keyStr=="audio")
+} EI(keyStr.equals("audio", CPL_STR_HASH("audio")))
 {
 Stats*obj=(Stats*)f->data;
 RET CV(obj->audio);
@@ -23144,32 +23238,32 @@ void Stats_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="handleInput")
+if(0) {} EI(keyStr.equals("handleInput", CPL_STR_HASH("handleInput")))
 {
 Stats*obj=(Stats*)f->data;
 obj->handleInput=val_to_c<decltype(obj->handleInput)>::f(ctx,value);
-} EI(keyStr=="update")
+} EI(keyStr.equals("update", CPL_STR_HASH("update")))
 {
 Stats*obj=(Stats*)f->data;
 obj->update=val_to_c<decltype(obj->update)>::f(ctx,value);
-} EI(keyStr=="fixedUpdate")
+} EI(keyStr.equals("fixedUpdate", CPL_STR_HASH("fixedUpdate")))
 {
 Stats*obj=(Stats*)f->data;
 obj->fixedUpdate=val_to_c<decltype(obj->fixedUpdate)>::f(ctx,value);
-} EI(keyStr=="preRender")
+} EI(keyStr.equals("preRender", CPL_STR_HASH("preRender")))
 {
 Stats*obj=(Stats*)f->data;
 obj->preRender=val_to_c<decltype(obj->preRender)>::f(ctx,value);
-} EI(keyStr=="postRender")
+} EI(keyStr.equals("postRender", CPL_STR_HASH("postRender")))
 {
 Stats*obj=(Stats*)f->data;
 obj->postRender=val_to_c<decltype(obj->postRender)>::f(ctx,value);
-} EI(keyStr=="audio")
+} EI(keyStr.equals("audio", CPL_STR_HASH("audio")))
 {
 Stats*obj=(Stats*)f->data;
 obj->audio=val_to_c<decltype(obj->audio)>::f(ctx,value);
@@ -23206,70 +23300,70 @@ SV AudioSource_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("AudioSource");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(AudioSource_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(AudioSource_new);
 else
  CATE(KE,"Unknown member for AudioSource."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(AudioSource_new);
- EI(keyStr == "getAudio")
+ EI(keyStr.equals("getAudio", CPL_STR_HASH("getAudio")))
 RET CNF(AudioSource_getAudio);
- EI(keyStr == "setAudio")
+ EI(keyStr.equals("setAudio", CPL_STR_HASH("setAudio")))
 RET CNF(AudioSource_setAudio);
- EI(keyStr=="is3d")
+ EI(keyStr.equals("is3d", CPL_STR_HASH("is3d")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->is3d);
-} EI(keyStr=="position")
+} EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->position);
-} EI(keyStr=="referenceDistance")
+} EI(keyStr.equals("referenceDistance", CPL_STR_HASH("referenceDistance")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->referenceDistance);
-} EI(keyStr=="rolloffFactor")
+} EI(keyStr.equals("rolloffFactor", CPL_STR_HASH("rolloffFactor")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->rolloffFactor);
-} EI(keyStr=="maxDistance")
+} EI(keyStr.equals("maxDistance", CPL_STR_HASH("maxDistance")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->maxDistance);
-} EI(keyStr=="volume")
+} EI(keyStr.equals("volume", CPL_STR_HASH("volume")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->volume);
-} EI(keyStr=="velocity")
+} EI(keyStr.equals("velocity", CPL_STR_HASH("velocity")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->velocity);
-} EI(keyStr=="dopplerFactor")
+} EI(keyStr.equals("dopplerFactor", CPL_STR_HASH("dopplerFactor")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->dopplerFactor);
-} EI(keyStr=="offset")
+} EI(keyStr.equals("offset", CPL_STR_HASH("offset")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->offset);
-} EI(keyStr=="loop")
+} EI(keyStr.equals("loop", CPL_STR_HASH("loop")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->loop);
-} EI(keyStr=="playing")
+} EI(keyStr.equals("playing", CPL_STR_HASH("playing")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 RET CV(obj->playing);
@@ -23285,52 +23379,52 @@ void AudioSource_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="is3d")
+if(0) {} EI(keyStr.equals("is3d", CPL_STR_HASH("is3d")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->is3d=val_to_c<decltype(obj->is3d)>::f(ctx,value);
-} EI(keyStr=="position")
+} EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
-} EI(keyStr=="referenceDistance")
+} EI(keyStr.equals("referenceDistance", CPL_STR_HASH("referenceDistance")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->referenceDistance=val_to_c<decltype(obj->referenceDistance)>::f(ctx,value);
-} EI(keyStr=="rolloffFactor")
+} EI(keyStr.equals("rolloffFactor", CPL_STR_HASH("rolloffFactor")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->rolloffFactor=val_to_c<decltype(obj->rolloffFactor)>::f(ctx,value);
-} EI(keyStr=="maxDistance")
+} EI(keyStr.equals("maxDistance", CPL_STR_HASH("maxDistance")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->maxDistance=val_to_c<decltype(obj->maxDistance)>::f(ctx,value);
-} EI(keyStr=="volume")
+} EI(keyStr.equals("volume", CPL_STR_HASH("volume")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->volume=val_to_c<decltype(obj->volume)>::f(ctx,value);
-} EI(keyStr=="velocity")
+} EI(keyStr.equals("velocity", CPL_STR_HASH("velocity")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->velocity=val_to_c<decltype(obj->velocity)>::f(ctx,value);
-} EI(keyStr=="dopplerFactor")
+} EI(keyStr.equals("dopplerFactor", CPL_STR_HASH("dopplerFactor")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->dopplerFactor=val_to_c<decltype(obj->dopplerFactor)>::f(ctx,value);
-} EI(keyStr=="offset")
+} EI(keyStr.equals("offset", CPL_STR_HASH("offset")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->offset=val_to_c<decltype(obj->offset)>::f(ctx,value);
-} EI(keyStr=="loop")
+} EI(keyStr.equals("loop", CPL_STR_HASH("loop")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->loop=val_to_c<decltype(obj->loop)>::f(ctx,value);
-} EI(keyStr=="playing")
+} EI(keyStr.equals("playing", CPL_STR_HASH("playing")))
 {
 AudioSource*obj=(AudioSource*)f->data;
 obj->playing=val_to_c<decltype(obj->playing)>::f(ctx,value);
@@ -23394,8 +23488,8 @@ void *p = (void *)NEW(TYPE(Script));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Script_funcs,p,EXT->Script_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(Script),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(Script),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Script_funcs,p,EXT->Script_typeID);
 }CATE(TE,UFOF("Script's constructor.")));
@@ -23407,46 +23501,46 @@ SV Script_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Script");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Script_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Script_new);
 else
  CATE(KE,"Unknown member for Script."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Script_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(Script_removeContent);
- EI(keyStr == "createInstance")
+ EI(keyStr.equals("createInstance", CPL_STR_HASH("createInstance")))
 RET CNF(Script_createInstance);
- EI(keyStr == "getContext")
+ EI(keyStr.equals("getContext", CPL_STR_HASH("getContext")))
 RET CNF(Script_getContext);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(Script_load);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(Script_save);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Script_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Script_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(Script_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(Script_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(Script_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(Script_setFilename);
  else
  CATE(KE,"Unknown member for Script."));
@@ -23460,7 +23554,7 @@ void Script_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -23541,9 +23635,9 @@ Script*f;
 f=(Script*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Script::setFilename.")));
@@ -23689,54 +23783,54 @@ SV RayCastResultList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RayCastResultList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RayCastResultList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RayCastResultList_new);
 else
  CATE(KE,"Unknown member for RayCastResultList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RayCastResultList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RayCastResultList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(RayCastResultList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(RayCastResultList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(RayCastResultList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(RayCastResultList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(RayCastResultList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(RayCastResultList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(RayCastResultList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(RayCastResultList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(RayCastResultList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(RayCastResultList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(RayCastResultList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(RayCastResultList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(RayCastResultList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(RayCastResultList_end);
  else
  CATE(KE,"Unknown member for RayCastResultList."));
@@ -23750,7 +23844,7 @@ void RayCastResultList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&valu
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -24037,74 +24131,74 @@ SV Platform_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Platform");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Platform_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Platform_new);
 else
  CATE(KE,"Unknown member for Platform."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Platform_new);
- EI(keyStr == "initWindow")
+ EI(keyStr.equals("initWindow", CPL_STR_HASH("initWindow")))
 RET CNF(Platform_initWindow);
- EI(keyStr == "destroyWindow")
+ EI(keyStr.equals("destroyWindow", CPL_STR_HASH("destroyWindow")))
 RET CNF(Platform_destroyWindow);
- EI(keyStr == "run")
+ EI(keyStr.equals("run", CPL_STR_HASH("run")))
 RET CNF(Platform_run);
- EI(keyStr == "pollEvent")
+ EI(keyStr.equals("pollEvent", CPL_STR_HASH("pollEvent")))
 RET CNF(Platform_pollEvent);
- EI(keyStr == "eventsLeft")
+ EI(keyStr.equals("eventsLeft", CPL_STR_HASH("eventsLeft")))
 RET CNF(Platform_eventsLeft);
- EI(keyStr == "popEvent")
+ EI(keyStr.equals("popEvent", CPL_STR_HASH("popEvent")))
 RET CNF(Platform_popEvent);
- EI(keyStr == "getTime")
+ EI(keyStr.equals("getTime", CPL_STR_HASH("getTime")))
 RET CNF(Platform_getTime);
- EI(keyStr == "getTimerFrequency")
+ EI(keyStr.equals("getTimerFrequency", CPL_STR_HASH("getTimerFrequency")))
 RET CNF(Platform_getTimerFrequency);
- EI(keyStr == "getWindowWidth")
+ EI(keyStr.equals("getWindowWidth", CPL_STR_HASH("getWindowWidth")))
 RET CNF(Platform_getWindowWidth);
- EI(keyStr == "getWindowHeight")
+ EI(keyStr.equals("getWindowHeight", CPL_STR_HASH("getWindowHeight")))
 RET CNF(Platform_getWindowHeight);
- EI(keyStr == "getMousePosition")
+ EI(keyStr.equals("getMousePosition", CPL_STR_HASH("getMousePosition")))
 RET CNF(Platform_getMousePosition);
- EI(keyStr == "setMousePosition")
+ EI(keyStr.equals("setMousePosition", CPL_STR_HASH("setMousePosition")))
 RET CNF(Platform_setMousePosition);
- EI(keyStr == "isLeftMouseButtonPressed")
+ EI(keyStr.equals("isLeftMouseButtonPressed", CPL_STR_HASH("isLeftMouseButtonPressed")))
 RET CNF(Platform_isLeftMouseButtonPressed);
- EI(keyStr == "isRightMouseButtonPressed")
+ EI(keyStr.equals("isRightMouseButtonPressed", CPL_STR_HASH("isRightMouseButtonPressed")))
 RET CNF(Platform_isRightMouseButtonPressed);
- EI(keyStr == "isMiddleMouseButtonPressed")
+ EI(keyStr.equals("isMiddleMouseButtonPressed", CPL_STR_HASH("isMiddleMouseButtonPressed")))
 RET CNF(Platform_isMiddleMouseButtonPressed);
- EI(keyStr == "getMouseWheel")
+ EI(keyStr.equals("getMouseWheel", CPL_STR_HASH("getMouseWheel")))
 RET CNF(Platform_getMouseWheel);
- EI(keyStr == "isCursorVisible")
+ EI(keyStr.equals("isCursorVisible", CPL_STR_HASH("isCursorVisible")))
 RET CNF(Platform_isCursorVisible);
- EI(keyStr == "setCursorVisible")
+ EI(keyStr.equals("setCursorVisible", CPL_STR_HASH("setCursorVisible")))
 RET CNF(Platform_setCursorVisible);
- EI(keyStr == "isKeyPressed")
+ EI(keyStr.equals("isKeyPressed", CPL_STR_HASH("isKeyPressed")))
 RET CNF(Platform_isKeyPressed);
- EI(keyStr == "getFullscreen")
+ EI(keyStr.equals("getFullscreen", CPL_STR_HASH("getFullscreen")))
 RET CNF(Platform_getFullscreen);
- EI(keyStr == "setFullscreen")
+ EI(keyStr.equals("setFullscreen", CPL_STR_HASH("setFullscreen")))
 RET CNF(Platform_setFullscreen);
- EI(keyStr == "getFrametime")
+ EI(keyStr.equals("getFrametime", CPL_STR_HASH("getFrametime")))
 RET CNF(Platform_getFrametime);
- EI(keyStr == "getGPUFrametime")
+ EI(keyStr.equals("getGPUFrametime", CPL_STR_HASH("getGPUFrametime")))
 RET CNF(Platform_getGPUFrametime);
- EI(keyStr == "getCPUFrametime")
+ EI(keyStr.equals("getCPUFrametime", CPL_STR_HASH("getCPUFrametime")))
 RET CNF(Platform_getCPUFrametime);
- EI(keyStr=="running")
+ EI(keyStr.equals("running", CPL_STR_HASH("running")))
 {
 Platform*obj=(Platform*)f->data;
 RET CV(obj->running);
@@ -24120,12 +24214,12 @@ void Platform_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="running")
+if(0) {} EI(keyStr.equals("running", CPL_STR_HASH("running")))
 {
 Platform*obj=(Platform*)f->data;
 obj->running=val_to_c<decltype(obj->running)>::f(ctx,value);
@@ -24558,82 +24652,82 @@ SV Camera_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Camera");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Camera_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Camera_new);
 else
  CATE(KE,"Unknown member for Camera."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Camera_new);
- EI(keyStr == "setType")
+ EI(keyStr.equals("setType", CPL_STR_HASH("setType")))
 RET CNF(Camera_setType);
- EI(keyStr == "setPosition")
+ EI(keyStr.equals("setPosition", CPL_STR_HASH("setPosition")))
 RET CNF(Camera_setPosition);
- EI(keyStr == "setDirection")
+ EI(keyStr.equals("setDirection", CPL_STR_HASH("setDirection")))
 RET CNF(Camera_setDirection);
- EI(keyStr == "setUp")
+ EI(keyStr.equals("setUp", CPL_STR_HASH("setUp")))
 RET CNF(Camera_setUp);
- EI(keyStr == "setWidth")
+ EI(keyStr.equals("setWidth", CPL_STR_HASH("setWidth")))
 RET CNF(Camera_setWidth);
- EI(keyStr == "setHeight")
+ EI(keyStr.equals("setHeight", CPL_STR_HASH("setHeight")))
 RET CNF(Camera_setHeight);
- EI(keyStr == "setFieldOfView")
+ EI(keyStr.equals("setFieldOfView", CPL_STR_HASH("setFieldOfView")))
 RET CNF(Camera_setFieldOfView);
- EI(keyStr == "setLeft")
+ EI(keyStr.equals("setLeft", CPL_STR_HASH("setLeft")))
 RET CNF(Camera_setLeft);
- EI(keyStr == "setRight")
+ EI(keyStr.equals("setRight", CPL_STR_HASH("setRight")))
 RET CNF(Camera_setRight);
- EI(keyStr == "setBottom")
+ EI(keyStr.equals("setBottom", CPL_STR_HASH("setBottom")))
 RET CNF(Camera_setBottom);
- EI(keyStr == "setTop")
+ EI(keyStr.equals("setTop", CPL_STR_HASH("setTop")))
 RET CNF(Camera_setTop);
- EI(keyStr == "setNear")
+ EI(keyStr.equals("setNear", CPL_STR_HASH("setNear")))
 RET CNF(Camera_setNear);
- EI(keyStr == "setFar")
+ EI(keyStr.equals("setFar", CPL_STR_HASH("setFar")))
 RET CNF(Camera_setFar);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Camera_getType);
- EI(keyStr == "getPosition")
+ EI(keyStr.equals("getPosition", CPL_STR_HASH("getPosition")))
 RET CNF(Camera_getPosition);
- EI(keyStr == "getDirection")
+ EI(keyStr.equals("getDirection", CPL_STR_HASH("getDirection")))
 RET CNF(Camera_getDirection);
- EI(keyStr == "getUp")
+ EI(keyStr.equals("getUp", CPL_STR_HASH("getUp")))
 RET CNF(Camera_getUp);
- EI(keyStr == "getWidth")
+ EI(keyStr.equals("getWidth", CPL_STR_HASH("getWidth")))
 RET CNF(Camera_getWidth);
- EI(keyStr == "getHeight")
+ EI(keyStr.equals("getHeight", CPL_STR_HASH("getHeight")))
 RET CNF(Camera_getHeight);
- EI(keyStr == "getFieldOfView")
+ EI(keyStr.equals("getFieldOfView", CPL_STR_HASH("getFieldOfView")))
 RET CNF(Camera_getFieldOfView);
- EI(keyStr == "getLeft")
+ EI(keyStr.equals("getLeft", CPL_STR_HASH("getLeft")))
 RET CNF(Camera_getLeft);
- EI(keyStr == "getRight")
+ EI(keyStr.equals("getRight", CPL_STR_HASH("getRight")))
 RET CNF(Camera_getRight);
- EI(keyStr == "getBottom")
+ EI(keyStr.equals("getBottom", CPL_STR_HASH("getBottom")))
 RET CNF(Camera_getBottom);
- EI(keyStr == "getTop")
+ EI(keyStr.equals("getTop", CPL_STR_HASH("getTop")))
 RET CNF(Camera_getTop);
- EI(keyStr == "getNear")
+ EI(keyStr.equals("getNear", CPL_STR_HASH("getNear")))
 RET CNF(Camera_getNear);
- EI(keyStr == "getFar")
+ EI(keyStr.equals("getFar", CPL_STR_HASH("getFar")))
 RET CNF(Camera_getFar);
- EI(keyStr == "getViewMatrix")
+ EI(keyStr.equals("getViewMatrix", CPL_STR_HASH("getViewMatrix")))
 RET CNF(Camera_getViewMatrix);
- EI(keyStr == "getProjectionMatrix")
+ EI(keyStr.equals("getProjectionMatrix", CPL_STR_HASH("getProjectionMatrix")))
 RET CNF(Camera_getProjectionMatrix);
- EI(keyStr == "getFrustum")
+ EI(keyStr.equals("getFrustum", CPL_STR_HASH("getFrustum")))
 RET CNF(Camera_getFrustum);
  else
  CATE(KE,"Unknown member for Camera."));
@@ -24647,7 +24741,7 @@ void Camera_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -25166,8 +25260,8 @@ CATE(VE,"GfxMesh's constructor" EAOE));
 if(!TS(a[0],GfxMesh))
 CATE(TE,"GfxMesh's constructor expects GfxMesh as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(GfxMesh),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(GfxMesh),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxMesh_funcs,p,EXT->GfxMesh_typeID);
 }if(a.getCount()==1)
@@ -25184,88 +25278,88 @@ SV GfxMesh_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMesh");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxMesh_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxMesh_new);
 else
  CATE(KE,"Unknown member for GfxMesh."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxMesh_new);
- EI(keyStr == "addIndices")
+ EI(keyStr.equals("addIndices", CPL_STR_HASH("addIndices")))
 RET CNF(GfxMesh_addIndices);
- EI(keyStr == "removeIndices")
+ EI(keyStr.equals("removeIndices", CPL_STR_HASH("removeIndices")))
 RET CNF(GfxMesh_removeIndices);
- EI(keyStr == "setAttribute")
+ EI(keyStr.equals("setAttribute", CPL_STR_HASH("setAttribute")))
 RET CNF(GfxMesh_setAttribute);
- EI(keyStr == "removeAttribute")
+ EI(keyStr.equals("removeAttribute", CPL_STR_HASH("removeAttribute")))
 RET CNF(GfxMesh_removeAttribute);
- EI(keyStr == "getIndexed")
+ EI(keyStr.equals("getIndexed", CPL_STR_HASH("getIndexed")))
 RET CNF(GfxMesh_getIndexed);
- EI(keyStr == "getIndexType")
+ EI(keyStr.equals("getIndexType", CPL_STR_HASH("getIndexType")))
 RET CNF(GfxMesh_getIndexType);
- EI(keyStr == "getIndices")
+ EI(keyStr.equals("getIndices", CPL_STR_HASH("getIndices")))
 RET CNF(GfxMesh_getIndices);
- EI(keyStr == "getAttribs")
+ EI(keyStr.equals("getAttribs", CPL_STR_HASH("getAttribs")))
 RET CNF(GfxMesh_getAttribs);
- EI(keyStr == "getAttribCount")
+ EI(keyStr.equals("getAttribCount", CPL_STR_HASH("getAttribCount")))
 RET CNF(GfxMesh_getAttribCount);
- EI(keyStr == "getAttrib")
+ EI(keyStr.equals("getAttrib", CPL_STR_HASH("getAttrib")))
 RET CNF(GfxMesh_getAttrib);
- EI(keyStr == "getGLVAO")
+ EI(keyStr.equals("getGLVAO", CPL_STR_HASH("getGLVAO")))
 RET CNF(GfxMesh_getGLVAO);
- EI(keyStr == "getGLIndexBuffer")
+ EI(keyStr.equals("getGLIndexBuffer", CPL_STR_HASH("getGLIndexBuffer")))
 RET CNF(GfxMesh_getGLIndexBuffer);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(GfxMesh_removeContent);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(GfxMesh_save);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxMesh_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxMesh_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(GfxMesh_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(GfxMesh_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(GfxMesh_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(GfxMesh_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxMesh_setFilename);
- EI(keyStr=="aabb")
+ EI(keyStr.equals("aabb", CPL_STR_HASH("aabb")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->aabb);
-} EI(keyStr=="numVertices")
+} EI(keyStr.equals("numVertices", CPL_STR_HASH("numVertices")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->numVertices);
-} EI(keyStr=="numIndices")
+} EI(keyStr.equals("numIndices", CPL_STR_HASH("numIndices")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->numIndices);
-} EI(keyStr=="primitive")
+} EI(keyStr.equals("primitive", CPL_STR_HASH("primitive")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->primitive);
-} EI(keyStr=="cullMode")
+} EI(keyStr.equals("cullMode", CPL_STR_HASH("cullMode")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->cullMode);
-} EI(keyStr=="winding")
+} EI(keyStr.equals("winding", CPL_STR_HASH("winding")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 RET CV(obj->winding);
@@ -25281,32 +25375,32 @@ void GfxMesh_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="aabb")
+if(0) {} EI(keyStr.equals("aabb", CPL_STR_HASH("aabb")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->aabb=val_to_c<decltype(obj->aabb)>::f(ctx,value);
-} EI(keyStr=="numVertices")
+} EI(keyStr.equals("numVertices", CPL_STR_HASH("numVertices")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->numVertices=val_to_c<decltype(obj->numVertices)>::f(ctx,value);
-} EI(keyStr=="numIndices")
+} EI(keyStr.equals("numIndices", CPL_STR_HASH("numIndices")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->numIndices=val_to_c<decltype(obj->numIndices)>::f(ctx,value);
-} EI(keyStr=="primitive")
+} EI(keyStr.equals("primitive", CPL_STR_HASH("primitive")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->primitive=val_to_c<decltype(obj->primitive)>::f(ctx,value);
-} EI(keyStr=="cullMode")
+} EI(keyStr.equals("cullMode", CPL_STR_HASH("cullMode")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->cullMode=val_to_c<decltype(obj->cullMode)>::f(ctx,value);
-} EI(keyStr=="winding")
+} EI(keyStr.equals("winding", CPL_STR_HASH("winding")))
 {
 GfxMesh*obj=(GfxMesh*)f->data;
 obj->winding=val_to_c<decltype(obj->winding)>::f(ctx,value);
@@ -25386,9 +25480,9 @@ GfxMesh*f;
 f=(GfxMesh*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("GfxMesh::setFilename.")));
@@ -25695,42 +25789,42 @@ SV Resource_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Resource");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Resource_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Resource_new);
 else
  CATE(KE,"Unknown member for Resource."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Resource_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(Resource_removeContent);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(Resource_load);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(Resource_save);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Resource_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Resource_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(Resource_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(Resource_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(Resource_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(Resource_setFilename);
  else
  CATE(KE,"Unknown member for Resource."));
@@ -25744,7 +25838,7 @@ void Resource_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -25831,9 +25925,9 @@ Resource*f;
 f=(Resource*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Resource::setFilename.")));
@@ -25923,8 +26017,8 @@ CATE(VE,"GfxShader's constructor" EAOE));
 if(!TS(a[0],GfxShader))
 CATE(TE,"GfxShader's constructor expects GfxShader as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(GfxShader),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(GfxShader),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxShader_funcs,p,EXT->GfxShader_typeID);
 }if(a.getCount()==1)
@@ -25941,50 +26035,50 @@ SV GfxShader_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxShader");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxShader_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxShader_new);
 else
  CATE(KE,"Unknown member for GfxShader."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxShader_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(GfxShader_removeContent);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(GfxShader_save);
- EI(keyStr == "compile")
+ EI(keyStr.equals("compile", CPL_STR_HASH("compile")))
 RET CNF(GfxShader_compile);
- EI(keyStr == "getSource")
+ EI(keyStr.equals("getSource", CPL_STR_HASH("getSource")))
 RET CNF(GfxShader_getSource);
- EI(keyStr == "getShaderType")
+ EI(keyStr.equals("getShaderType", CPL_STR_HASH("getShaderType")))
 RET CNF(GfxShader_getShaderType);
- EI(keyStr == "getCompiled")
+ EI(keyStr.equals("getCompiled", CPL_STR_HASH("getCompiled")))
 RET CNF(GfxShader_getCompiled);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxShader_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxShader_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(GfxShader_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(GfxShader_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(GfxShader_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(GfxShader_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxShader_setFilename);
  else
  CATE(KE,"Unknown member for GfxShader."));
@@ -25998,7 +26092,7 @@ void GfxShader_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -26068,9 +26162,9 @@ GfxShader*f;
 f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<String, String> &))
+if(1&&TS(a[1],const HashMap<Str, Str> &))
 {
-RET CV( f->getCompiled(val_to_c<std::remove_reference<const HashMap<String, String> &>::type>::f(ctx,a[1])));
+RET CV( f->getCompiled(val_to_c<std::remove_reference<const HashMap<Str, Str> &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("GfxShader::getCompiled.")));
@@ -26102,9 +26196,9 @@ GfxShader*f;
 f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("GfxShader::setFilename.")));
@@ -26119,9 +26213,9 @@ GfxShader*f;
 f=(GfxShader*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const Str &))
 {
-( f->compile(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
+( f->compile(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("GfxShader::compile.")));
@@ -26269,104 +26363,104 @@ SV Light_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Light");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Light_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Light_new);
 else
  CATE(KE,"Unknown member for Light."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Light_new);
- EI(keyStr == "addShadowmap")
+ EI(keyStr.equals("addShadowmap", CPL_STR_HASH("addShadowmap")))
 RET CNF(Light_addShadowmap);
- EI(keyStr == "removeShadowmap")
+ EI(keyStr.equals("removeShadowmap", CPL_STR_HASH("removeShadowmap")))
 RET CNF(Light_removeShadowmap);
- EI(keyStr == "getShadowmap")
+ EI(keyStr.equals("getShadowmap", CPL_STR_HASH("getShadowmap")))
 RET CNF(Light_getShadowmap);
- EI(keyStr == "getFramebuffers")
+ EI(keyStr.equals("getFramebuffers", CPL_STR_HASH("getFramebuffers")))
 RET CNF(Light_getFramebuffers);
- EI(keyStr == "getShadowmapResolution")
+ EI(keyStr.equals("getShadowmapResolution", CPL_STR_HASH("getShadowmapResolution")))
 RET CNF(Light_getShadowmapResolution);
- EI(keyStr == "getShadowmapPrecision")
+ EI(keyStr.equals("getShadowmapPrecision", CPL_STR_HASH("getShadowmapPrecision")))
 RET CNF(Light_getShadowmapPrecision);
- EI(keyStr == "getPointLightInfluence")
+ EI(keyStr.equals("getPointLightInfluence", CPL_STR_HASH("getPointLightInfluence")))
 RET CNF(Light_getPointLightInfluence);
- EI(keyStr == "getSpotLightInfluence")
+ EI(keyStr.equals("getSpotLightInfluence", CPL_STR_HASH("getSpotLightInfluence")))
 RET CNF(Light_getSpotLightInfluence);
- EI(keyStr == "updateMatrices")
+ EI(keyStr.equals("updateMatrices", CPL_STR_HASH("updateMatrices")))
 RET CNF(Light_updateMatrices);
- EI(keyStr == "getViewMatrix")
+ EI(keyStr.equals("getViewMatrix", CPL_STR_HASH("getViewMatrix")))
 RET CNF(Light_getViewMatrix);
- EI(keyStr == "getProjectionMatrix")
+ EI(keyStr.equals("getProjectionMatrix", CPL_STR_HASH("getProjectionMatrix")))
 RET CNF(Light_getProjectionMatrix);
- EI(keyStr == "getCascadeViewMatrix")
+ EI(keyStr.equals("getCascadeViewMatrix", CPL_STR_HASH("getCascadeViewMatrix")))
 RET CNF(Light_getCascadeViewMatrix);
- EI(keyStr == "getCascadeProjectionMatrix")
+ EI(keyStr.equals("getCascadeProjectionMatrix", CPL_STR_HASH("getCascadeProjectionMatrix")))
 RET CNF(Light_getCascadeProjectionMatrix);
- EI(keyStr=="type")
+ EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->type);
-} EI(keyStr=="power")
+} EI(keyStr.equals("power", CPL_STR_HASH("power")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->power);
-} EI(keyStr=="color")
+} EI(keyStr.equals("color", CPL_STR_HASH("color")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->color);
-} EI(keyStr=="ambientStrength")
+} EI(keyStr.equals("ambientStrength", CPL_STR_HASH("ambientStrength")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->ambientStrength);
-} EI(keyStr=="shadowmapNear")
+} EI(keyStr.equals("shadowmapNear", CPL_STR_HASH("shadowmapNear")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowmapNear);
-} EI(keyStr=="shadowMinBias")
+} EI(keyStr.equals("shadowMinBias", CPL_STR_HASH("shadowMinBias")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowMinBias);
-} EI(keyStr=="shadowBiasScale")
+} EI(keyStr.equals("shadowBiasScale", CPL_STR_HASH("shadowBiasScale")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowBiasScale);
-} EI(keyStr=="shadowAutoBiasScale")
+} EI(keyStr.equals("shadowAutoBiasScale", CPL_STR_HASH("shadowAutoBiasScale")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowAutoBiasScale);
-} EI(keyStr=="shadowFixedBias")
+} EI(keyStr.equals("shadowFixedBias", CPL_STR_HASH("shadowFixedBias")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowFixedBias);
-} EI(keyStr=="shadowRadius")
+} EI(keyStr.equals("shadowRadius", CPL_STR_HASH("shadowRadius")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowRadius);
-} EI(keyStr=="shadowSplitDistances")
+} EI(keyStr.equals("shadowSplitDistances", CPL_STR_HASH("shadowSplitDistances")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->shadowSplitDistances);
-} EI(keyStr=="direction")
+} EI(keyStr.equals("direction", CPL_STR_HASH("direction")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->direction);
-} EI(keyStr=="spot")
+} EI(keyStr.equals("spot", CPL_STR_HASH("spot")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->spot);
-} EI(keyStr=="point")
+} EI(keyStr.equals("point", CPL_STR_HASH("point")))
 {
 Light*obj=(Light*)f->data;
 RET CV(obj->point);
@@ -26382,64 +26476,64 @@ void Light_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="type")
+if(0) {} EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 Light*obj=(Light*)f->data;
 obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
-} EI(keyStr=="power")
+} EI(keyStr.equals("power", CPL_STR_HASH("power")))
 {
 Light*obj=(Light*)f->data;
 obj->power=val_to_c<decltype(obj->power)>::f(ctx,value);
-} EI(keyStr=="color")
+} EI(keyStr.equals("color", CPL_STR_HASH("color")))
 {
 Light*obj=(Light*)f->data;
 obj->color=val_to_c<decltype(obj->color)>::f(ctx,value);
-} EI(keyStr=="ambientStrength")
+} EI(keyStr.equals("ambientStrength", CPL_STR_HASH("ambientStrength")))
 {
 Light*obj=(Light*)f->data;
 obj->ambientStrength=val_to_c<decltype(obj->ambientStrength)>::f(ctx,value);
-} EI(keyStr=="shadowmapNear")
+} EI(keyStr.equals("shadowmapNear", CPL_STR_HASH("shadowmapNear")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowmapNear=val_to_c<decltype(obj->shadowmapNear)>::f(ctx,value);
-} EI(keyStr=="shadowMinBias")
+} EI(keyStr.equals("shadowMinBias", CPL_STR_HASH("shadowMinBias")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowMinBias=val_to_c<decltype(obj->shadowMinBias)>::f(ctx,value);
-} EI(keyStr=="shadowBiasScale")
+} EI(keyStr.equals("shadowBiasScale", CPL_STR_HASH("shadowBiasScale")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowBiasScale=val_to_c<decltype(obj->shadowBiasScale)>::f(ctx,value);
-} EI(keyStr=="shadowAutoBiasScale")
+} EI(keyStr.equals("shadowAutoBiasScale", CPL_STR_HASH("shadowAutoBiasScale")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowAutoBiasScale=val_to_c<decltype(obj->shadowAutoBiasScale)>::f(ctx,value);
-} EI(keyStr=="shadowFixedBias")
+} EI(keyStr.equals("shadowFixedBias", CPL_STR_HASH("shadowFixedBias")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowFixedBias=val_to_c<decltype(obj->shadowFixedBias)>::f(ctx,value);
-} EI(keyStr=="shadowRadius")
+} EI(keyStr.equals("shadowRadius", CPL_STR_HASH("shadowRadius")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowRadius=val_to_c<decltype(obj->shadowRadius)>::f(ctx,value);
-} EI(keyStr=="shadowSplitDistances")
+} EI(keyStr.equals("shadowSplitDistances", CPL_STR_HASH("shadowSplitDistances")))
 {
 Light*obj=(Light*)f->data;
 obj->shadowSplitDistances=val_to_c<decltype(obj->shadowSplitDistances)>::f(ctx,value);
-} EI(keyStr=="direction")
+} EI(keyStr.equals("direction", CPL_STR_HASH("direction")))
 {
 Light*obj=(Light*)f->data;
 obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
-} EI(keyStr=="spot")
+} EI(keyStr.equals("spot", CPL_STR_HASH("spot")))
 {
 Light*obj=(Light*)f->data;
 obj->spot=val_to_c<decltype(obj->spot)>::f(ctx,value);
-} EI(keyStr=="point")
+} EI(keyStr.equals("point", CPL_STR_HASH("point")))
 {
 Light*obj=(Light*)f->data;
 obj->point=val_to_c<decltype(obj->point)>::f(ctx,value);
@@ -26701,48 +26795,48 @@ SV TextureSampler_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("TextureSampler");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(TextureSampler_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(TextureSampler_new);
 else
  CATE(KE,"Unknown member for TextureSampler."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(TextureSampler_new);
- EI(keyStr == "createShadowmap")
+ EI(keyStr.equals("createShadowmap", CPL_STR_HASH("createShadowmap")))
 RET CNF(TextureSampler_createShadowmap);
- EI(keyStr=="maxAnisotropy")
+ EI(keyStr.equals("maxAnisotropy", CPL_STR_HASH("maxAnisotropy")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->maxAnisotropy);
-} EI(keyStr=="minFilter")
+} EI(keyStr.equals("minFilter", CPL_STR_HASH("minFilter")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->minFilter);
-} EI(keyStr=="magFilter")
+} EI(keyStr.equals("magFilter", CPL_STR_HASH("magFilter")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->magFilter);
-} EI(keyStr=="mipmapMode")
+} EI(keyStr.equals("mipmapMode", CPL_STR_HASH("mipmapMode")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->mipmapMode);
-} EI(keyStr=="wrapMode")
+} EI(keyStr.equals("wrapMode", CPL_STR_HASH("wrapMode")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->wrapMode);
-} EI(keyStr=="shadowmap")
+} EI(keyStr.equals("shadowmap", CPL_STR_HASH("shadowmap")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 RET CV(obj->shadowmap);
@@ -26758,32 +26852,32 @@ void TextureSampler_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="maxAnisotropy")
+if(0) {} EI(keyStr.equals("maxAnisotropy", CPL_STR_HASH("maxAnisotropy")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->maxAnisotropy=val_to_c<decltype(obj->maxAnisotropy)>::f(ctx,value);
-} EI(keyStr=="minFilter")
+} EI(keyStr.equals("minFilter", CPL_STR_HASH("minFilter")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->minFilter=val_to_c<decltype(obj->minFilter)>::f(ctx,value);
-} EI(keyStr=="magFilter")
+} EI(keyStr.equals("magFilter", CPL_STR_HASH("magFilter")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->magFilter=val_to_c<decltype(obj->magFilter)>::f(ctx,value);
-} EI(keyStr=="mipmapMode")
+} EI(keyStr.equals("mipmapMode", CPL_STR_HASH("mipmapMode")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->mipmapMode=val_to_c<decltype(obj->mipmapMode)>::f(ctx,value);
-} EI(keyStr=="wrapMode")
+} EI(keyStr.equals("wrapMode", CPL_STR_HASH("wrapMode")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->wrapMode=val_to_c<decltype(obj->wrapMode)>::f(ctx,value);
-} EI(keyStr=="shadowmap")
+} EI(keyStr.equals("shadowmap", CPL_STR_HASH("shadowmap")))
 {
 TextureSampler*obj=(TextureSampler*)f->data;
 obj->shadowmap=val_to_c<decltype(obj->shadowmap)>::f(ctx,value);
@@ -26824,8 +26918,8 @@ void *p = (void *)NEW(TYPE(Scene));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Scene_funcs,p,EXT->Scene_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(Scene),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(Scene),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Scene_funcs,p,EXT->Scene_typeID);
 }CATE(TE,UFOF("Scene's constructor.")));
@@ -26837,72 +26931,72 @@ SV Scene_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Scene");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Scene_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Scene_new);
 else
  CATE(KE,"Unknown member for Scene."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Scene_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(Scene_removeContent);
- EI(keyStr == "handleInput")
+ EI(keyStr.equals("handleInput", CPL_STR_HASH("handleInput")))
 RET CNF(Scene_handleInput);
- EI(keyStr == "update")
+ EI(keyStr.equals("update", CPL_STR_HASH("update")))
 RET CNF(Scene_update);
- EI(keyStr == "fixedUpdate")
+ EI(keyStr.equals("fixedUpdate", CPL_STR_HASH("fixedUpdate")))
 RET CNF(Scene_fixedUpdate);
- EI(keyStr == "render")
+ EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(Scene_render);
- EI(keyStr == "getPhysicsWorld")
+ EI(keyStr.equals("getPhysicsWorld", CPL_STR_HASH("getPhysicsWorld")))
 RET CNF(Scene_getPhysicsWorld);
- EI(keyStr == "getRenderer")
+ EI(keyStr.equals("getRenderer", CPL_STR_HASH("getRenderer")))
 RET CNF(Scene_getRenderer);
- EI(keyStr == "getAudioWorld")
+ EI(keyStr.equals("getAudioWorld", CPL_STR_HASH("getAudioWorld")))
 RET CNF(Scene_getAudioWorld);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(Scene_save);
- EI(keyStr == "createEntity")
+ EI(keyStr.equals("createEntity", CPL_STR_HASH("createEntity")))
 RET CNF(Scene_createEntity);
- EI(keyStr == "removeEntity")
+ EI(keyStr.equals("removeEntity", CPL_STR_HASH("removeEntity")))
 RET CNF(Scene_removeEntity);
- EI(keyStr == "findEntity")
+ EI(keyStr.equals("findEntity", CPL_STR_HASH("findEntity")))
 RET CNF(Scene_findEntity);
- EI(keyStr == "getEntities")
+ EI(keyStr.equals("getEntities", CPL_STR_HASH("getEntities")))
 RET CNF(Scene_getEntities);
- EI(keyStr == "addScript")
+ EI(keyStr.equals("addScript", CPL_STR_HASH("addScript")))
 RET CNF(Scene_addScript);
- EI(keyStr == "removeScript")
+ EI(keyStr.equals("removeScript", CPL_STR_HASH("removeScript")))
 RET CNF(Scene_removeScript);
- EI(keyStr == "getScripts")
+ EI(keyStr.equals("getScripts", CPL_STR_HASH("getScripts")))
 RET CNF(Scene_getScripts);
- EI(keyStr == "findScriptInstance")
+ EI(keyStr.equals("findScriptInstance", CPL_STR_HASH("findScriptInstance")))
 RET CNF(Scene_findScriptInstance);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(Scene_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Scene_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Scene_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(Scene_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(Scene_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(Scene_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(Scene_setFilename);
  else
  CATE(KE,"Unknown member for Scene."));
@@ -26916,7 +27010,7 @@ void Scene_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -26969,9 +27063,9 @@ Scene*f;
 f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Scene::setFilename.")));
@@ -27020,9 +27114,9 @@ Scene*f;
 f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->findEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->findEntity(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Scene::findEntity.")));
@@ -27037,9 +27131,9 @@ Scene*f;
 f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->createEntity(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->createEntity(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Scene::createEntity.")));
@@ -27105,9 +27199,9 @@ Scene*f;
 f=(Scene*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+RET CV( f->findScriptInstance(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Scene::findScriptInstance.")));
@@ -27347,6 +27441,178 @@ CATE(TE,UFOF("Scene::removeScript.")));
 RET CN;
 }
 
+void GfxAnimationState_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,GfxAnimationState))
+CATE(TE,"GfxAnimationState::__del__ expects GfxAnimationState as first argument."));
+
+SCRIPT_DELETE((GfxAnimationState*)f->data);
+}SV GfxAnimationState_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxAnimationState's constructor" EAOE));
+if(!TS(a[0],GfxAnimationState))
+CATE(TE,"GfxAnimationState's constructor expects GfxAnimationState as first argument."));
+if(a.getCount()==3)
+if(true&&TS(a[1],GfxMesh *)&&TS(a[2],const Str &)){
+void *p = (void *)NEW(TYPE(GfxAnimationState),val_to_c<GfxMesh *>::f(ctx,a[1]),val_to_c<const Str &>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(GfxAnimationState_funcs,p,EXT->GfxAnimationState_typeID);
+}CATE(TE,UFOF("GfxAnimationState's constructor.")));
+RET CN;
+}
+
+SV GfxAnimationState_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+{
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
+RET STG::createString("GfxAnimationState");
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
+RET CNF(GfxAnimationState_new);
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
+RET CNF(GfxAnimationState_new);
+else
+ CATE(KE,"Unknown member for GfxAnimationState."));
+} else
+{
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
+RET CNF(GfxAnimationState_new);
+ EI(keyStr.equals("updateMatrices", CPL_STR_HASH("updateMatrices")))
+RET CNF(GfxAnimationState_updateMatrices);
+ EI(keyStr.equals("getAnimName", CPL_STR_HASH("getAnimName")))
+RET CNF(GfxAnimationState_getAnimName);
+ EI(keyStr.equals("getMesh", CPL_STR_HASH("getMesh")))
+RET CNF(GfxAnimationState_getMesh);
+ EI(keyStr.equals("getMatrixBuffer", CPL_STR_HASH("getMatrixBuffer")))
+RET CNF(GfxAnimationState_getMatrixBuffer);
+ EI(keyStr.equals("getNormalMatrixBuffer", CPL_STR_HASH("getNormalMatrixBuffer")))
+RET CNF(GfxAnimationState_getNormalMatrixBuffer);
+ EI(keyStr.equals("timeOffset", CPL_STR_HASH("timeOffset")))
+{
+GfxAnimationState*obj=(GfxAnimationState*)f->data;
+RET CV(obj->timeOffset);
+} else
+ CATE(KE,"Unknown member for GfxAnimationState."));
+}
+}
+RET CN;
+}
+
+void GfxAnimationState_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr.equals("timeOffset", CPL_STR_HASH("timeOffset")))
+{
+GfxAnimationState*obj=(GfxAnimationState*)f->data;
+obj->timeOffset=val_to_c<decltype(obj->timeOffset)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only for GfxAnimationState."));
+}
+}
+}
+
+SV GfxAnimationState_updateMatrices(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxAnimationState::updateMatrices" EAOE));
+GfxAnimationState*f;
+f=(GfxAnimationState*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->updateMatrices());
+RET CN;
+}
+CATE(TE,UFOF("GfxAnimationState::updateMatrices.")));
+RET CN;
+}
+
+SV GfxAnimationState_getMesh(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxAnimationState::getMesh" EAOE));
+GfxAnimationState*f;
+f=(GfxAnimationState*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getMesh());
+;
+}
+CATE(TE,UFOF("GfxAnimationState::getMesh.")));
+RET CN;
+}
+
+SV GfxAnimationState_getAnimName(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxAnimationState::getAnimName" EAOE));
+GfxAnimationState*f;
+f=(GfxAnimationState*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getAnimName());
+;
+}
+CATE(TE,UFOF("GfxAnimationState::getAnimName.")));
+RET CN;
+}
+
+SV GfxAnimationState_getMatrixBuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxAnimationState::getMatrixBuffer" EAOE));
+GfxAnimationState*f;
+f=(GfxAnimationState*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getMatrixBuffer());
+;
+}
+CATE(TE,UFOF("GfxAnimationState::getMatrixBuffer.")));
+RET CN;
+}
+
+SV GfxAnimationState_getNormalMatrixBuffer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxAnimationState::getNormalMatrixBuffer" EAOE));
+GfxAnimationState*f;
+f=(GfxAnimationState*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getNormalMatrixBuffer());
+;
+}
+CATE(TE,UFOF("GfxAnimationState::getNormalMatrixBuffer.")));
+RET CN;
+}
+
 void Int3_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
@@ -27399,120 +27665,120 @@ SV Int3_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Int3");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Int3_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Int3_new);
 else
  CATE(KE,"Unknown member for Int3."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Int3_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(Int3___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(Int3___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Int3___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Int3___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Int3___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Int3___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(Int3___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(Int3___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(Int3___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(Int3___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(Int3_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(Int3_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(Int3_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(Int3_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(Int3_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(Int3_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Int3_normalize);
- EI(keyStr == "cross")
+ EI(keyStr.equals("cross", CPL_STR_HASH("cross")))
 RET CNF(Int3_cross);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(Int3_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(Int3_setXY);
- EI(keyStr == "getXZ")
+ EI(keyStr.equals("getXZ", CPL_STR_HASH("getXZ")))
 RET CNF(Int3_getXZ);
- EI(keyStr == "setXZ")
+ EI(keyStr.equals("setXZ", CPL_STR_HASH("setXZ")))
 RET CNF(Int3_setXZ);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(Int3_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(Int3_setYX);
- EI(keyStr == "getYZ")
+ EI(keyStr.equals("getYZ", CPL_STR_HASH("getYZ")))
 RET CNF(Int3_getYZ);
- EI(keyStr == "setYZ")
+ EI(keyStr.equals("setYZ", CPL_STR_HASH("setYZ")))
 RET CNF(Int3_setYZ);
- EI(keyStr == "getZX")
+ EI(keyStr.equals("getZX", CPL_STR_HASH("getZX")))
 RET CNF(Int3_getZX);
- EI(keyStr == "setZX")
+ EI(keyStr.equals("setZX", CPL_STR_HASH("setZX")))
 RET CNF(Int3_setZX);
- EI(keyStr == "getZY")
+ EI(keyStr.equals("getZY", CPL_STR_HASH("getZY")))
 RET CNF(Int3_getZY);
- EI(keyStr == "setZY")
+ EI(keyStr.equals("setZY", CPL_STR_HASH("setZY")))
 RET CNF(Int3_setZY);
- EI(keyStr == "getXYZ")
+ EI(keyStr.equals("getXYZ", CPL_STR_HASH("getXYZ")))
 RET CNF(Int3_getXYZ);
- EI(keyStr == "setXYZ")
+ EI(keyStr.equals("setXYZ", CPL_STR_HASH("setXYZ")))
 RET CNF(Int3_setXYZ);
- EI(keyStr == "getXZY")
+ EI(keyStr.equals("getXZY", CPL_STR_HASH("getXZY")))
 RET CNF(Int3_getXZY);
- EI(keyStr == "setXZY")
+ EI(keyStr.equals("setXZY", CPL_STR_HASH("setXZY")))
 RET CNF(Int3_setXZY);
- EI(keyStr == "getYXZ")
+ EI(keyStr.equals("getYXZ", CPL_STR_HASH("getYXZ")))
 RET CNF(Int3_getYXZ);
- EI(keyStr == "setYXZ")
+ EI(keyStr.equals("setYXZ", CPL_STR_HASH("setYXZ")))
 RET CNF(Int3_setYXZ);
- EI(keyStr == "getYZX")
+ EI(keyStr.equals("getYZX", CPL_STR_HASH("getYZX")))
 RET CNF(Int3_getYZX);
- EI(keyStr == "setYZX")
+ EI(keyStr.equals("setYZX", CPL_STR_HASH("setYZX")))
 RET CNF(Int3_setYZX);
- EI(keyStr == "getZXY")
+ EI(keyStr.equals("getZXY", CPL_STR_HASH("getZXY")))
 RET CNF(Int3_getZXY);
- EI(keyStr == "setZXY")
+ EI(keyStr.equals("setZXY", CPL_STR_HASH("setZXY")))
 RET CNF(Int3_setZXY);
- EI(keyStr == "getZYX")
+ EI(keyStr.equals("getZYX", CPL_STR_HASH("getZYX")))
 RET CNF(Int3_getZYX);
- EI(keyStr == "setZYX")
+ EI(keyStr.equals("setZYX", CPL_STR_HASH("setZYX")))
 RET CNF(Int3_setZYX);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Int3_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 RET CV(obj->z);
@@ -27528,20 +27794,20 @@ void Int3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T3<int32_t>*obj=(T3<int32_t>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
@@ -28344,136 +28610,136 @@ SV ResizableData_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ResizableData");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(ResizableData_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(ResizableData_new);
 else
  CATE(KE,"Unknown member for ResizableData."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ResizableData_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(ResizableData___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(ResizableData___neq__);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(ResizableData_getData);
- EI(keyStr == "getSize")
+ EI(keyStr.equals("getSize", CPL_STR_HASH("getSize")))
 RET CNF(ResizableData_getSize);
- EI(keyStr == "resize")
+ EI(keyStr.equals("resize", CPL_STR_HASH("resize")))
 RET CNF(ResizableData_resize);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(ResizableData_insert);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(ResizableData_append);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(ResizableData_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(ResizableData_clear);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(ResizableData_copy);
- EI(keyStr == "getUInt8")
+ EI(keyStr.equals("getUInt8", CPL_STR_HASH("getUInt8")))
 RET CNF(ResizableData_getUInt8);
- EI(keyStr == "getInt8")
+ EI(keyStr.equals("getInt8", CPL_STR_HASH("getInt8")))
 RET CNF(ResizableData_getInt8);
- EI(keyStr == "getUInt16")
+ EI(keyStr.equals("getUInt16", CPL_STR_HASH("getUInt16")))
 RET CNF(ResizableData_getUInt16);
- EI(keyStr == "getInt16")
+ EI(keyStr.equals("getInt16", CPL_STR_HASH("getInt16")))
 RET CNF(ResizableData_getInt16);
- EI(keyStr == "getUInt32")
+ EI(keyStr.equals("getUInt32", CPL_STR_HASH("getUInt32")))
 RET CNF(ResizableData_getUInt32);
- EI(keyStr == "getInt32")
+ EI(keyStr.equals("getInt32", CPL_STR_HASH("getInt32")))
 RET CNF(ResizableData_getInt32);
- EI(keyStr == "getUInt64")
+ EI(keyStr.equals("getUInt64", CPL_STR_HASH("getUInt64")))
 RET CNF(ResizableData_getUInt64);
- EI(keyStr == "getInt64")
+ EI(keyStr.equals("getInt64", CPL_STR_HASH("getInt64")))
 RET CNF(ResizableData_getInt64);
- EI(keyStr == "getFloat32")
+ EI(keyStr.equals("getFloat32", CPL_STR_HASH("getFloat32")))
 RET CNF(ResizableData_getFloat32);
- EI(keyStr == "getFloat64")
+ EI(keyStr.equals("getFloat64", CPL_STR_HASH("getFloat64")))
 RET CNF(ResizableData_getFloat64);
- EI(keyStr == "getUInt16LE")
+ EI(keyStr.equals("getUInt16LE", CPL_STR_HASH("getUInt16LE")))
 RET CNF(ResizableData_getUInt16LE);
- EI(keyStr == "getInt16LE")
+ EI(keyStr.equals("getInt16LE", CPL_STR_HASH("getInt16LE")))
 RET CNF(ResizableData_getInt16LE);
- EI(keyStr == "getUInt32LE")
+ EI(keyStr.equals("getUInt32LE", CPL_STR_HASH("getUInt32LE")))
 RET CNF(ResizableData_getUInt32LE);
- EI(keyStr == "getInt32LE")
+ EI(keyStr.equals("getInt32LE", CPL_STR_HASH("getInt32LE")))
 RET CNF(ResizableData_getInt32LE);
- EI(keyStr == "getUInt64LE")
+ EI(keyStr.equals("getUInt64LE", CPL_STR_HASH("getUInt64LE")))
 RET CNF(ResizableData_getUInt64LE);
- EI(keyStr == "getInt64LE")
+ EI(keyStr.equals("getInt64LE", CPL_STR_HASH("getInt64LE")))
 RET CNF(ResizableData_getInt64LE);
- EI(keyStr == "getUInt16BE")
+ EI(keyStr.equals("getUInt16BE", CPL_STR_HASH("getUInt16BE")))
 RET CNF(ResizableData_getUInt16BE);
- EI(keyStr == "getInt16BE")
+ EI(keyStr.equals("getInt16BE", CPL_STR_HASH("getInt16BE")))
 RET CNF(ResizableData_getInt16BE);
- EI(keyStr == "getUInt32BE")
+ EI(keyStr.equals("getUInt32BE", CPL_STR_HASH("getUInt32BE")))
 RET CNF(ResizableData_getUInt32BE);
- EI(keyStr == "getInt32BE")
+ EI(keyStr.equals("getInt32BE", CPL_STR_HASH("getInt32BE")))
 RET CNF(ResizableData_getInt32BE);
- EI(keyStr == "getUInt64BE")
+ EI(keyStr.equals("getUInt64BE", CPL_STR_HASH("getUInt64BE")))
 RET CNF(ResizableData_getUInt64BE);
- EI(keyStr == "getInt64BE")
+ EI(keyStr.equals("getInt64BE", CPL_STR_HASH("getInt64BE")))
 RET CNF(ResizableData_getInt64BE);
- EI(keyStr == "setUInt8")
+ EI(keyStr.equals("setUInt8", CPL_STR_HASH("setUInt8")))
 RET CNF(ResizableData_setUInt8);
- EI(keyStr == "setInt8")
+ EI(keyStr.equals("setInt8", CPL_STR_HASH("setInt8")))
 RET CNF(ResizableData_setInt8);
- EI(keyStr == "setUInt16")
+ EI(keyStr.equals("setUInt16", CPL_STR_HASH("setUInt16")))
 RET CNF(ResizableData_setUInt16);
- EI(keyStr == "setInt16")
+ EI(keyStr.equals("setInt16", CPL_STR_HASH("setInt16")))
 RET CNF(ResizableData_setInt16);
- EI(keyStr == "setUInt32")
+ EI(keyStr.equals("setUInt32", CPL_STR_HASH("setUInt32")))
 RET CNF(ResizableData_setUInt32);
- EI(keyStr == "setInt32")
+ EI(keyStr.equals("setInt32", CPL_STR_HASH("setInt32")))
 RET CNF(ResizableData_setInt32);
- EI(keyStr == "setUInt64")
+ EI(keyStr.equals("setUInt64", CPL_STR_HASH("setUInt64")))
 RET CNF(ResizableData_setUInt64);
- EI(keyStr == "setInt64")
+ EI(keyStr.equals("setInt64", CPL_STR_HASH("setInt64")))
 RET CNF(ResizableData_setInt64);
- EI(keyStr == "setFloat32")
+ EI(keyStr.equals("setFloat32", CPL_STR_HASH("setFloat32")))
 RET CNF(ResizableData_setFloat32);
- EI(keyStr == "setFloat64")
+ EI(keyStr.equals("setFloat64", CPL_STR_HASH("setFloat64")))
 RET CNF(ResizableData_setFloat64);
- EI(keyStr == "setUInt16LE")
+ EI(keyStr.equals("setUInt16LE", CPL_STR_HASH("setUInt16LE")))
 RET CNF(ResizableData_setUInt16LE);
- EI(keyStr == "setInt16LE")
+ EI(keyStr.equals("setInt16LE", CPL_STR_HASH("setInt16LE")))
 RET CNF(ResizableData_setInt16LE);
- EI(keyStr == "setUInt32LE")
+ EI(keyStr.equals("setUInt32LE", CPL_STR_HASH("setUInt32LE")))
 RET CNF(ResizableData_setUInt32LE);
- EI(keyStr == "setInt32LE")
+ EI(keyStr.equals("setInt32LE", CPL_STR_HASH("setInt32LE")))
 RET CNF(ResizableData_setInt32LE);
- EI(keyStr == "setUInt64LE")
+ EI(keyStr.equals("setUInt64LE", CPL_STR_HASH("setUInt64LE")))
 RET CNF(ResizableData_setUInt64LE);
- EI(keyStr == "setInt64LE")
+ EI(keyStr.equals("setInt64LE", CPL_STR_HASH("setInt64LE")))
 RET CNF(ResizableData_setInt64LE);
- EI(keyStr == "setUInt16BE")
+ EI(keyStr.equals("setUInt16BE", CPL_STR_HASH("setUInt16BE")))
 RET CNF(ResizableData_setUInt16BE);
- EI(keyStr == "setInt16BE")
+ EI(keyStr.equals("setInt16BE", CPL_STR_HASH("setInt16BE")))
 RET CNF(ResizableData_setInt16BE);
- EI(keyStr == "setUInt32BE")
+ EI(keyStr.equals("setUInt32BE", CPL_STR_HASH("setUInt32BE")))
 RET CNF(ResizableData_setUInt32BE);
- EI(keyStr == "setInt32BE")
+ EI(keyStr.equals("setInt32BE", CPL_STR_HASH("setInt32BE")))
 RET CNF(ResizableData_setInt32BE);
- EI(keyStr == "setUInt64BE")
+ EI(keyStr.equals("setUInt64BE", CPL_STR_HASH("setUInt64BE")))
 RET CNF(ResizableData_setUInt64BE);
- EI(keyStr == "setInt64BE")
+ EI(keyStr.equals("setInt64BE", CPL_STR_HASH("setInt64BE")))
 RET CNF(ResizableData_setInt64BE);
- EI(keyStr == "getChar")
+ EI(keyStr.equals("getChar", CPL_STR_HASH("getChar")))
 RET CNF(ResizableData_getChar);
- EI(keyStr == "setChar")
+ EI(keyStr.equals("setChar", CPL_STR_HASH("setChar")))
 RET CNF(ResizableData_setChar);
  else
  CATE(KE,"Unknown member for ResizableData."));
@@ -28487,7 +28753,7 @@ void ResizableData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -29496,314 +29762,314 @@ SV Int4_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Int4");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Int4_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Int4_new);
 else
  CATE(KE,"Unknown member for Int4."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Int4_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(Int4___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(Int4___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Int4___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Int4___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Int4___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Int4___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(Int4___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(Int4___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(Int4___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(Int4___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(Int4_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(Int4_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(Int4_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(Int4_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(Int4_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(Int4_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Int4_normalize);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(Int4_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(Int4_setXY);
- EI(keyStr == "getXZ")
+ EI(keyStr.equals("getXZ", CPL_STR_HASH("getXZ")))
 RET CNF(Int4_getXZ);
- EI(keyStr == "setXZ")
+ EI(keyStr.equals("setXZ", CPL_STR_HASH("setXZ")))
 RET CNF(Int4_setXZ);
- EI(keyStr == "getXW")
+ EI(keyStr.equals("getXW", CPL_STR_HASH("getXW")))
 RET CNF(Int4_getXW);
- EI(keyStr == "setXW")
+ EI(keyStr.equals("setXW", CPL_STR_HASH("setXW")))
 RET CNF(Int4_setXW);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(Int4_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(Int4_setYX);
- EI(keyStr == "getYZ")
+ EI(keyStr.equals("getYZ", CPL_STR_HASH("getYZ")))
 RET CNF(Int4_getYZ);
- EI(keyStr == "setYZ")
+ EI(keyStr.equals("setYZ", CPL_STR_HASH("setYZ")))
 RET CNF(Int4_setYZ);
- EI(keyStr == "getYW")
+ EI(keyStr.equals("getYW", CPL_STR_HASH("getYW")))
 RET CNF(Int4_getYW);
- EI(keyStr == "setYW")
+ EI(keyStr.equals("setYW", CPL_STR_HASH("setYW")))
 RET CNF(Int4_setYW);
- EI(keyStr == "getZX")
+ EI(keyStr.equals("getZX", CPL_STR_HASH("getZX")))
 RET CNF(Int4_getZX);
- EI(keyStr == "setZX")
+ EI(keyStr.equals("setZX", CPL_STR_HASH("setZX")))
 RET CNF(Int4_setZX);
- EI(keyStr == "getZY")
+ EI(keyStr.equals("getZY", CPL_STR_HASH("getZY")))
 RET CNF(Int4_getZY);
- EI(keyStr == "setZY")
+ EI(keyStr.equals("setZY", CPL_STR_HASH("setZY")))
 RET CNF(Int4_setZY);
- EI(keyStr == "getZW")
+ EI(keyStr.equals("getZW", CPL_STR_HASH("getZW")))
 RET CNF(Int4_getZW);
- EI(keyStr == "setZW")
+ EI(keyStr.equals("setZW", CPL_STR_HASH("setZW")))
 RET CNF(Int4_setZW);
- EI(keyStr == "getWX")
+ EI(keyStr.equals("getWX", CPL_STR_HASH("getWX")))
 RET CNF(Int4_getWX);
- EI(keyStr == "setWX")
+ EI(keyStr.equals("setWX", CPL_STR_HASH("setWX")))
 RET CNF(Int4_setWX);
- EI(keyStr == "getWY")
+ EI(keyStr.equals("getWY", CPL_STR_HASH("getWY")))
 RET CNF(Int4_getWY);
- EI(keyStr == "setWY")
+ EI(keyStr.equals("setWY", CPL_STR_HASH("setWY")))
 RET CNF(Int4_setWY);
- EI(keyStr == "getWZ")
+ EI(keyStr.equals("getWZ", CPL_STR_HASH("getWZ")))
 RET CNF(Int4_getWZ);
- EI(keyStr == "setWZ")
+ EI(keyStr.equals("setWZ", CPL_STR_HASH("setWZ")))
 RET CNF(Int4_setWZ);
- EI(keyStr == "getXYZ")
+ EI(keyStr.equals("getXYZ", CPL_STR_HASH("getXYZ")))
 RET CNF(Int4_getXYZ);
- EI(keyStr == "setXYZ")
+ EI(keyStr.equals("setXYZ", CPL_STR_HASH("setXYZ")))
 RET CNF(Int4_setXYZ);
- EI(keyStr == "getXYW")
+ EI(keyStr.equals("getXYW", CPL_STR_HASH("getXYW")))
 RET CNF(Int4_getXYW);
- EI(keyStr == "setXYW")
+ EI(keyStr.equals("setXYW", CPL_STR_HASH("setXYW")))
 RET CNF(Int4_setXYW);
- EI(keyStr == "getXZY")
+ EI(keyStr.equals("getXZY", CPL_STR_HASH("getXZY")))
 RET CNF(Int4_getXZY);
- EI(keyStr == "setXZY")
+ EI(keyStr.equals("setXZY", CPL_STR_HASH("setXZY")))
 RET CNF(Int4_setXZY);
- EI(keyStr == "getXZW")
+ EI(keyStr.equals("getXZW", CPL_STR_HASH("getXZW")))
 RET CNF(Int4_getXZW);
- EI(keyStr == "setXZW")
+ EI(keyStr.equals("setXZW", CPL_STR_HASH("setXZW")))
 RET CNF(Int4_setXZW);
- EI(keyStr == "getXWZ")
+ EI(keyStr.equals("getXWZ", CPL_STR_HASH("getXWZ")))
 RET CNF(Int4_getXWZ);
- EI(keyStr == "setXWZ")
+ EI(keyStr.equals("setXWZ", CPL_STR_HASH("setXWZ")))
 RET CNF(Int4_setXWZ);
- EI(keyStr == "getXWY")
+ EI(keyStr.equals("getXWY", CPL_STR_HASH("getXWY")))
 RET CNF(Int4_getXWY);
- EI(keyStr == "setXWY")
+ EI(keyStr.equals("setXWY", CPL_STR_HASH("setXWY")))
 RET CNF(Int4_setXWY);
- EI(keyStr == "getYXZ")
+ EI(keyStr.equals("getYXZ", CPL_STR_HASH("getYXZ")))
 RET CNF(Int4_getYXZ);
- EI(keyStr == "setYXZ")
+ EI(keyStr.equals("setYXZ", CPL_STR_HASH("setYXZ")))
 RET CNF(Int4_setYXZ);
- EI(keyStr == "getYXW")
+ EI(keyStr.equals("getYXW", CPL_STR_HASH("getYXW")))
 RET CNF(Int4_getYXW);
- EI(keyStr == "setYXW")
+ EI(keyStr.equals("setYXW", CPL_STR_HASH("setYXW")))
 RET CNF(Int4_setYXW);
- EI(keyStr == "getYZX")
+ EI(keyStr.equals("getYZX", CPL_STR_HASH("getYZX")))
 RET CNF(Int4_getYZX);
- EI(keyStr == "setYZX")
+ EI(keyStr.equals("setYZX", CPL_STR_HASH("setYZX")))
 RET CNF(Int4_setYZX);
- EI(keyStr == "getYZW")
+ EI(keyStr.equals("getYZW", CPL_STR_HASH("getYZW")))
 RET CNF(Int4_getYZW);
- EI(keyStr == "setYZW")
+ EI(keyStr.equals("setYZW", CPL_STR_HASH("setYZW")))
 RET CNF(Int4_setYZW);
- EI(keyStr == "getYWZ")
+ EI(keyStr.equals("getYWZ", CPL_STR_HASH("getYWZ")))
 RET CNF(Int4_getYWZ);
- EI(keyStr == "setYWZ")
+ EI(keyStr.equals("setYWZ", CPL_STR_HASH("setYWZ")))
 RET CNF(Int4_setYWZ);
- EI(keyStr == "getYWX")
+ EI(keyStr.equals("getYWX", CPL_STR_HASH("getYWX")))
 RET CNF(Int4_getYWX);
- EI(keyStr == "setYWX")
+ EI(keyStr.equals("setYWX", CPL_STR_HASH("setYWX")))
 RET CNF(Int4_setYWX);
- EI(keyStr == "getZXY")
+ EI(keyStr.equals("getZXY", CPL_STR_HASH("getZXY")))
 RET CNF(Int4_getZXY);
- EI(keyStr == "setZXY")
+ EI(keyStr.equals("setZXY", CPL_STR_HASH("setZXY")))
 RET CNF(Int4_setZXY);
- EI(keyStr == "getZXW")
+ EI(keyStr.equals("getZXW", CPL_STR_HASH("getZXW")))
 RET CNF(Int4_getZXW);
- EI(keyStr == "setZXW")
+ EI(keyStr.equals("setZXW", CPL_STR_HASH("setZXW")))
 RET CNF(Int4_setZXW);
- EI(keyStr == "getZYX")
+ EI(keyStr.equals("getZYX", CPL_STR_HASH("getZYX")))
 RET CNF(Int4_getZYX);
- EI(keyStr == "setZYX")
+ EI(keyStr.equals("setZYX", CPL_STR_HASH("setZYX")))
 RET CNF(Int4_setZYX);
- EI(keyStr == "getZYW")
+ EI(keyStr.equals("getZYW", CPL_STR_HASH("getZYW")))
 RET CNF(Int4_getZYW);
- EI(keyStr == "setZYW")
+ EI(keyStr.equals("setZYW", CPL_STR_HASH("setZYW")))
 RET CNF(Int4_setZYW);
- EI(keyStr == "getZWY")
+ EI(keyStr.equals("getZWY", CPL_STR_HASH("getZWY")))
 RET CNF(Int4_getZWY);
- EI(keyStr == "setZWY")
+ EI(keyStr.equals("setZWY", CPL_STR_HASH("setZWY")))
 RET CNF(Int4_setZWY);
- EI(keyStr == "getZWX")
+ EI(keyStr.equals("getZWX", CPL_STR_HASH("getZWX")))
 RET CNF(Int4_getZWX);
- EI(keyStr == "setZWX")
+ EI(keyStr.equals("setZWX", CPL_STR_HASH("setZWX")))
 RET CNF(Int4_setZWX);
- EI(keyStr == "getWXY")
+ EI(keyStr.equals("getWXY", CPL_STR_HASH("getWXY")))
 RET CNF(Int4_getWXY);
- EI(keyStr == "setWXY")
+ EI(keyStr.equals("setWXY", CPL_STR_HASH("setWXY")))
 RET CNF(Int4_setWXY);
- EI(keyStr == "getWXZ")
+ EI(keyStr.equals("getWXZ", CPL_STR_HASH("getWXZ")))
 RET CNF(Int4_getWXZ);
- EI(keyStr == "setWXZ")
+ EI(keyStr.equals("setWXZ", CPL_STR_HASH("setWXZ")))
 RET CNF(Int4_setWXZ);
- EI(keyStr == "getWYX")
+ EI(keyStr.equals("getWYX", CPL_STR_HASH("getWYX")))
 RET CNF(Int4_getWYX);
- EI(keyStr == "setWYX")
+ EI(keyStr.equals("setWYX", CPL_STR_HASH("setWYX")))
 RET CNF(Int4_setWYX);
- EI(keyStr == "getWYZ")
+ EI(keyStr.equals("getWYZ", CPL_STR_HASH("getWYZ")))
 RET CNF(Int4_getWYZ);
- EI(keyStr == "setWYZ")
+ EI(keyStr.equals("setWYZ", CPL_STR_HASH("setWYZ")))
 RET CNF(Int4_setWYZ);
- EI(keyStr == "getWZY")
+ EI(keyStr.equals("getWZY", CPL_STR_HASH("getWZY")))
 RET CNF(Int4_getWZY);
- EI(keyStr == "setWZY")
+ EI(keyStr.equals("setWZY", CPL_STR_HASH("setWZY")))
 RET CNF(Int4_setWZY);
- EI(keyStr == "getWZX")
+ EI(keyStr.equals("getWZX", CPL_STR_HASH("getWZX")))
 RET CNF(Int4_getWZX);
- EI(keyStr == "setWZX")
+ EI(keyStr.equals("setWZX", CPL_STR_HASH("setWZX")))
 RET CNF(Int4_setWZX);
- EI(keyStr == "getXYZW")
+ EI(keyStr.equals("getXYZW", CPL_STR_HASH("getXYZW")))
 RET CNF(Int4_getXYZW);
- EI(keyStr == "setXYZW")
+ EI(keyStr.equals("setXYZW", CPL_STR_HASH("setXYZW")))
 RET CNF(Int4_setXYZW);
- EI(keyStr == "getXYWZ")
+ EI(keyStr.equals("getXYWZ", CPL_STR_HASH("getXYWZ")))
 RET CNF(Int4_getXYWZ);
- EI(keyStr == "setXYWZ")
+ EI(keyStr.equals("setXYWZ", CPL_STR_HASH("setXYWZ")))
 RET CNF(Int4_setXYWZ);
- EI(keyStr == "getXZYW")
+ EI(keyStr.equals("getXZYW", CPL_STR_HASH("getXZYW")))
 RET CNF(Int4_getXZYW);
- EI(keyStr == "setXZYW")
+ EI(keyStr.equals("setXZYW", CPL_STR_HASH("setXZYW")))
 RET CNF(Int4_setXZYW);
- EI(keyStr == "getXZWY")
+ EI(keyStr.equals("getXZWY", CPL_STR_HASH("getXZWY")))
 RET CNF(Int4_getXZWY);
- EI(keyStr == "setXZWY")
+ EI(keyStr.equals("setXZWY", CPL_STR_HASH("setXZWY")))
 RET CNF(Int4_setXZWY);
- EI(keyStr == "getXWZY")
+ EI(keyStr.equals("getXWZY", CPL_STR_HASH("getXWZY")))
 RET CNF(Int4_getXWZY);
- EI(keyStr == "setXWZY")
+ EI(keyStr.equals("setXWZY", CPL_STR_HASH("setXWZY")))
 RET CNF(Int4_setXWZY);
- EI(keyStr == "getXWYZ")
+ EI(keyStr.equals("getXWYZ", CPL_STR_HASH("getXWYZ")))
 RET CNF(Int4_getXWYZ);
- EI(keyStr == "setXWYZ")
+ EI(keyStr.equals("setXWYZ", CPL_STR_HASH("setXWYZ")))
 RET CNF(Int4_setXWYZ);
- EI(keyStr == "getYXZW")
+ EI(keyStr.equals("getYXZW", CPL_STR_HASH("getYXZW")))
 RET CNF(Int4_getYXZW);
- EI(keyStr == "setYXZW")
+ EI(keyStr.equals("setYXZW", CPL_STR_HASH("setYXZW")))
 RET CNF(Int4_setYXZW);
- EI(keyStr == "getYXWZ")
+ EI(keyStr.equals("getYXWZ", CPL_STR_HASH("getYXWZ")))
 RET CNF(Int4_getYXWZ);
- EI(keyStr == "setYXWZ")
+ EI(keyStr.equals("setYXWZ", CPL_STR_HASH("setYXWZ")))
 RET CNF(Int4_setYXWZ);
- EI(keyStr == "getYZXW")
+ EI(keyStr.equals("getYZXW", CPL_STR_HASH("getYZXW")))
 RET CNF(Int4_getYZXW);
- EI(keyStr == "setYZXW")
+ EI(keyStr.equals("setYZXW", CPL_STR_HASH("setYZXW")))
 RET CNF(Int4_setYZXW);
- EI(keyStr == "getYZWX")
+ EI(keyStr.equals("getYZWX", CPL_STR_HASH("getYZWX")))
 RET CNF(Int4_getYZWX);
- EI(keyStr == "setYZWX")
+ EI(keyStr.equals("setYZWX", CPL_STR_HASH("setYZWX")))
 RET CNF(Int4_setYZWX);
- EI(keyStr == "getYWZX")
+ EI(keyStr.equals("getYWZX", CPL_STR_HASH("getYWZX")))
 RET CNF(Int4_getYWZX);
- EI(keyStr == "setYWZX")
+ EI(keyStr.equals("setYWZX", CPL_STR_HASH("setYWZX")))
 RET CNF(Int4_setYWZX);
- EI(keyStr == "getYWXZ")
+ EI(keyStr.equals("getYWXZ", CPL_STR_HASH("getYWXZ")))
 RET CNF(Int4_getYWXZ);
- EI(keyStr == "setYWXZ")
+ EI(keyStr.equals("setYWXZ", CPL_STR_HASH("setYWXZ")))
 RET CNF(Int4_setYWXZ);
- EI(keyStr == "getZYXW")
+ EI(keyStr.equals("getZYXW", CPL_STR_HASH("getZYXW")))
 RET CNF(Int4_getZYXW);
- EI(keyStr == "setZYXW")
+ EI(keyStr.equals("setZYXW", CPL_STR_HASH("setZYXW")))
 RET CNF(Int4_setZYXW);
- EI(keyStr == "getZYWX")
+ EI(keyStr.equals("getZYWX", CPL_STR_HASH("getZYWX")))
 RET CNF(Int4_getZYWX);
- EI(keyStr == "setZYWX")
+ EI(keyStr.equals("setZYWX", CPL_STR_HASH("setZYWX")))
 RET CNF(Int4_setZYWX);
- EI(keyStr == "getZXYW")
+ EI(keyStr.equals("getZXYW", CPL_STR_HASH("getZXYW")))
 RET CNF(Int4_getZXYW);
- EI(keyStr == "setZXYW")
+ EI(keyStr.equals("setZXYW", CPL_STR_HASH("setZXYW")))
 RET CNF(Int4_setZXYW);
- EI(keyStr == "getZXWY")
+ EI(keyStr.equals("getZXWY", CPL_STR_HASH("getZXWY")))
 RET CNF(Int4_getZXWY);
- EI(keyStr == "setZXWY")
+ EI(keyStr.equals("setZXWY", CPL_STR_HASH("setZXWY")))
 RET CNF(Int4_setZXWY);
- EI(keyStr == "getZWXY")
+ EI(keyStr.equals("getZWXY", CPL_STR_HASH("getZWXY")))
 RET CNF(Int4_getZWXY);
- EI(keyStr == "setZWXY")
+ EI(keyStr.equals("setZWXY", CPL_STR_HASH("setZWXY")))
 RET CNF(Int4_setZWXY);
- EI(keyStr == "getZWYX")
+ EI(keyStr.equals("getZWYX", CPL_STR_HASH("getZWYX")))
 RET CNF(Int4_getZWYX);
- EI(keyStr == "setZWYX")
+ EI(keyStr.equals("setZWYX", CPL_STR_HASH("setZWYX")))
 RET CNF(Int4_setZWYX);
- EI(keyStr == "getWYZX")
+ EI(keyStr.equals("getWYZX", CPL_STR_HASH("getWYZX")))
 RET CNF(Int4_getWYZX);
- EI(keyStr == "setWYZX")
+ EI(keyStr.equals("setWYZX", CPL_STR_HASH("setWYZX")))
 RET CNF(Int4_setWYZX);
- EI(keyStr == "getWYXZ")
+ EI(keyStr.equals("getWYXZ", CPL_STR_HASH("getWYXZ")))
 RET CNF(Int4_getWYXZ);
- EI(keyStr == "setWYXZ")
+ EI(keyStr.equals("setWYXZ", CPL_STR_HASH("setWYXZ")))
 RET CNF(Int4_setWYXZ);
- EI(keyStr == "getWZYX")
+ EI(keyStr.equals("getWZYX", CPL_STR_HASH("getWZYX")))
 RET CNF(Int4_getWZYX);
- EI(keyStr == "setWZYX")
+ EI(keyStr.equals("setWZYX", CPL_STR_HASH("setWZYX")))
 RET CNF(Int4_setWZYX);
- EI(keyStr == "getWZXY")
+ EI(keyStr.equals("getWZXY", CPL_STR_HASH("getWZXY")))
 RET CNF(Int4_getWZXY);
- EI(keyStr == "setWZXY")
+ EI(keyStr.equals("setWZXY", CPL_STR_HASH("setWZXY")))
 RET CNF(Int4_setWZXY);
- EI(keyStr == "getWXZY")
+ EI(keyStr.equals("getWXZY", CPL_STR_HASH("getWXZY")))
 RET CNF(Int4_getWXZY);
- EI(keyStr == "setWXZY")
+ EI(keyStr.equals("setWXZY", CPL_STR_HASH("setWXZY")))
 RET CNF(Int4_setWXZY);
- EI(keyStr == "getWXYZ")
+ EI(keyStr.equals("getWXYZ", CPL_STR_HASH("getWXYZ")))
 RET CNF(Int4_getWXYZ);
- EI(keyStr == "setWXYZ")
+ EI(keyStr.equals("setWXYZ", CPL_STR_HASH("setWXYZ")))
 RET CNF(Int4_setWXYZ);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Int4_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 RET CV(obj->z);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 RET CV(obj->w);
@@ -29819,24 +30085,24 @@ void Int4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 T4<int32_t>*obj=(T4<int32_t>*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
@@ -32274,120 +32540,120 @@ SV Float3_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Float3");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Float3_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Float3_new);
 else
  CATE(KE,"Unknown member for Float3."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Float3_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(Float3___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(Float3___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Float3___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Float3___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Float3___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Float3___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(Float3___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(Float3___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(Float3___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(Float3___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(Float3_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(Float3_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(Float3_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(Float3_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(Float3_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(Float3_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Float3_normalize);
- EI(keyStr == "cross")
+ EI(keyStr.equals("cross", CPL_STR_HASH("cross")))
 RET CNF(Float3_cross);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(Float3_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(Float3_setXY);
- EI(keyStr == "getXZ")
+ EI(keyStr.equals("getXZ", CPL_STR_HASH("getXZ")))
 RET CNF(Float3_getXZ);
- EI(keyStr == "setXZ")
+ EI(keyStr.equals("setXZ", CPL_STR_HASH("setXZ")))
 RET CNF(Float3_setXZ);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(Float3_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(Float3_setYX);
- EI(keyStr == "getYZ")
+ EI(keyStr.equals("getYZ", CPL_STR_HASH("getYZ")))
 RET CNF(Float3_getYZ);
- EI(keyStr == "setYZ")
+ EI(keyStr.equals("setYZ", CPL_STR_HASH("setYZ")))
 RET CNF(Float3_setYZ);
- EI(keyStr == "getZX")
+ EI(keyStr.equals("getZX", CPL_STR_HASH("getZX")))
 RET CNF(Float3_getZX);
- EI(keyStr == "setZX")
+ EI(keyStr.equals("setZX", CPL_STR_HASH("setZX")))
 RET CNF(Float3_setZX);
- EI(keyStr == "getZY")
+ EI(keyStr.equals("getZY", CPL_STR_HASH("getZY")))
 RET CNF(Float3_getZY);
- EI(keyStr == "setZY")
+ EI(keyStr.equals("setZY", CPL_STR_HASH("setZY")))
 RET CNF(Float3_setZY);
- EI(keyStr == "getXYZ")
+ EI(keyStr.equals("getXYZ", CPL_STR_HASH("getXYZ")))
 RET CNF(Float3_getXYZ);
- EI(keyStr == "setXYZ")
+ EI(keyStr.equals("setXYZ", CPL_STR_HASH("setXYZ")))
 RET CNF(Float3_setXYZ);
- EI(keyStr == "getXZY")
+ EI(keyStr.equals("getXZY", CPL_STR_HASH("getXZY")))
 RET CNF(Float3_getXZY);
- EI(keyStr == "setXZY")
+ EI(keyStr.equals("setXZY", CPL_STR_HASH("setXZY")))
 RET CNF(Float3_setXZY);
- EI(keyStr == "getYXZ")
+ EI(keyStr.equals("getYXZ", CPL_STR_HASH("getYXZ")))
 RET CNF(Float3_getYXZ);
- EI(keyStr == "setYXZ")
+ EI(keyStr.equals("setYXZ", CPL_STR_HASH("setYXZ")))
 RET CNF(Float3_setYXZ);
- EI(keyStr == "getYZX")
+ EI(keyStr.equals("getYZX", CPL_STR_HASH("getYZX")))
 RET CNF(Float3_getYZX);
- EI(keyStr == "setYZX")
+ EI(keyStr.equals("setYZX", CPL_STR_HASH("setYZX")))
 RET CNF(Float3_setYZX);
- EI(keyStr == "getZXY")
+ EI(keyStr.equals("getZXY", CPL_STR_HASH("getZXY")))
 RET CNF(Float3_getZXY);
- EI(keyStr == "setZXY")
+ EI(keyStr.equals("setZXY", CPL_STR_HASH("setZXY")))
 RET CNF(Float3_setZXY);
- EI(keyStr == "getZYX")
+ EI(keyStr.equals("getZYX", CPL_STR_HASH("getZYX")))
 RET CNF(Float3_getZYX);
- EI(keyStr == "setZYX")
+ EI(keyStr.equals("setZYX", CPL_STR_HASH("setZYX")))
 RET CNF(Float3_setZYX);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Float3_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T3<float>*obj=(T3<float>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T3<float>*obj=(T3<float>*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T3<float>*obj=(T3<float>*)f->data;
 RET CV(obj->z);
@@ -32403,20 +32669,20 @@ void Float3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T3<float>*obj=(T3<float>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T3<float>*obj=(T3<float>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T3<float>*obj=(T3<float>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
@@ -33208,32 +33474,32 @@ SV GfxBuffer_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxBuffer");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxBuffer_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxBuffer_new);
 else
  CATE(KE,"Unknown member for GfxBuffer."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxBuffer_new);
- EI(keyStr == "allocData")
+ EI(keyStr.equals("allocData", CPL_STR_HASH("allocData")))
 RET CNF(GfxBuffer_allocData);
- EI(keyStr == "setData")
+ EI(keyStr.equals("setData", CPL_STR_HASH("setData")))
 RET CNF(GfxBuffer_setData);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(GfxBuffer_getData);
- EI(keyStr == "getSize")
+ EI(keyStr.equals("getSize", CPL_STR_HASH("getSize")))
 RET CNF(GfxBuffer_getSize);
  else
  CATE(KE,"Unknown member for GfxBuffer."));
@@ -33247,7 +33513,7 @@ void GfxBuffer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -33353,36 +33619,36 @@ SV Transform_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Transform");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Transform_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Transform_new);
 else
  CATE(KE,"Unknown member for Transform."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Transform_new);
- EI(keyStr == "createMatrix")
+ EI(keyStr.equals("createMatrix", CPL_STR_HASH("createMatrix")))
 RET CNF(Transform_createMatrix);
- EI(keyStr=="orientation")
+ EI(keyStr.equals("orientation", CPL_STR_HASH("orientation")))
 {
 Transform*obj=(Transform*)f->data;
 RET CV(obj->orientation);
-} EI(keyStr=="scale")
+} EI(keyStr.equals("scale", CPL_STR_HASH("scale")))
 {
 Transform*obj=(Transform*)f->data;
 RET CV(obj->scale);
-} EI(keyStr=="position")
+} EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 Transform*obj=(Transform*)f->data;
 RET CV(obj->position);
@@ -33398,20 +33664,20 @@ void Transform_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="orientation")
+if(0) {} EI(keyStr.equals("orientation", CPL_STR_HASH("orientation")))
 {
 Transform*obj=(Transform*)f->data;
 obj->orientation=val_to_c<decltype(obj->orientation)>::f(ctx,value);
-} EI(keyStr=="scale")
+} EI(keyStr.equals("scale", CPL_STR_HASH("scale")))
 {
 Transform*obj=(Transform*)f->data;
 obj->scale=val_to_c<decltype(obj->scale)>::f(ctx,value);
-} EI(keyStr=="position")
+} EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 Transform*obj=(Transform*)f->data;
 obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
@@ -33475,54 +33741,54 @@ SV AudioSourceList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("AudioSourceList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(AudioSourceList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(AudioSourceList_new);
 else
  CATE(KE,"Unknown member for AudioSourceList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(AudioSourceList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(AudioSourceList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(AudioSourceList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(AudioSourceList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(AudioSourceList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(AudioSourceList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(AudioSourceList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(AudioSourceList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(AudioSourceList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(AudioSourceList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(AudioSourceList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(AudioSourceList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(AudioSourceList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(AudioSourceList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(AudioSourceList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(AudioSourceList_end);
  else
  CATE(KE,"Unknown member for AudioSourceList."));
@@ -33536,7 +33802,7 @@ void AudioSourceList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -33816,8 +34082,8 @@ void *p = (void *)NEW(TYPE(GfxMaterial));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxMaterial_funcs,p,EXT->GfxMaterial_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(GfxMaterial),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(GfxMaterial),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxMaterial_funcs,p,EXT->GfxMaterial_typeID);
 }CATE(TE,UFOF("GfxMaterial's constructor.")));
@@ -33829,134 +34095,134 @@ SV GfxMaterial_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMaterial");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxMaterial_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxMaterial_new);
 else
  CATE(KE,"Unknown member for GfxMaterial."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxMaterial_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(GfxMaterial_removeContent);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(GfxMaterial_save);
- EI(keyStr == "getShaderComb")
+ EI(keyStr.equals("getShaderComb", CPL_STR_HASH("getShaderComb")))
 RET CNF(GfxMaterial_getShaderComb);
- EI(keyStr == "setMaterialMap")
+ EI(keyStr.equals("setMaterialMap", CPL_STR_HASH("setMaterialMap")))
 RET CNF(GfxMaterial_setMaterialMap);
- EI(keyStr == "getMaterialMap")
+ EI(keyStr.equals("getMaterialMap", CPL_STR_HASH("getMaterialMap")))
 RET CNF(GfxMaterial_getMaterialMap);
- EI(keyStr == "setAlbedoMap")
+ EI(keyStr.equals("setAlbedoMap", CPL_STR_HASH("setAlbedoMap")))
 RET CNF(GfxMaterial_setAlbedoMap);
- EI(keyStr == "getAlbedoMap")
+ EI(keyStr.equals("getAlbedoMap", CPL_STR_HASH("getAlbedoMap")))
 RET CNF(GfxMaterial_getAlbedoMap);
- EI(keyStr == "setNormalMap")
+ EI(keyStr.equals("setNormalMap", CPL_STR_HASH("setNormalMap")))
 RET CNF(GfxMaterial_setNormalMap);
- EI(keyStr == "getNormalMap")
+ EI(keyStr.equals("getNormalMap", CPL_STR_HASH("getNormalMap")))
 RET CNF(GfxMaterial_getNormalMap);
- EI(keyStr == "setParallaxHeightMap")
+ EI(keyStr.equals("setParallaxHeightMap", CPL_STR_HASH("setParallaxHeightMap")))
 RET CNF(GfxMaterial_setParallaxHeightMap);
- EI(keyStr == "getParallaxHeightMap")
+ EI(keyStr.equals("getParallaxHeightMap", CPL_STR_HASH("getParallaxHeightMap")))
 RET CNF(GfxMaterial_getParallaxHeightMap);
- EI(keyStr == "setPOMHeightMap")
+ EI(keyStr.equals("setPOMHeightMap", CPL_STR_HASH("setPOMHeightMap")))
 RET CNF(GfxMaterial_setPOMHeightMap);
- EI(keyStr == "getPOMHeightMap")
+ EI(keyStr.equals("getPOMHeightMap", CPL_STR_HASH("getPOMHeightMap")))
 RET CNF(GfxMaterial_getPOMHeightMap);
- EI(keyStr == "setDisplacementMap")
+ EI(keyStr.equals("setDisplacementMap", CPL_STR_HASH("setDisplacementMap")))
 RET CNF(GfxMaterial_setDisplacementMap);
- EI(keyStr == "getDisplacementMap")
+ EI(keyStr.equals("getDisplacementMap", CPL_STR_HASH("getDisplacementMap")))
 RET CNF(GfxMaterial_getDisplacementMap);
- EI(keyStr == "isForward")
+ EI(keyStr.equals("isForward", CPL_STR_HASH("isForward")))
 RET CNF(GfxMaterial_isForward);
- EI(keyStr == "setForward")
+ EI(keyStr.equals("setForward", CPL_STR_HASH("setForward")))
 RET CNF(GfxMaterial_setForward);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxMaterial_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxMaterial_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(GfxMaterial_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(GfxMaterial_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(GfxMaterial_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(GfxMaterial_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxMaterial_setFilename);
- EI(keyStr=="smoothness")
+ EI(keyStr.equals("smoothness", CPL_STR_HASH("smoothness")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->smoothness);
-} EI(keyStr=="metalMask")
+} EI(keyStr.equals("metalMask", CPL_STR_HASH("metalMask")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->metalMask);
-} EI(keyStr=="parallaxStrength")
+} EI(keyStr.equals("parallaxStrength", CPL_STR_HASH("parallaxStrength")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->parallaxStrength);
-} EI(keyStr=="parallaxEdgeDiscard")
+} EI(keyStr.equals("parallaxEdgeDiscard", CPL_STR_HASH("parallaxEdgeDiscard")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->parallaxEdgeDiscard);
-} EI(keyStr=="albedo")
+} EI(keyStr.equals("albedo", CPL_STR_HASH("albedo")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->albedo);
-} EI(keyStr=="pomMinLayers")
+} EI(keyStr.equals("pomMinLayers", CPL_STR_HASH("pomMinLayers")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->pomMinLayers);
-} EI(keyStr=="pomMaxLayers")
+} EI(keyStr.equals("pomMaxLayers", CPL_STR_HASH("pomMaxLayers")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->pomMaxLayers);
-} EI(keyStr=="minTessLevel")
+} EI(keyStr.equals("minTessLevel", CPL_STR_HASH("minTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->minTessLevel);
-} EI(keyStr=="maxTessLevel")
+} EI(keyStr.equals("maxTessLevel", CPL_STR_HASH("maxTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->maxTessLevel);
-} EI(keyStr=="tessMinDistance")
+} EI(keyStr.equals("tessMinDistance", CPL_STR_HASH("tessMinDistance")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->tessMinDistance);
-} EI(keyStr=="tessMaxDistance")
+} EI(keyStr.equals("tessMaxDistance", CPL_STR_HASH("tessMaxDistance")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->tessMaxDistance);
-} EI(keyStr=="displacementStrength")
+} EI(keyStr.equals("displacementStrength", CPL_STR_HASH("displacementStrength")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->displacementStrength);
-} EI(keyStr=="displacementMidlevel")
+} EI(keyStr.equals("displacementMidlevel", CPL_STR_HASH("displacementMidlevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->displacementMidlevel);
-} EI(keyStr=="shadowTesselation")
+} EI(keyStr.equals("shadowTesselation", CPL_STR_HASH("shadowTesselation")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->shadowTesselation);
-} EI(keyStr=="shadowMinTessLevel")
+} EI(keyStr.equals("shadowMinTessLevel", CPL_STR_HASH("shadowMinTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->shadowMinTessLevel);
-} EI(keyStr=="shadowMaxTessLevel")
+} EI(keyStr.equals("shadowMaxTessLevel", CPL_STR_HASH("shadowMaxTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 RET CV(obj->shadowMaxTessLevel);
@@ -33972,72 +34238,72 @@ void GfxMaterial_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="smoothness")
+if(0) {} EI(keyStr.equals("smoothness", CPL_STR_HASH("smoothness")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->smoothness=val_to_c<decltype(obj->smoothness)>::f(ctx,value);
-} EI(keyStr=="metalMask")
+} EI(keyStr.equals("metalMask", CPL_STR_HASH("metalMask")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->metalMask=val_to_c<decltype(obj->metalMask)>::f(ctx,value);
-} EI(keyStr=="parallaxStrength")
+} EI(keyStr.equals("parallaxStrength", CPL_STR_HASH("parallaxStrength")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->parallaxStrength=val_to_c<decltype(obj->parallaxStrength)>::f(ctx,value);
-} EI(keyStr=="parallaxEdgeDiscard")
+} EI(keyStr.equals("parallaxEdgeDiscard", CPL_STR_HASH("parallaxEdgeDiscard")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->parallaxEdgeDiscard=val_to_c<decltype(obj->parallaxEdgeDiscard)>::f(ctx,value);
-} EI(keyStr=="albedo")
+} EI(keyStr.equals("albedo", CPL_STR_HASH("albedo")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->albedo=val_to_c<decltype(obj->albedo)>::f(ctx,value);
-} EI(keyStr=="pomMinLayers")
+} EI(keyStr.equals("pomMinLayers", CPL_STR_HASH("pomMinLayers")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->pomMinLayers=val_to_c<decltype(obj->pomMinLayers)>::f(ctx,value);
-} EI(keyStr=="pomMaxLayers")
+} EI(keyStr.equals("pomMaxLayers", CPL_STR_HASH("pomMaxLayers")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->pomMaxLayers=val_to_c<decltype(obj->pomMaxLayers)>::f(ctx,value);
-} EI(keyStr=="minTessLevel")
+} EI(keyStr.equals("minTessLevel", CPL_STR_HASH("minTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->minTessLevel=val_to_c<decltype(obj->minTessLevel)>::f(ctx,value);
-} EI(keyStr=="maxTessLevel")
+} EI(keyStr.equals("maxTessLevel", CPL_STR_HASH("maxTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->maxTessLevel=val_to_c<decltype(obj->maxTessLevel)>::f(ctx,value);
-} EI(keyStr=="tessMinDistance")
+} EI(keyStr.equals("tessMinDistance", CPL_STR_HASH("tessMinDistance")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->tessMinDistance=val_to_c<decltype(obj->tessMinDistance)>::f(ctx,value);
-} EI(keyStr=="tessMaxDistance")
+} EI(keyStr.equals("tessMaxDistance", CPL_STR_HASH("tessMaxDistance")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->tessMaxDistance=val_to_c<decltype(obj->tessMaxDistance)>::f(ctx,value);
-} EI(keyStr=="displacementStrength")
+} EI(keyStr.equals("displacementStrength", CPL_STR_HASH("displacementStrength")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->displacementStrength=val_to_c<decltype(obj->displacementStrength)>::f(ctx,value);
-} EI(keyStr=="displacementMidlevel")
+} EI(keyStr.equals("displacementMidlevel", CPL_STR_HASH("displacementMidlevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->displacementMidlevel=val_to_c<decltype(obj->displacementMidlevel)>::f(ctx,value);
-} EI(keyStr=="shadowTesselation")
+} EI(keyStr.equals("shadowTesselation", CPL_STR_HASH("shadowTesselation")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->shadowTesselation=val_to_c<decltype(obj->shadowTesselation)>::f(ctx,value);
-} EI(keyStr=="shadowMinTessLevel")
+} EI(keyStr.equals("shadowMinTessLevel", CPL_STR_HASH("shadowMinTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->shadowMinTessLevel=val_to_c<decltype(obj->shadowMinTessLevel)>::f(ctx,value);
-} EI(keyStr=="shadowMaxTessLevel")
+} EI(keyStr.equals("shadowMaxTessLevel", CPL_STR_HASH("shadowMaxTessLevel")))
 {
 GfxMaterial*obj=(GfxMaterial*)f->data;
 obj->shadowMaxTessLevel=val_to_c<decltype(obj->shadowMaxTessLevel)>::f(ctx,value);
@@ -34106,9 +34372,9 @@ GfxMaterial*f;
 f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::setFilename.")));
@@ -34509,74 +34775,74 @@ SV Quaternion_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Quaternion");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Quaternion_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Quaternion_new);
 else
  CATE(KE,"Unknown member for Quaternion."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Quaternion_new);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Quaternion___mul__);
- EI(keyStr == "toMatrix")
+ EI(keyStr.equals("toMatrix", CPL_STR_HASH("toMatrix")))
 RET CNF(Quaternion_toMatrix);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Quaternion___eq__);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Quaternion_normalize);
- EI(keyStr == "getAngle")
+ EI(keyStr.equals("getAngle", CPL_STR_HASH("getAngle")))
 RET CNF(Quaternion_getAngle);
- EI(keyStr == "getXAxis")
+ EI(keyStr.equals("getXAxis", CPL_STR_HASH("getXAxis")))
 RET CNF(Quaternion_getXAxis);
- EI(keyStr == "getYAxis")
+ EI(keyStr.equals("getYAxis", CPL_STR_HASH("getYAxis")))
 RET CNF(Quaternion_getYAxis);
- EI(keyStr == "getZAxis")
+ EI(keyStr.equals("getZAxis", CPL_STR_HASH("getZAxis")))
 RET CNF(Quaternion_getZAxis);
- EI(keyStr == "getAxis")
+ EI(keyStr.equals("getAxis", CPL_STR_HASH("getAxis")))
 RET CNF(Quaternion_getAxis);
- EI(keyStr == "getAxisAndAngle")
+ EI(keyStr.equals("getAxisAndAngle", CPL_STR_HASH("getAxisAndAngle")))
 RET CNF(Quaternion_getAxisAndAngle);
- EI(keyStr == "setAngle")
+ EI(keyStr.equals("setAngle", CPL_STR_HASH("setAngle")))
 RET CNF(Quaternion_setAngle);
- EI(keyStr == "setXAxis")
+ EI(keyStr.equals("setXAxis", CPL_STR_HASH("setXAxis")))
 RET CNF(Quaternion_setXAxis);
- EI(keyStr == "setYAxis")
+ EI(keyStr.equals("setYAxis", CPL_STR_HASH("setYAxis")))
 RET CNF(Quaternion_setYAxis);
- EI(keyStr == "setZAxis")
+ EI(keyStr.equals("setZAxis", CPL_STR_HASH("setZAxis")))
 RET CNF(Quaternion_setZAxis);
- EI(keyStr == "setAxis")
+ EI(keyStr.equals("setAxis", CPL_STR_HASH("setAxis")))
 RET CNF(Quaternion_setAxis);
- EI(keyStr == "setAxisAndAngle")
+ EI(keyStr.equals("setAxisAndAngle", CPL_STR_HASH("setAxisAndAngle")))
 RET CNF(Quaternion_setAxisAndAngle);
- EI(keyStr == "setEulerAngles")
+ EI(keyStr.equals("setEulerAngles", CPL_STR_HASH("setEulerAngles")))
 RET CNF(Quaternion_setEulerAngles);
- EI(keyStr == "getEulerAngles")
+ EI(keyStr.equals("getEulerAngles", CPL_STR_HASH("getEulerAngles")))
 RET CNF(Quaternion_getEulerAngles);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 RET CV(obj->z);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 RET CV(obj->w);
@@ -34592,24 +34858,24 @@ void Quaternion_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 Quaternion*obj=(Quaternion*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
@@ -34946,34 +35212,34 @@ SV GfxMeshAttrib_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxMeshAttrib");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxMeshAttrib_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxMeshAttrib_new);
 else
  CATE(KE,"Unknown member for GfxMeshAttrib."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxMeshAttrib_new);
- EI(keyStr=="type")
+ EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 RET CV(obj->type);
-} EI(keyStr=="dataType")
+} EI(keyStr.equals("dataType", CPL_STR_HASH("dataType")))
 {
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 RET CV(obj->dataType);
-} EI(keyStr=="data")
+} EI(keyStr.equals("data", CPL_STR_HASH("data")))
 {
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 RET CV(obj->data);
@@ -34989,20 +35255,20 @@ void GfxMeshAttrib_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="type")
+if(0) {} EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
-} EI(keyStr=="dataType")
+} EI(keyStr.equals("dataType", CPL_STR_HASH("dataType")))
 {
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 obj->dataType=val_to_c<decltype(obj->dataType)>::f(ctx,value);
-} EI(keyStr=="data")
+} EI(keyStr.equals("data", CPL_STR_HASH("data")))
 {
 GfxMeshAttrib*obj=(GfxMeshAttrib*)f->data;
 obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
@@ -35033,40 +35299,40 @@ SV ScriptInstance_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ScriptInstance");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(ScriptInstance_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(ScriptInstance_new);
 else
  CATE(KE,"Unknown member for ScriptInstance."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ScriptInstance_new);
- EI(keyStr == "method")
+ EI(keyStr.equals("method", CPL_STR_HASH("method")))
 RET CNF(ScriptInstance_method);
- EI(keyStr == "handleInput")
+ EI(keyStr.equals("handleInput", CPL_STR_HASH("handleInput")))
 RET CNF(ScriptInstance_handleInput);
- EI(keyStr == "fixedUpdate")
+ EI(keyStr.equals("fixedUpdate", CPL_STR_HASH("fixedUpdate")))
 RET CNF(ScriptInstance_fixedUpdate);
- EI(keyStr == "update")
+ EI(keyStr.equals("update", CPL_STR_HASH("update")))
 RET CNF(ScriptInstance_update);
- EI(keyStr == "preRender")
+ EI(keyStr.equals("preRender", CPL_STR_HASH("preRender")))
 RET CNF(ScriptInstance_preRender);
- EI(keyStr == "postRender")
+ EI(keyStr.equals("postRender", CPL_STR_HASH("postRender")))
 RET CNF(ScriptInstance_postRender);
- EI(keyStr == "getScript")
+ EI(keyStr.equals("getScript", CPL_STR_HASH("getScript")))
 RET CNF(ScriptInstance_getScript);
- EI(keyStr == "getObj")
+ EI(keyStr.equals("getObj", CPL_STR_HASH("getObj")))
 RET CNF(ScriptInstance_getObj);
  else
  CATE(KE,"Unknown member for ScriptInstance."));
@@ -35080,7 +35346,7 @@ void ScriptInstance_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -35218,15 +35484,15 @@ ScriptInstance*f;
 f=(ScriptInstance*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->method(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->method(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 if(a.getCount()==3)
-if(1&&TS(a[1],const String &)&&TS(a[2],float))
+if(1&&TS(a[1],const Str &)&&TS(a[2],float))
 {
-( f->method(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
+( f->method(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("ScriptInstance::method.")));
@@ -35253,48 +35519,48 @@ SV RenderComponent_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RenderComponent");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RenderComponent_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RenderComponent_new);
 else
  CATE(KE,"Unknown member for RenderComponent."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RenderComponent_new);
- EI(keyStr == "getShadowCaster")
+ EI(keyStr.equals("getShadowCaster", CPL_STR_HASH("getShadowCaster")))
 RET CNF(RenderComponent_getShadowCaster);
- EI(keyStr == "setShadowCaster")
+ EI(keyStr.equals("setShadowCaster", CPL_STR_HASH("setShadowCaster")))
 RET CNF(RenderComponent_setShadowCaster);
- EI(keyStr == "getOverlayColor")
+ EI(keyStr.equals("getOverlayColor", CPL_STR_HASH("getOverlayColor")))
 RET CNF(RenderComponent_getOverlayColor);
- EI(keyStr == "setOverlayColor")
+ EI(keyStr.equals("setOverlayColor", CPL_STR_HASH("setOverlayColor")))
 RET CNF(RenderComponent_setOverlayColor);
- EI(keyStr == "setAnimationState")
+ EI(keyStr.equals("setAnimationState", CPL_STR_HASH("setAnimationState")))
 RET CNF(RenderComponent_setAnimationState);
- EI(keyStr == "removeAnimationState")
+ EI(keyStr.equals("removeAnimationState", CPL_STR_HASH("removeAnimationState")))
 RET CNF(RenderComponent_removeAnimationState);
- EI(keyStr == "getAnimationState")
+ EI(keyStr.equals("getAnimationState", CPL_STR_HASH("getAnimationState")))
 RET CNF(RenderComponent_getAnimationState);
- EI(keyStr=="mode")
+ EI(keyStr.equals("mode", CPL_STR_HASH("mode")))
 {
 RenderComponent*obj=(RenderComponent*)f->data;
 RET CV(obj->mode);
-} EI(keyStr=="model")
+} EI(keyStr.equals("model", CPL_STR_HASH("model")))
 {
 RenderComponent*obj=(RenderComponent*)f->data;
 RET CV(obj->model);
-} EI(keyStr=="overlayTexture")
+} EI(keyStr.equals("overlayTexture", CPL_STR_HASH("overlayTexture")))
 {
 RenderComponent*obj=(RenderComponent*)f->data;
 RET CV(obj->overlayTexture);
@@ -35310,20 +35576,20 @@ void RenderComponent_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="mode")
+if(0) {} EI(keyStr.equals("mode", CPL_STR_HASH("mode")))
 {
 RenderComponent*obj=(RenderComponent*)f->data;
 obj->mode=val_to_c<decltype(obj->mode)>::f(ctx,value);
-} EI(keyStr=="model")
+} EI(keyStr.equals("model", CPL_STR_HASH("model")))
 {
 RenderComponent*obj=(RenderComponent*)f->data;
 obj->model=val_to_c<decltype(obj->model)>::f(ctx,value);
-} EI(keyStr=="overlayTexture")
+} EI(keyStr.equals("overlayTexture", CPL_STR_HASH("overlayTexture")))
 {
 RenderComponent*obj=(RenderComponent*)f->data;
 obj->overlayTexture=val_to_c<decltype(obj->overlayTexture)>::f(ctx,value);
@@ -35486,74 +35752,74 @@ SV Int2_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Int2");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Int2_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Int2_new);
 else
  CATE(KE,"Unknown member for Int2."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Int2_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(Int2___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(Int2___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Int2___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Int2___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Int2___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Int2___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(Int2___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(Int2___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(Int2___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(Int2___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(Int2_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(Int2_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(Int2_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(Int2_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(Int2_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(Int2_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Int2_normalize);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(Int2_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(Int2_setXY);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(Int2_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(Int2_setYX);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Int2_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
 RET CV(obj->y);
@@ -35569,16 +35835,16 @@ void Int2_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T2<int32_t>*obj=(T2<int32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
@@ -36019,50 +36285,50 @@ SV AudioWorld_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("AudioWorld");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(AudioWorld_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(AudioWorld_new);
 else
  CATE(KE,"Unknown member for AudioWorld."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(AudioWorld_new);
- EI(keyStr == "createSource")
+ EI(keyStr.equals("createSource", CPL_STR_HASH("createSource")))
 RET CNF(AudioWorld_createSource);
- EI(keyStr == "destroySource")
+ EI(keyStr.equals("destroySource", CPL_STR_HASH("destroySource")))
 RET CNF(AudioWorld_destroySource);
- EI(keyStr == "clearSources")
+ EI(keyStr.equals("clearSources", CPL_STR_HASH("clearSources")))
 RET CNF(AudioWorld_clearSources);
- EI(keyStr == "getSources")
+ EI(keyStr.equals("getSources", CPL_STR_HASH("getSources")))
 RET CNF(AudioWorld_getSources);
- EI(keyStr == "addToAudioDevice")
+ EI(keyStr.equals("addToAudioDevice", CPL_STR_HASH("addToAudioDevice")))
 RET CNF(AudioWorld_addToAudioDevice);
- EI(keyStr == "removeFromAudioDevice")
+ EI(keyStr.equals("removeFromAudioDevice", CPL_STR_HASH("removeFromAudioDevice")))
 RET CNF(AudioWorld_removeFromAudioDevice);
- EI(keyStr=="listenerVelocity")
+ EI(keyStr.equals("listenerVelocity", CPL_STR_HASH("listenerVelocity")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 RET CV(obj->listenerVelocity);
-} EI(keyStr=="dopplerFactor")
+} EI(keyStr.equals("dopplerFactor", CPL_STR_HASH("dopplerFactor")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 RET CV(obj->dopplerFactor);
-} EI(keyStr=="listenerPosition")
+} EI(keyStr.equals("listenerPosition", CPL_STR_HASH("listenerPosition")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 RET CV(obj->listenerPosition);
-} EI(keyStr=="speedOfSound")
+} EI(keyStr.equals("speedOfSound", CPL_STR_HASH("speedOfSound")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 RET CV(obj->speedOfSound);
@@ -36078,24 +36344,24 @@ void AudioWorld_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="listenerVelocity")
+if(0) {} EI(keyStr.equals("listenerVelocity", CPL_STR_HASH("listenerVelocity")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 obj->listenerVelocity=val_to_c<decltype(obj->listenerVelocity)>::f(ctx,value);
-} EI(keyStr=="dopplerFactor")
+} EI(keyStr.equals("dopplerFactor", CPL_STR_HASH("dopplerFactor")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 obj->dopplerFactor=val_to_c<decltype(obj->dopplerFactor)>::f(ctx,value);
-} EI(keyStr=="listenerPosition")
+} EI(keyStr.equals("listenerPosition", CPL_STR_HASH("listenerPosition")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 obj->listenerPosition=val_to_c<decltype(obj->listenerPosition)>::f(ctx,value);
-} EI(keyStr=="speedOfSound")
+} EI(keyStr.equals("speedOfSound", CPL_STR_HASH("speedOfSound")))
 {
 AudioWorld*obj=(AudioWorld*)f->data;
 obj->speedOfSound=val_to_c<decltype(obj->speedOfSound)>::f(ctx,value);
@@ -36234,42 +36500,42 @@ SV GuiPlacer_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GuiPlacer");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GuiPlacer_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GuiPlacer_new);
 else
  CATE(KE,"Unknown member for GuiPlacer."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GuiPlacer_new);
- EI(keyStr == "button")
+ EI(keyStr.equals("button", CPL_STR_HASH("button")))
 RET CNF(GuiPlacer_button);
- EI(keyStr == "label")
+ EI(keyStr.equals("label", CPL_STR_HASH("label")))
 RET CNF(GuiPlacer_label);
- EI(keyStr == "placer")
+ EI(keyStr.equals("placer", CPL_STR_HASH("placer")))
 RET CNF(GuiPlacer_placer);
- EI(keyStr == "advanceY")
+ EI(keyStr.equals("advanceY", CPL_STR_HASH("advanceY")))
 RET CNF(GuiPlacer_advanceY);
- EI(keyStr == "resetY")
+ EI(keyStr.equals("resetY", CPL_STR_HASH("resetY")))
 RET CNF(GuiPlacer_resetY);
- EI(keyStr == "setXOrigin")
+ EI(keyStr.equals("setXOrigin", CPL_STR_HASH("setXOrigin")))
 RET CNF(GuiPlacer_setXOrigin);
- EI(keyStr == "getXOriginMode")
+ EI(keyStr.equals("getXOriginMode", CPL_STR_HASH("getXOriginMode")))
 RET CNF(GuiPlacer_getXOriginMode);
- EI(keyStr == "getXOrigin")
+ EI(keyStr.equals("getXOrigin", CPL_STR_HASH("getXOrigin")))
 RET CNF(GuiPlacer_getXOrigin);
- EI(keyStr == "getPadding")
+ EI(keyStr.equals("getPadding", CPL_STR_HASH("getPadding")))
 RET CNF(GuiPlacer_getPadding);
  else
  CATE(KE,"Unknown member for GuiPlacer."));
@@ -36283,7 +36549,7 @@ void GuiPlacer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -36480,54 +36746,54 @@ SV ImGui_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ImGui");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(ImGui_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(ImGui_new);
 else
  CATE(KE,"Unknown member for ImGui."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ImGui_new);
- EI(keyStr == "rectangle")
+ EI(keyStr.equals("rectangle", CPL_STR_HASH("rectangle")))
 RET CNF(ImGui_rectangle);
- EI(keyStr == "beginContainer")
+ EI(keyStr.equals("beginContainer", CPL_STR_HASH("beginContainer")))
 RET CNF(ImGui_beginContainer);
- EI(keyStr == "endContainer")
+ EI(keyStr.equals("endContainer", CPL_STR_HASH("endContainer")))
 RET CNF(ImGui_endContainer);
- EI(keyStr == "verticalScrollBar")
+ EI(keyStr.equals("verticalScrollBar", CPL_STR_HASH("verticalScrollBar")))
 RET CNF(ImGui_verticalScrollBar);
- EI(keyStr == "horizontalScrollBar")
+ EI(keyStr.equals("horizontalScrollBar", CPL_STR_HASH("horizontalScrollBar")))
 RET CNF(ImGui_horizontalScrollBar);
- EI(keyStr == "button")
+ EI(keyStr.equals("button", CPL_STR_HASH("button")))
 RET CNF(ImGui_button);
- EI(keyStr == "label")
+ EI(keyStr.equals("label", CPL_STR_HASH("label")))
 RET CNF(ImGui_label);
- EI(keyStr == "render")
+ EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(ImGui_render);
- EI(keyStr=="buttonTextColor")
+ EI(keyStr.equals("buttonTextColor", CPL_STR_HASH("buttonTextColor")))
 {
 ImGui*obj=(ImGui*)f->data;
 RET CV(obj->buttonTextColor);
-} EI(keyStr=="labelColor")
+} EI(keyStr.equals("labelColor", CPL_STR_HASH("labelColor")))
 {
 ImGui*obj=(ImGui*)f->data;
 RET CV(obj->labelColor);
-} EI(keyStr=="textSize")
+} EI(keyStr.equals("textSize", CPL_STR_HASH("textSize")))
 {
 ImGui*obj=(ImGui*)f->data;
 RET CV(obj->textSize);
-} EI(keyStr=="scrollSpeed")
+} EI(keyStr.equals("scrollSpeed", CPL_STR_HASH("scrollSpeed")))
 {
 ImGui*obj=(ImGui*)f->data;
 RET CV(obj->scrollSpeed);
@@ -36543,24 +36809,24 @@ void ImGui_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="buttonTextColor")
+if(0) {} EI(keyStr.equals("buttonTextColor", CPL_STR_HASH("buttonTextColor")))
 {
 ImGui*obj=(ImGui*)f->data;
 obj->buttonTextColor=val_to_c<decltype(obj->buttonTextColor)>::f(ctx,value);
-} EI(keyStr=="labelColor")
+} EI(keyStr.equals("labelColor", CPL_STR_HASH("labelColor")))
 {
 ImGui*obj=(ImGui*)f->data;
 obj->labelColor=val_to_c<decltype(obj->labelColor)>::f(ctx,value);
-} EI(keyStr=="textSize")
+} EI(keyStr.equals("textSize", CPL_STR_HASH("textSize")))
 {
 ImGui*obj=(ImGui*)f->data;
 obj->textSize=val_to_c<decltype(obj->textSize)>::f(ctx,value);
-} EI(keyStr=="scrollSpeed")
+} EI(keyStr.equals("scrollSpeed", CPL_STR_HASH("scrollSpeed")))
 {
 ImGui*obj=(ImGui*)f->data;
 obj->scrollSpeed=val_to_c<decltype(obj->scrollSpeed)>::f(ctx,value);
@@ -36703,29 +36969,29 @@ RET CN;
 void StringList_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
-if(!TS(f_,List<String>))
+if(!TS(f_,List<Str>))
 CATE(TE,"StringList::__del__ expects StringList as first argument."));
 
-SCRIPT_DELETE((List<String>*)f->data);
+SCRIPT_DELETE((List<Str>*)f->data);
 }SV StringList_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList's constructor" EAOE));
-if(!TS(a[0],List<String>))
+if(!TS(a[0],List<Str>))
 CATE(TE,"StringList's constructor expects StringList as first argument."));
 if(a.getCount()==1)
 if(true){
-void *p = (void *)NEW(TYPE(List<String>));
+void *p = (void *)NEW(TYPE(List<Str>));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 }if(a.getCount()==2)
 if(true&&TS(a[1],std::size_t)){
-void *p = (void *)NEW(TYPE(List<String>),val_to_c<std::size_t>::f(ctx,a[1]));
+void *p = (void *)NEW(TYPE(List<Str>),val_to_c<std::size_t>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const List<String> &)){
-void *p = (void *)NEW(TYPE(List<String>),val_to_c<const List<String> &>::f(ctx,a[1]));
+if(true&&TS(a[1],const List<Str> &)){
+void *p = (void *)NEW(TYPE(List<Str>),val_to_c<const List<Str> &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(StringList_funcs,p,EXT->StringList_typeID);
 }CATE(TE,UFOF("StringList's constructor.")));
@@ -36737,54 +37003,54 @@ SV StringList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("StringList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(StringList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(StringList_new);
 else
  CATE(KE,"Unknown member for StringList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(StringList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(StringList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(StringList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(StringList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(StringList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(StringList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(StringList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(StringList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(StringList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(StringList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(StringList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(StringList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(StringList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(StringList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(StringList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(StringList_end);
  else
  CATE(KE,"Unknown member for StringList."));
@@ -36798,7 +37064,7 @@ void StringList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -36813,19 +37079,19 @@ SV StringList_insert(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::insert" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],String))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],Str))
 {
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<String>::type>::f(ctx,a[2])));
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Str>::type>::f(ctx,a[2])));
 RET CN;
 }
 if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<String> &))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<Str> &))
 {
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<String> &>::type>::f(ctx,a[2])));
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<Str> &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("StringList::insert.")));
@@ -36836,8 +37102,8 @@ SV StringList_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::begin" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StringList::begin.")));
 RET CN;
@@ -36847,13 +37113,13 @@ SV StringList_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::set" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],String))
+if(1&&TS(a[1],size_t)&&TS(a[2],Str))
 {
-( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<String>::type>::f(ctx,a[2])));
+( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Str>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("StringList::set.")));
@@ -36864,8 +37130,8 @@ SV StringList_end(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::end" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StringList::end.")));
 RET CN;
@@ -36875,8 +37141,8 @@ SV StringList_get(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::get" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -36892,8 +37158,8 @@ SV StringList_clear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::clear" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36909,8 +37175,8 @@ SV StringList_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::copy" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36926,8 +37192,8 @@ SV StringList_remove(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::remove" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -36943,13 +37209,13 @@ SV StringList_in(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::in" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-RET CV( f->in(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+RET CV( f->in(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("StringList::in.")));
@@ -36960,8 +37226,8 @@ SV StringList_getCount(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::getCount" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -36977,8 +37243,8 @@ SV StringList_getData(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::getData" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("StringList::getData.")));
 RET CN;
@@ -36988,13 +37254,13 @@ SV StringList___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::__eq__" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<String> &))
+if(1&&TS(a[1],const List<Str> &))
 {
-auto v=val_to_c<std::remove_reference<const List<String> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const List<Str> &>::type>::f(ctx,a[1]);
 RET CV(*f == v);
 }
 CATE(TE,UFOF("StringList::__eq__.")));
@@ -37005,13 +37271,13 @@ SV StringList_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::find" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-RET CV( f->find(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+RET CV( f->find(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("StringList::find.")));
@@ -37022,19 +37288,19 @@ SV StringList_append(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::append" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],String))
+if(1&&TS(a[1],Str))
 {
-( f->append(val_to_c<std::remove_reference<String>::type>::f(ctx,a[1])));
+( f->append(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
 RET CN;
 }
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<String> &))
+if(1&&TS(a[1],const List<Str> &))
 {
-( f->append(val_to_c<std::remove_reference<const List<String> &>::type>::f(ctx,a[1])));
+( f->append(val_to_c<std::remove_reference<const List<Str> &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("StringList::append.")));
@@ -37045,13 +37311,13 @@ SV StringList___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"StringList::__neq__" EAOE));
-List<String>*f;
-f=(List<String>*)((NO)a[0].p)->data;
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<String> &))
+if(1&&TS(a[1],const List<Str> &))
 {
-auto v=val_to_c<std::remove_reference<const List<String> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const List<Str> &>::type>::f(ctx,a[1]);
 RET CV(*f != v);
 }
 CATE(TE,UFOF("StringList::__neq__.")));
@@ -37085,56 +37351,56 @@ SV Application_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Application");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Application_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Application_new);
 else
  CATE(KE,"Unknown member for Application."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Application_new);
- EI(keyStr == "mainloop")
+ EI(keyStr.equals("mainloop", CPL_STR_HASH("mainloop")))
 RET CNF(Application_mainloop);
- EI(keyStr == "getPlatform")
+ EI(keyStr.equals("getPlatform", CPL_STR_HASH("getPlatform")))
 RET CNF(Application_getPlatform);
- EI(keyStr == "getResourceManager")
+ EI(keyStr.equals("getResourceManager", CPL_STR_HASH("getResourceManager")))
 RET CNF(Application_getResourceManager);
- EI(keyStr == "getGfxApi")
+ EI(keyStr.equals("getGfxApi", CPL_STR_HASH("getGfxApi")))
 RET CNF(Application_getGfxApi);
- EI(keyStr == "getFilesystem")
+ EI(keyStr.equals("getFilesystem", CPL_STR_HASH("getFilesystem")))
 RET CNF(Application_getFilesystem);
- EI(keyStr == "getDebugDrawer")
+ EI(keyStr.equals("getDebugDrawer", CPL_STR_HASH("getDebugDrawer")))
 RET CNF(Application_getDebugDrawer);
- EI(keyStr == "getFreeType")
+ EI(keyStr.equals("getFreeType", CPL_STR_HASH("getFreeType")))
 RET CNF(Application_getFreeType);
- EI(keyStr == "getAudioDevice")
+ EI(keyStr.equals("getAudioDevice", CPL_STR_HASH("getAudioDevice")))
 RET CNF(Application_getAudioDevice);
- EI(keyStr == "getScriptEngine")
+ EI(keyStr.equals("getScriptEngine", CPL_STR_HASH("getScriptEngine")))
 RET CNF(Application_getScriptEngine);
- EI(keyStr == "setNextScript")
+ EI(keyStr.equals("setNextScript", CPL_STR_HASH("setNextScript")))
 RET CNF(Application_setNextScript);
- EI(keyStr == "getNextScript")
+ EI(keyStr.equals("getNextScript", CPL_STR_HASH("getNextScript")))
 RET CNF(Application_getNextScript);
- EI(keyStr == "getScript")
+ EI(keyStr.equals("getScript", CPL_STR_HASH("getScript")))
 RET CNF(Application_getScript);
- EI(keyStr == "getStats")
+ EI(keyStr.equals("getStats", CPL_STR_HASH("getStats")))
 RET CNF(Application_getStats);
- EI(keyStr=="fixedTimestep")
+ EI(keyStr.equals("fixedTimestep", CPL_STR_HASH("fixedTimestep")))
 {
 Application*obj=(Application*)f->data;
 RET CV(obj->fixedTimestep);
-} EI(keyStr=="running")
+} EI(keyStr.equals("running", CPL_STR_HASH("running")))
 {
 Application*obj=(Application*)f->data;
 RET CV(obj->running);
@@ -37150,16 +37416,16 @@ void Application_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="fixedTimestep")
+if(0) {} EI(keyStr.equals("fixedTimestep", CPL_STR_HASH("fixedTimestep")))
 {
 Application*obj=(Application*)f->data;
 obj->fixedTimestep=val_to_c<decltype(obj->fixedTimestep)>::f(ctx,value);
-} EI(keyStr=="running")
+} EI(keyStr.equals("running", CPL_STR_HASH("running")))
 {
 Application*obj=(Application*)f->data;
 obj->running=val_to_c<decltype(obj->running)>::f(ctx,value);
@@ -37381,34 +37647,34 @@ SV LightPointData_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("LightPointData");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(LightPointData_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(LightPointData_new);
 else
  CATE(KE,"Unknown member for LightPointData."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(LightPointData_new);
- EI(keyStr=="position")
+ EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 LightPointData*obj=(LightPointData*)f->data;
 RET CV(obj->position);
-} EI(keyStr=="radius")
+} EI(keyStr.equals("radius", CPL_STR_HASH("radius")))
 {
 LightPointData*obj=(LightPointData*)f->data;
 RET CV(obj->radius);
-} EI(keyStr=="singlePassShadowMap")
+} EI(keyStr.equals("singlePassShadowMap", CPL_STR_HASH("singlePassShadowMap")))
 {
 LightPointData*obj=(LightPointData*)f->data;
 RET CV(obj->singlePassShadowMap);
@@ -37424,20 +37690,20 @@ void LightPointData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="position")
+if(0) {} EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 LightPointData*obj=(LightPointData*)f->data;
 obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
-} EI(keyStr=="radius")
+} EI(keyStr.equals("radius", CPL_STR_HASH("radius")))
 {
 LightPointData*obj=(LightPointData*)f->data;
 obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
-} EI(keyStr=="singlePassShadowMap")
+} EI(keyStr.equals("singlePassShadowMap", CPL_STR_HASH("singlePassShadowMap")))
 {
 LightPointData*obj=(LightPointData*)f->data;
 obj->singlePassShadowMap=val_to_c<decltype(obj->singlePassShadowMap)>::f(ctx,value);
@@ -37499,314 +37765,314 @@ SV Float4_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Float4");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Float4_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Float4_new);
 else
  CATE(KE,"Unknown member for Float4."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Float4_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(Float4___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(Float4___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Float4___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Float4___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Float4___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Float4___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(Float4___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(Float4___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(Float4___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(Float4___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(Float4_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(Float4_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(Float4_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(Float4_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(Float4_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(Float4_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(Float4_normalize);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(Float4_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(Float4_setXY);
- EI(keyStr == "getXZ")
+ EI(keyStr.equals("getXZ", CPL_STR_HASH("getXZ")))
 RET CNF(Float4_getXZ);
- EI(keyStr == "setXZ")
+ EI(keyStr.equals("setXZ", CPL_STR_HASH("setXZ")))
 RET CNF(Float4_setXZ);
- EI(keyStr == "getXW")
+ EI(keyStr.equals("getXW", CPL_STR_HASH("getXW")))
 RET CNF(Float4_getXW);
- EI(keyStr == "setXW")
+ EI(keyStr.equals("setXW", CPL_STR_HASH("setXW")))
 RET CNF(Float4_setXW);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(Float4_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(Float4_setYX);
- EI(keyStr == "getYZ")
+ EI(keyStr.equals("getYZ", CPL_STR_HASH("getYZ")))
 RET CNF(Float4_getYZ);
- EI(keyStr == "setYZ")
+ EI(keyStr.equals("setYZ", CPL_STR_HASH("setYZ")))
 RET CNF(Float4_setYZ);
- EI(keyStr == "getYW")
+ EI(keyStr.equals("getYW", CPL_STR_HASH("getYW")))
 RET CNF(Float4_getYW);
- EI(keyStr == "setYW")
+ EI(keyStr.equals("setYW", CPL_STR_HASH("setYW")))
 RET CNF(Float4_setYW);
- EI(keyStr == "getZX")
+ EI(keyStr.equals("getZX", CPL_STR_HASH("getZX")))
 RET CNF(Float4_getZX);
- EI(keyStr == "setZX")
+ EI(keyStr.equals("setZX", CPL_STR_HASH("setZX")))
 RET CNF(Float4_setZX);
- EI(keyStr == "getZY")
+ EI(keyStr.equals("getZY", CPL_STR_HASH("getZY")))
 RET CNF(Float4_getZY);
- EI(keyStr == "setZY")
+ EI(keyStr.equals("setZY", CPL_STR_HASH("setZY")))
 RET CNF(Float4_setZY);
- EI(keyStr == "getZW")
+ EI(keyStr.equals("getZW", CPL_STR_HASH("getZW")))
 RET CNF(Float4_getZW);
- EI(keyStr == "setZW")
+ EI(keyStr.equals("setZW", CPL_STR_HASH("setZW")))
 RET CNF(Float4_setZW);
- EI(keyStr == "getWX")
+ EI(keyStr.equals("getWX", CPL_STR_HASH("getWX")))
 RET CNF(Float4_getWX);
- EI(keyStr == "setWX")
+ EI(keyStr.equals("setWX", CPL_STR_HASH("setWX")))
 RET CNF(Float4_setWX);
- EI(keyStr == "getWY")
+ EI(keyStr.equals("getWY", CPL_STR_HASH("getWY")))
 RET CNF(Float4_getWY);
- EI(keyStr == "setWY")
+ EI(keyStr.equals("setWY", CPL_STR_HASH("setWY")))
 RET CNF(Float4_setWY);
- EI(keyStr == "getWZ")
+ EI(keyStr.equals("getWZ", CPL_STR_HASH("getWZ")))
 RET CNF(Float4_getWZ);
- EI(keyStr == "setWZ")
+ EI(keyStr.equals("setWZ", CPL_STR_HASH("setWZ")))
 RET CNF(Float4_setWZ);
- EI(keyStr == "getXYZ")
+ EI(keyStr.equals("getXYZ", CPL_STR_HASH("getXYZ")))
 RET CNF(Float4_getXYZ);
- EI(keyStr == "setXYZ")
+ EI(keyStr.equals("setXYZ", CPL_STR_HASH("setXYZ")))
 RET CNF(Float4_setXYZ);
- EI(keyStr == "getXYW")
+ EI(keyStr.equals("getXYW", CPL_STR_HASH("getXYW")))
 RET CNF(Float4_getXYW);
- EI(keyStr == "setXYW")
+ EI(keyStr.equals("setXYW", CPL_STR_HASH("setXYW")))
 RET CNF(Float4_setXYW);
- EI(keyStr == "getXZY")
+ EI(keyStr.equals("getXZY", CPL_STR_HASH("getXZY")))
 RET CNF(Float4_getXZY);
- EI(keyStr == "setXZY")
+ EI(keyStr.equals("setXZY", CPL_STR_HASH("setXZY")))
 RET CNF(Float4_setXZY);
- EI(keyStr == "getXZW")
+ EI(keyStr.equals("getXZW", CPL_STR_HASH("getXZW")))
 RET CNF(Float4_getXZW);
- EI(keyStr == "setXZW")
+ EI(keyStr.equals("setXZW", CPL_STR_HASH("setXZW")))
 RET CNF(Float4_setXZW);
- EI(keyStr == "getXWZ")
+ EI(keyStr.equals("getXWZ", CPL_STR_HASH("getXWZ")))
 RET CNF(Float4_getXWZ);
- EI(keyStr == "setXWZ")
+ EI(keyStr.equals("setXWZ", CPL_STR_HASH("setXWZ")))
 RET CNF(Float4_setXWZ);
- EI(keyStr == "getXWY")
+ EI(keyStr.equals("getXWY", CPL_STR_HASH("getXWY")))
 RET CNF(Float4_getXWY);
- EI(keyStr == "setXWY")
+ EI(keyStr.equals("setXWY", CPL_STR_HASH("setXWY")))
 RET CNF(Float4_setXWY);
- EI(keyStr == "getYXZ")
+ EI(keyStr.equals("getYXZ", CPL_STR_HASH("getYXZ")))
 RET CNF(Float4_getYXZ);
- EI(keyStr == "setYXZ")
+ EI(keyStr.equals("setYXZ", CPL_STR_HASH("setYXZ")))
 RET CNF(Float4_setYXZ);
- EI(keyStr == "getYXW")
+ EI(keyStr.equals("getYXW", CPL_STR_HASH("getYXW")))
 RET CNF(Float4_getYXW);
- EI(keyStr == "setYXW")
+ EI(keyStr.equals("setYXW", CPL_STR_HASH("setYXW")))
 RET CNF(Float4_setYXW);
- EI(keyStr == "getYZX")
+ EI(keyStr.equals("getYZX", CPL_STR_HASH("getYZX")))
 RET CNF(Float4_getYZX);
- EI(keyStr == "setYZX")
+ EI(keyStr.equals("setYZX", CPL_STR_HASH("setYZX")))
 RET CNF(Float4_setYZX);
- EI(keyStr == "getYZW")
+ EI(keyStr.equals("getYZW", CPL_STR_HASH("getYZW")))
 RET CNF(Float4_getYZW);
- EI(keyStr == "setYZW")
+ EI(keyStr.equals("setYZW", CPL_STR_HASH("setYZW")))
 RET CNF(Float4_setYZW);
- EI(keyStr == "getYWZ")
+ EI(keyStr.equals("getYWZ", CPL_STR_HASH("getYWZ")))
 RET CNF(Float4_getYWZ);
- EI(keyStr == "setYWZ")
+ EI(keyStr.equals("setYWZ", CPL_STR_HASH("setYWZ")))
 RET CNF(Float4_setYWZ);
- EI(keyStr == "getYWX")
+ EI(keyStr.equals("getYWX", CPL_STR_HASH("getYWX")))
 RET CNF(Float4_getYWX);
- EI(keyStr == "setYWX")
+ EI(keyStr.equals("setYWX", CPL_STR_HASH("setYWX")))
 RET CNF(Float4_setYWX);
- EI(keyStr == "getZXY")
+ EI(keyStr.equals("getZXY", CPL_STR_HASH("getZXY")))
 RET CNF(Float4_getZXY);
- EI(keyStr == "setZXY")
+ EI(keyStr.equals("setZXY", CPL_STR_HASH("setZXY")))
 RET CNF(Float4_setZXY);
- EI(keyStr == "getZXW")
+ EI(keyStr.equals("getZXW", CPL_STR_HASH("getZXW")))
 RET CNF(Float4_getZXW);
- EI(keyStr == "setZXW")
+ EI(keyStr.equals("setZXW", CPL_STR_HASH("setZXW")))
 RET CNF(Float4_setZXW);
- EI(keyStr == "getZYX")
+ EI(keyStr.equals("getZYX", CPL_STR_HASH("getZYX")))
 RET CNF(Float4_getZYX);
- EI(keyStr == "setZYX")
+ EI(keyStr.equals("setZYX", CPL_STR_HASH("setZYX")))
 RET CNF(Float4_setZYX);
- EI(keyStr == "getZYW")
+ EI(keyStr.equals("getZYW", CPL_STR_HASH("getZYW")))
 RET CNF(Float4_getZYW);
- EI(keyStr == "setZYW")
+ EI(keyStr.equals("setZYW", CPL_STR_HASH("setZYW")))
 RET CNF(Float4_setZYW);
- EI(keyStr == "getZWY")
+ EI(keyStr.equals("getZWY", CPL_STR_HASH("getZWY")))
 RET CNF(Float4_getZWY);
- EI(keyStr == "setZWY")
+ EI(keyStr.equals("setZWY", CPL_STR_HASH("setZWY")))
 RET CNF(Float4_setZWY);
- EI(keyStr == "getZWX")
+ EI(keyStr.equals("getZWX", CPL_STR_HASH("getZWX")))
 RET CNF(Float4_getZWX);
- EI(keyStr == "setZWX")
+ EI(keyStr.equals("setZWX", CPL_STR_HASH("setZWX")))
 RET CNF(Float4_setZWX);
- EI(keyStr == "getWXY")
+ EI(keyStr.equals("getWXY", CPL_STR_HASH("getWXY")))
 RET CNF(Float4_getWXY);
- EI(keyStr == "setWXY")
+ EI(keyStr.equals("setWXY", CPL_STR_HASH("setWXY")))
 RET CNF(Float4_setWXY);
- EI(keyStr == "getWXZ")
+ EI(keyStr.equals("getWXZ", CPL_STR_HASH("getWXZ")))
 RET CNF(Float4_getWXZ);
- EI(keyStr == "setWXZ")
+ EI(keyStr.equals("setWXZ", CPL_STR_HASH("setWXZ")))
 RET CNF(Float4_setWXZ);
- EI(keyStr == "getWYX")
+ EI(keyStr.equals("getWYX", CPL_STR_HASH("getWYX")))
 RET CNF(Float4_getWYX);
- EI(keyStr == "setWYX")
+ EI(keyStr.equals("setWYX", CPL_STR_HASH("setWYX")))
 RET CNF(Float4_setWYX);
- EI(keyStr == "getWYZ")
+ EI(keyStr.equals("getWYZ", CPL_STR_HASH("getWYZ")))
 RET CNF(Float4_getWYZ);
- EI(keyStr == "setWYZ")
+ EI(keyStr.equals("setWYZ", CPL_STR_HASH("setWYZ")))
 RET CNF(Float4_setWYZ);
- EI(keyStr == "getWZY")
+ EI(keyStr.equals("getWZY", CPL_STR_HASH("getWZY")))
 RET CNF(Float4_getWZY);
- EI(keyStr == "setWZY")
+ EI(keyStr.equals("setWZY", CPL_STR_HASH("setWZY")))
 RET CNF(Float4_setWZY);
- EI(keyStr == "getWZX")
+ EI(keyStr.equals("getWZX", CPL_STR_HASH("getWZX")))
 RET CNF(Float4_getWZX);
- EI(keyStr == "setWZX")
+ EI(keyStr.equals("setWZX", CPL_STR_HASH("setWZX")))
 RET CNF(Float4_setWZX);
- EI(keyStr == "getXYZW")
+ EI(keyStr.equals("getXYZW", CPL_STR_HASH("getXYZW")))
 RET CNF(Float4_getXYZW);
- EI(keyStr == "setXYZW")
+ EI(keyStr.equals("setXYZW", CPL_STR_HASH("setXYZW")))
 RET CNF(Float4_setXYZW);
- EI(keyStr == "getXYWZ")
+ EI(keyStr.equals("getXYWZ", CPL_STR_HASH("getXYWZ")))
 RET CNF(Float4_getXYWZ);
- EI(keyStr == "setXYWZ")
+ EI(keyStr.equals("setXYWZ", CPL_STR_HASH("setXYWZ")))
 RET CNF(Float4_setXYWZ);
- EI(keyStr == "getXZYW")
+ EI(keyStr.equals("getXZYW", CPL_STR_HASH("getXZYW")))
 RET CNF(Float4_getXZYW);
- EI(keyStr == "setXZYW")
+ EI(keyStr.equals("setXZYW", CPL_STR_HASH("setXZYW")))
 RET CNF(Float4_setXZYW);
- EI(keyStr == "getXZWY")
+ EI(keyStr.equals("getXZWY", CPL_STR_HASH("getXZWY")))
 RET CNF(Float4_getXZWY);
- EI(keyStr == "setXZWY")
+ EI(keyStr.equals("setXZWY", CPL_STR_HASH("setXZWY")))
 RET CNF(Float4_setXZWY);
- EI(keyStr == "getXWZY")
+ EI(keyStr.equals("getXWZY", CPL_STR_HASH("getXWZY")))
 RET CNF(Float4_getXWZY);
- EI(keyStr == "setXWZY")
+ EI(keyStr.equals("setXWZY", CPL_STR_HASH("setXWZY")))
 RET CNF(Float4_setXWZY);
- EI(keyStr == "getXWYZ")
+ EI(keyStr.equals("getXWYZ", CPL_STR_HASH("getXWYZ")))
 RET CNF(Float4_getXWYZ);
- EI(keyStr == "setXWYZ")
+ EI(keyStr.equals("setXWYZ", CPL_STR_HASH("setXWYZ")))
 RET CNF(Float4_setXWYZ);
- EI(keyStr == "getYXZW")
+ EI(keyStr.equals("getYXZW", CPL_STR_HASH("getYXZW")))
 RET CNF(Float4_getYXZW);
- EI(keyStr == "setYXZW")
+ EI(keyStr.equals("setYXZW", CPL_STR_HASH("setYXZW")))
 RET CNF(Float4_setYXZW);
- EI(keyStr == "getYXWZ")
+ EI(keyStr.equals("getYXWZ", CPL_STR_HASH("getYXWZ")))
 RET CNF(Float4_getYXWZ);
- EI(keyStr == "setYXWZ")
+ EI(keyStr.equals("setYXWZ", CPL_STR_HASH("setYXWZ")))
 RET CNF(Float4_setYXWZ);
- EI(keyStr == "getYZXW")
+ EI(keyStr.equals("getYZXW", CPL_STR_HASH("getYZXW")))
 RET CNF(Float4_getYZXW);
- EI(keyStr == "setYZXW")
+ EI(keyStr.equals("setYZXW", CPL_STR_HASH("setYZXW")))
 RET CNF(Float4_setYZXW);
- EI(keyStr == "getYZWX")
+ EI(keyStr.equals("getYZWX", CPL_STR_HASH("getYZWX")))
 RET CNF(Float4_getYZWX);
- EI(keyStr == "setYZWX")
+ EI(keyStr.equals("setYZWX", CPL_STR_HASH("setYZWX")))
 RET CNF(Float4_setYZWX);
- EI(keyStr == "getYWZX")
+ EI(keyStr.equals("getYWZX", CPL_STR_HASH("getYWZX")))
 RET CNF(Float4_getYWZX);
- EI(keyStr == "setYWZX")
+ EI(keyStr.equals("setYWZX", CPL_STR_HASH("setYWZX")))
 RET CNF(Float4_setYWZX);
- EI(keyStr == "getYWXZ")
+ EI(keyStr.equals("getYWXZ", CPL_STR_HASH("getYWXZ")))
 RET CNF(Float4_getYWXZ);
- EI(keyStr == "setYWXZ")
+ EI(keyStr.equals("setYWXZ", CPL_STR_HASH("setYWXZ")))
 RET CNF(Float4_setYWXZ);
- EI(keyStr == "getZYXW")
+ EI(keyStr.equals("getZYXW", CPL_STR_HASH("getZYXW")))
 RET CNF(Float4_getZYXW);
- EI(keyStr == "setZYXW")
+ EI(keyStr.equals("setZYXW", CPL_STR_HASH("setZYXW")))
 RET CNF(Float4_setZYXW);
- EI(keyStr == "getZYWX")
+ EI(keyStr.equals("getZYWX", CPL_STR_HASH("getZYWX")))
 RET CNF(Float4_getZYWX);
- EI(keyStr == "setZYWX")
+ EI(keyStr.equals("setZYWX", CPL_STR_HASH("setZYWX")))
 RET CNF(Float4_setZYWX);
- EI(keyStr == "getZXYW")
+ EI(keyStr.equals("getZXYW", CPL_STR_HASH("getZXYW")))
 RET CNF(Float4_getZXYW);
- EI(keyStr == "setZXYW")
+ EI(keyStr.equals("setZXYW", CPL_STR_HASH("setZXYW")))
 RET CNF(Float4_setZXYW);
- EI(keyStr == "getZXWY")
+ EI(keyStr.equals("getZXWY", CPL_STR_HASH("getZXWY")))
 RET CNF(Float4_getZXWY);
- EI(keyStr == "setZXWY")
+ EI(keyStr.equals("setZXWY", CPL_STR_HASH("setZXWY")))
 RET CNF(Float4_setZXWY);
- EI(keyStr == "getZWXY")
+ EI(keyStr.equals("getZWXY", CPL_STR_HASH("getZWXY")))
 RET CNF(Float4_getZWXY);
- EI(keyStr == "setZWXY")
+ EI(keyStr.equals("setZWXY", CPL_STR_HASH("setZWXY")))
 RET CNF(Float4_setZWXY);
- EI(keyStr == "getZWYX")
+ EI(keyStr.equals("getZWYX", CPL_STR_HASH("getZWYX")))
 RET CNF(Float4_getZWYX);
- EI(keyStr == "setZWYX")
+ EI(keyStr.equals("setZWYX", CPL_STR_HASH("setZWYX")))
 RET CNF(Float4_setZWYX);
- EI(keyStr == "getWYZX")
+ EI(keyStr.equals("getWYZX", CPL_STR_HASH("getWYZX")))
 RET CNF(Float4_getWYZX);
- EI(keyStr == "setWYZX")
+ EI(keyStr.equals("setWYZX", CPL_STR_HASH("setWYZX")))
 RET CNF(Float4_setWYZX);
- EI(keyStr == "getWYXZ")
+ EI(keyStr.equals("getWYXZ", CPL_STR_HASH("getWYXZ")))
 RET CNF(Float4_getWYXZ);
- EI(keyStr == "setWYXZ")
+ EI(keyStr.equals("setWYXZ", CPL_STR_HASH("setWYXZ")))
 RET CNF(Float4_setWYXZ);
- EI(keyStr == "getWZYX")
+ EI(keyStr.equals("getWZYX", CPL_STR_HASH("getWZYX")))
 RET CNF(Float4_getWZYX);
- EI(keyStr == "setWZYX")
+ EI(keyStr.equals("setWZYX", CPL_STR_HASH("setWZYX")))
 RET CNF(Float4_setWZYX);
- EI(keyStr == "getWZXY")
+ EI(keyStr.equals("getWZXY", CPL_STR_HASH("getWZXY")))
 RET CNF(Float4_getWZXY);
- EI(keyStr == "setWZXY")
+ EI(keyStr.equals("setWZXY", CPL_STR_HASH("setWZXY")))
 RET CNF(Float4_setWZXY);
- EI(keyStr == "getWXZY")
+ EI(keyStr.equals("getWXZY", CPL_STR_HASH("getWXZY")))
 RET CNF(Float4_getWXZY);
- EI(keyStr == "setWXZY")
+ EI(keyStr.equals("setWXZY", CPL_STR_HASH("setWXZY")))
 RET CNF(Float4_setWXZY);
- EI(keyStr == "getWXYZ")
+ EI(keyStr.equals("getWXYZ", CPL_STR_HASH("getWXYZ")))
 RET CNF(Float4_getWXYZ);
- EI(keyStr == "setWXYZ")
+ EI(keyStr.equals("setWXYZ", CPL_STR_HASH("setWXYZ")))
 RET CNF(Float4_setWXYZ);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Float4_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 RET CV(obj->z);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 RET CV(obj->w);
@@ -37822,24 +38088,24 @@ void Float4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 T4<float>*obj=(T4<float>*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
@@ -40262,54 +40528,54 @@ SV FloatList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("FloatList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(FloatList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(FloatList_new);
 else
  CATE(KE,"Unknown member for FloatList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(FloatList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(FloatList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(FloatList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(FloatList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(FloatList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(FloatList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(FloatList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(FloatList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(FloatList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(FloatList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(FloatList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(FloatList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(FloatList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(FloatList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(FloatList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(FloatList_end);
  else
  CATE(KE,"Unknown member for FloatList."));
@@ -40323,7 +40589,7 @@ void FloatList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -40610,30 +40876,30 @@ SV Container_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Container");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Container_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Container_new);
 else
  CATE(KE,"Unknown member for Container."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Container_new);
- EI(keyStr=="vertical")
+ EI(keyStr.equals("vertical", CPL_STR_HASH("vertical")))
 {
 Container*obj=(Container*)f->data;
 RET CV(obj->vertical);
-} EI(keyStr=="horizonal")
+} EI(keyStr.equals("horizonal", CPL_STR_HASH("horizonal")))
 {
 Container*obj=(Container*)f->data;
 RET CV(obj->horizonal);
@@ -40649,16 +40915,16 @@ void Container_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="vertical")
+if(0) {} EI(keyStr.equals("vertical", CPL_STR_HASH("vertical")))
 {
 Container*obj=(Container*)f->data;
 obj->vertical=val_to_c<decltype(obj->vertical)>::f(ctx,value);
-} EI(keyStr=="horizonal")
+} EI(keyStr.equals("horizonal", CPL_STR_HASH("horizonal")))
 {
 Container*obj=(Container*)f->data;
 obj->horizonal=val_to_c<decltype(obj->horizonal)>::f(ctx,value);
@@ -40689,26 +40955,26 @@ SV LightDirectionalData_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("LightDirectionalData");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(LightDirectionalData_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(LightDirectionalData_new);
 else
  CATE(KE,"Unknown member for LightDirectionalData."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(LightDirectionalData_new);
- EI(keyStr=="direction")
+ EI(keyStr.equals("direction", CPL_STR_HASH("direction")))
 {
 LightDirectionalData*obj=(LightDirectionalData*)f->data;
 RET CV(obj->direction);
@@ -40724,12 +40990,12 @@ void LightDirectionalData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&v
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="direction")
+if(0) {} EI(keyStr.equals("direction", CPL_STR_HASH("direction")))
 {
 LightDirectionalData*obj=(LightDirectionalData*)f->data;
 obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
@@ -40776,60 +41042,60 @@ SV Matrix4x4_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Matrix4x4");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Matrix4x4_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Matrix4x4_new);
 else
  CATE(KE,"Unknown member for Matrix4x4."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Matrix4x4_new);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Matrix4x4___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Matrix4x4___div__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(Matrix4x4_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(Matrix4x4_set);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Matrix4x4___eq__);
- EI(keyStr == "transpose")
+ EI(keyStr.equals("transpose", CPL_STR_HASH("transpose")))
 RET CNF(Matrix4x4_transpose);
- EI(keyStr == "determinant")
+ EI(keyStr.equals("determinant", CPL_STR_HASH("determinant")))
 RET CNF(Matrix4x4_determinant);
- EI(keyStr == "inverse")
+ EI(keyStr.equals("inverse", CPL_STR_HASH("inverse")))
 RET CNF(Matrix4x4_inverse);
- EI(keyStr == "translate")
+ EI(keyStr.equals("translate", CPL_STR_HASH("translate")))
 RET CNF(Matrix4x4_translate);
- EI(keyStr == "scale")
+ EI(keyStr.equals("scale", CPL_STR_HASH("scale")))
 RET CNF(Matrix4x4_scale);
- EI(keyStr == "rotate")
+ EI(keyStr.equals("rotate", CPL_STR_HASH("rotate")))
 RET CNF(Matrix4x4_rotate);
- EI(keyStr == "rotatex")
+ EI(keyStr.equals("rotatex", CPL_STR_HASH("rotatex")))
 RET CNF(Matrix4x4_rotatex);
- EI(keyStr == "rotatey")
+ EI(keyStr.equals("rotatey", CPL_STR_HASH("rotatey")))
 RET CNF(Matrix4x4_rotatey);
- EI(keyStr == "rotatez")
+ EI(keyStr.equals("rotatez", CPL_STR_HASH("rotatez")))
 RET CNF(Matrix4x4_rotatez);
- EI(keyStr == "perspective")
+ EI(keyStr.equals("perspective", CPL_STR_HASH("perspective")))
 RET CNF(Matrix4x4_perspective);
- EI(keyStr == "orthographic")
+ EI(keyStr.equals("orthographic", CPL_STR_HASH("orthographic")))
 RET CNF(Matrix4x4_orthographic);
- EI(keyStr == "lookAt")
+ EI(keyStr.equals("lookAt", CPL_STR_HASH("lookAt")))
 RET CNF(Matrix4x4_lookAt);
- EI(keyStr == "lookAtDir")
+ EI(keyStr.equals("lookAtDir", CPL_STR_HASH("lookAtDir")))
 RET CNF(Matrix4x4_lookAtDir);
  else
  CATE(KE,"Unknown member for Matrix4x4."));
@@ -40843,7 +41109,7 @@ void Matrix4x4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -41193,52 +41459,52 @@ SV Map_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Map");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Map_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Map_new);
 else
  CATE(KE,"Unknown member for Map."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Map_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Map___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(Map___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(Map_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(Map_set);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(Map_remove);
- EI(keyStr == "isEntry")
+ EI(keyStr.equals("isEntry", CPL_STR_HASH("isEntry")))
 RET CNF(Map_isEntry);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(Map_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(Map_end);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(Map_find);
- EI(keyStr == "removeEntry")
+ EI(keyStr.equals("removeEntry", CPL_STR_HASH("removeEntry")))
 RET CNF(Map_removeEntry);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(Map_getCount);
- EI(keyStr == "getKey")
+ EI(keyStr.equals("getKey", CPL_STR_HASH("getKey")))
 RET CNF(Map_getKey);
- EI(keyStr == "getValue")
+ EI(keyStr.equals("getValue", CPL_STR_HASH("getValue")))
 RET CNF(Map_getValue);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(Map_clear);
  else
  CATE(KE,"Unknown member for Map."));
@@ -41252,7 +41518,7 @@ void Map_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -41515,40 +41781,40 @@ SV Frustum_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Frustum");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Frustum_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Frustum_new);
 else
  CATE(KE,"Unknown member for Frustum."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Frustum_new);
- EI(keyStr == "getOrigin")
+ EI(keyStr.equals("getOrigin", CPL_STR_HASH("getOrigin")))
 RET CNF(Frustum_getOrigin);
- EI(keyStr == "getCorner")
+ EI(keyStr.equals("getCorner", CPL_STR_HASH("getCorner")))
 RET CNF(Frustum_getCorner);
- EI(keyStr == "getPlane")
+ EI(keyStr.equals("getPlane", CPL_STR_HASH("getPlane")))
 RET CNF(Frustum_getPlane);
- EI(keyStr == "view")
+ EI(keyStr.equals("view", CPL_STR_HASH("view")))
 RET CNF(Frustum_view);
- EI(keyStr == "box")
+ EI(keyStr.equals("box", CPL_STR_HASH("box")))
 RET CNF(Frustum_box);
- EI(keyStr == "getAABB")
+ EI(keyStr.equals("getAABB", CPL_STR_HASH("getAABB")))
 RET CNF(Frustum_getAABB);
- EI(keyStr == "sphereIntersection")
+ EI(keyStr.equals("sphereIntersection", CPL_STR_HASH("sphereIntersection")))
 RET CNF(Frustum_sphereIntersection);
- EI(keyStr == "aabbIntersection")
+ EI(keyStr.equals("aabbIntersection", CPL_STR_HASH("aabbIntersection")))
 RET CNF(Frustum_aabbIntersection);
  else
  CATE(KE,"Unknown member for Frustum."));
@@ -41562,7 +41828,7 @@ void Frustum_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -41752,54 +42018,54 @@ SV ScriptInstanceList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("ScriptInstanceList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(ScriptInstanceList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(ScriptInstanceList_new);
 else
  CATE(KE,"Unknown member for ScriptInstanceList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ScriptInstanceList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(ScriptInstanceList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(ScriptInstanceList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(ScriptInstanceList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(ScriptInstanceList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(ScriptInstanceList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(ScriptInstanceList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(ScriptInstanceList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(ScriptInstanceList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(ScriptInstanceList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(ScriptInstanceList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(ScriptInstanceList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(ScriptInstanceList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(ScriptInstanceList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(ScriptInstanceList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(ScriptInstanceList_end);
  else
  CATE(KE,"Unknown member for ScriptInstanceList."));
@@ -41813,7 +42079,7 @@ void ScriptInstanceList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&val
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -42125,120 +42391,120 @@ SV UInt3_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("UInt3");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(UInt3_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(UInt3_new);
 else
  CATE(KE,"Unknown member for UInt3."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(UInt3_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(UInt3___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(UInt3___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(UInt3___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(UInt3___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(UInt3___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(UInt3___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(UInt3___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(UInt3___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(UInt3___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(UInt3___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(UInt3_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(UInt3_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(UInt3_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(UInt3_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(UInt3_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(UInt3_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(UInt3_normalize);
- EI(keyStr == "cross")
+ EI(keyStr.equals("cross", CPL_STR_HASH("cross")))
 RET CNF(UInt3_cross);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(UInt3_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(UInt3_setXY);
- EI(keyStr == "getXZ")
+ EI(keyStr.equals("getXZ", CPL_STR_HASH("getXZ")))
 RET CNF(UInt3_getXZ);
- EI(keyStr == "setXZ")
+ EI(keyStr.equals("setXZ", CPL_STR_HASH("setXZ")))
 RET CNF(UInt3_setXZ);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(UInt3_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(UInt3_setYX);
- EI(keyStr == "getYZ")
+ EI(keyStr.equals("getYZ", CPL_STR_HASH("getYZ")))
 RET CNF(UInt3_getYZ);
- EI(keyStr == "setYZ")
+ EI(keyStr.equals("setYZ", CPL_STR_HASH("setYZ")))
 RET CNF(UInt3_setYZ);
- EI(keyStr == "getZX")
+ EI(keyStr.equals("getZX", CPL_STR_HASH("getZX")))
 RET CNF(UInt3_getZX);
- EI(keyStr == "setZX")
+ EI(keyStr.equals("setZX", CPL_STR_HASH("setZX")))
 RET CNF(UInt3_setZX);
- EI(keyStr == "getZY")
+ EI(keyStr.equals("getZY", CPL_STR_HASH("getZY")))
 RET CNF(UInt3_getZY);
- EI(keyStr == "setZY")
+ EI(keyStr.equals("setZY", CPL_STR_HASH("setZY")))
 RET CNF(UInt3_setZY);
- EI(keyStr == "getXYZ")
+ EI(keyStr.equals("getXYZ", CPL_STR_HASH("getXYZ")))
 RET CNF(UInt3_getXYZ);
- EI(keyStr == "setXYZ")
+ EI(keyStr.equals("setXYZ", CPL_STR_HASH("setXYZ")))
 RET CNF(UInt3_setXYZ);
- EI(keyStr == "getXZY")
+ EI(keyStr.equals("getXZY", CPL_STR_HASH("getXZY")))
 RET CNF(UInt3_getXZY);
- EI(keyStr == "setXZY")
+ EI(keyStr.equals("setXZY", CPL_STR_HASH("setXZY")))
 RET CNF(UInt3_setXZY);
- EI(keyStr == "getYXZ")
+ EI(keyStr.equals("getYXZ", CPL_STR_HASH("getYXZ")))
 RET CNF(UInt3_getYXZ);
- EI(keyStr == "setYXZ")
+ EI(keyStr.equals("setYXZ", CPL_STR_HASH("setYXZ")))
 RET CNF(UInt3_setYXZ);
- EI(keyStr == "getYZX")
+ EI(keyStr.equals("getYZX", CPL_STR_HASH("getYZX")))
 RET CNF(UInt3_getYZX);
- EI(keyStr == "setYZX")
+ EI(keyStr.equals("setYZX", CPL_STR_HASH("setYZX")))
 RET CNF(UInt3_setYZX);
- EI(keyStr == "getZXY")
+ EI(keyStr.equals("getZXY", CPL_STR_HASH("getZXY")))
 RET CNF(UInt3_getZXY);
- EI(keyStr == "setZXY")
+ EI(keyStr.equals("setZXY", CPL_STR_HASH("setZXY")))
 RET CNF(UInt3_setZXY);
- EI(keyStr == "getZYX")
+ EI(keyStr.equals("getZYX", CPL_STR_HASH("getZYX")))
 RET CNF(UInt3_getZYX);
- EI(keyStr == "setZYX")
+ EI(keyStr.equals("setZYX", CPL_STR_HASH("setZYX")))
 RET CNF(UInt3_setZYX);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(UInt3_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 RET CV(obj->z);
@@ -42254,20 +42520,20 @@ void UInt3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T3<uint32_t>*obj=(T3<uint32_t>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
@@ -43059,42 +43325,42 @@ SV LightSpotData_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("LightSpotData");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(LightSpotData_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(LightSpotData_new);
 else
  CATE(KE,"Unknown member for LightSpotData."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(LightSpotData_new);
- EI(keyStr=="position")
+ EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 RET CV(obj->position);
-} EI(keyStr=="direction")
+} EI(keyStr.equals("direction", CPL_STR_HASH("direction")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 RET CV(obj->direction);
-} EI(keyStr=="innerCutoff")
+} EI(keyStr.equals("innerCutoff", CPL_STR_HASH("innerCutoff")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 RET CV(obj->innerCutoff);
-} EI(keyStr=="outerCutoff")
+} EI(keyStr.equals("outerCutoff", CPL_STR_HASH("outerCutoff")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 RET CV(obj->outerCutoff);
-} EI(keyStr=="radius")
+} EI(keyStr.equals("radius", CPL_STR_HASH("radius")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 RET CV(obj->radius);
@@ -43110,28 +43376,28 @@ void LightSpotData_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="position")
+if(0) {} EI(keyStr.equals("position", CPL_STR_HASH("position")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 obj->position=val_to_c<decltype(obj->position)>::f(ctx,value);
-} EI(keyStr=="direction")
+} EI(keyStr.equals("direction", CPL_STR_HASH("direction")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 obj->direction=val_to_c<decltype(obj->direction)>::f(ctx,value);
-} EI(keyStr=="innerCutoff")
+} EI(keyStr.equals("innerCutoff", CPL_STR_HASH("innerCutoff")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 obj->innerCutoff=val_to_c<decltype(obj->innerCutoff)>::f(ctx,value);
-} EI(keyStr=="outerCutoff")
+} EI(keyStr.equals("outerCutoff", CPL_STR_HASH("outerCutoff")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 obj->outerCutoff=val_to_c<decltype(obj->outerCutoff)>::f(ctx,value);
-} EI(keyStr=="radius")
+} EI(keyStr.equals("radius", CPL_STR_HASH("radius")))
 {
 LightSpotData*obj=(LightSpotData*)f->data;
 obj->radius=val_to_c<decltype(obj->radius)>::f(ctx,value);
@@ -43173,32 +43439,32 @@ SV Plane_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Plane");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Plane_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Plane_new);
 else
  CATE(KE,"Unknown member for Plane."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Plane_new);
- EI(keyStr == "distanceToPoint")
+ EI(keyStr.equals("distanceToPoint", CPL_STR_HASH("distanceToPoint")))
 RET CNF(Plane_distanceToPoint);
- EI(keyStr=="normal")
+ EI(keyStr.equals("normal", CPL_STR_HASH("normal")))
 {
 Plane*obj=(Plane*)f->data;
 RET CV(obj->normal);
-} EI(keyStr=="distance")
+} EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 {
 Plane*obj=(Plane*)f->data;
 RET CV(obj->distance);
@@ -43214,16 +43480,16 @@ void Plane_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="normal")
+if(0) {} EI(keyStr.equals("normal", CPL_STR_HASH("normal")))
 {
 Plane*obj=(Plane*)f->data;
 obj->normal=val_to_c<decltype(obj->normal)>::f(ctx,value);
-} EI(keyStr=="distance")
+} EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 {
 Plane*obj=(Plane*)f->data;
 obj->distance=val_to_c<decltype(obj->distance)>::f(ctx,value);
@@ -43270,8 +43536,8 @@ void *p = (void *)NEW(TYPE(PhysicsShape));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(PhysicsShape_funcs,p,EXT->PhysicsShape_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(PhysicsShape),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(PhysicsShape),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(PhysicsShape_funcs,p,EXT->PhysicsShape_typeID);
 }CATE(TE,UFOF("PhysicsShape's constructor.")));
@@ -43283,78 +43549,78 @@ SV PhysicsShape_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("PhysicsShape");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(PhysicsShape_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(PhysicsShape_new);
 else
  CATE(KE,"Unknown member for PhysicsShape."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(PhysicsShape_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(PhysicsShape_removeContent);
- EI(keyStr == "getImpl")
+ EI(keyStr.equals("getImpl", CPL_STR_HASH("getImpl")))
 RET CNF(PhysicsShape_getImpl);
- EI(keyStr == "getShapeType")
+ EI(keyStr.equals("getShapeType", CPL_STR_HASH("getShapeType")))
 RET CNF(PhysicsShape_getShapeType);
- EI(keyStr == "getMargin")
+ EI(keyStr.equals("getMargin", CPL_STR_HASH("getMargin")))
 RET CNF(PhysicsShape_getMargin);
- EI(keyStr == "setMargin")
+ EI(keyStr.equals("setMargin", CPL_STR_HASH("setMargin")))
 RET CNF(PhysicsShape_setMargin);
- EI(keyStr == "getScale")
+ EI(keyStr.equals("getScale", CPL_STR_HASH("getScale")))
 RET CNF(PhysicsShape_getScale);
- EI(keyStr == "setScale")
+ EI(keyStr.equals("setScale", CPL_STR_HASH("setScale")))
 RET CNF(PhysicsShape_setScale);
- EI(keyStr == "getBulletShape")
+ EI(keyStr.equals("getBulletShape", CPL_STR_HASH("getBulletShape")))
 RET CNF(PhysicsShape_getBulletShape);
- EI(keyStr == "setEmpty")
+ EI(keyStr.equals("setEmpty", CPL_STR_HASH("setEmpty")))
 RET CNF(PhysicsShape_setEmpty);
- EI(keyStr == "setSphere")
+ EI(keyStr.equals("setSphere", CPL_STR_HASH("setSphere")))
 RET CNF(PhysicsShape_setSphere);
- EI(keyStr == "setBox")
+ EI(keyStr.equals("setBox", CPL_STR_HASH("setBox")))
 RET CNF(PhysicsShape_setBox);
- EI(keyStr == "setCylinder")
+ EI(keyStr.equals("setCylinder", CPL_STR_HASH("setCylinder")))
 RET CNF(PhysicsShape_setCylinder);
- EI(keyStr == "setCapsule")
+ EI(keyStr.equals("setCapsule", CPL_STR_HASH("setCapsule")))
 RET CNF(PhysicsShape_setCapsule);
- EI(keyStr == "setCone")
+ EI(keyStr.equals("setCone", CPL_STR_HASH("setCone")))
 RET CNF(PhysicsShape_setCone);
- EI(keyStr == "setConvexHull")
+ EI(keyStr.equals("setConvexHull", CPL_STR_HASH("setConvexHull")))
 RET CNF(PhysicsShape_setConvexHull);
- EI(keyStr == "setStaticTriangleMesh")
+ EI(keyStr.equals("setStaticTriangleMesh", CPL_STR_HASH("setStaticTriangleMesh")))
 RET CNF(PhysicsShape_setStaticTriangleMesh);
- EI(keyStr == "setHeightfield")
+ EI(keyStr.equals("setHeightfield", CPL_STR_HASH("setHeightfield")))
 RET CNF(PhysicsShape_setHeightfield);
- EI(keyStr == "setPlane")
+ EI(keyStr.equals("setPlane", CPL_STR_HASH("setPlane")))
 RET CNF(PhysicsShape_setPlane);
- EI(keyStr == "setCompound")
+ EI(keyStr.equals("setCompound", CPL_STR_HASH("setCompound")))
 RET CNF(PhysicsShape_setCompound);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(PhysicsShape_save);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(PhysicsShape_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(PhysicsShape_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(PhysicsShape_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(PhysicsShape_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(PhysicsShape_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(PhysicsShape_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(PhysicsShape_setFilename);
  else
  CATE(KE,"Unknown member for PhysicsShape."));
@@ -43368,7 +43634,7 @@ void PhysicsShape_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -43404,9 +43670,9 @@ PhysicsShape*f;
 f=(PhysicsShape*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("PhysicsShape::setFilename.")));
@@ -43835,52 +44101,52 @@ SV AudioDevice_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("AudioDevice");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(AudioDevice_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(AudioDevice_new);
 else
  CATE(KE,"Unknown member for AudioDevice."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(AudioDevice_new);
- EI(keyStr == "getName")
+ EI(keyStr.equals("getName", CPL_STR_HASH("getName")))
 RET CNF(AudioDevice_getName);
- EI(keyStr == "getDeviceCount")
+ EI(keyStr.equals("getDeviceCount", CPL_STR_HASH("getDeviceCount")))
 RET CNF(AudioDevice_getDeviceCount);
- EI(keyStr == "setIndex")
+ EI(keyStr.equals("setIndex", CPL_STR_HASH("setIndex")))
 RET CNF(AudioDevice_setIndex);
- EI(keyStr == "setFrequency")
+ EI(keyStr.equals("setFrequency", CPL_STR_HASH("setFrequency")))
 RET CNF(AudioDevice_setFrequency);
- EI(keyStr == "setSamples")
+ EI(keyStr.equals("setSamples", CPL_STR_HASH("setSamples")))
 RET CNF(AudioDevice_setSamples);
- EI(keyStr == "getIndex")
+ EI(keyStr.equals("getIndex", CPL_STR_HASH("getIndex")))
 RET CNF(AudioDevice_getIndex);
- EI(keyStr == "getFrequency")
+ EI(keyStr.equals("getFrequency", CPL_STR_HASH("getFrequency")))
 RET CNF(AudioDevice_getFrequency);
- EI(keyStr == "getSamples")
+ EI(keyStr.equals("getSamples", CPL_STR_HASH("getSamples")))
 RET CNF(AudioDevice_getSamples);
- EI(keyStr == "getNumQueuedSamples")
+ EI(keyStr.equals("getNumQueuedSamples", CPL_STR_HASH("getNumQueuedSamples")))
 RET CNF(AudioDevice_getNumQueuedSamples);
- EI(keyStr == "pause")
+ EI(keyStr.equals("pause", CPL_STR_HASH("pause")))
 RET CNF(AudioDevice_pause);
- EI(keyStr == "play")
+ EI(keyStr.equals("play", CPL_STR_HASH("play")))
 RET CNF(AudioDevice_play);
- EI(keyStr == "getPaused")
+ EI(keyStr.equals("getPaused", CPL_STR_HASH("getPaused")))
 RET CNF(AudioDevice_getPaused);
- EI(keyStr == "runCallbacks")
+ EI(keyStr.equals("runCallbacks", CPL_STR_HASH("runCallbacks")))
 RET CNF(AudioDevice_runCallbacks);
- EI(keyStr=="volume")
+ EI(keyStr.equals("volume", CPL_STR_HASH("volume")))
 {
 AudioDevice*obj=(AudioDevice*)f->data;
 RET CV(obj->volume);
@@ -43896,12 +44162,12 @@ void AudioDevice_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="volume")
+if(0) {} EI(keyStr.equals("volume", CPL_STR_HASH("volume")))
 {
 AudioDevice*obj=(AudioDevice*)f->data;
 obj->volume=val_to_c<decltype(obj->volume)>::f(ctx,value);
@@ -44175,54 +44441,54 @@ SV RigidBodyList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RigidBodyList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RigidBodyList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RigidBodyList_new);
 else
  CATE(KE,"Unknown member for RigidBodyList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RigidBodyList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RigidBodyList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(RigidBodyList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(RigidBodyList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(RigidBodyList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(RigidBodyList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(RigidBodyList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(RigidBodyList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(RigidBodyList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(RigidBodyList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(RigidBodyList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(RigidBodyList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(RigidBodyList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(RigidBodyList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(RigidBodyList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(RigidBodyList_end);
  else
  CATE(KE,"Unknown member for RigidBodyList."));
@@ -44236,7 +44502,7 @@ void RigidBodyList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -44548,314 +44814,314 @@ SV UInt4_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("UInt4");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(UInt4_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(UInt4_new);
 else
  CATE(KE,"Unknown member for UInt4."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(UInt4_new);
- EI(keyStr == "__add__")
+ EI(keyStr.equals("__add__", CPL_STR_HASH("__add__")))
 RET CNF(UInt4___add__);
- EI(keyStr == "__sub__")
+ EI(keyStr.equals("__sub__", CPL_STR_HASH("__sub__")))
 RET CNF(UInt4___sub__);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(UInt4___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(UInt4___div__);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(UInt4___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(UInt4___neq__);
- EI(keyStr == "__less__")
+ EI(keyStr.equals("__less__", CPL_STR_HASH("__less__")))
 RET CNF(UInt4___less__);
- EI(keyStr == "__grtr__")
+ EI(keyStr.equals("__grtr__", CPL_STR_HASH("__grtr__")))
 RET CNF(UInt4___grtr__);
- EI(keyStr == "__leq__")
+ EI(keyStr.equals("__leq__", CPL_STR_HASH("__leq__")))
 RET CNF(UInt4___leq__);
- EI(keyStr == "__geq__")
+ EI(keyStr.equals("__geq__", CPL_STR_HASH("__geq__")))
 RET CNF(UInt4___geq__);
- EI(keyStr == "sum")
+ EI(keyStr.equals("sum", CPL_STR_HASH("sum")))
 RET CNF(UInt4_sum);
- EI(keyStr == "length")
+ EI(keyStr.equals("length", CPL_STR_HASH("length")))
 RET CNF(UInt4_length);
- EI(keyStr == "lengthSquared")
+ EI(keyStr.equals("lengthSquared", CPL_STR_HASH("lengthSquared")))
 RET CNF(UInt4_lengthSquared);
- EI(keyStr == "dot")
+ EI(keyStr.equals("dot", CPL_STR_HASH("dot")))
 RET CNF(UInt4_dot);
- EI(keyStr == "distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 RET CNF(UInt4_distance);
- EI(keyStr == "distanceSquared")
+ EI(keyStr.equals("distanceSquared", CPL_STR_HASH("distanceSquared")))
 RET CNF(UInt4_distanceSquared);
- EI(keyStr == "normalize")
+ EI(keyStr.equals("normalize", CPL_STR_HASH("normalize")))
 RET CNF(UInt4_normalize);
- EI(keyStr == "getXY")
+ EI(keyStr.equals("getXY", CPL_STR_HASH("getXY")))
 RET CNF(UInt4_getXY);
- EI(keyStr == "setXY")
+ EI(keyStr.equals("setXY", CPL_STR_HASH("setXY")))
 RET CNF(UInt4_setXY);
- EI(keyStr == "getXZ")
+ EI(keyStr.equals("getXZ", CPL_STR_HASH("getXZ")))
 RET CNF(UInt4_getXZ);
- EI(keyStr == "setXZ")
+ EI(keyStr.equals("setXZ", CPL_STR_HASH("setXZ")))
 RET CNF(UInt4_setXZ);
- EI(keyStr == "getXW")
+ EI(keyStr.equals("getXW", CPL_STR_HASH("getXW")))
 RET CNF(UInt4_getXW);
- EI(keyStr == "setXW")
+ EI(keyStr.equals("setXW", CPL_STR_HASH("setXW")))
 RET CNF(UInt4_setXW);
- EI(keyStr == "getYX")
+ EI(keyStr.equals("getYX", CPL_STR_HASH("getYX")))
 RET CNF(UInt4_getYX);
- EI(keyStr == "setYX")
+ EI(keyStr.equals("setYX", CPL_STR_HASH("setYX")))
 RET CNF(UInt4_setYX);
- EI(keyStr == "getYZ")
+ EI(keyStr.equals("getYZ", CPL_STR_HASH("getYZ")))
 RET CNF(UInt4_getYZ);
- EI(keyStr == "setYZ")
+ EI(keyStr.equals("setYZ", CPL_STR_HASH("setYZ")))
 RET CNF(UInt4_setYZ);
- EI(keyStr == "getYW")
+ EI(keyStr.equals("getYW", CPL_STR_HASH("getYW")))
 RET CNF(UInt4_getYW);
- EI(keyStr == "setYW")
+ EI(keyStr.equals("setYW", CPL_STR_HASH("setYW")))
 RET CNF(UInt4_setYW);
- EI(keyStr == "getZX")
+ EI(keyStr.equals("getZX", CPL_STR_HASH("getZX")))
 RET CNF(UInt4_getZX);
- EI(keyStr == "setZX")
+ EI(keyStr.equals("setZX", CPL_STR_HASH("setZX")))
 RET CNF(UInt4_setZX);
- EI(keyStr == "getZY")
+ EI(keyStr.equals("getZY", CPL_STR_HASH("getZY")))
 RET CNF(UInt4_getZY);
- EI(keyStr == "setZY")
+ EI(keyStr.equals("setZY", CPL_STR_HASH("setZY")))
 RET CNF(UInt4_setZY);
- EI(keyStr == "getZW")
+ EI(keyStr.equals("getZW", CPL_STR_HASH("getZW")))
 RET CNF(UInt4_getZW);
- EI(keyStr == "setZW")
+ EI(keyStr.equals("setZW", CPL_STR_HASH("setZW")))
 RET CNF(UInt4_setZW);
- EI(keyStr == "getWX")
+ EI(keyStr.equals("getWX", CPL_STR_HASH("getWX")))
 RET CNF(UInt4_getWX);
- EI(keyStr == "setWX")
+ EI(keyStr.equals("setWX", CPL_STR_HASH("setWX")))
 RET CNF(UInt4_setWX);
- EI(keyStr == "getWY")
+ EI(keyStr.equals("getWY", CPL_STR_HASH("getWY")))
 RET CNF(UInt4_getWY);
- EI(keyStr == "setWY")
+ EI(keyStr.equals("setWY", CPL_STR_HASH("setWY")))
 RET CNF(UInt4_setWY);
- EI(keyStr == "getWZ")
+ EI(keyStr.equals("getWZ", CPL_STR_HASH("getWZ")))
 RET CNF(UInt4_getWZ);
- EI(keyStr == "setWZ")
+ EI(keyStr.equals("setWZ", CPL_STR_HASH("setWZ")))
 RET CNF(UInt4_setWZ);
- EI(keyStr == "getXYZ")
+ EI(keyStr.equals("getXYZ", CPL_STR_HASH("getXYZ")))
 RET CNF(UInt4_getXYZ);
- EI(keyStr == "setXYZ")
+ EI(keyStr.equals("setXYZ", CPL_STR_HASH("setXYZ")))
 RET CNF(UInt4_setXYZ);
- EI(keyStr == "getXYW")
+ EI(keyStr.equals("getXYW", CPL_STR_HASH("getXYW")))
 RET CNF(UInt4_getXYW);
- EI(keyStr == "setXYW")
+ EI(keyStr.equals("setXYW", CPL_STR_HASH("setXYW")))
 RET CNF(UInt4_setXYW);
- EI(keyStr == "getXZY")
+ EI(keyStr.equals("getXZY", CPL_STR_HASH("getXZY")))
 RET CNF(UInt4_getXZY);
- EI(keyStr == "setXZY")
+ EI(keyStr.equals("setXZY", CPL_STR_HASH("setXZY")))
 RET CNF(UInt4_setXZY);
- EI(keyStr == "getXZW")
+ EI(keyStr.equals("getXZW", CPL_STR_HASH("getXZW")))
 RET CNF(UInt4_getXZW);
- EI(keyStr == "setXZW")
+ EI(keyStr.equals("setXZW", CPL_STR_HASH("setXZW")))
 RET CNF(UInt4_setXZW);
- EI(keyStr == "getXWZ")
+ EI(keyStr.equals("getXWZ", CPL_STR_HASH("getXWZ")))
 RET CNF(UInt4_getXWZ);
- EI(keyStr == "setXWZ")
+ EI(keyStr.equals("setXWZ", CPL_STR_HASH("setXWZ")))
 RET CNF(UInt4_setXWZ);
- EI(keyStr == "getXWY")
+ EI(keyStr.equals("getXWY", CPL_STR_HASH("getXWY")))
 RET CNF(UInt4_getXWY);
- EI(keyStr == "setXWY")
+ EI(keyStr.equals("setXWY", CPL_STR_HASH("setXWY")))
 RET CNF(UInt4_setXWY);
- EI(keyStr == "getYXZ")
+ EI(keyStr.equals("getYXZ", CPL_STR_HASH("getYXZ")))
 RET CNF(UInt4_getYXZ);
- EI(keyStr == "setYXZ")
+ EI(keyStr.equals("setYXZ", CPL_STR_HASH("setYXZ")))
 RET CNF(UInt4_setYXZ);
- EI(keyStr == "getYXW")
+ EI(keyStr.equals("getYXW", CPL_STR_HASH("getYXW")))
 RET CNF(UInt4_getYXW);
- EI(keyStr == "setYXW")
+ EI(keyStr.equals("setYXW", CPL_STR_HASH("setYXW")))
 RET CNF(UInt4_setYXW);
- EI(keyStr == "getYZX")
+ EI(keyStr.equals("getYZX", CPL_STR_HASH("getYZX")))
 RET CNF(UInt4_getYZX);
- EI(keyStr == "setYZX")
+ EI(keyStr.equals("setYZX", CPL_STR_HASH("setYZX")))
 RET CNF(UInt4_setYZX);
- EI(keyStr == "getYZW")
+ EI(keyStr.equals("getYZW", CPL_STR_HASH("getYZW")))
 RET CNF(UInt4_getYZW);
- EI(keyStr == "setYZW")
+ EI(keyStr.equals("setYZW", CPL_STR_HASH("setYZW")))
 RET CNF(UInt4_setYZW);
- EI(keyStr == "getYWZ")
+ EI(keyStr.equals("getYWZ", CPL_STR_HASH("getYWZ")))
 RET CNF(UInt4_getYWZ);
- EI(keyStr == "setYWZ")
+ EI(keyStr.equals("setYWZ", CPL_STR_HASH("setYWZ")))
 RET CNF(UInt4_setYWZ);
- EI(keyStr == "getYWX")
+ EI(keyStr.equals("getYWX", CPL_STR_HASH("getYWX")))
 RET CNF(UInt4_getYWX);
- EI(keyStr == "setYWX")
+ EI(keyStr.equals("setYWX", CPL_STR_HASH("setYWX")))
 RET CNF(UInt4_setYWX);
- EI(keyStr == "getZXY")
+ EI(keyStr.equals("getZXY", CPL_STR_HASH("getZXY")))
 RET CNF(UInt4_getZXY);
- EI(keyStr == "setZXY")
+ EI(keyStr.equals("setZXY", CPL_STR_HASH("setZXY")))
 RET CNF(UInt4_setZXY);
- EI(keyStr == "getZXW")
+ EI(keyStr.equals("getZXW", CPL_STR_HASH("getZXW")))
 RET CNF(UInt4_getZXW);
- EI(keyStr == "setZXW")
+ EI(keyStr.equals("setZXW", CPL_STR_HASH("setZXW")))
 RET CNF(UInt4_setZXW);
- EI(keyStr == "getZYX")
+ EI(keyStr.equals("getZYX", CPL_STR_HASH("getZYX")))
 RET CNF(UInt4_getZYX);
- EI(keyStr == "setZYX")
+ EI(keyStr.equals("setZYX", CPL_STR_HASH("setZYX")))
 RET CNF(UInt4_setZYX);
- EI(keyStr == "getZYW")
+ EI(keyStr.equals("getZYW", CPL_STR_HASH("getZYW")))
 RET CNF(UInt4_getZYW);
- EI(keyStr == "setZYW")
+ EI(keyStr.equals("setZYW", CPL_STR_HASH("setZYW")))
 RET CNF(UInt4_setZYW);
- EI(keyStr == "getZWY")
+ EI(keyStr.equals("getZWY", CPL_STR_HASH("getZWY")))
 RET CNF(UInt4_getZWY);
- EI(keyStr == "setZWY")
+ EI(keyStr.equals("setZWY", CPL_STR_HASH("setZWY")))
 RET CNF(UInt4_setZWY);
- EI(keyStr == "getZWX")
+ EI(keyStr.equals("getZWX", CPL_STR_HASH("getZWX")))
 RET CNF(UInt4_getZWX);
- EI(keyStr == "setZWX")
+ EI(keyStr.equals("setZWX", CPL_STR_HASH("setZWX")))
 RET CNF(UInt4_setZWX);
- EI(keyStr == "getWXY")
+ EI(keyStr.equals("getWXY", CPL_STR_HASH("getWXY")))
 RET CNF(UInt4_getWXY);
- EI(keyStr == "setWXY")
+ EI(keyStr.equals("setWXY", CPL_STR_HASH("setWXY")))
 RET CNF(UInt4_setWXY);
- EI(keyStr == "getWXZ")
+ EI(keyStr.equals("getWXZ", CPL_STR_HASH("getWXZ")))
 RET CNF(UInt4_getWXZ);
- EI(keyStr == "setWXZ")
+ EI(keyStr.equals("setWXZ", CPL_STR_HASH("setWXZ")))
 RET CNF(UInt4_setWXZ);
- EI(keyStr == "getWYX")
+ EI(keyStr.equals("getWYX", CPL_STR_HASH("getWYX")))
 RET CNF(UInt4_getWYX);
- EI(keyStr == "setWYX")
+ EI(keyStr.equals("setWYX", CPL_STR_HASH("setWYX")))
 RET CNF(UInt4_setWYX);
- EI(keyStr == "getWYZ")
+ EI(keyStr.equals("getWYZ", CPL_STR_HASH("getWYZ")))
 RET CNF(UInt4_getWYZ);
- EI(keyStr == "setWYZ")
+ EI(keyStr.equals("setWYZ", CPL_STR_HASH("setWYZ")))
 RET CNF(UInt4_setWYZ);
- EI(keyStr == "getWZY")
+ EI(keyStr.equals("getWZY", CPL_STR_HASH("getWZY")))
 RET CNF(UInt4_getWZY);
- EI(keyStr == "setWZY")
+ EI(keyStr.equals("setWZY", CPL_STR_HASH("setWZY")))
 RET CNF(UInt4_setWZY);
- EI(keyStr == "getWZX")
+ EI(keyStr.equals("getWZX", CPL_STR_HASH("getWZX")))
 RET CNF(UInt4_getWZX);
- EI(keyStr == "setWZX")
+ EI(keyStr.equals("setWZX", CPL_STR_HASH("setWZX")))
 RET CNF(UInt4_setWZX);
- EI(keyStr == "getXYZW")
+ EI(keyStr.equals("getXYZW", CPL_STR_HASH("getXYZW")))
 RET CNF(UInt4_getXYZW);
- EI(keyStr == "setXYZW")
+ EI(keyStr.equals("setXYZW", CPL_STR_HASH("setXYZW")))
 RET CNF(UInt4_setXYZW);
- EI(keyStr == "getXYWZ")
+ EI(keyStr.equals("getXYWZ", CPL_STR_HASH("getXYWZ")))
 RET CNF(UInt4_getXYWZ);
- EI(keyStr == "setXYWZ")
+ EI(keyStr.equals("setXYWZ", CPL_STR_HASH("setXYWZ")))
 RET CNF(UInt4_setXYWZ);
- EI(keyStr == "getXZYW")
+ EI(keyStr.equals("getXZYW", CPL_STR_HASH("getXZYW")))
 RET CNF(UInt4_getXZYW);
- EI(keyStr == "setXZYW")
+ EI(keyStr.equals("setXZYW", CPL_STR_HASH("setXZYW")))
 RET CNF(UInt4_setXZYW);
- EI(keyStr == "getXZWY")
+ EI(keyStr.equals("getXZWY", CPL_STR_HASH("getXZWY")))
 RET CNF(UInt4_getXZWY);
- EI(keyStr == "setXZWY")
+ EI(keyStr.equals("setXZWY", CPL_STR_HASH("setXZWY")))
 RET CNF(UInt4_setXZWY);
- EI(keyStr == "getXWZY")
+ EI(keyStr.equals("getXWZY", CPL_STR_HASH("getXWZY")))
 RET CNF(UInt4_getXWZY);
- EI(keyStr == "setXWZY")
+ EI(keyStr.equals("setXWZY", CPL_STR_HASH("setXWZY")))
 RET CNF(UInt4_setXWZY);
- EI(keyStr == "getXWYZ")
+ EI(keyStr.equals("getXWYZ", CPL_STR_HASH("getXWYZ")))
 RET CNF(UInt4_getXWYZ);
- EI(keyStr == "setXWYZ")
+ EI(keyStr.equals("setXWYZ", CPL_STR_HASH("setXWYZ")))
 RET CNF(UInt4_setXWYZ);
- EI(keyStr == "getYXZW")
+ EI(keyStr.equals("getYXZW", CPL_STR_HASH("getYXZW")))
 RET CNF(UInt4_getYXZW);
- EI(keyStr == "setYXZW")
+ EI(keyStr.equals("setYXZW", CPL_STR_HASH("setYXZW")))
 RET CNF(UInt4_setYXZW);
- EI(keyStr == "getYXWZ")
+ EI(keyStr.equals("getYXWZ", CPL_STR_HASH("getYXWZ")))
 RET CNF(UInt4_getYXWZ);
- EI(keyStr == "setYXWZ")
+ EI(keyStr.equals("setYXWZ", CPL_STR_HASH("setYXWZ")))
 RET CNF(UInt4_setYXWZ);
- EI(keyStr == "getYZXW")
+ EI(keyStr.equals("getYZXW", CPL_STR_HASH("getYZXW")))
 RET CNF(UInt4_getYZXW);
- EI(keyStr == "setYZXW")
+ EI(keyStr.equals("setYZXW", CPL_STR_HASH("setYZXW")))
 RET CNF(UInt4_setYZXW);
- EI(keyStr == "getYZWX")
+ EI(keyStr.equals("getYZWX", CPL_STR_HASH("getYZWX")))
 RET CNF(UInt4_getYZWX);
- EI(keyStr == "setYZWX")
+ EI(keyStr.equals("setYZWX", CPL_STR_HASH("setYZWX")))
 RET CNF(UInt4_setYZWX);
- EI(keyStr == "getYWZX")
+ EI(keyStr.equals("getYWZX", CPL_STR_HASH("getYWZX")))
 RET CNF(UInt4_getYWZX);
- EI(keyStr == "setYWZX")
+ EI(keyStr.equals("setYWZX", CPL_STR_HASH("setYWZX")))
 RET CNF(UInt4_setYWZX);
- EI(keyStr == "getYWXZ")
+ EI(keyStr.equals("getYWXZ", CPL_STR_HASH("getYWXZ")))
 RET CNF(UInt4_getYWXZ);
- EI(keyStr == "setYWXZ")
+ EI(keyStr.equals("setYWXZ", CPL_STR_HASH("setYWXZ")))
 RET CNF(UInt4_setYWXZ);
- EI(keyStr == "getZYXW")
+ EI(keyStr.equals("getZYXW", CPL_STR_HASH("getZYXW")))
 RET CNF(UInt4_getZYXW);
- EI(keyStr == "setZYXW")
+ EI(keyStr.equals("setZYXW", CPL_STR_HASH("setZYXW")))
 RET CNF(UInt4_setZYXW);
- EI(keyStr == "getZYWX")
+ EI(keyStr.equals("getZYWX", CPL_STR_HASH("getZYWX")))
 RET CNF(UInt4_getZYWX);
- EI(keyStr == "setZYWX")
+ EI(keyStr.equals("setZYWX", CPL_STR_HASH("setZYWX")))
 RET CNF(UInt4_setZYWX);
- EI(keyStr == "getZXYW")
+ EI(keyStr.equals("getZXYW", CPL_STR_HASH("getZXYW")))
 RET CNF(UInt4_getZXYW);
- EI(keyStr == "setZXYW")
+ EI(keyStr.equals("setZXYW", CPL_STR_HASH("setZXYW")))
 RET CNF(UInt4_setZXYW);
- EI(keyStr == "getZXWY")
+ EI(keyStr.equals("getZXWY", CPL_STR_HASH("getZXWY")))
 RET CNF(UInt4_getZXWY);
- EI(keyStr == "setZXWY")
+ EI(keyStr.equals("setZXWY", CPL_STR_HASH("setZXWY")))
 RET CNF(UInt4_setZXWY);
- EI(keyStr == "getZWXY")
+ EI(keyStr.equals("getZWXY", CPL_STR_HASH("getZWXY")))
 RET CNF(UInt4_getZWXY);
- EI(keyStr == "setZWXY")
+ EI(keyStr.equals("setZWXY", CPL_STR_HASH("setZWXY")))
 RET CNF(UInt4_setZWXY);
- EI(keyStr == "getZWYX")
+ EI(keyStr.equals("getZWYX", CPL_STR_HASH("getZWYX")))
 RET CNF(UInt4_getZWYX);
- EI(keyStr == "setZWYX")
+ EI(keyStr.equals("setZWYX", CPL_STR_HASH("setZWYX")))
 RET CNF(UInt4_setZWYX);
- EI(keyStr == "getWYZX")
+ EI(keyStr.equals("getWYZX", CPL_STR_HASH("getWYZX")))
 RET CNF(UInt4_getWYZX);
- EI(keyStr == "setWYZX")
+ EI(keyStr.equals("setWYZX", CPL_STR_HASH("setWYZX")))
 RET CNF(UInt4_setWYZX);
- EI(keyStr == "getWYXZ")
+ EI(keyStr.equals("getWYXZ", CPL_STR_HASH("getWYXZ")))
 RET CNF(UInt4_getWYXZ);
- EI(keyStr == "setWYXZ")
+ EI(keyStr.equals("setWYXZ", CPL_STR_HASH("setWYXZ")))
 RET CNF(UInt4_setWYXZ);
- EI(keyStr == "getWZYX")
+ EI(keyStr.equals("getWZYX", CPL_STR_HASH("getWZYX")))
 RET CNF(UInt4_getWZYX);
- EI(keyStr == "setWZYX")
+ EI(keyStr.equals("setWZYX", CPL_STR_HASH("setWZYX")))
 RET CNF(UInt4_setWZYX);
- EI(keyStr == "getWZXY")
+ EI(keyStr.equals("getWZXY", CPL_STR_HASH("getWZXY")))
 RET CNF(UInt4_getWZXY);
- EI(keyStr == "setWZXY")
+ EI(keyStr.equals("setWZXY", CPL_STR_HASH("setWZXY")))
 RET CNF(UInt4_setWZXY);
- EI(keyStr == "getWXZY")
+ EI(keyStr.equals("getWXZY", CPL_STR_HASH("getWXZY")))
 RET CNF(UInt4_getWXZY);
- EI(keyStr == "setWXZY")
+ EI(keyStr.equals("setWXZY", CPL_STR_HASH("setWXZY")))
 RET CNF(UInt4_setWXZY);
- EI(keyStr == "getWXYZ")
+ EI(keyStr.equals("getWXYZ", CPL_STR_HASH("getWXYZ")))
 RET CNF(UInt4_getWXYZ);
- EI(keyStr == "setWXYZ")
+ EI(keyStr.equals("setWXYZ", CPL_STR_HASH("setWXYZ")))
 RET CNF(UInt4_setWXYZ);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(UInt4_copy);
- EI(keyStr=="x")
+ EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 RET CV(obj->x);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 RET CV(obj->y);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 RET CV(obj->z);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 RET CV(obj->w);
@@ -44871,24 +45137,24 @@ void UInt4_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="x")
+if(0) {} EI(keyStr.equals("x", CPL_STR_HASH("x")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 obj->x=val_to_c<decltype(obj->x)>::f(ctx,value);
-} EI(keyStr=="y")
+} EI(keyStr.equals("y", CPL_STR_HASH("y")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 obj->y=val_to_c<decltype(obj->y)>::f(ctx,value);
-} EI(keyStr=="z")
+} EI(keyStr.equals("z", CPL_STR_HASH("z")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 obj->z=val_to_c<decltype(obj->z)>::f(ctx,value);
-} EI(keyStr=="w")
+} EI(keyStr.equals("w", CPL_STR_HASH("w")))
 {
 T4<uint32_t>*obj=(T4<uint32_t>*)f->data;
 obj->w=val_to_c<decltype(obj->w)>::f(ctx,value);
@@ -47301,40 +47567,40 @@ SV RayCastResult_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RayCastResult");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RayCastResult_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RayCastResult_new);
 else
  CATE(KE,"Unknown member for RayCastResult."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RayCastResult_new);
- EI(keyStr == "getRigidBody")
+ EI(keyStr.equals("getRigidBody", CPL_STR_HASH("getRigidBody")))
 RET CNF(RayCastResult_getRigidBody);
- EI(keyStr == "getGhost")
+ EI(keyStr.equals("getGhost", CPL_STR_HASH("getGhost")))
 RET CNF(RayCastResult_getGhost);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(RayCastResult___eq__);
- EI(keyStr=="distance")
+ EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 {
 RayCastResult*obj=(RayCastResult*)f->data;
 RET CV(obj->distance);
-} EI(keyStr=="normal")
+} EI(keyStr.equals("normal", CPL_STR_HASH("normal")))
 {
 RayCastResult*obj=(RayCastResult*)f->data;
 RET CV(obj->normal);
-} EI(keyStr=="objType")
+} EI(keyStr.equals("objType", CPL_STR_HASH("objType")))
 {
 RayCastResult*obj=(RayCastResult*)f->data;
 RET CV(obj->objType);
@@ -47350,20 +47616,20 @@ void RayCastResult_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="distance")
+if(0) {} EI(keyStr.equals("distance", CPL_STR_HASH("distance")))
 {
 RayCastResult*obj=(RayCastResult*)f->data;
 obj->distance=val_to_c<decltype(obj->distance)>::f(ctx,value);
-} EI(keyStr=="normal")
+} EI(keyStr.equals("normal", CPL_STR_HASH("normal")))
 {
 RayCastResult*obj=(RayCastResult*)f->data;
 obj->normal=val_to_c<decltype(obj->normal)>::f(ctx,value);
-} EI(keyStr=="objType")
+} EI(keyStr.equals("objType", CPL_STR_HASH("objType")))
 {
 RayCastResult*obj=(RayCastResult*)f->data;
 obj->objType=val_to_c<decltype(obj->objType)>::f(ctx,value);
@@ -47451,36 +47717,36 @@ SV GfxLOD_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxLOD");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxLOD_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxLOD_new);
 else
  CATE(KE,"Unknown member for GfxLOD."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxLOD_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxLOD___eq__);
- EI(keyStr=="minDistance")
+ EI(keyStr.equals("minDistance", CPL_STR_HASH("minDistance")))
 {
 GfxLOD*obj=(GfxLOD*)f->data;
 RET CV(obj->minDistance);
-} EI(keyStr=="maxDistance")
+} EI(keyStr.equals("maxDistance", CPL_STR_HASH("maxDistance")))
 {
 GfxLOD*obj=(GfxLOD*)f->data;
 RET CV(obj->maxDistance);
-} EI(keyStr=="worldMatrix")
+} EI(keyStr.equals("worldMatrix", CPL_STR_HASH("worldMatrix")))
 {
 GfxLOD*obj=(GfxLOD*)f->data;
 RET CV(obj->worldMatrix);
@@ -47496,20 +47762,20 @@ void GfxLOD_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="minDistance")
+if(0) {} EI(keyStr.equals("minDistance", CPL_STR_HASH("minDistance")))
 {
 GfxLOD*obj=(GfxLOD*)f->data;
 obj->minDistance=val_to_c<decltype(obj->minDistance)>::f(ctx,value);
-} EI(keyStr=="maxDistance")
+} EI(keyStr.equals("maxDistance", CPL_STR_HASH("maxDistance")))
 {
 GfxLOD*obj=(GfxLOD*)f->data;
 obj->maxDistance=val_to_c<decltype(obj->maxDistance)>::f(ctx,value);
-} EI(keyStr=="worldMatrix")
+} EI(keyStr.equals("worldMatrix", CPL_STR_HASH("worldMatrix")))
 {
 GfxLOD*obj=(GfxLOD*)f->data;
 obj->worldMatrix=val_to_c<decltype(obj->worldMatrix)>::f(ctx,value);
@@ -47563,106 +47829,108 @@ SV File_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("File");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(File_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(File_new);
 else
  CATE(KE,"Unknown member for File."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(File_new);
- EI(keyStr == "read")
+ EI(keyStr.equals("read", CPL_STR_HASH("read")))
 RET CNF(File_read);
- EI(keyStr == "write")
+ EI(keyStr.equals("write", CPL_STR_HASH("write")))
 RET CNF(File_write);
- EI(keyStr == "seek")
+ EI(keyStr.equals("seek", CPL_STR_HASH("seek")))
 RET CNF(File_seek);
- EI(keyStr == "tell")
+ EI(keyStr.equals("tell", CPL_STR_HASH("tell")))
 RET CNF(File_tell);
- EI(keyStr == "flush")
+ EI(keyStr.equals("flush", CPL_STR_HASH("flush")))
 RET CNF(File_flush);
- EI(keyStr == "isAtEndOfFile")
+ EI(keyStr.equals("isAtEndOfFile", CPL_STR_HASH("isAtEndOfFile")))
 RET CNF(File_isAtEndOfFile);
- EI(keyStr == "getSize")
+ EI(keyStr.equals("getSize", CPL_STR_HASH("getSize")))
 RET CNF(File_getSize);
- EI(keyStr == "readUInt8")
+ EI(keyStr.equals("readUInt8", CPL_STR_HASH("readUInt8")))
 RET CNF(File_readUInt8);
- EI(keyStr == "readInt8")
+ EI(keyStr.equals("readInt8", CPL_STR_HASH("readInt8")))
 RET CNF(File_readInt8);
- EI(keyStr == "readUInt16LE")
+ EI(keyStr.equals("readUInt16LE", CPL_STR_HASH("readUInt16LE")))
 RET CNF(File_readUInt16LE);
- EI(keyStr == "readInt16LE")
+ EI(keyStr.equals("readInt16LE", CPL_STR_HASH("readInt16LE")))
 RET CNF(File_readInt16LE);
- EI(keyStr == "readUInt32LE")
+ EI(keyStr.equals("readUInt32LE", CPL_STR_HASH("readUInt32LE")))
 RET CNF(File_readUInt32LE);
- EI(keyStr == "readInt32LE")
+ EI(keyStr.equals("readInt32LE", CPL_STR_HASH("readInt32LE")))
 RET CNF(File_readInt32LE);
- EI(keyStr == "readUInt64LE")
+ EI(keyStr.equals("readUInt64LE", CPL_STR_HASH("readUInt64LE")))
 RET CNF(File_readUInt64LE);
- EI(keyStr == "readInt64LE")
+ EI(keyStr.equals("readInt64LE", CPL_STR_HASH("readInt64LE")))
 RET CNF(File_readInt64LE);
- EI(keyStr == "readUInt16BE")
+ EI(keyStr.equals("readUInt16BE", CPL_STR_HASH("readUInt16BE")))
 RET CNF(File_readUInt16BE);
- EI(keyStr == "readInt16BE")
+ EI(keyStr.equals("readInt16BE", CPL_STR_HASH("readInt16BE")))
 RET CNF(File_readInt16BE);
- EI(keyStr == "readUInt32BE")
+ EI(keyStr.equals("readUInt32BE", CPL_STR_HASH("readUInt32BE")))
 RET CNF(File_readUInt32BE);
- EI(keyStr == "readInt32BE")
+ EI(keyStr.equals("readInt32BE", CPL_STR_HASH("readInt32BE")))
 RET CNF(File_readInt32BE);
- EI(keyStr == "readUInt64BE")
+ EI(keyStr.equals("readUInt64BE", CPL_STR_HASH("readUInt64BE")))
 RET CNF(File_readUInt64BE);
- EI(keyStr == "readInt64BE")
+ EI(keyStr.equals("readInt64BE", CPL_STR_HASH("readInt64BE")))
 RET CNF(File_readInt64BE);
- EI(keyStr == "readFloat32")
+ EI(keyStr.equals("readFloat32", CPL_STR_HASH("readFloat32")))
 RET CNF(File_readFloat32);
- EI(keyStr == "readChar")
+ EI(keyStr.equals("readChar", CPL_STR_HASH("readChar")))
 RET CNF(File_readChar);
- EI(keyStr == "writeUInt8")
+ EI(keyStr.equals("readStr", CPL_STR_HASH("readStr")))
+RET CNF(File_readStr);
+ EI(keyStr.equals("writeUInt8", CPL_STR_HASH("writeUInt8")))
 RET CNF(File_writeUInt8);
- EI(keyStr == "writeInt8")
+ EI(keyStr.equals("writeInt8", CPL_STR_HASH("writeInt8")))
 RET CNF(File_writeInt8);
- EI(keyStr == "writeUInt16LE")
+ EI(keyStr.equals("writeUInt16LE", CPL_STR_HASH("writeUInt16LE")))
 RET CNF(File_writeUInt16LE);
- EI(keyStr == "writeInt16LE")
+ EI(keyStr.equals("writeInt16LE", CPL_STR_HASH("writeInt16LE")))
 RET CNF(File_writeInt16LE);
- EI(keyStr == "writeUInt32LE")
+ EI(keyStr.equals("writeUInt32LE", CPL_STR_HASH("writeUInt32LE")))
 RET CNF(File_writeUInt32LE);
- EI(keyStr == "writeInt32LE")
+ EI(keyStr.equals("writeInt32LE", CPL_STR_HASH("writeInt32LE")))
 RET CNF(File_writeInt32LE);
- EI(keyStr == "writeUInt64LE")
+ EI(keyStr.equals("writeUInt64LE", CPL_STR_HASH("writeUInt64LE")))
 RET CNF(File_writeUInt64LE);
- EI(keyStr == "writeInt64LE")
+ EI(keyStr.equals("writeInt64LE", CPL_STR_HASH("writeInt64LE")))
 RET CNF(File_writeInt64LE);
- EI(keyStr == "writeUInt16BE")
+ EI(keyStr.equals("writeUInt16BE", CPL_STR_HASH("writeUInt16BE")))
 RET CNF(File_writeUInt16BE);
- EI(keyStr == "writeInt16BE")
+ EI(keyStr.equals("writeInt16BE", CPL_STR_HASH("writeInt16BE")))
 RET CNF(File_writeInt16BE);
- EI(keyStr == "writeUInt32BE")
+ EI(keyStr.equals("writeUInt32BE", CPL_STR_HASH("writeUInt32BE")))
 RET CNF(File_writeUInt32BE);
- EI(keyStr == "writeInt32BE")
+ EI(keyStr.equals("writeInt32BE", CPL_STR_HASH("writeInt32BE")))
 RET CNF(File_writeInt32BE);
- EI(keyStr == "writeUInt64BE")
+ EI(keyStr.equals("writeUInt64BE", CPL_STR_HASH("writeUInt64BE")))
 RET CNF(File_writeUInt64BE);
- EI(keyStr == "writeInt64BE")
+ EI(keyStr.equals("writeInt64BE", CPL_STR_HASH("writeInt64BE")))
 RET CNF(File_writeInt64BE);
- EI(keyStr == "writeFloat32")
+ EI(keyStr.equals("writeFloat32", CPL_STR_HASH("writeFloat32")))
 RET CNF(File_writeFloat32);
- EI(keyStr == "printf")
+ EI(keyStr.equals("printf", CPL_STR_HASH("printf")))
 RET CNF(File_printf);
- EI(keyStr == "vprintf")
+ EI(keyStr.equals("vprintf", CPL_STR_HASH("vprintf")))
 RET CNF(File_vprintf);
- EI(keyStr == "writeChar")
+ EI(keyStr.equals("writeChar", CPL_STR_HASH("writeChar")))
 RET CNF(File_writeChar);
  else
  CATE(KE,"Unknown member for File."));
@@ -47676,7 +47944,7 @@ void File_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -47865,6 +48133,23 @@ if(1&&TS(a[1],int32_t))
 RET CN;
 }
 CATE(TE,UFOF("File::writeInt32BE.")));
+RET CN;
+}
+
+SV File_readStr(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::readStr" EAOE));
+File*f;
+f=(File*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->readStr(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("File::readStr.")));
 RET CN;
 }
 
@@ -48404,40 +48689,40 @@ SV AABB_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("AABB");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(AABB_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(AABB_new);
 else
  CATE(KE,"Unknown member for AABB."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(AABB_new);
- EI(keyStr == "transform")
+ EI(keyStr.equals("transform", CPL_STR_HASH("transform")))
 RET CNF(AABB_transform);
- EI(keyStr == "extend")
+ EI(keyStr.equals("extend", CPL_STR_HASH("extend")))
 RET CNF(AABB_extend);
- EI(keyStr == "grow")
+ EI(keyStr.equals("grow", CPL_STR_HASH("grow")))
 RET CNF(AABB_grow);
- EI(keyStr == "getCorner")
+ EI(keyStr.equals("getCorner", CPL_STR_HASH("getCorner")))
 RET CNF(AABB_getCorner);
- EI(keyStr == "intersection")
+ EI(keyStr.equals("intersection", CPL_STR_HASH("intersection")))
 RET CNF(AABB_intersection);
- EI(keyStr=="min")
+ EI(keyStr.equals("min", CPL_STR_HASH("min")))
 {
 AABB*obj=(AABB*)f->data;
 RET CV(obj->min);
-} EI(keyStr=="max")
+} EI(keyStr.equals("max", CPL_STR_HASH("max")))
 {
 AABB*obj=(AABB*)f->data;
 RET CV(obj->max);
@@ -48453,16 +48738,16 @@ void AABB_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="min")
+if(0) {} EI(keyStr.equals("min", CPL_STR_HASH("min")))
 {
 AABB*obj=(AABB*)f->data;
 obj->min=val_to_c<decltype(obj->min)>::f(ctx,value);
-} EI(keyStr=="max")
+} EI(keyStr.equals("max", CPL_STR_HASH("max")))
 {
 AABB*obj=(AABB*)f->data;
 obj->max=val_to_c<decltype(obj->max)>::f(ctx,value);
@@ -48590,66 +48875,66 @@ SV RigidBodyConstructionInfo_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("RigidBodyConstructionInfo");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(RigidBodyConstructionInfo_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(RigidBodyConstructionInfo_new);
 else
  CATE(KE,"Unknown member for RigidBodyConstructionInfo."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(RigidBodyConstructionInfo_new);
- EI(keyStr=="type")
+ EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->type);
-} EI(keyStr=="mass")
+} EI(keyStr.equals("mass", CPL_STR_HASH("mass")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->mass);
-} EI(keyStr=="entity")
+} EI(keyStr.equals("entity", CPL_STR_HASH("entity")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->entity);
-} EI(keyStr=="linearDamping")
+} EI(keyStr.equals("linearDamping", CPL_STR_HASH("linearDamping")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->linearDamping);
-} EI(keyStr=="angularDamping")
+} EI(keyStr.equals("angularDamping", CPL_STR_HASH("angularDamping")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->angularDamping);
-} EI(keyStr=="friction")
+} EI(keyStr.equals("friction", CPL_STR_HASH("friction")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->friction);
-} EI(keyStr=="rollingFriction")
+} EI(keyStr.equals("rollingFriction", CPL_STR_HASH("rollingFriction")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->rollingFriction);
-} EI(keyStr=="restitution")
+} EI(keyStr.equals("restitution", CPL_STR_HASH("restitution")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->restitution);
-} EI(keyStr=="linearSleepingThreshold")
+} EI(keyStr.equals("linearSleepingThreshold", CPL_STR_HASH("linearSleepingThreshold")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->linearSleepingThreshold);
-} EI(keyStr=="angularSleepingThreshold")
+} EI(keyStr.equals("angularSleepingThreshold", CPL_STR_HASH("angularSleepingThreshold")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->angularSleepingThreshold);
-} EI(keyStr=="collisionMask")
+} EI(keyStr.equals("collisionMask", CPL_STR_HASH("collisionMask")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 RET CV(obj->collisionMask);
@@ -48665,52 +48950,52 @@ void RigidBodyConstructionInfo_set_member(CTX ctx,const SV&f_,const SV&key,const
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="type")
+if(0) {} EI(keyStr.equals("type", CPL_STR_HASH("type")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->type=val_to_c<decltype(obj->type)>::f(ctx,value);
-} EI(keyStr=="mass")
+} EI(keyStr.equals("mass", CPL_STR_HASH("mass")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->mass=val_to_c<decltype(obj->mass)>::f(ctx,value);
-} EI(keyStr=="entity")
+} EI(keyStr.equals("entity", CPL_STR_HASH("entity")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->entity=val_to_c<decltype(obj->entity)>::f(ctx,value);
-} EI(keyStr=="linearDamping")
+} EI(keyStr.equals("linearDamping", CPL_STR_HASH("linearDamping")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->linearDamping=val_to_c<decltype(obj->linearDamping)>::f(ctx,value);
-} EI(keyStr=="angularDamping")
+} EI(keyStr.equals("angularDamping", CPL_STR_HASH("angularDamping")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->angularDamping=val_to_c<decltype(obj->angularDamping)>::f(ctx,value);
-} EI(keyStr=="friction")
+} EI(keyStr.equals("friction", CPL_STR_HASH("friction")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->friction=val_to_c<decltype(obj->friction)>::f(ctx,value);
-} EI(keyStr=="rollingFriction")
+} EI(keyStr.equals("rollingFriction", CPL_STR_HASH("rollingFriction")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->rollingFriction=val_to_c<decltype(obj->rollingFriction)>::f(ctx,value);
-} EI(keyStr=="restitution")
+} EI(keyStr.equals("restitution", CPL_STR_HASH("restitution")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->restitution=val_to_c<decltype(obj->restitution)>::f(ctx,value);
-} EI(keyStr=="linearSleepingThreshold")
+} EI(keyStr.equals("linearSleepingThreshold", CPL_STR_HASH("linearSleepingThreshold")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->linearSleepingThreshold=val_to_c<decltype(obj->linearSleepingThreshold)>::f(ctx,value);
-} EI(keyStr=="angularSleepingThreshold")
+} EI(keyStr.equals("angularSleepingThreshold", CPL_STR_HASH("angularSleepingThreshold")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->angularSleepingThreshold=val_to_c<decltype(obj->angularSleepingThreshold)>::f(ctx,value);
-} EI(keyStr=="collisionMask")
+} EI(keyStr.equals("collisionMask", CPL_STR_HASH("collisionMask")))
 {
 RigidBodyConstructionInfo*obj=(RigidBodyConstructionInfo*)f->data;
 obj->collisionMask=val_to_c<decltype(obj->collisionMask)>::f(ctx,value);
@@ -48757,54 +49042,54 @@ SV List_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("List");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(List_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(List_new);
 else
  CATE(KE,"Unknown member for List."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(List_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(List___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(List___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(List_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(List_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(List_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(List_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(List_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(List_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(List_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(List_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(List_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(List_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(List_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(List_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(List_end);
  else
  CATE(KE,"Unknown member for List."));
@@ -48818,7 +49103,7 @@ void List_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -49098,8 +49383,8 @@ void *p = (void *)NEW(TYPE(Audio));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Audio_funcs,p,EXT->Audio_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(Audio),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(Audio),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Audio_funcs,p,EXT->Audio_typeID);
 }CATE(TE,UFOF("Audio's constructor.")));
@@ -49111,64 +49396,64 @@ SV Audio_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Audio");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Audio_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Audio_new);
 else
  CATE(KE,"Unknown member for Audio."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Audio_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(Audio_removeContent);
- EI(keyStr == "changeSampleFrequency")
+ EI(keyStr.equals("changeSampleFrequency", CPL_STR_HASH("changeSampleFrequency")))
 RET CNF(Audio_changeSampleFrequency);
- EI(keyStr == "getNumSamples")
+ EI(keyStr.equals("getNumSamples", CPL_STR_HASH("getNumSamples")))
 RET CNF(Audio_getNumSamples);
- EI(keyStr == "getSample")
+ EI(keyStr.equals("getSample", CPL_STR_HASH("getSample")))
 RET CNF(Audio_getSample);
- EI(keyStr == "getMonoSample")
+ EI(keyStr.equals("getMonoSample", CPL_STR_HASH("getMonoSample")))
 RET CNF(Audio_getMonoSample);
- EI(keyStr == "setSample")
+ EI(keyStr.equals("setSample", CPL_STR_HASH("setSample")))
 RET CNF(Audio_setSample);
- EI(keyStr == "setMonoSample")
+ EI(keyStr.equals("setMonoSample", CPL_STR_HASH("setMonoSample")))
 RET CNF(Audio_setMonoSample);
- EI(keyStr == "getDuration")
+ EI(keyStr.equals("getDuration", CPL_STR_HASH("getDuration")))
 RET CNF(Audio_getDuration);
- EI(keyStr == "getSampleIndex")
+ EI(keyStr.equals("getSampleIndex", CPL_STR_HASH("getSampleIndex")))
 RET CNF(Audio_getSampleIndex);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(Audio_load);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(Audio_save);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(Audio_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Audio_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(Audio_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(Audio_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(Audio_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(Audio_setFilename);
- EI(keyStr=="frequency")
+ EI(keyStr.equals("frequency", CPL_STR_HASH("frequency")))
 {
 Audio*obj=(Audio*)f->data;
 RET CV(obj->frequency);
-} EI(keyStr=="data")
+} EI(keyStr.equals("data", CPL_STR_HASH("data")))
 {
 Audio*obj=(Audio*)f->data;
 RET CV(obj->data);
@@ -49184,16 +49469,16 @@ void Audio_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="frequency")
+if(0) {} EI(keyStr.equals("frequency", CPL_STR_HASH("frequency")))
 {
 Audio*obj=(Audio*)f->data;
 obj->frequency=val_to_c<decltype(obj->frequency)>::f(ctx,value);
-} EI(keyStr=="data")
+} EI(keyStr.equals("data", CPL_STR_HASH("data")))
 {
 Audio*obj=(Audio*)f->data;
 obj->data=val_to_c<decltype(obj->data)>::f(ctx,value);
@@ -49268,9 +49553,9 @@ Audio*f;
 f=(Audio*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Audio::setFilename.")));
@@ -49519,8 +49804,8 @@ CATE(VE,"GfxTexture's constructor" EAOE));
 if(!TS(a[0],GfxTexture))
 CATE(TE,"GfxTexture's constructor expects GfxTexture as first argument."));
 if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(GfxTexture),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(GfxTexture),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxTexture_funcs,p,EXT->GfxTexture_typeID);
 }if(a.getCount()==1)
@@ -49537,92 +49822,92 @@ SV GfxTexture_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxTexture");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxTexture_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxTexture_new);
 else
  CATE(KE,"Unknown member for GfxTexture."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxTexture_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(GfxTexture_removeContent);
- EI(keyStr == "startCreation")
+ EI(keyStr.equals("startCreation", CPL_STR_HASH("startCreation")))
 RET CNF(GfxTexture_startCreation);
- EI(keyStr == "allocMipmapFace")
+ EI(keyStr.equals("allocMipmapFace", CPL_STR_HASH("allocMipmapFace")))
 RET CNF(GfxTexture_allocMipmapFace);
- EI(keyStr == "allocMipmap")
+ EI(keyStr.equals("allocMipmap", CPL_STR_HASH("allocMipmap")))
 RET CNF(GfxTexture_allocMipmap);
- EI(keyStr == "getMipmapFace")
+ EI(keyStr.equals("getMipmapFace", CPL_STR_HASH("getMipmapFace")))
 RET CNF(GfxTexture_getMipmapFace);
- EI(keyStr == "getMipmap")
+ EI(keyStr.equals("getMipmap", CPL_STR_HASH("getMipmap")))
 RET CNF(GfxTexture_getMipmap);
- EI(keyStr == "generateMipmaps")
+ EI(keyStr.equals("generateMipmaps", CPL_STR_HASH("generateMipmaps")))
 RET CNF(GfxTexture_generateMipmaps);
- EI(keyStr == "getTextureType")
+ EI(keyStr.equals("getTextureType", CPL_STR_HASH("getTextureType")))
 RET CNF(GfxTexture_getTextureType);
- EI(keyStr == "shouldCompress")
+ EI(keyStr.equals("shouldCompress", CPL_STR_HASH("shouldCompress")))
 RET CNF(GfxTexture_shouldCompress);
- EI(keyStr == "getMaximumAnisotropy")
+ EI(keyStr.equals("getMaximumAnisotropy", CPL_STR_HASH("getMaximumAnisotropy")))
 RET CNF(GfxTexture_getMaximumAnisotropy);
- EI(keyStr == "getMinFilter")
+ EI(keyStr.equals("getMinFilter", CPL_STR_HASH("getMinFilter")))
 RET CNF(GfxTexture_getMinFilter);
- EI(keyStr == "getMagFilter")
+ EI(keyStr.equals("getMagFilter", CPL_STR_HASH("getMagFilter")))
 RET CNF(GfxTexture_getMagFilter);
- EI(keyStr == "getMipmapMode")
+ EI(keyStr.equals("getMipmapMode", CPL_STR_HASH("getMipmapMode")))
 RET CNF(GfxTexture_getMipmapMode);
- EI(keyStr == "getWrapMode")
+ EI(keyStr.equals("getWrapMode", CPL_STR_HASH("getWrapMode")))
 RET CNF(GfxTexture_getWrapMode);
- EI(keyStr == "getBaseWidth")
+ EI(keyStr.equals("getBaseWidth", CPL_STR_HASH("getBaseWidth")))
 RET CNF(GfxTexture_getBaseWidth);
- EI(keyStr == "getBaseHeight")
+ EI(keyStr.equals("getBaseHeight", CPL_STR_HASH("getBaseHeight")))
 RET CNF(GfxTexture_getBaseHeight);
- EI(keyStr == "getBaseDepth")
+ EI(keyStr.equals("getBaseDepth", CPL_STR_HASH("getBaseDepth")))
 RET CNF(GfxTexture_getBaseDepth);
- EI(keyStr == "getFormat")
+ EI(keyStr.equals("getFormat", CPL_STR_HASH("getFormat")))
 RET CNF(GfxTexture_getFormat);
- EI(keyStr == "getShadowmap")
+ EI(keyStr.equals("getShadowmap", CPL_STR_HASH("getShadowmap")))
 RET CNF(GfxTexture_getShadowmap);
- EI(keyStr == "setMaximumAnisotropy")
+ EI(keyStr.equals("setMaximumAnisotropy", CPL_STR_HASH("setMaximumAnisotropy")))
 RET CNF(GfxTexture_setMaximumAnisotropy);
- EI(keyStr == "setMinFilter")
+ EI(keyStr.equals("setMinFilter", CPL_STR_HASH("setMinFilter")))
 RET CNF(GfxTexture_setMinFilter);
- EI(keyStr == "setMagFilter")
+ EI(keyStr.equals("setMagFilter", CPL_STR_HASH("setMagFilter")))
 RET CNF(GfxTexture_setMagFilter);
- EI(keyStr == "setMipmapMode")
+ EI(keyStr.equals("setMipmapMode", CPL_STR_HASH("setMipmapMode")))
 RET CNF(GfxTexture_setMipmapMode);
- EI(keyStr == "setWrapMode")
+ EI(keyStr.equals("setWrapMode", CPL_STR_HASH("setWrapMode")))
 RET CNF(GfxTexture_setWrapMode);
- EI(keyStr == "setShadowmap")
+ EI(keyStr.equals("setShadowmap", CPL_STR_HASH("setShadowmap")))
 RET CNF(GfxTexture_setShadowmap);
- EI(keyStr == "getImpl")
+ EI(keyStr.equals("getImpl", CPL_STR_HASH("getImpl")))
 RET CNF(GfxTexture_getImpl);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(GfxTexture_save);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxTexture_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxTexture_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(GfxTexture_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(GfxTexture_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(GfxTexture_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(GfxTexture_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxTexture_setFilename);
  else
  CATE(KE,"Unknown member for GfxTexture."));
@@ -49636,7 +49921,7 @@ void GfxTexture_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -49989,9 +50274,9 @@ GfxTexture*f;
 f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::setFilename.")));
@@ -50256,54 +50541,54 @@ SV GfxSubModelList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxSubModelList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxSubModelList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxSubModelList_new);
 else
  CATE(KE,"Unknown member for GfxSubModelList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxSubModelList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxSubModelList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(GfxSubModelList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(GfxSubModelList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(GfxSubModelList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(GfxSubModelList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(GfxSubModelList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(GfxSubModelList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(GfxSubModelList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(GfxSubModelList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(GfxSubModelList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(GfxSubModelList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxSubModelList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(GfxSubModelList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GfxSubModelList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GfxSubModelList_end);
  else
  CATE(KE,"Unknown member for GfxSubModelList."));
@@ -50317,7 +50602,7 @@ void GfxSubModelList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -50597,8 +50882,8 @@ void *p = (void *)NEW(TYPE(GfxModel));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxModel_funcs,p,EXT->GfxModel_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const String &)){
-void *p = (void *)NEW(TYPE(GfxModel),val_to_c<const String &>::f(ctx,a[1]));
+if(true&&TS(a[1],const Str &)){
+void *p = (void *)NEW(TYPE(GfxModel),val_to_c<const Str &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(GfxModel_funcs,p,EXT->GfxModel_typeID);
 }CATE(TE,UFOF("GfxModel's constructor.")));
@@ -50610,44 +50895,44 @@ SV GfxModel_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxModel");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxModel_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxModel_new);
 else
  CATE(KE,"Unknown member for GfxModel."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxModel_new);
- EI(keyStr == "removeContent")
+ EI(keyStr.equals("removeContent", CPL_STR_HASH("removeContent")))
 RET CNF(GfxModel_removeContent);
- EI(keyStr == "save")
+ EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(GfxModel_save);
- EI(keyStr == "load")
+ EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxModel_load);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxModel_copy);
- EI(keyStr == "getType")
+ EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(GfxModel_getType);
- EI(keyStr == "release")
+ EI(keyStr.equals("release", CPL_STR_HASH("release")))
 RET CNF(GfxModel_release);
- EI(keyStr == "getRefCount")
+ EI(keyStr.equals("getRefCount", CPL_STR_HASH("getRefCount")))
 RET CNF(GfxModel_getRefCount);
- EI(keyStr == "getFilename")
+ EI(keyStr.equals("getFilename", CPL_STR_HASH("getFilename")))
 RET CNF(GfxModel_getFilename);
- EI(keyStr == "setFilename")
+ EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxModel_setFilename);
- EI(keyStr=="subModels")
+ EI(keyStr.equals("subModels", CPL_STR_HASH("subModels")))
 {
 GfxModel*obj=(GfxModel*)f->data;
 RET CV(obj->subModels);
@@ -50663,12 +50948,12 @@ void GfxModel_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr=="subModels")
+if(0) {} EI(keyStr.equals("subModels", CPL_STR_HASH("subModels")))
 {
 GfxModel*obj=(GfxModel*)f->data;
 obj->subModels=val_to_c<decltype(obj->subModels)>::f(ctx,value);
@@ -50754,9 +51039,9 @@ GfxModel*f;
 f=(GfxModel*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const String &))
+if(1&&TS(a[1],const Str &))
 {
-( f->setFilename(val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[1])));
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("GfxModel::setFilename.")));
@@ -50880,54 +51165,54 @@ SV GfxLODList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxLODList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxLODList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxLODList_new);
 else
  CATE(KE,"Unknown member for GfxLODList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxLODList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(GfxLODList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(GfxLODList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(GfxLODList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(GfxLODList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(GfxLODList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(GfxLODList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(GfxLODList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(GfxLODList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(GfxLODList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(GfxLODList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(GfxLODList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(GfxLODList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(GfxLODList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GfxLODList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GfxLODList_end);
  else
  CATE(KE,"Unknown member for GfxLODList."));
@@ -50941,7 +51226,7 @@ void GfxLODList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -51238,54 +51523,54 @@ SV EntityList_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("EntityList");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(EntityList_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(EntityList_new);
 else
  CATE(KE,"Unknown member for EntityList."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(EntityList_new);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(EntityList___eq__);
- EI(keyStr == "__neq__")
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
 RET CNF(EntityList___neq__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(EntityList_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(EntityList_set);
- EI(keyStr == "getCount")
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
 RET CNF(EntityList_getCount);
- EI(keyStr == "getData")
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
 RET CNF(EntityList_getData);
- EI(keyStr == "append")
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
 RET CNF(EntityList_append);
- EI(keyStr == "insert")
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
 RET CNF(EntityList_insert);
- EI(keyStr == "remove")
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
 RET CNF(EntityList_remove);
- EI(keyStr == "clear")
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
 RET CNF(EntityList_clear);
- EI(keyStr == "find")
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
 RET CNF(EntityList_find);
- EI(keyStr == "copy")
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
 RET CNF(EntityList_copy);
- EI(keyStr == "in")
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(EntityList_in);
- EI(keyStr == "begin")
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(EntityList_begin);
- EI(keyStr == "end")
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(EntityList_end);
  else
  CATE(KE,"Unknown member for EntityList."));
@@ -51299,7 +51584,7 @@ void EntityList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -51586,38 +51871,38 @@ SV GfxShaderCombination_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxShaderCombination");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxShaderCombination_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxShaderCombination_new);
 else
  CATE(KE,"Unknown member for GfxShaderCombination."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxShaderCombination_new);
- EI(keyStr == "setDefine")
+ EI(keyStr.equals("setDefine", CPL_STR_HASH("setDefine")))
 RET CNF(GfxShaderCombination_setDefine);
- EI(keyStr == "getDefine")
+ EI(keyStr.equals("getDefine", CPL_STR_HASH("getDefine")))
 RET CNF(GfxShaderCombination_getDefine);
- EI(keyStr == "removeDefine")
+ EI(keyStr.equals("removeDefine", CPL_STR_HASH("removeDefine")))
 RET CNF(GfxShaderCombination_removeDefine);
- EI(keyStr == "getShader")
+ EI(keyStr.equals("getShader", CPL_STR_HASH("getShader")))
 RET CNF(GfxShaderCombination_getShader);
- EI(keyStr == "setShader")
+ EI(keyStr.equals("setShader", CPL_STR_HASH("setShader")))
 RET CNF(GfxShaderCombination_setShader);
- EI(keyStr == "getCompiled")
+ EI(keyStr.equals("getCompiled", CPL_STR_HASH("getCompiled")))
 RET CNF(GfxShaderCombination_getCompiled);
- EI(keyStr == "getGLPipeline")
+ EI(keyStr.equals("getGLPipeline", CPL_STR_HASH("getGLPipeline")))
 RET CNF(GfxShaderCombination_getGLPipeline);
  else
  CATE(KE,"Unknown member for GfxShaderCombination."));
@@ -51631,7 +51916,7 @@ void GfxShaderCombination_set_member(CTX ctx,const SV&f_,const SV&key,const SV&v
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -51701,9 +51986,9 @@ GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const Str &))
 {
-RET CV( f->getDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
+RET CV( f->getDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2])));
 ;
 }
 CATE(TE,UFOF("GfxShaderCombination::getDefine.")));
@@ -51718,9 +52003,9 @@ GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const Str &))
 {
-( f->removeDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2])));
+( f->removeDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("GfxShaderCombination::removeDefine.")));
@@ -51752,9 +52037,9 @@ GfxShaderCombination*f;
 f=(GfxShaderCombination*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const String &)&&TS(a[3],const String &))
+if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const Str &)&&TS(a[3],const Str &))
 {
-( f->setDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const String &>::type>::f(ctx,a[3])));
+( f->setDefine(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxShaderCombination::setDefine.")));
@@ -51798,50 +52083,50 @@ SV Matrix3x3_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("Matrix3x3");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(Matrix3x3_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(Matrix3x3_new);
 else
  CATE(KE,"Unknown member for Matrix3x3."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(Matrix3x3_new);
- EI(keyStr == "__mul__")
+ EI(keyStr.equals("__mul__", CPL_STR_HASH("__mul__")))
 RET CNF(Matrix3x3___mul__);
- EI(keyStr == "__div__")
+ EI(keyStr.equals("__div__", CPL_STR_HASH("__div__")))
 RET CNF(Matrix3x3___div__);
- EI(keyStr == "get")
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
 RET CNF(Matrix3x3_get);
- EI(keyStr == "set")
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
 RET CNF(Matrix3x3_set);
- EI(keyStr == "__eq__")
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(Matrix3x3___eq__);
- EI(keyStr == "transpose")
+ EI(keyStr.equals("transpose", CPL_STR_HASH("transpose")))
 RET CNF(Matrix3x3_transpose);
- EI(keyStr == "inverse")
+ EI(keyStr.equals("inverse", CPL_STR_HASH("inverse")))
 RET CNF(Matrix3x3_inverse);
- EI(keyStr == "translate")
+ EI(keyStr.equals("translate", CPL_STR_HASH("translate")))
 RET CNF(Matrix3x3_translate);
- EI(keyStr == "scale")
+ EI(keyStr.equals("scale", CPL_STR_HASH("scale")))
 RET CNF(Matrix3x3_scale);
- EI(keyStr == "rotate")
+ EI(keyStr.equals("rotate", CPL_STR_HASH("rotate")))
 RET CNF(Matrix3x3_rotate);
- EI(keyStr == "rotatex")
+ EI(keyStr.equals("rotatex", CPL_STR_HASH("rotatex")))
 RET CNF(Matrix3x3_rotatex);
- EI(keyStr == "rotatey")
+ EI(keyStr.equals("rotatey", CPL_STR_HASH("rotatey")))
 RET CNF(Matrix3x3_rotatey);
- EI(keyStr == "rotatez")
+ EI(keyStr.equals("rotatez", CPL_STR_HASH("rotatez")))
 RET CNF(Matrix3x3_rotatez);
  else
  CATE(KE,"Unknown member for Matrix3x3."));
@@ -51855,7 +52140,7 @@ void Matrix3x3_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -52115,30 +52400,30 @@ SV GfxDebugDrawer_get_member(CTX ctx,const SV&f_,const SV&key)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 {
-if(keyStr=="__typeID__")
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__name__")
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("GfxDebugDrawer");
-EI(keyStr=="__new__")
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
 RET CNF(GfxDebugDrawer_new);
-EI(keyStr=="__call__")
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
 RET CNF(GfxDebugDrawer_new);
 else
  CATE(KE,"Unknown member for GfxDebugDrawer."));
 } else
 {
-if(keyStr=="__classTypeID__")
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
 RET STG::createInt(f->typeID);
-EI(keyStr=="__init__")
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxDebugDrawer_new);
- EI(keyStr == "addLine")
+ EI(keyStr.equals("addLine", CPL_STR_HASH("addLine")))
 RET CNF(GfxDebugDrawer_addLine);
- EI(keyStr == "addBox")
+ EI(keyStr.equals("addBox", CPL_STR_HASH("addBox")))
 RET CNF(GfxDebugDrawer_addBox);
- EI(keyStr == "render")
+ EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(GfxDebugDrawer_render);
  else
  CATE(KE,"Unknown member for GfxDebugDrawer."));
@@ -52152,7 +52437,7 @@ void GfxDebugDrawer_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
 NO f=(NO)f_.p;
 if (key.type==STG::ValueType::StringType)
 {
-String keyStr=((STG::StringData*)key.p)->value;
+Str keyStr=key.getStr();
 if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
@@ -52324,7 +52609,7 @@ RET CN;
 
 namespace scripting
 {
-SV create(CTX ctx,const HashMap<String,String>& value){RET CV(value);}
+SV create(CTX ctx,const HashMap<Str,Str>& value){RET CV(value);}
 SV create(CTX ctx,const GfxCompiledShader& value){RET CV(value);}
 SV create(CTX ctx,const ScrollBar& value){RET CV(value);}
 SV create(CTX ctx,const List<GhostObject*>& value){RET CV(value);}
@@ -52352,7 +52637,7 @@ SV create(CTX ctx,const T2<int32_t>& value){RET CV(value);}
 SV create(CTX ctx,const AudioWorld& value){RET CV(value);}
 SV create(CTX ctx,const GuiPlacer& value){RET CV(value);}
 SV create(CTX ctx,const ImGui& value){RET CV(value);}
-SV create(CTX ctx,const List<String>& value){RET CV(value);}
+SV create(CTX ctx,const List<Str>& value){RET CV(value);}
 SV create(CTX ctx,const LightPointData& value){RET CV(value);}
 SV create(CTX ctx,const T4<float>& value){RET CV(value);}
 SV create(CTX ctx,const List<float>& value){RET CV(value);}
@@ -52378,7 +52663,7 @@ SV create(CTX ctx,const List<GfxLOD>& value){RET CV(value);}
 SV create(CTX ctx,const List<Entity*>& value){RET CV(value);}
 SV create(CTX ctx,const Matrix3x3& value){RET CV(value);}
 SV create(CTX ctx,GhostObject *value){RET CV(value);}
-SV create(CTX ctx,HashMap<String,String> *value){RET CV(value);}
+SV create(CTX ctx,HashMap<Str,Str> *value){RET CV(value);}
 SV create(CTX ctx,GfxApi *value){RET CV(value);}
 SV create(CTX ctx,GfxCompiledShader *value){RET CV(value);}
 SV create(CTX ctx,ScrollBar *value){RET CV(value);}
@@ -52409,6 +52694,7 @@ SV create(CTX ctx,GfxShader *value){RET CV(value);}
 SV create(CTX ctx,Light *value){RET CV(value);}
 SV create(CTX ctx,TextureSampler *value){RET CV(value);}
 SV create(CTX ctx,Scene *value){RET CV(value);}
+SV create(CTX ctx,GfxAnimationState *value){RET CV(value);}
 SV create(CTX ctx,T3<int32_t> *value){RET CV(value);}
 SV create(CTX ctx,ResizableData *value){RET CV(value);}
 SV create(CTX ctx,T4<int32_t> *value){RET CV(value);}
@@ -52425,7 +52711,7 @@ SV create(CTX ctx,T2<int32_t> *value){RET CV(value);}
 SV create(CTX ctx,AudioWorld *value){RET CV(value);}
 SV create(CTX ctx,GuiPlacer *value){RET CV(value);}
 SV create(CTX ctx,ImGui *value){RET CV(value);}
-SV create(CTX ctx,List<String> *value){RET CV(value);}
+SV create(CTX ctx,List<Str> *value){RET CV(value);}
 SV create(CTX ctx,Application *value){RET CV(value);}
 SV create(CTX ctx,LightPointData *value){RET CV(value);}
 SV create(CTX ctx,T4<float> *value){RET CV(value);}
@@ -52657,6 +52943,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Scene_typeID = typeID;
     ext->Scene = scripting::createNativeObject(Scene_funcs, NULL, typeID);
     engine->getGlobalVars().set("Scene", ext->Scene);
+    
+    typeID = engine->createNewTypeID();
+    ext->GfxAnimationState_typeID = typeID;
+    ext->GfxAnimationState = scripting::createNativeObject(GfxAnimationState_funcs, NULL, typeID);
+    engine->getGlobalVars().set("GfxAnimationState", ext->GfxAnimationState);
     
     typeID = engine->createNewTypeID();
     ext->Int3_typeID = typeID;

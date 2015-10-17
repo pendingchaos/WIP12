@@ -28,8 +28,7 @@ return class {
         self.attackGhost = physicsWorld:createGhostObject(shape, 0xFFFF );
     };
     
-    __del__ = function(self)
-    {
+    __del__ = function(self) {
         self.scene:getPhysicsWorld():destroyGhostObject(self.attackGhost);
         self.scene:getPhysicsWorld():destroyGhostObject(self.collisionGhost);
         self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);

@@ -59,30 +59,23 @@ static const GLenum toGLDepthFunc[] = {GL_NEVER,
 
 static void printOpenGLInfo()
 {
-    const char *vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
-    const char *renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
-    const char *version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-    const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+    const char *vendor = (const char *)glGetString(GL_VENDOR);
+    const char *renderer = (const char *)glGetString(GL_RENDERER);
+    const char *version = (const char *)glGetString(GL_VERSION);
+    const char *glslVersion = (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
 
-    String extensions;
+    log("OpenGL vendor: %s", vendor);
+    log("OpenGL renderer: %s", renderer);
+    log("OpenGL version: %s", version);
+    log("GLSL version: %s", glslVersion);
 
     GLint numExtensions;
-
     glGetIntegerv(GL_NUM_EXTENSIONS, &numExtensions);
 
     for (GLint i = 0; i < numExtensions; ++i)
     {
-        extensions.append
-        (reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i)));
-
-        extensions.append('\n');
+        log("Extension %d: %s", i, (const char *)glGetStringi(GL_EXTENSIONS, i));
     }
-
-    INFO(CATEGORY_OPENGL, "OpenGL information.")(vendor,
-                                                 renderer,
-                                                 version,
-                                                 glslVersion,
-                                                 extensions);
 }
 
 static void debugCallback(GLenum source,
@@ -156,7 +149,7 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 
     std::sscanf((const char *)glGetString(GL_VERSION), "%u.%u", &glMajor, &glMinor);
 
-    String vendor = (const char *)glGetString(GL_VENDOR);
+    Str vendor = (const char *)glGetString(GL_VENDOR);
 
     if (vendor == "NVIDIA Corporation")
     {

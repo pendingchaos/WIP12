@@ -263,7 +263,7 @@ LogEntry& LogEntry::variable(const char *name, const char *value)
     return *this;
 }
 
-LogEntry& LogEntry::variable(const char *name, const String& value)
+LogEntry& LogEntry::variable(const char *name, const Str& value)
 {
     return variable(name, value.getData());
 }

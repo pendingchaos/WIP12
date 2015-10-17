@@ -20,9 +20,9 @@ class ScriptFunctionException : public Exception
         ScriptFunctionException(const char *file_,
                                 size_t line_,
                                 const char *function_,
-                                String filename_,
-                                String scriptFunction_,
-                                String problem_) : Exception(file_, line_, function_),
+                                Str filename_,
+                                Str scriptFunction_,
+                                Str problem_) : Exception(file_, line_, function_),
                                                    filename(filename_),
                                                    scriptFunction(scriptFunction_),
                                                    problem(problem_) {}
@@ -42,24 +42,24 @@ class ScriptFunctionException : public Exception
             return string;
         }
 
-        inline const String& getFilename() const
+        inline const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const String& getScriptFunction() const
+        inline const Str& getScriptFunction() const
         {
             return scriptFunction;
         }
 
-        inline const String& getProblem() const
+        inline const Str& getProblem() const
         {
             return problem;
         }
     private:
-        String filename;
-        String scriptFunction;
-        String problem;
+        Str filename;
+        Str scriptFunction;
+        Str problem;
 };
 
 class ScriptInstance
@@ -71,8 +71,8 @@ class ScriptInstance
     public:
         ~ScriptInstance();
 
-        void method(const String& name);
-        void method(const String& name, float timestep);
+        void method(const Str& name);
+        void method(const Str& name, float timestep);
 
         inline void handleInput()
         {
@@ -132,7 +132,7 @@ class Script : public Resource
         static const ResType resource_type = ResType::ScriptType;
 
         Script();
-        Script(const String& filename);
+        Script(const Str& filename);
 
         virtual ~Script();
 

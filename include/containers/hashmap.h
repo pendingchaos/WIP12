@@ -247,7 +247,7 @@ class HashMap
 };
 
 BIND_CLASS(HashMap)
-TEMPLATE_TYPES(HashMap:Key:Value, <String,String>@StrStrMap <scripting::Value,scripting::Value>@Map)
+TEMPLATE_TYPES(HashMap:Key:Value, <Str,Str>@StrStrMap <scripting::Value,scripting::Value>@Map)
 
 template <typename Key, typename Value>
 class HashMapBuilder

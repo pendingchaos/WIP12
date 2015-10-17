@@ -22,8 +22,8 @@ class FontException : public Exception
         FontException(const char *file_,
                       size_t line_,
                       const char *function_,
-                      String filename_,
-                      String problem_) : Exception(file_, line_, function_),
+                      Str filename_,
+                      Str problem_) : Exception(file_, line_, function_),
                                          filename(filename_),
                                          problem(problem_) {}
 
@@ -41,18 +41,18 @@ class FontException : public Exception
             return string;
         }
 
-        inline const String& getFilename() const
+        inline const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const String& getProblem() const
+        inline const Str& getProblem() const
         {
             return problem;
         }
     private:
-        String filename;
-        String problem;
+        Str filename;
+        Str problem;
 };
 
 class Font : public Resource
@@ -63,7 +63,7 @@ class Font : public Resource
         static const ResType resource_type = ResType::FontType;
 
         Font();
-        Font(const String& filename);
+        Font(const Str& filename);
         virtual ~Font();
 
         virtual void removeContent();

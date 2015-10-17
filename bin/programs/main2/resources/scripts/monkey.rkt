@@ -1,6 +1,5 @@
 return class {
-    __init__ = function(self, entity)
-    {
+    __init__ = function(self, entity) {
         self.entity = entity;
         self.scene = entity:getScene();
         self.attacked = false;
@@ -13,16 +12,14 @@ return class {
         self.playerGhost = physicsWorld:createGhostObject(shape, 0xFFFF );
     };
     
-    __del__ = function(self)
-    {
+    __del__ = function(self) {
         self.scene:getPhysicsWorld():destroyGhostObject(self.playerGhost);
     };
     
     handleInput = function(self) {};
     update = function(self) {};
     
-    fixedUpdate = function(self, timestep)
-    {
+    fixedUpdate = function(self, timestep) {
         body = self.entity:getRigidBody();
         
         self.playerGhost:setTransform(self.entity.transform);

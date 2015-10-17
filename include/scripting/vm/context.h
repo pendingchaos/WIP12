@@ -59,7 +59,7 @@ class Context
             CallstackEntry(Bytecode bytecode_) : bytecode(bytecode_), offset(0) {}
 
             Bytecode bytecode;
-            HashMap<String, Value> variables;
+            HashMap<Str, Value> variables;
             List<List<Value>> stacks;
             List<size_t> catchBlocks;
             size_t offset;
@@ -88,7 +88,7 @@ class Context
             return engine;
         }
 
-        scripting::Value getVariable(const String& name);
+        scripting::Value getVariable(const Str& name);
 
         void reset();
         Value run(const Bytecode& bytecode, List<Value> args);
@@ -139,7 +139,7 @@ size_t toIndex(Context *ctx, const Value& value);
 Value getMember(Context *ctx, const Value& val, const Value& key);
 void setMember(Context *ctx, const Value& dest, const Value& key, const Value& value);
 Value call(Context *ctx, const Value& value, const List<Value>& args);
-Value callMethod(Context *ctx, const Value& obj, const String& methName, const List<Value>& args);
+Value callMethod(Context *ctx, const Value& obj, const Str& methName, const List<Value>& args);
 bool isInstance(Context *ctx, const Value& obj, const Value& type);
 }
 

@@ -613,7 +613,7 @@ namespace scripting
         return statements;
     }
 
-    ASTNode *parse(const String& source)
+    ASTNode *parse(const Str& source)
     {
         try
         {

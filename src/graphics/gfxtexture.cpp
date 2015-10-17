@@ -165,7 +165,7 @@ static const size_t formatSizes[] = {1,
                                      4,
                                      4};
 
-GfxTexture::GfxTexture(const String& filename) : Resource(filename,
+GfxTexture::GfxTexture(const Str& filename) : Resource(filename,
                                                           ResType::GfxTextureType),
                                                  impl(gfxApi->createTextureImpl())
 {

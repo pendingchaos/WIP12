@@ -17,7 +17,7 @@ class PlatformException : public Exception
         PlatformException(const char *file_,
                           size_t line_,
                           const char *function_,
-                          const String& problem_) : Exception(file_, line_, function_),
+                          const Str& problem_) : Exception(file_, line_, function_),
                                                     problem(problem_) {}
 
         virtual const char *getString() const
@@ -25,7 +25,7 @@ class PlatformException : public Exception
             return problem.getData();
         }
     private:
-        String problem;
+        Str problem;
 };
 
 enum class Key

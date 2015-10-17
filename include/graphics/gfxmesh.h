@@ -128,7 +128,7 @@ class GfxMesh : public Resource
     public:
         static const ResType resource_type = ResType::GfxMeshType;
 
-        GfxMesh(const String& filename);
+        GfxMesh(const Str& filename);
         GfxMesh();
         virtual ~GfxMesh();
 
@@ -202,7 +202,7 @@ class GfxMesh : public Resource
         GfxCullMode cullMode;
         GfxWinding winding;
         NO_BIND List<GfxBone> bones;
-        NO_BIND HashMap<String, GfxAnimation> animations;
+        NO_BIND HashMap<Str, GfxAnimation> animations;
 
         virtual void removeContent();
 
@@ -228,13 +228,17 @@ class GfxAnimationState
 
     public:
         GfxAnimationState(GfxMesh *mesh_,
-                          const String& animName_);
+                          const Str& animName_);
         ~GfxAnimationState();
 
         void updateMatrices();
 
-        const String animName;
         float timeOffset;
+
+        inline const Str getAnimName() const
+        {
+            return animName;
+        }
 
         inline GfxMesh *getMesh() const
         {
@@ -251,9 +255,10 @@ class GfxAnimationState
             return normalMatrixBuffer;
         }
     private:
+        const Str animName;
         GfxMesh *mesh;
         GfxBuffer *matrixBuffer;
         GfxBuffer *normalMatrixBuffer;
-};
+} BIND NOT_COPYABLE;
 
 #endif // GFXMESH_H

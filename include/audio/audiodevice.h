@@ -19,8 +19,8 @@ class AudioDevice
         AudioDevice(size_t index, size_t frequency, size_t samples);
         ~AudioDevice();
 
-        String getName();
-        static String getName(size_t index);
+        Str getName();
+        static Str getName(size_t index);
         static size_t getDeviceCount();
 
         void setIndex(size_t index);

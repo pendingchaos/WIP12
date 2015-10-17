@@ -17,19 +17,8 @@ static Value classNew(Context *ctx, const List<Value>& args)
 
     Value class_ = args[0];
 
-    StringData __base__;
-    Value __base__Val;
-    __base__Val.type = ValueType::StringType;
-    __base__Val.p = &__base__;
-    __base__.value = "__base__";
-    Value base = getMember(ctx, class_, __base__Val);
-
-    StringData __typeID__;
-    Value __typeID__Val;
-    __typeID__Val.type = ValueType::StringType;
-    __typeID__Val.p = &__typeID__;
-    __typeID__.value = "__typeID__";
-    Value typeID = getMember(ctx, class_, __typeID__Val);
+    Value base = getMember(ctx, class_, createString("__base__"));
+    Value typeID = getMember(ctx, class_, createString("__typeID__"));
 
     if (base.type != ValueType::Object)
     {
@@ -42,8 +31,8 @@ static Value classNew(Context *ctx, const List<Value>& args)
     }
 
     Value resultHead = createObject();
-    HashMap<String, Value>& resultMembers = ((ObjectData *)resultHead.p)->members;
-    HashMap<String, Value>& baseMembers = ((ObjectData *)base.p)->members;
+    HashMap<Str, Value>& resultMembers = ((ObjectData *)resultHead.p)->members;
+    HashMap<Str, Value>& baseMembers = ((ObjectData *)base.p)->members;
 
     for (auto kv : baseMembers)
     {
@@ -51,6 +40,7 @@ static Value classNew(Context *ctx, const List<Value>& args)
     }
 
     resultMembers.set("__classTypeID__", createInt(typeID.i));
+    resultMembers.set("__class__", createCopy(ctx, args[0]));
 
     auto pos = resultMembers.find("__init__");
     if (pos != resultMembers.end())
@@ -86,10 +76,9 @@ static Value createClass(Context *ctx, const List<Value>& args)
 
     Value result = createObject();
 
-    HashMap<String, Value>& resultMembers = ((ObjectData *)result.p)->members;
+    HashMap<Str, Value>& resultMembers = ((ObjectData *)result.p)->members;
 
     resultMembers.set("__base__", createCopy(ctx, args[0]));
-    resultMembers.set("__new__", createNativeFunction(classNew));
     resultMembers.set("__typeID__", createInt(ctx->getEngine()->createNewTypeID()));
     resultMembers.set("__call__", createNativeFunction(classNew));
 
@@ -108,7 +97,7 @@ static Value methodCall(Context *ctx, const List<Value>& args)
         ctx->throwException(createException(ExcType::TypeError, "Method call requires (method) object as first parameter."));
     }
 
-    HashMap<String, Value>& members = ((ObjectData *)args[0].p)->members;
+    HashMap<Str, Value>& members = ((ObjectData *)args[0].p)->members;
 
     Value func;
     Value obj;
@@ -140,7 +129,7 @@ static Value createMethod(Context *ctx, const List<Value>& args)
 
     Value result = createObject();
 
-    HashMap<String, Value>& resultMembers = ((ObjectData *)result.p)->members;
+    HashMap<Str, Value>& resultMembers = ((ObjectData *)result.p)->members;
 
     resultMembers.set("__func__", createCopy(ctx, args[0]));
     resultMembers.set("__obj__", createCopy(ctx, args[1]));
@@ -254,7 +243,7 @@ static Value print(Context *ctx, const List<Value>& args)
         {
         case ValueType::StringType:
         {
-            std::cout << ((StringData *)val.p)->value.getData() << ' ';
+            std::cout << val.getStr().getData() << ' ';
             break;
         }
         case ValueType::Int:
@@ -374,7 +363,7 @@ Engine::~Engine()
     }
 }
 
-void Engine::addExtension(const String& name, const Extension& extension)
+void Engine::addExtension(const Str& name, const Extension& extension)
 {
     Extension result = extension;
 

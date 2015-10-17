@@ -114,7 +114,7 @@ class ImGui
 
             Type type;
 
-            String textStr;
+            Str textStr;
             union
             {
                 struct

@@ -6,7 +6,7 @@
 
 namespace scripting
 {
-    String disasm(const Bytecode& bytecode);
+    Str disasm(const Bytecode& bytecode);
 }
 
 #endif // DISASM_H

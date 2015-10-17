@@ -8,7 +8,7 @@
 
 #include <unistd.h>
 
-GfxShader::GfxShader(const String& filename) : Resource(filename,
+GfxShader::GfxShader(const Str& filename) : Resource(filename,
                                                         ResType::GfxShaderType),
                                                shaderType(GfxShaderType::Vertex) {}
 
@@ -153,19 +153,18 @@ void GfxShader::_load()
         }
         }
 
-        source = String(file.getSize()-7);
-
-        file.read(source.getLength(), source.getData());
+        char source[file.getSize()-7];
+        file.read(file.getSize()-7, source);
 
         try
         {
-            compile(type, source);
+            compile(type, Str(file.getSize()-7, source));
         } catch (ShaderCompileException& e)
         {
             THROW(ResourceIOException,
                   "shader",
                   getFilename(),
-                  String::format("Unable to compile shader: %s", e.getString()));
+                  Str::format("Unable to compile shader: %s", e.getString()));
         }
     } catch (const FileException& e)
     {
@@ -176,7 +175,7 @@ void GfxShader::_load()
     }
 }
 
-GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings, String& infoLog)
+GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings, Str& infoLog)
 {
     GLuint shader = glCreateShader(type);
 
@@ -195,8 +194,9 @@ GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings
         GLint length;
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
 
-        infoLog.resize(length);
-        glGetShaderInfoLog(shader, length, nullptr, infoLog.getData());
+        char log[length];
+        glGetShaderInfoLog(shader, length, nullptr, log);
+        infoLog = Str(length, log);
 
         glDeleteShader(shader);
 
@@ -211,8 +211,9 @@ GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings
         GLint length;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
 
-        infoLog.resize(length);
-        glGetProgramInfoLog(program, length, nullptr, infoLog.getData());
+        char log[length];
+        glGetProgramInfoLog(shader, length, nullptr, log);
+        infoLog = Str(length, log);
 
         glDeleteShader(shader);
 
@@ -222,7 +223,7 @@ GLuint _compile(GLuint program, GLenum type, GLsizei count, const char **strings
     return shader;
 }
 
-void GfxShader::compile(GfxShaderType type, const String& source_)
+void GfxShader::compile(GfxShaderType type, const Str& source_)
 {
     shaderType = type;
     source = source_;
@@ -237,7 +238,7 @@ void GfxShader::compile(GfxShaderType type, const String& source_)
     }
 }
 
-GfxCompiledShader *GfxShader::getCompiled(const HashMap<String, String>& defines) const
+GfxCompiledShader *GfxShader::getCompiled(const HashMap<Str, Str>& defines) const
 {
     auto pos = compiled.find(defines);
 
@@ -256,13 +257,13 @@ GfxCompiledShader *GfxShader::getCompiled(const HashMap<String, String>& defines
     return pos->second;
 }
 
-GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defines) const
+GLuint GfxShader::_compile(GLuint program, const HashMap<Str, Str >& defines) const
 {
     size_t defineCount = defines.getCount();
 
     GLsizei numSources = defineCount + 4;
     const char *sources[numSources];
-    String defineSources[defineCount];
+    Str defineSources[defineCount];
 
     unsigned int major = ((GfxGLApi *)gfxApi)->getOpenGLMajorVersion();
     unsigned int minor = ((GfxGLApi *)gfxApi)->getOpenGLMinorVersion();
@@ -305,7 +306,7 @@ GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defin
     size_t i = 0;
     for (auto kv : defines)
     {
-        defineSources[i] = String::format("#define %s %s\n",
+        defineSources[i] = Str::format("#define %s %s\n",
                                           kv.first.getData(),
                                           kv.second.getData());
         sources[i+2] = defineSources[i].getData();
@@ -317,7 +318,7 @@ GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defin
     sources[defineCount+3] = source.getData();
 
     GLuint result = 0;
-    String infoLog;
+    Str infoLog;
 
     switch (shaderType)
     {
@@ -355,7 +356,7 @@ GLuint GfxShader::_compile(GLuint program, const HashMap<String, String >& defin
 
     if (infoLog.getLength() != 0)
     {
-        THROW(ShaderCompileException, String::format("Filename: %s\n", getFilename().getData()).append(infoLog));
+        THROW(ShaderCompileException, Str::format("Filename: %s\n%s", getFilename().getData(), infoLog.getData()));
     }
 
     return result;
@@ -412,7 +413,7 @@ GfxShaderCombination::~GfxShaderCombination()
     }
 }
 
-void GfxShaderCombination::setDefine(GfxShaderType shader, const String& name, const String& content)
+void GfxShaderCombination::setDefine(GfxShaderType shader, const Str& name, const Str& content)
 {
     size_t index = (size_t)shader;
 
@@ -425,7 +426,7 @@ void GfxShaderCombination::setDefine(GfxShaderType shader, const String& name, c
     dirty[index] = true;
 }
 
-const String& GfxShaderCombination::getDefine(GfxShaderType shader, const String& name) const
+const Str& GfxShaderCombination::getDefine(GfxShaderType shader, const Str& name) const
 {
     size_t index = (size_t)shader;
 
@@ -437,7 +438,7 @@ const String& GfxShaderCombination::getDefine(GfxShaderType shader, const String
     return defines[index].get(name);
 }
 
-void GfxShaderCombination::removeDefine(GfxShaderType shader, const String& name)
+void GfxShaderCombination::removeDefine(GfxShaderType shader, const Str& name)
 {
     size_t index = (size_t)shader;
 

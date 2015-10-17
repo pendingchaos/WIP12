@@ -13,7 +13,7 @@
 PhysicsShape::PhysicsShape() : Resource(ResType::PhysicsShapeType),
                                impl(NEW(PhysicsShapeImpl, this, PhysicsShapeImpl::Empty, NEW(btEmptyShape))) {}
 
-PhysicsShape::PhysicsShape(const String& filename) : Resource(filename, ResType::PhysicsShapeType),
+PhysicsShape::PhysicsShape(const Str& filename) : Resource(filename, ResType::PhysicsShapeType),
                                                      impl(NEW(PhysicsShapeImpl, this, PhysicsShapeImpl::Empty, NEW(btEmptyShape))) {}
 
 PhysicsShape::~PhysicsShape()
@@ -269,7 +269,7 @@ void PhysicsShape::save()
     }
 }
 
-PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
+PhysicsShape *loadShape(PhysicsShape *dest, File *file, const Str& filename)
 {
     uint8_t shapeType = file->readUInt8();
 
@@ -464,8 +464,7 @@ PhysicsShape *loadShape(PhysicsShape *dest, File *file, const String& filename)
     case 11:
     {
         uint32_t length = file->readUInt32LE();
-        String filename2((size_t)length);
-        file->read(length, filename2.getData());
+        Str filename2 = file->readStr(length);
 
         dest = resMgr->load<PhysicsShape>(filename2);
         break;

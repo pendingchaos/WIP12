@@ -18,7 +18,7 @@ ResourceManager::~ResourceManager()
 {
     for (auto kv : resources)
     {
-        HashMap<String, Resource *> resources_ = kv.second;
+        HashMap<Str, Resource *> resources_ = kv.second;
 
         for (auto kv_ : resources_)
         {
@@ -27,7 +27,7 @@ ResourceManager::~ResourceManager()
     }
 }
 
-bool ResourceManager::isResource(ResType type, const String& filename) const
+bool ResourceManager::isResource(ResType type, const Str& filename) const
 {
     auto pos = resources.find(type);
 
@@ -39,27 +39,27 @@ bool ResourceManager::isResource(ResType type, const String& filename) const
     return false;
 }
 
-GfxShader *ResourceManager::loadShader(const String& filename) {return load<GfxShader>(filename);}
-GfxTexture *ResourceManager::loadTexture(const String& filename) {return load<GfxTexture>(filename);}
-GfxMesh *ResourceManager::loadMesh(const String& filename) {return load<GfxMesh>(filename);}
-GfxMaterial *ResourceManager::loadMaterial(const String& filename) {return load<GfxMaterial>(filename);}
-GfxModel *ResourceManager::loadModel(const String& filename) {return load<GfxModel>(filename);}
-Scene *ResourceManager::loadScene(const String& filename) {return load<Scene>(filename);}
-Script *ResourceManager::loadScript(const String& filename) {return load<Script>(filename);}
-PhysicsShape *ResourceManager::loadPhysicsShape(const String& filename) {return load<PhysicsShape>(filename);}
-Audio *ResourceManager::loadAudio(const String& filename) {return load<Audio>(filename);}
-Font *ResourceManager::loadFont(const String& filename) {return load<Font>(filename);}
+GfxShader *ResourceManager::loadShader(const Str& filename) {return load<GfxShader>(filename);}
+GfxTexture *ResourceManager::loadTexture(const Str& filename) {return load<GfxTexture>(filename);}
+GfxMesh *ResourceManager::loadMesh(const Str& filename) {return load<GfxMesh>(filename);}
+GfxMaterial *ResourceManager::loadMaterial(const Str& filename) {return load<GfxMaterial>(filename);}
+GfxModel *ResourceManager::loadModel(const Str& filename) {return load<GfxModel>(filename);}
+Scene *ResourceManager::loadScene(const Str& filename) {return load<Scene>(filename);}
+Script *ResourceManager::loadScript(const Str& filename) {return load<Script>(filename);}
+PhysicsShape *ResourceManager::loadPhysicsShape(const Str& filename) {return load<PhysicsShape>(filename);}
+Audio *ResourceManager::loadAudio(const Str& filename) {return load<Audio>(filename);}
+Font *ResourceManager::loadFont(const Str& filename) {return load<Font>(filename);}
 
-GfxShader *ResourceManager::loadShaderAndCopy(const String& filename) {return loadAndCopy<GfxShader>(filename);}
-GfxTexture *ResourceManager::loadTextureAndCopy(const String& filename) {return loadAndCopy<GfxTexture>(filename);}
-GfxMesh *ResourceManager::loadMeshAndCopy(const String& filename) {return loadAndCopy<GfxMesh>(filename);}
-GfxMaterial *ResourceManager::loadMaterialAndCopy(const String& filename) {return loadAndCopy<GfxMaterial>(filename);}
-GfxModel *ResourceManager::loadModelAndCopy(const String& filename) {return loadAndCopy<GfxModel>(filename);}
-Scene *ResourceManager::loadSceneAndCopy(const String& filename) {return loadAndCopy<Scene>(filename);}
-Script *ResourceManager::loadScriptAndCopy(const String& filename) {return loadAndCopy<Script>(filename);}
-PhysicsShape *ResourceManager::loadPhysicsShapeAndCopy(const String& filename) {return loadAndCopy<PhysicsShape>(filename);}
-Audio *ResourceManager::loadAudioAndCopy(const String& filename) {return loadAndCopy<Audio>(filename);}
-Font *ResourceManager::loadFontAndCopy(const String& filename) {return loadAndCopy<Font>(filename);}
+GfxShader *ResourceManager::loadShaderAndCopy(const Str& filename) {return loadAndCopy<GfxShader>(filename);}
+GfxTexture *ResourceManager::loadTextureAndCopy(const Str& filename) {return loadAndCopy<GfxTexture>(filename);}
+GfxMesh *ResourceManager::loadMeshAndCopy(const Str& filename) {return loadAndCopy<GfxMesh>(filename);}
+GfxMaterial *ResourceManager::loadMaterialAndCopy(const Str& filename) {return loadAndCopy<GfxMaterial>(filename);}
+GfxModel *ResourceManager::loadModelAndCopy(const Str& filename) {return loadAndCopy<GfxModel>(filename);}
+Scene *ResourceManager::loadSceneAndCopy(const Str& filename) {return loadAndCopy<Scene>(filename);}
+Script *ResourceManager::loadScriptAndCopy(const Str& filename) {return loadAndCopy<Script>(filename);}
+PhysicsShape *ResourceManager::loadPhysicsShapeAndCopy(const Str& filename) {return loadAndCopy<PhysicsShape>(filename);}
+Audio *ResourceManager::loadAudioAndCopy(const Str& filename) {return loadAndCopy<Audio>(filename);}
+Font *ResourceManager::loadFontAndCopy(const Str& filename) {return loadAndCopy<Font>(filename);}
 
 void ResourceManager::cleanupResources()
 {

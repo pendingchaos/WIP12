@@ -25,7 +25,7 @@ class Scene : public Resource
         static const ResType resource_type = ResType::SceneType;
 
         Scene();
-        Scene(const String& filename);
+        Scene(const Str& filename);
         virtual ~Scene();
 
         virtual void removeContent();
@@ -52,9 +52,9 @@ class Scene : public Resource
 
         virtual void save();
 
-        Entity *createEntity(const String& name);
+        Entity *createEntity(const Str& name);
         void removeEntity(size_t index);
-        Entity *findEntity(const String& name);
+        Entity *findEntity(const Str& name);
 
         inline const List<Entity *>& getEntities() const
         {
@@ -94,7 +94,7 @@ class Scene : public Resource
             return scripts;
         }
 
-        ScriptInstance *findScriptInstance(const String& filename) const
+        ScriptInstance *findScriptInstance(const Str& filename) const
         {
             for (auto script : scripts)
             {

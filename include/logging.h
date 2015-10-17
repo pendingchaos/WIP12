@@ -11,7 +11,7 @@ void deinitLoggingSystem();
 
 void log(const char *format, ...);
 
-class String;
+class Str;
 
 class LogEntry
 {
@@ -61,7 +61,7 @@ class LogEntry
 
         LogEntry& variable(const char *name, const char *value);
 
-        LogEntry& variable(const char *name, const String& value);
+        LogEntry& variable(const char *name, const Str& value);
 
         LogEntry& variable(const char *name, void *value)
         {

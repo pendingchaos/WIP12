@@ -15,51 +15,82 @@
 
 STATIC_ASSERT_FAIL_IF_FALSE(CHAR_BIT == 8)
 
-class String
+#if __WORDSIZE == 64
+#define STR_HASH_PRIME 1099511628211ULL
+#else
+#define STR_HASH_PRIME 16777619UL
+#endif
+#define STR_HASH_BASIS 0xc70f6907UL
+
+size_t calcHash(const char *str);
+
+inline size_t calcCharHash(char c)
+{
+    return (STR_HASH_BASIS ^ c) * STR_HASH_PRIME;
+}
+
+constexpr size_t _calcHash(char c, const char *rest, size_t value)
+{
+    return c == '\x00' ?
+           value :
+           _calcHash(rest[0], rest+1, (value ^ c) * STR_HASH_PRIME);
+}
+
+constexpr size_t calcHashConst(const char *str)
+{
+    return _calcHash(str[0], str+1, STR_HASH_BASIS);
+}
+
+template <size_t V>
+struct pass
+{
+    static constexpr size_t v = V;
+};
+
+#define CPL_STR_HASH(s) pass<calcHashConst(s)>::v
+
+//Refcount(uint32_t) - length(uint32_t) - hash(size_t)
+class Str
 {
     public:
-        String() : data(1)
+        Str();
+        Str(const char *str);
+        Str(size_t length);
+        Str(size_t length, const char *data);
+        Str(char c);
+        Str(const Str& a, const Str& b);
+        inline Str(const Str& other) : datav(other.datav)
         {
-            getData()[0] = '\x00';
+            setRefCount(getRefCount()+1);
         }
 
-        String(size_t length) : data(length+1)
+        ~Str();
+
+        Str& operator = (const Str& other);
+
+        inline bool operator == (const Str& other) const
         {
-            getData()[length] = '\x00';
+            return getHash() == other.getHash() ? (strcmp(getData(), other.getData()) == 0) : false;
         }
 
-        String(size_t length, const char *data_) : data(length, data_)
+        inline bool operator != (const Str& other) const
         {
-            data.resize(length+1);
-            getData()[length] = '\x00';
-        }
-
-        String(const char *data_) : data(std::strlen(data_)+1, data_) {}
-
-        String(char c) : data(2)
-        {
-            getData()[0] = c;
-            getData()[1] = '\x00';
-        }
-
-        inline bool operator == (const String& other) const
-        {
-            return data == other.data;
-        }
-
-        inline bool operator != (const String& other) const
-        {
-            return data != other.data;
+            return not (*this == other);
         }
 
         inline bool operator == (const char *other) const
         {
-            return std::strcmp(getData(), other) == 0;
+            return strcmp(getData(), other) == 0;
         }
 
         inline bool operator != (const char *other) const
         {
             return not (*this == other);
+        }
+
+        inline bool equals(const char *str, size_t hash) const
+        {
+            return getHash() == hash ? (*this == str) : false;
         }
 
         inline const char& operator [] (std::size_t index) const
@@ -74,318 +105,71 @@ class String
             return getData()[index];
         }
 
-        inline char& operator [] (std::size_t index)
+        inline Str operator + (const Str& other) const
         {
-            #ifdef DEBUG
-            if (index >= getLength())
-            {
-                THROW(BoundsException);
-            }
-            #endif
-
-            return getData()[index];
+            return Str(*this, other);
         }
 
-        inline char *getData()
+        //Super-efficient
+        inline Str operator + (char other) const
         {
-            return reinterpret_cast<char *>(data.getData());
+            return Str(*this, Str(other));
         }
 
         inline const char *getData() const
         {
-            return reinterpret_cast<const char *>(data.getData());
+            return (const char *)(data8+8+sizeof(size_t));
         }
 
         inline size_t getLength() const
         {
-            return data.getSize() - 1;
+            return data32[1];
         }
 
-        String& append(char toAppend)
+        int find(char character) const;
+
+        int find(const Str& toFind) const;
+        int findLast(char character) const;
+        Str subStr(size_t offset, size_t length) const;
+        static Str format(const char *format, ...);
+
+        inline static Str formatValue(int value)
         {
-            insert(getLength(), 1, &toAppend);
-
-            return *this;
+            return Str::format("%i", value);
         }
 
-        String& append(std::size_t length, const char *toAppend)
+        inline static Str formatValue(unsigned int value)
         {
-            insert(getLength(), length, toAppend);
-
-            return *this;
+            return Str::format("%u", value);
         }
 
-        String& append(const char *toAppend)
+        inline static Str formatValue(long long int value)
         {
-            append(std::strlen(toAppend), toAppend);
-
-            return *this;
+            return Str::format("%lli", value);
         }
 
-        String& append(const String& toAppend)
+        inline static Str formatValue(unsigned long long int value)
         {
-            append(toAppend.getLength(), toAppend.getData());
-
-            return *this;
+            return Str::format("%llu", value);
         }
 
-        void insert(std::size_t start, std::size_t length, const char *toInsert)
+        inline static Str formatValue(float value)
         {
-            #ifdef DEBUG
-            if (start > getLength())
-            {
-                THROW(BoundsException);
-            }
-            #endif
-
-            data.insert(start, length, toInsert);
+            return Str::format("%f", value);
         }
 
-        void insert(std::size_t start, const char *toInsert)
+        inline static Str formatValue(double value)
         {
-            #ifdef DEBUG
-            if (start > getLength())
-            {
-                THROW(BoundsException);
-            }
-            #endif
-
-            data.insert(start, std::strlen(toInsert), toInsert);
+            return Str::format("%f", value);
         }
 
-        inline void insert(std::size_t start, const String& toInsert)
-        {
-            #ifdef DEBUG
-            if (start > getLength())
-            {
-                THROW(BoundsException);
-            }
-            #endif
-
-            insert(start, toInsert.getLength(), toInsert.getData());
-        }
-
-        void remove(std::size_t index, std::size_t length)
-        {
-            #ifdef DEBUG
-            if (index+length > getLength())
-            {
-                THROW(BoundsException);
-            }
-            #endif
-
-            data.remove(index, length);
-        }
-
-        void clear()
-        {
-            data.resize(1);
-            getData()[0] = '\x00';
-        }
-
-        void resize(std::size_t length)
-        {
-            data.resize(length+1);
-            getData()[length] = '\x00';
-        }
-
-        int find(char character) const
-        {
-            const char *chars = getData();
-
-            for (size_t i = 0; i < getLength(); ++i)
-            {
-                if (chars[i] == character)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        int find(const String& toFind) const
-        {
-            if (toFind.getLength() > getLength())
-            {
-                return -1;
-            }
-
-            for (size_t i = 0; i+toFind.getLength() <= getLength(); ++i)
-            {
-                bool found = true;
-
-                for (size_t j = 0; j < toFind.getLength(); ++j)
-                {
-                    if (getData()[i+j] != toFind[j])
-                    {
-                        found = false;
-                        break;
-                    }
-                }
-
-                if (found)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        int findLast(char character) const
-        {
-            const char *chars = getData();
-
-            for (int i = getLength()-1; i > 0; --i)
-            {
-                if (chars[i] == character)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        String subStr(size_t offset, size_t length) const
-        {
-            #ifdef DEBUG
-            if (offset+length > getLength())
-            {
-                THROW(BoundsException);
-            }
-            #endif
-
-            return String(length, getData()+offset);
-        }
-
-        inline String copy() const
-        {
-            return String(getData());
-        }
-
-        inline void copyFrom(const String& other)
-        {
-            resize(other.getLength());
-            std::memcpy(getData(), other.getData(), getLength());
-        }
-
-        inline static String format(const char *format, ...)
-        {
-            va_list list;
-            va_start(list, format);
-
-            va_list list2;
-            va_copy(list2, list);
-
-            char dummy_buf[1];
-            int amount = vsnprintf(dummy_buf, 0, format, list2);
-
-            va_end(list2);
-
-            if (amount < 0)
-            {
-                va_end(list);
-
-                return "";
-            }
-
-            String result((size_t)amount);
-            vsnprintf(result.getData(), result.getLength()+1, format, list);
-
-            va_end(list);
-
-            return result;
-        }
-
-        inline static String formatValue(int value)
-        {
-            return String::format("%i", value);
-        }
-
-        inline static String formatValue(unsigned int value)
-        {
-            return String::format("%u", value);
-        }
-
-        inline static String formatValue(long long int value)
-        {
-            return String::format("%lli", value);
-        }
-
-        inline static String formatValue(unsigned long long int value)
-        {
-            return String::format("%llu", value);
-        }
-
-        inline static String formatValue(float value)
-        {
-            return String::format("%f", value);
-        }
-
-        inline static String formatValue(double value)
-        {
-            return String::format("%f", value);
-        }
-
-        inline bool startsWith(const String& with, size_t offset=0) const
-        {
-            if (getLength() < with.getLength()+offset)
-            {
-                return false;
-            }
-
-            for (size_t i = 0; i < with.getLength(); ++i)
-            {
-                if ((*this)[i+offset] != with[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        inline bool splitLeftRight(char separator, String& left, String& right) const
-        {
-            int location = find(separator);
-
-            if (location == -1)
-            {
-                return false;
-            }
-
-            left = subStr(0, location);
-            right = subStr(location+1, getLength()-location-1);
-
-            return true;
-        }
-
-        inline List<String> split(char separator) const
-        {
-            List<String> result;
-
-            String left;
-            String right = copy();
-            while (right.splitLeftRight(separator, left, right))
-            {
-                result.append(left);
-            }
-
-            result.append(right);
-
-            return result;
-        }
-
-        inline String join(const String& other) const
-        {
-            return copy().append(other);
-        }
+        bool startsWith(const Str& with, size_t offset=0) const;
+        bool splitLeftRight(char separator, Str& left, Str& right) const;
+        List<Str> split(char separator) const;
 
         class Iterator
         {
-            friend String;
+            friend Str;
 
             public:
                 inline char operator * () const
@@ -404,36 +188,9 @@ class String
                     return i != other.i;
                 }
             private:
-                Iterator(String& str_, size_t i_) : str(str_), i(i_) {}
+                Iterator(Str& str_, size_t i_) : str(str_), i(i_) {}
 
-                String& str; //TODO: Remove the reference
-                size_t i;
-        };
-
-        class ConstIterator
-        {
-            friend String;
-
-            public:
-                inline char operator * () const
-                {
-                    return str[i];
-                }
-
-                inline ConstIterator& operator ++ ()
-                {
-                    ++i;
-                    return *this;
-                }
-
-                inline bool operator != (const ConstIterator& other) const
-                {
-                    return i != other.i;
-                }
-            private:
-                ConstIterator(const String& str_, size_t i_) : str(str_), i(i_) {}
-
-                const String& str; //TODO: Remove the reference
+                const Str& str; //TODO: Remove the reference
                 size_t i;
         };
 
@@ -447,19 +204,56 @@ class String
             return Iterator(*this, getLength());
         }
 
-        inline ConstIterator begin() const NO_BIND
+        inline size_t getHash() const
         {
-            return ConstIterator(*this, 0);
-        }
-
-        inline ConstIterator end() const NO_BIND
-        {
-            return ConstIterator(*this, getLength());
+            return *(size_t *)(data8+8);
         }
     private:
-        ResizableData data;
+        inline char *_getData()
+        {
+            return (char *)(data8+8+sizeof(size_t));
+        }
+
+        inline void setHash(size_t hash)
+        {
+            *(size_t *)(data8+8) = hash;
+        }
+
+        inline void setLength(uint32_t length)
+        {
+            data32[1] = length;
+        }
+
+        inline void setRefCount(uint32_t count)
+        {
+            data32[0] = count;
+        }
+
+        inline uint32_t getRefCount() const
+        {
+            return data32[0];
+        }
+
+        inline void allocate(size_t length)
+        {
+            datav = ALLOCATE(9+sizeof(size_t)+length);
+            setLength(length);
+            setRefCount(1);
+        }
+
+        union
+        {
+            void *datav;
+            uint8_t *data8;
+            uint32_t *data32;
+        };
 };
 
-size_t getHash(const String& value);
+size_t calcHash(const Str& value);
+
+inline size_t getHash(const Str& value)
+{
+    return value.getHash();
+}
 
 #endif // STRING_H

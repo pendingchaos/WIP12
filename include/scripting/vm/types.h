@@ -56,6 +56,7 @@ struct Value
         double f;
         bool b;
         Value (*func)(Context *ctx, const List<Value>& args);
+        uint8_t s[sizeof(Str)];
     };
 
     bool operator == (const Value& other) const;
@@ -63,6 +64,11 @@ struct Value
     inline bool operator != (const Value& other) const
     {
         return not (*this == other);
+    }
+
+    inline Str getStr() const
+    {
+        return *(Str *)s;
     }
 };
 
@@ -78,24 +84,16 @@ struct ObjectData
 {
     inline ObjectData() : refCount(1) {}
 
-    HashMap<String, Value> members;
+    HashMap<Str, Value> members;
     uint64_t refCount;
-};
-
-struct StringData
-{
-    StringData() {}
-    StringData(const String& str) : value(str) {}
-
-    String value;
 };
 
 struct ExceptionData
 {
-    inline ExceptionData(ExcType type_, String error_) : type(type_), error(error_) {}
+    inline ExceptionData(ExcType type_, Str error_) : type(type_), error(error_) {}
 
     ExcType type;
-    String error;
+    Str error;
 };
 
 struct NativeObjectData
@@ -120,9 +118,9 @@ Value createNil();
 Value createFunction(const Bytecode& bytecode);
 Value createObject();
 Value createReference(Value *value);
-Value createString(const String& value);
+Value createString(const Str& value);
 Value createNativeFunction(Value (*func)(Context *ctx, const List<Value>& args));
-Value createException(ExcType type, String error);
+Value createException(ExcType type, Str error);
 Value createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID);
 Value createCopy(Context *context, const Value& value);
 void destroy(Context *context, const Value& value);

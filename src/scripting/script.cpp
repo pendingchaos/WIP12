@@ -388,7 +388,7 @@ ScriptInstance::~ScriptInstance()
     script->release();
 }
 
-void ScriptInstance::method(const String& name)
+void ScriptInstance::method(const Str& name)
 {
     scripting::Context *ctx = script->getContext();
 
@@ -412,7 +412,7 @@ void ScriptInstance::method(const String& name)
     }
 }
 
-void ScriptInstance::method(const String& name, float timestep)
+void ScriptInstance::method(const Str& name, float timestep)
 {
     scripting::Context *ctx = script->getContext();
 
@@ -454,7 +454,7 @@ void ScriptInstance::destroy()
 Script::Script() : Resource(ResType::ScriptType),
                    context(nullptr) {}
 
-Script::Script(const String& filename) : Resource(filename,
+Script::Script(const Str& filename) : Resource(filename,
                                                   ResType::ScriptType),
                                          context(nullptr) {}
 
@@ -483,13 +483,18 @@ void Script::_load()
 {
     removeContent();
 
-    String source;
+    Str source;
 
     try
     {
         File sourceFile(getFilename().getData(), "r");
-        source = String(sourceFile.getSize());
-        sourceFile.read(sourceFile.getSize(), source.getData());
+
+        char *data = (char *)ALLOCATE(sourceFile.getSize());
+        sourceFile.read(sourceFile.getSize(), data);
+
+        source = Str(sourceFile.getSize(), data);
+
+        DEALLOCATE(data);
     } catch (const FileException& e)
     {
         THROW(ResourceIOException,
@@ -508,7 +513,7 @@ void Script::_load()
         THROW(ResourceIOException,
               "script",
               getFilename(),
-              String::format("%d:%d: %s", e.scriptLine, e.scriptColumn, e.message));
+              Str::format("%d:%d: %s", e.scriptLine, e.scriptColumn, e.message));
     }
 
     //printAST(0, ast);

@@ -96,12 +96,12 @@ struct Token
         EndStatement //';'
     };
     Type type;
-    ::String str;
+    ::Str str;
     size_t line;
     size_t column;
 };
 
-List<Token> tokenize(const String& input);
+List<Token> tokenize(const Str& input);
 }
 
 #endif // TOKENIZER_H

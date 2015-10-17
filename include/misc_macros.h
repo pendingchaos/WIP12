@@ -123,4 +123,6 @@ protected:\
 #define RADIANS(angle) ((angle) * (M_PI / 180.0))
 #define DEGREES(angle) ((angle) * (180.0 / M_PI))
 
+#define FORCE_INLINE inline __attribute__((always_inline))
+
 #endif // MISC_MACROS_H

@@ -7,7 +7,7 @@
 
 Audio::Audio() : Resource(ResType::AudioType), frequency(11025) {}
 
-Audio::Audio(const String& filename_) : Resource(filename_, ResType::AudioType),
+Audio::Audio(const Str& filename_) : Resource(filename_, ResType::AudioType),
                                         frequency(11025) {}
 
 Audio::~Audio() {}
@@ -61,7 +61,7 @@ void Audio::_load()
 
         if (result < 0)
         {
-            THROW(ResourceIOException, "audio", getFilename(), String::format("Unable to decode ogg vorbis file: %d", result));
+            THROW(ResourceIOException, "audio", getFilename(), Str::format("Unable to decode ogg vorbis file: %d", result));
         }
 
         if (info->channels == 2)

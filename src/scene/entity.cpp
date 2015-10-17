@@ -4,7 +4,7 @@
 #include "scripting/bindings2.h"
 #include "backtrace.h"
 
-Entity::Entity(const String& name_,
+Entity::Entity(const Str& name_,
                Scene *scene_) : name(name_),
                                 rigidBody(nullptr),
                                 render(false),
@@ -46,7 +46,7 @@ Entity::~Entity()
     removeRigidBody();
 }
 
-scripting::Value Entity::findScriptInstanceObj(const String& filename) const
+scripting::Value Entity::findScriptInstanceObj(const Str& filename) const
 {
     ScriptInstance *inst = findScriptInstance(filename);
     return inst == nullptr ? scripting::createNil() : inst->getObj();
@@ -66,7 +66,7 @@ RigidBody *Entity::addRigidBody(const RigidBodyConstructionInfo& info,
     return rigidBody;
 }
 
-Entity *Entity::createEntity(const String& name)
+Entity *Entity::createEntity(const Str& name)
 {
     Entity *entity = NEW(Entity, name, scene);
 
@@ -84,7 +84,7 @@ void Entity::removeEntity(size_t index)
     entities.remove(index);
 }
 
-Entity *Entity::findEntity(const String& name)
+Entity *Entity::findEntity(const Str& name)
 {
     for (auto entity : entities)
     {

@@ -1,5 +1,5 @@
 #include "scripting/parser/tokenizer.h"
-
+#include <iostream>
 #define TOKEN(str_, type_) else if (input.startsWith(str_, offset))\
 {\
 offset += (sizeof str_) - 1;\
@@ -32,7 +32,7 @@ tokens.append(tok);\
 
 namespace scripting
 {
-List<Token> tokenize(const String& input)
+List<Token> tokenize(const Str& input)
 {
     List<Token> tokens;
     size_t offset = 0;
@@ -133,7 +133,7 @@ List<Token> tokenize(const String& input)
                     THROW(TokenException, "Invalid character in hexadecimal literal.", line, COLUMN);
                 }
 
-                tok.str.append(c);
+                tok.str = tok.str + c;
             }
 
             tokens.append(tok);
@@ -153,7 +153,7 @@ List<Token> tokenize(const String& input)
 
                 if (c == '0' or c == '1')
                 {
-                    tok.str.append(c);
+                    tok.str = tok.str + c;
                 } else if (c == ' ' or c == '\n' or c == '\t')
                 {
                     ++line;
@@ -235,7 +235,7 @@ List<Token> tokenize(const String& input)
                     break;
                 }
 
-                tok.str.append(c);
+                tok.str = tok.str + c;
             }
 
             tok.type = scientific ? Token::ScientificFloat : (hasFractional ? Token::Float : Token::Integer);
@@ -267,13 +267,13 @@ List<Token> tokenize(const String& input)
                         THROW(TokenException, "Expected character after '\\'.", line, COLUMN);
                     }
 
-                    tok.str.append('\\');
+                    tok.str = tok.str + '\\';
 
                     char ec = input[offset];
 
                     if (ec == 'n' or ec == 't' or ec == '\\' or ec == 'x')
                     {
-                        tok.str.append(ec);
+                        tok.str = tok.str + ec;
                     } else
                     {
                         THROW(TokenException, "Invalid escape code.", line, COLUMN);
@@ -281,17 +281,17 @@ List<Token> tokenize(const String& input)
                 } else if (c == '"')
                 {
                     ++offset;
-                    tok.str.append(c);
+                    tok.str = tok.str + c;
                     success = true;
                     break;
                 } else if (c == '\n')
                 {
                     ++line;
                     lastLineOffset = offset;
-                    tok.str.append('\n');
+                    tok.str = tok.str + '\n';
                 } else
                 {
-                    tok.str.append(c);
+                    tok.str = tok.str + c;
                 }
             }
 
@@ -349,7 +349,7 @@ List<Token> tokenize(const String& input)
                     break;
                 }
 
-                tok.str.append(c);
+                tok.str = tok.str + c;
             }
 
             tokens.append(tok);

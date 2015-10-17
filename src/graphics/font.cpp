@@ -5,7 +5,7 @@
 
 #include <cstring>
 
-Font::Font(const String& filename) : Resource(filename, ResType::FontType)
+Font::Font(const Str& filename) : Resource(filename, ResType::FontType)
 {
     quadMesh = NEW(GfxMesh);
     quadMesh->primitive = GfxPoints;

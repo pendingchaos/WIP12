@@ -10,7 +10,7 @@
 
 Filesystem::Filesystem()
 {
-    searchPaths.append(List<String >());
+    searchPaths.append(List<Str >());
 }
 
 void Filesystem::pushSearchPaths()
@@ -23,18 +23,18 @@ void Filesystem::popSearchPaths()
     searchPaths.remove(searchPaths.getCount()-1);
 }
 
-void Filesystem::addSearchPath(const String& path)
+void Filesystem::addSearchPath(const Str& path)
 {
     searchPaths[searchPaths.getCount()-1].append(getAbsolutePath(path.getData()));
 }
 
-String Filesystem::getAbsolutePath(const char *path) const
+Str Filesystem::getAbsolutePath(const char *path) const
 {
     if (searchPaths.getCount() != 0)
     {
         char *workingDir = get_current_dir_name();
 
-        const List<String >& paths = searchPaths[searchPaths.getCount()-1];
+        const List<Str >& paths = searchPaths[searchPaths.getCount()-1];
 
         for (size_t i = 0; i < paths.getCount(); ++i)
         {
@@ -65,7 +65,7 @@ String Filesystem::getAbsolutePath(const char *path) const
     std::memset(result, '\x00', sizeof(result));
     if (realpath(path, result) == nullptr)
     {
-        return "";
+        return Str();
     }
 
     return result;

@@ -111,14 +111,14 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     colorModify->getShader(GfxShaderType::Vertex)->release();
 
     compiledShadowmapVertex = shadowmapVertex->getCompiled();
-    compiledShadowmapVertexAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("SKELETAL_ANIMATION", "1"));
+    compiledShadowmapVertexAnimated = shadowmapVertex->getCompiled(HashMapBuilder<Str, Str>().add("SKELETAL_ANIMATION", "1"));
     compiledTerrainVertex = terrainVertex->getCompiled();
     compiledTerrainTessControl = terrainTessControl->getCompiled();
     compiledTerrainTessEval = terrainTessEval->getCompiled();
     compiledTerrainFragment = terrainFragment->getCompiled();
 
-    compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1"));
-    compiledShadowmapVertexTesselationAnimated = shadowmapVertex->getCompiled(HashMapBuilder<String, String>().add("TESSELATION", "1").add("SKELETAL_ANIMATION", "1"));
+    compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<Str, Str>().add("TESSELATION", "1"));
+    compiledShadowmapVertexTesselationAnimated = shadowmapVertex->getCompiled(HashMapBuilder<Str, Str>().add("TESSELATION", "1").add("SKELETAL_ANIMATION", "1"));
 
     compiledPointShadowmapGeometry = pointShadowmapGeometry->getCompiled();
 
@@ -459,7 +459,7 @@ void GfxRenderer::updateStats()
 
 void GfxRenderer::updateColorModifierShader()
 {
-    String source = (STR(
+    Str source = (STR(
 //Begin color.glsl\n
 vec3 RGBToxyY(vec3 rgb)
 {
@@ -571,66 +571,66 @@ void main()
         {
         case ColorModifier::Vignette:
         {
-            source.append(String::format("result_color = vignette(result_color, %f, %f, %f);",
-                                         modifier.vignette.radius,
-                                         modifier.vignette.softness,
-                                         modifier.vignette.intensity));
+            source = source + Str::format("result_color = vignette(result_color, %f, %f, %f);",
+                                          modifier.vignette.radius,
+                                          modifier.vignette.softness,
+                                          modifier.vignette.intensity);
             break;
         }
         case ColorModifier::HueShift:
         {
-            source.append(String::format("result_color = hueShift(result_color, %f);",
-                                         modifier.hueShift.hue));
+            source = source + Str::format("result_color = hueShift(result_color, %f);",
+                                          modifier.hueShift.hue);
             break;
         }
         case ColorModifier::SaturationShift:
         {
-            source.append(String::format("result_color = saturationShift(result_color, %f);",
-                                         modifier.saturationShift.saturation));
+            source = source + Str::format("result_color = saturationShift(result_color, %f);",
+                                          modifier.saturationShift.saturation);
             break;
         }
         case ColorModifier::BrightnessShift:
         {
-            source.append(String::format("result_color = brightnessShift(result_color, %f);",
-                                         modifier.brightnessShift.brightness));
+            source = source + Str::format("result_color = brightnessShift(result_color, %f);",
+                                          modifier.brightnessShift.brightness);
             break;
         }
         case ColorModifier::Contrast:
         {
-            source.append(String::format("result_color = contrast(result_color, %f);",
-                                         modifier.contrast.contrast));
+            source = source + Str::format("result_color = contrast(result_color, %f);",
+                                          modifier.contrast.contrast);
             break;
         }
         case ColorModifier::Multiply:
         {
-            source.append(String::format("result_color = multiply(result_color, vec3(%f, %f, %f));",
-                                         modifier.multiply.red,
-                                         modifier.multiply.green,
-                                         modifier.multiply.blue));
+            source = source + Str::format("result_color = multiply(result_color, vec3(%f, %f, %f));",
+                                          modifier.multiply.red,
+                                          modifier.multiply.green,
+                                          modifier.multiply.blue);
             break;
         }
         case ColorModifier::HueReplace:
         {
-            source.append(String::format("result_color = hueReplace(result_color, %f);",
-                                         modifier.hueReplace.hue));
+            source = source + Str::format("result_color = hueReplace(result_color, %f);",
+                                          modifier.hueReplace.hue);
             break;
         }
         case ColorModifier::SaturationReplace:
         {
-            source.append(String::format("result_color = saturationReplace(result_color, %f);",
-                                         modifier.saturationReplace.saturation));
+            source = source + Str::format("result_color = saturationReplace(result_color, %f);",
+                                          modifier.saturationReplace.saturation);
             break;
         }
         case ColorModifier::BrightnessReplace:
         {
-            source.append(String::format("result_color = brightnessReplace(result_color, %f);",
-                                         modifier.brightnessReplace.brightness));
+            source = source + Str::format("result_color = brightnessReplace(result_color, %f);",
+                                          modifier.brightnessReplace.brightness);
             break;
         }
         }
     }
 
-    source.append("}");
+    source = source + "}";
 
     colorModifierFragment->compile(GfxShaderType::Fragment, source);
 

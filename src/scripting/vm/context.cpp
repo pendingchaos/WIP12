@@ -133,7 +133,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             ResizableData data = bytecode.getData(offset, length);
             offset += length;
 
-            stack->append(createString(String(length, (const char *)data.getData())));
+            stack->append(createString(Str(length, (const char *)data.getData())));
             BREAK
         }
         CASE(PushException)
@@ -147,7 +147,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             ResizableData data = bytecode.getData(offset, length);
             offset += length;
 
-            stack->append(createException(type, String(length, (const char *)data.getData())));
+            stack->append(createException(type, Str(length, (const char *)data.getData())));
             BREAK
         }
         CASE(StackPop)
@@ -175,13 +175,13 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                 BREAK
             }
 
-            String name = ((StringData *)nameVal.p)->value;
+            Str name = nameVal.getStr();
 
             bool found = false;
 
             for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
             {
-                HashMap<String, Value>& vars = callStack[i].variables;
+                HashMap<Str, Value>& vars = callStack[i].variables;
 
                 auto pos = vars.find(name);
                 if (pos != vars.end())
@@ -194,7 +194,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
             if (not found)
             {
-                HashMap<String, Value>& vars = engine->getGlobalVars();
+                HashMap<Str, Value>& vars = engine->getGlobalVars();
 
                 auto pos = vars.find(name);
 
@@ -203,7 +203,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                     stack->append(createCopy(this, pos->second));
                 } else
                 {
-                    throwException(createException(ExcType::KeyError, String::format("No such variable '%s'.", name.getData())));
+                    throwException(createException(ExcType::KeyError, Str::format("No such variable '%s'.", name.getData())));
                 }
             }
 
@@ -224,12 +224,12 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
             Value value = popStack(*stack);
 
-            String name = ((StringData *)nameVal.p)->value;
+            Str name = nameVal.getStr();
             bool found = false;
 
             for (ptrdiff_t i = callStackSize-1; i >= 0; --i)
             {
-                HashMap<String, Value>& vars = callStack[i].variables;
+                HashMap<Str, Value>& vars = callStack[i].variables;
 
                 auto pos = vars.find(name);
 
@@ -245,7 +245,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
             if (not found)
             {
-                HashMap<String, Value>& vars = engine->getGlobalVars();
+                HashMap<Str, Value>& vars = engine->getGlobalVars();
 
                 auto pos = vars.find(name);
 
@@ -296,8 +296,9 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
         #define ARITHMATIC_OP(iop, fop, funcName) Value aVal = popStack(*stack);\
 Value bVal = popStack(*stack);\
 \
-if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject or\
-    bVal.type == ValueType::Object or bVal.type == ValueType::NativeObject)\
+if (aVal.type == ValueType::Object or\
+    aVal.type == ValueType::NativeObject or\
+    aVal.type == ValueType::StringType)\
 {\
     List<Value> args;\
     args.append(bVal);\
@@ -477,7 +478,9 @@ BREAK
         #define COMPARE_OP(op, funcName) Value aVal = popStack(*stack);\
 Value bVal = popStack(*stack);\
 \
-if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject or aVal.type == ValueType::StringType)\
+if (aVal.type == ValueType::Object or\
+    aVal.type == ValueType::NativeObject or\
+    aVal.type == ValueType::StringType)\
 {\
     List<Value> args;\
     args.append(bVal);\
@@ -862,7 +865,7 @@ static Value strEqual(Context *ctx, const List<Value>& args)
         ctx->throwException(createException(ExcType::TypeError, "String::__eq__ takes a string as the second argument."));
     }
 
-    return createBoolean(((StringData *)args[0].p)->value == ((StringData *)args[1].p)->value);
+    return createBoolean(args[0].getStr() == args[1].getStr());
 }
 
 static Value strNotEqual(Context *ctx, const List<Value>& args)
@@ -882,136 +885,27 @@ static Value strNotEqual(Context *ctx, const List<Value>& args)
         ctx->throwException(createException(ExcType::TypeError, "String::__neq__ takes a string as the second argument."));
     }
 
-    return createBoolean(((StringData *)args[0].p)->value != ((StringData *)args[1].p)->value);
+    return createBoolean(args[0].getStr() != args[1].getStr());
 }
 
-static Value strAppend(Context *ctx, const List<Value>& args)
+static Value strAdd(Context *ctx, const List<Value>& args)
 {
     if (args.getCount() != 2)
     {
-        ctx->throwException(createException(ExcType::ValueError, "String::append takes two arguments."));
+        ctx->throwException(createException(ExcType::ValueError, "String::__add__ takes two arguments."));
     }
 
     if (args[0].type != ValueType::StringType)
     {
-        ctx->throwException(createException(ExcType::TypeError, "String::append takes a string as the first argument."));
+        ctx->throwException(createException(ExcType::TypeError, "String::__add__ takes a string as the first argument."));
     }
 
     if (args[1].type != ValueType::StringType)
     {
-        ctx->throwException(createException(ExcType::TypeError, "String::append takes a string as the second argument."));
+        ctx->throwException(createException(ExcType::TypeError, "String::__add__ takes a string as the second argument."));
     }
 
-    return createString(((StringData *)args[0].p)->value.append(((StringData *)args[1].p)->value));
-}
-
-static Value strInsert(Context *ctx, const List<Value>& args)
-{
-    if (args.getCount() != 3)
-    {
-        ctx->throwException(createException(ExcType::ValueError, "String::insert takes three arguments."));
-    }
-
-    if (args[0].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::insert takes a string as the first argument."));
-    }
-
-    if (args[1].type != ValueType::Int or args[1].type != ValueType::Float)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::insert takes a integer or float as the second argument."));
-    }
-
-    if (args[2].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::insert takes a string as the third argument."));
-    }
-
-    String str = ((StringData *)args[0].p)->value;
-    size_t start = toIndex(ctx, args[1]);
-    String toInsert = ((StringData *)args[2].p)->value;
-
-    if (start > str.getLength())
-    {
-        ctx->throwException(createException(ExcType::ValueError, "Invalid start for string insertion."));
-    }
-
-    str.insert(start, toInsert);
-    return createNil();
-}
-
-static Value strRemove(Context *ctx, const List<Value>& args)
-{
-    if (args.getCount() != 3)
-    {
-        ctx->throwException(createException(ExcType::ValueError, "String::remove takes three arguments."));
-    }
-
-    if (args[0].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::remove takes a string as the first argument."));
-    }
-
-    if (args[1].type != ValueType::Int and args[1].type != ValueType::Float)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::remove takes a integer or float as the second argument."));
-    }
-
-    if (args[2].type != ValueType::Int and args[2].type != ValueType::Float)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::remove takes a integer or float as the third argument."));
-    }
-
-    String str = ((StringData *)args[0].p)->value;
-    size_t start = toIndex(ctx, args[1]);
-    size_t count = toIndex(ctx, args[2]);
-
-    if (start+count > str.getLength())
-    {
-        ctx->throwException(createException(ExcType::ValueError, "Invalid start and count for string removal."));
-    }
-
-    str.remove(start, count);
-    return createNil();
-}
-
-static Value strClear(Context *ctx, const List<Value>& args)
-{
-    if (args.getCount() != 1)
-    {
-        ctx->throwException(createException(ExcType::ValueError, "String::clear takes one argument."));
-    }
-
-    if (args[0].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::clear takes a string as the first argument."));
-    }
-
-    ((StringData *)args[0].p)->value.clear();
-
-    return createNil();
-}
-
-static Value strResize(Context *ctx, const List<Value>& args)
-{
-    if (args.getCount() != 2)
-    {
-        ctx->throwException(createException(ExcType::ValueError, "String::resize takes two arguments."));
-    }
-
-    if (args[0].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::resize takes a string as the first argument."));
-    }
-
-    if (args[1].type != ValueType::Int and args[1].type != ValueType::Float)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::resize takes a integer or float as the second argument."));
-    }
-
-    ((StringData *)args[0].p)->value.resize(toIndex(ctx, args[1]));
-
-    return createNil();
+    return createString(args[0].getStr() + args[1].getStr());
 }
 
 static Value strFind(Context *ctx, const List<Value>& args)
@@ -1031,7 +925,7 @@ static Value strFind(Context *ctx, const List<Value>& args)
         ctx->throwException(createException(ExcType::TypeError, "String::find takes a string as the second argument."));
     }
 
-    return createInt(((StringData *)args[0].p)->value.find(((StringData *)args[1].p)->value));
+    return createInt(args[0].getStr().find(args[1].getStr()));
 }
 
 static Value strSubStr(Context *ctx, const List<Value>& args)
@@ -1056,7 +950,7 @@ static Value strSubStr(Context *ctx, const List<Value>& args)
         ctx->throwException(createException(ExcType::TypeError, "String::subStr takes a integer or float as the third argument."));
     }
 
-    String str = ((StringData *)args[0].p)->value;
+    Str str = args[0].getStr();
     size_t offset = toIndex(ctx, args[1]);
     size_t length = toIndex(ctx, args[2]);
 
@@ -1066,43 +960,6 @@ static Value strSubStr(Context *ctx, const List<Value>& args)
     }
 
     return createString(str.subStr(offset, length));
-}
-
-static Value strCopy(Context *ctx, const List<Value>& args)
-{
-    if (args.getCount() != 1)
-    {
-        ctx->throwException(createException(ExcType::ValueError, "String::copy takes one argument."));
-    }
-
-    if (args[0].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::copy takes a string as the first argument."));
-    }
-
-    return createString(((StringData *)args[0].p)->value.copy());
-}
-
-static Value strCopyFrom(Context *ctx, const List<Value>& args)
-{
-    if (args.getCount() != 2)
-    {
-        ctx->throwException(createException(ExcType::ValueError, "String::copyFrom takes two arguments."));
-    }
-
-    if (args[0].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::copyFrom takes a string as the first argument."));
-    }
-
-    if (args[1].type != ValueType::StringType)
-    {
-        ctx->throwException(createException(ExcType::TypeError, "String::copyFrom takes a string as the second argument."));
-    }
-
-    ((StringData *)args[0].p)->value.copyFrom(((StringData *)args[1].p)->value);
-
-    return createNil();
 }
 
 static Value strFormat(Context *ctx, const List<Value>& args)
@@ -1117,8 +974,8 @@ static Value strFormat(Context *ctx, const List<Value>& args)
         ctx->throwException(createException(ExcType::TypeError, "String::format takes a string as the first argument."));
     }
 
-    String formatStr = ((StringData *)args[0].p)->value;
-    String result;
+    Str formatStr = args[0].getStr();
+    Str result;
     size_t argIndex = 1;
 
     for (size_t i = 0; i < formatStr.getLength(); ++i)
@@ -1136,7 +993,7 @@ static Value strFormat(Context *ctx, const List<Value>& args)
 
             if (type == '%')
             {
-                result.append(c);
+                result = result + c;
             } else if (type == 'v')
             {
                 if (argIndex >= args.getCount())
@@ -1150,63 +1007,63 @@ static Value strFormat(Context *ctx, const List<Value>& args)
                 {
                 case ValueType::Int:
                 {
-                    result.append(String::formatValue((long long int)v.i));
+                    result = result + Str::formatValue((long long int)v.i);
                     break;
                 }
                 case ValueType::Float:
                 {
-                    result.append(String::format("%.2f", v.f));
+                    result = result + Str::format("%.2f", v.f);
                     break;
                 }
                 case ValueType::Boolean:
                 {
-                    result.append(v.b ? "true" : "false");
+                    result = result + (v.b ? "true" : "false");
                     break;
                 }
                 case ValueType::Nil:
                 {
-                    result.append("nil");
+                    result = result + "nil";
                     break;
                 }
                 case ValueType::Function:
                 {
-                    result.append("<function>");
+                    result = result + "<function>";
                     break;
                 }
                 case ValueType::Object:
                 {
-                    result.append("<object>");
+                    result = result + "<object>";
                     break;
                 }
                 case ValueType::StringType:
                 {
-                    result.append(((StringData *)v.p)->value);
+                    result = result + v.getStr();
                     break;
                 }
                 case ValueType::NativeFunction:
                 {
-                    result.append("<native function>");
+                    result = result + "<native function>";
                     break;
                 }
                 case ValueType::NativeObject:
                 {
-                    result.append("<native object>");
+                    result = result + "<native object>";
                     break;
                 }
                 case ValueType::Exception:
                 {
-                    result.append("<exception>");
+                    result = result + "<exception>";
                     break;
                 }
                 }
             } else
             {
-                result.append(c);
+                result = result + c;
                 --i;
             }
         } else
         {
-            result.append(c);
+            result = result + c;
         }
     }
 
@@ -1224,14 +1081,13 @@ Value getMember(Context *ctx, const Value& val, const Value& key)
             ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
 
-        const HashMap<String, Value>& members = ((ObjectData *)val.p)->members;
+        const HashMap<Str, Value>& members = ((ObjectData *)val.p)->members;
 
-        String keyStr = ((StringData *)key.p)->value;
-        auto pos = members.find(keyStr);
+        auto pos = members.find(key.getStr());
 
         if (pos == members.end())
         {
-            ctx->throwException(createException(ExcType::KeyError, String::format("Unknown member: '%s'", keyStr.getData())));
+            ctx->throwException(createException(ExcType::KeyError, Str::format("Unknown member: '%s'", key.getStr().getData())));
         }
 
         return createCopy(ctx, pos->second);
@@ -1240,57 +1096,37 @@ Value getMember(Context *ctx, const Value& val, const Value& key)
     {
         if (key.type == ValueType::Int or key.type == ValueType::Float)
         {
-            String str = ((StringData *)val.p)->value;
-
             size_t index = toIndex(ctx, key);
 
-            if (index >= str.getLength())
+            if (index >= val.getStr().getLength())
             {
                 ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
             }
 
-            return createString(String(str[index]));
+            return createString(Str(val.getStr()[index]));
         } else if (key.type == ValueType::StringType)
         {
-            String keyStr = ((StringData *)key.p)->value;
+            Str keyStr = key.getStr();
 
-            if (keyStr == "__eq__")
+            if (keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
             {
                 return createNativeFunction(strEqual);
-            } else if (keyStr == "__neq__")
+            } else if (keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
             {
                 return createNativeFunction(strNotEqual);
-            } else if (keyStr == "length")
+            } else if (keyStr.equals("length", CPL_STR_HASH("length")))
             {
-                return createInt(((StringData *)val.p)->value.getLength());
-            } else if (keyStr == "append")
+                return createInt(val.getStr().getLength());
+            } else if (keyStr.equals("__add__", CPL_STR_HASH("__add__")))
             {
-                return createNativeFunction(strAppend);
-            } else if (keyStr == "insert")
-            {
-                return createNativeFunction(strInsert);
-            } else if (keyStr == "remove")
-            {
-                return createNativeFunction(strRemove);
-            } else if (keyStr == "clear")
-            {
-                return createNativeFunction(strClear);
-            } else if (keyStr == "resize")
-            {
-                return createNativeFunction(strResize);
-            } else if (keyStr == "find")
+                return createNativeFunction(strAdd);
+            } else if (keyStr.equals("find", CPL_STR_HASH("find")))
             {
                 return createNativeFunction(strFind);
-            } else if (keyStr == "subStr")
+            } else if (keyStr.equals("subStr", CPL_STR_HASH("subStr")))
             {
                 return createNativeFunction(strSubStr);
-            } else if (keyStr == "copy")
-            {
-                return createNativeFunction(strCopy);
-            } else if (keyStr == "copyFrom")
-            {
-                return createNativeFunction(strCopyFrom);
-            } else if (keyStr == "format")
+            } else if (keyStr.equals("format", CPL_STR_HASH("format")))
             {
                 return createNativeFunction(strFormat);
             } else
@@ -1314,7 +1150,7 @@ Value getMember(Context *ctx, const Value& val, const Value& key)
             ctx->throwException(createException(ExcType::TypeError, "Member name must be String."));
         }
 
-        String name = ((StringData *)key.p)->value;
+        Str name = key.getStr();
         ExceptionData *exc = (ExceptionData *)val.p;
 
         if (name == "type")
@@ -1366,9 +1202,9 @@ void setMember(Context *ctx, const Value& dest, const Value& key, const Value& v
             ctx->throwException(createException(ExcType::TypeError, "Member names must be String."));
         }
 
-        HashMap<String, Value>& members = ((ObjectData *)dest.p)->members;
+        HashMap<Str, Value>& members = ((ObjectData *)dest.p)->members;
 
-        String name = ((StringData *)key.p)->value;
+        Str name = key.getStr();
 
         auto pos = members.find(name);
         if (pos != members.end())
@@ -1379,31 +1215,6 @@ void setMember(Context *ctx, const Value& dest, const Value& key, const Value& v
         members.set(name, createCopy(ctx, value));
         return;
     }
-    case ValueType::StringType:
-    {
-        if (value.type != ValueType::StringType)
-        {
-            ctx->throwException(createException(ExcType::TypeError, "A string's character can only be set as a String."));
-        } else
-        {
-            if (((StringData *)value.p)->value.getLength() != 1)
-            {
-                ctx->throwException(createException(ExcType::ValueError, "String must of length 1."));
-            }
-        }
-
-        String str = ((StringData *)dest.p)->value;
-
-        size_t index = toIndex(ctx, key);
-
-        if (index >= str.getLength())
-        {
-            ctx->throwException(createException(ExcType::IndexError, "String index is out of bounds."));
-        }
-
-        str[index] = ((StringData *)value.p)->value[0];
-        return;
-    }
     case ValueType::NativeObject:
     {
         NativeObjectData *obj = (NativeObjectData *)dest.p;
@@ -1412,7 +1223,7 @@ void setMember(Context *ctx, const Value& dest, const Value& key, const Value& v
     }
     default:
     {
-        ctx->throwException(createException(ExcType::TypeError, "Type does not have members."));
+        ctx->throwException(createException(ExcType::TypeError, "Type does not have members or writable members."));
     }
     }
 
@@ -1445,7 +1256,7 @@ Value call(Context *ctx, const Value& value, const List<Value>& args)
     SDL_assert_release(false);
 }
 
-Value callMethod(Context *ctx, const Value& obj, const String& methName, const List<Value>& args)
+Value callMethod(Context *ctx, const Value& obj, const Str& methName, const List<Value>& args)
 {
     List<Value> args_;
 
@@ -1476,8 +1287,8 @@ bool isInstance(Context *ctx, const Value& obj, const Value& type)
         return ((NativeObjectData *)obj.p)->typeID == ((NativeObjectData *)type.p)->typeID;
     } else if (obj.type == ValueType::Object)
     {
-        HashMap<String, Value> objMembers = ((ObjectData *)obj.p)->members;
-        HashMap<String, Value> typeMembers = ((ObjectData *)type.p)->members;
+        HashMap<Str, Value> objMembers = ((ObjectData *)obj.p)->members;
+        HashMap<Str, Value> typeMembers = ((ObjectData *)type.p)->members;
 
         auto pos1 = objMembers.find("__classTypeID__");
         auto pos2 = typeMembers.find("__typeID__");
