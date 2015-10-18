@@ -131,6 +131,7 @@ class File
         void writeUInt64BE(uint64_t value);
         void writeInt64BE(int64_t value);
         void writeFloat32(float value);
+        void writeStr(Str s);
 
         void printf(const char *format, ...) NO_BIND;
 

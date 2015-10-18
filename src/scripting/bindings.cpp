@@ -2237,7 +2237,6 @@ else
 };
 
 SV GfxApi_getDriver(CTX ctx,const List<SV>&a);
-SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a);
 SV GfxApi_createBuffer(CTX ctx,const List<SV>&a);
 SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a);
 SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a);
@@ -2248,9 +2247,16 @@ SV GfxApi_clearColor(CTX ctx,const List<SV>&a);
 SV GfxApi_begin(CTX ctx,const List<SV>&a);
 SV GfxApi_draw(CTX ctx,const List<SV>&a);
 SV GfxApi_end(CTX ctx,const List<SV>&a);
+SV GfxApi_getVertexShader(CTX ctx,const List<SV>&a);
+SV GfxApi_getTessControlShader(CTX ctx,const List<SV>&a);
+SV GfxApi_getTessEvalShader(CTX ctx,const List<SV>&a);
+SV GfxApi_getGeometryShader(CTX ctx,const List<SV>&a);
+SV GfxApi_getFragmentShader(CTX ctx,const List<SV>&a);
 SV GfxApi_uniform(CTX ctx,const List<SV>&a);
+SV GfxApi_uniformU(CTX ctx,const List<SV>&a);
 SV GfxApi_addUBOBinding(CTX ctx,const List<SV>&a);
 SV GfxApi_addTextureBinding(CTX ctx,const List<SV>&a);
+SV GfxApi_addTextureBinding2(CTX ctx,const List<SV>&a);
 SV GfxApi_pushState(CTX ctx,const List<SV>&a);
 SV GfxApi_popState(CTX ctx,const List<SV>&a);
 SV GfxApi_resetState(CTX ctx,const List<SV>&a);
@@ -4581,21 +4587,10 @@ else
 
 SV GfxMaterial_removeContent(CTX ctx,const List<SV>&a);
 SV GfxMaterial_save(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getShaderComb(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setMaterialMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getMaterialMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setAlbedoMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getAlbedoMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setNormalMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getNormalMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setParallaxHeightMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getParallaxHeightMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setPOMHeightMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getPOMHeightMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setDisplacementMap(CTX ctx,const List<SV>&a);
-SV GfxMaterial_getDisplacementMap(CTX ctx,const List<SV>&a);
+SV GfxMaterial_setScript(CTX ctx,const List<SV>&a);
+SV GfxMaterial_getScriptInst(CTX ctx,const List<SV>&a);
 SV GfxMaterial_isForward(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setForward(CTX ctx,const List<SV>&a);
+SV GfxMaterial_setupRender(CTX ctx,const List<SV>&a);
 SV GfxMaterial_load(CTX ctx,const List<SV>&a);
 SV GfxMaterial_copy(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getType(CTX ctx,const List<SV>&a);
@@ -4760,11 +4755,6 @@ else
 };
 
 SV ScriptInstance_method(CTX ctx,const List<SV>&a);
-SV ScriptInstance_handleInput(CTX ctx,const List<SV>&a);
-SV ScriptInstance_fixedUpdate(CTX ctx,const List<SV>&a);
-SV ScriptInstance_update(CTX ctx,const List<SV>&a);
-SV ScriptInstance_preRender(CTX ctx,const List<SV>&a);
-SV ScriptInstance_postRender(CTX ctx,const List<SV>&a);
 SV ScriptInstance_getScript(CTX ctx,const List<SV>&a);
 SV ScriptInstance_getObj(CTX ctx,const List<SV>&a);
 void RenderComponent_destroy(CTX,const SV&);
@@ -6713,6 +6703,7 @@ SV File_writeInt32BE(CTX ctx,const List<SV>&a);
 SV File_writeUInt64BE(CTX ctx,const List<SV>&a);
 SV File_writeInt64BE(CTX ctx,const List<SV>&a);
 SV File_writeFloat32(CTX ctx,const List<SV>&a);
+SV File_writeStr(CTX ctx,const List<SV>&a);
 SV File_printf(CTX ctx,const List<SV>&a);
 SV File_vprintf(CTX ctx,const List<SV>&a);
 SV File_writeChar(CTX ctx,const List<SV>&a);
@@ -15811,8 +15802,6 @@ EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxApi_new);
  EI(keyStr.equals("getDriver", CPL_STR_HASH("getDriver")))
 RET CNF(GfxApi_getDriver);
- EI(keyStr.equals("tesselationSupported", CPL_STR_HASH("tesselationSupported")))
-RET CNF(GfxApi_tesselationSupported);
  EI(keyStr.equals("createBuffer", CPL_STR_HASH("createBuffer")))
 RET CNF(GfxApi_createBuffer);
  EI(keyStr.equals("createTextureImpl", CPL_STR_HASH("createTextureImpl")))
@@ -15833,12 +15822,26 @@ RET CNF(GfxApi_begin);
 RET CNF(GfxApi_draw);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GfxApi_end);
+ EI(keyStr.equals("getVertexShader", CPL_STR_HASH("getVertexShader")))
+RET CNF(GfxApi_getVertexShader);
+ EI(keyStr.equals("getTessControlShader", CPL_STR_HASH("getTessControlShader")))
+RET CNF(GfxApi_getTessControlShader);
+ EI(keyStr.equals("getTessEvalShader", CPL_STR_HASH("getTessEvalShader")))
+RET CNF(GfxApi_getTessEvalShader);
+ EI(keyStr.equals("getGeometryShader", CPL_STR_HASH("getGeometryShader")))
+RET CNF(GfxApi_getGeometryShader);
+ EI(keyStr.equals("getFragmentShader", CPL_STR_HASH("getFragmentShader")))
+RET CNF(GfxApi_getFragmentShader);
  EI(keyStr.equals("uniform", CPL_STR_HASH("uniform")))
 RET CNF(GfxApi_uniform);
+ EI(keyStr.equals("uniformU", CPL_STR_HASH("uniformU")))
+RET CNF(GfxApi_uniformU);
  EI(keyStr.equals("addUBOBinding", CPL_STR_HASH("addUBOBinding")))
 RET CNF(GfxApi_addUBOBinding);
  EI(keyStr.equals("addTextureBinding", CPL_STR_HASH("addTextureBinding")))
 RET CNF(GfxApi_addTextureBinding);
+ EI(keyStr.equals("addTextureBinding2", CPL_STR_HASH("addTextureBinding2")))
+RET CNF(GfxApi_addTextureBinding2);
  EI(keyStr.equals("pushState", CPL_STR_HASH("pushState")))
 RET CNF(GfxApi_pushState);
  EI(keyStr.equals("popState", CPL_STR_HASH("popState")))
@@ -15940,6 +15943,23 @@ if(0) {} else
 }
 }
 
+SV GfxApi_getViewportHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getViewportHeight" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getViewportHeight());
+;
+}
+CATE(TE,UFOF("GfxApi::getViewportHeight.")));
+RET CN;
+}
+
 SV GfxApi_getScissorWidth(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16016,23 +16036,6 @@ if(1&&TS(a[1],size_t))
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::draw.")));
-RET CN;
-}
-
-SV GfxApi_tesselationSupported(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::tesselationSupported" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->tesselationSupported());
-;
-}
-CATE(TE,UFOF("GfxApi::tesselationSupported.")));
 RET CN;
 }
 
@@ -16121,20 +16124,31 @@ CATE(TE,UFOF("GfxApi::getViewportLeft.")));
 RET CN;
 }
 
-SV GfxApi_getWriteDepth(CTX ctx,const List<SV>&a)
+SV GfxApi_getTessControlShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getWriteDepth" EAOE));
+CATE(VE,"GfxApi::getTessControlShader" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getWriteDepth());
+RET CV( f->getTessControlShader());
 ;
 }
-CATE(TE,UFOF("GfxApi::getWriteDepth.")));
+CATE(TE,UFOF("GfxApi::getTessControlShader.")));
+RET CN;
+}
+
+SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getBlendConstantColor" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxApi::getBlendConstantColor.")));
 RET CN;
 }
 
@@ -16152,6 +16166,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::end.")));
+RET CN;
+}
+
+SV GfxApi_uniformU(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::uniformU" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],uint32_t))
+{
+( f->uniformU(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[3])));
+RET CN;
+}
+CATE(TE,UFOF("GfxApi::uniformU.")));
 RET CN;
 }
 
@@ -16189,20 +16220,32 @@ CATE(TE,UFOF("GfxApi::setScissor.")));
 RET CN;
 }
 
-SV GfxApi_resetState(CTX ctx,const List<SV>&a)
+SV GfxApi_clearColor(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::resetState" EAOE));
+CATE(VE,"GfxApi::clearColor" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],Float4))
 {
-( f->resetState());
+( f->clearColor(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Float4>::type>::f(ctx,a[2])));
 RET CN;
 }
-CATE(TE,UFOF("GfxApi::resetState.")));
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],Int4))
+{
+( f->clearColor(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Int4>::type>::f(ctx,a[2])));
+RET CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],UInt4))
+{
+( f->clearColor(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<UInt4>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("GfxApi::clearColor.")));
 RET CN;
 }
 
@@ -16317,6 +16360,18 @@ if(a.getCount()==4)
 if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt4 &))
 {
 ( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt4 &>::type>::f(ctx,a[3])));
+RET CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Matrix3x3 &))
+{
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Matrix3x3 &>::type>::f(ctx,a[3])));
+RET CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Matrix4x4 &))
+{
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::uniform.")));
@@ -16442,20 +16497,20 @@ CATE(TE,UFOF("GfxApi::getBlendConstantColorA.")));
 RET CN;
 }
 
-SV GfxApi_getBlendConstantColorB(CTX ctx,const List<SV>&a)
+SV GfxApi_getVertexShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getBlendConstantColorB" EAOE));
+CATE(VE,"GfxApi::getVertexShader" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getBlendConstantColorB());
+RET CV( f->getVertexShader());
 ;
 }
-CATE(TE,UFOF("GfxApi::getBlendConstantColorB.")));
+CATE(TE,UFOF("GfxApi::getVertexShader.")));
 RET CN;
 }
 
@@ -16530,6 +16585,23 @@ RET CV( f->getViewportWidth());
 ;
 }
 CATE(TE,UFOF("GfxApi::getViewportWidth.")));
+RET CN;
+}
+
+SV GfxApi_getWriteDepth(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getWriteDepth" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getWriteDepth());
+;
+}
+CATE(TE,UFOF("GfxApi::getWriteDepth.")));
 RET CN;
 }
 
@@ -16635,6 +16707,23 @@ CATE(TE,UFOF("GfxApi::createBuffer.")));
 RET CN;
 }
 
+SV GfxApi_getTessEvalShader(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getTessEvalShader" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getTessEvalShader());
+;
+}
+CATE(TE,UFOF("GfxApi::getTessEvalShader.")));
+RET CN;
+}
+
 SV GfxApi_getScissorEnabled(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -16669,14 +16758,20 @@ CATE(TE,UFOF("GfxApi::getCullMode.")));
 RET CN;
 }
 
-SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a)
+SV GfxApi_addTextureBinding2(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getBlendConstantColor" EAOE));
+CATE(VE,"GfxApi::addTextureBinding2" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-CATE(TE,UFOF("GfxApi::getBlendConstantColor.")));
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *))
+{
+( f->addTextureBinding2(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3])));
+RET CN;
+}
+CATE(TE,UFOF("GfxApi::addTextureBinding2.")));
 RET CN;
 }
 
@@ -16728,6 +16823,23 @@ if(1&&TS(a[1],bool))
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::setBlendingEnabled.")));
+RET CN;
+}
+
+SV GfxApi_setCullMode(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setCullMode" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxCullMode))
+{
+( f->setCullMode(val_to_c<std::remove_reference<GfxCullMode>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxApi::setCullMode.")));
 RET CN;
 }
 
@@ -16799,20 +16911,20 @@ CATE(TE,UFOF("GfxApi::getBlendDstFactorRGB.")));
 RET CN;
 }
 
-SV GfxApi_setCullMode(CTX ctx,const List<SV>&a)
+SV GfxApi_getFragmentShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::setCullMode" EAOE));
+CATE(VE,"GfxApi::getFragmentShader" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxCullMode))
+if(a.getCount()==1)
+if(1)
 {
-( f->setCullMode(val_to_c<std::remove_reference<GfxCullMode>::type>::f(ctx,a[1])));
-RET CN;
+RET CV( f->getFragmentShader());
+;
 }
-CATE(TE,UFOF("GfxApi::setCullMode.")));
+CATE(TE,UFOF("GfxApi::getFragmentShader.")));
 RET CN;
 }
 
@@ -16856,20 +16968,20 @@ CATE(TE,UFOF("GfxApi::addTextureBinding.")));
 RET CN;
 }
 
-SV GfxApi_getViewportHeight(CTX ctx,const List<SV>&a)
+SV GfxApi_getBlendConstantColorB(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getViewportHeight" EAOE));
+CATE(VE,"GfxApi::getBlendConstantColorB" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getViewportHeight());
+RET CV( f->getBlendConstantColorB());
 ;
 }
-CATE(TE,UFOF("GfxApi::getViewportHeight.")));
+CATE(TE,UFOF("GfxApi::getBlendConstantColorB.")));
 RET CN;
 }
 
@@ -16907,32 +17019,37 @@ CATE(TE,UFOF("GfxApi::isBlendingEnabled.")));
 RET CN;
 }
 
-SV GfxApi_clearColor(CTX ctx,const List<SV>&a)
+SV GfxApi_resetState(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::clearColor" EAOE));
+CATE(VE,"GfxApi::resetState" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],Float4))
+if(a.getCount()==1)
+if(1)
 {
-( f->clearColor(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Float4>::type>::f(ctx,a[2])));
+( f->resetState());
 RET CN;
 }
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],Int4))
-{
-( f->clearColor(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<Int4>::type>::f(ctx,a[2])));
+CATE(TE,UFOF("GfxApi::resetState.")));
 RET CN;
 }
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],UInt4))
+
+SV GfxApi_getGeometryShader(CTX ctx,const List<SV>&a)
 {
-( f->clearColor(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<UInt4>::type>::f(ctx,a[2])));
-RET CN;
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getGeometryShader" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getGeometryShader());
+;
 }
-CATE(TE,UFOF("GfxApi::clearColor.")));
+CATE(TE,UFOF("GfxApi::getGeometryShader.")));
 RET CN;
 }
 
@@ -34118,36 +34235,14 @@ RET CNF(GfxMaterial_new);
 RET CNF(GfxMaterial_removeContent);
  EI(keyStr.equals("save", CPL_STR_HASH("save")))
 RET CNF(GfxMaterial_save);
- EI(keyStr.equals("getShaderComb", CPL_STR_HASH("getShaderComb")))
-RET CNF(GfxMaterial_getShaderComb);
- EI(keyStr.equals("setMaterialMap", CPL_STR_HASH("setMaterialMap")))
-RET CNF(GfxMaterial_setMaterialMap);
- EI(keyStr.equals("getMaterialMap", CPL_STR_HASH("getMaterialMap")))
-RET CNF(GfxMaterial_getMaterialMap);
- EI(keyStr.equals("setAlbedoMap", CPL_STR_HASH("setAlbedoMap")))
-RET CNF(GfxMaterial_setAlbedoMap);
- EI(keyStr.equals("getAlbedoMap", CPL_STR_HASH("getAlbedoMap")))
-RET CNF(GfxMaterial_getAlbedoMap);
- EI(keyStr.equals("setNormalMap", CPL_STR_HASH("setNormalMap")))
-RET CNF(GfxMaterial_setNormalMap);
- EI(keyStr.equals("getNormalMap", CPL_STR_HASH("getNormalMap")))
-RET CNF(GfxMaterial_getNormalMap);
- EI(keyStr.equals("setParallaxHeightMap", CPL_STR_HASH("setParallaxHeightMap")))
-RET CNF(GfxMaterial_setParallaxHeightMap);
- EI(keyStr.equals("getParallaxHeightMap", CPL_STR_HASH("getParallaxHeightMap")))
-RET CNF(GfxMaterial_getParallaxHeightMap);
- EI(keyStr.equals("setPOMHeightMap", CPL_STR_HASH("setPOMHeightMap")))
-RET CNF(GfxMaterial_setPOMHeightMap);
- EI(keyStr.equals("getPOMHeightMap", CPL_STR_HASH("getPOMHeightMap")))
-RET CNF(GfxMaterial_getPOMHeightMap);
- EI(keyStr.equals("setDisplacementMap", CPL_STR_HASH("setDisplacementMap")))
-RET CNF(GfxMaterial_setDisplacementMap);
- EI(keyStr.equals("getDisplacementMap", CPL_STR_HASH("getDisplacementMap")))
-RET CNF(GfxMaterial_getDisplacementMap);
+ EI(keyStr.equals("setScript", CPL_STR_HASH("setScript")))
+RET CNF(GfxMaterial_setScript);
+ EI(keyStr.equals("getScriptInst", CPL_STR_HASH("getScriptInst")))
+RET CNF(GfxMaterial_getScriptInst);
  EI(keyStr.equals("isForward", CPL_STR_HASH("isForward")))
 RET CNF(GfxMaterial_isForward);
- EI(keyStr.equals("setForward", CPL_STR_HASH("setForward")))
-RET CNF(GfxMaterial_setForward);
+ EI(keyStr.equals("setupRender", CPL_STR_HASH("setupRender")))
+RET CNF(GfxMaterial_setupRender);
  EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxMaterial_load);
  EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
@@ -34162,71 +34257,7 @@ RET CNF(GfxMaterial_getRefCount);
 RET CNF(GfxMaterial_getFilename);
  EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxMaterial_setFilename);
- EI(keyStr.equals("smoothness", CPL_STR_HASH("smoothness")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->smoothness);
-} EI(keyStr.equals("metalMask", CPL_STR_HASH("metalMask")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->metalMask);
-} EI(keyStr.equals("parallaxStrength", CPL_STR_HASH("parallaxStrength")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->parallaxStrength);
-} EI(keyStr.equals("parallaxEdgeDiscard", CPL_STR_HASH("parallaxEdgeDiscard")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->parallaxEdgeDiscard);
-} EI(keyStr.equals("albedo", CPL_STR_HASH("albedo")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->albedo);
-} EI(keyStr.equals("pomMinLayers", CPL_STR_HASH("pomMinLayers")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->pomMinLayers);
-} EI(keyStr.equals("pomMaxLayers", CPL_STR_HASH("pomMaxLayers")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->pomMaxLayers);
-} EI(keyStr.equals("minTessLevel", CPL_STR_HASH("minTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->minTessLevel);
-} EI(keyStr.equals("maxTessLevel", CPL_STR_HASH("maxTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->maxTessLevel);
-} EI(keyStr.equals("tessMinDistance", CPL_STR_HASH("tessMinDistance")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->tessMinDistance);
-} EI(keyStr.equals("tessMaxDistance", CPL_STR_HASH("tessMaxDistance")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->tessMaxDistance);
-} EI(keyStr.equals("displacementStrength", CPL_STR_HASH("displacementStrength")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->displacementStrength);
-} EI(keyStr.equals("displacementMidlevel", CPL_STR_HASH("displacementMidlevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->displacementMidlevel);
-} EI(keyStr.equals("shadowTesselation", CPL_STR_HASH("shadowTesselation")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->shadowTesselation);
-} EI(keyStr.equals("shadowMinTessLevel", CPL_STR_HASH("shadowMinTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->shadowMinTessLevel);
-} EI(keyStr.equals("shadowMaxTessLevel", CPL_STR_HASH("shadowMaxTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-RET CV(obj->shadowMaxTessLevel);
-} else
+ else
  CATE(KE,"Unknown member for GfxMaterial."));
 }
 }
@@ -34243,71 +34274,7 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} EI(keyStr.equals("smoothness", CPL_STR_HASH("smoothness")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->smoothness=val_to_c<decltype(obj->smoothness)>::f(ctx,value);
-} EI(keyStr.equals("metalMask", CPL_STR_HASH("metalMask")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->metalMask=val_to_c<decltype(obj->metalMask)>::f(ctx,value);
-} EI(keyStr.equals("parallaxStrength", CPL_STR_HASH("parallaxStrength")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->parallaxStrength=val_to_c<decltype(obj->parallaxStrength)>::f(ctx,value);
-} EI(keyStr.equals("parallaxEdgeDiscard", CPL_STR_HASH("parallaxEdgeDiscard")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->parallaxEdgeDiscard=val_to_c<decltype(obj->parallaxEdgeDiscard)>::f(ctx,value);
-} EI(keyStr.equals("albedo", CPL_STR_HASH("albedo")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->albedo=val_to_c<decltype(obj->albedo)>::f(ctx,value);
-} EI(keyStr.equals("pomMinLayers", CPL_STR_HASH("pomMinLayers")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->pomMinLayers=val_to_c<decltype(obj->pomMinLayers)>::f(ctx,value);
-} EI(keyStr.equals("pomMaxLayers", CPL_STR_HASH("pomMaxLayers")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->pomMaxLayers=val_to_c<decltype(obj->pomMaxLayers)>::f(ctx,value);
-} EI(keyStr.equals("minTessLevel", CPL_STR_HASH("minTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->minTessLevel=val_to_c<decltype(obj->minTessLevel)>::f(ctx,value);
-} EI(keyStr.equals("maxTessLevel", CPL_STR_HASH("maxTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->maxTessLevel=val_to_c<decltype(obj->maxTessLevel)>::f(ctx,value);
-} EI(keyStr.equals("tessMinDistance", CPL_STR_HASH("tessMinDistance")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->tessMinDistance=val_to_c<decltype(obj->tessMinDistance)>::f(ctx,value);
-} EI(keyStr.equals("tessMaxDistance", CPL_STR_HASH("tessMaxDistance")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->tessMaxDistance=val_to_c<decltype(obj->tessMaxDistance)>::f(ctx,value);
-} EI(keyStr.equals("displacementStrength", CPL_STR_HASH("displacementStrength")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->displacementStrength=val_to_c<decltype(obj->displacementStrength)>::f(ctx,value);
-} EI(keyStr.equals("displacementMidlevel", CPL_STR_HASH("displacementMidlevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->displacementMidlevel=val_to_c<decltype(obj->displacementMidlevel)>::f(ctx,value);
-} EI(keyStr.equals("shadowTesselation", CPL_STR_HASH("shadowTesselation")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->shadowTesselation=val_to_c<decltype(obj->shadowTesselation)>::f(ctx,value);
-} EI(keyStr.equals("shadowMinTessLevel", CPL_STR_HASH("shadowMinTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->shadowMinTessLevel=val_to_c<decltype(obj->shadowMinTessLevel)>::f(ctx,value);
-} EI(keyStr.equals("shadowMaxTessLevel", CPL_STR_HASH("shadowMaxTessLevel")))
-{
-GfxMaterial*obj=(GfxMaterial*)f->data;
-obj->shadowMaxTessLevel=val_to_c<decltype(obj->shadowMaxTessLevel)>::f(ctx,value);
-} else
+if(0) {} else
  CATE(KE,"Unknown member or member if read-only for GfxMaterial."));
 }
 }
@@ -34330,148 +34297,6 @@ CATE(TE,UFOF("GfxMaterial::load.")));
 RET CN;
 }
 
-SV GfxMaterial_setAlbedoMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setAlbedoMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->setAlbedoMap(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setAlbedoMap.")));
-RET CN;
-}
-
-SV GfxMaterial_setPOMHeightMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setPOMHeightMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->setPOMHeightMap(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setPOMHeightMap.")));
-RET CN;
-}
-
-SV GfxMaterial_setFilename(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setFilename" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const Str &))
-{
-( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setFilename.")));
-RET CN;
-}
-
-SV GfxMaterial_setForward(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setForward" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],bool))
-{
-( f->setForward(val_to_c<std::remove_reference<bool>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setForward.")));
-RET CN;
-}
-
-SV GfxMaterial_getNormalMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getNormalMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getNormalMap());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getNormalMap.")));
-RET CN;
-}
-
-SV GfxMaterial_save(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::save" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::save.")));
-RET CN;
-}
-
-SV GfxMaterial_setNormalMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setNormalMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->setNormalMap(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setNormalMap.")));
-RET CN;
-}
-
-SV GfxMaterial_getDisplacementMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getDisplacementMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getDisplacementMap());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getDisplacementMap.")));
-RET CN;
-}
-
 SV GfxMaterial_getFilename(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -34486,142 +34311,6 @@ RET CV( f->getFilename());
 ;
 }
 CATE(TE,UFOF("GfxMaterial::getFilename.")));
-RET CN;
-}
-
-SV GfxMaterial_getPOMHeightMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getPOMHeightMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getPOMHeightMap());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getPOMHeightMap.")));
-RET CN;
-}
-
-SV GfxMaterial_getRefCount(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getRefCount" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getRefCount());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getRefCount.")));
-RET CN;
-}
-
-SV GfxMaterial_getMaterialMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getMaterialMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getMaterialMap());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getMaterialMap.")));
-RET CN;
-}
-
-SV GfxMaterial_getType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getType" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getType());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getType.")));
-RET CN;
-}
-
-SV GfxMaterial_setParallaxHeightMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setParallaxHeightMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->setParallaxHeightMap(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setParallaxHeightMap.")));
-RET CN;
-}
-
-SV GfxMaterial_getParallaxHeightMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getParallaxHeightMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getParallaxHeightMap());
-;
-}
-CATE(TE,UFOF("GfxMaterial::getParallaxHeightMap.")));
-RET CN;
-}
-
-SV GfxMaterial_isForward(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::isForward" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isForward());
-;
-}
-CATE(TE,UFOF("GfxMaterial::isForward.")));
-RET CN;
-}
-
-SV GfxMaterial_setMaterialMap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setMaterialMap" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->setMaterialMap(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setMaterialMap.")));
 RET CN;
 }
 
@@ -34642,37 +34331,88 @@ CATE(TE,UFOF("GfxMaterial::copy.")));
 RET CN;
 }
 
-SV GfxMaterial_setDisplacementMap(CTX ctx,const List<SV>&a)
+SV GfxMaterial_setScript(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setDisplacementMap" EAOE));
+CATE(VE,"GfxMaterial::setScript" EAOE));
 GfxMaterial*f;
 f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
+if(1&&TS(a[1],Script *))
 {
-( f->setDisplacementMap(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
+( f->setScript(val_to_c<std::remove_reference<Script *>::type>::f(ctx,a[1])));
 RET CN;
 }
-CATE(TE,UFOF("GfxMaterial::setDisplacementMap.")));
+CATE(TE,UFOF("GfxMaterial::setScript.")));
 RET CN;
 }
 
-SV GfxMaterial_getShaderComb(CTX ctx,const List<SV>&a)
+SV GfxMaterial_setFilename(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getShaderComb" EAOE));
+CATE(VE,"GfxMaterial::setFilename" EAOE));
+GfxMaterial*f;
+f=(GfxMaterial*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Str &))
+{
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxMaterial::setFilename.")));
+RET CN;
+}
+
+SV GfxMaterial_getType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMaterial::getType" EAOE));
 GfxMaterial*f;
 f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getShaderComb());
+RET CV( f->getType());
 ;
 }
-CATE(TE,UFOF("GfxMaterial::getShaderComb.")));
+CATE(TE,UFOF("GfxMaterial::getType.")));
+RET CN;
+}
+
+SV GfxMaterial_setupRender(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMaterial::setupRender" EAOE));
+GfxMaterial*f;
+f=(GfxMaterial*)((NO)a[0].p)->data;
+
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxMesh *)&&TS(a[2],GfxAnimationState *)&&TS(a[3],const Camera &))
+{
+( f->setupRender(val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxAnimationState *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Camera &>::type>::f(ctx,a[3])));
+RET CN;
+}
+CATE(TE,UFOF("GfxMaterial::setupRender.")));
+RET CN;
+}
+
+SV GfxMaterial_isForward(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMaterial::isForward" EAOE));
+GfxMaterial*f;
+f=(GfxMaterial*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->isForward());
+;
+}
+CATE(TE,UFOF("GfxMaterial::isForward.")));
 RET CN;
 }
 
@@ -34699,6 +34439,40 @@ CATE(TE,UFOF("GfxMaterial::removeContent.")));
 RET CN;
 }
 
+SV GfxMaterial_getRefCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMaterial::getRefCount" EAOE));
+GfxMaterial*f;
+f=(GfxMaterial*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getRefCount());
+;
+}
+CATE(TE,UFOF("GfxMaterial::getRefCount.")));
+RET CN;
+}
+
+SV GfxMaterial_getScriptInst(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMaterial::getScriptInst" EAOE));
+GfxMaterial*f;
+f=(GfxMaterial*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getScriptInst());
+;
+}
+CATE(TE,UFOF("GfxMaterial::getScriptInst.")));
+RET CN;
+}
+
 SV GfxMaterial_release(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -34716,20 +34490,26 @@ CATE(TE,UFOF("GfxMaterial::release.")));
 RET CN;
 }
 
-SV GfxMaterial_getAlbedoMap(CTX ctx,const List<SV>&a)
+SV GfxMaterial_save(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxMaterial::getAlbedoMap" EAOE));
+CATE(VE,"GfxMaterial::save" EAOE));
 GfxMaterial*f;
 f=(GfxMaterial*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getAlbedoMap());
-;
+( f->save());
+RET CN;
 }
-CATE(TE,UFOF("GfxMaterial::getAlbedoMap.")));
+if(a.getCount()==1)
+if(1)
+{
+( f->save());
+RET CN;
+}
+CATE(TE,UFOF("GfxMaterial::save.")));
 RET CN;
 }
 
@@ -35320,16 +35100,6 @@ EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(ScriptInstance_new);
  EI(keyStr.equals("method", CPL_STR_HASH("method")))
 RET CNF(ScriptInstance_method);
- EI(keyStr.equals("handleInput", CPL_STR_HASH("handleInput")))
-RET CNF(ScriptInstance_handleInput);
- EI(keyStr.equals("fixedUpdate", CPL_STR_HASH("fixedUpdate")))
-RET CNF(ScriptInstance_fixedUpdate);
- EI(keyStr.equals("update", CPL_STR_HASH("update")))
-RET CNF(ScriptInstance_update);
- EI(keyStr.equals("preRender", CPL_STR_HASH("preRender")))
-RET CNF(ScriptInstance_preRender);
- EI(keyStr.equals("postRender", CPL_STR_HASH("postRender")))
-RET CNF(ScriptInstance_postRender);
  EI(keyStr.equals("getScript", CPL_STR_HASH("getScript")))
 RET CNF(ScriptInstance_getScript);
  EI(keyStr.equals("getObj", CPL_STR_HASH("getObj")))
@@ -35357,91 +35127,6 @@ if(0) {} else
 }
 }
 
-SV ScriptInstance_postRender(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::postRender" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->postRender());
-RET CN;
-}
-CATE(TE,UFOF("ScriptInstance::postRender.")));
-RET CN;
-}
-
-SV ScriptInstance_preRender(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::preRender" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->preRender());
-RET CN;
-}
-CATE(TE,UFOF("ScriptInstance::preRender.")));
-RET CN;
-}
-
-SV ScriptInstance_handleInput(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::handleInput" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->handleInput());
-RET CN;
-}
-CATE(TE,UFOF("ScriptInstance::handleInput.")));
-RET CN;
-}
-
-SV ScriptInstance_update(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::update" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->update());
-RET CN;
-}
-CATE(TE,UFOF("ScriptInstance::update.")));
-RET CN;
-}
-
-SV ScriptInstance_getObj(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::getObj" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getObj());
-;
-}
-CATE(TE,UFOF("ScriptInstance::getObj.")));
-RET CN;
-}
-
 SV ScriptInstance_getScript(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35459,23 +35144,6 @@ CATE(TE,UFOF("ScriptInstance::getScript.")));
 RET CN;
 }
 
-SV ScriptInstance_fixedUpdate(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ScriptInstance::fixedUpdate" EAOE));
-ScriptInstance*f;
-f=(ScriptInstance*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],float))
-{
-( f->fixedUpdate(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("ScriptInstance::fixedUpdate.")));
-RET CN;
-}
-
 SV ScriptInstance_method(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -35483,19 +35151,24 @@ CATE(VE,"ScriptInstance::method" EAOE));
 ScriptInstance*f;
 f=(ScriptInstance*)((NO)a[0].p)->data;
 
-if(a.getCount()==2)
-if(1&&TS(a[1],const Str &))
-{
-( f->method(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
-RET CN;
-}
-if(a.getCount()==3)
-if(1&&TS(a[1],const Str &)&&TS(a[2],float))
-{
-( f->method(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2])));
-RET CN;
-}
 CATE(TE,UFOF("ScriptInstance::method.")));
+RET CN;
+}
+
+SV ScriptInstance_getObj(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstance::getObj" EAOE));
+ScriptInstance*f;
+f=(ScriptInstance*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getObj());
+;
+}
+CATE(TE,UFOF("ScriptInstance::getObj.")));
 RET CN;
 }
 
@@ -37544,6 +37217,12 @@ CATE(VE,"Application::getNextScript" EAOE));
 Application*f;
 f=(Application*)((NO)a[0].p)->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getNextScript());
+;
+}
 CATE(TE,UFOF("Application::getNextScript.")));
 RET CN;
 }
@@ -37555,6 +37234,12 @@ CATE(VE,"Application::getScript" EAOE));
 Application*f;
 f=(Application*)((NO)a[0].p)->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getScript());
+;
+}
 CATE(TE,UFOF("Application::getScript.")));
 RET CN;
 }
@@ -37583,6 +37268,12 @@ CATE(VE,"Application::setNextScript" EAOE));
 Application*f;
 f=(Application*)((NO)a[0].p)->data;
 
+if(a.getCount()==2)
+if(1&&TS(a[1],Script *))
+{
+( f->setNextScript(val_to_c<std::remove_reference<Script *>::type>::f(ctx,a[1])));
+RET CN;
+}
 CATE(TE,UFOF("Application::setNextScript.")));
 RET CN;
 }
@@ -47926,6 +47617,8 @@ RET CNF(File_writeUInt64BE);
 RET CNF(File_writeInt64BE);
  EI(keyStr.equals("writeFloat32", CPL_STR_HASH("writeFloat32")))
 RET CNF(File_writeFloat32);
+ EI(keyStr.equals("writeStr", CPL_STR_HASH("writeStr")))
+RET CNF(File_writeStr);
  EI(keyStr.equals("printf", CPL_STR_HASH("printf")))
 RET CNF(File_printf);
  EI(keyStr.equals("vprintf", CPL_STR_HASH("vprintf")))
@@ -47969,6 +47662,23 @@ RET CV( f->readFloat32());
 ;
 }
 CATE(TE,UFOF("File::readFloat32.")));
+RET CN;
+}
+
+SV File_writeStr(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"File::writeStr" EAOE));
+File*f;
+f=(File*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],Str))
+{
+( f->writeStr(val_to_c<std::remove_reference<Str>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("File::writeStr.")));
 RET CN;
 }
 

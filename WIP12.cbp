@@ -66,6 +66,7 @@
 			<Add option="`freetype-config --cflags`" />
 			<Add option="`pkg-config vorbisfile --cflags`" />
 			<Add option="-std=gnu++11" />
+			<Add option="-fno-strict-aliasing" />
 			<Add option="-DGLFL_USE_SDL2" />
 			<Add option="-DGLFL_USE_GL" />
 			<Add directory="include" />

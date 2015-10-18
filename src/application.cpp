@@ -93,7 +93,7 @@ void Application::updateFunction()
     uint64_t start = platform_->getTime();
     if (script != nullptr)
     {
-        script->handleInput();
+        scripting::destroy(script->getScript()->getContext(), script->method("handleInput"));
     }
     uint64_t end = platform_->getTime();
     stats.handleInput = float(end - start) / timerFrequency;
@@ -107,7 +107,8 @@ void Application::updateFunction()
     {
         if (script != nullptr)
         {
-            script->fixedUpdate(fixedTimestep);
+            scripting::destroy(script->getScript()->getContext(),
+                               script->method("fixedUpdate", scripting::createFloat(fixedTimestep)));
         }
 
         simulationTime += fixedTimestep * timerFrequency;
@@ -126,17 +127,20 @@ void Application::updateFunction()
     if (script != nullptr)
     {
         start = platform_->getTime();
-        script->update();
+        scripting::destroy(script->getScript()->getContext(),
+                           script->method("update"));
         end = platform_->getTime();
         stats.update = float(end - start) / timerFrequency;
 
         start = platform_->getTime();
-        script->preRender();
+        scripting::destroy(script->getScript()->getContext(),
+                           script->method("preRender"));
         end = platform_->getTime();
         stats.preRender = float(end - start) / timerFrequency;
 
         start = platform_->getTime();
-        script->postRender();
+        scripting::destroy(script->getScript()->getContext(),
+                           script->method("postRender"));
         end = platform_->getTime();
         stats.postRender = float(end - start) / timerFrequency;
     }

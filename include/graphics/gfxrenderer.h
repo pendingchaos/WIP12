@@ -261,8 +261,6 @@ class GfxRenderer
         GfxShaderCombination *colorModify;
         GfxShader *colorModifierFragment;
         GfxShader *shadowmapVertex;
-        GfxShader *shadowmapTessControl;
-        GfxShader *shadowmapTessEval;
         GfxShader *pointShadowmapGeometry;
         GfxShader *shadowmapFragment;
         GfxShader *pointShadowmapFragment;
@@ -274,11 +272,7 @@ class GfxRenderer
         GfxShader *terrainFragment;
 
         GfxCompiledShader *compiledShadowmapVertex;
-        GfxCompiledShader *compiledShadowmapVertexTesselation;
         GfxCompiledShader *compiledShadowmapVertexAnimated;
-        GfxCompiledShader *compiledShadowmapVertexTesselationAnimated;
-        GfxCompiledShader *compiledShadowmapTessControl;
-        GfxCompiledShader *compiledShadowmapTessEval;
         GfxCompiledShader *compiledPointShadowmapGeometry;
         GfxCompiledShader *compiledShadowmapFragment;
         GfxCompiledShader *compiledPointShadowmapFragment;

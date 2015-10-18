@@ -4,261 +4,38 @@
 #include "graphics/gfxapi.h"
 #include "graphics/gfxrenderer.h"
 #include "file.h"
+#include "scripting/bindings2.h"
 
-GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
-                             smoothness(0.5f),
-                             metalMask(0.0f),
-                             parallaxStrength(0.0f),
-                             albedo(1.0f),
-                             pomMinLayers(8),
-                             pomMaxLayers(32),
-                             minTessLevel(1.0f),
-                             maxTessLevel(10.0f),
-                             tessMinDistance(0.0f),
-                             tessMaxDistance(10.0f),
-                             displacementStrength(0.1f),
-                             displacementMidlevel(0.5f),
-                             shadowTesselation(false),
-                             shadowMinTessLevel(1.0f),
-                             shadowMaxTessLevel(5.0f),
-                             forward(true)
-{
-    shaderComb = NEW(GfxShaderCombination,
-                     resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
-                     resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
-}
+GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType), script(nullptr) {}
 
 GfxMaterial::GfxMaterial(const Str& filename) : Resource(filename,
                                                             ResType::GfxMaterialType),
-                                                   smoothness(0.5f),
-                                                   metalMask(0.0f),
-                                                   parallaxStrength(0.0f),
-                                                   albedo(1.0f),
-                                                   pomMinLayers(8),
-                                                   pomMaxLayers(32),
-                                                   minTessLevel(1.0f),
-                                                   maxTessLevel(10.0f),
-                                                   tessMinDistance(0.0f),
-                                                   tessMaxDistance(10.0f),
-                                                   displacementStrength(0.1f),
-                                                   displacementMidlevel(0.5f),
-                                                   shadowTesselation(false),
-                                                   shadowMinTessLevel(1.0f),
-                                                   shadowMaxTessLevel(5.0f),
-                                                   materialMap(nullptr),
-                                                   albedoMap(nullptr),
-                                                   normalMap(nullptr),
-                                                   parallaxHeightMap(nullptr),
-                                                   pomHeightMap(nullptr),
-                                                   displacementMap(nullptr),
-                                                   forward(true)
-{
-    shaderComb = NEW(GfxShaderCombination,
-                     resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
-                     resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
-}
+                                                script(nullptr) {}
 
 GfxMaterial::~GfxMaterial()
 {
-    if (materialMap != nullptr)
-    {
-        materialMap->release();
-    }
-
-    if (albedoMap != nullptr)
-    {
-        albedoMap->release();
-    }
-
-    if (normalMap != nullptr)
-    {
-        normalMap->release();
-    }
-
-    if (parallaxHeightMap != nullptr)
-    {
-        parallaxHeightMap->release();
-    }
-
-    if (pomHeightMap != nullptr)
-    {
-        pomHeightMap->release();
-    }
-
-    if (displacementMap != nullptr)
-    {
-        displacementMap->release();
-    }
-
-    shaderComb->getShader(GfxShaderType::Vertex)->release();
-    shaderComb->getShader(GfxShaderType::Fragment)->release();
-
-    if (shaderComb->getShader(GfxShaderType::TessControl) != nullptr)
-    {
-        shaderComb->getShader(GfxShaderType::TessControl)->release();
-    }
-
-    if (shaderComb->getShader(GfxShaderType::TessEval) != nullptr)
-    {
-        shaderComb->getShader(GfxShaderType::TessEval)->release();
-    }
-
-    DELETE(shaderComb);
+    DELETE(script);
 }
 
 void GfxMaterial::removeContent()
 {
-    setForward(true);
+    DELETE(script);
+    script = nullptr;
 }
 
 void GfxMaterial::save()
 {
     File file(getFilename().getData(), "wb");
 
-    file.write(6, "mtrl\x01\x00");
+    file.write(6, "mtrl\x02\x00");
 
-    file.writeUInt8(forward ? 1 : 0);
+    file.writeUInt32LE(script->getScript()->getFilename().getLength());
+    file.writeStr(script->getScript()->getFilename());
 
-    file.writeFloat32(albedo.x);
-    file.writeFloat32(albedo.y);
-    file.writeFloat32(albedo.z);
-    file.writeFloat32(albedo.w);
-    file.writeFloat32(smoothness);
-    file.writeFloat32(metalMask);
-    file.writeFloat32(parallaxStrength);
-    file.writeUInt8(parallaxEdgeDiscard ? 1 : 0);
-    file.writeUInt8(pomMinLayers);
-    file.writeUInt8(pomMaxLayers);
-    file.writeFloat32(minTessLevel);
-    file.writeFloat32(maxTessLevel);
-    file.writeFloat32(tessMinDistance);
-    file.writeFloat32(tessMaxDistance);
-    file.writeFloat32(displacementStrength);
-    file.writeFloat32(displacementMidlevel);
-    file.writeUInt8(shadowTesselation ? 1 : 0);
-    file.writeFloat32(shadowMinTessLevel);
-    file.writeFloat32(shadowMaxTessLevel);
-
-    if (albedoMap != nullptr)
-    {
-        Str filename = albedoMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-
-    if (materialMap != nullptr)
-    {
-        Str filename = materialMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-
-    if (normalMap != nullptr)
-    {
-        Str filename = normalMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-
-    if (parallaxHeightMap != nullptr)
-    {
-        Str filename = parallaxHeightMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-
-    if (pomHeightMap != nullptr)
-    {
-        Str filename = pomHeightMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-
-    if (displacementMap != nullptr)
-    {
-        Str filename = displacementMap->getFilename();
-
-        file.writeUInt32LE(filename.getLength());
-        file.write(filename.getLength(), filename.getData());
-    } else
-    {
-        file.writeUInt32LE(0);
-    }
-}
-
-void GfxMaterial::setDisplacementMap(GfxTexture *texture)
-{
-    displacementMap = texture;
-
-    if (displacementMap != nullptr and gfxApi->tesselationSupported())
-    {
-        if (shaderComb->getShader(GfxShaderType::TessControl) != nullptr)
-        {
-            shaderComb->getShader(GfxShaderType::TessControl)->release();
-        }
-
-        if (shaderComb->getShader(GfxShaderType::TessEval) != nullptr)
-        {
-            shaderComb->getShader(GfxShaderType::TessEval)->release();
-        }
-
-        shaderComb->setShader(GfxShaderType::TessControl, resMgr->load<GfxShader>("resources/shaders/object.tcs.bin"));
-        shaderComb->setShader(GfxShaderType::TessEval, resMgr->load<GfxShader>("resources/shaders/object.tes.bin"));
-    }
-}
-
-void GfxMaterial::setForward(bool forward_)
-{
-    forward = forward_;
-
-    shaderComb->getShader(GfxShaderType::Vertex)->release();
-    shaderComb->getShader(GfxShaderType::Fragment)->release();
-
-    if (shaderComb->getShader(GfxShaderType::TessControl) != nullptr)
-    {
-        shaderComb->getShader(GfxShaderType::TessControl)->release();
-    }
-
-    if (shaderComb->getShader(GfxShaderType::TessEval) != nullptr)
-    {
-        shaderComb->getShader(GfxShaderType::TessEval)->release();
-    }
-
-    DELETE(shaderComb);
-
-    if (forward)
-    {
-        shaderComb = NEW(GfxShaderCombination,
-                         resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
-                         resMgr->load<GfxShader>("resources/shaders/forward.fs.bin"));
-    } else
-    {
-        shaderComb = NEW(GfxShaderCombination,
-                         resMgr->load<GfxShader>("resources/shaders/object.vs.bin"),
-                         resMgr->load<GfxShader>("resources/shaders/gbuffer.fs.bin"));
-    }
-
-    setDisplacementMap(displacementMap);
+    scripting::destroy(script->getScript()->getContext(),
+                       script->method("save",
+                                      scripting::create(script->getScript()->getContext(),
+                                      &file)));
 }
 
 void GfxMaterial::_load()
@@ -282,83 +59,22 @@ void GfxMaterial::_load()
         uint8_t majorVer = file.readUInt8();
         uint8_t minorVer = file.readUInt8();
 
-        if (majorVer != 1 or minorVer != 0)
+        if (majorVer != 2 or minorVer != 0)
         {
             THROW(ResourceIOException, "material", getFilename(), "Unsupported version.");
         }
 
-        setForward(file.readUInt8() != 0);
+        uint32_t length = file.readUInt32LE();
+        Str scriptFile = file.readStr(length);
 
-        float r = file.readFloat32();
-        float g = file.readFloat32();
-        float b = file.readFloat32();
-        float a = file.readFloat32();
+        Script *newScript = resMgr->load<Script>(scriptFile);
+        setScript(newScript);
+        newScript->release();
 
-        albedo = Float4(r, g, b, a);
-
-        smoothness = file.readFloat32();
-
-        metalMask = file.readFloat32();
-
-        parallaxStrength = file.readFloat32();
-
-        parallaxEdgeDiscard = file.readUInt8() != 0;
-
-        pomMinLayers = file.readUInt8();
-        pomMaxLayers = file.readUInt8();
-
-        minTessLevel = file.readFloat32();
-        maxTessLevel = file.readFloat32();
-        tessMinDistance = file.readFloat32();
-        tessMaxDistance = file.readFloat32();
-        displacementStrength = file.readFloat32();
-        displacementMidlevel = file.readFloat32();
-
-        shadowTesselation = file.readUInt8() != 0;
-        shadowMinTessLevel = file.readFloat32();
-        shadowMaxTessLevel = file.readFloat32();
-
-        uint32_t len = file.readUInt32LE();
-        if (len != 0)
-        {
-            Str tex = file.readStr(len);
-            setAlbedoMap(resMgr->load<GfxTexture>(tex));
-        }
-
-        len = file.readUInt32LE();
-        if (len != 0)
-        {
-            Str tex = file.readStr(len);
-            setMaterialMap(resMgr->load<GfxTexture>(tex));
-        }
-
-        len = file.readUInt32LE();
-        if (len != 0)
-        {
-            Str tex = file.readStr(len);
-            setNormalMap(resMgr->load<GfxTexture>(tex));
-        }
-
-        len = file.readUInt32LE();
-        if (len != 0)
-        {
-            Str tex = file.readStr(len);
-            setParallaxHeightMap(resMgr->load<GfxTexture>(tex));
-        }
-
-        len = file.readUInt32LE();
-        if (len != 0)
-        {
-            Str tex = file.readStr(len);
-            setPOMHeightMap(resMgr->load<GfxTexture>(tex));
-        }
-
-        len = file.readUInt32LE();
-        if (len != 0)
-        {
-            Str tex = file.readStr(len);
-            setDisplacementMap(resMgr->load<GfxTexture>(tex));
-        }
+        scripting::destroy(script->getScript()->getContext(),
+                           script->method("load",
+                                          scripting::create(script->getScript()->getContext(),
+                                                            &file)));
     } catch (FileException& e)
     {
         THROW(ResourceIOException,
@@ -368,30 +84,40 @@ void GfxMaterial::_load()
     }
 }
 
+bool GfxMaterial::isForward()
+{
+    scripting::Value result = script->method("isForward");
+
+    if (result.type == scripting::ValueType::Boolean)
+    {
+        return result.b;
+    } else
+    {
+        return false;
+    }
+}
+
+void GfxMaterial::setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera)
+{
+    scripting::Context *ctx = script->getScript()->getContext();
+
+    scripting::destroy(ctx,
+                       script->method("setupRender",
+                       scripting::create(ctx, mesh),
+                       scripting::create(ctx, animState),
+                       scripting::create(ctx, camera)));
+}
+
 Resource *GfxMaterial::_copy() const
 {
     GfxMaterial *material = NEW(GfxMaterial);
 
-    material->setForward(forward);
-    material->smoothness = smoothness;
-    material->metalMask = metalMask;
-    material->parallaxStrength = parallaxStrength;
-    material->parallaxEdgeDiscard = parallaxEdgeDiscard;
-    material->albedo = albedo;
-    material->pomMinLayers = pomMinLayers;
-    material->pomMaxLayers = pomMaxLayers;
-    material->tessMinDistance = tessMinDistance;
-    material->tessMaxDistance = tessMaxDistance;
-    material->displacementStrength = displacementStrength;
-    material->displacementMidlevel = displacementMidlevel;
-    material->shadowTesselation = shadowTesselation;
-    material->shadowMinTessLevel = shadowMinTessLevel;
-    material->shadowMaxTessLevel = shadowMaxTessLevel;
-    material->setMaterialMap(materialMap->copyRef<GfxTexture>());
-    material->setAlbedoMap(albedoMap->copyRef<GfxTexture>());
-    material->setNormalMap(normalMap->copyRef<GfxTexture>());
-    material->setParallaxHeightMap(parallaxHeightMap->copyRef<GfxTexture>());
-    material->setPOMHeightMap(pomHeightMap->copyRef<GfxTexture>());
+    material->setScript(script->getScript());
+
+    scripting::Context *ctx = script->getScript()->getContext();
+
+    scripting::destroy(ctx, material->getScriptInst()->method("copyFrom",
+                                                              scripting::createCopy(ctx, script->getObj())));
 
     return (Resource *)material;
 }

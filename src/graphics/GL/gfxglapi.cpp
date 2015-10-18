@@ -143,7 +143,12 @@ static void debugCallback(GLenum source,
 GfxGLApi::GfxGLApi() : stateStackSize(0),
                        textureBindingCount(0),
                        uboBindingCount(0),
-                       mesh(nullptr)
+                       mesh(nullptr),
+                       vertex(nullptr),
+                       tessControl(nullptr),
+                       tessEval(nullptr),
+                       geometry(nullptr),
+                       fragment(nullptr)
 {
     glflInit();
 
@@ -187,6 +192,11 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
         ERROR(CATEGORY_OPENGL, "GL_ARB_separate_shader_objects is not supported.")();
     }
 
+    if (not GLFL_GL_ARB_tessellation_shader)
+    {
+        ERROR(CATEGORY_OPENGL, "GL_ARB_separate_shader_objects is not supported.")();
+    }
+
     glGenProgramPipelines(1, &pipeline);
 }
 
@@ -198,11 +208,6 @@ GfxGLApi::~GfxGLApi()
 GfxDriver GfxGLApi::getDriver() const
 {
     return driver;
-}
-
-bool GfxGLApi::tesselationSupported()
-{
-    return GLFL_GL_ARB_tessellation_shader;
 }
 
 GfxBuffer *GfxGLApi::createBuffer()
@@ -345,7 +350,7 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxMesh *mesh_)
 {
     mesh = mesh_;
-    tesselation = tessControl_ != nullptr or tessEval_ != nullptr;
+    tesselation = (tessControl_ != nullptr) or (tessEval_ != nullptr);
 
     glBindVertexArray(mesh->getGLVAO());
 
@@ -358,25 +363,25 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
     {
         glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, 0);
     }
+    vertex = vertex_;
 
-    if (GLFL_GL_ARB_tessellation_shader)
+    if (tessControl_ != nullptr)
     {
-        if (tessControl_ != nullptr)
-        {
-            glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, tessControl_->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, 0);
-        }
-
-        if (tessEval_ != nullptr)
-        {
-            glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, tessEval_->getGLProgram());
-        } else
-        {
-            glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, 0);
-        }
+        glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, tessControl_->getGLProgram());
+    } else
+    {
+        glUseProgramStages(pipeline, GL_TESS_CONTROL_SHADER_BIT, 0);
     }
+    tessControl = tessControl_;
+
+    if (tessEval_ != nullptr)
+    {
+        glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, tessEval_->getGLProgram());
+    } else
+    {
+        glUseProgramStages(pipeline, GL_TESS_EVALUATION_SHADER_BIT, 0);
+    }
+    tessEval = tessEval_;
 
     if (geometry_ != nullptr)
     {
@@ -385,6 +390,7 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
     {
         glUseProgramStages(pipeline, GL_GEOMETRY_SHADER_BIT, 0);
     }
+    geometry = geometry_;
 
     if (fragment_ != nullptr)
     {
@@ -393,6 +399,7 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
     {
         glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, 0);
     }
+    fragment = fragment_;
 }
 
 void GfxGLApi::draw(size_t instanceCount)
@@ -459,6 +466,31 @@ void GfxGLApi::end()
     END_DRAW
 
     mesh = nullptr;
+}
+
+GfxCompiledShader *GfxGLApi::getVertexShader()
+{
+    return vertex;
+}
+
+GfxCompiledShader *GfxGLApi::getTessControlShader()
+{
+    return tessControl;
+}
+
+GfxCompiledShader *GfxGLApi::getTessEvalShader()
+{
+    return tessEval;
+}
+
+GfxCompiledShader *GfxGLApi::getGeometryShader()
+{
+    return geometry;
+}
+
+GfxCompiledShader *GfxGLApi::getFragmentShader()
+{
+    return fragment;
 }
 
 void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, float value)

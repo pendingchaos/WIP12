@@ -252,7 +252,6 @@ class Material(Resource):
     def __init__(self, src_filenames, dest_filename):
         Resource.__init__(self, "material", src_filenames, dest_filename)
         
-        self.forward = True
         self.albedo = [1.0, 1.0, 1.0, 1.0]
         self.smoothness = 0.6
         self.metalMask = 0.0
@@ -283,10 +282,13 @@ class Material(Resource):
     def convert(self):
         output = open(self.dest_filename+".temp", "wb")
         
-        output.write("mtrl\x01\x00")
+        output.write("mtrl\x02\x00")
         
-        s = struct.pack("<bfffffffbbbffffffbff",
-                        self.forward,
+        matScriptFile = "resources/scripts/materials/deferred.rkt"
+        output.write(struct.pack("<L", len(matScriptFile)))
+        output.write(matScriptFile)
+        
+        s = struct.pack("<fffffffbbbffffff",
                         self.albedo[0],
                         self.albedo[1],
                         self.albedo[2],
@@ -302,10 +304,7 @@ class Material(Resource):
                         self.tessMinDistance,
                         self.tessMaxDistance,
                         self.displacementStrength,
-                        self.displacementMidlevel,
-                        self.shadowTesselation,
-                        self.shadowMinTessLevel,
-                        self.shadowMaxTessLevel)
+                        self.displacementMidlevel)
         
         if self.albedoMap != None:
             s += struct.pack("<L", len(get_dest_filename(self.albedoMap, Texture)))

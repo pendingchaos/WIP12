@@ -102,7 +102,7 @@ void Scene::handleInput()
 
     for (auto scriptInst : scripts)
     {
-        scriptInst->handleInput();
+        scripting::destroy(scriptInst->getScript()->getContext(), scriptInst->method("handleInput"));
     }
 }
 
@@ -117,7 +117,7 @@ void Scene::update()
 
     for (auto scriptInst : scripts)
     {
-        scriptInst->update();
+        scripting::destroy(scriptInst->getScript()->getContext(), scriptInst->method("update"));
     }
 }
 
@@ -132,7 +132,8 @@ void Scene::fixedUpdate(float timestep)
 
     for (auto scriptInst : scripts)
     {
-        scriptInst->fixedUpdate(timestep);
+        scripting::destroy(scriptInst->getScript()->getContext(),
+                           scriptInst->method("fixedUpdate", scripting::createFloat(timestep)));
     }
 
     physicsWorld->stepSimulation(timestep);
@@ -144,7 +145,8 @@ void Scene::_handleInput(const List<Entity *>& entities_)
     {
         for (auto scriptInst : entity->getScripts())
         {
-            scriptInst->handleInput();
+            scripting::destroy(scriptInst->getScript()->getContext(),
+                               scriptInst->method("handleInput"));
         }
 
         _handleInput(entity->getEntities());
@@ -157,7 +159,8 @@ void Scene::_update(const List<Entity *>& entities_)
     {
         for (auto scriptInst : entity->getScripts())
         {
-            scriptInst->update();
+            scripting::destroy(scriptInst->getScript()->getContext(),
+                               scriptInst->method("update"));
         }
 
         _update(entity->getEntities());
@@ -170,7 +173,8 @@ void Scene::_fixedUpdate(const List<Entity *>& entities_, float timestep)
     {
         for (auto scriptInst : entity->getScripts())
         {
-            scriptInst->fixedUpdate(timestep);
+            scripting::destroy(scriptInst->getScript()->getContext(),
+                               scriptInst->method("fixedUpdate", scripting::createFloat(timestep)));
         }
 
         _fixedUpdate(entity->getEntities(), timestep);
@@ -188,14 +192,16 @@ void Scene::render()
 
     for (auto scriptInst : scripts)
     {
-        scriptInst->preRender();
+        scripting::destroy(scriptInst->getScript()->getContext(),
+                           scriptInst->method("preRender"));
     }
 
     renderer->render();
 
     for (auto scriptInst : scripts)
     {
-        scriptInst->postRender();
+        scripting::destroy(scriptInst->getScript()->getContext(),
+                           scriptInst->method("postRender"));
     }
 }
 

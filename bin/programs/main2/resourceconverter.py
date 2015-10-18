@@ -30,28 +30,24 @@ if __name__ == "__main__":
     
     # Materials
     mat = Material([], "resources/materials/player.bin")
-    mat.forward = False
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["player"] = mat
     
     mat = Material([], "resources/materials/floor.bin")
-    mat.forward = False
     mat.smoothness = 0.875
     mat.metalMask = 0.0
     mat.albedo = [1.0, 1.0, 1.0, 1.0]
     conv["floor"] = mat
     
     mat = Material([], "resources/materials/decor.bin")
-    mat.forward = False
     mat.smoothness = 0.9
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.1, 0.0, 1.0]
     conv["decor"] = mat
     
     mat = Material([], "resources/materials/monkey.bin")
-    mat.forward = False
     mat.smoothness = 0.3
     mat.metalMask = 1.0
     mat.albedo = [1.0, 1.0, 1.0, 1.0]
@@ -62,7 +58,6 @@ if __name__ == "__main__":
     i = 0
     for color in colors:
         mat = Material([], "resources/materials/coin%d.bin" % (i))
-        mat.forward = False
         mat.smoothness = random.randint(0, 100)/100.0 * 0.1 + 0.55
         mat.metalMask = 1.0
         mat.albedo = color+[1.0]

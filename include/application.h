@@ -84,7 +84,7 @@ class Application
             return scriptEngine_;
         }
 
-        inline void setNextScript(Script *script_, const char *name) NO_BIND
+        inline void setNextScript(Script *script_)
         {
             if (nextScript != nullptr)
             {
@@ -92,15 +92,14 @@ class Application
             }
 
             nextScript = script_->copyRef<Script>();
-            nextScriptName = name;
         }
 
-        inline Script *getNextScript() const NO_BIND
+        inline Script *getNextScript() const
         {
             return nextScript;
         }
 
-        inline ScriptInstance *getScript() const NO_BIND
+        inline ScriptInstance *getScript() const
         {
             return script;
         }
@@ -125,7 +124,6 @@ class Application
 
         ScriptInstance *script;
         Script *nextScript;
-        Str nextScriptName;
         uint64_t simulationTime;
 
         void _switchScripts();

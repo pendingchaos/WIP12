@@ -85,12 +85,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     terrainTessEval = resMgr->load<GfxShader>("resources/shaders/terrain.tes.bin");
     terrainFragment = resMgr->load<GfxShader>("resources/shaders/terrain.fs.bin");
 
-    if (gfxApi->tesselationSupported())
-    {
-        shadowmapTessControl = resMgr->load<GfxShader>("resources/shaders/shadowmap.tcs.bin");
-        shadowmapTessEval = resMgr->load<GfxShader>("resources/shaders/shadowmap.tes.bin");
-    }
-
     shadowmapVertex = resMgr->load<GfxShader>("resources/shaders/shadowmap.vs.bin");
     pointShadowmapGeometry = resMgr->load<GfxShader>("resources/shaders/pointShadowmap.gs.bin");
     shadowmapFragment = resMgr->load<GfxShader>("resources/shaders/shadowmap.fs.bin");
@@ -117,13 +111,7 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledTerrainTessEval = terrainTessEval->getCompiled();
     compiledTerrainFragment = terrainFragment->getCompiled();
 
-    compiledShadowmapVertexTesselation = shadowmapVertex->getCompiled(HashMapBuilder<Str, Str>().add("TESSELATION", "1"));
-    compiledShadowmapVertexTesselationAnimated = shadowmapVertex->getCompiled(HashMapBuilder<Str, Str>().add("TESSELATION", "1").add("SKELETAL_ANIMATION", "1"));
-
     compiledPointShadowmapGeometry = pointShadowmapGeometry->getCompiled();
-
-    compiledShadowmapTessControl = shadowmapTessControl->getCompiled();
-    compiledShadowmapTessEval = shadowmapTessEval->getCompiled();
 
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
     compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
@@ -364,12 +352,6 @@ GfxRenderer::~GfxRenderer()
     colorModifierFragment->release();
     pointShadowmapFragment->release();
     shadowmapFragment->release();
-
-    if (gfxApi->tesselationSupported())
-    {
-        shadowmapTessEval->release();
-        shadowmapTessControl->release();
-    }
 
     pointShadowmapGeometry->release();
     shadowmapVertex->release();
@@ -1412,10 +1394,11 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
                     {
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
-                        if (lod.material->getDisplacementMap() != nullptr)
+                        //TODO
+                        /*if (lod.material->getDisplacementMap() != nullptr)
                         {
                             aabb2.grow(lod.material->displacementStrength);
-                        }
+                        }*/
 
                         aabb.extend(aabb2);
                     }
@@ -1447,10 +1430,11 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
                     {
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
-                        if (lod.material->getDisplacementMap() != nullptr and lod.material->shadowTesselation)
+                        //TODO
+                        /*if (lod.material->getDisplacementMap() != nullptr and lod.material->shadowTesselation)
                         {
                             aabb2.grow(lod.material->displacementStrength);
-                        }
+                        }*/
 
                         aabb.extend(aabb2);
                     }
@@ -1636,9 +1620,6 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
 
 void GfxRenderer::renderBatches(bool forward)
 {
-    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
-    Matrix4x4 viewMatrix = camera.getViewMatrix();
-
     for (auto batch : batches)
     {
         if (batch.material->isForward() == forward)
@@ -1647,123 +1628,17 @@ void GfxRenderer::renderBatches(bool forward)
 
             GfxMaterial *material = batch.material;
             GfxMesh *mesh = batch.mesh;
-            GfxShaderCombination *shaderComb = material->getShaderComb();
-
-            bool useTesselation = material->getDisplacementMap() != nullptr and
-                                  gfxApi->tesselationSupported() and
-                                  mesh->primitive == GfxTriangles;
 
             gfxApi->pushState();
 
-            if (batch.animState != nullptr)
-            {
-                shaderComb->setDefine(GfxShaderType::Vertex, "SKELETAL_ANIMATION", "1");
-            }
+            material->setupRender(mesh, batch.animState, camera);
 
-            GfxCompiledShader *vertex = shaderComb->getCompiled(GfxShaderType::Vertex);
-            GfxCompiledShader *tessControl = shaderComb->getCompiled(GfxShaderType::TessControl);
-            GfxCompiledShader *tessEval = shaderComb->getCompiled(GfxShaderType::TessEval);
-            GfxCompiledShader *geometry = shaderComb->getCompiled(GfxShaderType::Geometry);
-            GfxCompiledShader *fragment = shaderComb->getCompiled(GfxShaderType::Fragment);
-
-            gfxApi->begin(vertex,
-                          tessControl,
-                          tessEval,
-                          geometry,
-                          fragment,
-                          mesh);
-
-            if (useTesselation)
-            {
-                gfxApi->uniform(vertex, "projectionViewMatrix", Matrix4x4());
-            } else
-            {
-                gfxApi->uniform(vertex, "projectionViewMatrix", projectionMatrix * viewMatrix);
-            }
-
-            gfxApi->uniform(vertex, "cameraPosition", camera.getPosition());
-
-            if (useTesselation)
-            {
-                gfxApi->uniform(tessControl, "minTessLevel", material->minTessLevel);
-                gfxApi->uniform(tessControl, "maxTessLevel", material->maxTessLevel);
-                gfxApi->uniform(tessControl, "tessMinDistance", material->tessMinDistance);
-                gfxApi->uniform(tessControl, "tessMaxDistance", material->tessMaxDistance);
-                gfxApi->uniform(tessControl, "cameraPosition", camera.getPosition());
-
-                gfxApi->addTextureBinding(tessEval, "heightMap", material->getDisplacementMap());
-                gfxApi->uniform(tessEval, "displacementMidlevel", material->displacementMidlevel);
-                gfxApi->uniform(tessEval, "projectionViewMatrix", projectionMatrix * viewMatrix);
-                gfxApi->uniform(tessEval, "strength", material->displacementStrength);
-            }
-
-            gfxApi->uniform(fragment, "smoothness", material->smoothness);
-            gfxApi->uniform(fragment, "metalMask", material->metalMask);
-            gfxApi->uniform(fragment, "albedo", material->albedo);
-
-            if (material->isForward())
-            {
-                gfxApi->uniform(fragment, "numSpotLights", (uint32_t)numSpotLights);
-                gfxApi->uniform(fragment, "numPointLights", (uint32_t)numPointLights);
-                gfxApi->uniform(fragment, "numDirectionalLights", (uint32_t)numDirectionalLights);
-                gfxApi->addUBOBinding(fragment, "lights_", lightBuffer);
-            }
-
-            if (material->getMaterialMap() != nullptr)
-            {
-                gfxApi->addTextureBinding(fragment, "materialMap", material->getMaterialMap());
-            }
-
-            if (material->getAlbedoMap() != nullptr)
-            {
-                gfxApi->addTextureBinding(fragment, "albedoMap", material->getAlbedoMap());
-            }
-
-            if (material->getNormalMap() != nullptr)
-            {
-                gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
-            }
-
-            if (material->getParallaxHeightMap() != nullptr)
-            {
-                gfxApi->addTextureBinding(fragment, "heightMap", material->getParallaxHeightMap());
-
-                gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
-                gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
-            }
-
-            if (material->getPOMHeightMap() != nullptr)
-            {
-                gfxApi->addTextureBinding(fragment, "heightMap", material->getPOMHeightMap());
-
-                gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
-                gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
-                gfxApi->uniform(fragment, "pomMinLayers", material->pomMinLayers);
-                gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
-            }
-
-            if (batch.animState != nullptr)
-            {
-                gfxApi->addUBOBinding(vertex, "bonePositionData", batch.animState->getMatrixBuffer());
-                gfxApi->addUBOBinding(vertex, "boneNormalData", batch.animState->getNormalMatrixBuffer());
-            }
-
-            gfxApi->addTextureBinding(vertex, "matrixTexture", matrixTexture);
+            gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
 
             gfxApi->setCullMode(mesh->cullMode);
 
-            if (useTesselation)
-            {
-                gfxApi->setTessPatchSize(3);
-            }
-
             gfxApi->draw(batch.worldMatrices.getCount());
             gfxApi->end();
-
-            if (batch.animState != nullptr)
-            {
-                shaderComb->removeDefine(GfxShaderType::Vertex, "SKELETAL_ANIMATION");
-            }
 
             gfxApi->popState();
         }
@@ -1805,7 +1680,6 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
     {
         fillMatrixTexture(batch.worldMatrices);
 
-        GfxMaterial *material = batch.material;
         GfxMesh *mesh = batch.mesh;
 
         GfxCompiledShader *vertexShader = batch.animState == nullptr ?
@@ -1813,21 +1687,6 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
                                           compiledShadowmapVertexAnimated;
         GfxCompiledShader *geometryShader = nullptr;
         GfxCompiledShader *fragmentShader = compiledShadowmapFragment;
-        GfxCompiledShader *tessControlShader = nullptr;
-        GfxCompiledShader *tessEvalShader = nullptr;
-
-        bool useTesselation = material->getDisplacementMap() != nullptr and
-                              material->shadowTesselation and
-                              gfxApi->tesselationSupported();
-
-        if (useTesselation)
-        {
-            vertexShader = batch.animState == nullptr ?
-                           compiledShadowmapVertexTesselation :
-                           compiledShadowmapVertexTesselationAnimated;
-            tessControlShader = compiledShadowmapTessControl;
-            tessEvalShader = compiledShadowmapTessEval;
-        }
 
         if (light->type == GfxLightType::Point)
         {
@@ -1840,8 +1699,8 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
         }
 
         gfxApi->begin(vertexShader,
-                      tessControlShader,
-                      tessEvalShader,
+                      nullptr,
+                      nullptr,
                       geometryShader,
                       fragmentShader,
                       mesh);
@@ -1884,82 +1743,30 @@ void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
 
             if (light->point.singlePassShadowMap)
             {
-                if (not useTesselation)
-                {
-                    gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
-                    gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
-                } else
-                {
-                    gfxApi->uniform(tessEvalShader, "projectionMatrix", Matrix4x4());
-                    gfxApi->uniform(tessEvalShader, "viewMatrix", Matrix4x4());
-                }
+                gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
+                gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
             } else
             {
                 Matrix4x4 viewMatrix = matrices[pass];
 
-                if (not useTesselation)
-                {
-                    gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
-                    gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
-                } else
-                {
-                    gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
-                    gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
-                }
-            }
-        } else if (light->type == GfxLightType::Directional)
-        {
-            if (not useTesselation)
-            {
-                gfxApi->uniform(vertexShader, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
-                gfxApi->uniform(vertexShader, "viewMatrix", light->getCascadeViewMatrix(pass));
-            }
-        } else
-        {
-            if (not useTesselation)
-            {
                 gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
                 gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
             }
-        }
-
-        if (useTesselation)
+        } else if (light->type == GfxLightType::Directional)
         {
-            if (light->type == GfxLightType::Spot)
-            {
-                gfxApi->uniform(tessEvalShader, "projectionMatrix", projectionMatrix);
-                gfxApi->uniform(tessEvalShader, "viewMatrix", viewMatrix);
-            } else if (light->type == GfxLightType::Directional)
-            {
-                gfxApi->uniform(tessEvalShader, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
-                gfxApi->uniform(tessEvalShader, "viewMatrix", light->getCascadeViewMatrix(pass));
-            }
-
-            gfxApi->uniform(tessControlShader, "minTessLevel", material->shadowMinTessLevel);
-            gfxApi->uniform(tessControlShader, "maxTessLevel", material->shadowMaxTessLevel);
-            gfxApi->uniform(tessControlShader, "tessMinDistance", material->tessMaxDistance);
-            gfxApi->uniform(tessControlShader, "tessMaxDistance", material->tessMinDistance);
-            gfxApi->addTextureBinding(tessEvalShader, "heightMap", material->getDisplacementMap());
-            gfxApi->uniform(tessEvalShader, "strength", material->displacementStrength);
-            gfxApi->uniform(tessEvalShader, "displacementMidlevel", material->displacementMidlevel);
-            gfxApi->uniform(tessControlShader, "cameraPosition", camera.getPosition());
+            gfxApi->uniform(vertexShader, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
+            gfxApi->uniform(vertexShader, "viewMatrix", light->getCascadeViewMatrix(pass));
+        } else
+        {
+            gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
+            gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
         }
 
         gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
 
-        if (useTesselation)
-        {
-            gfxApi->setTessPatchSize(3);
-        }
-
         if (batch.animState != nullptr)
         {
             gfxApi->addUBOBinding(vertexShader, "bonePositionData", batch.animState->getMatrixBuffer());
-
-            if (useTesselation)
-            {
-                gfxApi->addUBOBinding(vertexShader, "boneNormalData", batch.animState->getNormalMatrixBuffer());
-            }
         }
 
         gfxApi->addTextureBinding(vertexShader, "matrixTexture", matrixTexture);
@@ -2013,93 +1820,31 @@ void GfxRenderer::renderTerrain()
         return;
     }
 
-    Matrix4x4 viewMatrix = camera.getViewMatrix();
-    Matrix4x4 projectionMatrix = camera.getProjectionMatrix();
-
-    gfxApi->pushState();
-
     for (auto layer : terrain->layers)
     {
         GfxMaterial *material = layer.getMaterial();
-        GfxShaderCombination *shaderComb = material->getShaderComb();
 
-        shaderComb->setDefine(GfxShaderType::Fragment, "TERRAIN", "1");
+        gfxApi->pushState();
 
-        GfxCompiledShader *fragment = shaderComb->getCompiled(GfxShaderType::Fragment);
+        material->setupRender(terrain->getMesh(), nullptr, camera);
 
-        gfxApi->begin(compiledTerrainVertex,
-                      compiledTerrainTessControl,
-                      compiledTerrainTessEval,
-                      nullptr,
-                      fragment,
-                      terrain->getMesh());
-
-        gfxApi->uniform(compiledTerrainVertex, "sizeInChunks", (uint32_t)terrain->getSizeInChunks());
-        gfxApi->uniform(compiledTerrainVertex, "chunkSize", terrain->getChunkSize());
-        gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
-        gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
-        gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
-        gfxApi->uniform(compiledTerrainTessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
-        gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
-        gfxApi->uniform(compiledTerrainTessEval, "cameraPosition", camera.getPosition());
-        gfxApi->uniform(compiledTerrainTessEval, "uvScale", layer.uvScale);
-        gfxApi->addTextureBinding(compiledTerrainTessEval,
-                                  "heightMap",
-                                  terrain->getHeightmap());
-
-        gfxApi->uniform(fragment, "smoothness", material->smoothness);
-        gfxApi->uniform(fragment, "metalMask", material->metalMask);
-        gfxApi->uniform(fragment, "albedo", material->albedo);
-
-        if (material->getMaterialMap() != nullptr)
-        {
-            gfxApi->addTextureBinding(fragment, "materialMap", material->getMaterialMap());
-        }
-
-        if (material->getAlbedoMap() != nullptr)
-        {
-            gfxApi->addTextureBinding(fragment, "albedoMap", material->getAlbedoMap());
-        }
-
-        if (material->getNormalMap() != nullptr)
-        {
-            gfxApi->addTextureBinding(fragment, "normalMap", material->getNormalMap());
-        }
-
-        if (material->getParallaxHeightMap() != nullptr)
-        {
-            gfxApi->addTextureBinding(fragment, "heightMap", material->getParallaxHeightMap());
-
-            gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
-            gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
-        }
-
-        if (material->getPOMHeightMap() != nullptr)
-        {
-            gfxApi->addTextureBinding(fragment, "heightMap", material->getPOMHeightMap());
-
-            gfxApi->uniform(fragment, "heightScale", material->parallaxStrength);
-            gfxApi->uniform(fragment, "parallaxEdgeDiscard", material->parallaxEdgeDiscard ? 1 : 0);
-            gfxApi->uniform(fragment, "pomMinLayers", material->pomMinLayers);
-            gfxApi->uniform(fragment, "pomMaxLayers", material->pomMaxLayers);
-        }
-
-        gfxApi->addTextureBinding(fragment, "weightMap", layer.getWeight());
-
-        gfxApi->setTessPatchSize(4);
+        //TODO
+        //shaderComb->setDefine(GfxShaderType::Fragment, "TERRAIN", "1");
+        //gfxApi->addTextureBinding(fragment, "weightMap", layer.getWeight());
+        //gfxApi->setTessPatchSize(4);
 
         gfxApi->draw(terrain->getSizeInChunks() * terrain->getSizeInChunks());
         gfxApi->end();
         ++stats.numDrawCalls;
 
-        shaderComb->removeDefine(GfxShaderType::Fragment, "TERRAIN");
+        //shaderComb->removeDefine(GfxShaderType::Fragment, "TERRAIN");
 
         gfxApi->setBlendingEnabled(true);
         gfxApi->setBlendFactors(GfxOne, GfxOne, GfxOne, GfxOne);
         gfxApi->setDepthFunction(GfxLessEqual);
-    }
 
-    gfxApi->popState();
+        gfxApi->popState();
+    }
 }
 
 void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,

@@ -388,7 +388,7 @@ ScriptInstance::~ScriptInstance()
     script->release();
 }
 
-void ScriptInstance::method(const Str& name)
+scripting::Value ScriptInstance::method(const Str& name, const List<scripting::Value>& args)
 {
     scripting::Context *ctx = script->getContext();
 
@@ -396,7 +396,7 @@ void ScriptInstance::method(const Str& name)
     {
         try
         {
-            scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, List<scripting::Value>()));
+            return scripting::callMethod(ctx, obj, name, args);
         } catch (scripting::UnhandledExcException& e)
         {
             scripting::Value exc = e.getException();
@@ -407,38 +407,9 @@ void ScriptInstance::method(const Str& name)
             {
                 log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
             }
-            std::exit(1);
+
+            return scripting::createNil();
         }
-    }
-}
-
-void ScriptInstance::method(const Str& name, float timestep)
-{
-    scripting::Context *ctx = script->getContext();
-
-    if (obj.type != scripting::ValueType::Nil)
-    {
-        scripting::Value arg = scripting::createFloat(timestep);
-
-        List<scripting::Value> args;
-        args.append(arg);
-
-        try
-        {
-            scripting::destroy(ctx, scripting::callMethod(ctx, obj, name, args));
-        } catch (scripting::UnhandledExcException& e)
-        {
-            scripting::Value exc = e.getException();
-
-            log("Unhandled script exception in %s\n", script->getFilename().getData());
-
-            if (exc.type == scripting::ValueType::Exception)
-            {
-                log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
-            }
-        }
-
-        scripting::destroy(ctx, arg);
     }
 }
 

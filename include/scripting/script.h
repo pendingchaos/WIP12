@@ -71,33 +71,21 @@ class ScriptInstance
     public:
         ~ScriptInstance();
 
-        void method(const Str& name);
-        void method(const Str& name, float timestep);
-
-        inline void handleInput()
+        template <typename... Args>
+        scripting::Value method(const Str& name, Args... args) NO_BIND
         {
-            method("handleInput");
+            List<scripting::Value> list;
+            buildArgs(list, args...);
+
+            return method(name, list);
         }
 
-        inline void fixedUpdate(float timestep)
+        scripting::Value method(const Str& name) NO_BIND
         {
-            method("fixedUpdate", timestep);
+            return method(name, List<scripting::Value>());
         }
 
-        inline void update()
-        {
-            method("update");
-        }
-
-        inline void preRender()
-        {
-            method("preRender");
-        }
-
-        inline void postRender()
-        {
-            method("postRender");
-        }
+        scripting::Value method(const Str& name, const List<scripting::Value>& args) NO_BIND;
 
         inline Script *getScript() const
         {
@@ -109,6 +97,15 @@ class ScriptInstance
             return obj;
         }
     private:
+        template <typename... Args>
+        void buildArgs(List<scripting::Value>& list, const scripting::Value& arg0, Args... args)
+        {
+            list.append(arg0);
+            buildArgs(list, args...);
+        }
+
+        void buildArgs(List<scripting::Value>& list) {}
+
         ScriptInstance(Script *script,
                        const scripting::Value& obj,
                        Entity *entity,

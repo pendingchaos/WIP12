@@ -1,3 +1,5 @@
+- [ ] Fix memory leaks.
+
 ## Features
 - [ ] Forward shadow mapping.
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
@@ -41,6 +43,7 @@
 - [ ] Complete terrain shadows.
 
 ## Bugs
+- [ ] Fix terrain (gfxrenderer.cpp:1840)
 - [ ] POM with terrains freezes the computer.
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)

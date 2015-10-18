@@ -14,6 +14,11 @@
 #include "misc_macros.h"
 #include "memory.h"
 #include "scripting/bindings.h"
+#include "scripting/script.h"
+
+class GfxMesh;
+class GfxAnimationState;
+class Camera;
 
 class GfxMaterial : public Resource
 {
@@ -26,84 +31,26 @@ class GfxMaterial : public Resource
         virtual ~GfxMaterial();
 
         virtual void removeContent();
-
         virtual void save();
 
-        inline GfxShaderCombination *getShaderComb() const
+        inline void setScript(Script *script_)
         {
-            return shaderComb;
+            DELETE(script);
+            script = script_->createInstance();
         }
 
-        float smoothness;
-        float metalMask;
-        float parallaxStrength;
-        bool parallaxEdgeDiscard;
-        Float4 albedo;
-        unsigned int pomMinLayers;
-        unsigned int pomMaxLayers;
-        float minTessLevel;
-        float maxTessLevel;
-        float tessMinDistance;
-        float tessMaxDistance;
-        float displacementStrength;
-        float displacementMidlevel;
-        bool shadowTesselation;
-        float shadowMinTessLevel;
-        float shadowMaxTessLevel;
-
-        #define TEXTURE(name, upperName, define) inline void JOIN(set, upperName)(GfxTexture *texture)\
-        {\
-            if (name != nullptr)\
-            {\
-                name->release();\
-            }\
-            name = texture;\
-            if (name != nullptr)\
-            {\
-                shaderComb->setDefine(GfxShaderType::Fragment, define, "1");\
-            } else\
-            {\
-                shaderComb->removeDefine(GfxShaderType::Fragment, define);\
-            }\
-        }\
-        \
-        inline GfxTexture *JOIN(get, upperName)() const\
-        {\
-            return name;\
-        }
-
-        TEXTURE(materialMap, MaterialMap, "MATERIAL_MAP")
-        TEXTURE(albedoMap, AlbedoMap, "ALBEDO_MAP")
-        TEXTURE(normalMap, NormalMap, "NORMAL_MAP")
-        TEXTURE(parallaxHeightMap, ParallaxHeightMap, "PARALLAX_MAPPING")
-        TEXTURE(pomHeightMap, POMHeightMap, "POM")
-
-        #undef TEXTURE
-
-        void setDisplacementMap(GfxTexture *texture);
-
-        inline GfxTexture *getDisplacementMap() const
+        inline ScriptInstance *getScriptInst() const
         {
-            return displacementMap;
+            return script;
         }
 
-        inline bool isForward() const
-        {
-            return forward;
-        }
+        bool isForward();
 
-        void setForward(bool forward);
+        void setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera);
     private:
         GfxShaderCombination *shaderComb;
 
-        GfxTexture *materialMap;
-        GfxTexture *albedoMap;
-        GfxTexture *normalMap;
-        GfxTexture *parallaxHeightMap;
-        GfxTexture *pomHeightMap;
-        GfxTexture *displacementMap;
-
-        bool forward;
+        ScriptInstance *script;
     protected:
         virtual void _load();
         virtual Resource *_copy() const;

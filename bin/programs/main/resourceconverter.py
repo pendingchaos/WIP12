@@ -91,12 +91,6 @@ if __name__ == "__main__":
     
     conv["shadowmap.vs"] = Shader(["source/shaders/shadowmap.vs"], "../../resources/shaders/shadowmap.vs.bin")
     
-    conv["shadowmap.tcs"] = Shader(["source/shaders/shadowmap.tcs"], "../../resources/shaders/shadowmap.tcs.bin")
-    conv["shadowmap.tcs"].stage_ = Shader.Stage.TessControl
-    
-    conv["shadowmap.tes"] = Shader(["source/shaders/shadowmap.tes"], "../../resources/shaders/shadowmap.tes.bin")
-    conv["shadowmap.tes"].stage_ = Shader.Stage.TessEval
-    
     conv["pointShadowmap.gs"] = Shader(["source/shaders/pointShadowmap.gs"], "../../resources/shaders/pointShadowmap.gs.bin")
     conv["pointShadowmap.gs"].stage_ = Shader.Stage.Geometry
     
@@ -160,7 +154,6 @@ if __name__ == "__main__":
     #conv["soldier1"].animated = True
     
     mat = Material([], "resources/materials/material.bin")
-    mat.forward = False
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedoMap = conv["texture2.png"]
@@ -168,28 +161,24 @@ if __name__ == "__main__":
     conv["material"] = mat
     
     mat = Material([], "resources/materials/clay.bin")
-    mat.forward = False
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["clay"] = mat
     
     mat = Material([], "resources/materials/gold.bin")
-    mat.forward = False
     mat.smoothness = 0.5
     mat.metalMask = 1.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["gold"] = mat
     
     mat = Material([], "resources/materials/plastic.bin")
-    mat.forward = False
     mat.smoothness = 0.875
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["plastic"] = mat
     
     mat = Material([], "resources/materials/projectile.bin")
-    mat.forward = False
     mat.smoothness = 0.5
     mat.metalMask = 1.0
     mat.albedo = [0.95349481, 0.806474433, 0.374256055, 1.0]
@@ -197,27 +186,23 @@ if __name__ == "__main__":
     conv["projectile material"] = mat
     
     mat = Material([], "resources/materials/floor.bin")
-    mat.forward = False
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedoMap = conv["floor.png"]
     conv["floor"] = mat
     
     mat = Material([], "resources/materials/fence.bin")
-    mat.forward = False
     mat.smoothness = 0.65
     mat.metalMask = 1.0
     conv["fence"] = mat
 
     mat = Material([], "resources/materials/ao test material.bin")
-    mat.forward = False
     mat.smoothness = 0.6
     mat.metalMask = 0.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
     conv["ao test material"] = mat
     
     mat = Material([], "resources/materials/parallax test material.bin")
-    mat.forward = False
     mat.smoothness = 0.875
     mat.metalMask = 0.0
     mat.albedoMap = conv["bricks2.jpg"]
@@ -229,7 +214,6 @@ if __name__ == "__main__":
     conv["parallax test material"] = mat
     
     mat = Material([], "resources/materials/tesselation test material.bin")
-    mat.forward = False
     mat.smoothness = 0.5
     mat.albedoMap = conv["bricks2.jpg"]
     mat.normalMap = conv["bricks2_normal.png"]
@@ -245,27 +229,23 @@ if __name__ == "__main__":
     conv["tesselation test material"] = mat
     
     mat = Material([], "resources/materials/platform material.bin")
-    mat.forward = False
     mat.smoothness = 0.1
     mat.albedo = [0.9, 0.9, 1.0, 1.0]
     conv["platform material"] = mat
     
     mat = Material([], "resources/materials/grass.bin")
-    mat.forward = False
     mat.smoothness = 0.1
     mat.albedoMap = conv["grassAlbedo.png"]
     mat.normalMap = conv["grassNormal.png"]
     conv["grass material"] = mat
     
     mat = Material([], "resources/materials/rock.bin")
-    mat.forward = False
     mat.smoothness = 0.1
     mat.albedoMap = conv["rockAlbedo.png"]
     mat.normalMap = conv["rockNormal.png"]
     conv["rock material"] = mat
     
     mat = Material([], "resources/materials/soldier.bin")
-    mat.forward = False
     mat.smoothness = 0.5
     mat.metalMask = 1.0
     mat.albedo = [1.0, 0.403921569, 0.0, 1.0]

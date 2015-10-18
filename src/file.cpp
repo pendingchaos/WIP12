@@ -630,6 +630,16 @@ void File::writeFloat32(float value)
     write(4, &value);
 }
 
+void File::writeStr(Str s)
+{
+    if (file == nullptr)
+    {
+        THROW(FileException, filename, "File invalid");
+    }
+
+    write(s.getLength(), s.getData());
+}
+
 void File::printf(const char *format, ...)
 {
     if (file == nullptr)

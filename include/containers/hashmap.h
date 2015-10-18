@@ -165,12 +165,11 @@ class HashMap
 
         void remove(const Key& key)
         {
-            try
+            auto pos = data.find(key);
+
+            if (pos != data.end())
             {
-                data.erase(data.find(key));
-            } catch (std::exception& e)
-            {
-                THROW(LookupException);
+                data.erase(pos);
             }
         }
 

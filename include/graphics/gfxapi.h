@@ -80,8 +80,6 @@ class GfxApi
 
         virtual GfxDriver getDriver() const=0;
 
-        virtual bool tesselationSupported()=0;
-
         virtual GfxBuffer *createBuffer()=0;
         virtual GfxTextureImpl *createTextureImpl() NO_BIND=0;
         virtual GfxFramebuffer *createFramebuffer()=0;
@@ -104,6 +102,12 @@ class GfxApi
         virtual void draw(size_t instanceCount=1)=0;
         virtual void end()=0;
 
+        virtual GfxCompiledShader *getVertexShader()=0;
+        virtual GfxCompiledShader *getTessControlShader()=0;
+        virtual GfxCompiledShader *getTessEvalShader()=0;
+        virtual GfxCompiledShader *getGeometryShader()=0;
+        virtual GfxCompiledShader *getFragmentShader()=0;
+
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float3& value)=0;
@@ -114,10 +118,15 @@ class GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Int3& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Int4& value)=0;
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, uint32_t value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, uint32_t value)=0 NO_BIND;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt2& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt3& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt4& value)=0;
+
+        inline void uniformU(GfxCompiledShader *shader, const char *name, uint32_t value)
+        {
+            uniform(shader, name, value);
+        }
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values) NO_BIND=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values) NO_BIND=0;
@@ -145,8 +154,13 @@ class GfxApi
             addTextureBinding(shader, name, texture, TextureSampler(texture));
         }
 
-        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value) NO_BIND=0;
-        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value) NO_BIND=0;
+        inline void addTextureBinding2(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
+        {
+            addTextureBinding(shader, name, texture);
+        }
+
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)=0;
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *values) NO_BIND=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *values) NO_BIND=0;

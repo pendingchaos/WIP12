@@ -19,7 +19,7 @@ void run(const char *dir)
         setApplication(&app_);
 
         Script *script = resMgr->load<Script>("resources/scripts/main.rkt");
-        app->setNextScript(script, "Main");
+        app->setNextScript(script);
         script->release();
 
         app->mainloop();

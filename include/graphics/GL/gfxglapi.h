@@ -22,8 +22,6 @@ class GfxGLApi : public GfxApi
             return glMajor;
         }
 
-        virtual bool tesselationSupported();
-
         virtual GfxBuffer *createBuffer();
         virtual GfxTextureImpl *createTextureImpl();
         virtual GfxFramebuffer *createFramebuffer();
@@ -44,6 +42,12 @@ class GfxGLApi : public GfxApi
                            GfxMesh *mesh);
         virtual void draw(size_t instanceCount=1);
         virtual void end();
+
+        virtual GfxCompiledShader *getVertexShader();
+        virtual GfxCompiledShader *getTessControlShader();
+        virtual GfxCompiledShader *getTessEvalShader();
+        virtual GfxCompiledShader *getGeometryShader();
+        virtual GfxCompiledShader *getFragmentShader();
 
         virtual void uniform(GfxCompiledShader *shader, const char *name, float value);
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value);
@@ -203,6 +207,12 @@ class GfxGLApi : public GfxApi
 
         GfxMesh *mesh;
         bool tesselation;
+
+        GfxCompiledShader *vertex;
+        GfxCompiledShader *tessControl;
+        GfxCompiledShader *tessEval;
+        GfxCompiledShader *geometry;
+        GfxCompiledShader *fragment;
 
         void useState(const State& state);
 };
