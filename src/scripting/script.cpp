@@ -396,7 +396,14 @@ scripting::Value ScriptInstance::method(const Str& name, const List<scripting::V
     {
         try
         {
-            return scripting::callMethod(ctx, obj, name, args);
+            scripting::Value result = scripting::callMethod(ctx, obj, name, args);
+
+            for (auto arg : args)
+            {
+                scripting::destroy(script->getContext(), arg);
+            }
+
+            return result;
         } catch (scripting::UnhandledExcException& e)
         {
             scripting::Value exc = e.getException();
@@ -408,9 +415,16 @@ scripting::Value ScriptInstance::method(const Str& name, const List<scripting::V
                 log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
             }
 
+            for (auto arg : args)
+            {
+                scripting::destroy(script->getContext(), arg);
+            }
+
             return scripting::createNil();
         }
     }
+
+    return scripting::createNil();
 }
 
 void ScriptInstance::destroy()
