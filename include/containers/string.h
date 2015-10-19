@@ -58,14 +58,18 @@ class Str
         Str(size_t length, const char *data);
         Str(char c);
         Str(const Str& a, const Str& b);
+
         inline Str(const Str& other) : datav(other.datav)
         {
             setRefCount(getRefCount()+1);
         }
 
+        inline Str(const Str&& other) : datav(other.datav) {}
+
         ~Str();
 
         Str& operator = (const Str& other);
+        Str& operator = (const Str&& other);
 
         inline bool operator == (const Str& other) const
         {

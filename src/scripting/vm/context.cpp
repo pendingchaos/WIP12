@@ -600,18 +600,21 @@ BREAK
                 throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
             }
 
-            List<Value> args;
-
-            for (int64_t i = 0; i < argCount; ++i)
+            //In {} because so args is destructed when using a computed goto.
             {
-                args.append(popStack(*stack));
-            }
+                List<Value> args;
 
-            stack->values[stack->size++] = call(this, val, args);
+                for (int64_t i = 0; i < argCount; ++i)
+                {
+                    args.append(popStack(*stack));
+                }
 
-            for (auto arg : args)
-            {
-                destroy(this, arg);
+                stack->values[stack->size++] = call(this, val, args);
+
+                for (auto arg : args)
+                {
+                    destroy(this, arg);
+                }
             }
 
             destroy(this, argCountVal);

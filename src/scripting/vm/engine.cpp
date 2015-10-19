@@ -17,8 +17,13 @@ static Value classNew(Context *ctx, const List<Value>& args)
 
     Value class_ = args[0];
 
-    Value base = getMember(ctx, class_, createString("__base__"));
-    Value typeID = getMember(ctx, class_, createString("__typeID__"));
+    Value __base__ = createString("__base__");
+    Value base = getMember(ctx, class_, __base__);
+    destroy(ctx, __base__);
+
+    Value __typeID__ = createString("__typeID__");
+    Value typeID = getMember(ctx, class_, __typeID__);
+    destroy(ctx, __typeID__);
 
     if (base.type != ValueType::Object)
     {
