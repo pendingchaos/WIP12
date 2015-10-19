@@ -98,19 +98,6 @@ Str& Str::operator = (const Str& other)
     return *this;
 }
 
-Str& Str::operator = (const Str&& other)
-{
-    setRefCount(getRefCount()-1);
-    if (getRefCount() == 0)
-    {
-        DEALLOCATE(datav);
-    }
-
-    datav = other.datav;
-
-    return *this;
-}
-
 int Str::find(char character) const
 {
     const char *chars = getData();

@@ -49,7 +49,7 @@ struct pass
 
 #define CPL_STR_HASH(s) pass<calcHashConst(s)>::v
 
-//Refcount(uint32_t) - length(uint32_t) - hash(size_t)
+//Refcount(uint32_t) - length(uint32_t) - hash(size_t) - data(char *)
 class Str
 {
     public:
@@ -64,12 +64,9 @@ class Str
             setRefCount(getRefCount()+1);
         }
 
-        inline Str(const Str&& other) : datav(other.datav) {}
-
         ~Str();
 
         Str& operator = (const Str& other);
-        Str& operator = (const Str&& other);
 
         inline bool operator == (const Str& other) const
         {
