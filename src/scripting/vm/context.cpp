@@ -133,13 +133,16 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             size_t size = bytecode.getUInt32(offset);
             offset += 4;
 
-            ResizableData data = bytecode.getData(offset, size);
-            offset += size;
+            //In {} because so destructors are ran when using a computed goto.
+            {
+                ResizableData data = bytecode.getData(offset, size);
+                offset += size;
 
-            Bytecode code(data);
-            code.strings = bytecode.strings;
+                Bytecode code(data);
+                code.strings = bytecode.strings;
 
-            stack->values[stack->size++] = createFunction(code);
+                stack->values[stack->size++] = createFunction(code);
+            }
             BREAK
         }
         CASE(PushObject)
@@ -184,10 +187,13 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
             size_t length = bytecode.getUInt32(offset);
             offset += 4;
 
-            ResizableData data = bytecode.getData(offset, length);
-            offset += length;
+            //In {} because so destructors are ran when using a computed goto.
+            {
+                ResizableData data = bytecode.getData(offset, length);
+                offset += length;
 
-            stack->values[stack->size++] = createException(type, Str(length, (const char *)data.getData()));
+                stack->values[stack->size++] = createException(type, Str(length, (const char *)data.getData()));
+            }
             BREAK
         }
         CASE(StackPop)
@@ -220,35 +226,38 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                 BREAK
             }
 
-            Str name = nameVal.getStr();
-
-            bool found = false;
-
-            for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
+            //In {} because so destructors are ran when using a computed goto.
             {
-                HashMap<Str, Value>& vars = callStack[i].variables;
+                Str name = nameVal.getStr();
 
-                auto pos = vars.find(name);
-                if (pos != vars.end())
+                bool found = false;
+
+                for (ptrdiff_t i = 0; i < (ptrdiff_t)callStackSize; ++i)
                 {
-                    stack->values[stack->size++] = createCopy(this, pos->second);
-                    found = true;
-                    BREAK
+                    HashMap<Str, Value>& vars = callStack[i].variables;
+
+                    auto pos = vars.find(name);
+                    if (pos != vars.end())
+                    {
+                        stack->values[stack->size++] = createCopy(this, pos->second);
+                        found = true;
+                        BREAK
+                    }
                 }
-            }
 
-            if (not found)
-            {
-                HashMap<Str, Value>& vars = engine->getGlobalVars();
-
-                auto pos = vars.find(name);
-
-                if (pos != vars.end())
+                if (not found)
                 {
-                    stack->values[stack->size++] = createCopy(this, pos->second);
-                } else
-                {
-                    throwException(createException(ExcType::KeyError, Str::format("No such variable '%s'.", name.getData())));
+                    HashMap<Str, Value>& vars = engine->getGlobalVars();
+
+                    auto pos = vars.find(name);
+
+                    if (pos != vars.end())
+                    {
+                        stack->values[stack->size++] = createCopy(this, pos->second);
+                    } else
+                    {
+                        throwException(createException(ExcType::KeyError, Str::format("No such variable '%s'.", name.getData())));
+                    }
                 }
             }
 
@@ -269,42 +278,45 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
             Value value = popStack(*stack);
 
-            Str name = nameVal.getStr();
-            bool found = false;
-
-            for (ptrdiff_t i = callStackSize-1; i >= 0; --i)
+            //In {} because so destructors are ran when using a computed goto.
             {
-                HashMap<Str, Value>& vars = callStack[i].variables;
+                Str name = nameVal.getStr();
+                bool found = false;
 
-                auto pos = vars.find(name);
-
-                if (pos != vars.end())
+                for (ptrdiff_t i = callStackSize-1; i >= 0; --i)
                 {
-                    destroy(this, pos->second);
-                    vars.set(name, value);
+                    HashMap<Str, Value>& vars = callStack[i].variables;
 
-                    found = true;
-                    BREAK
+                    auto pos = vars.find(name);
+
+                    if (pos != vars.end())
+                    {
+                        destroy(this, pos->second);
+                        vars.set(name, value);
+
+                        found = true;
+                        BREAK
+                    }
                 }
-            }
 
-            if (not found)
-            {
-                HashMap<Str, Value>& vars = engine->getGlobalVars();
-
-                auto pos = vars.find(name);
-
-                if (pos != vars.end())
+                if (not found)
                 {
-                    destroy(this, pos->second);
-                    vars.set(name, value);
-                } else
-                {
-                    callstackEntry.variables.set(name, value);
+                    HashMap<Str, Value>& vars = engine->getGlobalVars();
+
+                    auto pos = vars.find(name);
+
+                    if (pos != vars.end())
+                    {
+                        destroy(this, pos->second);
+                        vars.set(name, value);
+                    } else
+                    {
+                        callstackEntry.variables.set(name, value);
+                    }
                 }
-            }
 
-            destroy(this, nameVal);
+                destroy(this, nameVal);
+            }
             BREAK
         }
         CASE(GetMember)
@@ -600,7 +612,7 @@ BREAK
                 throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
             }
 
-            //In {} because so args is destructed when using a computed goto.
+            //In {} because so destructors are ran when using a computed goto.
             {
                 List<Value> args;
 
