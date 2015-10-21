@@ -10,8 +10,7 @@ BEGIN_INSTANCE(Animated, InstanceBase)
 
     virtual void fixedUpdate(float timestep)
     {
-        //TODO: Is this correct?
-        /*if (entity->getRenderComponent() != nullptr)
+        if (entity->getRenderComponent() != nullptr)
         {
             RenderComponent *comp = entity->getRenderComponent();
             
@@ -19,21 +18,10 @@ BEGIN_INSTANCE(Animated, InstanceBase)
             {
                 comp->getAnimationState()->timeOffset += timestep;
             }
-        }*/
-    }
-
-    virtual void update()
-    {
-        if (entity->getRenderComponent() != nullptr)
-        {
-            RenderComponent *comp = entity->getRenderComponent();
-            
-            if (comp->getAnimationState() != nullptr)
-            {
-                comp->getAnimationState()->timeOffset += platform->getFrametime();
-            }
         }
     }
+
+    virtual void update() {}
 
     virtual void serialize(Serializable& serialized) {}
 

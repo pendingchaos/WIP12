@@ -23,15 +23,13 @@ return class {
         self.feetGhost = physicsWorld:createGhostObject(shape, 0xFFFF ); #TODO: A space is required.
     };
     
-    __del__ = function(self)
-    {
+    __del__ = function(self) {
         self.scene:getPhysicsWorld():destroyGhostObject(self.feetGhost);
     };
     
     handleInput = function(self) {};
     
-    update = function(self)
-    {
+    update = function(self) {
         feetTransform = self.entity.transform;
         
         pos = feetTransform.position;

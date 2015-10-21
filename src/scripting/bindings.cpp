@@ -35350,6 +35350,12 @@ CATE(VE,"RenderComponent::setAnimationState" EAOE));
 RenderComponent*f;
 f=(RenderComponent*)((NO)a[0].p)->data;
 
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxMesh *)&&TS(a[2],const Str &))
+{
+( f->setAnimationState(val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[2])));
+RET CN;
+}
 CATE(TE,UFOF("RenderComponent::setAnimationState.")));
 RET CN;
 }
@@ -35361,6 +35367,12 @@ CATE(VE,"RenderComponent::getAnimationState" EAOE));
 RenderComponent*f;
 f=(RenderComponent*)((NO)a[0].p)->data;
 
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getAnimationState());
+;
+}
 CATE(TE,UFOF("RenderComponent::getAnimationState.")));
 RET CN;
 }
@@ -35372,6 +35384,12 @@ CATE(VE,"RenderComponent::removeAnimationState" EAOE));
 RenderComponent*f;
 f=(RenderComponent*)((NO)a[0].p)->data;
 
+if(a.getCount()==1)
+if(1)
+{
+( f->removeAnimationState());
+RET CN;
+}
 CATE(TE,UFOF("RenderComponent::removeAnimationState.")));
 RET CN;
 }

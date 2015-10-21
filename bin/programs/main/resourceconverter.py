@@ -443,7 +443,7 @@ if __name__ == "__main__":
     #ent.animation = "Octaminator_lowpoly_final"
     #ent.animation = "riggedHorse"
     ent.animation = "ArmatureAction"
-    ent.scripts.append(("resources/scripts/animated.cpp", "Animated"))
+    ent.scripts.append("resources/scripts/animated.rkt")
     scene.entities.append(ent)"""
     
     ent = Scene.Entity("TessTest")

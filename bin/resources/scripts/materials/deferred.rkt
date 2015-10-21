@@ -143,7 +143,7 @@ return class {
         
         animated = not isNil(animState);
         
-        if animated {shaders = self.shaderAnim;}
+        if animated {shaders = self.shadersAnim;}
         else {shaders = self.shaders;};
         
         vertex = shaders:getCompiled(GfxShaderType.Vertex);

@@ -84,7 +84,7 @@ class RenderComponent
         }
 
         void setAnimationState(GfxMesh *mesh,
-                               const Str& animName) NO_BIND
+                               const Str& animName)
         {
             if (animation != nullptr)
             {
@@ -94,13 +94,13 @@ class RenderComponent
             animation = NEW(GfxAnimationState, mesh, animName);
         }
 
-        void removeAnimationState() NO_BIND
+        void removeAnimationState()
         {
             DELETE(animation);
             animation = nullptr;
         }
 
-        GfxAnimationState *getAnimationState() const NO_BIND
+        GfxAnimationState *getAnimationState() const
         {
             return animation;
         }
