@@ -148,7 +148,7 @@ if __name__ == "__main__":
     conv["sphere.obj"] = Mesh(["source/sphere.obj"], "resources/meshes/sphere.bin")
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
     conv["fence.obj"] = Mesh(["source/fence.obj"], "resources/meshes/fence.bin")
-    conv["aotest.obj"] = Mesh(["source/ao test.obj"], "resources/meshes/aotest.bin")
+    #conv["aotest.obj"] = Mesh(["source/hairball.obj"], "resources/meshes/aotest.bin")
     conv["platform.obj"] = Mesh(["source/platform.obj"], "resources/meshes/platform.bin")
     #conv["soldier1"] = Mesh(["source/Cube.mesh.xml"], "resources/meshes/soldier.bin")
     #conv["soldier1"].animated = True
@@ -197,9 +197,9 @@ if __name__ == "__main__":
     conv["fence"] = mat
 
     mat = Material([], "resources/materials/ao test material.bin")
-    mat.smoothness = 0.6
+    mat.smoothness = 1.0
     mat.metalMask = 0.0
-    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
+    mat.albedo = [0.403921569, 1.0, 0.0, 1.0]
     conv["ao test material"] = mat
     
     mat = Material([], "resources/materials/parallax test material.bin")
@@ -280,7 +280,7 @@ if __name__ == "__main__":
     conv["fence model"] = model
     
     model = Model([], "resources/models/aotest.bin")
-    model.sub_models = [[Model.LOD(conv["aotest.obj"], conv["ao test material"], 0.0, 9999.0)]]
+    model.sub_models = [[Model.LOD("resources/meshes/aotest.bin", conv["ao test material"], 0.0, 9999.0)]]
     conv["ao test model"] = model
     
     model = Model([], "resources/models/parallaxTest.bin")
@@ -414,8 +414,9 @@ if __name__ == "__main__":
     scene.entities.append(fenceEnt)
     
     ent = Scene.Entity("AO test")
-    ent.transform.position = [-5.0, 0.0, 0.0]
+    ent.transform.position = [-5.0, 2.0, 0.0]
     ent.transform.orientation = [0.0, 100.0, 0.0]
+    ent.transform.scale = [0.5, 0.5, 0.5]
     ent.model = conv["ao test model"]
     scene.entities.append(ent)
     

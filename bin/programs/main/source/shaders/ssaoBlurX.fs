@@ -22,7 +22,7 @@ void main()
         
         aoNormal = texture(aoTexture, frag_uv+vec2(float(-i), 0.0)*onePixel);
         
-        weight = step(0.996, dot(center.yzw, aoNormal.yzw));
+        weight = step(0.9, dot(center.yzw, aoNormal.yzw));
         
         result_ao.r += aoNormal.r * weight;
         divisor += weight;
