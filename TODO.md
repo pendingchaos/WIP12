@@ -77,19 +77,13 @@
 - [ ] Improve error and exception handling.
     - Get rid of exceptions?
 - [ ] Get WIP12 running on OpenGL 3.3.
-- [ ] Fix memory leaks.
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
 - [ ] Cleanup code.
 - [ ] A proper shaderball.
 
 ## Performance Improvements
-- [ ] Instancing
-    - [ ] Implicit
-        - [x] G-Buffer
-        - [x] Forward
-        - [ ] Shadowmap
-    - [ ] Explicit
+- [ ] Explicit instancing
 - [ ] SSAO performance should be improved.
 - [ ] Fix performance warnings in shaders (Mesa3D):
     - [ ] lightingDirectional.bin:
