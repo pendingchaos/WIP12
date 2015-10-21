@@ -80,10 +80,10 @@ class GfxApi
 
         virtual GfxDriver getDriver() const=0;
 
-        virtual GfxBuffer *createBuffer()=0;
+        virtual GfxBuffer *createBuffer() RET_PTR_NO_CPP_REF =0;
         virtual GfxTextureImpl *createTextureImpl() NO_BIND=0;
-        virtual GfxFramebuffer *createFramebuffer()=0;
-        virtual GPUTimer *createTimer()=0;
+        virtual GfxFramebuffer *createFramebuffer() RET_PTR_NO_CPP_REF=0;
+        virtual GPUTimer *createTimer() RET_PTR_NO_CPP_REF=0;
 
         virtual void setCurrentFramebuffer(GfxFramebuffer *framebuffer)=0;
 

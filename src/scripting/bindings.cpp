@@ -16473,8 +16473,9 @@ f=(GfxApi*)((NO)a[0].p)->data;
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->createFramebuffer());
-;
+GfxFramebuffer * r=f->createFramebuffer();
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("GfxApi::createFramebuffer.")));
 RET CN;
@@ -16700,8 +16701,9 @@ f=(GfxApi*)((NO)a[0].p)->data;
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->createBuffer());
-;
+GfxBuffer * r=f->createBuffer();
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("GfxApi::createBuffer.")));
 RET CN;
@@ -16870,8 +16872,9 @@ f=(GfxApi*)((NO)a[0].p)->data;
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->createTimer());
-;
+GPUTimer * r=f->createTimer();
+setAllocInfo((void*)r,AllocInfo(true,false));
+RET CV(r);
 }
 CATE(TE,UFOF("GfxApi::createTimer.")));
 RET CN;

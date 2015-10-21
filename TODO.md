@@ -41,6 +41,7 @@
 - [ ] Make a GUI skinnable.
 - [ ] Make the directional light cascade count configurable.
 - [ ] Complete terrain shadows.
+- [ ] Lexical scoping (scripting).
 
 ## Bugs
 - [ ] Fix terrain (gfxrenderer.cpp:1840)

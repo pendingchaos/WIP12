@@ -54,14 +54,14 @@ bool _scriptDeletePart(void *ptr)
 
     if (pos != allocs.end())
     {
-        if (not pos->second.cppRef)
-        {
-            allocs.erase(pos);
-            return true;
-        } else
+        if (pos->second.cppRef)
         {
             pos->second.scriptRef = false;
             return false;
+        } else
+        {
+            allocs.erase(pos);
+            return true;
         }
     }
 
