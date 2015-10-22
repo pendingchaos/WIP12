@@ -4,6 +4,7 @@
 
 A work in progress using [OpenGL](https://opengl.org) and [Bullet Physics](bulletphysics.org) in C++.
 Please do not submit any pull requests. This is my own project that I am making for fun and knowledge.
+Don't clone this unless you want to download over half a gigabyte of data.
 
 The program has only been tested on a Linux based operating system.
 
