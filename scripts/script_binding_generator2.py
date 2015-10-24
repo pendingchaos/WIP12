@@ -692,7 +692,7 @@ struct val_to_c<SV>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
     }
 };
 
@@ -701,7 +701,7 @@ struct val_to_c<const SV>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
     }
 };
 
@@ -710,7 +710,34 @@ struct val_to_c<const SV&>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
+    }
+};
+
+template <>
+struct val_to_c<AutoVal>
+{
+    static AutoVal f(scripting::Context *ctx, const SV& val)
+    {
+        return AutoVal(val);
+    }
+};
+
+template <>
+struct val_to_c<const AutoVal>
+{
+    static AutoVal f(scripting::Context *ctx, const SV& val)
+    {
+        return AutoVal(val);
+    }
+};
+
+template <>
+struct val_to_c<AutoVal&>
+{
+    static AutoVal f(scripting::Context *ctx, const SV& val)
+    {
+        return AutoVal(val);
     }
 };
 
@@ -739,7 +766,16 @@ struct create_val<SV>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
+    }
+};
+
+template <>
+struct create_val<AutoVal>
+{
+    static SV f(scripting::Context *ctx, const AutoVal& val)
+    {
+        return scripting::createCopy(val.getVal());
     }
 };
 
@@ -824,6 +860,33 @@ struct type_same<const SV&>
 
 template <>
 struct type_same<const SV>
+{
+    static bool f(scripting::Context *ctx, const SV& val)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<AutoVal>
+{
+    static bool f(scripting::Context *ctx, const SV& val)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<const AutoVal&>
+{
+    static bool f(scripting::Context *ctx, const SV& val)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<const AutoVal>
 {
     static bool f(scripting::Context *ctx, const SV& val)
     {

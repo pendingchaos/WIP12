@@ -210,7 +210,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
             Value value = popStack(*stack);
 
-            stack->values[stack->size++] = createCopy(this, value);
+            stack->values[stack->size++] = createCopy(value);
             stack->values[stack->size++] = value;
             BREAK
         }
@@ -239,7 +239,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
                     auto pos = vars.find(name);
                     if (pos != vars.end())
                     {
-                        stack->values[stack->size++] = createCopy(this, pos->second);
+                        stack->values[stack->size++] = createCopy(pos->second);
                         found = true;
                         BREAK
                     }
@@ -253,7 +253,7 @@ static void *dispatchTable[] = {&&PushInt, &&PushFloat, &&PushBoolean, &&PushNil
 
                     if (pos != vars.end())
                     {
-                        stack->values[stack->size++] = createCopy(this, pos->second);
+                        stack->values[stack->size++] = createCopy(pos->second);
                     } else
                     {
                         throwException(createException(ExcType::KeyError, Str::format("No such variable '%s'.", name.getData())));
@@ -653,7 +653,7 @@ BREAK
                 throwException(createException(ExcType::IndexError, "Arg index is out of bounds."));
             }
 
-            stack->values[stack->size++] = createCopy(this, args[index]);
+            stack->values[stack->size++] = createCopy(args[index]);
 
             destroy(this, val);
             BREAK
@@ -728,7 +728,7 @@ BREAK
             {
                 THROW(StackBoundsException);
             }
-            stack->values[stack->size++] = createCopy(this, exception);
+            stack->values[stack->size++] = createCopy(exception);
             BREAK
         }
     END
@@ -871,7 +871,7 @@ UnhandledExcException::UnhandledExcException(const UnhandledExcException& other)
                       other.getLine(),
                       other.getFunction()),
    ctx(other.ctx),
-   exception(createCopy(ctx, other.exception)) {}
+   exception(createCopy(other.exception)) {}
 
 UnhandledExcException::~UnhandledExcException()
 {
@@ -1148,7 +1148,7 @@ Value getMember(Context *ctx, const Value& val, const Value& key)
             ctx->throwException(createException(ExcType::KeyError, Str::format("Unknown member: '%s'", key.getStr().getData())));
         }
 
-        return createCopy(ctx, pos->second);
+        return createCopy(pos->second);
     }
     case ValueType::StringType:
     {
@@ -1270,7 +1270,7 @@ void setMember(Context *ctx, const Value& dest, const Value& key, const Value& v
             destroy(ctx, pos->second);
         }
 
-        members.set(name, createCopy(ctx, value));
+        members.set(name, createCopy(value));
         return;
     }
     case ValueType::NativeObject:

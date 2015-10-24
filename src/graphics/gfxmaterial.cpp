@@ -129,7 +129,7 @@ Resource *GfxMaterial::_copy() const
     scripting::Context *ctx = script->getScript()->getContext();
 
     scripting::destroy(ctx, material->getScriptInst()->method("copyFrom",
-                                                              scripting::createCopy(ctx, script->getObj())));
+                                                              scripting::createCopy(script->getObj())));
 
     return (Resource *)material;
 }

@@ -248,6 +248,10 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     overlayTimer = gfxApi->createTimer();
     debugDrawTimer = gfxApi->createTimer();
 
+    forwardList = NEW(RenderList);
+    deferredList = NEW(RenderList);
+    shadowmapList = NEW(RenderList);
+
     /*addTerrain(2.0f,
                32,
                resMgr->load<GfxTexture>("resources/textures/terrain.bin"))->setScale(10.0f);
@@ -274,6 +278,10 @@ GfxRenderer::~GfxRenderer()
     {
         skybox->release();
     }
+
+    DELETE(shadowmapList);
+    DELETE(deferredList);
+    DELETE(forwardList);
 
     DELETE(gBufferTimer);
     DELETE(ssaoTimer);
@@ -872,8 +880,8 @@ void GfxRenderer::render()
 
     gfxApi->clearDepth();
 
-    deferredList.execute(camera);
-    deferredList.clear();
+    deferredList->execute(camera);
+    deferredList->clear();
 
     swapFramebuffers();
 
@@ -1120,8 +1128,8 @@ void GfxRenderer::render()
 
     fillLightBuffer(scene);
 
-    forwardList.execute(camera);
-    forwardList.clear();
+    forwardList->execute(camera);
+    forwardList->clear();
 
     renderSkybox();
 
@@ -1566,10 +1574,8 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
                 GfxMaterial *material = lod.material;
                 GfxMesh *mesh = lod.mesh;
 
-                DrawCall drawCall;
+                DrawCall drawCall(mesh, material);
                 drawCall.animState = (mesh == animMesh) ? animState : nullptr;
-                drawCall.material = material;
-                drawCall.mesh = mesh;
                 drawCall.worldMatrix = worldMatrix * lod.worldMatrix;
 
                 if (castShadow)
@@ -1577,15 +1583,15 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
                     DrawCall shadowDrawCall = drawCall;
                     shadowDrawCall.material = shadowmapMaterial;
 
-                    shadowmapList.addDrawCall(shadowDrawCall);
+                    shadowmapList->addDrawCall(shadowDrawCall);
                 }
 
                 if (material->isForward())
                 {
-                    forwardList.addDrawCall(drawCall);
+                    forwardList->addDrawCall(drawCall);
                 } else
                 {
-                    deferredList.addDrawCall(drawCall);
+                    deferredList->addDrawCall(drawCall);
                 }
             }
         }
@@ -1640,7 +1646,7 @@ void GfxRenderer::renderShadowmap(Light *light)
         gfxApi->setCurrentFramebuffer(light->getFramebuffers()[i]);
         gfxApi->clearDepth();
 
-        shadowmapList.execute(light, i);
+        shadowmapList->execute(light, i);
 
         if (light->type != GfxLightType::Spot)
         {
@@ -1649,7 +1655,7 @@ void GfxRenderer::renderShadowmap(Light *light)
         }
     }
 
-    shadowmapList.clear();
+    shadowmapList->clear();
 
     gfxApi->popState();
 }

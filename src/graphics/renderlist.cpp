@@ -1,4 +1,4 @@
-#include "renderlist.h"
+#include "graphics/renderlist.h"
 
 #include "globals.h"
 #include "graphics/gfxapi.h"
@@ -14,6 +14,12 @@ RenderList::RenderList()
 RenderList::~RenderList()
 {
     matrixTexture->release();
+
+    for (auto batch : batches)
+    {
+        batch.material->release();
+        batch.mesh->release();
+    }
 }
 
 void RenderList::addDrawCall(const DrawCall& drawCall)

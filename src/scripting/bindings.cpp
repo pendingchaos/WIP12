@@ -60,6 +60,7 @@
 #include "containers/hashmap.h"
 #include "containers/list.h"
 #include "containers/string.h"
+#include "scripting/autoval.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
@@ -90,8 +91,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, GfxAnimationState_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, ImGui_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, GfxAnimationState, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, ImGui, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, DrawCall_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, AudioSourceList_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, GfxAnimationState_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, RenderList_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, ImGui_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, DrawCall, RayCastResultList, Platform, Camera, GfxMesh, Resource, AudioSourceList, GfxShader, Light, TextureSampler, Scene, GfxAnimationState, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, RenderList, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, ImGui, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
 };
 
 
@@ -259,7 +260,7 @@ struct val_to_c<SV>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
     }
 };
 
@@ -268,7 +269,7 @@ struct val_to_c<const SV>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
     }
 };
 
@@ -277,7 +278,34 @@ struct val_to_c<const SV&>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
+    }
+};
+
+template <>
+struct val_to_c<AutoVal>
+{
+    static AutoVal f(scripting::Context *ctx, const SV& val)
+    {
+        return AutoVal(val);
+    }
+};
+
+template <>
+struct val_to_c<const AutoVal>
+{
+    static AutoVal f(scripting::Context *ctx, const SV& val)
+    {
+        return AutoVal(val);
+    }
+};
+
+template <>
+struct val_to_c<AutoVal&>
+{
+    static AutoVal f(scripting::Context *ctx, const SV& val)
+    {
+        return AutoVal(val);
     }
 };
 
@@ -299,7 +327,16 @@ struct create_val<SV>
 {
     static SV f(scripting::Context *ctx, const SV& val)
     {
-        return scripting::createCopy(ctx, val);
+        return scripting::createCopy(val);
+    }
+};
+
+template <>
+struct create_val<AutoVal>
+{
+    static SV f(scripting::Context *ctx, const AutoVal& val)
+    {
+        return scripting::createCopy(val.getVal());
     }
 };
 
@@ -384,6 +421,33 @@ struct type_same<const SV&>
 
 template <>
 struct type_same<const SV>
+{
+    static bool f(scripting::Context *ctx, const SV& val)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<AutoVal>
+{
+    static bool f(scripting::Context *ctx, const SV& val)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<const AutoVal&>
+{
+    static bool f(scripting::Context *ctx, const SV& val)
+    {
+        return true;
+    }
+};
+
+template <>
+struct type_same<const AutoVal>
 {
     static bool f(scripting::Context *ctx, const SV& val)
     {
@@ -2958,45 +3022,6 @@ static const STG::NativeObjectFuncs GfxRenderer_funcs={
 .setMember = GfxRenderer_set_member
 };
 template <>
-struct create_val<GfxRenderer>
-{
-static SV f(CTX ctx,const GfxRenderer&obj)
-{
-void *p = (void *)NEW(TYPE(GfxRenderer), obj);
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(GfxRenderer_funcs,p,EXT->GfxRenderer_typeID);
-}
-};
-template <>
-struct val_to_c<GfxRenderer>
-{
-static GfxRenderer f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->GfxRenderer_typeID)
-RET*((GfxRenderer*)obj->data);
-else
- CATE(TE,"Value can not be converted to GfxRenderer."));
-} else
- CATE(TE,"Value can not be converted to GfxRenderer."));
-}
-};
-
-template <>
-struct val_to_c<const GfxRenderer>
-{
-static GfxRenderer f(CTX ctx,const SV val) {return val_to_c<GfxRenderer>::f(ctx, val);}
-};
-
-template <>
-struct create_val<const GfxRenderer>
-{
-static SV f(CTX ctx,const GfxRenderer&obj) {return create_val<GfxRenderer>::f(ctx,obj);}
-};
-
-template <>
 struct type_same<GfxRenderer>
 {
 static bool f(CTX ctx,const SV val)
@@ -3025,6 +3050,9 @@ SV GfxRenderer_getSkybox(CTX ctx,const List<SV>&a);
 SV GfxRenderer_addTerrain(CTX ctx,const List<SV>&a);
 SV GfxRenderer_removeTerrain(CTX ctx,const List<SV>&a);
 SV GfxRenderer_getTerrain(CTX ctx,const List<SV>&a);
+SV GfxRenderer_getForwardList(CTX ctx,const List<SV>&a);
+SV GfxRenderer_getDeferredList(CTX ctx,const List<SV>&a);
+SV GfxRenderer_getShadowmapList(CTX ctx,const List<SV>&a);
 void Float2_destroy(CTX,const SV&);
 SV Float2_get_member(CTX,const SV&,const SV&);
 void Float2_set_member(CTX,const SV&,const SV&,const SV&);
@@ -3422,6 +3450,65 @@ SV Script_release(CTX ctx,const List<SV>&a);
 SV Script_getRefCount(CTX ctx,const List<SV>&a);
 SV Script_getFilename(CTX ctx,const List<SV>&a);
 SV Script_setFilename(CTX ctx,const List<SV>&a);
+void DrawCall_destroy(CTX,const SV&);
+SV DrawCall_get_member(CTX,const SV&,const SV&);
+void DrawCall_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs DrawCall_funcs={
+.destroy = DrawCall_destroy,
+.getMember = DrawCall_get_member,
+.setMember = DrawCall_set_member
+};
+template <>
+struct create_val<DrawCall>
+{
+static SV f(CTX ctx,const DrawCall&obj)
+{
+void *p = (void *)NEW(TYPE(DrawCall), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(DrawCall_funcs,p,EXT->DrawCall_typeID);
+}
+};
+template <>
+struct val_to_c<DrawCall>
+{
+static DrawCall f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->DrawCall_typeID)
+RET*((DrawCall*)obj->data);
+else
+ CATE(TE,"Value can not be converted to DrawCall."));
+} else
+ CATE(TE,"Value can not be converted to DrawCall."));
+}
+};
+
+template <>
+struct val_to_c<const DrawCall>
+{
+static DrawCall f(CTX ctx,const SV val) {return val_to_c<DrawCall>::f(ctx, val);}
+};
+
+template <>
+struct create_val<const DrawCall>
+{
+static SV f(CTX ctx,const DrawCall&obj) {return create_val<DrawCall>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<DrawCall>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->DrawCall_typeID;
+else
+ RET false;
+}
+};
+
 void RayCastResultList_destroy(CTX,const SV&);
 SV RayCastResultList_get_member(CTX,const SV&,const SV&);
 void RayCastResultList_set_member(CTX,const SV&,const SV&,const SV&);
@@ -3700,6 +3787,80 @@ SV Resource_release(CTX ctx,const List<SV>&a);
 SV Resource_getRefCount(CTX ctx,const List<SV>&a);
 SV Resource_getFilename(CTX ctx,const List<SV>&a);
 SV Resource_setFilename(CTX ctx,const List<SV>&a);
+void AudioSourceList_destroy(CTX,const SV&);
+SV AudioSourceList_get_member(CTX,const SV&,const SV&);
+void AudioSourceList_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs AudioSourceList_funcs={
+.destroy = AudioSourceList_destroy,
+.getMember = AudioSourceList_get_member,
+.setMember = AudioSourceList_set_member
+};
+template <>
+struct create_val<List<AudioSource*>>
+{
+static SV f(CTX ctx,const List<AudioSource*>&obj)
+{
+void *p = (void *)NEW(TYPE(List<AudioSource*>), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}
+};
+template <>
+struct val_to_c<List<AudioSource*>>
+{
+static List<AudioSource*> f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->AudioSourceList_typeID)
+RET*((List<AudioSource*>*)obj->data);
+else
+ CATE(TE,"Value can not be converted to AudioSourceList."));
+} else
+ CATE(TE,"Value can not be converted to AudioSourceList."));
+}
+};
+
+template <>
+struct val_to_c<const List<AudioSource*>>
+{
+static List<AudioSource*> f(CTX ctx,const SV val) {return val_to_c<List<AudioSource*>>::f(ctx, val);}
+};
+
+template <>
+struct create_val<const List<AudioSource*>>
+{
+static SV f(CTX ctx,const List<AudioSource*>&obj) {return create_val<List<AudioSource*>>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<List<AudioSource*>>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
+else
+ RET false;
+}
+};
+
+SV AudioSourceList___eq__(CTX ctx,const List<SV>&a);
+SV AudioSourceList___neq__(CTX ctx,const List<SV>&a);
+SV AudioSourceList_get(CTX ctx,const List<SV>&a);
+SV AudioSourceList_set(CTX ctx,const List<SV>&a);
+SV AudioSourceList_getCount(CTX ctx,const List<SV>&a);
+SV AudioSourceList_getData(CTX ctx,const List<SV>&a);
+SV AudioSourceList_append(CTX ctx,const List<SV>&a);
+SV AudioSourceList_insert(CTX ctx,const List<SV>&a);
+SV AudioSourceList_remove(CTX ctx,const List<SV>&a);
+SV AudioSourceList_clear(CTX ctx,const List<SV>&a);
+SV AudioSourceList_find(CTX ctx,const List<SV>&a);
+SV AudioSourceList_copy(CTX ctx,const List<SV>&a);
+SV AudioSourceList_in(CTX ctx,const List<SV>&a);
+SV AudioSourceList_begin(CTX ctx,const List<SV>&a);
+SV AudioSourceList_end(CTX ctx,const List<SV>&a);
 void GfxShader_destroy(CTX,const SV&);
 SV GfxShader_get_member(CTX,const SV&,const SV&);
 void GfxShader_set_member(CTX,const SV&,const SV&,const SV&);
@@ -4495,80 +4656,6 @@ else
 };
 
 SV Transform_createMatrix(CTX ctx,const List<SV>&a);
-void AudioSourceList_destroy(CTX,const SV&);
-SV AudioSourceList_get_member(CTX,const SV&,const SV&);
-void AudioSourceList_set_member(CTX,const SV&,const SV&,const SV&);
-static const STG::NativeObjectFuncs AudioSourceList_funcs={
-.destroy = AudioSourceList_destroy,
-.getMember = AudioSourceList_get_member,
-.setMember = AudioSourceList_set_member
-};
-template <>
-struct create_val<List<AudioSource*>>
-{
-static SV f(CTX ctx,const List<AudioSource*>&obj)
-{
-void *p = (void *)NEW(TYPE(List<AudioSource*>), obj);
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
-}
-};
-template <>
-struct val_to_c<List<AudioSource*>>
-{
-static List<AudioSource*> f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->AudioSourceList_typeID)
-RET*((List<AudioSource*>*)obj->data);
-else
- CATE(TE,"Value can not be converted to AudioSourceList."));
-} else
- CATE(TE,"Value can not be converted to AudioSourceList."));
-}
-};
-
-template <>
-struct val_to_c<const List<AudioSource*>>
-{
-static List<AudioSource*> f(CTX ctx,const SV val) {return val_to_c<List<AudioSource*>>::f(ctx, val);}
-};
-
-template <>
-struct create_val<const List<AudioSource*>>
-{
-static SV f(CTX ctx,const List<AudioSource*>&obj) {return create_val<List<AudioSource*>>::f(ctx,obj);}
-};
-
-template <>
-struct type_same<List<AudioSource*>>
-{
-static bool f(CTX ctx,const SV val)
-{
-if(val.type==STG::ValueType::NativeObject)
-RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
-else
- RET false;
-}
-};
-
-SV AudioSourceList___eq__(CTX ctx,const List<SV>&a);
-SV AudioSourceList___neq__(CTX ctx,const List<SV>&a);
-SV AudioSourceList_get(CTX ctx,const List<SV>&a);
-SV AudioSourceList_set(CTX ctx,const List<SV>&a);
-SV AudioSourceList_getCount(CTX ctx,const List<SV>&a);
-SV AudioSourceList_getData(CTX ctx,const List<SV>&a);
-SV AudioSourceList_append(CTX ctx,const List<SV>&a);
-SV AudioSourceList_insert(CTX ctx,const List<SV>&a);
-SV AudioSourceList_remove(CTX ctx,const List<SV>&a);
-SV AudioSourceList_clear(CTX ctx,const List<SV>&a);
-SV AudioSourceList_find(CTX ctx,const List<SV>&a);
-SV AudioSourceList_copy(CTX ctx,const List<SV>&a);
-SV AudioSourceList_in(CTX ctx,const List<SV>&a);
-SV AudioSourceList_begin(CTX ctx,const List<SV>&a);
-SV AudioSourceList_end(CTX ctx,const List<SV>&a);
 void GfxMaterial_destroy(CTX,const SV&);
 SV GfxMaterial_get_member(CTX,const SV&,const SV&);
 void GfxMaterial_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5003,6 +5090,29 @@ SV GuiPlacer_setXOrigin(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getXOriginMode(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getXOrigin(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getPadding(CTX ctx,const List<SV>&a);
+void RenderList_destroy(CTX,const SV&);
+SV RenderList_get_member(CTX,const SV&,const SV&);
+void RenderList_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs RenderList_funcs={
+.destroy = RenderList_destroy,
+.getMember = RenderList_get_member,
+.setMember = RenderList_set_member
+};
+template <>
+struct type_same<RenderList>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderList_typeID;
+else
+ RET false;
+}
+};
+
+SV RenderList_addDrawCall(CTX ctx,const List<SV>&a);
+SV RenderList_execute(CTX ctx,const List<SV>&a);
+SV RenderList_clear(CTX ctx,const List<SV>&a);
 void StringList_destroy(CTX,const SV&);
 SV StringList_get_member(CTX,const SV&,const SV&);
 void StringList_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5644,25 +5754,25 @@ static const STG::NativeObjectFuncs Map_funcs={
 .setMember = Map_set_member
 };
 template <>
-struct create_val<HashMap<scripting::Value,scripting::Value>>
+struct create_val<HashMap<AutoVal,AutoVal>>
 {
-static SV f(CTX ctx,const HashMap<scripting::Value,scripting::Value>&obj)
+static SV f(CTX ctx,const HashMap<AutoVal,AutoVal>&obj)
 {
-void *p = (void *)NEW(TYPE(HashMap<scripting::Value,scripting::Value>), obj);
+void *p = (void *)NEW(TYPE(HashMap<AutoVal,AutoVal>), obj);
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(Map_funcs,p,EXT->Map_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<scripting::Value,scripting::Value>>
+struct val_to_c<HashMap<AutoVal,AutoVal>>
 {
-static HashMap<scripting::Value,scripting::Value> f(CTX ctx,const SV& val)
+static HashMap<AutoVal,AutoVal> f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->Map_typeID)
-RET*((HashMap<scripting::Value,scripting::Value>*)obj->data);
+RET*((HashMap<AutoVal,AutoVal>*)obj->data);
 else
  CATE(TE,"Value can not be converted to Map."));
 } else
@@ -5671,19 +5781,19 @@ else
 };
 
 template <>
-struct val_to_c<const HashMap<scripting::Value,scripting::Value>>
+struct val_to_c<const HashMap<AutoVal,AutoVal>>
 {
-static HashMap<scripting::Value,scripting::Value> f(CTX ctx,const SV val) {return val_to_c<HashMap<scripting::Value,scripting::Value>>::f(ctx, val);}
+static HashMap<AutoVal,AutoVal> f(CTX ctx,const SV val) {return val_to_c<HashMap<AutoVal,AutoVal>>::f(ctx, val);}
 };
 
 template <>
-struct create_val<const HashMap<scripting::Value,scripting::Value>>
+struct create_val<const HashMap<AutoVal,AutoVal>>
 {
-static SV f(CTX ctx,const HashMap<scripting::Value,scripting::Value>&obj) {return create_val<HashMap<scripting::Value,scripting::Value>>::f(ctx,obj);}
+static SV f(CTX ctx,const HashMap<AutoVal,AutoVal>&obj) {return create_val<HashMap<AutoVal,AutoVal>>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<HashMap<scripting::Value,scripting::Value>>
+struct type_same<HashMap<AutoVal,AutoVal>>
 {
 static bool f(CTX ctx,const SV val)
 {
@@ -6844,25 +6954,25 @@ static const STG::NativeObjectFuncs List_funcs={
 .setMember = List_set_member
 };
 template <>
-struct create_val<List<scripting::Value>>
+struct create_val<List<AutoVal>>
 {
-static SV f(CTX ctx,const List<scripting::Value>&obj)
+static SV f(CTX ctx,const List<AutoVal>&obj)
 {
-void *p = (void *)NEW(TYPE(List<scripting::Value>), obj);
+void *p = (void *)NEW(TYPE(List<AutoVal>), obj);
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }
 };
 template <>
-struct val_to_c<List<scripting::Value>>
+struct val_to_c<List<AutoVal>>
 {
-static List<scripting::Value> f(CTX ctx,const SV& val)
+static List<AutoVal> f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->List_typeID)
-RET*((List<scripting::Value>*)obj->data);
+RET*((List<AutoVal>*)obj->data);
 else
  CATE(TE,"Value can not be converted to List."));
 } else
@@ -6871,19 +6981,19 @@ else
 };
 
 template <>
-struct val_to_c<const List<scripting::Value>>
+struct val_to_c<const List<AutoVal>>
 {
-static List<scripting::Value> f(CTX ctx,const SV val) {return val_to_c<List<scripting::Value>>::f(ctx, val);}
+static List<AutoVal> f(CTX ctx,const SV val) {return val_to_c<List<AutoVal>>::f(ctx, val);}
 };
 
 template <>
-struct create_val<const List<scripting::Value>>
+struct create_val<const List<AutoVal>>
 {
-static SV f(CTX ctx,const List<scripting::Value>&obj) {return create_val<List<scripting::Value>>::f(ctx,obj);}
+static SV f(CTX ctx,const List<AutoVal>&obj) {return create_val<List<AutoVal>>::f(ctx,obj);}
 };
 
 template <>
-struct type_same<List<scripting::Value>>
+struct type_same<List<AutoVal>>
 {
 static bool f(CTX ctx,const SV val)
 {
@@ -8938,6 +9048,74 @@ else
 };
 
 template <>
+struct create_val<DrawCall *>
+{
+static SV f(CTX ctx,DrawCall*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(DrawCall_funcs,obj,EXT->DrawCall_typeID);
+}
+};
+template <>
+struct val_to_c<DrawCall *>
+{
+static DrawCall *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->DrawCall_typeID)
+RET(DrawCall*)obj->data;
+else
+ CATE(TE,"Value is not a DrawCall."));
+} else
+ CATE(TE,"Value is not a DrawCall."));
+}
+};
+template <>
+struct type_same<DrawCall *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->DrawCall_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const DrawCall *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->DrawCall_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const DrawCall *>
+{
+static const DrawCall *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->DrawCall_typeID)
+RET(DrawCall*)obj->data;
+else
+ CATE(TE,"Value is not a DrawCall."));
+} else
+ CATE(TE,"Value is not a DrawCall."));
+}
+};
+
+template <>
 struct create_val<List<RayCastResult> *>
 {
 static SV f(CTX ctx,List<RayCastResult>*obj)
@@ -9274,6 +9452,74 @@ else
  CATE(TE,"Value is not a Resource."));
 } else
  CATE(TE,"Value is not a Resource."));
+}
+};
+
+template <>
+struct create_val<List<AudioSource*> *>
+{
+static SV f(CTX ctx,List<AudioSource*>*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(AudioSourceList_funcs,obj,EXT->AudioSourceList_typeID);
+}
+};
+template <>
+struct val_to_c<List<AudioSource*> *>
+{
+static List<AudioSource*> *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->AudioSourceList_typeID)
+RET(List<AudioSource*>*)obj->data;
+else
+ CATE(TE,"Value is not a AudioSourceList."));
+} else
+ CATE(TE,"Value is not a AudioSourceList."));
+}
+};
+template <>
+struct type_same<List<AudioSource*> *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const List<AudioSource*> *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const List<AudioSource*> *>
+{
+static const List<AudioSource*> *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->AudioSourceList_typeID)
+RET(List<AudioSource*>*)obj->data;
+else
+ CATE(TE,"Value is not a AudioSourceList."));
+} else
+ CATE(TE,"Value is not a AudioSourceList."));
 }
 };
 
@@ -10026,74 +10272,6 @@ else
 };
 
 template <>
-struct create_val<List<AudioSource*> *>
-{
-static SV f(CTX ctx,List<AudioSource*>*obj)
-{
-if (obj == nullptr)
-RET CN;
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(AudioSourceList_funcs,obj,EXT->AudioSourceList_typeID);
-}
-};
-template <>
-struct val_to_c<List<AudioSource*> *>
-{
-static List<AudioSource*> *f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->AudioSourceList_typeID)
-RET(List<AudioSource*>*)obj->data;
-else
- CATE(TE,"Value is not a AudioSourceList."));
-} else
- CATE(TE,"Value is not a AudioSourceList."));
-}
-};
-template <>
-struct type_same<List<AudioSource*> *>
-{
-static bool f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const List<AudioSource*> *>
-{
-static bool f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-RET((NO)val.p)->typeID==EXT->AudioSourceList_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const List<AudioSource*> *>
-{
-static const List<AudioSource*> *f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->AudioSourceList_typeID)
-RET(List<AudioSource*>*)obj->data;
-else
- CATE(TE,"Value is not a AudioSourceList."));
-} else
- CATE(TE,"Value is not a AudioSourceList."));
-}
-};
-
-template <>
 struct create_val<GfxMaterial *>
 {
 static SV f(CTX ctx,GfxMaterial*obj)
@@ -10634,6 +10812,74 @@ else
  CATE(TE,"Value is not a GuiPlacer."));
 } else
  CATE(TE,"Value is not a GuiPlacer."));
+}
+};
+
+template <>
+struct create_val<RenderList *>
+{
+static SV f(CTX ctx,RenderList*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(RenderList_funcs,obj,EXT->RenderList_typeID);
+}
+};
+template <>
+struct val_to_c<RenderList *>
+{
+static RenderList *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->RenderList_typeID)
+RET(RenderList*)obj->data;
+else
+ CATE(TE,"Value is not a RenderList."));
+} else
+ CATE(TE,"Value is not a RenderList."));
+}
+};
+template <>
+struct type_same<RenderList *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderList_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const RenderList *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->RenderList_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const RenderList *>
+{
+static const RenderList *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->RenderList_typeID)
+RET(RenderList*)obj->data;
+else
+ CATE(TE,"Value is not a RenderList."));
+} else
+ CATE(TE,"Value is not a RenderList."));
 }
 };
 
@@ -11182,9 +11428,9 @@ else
 };
 
 template <>
-struct create_val<HashMap<scripting::Value,scripting::Value> *>
+struct create_val<HashMap<AutoVal,AutoVal> *>
 {
-static SV f(CTX ctx,HashMap<scripting::Value,scripting::Value>*obj)
+static SV f(CTX ctx,HashMap<AutoVal,AutoVal>*obj)
 {
 if (obj == nullptr)
 RET CN;
@@ -11195,15 +11441,15 @@ RET STG::createNativeObject(Map_funcs,obj,EXT->Map_typeID);
 }
 };
 template <>
-struct val_to_c<HashMap<scripting::Value,scripting::Value> *>
+struct val_to_c<HashMap<AutoVal,AutoVal> *>
 {
-static HashMap<scripting::Value,scripting::Value> *f(CTX ctx,const SV& val)
+static HashMap<AutoVal,AutoVal> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->Map_typeID)
-RET(HashMap<scripting::Value,scripting::Value>*)obj->data;
+RET(HashMap<AutoVal,AutoVal>*)obj->data;
 else
  CATE(TE,"Value is not a Map."));
 } else
@@ -11211,7 +11457,7 @@ else
 }
 };
 template <>
-struct type_same<HashMap<scripting::Value,scripting::Value> *>
+struct type_same<HashMap<AutoVal,AutoVal> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -11222,7 +11468,7 @@ else
 }
 };
 template <>
-struct type_same<const HashMap<scripting::Value,scripting::Value> *>
+struct type_same<const HashMap<AutoVal,AutoVal> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -11233,15 +11479,15 @@ else
 }
 };
 template <>
-struct val_to_c<const HashMap<scripting::Value,scripting::Value> *>
+struct val_to_c<const HashMap<AutoVal,AutoVal> *>
 {
-static const HashMap<scripting::Value,scripting::Value> *f(CTX ctx,const SV& val)
+static const HashMap<AutoVal,AutoVal> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->Map_typeID)
-RET(HashMap<scripting::Value,scripting::Value>*)obj->data;
+RET(HashMap<AutoVal,AutoVal>*)obj->data;
 else
  CATE(TE,"Value is not a Map."));
 } else
@@ -12270,9 +12516,9 @@ else
 };
 
 template <>
-struct create_val<List<scripting::Value> *>
+struct create_val<List<AutoVal> *>
 {
-static SV f(CTX ctx,List<scripting::Value>*obj)
+static SV f(CTX ctx,List<AutoVal>*obj)
 {
 if (obj == nullptr)
 RET CN;
@@ -12283,15 +12529,15 @@ RET STG::createNativeObject(List_funcs,obj,EXT->List_typeID);
 }
 };
 template <>
-struct val_to_c<List<scripting::Value> *>
+struct val_to_c<List<AutoVal> *>
 {
-static List<scripting::Value> *f(CTX ctx,const SV& val)
+static List<AutoVal> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->List_typeID)
-RET(List<scripting::Value>*)obj->data;
+RET(List<AutoVal>*)obj->data;
 else
  CATE(TE,"Value is not a List."));
 } else
@@ -12299,7 +12545,7 @@ else
 }
 };
 template <>
-struct type_same<List<scripting::Value> *>
+struct type_same<List<AutoVal> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -12310,7 +12556,7 @@ else
 }
 };
 template <>
-struct type_same<const List<scripting::Value> *>
+struct type_same<const List<AutoVal> *>
 {
 static bool f(CTX ctx,const SV& val)
 {
@@ -12321,15 +12567,15 @@ else
 }
 };
 template <>
-struct val_to_c<const List<scripting::Value> *>
+struct val_to_c<const List<AutoVal> *>
 {
-static const List<scripting::Value> *f(CTX ctx,const SV& val)
+static const List<AutoVal> *f(CTX ctx,const SV& val)
 {
 if(val.type==STG::ValueType::NativeObject)
 {
 NO obj=(NO)val.p;
 if(obj->typeID==EXT->List_typeID)
-RET(List<scripting::Value>*)obj->data;
+RET(List<AutoVal>*)obj->data;
 else
  CATE(TE,"Value is not a List."));
 } else
@@ -21181,6 +21427,12 @@ RET CNF(GfxRenderer_addTerrain);
 RET CNF(GfxRenderer_removeTerrain);
  EI(keyStr.equals("getTerrain", CPL_STR_HASH("getTerrain")))
 RET CNF(GfxRenderer_getTerrain);
+ EI(keyStr.equals("getForwardList", CPL_STR_HASH("getForwardList")))
+RET CNF(GfxRenderer_getForwardList);
+ EI(keyStr.equals("getDeferredList", CPL_STR_HASH("getDeferredList")))
+RET CNF(GfxRenderer_getDeferredList);
+ EI(keyStr.equals("getShadowmapList", CPL_STR_HASH("getShadowmapList")))
+RET CNF(GfxRenderer_getShadowmapList);
  EI(keyStr.equals("camera", CPL_STR_HASH("camera")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
@@ -21342,6 +21594,23 @@ CATE(TE,UFOF("GfxRenderer::updateColorModifierShader.")));
 RET CN;
 }
 
+SV GfxRenderer_getShadowmapList(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getShadowmapList" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShadowmapList());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getShadowmapList.")));
+RET CN;
+}
+
 SV GfxRenderer_render(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21449,6 +21718,23 @@ CATE(TE,UFOF("GfxRenderer::getNumLights.")));
 RET CN;
 }
 
+SV GfxRenderer_getForwardList(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getForwardList" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getForwardList());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getForwardList.")));
+RET CN;
+}
+
 SV GfxRenderer_computeSceneAABB(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21548,6 +21834,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxRenderer::updateStats.")));
+RET CN;
+}
+
+SV GfxRenderer_getDeferredList(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getDeferredList" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getDeferredList());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getDeferredList.")));
 RET CN;
 }
 
@@ -23885,6 +24188,107 @@ CATE(TE,UFOF("Script::save.")));
 RET CN;
 }
 
+void DrawCall_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,DrawCall))
+CATE(TE,"DrawCall::__del__ expects DrawCall as first argument."));
+
+SCRIPT_DELETE((DrawCall*)f->data);
+}SV DrawCall_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"DrawCall's constructor" EAOE));
+if(!TS(a[0],DrawCall))
+CATE(TE,"DrawCall's constructor expects DrawCall as first argument."));
+if(a.getCount()==3)
+if(true&&TS(a[1],GfxMesh *)&&TS(a[2],GfxMaterial *)){
+void *p = (void *)NEW(TYPE(DrawCall),val_to_c<GfxMesh *>::f(ctx,a[1]),val_to_c<GfxMaterial *>::f(ctx,a[2]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(DrawCall_funcs,p,EXT->DrawCall_typeID);
+}CATE(TE,UFOF("DrawCall's constructor.")));
+RET CN;
+}
+
+SV DrawCall_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+{
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
+RET STG::createString("DrawCall");
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
+RET CNF(DrawCall_new);
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
+RET CNF(DrawCall_new);
+else
+ CATE(KE,"Unknown member for DrawCall."));
+} else
+{
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
+RET CNF(DrawCall_new);
+ EI(keyStr.equals("mesh", CPL_STR_HASH("mesh")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+RET CV(obj->mesh);
+} EI(keyStr.equals("material", CPL_STR_HASH("material")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+RET CV(obj->material);
+} EI(keyStr.equals("worldMatrix", CPL_STR_HASH("worldMatrix")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+RET CV(obj->worldMatrix);
+} EI(keyStr.equals("animState", CPL_STR_HASH("animState")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+RET CV(obj->animState);
+} else
+ CATE(KE,"Unknown member for DrawCall."));
+}
+}
+RET CN;
+}
+
+void DrawCall_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr.equals("mesh", CPL_STR_HASH("mesh")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+obj->mesh=val_to_c<decltype(obj->mesh)>::f(ctx,value);
+} EI(keyStr.equals("material", CPL_STR_HASH("material")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+obj->material=val_to_c<decltype(obj->material)>::f(ctx,value);
+} EI(keyStr.equals("worldMatrix", CPL_STR_HASH("worldMatrix")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+obj->worldMatrix=val_to_c<decltype(obj->worldMatrix)>::f(ctx,value);
+} EI(keyStr.equals("animState", CPL_STR_HASH("animState")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+obj->animState=val_to_c<decltype(obj->animState)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only for DrawCall."));
+}
+}
+}
+
 void RayCastResultList_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
@@ -26176,6 +26580,364 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("Resource::save.")));
+RET CN;
+}
+
+void AudioSourceList_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,List<AudioSource*>))
+CATE(TE,"AudioSourceList::__del__ expects AudioSourceList as first argument."));
+
+SCRIPT_DELETE((List<AudioSource*>*)f->data);
+}SV AudioSourceList_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList's constructor" EAOE));
+if(!TS(a[0],List<AudioSource*>))
+CATE(TE,"AudioSourceList's constructor expects AudioSourceList as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(List<AudioSource*>));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],std::size_t)){
+void *p = (void *)NEW(TYPE(List<AudioSource*>),val_to_c<std::size_t>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}if(a.getCount()==2)
+if(true&&TS(a[1],const List<AudioSource*> &)){
+void *p = (void *)NEW(TYPE(List<AudioSource*>),val_to_c<const List<AudioSource*> &>::f(ctx,a[1]));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
+}CATE(TE,UFOF("AudioSourceList's constructor.")));
+RET CN;
+}
+
+SV AudioSourceList_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+{
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
+RET STG::createString("AudioSourceList");
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
+RET CNF(AudioSourceList_new);
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
+RET CNF(AudioSourceList_new);
+else
+ CATE(KE,"Unknown member for AudioSourceList."));
+} else
+{
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
+RET CNF(AudioSourceList_new);
+ EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
+RET CNF(AudioSourceList___eq__);
+ EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
+RET CNF(AudioSourceList___neq__);
+ EI(keyStr.equals("get", CPL_STR_HASH("get")))
+RET CNF(AudioSourceList_get);
+ EI(keyStr.equals("set", CPL_STR_HASH("set")))
+RET CNF(AudioSourceList_set);
+ EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
+RET CNF(AudioSourceList_getCount);
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
+RET CNF(AudioSourceList_getData);
+ EI(keyStr.equals("append", CPL_STR_HASH("append")))
+RET CNF(AudioSourceList_append);
+ EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
+RET CNF(AudioSourceList_insert);
+ EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
+RET CNF(AudioSourceList_remove);
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
+RET CNF(AudioSourceList_clear);
+ EI(keyStr.equals("find", CPL_STR_HASH("find")))
+RET CNF(AudioSourceList_find);
+ EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
+RET CNF(AudioSourceList_copy);
+ EI(keyStr.equals("in", CPL_STR_HASH("in")))
+RET CNF(AudioSourceList_in);
+ EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
+RET CNF(AudioSourceList_begin);
+ EI(keyStr.equals("end", CPL_STR_HASH("end")))
+RET CNF(AudioSourceList_end);
+ else
+ CATE(KE,"Unknown member for AudioSourceList."));
+}
+}
+RET CN;
+}
+
+void AudioSourceList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for AudioSourceList."));
+}
+}
+}
+
+SV AudioSourceList_insert(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::insert" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],AudioSource*))
+{
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[2])));
+RET CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<AudioSource*> &))
+{
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("AudioSourceList::insert.")));
+RET CN;
+}
+
+SV AudioSourceList_begin(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::begin" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("AudioSourceList::begin.")));
+RET CN;
+}
+
+SV AudioSourceList_set(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::set" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],AudioSource*))
+{
+( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("AudioSourceList::set.")));
+RET CN;
+}
+
+SV AudioSourceList_end(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::end" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("AudioSourceList::end.")));
+RET CN;
+}
+
+SV AudioSourceList_get(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::get" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+RET CV( f->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("AudioSourceList::get.")));
+RET CN;
+}
+
+SV AudioSourceList_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::clear" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->clear());
+RET CN;
+}
+CATE(TE,UFOF("AudioSourceList::clear.")));
+RET CN;
+}
+
+SV AudioSourceList_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::copy" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("AudioSourceList::copy.")));
+RET CN;
+}
+
+SV AudioSourceList_remove(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::remove" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
+{
+( f->remove(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("AudioSourceList::remove.")));
+RET CN;
+}
+
+SV AudioSourceList_in(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::in" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],AudioSource*))
+{
+RET CV( f->in(val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("AudioSourceList::in.")));
+RET CN;
+}
+
+SV AudioSourceList_getCount(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::getCount" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getCount());
+;
+}
+CATE(TE,UFOF("AudioSourceList::getCount.")));
+RET CN;
+}
+
+SV AudioSourceList_getData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::getData" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("AudioSourceList::getData.")));
+RET CN;
+}
+
+SV AudioSourceList___eq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::__eq__" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<AudioSource*> &))
+{
+auto v=val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[1]);
+RET CV(*f == v);
+}
+CATE(TE,UFOF("AudioSourceList::__eq__.")));
+RET CN;
+}
+
+SV AudioSourceList_find(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::find" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],AudioSource*))
+{
+RET CV( f->find(val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("AudioSourceList::find.")));
+RET CN;
+}
+
+SV AudioSourceList_append(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::append" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],AudioSource*))
+{
+( f->append(val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[1])));
+RET CN;
+}
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<AudioSource*> &))
+{
+( f->append(val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("AudioSourceList::append.")));
+RET CN;
+}
+
+SV AudioSourceList___neq__(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::__neq__" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const List<AudioSource*> &))
+{
+auto v=val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[1]);
+RET CV(*f != v);
+}
+CATE(TE,UFOF("AudioSourceList::__neq__.")));
 RET CN;
 }
 
@@ -33881,364 +34643,6 @@ CATE(TE,UFOF("Transform::createMatrix.")));
 RET CN;
 }
 
-void AudioSourceList_destroy(CTX ctx,const SV&f_)
-{
-NO f=(NO)f_.p;
-if(!TS(f_,List<AudioSource*>))
-CATE(TE,"AudioSourceList::__del__ expects AudioSourceList as first argument."));
-
-SCRIPT_DELETE((List<AudioSource*>*)f->data);
-}SV AudioSourceList_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList's constructor" EAOE));
-if(!TS(a[0],List<AudioSource*>))
-CATE(TE,"AudioSourceList's constructor expects AudioSourceList as first argument."));
-if(a.getCount()==1)
-if(true){
-void *p = (void *)NEW(TYPE(List<AudioSource*>));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
-}if(a.getCount()==2)
-if(true&&TS(a[1],std::size_t)){
-void *p = (void *)NEW(TYPE(List<AudioSource*>),val_to_c<std::size_t>::f(ctx,a[1]));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
-}if(a.getCount()==2)
-if(true&&TS(a[1],const List<AudioSource*> &)){
-void *p = (void *)NEW(TYPE(List<AudioSource*>),val_to_c<const List<AudioSource*> &>::f(ctx,a[1]));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(AudioSourceList_funcs,p,EXT->AudioSourceList_typeID);
-}CATE(TE,UFOF("AudioSourceList's constructor.")));
-RET CN;
-}
-
-SV AudioSourceList_get_member(CTX ctx,const SV&f_,const SV&key)
-{
-NO f=(NO)f_.p;
-if (key.type==STG::ValueType::StringType)
-{
-Str keyStr=key.getStr();
-if(f->data==NULL)
-{
-if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
-RET STG::createInt(f->typeID);
-EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
-RET STG::createString("AudioSourceList");
-EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
-RET CNF(AudioSourceList_new);
-EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
-RET CNF(AudioSourceList_new);
-else
- CATE(KE,"Unknown member for AudioSourceList."));
-} else
-{
-if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
-RET STG::createInt(f->typeID);
-EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
-RET CNF(AudioSourceList_new);
- EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
-RET CNF(AudioSourceList___eq__);
- EI(keyStr.equals("__neq__", CPL_STR_HASH("__neq__")))
-RET CNF(AudioSourceList___neq__);
- EI(keyStr.equals("get", CPL_STR_HASH("get")))
-RET CNF(AudioSourceList_get);
- EI(keyStr.equals("set", CPL_STR_HASH("set")))
-RET CNF(AudioSourceList_set);
- EI(keyStr.equals("getCount", CPL_STR_HASH("getCount")))
-RET CNF(AudioSourceList_getCount);
- EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
-RET CNF(AudioSourceList_getData);
- EI(keyStr.equals("append", CPL_STR_HASH("append")))
-RET CNF(AudioSourceList_append);
- EI(keyStr.equals("insert", CPL_STR_HASH("insert")))
-RET CNF(AudioSourceList_insert);
- EI(keyStr.equals("remove", CPL_STR_HASH("remove")))
-RET CNF(AudioSourceList_remove);
- EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
-RET CNF(AudioSourceList_clear);
- EI(keyStr.equals("find", CPL_STR_HASH("find")))
-RET CNF(AudioSourceList_find);
- EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
-RET CNF(AudioSourceList_copy);
- EI(keyStr.equals("in", CPL_STR_HASH("in")))
-RET CNF(AudioSourceList_in);
- EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
-RET CNF(AudioSourceList_begin);
- EI(keyStr.equals("end", CPL_STR_HASH("end")))
-RET CNF(AudioSourceList_end);
- else
- CATE(KE,"Unknown member for AudioSourceList."));
-}
-}
-RET CN;
-}
-
-void AudioSourceList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
-{
-NO f=(NO)f_.p;
-if (key.type==STG::ValueType::StringType)
-{
-Str keyStr=key.getStr();
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} else
- CATE(KE,"Unknown member or member if read-only for AudioSourceList."));
-}
-}
-}
-
-SV AudioSourceList_insert(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::insert" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],AudioSource*))
-{
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[2])));
-RET CN;
-}
-if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<AudioSource*> &))
-{
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("AudioSourceList::insert.")));
-RET CN;
-}
-
-SV AudioSourceList_begin(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::begin" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("AudioSourceList::begin.")));
-RET CN;
-}
-
-SV AudioSourceList_set(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::set" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],AudioSource*))
-{
-( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("AudioSourceList::set.")));
-RET CN;
-}
-
-SV AudioSourceList_end(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::end" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("AudioSourceList::end.")));
-RET CN;
-}
-
-SV AudioSourceList_get(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::get" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
-{
-RET CV( f->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("AudioSourceList::get.")));
-RET CN;
-}
-
-SV AudioSourceList_clear(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::clear" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->clear());
-RET CN;
-}
-CATE(TE,UFOF("AudioSourceList::clear.")));
-RET CN;
-}
-
-SV AudioSourceList_copy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::copy" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->copy());
-;
-}
-CATE(TE,UFOF("AudioSourceList::copy.")));
-RET CN;
-}
-
-SV AudioSourceList_remove(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::remove" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
-{
-( f->remove(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[2])));
-RET CN;
-}
-CATE(TE,UFOF("AudioSourceList::remove.")));
-RET CN;
-}
-
-SV AudioSourceList_in(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::in" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],AudioSource*))
-{
-RET CV( f->in(val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("AudioSourceList::in.")));
-RET CN;
-}
-
-SV AudioSourceList_getCount(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::getCount" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCount());
-;
-}
-CATE(TE,UFOF("AudioSourceList::getCount.")));
-RET CN;
-}
-
-SV AudioSourceList_getData(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::getData" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("AudioSourceList::getData.")));
-RET CN;
-}
-
-SV AudioSourceList___eq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::__eq__" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const List<AudioSource*> &))
-{
-auto v=val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[1]);
-RET CV(*f == v);
-}
-CATE(TE,UFOF("AudioSourceList::__eq__.")));
-RET CN;
-}
-
-SV AudioSourceList_find(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::find" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],AudioSource*))
-{
-RET CV( f->find(val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[1])));
-;
-}
-CATE(TE,UFOF("AudioSourceList::find.")));
-RET CN;
-}
-
-SV AudioSourceList_append(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::append" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],AudioSource*))
-{
-( f->append(val_to_c<std::remove_reference<AudioSource*>::type>::f(ctx,a[1])));
-RET CN;
-}
-if(a.getCount()==2)
-if(1&&TS(a[1],const List<AudioSource*> &))
-{
-( f->append(val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("AudioSourceList::append.")));
-RET CN;
-}
-
-SV AudioSourceList___neq__(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"AudioSourceList::__neq__" EAOE));
-List<AudioSource*>*f;
-f=(List<AudioSource*>*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const List<AudioSource*> &))
-{
-auto v=val_to_c<std::remove_reference<const List<AudioSource*> &>::type>::f(ctx,a[1]);
-RET CV(*f != v);
-}
-CATE(TE,UFOF("AudioSourceList::__neq__.")));
-RET CN;
-}
-
 void GfxMaterial_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
@@ -36486,6 +36890,138 @@ RET CV( f->getXOrigin());
 ;
 }
 CATE(TE,UFOF("GuiPlacer::getXOrigin.")));
+RET CN;
+}
+
+void RenderList_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,RenderList))
+CATE(TE,"RenderList::__del__ expects RenderList as first argument."));
+
+SCRIPT_DELETE((RenderList*)f->data);
+}SV RenderList_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderList's constructor" EAOE));
+if(!TS(a[0],RenderList))
+CATE(TE,"RenderList's constructor expects RenderList as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(RenderList));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(RenderList_funcs,p,EXT->RenderList_typeID);
+}CATE(TE,UFOF("RenderList's constructor.")));
+RET CN;
+}
+
+SV RenderList_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+{
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
+RET STG::createString("RenderList");
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
+RET CNF(RenderList_new);
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
+RET CNF(RenderList_new);
+else
+ CATE(KE,"Unknown member for RenderList."));
+} else
+{
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
+RET CNF(RenderList_new);
+ EI(keyStr.equals("addDrawCall", CPL_STR_HASH("addDrawCall")))
+RET CNF(RenderList_addDrawCall);
+ EI(keyStr.equals("execute", CPL_STR_HASH("execute")))
+RET CNF(RenderList_execute);
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
+RET CNF(RenderList_clear);
+ else
+ CATE(KE,"Unknown member for RenderList."));
+}
+}
+RET CN;
+}
+
+void RenderList_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} else
+ CATE(KE,"Unknown member or member if read-only for RenderList."));
+}
+}
+}
+
+SV RenderList_execute(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderList::execute" EAOE));
+RenderList*f;
+f=(RenderList*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Camera &))
+{
+( f->execute(val_to_c<std::remove_reference<const Camera &>::type>::f(ctx,a[1])));
+RET CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],Light *)&&TS(a[2],size_t))
+{
+( f->execute(val_to_c<std::remove_reference<Light *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2])));
+RET CN;
+}
+CATE(TE,UFOF("RenderList::execute.")));
+RET CN;
+}
+
+SV RenderList_addDrawCall(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderList::addDrawCall" EAOE));
+RenderList*f;
+f=(RenderList*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const DrawCall &))
+{
+( f->addDrawCall(val_to_c<std::remove_reference<const DrawCall &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("RenderList::addDrawCall.")));
+RET CN;
+}
+
+SV RenderList_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RenderList::clear" EAOE));
+RenderList*f;
+f=(RenderList*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->clear());
+RET CN;
+}
+CATE(TE,UFOF("RenderList::clear.")));
 RET CN;
 }
 
@@ -40982,17 +41518,17 @@ RET CN;
 void Map_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
-if(!TS(f_,HashMap<scripting::Value,scripting::Value>))
+if(!TS(f_,HashMap<AutoVal,AutoVal>))
 CATE(TE,"Map::__del__ expects Map as first argument."));
 
-SCRIPT_DELETE((HashMap<scripting::Value,scripting::Value>*)f->data);
+SCRIPT_DELETE((HashMap<AutoVal,AutoVal>*)f->data);
 }SV Map_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()!=1)
 CATE(VE,"Map's constructor" EAOE));
-if(!TS(a[0],HashMap<scripting::Value,scripting::Value>))
+if(!TS(a[0],HashMap<AutoVal,AutoVal>))
 CATE(TE,"Map's constructor expects Map as first argument."));
-RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<scripting::Value,scripting::Value>)),EXT->Map_typeID);
+RET STG::createNativeObject(Map_funcs,NEW(TYPE(HashMap<AutoVal,AutoVal>)),EXT->Map_typeID);
 }
 
 SV Map_get_member(CTX ctx,const SV&f_,const SV&key)
@@ -41074,8 +41610,8 @@ SV Map_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::begin" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::begin.")));
 RET CN;
@@ -41085,13 +41621,13 @@ SV Map_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::set" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],scripting::Value)&&TS(a[2],scripting::Value))
+if(1&&TS(a[1],AutoVal)&&TS(a[2],AutoVal))
 {
-RET CV( f->set(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[2])));
+RET CV( f->set(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[2])));
 ;
 }
 CATE(TE,UFOF("Map::set.")));
@@ -41102,8 +41638,8 @@ SV Map_end(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::end" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::end.")));
 RET CN;
@@ -41113,19 +41649,19 @@ SV Map_get(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::get" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-RET CV( f->get(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+RET CV( f->get(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 ;
 }
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-RET CV( f->get(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+RET CV( f->get(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Map::get.")));
@@ -41136,8 +41672,8 @@ SV Map_getValue(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::getValue" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -41153,8 +41689,8 @@ SV Map_clear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::clear" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41170,13 +41706,13 @@ SV Map_remove(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::remove" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-( f->remove(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+( f->remove(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("Map::remove.")));
@@ -41187,8 +41723,8 @@ SV Map_getKey(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::getKey" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -41204,13 +41740,13 @@ SV Map_isEntry(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::isEntry" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-RET CV( f->isEntry(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+RET CV( f->isEntry(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("Map::isEntry.")));
@@ -41221,8 +41757,8 @@ SV Map_getCount(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::getCount" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -41238,8 +41774,8 @@ SV Map_removeEntry(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::removeEntry" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::removeEntry.")));
 RET CN;
@@ -41249,13 +41785,13 @@ SV Map___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::__eq__" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<scripting::Value, scripting::Value> &))
+if(1&&TS(a[1],const HashMap<AutoVal, AutoVal> &))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value, scripting::Value> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const HashMap<AutoVal, AutoVal> &>::type>::f(ctx,a[1]);
 RET CV(*f == v);
 }
 CATE(TE,UFOF("Map::__eq__.")));
@@ -41266,8 +41802,8 @@ SV Map_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::find" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("Map::find.")));
 RET CN;
@@ -41277,13 +41813,13 @@ SV Map___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"Map::__neq__" EAOE));
-HashMap<scripting::Value,scripting::Value>*f;
-f=(HashMap<scripting::Value,scripting::Value>*)((NO)a[0].p)->data;
+HashMap<AutoVal,AutoVal>*f;
+f=(HashMap<AutoVal,AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const HashMap<scripting::Value, scripting::Value> &))
+if(1&&TS(a[1],const HashMap<AutoVal, AutoVal> &))
 {
-auto v=val_to_c<std::remove_reference<const HashMap<scripting::Value, scripting::Value> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const HashMap<AutoVal, AutoVal> &>::type>::f(ctx,a[1]);
 RET CV(*f != v);
 }
 CATE(TE,UFOF("Map::__neq__.")));
@@ -48815,29 +49351,29 @@ obj->collisionMask=val_to_c<decltype(obj->collisionMask)>::f(ctx,value);
 void List_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
-if(!TS(f_,List<scripting::Value>))
+if(!TS(f_,List<AutoVal>))
 CATE(TE,"List::__del__ expects List as first argument."));
 
-SCRIPT_DELETE((List<scripting::Value>*)f->data);
+SCRIPT_DELETE((List<AutoVal>*)f->data);
 }SV List_new(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List's constructor" EAOE));
-if(!TS(a[0],List<scripting::Value>))
+if(!TS(a[0],List<AutoVal>))
 CATE(TE,"List's constructor expects List as first argument."));
 if(a.getCount()==1)
 if(true){
-void *p = (void *)NEW(TYPE(List<scripting::Value>));
+void *p = (void *)NEW(TYPE(List<AutoVal>));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }if(a.getCount()==2)
 if(true&&TS(a[1],std::size_t)){
-void *p = (void *)NEW(TYPE(List<scripting::Value>),val_to_c<std::size_t>::f(ctx,a[1]));
+void *p = (void *)NEW(TYPE(List<AutoVal>),val_to_c<std::size_t>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }if(a.getCount()==2)
-if(true&&TS(a[1],const List<scripting::Value> &)){
-void *p = (void *)NEW(TYPE(List<scripting::Value>),val_to_c<const List<scripting::Value> &>::f(ctx,a[1]));
+if(true&&TS(a[1],const List<AutoVal> &)){
+void *p = (void *)NEW(TYPE(List<AutoVal>),val_to_c<const List<AutoVal> &>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(List_funcs,p,EXT->List_typeID);
 }CATE(TE,UFOF("List's constructor.")));
@@ -48925,19 +49461,19 @@ SV List_insert(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::insert" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],scripting::Value))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],AutoVal))
 {
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[2])));
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[2])));
 RET CN;
 }
 if(a.getCount()==3)
-if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<scripting::Value> &))
+if(1&&TS(a[1],std::size_t)&&TS(a[2],const List<AutoVal> &))
 {
-( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[2])));
+( f->insert(val_to_c<std::remove_reference<std::size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const List<AutoVal> &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("List::insert.")));
@@ -48948,8 +49484,8 @@ SV List_begin(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::begin" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("List::begin.")));
 RET CN;
@@ -48959,13 +49495,13 @@ SV List_set(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::set" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],scripting::Value))
+if(1&&TS(a[1],size_t)&&TS(a[2],AutoVal))
 {
-( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[2])));
+( f->set(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("List::set.")));
@@ -48976,8 +49512,8 @@ SV List_end(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::end" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("List::end.")));
 RET CN;
@@ -48987,8 +49523,8 @@ SV List_get(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::get" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
 if(1&&TS(a[1],size_t))
@@ -49004,8 +49540,8 @@ SV List_clear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::clear" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49021,8 +49557,8 @@ SV List_copy(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::copy" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49038,8 +49574,8 @@ SV List_remove(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::remove" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==3)
 if(1&&TS(a[1],std::size_t)&&TS(a[2],std::size_t))
@@ -49055,13 +49591,13 @@ SV List_in(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::in" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-RET CV( f->in(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+RET CV( f->in(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("List::in.")));
@@ -49072,8 +49608,8 @@ SV List_getCount(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::getCount" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
@@ -49089,8 +49625,8 @@ SV List_getData(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::getData" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 CATE(TE,UFOF("List::getData.")));
 RET CN;
@@ -49100,13 +49636,13 @@ SV List___eq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::__eq__" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<scripting::Value> &))
+if(1&&TS(a[1],const List<AutoVal> &))
 {
-auto v=val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const List<AutoVal> &>::type>::f(ctx,a[1]);
 RET CV(*f == v);
 }
 CATE(TE,UFOF("List::__eq__.")));
@@ -49117,13 +49653,13 @@ SV List_find(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::find" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-RET CV( f->find(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+RET CV( f->find(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 ;
 }
 CATE(TE,UFOF("List::find.")));
@@ -49134,19 +49670,19 @@ SV List_append(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::append" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],scripting::Value))
+if(1&&TS(a[1],AutoVal))
 {
-( f->append(val_to_c<std::remove_reference<scripting::Value>::type>::f(ctx,a[1])));
+( f->append(val_to_c<std::remove_reference<AutoVal>::type>::f(ctx,a[1])));
 RET CN;
 }
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<scripting::Value> &))
+if(1&&TS(a[1],const List<AutoVal> &))
 {
-( f->append(val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[1])));
+( f->append(val_to_c<std::remove_reference<const List<AutoVal> &>::type>::f(ctx,a[1])));
 RET CN;
 }
 CATE(TE,UFOF("List::append.")));
@@ -49157,13 +49693,13 @@ SV List___neq__(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
 CATE(VE,"List::__neq__" EAOE));
-List<scripting::Value>*f;
-f=(List<scripting::Value>*)((NO)a[0].p)->data;
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],const List<scripting::Value> &))
+if(1&&TS(a[1],const List<AutoVal> &))
 {
-auto v=val_to_c<std::remove_reference<const List<scripting::Value> &>::type>::f(ctx,a[1]);
+auto v=val_to_c<std::remove_reference<const List<AutoVal> &>::type>::f(ctx,a[1]);
 RET CV(*f != v);
 }
 CATE(TE,UFOF("List::__neq__.")));
@@ -52436,20 +52972,20 @@ SV create(CTX ctx,const T2<uint32_t>& value){RET CV(value);}
 SV create(CTX ctx,const List<Light*>& value){RET CV(value);}
 SV create(CTX ctx,const RenderStats& value){RET CV(value);}
 SV create(CTX ctx,const Filesystem& value){RET CV(value);}
-SV create(CTX ctx,const GfxRenderer& value){RET CV(value);}
 SV create(CTX ctx,const T2<float>& value){RET CV(value);}
 SV create(CTX ctx,const Event& value){RET CV(value);}
 SV create(CTX ctx,const Stats& value){RET CV(value);}
 SV create(CTX ctx,const AudioSource& value){RET CV(value);}
+SV create(CTX ctx,const DrawCall& value){RET CV(value);}
 SV create(CTX ctx,const List<RayCastResult>& value){RET CV(value);}
 SV create(CTX ctx,const Camera& value){RET CV(value);}
+SV create(CTX ctx,const List<AudioSource*>& value){RET CV(value);}
 SV create(CTX ctx,const TextureSampler& value){RET CV(value);}
 SV create(CTX ctx,const T3<int32_t>& value){RET CV(value);}
 SV create(CTX ctx,const ResizableData& value){RET CV(value);}
 SV create(CTX ctx,const T4<int32_t>& value){RET CV(value);}
 SV create(CTX ctx,const T3<float>& value){RET CV(value);}
 SV create(CTX ctx,const Transform& value){RET CV(value);}
-SV create(CTX ctx,const List<AudioSource*>& value){RET CV(value);}
 SV create(CTX ctx,const Quaternion& value){RET CV(value);}
 SV create(CTX ctx,const GfxMeshAttrib& value){RET CV(value);}
 SV create(CTX ctx,const T2<int32_t>& value){RET CV(value);}
@@ -52462,7 +52998,7 @@ SV create(CTX ctx,const List<float>& value){RET CV(value);}
 SV create(CTX ctx,const Container& value){RET CV(value);}
 SV create(CTX ctx,const LightDirectionalData& value){RET CV(value);}
 SV create(CTX ctx,const Matrix4x4& value){RET CV(value);}
-SV create(CTX ctx,const HashMap<scripting::Value,scripting::Value>& value){RET CV(value);}
+SV create(CTX ctx,const HashMap<AutoVal,AutoVal>& value){RET CV(value);}
 SV create(CTX ctx,const Frustum& value){RET CV(value);}
 SV create(CTX ctx,const List<ScriptInstance*>& value){RET CV(value);}
 SV create(CTX ctx,const T3<uint32_t>& value){RET CV(value);}
@@ -52476,7 +53012,7 @@ SV create(CTX ctx,const RayCastResult& value){RET CV(value);}
 SV create(CTX ctx,const GfxLOD& value){RET CV(value);}
 SV create(CTX ctx,const AABB& value){RET CV(value);}
 SV create(CTX ctx,const RigidBodyConstructionInfo& value){RET CV(value);}
-SV create(CTX ctx,const List<scripting::Value>& value){RET CV(value);}
+SV create(CTX ctx,const List<AutoVal>& value){RET CV(value);}
 SV create(CTX ctx,const List<GfxModel::SubModel>& value){RET CV(value);}
 SV create(CTX ctx,const List<GfxLOD>& value){RET CV(value);}
 SV create(CTX ctx,const List<Entity*>& value){RET CV(value);}
@@ -52504,11 +53040,13 @@ SV create(CTX ctx,PhysicsWorld *value){RET CV(value);}
 SV create(CTX ctx,Stats *value){RET CV(value);}
 SV create(CTX ctx,AudioSource *value){RET CV(value);}
 SV create(CTX ctx,Script *value){RET CV(value);}
+SV create(CTX ctx,DrawCall *value){RET CV(value);}
 SV create(CTX ctx,List<RayCastResult> *value){RET CV(value);}
 SV create(CTX ctx,Platform *value){RET CV(value);}
 SV create(CTX ctx,Camera *value){RET CV(value);}
 SV create(CTX ctx,GfxMesh *value){RET CV(value);}
 SV create(CTX ctx,Resource *value){RET CV(value);}
+SV create(CTX ctx,List<AudioSource*> *value){RET CV(value);}
 SV create(CTX ctx,GfxShader *value){RET CV(value);}
 SV create(CTX ctx,Light *value){RET CV(value);}
 SV create(CTX ctx,TextureSampler *value){RET CV(value);}
@@ -52520,7 +53058,6 @@ SV create(CTX ctx,T4<int32_t> *value){RET CV(value);}
 SV create(CTX ctx,T3<float> *value){RET CV(value);}
 SV create(CTX ctx,GfxBuffer *value){RET CV(value);}
 SV create(CTX ctx,Transform *value){RET CV(value);}
-SV create(CTX ctx,List<AudioSource*> *value){RET CV(value);}
 SV create(CTX ctx,GfxMaterial *value){RET CV(value);}
 SV create(CTX ctx,Quaternion *value){RET CV(value);}
 SV create(CTX ctx,GfxMeshAttrib *value){RET CV(value);}
@@ -52529,6 +53066,7 @@ SV create(CTX ctx,RenderComponent *value){RET CV(value);}
 SV create(CTX ctx,T2<int32_t> *value){RET CV(value);}
 SV create(CTX ctx,AudioWorld *value){RET CV(value);}
 SV create(CTX ctx,GuiPlacer *value){RET CV(value);}
+SV create(CTX ctx,RenderList *value){RET CV(value);}
 SV create(CTX ctx,List<Str> *value){RET CV(value);}
 SV create(CTX ctx,Application *value){RET CV(value);}
 SV create(CTX ctx,LightPointData *value){RET CV(value);}
@@ -52537,7 +53075,7 @@ SV create(CTX ctx,List<float> *value){RET CV(value);}
 SV create(CTX ctx,Container *value){RET CV(value);}
 SV create(CTX ctx,LightDirectionalData *value){RET CV(value);}
 SV create(CTX ctx,Matrix4x4 *value){RET CV(value);}
-SV create(CTX ctx,HashMap<scripting::Value,scripting::Value> *value){RET CV(value);}
+SV create(CTX ctx,HashMap<AutoVal,AutoVal> *value){RET CV(value);}
 SV create(CTX ctx,Frustum *value){RET CV(value);}
 SV create(CTX ctx,List<ScriptInstance*> *value){RET CV(value);}
 SV create(CTX ctx,T3<uint32_t> *value){RET CV(value);}
@@ -52553,7 +53091,7 @@ SV create(CTX ctx,GfxLOD *value){RET CV(value);}
 SV create(CTX ctx,File *value){RET CV(value);}
 SV create(CTX ctx,AABB *value){RET CV(value);}
 SV create(CTX ctx,RigidBodyConstructionInfo *value){RET CV(value);}
-SV create(CTX ctx,List<scripting::Value> *value){RET CV(value);}
+SV create(CTX ctx,List<AutoVal> *value){RET CV(value);}
 SV create(CTX ctx,Audio *value){RET CV(value);}
 SV create(CTX ctx,GfxTexture *value){RET CV(value);}
 SV create(CTX ctx,List<GfxModel::SubModel> *value){RET CV(value);}
@@ -52719,6 +53257,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Script", ext->Script);
     
     typeID = engine->createNewTypeID();
+    ext->DrawCall_typeID = typeID;
+    ext->DrawCall = scripting::createNativeObject(DrawCall_funcs, NULL, typeID);
+    engine->getGlobalVars().set("DrawCall", ext->DrawCall);
+    
+    typeID = engine->createNewTypeID();
     ext->RayCastResultList_typeID = typeID;
     ext->RayCastResultList = scripting::createNativeObject(RayCastResultList_funcs, NULL, typeID);
     engine->getGlobalVars().set("RayCastResultList", ext->RayCastResultList);
@@ -52742,6 +53285,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->Resource_typeID = typeID;
     ext->Resource = scripting::createNativeObject(Resource_funcs, NULL, typeID);
     engine->getGlobalVars().set("Resource", ext->Resource);
+    
+    typeID = engine->createNewTypeID();
+    ext->AudioSourceList_typeID = typeID;
+    ext->AudioSourceList = scripting::createNativeObject(AudioSourceList_funcs, NULL, typeID);
+    engine->getGlobalVars().set("AudioSourceList", ext->AudioSourceList);
     
     typeID = engine->createNewTypeID();
     ext->GfxShader_typeID = typeID;
@@ -52799,11 +53347,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("Transform", ext->Transform);
     
     typeID = engine->createNewTypeID();
-    ext->AudioSourceList_typeID = typeID;
-    ext->AudioSourceList = scripting::createNativeObject(AudioSourceList_funcs, NULL, typeID);
-    engine->getGlobalVars().set("AudioSourceList", ext->AudioSourceList);
-    
-    typeID = engine->createNewTypeID();
     ext->GfxMaterial_typeID = typeID;
     ext->GfxMaterial = scripting::createNativeObject(GfxMaterial_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxMaterial", ext->GfxMaterial);
@@ -52842,6 +53385,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GuiPlacer_typeID = typeID;
     ext->GuiPlacer = scripting::createNativeObject(GuiPlacer_funcs, NULL, typeID);
     engine->getGlobalVars().set("GuiPlacer", ext->GuiPlacer);
+    
+    typeID = engine->createNewTypeID();
+    ext->RenderList_typeID = typeID;
+    ext->RenderList = scripting::createNativeObject(RenderList_funcs, NULL, typeID);
+    engine->getGlobalVars().set("RenderList", ext->RenderList);
     
     typeID = engine->createNewTypeID();
     ext->StringList_typeID = typeID;

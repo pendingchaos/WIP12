@@ -1,5 +1,3 @@
-- [ ] Fix memory leaks.
-
 ## Features
 - [ ] Forward shadow mapping.
 - [ ] Serialize and deserialize script instances when saving and loading a scene.
@@ -44,7 +42,7 @@
 - [ ] Lexical scoping (scripting).
 
 ## Bugs
-- [ ] Fix terrain (gfxrenderer.cpp:1840)
+- [ ] Fix terrain.
 - [ ] POM with terrains freezes the computer.
 - [ ] Lines 48 and 53 in src/graphics/GL/glgputimer.cpp don't work with Mesa3d:
     - GL_INVALID_OPERATION in glQueryCounter(id has an invalid target)
@@ -81,6 +79,8 @@
 - [ ] Improve directional shadow transitions.
 - [ ] Cleanup code.
 - [ ] A proper shaderball.
+- [ ] Separate material parameters, material rendering and mesh rendering.
+- [ ] Fix memory leaks.
 
 ## Performance Improvements
 - [ ] Explicit instancing

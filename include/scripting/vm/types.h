@@ -122,7 +122,7 @@ Value createString(const Str& value);
 Value createNativeFunction(Value (*func)(Context *ctx, const List<Value>& args));
 Value createException(ExcType type, Str error);
 Value createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typeID);
-Value createCopy(Context *context, const Value& value);
+Value createCopy(const Value& value);
 void destroy(Context *context, const Value& value);
 }
 

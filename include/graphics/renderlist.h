@@ -3,6 +3,8 @@
 
 #include "math/matrix4x4.h"
 #include "containers/list.h"
+#include "misc_macros.h"
+#include "scripting/bindings.h"
 
 class Camera;
 class GfxMesh;
@@ -13,14 +15,20 @@ class Light;
 
 struct DrawCall
 {
+    DrawCall(GfxMesh *mesh_, GfxMaterial *mat) : mesh(mesh_),
+                                                 material(mat),
+                                                 animState(nullptr) {}
+
     GfxMesh *mesh;
     GfxMaterial *material;
     Matrix4x4 worldMatrix;
     GfxAnimationState *animState;
-};
+} BIND;
 
 class RenderList
 {
+    NO_COPY(RenderList);
+
     public:
         RenderList();
         ~RenderList();
@@ -42,6 +50,6 @@ class RenderList
         GfxTexture *matrixTexture;
 
         void fillMatrixTexture(const List<Matrix4x4>& matrices);
-};
+} BIND NOT_COPYABLE;
 
 #endif // RENDERQUEUE_H

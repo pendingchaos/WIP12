@@ -41,11 +41,11 @@ static Value classNew(Context *ctx, const List<Value>& args)
 
     for (auto kv : baseMembers)
     {
-        resultMembers.set(kv.first, createCopy(ctx, kv.second));
+        resultMembers.set(kv.first, createCopy(kv.second));
     }
 
     resultMembers.set("__classTypeID__", createInt(typeID.i));
-    resultMembers.set("__class__", createCopy(ctx, args[0]));
+    resultMembers.set("__class__", createCopy(args[0]));
 
     auto pos = resultMembers.find("__init__");
     if (pos != resultMembers.end())
@@ -83,7 +83,7 @@ static Value createClass(Context *ctx, const List<Value>& args)
 
     HashMap<Str, Value>& resultMembers = ((ObjectData *)result.p)->members;
 
-    resultMembers.set("__base__", createCopy(ctx, args[0]));
+    resultMembers.set("__base__", createCopy(args[0]));
     resultMembers.set("__typeID__", createInt(ctx->getEngine()->createNewTypeID()));
     resultMembers.set("__call__", createNativeFunction(classNew));
 
@@ -136,8 +136,8 @@ static Value createMethod(Context *ctx, const List<Value>& args)
 
     HashMap<Str, Value>& resultMembers = ((ObjectData *)result.p)->members;
 
-    resultMembers.set("__func__", createCopy(ctx, args[0]));
-    resultMembers.set("__obj__", createCopy(ctx, args[1]));
+    resultMembers.set("__func__", createCopy(args[0]));
+    resultMembers.set("__obj__", createCopy(args[1]));
     resultMembers.set("__call__", createNativeFunction(methodCall));
 
     return result;

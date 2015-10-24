@@ -133,7 +133,7 @@ Value createNativeObject(const NativeObjectFuncs& funcs, void *data, int64_t typ
     return v;
 }
 
-Value createCopy(Context *context, const Value& value)
+Value createCopy(const Value& value)
 {
     switch (value.type)
     {

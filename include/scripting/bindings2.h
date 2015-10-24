@@ -63,6 +63,7 @@
 #include "containers/hashmap.h"
 #include "containers/list.h"
 #include "containers/string.h"
+#include "scripting/autoval.h"
 #include "scripting/parser.h"
 #include "scripting/bytecodegen.h"
 #include "scripting/bindings.h"
@@ -85,20 +86,20 @@ namespace scripting
     Value create(Context *ctx, const List<Light*>& value);
     Value create(Context *ctx, const RenderStats& value);
     Value create(Context *ctx, const Filesystem& value);
-    Value create(Context *ctx, const GfxRenderer& value);
     Value create(Context *ctx, const T2<float>& value);
     Value create(Context *ctx, const Event& value);
     Value create(Context *ctx, const Stats& value);
     Value create(Context *ctx, const AudioSource& value);
+    Value create(Context *ctx, const DrawCall& value);
     Value create(Context *ctx, const List<RayCastResult>& value);
     Value create(Context *ctx, const Camera& value);
+    Value create(Context *ctx, const List<AudioSource*>& value);
     Value create(Context *ctx, const TextureSampler& value);
     Value create(Context *ctx, const T3<int32_t>& value);
     Value create(Context *ctx, const ResizableData& value);
     Value create(Context *ctx, const T4<int32_t>& value);
     Value create(Context *ctx, const T3<float>& value);
     Value create(Context *ctx, const Transform& value);
-    Value create(Context *ctx, const List<AudioSource*>& value);
     Value create(Context *ctx, const Quaternion& value);
     Value create(Context *ctx, const GfxMeshAttrib& value);
     Value create(Context *ctx, const T2<int32_t>& value);
@@ -111,7 +112,7 @@ namespace scripting
     Value create(Context *ctx, const Container& value);
     Value create(Context *ctx, const LightDirectionalData& value);
     Value create(Context *ctx, const Matrix4x4& value);
-    Value create(Context *ctx, const HashMap<scripting::Value,scripting::Value>& value);
+    Value create(Context *ctx, const HashMap<AutoVal,AutoVal>& value);
     Value create(Context *ctx, const Frustum& value);
     Value create(Context *ctx, const List<ScriptInstance*>& value);
     Value create(Context *ctx, const T3<uint32_t>& value);
@@ -125,7 +126,7 @@ namespace scripting
     Value create(Context *ctx, const GfxLOD& value);
     Value create(Context *ctx, const AABB& value);
     Value create(Context *ctx, const RigidBodyConstructionInfo& value);
-    Value create(Context *ctx, const List<scripting::Value>& value);
+    Value create(Context *ctx, const List<AutoVal>& value);
     Value create(Context *ctx, const List<GfxModel::SubModel>& value);
     Value create(Context *ctx, const List<GfxLOD>& value);
     Value create(Context *ctx, const List<Entity*>& value);
@@ -153,11 +154,13 @@ namespace scripting
     Value create(Context *ctx, Stats *value);
     Value create(Context *ctx, AudioSource *value);
     Value create(Context *ctx, Script *value);
+    Value create(Context *ctx, DrawCall *value);
     Value create(Context *ctx, List<RayCastResult> *value);
     Value create(Context *ctx, Platform *value);
     Value create(Context *ctx, Camera *value);
     Value create(Context *ctx, GfxMesh *value);
     Value create(Context *ctx, Resource *value);
+    Value create(Context *ctx, List<AudioSource*> *value);
     Value create(Context *ctx, GfxShader *value);
     Value create(Context *ctx, Light *value);
     Value create(Context *ctx, TextureSampler *value);
@@ -169,7 +172,6 @@ namespace scripting
     Value create(Context *ctx, T3<float> *value);
     Value create(Context *ctx, GfxBuffer *value);
     Value create(Context *ctx, Transform *value);
-    Value create(Context *ctx, List<AudioSource*> *value);
     Value create(Context *ctx, GfxMaterial *value);
     Value create(Context *ctx, Quaternion *value);
     Value create(Context *ctx, GfxMeshAttrib *value);
@@ -178,6 +180,7 @@ namespace scripting
     Value create(Context *ctx, T2<int32_t> *value);
     Value create(Context *ctx, AudioWorld *value);
     Value create(Context *ctx, GuiPlacer *value);
+    Value create(Context *ctx, RenderList *value);
     Value create(Context *ctx, List<Str> *value);
     Value create(Context *ctx, Application *value);
     Value create(Context *ctx, LightPointData *value);
@@ -186,7 +189,7 @@ namespace scripting
     Value create(Context *ctx, Container *value);
     Value create(Context *ctx, LightDirectionalData *value);
     Value create(Context *ctx, Matrix4x4 *value);
-    Value create(Context *ctx, HashMap<scripting::Value,scripting::Value> *value);
+    Value create(Context *ctx, HashMap<AutoVal,AutoVal> *value);
     Value create(Context *ctx, Frustum *value);
     Value create(Context *ctx, List<ScriptInstance*> *value);
     Value create(Context *ctx, T3<uint32_t> *value);
@@ -202,7 +205,7 @@ namespace scripting
     Value create(Context *ctx, File *value);
     Value create(Context *ctx, AABB *value);
     Value create(Context *ctx, RigidBodyConstructionInfo *value);
-    Value create(Context *ctx, List<scripting::Value> *value);
+    Value create(Context *ctx, List<AutoVal> *value);
     Value create(Context *ctx, Audio *value);
     Value create(Context *ctx, GfxTexture *value);
     Value create(Context *ctx, List<GfxModel::SubModel> *value);

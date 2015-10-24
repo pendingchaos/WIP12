@@ -50,6 +50,8 @@ struct RenderStats
 
 class GfxRenderer
 {
+    NO_COPY(GfxRenderer);
+
     private:
         friend class Scene;
 
@@ -211,6 +213,21 @@ class GfxRenderer
         {
             return terrain;
         }
+
+        inline RenderList *getForwardList() const
+        {
+            return forwardList;
+        }
+
+        inline RenderList *getDeferredList() const
+        {
+            return deferredList;
+        }
+
+        inline RenderList *getShadowmapList() const
+        {
+            return shadowmapList;
+        }
     private:
         void _computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const;
         void _computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const;
@@ -334,13 +351,13 @@ class GfxRenderer
         GfxFramebuffer *bloom4Framebuffer;
         GfxFramebuffer *bloomDownsampleFramebuffer;
 
-        RenderList forwardList;
-        RenderList deferredList;
-        RenderList shadowmapList;
+        RenderList *forwardList;
+        RenderList *deferredList;
+        RenderList *shadowmapList;
 
         void fillRenderLists(const List<Entity *>& entities);
 
         void swapFramebuffers();
-} BIND;
+} BIND NOT_COPYABLE;
 
 #endif // GFXRENDERER_H
