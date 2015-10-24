@@ -19,6 +19,7 @@
 class GfxMesh;
 class GfxAnimationState;
 class Camera;
+class Light;
 
 class GfxMaterial : public Resource
 {
@@ -47,6 +48,7 @@ class GfxMaterial : public Resource
         bool isForward();
 
         void setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera);
+        void setupShadowRender(GfxMesh *mesh, GfxAnimationState *animState, Light *light, size_t pass);
     private:
         GfxShaderCombination *shaderComb;
 

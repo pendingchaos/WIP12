@@ -102,6 +102,23 @@ class GfxApi
         virtual void draw(size_t instanceCount=1)=0;
         virtual void end()=0;
 
+        //Workaround for shadow.rkt.
+        //TODO: Get rid of this.
+        inline void begin(GfxCompiledShader *vertex,
+                          GfxCompiledShader *geometry,
+                          GfxCompiledShader *fragment,
+                          GfxMesh *mesh)
+        {
+            begin(vertex, nullptr, nullptr, geometry, fragment, mesh);
+        }
+
+        inline void begin(GfxCompiledShader *vertex,
+                          GfxCompiledShader *fragment,
+                          GfxMesh *mesh)
+        {
+            begin(vertex, nullptr, nullptr, nullptr, fragment, mesh);
+        }
+
         virtual GfxCompiledShader *getVertexShader()=0;
         virtual GfxCompiledShader *getTessControlShader()=0;
         virtual GfxCompiledShader *getTessEvalShader()=0;

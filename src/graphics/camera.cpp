@@ -36,6 +36,7 @@ void Camera::setType(CameraType type_)
         orthographic.top = 1.0f;
         break;
     }
+    case CameraType::Matrices: {break;}
     }
 
     createProjectionMatrix();
@@ -159,11 +160,29 @@ void Camera::setFar(float far_)
     createFrustum();
 }
 
+void Camera::setViewMatrix(const Matrix4x4& mat)
+{
+    if (type == CameraType::Matrices)
+    {
+        viewMatrix = mat;
+    }
+}
+
+void Camera::setProjectionMatrix(const Matrix4x4& mat)
+{
+    if (type == CameraType::Matrices)
+    {
+        projectionMatrix = mat;
+    }
+}
+
 void Camera::createViewMatrix()
 {
-    Position3D target = position + direction;
-
-    viewMatrix = Matrix4x4::lookAt(position, target, up);
+    if (type != CameraType::Matrices)
+    {
+        Position3D target = position + direction;
+        viewMatrix = Matrix4x4::lookAt(position, target, up);
+    }
 }
 
 void Camera::createProjectionMatrix()
@@ -188,6 +207,7 @@ void Camera::createProjectionMatrix()
                                                    far);
         break;
     }
+    case CameraType::Matrices: {break;}
     }
 }
 
@@ -214,6 +234,10 @@ void Camera::createFrustum()
                                 near,
                                 far);
         break;
+    }
+    case CameraType::Matrices:
+    {
+        //TODO
     }
     }
 }

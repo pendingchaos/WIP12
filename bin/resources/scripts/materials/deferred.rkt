@@ -131,8 +131,6 @@ return class {
         self:setNormalMap(src.normalMap);
         self:setParallaxHeightMap(src.parallaxHeightMap);
         self:setPOMHeightMap(src.pomHeightMap);
-        
-        return result;
     };
     
     setupRender = function(self, mesh, animState, camera) {

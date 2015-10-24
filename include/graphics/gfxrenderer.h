@@ -11,6 +11,7 @@
 #include "graphics/light.h"
 #include "scene/scene.h"
 #include "scripting/bindings.h"
+#include "graphics/renderlist.h"
 
 class Matrix4x4;
 class Str;
@@ -288,27 +289,22 @@ class GfxRenderer
         size_t numDirectionalLights;
         size_t numSpotLights;
 
+        GfxMaterial *shadowmapMaterial;
+
         GfxTerrain *terrain;
 
         void fillLightBuffer(Scene *scene);
-        void batchEntities(const List<Entity *>& entities);
         void batchModel(const Matrix4x4& worldMatrix,
                         const GfxModel *model,
                         GfxMesh *animMesh,
-                        GfxAnimationState *animState);
-        void renderBatches(bool forward);
+                        GfxAnimationState *animState,
+                        bool castShadow);
         void renderSkybox();
-        void renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
-                                      const Matrix4x4& projectionMatrix,
-                                      Light *light,
-                                      size_t cubemapFace);
         void renderShadowmap(Light *light);
         void renderTerrain();
         void renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
                                       const Matrix4x4& viewMatrix,
                                       float autoBiasScale);
-
-        void fillMatrixTexture(const List<Matrix4x4>& matrices);
 
         GfxTexture *writeColorTexture;
         GfxTexture *readColorTexture;
@@ -338,17 +334,11 @@ class GfxRenderer
         GfxFramebuffer *bloom4Framebuffer;
         GfxFramebuffer *bloomDownsampleFramebuffer;
 
-        struct Batch
-        {
-            GfxMesh *mesh;
-            GfxMaterial *material;
-            List<Matrix4x4> worldMatrices;
-            GfxAnimationState *animState;
-        };
+        RenderList forwardList;
+        RenderList deferredList;
+        RenderList shadowmapList;
 
-        List<Batch> batches;
-        GfxTexture *matrixTexture;
-        //GfxBuffer *instanceBuffer;
+        void fillRenderLists(const List<Entity *>& entities);
 
         void swapFramebuffers();
 } BIND;

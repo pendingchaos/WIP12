@@ -19,6 +19,7 @@
 #include "graphics/gputimer.h"
 #include "graphics/gfxbuffer.h"
 #include "graphics/gfxframebuffer.h"
+#include "graphics/renderlist.h"
 #include "graphics/gfxapi.h"
 #include "graphics/font.h"
 #include "graphics/gfxtexture.h"
@@ -89,8 +90,8 @@
 
 struct BindingsExt
 {
-    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, GfxAnimationState_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, ImGui_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
-    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, GfxAnimationState, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, ImGui, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
+    int64_t GhostObject_typeID, StrStrMap_typeID, GfxApi_typeID, GfxCompiledShader_typeID, ScrollBar_typeID, GhostObjList_typeID, GPUTimer_typeID, RigidBody_typeID, UInt2_typeID, LightList_typeID, RenderStats_typeID, Filesystem_typeID, ResourceManager_typeID, Entity_typeID, GfxRenderer_typeID, Float2_typeID, GfxFramebuffer_typeID, Font_typeID, Event_typeID, PhysicsWorld_typeID, Stats_typeID, AudioSource_typeID, Script_typeID, RayCastResultList_typeID, Platform_typeID, Camera_typeID, GfxMesh_typeID, Resource_typeID, GfxShader_typeID, Light_typeID, TextureSampler_typeID, Scene_typeID, GfxAnimationState_typeID, Int3_typeID, ResizableData_typeID, Int4_typeID, Float3_typeID, GfxBuffer_typeID, Transform_typeID, AudioSourceList_typeID, GfxMaterial_typeID, Quaternion_typeID, GfxMeshAttrib_typeID, ScriptInstance_typeID, RenderComponent_typeID, Int2_typeID, AudioWorld_typeID, GuiPlacer_typeID, StringList_typeID, Application_typeID, LightPointData_typeID, Float4_typeID, FloatList_typeID, Container_typeID, LightDirectionalData_typeID, Matrix4x4_typeID, Map_typeID, Frustum_typeID, ScriptInstanceList_typeID, UInt3_typeID, LightSpotData_typeID, Plane_typeID, PhysicsShape_typeID, AudioDevice_typeID, RigidBodyList_typeID, ImGui_typeID, UInt4_typeID, RayCastResult_typeID, GfxLOD_typeID, File_typeID, AABB_typeID, RigidBodyConstructionInfo_typeID, List_typeID, Audio_typeID, GfxTexture_typeID, GfxSubModelList_typeID, GfxModel_typeID, GfxLODList_typeID, EntityList_typeID, GfxShaderCombination_typeID, Matrix3x3_typeID, GfxDebugDrawer_typeID, Key_typeID, MouseButton_typeID, EventType_typeID, FileOrigin_typeID, ResType_typeID, GfxTextureType_typeID, GfxFilter_typeID, GfxMipmapMode_typeID, GfxWrapMode_typeID, GfxTexFormat_typeID, GfxFace_typeID, GfxBufferUsage_typeID, GfxShaderType_typeID, GfxPrimitive_typeID, GfxDepthFunction_typeID, GfxBlendMode_typeID, GfxBlendFactor_typeID, GfxCullMode_typeID, GfxWinding_typeID, GfxVertexAttribPurpose_typeID, GfxVertexAttribType_typeID, GfxMeshIndexDataType_typeID, GfxMeshAttribType_typeID, GfxMeshAttribDataType_typeID, XOrigin_typeID, GfxShadowmapPrecision_typeID, GfxLightType_typeID, GfxDriver_typeID, CameraType_typeID, Axis_typeID, RigidBodyType_typeID, PhysicsObjectType_typeID, RenderMode_typeID;
+    scripting::Value GhostObject, StrStrMap, GfxApi, GfxCompiledShader, ScrollBar, GhostObjList, GPUTimer, RigidBody, UInt2, LightList, RenderStats, Filesystem, ResourceManager, Entity, GfxRenderer, Float2, GfxFramebuffer, Font, Event, PhysicsWorld, Stats, AudioSource, Script, RayCastResultList, Platform, Camera, GfxMesh, Resource, GfxShader, Light, TextureSampler, Scene, GfxAnimationState, Int3, ResizableData, Int4, Float3, GfxBuffer, Transform, AudioSourceList, GfxMaterial, Quaternion, GfxMeshAttrib, ScriptInstance, RenderComponent, Int2, AudioWorld, GuiPlacer, StringList, Application, LightPointData, Float4, FloatList, Container, LightDirectionalData, Matrix4x4, Map, Frustum, ScriptInstanceList, UInt3, LightSpotData, Plane, PhysicsShape, AudioDevice, RigidBodyList, ImGui, UInt4, RayCastResult, GfxLOD, File, AABB, RigidBodyConstructionInfo, List, Audio, GfxTexture, GfxSubModelList, GfxModel, GfxLODList, EntityList, GfxShaderCombination, Matrix3x3, GfxDebugDrawer, Key, MouseButton, EventType, FileOrigin, ResType, GfxTextureType, GfxFilter, GfxMipmapMode, GfxWrapMode, GfxTexFormat, GfxFace, GfxBufferUsage, GfxShaderType, GfxPrimitive, GfxDepthFunction, GfxBlendMode, GfxBlendFactor, GfxCullMode, GfxWinding, GfxVertexAttribPurpose, GfxVertexAttribType, GfxMeshIndexDataType, GfxMeshAttribType, GfxMeshAttribDataType, XOrigin, GfxShadowmapPrecision, GfxLightType, GfxDriver, CameraType, Axis, RigidBodyType, PhysicsObjectType, RenderMode;
 };
 
 
@@ -1928,6 +1929,7 @@ NO obj=(NO)val.p;
 if(obj->typeID!=EXT->CameraType_typeID)
 CATE(TE,"Value can not be converted to CameraType."));
 size_t v=size_t(obj->data);
+if(v==2)return CameraType::Matrices;
 if(v==0)return CameraType::Perspective;
 if(v==1)return CameraType::Orthographic;
 }
@@ -3610,6 +3612,8 @@ SV Camera_setBottom(CTX ctx,const List<SV>&a);
 SV Camera_setTop(CTX ctx,const List<SV>&a);
 SV Camera_setNear(CTX ctx,const List<SV>&a);
 SV Camera_setFar(CTX ctx,const List<SV>&a);
+SV Camera_setViewMatrix(CTX ctx,const List<SV>&a);
+SV Camera_setProjectionMatrix(CTX ctx,const List<SV>&a);
 SV Camera_getType(CTX ctx,const List<SV>&a);
 SV Camera_getPosition(CTX ctx,const List<SV>&a);
 SV Camera_getDirection(CTX ctx,const List<SV>&a);
@@ -4591,6 +4595,7 @@ SV GfxMaterial_setScript(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getScriptInst(CTX ctx,const List<SV>&a);
 SV GfxMaterial_isForward(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setupRender(CTX ctx,const List<SV>&a);
+SV GfxMaterial_setupShadowRender(CTX ctx,const List<SV>&a);
 SV GfxMaterial_load(CTX ctx,const List<SV>&a);
 SV GfxMaterial_copy(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getType(CTX ctx,const List<SV>&a);
@@ -4998,73 +5003,6 @@ SV GuiPlacer_setXOrigin(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getXOriginMode(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getXOrigin(CTX ctx,const List<SV>&a);
 SV GuiPlacer_getPadding(CTX ctx,const List<SV>&a);
-void ImGui_destroy(CTX,const SV&);
-SV ImGui_get_member(CTX,const SV&,const SV&);
-void ImGui_set_member(CTX,const SV&,const SV&,const SV&);
-static const STG::NativeObjectFuncs ImGui_funcs={
-.destroy = ImGui_destroy,
-.getMember = ImGui_get_member,
-.setMember = ImGui_set_member
-};
-template <>
-struct create_val<ImGui>
-{
-static SV f(CTX ctx,const ImGui&obj)
-{
-void *p = (void *)NEW(TYPE(ImGui), obj);
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
-}
-};
-template <>
-struct val_to_c<ImGui>
-{
-static ImGui f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->ImGui_typeID)
-RET*((ImGui*)obj->data);
-else
- CATE(TE,"Value can not be converted to ImGui."));
-} else
- CATE(TE,"Value can not be converted to ImGui."));
-}
-};
-
-template <>
-struct val_to_c<const ImGui>
-{
-static ImGui f(CTX ctx,const SV val) {return val_to_c<ImGui>::f(ctx, val);}
-};
-
-template <>
-struct create_val<const ImGui>
-{
-static SV f(CTX ctx,const ImGui&obj) {return create_val<ImGui>::f(ctx,obj);}
-};
-
-template <>
-struct type_same<ImGui>
-{
-static bool f(CTX ctx,const SV val)
-{
-if(val.type==STG::ValueType::NativeObject)
-RET((NO)val.p)->typeID==EXT->ImGui_typeID;
-else
- RET false;
-}
-};
-
-SV ImGui_rectangle(CTX ctx,const List<SV>&a);
-SV ImGui_beginContainer(CTX ctx,const List<SV>&a);
-SV ImGui_endContainer(CTX ctx,const List<SV>&a);
-SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a);
-SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a);
-SV ImGui_button(CTX ctx,const List<SV>&a);
-SV ImGui_label(CTX ctx,const List<SV>&a);
-SV ImGui_render(CTX ctx,const List<SV>&a);
 void StringList_destroy(CTX,const SV&);
 SV StringList_get_member(CTX,const SV&,const SV&);
 void StringList_set_member(CTX,const SV&,const SV&,const SV&);
@@ -6325,6 +6263,73 @@ SV RigidBodyList_copy(CTX ctx,const List<SV>&a);
 SV RigidBodyList_in(CTX ctx,const List<SV>&a);
 SV RigidBodyList_begin(CTX ctx,const List<SV>&a);
 SV RigidBodyList_end(CTX ctx,const List<SV>&a);
+void ImGui_destroy(CTX,const SV&);
+SV ImGui_get_member(CTX,const SV&,const SV&);
+void ImGui_set_member(CTX,const SV&,const SV&,const SV&);
+static const STG::NativeObjectFuncs ImGui_funcs={
+.destroy = ImGui_destroy,
+.getMember = ImGui_get_member,
+.setMember = ImGui_set_member
+};
+template <>
+struct create_val<ImGui>
+{
+static SV f(CTX ctx,const ImGui&obj)
+{
+void *p = (void *)NEW(TYPE(ImGui), obj);
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
+}
+};
+template <>
+struct val_to_c<ImGui>
+{
+static ImGui f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->ImGui_typeID)
+RET*((ImGui*)obj->data);
+else
+ CATE(TE,"Value can not be converted to ImGui."));
+} else
+ CATE(TE,"Value can not be converted to ImGui."));
+}
+};
+
+template <>
+struct val_to_c<const ImGui>
+{
+static ImGui f(CTX ctx,const SV val) {return val_to_c<ImGui>::f(ctx, val);}
+};
+
+template <>
+struct create_val<const ImGui>
+{
+static SV f(CTX ctx,const ImGui&obj) {return create_val<ImGui>::f(ctx,obj);}
+};
+
+template <>
+struct type_same<ImGui>
+{
+static bool f(CTX ctx,const SV val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ImGui_typeID;
+else
+ RET false;
+}
+};
+
+SV ImGui_rectangle(CTX ctx,const List<SV>&a);
+SV ImGui_beginContainer(CTX ctx,const List<SV>&a);
+SV ImGui_endContainer(CTX ctx,const List<SV>&a);
+SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a);
+SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a);
+SV ImGui_button(CTX ctx,const List<SV>&a);
+SV ImGui_label(CTX ctx,const List<SV>&a);
+SV ImGui_render(CTX ctx,const List<SV>&a);
 void UInt4_destroy(CTX,const SV&);
 SV UInt4_get_member(CTX,const SV&,const SV&);
 void UInt4_set_member(CTX,const SV&,const SV&,const SV&);
@@ -10633,74 +10638,6 @@ else
 };
 
 template <>
-struct create_val<ImGui *>
-{
-static SV f(CTX ctx,ImGui*obj)
-{
-if (obj == nullptr)
-RET CN;
-AllocInfo i=getAllocInfo((void*)obj);
-i.scriptRef = true;
-setAllocInfo((void *)obj, i);
-RET STG::createNativeObject(ImGui_funcs,obj,EXT->ImGui_typeID);
-}
-};
-template <>
-struct val_to_c<ImGui *>
-{
-static ImGui *f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->ImGui_typeID)
-RET(ImGui*)obj->data;
-else
- CATE(TE,"Value is not a ImGui."));
-} else
- CATE(TE,"Value is not a ImGui."));
-}
-};
-template <>
-struct type_same<ImGui *>
-{
-static bool f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-RET((NO)val.p)->typeID==EXT->ImGui_typeID;
-else
- RET false;
-}
-};
-template <>
-struct type_same<const ImGui *>
-{
-static bool f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-RET((NO)val.p)->typeID==EXT->ImGui_typeID;
-else
- RET false;
-}
-};
-template <>
-struct val_to_c<const ImGui *>
-{
-static const ImGui *f(CTX ctx,const SV& val)
-{
-if(val.type==STG::ValueType::NativeObject)
-{
-NO obj=(NO)val.p;
-if(obj->typeID==EXT->ImGui_typeID)
-RET(ImGui*)obj->data;
-else
- CATE(TE,"Value is not a ImGui."));
-} else
- CATE(TE,"Value is not a ImGui."));
-}
-};
-
-template <>
 struct create_val<List<Str> *>
 {
 static SV f(CTX ctx,List<Str>*obj)
@@ -11853,6 +11790,74 @@ else
  CATE(TE,"Value is not a RigidBodyList."));
 } else
  CATE(TE,"Value is not a RigidBodyList."));
+}
+};
+
+template <>
+struct create_val<ImGui *>
+{
+static SV f(CTX ctx,ImGui*obj)
+{
+if (obj == nullptr)
+RET CN;
+AllocInfo i=getAllocInfo((void*)obj);
+i.scriptRef = true;
+setAllocInfo((void *)obj, i);
+RET STG::createNativeObject(ImGui_funcs,obj,EXT->ImGui_typeID);
+}
+};
+template <>
+struct val_to_c<ImGui *>
+{
+static ImGui *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->ImGui_typeID)
+RET(ImGui*)obj->data;
+else
+ CATE(TE,"Value is not a ImGui."));
+} else
+ CATE(TE,"Value is not a ImGui."));
+}
+};
+template <>
+struct type_same<ImGui *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ImGui_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct type_same<const ImGui *>
+{
+static bool f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+RET((NO)val.p)->typeID==EXT->ImGui_typeID;
+else
+ RET false;
+}
+};
+template <>
+struct val_to_c<const ImGui *>
+{
+static const ImGui *f(CTX ctx,const SV& val)
+{
+if(val.type==STG::ValueType::NativeObject)
+{
+NO obj=(NO)val.p;
+if(obj->typeID==EXT->ImGui_typeID)
+RET(ImGui*)obj->data;
+else
+ CATE(TE,"Value is not a ImGui."));
+} else
+ CATE(TE,"Value is not a ImGui."));
 }
 };
 
@@ -14977,6 +14982,7 @@ EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("CameraType");
 EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(CameraType___eq__);
+EI(keyStr.equals("Matrices", CPL_STR_HASH("Matrices")))RET STG::createNativeObject(CameraType_funcs,(void *)2,EXT->CameraType_typeID);
 EI(keyStr.equals("Perspective", CPL_STR_HASH("Perspective")))RET STG::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
 EI(keyStr.equals("Orthographic", CPL_STR_HASH("Orthographic")))RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
@@ -14990,6 +14996,7 @@ EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
 RET STG::createString("CameraType");
 EI(keyStr.equals("__eq__", CPL_STR_HASH("__eq__")))
 RET CNF(CameraType___eq__);
+EI(keyStr.equals("Matrices", CPL_STR_HASH("Matrices")))RET STG::createNativeObject(CameraType_funcs,(void *)2,EXT->CameraType_typeID);
 EI(keyStr.equals("Perspective", CPL_STR_HASH("Perspective")))RET STG::createNativeObject(CameraType_funcs,(void *)0,EXT->CameraType_typeID);
 EI(keyStr.equals("Orthographic", CPL_STR_HASH("Orthographic")))RET STG::createNativeObject(CameraType_funcs,(void *)1,EXT->CameraType_typeID);
 
@@ -16549,6 +16556,18 @@ if(a.getCount()==3)
 if(1&&TS(a[1],GfxShaderCombination *)&&TS(a[2],GfxMesh *))
 {
 ( f->begin(val_to_c<std::remove_reference<GfxShaderCombination *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[2])));
+RET CN;
+}
+if(a.getCount()==5)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *)&&TS(a[4],GfxMesh *))
+{
+( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[4])));
+RET CN;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxMesh *))
+{
+( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::begin.")));
@@ -24817,6 +24836,10 @@ RET CNF(Camera_setTop);
 RET CNF(Camera_setNear);
  EI(keyStr.equals("setFar", CPL_STR_HASH("setFar")))
 RET CNF(Camera_setFar);
+ EI(keyStr.equals("setViewMatrix", CPL_STR_HASH("setViewMatrix")))
+RET CNF(Camera_setViewMatrix);
+ EI(keyStr.equals("setProjectionMatrix", CPL_STR_HASH("setProjectionMatrix")))
+RET CNF(Camera_setProjectionMatrix);
  EI(keyStr.equals("getType", CPL_STR_HASH("getType")))
 RET CNF(Camera_getType);
  EI(keyStr.equals("getPosition", CPL_STR_HASH("getPosition")))
@@ -25195,6 +25218,23 @@ CATE(TE,UFOF("Camera::getType.")));
 RET CN;
 }
 
+SV Camera_setProjectionMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setProjectionMatrix" EAOE));
+Camera*f;
+f=(Camera*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Matrix4x4 &))
+{
+( f->setProjectionMatrix(val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Camera::setProjectionMatrix.")));
+RET CN;
+}
+
 SV Camera_setNear(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -25277,6 +25317,23 @@ if(1&&TS(a[1],float))
 RET CN;
 }
 CATE(TE,UFOF("Camera::setHeight.")));
+RET CN;
+}
+
+SV Camera_setViewMatrix(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Camera::setViewMatrix" EAOE));
+Camera*f;
+f=(Camera*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Matrix4x4 &))
+{
+( f->setViewMatrix(val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Camera::setViewMatrix.")));
 RET CN;
 }
 
@@ -34246,6 +34303,8 @@ RET CNF(GfxMaterial_getScriptInst);
 RET CNF(GfxMaterial_isForward);
  EI(keyStr.equals("setupRender", CPL_STR_HASH("setupRender")))
 RET CNF(GfxMaterial_setupRender);
+ EI(keyStr.equals("setupShadowRender", CPL_STR_HASH("setupShadowRender")))
+RET CNF(GfxMaterial_setupShadowRender);
  EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxMaterial_load);
  EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
@@ -34365,6 +34424,23 @@ if(1&&TS(a[1],const Str &))
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::setFilename.")));
+RET CN;
+}
+
+SV GfxMaterial_setupShadowRender(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxMaterial::setupShadowRender" EAOE));
+GfxMaterial*f;
+f=(GfxMaterial*)((NO)a[0].p)->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],GfxMesh *)&&TS(a[2],GfxAnimationState *)&&TS(a[3],Light *)&&TS(a[4],size_t))
+{
+( f->setupShadowRender(val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxAnimationState *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<Light *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[4])));
+RET CN;
+}
+CATE(TE,UFOF("GfxMaterial::setupShadowRender.")));
 RET CN;
 }
 
@@ -36410,253 +36486,6 @@ RET CV( f->getXOrigin());
 ;
 }
 CATE(TE,UFOF("GuiPlacer::getXOrigin.")));
-RET CN;
-}
-
-void ImGui_destroy(CTX ctx,const SV&f_)
-{
-NO f=(NO)f_.p;
-if(!TS(f_,ImGui))
-CATE(TE,"ImGui::__del__ expects ImGui as first argument."));
-
-SCRIPT_DELETE((ImGui*)f->data);
-}SV ImGui_new(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui's constructor" EAOE));
-if(!TS(a[0],ImGui))
-CATE(TE,"ImGui's constructor expects ImGui as first argument."));
-if(a.getCount()==1)
-if(true){
-void *p = (void *)NEW(TYPE(ImGui));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
-}CATE(TE,UFOF("ImGui's constructor.")));
-RET CN;
-}
-
-SV ImGui_get_member(CTX ctx,const SV&f_,const SV&key)
-{
-NO f=(NO)f_.p;
-if (key.type==STG::ValueType::StringType)
-{
-Str keyStr=key.getStr();
-if(f->data==NULL)
-{
-if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
-RET STG::createInt(f->typeID);
-EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
-RET STG::createString("ImGui");
-EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
-RET CNF(ImGui_new);
-EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
-RET CNF(ImGui_new);
-else
- CATE(KE,"Unknown member for ImGui."));
-} else
-{
-if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
-RET STG::createInt(f->typeID);
-EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
-RET CNF(ImGui_new);
- EI(keyStr.equals("rectangle", CPL_STR_HASH("rectangle")))
-RET CNF(ImGui_rectangle);
- EI(keyStr.equals("beginContainer", CPL_STR_HASH("beginContainer")))
-RET CNF(ImGui_beginContainer);
- EI(keyStr.equals("endContainer", CPL_STR_HASH("endContainer")))
-RET CNF(ImGui_endContainer);
- EI(keyStr.equals("verticalScrollBar", CPL_STR_HASH("verticalScrollBar")))
-RET CNF(ImGui_verticalScrollBar);
- EI(keyStr.equals("horizontalScrollBar", CPL_STR_HASH("horizontalScrollBar")))
-RET CNF(ImGui_horizontalScrollBar);
- EI(keyStr.equals("button", CPL_STR_HASH("button")))
-RET CNF(ImGui_button);
- EI(keyStr.equals("label", CPL_STR_HASH("label")))
-RET CNF(ImGui_label);
- EI(keyStr.equals("render", CPL_STR_HASH("render")))
-RET CNF(ImGui_render);
- EI(keyStr.equals("buttonTextColor", CPL_STR_HASH("buttonTextColor")))
-{
-ImGui*obj=(ImGui*)f->data;
-RET CV(obj->buttonTextColor);
-} EI(keyStr.equals("labelColor", CPL_STR_HASH("labelColor")))
-{
-ImGui*obj=(ImGui*)f->data;
-RET CV(obj->labelColor);
-} EI(keyStr.equals("textSize", CPL_STR_HASH("textSize")))
-{
-ImGui*obj=(ImGui*)f->data;
-RET CV(obj->textSize);
-} EI(keyStr.equals("scrollSpeed", CPL_STR_HASH("scrollSpeed")))
-{
-ImGui*obj=(ImGui*)f->data;
-RET CV(obj->scrollSpeed);
-} else
- CATE(KE,"Unknown member for ImGui."));
-}
-}
-RET CN;
-}
-
-void ImGui_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
-{
-NO f=(NO)f_.p;
-if (key.type==STG::ValueType::StringType)
-{
-Str keyStr=key.getStr();
-if(f->data==NULL)
-CATE(KE,"Native classes are read-only."));
-else
-{
-if(0) {} EI(keyStr.equals("buttonTextColor", CPL_STR_HASH("buttonTextColor")))
-{
-ImGui*obj=(ImGui*)f->data;
-obj->buttonTextColor=val_to_c<decltype(obj->buttonTextColor)>::f(ctx,value);
-} EI(keyStr.equals("labelColor", CPL_STR_HASH("labelColor")))
-{
-ImGui*obj=(ImGui*)f->data;
-obj->labelColor=val_to_c<decltype(obj->labelColor)>::f(ctx,value);
-} EI(keyStr.equals("textSize", CPL_STR_HASH("textSize")))
-{
-ImGui*obj=(ImGui*)f->data;
-obj->textSize=val_to_c<decltype(obj->textSize)>::f(ctx,value);
-} EI(keyStr.equals("scrollSpeed", CPL_STR_HASH("scrollSpeed")))
-{
-ImGui*obj=(ImGui*)f->data;
-obj->scrollSpeed=val_to_c<decltype(obj->scrollSpeed)>::f(ctx,value);
-} else
- CATE(KE,"Unknown member or member if read-only for ImGui."));
-}
-}
-}
-
-SV ImGui_endContainer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::endContainer" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],Container *))
-{
-( f->endContainer(val_to_c<std::remove_reference<Container *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("ImGui::endContainer.")));
-RET CN;
-}
-
-SV ImGui_render(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::render" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->render());
-RET CN;
-}
-CATE(TE,UFOF("ImGui::render.")));
-RET CN;
-}
-
-SV ImGui_beginContainer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::beginContainer" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("ImGui::beginContainer.")));
-RET CN;
-}
-
-SV ImGui_button(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::button" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==6)
-if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],int))
-{
-RET CV( f->button(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[5])));
-;
-}
-CATE(TE,UFOF("ImGui::button.")));
-RET CN;
-}
-
-SV ImGui_label(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::label" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==6)
-if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],bool)&&TS(a[5],bool))
-{
-RET CV( f->label(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5])));
-;
-}
-CATE(TE,UFOF("ImGui::label.")));
-RET CN;
-}
-
-SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::verticalScrollBar" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==8)
-if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
-{
-( f->verticalScrollBar(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<ScrollBar *>::type>::f(ctx,a[7])));
-RET CN;
-}
-CATE(TE,UFOF("ImGui::verticalScrollBar.")));
-RET CN;
-}
-
-SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::horizontalScrollBar" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==8)
-if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
-{
-( f->horizontalScrollBar(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<ScrollBar *>::type>::f(ctx,a[7])));
-RET CN;
-}
-CATE(TE,UFOF("ImGui::horizontalScrollBar.")));
-RET CN;
-}
-
-SV ImGui_rectangle(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"ImGui::rectangle" EAOE));
-ImGui*f;
-f=(ImGui*)((NO)a[0].p)->data;
-
-if(a.getCount()==11)
-if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],float)&&TS(a[6],float)&&TS(a[7],float)&&TS(a[8],float)&&TS(a[9],Float3)&&TS(a[10],Float4))
-{
-( f->rectangle(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[7]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[8]), val_to_c<std::remove_reference<Float3>::type>::f(ctx,a[9]), val_to_c<std::remove_reference<Float4>::type>::f(ctx,a[10])));
-RET CN;
-}
-CATE(TE,UFOF("ImGui::rectangle.")));
 RET CN;
 }
 
@@ -44474,6 +44303,253 @@ CATE(TE,UFOF("RigidBodyList::__neq__.")));
 RET CN;
 }
 
+void ImGui_destroy(CTX ctx,const SV&f_)
+{
+NO f=(NO)f_.p;
+if(!TS(f_,ImGui))
+CATE(TE,"ImGui::__del__ expects ImGui as first argument."));
+
+SCRIPT_DELETE((ImGui*)f->data);
+}SV ImGui_new(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui's constructor" EAOE));
+if(!TS(a[0],ImGui))
+CATE(TE,"ImGui's constructor expects ImGui as first argument."));
+if(a.getCount()==1)
+if(true){
+void *p = (void *)NEW(TYPE(ImGui));
+setAllocInfo(p, AllocInfo(true, false));
+RET STG::createNativeObject(ImGui_funcs,p,EXT->ImGui_typeID);
+}CATE(TE,UFOF("ImGui's constructor.")));
+RET CN;
+}
+
+SV ImGui_get_member(CTX ctx,const SV&f_,const SV&key)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+{
+if(keyStr.equals("__typeID__", CPL_STR_HASH("__typeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__name__", CPL_STR_HASH("__name__")))
+RET STG::createString("ImGui");
+EI(keyStr.equals("__new__", CPL_STR_HASH("__new__")))
+RET CNF(ImGui_new);
+EI(keyStr.equals("__call__", CPL_STR_HASH("__call__")))
+RET CNF(ImGui_new);
+else
+ CATE(KE,"Unknown member for ImGui."));
+} else
+{
+if(keyStr.equals("__classTypeID__", CPL_STR_HASH("__classTypeID__")))
+RET STG::createInt(f->typeID);
+EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
+RET CNF(ImGui_new);
+ EI(keyStr.equals("rectangle", CPL_STR_HASH("rectangle")))
+RET CNF(ImGui_rectangle);
+ EI(keyStr.equals("beginContainer", CPL_STR_HASH("beginContainer")))
+RET CNF(ImGui_beginContainer);
+ EI(keyStr.equals("endContainer", CPL_STR_HASH("endContainer")))
+RET CNF(ImGui_endContainer);
+ EI(keyStr.equals("verticalScrollBar", CPL_STR_HASH("verticalScrollBar")))
+RET CNF(ImGui_verticalScrollBar);
+ EI(keyStr.equals("horizontalScrollBar", CPL_STR_HASH("horizontalScrollBar")))
+RET CNF(ImGui_horizontalScrollBar);
+ EI(keyStr.equals("button", CPL_STR_HASH("button")))
+RET CNF(ImGui_button);
+ EI(keyStr.equals("label", CPL_STR_HASH("label")))
+RET CNF(ImGui_label);
+ EI(keyStr.equals("render", CPL_STR_HASH("render")))
+RET CNF(ImGui_render);
+ EI(keyStr.equals("buttonTextColor", CPL_STR_HASH("buttonTextColor")))
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->buttonTextColor);
+} EI(keyStr.equals("labelColor", CPL_STR_HASH("labelColor")))
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->labelColor);
+} EI(keyStr.equals("textSize", CPL_STR_HASH("textSize")))
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->textSize);
+} EI(keyStr.equals("scrollSpeed", CPL_STR_HASH("scrollSpeed")))
+{
+ImGui*obj=(ImGui*)f->data;
+RET CV(obj->scrollSpeed);
+} else
+ CATE(KE,"Unknown member for ImGui."));
+}
+}
+RET CN;
+}
+
+void ImGui_set_member(CTX ctx,const SV&f_,const SV&key,const SV&value)
+{
+NO f=(NO)f_.p;
+if (key.type==STG::ValueType::StringType)
+{
+Str keyStr=key.getStr();
+if(f->data==NULL)
+CATE(KE,"Native classes are read-only."));
+else
+{
+if(0) {} EI(keyStr.equals("buttonTextColor", CPL_STR_HASH("buttonTextColor")))
+{
+ImGui*obj=(ImGui*)f->data;
+obj->buttonTextColor=val_to_c<decltype(obj->buttonTextColor)>::f(ctx,value);
+} EI(keyStr.equals("labelColor", CPL_STR_HASH("labelColor")))
+{
+ImGui*obj=(ImGui*)f->data;
+obj->labelColor=val_to_c<decltype(obj->labelColor)>::f(ctx,value);
+} EI(keyStr.equals("textSize", CPL_STR_HASH("textSize")))
+{
+ImGui*obj=(ImGui*)f->data;
+obj->textSize=val_to_c<decltype(obj->textSize)>::f(ctx,value);
+} EI(keyStr.equals("scrollSpeed", CPL_STR_HASH("scrollSpeed")))
+{
+ImGui*obj=(ImGui*)f->data;
+obj->scrollSpeed=val_to_c<decltype(obj->scrollSpeed)>::f(ctx,value);
+} else
+ CATE(KE,"Unknown member or member if read-only for ImGui."));
+}
+}
+}
+
+SV ImGui_endContainer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::endContainer" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],Container *))
+{
+( f->endContainer(val_to_c<std::remove_reference<Container *>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("ImGui::endContainer.")));
+RET CN;
+}
+
+SV ImGui_render(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::render" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->render());
+RET CN;
+}
+CATE(TE,UFOF("ImGui::render.")));
+RET CN;
+}
+
+SV ImGui_beginContainer(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::beginContainer" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("ImGui::beginContainer.")));
+RET CN;
+}
+
+SV ImGui_button(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::button" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==6)
+if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],int))
+{
+RET CV( f->button(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[5])));
+;
+}
+CATE(TE,UFOF("ImGui::button.")));
+RET CN;
+}
+
+SV ImGui_label(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::label" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==6)
+if(1&&TS(a[1],const char *)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],bool)&&TS(a[5],bool))
+{
+RET CV( f->label(val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5])));
+;
+}
+CATE(TE,UFOF("ImGui::label.")));
+RET CN;
+}
+
+SV ImGui_verticalScrollBar(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::verticalScrollBar" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==8)
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
+{
+( f->verticalScrollBar(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<ScrollBar *>::type>::f(ctx,a[7])));
+RET CN;
+}
+CATE(TE,UFOF("ImGui::verticalScrollBar.")));
+RET CN;
+}
+
+SV ImGui_horizontalScrollBar(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::horizontalScrollBar" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==8)
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],bool)&&TS(a[6],bool)&&TS(a[7],ScrollBar *))
+{
+( f->horizontalScrollBar(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<bool>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<ScrollBar *>::type>::f(ctx,a[7])));
+RET CN;
+}
+CATE(TE,UFOF("ImGui::horizontalScrollBar.")));
+RET CN;
+}
+
+SV ImGui_rectangle(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ImGui::rectangle" EAOE));
+ImGui*f;
+f=(ImGui*)((NO)a[0].p)->data;
+
+if(a.getCount()==11)
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],int)&&TS(a[5],float)&&TS(a[6],float)&&TS(a[7],float)&&TS(a[8],float)&&TS(a[9],Float3)&&TS(a[10],Float4))
+{
+( f->rectangle(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[6]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[7]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[8]), val_to_c<std::remove_reference<Float3>::type>::f(ctx,a[9]), val_to_c<std::remove_reference<Float4>::type>::f(ctx,a[10])));
+RET CN;
+}
+CATE(TE,UFOF("ImGui::rectangle.")));
+RET CN;
+}
+
 void UInt4_destroy(CTX ctx,const SV&f_)
 {
 NO f=(NO)f_.p;
@@ -52230,6 +52306,18 @@ CATE(TE,UFOF("GfxDebugDrawer::render.")));
 RET CN;
 }
 
+SV lookAtDirMat_binding(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()==3)
+if(1&&TS(a[0],const Position3D &)&&TS(a[1],const Direction3D &)&&TS(a[2],const Direction3D &))
+{
+RET CV( lookAtDirMat(val_to_c<const Position3D &>::f(ctx,a[0]), val_to_c<const Direction3D &>::f(ctx,a[1]), val_to_c<const Direction3D &>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("lookAtDirMat")));
+RET CN;
+}
+
 SV getFileSys_binding(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()==0)
@@ -52367,7 +52455,6 @@ SV create(CTX ctx,const GfxMeshAttrib& value){RET CV(value);}
 SV create(CTX ctx,const T2<int32_t>& value){RET CV(value);}
 SV create(CTX ctx,const AudioWorld& value){RET CV(value);}
 SV create(CTX ctx,const GuiPlacer& value){RET CV(value);}
-SV create(CTX ctx,const ImGui& value){RET CV(value);}
 SV create(CTX ctx,const List<Str>& value){RET CV(value);}
 SV create(CTX ctx,const LightPointData& value){RET CV(value);}
 SV create(CTX ctx,const T4<float>& value){RET CV(value);}
@@ -52383,6 +52470,7 @@ SV create(CTX ctx,const LightSpotData& value){RET CV(value);}
 SV create(CTX ctx,const Plane& value){RET CV(value);}
 SV create(CTX ctx,const AudioDevice& value){RET CV(value);}
 SV create(CTX ctx,const List<RigidBody*>& value){RET CV(value);}
+SV create(CTX ctx,const ImGui& value){RET CV(value);}
 SV create(CTX ctx,const T4<uint32_t>& value){RET CV(value);}
 SV create(CTX ctx,const RayCastResult& value){RET CV(value);}
 SV create(CTX ctx,const GfxLOD& value){RET CV(value);}
@@ -52441,7 +52529,6 @@ SV create(CTX ctx,RenderComponent *value){RET CV(value);}
 SV create(CTX ctx,T2<int32_t> *value){RET CV(value);}
 SV create(CTX ctx,AudioWorld *value){RET CV(value);}
 SV create(CTX ctx,GuiPlacer *value){RET CV(value);}
-SV create(CTX ctx,ImGui *value){RET CV(value);}
 SV create(CTX ctx,List<Str> *value){RET CV(value);}
 SV create(CTX ctx,Application *value){RET CV(value);}
 SV create(CTX ctx,LightPointData *value){RET CV(value);}
@@ -52459,6 +52546,7 @@ SV create(CTX ctx,Plane *value){RET CV(value);}
 SV create(CTX ctx,PhysicsShape *value){RET CV(value);}
 SV create(CTX ctx,AudioDevice *value){RET CV(value);}
 SV create(CTX ctx,List<RigidBody*> *value){RET CV(value);}
+SV create(CTX ctx,ImGui *value){RET CV(value);}
 SV create(CTX ctx,T4<uint32_t> *value){RET CV(value);}
 SV create(CTX ctx,RayCastResult *value){RET CV(value);}
 SV create(CTX ctx,GfxLOD *value){RET CV(value);}
@@ -52756,11 +52844,6 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("GuiPlacer", ext->GuiPlacer);
     
     typeID = engine->createNewTypeID();
-    ext->ImGui_typeID = typeID;
-    ext->ImGui = scripting::createNativeObject(ImGui_funcs, NULL, typeID);
-    engine->getGlobalVars().set("ImGui", ext->ImGui);
-    
-    typeID = engine->createNewTypeID();
     ext->StringList_typeID = typeID;
     ext->StringList = scripting::createNativeObject(StringList_funcs, NULL, typeID);
     engine->getGlobalVars().set("StringList", ext->StringList);
@@ -52846,6 +52929,11 @@ void *initBindings(scripting::Engine *engine, void *data)
     engine->getGlobalVars().set("RigidBodyList", ext->RigidBodyList);
     
     typeID = engine->createNewTypeID();
+    ext->ImGui_typeID = typeID;
+    ext->ImGui = scripting::createNativeObject(ImGui_funcs, NULL, typeID);
+    engine->getGlobalVars().set("ImGui", ext->ImGui);
+    
+    typeID = engine->createNewTypeID();
     ext->UInt4_typeID = typeID;
     ext->UInt4 = scripting::createNativeObject(UInt4_funcs, NULL, typeID);
     engine->getGlobalVars().set("UInt4", ext->UInt4);
@@ -52925,6 +53013,7 @@ void *initBindings(scripting::Engine *engine, void *data)
     ext->GfxDebugDrawer = scripting::createNativeObject(GfxDebugDrawer_funcs, NULL, typeID);
     engine->getGlobalVars().set("GfxDebugDrawer", ext->GfxDebugDrawer);
     
+    engine->getGlobalVars().set("lookAtDirMat", scripting::createNativeFunction(lookAtDirMat_binding));
     engine->getGlobalVars().set("getFileSys", scripting::createNativeFunction(getFileSys_binding));
     engine->getGlobalVars().set("getAudioDevice", scripting::createNativeFunction(getAudioDevice_binding));
     engine->getGlobalVars().set("listFiles", scripting::createNativeFunction(listFiles_binding));

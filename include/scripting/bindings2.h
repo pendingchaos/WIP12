@@ -22,6 +22,7 @@
 #include "graphics/gputimer.h"
 #include "graphics/gfxbuffer.h"
 #include "graphics/gfxframebuffer.h"
+#include "graphics/renderlist.h"
 #include "graphics/gfxapi.h"
 #include "graphics/font.h"
 #include "graphics/gfxtexture.h"
@@ -103,7 +104,6 @@ namespace scripting
     Value create(Context *ctx, const T2<int32_t>& value);
     Value create(Context *ctx, const AudioWorld& value);
     Value create(Context *ctx, const GuiPlacer& value);
-    Value create(Context *ctx, const ImGui& value);
     Value create(Context *ctx, const List<Str>& value);
     Value create(Context *ctx, const LightPointData& value);
     Value create(Context *ctx, const T4<float>& value);
@@ -119,6 +119,7 @@ namespace scripting
     Value create(Context *ctx, const Plane& value);
     Value create(Context *ctx, const AudioDevice& value);
     Value create(Context *ctx, const List<RigidBody*>& value);
+    Value create(Context *ctx, const ImGui& value);
     Value create(Context *ctx, const T4<uint32_t>& value);
     Value create(Context *ctx, const RayCastResult& value);
     Value create(Context *ctx, const GfxLOD& value);
@@ -177,7 +178,6 @@ namespace scripting
     Value create(Context *ctx, T2<int32_t> *value);
     Value create(Context *ctx, AudioWorld *value);
     Value create(Context *ctx, GuiPlacer *value);
-    Value create(Context *ctx, ImGui *value);
     Value create(Context *ctx, List<Str> *value);
     Value create(Context *ctx, Application *value);
     Value create(Context *ctx, LightPointData *value);
@@ -195,6 +195,7 @@ namespace scripting
     Value create(Context *ctx, PhysicsShape *value);
     Value create(Context *ctx, AudioDevice *value);
     Value create(Context *ctx, List<RigidBody*> *value);
+    Value create(Context *ctx, ImGui *value);
     Value create(Context *ctx, T4<uint32_t> *value);
     Value create(Context *ctx, RayCastResult *value);
     Value create(Context *ctx, GfxLOD *value);

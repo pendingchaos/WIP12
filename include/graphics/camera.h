@@ -9,7 +9,8 @@
 enum class CameraType
 {
     Perspective,
-    Orthographic
+    Orthographic,
+    Matrices
 } BIND ENUM_CLASS;
 
 class Camera
@@ -34,6 +35,9 @@ class Camera
 
         void setNear(float near);
         void setFar(float far);
+
+        void setViewMatrix(const Matrix4x4& mat);
+        void setProjectionMatrix(const Matrix4x4& mat);
 
         inline CameraType getType() const
         {

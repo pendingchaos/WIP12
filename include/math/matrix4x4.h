@@ -129,4 +129,9 @@ class Matrix4x4
         inline Matrix4x4(int) {}
 } BIND;
 
+inline Matrix4x4 lookAtDirMat(const Position3D& eye, const Direction3D& dir, const Direction3D& up) BIND
+{
+    return Matrix4x4::lookAtDir(eye, dir, up);
+}
+
 #endif // MATRIX4X4_H

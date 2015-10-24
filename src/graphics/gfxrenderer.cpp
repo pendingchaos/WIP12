@@ -116,6 +116,9 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
     compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
 
+    shadowmapMaterial = NEW(GfxMaterial);
+    shadowmapMaterial->setScript(resMgr->load<Script>("resources/scripts/materials/shadow.rkt"));
+
     lightBuffer = gfxApi->createBuffer();
     lightBuffer->allocData(16384, nullptr, GfxBufferUsage::Dynamic);
 
@@ -245,10 +248,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     overlayTimer = gfxApi->createTimer();
     debugDrawTimer = gfxApi->createTimer();
 
-    matrixTexture = NEW(GfxTexture);
-    //instanceBuffer = gfxApi->createBuffer();
-    //instanceBuffer->allocData(16384, NULL, GfxBufferUsage::Dynamic);
-
     /*addTerrain(2.0f,
                32,
                resMgr->load<GfxTexture>("resources/textures/terrain.bin"))->setScale(10.0f);
@@ -266,9 +265,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
 
 GfxRenderer::~GfxRenderer()
 {
-    matrixTexture->release();
-    //DELETE(instanceBuffer);
-
     for (auto light : lights)
     {
         DELETE(light);
@@ -304,6 +300,8 @@ GfxRenderer::~GfxRenderer()
     DELETE(bloom3Framebuffer);
     DELETE(bloom4Framebuffer);
     DELETE(bloomDownsampleFramebuffer);
+
+    shadowmapMaterial->release();
 
     DELETE(lightBuffer);
 
@@ -835,21 +833,12 @@ void GfxRenderer::render()
 
     uint64_t start = platform->getTime();
 
-    batches.clear();
-    batchEntities(scene->getEntities());
+    fillRenderLists(scene->getEntities());
 
     stats.batchingCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
+    //TODO: Get rid of this
     start = platform->getTime();
-
-    for (auto batch : batches)
-    {
-        if (batch.animState != nullptr)
-        {
-            batch.animState->updateMatrices();
-        }
-    }
-
     stats.animationCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
     //Shadowmaps
@@ -883,9 +872,8 @@ void GfxRenderer::render()
 
     gfxApi->clearDepth();
 
-    renderBatches(false);
-
-    renderTerrain();
+    deferredList.execute(camera);
+    deferredList.clear();
 
     swapFramebuffers();
 
@@ -1132,7 +1120,8 @@ void GfxRenderer::render()
 
     fillLightBuffer(scene);
 
-    renderBatches(true);
+    forwardList.execute(camera);
+    forwardList.clear();
 
     renderSkybox();
 
@@ -1519,7 +1508,7 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
     DELETE_ARRAY(lightData);
 }
 
-void GfxRenderer::batchEntities(const List<Entity *>& entities)
+void GfxRenderer::fillRenderLists(const List<Entity *>& entities)
 {
     for (auto entity : entities)
     {
@@ -1536,11 +1525,11 @@ void GfxRenderer::batchEntities(const List<Entity *>& entities)
                 if (comp->getAnimationState() != nullptr)
                 {
                     GfxAnimationState *state = comp->getAnimationState();
-
-                    batchModel(transform, comp->model, state->getMesh(), state);
+                    state->updateMatrices();
+                    batchModel(transform, comp->model, state->getMesh(), state, comp->getShadowCaster());
                 } else
                 {
-                    batchModel(transform, comp->model, nullptr, nullptr);
+                    batchModel(transform, comp->model, nullptr, nullptr, comp->getShadowCaster());
                 }
                 break;
             }
@@ -1551,14 +1540,15 @@ void GfxRenderer::batchEntities(const List<Entity *>& entities)
             }
         }
 
-        batchEntities(entity->getEntities());;
+        fillRenderLists(entity->getEntities());;
     }
 }
 
 void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
                              const GfxModel *model,
                              GfxMesh *animMesh,
-                             GfxAnimationState *animState)
+                             GfxAnimationState *animState,
+                             bool castShadow)
 {
     Position3D position = Position3D(worldMatrix[0][3],
                                      worldMatrix[1][3],
@@ -1573,74 +1563,31 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
             if (lod.minDistance < distance and
                 distance < lod.maxDistance)
             {
-                Matrix4x4 newWorldMatrix = worldMatrix * lod.worldMatrix;
-
                 GfxMaterial *material = lod.material;
                 GfxMesh *mesh = lod.mesh;
 
-                if (mesh == animMesh)
+                DrawCall drawCall;
+                drawCall.animState = (mesh == animMesh) ? animState : nullptr;
+                drawCall.material = material;
+                drawCall.mesh = mesh;
+                drawCall.worldMatrix = worldMatrix * lod.worldMatrix;
+
+                if (castShadow)
                 {
-                    Batch batch;
-                    batch.material = material;
-                    batch.mesh = mesh;
-                    batch.worldMatrices = List<Matrix4x4>();
-                    batch.worldMatrices.append(newWorldMatrix);
-                    batch.animState = animState;
-                    batches.append(batch);
-                    continue;
+                    DrawCall shadowDrawCall = drawCall;
+                    shadowDrawCall.material = shadowmapMaterial;
+
+                    shadowmapList.addDrawCall(shadowDrawCall);
                 }
 
-                bool found = false;
-
-                for (size_t k = 0; k < batches.getCount(); ++k)
+                if (material->isForward())
                 {
-                    if (batches[k].material == material and batches[k].mesh == mesh)
-                    {
-                        batches[k].worldMatrices.append(newWorldMatrix);
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (not found)
+                    forwardList.addDrawCall(drawCall);
+                } else
                 {
-                    Batch batch;
-                    batch.material = material;
-                    batch.mesh = mesh;
-                    batch.worldMatrices.append(newWorldMatrix);
-                    batch.animState = nullptr;
-
-                    batches.append(batch);
+                    deferredList.addDrawCall(drawCall);
                 }
-                break;
             }
-        }
-    }
-}
-
-void GfxRenderer::renderBatches(bool forward)
-{
-    for (auto batch : batches)
-    {
-        if (batch.material->isForward() == forward)
-        {
-            fillMatrixTexture(batch.worldMatrices);
-
-            GfxMaterial *material = batch.material;
-            GfxMesh *mesh = batch.mesh;
-
-            gfxApi->pushState();
-
-            material->setupRender(mesh, batch.animState, camera);
-
-            gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
-
-            gfxApi->setCullMode(mesh->cullMode);
-
-            gfxApi->draw(batch.worldMatrices.getCount());
-            gfxApi->end();
-
-            gfxApi->popState();
         }
     }
 }
@@ -1671,117 +1618,8 @@ void GfxRenderer::renderSkybox()
     }
 }
 
-void GfxRenderer::renderBatchesToShadowmap(const Matrix4x4& viewMatrix,
-                                           const Matrix4x4& projectionMatrix,
-                                           Light *light,
-                                           size_t pass)
-{
-    for (auto batch : batches)
-    {
-        fillMatrixTexture(batch.worldMatrices);
-
-        GfxMesh *mesh = batch.mesh;
-
-        GfxCompiledShader *vertexShader = batch.animState == nullptr ?
-                                          compiledShadowmapVertex :
-                                          compiledShadowmapVertexAnimated;
-        GfxCompiledShader *geometryShader = nullptr;
-        GfxCompiledShader *fragmentShader = compiledShadowmapFragment;
-
-        if (light->type == GfxLightType::Point)
-        {
-            fragmentShader = compiledPointShadowmapFragment;
-
-            if (light->point.singlePassShadowMap)
-            {
-                geometryShader = compiledPointShadowmapGeometry;
-            }
-        }
-
-        gfxApi->begin(vertexShader,
-                      nullptr,
-                      nullptr,
-                      geometryShader,
-                      fragmentShader,
-                      mesh);
-
-        if (light->type == GfxLightType::Point)
-        {
-            Position3D pos = light->point.position;
-
-            Matrix4x4 matrices[] = {Matrix4x4::lookAt(pos,
-                                                      pos+Direction3D(1.0f, 0.0f, 0.0f),
-                                                      Direction3D(0.0f, -1.0f, 0.0f)),
-                                    Matrix4x4::lookAt(pos,
-                                                      pos+Direction3D(-1.0f, 0.0f, 0.0f),
-                                                      Direction3D(0.0f, -1.0f, 0.0f)),
-                                    Matrix4x4::lookAt(pos,
-                                                      pos+Direction3D(0.0f, 1.0f, 0.0f),
-                                                      Direction3D(0.0f, 0.0f, 1.0f)),
-                                    Matrix4x4::lookAt(pos,
-                                                      pos+Direction3D(0.0f, -1.0f, 0.0f),
-                                                      Direction3D(0.0f, 0.0f, -1.0f)),
-                                    Matrix4x4::lookAt(pos,
-                                                      pos+Direction3D(0.0f, 0.0f, 1.0f),
-                                                      Direction3D(0.0f, -1.0f, 0.0f)),
-                                    Matrix4x4::lookAt(pos,
-                                                      pos+Direction3D(0.0f, 0.0f, -1.0f),
-                                                      Direction3D(0.0f, -1.0f, 0.0f))};
-
-            if (light->point.singlePassShadowMap)
-            {
-                gfxApi->uniform(geometryShader, "matrix0", projectionMatrix * matrices[0]);
-                gfxApi->uniform(geometryShader, "matrix1", projectionMatrix * matrices[1]);
-                gfxApi->uniform(geometryShader, "matrix2", projectionMatrix * matrices[2]);
-                gfxApi->uniform(geometryShader, "matrix3", projectionMatrix * matrices[3]);
-                gfxApi->uniform(geometryShader, "matrix4", projectionMatrix * matrices[4]);
-                gfxApi->uniform(geometryShader, "matrix5", projectionMatrix * matrices[5]);
-            }
-
-            gfxApi->uniform(fragmentShader, "lightPos", light->point.position);
-            gfxApi->uniform(fragmentShader, "lightFar", light->getPointLightInfluence());
-
-            if (light->point.singlePassShadowMap)
-            {
-                gfxApi->uniform(vertexShader, "projectionMatrix", Matrix4x4());
-                gfxApi->uniform(vertexShader, "viewMatrix", Matrix4x4());
-            } else
-            {
-                Matrix4x4 viewMatrix = matrices[pass];
-
-                gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
-                gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
-            }
-        } else if (light->type == GfxLightType::Directional)
-        {
-            gfxApi->uniform(vertexShader, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
-            gfxApi->uniform(vertexShader, "viewMatrix", light->getCascadeViewMatrix(pass));
-        } else
-        {
-            gfxApi->uniform(vertexShader, "projectionMatrix", projectionMatrix);
-            gfxApi->uniform(vertexShader, "viewMatrix", viewMatrix);
-        }
-
-        gfxApi->uniform(fragmentShader, "biasScale", light->shadowAutoBiasScale);
-
-        if (batch.animState != nullptr)
-        {
-            gfxApi->addUBOBinding(vertexShader, "bonePositionData", batch.animState->getMatrixBuffer());
-        }
-
-        gfxApi->addTextureBinding(vertexShader, "matrixTexture", matrixTexture);
-
-        gfxApi->draw(batch.worldMatrices.getCount());
-        gfxApi->end();
-        ++stats.numDrawCalls;
-    }
-}
-
 void GfxRenderer::renderShadowmap(Light *light)
 {
-    Matrix4x4 projectionMatrix = light->getProjectionMatrix();
-    Matrix4x4 viewMatrix = light->getViewMatrix();
-
     gfxApi->pushState();
     gfxApi->resetState();
 
@@ -1802,13 +1640,16 @@ void GfxRenderer::renderShadowmap(Light *light)
         gfxApi->setCurrentFramebuffer(light->getFramebuffers()[i]);
         gfxApi->clearDepth();
 
-        renderBatchesToShadowmap(viewMatrix, projectionMatrix, light, i);
+        shadowmapList.execute(light, i);
 
         if (light->type != GfxLightType::Spot)
         {
-            renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
+            //TODO
+            //renderTerrainToShadowmap(projectionMatrix, viewMatrix, light->shadowAutoBiasScale);
         }
     }
+
+    shadowmapList.clear();
 
     gfxApi->popState();
 }
@@ -1880,32 +1721,6 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
     gfxApi->draw(terrain->getSizeInChunks() * terrain->getSizeInChunks());
     gfxApi->end();
     ++stats.numDrawCalls;
-}
-
-void GfxRenderer::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
-{
-    uint8_t *matrixData = (uint8_t *)ALLOCATE(worldMatrices.getCount()*128);
-
-    for (size_t j = 0; j < worldMatrices.getCount(); ++j)
-    {
-        Matrix4x4 worldMatrix = worldMatrices[j];
-        Matrix4x4 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
-        worldMatrix = worldMatrix.transpose();
-        normalMatrix = normalMatrix.transpose();
-
-        std::memcpy(matrixData+j*128, (void *)&worldMatrix, 64);
-        std::memcpy(matrixData+j*128+64, (void *)&normalMatrix, 64);
-    }
-
-    matrixTexture->startCreation(GfxTextureType::Texture2D,
-                                 worldMatrices.getCount()*8,
-                                 1,
-                                 1,
-                                 GfxTexFormat::RGBAF32);
-
-    matrixTexture->allocMipmap(0, 1, matrixData);
-
-    DEALLOCATE(matrixData);
 }
 
 void GfxRenderer::swapFramebuffers()
