@@ -80,6 +80,8 @@ class GfxApi
 
         virtual GfxDriver getDriver() const=0;
 
+        virtual size_t getMaxTextureSize() const=0;
+
         virtual GfxBuffer *createBuffer() RET_PTR_NO_CPP_REF =0;
         virtual GfxTextureImpl *createTextureImpl() NO_BIND=0;
         virtual GfxFramebuffer *createFramebuffer() RET_PTR_NO_CPP_REF=0;

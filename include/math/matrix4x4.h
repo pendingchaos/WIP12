@@ -25,7 +25,10 @@ class Matrix3x3;
 class Matrix4x4
 {
     public:
+        enum _NoInit {NoInit};
+
         Matrix4x4();
+        Matrix4x4(_NoInit _) NO_BIND;
         Matrix4x4(const Matrix3x3& other);
 
         Matrix4x4(const Float4& row1,

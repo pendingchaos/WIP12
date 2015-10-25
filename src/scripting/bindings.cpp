@@ -2303,6 +2303,7 @@ else
 };
 
 SV GfxApi_getDriver(CTX ctx,const List<SV>&a);
+SV GfxApi_getMaxTextureSize(CTX ctx,const List<SV>&a);
 SV GfxApi_createBuffer(CTX ctx,const List<SV>&a);
 SV GfxApi_createTextureImpl(CTX ctx,const List<SV>&a);
 SV GfxApi_createFramebuffer(CTX ctx,const List<SV>&a);
@@ -4680,7 +4681,6 @@ SV GfxMaterial_removeContent(CTX ctx,const List<SV>&a);
 SV GfxMaterial_save(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setScript(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getScriptInst(CTX ctx,const List<SV>&a);
-SV GfxMaterial_isForward(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setupRender(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setupShadowRender(CTX ctx,const List<SV>&a);
 SV GfxMaterial_load(CTX ctx,const List<SV>&a);
@@ -16055,6 +16055,8 @@ EI(keyStr.equals("__init__", CPL_STR_HASH("__init__")))
 RET CNF(GfxApi_new);
  EI(keyStr.equals("getDriver", CPL_STR_HASH("getDriver")))
 RET CNF(GfxApi_getDriver);
+ EI(keyStr.equals("getMaxTextureSize", CPL_STR_HASH("getMaxTextureSize")))
+RET CNF(GfxApi_getMaxTextureSize);
  EI(keyStr.equals("createBuffer", CPL_STR_HASH("createBuffer")))
 RET CNF(GfxApi_createBuffer);
  EI(keyStr.equals("createTextureImpl", CPL_STR_HASH("createTextureImpl")))
@@ -16374,6 +16376,23 @@ RET CV( f->getViewportLeft());
 ;
 }
 CATE(TE,UFOF("GfxApi::getViewportLeft.")));
+RET CN;
+}
+
+SV GfxApi_setViewport(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::setViewport" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==5)
+if(1&&TS(a[1],uint16_t)&&TS(a[2],uint16_t)&&TS(a[3],uint16_t)&&TS(a[4],uint16_t))
+{
+( f->setViewport(val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[4])));
+RET CN;
+}
+CATE(TE,UFOF("GfxApi::setViewport.")));
 RET CN;
 }
 
@@ -16734,20 +16753,20 @@ CATE(TE,UFOF("GfxApi::createFramebuffer.")));
 RET CN;
 }
 
-SV GfxApi_getBlendConstantColorA(CTX ctx,const List<SV>&a)
+SV GfxApi_getMaxTextureSize(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getBlendConstantColorA" EAOE));
+CATE(VE,"GfxApi::getMaxTextureSize" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getBlendConstantColorA());
+RET CV( f->getMaxTextureSize());
 ;
 }
-CATE(TE,UFOF("GfxApi::getBlendConstantColorA.")));
+CATE(TE,UFOF("GfxApi::getMaxTextureSize.")));
 RET CN;
 }
 
@@ -17196,20 +17215,20 @@ CATE(TE,UFOF("GfxApi::getFragmentShader.")));
 RET CN;
 }
 
-SV GfxApi_setViewport(CTX ctx,const List<SV>&a)
+SV GfxApi_getBlendConstantColorA(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::setViewport" EAOE));
+CATE(VE,"GfxApi::getBlendConstantColorA" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==5)
-if(1&&TS(a[1],uint16_t)&&TS(a[2],uint16_t)&&TS(a[3],uint16_t)&&TS(a[4],uint16_t))
+if(a.getCount()==1)
+if(1)
 {
-( f->setViewport(val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<uint16_t>::type>::f(ctx,a[4])));
-RET CN;
+RET CV( f->getBlendConstantColorA());
+;
 }
-CATE(TE,UFOF("GfxApi::setViewport.")));
+CATE(TE,UFOF("GfxApi::getBlendConstantColorA.")));
 RET CN;
 }
 
@@ -34703,8 +34722,6 @@ RET CNF(GfxMaterial_save);
 RET CNF(GfxMaterial_setScript);
  EI(keyStr.equals("getScriptInst", CPL_STR_HASH("getScriptInst")))
 RET CNF(GfxMaterial_getScriptInst);
- EI(keyStr.equals("isForward", CPL_STR_HASH("isForward")))
-RET CNF(GfxMaterial_isForward);
  EI(keyStr.equals("setupRender", CPL_STR_HASH("setupRender")))
 RET CNF(GfxMaterial_setupRender);
  EI(keyStr.equals("setupShadowRender", CPL_STR_HASH("setupShadowRender")))
@@ -34723,7 +34740,11 @@ RET CNF(GfxMaterial_getRefCount);
 RET CNF(GfxMaterial_getFilename);
  EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxMaterial_setFilename);
- else
+ EI(keyStr.equals("forward", CPL_STR_HASH("forward")))
+{
+GfxMaterial*obj=(GfxMaterial*)f->data;
+RET CV(obj->forward);
+} else
  CATE(KE,"Unknown member for GfxMaterial."));
 }
 }
@@ -34740,7 +34761,11 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} else
+if(0) {} EI(keyStr.equals("forward", CPL_STR_HASH("forward")))
+{
+GfxMaterial*obj=(GfxMaterial*)f->data;
+obj->forward=val_to_c<decltype(obj->forward)>::f(ctx,value);
+} else
  CATE(KE,"Unknown member or member if read-only for GfxMaterial."));
 }
 }
@@ -34879,23 +34904,6 @@ if(1&&TS(a[1],GfxMesh *)&&TS(a[2],GfxAnimationState *)&&TS(a[3],const Camera &))
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::setupRender.")));
-RET CN;
-}
-
-SV GfxMaterial_isForward(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::isForward" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->isForward());
-;
-}
-CATE(TE,UFOF("GfxMaterial::isForward.")));
 RET CN;
 }
 

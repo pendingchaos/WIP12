@@ -117,7 +117,11 @@ void RenderList::clear()
 
 void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
 {
-    uint8_t *matrixData = (uint8_t *)ALLOCATE(worldMatrices.getCount()*128);
+    size_t maxSize = gfxApi->getMaxTextureSize();
+    size_t numTexels = worldMatrices.getCount() * 8;
+    size_t width = numTexels > maxSize ? maxSize : numTexels;
+    size_t height = (numTexels+maxSize-1) / maxSize;
+    uint8_t *matrixData = (uint8_t *)ALLOCATE(width*height*16);
 
     for (size_t j = 0; j < worldMatrices.getCount(); ++j)
     {
@@ -131,8 +135,8 @@ void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
     }
 
     matrixTexture->startCreation(GfxTextureType::Texture2D,
-                                 worldMatrices.getCount()*8,
-                                 1,
+                                 width,
+                                 height,
                                  1,
                                  GfxTexFormat::RGBAF32);
 

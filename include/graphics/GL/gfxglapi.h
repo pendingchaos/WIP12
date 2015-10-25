@@ -12,6 +12,8 @@ class GfxGLApi : public GfxApi
 
         virtual GfxDriver getDriver() const;
 
+        virtual size_t getMaxTextureSize() const;
+
         inline unsigned int getOpenGLMinorVersion() const
         {
             return glMinor;

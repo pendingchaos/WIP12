@@ -1,5 +1,5 @@
 return class {
-    __init__ = function(self) {
+    __init__ = function(self, material) {
         resMgr = getResMgr();
         
         vertex = resMgr:loadShader("resources/shaders/shadowmap.vs.bin");
@@ -16,6 +16,8 @@ return class {
         self.geometry = geometry:getCompiled(StrStrMap());
         self.fragment = fragment:getCompiled(StrStrMap());
         self.pointFragment = pointFragment:getCompiled(StrStrMap());
+        
+        material.forward = false;
     };
     __del__ = function(self) {};
     
@@ -93,10 +95,6 @@ return class {
         if animated {
             gfxApi:addUBOBinding(vertex, "bonePositionData", animState:getMatrixBuffer());
         };
-    };
-    
-    isForward = function(self) {
-        return false;
     };
 };
 

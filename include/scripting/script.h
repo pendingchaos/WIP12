@@ -11,6 +11,7 @@ class Script;
 class Application;
 class Entity;
 class Scene;
+class GfxMaterial;
 
 void precompileScriptInclude();
 
@@ -135,7 +136,7 @@ class Script : public Resource
 
         virtual void removeContent();
 
-        ScriptInstance *createInstance(Entity *entity=nullptr, Scene *scene=nullptr) NO_BIND;
+        ScriptInstance *createInstance(Entity *entity=nullptr, Scene *scene=nullptr, GfxMaterial *material=nullptr) NO_BIND;
 
         inline scripting::Context *getContext() const NO_BIND
         {

@@ -28,6 +28,7 @@ uniform vec3 lightColor;
 uniform float lightAmbientStrength;
 uniform vec3 lightNegDir;
 
+#ifdef SHADOW_MAP
 bvec2 greater(vec2 a, vec2 b)
 {
     return bvec2(a.x > b.x, a.y > b.y);
@@ -48,6 +49,7 @@ bool cascadeTest(in vec3 pos, in int index)
     bvec2 result = greater(pos_.xy, vec2(-1.0)) && less(pos_.xy, vec2(1.0));
     return result.x && result.y;
 }
+#endif
 
 void main()
 {

@@ -548,7 +548,7 @@ void Script::_load()
     }
 }
 
-ScriptInstance *Script::createInstance(Entity *entity, Scene *scene)
+ScriptInstance *Script::createInstance(Entity *entity, Scene *scene, GfxMaterial *material)
 {
     if (entity != nullptr)
     {
@@ -563,6 +563,9 @@ ScriptInstance *Script::createInstance(Entity *entity, Scene *scene)
     } else if (scene != nullptr)
     {
         args.append(create(context, scene));
+    } else if (material != nullptr)
+    {
+        args.append(create(context, material));
     }
 
     ScriptInstance *result;

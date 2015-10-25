@@ -61,15 +61,18 @@ void main()
     vec3 norm_modelSpace = normal_modelSpace;
 #endif
 
-    mat4 worldMatrix = mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8, 0), 0),
-                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+1, 0), 0),
-                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+2, 0), 0),
-                            texelFetch(matrixTexture, ivec2(gl_InstanceID*8+3, 0), 0));
-    mat3 normalMatrix = mat3(mat4(texelFetch(matrixTexture, ivec2(gl_InstanceID*8+4, 0), 0),
-                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+5, 0), 0),
-                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+6, 0), 0),
-                                  texelFetch(matrixTexture, ivec2(gl_InstanceID*8+7, 0), 0)));
-    
+    uvec2 texSize = textureSize(matrixTexture, 0);
+    ivec2 offset = ivec2(gl_InstanceID*8%texSize.x, gl_InstanceID*8/texSize.x);
+
+    mat4 worldMatrix = mat4(texelFetch(matrixTexture, offset, 0),
+                            texelFetch(matrixTexture, offset+ivec2(1, 0), 0),
+                            texelFetch(matrixTexture, offset+ivec2(2, 0), 0),
+                            texelFetch(matrixTexture, offset+ivec2(3, 0), 0));
+    mat3 normalMatrix = mat3(mat4(texelFetch(matrixTexture, offset, 0),
+                                  texelFetch(matrixTexture, offset+ivec2(1, 0), 0),
+                                  texelFetch(matrixTexture, offset+ivec2(2, 0), 0),
+                                  texelFetch(matrixTexture, offset+ivec2(3, 0), 0)));
+
     gl_Position = projectionViewMatrix * worldMatrix * vec4(pos_modelSpace, 1.0);
     frag_normal_worldSpace = normalize(normalMatrix * norm_modelSpace);
     frag_uv_tangentSpace = texCoord0_tangentSpace;

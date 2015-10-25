@@ -210,6 +210,13 @@ GfxDriver GfxGLApi::getDriver() const
     return driver;
 }
 
+size_t GfxGLApi::getMaxTextureSize() const
+{
+    GLint size;
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &size);
+    return size;
+}
+
 GfxBuffer *GfxGLApi::createBuffer()
 {
     return NEW(GfxGLBuffer);

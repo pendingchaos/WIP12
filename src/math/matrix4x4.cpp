@@ -3,6 +3,7 @@
 #include "math/matrix3x3.h"
 
 #include <cmath>
+#include <x86intrin.h>
 
 Matrix4x4::Matrix4x4()
 {
@@ -13,6 +14,8 @@ Matrix4x4::Matrix4x4()
     m[0][2] = 0.0f; m[1][2] = 0.0f; m[2][2] = 1.0f; m[3][2] = 0.0f;
     m[0][3] = 0.0f; m[1][3] = 0.0f; m[2][3] = 0.0f; m[3][3] = 1.0f;
 }
+
+Matrix4x4::Matrix4x4(_NoInit) {}
 
 Matrix4x4::Matrix4x4(const Matrix3x3& other)
 {
@@ -65,7 +68,7 @@ Matrix4x4::Matrix4x4(const Float4& row1,
 
 Matrix4x4 Matrix4x4::operator * (const Matrix4x4& other) const
 {
-    Matrix4x4 result(0);
+    Matrix4x4 result(NoInit);
 
     /*for (int i = 0; i < 4; ++i)
     {
@@ -82,7 +85,37 @@ Matrix4x4 Matrix4x4::operator * (const Matrix4x4& other) const
         }
     }*/
 
-    result.data[0][0] = data[0][0] * other.data[0][0] + data[0][1] * other.data[1][0] + data[0][2] * other.data[2][0] + data[0][3] * other.data[3][0];
+    __m128 otherRow0 __attribute__((aligned(16))) = _mm_loadu_ps(other.data[0]);
+    __m128 otherRow1 __attribute__((aligned(16))) = _mm_loadu_ps(other.data[1]);
+    __m128 otherRow2 __attribute__((aligned(16))) = _mm_loadu_ps(other.data[2]);
+    __m128 otherRow3 __attribute__((aligned(16))) = _mm_loadu_ps(other.data[3]);
+
+    __m128 newRow0 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(data[0][0]));
+    newRow0 = _mm_add_ps(newRow0, _mm_mul_ps(otherRow1, _mm_set1_ps(data[0][1])));
+    newRow0 = _mm_add_ps(newRow0, _mm_mul_ps(otherRow2, _mm_set1_ps(data[0][2])));
+    newRow0 = _mm_add_ps(newRow0, _mm_mul_ps(otherRow3, _mm_set1_ps(data[0][3])));
+
+    __m128 newRow1 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(data[1][0]));
+    newRow1 = _mm_add_ps(newRow1, _mm_mul_ps(otherRow1, _mm_set1_ps(data[1][1])));
+    newRow1 = _mm_add_ps(newRow1, _mm_mul_ps(otherRow2, _mm_set1_ps(data[1][2])));
+    newRow1 = _mm_add_ps(newRow1, _mm_mul_ps(otherRow3, _mm_set1_ps(data[1][3])));
+
+    __m128 newRow2 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(data[2][0]));
+    newRow2 = _mm_add_ps(newRow2, _mm_mul_ps(otherRow1, _mm_set1_ps(data[2][1])));
+    newRow2 = _mm_add_ps(newRow2, _mm_mul_ps(otherRow2, _mm_set1_ps(data[2][2])));
+    newRow2 = _mm_add_ps(newRow2, _mm_mul_ps(otherRow3, _mm_set1_ps(data[2][3])));
+
+    __m128 newRow3 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(data[3][0]));
+    newRow3 = _mm_add_ps(newRow3, _mm_mul_ps(otherRow1, _mm_set1_ps(data[3][1])));
+    newRow3 = _mm_add_ps(newRow3, _mm_mul_ps(otherRow2, _mm_set1_ps(data[3][2])));
+    newRow3 = _mm_add_ps(newRow3, _mm_mul_ps(otherRow3, _mm_set1_ps(data[3][3])));
+
+    _mm_store_ps(result.data[0], newRow0);
+    _mm_store_ps(result.data[1], newRow1);
+    _mm_store_ps(result.data[2], newRow2);
+    _mm_store_ps(result.data[3], newRow3);
+
+    /*result.data[0][0] = data[0][0] * other.data[0][0] + data[0][1] * other.data[1][0] + data[0][2] * other.data[2][0] + data[0][3] * other.data[3][0];
     result.data[0][1] = data[0][0] * other.data[0][1] + data[0][1] * other.data[1][1] + data[0][2] * other.data[2][1] + data[0][3] * other.data[3][1];
     result.data[0][2] = data[0][0] * other.data[0][2] + data[0][1] * other.data[1][2] + data[0][2] * other.data[2][2] + data[0][3] * other.data[3][2];
     result.data[0][3] = data[0][0] * other.data[0][3] + data[0][1] * other.data[1][3] + data[0][2] * other.data[2][3] + data[0][3] * other.data[3][3];
@@ -100,7 +133,7 @@ Matrix4x4 Matrix4x4::operator * (const Matrix4x4& other) const
     result.data[3][0] = data[3][0] * other.data[0][0] + data[3][1] * other.data[1][0] + data[3][2] * other.data[2][0] + data[3][3] * other.data[3][0];
     result.data[3][1] = data[3][0] * other.data[0][1] + data[3][1] * other.data[1][1] + data[3][2] * other.data[2][1] + data[3][3] * other.data[3][1];
     result.data[3][2] = data[3][0] * other.data[0][2] + data[3][1] * other.data[1][2] + data[3][2] * other.data[2][2] + data[3][3] * other.data[3][2];
-    result.data[3][3] = data[3][0] * other.data[0][3] + data[3][1] * other.data[1][3] + data[3][2] * other.data[2][3] + data[3][3] * other.data[3][3];
+    result.data[3][3] = data[3][0] * other.data[0][3] + data[3][1] * other.data[1][3] + data[3][2] * other.data[2][3] + data[3][3] * other.data[3][3];*/
 
     return result;
 }
@@ -158,7 +191,7 @@ Matrix4x4 Matrix4x4::inverse() const
 
     Matrix4x4 c = transpose();
 
-    Matrix4x4 m;
+    Matrix4x4 m(NoInit);
     m[0][0] = d * (c[1][2]*c[2][3]*c[3][1] - c[1][3]*c[2][2]*c[3][1] + c[1][3]*c[2][1]*c[3][2] - c[1][1]*c[2][3]*c[3][2] - c[1][2]*c[2][1]*c[3][3] + c[1][1]*c[2][2]*c[3][3]);
     m[0][1] = d * (c[0][3]*c[2][2]*c[3][1] - c[0][2]*c[2][3]*c[3][1] - c[0][3]*c[2][1]*c[3][2] + c[0][1]*c[2][3]*c[3][2] + c[0][2]*c[2][1]*c[3][3] - c[0][1]*c[2][2]*c[3][3]);
     m[0][2] = d * (c[0][2]*c[1][3]*c[3][1] - c[0][3]*c[1][2]*c[3][1] + c[0][3]*c[1][1]*c[3][2] - c[0][1]*c[1][3]*c[3][2] - c[0][2]*c[1][1]*c[3][3] + c[0][1]*c[1][2]*c[3][3]);

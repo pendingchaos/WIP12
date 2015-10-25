@@ -123,7 +123,7 @@ if __name__ == "__main__":
     scene.camera.position = [32.5, 20.0, 32.5]
     scene.camera.direction = [-1.0, -1.0, -1.0]
     scene.camera.up = [0.0, 1.0, 0.0]
-    scene.camera.far = 5.0
+    scene.camera.near = 5.0
     scene.camera.far = 100.0
     
     # Floor

@@ -37,7 +37,7 @@ class GfxMaterial : public Resource
         inline void setScript(Script *script_)
         {
             DELETE(script);
-            script = script_->createInstance();
+            script = script_->createInstance(nullptr, nullptr, this);
         }
 
         inline ScriptInstance *getScriptInst() const
@@ -45,10 +45,10 @@ class GfxMaterial : public Resource
             return script;
         }
 
-        bool isForward();
-
         void setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera);
         void setupShadowRender(GfxMesh *mesh, GfxAnimationState *animState, Light *light, size_t pass);
+
+        bool forward;
     private:
         GfxShaderCombination *shaderComb;
 

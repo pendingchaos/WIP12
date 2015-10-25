@@ -1586,7 +1586,7 @@ void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
                     shadowmapList->addDrawCall(shadowDrawCall);
                 }
 
-                if (material->isForward())
+                if (material->forward)
                 {
                     forwardList->addDrawCall(drawCall);
                 } else

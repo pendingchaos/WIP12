@@ -137,6 +137,11 @@ float Light::getSpotLightInfluence(float cutoff) const
 
 void Light::updateMatrices(GfxRenderer *renderer)
 {
+    if (shadowmap == nullptr)
+    {
+        return;
+    }
+
     switch (type)
     {
     case GfxLightType::Spot:

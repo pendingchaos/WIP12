@@ -1,5 +1,5 @@
 return class {
-    __init__ = function(self) {
+    __init__ = function(self, material) {
         resMgr = getResMgr();
         
         self.smoothness = 0.5;
@@ -32,6 +32,8 @@ return class {
         
         self.shadersAnim = GfxShaderCombination(vertex, fragment);
         self.shadersAnim:setDefine(GfxShaderType.Vertex, "SKELETAL_ANIMATION", "1");
+        
+        material.forward = false;
     };
     __del__ = function(self) {};
     
@@ -208,10 +210,6 @@ return class {
         };
         
         gfxApi:setTessPatchSize(3);
-    };
-    
-    isForward = function(self) {
-        return false;
     };
     
     setDisplacementMap = function(self, map) {

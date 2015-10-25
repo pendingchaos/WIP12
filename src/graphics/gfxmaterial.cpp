@@ -84,19 +84,6 @@ void GfxMaterial::_load()
     }
 }
 
-bool GfxMaterial::isForward()
-{
-    scripting::Value result = script->method("isForward");
-
-    if (result.type == scripting::ValueType::Boolean)
-    {
-        return result.b;
-    } else
-    {
-        return false;
-    }
-}
-
 void GfxMaterial::setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera)
 {
     scripting::Context *ctx = script->getScript()->getContext();
