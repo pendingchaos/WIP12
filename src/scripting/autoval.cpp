@@ -5,10 +5,8 @@
 //TODO: Use the current context if possible.
 AutoVal::~AutoVal()
 {
-    static uint8_t ctx[sizeof(scripting::Context)];
-    new ((scripting::Context *)ctx) scripting::Context(scriptEngine);
-    scripting::destroy((scripting::Context *)ctx, val);
-    ((scripting::Context *)ctx)->~Context();
+    scripting::Context ctx(scriptEngine);
+    scripting::destroy(&ctx, val);
 }
 
 AutoVal& AutoVal::operator = (const AutoVal& other)
@@ -18,10 +16,8 @@ AutoVal& AutoVal::operator = (const AutoVal& other)
 
 AutoVal& AutoVal::operator = (const scripting::Value& other)
 {
-    static uint8_t ctx[sizeof(scripting::Context)];
-    new ((scripting::Context *)ctx) scripting::Context(scriptEngine);
-    scripting::destroy((scripting::Context *)ctx, val);
-    ((scripting::Context *)ctx)->~Context();
+    scripting::Context ctx(scriptEngine);
+    scripting::destroy(&ctx, val);
 
     val = scripting::createCopy(other);
 

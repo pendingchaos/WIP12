@@ -353,14 +353,14 @@ Engine::Engine() : nextTypeID(LONG_LONG_MIN)
 
 Engine::~Engine()
 {
-    Context *context = NEW(Context, this);
-
-    for (auto kv : globalVars)
     {
-        destroy(context, kv.second);
-    }
+        Context context(this);
 
-    DELETE(context);
+        for (auto kv : globalVars)
+        {
+            destroy(&context, kv.second);
+        }
+    }
 
     for (auto kv : extensions)
     {

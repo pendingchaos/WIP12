@@ -119,6 +119,7 @@
 		<Unit filename="include/graphics/gfxtexture.h" />
 		<Unit filename="include/graphics/gputimer.h" />
 		<Unit filename="include/graphics/light.h" />
+		<Unit filename="include/graphics/renderlist.h" />
 		<Unit filename="include/imgui.h" />
 		<Unit filename="include/logging.h" />
 		<Unit filename="include/math/aabb.h" />
@@ -143,6 +144,7 @@
 		<Unit filename="include/scene/entity.h" />
 		<Unit filename="include/scene/scene.h" />
 		<Unit filename="include/scene/transform.h" />
+		<Unit filename="include/scripting/autoval.h" />
 		<Unit filename="include/scripting/bindings.h" />
 		<Unit filename="include/scripting/bytecodegen.h" />
 		<Unit filename="include/scripting/disasm.h" />
@@ -190,6 +192,7 @@
 		<Unit filename="src/graphics/gfxtexture.cpp" />
 		<Unit filename="src/graphics/gputimer.cpp" />
 		<Unit filename="src/graphics/light.cpp" />
+		<Unit filename="src/graphics/renderlist.cpp" />
 		<Unit filename="src/imgui.cpp" />
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />
@@ -214,6 +217,7 @@
 		<Unit filename="src/scene/entity.cpp" />
 		<Unit filename="src/scene/scene.cpp" />
 		<Unit filename="src/scene/transform.cpp" />
+		<Unit filename="src/scripting/autoval.cpp" />
 		<Unit filename="src/scripting/bindings.cpp" />
 		<Unit filename="src/scripting/bytecodegen.cpp" />
 		<Unit filename="src/scripting/disasm.cpp" />
