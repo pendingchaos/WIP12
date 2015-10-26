@@ -10,7 +10,6 @@
 #include "filesystem.h"
 #include "globals.h"
 #include "platform.h"
-#include "math/matrix4x4.h"
 
 void run(const char *dir)
 {
@@ -503,45 +502,8 @@ static void printAST(size_t indent, scripting::ASTNode *node)
     }
 }
 
-Matrix4x4 fastMul(const Matrix4x4& a, const Matrix4x4& b)
-{
-    Matrix4x4 result(Matrix4x4::NoInit);
+#include "scene/transform.h"
 
-    __m128 otherRow0 __attribute__((aligned(16))) = _mm_loadu_ps(b.data[0]);
-    __m128 otherRow1 __attribute__((aligned(16))) = _mm_loadu_ps(b.data[1]);
-    __m128 otherRow2 __attribute__((aligned(16))) = _mm_loadu_ps(b.data[2]);
-    __m128 otherRow3 __attribute__((aligned(16))) = _mm_loadu_ps(b.data[3]);
-
-    __m128 newRow0 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(a.data[0][0]));
-    newRow0 = _mm_add_ps(newRow0, _mm_mul_ps(otherRow1, _mm_set1_ps(a.data[0][1])));
-    newRow0 = _mm_add_ps(newRow0, _mm_mul_ps(otherRow2, _mm_set1_ps(a.data[0][2])));
-    newRow0 = _mm_add_ps(newRow0, _mm_mul_ps(otherRow3, _mm_set1_ps(a.data[0][3])));
-
-    __m128 newRow1 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(a.data[1][0]));
-    newRow1 = _mm_add_ps(newRow1, _mm_mul_ps(otherRow1, _mm_set1_ps(a.data[1][1])));
-    newRow1 = _mm_add_ps(newRow1, _mm_mul_ps(otherRow2, _mm_set1_ps(a.data[1][2])));
-    newRow1 = _mm_add_ps(newRow1, _mm_mul_ps(otherRow3, _mm_set1_ps(a.data[1][3])));
-
-    __m128 newRow2 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(a.data[2][0]));
-    newRow2 = _mm_add_ps(newRow2, _mm_mul_ps(otherRow1, _mm_set1_ps(a.data[2][1])));
-    newRow2 = _mm_add_ps(newRow2, _mm_mul_ps(otherRow2, _mm_set1_ps(a.data[2][2])));
-    newRow2 = _mm_add_ps(newRow2, _mm_mul_ps(otherRow3, _mm_set1_ps(a.data[2][3])));
-
-    __m128 newRow3 __attribute__((aligned(16))) = _mm_mul_ps(otherRow0, _mm_set1_ps(a.data[3][0]));
-    newRow3 = _mm_add_ps(newRow3, _mm_mul_ps(otherRow1, _mm_set1_ps(a.data[3][1])));
-    newRow3 = _mm_add_ps(newRow3, _mm_mul_ps(otherRow2, _mm_set1_ps(a.data[3][2])));
-    newRow3 = _mm_add_ps(newRow3, _mm_mul_ps(otherRow3, _mm_set1_ps(a.data[3][3])));
-
-    _mm_store_ps(result.data[0], newRow0);
-    _mm_store_ps(result.data[1], newRow1);
-    _mm_store_ps(result.data[2], newRow2);
-    _mm_store_ps(result.data[3], newRow3);
-
-    return result;
-}
-
-extern "C"
-{
 int main(int argc, const char *argv[])
 {
     #if 0
@@ -1156,5 +1118,4 @@ int main(int argc, const char *argv[])
 
     return result;
     #endif
-}
 }

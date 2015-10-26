@@ -1,6 +1,7 @@
 #include "math/matrix4x4.h"
 
 #include "math/matrix3x3.h"
+#include "math/quaternion.h"
 
 #include <cmath>
 #include <x86intrin.h>
@@ -64,6 +65,18 @@ Matrix4x4::Matrix4x4(const Float4& row1,
     data[3][1] = row4.y;
     data[3][2] = row4.z;
     data[3][3] = row4.w;
+}
+
+#pragma GCC push_options
+#pragma GCC target("avx")
+
+#ifndef set_from_m128
+#define set_from_m128(vb, va) _mm256_insertf128_ps(_mm256_castps128_ps256(vb), va, 1)
+#endif
+
+inline static __m256 __attribute__((always_inline, artificial)) loadHelper2(const float *a)
+{
+    return set_from_m128(_mm_loadu_ps(a), _mm_loadu_ps(a));
 }
 
 Matrix4x4 Matrix4x4::operator * (const Matrix4x4& other) const
@@ -137,6 +150,7 @@ Matrix4x4 Matrix4x4::operator * (const Matrix4x4& other) const
 
     return result;
 }
+#pragma GCC pop_options
 
 Float4 Matrix4x4::operator * (const Float4& other) const
 {
@@ -168,14 +182,14 @@ Matrix4x4 Matrix4x4::transpose() const
 
 float Matrix4x4::determinant() const
 {
-    Matrix4x4 c = transpose();
-
-    return c[0][3]*c[1][2]*c[2][1]*c[3][0] - c[0][2]*c[1][3]*c[2][1]*c[3][0] - c[0][3]*c[1][1]*c[2][2]*c[3][0] + c[0][1]*c[1][3]*c[2][2]*c[3][0] +
-           c[0][2]*c[1][1]*c[2][3]*c[3][0] - c[0][1]*c[1][2]*c[2][3]*c[3][0] - c[0][3]*c[1][2]*c[2][0]*c[3][1] + c[0][2]*c[1][3]*c[2][0]*c[3][1] +
-           c[0][3]*c[1][0]*c[2][2]*c[3][1] - c[0][0]*c[1][3]*c[2][2]*c[3][1] - c[0][2]*c[1][0]*c[2][3]*c[3][1] + c[0][0]*c[1][2]*c[2][3]*c[3][1] +
-           c[0][3]*c[1][1]*c[2][0]*c[3][2] - c[0][1]*c[1][3]*c[2][0]*c[3][2] - c[0][3]*c[1][0]*c[2][1]*c[3][2] + c[0][0]*c[1][3]*c[2][1]*c[3][2] +
-           c[0][1]*c[1][0]*c[2][3]*c[3][2] - c[0][0]*c[1][1]*c[2][3]*c[3][2] - c[0][2]*c[1][1]*c[2][0]*c[3][3] + c[0][1]*c[1][2]*c[2][0]*c[3][3] +
-           c[0][2]*c[1][0]*c[2][1]*c[3][3] - c[0][0]*c[1][2]*c[2][1]*c[3][3] - c[0][1]*c[1][0]*c[2][2]*c[3][3] + c[0][0]*c[1][1]*c[2][2]*c[3][3];
+#define d data
+    return double(d[3][0])*d[2][1]*d[1][2]*d[0][3] - double(d[2][0])*d[3][1]*d[1][2]*d[0][3] - double(d[3][0])*d[1][1]*d[2][2]*d[0][3] + double(d[1][0])*d[3][1]*d[2][2]*d[0][3] +
+           double(d[2][0])*d[1][1]*d[3][2]*d[0][3] - double(d[1][0])*d[2][1]*d[3][2]*d[0][3] - double(d[3][0])*d[2][1]*d[0][2]*d[1][3] + double(d[2][0])*d[3][1]*d[0][2]*d[1][3] +
+           double(d[3][0])*d[0][1]*d[2][2]*d[1][3] - double(d[0][0])*d[3][1]*d[2][2]*d[1][3] - double(d[2][0])*d[0][1]*d[3][2]*d[1][3] + double(d[0][0])*d[2][1]*d[3][2]*d[1][3] +
+           double(d[3][0])*d[1][1]*d[0][2]*d[2][3] - double(d[1][0])*d[3][1]*d[0][2]*d[2][3] - double(d[3][0])*d[0][1]*d[1][2]*d[2][3] + double(d[0][0])*d[3][1]*d[1][2]*d[2][3] +
+           double(d[1][0])*d[0][1]*d[3][2]*d[2][3] - double(d[0][0])*d[1][1]*d[3][2]*d[2][3] - double(d[2][0])*d[1][1]*d[0][2]*d[3][3] + double(d[1][0])*d[2][1]*d[0][2]*d[3][3] +
+           double(d[2][0])*d[0][1]*d[1][2]*d[3][3] - double(d[0][0])*d[2][1]*d[1][2]*d[3][3] - double(d[1][0])*d[0][1]*d[2][2]*d[3][3] + double(d[0][0])*d[1][1]*d[2][2]*d[3][3];
+#undef d
 }
 
 Matrix4x4 Matrix4x4::inverse() const
@@ -210,6 +224,67 @@ Matrix4x4 Matrix4x4::inverse() const
     m[3][3] = d * (c[0][1]*c[1][2]*c[2][0] - c[0][2]*c[1][1]*c[2][0] + c[0][2]*c[1][0]*c[2][1] - c[0][0]*c[1][2]*c[2][1] - c[0][1]*c[1][0]*c[2][2] + c[0][0]*c[1][1]*c[2][2]);
 
     return m.transpose();
+}
+
+void Matrix4x4::multTrans(const Float3& translation)
+{
+    data[0][3] = data[0][0] * translation.x + data[0][1] * translation.y + data[0][2] * translation.z + data[0][3];
+    data[1][3] = data[1][0] * translation.x + data[1][1] * translation.y + data[1][2] * translation.z + data[1][3];
+    data[2][3] = data[2][0] * translation.x + data[2][1] * translation.y + data[2][2] * translation.z + data[2][3];
+    data[3][3] = data[3][0] * translation.x + data[3][1] * translation.y + data[3][2] * translation.z + data[3][3];
+}
+
+void Matrix4x4::multScale(const Float3& scale)
+{
+    data[0][0] = data[0][0] * scale.x;
+    data[0][1] = data[0][1] * scale.x;
+    data[0][2] = data[0][2] * scale.x;
+
+    data[1][0] = data[1][0] * scale.y;
+    data[1][1] = data[1][1] * scale.y;
+    data[1][2] = data[1][2] * scale.y;
+
+    data[2][0] = data[2][0] * scale.z;
+    data[2][1] = data[2][1] * scale.z;
+    data[2][2] = data[2][2] * scale.z;
+}
+
+void Matrix4x4::multQuat(const Quaternion& quat)
+{
+    Float4 axisAngle = quat.getAxisAndAngle();
+
+    float angle = axisAngle.w;
+    Float3 axis = axisAngle.getXYZ().normalize();
+
+    float s = std::sin(angle);
+    float c = std::cos(angle);
+
+    Float3 temp(axis * (1.0f - c));
+
+    float rotate[3][3];
+    rotate[0][0] = temp.x*axis.x + c;
+    rotate[1][0] = temp.x*axis.y + s*axis.z;
+    rotate[2][0] = temp.x*axis.z - s*axis.y;
+
+    rotate[0][1] = temp.y*axis.x - s*axis.z;
+    rotate[1][1] = temp.y*axis.y + c;
+    rotate[2][1] = temp.y*axis.z + s*axis.x;
+
+    rotate[0][2] = temp.z*axis.x + s*axis.y;
+    rotate[1][2] = temp.y*axis.y - s*axis.x;
+    rotate[2][2] = temp.z*axis.z + c;
+
+    data[0][0] = data[0][0]*rotate[0][0] + data[0][1]*rotate[1][0] + data[0][2]*rotate[2][0];
+    data[1][0] = data[1][0]*rotate[0][0] + data[1][1]*rotate[1][0] + data[1][2]*rotate[2][0];
+    data[2][0] = data[2][0]*rotate[0][0] + data[2][1]*rotate[1][0] + data[2][2]*rotate[2][0];
+
+    data[0][1] = data[0][0]*rotate[0][1] + data[0][1]*rotate[1][1] + data[0][2]*rotate[2][1];
+    data[1][1] = data[1][0]*rotate[0][1] + data[1][1]*rotate[1][1] + data[1][2]*rotate[2][1];
+    data[2][1] = data[2][0]*rotate[0][1] + data[2][1]*rotate[1][1] + data[2][2]*rotate[2][1];
+
+    data[0][2] = data[0][0]*rotate[0][2] + data[0][1]*rotate[1][2] + data[0][2]*rotate[2][2];
+    data[1][2] = data[1][0]*rotate[0][2] + data[1][1]*rotate[1][2] + data[1][2]*rotate[2][2];
+    data[2][2] = data[2][0]*rotate[0][2] + data[2][1]*rotate[1][2] + data[2][2]*rotate[2][2];
 }
 
 Matrix4x4 Matrix4x4::translate(const Float3& translation)

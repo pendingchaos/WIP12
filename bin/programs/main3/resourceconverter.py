@@ -89,7 +89,7 @@ if __name__ == "__main__":
         thresh = math.sin(x / 8.0 * 3.1415 + 3.1415/2)*1.5
         thresh += math.sin(z / 8.0 * 3.1415 + 3.1415/2)*1.5
         thresh = thresh / 2 + avgY
-        
+        return random.randint(0, 100) > 50
         return y < thresh
     
     for x in xrange(-8, 9):
@@ -112,10 +112,11 @@ if __name__ == "__main__":
                 ent.transform.position = [x, y, z]
                 ent.transform.scale = [0.5, 0.5, 0.5]
                 
-                if y >= 1:
-                    ent.model = conv["grass model"]
-                elif y >= 0:
-                    ent.model = conv["dirt model"]
+                if y >= 0:
+                    if random.randint(0, 100) > 50:
+                        ent.model = conv["dirt model"]
+                    else:
+                        ent.model = conv["grass model"]
                 else:
                     ent.model = conv["stone model"]
                 

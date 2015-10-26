@@ -6,6 +6,7 @@
 #include "error.h"
 
 class Matrix3x3;
+class Quaternion;
 
 /**
  *A matrix is stored in row-major order.
@@ -101,6 +102,10 @@ class Matrix4x4
         Matrix4x4 transpose() const;
         float determinant() const;
         Matrix4x4 inverse() const;
+
+        void multTrans(const Float3& translation);
+        void multScale(const Float3& scale);
+        void multQuat(const Quaternion& quat);
 
         static Matrix4x4 translate(const Float3& translation);
 

@@ -24,7 +24,12 @@ Transform::Transform() : scale(1.0f) {}
 
 Matrix4x4 Transform::createMatrix() const
 {
-    return Matrix4x4::translate(position) *
-           orientation.toMatrix() *
-           Matrix4x4::scale(scale);
+    bool rotate = (std::abs(orientation.x) > 0.001f or
+                   std::abs(orientation.y) > 0.001f or
+                   std::abs(orientation.z) > 0.001f) and
+                   std::abs(1.0f-orientation.w) > 0.001f;
+
+    Matrix4x4 result = rotate ? (Matrix4x4::translate(position) * orientation.toMatrix()) : Matrix4x4::translate(position);
+    result.multScale(scale);
+    return result;
 }
