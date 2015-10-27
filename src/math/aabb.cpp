@@ -3,7 +3,7 @@
 //Modified from https://github.com/horde3d/Horde3D/blob/master/Horde3D/Source/Horde3DEngine/egPrimitives.h#L63
 AABB AABB::transform(const Matrix4x4& matrix) const
 {
-    /*AABB result;
+/*    AABB result;
 
     for (size_t i = 0; i < 3; ++i)
     {
@@ -18,9 +18,64 @@ AABB AABB::transform(const Matrix4x4& matrix) const
             result.min[i] += std::min(x, y);
             result.max[i] += std::max(x, y);
         }
-    }*/
+    }
 
-    Position3D corner0 = matrix * getCorner(0);
+    return result;
+*/
+
+    //Unrolled.
+    AABB result;
+    float x;
+    float y;
+
+    result.min[0] = matrix[0][3];
+    result.max[0] = matrix[0][3];
+    x = min[0] * matrix[0][0];
+    y = max[0] * matrix[0][0];
+    result.min[0] += std::min(x, y);
+    result.max[0] += std::max(x, y);
+    x = min[1] * matrix[0][1];
+    y = max[1] * matrix[0][1];
+    result.min[0] += std::min(x, y);
+    result.max[0] += std::max(x, y);
+    x = min[2] * matrix[0][2];
+    y = max[2] * matrix[0][2];
+    result.min[0] += std::min(x, y);
+    result.max[0] += std::max(x, y);
+
+    result.min[1] = matrix[1][3];
+    result.max[1] = matrix[1][3];
+    x = min[0] * matrix[1][0];
+    y = max[0] * matrix[1][0];
+    result.min[1] += std::min(x, y);
+    result.max[1] += std::max(x, y);
+    x = min[1] * matrix[1][1];
+    y = max[1] * matrix[1][1];
+    result.min[1] += std::min(x, y);
+    result.max[1] += std::max(x, y);
+    x = min[2] * matrix[1][2];
+    y = max[2] * matrix[1][2];
+    result.min[1] += std::min(x, y);
+    result.max[1] += std::max(x, y);
+
+    result.min[2] = matrix[2][3];
+    result.max[2] = matrix[2][3];
+    x = min[0] * matrix[2][0];
+    y = max[0] * matrix[2][0];
+    result.min[2] += std::min(x, y);
+    result.max[2] += std::max(x, y);
+    x = min[1] * matrix[2][1];
+    y = max[1] * matrix[2][1];
+    result.min[2] += std::min(x, y);
+    result.max[2] += std::max(x, y);
+    x = min[2] * matrix[2][2];
+    y = max[2] * matrix[2][2];
+    result.min[2] += std::min(x, y);
+    result.max[2] += std::max(x, y);
+
+    return result;
+
+    /*Position3D corner0 = matrix * getCorner(0);
 
     AABB result(corner0, corner0);
 
@@ -29,7 +84,7 @@ AABB AABB::transform(const Matrix4x4& matrix) const
         result.extend(matrix * getCorner(i));
     }
 
-    return result;
+    return result;*/
 }
 
 void AABB::extend(const Position3D& point)

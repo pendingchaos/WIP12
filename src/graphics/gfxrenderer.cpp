@@ -1373,7 +1373,7 @@ AABB GfxRenderer::computeShadowCasterAABB() const
 
 void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const
 {
-    for (auto entity : entities)
+    for (auto& entity : entities)
     {
         Matrix4x4 transform = entity->getFinalTransform();
 
@@ -1385,9 +1385,10 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
             {
                 GfxModel *model = comp->model;
 
-                for (auto subModel : model->subModels)
+                auto& subModels = model->subModels;
+                for (auto& subModel : subModels)
                 {
-                    for (auto lod : subModel)
+                    for (auto& lod : subModel)
                     {
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 
@@ -1409,7 +1410,7 @@ void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) 
 
 void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const
 {
-    for (auto entity : entities)
+    for (auto& entity : entities)
     {
         Matrix4x4 transform = entity->getFinalTransform();
 
@@ -1421,9 +1422,10 @@ void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB&
             {
                 GfxModel *model = comp->model;
 
-                for (auto subModel : model->subModels)
+                auto& subModels = model->subModels;
+                for (auto& subModel : subModels)
                 {
-                    for (auto lod : subModel)
+                    for (auto& lod : subModel)
                     {
                         AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
 

@@ -502,7 +502,7 @@ static void printAST(size_t indent, scripting::ASTNode *node)
     }
 }
 
-#include "scene/transform.h"
+#include "math/aabb.h"
 
 int main(int argc, const char *argv[])
 {
@@ -1117,5 +1117,21 @@ int main(int argc, const char *argv[])
     deinitBacktrace();
 
     return result;
+    /*AABB aabb;
+    Matrix4x4 mat;
+
+    SDL_Init(SDL_INIT_TIMER);
+
+    Uint64 start = SDL_GetPerformanceCounter();
+
+    for (size_t i = 0; i < 1000000; ++i)
+    {
+        aabb = aabb.transform(mat);
+    }
+
+    Uint64 end = SDL_GetPerformanceCounter();
+
+    std::printf("%f\n", double(end-start)/SDL_GetPerformanceFrequency());
+    SDL_Quit();*/
     #endif
 }
