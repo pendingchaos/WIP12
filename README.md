@@ -6,7 +6,7 @@ A work in progress using [OpenGL](https://opengl.org) and [Bullet Physics](bulle
 Please do not submit any pull requests. This is my own project that I am making for fun and knowledge.
 Don't clone this unless you want to download over half a gigabyte of data.
 
-The program has only been tested on a Linux based operating system.
+The program has only been tested on a GNU/Linux based operating system.
 
 ## Dependencies
 The program requires g++, SDL2, Bullet, FreeType, libdl, a c standard library implementation, a c++ standard library implementation, and an OpenGL implementation supporting OpenGL 3.3 or higher, GL_ARB_tesselation_shader and GL_ARB_separate_shader_objects.
