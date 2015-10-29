@@ -130,8 +130,6 @@ void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices, const L
     {
         Matrix4x4 worldMatrix = worldMatrices[j];
         Matrix4x4 normalMatrix = normalMatrices[j];
-        worldMatrix = worldMatrix.transpose();
-        normalMatrix = normalMatrix.transpose();
 
         std::memcpy(matrixData+j*128, (void *)&worldMatrix, 64);
         std::memcpy(matrixData+j*128+64, (void *)&normalMatrix, 64);

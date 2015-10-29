@@ -37,10 +37,10 @@ void main()
     uvec2 texSize = textureSize(matrixTexture, 0);
     ivec2 offset = ivec2(gl_InstanceID*8%texSize.x, gl_InstanceID*8/texSize.x);
 
-    mat4 worldMatrix = mat4(texelFetch(matrixTexture, offset, 0),
-                            texelFetch(matrixTexture, offset+ivec2(1, 0), 0),
-                            texelFetch(matrixTexture, offset+ivec2(2, 0), 0),
-                            texelFetch(matrixTexture, offset+ivec2(3, 0), 0));
+    mat4 worldMatrix = transpose(mat4(texelFetch(matrixTexture, offset, 0),
+                                      texelFetch(matrixTexture, offset+ivec2(1, 0), 0),
+                                      texelFetch(matrixTexture, offset+ivec2(2, 0), 0),
+                                      texelFetch(matrixTexture, offset+ivec2(3, 0), 0)));
 
 #ifdef SKELETAL_ANIMATION
     mat4 transform = boneMatrices[int(boneIndices.x)] * boneWeights.x;
