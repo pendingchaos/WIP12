@@ -93,11 +93,6 @@ void Scene::removeContent()
 
 void Scene::handleInput()
 {
-    for (auto entity : entities)
-    {
-        entity->updateFinalTransform();
-    }
-
     _handleInput(entities);
 
     for (auto scriptInst : scripts)
@@ -108,11 +103,6 @@ void Scene::handleInput()
 
 void Scene::update()
 {
-    for (auto entity : entities)
-    {
-        entity->updateFinalTransform();
-    }
-
     _update(entities);
 
     for (auto scriptInst : scripts)
@@ -123,11 +113,6 @@ void Scene::update()
 
 void Scene::fixedUpdate(float timestep)
 {
-    for (auto entity : entities)
-    {
-        entity->updateFinalTransform();
-    }
-
     _fixedUpdate(entities, timestep);
 
     for (auto scriptInst : scripts)

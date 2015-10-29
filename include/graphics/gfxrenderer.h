@@ -165,9 +165,6 @@ class GfxRenderer
             return lights;
         }
 
-        AABB computeSceneAABB() const;
-        AABB computeShadowCasterAABB() const;
-
         void updateStats();
 
         Camera camera;
@@ -228,10 +225,20 @@ class GfxRenderer
         {
             return shadowmapList;
         }
-    private:
-        void _computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const;
-        void _computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const;
 
+        inline AABB getSceneAABB() const
+        {
+            return sceneAABB;
+        }
+
+        inline AABB getShadowCasterAABB() const
+        {
+            return shadowCasterAABB;
+        }
+
+        void computeSceneAABB();
+        void computeShadowCasterAABB();
+    private:
         GfxTexture *skybox;
         List<Light *> lights;
 
@@ -311,11 +318,6 @@ class GfxRenderer
         GfxTerrain *terrain;
 
         void fillLightBuffer(Scene *scene);
-        void batchModel(const Matrix4x4& worldMatrix,
-                        const GfxModel *model,
-                        GfxMesh *animMesh,
-                        GfxAnimationState *animState,
-                        bool castShadow);
         void renderSkybox();
         void renderShadowmap(Light *light);
         void renderTerrain();
@@ -358,6 +360,22 @@ class GfxRenderer
         void fillRenderLists(const List<Entity *>& entities);
 
         void swapFramebuffers();
+
+        struct Object
+        {
+            bool shadowCaster;
+            GfxMaterial *material;
+            GfxMesh *mesh;
+            GfxAnimationState *animState;
+            Matrix4x4 worldMatrix;
+        };
+
+        List<Object> objects;
+
+        void fillObjects(const List<Entity *>& entities);
+
+        AABB sceneAABB;
+        AABB shadowCasterAABB;
 } BIND NOT_COPYABLE;
 
 #endif // GFXRENDERER_H

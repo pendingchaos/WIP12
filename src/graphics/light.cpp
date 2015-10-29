@@ -344,8 +344,8 @@ void Light::updateMatrices(GfxRenderer *renderer)
         }
         #else
         //Based on the algorithm from 0 A.D.
-        AABB casterBounds = renderer->computeShadowCasterAABB();
-        AABB sceneBounds = renderer->computeSceneAABB();
+        AABB casterBounds = renderer->getShadowCasterAABB();
+        AABB sceneBounds = renderer->getSceneAABB();
 
         for (size_t i = 0; i < 4; ++i)
         {

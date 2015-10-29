@@ -76,7 +76,7 @@ if __name__ == "__main__":
     scene = Scene([], "resources/scenes/main.bin")
     conv["scene"] = scene
     scene.skybox = conv["skybox"]
-    scene.camera.position = [10.0, 10.0, 10.0]
+    scene.camera.position = [50.0, 50.0, 50.0]
     scene.camera.direction = [-1.0, -1.0, -1.0]
     scene.camera.up = [0.0, 1.0, 0.0]
     
@@ -92,9 +92,9 @@ if __name__ == "__main__":
         return random.randint(0, 100) > 50
         return y < thresh
     
-    for x in xrange(-8, 9):
-        for y in xrange(-8, 9):
-            for z in xrange(-8, 9):
+    for x in xrange(-32, 33):
+        for y in xrange(-32, 33):
+            for z in xrange(-32, 33):
                 if not block_exists(avgY, x, y, z):
                     continue
                 
@@ -120,14 +120,14 @@ if __name__ == "__main__":
                 else:
                     ent.model = conv["stone model"]
                 
-                ent.rigidBody = Scene.RigidBody()
-                ent.rigidBody.shape = blockShape
+                #ent.rigidBody = Scene.RigidBody()
+                #ent.rigidBody.shape = blockShape
                 scene.entities.append(ent)
     
     print numBlocks, "blocks."
     
-    ent = Scene.Entity("Player")
-    ent.transform.position = [0.0, 8.0, 0.0]
+    """ent = Scene.Entity("Player")
+    ent.transform.position = [0.0, 80.0, 0.0]
     ent.transform.scale = [1.0, 1.0, 1.0]
     ent.transform.orientation = [0.0, 0.0, 0.0]
     ent.rigidBody = Scene.RigidBody()
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     ent.rigidBody.linearDamping = 0.8
     ent.rigidBody.mass = 100.0
     ent.scripts.append("resources/scripts/player.rkt")
-    scene.entities.append(ent)
+    scene.entities.append(ent)"""
     
     # Sun
     light = Scene.Light(Scene.Light.Type.Directional)

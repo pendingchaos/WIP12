@@ -841,6 +841,19 @@ void GfxRenderer::render()
 
     uint64_t start = platform->getTime();
 
+    //TODO: Move these out of the batching timer.
+    for (auto& obj : objects)
+    {
+        obj.mesh->release();
+        obj.material->release();
+    }
+    objects.clear();
+
+    fillObjects(scene->getEntities());
+
+    computeSceneAABB();
+    computeShadowCasterAABB();
+
     fillRenderLists(scene->getEntities());
 
     stats.batchingCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
@@ -1339,110 +1352,43 @@ void GfxRenderer::render()
     stats.updateStatsCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 }
 
-AABB GfxRenderer::computeSceneAABB() const
+void GfxRenderer::computeSceneAABB()
 {
     AABB aabb;
 
-    const List<Entity *>& entities = scene->getEntities();
-
-    _computeSceneAABB(entities, aabb);
+    for (auto& obj : objects)
+    {
+        //TODO: This ignores displacement mapping
+        aabb.extend(obj.mesh->aabb.transform(obj.worldMatrix));
+    }
 
     if (terrain != nullptr)
     {
         aabb.extend(terrain->getMesh()->aabb);
     }
 
-    return aabb;
+    sceneAABB = aabb;
 }
 
-AABB GfxRenderer::computeShadowCasterAABB() const
+void GfxRenderer::computeShadowCasterAABB()
 {
     AABB aabb;
 
-    const List<Entity *>& entities = scene->getEntities();
-
-    _computeShadowCasterAABB(entities, aabb);
+    for (auto& obj : objects)
+    {
+        //TODO: This ignores displacement mapping
+        if (obj.shadowCaster)
+        {
+            aabb.extend(obj.mesh->aabb.transform(obj.worldMatrix));
+        }
+    }
 
     if (terrain != nullptr)
     {
         aabb.extend(terrain->getMesh()->aabb);
     }
 
-    return aabb;
-}
-
-void GfxRenderer::_computeSceneAABB(const List<Entity *>& entities, AABB& aabb) const
-{
-    for (auto& entity : entities)
-    {
-        Matrix4x4 transform = entity->getFinalTransform();
-
-        if (entity->hasRenderComponent())
-        {
-            const RenderComponent *comp = entity->getRenderComponent();
-
-            if (comp->mode == RenderMode::Model)
-            {
-                GfxModel *model = comp->model;
-
-                auto& subModels = model->subModels;
-                for (auto& subModel : subModels)
-                {
-                    for (auto& lod : subModel)
-                    {
-                        AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
-
-                        //TODO
-                        /*if (lod.material->getDisplacementMap() != nullptr)
-                        {
-                            aabb2.grow(lod.material->displacementStrength);
-                        }*/
-
-                        aabb.extend(aabb2);
-                    }
-                }
-            }
-        }
-
-        _computeSceneAABB(entity->getEntities(), aabb);
-    }
-}
-
-void GfxRenderer::_computeShadowCasterAABB(const List<Entity *>& entities, AABB& aabb) const
-{
-    for (auto& entity : entities)
-    {
-        Matrix4x4 transform = entity->getFinalTransform();
-
-        if (entity->hasRenderComponent())
-        {
-            const RenderComponent *comp = entity->getRenderComponent();
-
-            if (comp->mode == RenderMode::Model and comp->modelData.shadowCaster)
-            {
-                GfxModel *model = comp->model;
-
-                auto& subModels = model->subModels;
-                for (auto& subModel : subModels)
-                {
-                    for (auto& lod : subModel)
-                    {
-                        AABB aabb2 = lod.mesh->aabb.transform(transform * lod.worldMatrix);
-
-                        //TODO
-                        /*if (lod.material->getDisplacementMap() != nullptr and lod.material->shadowTesselation)
-                        {
-                            aabb2.grow(lod.material->displacementStrength);
-                        }*/
-
-                        aabb.extend(aabb2);
-                    }
-                }
-            }
-        }
-
-        _computeShadowCasterAABB(entity->getEntities(), aabb);
-    }
+    shadowCasterAABB = aabb;
 }
 
 void GfxRenderer::fillLightBuffer(Scene *scene)
@@ -1520,82 +1466,26 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
 
 void GfxRenderer::fillRenderLists(const List<Entity *>& entities)
 {
-    for (auto entity : entities)
+    for (auto& obj : objects)
     {
-        Matrix4x4 transform = entity->getFinalTransform();
+        DrawCall drawCall(obj.mesh, obj.material);
+        drawCall.animState = obj.animState;
+        drawCall.worldMatrix = obj.worldMatrix;
 
-        if (entity->hasRenderComponent())
+        if (obj.shadowCaster)
         {
-            const RenderComponent *comp = entity->getRenderComponent();
+            DrawCall shadowDrawCall = drawCall;
+            shadowDrawCall.material = shadowmapMaterial;
 
-            switch (comp->mode)
-            {
-            case RenderMode::Model:
-            {
-                if (comp->getAnimationState() != nullptr)
-                {
-                    GfxAnimationState *state = comp->getAnimationState();
-                    state->updateMatrices();
-                    batchModel(transform, comp->model, state->getMesh(), state, comp->getShadowCaster());
-                } else
-                {
-                    batchModel(transform, comp->model, nullptr, nullptr, comp->getShadowCaster());
-                }
-                break;
-            }
-            default:
-            {
-                break;
-            }
-            }
+            shadowmapList->addDrawCall(shadowDrawCall);
         }
 
-        fillRenderLists(entity->getEntities());;
-    }
-}
-
-void GfxRenderer::batchModel(const Matrix4x4& worldMatrix,
-                             const GfxModel *model,
-                             GfxMesh *animMesh,
-                             GfxAnimationState *animState,
-                             bool castShadow)
-{
-    Position3D position = Position3D(worldMatrix[0][3],
-                                     worldMatrix[1][3],
-                                     worldMatrix[2][3]);
-
-    float distance = position.distance(camera.getPosition());
-
-    for (auto subModel : model->subModels)
-    {
-        for (auto lod : subModel)
+        if (obj.material->forward)
         {
-            if (lod.minDistance < distance and
-                distance < lod.maxDistance)
-            {
-                GfxMaterial *material = lod.material;
-                GfxMesh *mesh = lod.mesh;
-
-                DrawCall drawCall(mesh, material);
-                drawCall.animState = (mesh == animMesh) ? animState : nullptr;
-                drawCall.worldMatrix = worldMatrix * lod.worldMatrix;
-
-                if (castShadow)
-                {
-                    DrawCall shadowDrawCall = drawCall;
-                    shadowDrawCall.material = shadowmapMaterial;
-
-                    shadowmapList->addDrawCall(shadowDrawCall);
-                }
-
-                if (material->forward)
-                {
-                    forwardList->addDrawCall(drawCall);
-                } else
-                {
-                    deferredList->addDrawCall(drawCall);
-                }
-            }
+            forwardList->addDrawCall(drawCall);
+        } else
+        {
+            deferredList->addDrawCall(drawCall);
         }
     }
 }
@@ -1735,4 +1625,68 @@ void GfxRenderer::swapFramebuffers()
 {
     std::swap(writeFramebuffer, readFramebuffer);
     std::swap(writeColorTexture, readColorTexture);
+}
+
+void GfxRenderer::fillObjects(const List<Entity *>& entities)
+{
+    for (auto entity : entities)
+    {
+        Matrix4x4 transform = entity->getFinalTransform();
+
+        if (entity->hasRenderComponent())
+        {
+            const RenderComponent *comp = entity->getRenderComponent();
+
+            switch (comp->mode)
+            {
+            case RenderMode::Model:
+            {
+                GfxModel *model = comp->model;
+
+                Position3D position = Position3D(transform[0][3],
+                                                 transform[1][3],
+                                                 transform[2][3]);
+
+                float distance = position.distance(camera.getPosition());
+
+                GfxMesh *animMesh = nullptr;
+                GfxAnimationState *animState = nullptr;
+                if (comp->getAnimationState() != nullptr)
+                {
+                    animState = comp->getAnimationState();
+                    animMesh = animState->getMesh();
+                }
+
+                for (auto subModel : model->subModels)
+                {
+                    for (auto lod : subModel)
+                    {
+                        if (lod.minDistance < distance and
+                            distance < lod.maxDistance)
+                        {
+                            GfxMaterial *material = lod.material;
+                            GfxMesh *mesh = lod.mesh;
+
+                            Object obj;
+                            obj.shadowCaster = comp->getShadowCaster();
+                            obj.material = material->copyRef<GfxMaterial>();
+                            obj.mesh = mesh->copyRef<GfxMesh>();
+                            obj.animState = (mesh == animMesh) ? animState : nullptr;
+                            obj.worldMatrix = transform * lod.worldMatrix;
+
+                            objects.append(obj);
+                        }
+                    }
+                }
+                break;
+            }
+            default:
+            {
+                break;
+            }
+            }
+        }
+
+        fillObjects(entity->getEntities());;
+    }
 }

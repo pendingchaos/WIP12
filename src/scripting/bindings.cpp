@@ -3042,8 +3042,6 @@ SV GfxRenderer_getStats(CTX ctx,const List<SV>&a);
 SV GfxRenderer_addLight(CTX ctx,const List<SV>&a);
 SV GfxRenderer_removeLight(CTX ctx,const List<SV>&a);
 SV GfxRenderer_getLights(CTX ctx,const List<SV>&a);
-SV GfxRenderer_computeSceneAABB(CTX ctx,const List<SV>&a);
-SV GfxRenderer_computeShadowCasterAABB(CTX ctx,const List<SV>&a);
 SV GfxRenderer_updateStats(CTX ctx,const List<SV>&a);
 SV GfxRenderer_updateColorModifierShader(CTX ctx,const List<SV>&a);
 SV GfxRenderer_setSkybox(CTX ctx,const List<SV>&a);
@@ -3054,6 +3052,10 @@ SV GfxRenderer_getTerrain(CTX ctx,const List<SV>&a);
 SV GfxRenderer_getForwardList(CTX ctx,const List<SV>&a);
 SV GfxRenderer_getDeferredList(CTX ctx,const List<SV>&a);
 SV GfxRenderer_getShadowmapList(CTX ctx,const List<SV>&a);
+SV GfxRenderer_getSceneAABB(CTX ctx,const List<SV>&a);
+SV GfxRenderer_getShadowCasterAABB(CTX ctx,const List<SV>&a);
+SV GfxRenderer_computeSceneAABB(CTX ctx,const List<SV>&a);
+SV GfxRenderer_computeShadowCasterAABB(CTX ctx,const List<SV>&a);
 void Float2_destroy(CTX,const SV&);
 SV Float2_get_member(CTX,const SV&,const SV&);
 void Float2_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5735,6 +5737,9 @@ SV Matrix4x4___eq__(CTX ctx,const List<SV>&a);
 SV Matrix4x4_transpose(CTX ctx,const List<SV>&a);
 SV Matrix4x4_determinant(CTX ctx,const List<SV>&a);
 SV Matrix4x4_inverse(CTX ctx,const List<SV>&a);
+SV Matrix4x4_multTrans(CTX ctx,const List<SV>&a);
+SV Matrix4x4_multScale(CTX ctx,const List<SV>&a);
+SV Matrix4x4_multQuat(CTX ctx,const List<SV>&a);
 SV Matrix4x4_translate(CTX ctx,const List<SV>&a);
 SV Matrix4x4_scale(CTX ctx,const List<SV>&a);
 SV Matrix4x4_rotate(CTX ctx,const List<SV>&a);
@@ -21428,10 +21433,6 @@ RET CNF(GfxRenderer_addLight);
 RET CNF(GfxRenderer_removeLight);
  EI(keyStr.equals("getLights", CPL_STR_HASH("getLights")))
 RET CNF(GfxRenderer_getLights);
- EI(keyStr.equals("computeSceneAABB", CPL_STR_HASH("computeSceneAABB")))
-RET CNF(GfxRenderer_computeSceneAABB);
- EI(keyStr.equals("computeShadowCasterAABB", CPL_STR_HASH("computeShadowCasterAABB")))
-RET CNF(GfxRenderer_computeShadowCasterAABB);
  EI(keyStr.equals("updateStats", CPL_STR_HASH("updateStats")))
 RET CNF(GfxRenderer_updateStats);
  EI(keyStr.equals("updateColorModifierShader", CPL_STR_HASH("updateColorModifierShader")))
@@ -21452,6 +21453,14 @@ RET CNF(GfxRenderer_getForwardList);
 RET CNF(GfxRenderer_getDeferredList);
  EI(keyStr.equals("getShadowmapList", CPL_STR_HASH("getShadowmapList")))
 RET CNF(GfxRenderer_getShadowmapList);
+ EI(keyStr.equals("getSceneAABB", CPL_STR_HASH("getSceneAABB")))
+RET CNF(GfxRenderer_getSceneAABB);
+ EI(keyStr.equals("getShadowCasterAABB", CPL_STR_HASH("getShadowCasterAABB")))
+RET CNF(GfxRenderer_getShadowCasterAABB);
+ EI(keyStr.equals("computeSceneAABB", CPL_STR_HASH("computeSceneAABB")))
+RET CNF(GfxRenderer_computeSceneAABB);
+ EI(keyStr.equals("computeShadowCasterAABB", CPL_STR_HASH("computeShadowCasterAABB")))
+RET CNF(GfxRenderer_computeShadowCasterAABB);
  EI(keyStr.equals("camera", CPL_STR_HASH("camera")))
 {
 GfxRenderer*obj=(GfxRenderer*)f->data;
@@ -21579,23 +21588,6 @@ obj->ssaoRadius=val_to_c<decltype(obj->ssaoRadius)>::f(ctx,value);
 }
 }
 
-SV GfxRenderer_getLightBuffer(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::getLightBuffer" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getLightBuffer());
-;
-}
-CATE(TE,UFOF("GfxRenderer::getLightBuffer.")));
-RET CN;
-}
-
 SV GfxRenderer_updateColorModifierShader(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21610,6 +21602,40 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxRenderer::updateColorModifierShader.")));
+RET CN;
+}
+
+SV GfxRenderer_getSceneAABB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getSceneAABB" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getSceneAABB());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getSceneAABB.")));
+RET CN;
+}
+
+SV GfxRenderer_getShadowCasterAABB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getShadowCasterAABB" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getShadowCasterAABB());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getShadowCasterAABB.")));
 RET CN;
 }
 
@@ -21630,59 +21656,20 @@ CATE(TE,UFOF("GfxRenderer::getShadowmapList.")));
 RET CN;
 }
 
-SV GfxRenderer_render(CTX ctx,const List<SV>&a)
+SV GfxRenderer_getForwardList(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxRenderer::render" EAOE));
+CATE(VE,"GfxRenderer::getForwardList" EAOE));
 GfxRenderer*f;
 f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->render());
-RET CN;
+RET CV( f->getForwardList());
+;
 }
-CATE(TE,UFOF("GfxRenderer::render.")));
-RET CN;
-}
-
-SV GfxRenderer_addTerrain(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::addTerrain" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxRenderer::addTerrain.")));
-RET CN;
-}
-
-SV GfxRenderer_getTerrain(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::getTerrain" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxRenderer::getTerrain.")));
-RET CN;
-}
-
-SV GfxRenderer_setSkybox(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::setSkybox" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxTexture *))
-{
-( f->setSkybox(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxRenderer::setSkybox.")));
+CATE(TE,UFOF("GfxRenderer::getForwardList.")));
 RET CN;
 }
 
@@ -21703,122 +21690,31 @@ CATE(TE,UFOF("GfxRenderer::getSkybox.")));
 RET CN;
 }
 
-SV GfxRenderer_removeTerrain(CTX ctx,const List<SV>&a)
+SV GfxRenderer_addTerrain(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxRenderer::removeTerrain" EAOE));
+CATE(VE,"GfxRenderer::addTerrain" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxRenderer::addTerrain.")));
+RET CN;
+}
+
+SV GfxRenderer_render(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::render" EAOE));
 GfxRenderer*f;
 f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-( f->removeTerrain());
+( f->render());
 RET CN;
 }
-CATE(TE,UFOF("GfxRenderer::removeTerrain.")));
-RET CN;
-}
-
-SV GfxRenderer_getNumLights(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::getNumLights" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getNumLights());
-;
-}
-CATE(TE,UFOF("GfxRenderer::getNumLights.")));
-RET CN;
-}
-
-SV GfxRenderer_getForwardList(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::getForwardList" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getForwardList());
-;
-}
-CATE(TE,UFOF("GfxRenderer::getForwardList.")));
-RET CN;
-}
-
-SV GfxRenderer_computeSceneAABB(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::computeSceneAABB" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->computeSceneAABB());
-;
-}
-CATE(TE,UFOF("GfxRenderer::computeSceneAABB.")));
-RET CN;
-}
-
-SV GfxRenderer_getStats(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::getStats" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getStats());
-;
-}
-CATE(TE,UFOF("GfxRenderer::getStats.")));
-RET CN;
-}
-
-SV GfxRenderer_computeShadowCasterAABB(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::computeShadowCasterAABB" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->computeShadowCasterAABB());
-;
-}
-CATE(TE,UFOF("GfxRenderer::computeShadowCasterAABB.")));
-RET CN;
-}
-
-SV GfxRenderer_addLight(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::addLight" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->addLight());
-;
-}
-CATE(TE,UFOF("GfxRenderer::addLight.")));
+CATE(TE,UFOF("GfxRenderer::render.")));
 RET CN;
 }
 
@@ -21839,6 +21735,74 @@ CATE(TE,UFOF("GfxRenderer::getLights.")));
 RET CN;
 }
 
+SV GfxRenderer_removeLight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::removeLight" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->removeLight(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxRenderer::removeLight.")));
+RET CN;
+}
+
+SV GfxRenderer_addLight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::addLight" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->addLight());
+;
+}
+CATE(TE,UFOF("GfxRenderer::addLight.")));
+RET CN;
+}
+
+SV GfxRenderer_removeTerrain(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::removeTerrain" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeTerrain());
+RET CN;
+}
+CATE(TE,UFOF("GfxRenderer::removeTerrain.")));
+RET CN;
+}
+
+SV GfxRenderer_getStats(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getStats" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getStats());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getStats.")));
+RET CN;
+}
+
 SV GfxRenderer_updateStats(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -21853,23 +21817,6 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxRenderer::updateStats.")));
-RET CN;
-}
-
-SV GfxRenderer_getDeferredList(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxRenderer::getDeferredList" EAOE));
-GfxRenderer*f;
-f=(GfxRenderer*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getDeferredList());
-;
-}
-CATE(TE,UFOF("GfxRenderer::getDeferredList.")));
 RET CN;
 }
 
@@ -21890,20 +21837,116 @@ CATE(TE,UFOF("GfxRenderer::resize.")));
 RET CN;
 }
 
-SV GfxRenderer_removeLight(CTX ctx,const List<SV>&a)
+SV GfxRenderer_getLightBuffer(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxRenderer::removeLight" EAOE));
+CATE(VE,"GfxRenderer::getLightBuffer" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getLightBuffer());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getLightBuffer.")));
+RET CN;
+}
+
+SV GfxRenderer_getNumLights(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getNumLights" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getNumLights());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getNumLights.")));
+RET CN;
+}
+
+SV GfxRenderer_computeSceneAABB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::computeSceneAABB" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->computeSceneAABB());
+RET CN;
+}
+CATE(TE,UFOF("GfxRenderer::computeSceneAABB.")));
+RET CN;
+}
+
+SV GfxRenderer_getTerrain(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getTerrain" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxRenderer::getTerrain.")));
+RET CN;
+}
+
+SV GfxRenderer_computeShadowCasterAABB(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::computeShadowCasterAABB" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->computeShadowCasterAABB());
+RET CN;
+}
+CATE(TE,UFOF("GfxRenderer::computeShadowCasterAABB.")));
+RET CN;
+}
+
+SV GfxRenderer_setSkybox(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::setSkybox" EAOE));
 GfxRenderer*f;
 f=(GfxRenderer*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],size_t))
+if(1&&TS(a[1],GfxTexture *))
 {
-( f->removeLight(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+( f->setSkybox(val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[1])));
 RET CN;
 }
-CATE(TE,UFOF("GfxRenderer::removeLight.")));
+CATE(TE,UFOF("GfxRenderer::setSkybox.")));
+RET CN;
+}
+
+SV GfxRenderer_getDeferredList(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxRenderer::getDeferredList" EAOE));
+GfxRenderer*f;
+f=(GfxRenderer*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getDeferredList());
+;
+}
+CATE(TE,UFOF("GfxRenderer::getDeferredList.")));
 RET CN;
 }
 
@@ -41162,6 +41205,12 @@ RET CNF(Matrix4x4_transpose);
 RET CNF(Matrix4x4_determinant);
  EI(keyStr.equals("inverse", CPL_STR_HASH("inverse")))
 RET CNF(Matrix4x4_inverse);
+ EI(keyStr.equals("multTrans", CPL_STR_HASH("multTrans")))
+RET CNF(Matrix4x4_multTrans);
+ EI(keyStr.equals("multScale", CPL_STR_HASH("multScale")))
+RET CNF(Matrix4x4_multScale);
+ EI(keyStr.equals("multQuat", CPL_STR_HASH("multQuat")))
+RET CNF(Matrix4x4_multQuat);
  EI(keyStr.equals("translate", CPL_STR_HASH("translate")))
 RET CNF(Matrix4x4_translate);
  EI(keyStr.equals("scale", CPL_STR_HASH("scale")))
@@ -41287,6 +41336,40 @@ RET CV( f->get(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_t
 ;
 }
 CATE(TE,UFOF("Matrix4x4::get.")));
+RET CN;
+}
+
+SV Matrix4x4_multTrans(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Matrix4x4::multTrans" EAOE));
+Matrix4x4*f;
+f=(Matrix4x4*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Float3 &))
+{
+( f->multTrans(val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Matrix4x4::multTrans.")));
+RET CN;
+}
+
+SV Matrix4x4_rotate(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Matrix4x4::rotate" EAOE));
+Matrix4x4*f;
+f=(Matrix4x4*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],float))
+{
+RET CV( f->rotate(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
+;
+}
+CATE(TE,UFOF("Matrix4x4::rotate.")));
 RET CN;
 }
 
@@ -41455,6 +41538,23 @@ CATE(TE,UFOF("Matrix4x4::orthographic.")));
 RET CN;
 }
 
+SV Matrix4x4_multQuat(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"Matrix4x4::multQuat" EAOE));
+Matrix4x4*f;
+f=(Matrix4x4*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Quaternion &))
+{
+( f->multQuat(val_to_c<std::remove_reference<const Quaternion &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("Matrix4x4::multQuat.")));
+RET CN;
+}
+
 SV Matrix4x4_translate(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -41489,20 +41589,20 @@ CATE(TE,UFOF("Matrix4x4::__eq__.")));
 RET CN;
 }
 
-SV Matrix4x4_rotate(CTX ctx,const List<SV>&a)
+SV Matrix4x4_multScale(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"Matrix4x4::rotate" EAOE));
+CATE(VE,"Matrix4x4::multScale" EAOE));
 Matrix4x4*f;
 f=(Matrix4x4*)((NO)a[0].p)->data;
 
 if(a.getCount()==2)
-if(1&&TS(a[1],float))
+if(1&&TS(a[1],const Float3 &))
 {
-RET CV( f->rotate(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
-;
+( f->multScale(val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[1])));
+RET CN;
 }
-CATE(TE,UFOF("Matrix4x4::rotate.")));
+CATE(TE,UFOF("Matrix4x4::multScale.")));
 RET CN;
 }
 
