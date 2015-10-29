@@ -44,7 +44,8 @@ class AudioDevice
 
         inline size_t getNumQueuedSamples() const
         {
-            size_t sampleSize = SDL_AUDIO_BITSIZE(spec.format) / 8 * spec.channels;
+            return 0;
+            /*size_t sampleSize = SDL_AUDIO_BITSIZE(spec.format) / 8 * spec.channels;
 
             SDL_LockAudioDevice(id);
 
@@ -52,7 +53,7 @@ class AudioDevice
 
             SDL_UnlockAudioDevice(id);
 
-            return count;
+            return count;*/
         }
 
         void pause();
