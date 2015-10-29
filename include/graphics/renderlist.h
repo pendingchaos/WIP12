@@ -22,6 +22,7 @@ struct DrawCall
     GfxMesh *mesh;
     GfxMaterial *material;
     Matrix4x4 worldMatrix;
+    Matrix4x4 normalMatrix;
     GfxAnimationState *animState;
 } BIND;
 
@@ -43,13 +44,14 @@ class RenderList
             GfxMesh *mesh;
             GfxMaterial *material;
             List<Matrix4x4> worldMatrices;
+            List<Matrix4x4> normalMatrices;
             GfxAnimationState *animState;
         };
 
         List<Batch> batches;
         GfxTexture *matrixTexture;
 
-        void fillMatrixTexture(const List<Matrix4x4>& matrices);
+        void fillMatrixTexture(const List<Matrix4x4>& matrices, const List<Matrix4x4>& normalMatrices);
 } BIND NOT_COPYABLE;
 
 #endif // RENDERQUEUE_H

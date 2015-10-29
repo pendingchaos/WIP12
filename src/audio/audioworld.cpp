@@ -6,6 +6,7 @@
 
 void audioWorldCallback(float *data, size_t numSamples, void *userdata, AudioDevice *device)
 {
+    #if 0
     double duration = (double)numSamples / (double)device->getFrequency();
 
     AudioWorld *world = (AudioWorld *)userdata;
@@ -114,6 +115,7 @@ void audioWorldCallback(float *data, size_t numSamples, void *userdata, AudioDev
             }
         }
     }
+    #endif
 }
 
 AudioWorld::AudioWorld() : dopplerFactor(1.0f),

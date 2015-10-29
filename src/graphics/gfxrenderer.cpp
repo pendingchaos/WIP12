@@ -1673,6 +1673,7 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
                             obj.mesh = mesh->copyRef<GfxMesh>();
                             obj.animState = (mesh == animMesh) ? animState : nullptr;
                             obj.worldMatrix = transform * lod.worldMatrix;
+                            obj.normalMatrix = Matrix3x3(obj.worldMatrix.inverse().transpose());
 
                             objects.append(obj);
                         }

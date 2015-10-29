@@ -31,6 +31,7 @@ void RenderList::addDrawCall(const DrawCall& drawCall)
         batch.material = drawCall.material->copyRef<GfxMaterial>();
         batch.mesh = drawCall.mesh->copyRef<GfxMesh>();
         batch.worldMatrices.append(drawCall.worldMatrix);
+        batch.normalMatrices.append(drawCall.normalMatrix);
         batch.animState = drawCall.animState;
 
         batches.append(batch);
@@ -43,6 +44,7 @@ void RenderList::addDrawCall(const DrawCall& drawCall)
         if (batches[k].material == drawCall.material and batches[k].mesh == drawCall.mesh)
         {
             batches[k].worldMatrices.append(drawCall.worldMatrix);
+            batches[k].normalMatrices.append(drawCall.normalMatrix);
             return;
         }
     }
@@ -51,6 +53,7 @@ void RenderList::addDrawCall(const DrawCall& drawCall)
     batch.material = drawCall.material->copyRef<GfxMaterial>();
     batch.mesh = drawCall.mesh->copyRef<GfxMesh>();
     batch.worldMatrices.append(drawCall.worldMatrix);
+    batch.normalMatrices.append(drawCall.normalMatrix);
     batch.animState = nullptr;
 
     batches.append(batch);
@@ -60,7 +63,7 @@ void RenderList::execute(const Camera& camera)
 {
     for (auto batch : batches)
     {
-        fillMatrixTexture(batch.worldMatrices);
+        fillMatrixTexture(batch.worldMatrices, batch.normalMatrices);
 
         GfxMaterial *material = batch.material;
         GfxMesh *mesh = batch.mesh;
@@ -84,7 +87,7 @@ void RenderList::execute(Light *light, size_t pass)
 {
     for (auto batch : batches)
     {
-        fillMatrixTexture(batch.worldMatrices);
+        fillMatrixTexture(batch.worldMatrices, batch.normalMatrices);
 
         GfxMaterial *material = batch.material;
         GfxMesh *mesh = batch.mesh;
@@ -115,7 +118,7 @@ void RenderList::clear()
     batches.clear();
 }
 
-void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
+void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices, const List<Matrix4x4>& normalMatrices)
 {
     size_t maxSize = gfxApi->getMaxTextureSize();
     size_t numTexels = worldMatrices.getCount() * 8;
@@ -126,7 +129,7 @@ void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices)
     for (size_t j = 0; j < worldMatrices.getCount(); ++j)
     {
         Matrix4x4 worldMatrix = worldMatrices[j];
-        Matrix4x4 normalMatrix = Matrix3x3(worldMatrix.inverse().transpose());
+        Matrix4x4 normalMatrix = normalMatrices[j];
         worldMatrix = worldMatrix.transpose();
         normalMatrix = normalMatrix.transpose();
 

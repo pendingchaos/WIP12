@@ -18,6 +18,7 @@ inline uint32_t floatToUint32(float f)
 }
 
 //Audio disabled because SDL_CloseAudioDevice does not return (audio thread not joining?)
+//Audio world is also disabled.
 AudioDevice::AudioDevice(size_t index_, size_t frequency_, size_t samples_) : volume(1.0f),
                                                                               index(index_),
                                                                               frequency(frequency_),
@@ -102,7 +103,7 @@ bool AudioDevice::getPaused()
 
 void AudioDevice::runCallbacks(size_t numSamples)
 {
-    float *result = (float *)ALLOCATE(numSamples * sizeof(float) * 2);
+    /*float *result = (float *)ALLOCATE(numSamples * sizeof(float) * 2);
 
     for (size_t i = 0; i < numSamples*2; ++i)
     {
@@ -227,13 +228,13 @@ void AudioDevice::runCallbacks(size_t numSamples)
 
     DEALLOCATE(result);
 
-    //SDL_LockAudioDevice(id);
+    SDL_LockAudioDevice(id);
 
     queued.append(sampleSize * numSamples, (uint8_t *)converted);
 
-    //SDL_UnlockAudioDevice(id);
+    SDL_UnlockAudioDevice(id);
 
-    DEALLOCATE(converted);
+    DEALLOCATE(converted);*/
 }
 
 void AudioDevice::audioDeviceCallback(void *userdata, Uint8 *data, int len)

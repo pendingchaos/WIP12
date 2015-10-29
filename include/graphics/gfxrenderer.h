@@ -368,6 +368,7 @@ class GfxRenderer
             GfxMesh *mesh;
             GfxAnimationState *animState;
             Matrix4x4 worldMatrix;
+            Matrix4x4 normalMatrix;
         };
 
         List<Object> objects;
