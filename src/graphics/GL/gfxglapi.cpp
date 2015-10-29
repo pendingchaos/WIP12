@@ -64,10 +64,10 @@ static void printOpenGLInfo()
     const char *version = (const char *)glGetString(GL_VERSION);
     const char *glslVersion = (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
 
-    log("OpenGL vendor: %s", vendor);
-    log("OpenGL renderer: %s", renderer);
-    log("OpenGL version: %s", version);
-    log("GLSL version: %s", glslVersion);
+    log("OpenGL vendor: %s\n", vendor);
+    log("OpenGL renderer: %s\n", renderer);
+    log("OpenGL version: %s\n", version);
+    log("GLSL version: %s\n", glslVersion);
 
     GLint numExtensions;
     glGetIntegerv(GL_NUM_EXTENSIONS, &numExtensions);

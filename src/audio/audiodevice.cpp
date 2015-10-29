@@ -17,6 +17,7 @@ inline uint32_t floatToUint32(float f)
     return u.i;
 }
 
+//Audio disabled because SDL_CloseAudioDevice does not return (audio thread not joining?)
 AudioDevice::AudioDevice(size_t index_, size_t frequency_, size_t samples_) : volume(1.0f),
                                                                               index(index_),
                                                                               frequency(frequency_),
@@ -31,17 +32,17 @@ AudioDevice::AudioDevice(size_t index_, size_t frequency_, size_t samples_) : vo
     format.callback = audioDeviceCallback;
     format.userdata = this;
 
-    id = SDL_OpenAudioDevice(SDL_GetAudioDeviceName(index, false),
+    /*id = SDL_OpenAudioDevice(SDL_GetAudioDeviceName(index, false),
                              false,
                              &format,
                              &spec,
                              SDL_AUDIO_ALLOW_FORMAT_CHANGE |
-                             SDL_AUDIO_ALLOW_FREQUENCY_CHANGE);
+                             SDL_AUDIO_ALLOW_FREQUENCY_CHANGE);*/
 }
 
 AudioDevice::~AudioDevice()
 {
-    SDL_CloseAudioDevice(id);
+    //SDL_CloseAudioDevice(id);
 }
 
 Str AudioDevice::getName()
@@ -85,17 +86,18 @@ void AudioDevice::setSamples(size_t samples_)
 
 void AudioDevice::pause()
 {
-    SDL_PauseAudioDevice(id, 1);
+    //SDL_PauseAudioDevice(id, 1);
 }
 
 void AudioDevice::play()
 {
-    SDL_PauseAudioDevice(id, 0);
+    //SDL_PauseAudioDevice(id, 0);
 }
 
 bool AudioDevice::getPaused()
 {
-    return SDL_GetAudioDeviceStatus(id) == SDL_AUDIO_PAUSED;
+    return false;
+    //return SDL_GetAudioDeviceStatus(id) == SDL_AUDIO_PAUSED;
 }
 
 void AudioDevice::runCallbacks(size_t numSamples)
@@ -225,11 +227,11 @@ void AudioDevice::runCallbacks(size_t numSamples)
 
     DEALLOCATE(result);
 
-    SDL_LockAudioDevice(id);
+    //SDL_LockAudioDevice(id);
 
     queued.append(sampleSize * numSamples, (uint8_t *)converted);
 
-    SDL_UnlockAudioDevice(id);
+    //SDL_UnlockAudioDevice(id);
 
     DEALLOCATE(converted);
 }

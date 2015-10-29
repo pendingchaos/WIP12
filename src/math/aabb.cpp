@@ -100,8 +100,8 @@ void AABB::extend(const Position3D& point)
 
 void AABB::extend(const AABB& aabb)
 {
-        extend(aabb.min);
-        extend(aabb.max);
+    extend(aabb.min);
+    extend(aabb.max);
 }
 
 void AABB::grow(const Vector3D& amount)
