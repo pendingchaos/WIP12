@@ -20,24 +20,24 @@ class Engine
         Engine();
         ~Engine();
 
-        inline const HashMap<Str, Value>& getGlobalVars() const
+        const HashMap<Str, Value>& getGlobalVars() const
         {
             return globalVars;
         }
 
-        inline HashMap<Str, Value>& getGlobalVars()
+        HashMap<Str, Value>& getGlobalVars()
         {
             return globalVars;
         }
 
         void addExtension(const Str& name, const Extension& extension);
 
-        inline const Extension& getExtension(const Str& name) const
+        const Extension& getExtension(const Str& name) const
         {
             return extensions.get(name);
         }
 
-        inline int64_t createNewTypeID()
+        int64_t createNewTypeID()
         {
             return nextTypeID++;
         }

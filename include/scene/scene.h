@@ -35,17 +35,17 @@ class Scene : public Resource
         void fixedUpdate(float timestep);
         void render();
 
-        inline PhysicsWorld *getPhysicsWorld() const
+        PhysicsWorld *getPhysicsWorld() const
         {
             return physicsWorld;
         }
 
-        inline GfxRenderer *getRenderer() const
+        GfxRenderer *getRenderer() const
         {
             return renderer;
         }
 
-        inline AudioWorld *getAudioWorld() const
+        AudioWorld *getAudioWorld() const
         {
             return audioWorld;
         }
@@ -56,7 +56,7 @@ class Scene : public Resource
         void removeEntity(size_t index);
         Entity *findEntity(const Str& name);
 
-        inline const List<Entity *>& getEntities() const
+        const List<Entity *>& getEntities() const
         {
             return entities;
         }
@@ -89,7 +89,7 @@ class Scene : public Resource
             }
         }
 
-        inline const List<ScriptInstance *>& getScripts() const
+        const List<ScriptInstance *>& getScripts() const
         {
             return scripts;
         }

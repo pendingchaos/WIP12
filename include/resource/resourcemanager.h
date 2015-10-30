@@ -134,7 +134,7 @@ class ResourceManager
         HashMap<ResType, HashMap<Str, Resource *>> resources;
 
         template <typename T>
-        inline ResType getType() const
+        ResType getType() const
         {
             return T::resource_type;
         }

@@ -16,14 +16,14 @@ class GfxTerrainLayer
 
         GfxTerrainLayer& operator = (const GfxTerrainLayer& other);
 
-        inline GfxMaterial *getMaterial() const
+        GfxMaterial *getMaterial() const
         {
             return material;
         }
 
         void setMaterial(GfxMaterial *material_);
 
-        inline GfxTexture *getWeight() const
+        GfxTexture *getWeight() const
         {
             return weight;
         }
@@ -44,49 +44,49 @@ class GfxTerrain
                    GfxTexture *heightmap);
         ~GfxTerrain();
 
-        inline float getChunkSize() const
+        float getChunkSize() const
         {
             return chunkSize;
         }
 
-        inline size_t getSizeInChunks() const
+        size_t getSizeInChunks() const
         {
             return sizeInChunks;
         }
 
-        inline GfxTexture *getHeightmap() const
+        GfxTexture *getHeightmap() const
         {
             return heightmap;
         }
 
-        inline void setChunkSize(float chunkSize_)
+        void setChunkSize(float chunkSize_)
         {
             chunkSize = chunkSize_;
             recreate();
         }
 
-        inline void setSizeInChunks(size_t sizeInChunks_)
+        void setSizeInChunks(size_t sizeInChunks_)
         {
             sizeInChunks = sizeInChunks_;
             recreate();
         }
 
-        inline void setHeightmap(GfxTexture *heightmap) const NO_BIND
+        void setHeightmap(GfxTexture *heightmap) const NO_BIND
         {
             heightmap = heightmap;
         }
 
-        inline GfxMesh *getMesh() const
+        GfxMesh *getMesh() const
         {
             return mesh;
         }
 
-        inline float getScale() const
+        float getScale() const
         {
             return scale;
         }
 
-        inline void setScale(float scale_)
+        void setScale(float scale_)
         {
             scale = scale_;
             updateAABB();

@@ -136,9 +136,9 @@ class GfxMesh : public Resource
                         GfxMeshIndexDataType indexType,
                         const void *indices) NO_BIND;
 
-        inline void addIndices(size_t numIndices,
-                               GfxMeshIndexDataType indexType,
-                               const ResizableData& data)
+        void addIndices(size_t numIndices,
+                        GfxMeshIndexDataType indexType,
+                        const ResizableData& data)
         {
             static const size_t indexTypeSizes[] = {1, 2, 4};
 
@@ -155,7 +155,7 @@ class GfxMesh : public Resource
         void setAttribute(const GfxMeshAttrib& attrib);
         void removeAttribute(GfxMeshAttribType type);
 
-        inline bool getIndexed() const
+        bool getIndexed() const
         {
             return indexed;
         }
@@ -170,27 +170,27 @@ class GfxMesh : public Resource
             return indices;
         }
 
-        inline const List<GfxMeshAttrib>& getAttribs() const NO_BIND
+        const List<GfxMeshAttrib>& getAttribs() const NO_BIND
         {
             return attribs;
         }
 
-        inline size_t getAttribCount() const
+        size_t getAttribCount() const
         {
             return attribs.getCount();
         }
 
-        inline GfxMeshAttrib getAttrib(size_t index) const
+        GfxMeshAttrib getAttrib(size_t index) const
         {
             return attribs[index];
         }
 
-        inline GLuint getGLVAO() const
+        GLuint getGLVAO() const
         {
             return vao;
         }
 
-        inline GLuint getGLIndexBuffer() const
+        GLuint getGLIndexBuffer() const
         {
             return indexBuffer;
         }
@@ -235,22 +235,22 @@ class GfxAnimationState
 
         float timeOffset;
 
-        inline const Str getAnimName() const
+        const Str getAnimName() const
         {
             return animName;
         }
 
-        inline GfxMesh *getMesh() const
+        GfxMesh *getMesh() const
         {
             return mesh;
         }
 
-        inline GfxBuffer *getMatrixBuffer() const
+        GfxBuffer *getMatrixBuffer() const
         {
             return matrixBuffer;
         }
 
-        inline GfxBuffer *getNormalMatrixBuffer() const
+        GfxBuffer *getNormalMatrixBuffer() const
         {
             return normalMatrixBuffer;
         }

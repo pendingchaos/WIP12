@@ -8,7 +8,7 @@
 #include "platform.h"
 #include "globals.h"
 
-inline bool intersects(int left, int right, int bottom, int top, Int2 pos)
+bool intersects(int left, int right, int bottom, int top, Int2 pos)
 {
     return pos.x > left and pos.x < right and pos.y > bottom and pos.y < top;
 }

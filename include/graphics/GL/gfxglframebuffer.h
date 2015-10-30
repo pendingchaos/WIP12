@@ -30,12 +30,12 @@ class GfxGLFramebuffer : public GfxFramebuffer
         virtual size_t getDepthTextureMipmapLevel();
         virtual int getDepthAttachmentLayer();
 
-        inline GLuint getGLFramebuffer() const
+        GLuint getGLFramebuffer() const
         {
             return fbo;
         }
 
-        inline void setDirty()
+        void setDirty()
         {
             dirty = true;
         }

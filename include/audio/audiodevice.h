@@ -27,22 +27,22 @@ class AudioDevice
         void setFrequency(size_t frequency);
         void setSamples(size_t samples);
 
-        inline size_t getIndex()
+        size_t getIndex()
         {
             return index;
         }
 
-        inline size_t getFrequency() const
+        size_t getFrequency() const
         {
             return spec.freq;
         }
 
-        inline size_t getSamples() const
+        size_t getSamples() const
         {
             return samples;
         }
 
-        inline size_t getNumQueuedSamples() const
+        size_t getNumQueuedSamples() const
         {
             return 0;
             /*size_t sampleSize = SDL_AUDIO_BITSIZE(spec.format) / 8 * spec.channels;

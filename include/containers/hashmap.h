@@ -178,22 +178,22 @@ class HashMap
             return data.find(key) != data.end();
         }
 
-        inline typename std::unordered_map<Key, Value>::iterator begin() NO_BIND
+        typename std::unordered_map<Key, Value>::iterator begin() NO_BIND
         {
             return data.begin();
         }
 
-        inline typename std::unordered_map<Key, Value>::iterator end() NO_BIND
+        typename std::unordered_map<Key, Value>::iterator end() NO_BIND
         {
             return data.end();
         }
 
-        inline typename std::unordered_map<Key, Value>::const_iterator begin() const NO_BIND
+        typename std::unordered_map<Key, Value>::const_iterator begin() const NO_BIND
         {
             return data.begin();
         }
 
-        inline typename std::unordered_map<Key, Value>::const_iterator end() const NO_BIND
+        typename std::unordered_map<Key, Value>::const_iterator end() const NO_BIND
         {
             return data.end();
         }
@@ -259,7 +259,7 @@ class HashMapBuilder
             return *this;
         }
 
-        inline operator HashMap<Key, Value>() const
+        operator HashMap<Key, Value>() const
         {
             return hashMap;
         }

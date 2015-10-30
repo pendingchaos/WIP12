@@ -19,12 +19,12 @@ class Quaternion
 
         Matrix4x4 toMatrix() const;
 
-        inline bool operator == (const Quaternion& other) const
+        bool operator == (const Quaternion& other) const
         {
             return x == other.x and y == other.y and z == other.z and w == other.w;
         }
 
-        inline Quaternion normalize() const
+        Quaternion normalize() const
         {
             float length = std::sqrt(x*x + y*y + z*z + w*w);
 
@@ -34,27 +34,27 @@ class Quaternion
                                                        w / length);
         }
 
-        inline float getAngle() const
+        float getAngle() const
         {
             return std::acos(w) * 2.0f;
         }
 
-        inline float getXAxis() const
+        float getXAxis() const
         {
             return x / std::sin(std::acos(w));
         }
 
-        inline float getYAxis() const
+        float getYAxis() const
         {
             return y / std::sin(std::acos(w));
         }
 
-        inline float getZAxis() const
+        float getZAxis() const
         {
             return z / std::sin(std::acos(w));
         }
 
-        inline Direction3D getAxis() const
+        Direction3D getAxis() const
         {
             float sha = std::sin(std::acos(w));
 
@@ -63,22 +63,22 @@ class Quaternion
 
         Float4 getAxisAndAngle() const;
 
-        inline void setAngle(float angle)
+        void setAngle(float angle)
         {
             w = std::cos(angle / 2.0f);
         }
 
-        inline void setXAxis(float xAxis)
+        void setXAxis(float xAxis)
         {
             x = xAxis * std::sin(std::acos(w));
         }
 
-        inline void setYAxis(float yAxis)
+        void setYAxis(float yAxis)
         {
             y = yAxis * std::sin(std::acos(w));
         }
 
-        inline void setZAxis(float zAxis)
+        void setZAxis(float zAxis)
         {
             z = zAxis * std::sin(std::acos(w));
         }

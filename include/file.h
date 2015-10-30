@@ -39,12 +39,12 @@ class FileException : public Exception
             return string;
         }
 
-        inline const Str& getFilename() const
+        const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const Str& getProblem() const
+        const Str& getProblem() const
         {
             return problem;
         }
@@ -74,7 +74,7 @@ class File
 
         void read(size_t amount, void *destination) NO_BIND;
 
-        inline ResizableData read(size_t amount)
+        ResizableData read(size_t amount)
         {
             ResizableData data(amount);
             read(amount, data.getData());
@@ -83,7 +83,7 @@ class File
 
         void write(size_t amount, const void *data) NO_BIND;
 
-        inline void write(const ResizableData& data)
+        void write(const ResizableData& data)
         {
             write(data.getSize(), data.getData());
         }

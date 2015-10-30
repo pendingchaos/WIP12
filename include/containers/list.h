@@ -38,7 +38,7 @@ class List
             return true;
         }
 
-        inline bool operator != (const List& other) const
+        bool operator != (const List& other) const
         {
             return not (*this == other);
         }
@@ -63,27 +63,27 @@ class List
             return data[index];
         }
 
-        inline T get(size_t index) const
+        T get(size_t index) const
         {
             return (*this)[index];
         }
 
-        inline void set(size_t index, const T& v)
+        void set(size_t index, const T& v)
         {
             (*this)[index] = v;
         }
 
-        inline std::size_t getCount() const
+        std::size_t getCount() const
         {
             return data.size();
         }
 
-        inline T *getData() NO_BIND
+        T *getData() NO_BIND
         {
             return data.data();
         }
 
-        inline const T *getData() const NO_BIND
+        const T *getData() const NO_BIND
         {
             return data.data();
         }
@@ -118,7 +118,7 @@ class List
             insert(start, 1, &toInsert);
         }
 
-        inline void insert(std::size_t start, const List& toInsert)
+        void insert(std::size_t start, const List& toInsert)
         {
             if (start > data.size())
             {
@@ -156,12 +156,12 @@ class List
             return -1;
         }
 
-        inline List copy() const
+        List copy() const
         {
             return List(getCount(), data.data());
         }
 
-        inline bool in(const T& value) const
+        bool in(const T& value) const
         {
             return find(value) != -1;
         }
@@ -171,18 +171,18 @@ class List
             friend List;
 
             public:
-                inline const T& operator * () const
+                const T& operator * () const
                 {
                     return list[i];
                 }
 
-                inline Iterator& operator ++ ()
+                Iterator& operator ++ ()
                 {
                     ++i;
                     return *this;
                 }
 
-                inline bool operator != (const Iterator& other) const
+                bool operator != (const Iterator& other) const
                 {
                     return i != other.i;
                 }
@@ -198,18 +198,18 @@ class List
             friend List;
 
             public:
-                inline const T& operator * () const
+                const T& operator * () const
                 {
                     return list[i];
                 }
 
-                inline ConstIterator& operator ++ ()
+                ConstIterator& operator ++ ()
                 {
                     ++i;
                     return *this;
                 }
 
-                inline bool operator != (const ConstIterator& other) const
+                bool operator != (const ConstIterator& other) const
                 {
                     return i != other.i;
                 }
@@ -220,22 +220,22 @@ class List
                 size_t i;
         };
 
-        inline Iterator begin() NO_BIND
+        Iterator begin() NO_BIND
         {
             return Iterator(*this, 0);
         }
 
-        inline Iterator end() NO_BIND
+        Iterator end() NO_BIND
         {
             return Iterator(*this, getCount());
         }
 
-        inline ConstIterator begin() const NO_BIND
+        ConstIterator begin() const NO_BIND
         {
             return ConstIterator(*this, 0);
         }
 
-        inline ConstIterator end() const NO_BIND
+        ConstIterator end() const NO_BIND
         {
             return ConstIterator(*this, getCount());
         }

@@ -35,7 +35,7 @@ class RayCastResult
             GhostObject *ghost;
         } NO_BIND;
 
-        inline RigidBody *getRigidBody() const
+        RigidBody *getRigidBody() const
         {
             if (objType == PhysicsObjectType::Body)
             {
@@ -44,7 +44,7 @@ class RayCastResult
             return nullptr;
         }
 
-        inline GhostObject *getGhost() const
+        GhostObject *getGhost() const
         {
             if (objType == PhysicsObjectType::Ghost)
             {
@@ -53,7 +53,7 @@ class RayCastResult
             return nullptr;
         }
 
-        inline bool operator == (const RayCastResult& other) const
+        bool operator == (const RayCastResult& other) const
         {
             return distance == other.distance and
                    normal == other.normal and
@@ -70,24 +70,24 @@ class PhysicsWorld
 
         void addDebugDrawer();
 
-        inline void setGravity(const Vector3D& gravity)
+        void setGravity(const Vector3D& gravity)
         {
             world->setGravity(btVector3(gravity.x, gravity.y, gravity.z));
         }
 
-        inline Vector3D getGravity() const
+        Vector3D getGravity() const
         {
             btVector3 gravity = world->getGravity();
 
             return Vector3D(gravity.getX(), gravity.getY(), gravity.getZ());
         }
 
-        inline const List<RigidBody *>& getRigidBodies() const
+        const List<RigidBody *>& getRigidBodies() const
         {
             return rigidBodies;
         }
 
-        inline const List<GhostObject *>& getGhostObjects() const
+        const List<GhostObject *>& getGhostObjects() const
         {
             return ghostObjects;
         }
@@ -108,7 +108,7 @@ class PhysicsWorld
                                     const Direction3D& direction,
                                     float distance=9999.0f);
 
-        inline btDynamicsWorld *getBulletWorld() const NO_BIND
+        btDynamicsWorld *getBulletWorld() const NO_BIND
         {
             return world;
         }

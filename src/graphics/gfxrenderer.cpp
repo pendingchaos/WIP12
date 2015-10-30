@@ -759,25 +759,25 @@ class PostEffect
     public:
         PostEffect() : fb(nullptr), shaders(nullptr), gpuTimer(nullptr), quad(nullptr) {}
 
-        inline PostEffect& setFramebuffer(GfxFramebuffer *fb_)
+        PostEffect& setFramebuffer(GfxFramebuffer *fb_)
         {
             fb = fb_;
             return *this;
         }
 
-        inline PostEffect& setShaders(GfxShaderCombination *shaders_)
+        PostEffect& setShaders(GfxShaderCombination *shaders_)
         {
             shaders = shaders_;
             return *this;
         }
 
-        inline PostEffect& setGpuTimer(GPUTimer *timer)
+        PostEffect& setGpuTimer(GPUTimer *timer)
         {
             gpuTimer = timer;
             return *this;
         }
 
-        inline PostEffect& setQuad(GfxMesh *quad_)
+        PostEffect& setQuad(GfxMesh *quad_)
         {
             quad = quad_;
             return *this;

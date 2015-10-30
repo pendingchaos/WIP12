@@ -19,10 +19,10 @@ class GfxDebugDrawer
         GfxDebugDrawer(GfxApi *gfxApi) NO_BIND;
         ~GfxDebugDrawer();
 
-        inline void addLine(const Position3D& startPos,
-                            const Position3D& endPos,
-                            const Float4& startColor,
-                            const Float4& endColor)
+        void addLine(const Position3D& startPos,
+                     const Position3D& endPos,
+                     const Float4& startColor,
+                     const Float4& endColor)
         {
             lines.append((Line){startColor, startPos, endColor, endPos});
         }

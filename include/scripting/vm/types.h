@@ -61,12 +61,12 @@ struct Value
 
     bool operator == (const Value& other) const;
 
-    inline bool operator != (const Value& other) const
+    bool operator != (const Value& other) const
     {
         return not (*this == other);
     }
 
-    inline Str getStr() const
+    Str getStr() const
     {
         return *(Str *)s;
     }
@@ -74,15 +74,15 @@ struct Value
 
 struct FunctionData
 {
-    inline FunctionData() {}
-    inline FunctionData(const Bytecode& bytecode_) : bytecode(bytecode_) {}
+    FunctionData() {}
+    FunctionData(const Bytecode& bytecode_) : bytecode(bytecode_) {}
 
     Bytecode bytecode;
 };
 
 struct ObjectData
 {
-    inline ObjectData() : refCount(1) {}
+    ObjectData() : refCount(1) {}
 
     HashMap<Str, Value> members;
     uint64_t refCount;
@@ -90,7 +90,7 @@ struct ObjectData
 
 struct ExceptionData
 {
-    inline ExceptionData(ExcType type_, Str error_) : type(type_), error(error_) {}
+    ExceptionData(ExcType type_, Str error_) : type(type_), error(error_) {}
 
     ExcType type;
     Str error;
@@ -98,12 +98,12 @@ struct ExceptionData
 
 struct NativeObjectData
 {
-    inline NativeObjectData(NativeObjectFuncs funcs_,
-                            void *data_,
-                            int64_t typeID_) : funcs(funcs_),
-                                               typeID(typeID_),
-                                               refCount(1),
-                                               data(data_) {}
+    NativeObjectData(NativeObjectFuncs funcs_,
+                     void *data_,
+                     int64_t typeID_) : funcs(funcs_),
+                                        typeID(typeID_),
+                                        refCount(1),
+                                        data(data_) {}
 
     NativeObjectFuncs funcs;
     int64_t typeID;

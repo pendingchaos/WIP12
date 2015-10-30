@@ -39,17 +39,17 @@ class Frustum
                 const Position3D corner6,
                 const Position3D corner7);
 
-        inline Position3D getOrigin() const
+        Position3D getOrigin() const
         {
             return origin;
         }
 
-        inline Position3D getCorner(size_t index) const
+        Position3D getCorner(size_t index) const
         {
             return corners[index];
         }
 
-        inline Plane getPlane(size_t index) const
+        Plane getPlane(size_t index) const
         {
             return planes[index];
         }

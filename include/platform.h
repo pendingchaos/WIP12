@@ -172,32 +172,32 @@ struct Event
         } mouseWheel;
     } NO_BIND;
 
-    inline unsigned int getWidth() const
+    unsigned int getWidth() const
     {
         return type == EventType::WindowResize ? resize.width : 0;
     }
 
-    inline unsigned int getHeight() const
+    unsigned int getHeight() const
     {
         return type == EventType::WindowResize ? resize.height : 0;
     }
 
-    inline Key getKey() const
+    Key getKey() const
     {
         return (type == EventType::KeyDown or type == EventType::KeyUp) ? key.key : Key::Unknown;
     }
 
-    inline unsigned int getX() const
+    unsigned int getX() const
     {
         return type == EventType::MouseMotion ? mouseMotion.x : 0;
     }
 
-    inline unsigned int getY() const
+    unsigned int getY() const
     {
         return type == EventType::MouseMotion ? mouseMotion.y : 0;
     }
 
-    inline int getRelX() const
+    int getRelX() const
     {
         if (type == EventType::MouseMotion)
         {
@@ -211,7 +211,7 @@ struct Event
         }
     }
 
-    inline int getRelY() const
+    int getRelY() const
     {
         if (type == EventType::MouseMotion)
         {
@@ -225,12 +225,12 @@ struct Event
         }
     }
 
-    inline MouseButton getButton() const
+    MouseButton getButton() const
     {
         return (type == EventType::MouseButtonDown or type == EventType::MouseButtonUp) ? mouseButton.button : MouseButton::Unknown;
     }
 
-    inline bool getDoubleClicked() const
+    bool getDoubleClicked() const
     {
         return (type == EventType::MouseButtonDown or type == EventType::MouseButtonUp) ? mouseButton.doubleClicked : false;
     }
@@ -282,17 +282,17 @@ class Platform
         bool getFullscreen() const;
         void setFullscreen(bool fullscreen);
 
-        inline float getFrametime() const
+        float getFrametime() const
         {
             return frametime;
         }
 
-        inline float getGPUFrametime() const
+        float getGPUFrametime() const
         {
             return gpuFrametime;
         }
 
-        inline float getCPUFrametime() const
+        float getCPUFrametime() const
         {
             return cpuFrametime;
         }

@@ -84,7 +84,7 @@ class Bytecode
         Bytecode() {}
         Bytecode(ResizableData& data);
 
-        inline int64_t getInt64(size_t offset) const
+        int64_t getInt64(size_t offset) const
         {
             if (offset + 8 > data.getSize())
             {
@@ -96,7 +96,7 @@ class Bytecode
             return FROM_LE_S64(*((int64_t *)data_));
         }
 
-        inline int32_t getUInt32(size_t offset) const
+        int32_t getUInt32(size_t offset) const
         {
             if (offset + 4 > data.getSize())
             {
@@ -108,7 +108,7 @@ class Bytecode
             return FROM_LE_U32(*((uint32_t *)data_));
         }
 
-        inline int32_t getInt32(size_t offset) const
+        int32_t getInt32(size_t offset) const
         {
             if (offset + 4 > data.getSize())
             {
@@ -120,7 +120,7 @@ class Bytecode
             return FROM_LE_U32(*((int32_t *)data_));
         }
 
-        inline double getDouble(size_t offset) const
+        double getDouble(size_t offset) const
         {
             if (offset + 8 > data.getSize())
             {
@@ -132,7 +132,7 @@ class Bytecode
             return *((double *)data_);
         }
 
-        inline uint8_t getUInt8(size_t offset) const
+        uint8_t getUInt8(size_t offset) const
         {
             if (offset >= data.getSize())
             {
@@ -142,17 +142,17 @@ class Bytecode
             return *((uint8_t *)data.getData() + offset);
         }
 
-        inline bool getBoolean(size_t offset) const
+        bool getBoolean(size_t offset) const
         {
             return getUInt8(offset) != 0;
         }
 
-        inline Opcode getOpcode(size_t offset) const
+        Opcode getOpcode(size_t offset) const
         {
             return (Opcode)getUInt8(offset);
         }
 
-        inline ResizableData getData(size_t offset, size_t amount) const
+        ResizableData getData(size_t offset, size_t amount) const
         {
             if (offset+amount > data.getSize())
             {

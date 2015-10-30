@@ -165,7 +165,7 @@ namespace scripting
                 }
             }
 
-            inline void addStatement(ASTNode *node)
+            void addStatement(ASTNode *node)
             {
                 node->parent = this;
 
@@ -188,7 +188,7 @@ namespace scripting
                 }
             }
 
-            inline void addMember(ASTNode *node)
+            void addMember(ASTNode *node)
             {
                 node->parent = this;
 
@@ -228,14 +228,14 @@ namespace scripting
                 }
             }
 
-            inline void setElse(ASTNode *newElse)
+            void setElse(ASTNode *newElse)
             {
                 if (else_ != nullptr) {DELETE(else_);}
                 else_ = newElse;
                 if (else_ != nullptr) {else_->parent = this;}
             }
 
-            inline void addElif(ASTNode *cond, ASTNode *node)
+            void addElif(ASTNode *cond, ASTNode *node)
             {
                 cond->parent = this;
                 node->parent = this;
@@ -266,7 +266,7 @@ namespace scripting
                 DELETE(except);
             }
 
-            inline void setExcept(ASTNode *node)
+            void setExcept(ASTNode *node)
             {
                 if (except != nullptr) {DELETE(except);}
                 except = node;
@@ -332,7 +332,7 @@ namespace scripting
                 }
             }
 
-            inline void addArg(ASTNode *node)
+            void addArg(ASTNode *node)
             {
                 node->parent = this;
 

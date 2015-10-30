@@ -15,7 +15,7 @@ class Plane
             distance = -normal.dot(v0);
         }
 
-        inline float distanceToPoint(const Position3D& p) const
+        float distanceToPoint(const Position3D& p) const
         {
             return normal.dot(p) + distance;
         }

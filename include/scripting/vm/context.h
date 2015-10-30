@@ -77,22 +77,22 @@ class Context
         Context(Engine *engine);
         ~Context();
 
-        inline const CallstackEntry *getCallstack() const
+        const CallstackEntry *getCallstack() const
         {
             return callStack;
         }
 
-        inline CallstackEntry *getCallstack()
+        CallstackEntry *getCallstack()
         {
             return callStack;
         }
 
-        inline size_t getCallstackSize() const
+        size_t getCallstackSize() const
         {
             return callStackSize;
         }
 
-        inline Engine *getEngine() const
+        Engine *getEngine() const
         {
             return engine;
         }
@@ -130,12 +130,12 @@ class UnhandledExcException : public ExecutionException
             return "Unhandled script exception.";
         }
 
-        inline Value getException() const
+        Value getException() const
         {
             return exception;
         }
 
-        inline Context *getContext() const
+        Context *getContext() const
         {
             return ctx;
         }

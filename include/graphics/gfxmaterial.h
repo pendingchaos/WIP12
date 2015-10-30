@@ -34,13 +34,13 @@ class GfxMaterial : public Resource
         virtual void removeContent();
         virtual void save();
 
-        inline void setScript(Script *script_)
+        void setScript(Script *script_)
         {
             DELETE(script);
             script = script_->createInstance(nullptr, nullptr, this);
         }
 
-        inline ScriptInstance *getScriptInst() const
+        ScriptInstance *getScriptInst() const
         {
             return script;
         }

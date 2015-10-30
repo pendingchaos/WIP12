@@ -39,12 +39,12 @@ class AudioSource
         bool loop;
         bool playing;
 
-        inline Audio *getAudio() const
+        Audio *getAudio() const
         {
             return audio;
         }
 
-        inline void setAudio(Audio *audio_)
+        void setAudio(Audio *audio_)
         {
             audio->release();
             audio = audio_;
@@ -95,7 +95,7 @@ class AudioWorld
             sources.clear();
         }
 
-        inline const List<AudioSource *>& getSources() const
+        const List<AudioSource *>& getSources() const
         {
             return sources;
         }

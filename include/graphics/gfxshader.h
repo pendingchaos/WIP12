@@ -64,12 +64,12 @@ class GfxShader : public Resource
 
         void compile(GfxShaderType type, const Str& source);
 
-        inline const Str& getSource() const
+        const Str& getSource() const
         {
             return source;
         }
 
-        inline GfxShaderType getShaderType() const
+        GfxShaderType getShaderType() const
         {
             return shaderType;
         }
@@ -90,17 +90,17 @@ class GfxCompiledShader
     friend GfxShader;
 
     public:
-        inline GfxShader *getShader() const
+        GfxShader *getShader() const
         {
             return shader;
         }
 
-        inline GLuint getGLProgram() const
+        GLuint getGLProgram() const
         {
             return program;
         }
 
-        inline GLuint getGLShader() const
+        GLuint getGLShader() const
         {
             return glShader;
         }
@@ -132,7 +132,7 @@ class GfxShaderCombination
 
         GfxCompiledShader *getCompiled(GfxShaderType type) const;
 
-        inline GLuint getGLPipeline() const
+        GLuint getGLPipeline() const
         {
             return pipeline;
         }

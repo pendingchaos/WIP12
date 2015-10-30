@@ -52,7 +52,7 @@ struct TextureSampler
                                       wrapMode(wrapMode_),
                                       shadowmap(shadowmap_) {}
 
-    inline static TextureSampler createShadowmap() NO_BIND
+    static TextureSampler createShadowmap() NO_BIND
     {
         return TextureSampler(1.0f,
                               GfxFilter::Bilinear,
@@ -106,17 +106,17 @@ class GfxApi
 
         //Workaround for shadow.rkt.
         //TODO: Get rid of this.
-        inline void begin(GfxCompiledShader *vertex,
-                          GfxCompiledShader *geometry,
-                          GfxCompiledShader *fragment,
-                          GfxMesh *mesh)
+        void begin(GfxCompiledShader *vertex,
+                    GfxCompiledShader *geometry,
+                    GfxCompiledShader *fragment,
+                    GfxMesh *mesh)
         {
             begin(vertex, nullptr, nullptr, geometry, fragment, mesh);
         }
 
-        inline void begin(GfxCompiledShader *vertex,
-                          GfxCompiledShader *fragment,
-                          GfxMesh *mesh)
+        void begin(GfxCompiledShader *vertex,
+                   GfxCompiledShader *fragment,
+                   GfxMesh *mesh)
         {
             begin(vertex, nullptr, nullptr, nullptr, fragment, mesh);
         }
@@ -142,7 +142,7 @@ class GfxApi
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt3& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt4& value)=0;
 
-        inline void uniformU(GfxCompiledShader *shader, const char *name, uint32_t value)
+        void uniformU(GfxCompiledShader *shader, const char *name, uint32_t value)
         {
             uniform(shader, name, value);
         }
@@ -168,12 +168,12 @@ class GfxApi
                                        GfxTexture *texture,
                                        TextureSampler sampler)=0;
 
-        inline void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
+        void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
         {
             addTextureBinding(shader, name, texture, TextureSampler(texture));
         }
 
-        inline void addTextureBinding2(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
+        void addTextureBinding2(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
         {
             addTextureBinding(shader, name, texture);
         }
@@ -194,16 +194,16 @@ class GfxApi
         virtual void setBlendConstantColor(const uint8_t constantColor[4]) NO_BIND=0;
         virtual const uint8_t *getBlendConstantColor() NO_BIND const=0;
 
-        inline void setBlendConstantColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+        void setBlendConstantColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
         {
             uint8_t c[] = {r, g, b, a};
             setBlendConstantColor(c);
         }
 
-        inline uint8_t getBlendConstantColorR() const {return getBlendConstantColor()[0];}
-        inline uint8_t getBlendConstantColorG() const {return getBlendConstantColor()[1];}
-        inline uint8_t getBlendConstantColorB() const {return getBlendConstantColor()[2];}
-        inline uint8_t getBlendConstantColorA() const {return getBlendConstantColor()[3];}
+        uint8_t getBlendConstantColorR() const {return getBlendConstantColor()[0];}
+        uint8_t getBlendConstantColorG() const {return getBlendConstantColor()[1];}
+        uint8_t getBlendConstantColorB() const {return getBlendConstantColor()[2];}
+        uint8_t getBlendConstantColorA() const {return getBlendConstantColor()[3];}
 
         virtual void setBlendFactors(GfxBlendFactor srcFactorRGB,
                                      GfxBlendFactor srcFactorAlpha,

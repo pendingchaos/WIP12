@@ -4,7 +4,7 @@
 #include "endian_utils.h"
 #include "logging.h"
 
-inline uint32_t floatToUint32(float f)
+uint32_t floatToUint32(float f)
 {
     union
     {

@@ -30,12 +30,12 @@ struct ScrollBar
     NO_BIND ScrollBarState state;
     NO_BIND Int2 lastMousePos;
 
-    inline float getValue() const
+    float getValue() const
     {
         return barSize >= 1.0f ? 1.0f : (center - barSize/2.0f) / (1.0f - barSize);
     }
 
-    inline void setValue(float value)
+    void setValue(float value)
     {
         center = value * (1.0f - barSize*2.0f) + barSize;
     }
@@ -193,17 +193,17 @@ class GuiPlacer
 
         void setXOrigin(XOrigin origin, int value);
 
-        inline XOrigin getXOriginMode()
+        XOrigin getXOriginMode()
         {
             return xOrigin;
         }
 
-        inline int getXOrigin()
+        int getXOrigin()
         {
             return leftOrRight;
         }
 
-        inline size_t getPadding() const
+        size_t getPadding() const
         {
             return padding;
         }

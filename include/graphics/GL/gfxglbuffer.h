@@ -17,7 +17,7 @@ class GfxGLBuffer : public GfxBuffer
         virtual void getData(size_t start, size_t amount, void *data);
         virtual size_t getSize() const;
 
-        inline GLuint getGLBuffer() const
+        GLuint getGLBuffer() const
         {
             return buffer;
         }

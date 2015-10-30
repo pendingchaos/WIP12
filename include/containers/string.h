@@ -59,7 +59,7 @@ class Str
         Str(char c);
         Str(const Str& a, const Str& b);
 
-        inline Str(const Str& other) : datav(other.datav)
+        Str(const Str& other) : datav(other.datav)
         {
             setRefCount(getRefCount()+1);
         }
@@ -68,32 +68,32 @@ class Str
 
         Str& operator = (const Str& other);
 
-        inline bool operator == (const Str& other) const
+        bool operator == (const Str& other) const
         {
             return getHash() == other.getHash() ? (strcmp(getData(), other.getData()) == 0) : false;
         }
 
-        inline bool operator != (const Str& other) const
+        bool operator != (const Str& other) const
         {
             return not (*this == other);
         }
 
-        inline bool operator == (const char *other) const
+        bool operator == (const char *other) const
         {
             return strcmp(getData(), other) == 0;
         }
 
-        inline bool operator != (const char *other) const
+        bool operator != (const char *other) const
         {
             return not (*this == other);
         }
 
-        inline bool equals(const char *str, size_t hash) const
+        bool equals(const char *str, size_t hash) const
         {
             return getHash() == hash ? (*this == str) : false;
         }
 
-        inline const char& operator [] (std::size_t index) const
+        const char& operator [] (std::size_t index) const
         {
             #ifdef DEBUG
             if (index >= getLength())
@@ -105,23 +105,23 @@ class Str
             return getData()[index];
         }
 
-        inline Str operator + (const Str& other) const
+        Str operator + (const Str& other) const
         {
             return Str(*this, other);
         }
 
         //Super-efficient
-        inline Str operator + (char other) const
+        Str operator + (char other) const
         {
             return Str(*this, Str(other));
         }
 
-        inline const char *getData() const
+        const char *getData() const
         {
             return (const char *)(data8+8+sizeof(size_t));
         }
 
-        inline size_t getLength() const
+        size_t getLength() const
         {
             return data32[1];
         }
@@ -133,32 +133,32 @@ class Str
         Str subStr(size_t offset, size_t length) const;
         static Str format(const char *format, ...);
 
-        inline static Str formatValue(int value)
+        static Str formatValue(int value)
         {
             return Str::format("%i", value);
         }
 
-        inline static Str formatValue(unsigned int value)
+        static Str formatValue(unsigned int value)
         {
             return Str::format("%u", value);
         }
 
-        inline static Str formatValue(long long int value)
+        static Str formatValue(long long int value)
         {
             return Str::format("%lli", value);
         }
 
-        inline static Str formatValue(unsigned long long int value)
+        static Str formatValue(unsigned long long int value)
         {
             return Str::format("%llu", value);
         }
 
-        inline static Str formatValue(float value)
+        static Str formatValue(float value)
         {
             return Str::format("%f", value);
         }
 
-        inline static Str formatValue(double value)
+        static Str formatValue(double value)
         {
             return Str::format("%f", value);
         }
@@ -172,69 +172,69 @@ class Str
             friend Str;
 
             public:
-                inline char operator * () const
+                char operator * () const
                 {
                     return str[i];
                 }
 
-                inline Iterator& operator ++ ()
+                Iterator& operator ++ ()
                 {
                     ++i;
                     return *this;
                 }
 
-                inline bool operator != (const Iterator& other) const
+                bool operator != (const Iterator& other) const
                 {
                     return i != other.i;
                 }
             private:
                 Iterator(Str& str_, size_t i_) : str(str_), i(i_) {}
 
-                const Str& str; //TODO: Remove the reference
+                const Str& str;
                 size_t i;
         };
 
-        inline Iterator begin() NO_BIND
+        Iterator begin() NO_BIND
         {
             return Iterator(*this, 0);
         }
 
-        inline Iterator end() NO_BIND
+        Iterator end() NO_BIND
         {
             return Iterator(*this, getLength());
         }
 
-        inline size_t getHash() const
+        size_t getHash() const
         {
             return *(size_t *)(data8+8);
         }
     private:
-        inline char *_getData()
+        char *_getData()
         {
             return (char *)(data8+8+sizeof(size_t));
         }
 
-        inline void setHash(size_t hash)
+        void setHash(size_t hash)
         {
             *(size_t *)(data8+8) = hash;
         }
 
-        inline void setLength(uint32_t length)
+        void setLength(uint32_t length)
         {
             data32[1] = length;
         }
 
-        inline void setRefCount(uint32_t count)
+        void setRefCount(uint32_t count)
         {
             data32[0] = count;
         }
 
-        inline uint32_t getRefCount() const
+        uint32_t getRefCount() const
         {
             return data32[0];
         }
 
-        inline void allocate(size_t length)
+        void allocate(size_t length)
         {
             datav = ALLOCATE(9+sizeof(size_t)+length);
             setLength(length);

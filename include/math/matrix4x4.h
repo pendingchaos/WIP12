@@ -49,17 +49,17 @@ class Matrix4x4
 
         Matrix4x4 operator / (float other) const;
 
-        inline const float *operator [] (unsigned int row) const NO_BIND
+        const float *operator [] (unsigned int row) const NO_BIND
         {
             return data[row];
         }
 
-        inline float *operator [] (unsigned int row) NO_BIND
+        float *operator [] (unsigned int row) NO_BIND
         {
             return data[row];
         }
 
-        inline float get(size_t row, size_t column)
+        float get(size_t row, size_t column)
         {
             if (row > 2 or column > 2)
             {
@@ -69,7 +69,7 @@ class Matrix4x4
             return data[row][column];
         }
 
-        inline void set(size_t row, size_t column, float value)
+        void set(size_t row, size_t column, float value)
         {
             if (row > 2 or column > 2)
             {
@@ -79,7 +79,7 @@ class Matrix4x4
             data[row][column] = value;
         }
 
-        inline bool operator == (const Matrix4x4& other) const
+        bool operator == (const Matrix4x4& other) const
         {
             return data[0][0] == other.data[0][0] and
                    data[0][1] == other.data[0][1] and
@@ -133,8 +133,6 @@ class Matrix4x4
                                    const Direction3D& up);
 
         NO_BIND float data[4][4];
-    private:
-        inline Matrix4x4(int) {}
 } BIND;
 
 inline Matrix4x4 lookAtDirMat(const Position3D& eye, const Direction3D& dir, const Direction3D& up) BIND

@@ -185,80 +185,80 @@ class GfxTexture : public Resource
                        void *data) const NO_BIND;
 
         //TODO: Make this safe.
-        inline void allocMipmap(unsigned int level,
-                                unsigned int pixelAlignment,
-                                GfxFace face,
-                                const ResizableData& data)
+        void allocMipmap(unsigned int level,
+                         unsigned int pixelAlignment,
+                         GfxFace face,
+                         const ResizableData& data)
         {
             allocMipmapFace(level, pixelAlignment, face, data.getData());
         }
 
         //TODO: Make this safe.
-        inline void allocMipmap(unsigned int level,
-                                unsigned int pixelAlignment,
-                                const ResizableData& data)
+        void allocMipmap(unsigned int level,
+                         unsigned int pixelAlignment,
+                         const ResizableData& data)
         {
             allocMipmap(level, pixelAlignment, data.getData());
         }
 
         void generateMipmaps();
 
-        inline GfxTextureType getTextureType() const
+        GfxTextureType getTextureType() const
         {
             return textureType;
         }
 
-        inline bool shouldCompress() const
+        bool shouldCompress() const
         {
             return compress;
         }
 
-        inline float getMaximumAnisotropy() const
+        float getMaximumAnisotropy() const
         {
             return maximumAnisotropy;
         }
 
-        inline GfxFilter getMinFilter() const
+        GfxFilter getMinFilter() const
         {
             return minFilter;
         }
 
-        inline GfxFilter getMagFilter() const
+        GfxFilter getMagFilter() const
         {
             return magFilter;
         }
 
-        inline GfxMipmapMode getMipmapMode() const
+        GfxMipmapMode getMipmapMode() const
         {
             return mipmapMode;
         }
 
-        inline GfxWrapMode getWrapMode() const
+        GfxWrapMode getWrapMode() const
         {
             return wrapMode;
         }
 
-        inline unsigned int getBaseWidth() const
+        unsigned int getBaseWidth() const
         {
             return baseWidth;
         }
 
-        inline unsigned int getBaseHeight() const
+        unsigned int getBaseHeight() const
         {
             return baseHeight;
         }
 
-        inline unsigned int getBaseDepth() const
+        unsigned int getBaseDepth() const
         {
             return baseDepth;
         }
 
-        inline GfxTexFormat getFormat() const
+        GfxTexFormat getFormat() const
         {
             return format;
         }
 
-        inline bool getShadowmap() const
+        bool getShadowmap() const
         {
             return shadowmap;
         }
@@ -270,7 +270,7 @@ class GfxTexture : public Resource
         void setWrapMode(GfxWrapMode mode);
         void setShadowmap(bool shadowmap);
 
-        inline GfxTextureImpl *getImpl() const NO_BIND
+        GfxTextureImpl *getImpl() const NO_BIND
         {
             return impl;
         }

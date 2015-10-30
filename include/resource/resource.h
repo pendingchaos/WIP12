@@ -39,17 +39,17 @@ class ResourceIOException : public Exception
             return string;
         }
 
-        inline const Str& getResourceType() const
+        const Str& getResourceType() const
         {
             return resourceType;
         }
 
-        inline const Str& getFilename() const
+        const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const Str& getProblem() const
+        const Str& getProblem() const
         {
             return problem;
         }
@@ -88,12 +88,12 @@ class Resource
             return _copy();
         }
 
-        inline ResType getType() const
+        ResType getType() const
         {
             return type;
         }
 
-        inline void release() const
+        void release() const
         {
             if (--refCount == 0)
             {
@@ -101,13 +101,13 @@ class Resource
             }
         }
 
-        inline uint32_t getRefCount() const
+        uint32_t getRefCount() const
         {
             return refCount;
         }
 
         template <typename T>
-        inline T *copyRef() NO_BIND
+        T *copyRef() NO_BIND
         {
             ++refCount;
 
@@ -115,19 +115,19 @@ class Resource
         }
 
         template <typename T>
-        inline const T *copyRef() const NO_BIND
+        const T *copyRef() const NO_BIND
         {
             ++refCount;
 
             return (const T *)this;
         }
 
-        inline const Str& getFilename() const
+        const Str& getFilename() const
         {
             return filename;
         }
 
-        inline void setFilename(const Str& filename_)
+        void setFilename(const Str& filename_)
         {
             removeContent();
             filename = filename_;

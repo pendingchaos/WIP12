@@ -28,17 +28,17 @@ class Exception
             return "";
         }
 
-        inline const char *getFile() const
+        const char *getFile() const
         {
             return file;
         }
 
-        inline size_t getLine() const
+        size_t getLine() const
         {
             return line;
         }
 
-        inline const char *getFunction() const
+        const char *getFunction() const
         {
             return function;
         }

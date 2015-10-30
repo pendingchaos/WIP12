@@ -39,82 +39,82 @@ class Camera
         void setViewMatrix(const Matrix4x4& mat);
         void setProjectionMatrix(const Matrix4x4& mat);
 
-        inline CameraType getType() const
+        CameraType getType() const
         {
             return type;
         }
 
-        inline Position3D getPosition() const
+        Position3D getPosition() const
         {
             return position;
         }
 
-        inline Direction3D getDirection() const
+        Direction3D getDirection() const
         {
             return direction;
         }
 
-        inline Direction3D getUp() const
+        Direction3D getUp() const
         {
             return up;
         }
 
-        inline float getWidth() const
+        float getWidth() const
         {
             return perspective.width;
         }
 
-        inline float getHeight() const
+        float getHeight() const
         {
             return perspective.height;
         }
 
-        inline float getFieldOfView() const
+        float getFieldOfView() const
         {
             return perspective.fov;
         }
 
-        inline float getLeft() const
+        float getLeft() const
         {
             return orthographic.left;
         }
 
-        inline float getRight() const
+        float getRight() const
         {
             return orthographic.right;
         }
 
-        inline float getBottom() const
+        float getBottom() const
         {
             return orthographic.bottom;
         }
 
-        inline float getTop() const
+        float getTop() const
         {
             return orthographic.top;
         }
 
-        inline float getNear() const
+        float getNear() const
         {
             return near;
         }
 
-        inline float getFar() const
+        float getFar() const
         {
             return far;
         }
 
-        inline Matrix4x4 getViewMatrix() const
+        Matrix4x4 getViewMatrix() const
         {
             return viewMatrix;
         }
 
-        inline Matrix4x4 getProjectionMatrix() const
+        Matrix4x4 getProjectionMatrix() const
         {
             return projectionMatrix;
         }
 
-        inline Frustum getFrustum() const
+        Frustum getFrustum() const
         {
             return frustum;
         }

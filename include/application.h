@@ -44,47 +44,47 @@ class Application
 
         void mainloop();
 
-        inline Platform *getPlatform() const
+        Platform *getPlatform() const
         {
             return platform_;
         }
 
-        inline ResourceManager *getResourceManager() const
+        ResourceManager *getResourceManager() const
         {
             return resMgr_;
         }
 
-        inline GfxApi *getGfxApi() const
+        GfxApi *getGfxApi() const
         {
             return gfxApi_;
         }
 
-        inline Filesystem *getFilesystem() const
+        Filesystem *getFilesystem() const
         {
             return fileSystem_;
         }
 
-        inline GfxDebugDrawer *getDebugDrawer() const
+        GfxDebugDrawer *getDebugDrawer() const
         {
             return debugDrawer_;
         }
 
-        inline FT_Library getFreeType() const NO_BIND
+        FT_Library getFreeType() const NO_BIND
         {
             return freeType_;
         }
 
-        inline AudioDevice *getAudioDevice() const
+        AudioDevice *getAudioDevice() const
         {
             return audioDevice_;
         }
 
-        inline scripting::Engine *getScriptEngine() const NO_BIND
+        scripting::Engine *getScriptEngine() const NO_BIND
         {
             return scriptEngine_;
         }
 
-        inline void setNextScript(Script *script_)
+        void setNextScript(Script *script_)
         {
             if (nextScript != nullptr)
             {
@@ -94,17 +94,17 @@ class Application
             nextScript = script_->copyRef<Script>();
         }
 
-        inline Script *getNextScript() const
+        Script *getNextScript() const
         {
             return nextScript;
         }
 
-        inline ScriptInstance *getScript() const
+        ScriptInstance *getScript() const
         {
             return script;
         }
 
-        inline Stats getStats() const
+        Stats getStats() const
         {
             return stats;
         }

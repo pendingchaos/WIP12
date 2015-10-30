@@ -15,34 +15,34 @@ class T4
 {
     public:
         inline T4() : x(T()), y(T()), z(T()), w(T()) {}
-        inline T4(T xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) {}
-        inline T4(T x_, T y_, T z_, T w_) : x(x_), y(y_), z(z_), w(w_) {}
+        T4(T xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) {}
+        T4(T x_, T y_, T z_, T w_) : x(x_), y(y_), z(z_), w(w_) {}
 
-        inline T4(const T4<float>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
-        inline T4(const T4<int32_t>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
-        inline T4(const T4<uint32_t>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
+        T4(const T4<float>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
+        T4(const T4<int32_t>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
+        T4(const T4<uint32_t>& other) : x(other.x), y(other.y), z(other.z), w(other.w) {}
 
-        inline T4 operator + (const T4<T>& other) const
+        T4 operator + (const T4<T>& other) const
         {
             return T4(x + (T)other.x, y + (T)other.y, z + (T)other.z, w + (T)other.w);
         }
 
-        inline T4 operator - (const T4<T>& other) const
+        T4 operator - (const T4<T>& other) const
         {
             return T4(x - (T)other.x, y - (T)other.y, z - (T)other.z, w - (T)other.w);
         }
 
-        inline T4 operator * (const T4<T>& other) const
+        T4 operator * (const T4<T>& other) const
         {
             return T4(x * (T)other.x, y * (T)other.y, z * (T)other.z, w * (T)other.w);
         }
 
-        inline T4 operator / (const T4<T>& other) const
+        T4 operator / (const T4<T>& other) const
         {
             return T4(x / (T)other.x, y / (T)other.y, z / (T)other.z, w / (T)other.w);
         }
 
-        inline T4& operator += (const T4<T>& other)
+        T4& operator += (const T4<T>& other)
         {
             x += (T)other.x;
             y += (T)other.y;
@@ -52,7 +52,7 @@ class T4
             return *this;
         }
 
-        inline T4& operator -= (const T4<T>& other)
+        T4& operator -= (const T4<T>& other)
         {
             x -= (T)other.x;
             y -= (T)other.y;
@@ -62,7 +62,7 @@ class T4
             return *this;
         }
 
-        inline T4& operator *= (const T4<T>& other)
+        T4& operator *= (const T4<T>& other)
         {
             x *= (T)other.x;
             y *= (T)other.y;
@@ -72,7 +72,7 @@ class T4
             return *this;
         }
 
-        inline T4& operator /= (const T4<T>& other)
+        T4& operator /= (const T4<T>& other)
         {
             x /= (T)other.x;
             y /= (T)other.y;
@@ -82,27 +82,27 @@ class T4
             return *this;
         }
 
-        inline T4 operator + (const T& other) const
+        T4 operator + (const T& other) const
         {
             return T4(x + (T)other, y + (T)other, z + (T)other, w + (T)other);
         }
 
-        inline T4 operator - (const T& other) const
+        T4 operator - (const T& other) const
         {
             return T4(x - (T)other, y - (T)other, z - (T)other, w - (T)other);
         }
 
-        inline T4 operator * (const T& other) const
+        T4 operator * (const T& other) const
         {
             return T4(x * (T)other, y * (T)other, z * (T)other, w * (T)other);
         }
 
-        inline T4 operator / (const T& other) const
+        T4 operator / (const T& other) const
         {
             return T4(x / (T)other, y / (T)other, z / (T)other, w / (T)other);
         }
 
-        inline T4& operator += (const T& other)
+        T4& operator += (const T& other)
         {
             x += (T)other;
             y += (T)other;
@@ -112,7 +112,7 @@ class T4
             return *this;
         }
 
-        inline T4& operator -= (const T& other)
+        T4& operator -= (const T& other)
         {
             x -= (T)other;
             y -= (T)other;
@@ -122,7 +122,7 @@ class T4
             return *this;
         }
 
-        inline T4& operator *= (const T& other)
+        T4& operator *= (const T& other)
         {
             x *= (T)other;
             y *= (T)other;
@@ -132,7 +132,7 @@ class T4
             return *this;
         }
 
-        inline T4& operator /= (const T& other)
+        T4& operator /= (const T& other)
         {
             x /= (T)other;
             y /= (T)other;
@@ -142,99 +142,99 @@ class T4
             return *this;
         }
 
-        inline bool operator == (const T4<T>& other) const
+        bool operator == (const T4<T>& other) const
         {
             return x == (T)other.x and y == (T)other.y and z == (T)other.z and w == (T)other.w;
         }
 
-        inline bool operator != (const T4<T>& other) const
+        bool operator != (const T4<T>& other) const
         {
             return x != (T)other.x or y != (T)other.y or z != (T)other.z or w != (T)other.w;
         }
 
-        inline bool operator < (const T4<T>& other) const
+        bool operator < (const T4<T>& other) const
         {
             return x < (T)other.x and y < (T)other.y and z < (T)other.z and w < (T)other.w;
         }
 
-        inline bool operator > (const T4<T>& other) const
+        bool operator > (const T4<T>& other) const
         {
             return x > (T)other.x and y > (T)other.y and z > (T)other.z and w > (T)other.w;
         }
 
-        inline bool operator <= (const T4<T>& other) const
+        bool operator <= (const T4<T>& other) const
         {
             return x <= (T)other.x and y <= (T)other.y and z <= (T)other.z and w <= (T)other.w;
         }
 
-        inline bool operator >= (const T4<T>& other) const
+        bool operator >= (const T4<T>& other) const
         {
             return x >= (T)other.x and y >= (T)other.y and z >= (T)other.z and w >= (T)other.w;
         }
 
-        inline T4 operator - () const
+        T4 operator - () const
         {
             return T4(-x, -y, -z, -w);
         }
 
-        inline T sum() const
+        T sum() const
         {
             return x + y + z + w;
         }
 
-        inline T length() const
+        T length() const
         {
             return std::sqrt(x*x + y*y + z*z + w*w);
         }
 
-        inline T lengthSquared() const
+        T lengthSquared() const
         {
             return x*x + y*y + z*z + w*w;
         }
 
-        inline T dot(const T4<T>& other) const
+        T dot(const T4<T>& other) const
         {
             return x*(T)other.x + y*(T)other.y + z*(T)other.z + w*(T)other.w;
         }
 
-        inline T dot() const
+        T dot() const
         {
             return x*x + y*y + z*z + w*w;
         }
 
-        inline T distance(const T4<T>& other) const
+        T distance(const T4<T>& other) const
         {
             return (*this - other).length();
         }
 
-        inline T distanceSquared(const T4<T>& other) const
+        T distanceSquared(const T4<T>& other) const
         {
             return (*this - other).lengthSquared();
         }
 
-        inline T4 normalize() const
+        T4 normalize() const
         {
             T length_ = length();
 
             return length_ == T(0) ? *this : *this / T4(length_);
         }
 
-        inline T& operator [] (size_t index)
+        T& operator [] (size_t index)
         {
             return ((T *)this)[index];
         }
 
-        inline const T& operator [] (size_t index) const
+        const T& operator [] (size_t index) const
         {
             return ((T *)this)[index];
         }
 
-        #define SWIZZLE4(upperX, upperY, upperZ, upperW, X, Y, Z, W) inline T4 JOIN(JOIN(JOIN(JOIN(get, upperX), upperY), upperZ), upperW)() const\
+        #define SWIZZLE4(upperX, upperY, upperZ, upperW, X, Y, Z, W) T4 JOIN(JOIN(JOIN(JOIN(get, upperX), upperY), upperZ), upperW)() const\
         {\
             return T4(X, Y, Z, W);\
         }\
         \
-        inline void JOIN(JOIN(JOIN(JOIN(set, upperX), upperY), upperZ), upperW)(const T4& other)\
+        void JOIN(JOIN(JOIN(JOIN(set, upperX), upperY), upperZ), upperW)(const T4& other)\
         {\
             X = other.x;\
             Y = other.y;\
@@ -242,24 +242,24 @@ class T4
             W = other.w;\
         }
 
-        #define SWIZZLE3(upperX, upperY, upperZ, X, Y, Z) inline T3<T> JOIN(JOIN(JOIN(get, upperX), upperY), upperZ)() const\
+        #define SWIZZLE3(upperX, upperY, upperZ, X, Y, Z) T3<T> JOIN(JOIN(JOIN(get, upperX), upperY), upperZ)() const\
         {\
             return T3<T>(X, Y, Z);\
         }\
         \
-        inline void JOIN(JOIN(JOIN(set, upperX), upperY), upperZ)(const T3<T>& other)\
+        void JOIN(JOIN(JOIN(set, upperX), upperY), upperZ)(const T3<T>& other)\
         {\
             X = other.x;\
             Y = other.y;\
             Z = other.z;\
         }
 
-        #define SWIZZLE2(upperX, upperY, X, Y) inline T2<T> JOIN(JOIN(get, upperX), upperY)() const\
+        #define SWIZZLE2(upperX, upperY, X, Y) T2<T> JOIN(JOIN(get, upperX), upperY)() const\
         {\
             return T2<T>(X, Y);\
         }\
         \
-        inline void JOIN(JOIN(set, upperX), upperY)(const T2<T>& other)\
+        void JOIN(JOIN(set, upperX), upperY)(const T2<T>& other)\
         {\
             X = other.x;\
             Y = other.y;\
@@ -332,7 +332,7 @@ class T4
         #undef SWIZZLE3
         #undef SWIZZLE4
 
-        inline T4 copy() const
+        T4 copy() const
         {
             return T4(x, y, z, w);
         }

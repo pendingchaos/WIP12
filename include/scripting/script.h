@@ -43,17 +43,17 @@ class ScriptFunctionException : public Exception
             return string;
         }
 
-        inline const Str& getFilename() const
+        const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const Str& getScriptFunction() const
+        const Str& getScriptFunction() const
         {
             return scriptFunction;
         }
 
-        inline const Str& getProblem() const
+        const Str& getProblem() const
         {
             return problem;
         }
@@ -88,12 +88,12 @@ class ScriptInstance
 
         scripting::Value method(const Str& name, const List<scripting::Value>& args) NO_BIND;
 
-        inline Script *getScript() const
+        Script *getScript() const
         {
             return script;
         }
 
-        inline scripting::Value getObj() const
+        scripting::Value getObj() const
         {
             return obj;
         }
@@ -138,7 +138,7 @@ class Script : public Resource
 
         ScriptInstance *createInstance(Entity *entity=nullptr, Scene *scene=nullptr, GfxMaterial *material=nullptr) NO_BIND;
 
-        inline scripting::Context *getContext() const NO_BIND
+        scripting::Context *getContext() const NO_BIND
         {
             return context;
         }

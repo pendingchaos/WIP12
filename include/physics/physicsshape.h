@@ -37,34 +37,34 @@ class PhysicsShapeImpl
             Empty
         };
 
-        inline Type getType() const
+        Type getType() const
         {
             return type;
         }
 
-        inline float getMargin() const
+        float getMargin() const
         {
             return shape->getMargin();
         }
 
-        inline void setMargin(float margin)
+        void setMargin(float margin)
         {
             shape->setMargin(margin);
         }
 
-        inline Direction3D getScale() const
+        Direction3D getScale() const
         {
             btVector3 scale = shape->getLocalScaling();
 
             return Direction3D(scale.getX(), scale.getY(), scale.getZ());
         }
 
-        inline void setScale(const Direction3D& scale)
+        void setScale(const Direction3D& scale)
         {
             shape->setLocalScaling(btVector3(scale.x, scale.y, scale.z));
         }
 
-        inline btCollisionShape *getBulletShape() const
+        btCollisionShape *getBulletShape() const
         {
             return shape;
         }
@@ -87,7 +87,7 @@ class PhysicsSphereShape : public PhysicsShapeImpl
     public:
         PhysicsSphereShape(PhysicsShape *physShape, float radius);
 
-        inline float getRadius() const
+        float getRadius() const
         {
             return radius;
         }
@@ -106,7 +106,7 @@ class PhysicsBoxShape : public PhysicsShapeImpl
     public:
         PhysicsBoxShape(PhysicsShape *physShape, const Vector3D& halfExtents);
 
-        inline Vector3D getHalfExtents() const
+        Vector3D getHalfExtents() const
         {
             return halfExtents;
         }
@@ -132,17 +132,17 @@ class PhysicsCylinderShape : public PhysicsShapeImpl
     public:
         PhysicsCylinderShape(PhysicsShape *physShape, Axis axis, float height, float radius);
 
-        inline Axis getAxis() const
+        Axis getAxis() const
         {
             return axis;
         }
 
-        inline float getHeight() const
+        float getHeight() const
         {
             return height;
         }
 
-        inline float getRadius() const
+        float getRadius() const
         {
             return radius;
         }
@@ -165,17 +165,17 @@ class PhysicsCapsuleShape : public PhysicsShapeImpl
     public:
         PhysicsCapsuleShape(PhysicsShape *physShape, Axis axis, float height, float radius);
 
-        inline Axis getAxis() const
+        Axis getAxis() const
         {
             return axis;
         }
 
-        inline float getHeight() const
+        float getHeight() const
         {
             return height;
         }
 
-        inline float getRadius() const
+        float getRadius() const
         {
             return radius;
         }
@@ -198,17 +198,17 @@ class PhysicsConeShape : public PhysicsShapeImpl
     public:
         PhysicsConeShape(PhysicsShape *physShape, Axis axis, float height, float radius);
 
-        inline Axis getAxis() const
+        Axis getAxis() const
         {
             return axis;
         }
 
-        inline float getHeight() const
+        float getHeight() const
         {
             return height;
         }
 
-        inline float getRadius() const
+        float getRadius() const
         {
             return radius;
         }
@@ -232,12 +232,12 @@ class PhysicsConvexHullShape : public PhysicsShapeImpl
         PhysicsConvexHullShape(PhysicsShape *physShape, size_t numPoints, const Position3D *points);
         virtual ~PhysicsConvexHullShape();
 
-        inline size_t getNumPoints() const
+        size_t getNumPoints() const
         {
             return numPoints;
         }
 
-        inline const Position3D *getPoints() const
+        const Position3D *getPoints() const
         {
             return points;
         }
@@ -258,12 +258,12 @@ class PhysicsStaticTriangleMesh : public PhysicsShapeImpl
         PhysicsStaticTriangleMesh(PhysicsShape *physShape, size_t numTriangles, const Position3D *triangles);
         virtual ~PhysicsStaticTriangleMesh();
 
-        inline size_t getNumTriangles() const
+        size_t getNumTriangles() const
         {
             return numTriangles;
         }
 
-        inline const Position3D *getTriangles() const
+        const Position3D *getTriangles() const
         {
             return triangles;
         }
@@ -287,17 +287,17 @@ class PhysicsHeightfield : public PhysicsShapeImpl
         PhysicsHeightfield(PhysicsShape *physShape, uint32_t width, uint32_t height, const float *data);
         virtual ~PhysicsHeightfield();
 
-        inline uint32_t getWidth() const
+        uint32_t getWidth() const
         {
             return width;
         }
 
-        inline uint32_t getHeight() const
+        uint32_t getHeight() const
         {
             return height;
         }
 
-        inline const float *getData() const
+        const float *getData() const
         {
             return data;
         }
@@ -318,12 +318,12 @@ class PhysicsPlaneShape : public PhysicsShapeImpl
     public:
         PhysicsPlaneShape(PhysicsShape *physShape, const Vector3D& normal, float distance);
 
-        inline Vector3D getNormal() const
+        Vector3D getNormal() const
         {
             return normal;
         }
 
-        inline float getDistance() const
+        float getDistance() const
         {
             return distance;
         }
@@ -360,12 +360,12 @@ class PhysicsCompoundShape : public PhysicsShapeImpl
         PhysicsCompoundShape(PhysicsShape *physShape, size_t shapeCount, const Child *shapes);
         virtual ~PhysicsCompoundShape();
 
-        inline size_t getShapeCount() const
+        size_t getShapeCount() const
         {
             return shapeCount;
         }
 
-        inline const PhysicsCompoundShape::Child *getShapes() const
+        const PhysicsCompoundShape::Child *getShapes() const
         {
             return shapes;
         }
@@ -405,37 +405,37 @@ class PhysicsShape : public Resource
             setEmpty();
         }
 
-        inline PhysicsShapeImpl *getImpl() const NO_BIND
+        PhysicsShapeImpl *getImpl() const NO_BIND
         {
             return impl;
         }
 
-        inline PhysicsShapeImpl::Type getShapeType() const NO_BIND
+        PhysicsShapeImpl::Type getShapeType() const NO_BIND
         {
             return impl->getType();
         }
 
-        inline float getMargin() const
+        float getMargin() const
         {
             return impl->getMargin();
         }
 
-        inline void setMargin(float margin)
+        void setMargin(float margin)
         {
             impl->setMargin(margin);
         }
 
-        inline Vector3D getScale() const
+        Vector3D getScale() const
         {
             return impl->getScale();
         }
 
-        inline void setScale(const Vector3D& scale)
+        void setScale(const Vector3D& scale)
         {
             impl->setScale(scale);
         }
 
-        inline btCollisionShape *getBulletShape() const NO_BIND
+        btCollisionShape *getBulletShape() const NO_BIND
         {
             return impl->getBulletShape();
         }

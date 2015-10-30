@@ -124,27 +124,22 @@ class GfxRenderer
         void resize(const UInt2& size);
         void render();
 
-        inline size_t getNumLights() const
+        size_t getNumLights() const
         {
             return numLights;
         }
 
-        inline GfxBuffer *getLightBuffer() const
+        GfxBuffer *getLightBuffer() const
         {
             return lightBuffer;
         }
 
-        inline RenderStats getStats() const
+        RenderStats getStats() const
         {
             return stats;
         }
 
-        /*inline float getAverageLuminance() const
-        {
-            return averageLuminance;
-        }*/
-
-        inline Light *addLight()
+        Light *addLight()
         {
             Light *light = NEW(Light);
 
@@ -153,14 +148,14 @@ class GfxRenderer
             return light;
         }
 
-        inline void removeLight(size_t index)
+        void removeLight(size_t index)
         {
             DELETE(lights[index]);
 
             lights.remove(index);
         }
 
-        inline const List<Light *>& getLights() const
+        const List<Light *>& getLights() const
         {
             return lights;
         }
@@ -186,7 +181,7 @@ class GfxRenderer
 
         void updateColorModifierShader();
 
-        inline void setSkybox(GfxTexture *skybox_)
+        void setSkybox(GfxTexture *skybox_)
         {
             if (skybox != nullptr)
             {
@@ -196,7 +191,7 @@ class GfxRenderer
             skybox = skybox_;
         }
 
-        inline GfxTexture *getSkybox() const
+        GfxTexture *getSkybox() const
         {
             return skybox;
         }
@@ -206,32 +201,32 @@ class GfxRenderer
                                GfxTexture *heightmap) NO_BIND;
         void removeTerrain();
 
-        inline GfxTerrain *getTerrain() const NO_BIND
+        GfxTerrain *getTerrain() const NO_BIND
         {
             return terrain;
         }
 
-        inline RenderList *getForwardList() const
+        RenderList *getForwardList() const
         {
             return forwardList;
         }
 
-        inline RenderList *getDeferredList() const
+        RenderList *getDeferredList() const
         {
             return deferredList;
         }
 
-        inline RenderList *getShadowmapList() const
+        RenderList *getShadowmapList() const
         {
             return shadowmapList;
         }
 
-        inline AABB getSceneAABB() const
+        AABB getSceneAABB() const
         {
             return sceneAABB;
         }
 
-        inline AABB getShadowCasterAABB() const
+        AABB getShadowCasterAABB() const
         {
             return shadowCasterAABB;
         }

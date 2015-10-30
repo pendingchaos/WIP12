@@ -84,22 +84,22 @@ class Light
         void addShadowmap(size_t resolution, GfxShadowmapPrecision quality);
         void removeShadowmap();
 
-        inline GfxTexture *getShadowmap() const
+        GfxTexture *getShadowmap() const
         {
             return shadowmap;
         }
 
-        inline GfxFramebuffer *const *getFramebuffers() const NO_BIND
+        GfxFramebuffer *const *getFramebuffers() const NO_BIND
         {
             return shadowmapFramebuffers;
         }
 
-        inline size_t getShadowmapResolution() const
+        size_t getShadowmapResolution() const
         {
             return shadowmapResolution;
         }
 
-        inline GfxShadowmapPrecision getShadowmapPrecision() const
+        GfxShadowmapPrecision getShadowmapPrecision() const
         {
             return shadowmapPrecision;
         }
@@ -110,23 +110,23 @@ class Light
         void updateMatrices(GfxRenderer *renderer);
 
         //These two functions only work with spot lights.
-        inline Matrix4x4 getViewMatrix() const
+        Matrix4x4 getViewMatrix() const
         {
             return viewMatrices[0];
         }
 
-        inline Matrix4x4 getProjectionMatrix() const
+        Matrix4x4 getProjectionMatrix() const
         {
             return projectionMatrices[0];
         }
 
         //These two methods only work with directional lights
-        inline Matrix4x4 getCascadeViewMatrix(size_t index) const
+        Matrix4x4 getCascadeViewMatrix(size_t index) const
         {
             return viewMatrices[index];
         }
 
-        inline Matrix4x4 getCascadeProjectionMatrix(size_t index) const
+        Matrix4x4 getCascadeProjectionMatrix(size_t index) const
         {
             return projectionMatrices[index];
         }

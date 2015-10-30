@@ -14,12 +14,12 @@ class GfxGLApi : public GfxApi
 
         virtual size_t getMaxTextureSize() const;
 
-        inline unsigned int getOpenGLMinorVersion() const
+        unsigned int getOpenGLMinorVersion() const
         {
             return glMinor;
         }
 
-        inline unsigned int getOpenGLMajorVersion() const
+        unsigned int getOpenGLMajorVersion() const
         {
             return glMajor;
         }

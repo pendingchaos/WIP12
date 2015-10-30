@@ -197,7 +197,7 @@ namespace scripting
                 return tokens[offset++];
             }
 
-            inline bool atEnd() const
+            bool atEnd() const
             {
                 return offset == tokens.getCount();
             }

@@ -18,7 +18,7 @@ class GhostObject
     friend PhysicsShapeImpl;
 
     public:
-        inline btGhostObject *getBulletGhostObject() const NO_BIND
+        btGhostObject *getBulletGhostObject() const NO_BIND
         {
             return ghostObject;
         }
@@ -26,12 +26,12 @@ class GhostObject
         Transform getTransform();
         void setTransform(const Transform& transform) const;
 
-        inline PhysicsWorld *getWorld() const
+        PhysicsWorld *getWorld() const
         {
             return world;
         }
 
-        inline short getCollisionMask() const
+        short getCollisionMask() const
         {
             return collisionMask;
         }
@@ -56,7 +56,7 @@ class GhostObject
             return ghosts;
         }
 
-        inline PhysicsShape *getShape() const
+        PhysicsShape *getShape() const
         {
             return shape;
         }

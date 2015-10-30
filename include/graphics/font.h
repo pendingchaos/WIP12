@@ -41,12 +41,12 @@ class FontException : public Exception
             return string;
         }
 
-        inline const Str& getFilename() const
+        const Str& getFilename() const
         {
             return filename;
         }
 
-        inline const Str& getProblem() const
+        const Str& getProblem() const
         {
             return problem;
         }
@@ -76,10 +76,10 @@ class Font : public Resource
                     GfxFramebuffer *framebuffer,
                     const Float3& color) const;
 
-        inline void render(size_t size,
-                           const Float2& position,
-                           const char *string,
-                           const Float3& color) const
+        void render(size_t size,
+                    const Float2& position,
+                    const char *string,
+                    const Float3& color) const
         {
             render(size, position, string, nullptr, color);
         }

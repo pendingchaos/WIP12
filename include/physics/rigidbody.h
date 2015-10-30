@@ -54,12 +54,12 @@ class RigidBody
     friend PhysicsShapeImpl;
 
     public:
-        inline btRigidBody *getBulletRigidBody() const NO_BIND
+        btRigidBody *getBulletRigidBody() const NO_BIND
         {
             return rigidBody;
         }
 
-        inline RigidBodyType getType() const
+        RigidBodyType getType() const
         {
             return type;
         }
@@ -133,24 +133,24 @@ class RigidBody
 
         void setTransform(const Matrix4x4& transform) const;
 
-        inline PhysicsWorld *getWorld() const
+        PhysicsWorld *getWorld() const
         {
             return world;
         }
 
-        inline short getCollisionMask() const
+        short getCollisionMask() const
         {
             return collisionMask;
         }
 
         void setShape(PhysicsShape *shape);
 
-        inline PhysicsShape *getShape() const
+        PhysicsShape *getShape() const
         {
             return shape;
         }
 
-        inline Entity *getEntity() const
+        Entity *getEntity() const
         {
             return entity;
         }

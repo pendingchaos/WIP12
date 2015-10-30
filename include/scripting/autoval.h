@@ -7,40 +7,40 @@
 class AutoVal
 {
     public:
-        inline AutoVal() : val(scripting::createNil()) {}
-        inline AutoVal(const AutoVal& other) : val(scripting::createCopy(other.val)) {}
-        inline AutoVal(const scripting::Value& other) : val(scripting::createCopy(other)) {}
+        AutoVal() : val(scripting::createNil()) {}
+        AutoVal(const AutoVal& other) : val(scripting::createCopy(other.val)) {}
+        AutoVal(const scripting::Value& other) : val(scripting::createCopy(other)) {}
         ~AutoVal();
 
         AutoVal& operator = (const AutoVal& other);
         AutoVal& operator = (const scripting::Value& other);
 
-        inline bool operator == (const scripting::Value& other) const
+        bool operator == (const scripting::Value& other) const
         {
             return val == other;
         }
 
-        inline bool operator == (const AutoVal& other) const
+        bool operator == (const AutoVal& other) const
         {
             return val == other.val;
         }
 
-        inline bool operator != (const scripting::Value& other) const
+        bool operator != (const scripting::Value& other) const
         {
             return val != other;
         }
 
-        inline bool operator != (const AutoVal& other) const
+        bool operator != (const AutoVal& other) const
         {
             return val != other.val;
         }
 
-        inline scripting::Value& getVal()
+        scripting::Value& getVal()
         {
             return val;
         }
 
-        inline const scripting::Value& getVal() const
+        const scripting::Value& getVal() const
         {
             return val;
         }

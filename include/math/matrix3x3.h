@@ -37,17 +37,17 @@ class Matrix3x3
 
         Matrix3x3 operator / (float other) const;
 
-        inline const float *operator [] (unsigned int row) const NO_BIND
+        const float *operator [] (unsigned int row) const NO_BIND
         {
             return data[row];
         }
 
-        inline float *operator [] (unsigned int row) NO_BIND
+        float *operator [] (unsigned int row) NO_BIND
         {
             return data[row];
         }
 
-        inline float get(size_t row, size_t column)
+        float get(size_t row, size_t column)
         {
             if (row > 2 or column > 2)
             {
@@ -57,7 +57,7 @@ class Matrix3x3
             return data[row][column];
         }
 
-        inline void set(size_t row, size_t column, float value)
+        void set(size_t row, size_t column, float value)
         {
             if (row > 2 or column > 2)
             {
@@ -67,7 +67,7 @@ class Matrix3x3
             data[row][column] = value;
         }
 
-        inline bool operator == (const Matrix3x3& other) const
+        bool operator == (const Matrix3x3& other) const
         {
             return data[0][0] == other.data[0][0] and
                    data[0][1] == other.data[0][1] and

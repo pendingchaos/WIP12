@@ -147,7 +147,7 @@ class Entity
             }
         }
 
-        inline const List<ScriptInstance *>& getScripts() const
+        const List<ScriptInstance *>& getScripts() const
         {
             return scripts;
         }
@@ -170,7 +170,7 @@ class Entity
         RigidBody *addRigidBody(const RigidBodyConstructionInfo& info,
                                 PhysicsShape *shape);
 
-        inline RigidBody *getRigidBody() const
+        RigidBody *getRigidBody() const
         {
             return rigidBody;
         }
@@ -184,7 +184,7 @@ class Entity
             }
         }
 
-        inline bool hasRigidBody() const
+        bool hasRigidBody() const
         {
             return rigidBody != nullptr;
         }
@@ -207,27 +207,27 @@ class Entity
             renderComponent.overlayData.color = Float3(1.0f);
         }
 
-        inline void removeRenderComponent()
+        void removeRenderComponent()
         {
             render = false;
         }
 
-        inline RenderComponent *getRenderComponent()
+        RenderComponent *getRenderComponent()
         {
             return &renderComponent;
         }
 
-        inline const RenderComponent *getRenderComponent() const
+        const RenderComponent *getRenderComponent() const
         {
             return &renderComponent;
         }
 
-        inline bool hasRenderComponent() const
+        bool hasRenderComponent() const
         {
             return render;
         }
 
-        inline Scene *getScene() const
+        Scene *getScene() const
         {
             return scene;
         }
@@ -236,29 +236,29 @@ class Entity
         void removeEntity(size_t index);
         Entity *findEntity(const Str& name);
 
-        inline const List<Entity *>& getEntities() const
+        const List<Entity *>& getEntities() const
         {
             return entities;
         }
 
-        inline Entity *getParent() const
+        Entity *getParent() const
         {
             return parent;
         }
 
         void updateFinalTransform();
 
-        inline const Matrix4x4& getFinalTransform() const
+        const Matrix4x4& getFinalTransform() const
         {
             return finalTransform;
         }
 
-        inline const Matrix4x4& getFinalTransformNoScale() const
+        const Matrix4x4& getFinalTransformNoScale() const
         {
             return finalTransformNoScale;
         }
 
-        inline const List<AudioSource *>& getAudioSources() const
+        const List<AudioSource *>& getAudioSources() const
         {
             return audioSources;
         }
