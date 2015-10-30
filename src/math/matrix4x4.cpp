@@ -192,39 +192,210 @@ float Matrix4x4::determinant() const
 #undef d
 }
 
+#pragma GCC push_options
+#pragma GCC target("avx")
 Matrix4x4 Matrix4x4::inverse() const
 {
     float d = determinant();
 
-    if(d == 0.0f)
+    if (d == 0.0f)
     {
         return Matrix4x4();
     }
 
     d = 1.0f / d;
 
-    Matrix4x4 c = transpose();
+    __m128 det __attribute__((aligned(16))) = _mm_set1_ps(d);
 
+    __m128 row0 __attribute__((aligned(16))) = _mm_loadu_ps(data[0]);
+    __m128 row1 __attribute__((aligned(16))) = _mm_loadu_ps(data[1]);
+    __m128 row2 __attribute__((aligned(16))) = _mm_loadu_ps(data[2]);
+    __m128 row3 __attribute__((aligned(16))) = _mm_loadu_ps(data[3]);
+
+    _MM_TRANSPOSE4_PS(row0, row1, row2, row3);
+
+    __m128 mask __attribute__((aligned(16))) = _mm_setr_ps(1.0f, -1.0f, 1.0f, -1.0f);
+
+//---------------------------------------------------------------------------------------------------
+    __m128 temp0 __attribute__((aligned(16))) = _mm_permute_ps(row1, _MM_SHUFFLE(2, 1, 3, 2));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row2, _MM_SHUFFLE(1, 3, 2, 3)));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row3, _MM_SHUFFLE(0, 0, 0, 1)));
+
+    __m128 temp1 __attribute__((aligned(16))) = _mm_permute_ps(row1, _MM_SHUFFLE(1, 3, 2, 3));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(2, 1, 3, 2)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row1, _MM_SHUFFLE(2, 3, 3, 3));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row1, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row1, _MM_SHUFFLE(1, 1, 2, 2));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row1, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp0 = _mm_mul_ps(temp0, det);
+
+    Matrix4x4 m(Matrix4x4::NoInit);
+    _mm_store_ps(m.data[0], temp0);
+
+//---------------------------------------------------------------------------------------------------
+    temp0 = _mm_permute_ps(row0, _MM_SHUFFLE(1, 3, 2, 3));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row2, _MM_SHUFFLE(2, 1, 3, 2)));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row3, _MM_SHUFFLE(0, 0, 0, 1)));
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(2, 1, 3, 2));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(1, 3, 2, 3)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(2, 3, 3, 3));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(1, 1, 2, 2));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp0 = _mm_mul_ps(temp0, det);
+
+    _mm_store_ps(m.data[1], temp0);
+
+//---------------------------------------------------------------------------------------------------
+    temp0 = _mm_permute_ps(row0, _MM_SHUFFLE(2, 1, 3, 2));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row1, _MM_SHUFFLE(1, 3, 2, 3)));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row3, _MM_SHUFFLE(0, 0, 0, 1)));
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(1, 3, 2, 3));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(2, 1, 3, 2)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(2, 3, 3, 3));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(1, 1, 2, 2));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row3, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp0 = _mm_mul_ps(temp0, det);
+
+    _mm_store_ps(m.data[2], temp0);
+
+//---------------------------------------------------------------------------------------------------
+    temp0 = _mm_permute_ps(row0, _MM_SHUFFLE(1, 3, 2, 3));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row1, _MM_SHUFFLE(2, 1, 3, 2)));
+    temp0 = _mm_mul_ps(temp0, _mm_permute_ps(row2, _MM_SHUFFLE(0, 0, 0, 1)));
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(2, 1, 3, 2));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(1, 3, 2, 3)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(2, 3, 3, 3));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(1, 1, 2, 2));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(0, 0, 0, 1)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_add_ps(temp0, temp1);
+
+    temp1 = _mm_permute_ps(row0, _MM_SHUFFLE(0, 0, 0, 1));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row1, _MM_SHUFFLE(1, 1, 2, 2)));
+    temp1 = _mm_mul_ps(temp1, _mm_permute_ps(row2, _MM_SHUFFLE(2, 3, 3, 3)));
+    temp1 = _mm_mul_ps(temp1, mask);
+    temp0 = _mm_sub_ps(temp0, temp1);
+
+    temp0 = _mm_mul_ps(temp0, det);
+
+    _mm_store_ps(m.data[3], temp0);
+
+    return m;
+    /*#define c data
     Matrix4x4 m(NoInit);
-    m[0][0] = d * (c[1][2]*c[2][3]*c[3][1] - c[1][3]*c[2][2]*c[3][1] + c[1][3]*c[2][1]*c[3][2] - c[1][1]*c[2][3]*c[3][2] - c[1][2]*c[2][1]*c[3][3] + c[1][1]*c[2][2]*c[3][3]);
-    m[0][1] = d * (c[0][3]*c[2][2]*c[3][1] - c[0][2]*c[2][3]*c[3][1] - c[0][3]*c[2][1]*c[3][2] + c[0][1]*c[2][3]*c[3][2] + c[0][2]*c[2][1]*c[3][3] - c[0][1]*c[2][2]*c[3][3]);
-    m[0][2] = d * (c[0][2]*c[1][3]*c[3][1] - c[0][3]*c[1][2]*c[3][1] + c[0][3]*c[1][1]*c[3][2] - c[0][1]*c[1][3]*c[3][2] - c[0][2]*c[1][1]*c[3][3] + c[0][1]*c[1][2]*c[3][3]);
-    m[0][3] = d * (c[0][3]*c[1][2]*c[2][1] - c[0][2]*c[1][3]*c[2][1] - c[0][3]*c[1][1]*c[2][2] + c[0][1]*c[1][3]*c[2][2] + c[0][2]*c[1][1]*c[2][3] - c[0][1]*c[1][2]*c[2][3]);
-    m[1][0] = d * (c[1][3]*c[2][2]*c[3][0] - c[1][2]*c[2][3]*c[3][0] - c[1][3]*c[2][0]*c[3][2] + c[1][0]*c[2][3]*c[3][2] + c[1][2]*c[2][0]*c[3][3] - c[1][0]*c[2][2]*c[3][3]);
-    m[1][1] = d * (c[0][2]*c[2][3]*c[3][0] - c[0][3]*c[2][2]*c[3][0] + c[0][3]*c[2][0]*c[3][2] - c[0][0]*c[2][3]*c[3][2] - c[0][2]*c[2][0]*c[3][3] + c[0][0]*c[2][2]*c[3][3]);
-    m[1][2] = d * (c[0][3]*c[1][2]*c[3][0] - c[0][2]*c[1][3]*c[3][0] - c[0][3]*c[1][0]*c[3][2] + c[0][0]*c[1][3]*c[3][2] + c[0][2]*c[1][0]*c[3][3] - c[0][0]*c[1][2]*c[3][3]);
-    m[1][3] = d * (c[0][2]*c[1][3]*c[2][0] - c[0][3]*c[1][2]*c[2][0] + c[0][3]*c[1][0]*c[2][2] - c[0][0]*c[1][3]*c[2][2] - c[0][2]*c[1][0]*c[2][3] + c[0][0]*c[1][2]*c[2][3]);
-    m[2][0] = d * (c[1][1]*c[2][3]*c[3][0] - c[1][3]*c[2][1]*c[3][0] + c[1][3]*c[2][0]*c[3][1] - c[1][0]*c[2][3]*c[3][1] - c[1][1]*c[2][0]*c[3][3] + c[1][0]*c[2][1]*c[3][3]);
-    m[2][1] = d * (c[0][3]*c[2][1]*c[3][0] - c[0][1]*c[2][3]*c[3][0] - c[0][3]*c[2][0]*c[3][1] + c[0][0]*c[2][3]*c[3][1] + c[0][1]*c[2][0]*c[3][3] - c[0][0]*c[2][1]*c[3][3]);
-    m[2][2] = d * (c[0][1]*c[1][3]*c[3][0] - c[0][3]*c[1][1]*c[3][0] + c[0][3]*c[1][0]*c[3][1] - c[0][0]*c[1][3]*c[3][1] - c[0][1]*c[1][0]*c[3][3] + c[0][0]*c[1][1]*c[3][3]);
-    m[2][3] = d * (c[0][3]*c[1][1]*c[2][0] - c[0][1]*c[1][3]*c[2][0] - c[0][3]*c[1][0]*c[2][1] + c[0][0]*c[1][3]*c[2][1] + c[0][1]*c[1][0]*c[2][3] - c[0][0]*c[1][1]*c[2][3]);
-    m[3][0] = d * (c[1][2]*c[2][1]*c[3][0] - c[1][1]*c[2][2]*c[3][0] - c[1][2]*c[2][0]*c[3][1] + c[1][0]*c[2][2]*c[3][1] + c[1][1]*c[2][0]*c[3][2] - c[1][0]*c[2][1]*c[3][2]);
-    m[3][1] = d * (c[0][1]*c[2][2]*c[3][0] - c[0][2]*c[2][1]*c[3][0] + c[0][2]*c[2][0]*c[3][1] - c[0][0]*c[2][2]*c[3][1] - c[0][1]*c[2][0]*c[3][2] + c[0][0]*c[2][1]*c[3][2]);
-    m[3][2] = d * (c[0][2]*c[1][1]*c[3][0] - c[0][1]*c[1][2]*c[3][0] - c[0][2]*c[1][0]*c[3][1] + c[0][0]*c[1][2]*c[3][1] + c[0][1]*c[1][0]*c[3][2] - c[0][0]*c[1][1]*c[3][2]);
-    m[3][3] = d * (c[0][1]*c[1][2]*c[2][0] - c[0][2]*c[1][1]*c[2][0] + c[0][2]*c[1][0]*c[2][1] - c[0][0]*c[1][2]*c[2][1] - c[0][1]*c[1][0]*c[2][2] + c[0][0]*c[1][1]*c[2][2]);
+    m.data[0][0] = d * (c[2][1]*c[3][2]*c[1][3] - c[3][1]*c[2][2]*c[1][3] + c[3][1]*c[1][2]*c[2][3] - c[1][1]*c[3][2]*c[2][3] - c[2][1]*c[1][2]*c[3][3] + c[1][1]*c[2][2]*c[3][3]);
+    m.data[0][1] = d * (c[3][1]*c[2][2]*c[0][3] - c[2][1]*c[3][2]*c[0][3] - c[3][1]*c[0][2]*c[2][3] + c[0][1]*c[3][2]*c[2][3] + c[2][1]*c[0][2]*c[3][3] - c[0][1]*c[2][2]*c[3][3]);
+    m.data[0][2] = d * (c[1][1]*c[3][2]*c[0][3] - c[3][1]*c[1][2]*c[0][3] + c[3][1]*c[0][2]*c[1][3] - c[0][1]*c[3][2]*c[1][3] - c[1][1]*c[0][2]*c[3][3] + c[0][1]*c[1][2]*c[3][3]);
+    m.data[0][3] = d * (c[2][1]*c[1][2]*c[0][3] - c[1][1]*c[2][2]*c[0][3] - c[2][1]*c[0][2]*c[1][3] + c[0][1]*c[2][2]*c[1][3] + c[1][1]*c[0][2]*c[2][3] - c[0][1]*c[1][2]*c[2][3]);
 
-    return m.transpose();
+    m.data[1][0] = d * (c[3][0]*c[2][2]*c[1][3] - c[2][0]*c[3][2]*c[1][3] - c[3][0]*c[1][2]*c[2][3] + c[1][0]*c[3][2]*c[2][3] + c[2][0]*c[1][2]*c[3][3] - c[1][0]*c[2][2]*c[3][3]);
+    m.data[1][1] = d * (c[2][0]*c[3][2]*c[0][3] - c[3][0]*c[2][2]*c[0][3] + c[3][0]*c[0][2]*c[2][3] - c[0][0]*c[3][2]*c[2][3] - c[2][0]*c[0][2]*c[3][3] + c[0][0]*c[2][2]*c[3][3]);
+    m.data[1][2] = d * (c[3][0]*c[1][2]*c[0][3] - c[1][0]*c[3][2]*c[0][3] - c[3][0]*c[0][2]*c[1][3] + c[0][0]*c[3][2]*c[1][3] + c[1][0]*c[0][2]*c[3][3] - c[0][0]*c[1][2]*c[3][3]);
+    m.data[1][3] = d * (c[1][0]*c[2][2]*c[0][3] - c[2][0]*c[1][2]*c[0][3] + c[2][0]*c[0][2]*c[1][3] - c[0][0]*c[2][2]*c[1][3] - c[1][0]*c[0][2]*c[2][3] + c[0][0]*c[1][2]*c[2][3]);
+
+    m.data[2][0] = d * (c[2][0]*c[3][1]*c[1][3] - c[3][0]*c[2][1]*c[1][3] + c[3][0]*c[1][1]*c[2][3] - c[1][0]*c[3][1]*c[2][3] - c[2][0]*c[1][1]*c[3][3] + c[1][0]*c[2][1]*c[3][3]);
+    m.data[2][1] = d * (c[3][0]*c[2][1]*c[0][3] - c[2][0]*c[3][1]*c[0][3] - c[3][0]*c[0][1]*c[2][3] + c[0][0]*c[3][1]*c[2][3] + c[2][0]*c[0][1]*c[3][3] - c[0][0]*c[2][1]*c[3][3]);
+    m.data[2][2] = d * (c[1][0]*c[3][1]*c[0][3] - c[3][0]*c[1][1]*c[0][3] + c[3][0]*c[0][1]*c[1][3] - c[0][0]*c[3][1]*c[1][3] - c[1][0]*c[0][1]*c[3][3] + c[0][0]*c[1][1]*c[3][3]);
+    m.data[2][3] = d * (c[2][0]*c[1][1]*c[0][3] - c[1][0]*c[2][1]*c[0][3] - c[2][0]*c[0][1]*c[1][3] + c[0][0]*c[2][1]*c[1][3] + c[1][0]*c[0][1]*c[2][3] - c[0][0]*c[1][1]*c[2][3]);
+
+    m.data[3][0] = d * (c[3][0]*c[2][1]*c[1][2] - c[2][0]*c[3][1]*c[1][2] - c[3][0]*c[1][1]*c[2][2] + c[1][0]*c[3][1]*c[2][2] + c[2][0]*c[1][1]*c[3][2] - c[1][0]*c[2][1]*c[3][2]);
+    m.data[3][1] = d * (c[2][0]*c[3][1]*c[0][2] - c[3][0]*c[2][1]*c[0][2] + c[3][0]*c[0][1]*c[2][2] - c[0][0]*c[3][1]*c[2][2] - c[2][0]*c[0][1]*c[3][2] + c[0][0]*c[2][1]*c[3][2]);
+    m.data[3][2] = d * (c[3][0]*c[1][1]*c[0][2] - c[1][0]*c[3][1]*c[0][2] - c[3][0]*c[0][1]*c[1][2] + c[0][0]*c[3][1]*c[1][2] + c[1][0]*c[0][1]*c[3][2] - c[0][0]*c[1][1]*c[3][2]);
+    m.data[3][3] = d * (c[1][0]*c[2][1]*c[0][2] - c[2][0]*c[1][1]*c[0][2] + c[2][0]*c[0][1]*c[1][2] - c[0][0]*c[2][1]*c[1][2] - c[1][0]*c[0][1]*c[2][2] + c[0][0]*c[1][1]*c[2][2]);
+    #undef c
+
+    return m;*/
 }
+#pragma GCC pop_options
 
 void Matrix4x4::multTrans(const Float3& translation)
 {
