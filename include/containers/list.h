@@ -189,7 +189,7 @@ class List
             private:
                 Iterator(List<T>& list_, size_t i_) : list(list_), i(i_) {}
 
-                List<T> list;
+                List<T>& list;
                 size_t i;
         };
 
@@ -216,7 +216,7 @@ class List
             private:
                 ConstIterator(const List<T>& list_, size_t i_) : list(list_), i(i_) {}
 
-                List<T> list;
+                const List<T>& list;
                 size_t i;
         };
 

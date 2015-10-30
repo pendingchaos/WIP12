@@ -1629,7 +1629,7 @@ void GfxRenderer::swapFramebuffers()
 
 void GfxRenderer::fillObjects(const List<Entity *>& entities)
 {
-    for (auto entity : entities)
+    for (auto& entity : entities)
     {
         Matrix4x4 transform = entity->getFinalTransform();
 
@@ -1637,9 +1637,7 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
         {
             const RenderComponent *comp = entity->getRenderComponent();
 
-            switch (comp->mode)
-            {
-            case RenderMode::Model:
+            if (comp->mode == RenderMode::Model)
             {
                 GfxModel *model = comp->model;
 
@@ -1657,9 +1655,9 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
                     animMesh = animState->getMesh();
                 }
 
-                for (auto subModel : model->subModels)
+                for (auto& subModel : model->subModels)
                 {
-                    for (auto lod : subModel)
+                    for (auto& lod : subModel)
                     {
                         if (lod.minDistance < distance and
                             distance < lod.maxDistance)
@@ -1679,12 +1677,6 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
                         }
                     }
                 }
-                break;
-            }
-            default:
-            {
-                break;
-            }
             }
         }
 
