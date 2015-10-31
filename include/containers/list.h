@@ -45,10 +45,12 @@ class List
 
         const T& operator [] (std::size_t index) const NO_BIND
         {
+            #if DEBUG
             if (index >= data.size())
             {
                 THROW(BoundsException);
             }
+            #endif
 
             return data[index];
         }
@@ -105,10 +107,12 @@ class List
 
         void insert(std::size_t start, std::size_t count, const T *toInsert) NO_BIND
         {
+            #if DEBUG
             if (start > data.size())
             {
                 THROW(BoundsException);
             }
+            #endif
 
             data.insert(data.begin()+start, toInsert, toInsert+count);
         }
@@ -120,20 +124,24 @@ class List
 
         void insert(std::size_t start, const List& toInsert)
         {
+            #if DEBUG
             if (start > data.size())
             {
                 THROW(BoundsException);
             }
+            #endif
 
             data.insert(data.begin()+start, toInsert.data.begin(), toInsert.data.end());
         }
 
         void remove(std::size_t index, std::size_t count=1)
         {
+            #if DEBUG
             if (index+count > data.size())
             {
                 THROW(BoundsException);
             }
+            #endif
 
             data.erase(data.begin()+index, data.begin()+index+count);
         }
@@ -173,7 +181,7 @@ class List
             public:
                 const T& operator * () const
                 {
-                    return list[i];
+                    return list.getData()[i];
                 }
 
                 Iterator& operator ++ ()
@@ -200,7 +208,7 @@ class List
             public:
                 const T& operator * () const
                 {
-                    return list[i];
+                    return list.getData()[i];
                 }
 
                 ConstIterator& operator ++ ()

@@ -19,6 +19,7 @@
 					<Add option="-g" />
 					<Add option="-Og" />
 					<Add option="-DDEBUG" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -33,6 +34,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DNDEBUG" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -52,6 +54,7 @@
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -121,6 +124,7 @@
 		<Unit filename="include/graphics/light.h" />
 		<Unit filename="include/graphics/renderlist.h" />
 		<Unit filename="include/imgui.h" />
+		<Unit filename="include/jobsystem.h" />
 		<Unit filename="include/logging.h" />
 		<Unit filename="include/math/aabb.h" />
 		<Unit filename="include/math/frustum.h" />
@@ -194,6 +198,7 @@
 		<Unit filename="src/graphics/light.cpp" />
 		<Unit filename="src/graphics/renderlist.cpp" />
 		<Unit filename="src/imgui.cpp" />
+		<Unit filename="src/jobsystem.cpp" />
 		<Unit filename="src/logging.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/math/aabb.cpp" />

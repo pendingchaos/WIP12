@@ -14,12 +14,16 @@ File *textLog = nullptr;
 
 void initLoggingSystem()
 {
-    textLog = NEW(File, "log.txt", "w");
+    if (textLog == nullptr)
+    {
+        textLog = NEW(File, "log.txt", "w");
+    }
 }
 
 void deinitLoggingSystem()
 {
     DELETE(textLog);
+    textLog = nullptr;
 }
 
 void log(const char *format, ...)

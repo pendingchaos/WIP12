@@ -13,6 +13,7 @@
 #include "globals.h"
 #include "logging.h"
 #include "platform.h"
+#include "jobsystem.h"
 
 #include <cmath>
 
@@ -841,7 +842,6 @@ void GfxRenderer::render()
 
     uint64_t start = platform->getTime();
 
-    //TODO: Move these out of the batching timer.
     for (auto& obj : objects)
     {
         obj.mesh->release();
@@ -1680,6 +1680,6 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
             }
         }
 
-        fillObjects(entity->getEntities());;
+        fillObjects(entity->getEntities());
     }
 }
