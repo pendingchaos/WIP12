@@ -157,20 +157,20 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     bloomDownsampleTexture = NEW(GfxTexture);
     geomNormalTexture = NEW(GfxTexture);
 
-    readColorTexture->setWrapMode(GfxWrapMode::Stretch);
-    writeColorTexture->setWrapMode(GfxWrapMode::Stretch);
-    depthTexture->setWrapMode(GfxWrapMode::Stretch);
-    materialTexture->setWrapMode(GfxWrapMode::Stretch);
-    normalTexture->setWrapMode(GfxWrapMode::Stretch);
-    ssaoTexture->setWrapMode(GfxWrapMode::Stretch);
-    ssaoBlurXTexture->setWrapMode(GfxWrapMode::Stretch);
-    bloomBlurXTexture->setWrapMode(GfxWrapMode::Stretch);
-    bloom1Texture->setWrapMode(GfxWrapMode::Stretch);
-    bloom2Texture->setWrapMode(GfxWrapMode::Stretch);
-    bloom3Texture->setWrapMode(GfxWrapMode::Stretch);
-    bloom4Texture->setWrapMode(GfxWrapMode::Stretch);
-    bloomDownsampleTexture->setWrapMode(GfxWrapMode::Stretch);
-    geomNormalTexture->setWrapMode(GfxWrapMode::Stretch);
+    readColorTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    writeColorTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    depthTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    materialTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    normalTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    ssaoTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    ssaoBlurXTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    bloomBlurXTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    bloom1Texture->sampler.wrapMode = GfxWrapMode::Stretch;
+    bloom2Texture->sampler.wrapMode = GfxWrapMode::Stretch;
+    bloom3Texture->sampler.wrapMode = GfxWrapMode::Stretch;
+    bloom4Texture->sampler.wrapMode = GfxWrapMode::Stretch;
+    bloomDownsampleTexture->sampler.wrapMode = GfxWrapMode::Stretch;
+    geomNormalTexture->sampler.wrapMode = GfxWrapMode::Stretch;
 
     resize(640);
 
@@ -819,7 +819,7 @@ class PostEffect
 
         PostEffect& texture(const char *name, GfxTexture *tex)
         {
-            gfxApi->addTextureBinding(shaders->getCompiled(GfxShaderType::Fragment), name, tex, TextureSampler(tex));
+            gfxApi->addTextureBinding(shaders->getCompiled(GfxShaderType::Fragment), name, tex, tex->sampler);
             return *this;
         }
     private:

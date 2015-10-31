@@ -36,7 +36,7 @@
 - [ ] Terrain shadows from point lights.
     - Separate option.
 - [ ] Separate option for spot light terrain shadows.
-- [ ] Make a GUI skinnable.
+- [ ] Make GUIs skinnable.
 - [ ] Make the directional light cascade count configurable.
 - [ ] Complete terrain shadows.
 - [ ] Lexical scoping (scripting).
@@ -81,6 +81,8 @@
 - [ ] A proper shaderball.
 - [ ] Separate material parameters, material rendering and mesh rendering.
 - [ ] Fix memory leaks.
+- [ ] Get rid of resource filenames.
+    - [ ] Find a way of referencing other resources.
 
 ## Performance Improvements
 - [ ] Explicit instancing

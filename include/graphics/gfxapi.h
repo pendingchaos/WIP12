@@ -25,51 +25,6 @@ enum class GfxDriver
     Unknown
 } BIND ENUM_CLASS;
 
-struct TextureSampler
-{
-    TextureSampler() : maxAnisotropy(1.0f),
-                       minFilter(GfxFilter::Bilinear),
-                       magFilter(GfxFilter::Bilinear),
-                       mipmapMode(GfxMipmapMode::None),
-                       wrapMode(GfxWrapMode::Repeat),
-                       shadowmap(false) {}
-    TextureSampler(GfxTexture *tex) : maxAnisotropy(tex->getMaximumAnisotropy()),
-                                      minFilter(tex->getMinFilter()),
-                                      magFilter(tex->getMagFilter()),
-                                      mipmapMode(tex->getMipmapMode()),
-                                      wrapMode(tex->getWrapMode()),
-                                      shadowmap(tex->getShadowmap()) {}
-
-    TextureSampler(float maxAnisotropy_,
-                   GfxFilter minFilter_,
-                   GfxFilter magFilter_,
-                   GfxMipmapMode mipmapMode_,
-                   GfxWrapMode wrapMode_,
-                   bool shadowmap_) : maxAnisotropy(maxAnisotropy_),
-                                      minFilter(minFilter_),
-                                      magFilter(magFilter_),
-                                      mipmapMode(mipmapMode_),
-                                      wrapMode(wrapMode_),
-                                      shadowmap(shadowmap_) {}
-
-    static TextureSampler createShadowmap() NO_BIND
-    {
-        return TextureSampler(1.0f,
-                              GfxFilter::Bilinear,
-                              GfxFilter::Bilinear,
-                              GfxMipmapMode::None,
-                              GfxWrapMode::Stretch,
-                              true);
-    }
-
-    float maxAnisotropy;
-    GfxFilter minFilter;
-    GfxFilter magFilter;
-    GfxMipmapMode mipmapMode;
-    GfxWrapMode wrapMode;
-    bool shadowmap;
-} BIND;
-
 class GfxShaderCombination;
 
 class GfxApi
@@ -170,7 +125,7 @@ class GfxApi
 
         void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
         {
-            addTextureBinding(shader, name, texture, TextureSampler(texture));
+            addTextureBinding(shader, name, texture, texture->sampler);
         }
 
         void addTextureBinding2(GfxCompiledShader *shader, const char *name, GfxTexture *texture)

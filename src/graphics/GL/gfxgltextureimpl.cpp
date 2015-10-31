@@ -409,7 +409,7 @@ if (textureType == GfxTextureType::Texture2D or textureType == GfxTextureType::C
                  data);\
 }
 
-//TODO: The framebuffer list will not be copyied from the old texture impl when removeContent() is called.
+//TODO: The framebuffer list will not be copied from the old texture impl when removeContent() is called.
 GfxGLTextureImpl::GfxGLTextureImpl()
 {
     textureType = GfxTextureType::Texture2D;
@@ -420,17 +420,9 @@ GfxGLTextureImpl::GfxGLTextureImpl()
     SET_DEFAULT_GL
     END_TEXTURE_BINDING
 
-    maximumAnisotropy = 1.0f;
-    minFilter = GfxFilter::Bilinear;
-    magFilter = GfxFilter::Bilinear;
-    mipmapMode = GfxMipmapMode::None;
-    wrapMode = GfxWrapMode::Repeat;
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    shadowmap = false;
-
-    setMinFiltering();
 }
 
 GfxGLTextureImpl::~GfxGLTextureImpl()
@@ -456,11 +448,6 @@ void GfxGLTextureImpl::startCreation(GfxTextureType type_,
     BEGIN_TEXTURE_BINDING
 
     glTexParameteriv(target, GL_TEXTURE_SWIZZLE_RGBA, swizzles[(int)format_]);
-    glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, maximumAnisotropy);
-    setMinFiltering();
-    setMagFilter(magFilter);
-    setWrapMode(wrapMode);
-    setShadowmap(shadowmap);
 
     END_TEXTURE_BINDING
 
@@ -580,183 +567,4 @@ GLenum GfxGLTextureImpl::getGLBindingGet() const
 GLenum GfxGLTextureImpl::getGLInternalFormat() const
 {
     return formats[(int)format];
-}
-
-void GfxGLTextureImpl::setMaximumAnisotropy(float maxAnisotropy)
-{
-    if (GLFL_GL_EXT_texture_filter_anisotropic)
-    {
-        BEGIN_TEXTURE_BINDING;
-
-        float maxMaxAnisotropy = 1.0f;
-
-        glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxMaxAnisotropy);
-
-        if (maxAnisotropy > maxMaxAnisotropy)
-        {
-            maxAnisotropy = maxMaxAnisotropy;
-        }
-
-        if (maxAnisotropy < 1.0f)
-        {
-            maxAnisotropy = 1.0f;
-        }
-
-        glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
-
-        maximumAnisotropy = maxAnisotropy;
-
-        END_TEXTURE_BINDING;
-    }
-}
-
-void GfxGLTextureImpl::setMinFilter(GfxFilter minFilter_)
-{
-    minFilter = minFilter_;
-
-    setMinFiltering();
-}
-
-void GfxGLTextureImpl::setMagFilter(GfxFilter magFilter)
-{
-    BEGIN_TEXTURE_BINDING
-
-    switch (magFilter)
-    {
-    case GfxFilter::Bilinear:
-    {
-        glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        break;
-    }
-    case GfxFilter::Nearest:
-    {
-        glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        break;
-    }
-    }
-
-    END_TEXTURE_BINDING
-}
-
-void GfxGLTextureImpl::setMipmapMode(GfxMipmapMode mode)
-{
-    if (mode == mipmapMode)
-    {
-        return;
-    }
-
-    mipmapMode = mode;
-
-    setMinFiltering();
-}
-
-void GfxGLTextureImpl::setWrapMode(GfxWrapMode mode)
-{
-    BEGIN_TEXTURE_BINDING
-
-    switch (mode)
-    {
-    case GfxWrapMode::Stretch:
-    {
-        glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        break;
-    }
-    case GfxWrapMode::Repeat:
-    {
-        glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        break;
-    }
-    case GfxWrapMode::Mirror:
-    {
-        glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-        glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-        break;
-    }
-    }
-
-    END_TEXTURE_BINDING
-
-    wrapMode = mode;
-}
-
-void GfxGLTextureImpl::setMinFiltering()
-{
-    BEGIN_TEXTURE_BINDING
-
-    switch (mipmapMode)
-    {
-    case GfxMipmapMode::None:
-    {
-        switch (minFilter)
-        {
-        case GfxFilter::Bilinear:
-        {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            break;
-        }
-        case GfxFilter::Nearest:
-        {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            break;
-        }
-        }
-        break;
-    }
-    case GfxMipmapMode::Nearest:
-    {
-        switch (minFilter)
-        {
-        case GfxFilter::Bilinear:
-        {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-            break;
-        }
-        case GfxFilter::Nearest:
-        {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-            break;
-        }
-        }
-        break;
-    }
-    case GfxMipmapMode::Linear:
-    {
-        switch (minFilter)
-        {
-        case GfxFilter::Bilinear:
-        {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-            break;
-        }
-        case GfxFilter::Nearest:
-        {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-            break;
-        }
-        }
-        break;
-    }
-    }
-
-    END_TEXTURE_BINDING
-}
-
-void GfxGLTextureImpl::setShadowmap(bool shadowmap_)
-{
-    BEGIN_TEXTURE_BINDING
-
-    if (shadowmap_)
-    {
-        glTexParameteri(target, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-        glTexParameteri(target, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-    } else
-    {
-        glTexParameteri(target, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-    }
-
-    END_TEXTURE_BINDING
-
-    shadowmap = shadowmap_;
 }

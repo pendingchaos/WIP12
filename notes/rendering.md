@@ -37,7 +37,7 @@
 ### Optional:
 - GL_ARB_internalformat_query2
     - For better max texture sizes.
-    - glGetInternalFormati64v returns a width and height of 0 if the format is not natively supported by the GPU
+    - glGetInternalFormati64v returns a width and height or 0 if the format is not natively supported by the GPU
         - Fallback on glGetIntegerv
 - GPU Culling path
     - GL_ARB_multi_draw_indirect

@@ -45,6 +45,45 @@ enum class GfxWrapMode
     Mirror
 } BIND ENUM_CLASS;
 
+struct TextureSampler
+{
+    TextureSampler() : maxAnisotropy(1.0f),
+                       minFilter(GfxFilter::Bilinear),
+                       magFilter(GfxFilter::Bilinear),
+                       mipmapMode(GfxMipmapMode::None),
+                       wrapMode(GfxWrapMode::Repeat),
+                       shadowmap(false) {}
+
+    TextureSampler(float maxAnisotropy_,
+                   GfxFilter minFilter_,
+                   GfxFilter magFilter_,
+                   GfxMipmapMode mipmapMode_,
+                   GfxWrapMode wrapMode_,
+                   bool shadowmap_) : maxAnisotropy(maxAnisotropy_),
+                                      minFilter(minFilter_),
+                                      magFilter(magFilter_),
+                                      mipmapMode(mipmapMode_),
+                                      wrapMode(wrapMode_),
+                                      shadowmap(shadowmap_) {}
+
+    static TextureSampler createShadowmap() NO_BIND
+    {
+        return TextureSampler(1.0f,
+                              GfxFilter::Bilinear,
+                              GfxFilter::Bilinear,
+                              GfxMipmapMode::None,
+                              GfxWrapMode::Stretch,
+                              true);
+    }
+
+    float maxAnisotropy;
+    GfxFilter minFilter;
+    GfxFilter magFilter;
+    GfxMipmapMode mipmapMode;
+    GfxWrapMode wrapMode;
+    bool shadowmap;
+} BIND;
+
 /**
  *F32_F16 means the data is stored as 32 bit floats but is converted to
  *16 bit floats.
@@ -208,36 +247,6 @@ class GfxTexture : public Resource
             return textureType;
         }
 
-        bool shouldCompress() const
-        {
-            return compress;
-        }
-
-        float getMaximumAnisotropy() const
-        {
-            return maximumAnisotropy;
-        }
-
-        GfxFilter getMinFilter() const
-        {
-            return minFilter;
-        }
-
-        GfxFilter getMagFilter() const
-        {
-            return magFilter;
-        }
-
-        GfxMipmapMode getMipmapMode() const
-        {
-            return mipmapMode;
-        }
-
-        GfxWrapMode getWrapMode() const
-        {
-            return wrapMode;
-        }
-
         unsigned int getBaseWidth() const
         {
             return baseWidth;
@@ -258,38 +267,21 @@ class GfxTexture : public Resource
             return format;
         }
 
-        bool getShadowmap() const
-        {
-            return shadowmap;
-        }
-
-        void setMaximumAnisotropy(float maxAnisotropy);
-        void setMinFilter(GfxFilter minFilter);
-        void setMagFilter(GfxFilter magFilter);
-        void setMipmapMode(GfxMipmapMode mode);
-        void setWrapMode(GfxWrapMode mode);
-        void setShadowmap(bool shadowmap);
-
         GfxTextureImpl *getImpl() const NO_BIND
         {
             return impl;
         }
 
         virtual void save();
+
+        TextureSampler sampler;
     private:
         GfxTextureImpl *impl;
         GfxTextureType textureType;
-        bool compress;
-        float maximumAnisotropy;
-        GfxFilter minFilter;
-        GfxFilter magFilter;
-        GfxMipmapMode mipmapMode;
-        GfxWrapMode wrapMode;
         unsigned int baseWidth;
         unsigned int baseHeight;
         unsigned int baseDepth;
         GfxTexFormat format;
-        bool shadowmap;
     protected:
         virtual void _load();
         virtual Resource *_copy() const;
@@ -330,13 +322,6 @@ class GfxTextureImpl
                                void *data)=0;
 
         virtual void generateMipmaps()=0;
-
-        virtual void setMaximumAnisotropy(float maxAnisotropy)=0;
-        virtual void setMinFilter(GfxFilter minFilter)=0;
-        virtual void setMagFilter(GfxFilter magFilter)=0;
-        virtual void setMipmapMode(GfxMipmapMode mode)=0;
-        virtual void setWrapMode(GfxWrapMode mode)=0;
-        virtual void setShadowmap(bool shadowmap)=0;
 
     NO_COPY(GfxTextureImpl)
 };

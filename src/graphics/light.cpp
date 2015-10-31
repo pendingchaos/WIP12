@@ -78,9 +78,9 @@ void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
         shadowmapFramebuffers[5]->setDepthAttachment(shadowmap, 0, 5);
     }
 
-    shadowmap->setMinFilter(GfxFilter::Nearest);
-    shadowmap->setMagFilter(GfxFilter::Nearest);
-    shadowmap->setWrapMode(GfxWrapMode::Stretch);
+    shadowmap->sampler.minFilter = GfxFilter::Nearest;
+    shadowmap->sampler.magFilter = GfxFilter::Nearest;
+    shadowmap->sampler.wrapMode = GfxWrapMode::Stretch;
 
     shadowmapResolution = resolution;
     shadowmapPrecision = precision;

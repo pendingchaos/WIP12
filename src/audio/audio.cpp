@@ -18,11 +18,6 @@ void Audio::removeContent()
     data.clear();
 }
 
-#include <iostream>
-#include <AL/al.h>
-#include <AL/alc.h>
-#include <unistd.h>
-
 void Audio::_load()
 {
     OggVorbis_File file;

@@ -7089,23 +7089,10 @@ SV GfxTexture_getMipmapFace(CTX ctx,const List<SV>&a);
 SV GfxTexture_getMipmap(CTX ctx,const List<SV>&a);
 SV GfxTexture_generateMipmaps(CTX ctx,const List<SV>&a);
 SV GfxTexture_getTextureType(CTX ctx,const List<SV>&a);
-SV GfxTexture_shouldCompress(CTX ctx,const List<SV>&a);
-SV GfxTexture_getMaximumAnisotropy(CTX ctx,const List<SV>&a);
-SV GfxTexture_getMinFilter(CTX ctx,const List<SV>&a);
-SV GfxTexture_getMagFilter(CTX ctx,const List<SV>&a);
-SV GfxTexture_getMipmapMode(CTX ctx,const List<SV>&a);
-SV GfxTexture_getWrapMode(CTX ctx,const List<SV>&a);
 SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a);
 SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a);
 SV GfxTexture_getBaseDepth(CTX ctx,const List<SV>&a);
 SV GfxTexture_getFormat(CTX ctx,const List<SV>&a);
-SV GfxTexture_getShadowmap(CTX ctx,const List<SV>&a);
-SV GfxTexture_setMaximumAnisotropy(CTX ctx,const List<SV>&a);
-SV GfxTexture_setMinFilter(CTX ctx,const List<SV>&a);
-SV GfxTexture_setMagFilter(CTX ctx,const List<SV>&a);
-SV GfxTexture_setMipmapMode(CTX ctx,const List<SV>&a);
-SV GfxTexture_setWrapMode(CTX ctx,const List<SV>&a);
-SV GfxTexture_setShadowmap(CTX ctx,const List<SV>&a);
 SV GfxTexture_getImpl(CTX ctx,const List<SV>&a);
 SV GfxTexture_save(CTX ctx,const List<SV>&a);
 SV GfxTexture_load(CTX ctx,const List<SV>&a);
@@ -24308,6 +24295,10 @@ RET CV(obj->material);
 {
 DrawCall*obj=(DrawCall*)f->data;
 RET CV(obj->worldMatrix);
+} EI(keyStr.equals("normalMatrix", CPL_STR_HASH("normalMatrix")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+RET CV(obj->normalMatrix);
 } EI(keyStr.equals("animState", CPL_STR_HASH("animState")))
 {
 DrawCall*obj=(DrawCall*)f->data;
@@ -24341,6 +24332,10 @@ obj->material=val_to_c<decltype(obj->material)>::f(ctx,value);
 {
 DrawCall*obj=(DrawCall*)f->data;
 obj->worldMatrix=val_to_c<decltype(obj->worldMatrix)>::f(ctx,value);
+} EI(keyStr.equals("normalMatrix", CPL_STR_HASH("normalMatrix")))
+{
+DrawCall*obj=(DrawCall*)f->data;
+obj->normalMatrix=val_to_c<decltype(obj->normalMatrix)>::f(ctx,value);
 } EI(keyStr.equals("animState", CPL_STR_HASH("animState")))
 {
 DrawCall*obj=(DrawCall*)f->data;
@@ -27775,11 +27770,6 @@ CATE(TE,"TextureSampler's constructor expects TextureSampler as first argument."
 if(a.getCount()==1)
 if(true){
 void *p = (void *)NEW(TYPE(TextureSampler));
-setAllocInfo(p, AllocInfo(true, false));
-RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
-}if(a.getCount()==2)
-if(true&&TS(a[1],GfxTexture *)){
-void *p = (void *)NEW(TYPE(TextureSampler),val_to_c<GfxTexture *>::f(ctx,a[1]));
 setAllocInfo(p, AllocInfo(true, false));
 RET STG::createNativeObject(TextureSampler_funcs,p,EXT->TextureSampler_typeID);
 }if(a.getCount()==7)
@@ -50308,18 +50298,6 @@ RET CNF(GfxTexture_getMipmap);
 RET CNF(GfxTexture_generateMipmaps);
  EI(keyStr.equals("getTextureType", CPL_STR_HASH("getTextureType")))
 RET CNF(GfxTexture_getTextureType);
- EI(keyStr.equals("shouldCompress", CPL_STR_HASH("shouldCompress")))
-RET CNF(GfxTexture_shouldCompress);
- EI(keyStr.equals("getMaximumAnisotropy", CPL_STR_HASH("getMaximumAnisotropy")))
-RET CNF(GfxTexture_getMaximumAnisotropy);
- EI(keyStr.equals("getMinFilter", CPL_STR_HASH("getMinFilter")))
-RET CNF(GfxTexture_getMinFilter);
- EI(keyStr.equals("getMagFilter", CPL_STR_HASH("getMagFilter")))
-RET CNF(GfxTexture_getMagFilter);
- EI(keyStr.equals("getMipmapMode", CPL_STR_HASH("getMipmapMode")))
-RET CNF(GfxTexture_getMipmapMode);
- EI(keyStr.equals("getWrapMode", CPL_STR_HASH("getWrapMode")))
-RET CNF(GfxTexture_getWrapMode);
  EI(keyStr.equals("getBaseWidth", CPL_STR_HASH("getBaseWidth")))
 RET CNF(GfxTexture_getBaseWidth);
  EI(keyStr.equals("getBaseHeight", CPL_STR_HASH("getBaseHeight")))
@@ -50328,20 +50306,6 @@ RET CNF(GfxTexture_getBaseHeight);
 RET CNF(GfxTexture_getBaseDepth);
  EI(keyStr.equals("getFormat", CPL_STR_HASH("getFormat")))
 RET CNF(GfxTexture_getFormat);
- EI(keyStr.equals("getShadowmap", CPL_STR_HASH("getShadowmap")))
-RET CNF(GfxTexture_getShadowmap);
- EI(keyStr.equals("setMaximumAnisotropy", CPL_STR_HASH("setMaximumAnisotropy")))
-RET CNF(GfxTexture_setMaximumAnisotropy);
- EI(keyStr.equals("setMinFilter", CPL_STR_HASH("setMinFilter")))
-RET CNF(GfxTexture_setMinFilter);
- EI(keyStr.equals("setMagFilter", CPL_STR_HASH("setMagFilter")))
-RET CNF(GfxTexture_setMagFilter);
- EI(keyStr.equals("setMipmapMode", CPL_STR_HASH("setMipmapMode")))
-RET CNF(GfxTexture_setMipmapMode);
- EI(keyStr.equals("setWrapMode", CPL_STR_HASH("setWrapMode")))
-RET CNF(GfxTexture_setWrapMode);
- EI(keyStr.equals("setShadowmap", CPL_STR_HASH("setShadowmap")))
-RET CNF(GfxTexture_setShadowmap);
  EI(keyStr.equals("getImpl", CPL_STR_HASH("getImpl")))
 RET CNF(GfxTexture_getImpl);
  EI(keyStr.equals("save", CPL_STR_HASH("save")))
@@ -50360,7 +50324,11 @@ RET CNF(GfxTexture_getRefCount);
 RET CNF(GfxTexture_getFilename);
  EI(keyStr.equals("setFilename", CPL_STR_HASH("setFilename")))
 RET CNF(GfxTexture_setFilename);
- else
+ EI(keyStr.equals("sampler", CPL_STR_HASH("sampler")))
+{
+GfxTexture*obj=(GfxTexture*)f->data;
+RET CV(obj->sampler);
+} else
  CATE(KE,"Unknown member for GfxTexture."));
 }
 }
@@ -50377,7 +50345,11 @@ if(f->data==NULL)
 CATE(KE,"Native classes are read-only."));
 else
 {
-if(0) {} else
+if(0) {} EI(keyStr.equals("sampler", CPL_STR_HASH("sampler")))
+{
+GfxTexture*obj=(GfxTexture*)f->data;
+obj->sampler=val_to_c<decltype(obj->sampler)>::f(ctx,value);
+} else
  CATE(KE,"Unknown member or member if read-only for GfxTexture."));
 }
 }
@@ -50400,71 +50372,121 @@ CATE(TE,UFOF("GfxTexture::load.")));
 RET CN;
 }
 
-SV GfxTexture_getFilename(CTX ctx,const List<SV>&a)
+SV GfxTexture_save(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxTexture::getFilename" EAOE));
+CATE(VE,"GfxTexture::save" EAOE));
 GfxTexture*f;
 f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getFilename());
-;
+( f->save());
+RET CN;
 }
-CATE(TE,UFOF("GfxTexture::getFilename.")));
+if(a.getCount()==1)
+if(1)
+{
+( f->save());
+RET CN;
+}
+CATE(TE,UFOF("GfxTexture::save.")));
 RET CN;
 }
 
-SV GfxTexture_setShadowmap(CTX ctx,const List<SV>&a)
+SV GfxTexture_getType(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxTexture::setShadowmap" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],bool))
-{
-( f->setShadowmap(val_to_c<std::remove_reference<bool>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setShadowmap.")));
-RET CN;
-}
-
-SV GfxTexture_setMinFilter(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::setMinFilter" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxFilter))
-{
-( f->setMinFilter(val_to_c<std::remove_reference<GfxFilter>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setMinFilter.")));
-RET CN;
-}
-
-SV GfxTexture_copy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::copy" EAOE));
+CATE(VE,"GfxTexture::getType" EAOE));
 GfxTexture*f;
 f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->copy());
+RET CV( f->getType());
 ;
 }
-CATE(TE,UFOF("GfxTexture::copy.")));
+CATE(TE,UFOF("GfxTexture::getType.")));
+RET CN;
+}
+
+SV GfxTexture_getTextureType(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getTextureType" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getTextureType());
+;
+}
+CATE(TE,UFOF("GfxTexture::getTextureType.")));
+RET CN;
+}
+
+SV GfxTexture_getMipmap(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMipmap" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxTexture::getMipmap.")));
+RET CN;
+}
+
+SV GfxTexture_setFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::setFilename" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],const Str &))
+{
+( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxTexture::setFilename.")));
+RET CN;
+}
+
+SV GfxTexture_getImpl(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getImpl" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxTexture::getImpl.")));
+RET CN;
+}
+
+SV GfxTexture_getMipmapFace(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getMipmapFace" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxTexture::getMipmapFace.")));
+RET CN;
+}
+
+SV GfxTexture_allocMipmapFace(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::allocMipmapFace" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("GfxTexture::allocMipmapFace.")));
 RET CN;
 }
 
@@ -50488,6 +50510,63 @@ if(1&&TS(a[1],unsigned int)&&TS(a[2],unsigned int)&&TS(a[3],const ResizableData 
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::allocMipmap.")));
+RET CN;
+}
+
+SV GfxTexture_copy(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::copy" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->copy());
+;
+}
+CATE(TE,UFOF("GfxTexture::copy.")));
+RET CN;
+}
+
+SV GfxTexture_getFilename(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getFilename" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getFilename());
+;
+}
+CATE(TE,UFOF("GfxTexture::getFilename.")));
+RET CN;
+}
+
+SV GfxTexture_removeContent(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::removeContent" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->removeContent());
+RET CN;
+}
+if(a.getCount()==1)
+if(1)
+{
+( f->removeContent());
+RET CN;
+}
+CATE(TE,UFOF("GfxTexture::removeContent.")));
 RET CN;
 }
 
@@ -50525,6 +50604,40 @@ CATE(TE,UFOF("GfxTexture::getBaseDepth.")));
 RET CN;
 }
 
+SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::getBaseHeight" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getBaseHeight());
+;
+}
+CATE(TE,UFOF("GfxTexture::getBaseHeight.")));
+RET CN;
+}
+
+SV GfxTexture_release(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxTexture::release" EAOE));
+GfxTexture*f;
+f=(GfxTexture*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->release());
+RET CN;
+}
+CATE(TE,UFOF("GfxTexture::release.")));
+RET CN;
+}
+
 SV GfxTexture_startCreation(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -50539,23 +50652,6 @@ if(1&&TS(a[1],GfxTextureType)&&TS(a[2],unsigned int)&&TS(a[3],unsigned int)&&TS(
 RET CN;
 }
 CATE(TE,UFOF("GfxTexture::startCreation.")));
-RET CN;
-}
-
-SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getBaseWidth" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getBaseWidth());
-;
-}
-CATE(TE,UFOF("GfxTexture::getBaseWidth.")));
 RET CN;
 }
 
@@ -50576,272 +50672,6 @@ CATE(TE,UFOF("GfxTexture::generateMipmaps.")));
 RET CN;
 }
 
-SV GfxTexture_getMipmap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getMipmap" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxTexture::getMipmap.")));
-RET CN;
-}
-
-SV GfxTexture_getShadowmap(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getShadowmap" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getShadowmap());
-;
-}
-CATE(TE,UFOF("GfxTexture::getShadowmap.")));
-RET CN;
-}
-
-SV GfxTexture_getImpl(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getImpl" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxTexture::getImpl.")));
-RET CN;
-}
-
-SV GfxTexture_getMinFilter(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getMinFilter" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getMinFilter());
-;
-}
-CATE(TE,UFOF("GfxTexture::getMinFilter.")));
-RET CN;
-}
-
-SV GfxTexture_allocMipmapFace(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::allocMipmapFace" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxTexture::allocMipmapFace.")));
-RET CN;
-}
-
-SV GfxTexture_setMipmapMode(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::setMipmapMode" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxMipmapMode))
-{
-( f->setMipmapMode(val_to_c<std::remove_reference<GfxMipmapMode>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setMipmapMode.")));
-RET CN;
-}
-
-SV GfxTexture_save(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::save" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-if(a.getCount()==1)
-if(1)
-{
-( f->save());
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::save.")));
-RET CN;
-}
-
-SV GfxTexture_getMipmapMode(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getMipmapMode" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getMipmapMode());
-;
-}
-CATE(TE,UFOF("GfxTexture::getMipmapMode.")));
-RET CN;
-}
-
-SV GfxTexture_getType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getType" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getType());
-;
-}
-CATE(TE,UFOF("GfxTexture::getType.")));
-RET CN;
-}
-
-SV GfxTexture_setFilename(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::setFilename" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],const Str &))
-{
-( f->setFilename(val_to_c<std::remove_reference<const Str &>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setFilename.")));
-RET CN;
-}
-
-SV GfxTexture_shouldCompress(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::shouldCompress" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->shouldCompress());
-;
-}
-CATE(TE,UFOF("GfxTexture::shouldCompress.")));
-RET CN;
-}
-
-SV GfxTexture_removeContent(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::removeContent" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->removeContent());
-RET CN;
-}
-if(a.getCount()==1)
-if(1)
-{
-( f->removeContent());
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::removeContent.")));
-RET CN;
-}
-
-SV GfxTexture_setWrapMode(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::setWrapMode" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxWrapMode))
-{
-( f->setWrapMode(val_to_c<std::remove_reference<GfxWrapMode>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setWrapMode.")));
-RET CN;
-}
-
-SV GfxTexture_getBaseHeight(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getBaseHeight" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getBaseHeight());
-;
-}
-CATE(TE,UFOF("GfxTexture::getBaseHeight.")));
-RET CN;
-}
-
-SV GfxTexture_setMaximumAnisotropy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::setMaximumAnisotropy" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],float))
-{
-( f->setMaximumAnisotropy(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setMaximumAnisotropy.")));
-RET CN;
-}
-
-SV GfxTexture_getTextureType(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getTextureType" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getTextureType());
-;
-}
-CATE(TE,UFOF("GfxTexture::getTextureType.")));
-RET CN;
-}
-
 SV GfxTexture_getFormat(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
@@ -50859,99 +50689,20 @@ CATE(TE,UFOF("GfxTexture::getFormat.")));
 RET CN;
 }
 
-SV GfxTexture_getMipmapFace(CTX ctx,const List<SV>&a)
+SV GfxTexture_getBaseWidth(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxTexture::getMipmapFace" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxTexture::getMipmapFace.")));
-RET CN;
-}
-
-SV GfxTexture_getMaximumAnisotropy(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getMaximumAnisotropy" EAOE));
+CATE(VE,"GfxTexture::getBaseWidth" EAOE));
 GfxTexture*f;
 f=(GfxTexture*)((NO)a[0].p)->data;
 
 if(a.getCount()==1)
 if(1)
 {
-RET CV( f->getMaximumAnisotropy());
+RET CV( f->getBaseWidth());
 ;
 }
-CATE(TE,UFOF("GfxTexture::getMaximumAnisotropy.")));
-RET CN;
-}
-
-SV GfxTexture_setMagFilter(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::setMagFilter" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxFilter))
-{
-( f->setMagFilter(val_to_c<std::remove_reference<GfxFilter>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::setMagFilter.")));
-RET CN;
-}
-
-SV GfxTexture_getWrapMode(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getWrapMode" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getWrapMode());
-;
-}
-CATE(TE,UFOF("GfxTexture::getWrapMode.")));
-RET CN;
-}
-
-SV GfxTexture_getMagFilter(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::getMagFilter" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getMagFilter());
-;
-}
-CATE(TE,UFOF("GfxTexture::getMagFilter.")));
-RET CN;
-}
-
-SV GfxTexture_release(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxTexture::release" EAOE));
-GfxTexture*f;
-f=(GfxTexture*)((NO)a[0].p)->data;
-
-if(a.getCount()==1)
-if(1)
-{
-( f->release());
-RET CN;
-}
-CATE(TE,UFOF("GfxTexture::release.")));
+CATE(TE,UFOF("GfxTexture::getBaseWidth.")));
 RET CN;
 }
 

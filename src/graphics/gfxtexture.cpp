@@ -167,35 +167,21 @@ static const size_t formatSizes[] = {1,
 
 GfxTexture::GfxTexture(const Str& filename) : Resource(filename,
                                                           ResType::GfxTextureType),
-                                                 impl(gfxApi->createTextureImpl())
+                                              impl(gfxApi->createTextureImpl())
 {
     textureType = GfxTextureType::Texture2D;
-    compress = false;
-    setMaximumAnisotropy(1.0f);
-    setMinFilter(GfxFilter::Bilinear);
-    setMagFilter(GfxFilter::Bilinear);
-    setMipmapMode(GfxMipmapMode::None);
-    setWrapMode(GfxWrapMode::Repeat);
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    shadowmap = false;
 }
 
 GfxTexture::GfxTexture() : Resource(ResType::GfxTextureType),
                            impl(gfxApi->createTextureImpl())
 {
     textureType = GfxTextureType::Texture2D;
-    compress = false;
-    setMaximumAnisotropy(1.0f);
-    setMinFilter(GfxFilter::Bilinear);
-    setMagFilter(GfxFilter::Bilinear);
-    setMipmapMode(GfxMipmapMode::None);
-    setWrapMode(GfxWrapMode::Repeat);
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    shadowmap = false;
 }
 
 GfxTexture::~GfxTexture()
@@ -206,16 +192,10 @@ GfxTexture::~GfxTexture()
 void GfxTexture::removeContent()
 {
     textureType = GfxTextureType::Texture2D;
-    compress = false;
-    setMaximumAnisotropy(1.0f);
-    setMinFilter(GfxFilter::Bilinear);
-    setMagFilter(GfxFilter::Bilinear);
-    setMipmapMode(GfxMipmapMode::None);
-    setWrapMode(GfxWrapMode::Repeat);
+    sampler = TextureSampler();
     baseWidth = 0;
     baseHeight = 0;
     baseDepth = 0;
-    shadowmap = false;
 
     DELETE(impl);
     impl = gfxApi->createTextureImpl();
@@ -275,48 +255,6 @@ void GfxTexture::generateMipmaps()
     impl->generateMipmaps();
 }
 
-void GfxTexture::setMaximumAnisotropy(float maxAnisotropy)
-{
-    maximumAnisotropy = maxAnisotropy;
-
-    impl->setMaximumAnisotropy(maxAnisotropy);
-}
-
-void GfxTexture::setMinFilter(GfxFilter minFilter_)
-{
-    minFilter = minFilter_;
-
-    impl->setMinFilter(minFilter_);
-}
-
-void GfxTexture::setMagFilter(GfxFilter magFilter_)
-{
-    magFilter = magFilter_;
-
-    impl->setMagFilter(magFilter_);
-}
-
-void GfxTexture::setMipmapMode(GfxMipmapMode mode)
-{
-    mipmapMode = mode;
-
-    impl->setMipmapMode(mode);
-}
-
-void GfxTexture::setWrapMode(GfxWrapMode mode)
-{
-    wrapMode = mode;
-
-    impl->setWrapMode(wrapMode);
-}
-
-void GfxTexture::setShadowmap(bool shadowmap_)
-{
-    shadowmap = shadowmap_;
-
-    impl->setShadowmap(shadowmap_);
-}
-
 void GfxTexture::_load()
 {
     try
@@ -351,32 +289,104 @@ void GfxTexture::_load()
                   "Unsupported version");
         }
 
-        GfxFilter minFilter = filters[file.readUInt8()];
-        GfxFilter magFilter = filters[file.readUInt8()];
+        uint8_t minFilter = file.readUInt8();
+        uint8_t magFilter = file.readUInt8();
         float maxAnisotropy = file.readFloat32();
-        GfxMipmapMode mipmapMode = mipmapModes[file.readUInt8()];
-        GfxWrapMode wrapMode = wrapModes[file.readUInt8()];
-        GfxTexFormat format = formats[file.readUInt8()];
+        uint8_t mipmapMode = file.readUInt8();
+        uint8_t wrapMode = file.readUInt8();
+        uint8_t format = file.readUInt8();
 
-        GfxTextureType type = (GfxTextureType)file.readUInt8();
+        if (minFilter > 1)
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Invalid min filter");
+        }
+
+        if (magFilter > 1)
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Invalid ag filter");
+        }
+
+        if (mipmapMode > 2)
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Invalid mipmap mode");
+        }
+
+        if (wrapMode > 2)
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Invalid wrap mode");
+        }
+
+        if (format > 70)
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Invalid format");
+        }
+
+        uint8_t type = file.readUInt8();
         uint32_t numMipmaps = file.readUInt32LE();
         uint32_t baseWidth = file.readUInt32LE();
         uint32_t baseHeight = file.readUInt32LE();
         uint32_t baseDepth = file.readUInt32LE();
 
-        startCreation(type,
+        if (type > 2)
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Invalid type");
+        }
+
+        if (baseWidth > gfxApi->getMaxTextureSize())
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Texture's width is too large");
+        }
+
+        if (baseHeight > gfxApi->getMaxTextureSize())
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Texture's height is too large");
+        }
+
+        if (baseDepth > gfxApi->getMaxTextureSize())
+        {
+            THROW(ResourceIOException,
+                  "texture",
+                  getFilename(),
+                  "Texture's depth is too large");
+        }
+
+        startCreation((GfxTextureType)type,
                       baseWidth,
                       baseHeight,
                       baseDepth,
-                      format);
+                      formats[format]);
 
-        setMinFilter(minFilter);
-        setMagFilter(magFilter);
-        setMipmapMode(mipmapMode);
-        setWrapMode(wrapMode);
-        setMaximumAnisotropy(maxAnisotropy);
+        sampler.minFilter = filters[minFilter];
+        sampler.magFilter = filters[magFilter];
+        sampler.mipmapMode = mipmapModes[mipmapMode];
+        sampler.wrapMode = wrapModes[wrapMode];
+        sampler.maxAnisotropy = maxAnisotropy;
 
-        for (size_t i = 0; i < (type == GfxTextureType::CubeMap ? 6 : 1); ++i)
+        for (size_t i = 0; i < ((GfxTextureType)type == GfxTextureType::CubeMap ? 6 : 1); ++i)
         {
             GfxFace face = faces[i];
 
@@ -388,7 +398,7 @@ void GfxTexture::_load()
 
                 file.read(size, data);
 
-                if (type == GfxTextureType::CubeMap)
+                if ((GfxTextureType)type == GfxTextureType::CubeMap)
                 {
                     allocMipmapFace(j, 1, face, data);
                 } else
@@ -418,11 +428,11 @@ void GfxTexture::save()
 
         size_t numMipmaps = std::log2(std::min(baseWidth, baseHeight));
 
-        file.writeUInt8((uint8_t)minFilter);
-        file.writeUInt8((uint8_t)magFilter);
-        file.writeFloat32(maximumAnisotropy);
-        file.writeUInt8((uint8_t)mipmapMode);
-        file.writeUInt8((uint8_t)wrapMode);
+        file.writeUInt8((uint8_t)sampler.minFilter);
+        file.writeUInt8((uint8_t)sampler.magFilter);
+        file.writeFloat32(sampler.maxAnisotropy);
+        file.writeUInt8((uint8_t)sampler.mipmapMode);
+        file.writeUInt8((uint8_t)sampler.wrapMode);
         file.writeUInt8((uint8_t)format);
         file.writeUInt8((uint8_t)textureType);
         file.writeUInt32LE(numMipmaps);
@@ -587,12 +597,7 @@ Resource *GfxTexture::_copy() const
         }
     }
 
-    texture->setMaximumAnisotropy(maximumAnisotropy);
-    texture->setMinFilter(minFilter);
-    texture->setMagFilter(magFilter);
-    texture->setMipmapMode(mipmapMode);
-    texture->setWrapMode(wrapMode);
-    texture->setShadowmap(shadowmap);
+    texture->sampler = sampler;
 
     return (Resource *)texture;
 }

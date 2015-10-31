@@ -49,29 +49,14 @@ class GfxGLTextureImpl : public GfxTextureImpl
         GLenum getGLTarget() const;
         GLenum getGLBindingGet() const;
         GLenum getGLInternalFormat() const;
-
-        virtual void setMaximumAnisotropy(float maxAnisotropy);
-        virtual void setMinFilter(GfxFilter minFilter);
-        virtual void setMagFilter(GfxFilter magFilter);
-        virtual void setMipmapMode(GfxMipmapMode mode);
-        virtual void setWrapMode(GfxWrapMode mode);
-        virtual void setShadowmap(bool shadowmap);
     private:
         GLuint texture;
         GfxTextureType textureType;
 
-        GfxFilter minFilter;
-        GfxMipmapMode mipmapMode;
         unsigned int baseWidth;
         unsigned int baseHeight;
         unsigned int baseDepth;
         GfxTexFormat format;
-        float maximumAnisotropy;
-        GfxWrapMode wrapMode;
-        bool shadowmap;
-        GfxFilter magFilter;
-
-        void setMinFiltering();
 
         List<GfxGLFramebuffer *> framebuffers;
 };
