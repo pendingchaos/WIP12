@@ -198,10 +198,23 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
     }
 
     glGenProgramPipelines(1, &pipeline);
+
+    for (size_t i = 0; i < 2048; ++i)
+    {
+        samplers[i] = 0;
+    }
 }
 
 GfxGLApi::~GfxGLApi()
 {
+    for (size_t i = 0; i < 2048; ++i)
+    {
+        if (samplers[i] != 0)
+        {
+            glDeleteSamplers(1, &samplers[i]);
+        }
+    }
+
     glDeleteProgramPipelines(1, &pipeline);
 }
 
@@ -342,7 +355,6 @@ case GfxCW:\
     glBindTexture(binding.target, 0);\
     binding.texture = nullptr;\
 \
-    glDeleteSamplers(1, &binding.sampler);\
     glBindSampler(i, 0);\
 }\
 \
@@ -697,119 +709,6 @@ void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, Gf
 {
     UNIFORM_START
 
-    GLuint glSampler;
-    glGenSamplers(1, &glSampler);
-
-    if (GLFL_GL_EXT_texture_filter_anisotropic)
-    {
-        float maxMaxAnisotropy = 1.0f;
-
-        glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxMaxAnisotropy);
-
-        float result = std::max(std::min(sampler.maxAnisotropy, maxMaxAnisotropy), 1.0f);
-
-        glSamplerParameterf(glSampler, GL_TEXTURE_MAX_ANISOTROPY_EXT, result);
-    }
-
-    switch (sampler.magFilter)
-    {
-    case GfxFilter::Bilinear:
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        break;
-    }
-    case GfxFilter::Nearest:
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    }
-    }
-
-    switch (sampler.wrapMode)
-    {
-    case GfxWrapMode::Stretch:
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        break;
-    }
-    case GfxWrapMode::Repeat:
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        break;
-    }
-    case GfxWrapMode::Mirror:
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-        glSamplerParameteri(glSampler, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-        break;
-    }
-    }
-
-    switch (sampler.mipmapMode)
-    {
-    case GfxMipmapMode::None:
-    {
-        switch (sampler.minFilter)
-        {
-        case GfxFilter::Bilinear:
-        {
-            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            break;
-        }
-        case GfxFilter::Nearest:
-        {
-            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            break;
-        }
-        }
-        break;
-    }
-    case GfxMipmapMode::Nearest:
-    {
-        switch (sampler.minFilter)
-        {
-        case GfxFilter::Bilinear:
-        {
-            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-            break;
-        }
-        case GfxFilter::Nearest:
-        {
-            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-            break;
-        }
-        }
-        break;
-    }
-    case GfxMipmapMode::Linear:
-    {
-        switch (sampler.minFilter)
-        {
-        case GfxFilter::Bilinear:
-        {
-            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-            break;
-        }
-        case GfxFilter::Nearest:
-        {
-            glSamplerParameteri(glSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-            break;
-        }
-        }
-        break;
-    }
-    }
-
-    if (sampler.shadowmap)
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-        glSamplerParameteri(glSampler, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-    } else
-    {
-        glSamplerParameteri(glSampler, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-    }
-
     if (textureBindingCount < sizeof(textureBindings)/sizeof(TextureBinding))
     {
         textureBindings[textureBindingCount++] = (TextureBinding){.texture = texture,
@@ -817,7 +716,7 @@ void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, Gf
                                                                   .location = location,
                                                                   .program = shader->getGLProgram(),
                                                                   .bindingGet = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLBindingGet(),
-                                                                  .sampler = glSampler};
+                                                                  .sampler = getSampler(sampler)};
     }
 }
 
@@ -1167,4 +1066,133 @@ void GfxGLApi::setTessPatchSize(size_t size)
 size_t GfxGLApi::getTessPatchSize()
 {
     return currentState.patchSize;
+}
+
+GLuint GfxGLApi::getSampler(const TextureSampler& params)
+{
+    uint16_t index = (uint16_t)params.minFilter |
+                     (uint16_t)params.magFilter<<1 |
+                     (uint16_t)params.mipmapMode<<2 |
+                     (uint16_t)params.wrapMode<<4 |
+                     (uint16_t)params.shadowmap<<6 |
+                     (uint16_t)params.maxAnisotropy<<7;
+
+    if (samplers[index] == 0)
+    {
+        GLuint sampler;
+        glGenSamplers(1, &sampler);
+        if (GLFL_GL_EXT_texture_filter_anisotropic)
+        {
+            float maxMaxAnisotropy = 1.0f;
+
+            glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxMaxAnisotropy);
+
+            float result = std::max(std::min(params.maxAnisotropy, maxMaxAnisotropy), 1.0f);
+
+            glSamplerParameterf(sampler, GL_TEXTURE_MAX_ANISOTROPY_EXT, result);
+        }
+
+        switch (params.magFilter)
+        {
+        case GfxFilter::Bilinear:
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            break;
+        }
+        case GfxFilter::Nearest:
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        }
+        }
+
+        switch (params.wrapMode)
+        {
+        case GfxWrapMode::Stretch:
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glSamplerParameteri(sampler, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            break;
+        }
+        case GfxWrapMode::Repeat:
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glSamplerParameteri(sampler, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            break;
+        }
+        case GfxWrapMode::Mirror:
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+            glSamplerParameteri(sampler, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+            break;
+        }
+        }
+
+        switch (params.mipmapMode)
+        {
+        case GfxMipmapMode::None:
+        {
+            switch (params.minFilter)
+            {
+            case GfxFilter::Bilinear:
+            {
+                glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                break;
+            }
+            case GfxFilter::Nearest:
+            {
+                glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                break;
+            }
+            }
+            break;
+        }
+        case GfxMipmapMode::Nearest:
+        {
+            switch (params.minFilter)
+            {
+            case GfxFilter::Bilinear:
+            {
+                glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+                break;
+            }
+            case GfxFilter::Nearest:
+            {
+                glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+                break;
+            }
+            }
+            break;
+        }
+        case GfxMipmapMode::Linear:
+        {
+            switch (params.minFilter)
+            {
+            case GfxFilter::Bilinear:
+            {
+                glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+                break;
+            }
+            case GfxFilter::Nearest:
+            {
+                glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+                break;
+            }
+            }
+            break;
+        }
+        }
+
+        if (params.shadowmap)
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+            glSamplerParameteri(sampler, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+        } else
+        {
+            glSamplerParameteri(sampler, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+        }
+
+        samplers[index] = sampler;
+    }
+
+    return samplers[index];
 }

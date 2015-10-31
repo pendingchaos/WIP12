@@ -62,7 +62,7 @@
 - [ ] Point light shadowmaps do not work.
 - [ ] Changing the collision shape of an object crashes the program.
 - [ ] Removing a rigid body does not remove a rigid body.
-- [ ] Static objects can not be moved at runtime.
+- [ ] Static objects can not be moved at runtime. (physics)
 
 ## Other
 - [ ] Texture types should be immutable.
