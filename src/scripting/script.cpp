@@ -408,11 +408,11 @@ scripting::Value ScriptInstance::method(const Str& name, const List<scripting::V
         {
             scripting::Value exc = e.getException();
 
-            log("Unhandled script exception in %s\n", script->getFilename().getData());
+            logError("Unhandled script exception in %s\n", script->getFilename().getData());
 
             if (exc.type == scripting::ValueType::Exception)
             {
-                log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
+                logError("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
             }
 
             for (auto arg : args)
@@ -577,11 +577,11 @@ ScriptInstance *Script::createInstance(Entity *entity, Scene *scene, GfxMaterial
     {
         scripting::Value exc = e.getException();
 
-        log("Unhandled script exception in %s\n", getFilename().getData());
+        logError("Unhandled script exception in %s\n", getFilename().getData());
 
         if (exc.type == scripting::ValueType::Exception)
         {
-            log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
+            logError("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
         }
 
         result = NEW(ScriptInstance, this, scripting::createNil(), entity, scene);

@@ -64,17 +64,17 @@ static void printOpenGLInfo()
     const char *version = (const char *)glGetString(GL_VERSION);
     const char *glslVersion = (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
 
-    log("OpenGL vendor: %s\n", vendor);
-    log("OpenGL renderer: %s\n", renderer);
-    log("OpenGL version: %s\n", version);
-    log("GLSL version: %s\n", glslVersion);
+    logInfo("OpenGL vendor: %s\n", vendor);
+    logInfo("OpenGL renderer: %s\n", renderer);
+    logInfo("OpenGL version: %s\n", version);
+    logInfo("GLSL version: %s\n", glslVersion);
 
     GLint numExtensions;
     glGetIntegerv(GL_NUM_EXTENSIONS, &numExtensions);
 
     for (GLint i = 0; i < numExtensions; ++i)
     {
-        log("Extension %d: %s\n", i, (const char *)glGetStringi(GL_EXTENSIONS, i));
+        logInfo("Extension %d: %s\n", i, (const char *)glGetStringi(GL_EXTENSIONS, i));
     }
 }
 
@@ -90,27 +90,27 @@ static void debugCallback(GLenum source,
     {\
     case GL_DEBUG_TYPE_ERROR:\
     {\
-        behavior(CATEGORY_OPENGL, "OpenGL error.")(message);\
+        behavior("OpenGL error: %s", message);\
         break;\
     }\
     case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:\
     {\
-        behavior(CATEGORY_OPENGL, "OpenGL deprecated behavoir.")(message);\
+        behavior("OpenGL deprecated behavoir: %s", message);\
         break;\
     }\
     case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:\
     {\
-        behavior(CATEGORY_OPENGL, "OpenGL undefined behavior.")(message);\
+        behavior("OpenGL undefined behavior: %s", message);\
         break;\
     }\
     case GL_DEBUG_TYPE_PORTABILITY:\
     {\
-        behavior(CATEGORY_OPENGL, "OpenGL portibility problem.")(message);\
+        behavior("OpenGL portibility problem: %s", message);\
         break;\
     }\
     default:\
     {\
-        behavior(CATEGORY_OPENGL, "OpenGL message.")(message);\
+        behavior("OpenGL message: %s", message);\
         break;\
     }\
     }
@@ -119,22 +119,22 @@ static void debugCallback(GLenum source,
     {
     case GL_DEBUG_SEVERITY_HIGH:
     {
-        HANDLE_MESSAGE(FATAL);
+        HANDLE_MESSAGE(LOG_ERROR);
         break;
     }
     case GL_DEBUG_SEVERITY_MEDIUM:
     {
-        HANDLE_MESSAGE(ERROR);
+        HANDLE_MESSAGE(LOG_WARNING);
         break;
     }
     case GL_DEBUG_SEVERITY_LOW:
     {
-        HANDLE_MESSAGE(WARN);
+        HANDLE_MESSAGE(LOG_WARNING);
         break;
     }
     default:
     {
-        HANDLE_MESSAGE(INFO);
+        HANDLE_MESSAGE(LOG_INFO);
         break;
     }
     }
@@ -189,12 +189,12 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 
     if (not GLFL_GL_ARB_separate_shader_objects)
     {
-        ERROR(CATEGORY_OPENGL, "GL_ARB_separate_shader_objects is not supported.")();
+        LOG_FATAL("GL_ARB_separate_shader_objects is not supported.");
     }
 
     if (not GLFL_GL_ARB_tessellation_shader)
     {
-        ERROR(CATEGORY_OPENGL, "GL_ARB_separate_shader_objects is not supported.")();
+        LOG_FATAL("GLFL_GL_ARB_tessellation_shader is not supported.");
     }
 
     glGenProgramPipelines(1, &pipeline);
@@ -746,20 +746,20 @@ void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count
 
 void GfxGLApi::pushState()
 {
-    #ifdef DEBUG
-    FATAL_IF_TRUE(CATEGORY_RENDER,
-                  stateStackSize == (sizeof(stateStack)/sizeof(State)),
-                  "State stack overflow")();
-    #endif
+    if (stateStackSize == (sizeof(stateStack)/sizeof(State)))
+    {
+        THROW(BoundsException);
+    }
 
     stateStack[stateStackSize++] = currentState;
 }
 
 void GfxGLApi::popState()
 {
-    FATAL_IF_TRUE(CATEGORY_RENDER,
-                  stateStackSize == 0,
-                  "State stack underflow")();
+    if (stateStackSize == 0)
+    {
+        THROW(BoundsException);
+    }
 
     useState(stateStack[--stateStackSize]);
 }

@@ -24,8 +24,6 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
                                                    stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
                                                    nextScript(nullptr)
 {
-    //precompileScriptInclude();
-
     app = this;
 
     FT_Init_FreeType(&freeType_);
@@ -56,7 +54,7 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     audioDevice_ = NEW(AudioDevice, 0, 44100, 4096);
     audioDevice = audioDevice_;
 
-    INFO(CATEGORY_AUDIO, "Initialized an audio device called \"%s\".", audioDevice_->getName().getData())();
+    LOG_INFO("Initialized an audio device called \"%s\".", audioDevice_->getName().getData());
 
     script = nullptr;
 }

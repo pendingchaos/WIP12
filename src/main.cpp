@@ -55,12 +55,12 @@ void crashHandler(int sig)
     {
     case SIGSEGV:
     {
-        log("SIGSEGV\nBacktrace:\n");
+        logFatal("SIGSEGV\nBacktrace:\n");
         break;
     }
     case SIGABRT:
     {
-        log("SIGABRT\nBacktrace:\n");
+        logFatal("SIGABRT\nBacktrace:\n");
         break;
     }
     }
@@ -70,7 +70,7 @@ void crashHandler(int sig)
 
     for (size_t i = 0; i < depth-1; ++i)
     {
-        log("    %s\n", backtrace[i]);
+        logFatal("    %s\n", backtrace[i]);
     }
 
     deinitLoggingSystem();
@@ -84,14 +84,14 @@ void fpeHandler(int sig)
 
     initLoggingSystem();
 
-    log("SIGFPE\nBacktrace:\n");
+    logWarning("SIGFPE\nBacktrace:\n");
 
     unsigned int depth = 0;
     const char **backtrace = getBacktrace(depth);
 
     for (size_t i = 0; i < depth-1; ++i)
     {
-        log("    %s\n", backtrace[i]);
+        logWarning("    %s\n", backtrace[i]);
     }
 }
 
@@ -112,26 +112,26 @@ int main(int argc, const char *argv[])
         result = unsafeMain(argc, argv);
     } catch (std::exception& e)
     {
-        log("Unhandled exception caught: %s\n", e.what());
+        logFatal("Unhandled exception caught: %s\n", e.what());
     } catch (scripting::UnhandledExcException& e)
     {
         scripting::Value exc = e.getException();
 
-        log("Unhandled script exception:\n");
+        logFatal("Unhandled script exception:\n");
 
         if (exc.type == scripting::ValueType::Exception)
         {
-            log("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
+            logFatal("    %s\n", ((scripting::ExceptionData *)exc.p)->error.getData());
         }
     } catch (const Exception& e)
     {
-        log("Unhandled exception caught: %s\n", e.getString());
-        log("    File: %s\n", e.getFile());
-        log("    Line: %d\n", e.getLine());
-        log("    Function: %s\n", e.getFunction());
+        logFatal("Unhandled exception caught: %s\n", e.getString());
+        logFatal("    File: %s\n", e.getFile());
+        logFatal("    Line: %d\n", e.getLine());
+        logFatal("    Function: %s\n", e.getFunction());
     } catch (...)
     {
-        log("Unhandled exception caught.");
+        logFatal("Unhandled exception caught.");
     }
 
     deinitJobSystem();

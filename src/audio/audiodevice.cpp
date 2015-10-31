@@ -245,7 +245,7 @@ void AudioDevice::audioDeviceCallback(void *userdata, Uint8 *data, int len)
     {
         std::memcpy(data, queued.getData(), queued.getCount());
 
-        INFO(CATEGORY_AUDIO, "Too little data for audio! %d bytes missing.", (size_t)len - queued.getCount())();
+        LOG_INFO("Too little data for audio! %d bytes missing.", (size_t)len-queued.getCount());
 
         queued.clear();
     } else
