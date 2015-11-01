@@ -7,6 +7,26 @@
 #include <algorithm>
 #include <cmath>
 
+Matrix4x4 calcCropMatrix(const Frustum& frustum, const Matrix4x4& lightViewProj, AABB bounds)
+{
+    bounds = frustum.getAABB().intersection(bounds).transform(lightViewProj);
+
+    bounds.min.x = std::max(std::min(bounds.min.x, 1.0f), -1.0f);
+    bounds.min.y = std::max(std::min(bounds.min.y, 1.0f), -1.0f);
+    bounds.min.z = std::max(std::min(bounds.min.z, 1.0f), -1.0f);
+    bounds.max.x = std::max(std::min(bounds.max.x, 1.0f), -1.0f);
+    bounds.max.y = std::max(std::min(bounds.max.y, 1.0f), -1.0f);
+    bounds.max.z = std::max(std::min(bounds.max.z, 1.0f), -1.0f);
+
+    Float3 scale = Float3(2.0f) / (bounds.max-bounds.min);
+    Float3 offset = (bounds.max+bounds.min) * -0.5f * scale;
+
+    return Matrix4x4(Float4(scale.x, 0.0f, 0.0f, offset.x),
+                     Float4(0.0f, scale.y, 0.0f, offset.y),
+                     Float4(0.0f, 0.0f, scale.z, offset.z),
+                     Float4(0.0f, 0.0f, 0.0f, 1.0f));
+}
+
 void Light::addShadowmap(size_t resolution, GfxShadowmapPrecision precision)
 {
     removeShadowmap();
@@ -235,112 +255,70 @@ void Light::updateMatrices(GfxRenderer *renderer)
         projectionMatrix[2][2] = scale.z;
         projectionMatrix[2][3] = shift.z * scale.z;*/
 
-        #if 0
+        #if 1
         //A bunch of magic.
-        AABB aabb = renderer->computeShadowCasterAABB();
-        const Camera& cam = renderer->camera;
-        Matrix3x3 viewMat(cam.getViewMatrix());
-        float maxDist = -(viewMat * aabb.getCorner(0)).z;
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(1)).z);
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(2)).z);
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(3)).z);
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(4)).z);
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(5)).z);
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(6)).z);
-        maxDist = std::max(maxDist, -(viewMat * aabb.getCorner(7)).z);
-        float minDist = cam.getNear();
-        float nearDist = minDist;
-        float farDist = std::max(maxDist, minDist + 0.01f);
-        float lambda = 0.5f; //TODO: What is this? //The number to mix between log and uniform split schemes?
-        float splitDists[5] = {nearDist,
+        Camera& cam = renderer->camera;
+        Matrix4x4 viewMat = cam.getViewMatrix();
+        AABB aabb = renderer->getShadowCasterAABB().transform(viewMat);
+        float nearDist = cam.getNear();
+        float farDist = std::max(std::abs(aabb.min.z), std::abs(aabb.max.z)) + nearDist;
+        float lambda = 0.5f; //0 = uniform 1 = log
+        float splitDists[5];/* = {nearDist,
                                shadowSplitDistances.x,
                                shadowSplitDistances.y,
                                shadowSplitDistances.z,
-                               farDist};
-        /*splitDists[0] = nearDist;
+                               farDist};*/
+        splitDists[0] = nearDist;
         splitDists[4] = farDist;
         for (size_t i = 1; i < 4; ++i)
         {
-            float f = i / 4.0f;
+            float f = i / 5.0f;
             float logDist = nearDist * powf(farDist / nearDist, f);
             float uniformDist = nearDist + (farDist - nearDist) * f;
             splitDists[i] = (1.0f-lambda)*uniformDist + lambda*logDist;
-        }*/
+        }
+
+        //View
+        Float3 z = direction.direction.normalize();
+        Float3 x = Float3(0.0f);
+
+        x -= z * z.dot(x);
+
+        if (x.length() < 0.001f)
+        {
+            x = Float3(1.0f, 0.0f, 0.0f);
+            x -= z * z.dot(x);
+        }
+
+        x = x.normalize();
+        Float3 y = z.cross(x);
+
+        Matrix4x4 view = Matrix4x4::lookAt(Float3(0.0f), -z, y);
+
         for (size_t i = 0; i < 4; ++i)
         {
-            float prevSplitDist = splitDists[i];
-            float splitDist = splitDists[i+1];
-            //World space
-            Float3 frustumCorners[8] = {Float3(-1.0f,  1.0f, 0.0f),
-                                        Float3( 1.0f,  1.0f, 0.0f),
-                                        Float3( 1.0f, -1.0f, 0.0f),
-                                        Float3(-1.0f, -1.0f, 0.0f),
-                                        Float3(-1.0f,  1.0f, 1.0f),
-                                        Float3( 1.0f,  1.0f, 1.0f),
-                                        Float3( 1.0f, -1.0f, 1.0f),
-                                        Float3(-1.0f, -1.0f, 1.0f)};
-            Matrix4x4 inverseViewProj = cam.getProjectionMatrix() * cam.getViewMatrix(); //TODO: Is this correct?
-            inverseViewProj = inverseViewProj.inverse();
-            for (size_t j = 0; j < 8; ++j)
-            {
-                Float4 corner = inverseViewProj * Float4(frustumCorners[j].x,
-                                                         frustumCorners[j].y,
-                                                         frustumCorners[j].z,
-                                                         1.0f);
-                frustumCorners[j] = corner.getXYZ() / corner.w;
-            }
-            for (size_t j = 0; j < 4; ++j)
-            {
-                Float3 cornerRay = frustumCorners[j+4] - frustumCorners[j];
-                Float3 nearCornerRay = cornerRay * prevSplitDist;
-                Float3 farCornerRay = cornerRay * splitDist;
-                frustumCorners[j+4] = frustumCorners[j] + farCornerRay;
-                frustumCorners[j] = frustumCorners[j] + nearCornerRay;
-            }
-            Float3 frustumCenter;
-            for (size_t j = 0; j < 8; ++j)
-            {
-                frustumCenter += frustumCorners[j];
-            }
-            frustumCenter /= 8.0f;
-            Float3 upDir = cam.getDirection().cross(cam.getUp()).normalize();
-            Float3 lightCamPos = frustumCenter;
-            Matrix3x3 lightCamRot;
-            Float3 row2 = -direction.direction;
-            Float3 row0 = upDir.cross(row2).normalize();
-            Float3 row1 = row2.cross(row0);
-            lightCamRot[2][0] = row2.x;
-            lightCamRot[2][1] = row2.y;
-            lightCamRot[2][2] = row2.z;
-            lightCamRot[0][0] = row0.x;
-            lightCamRot[0][1] = row0.y;
-            lightCamRot[0][2] = row0.z;
-            lightCamRot[1][0] = row1.x;
-            lightCamRot[1][0] = row1.y;
-            lightCamRot[1][0] = row1.z;
-            Matrix4x4 lightView = inverseRotationTranslation(lightCamRot, lightCamPos);
-            Float3 minExtents(HUGE_VALF);
-            Float3 maxExtents(HUGE_VALF);
-            for (size_t j = 0; j < 8; ++j)
-            {
-                Float3 corner = (lightView *
-                                 Float4(frustumCorners[j].x,
-                                        frustumCorners[j].y,
-                                        frustumCorners[j].z,
-                                        1.0f)).getXYZ();
-                minExtents.x = std::min(minExtents.x, corner.x);
-                minExtents.y = std::min(minExtents.y, corner.y);
-                minExtents.z = std::min(minExtents.z, corner.z);
-                maxExtents.x = std::max(maxExtents.x, corner.x);
-                maxExtents.y = std::max(maxExtents.y, corner.y);
-                maxExtents.z = std::max(maxExtents.z, corner.z);
-            }
-            Float3 cascadeExtents = maxExtents - minExtents;
-            Float3 shadowCamPos = frustumCenter + direction.direction * -minExtents.z;
-            viewMatrices[i] = inverseRotationTranslation(lightCamRot, shadowCamPos);
-            projectionMatrices[i] = Matrix4x4::orthographic(minExtents.x, maxExtents.x,
-                                                            minExtents.y, maxExtents.y,
-                                                            0.0f, cascadeExtents.z);
+            Frustum frustum = Frustum::view(cam.getViewMatrix().inverse(),
+                                            cam.getFieldOfView(),
+                                            cam.getWidth()/cam.getHeight(),
+                                            splitDists[i],
+                                            splitDists[i+1]);
+
+            viewMatrices[i] = view;
+
+            Matrix4x4 proj = Matrix4x4::orthographic(-splitDists[4],
+                                                     splitDists[4],
+                                                     -splitDists[4],
+                                                     splitDists[4],
+                                                     splitDists[4],
+                                                     -splitDists[4]);
+
+            proj = calcCropMatrix(frustum, view*proj, renderer->getShadowCasterAABB()) * proj;
+
+            //cam.setType(CameraType::Matrices);
+            //cam.setViewMatrix(view);
+            //cam.setProjectionMatrix(proj);
+
+            projectionMatrices[i] = proj;
         }
         #else
         //Based on the algorithm from 0 A.D.

@@ -43,7 +43,7 @@ Frustum::Frustum(const Position3D& origin_,
 
 Frustum Frustum::view(const Matrix4x4& matrix, float fov, float aspect, float near, float far)
 {
-    float ymax = near * std::tan(RADIANS(fov/2.0f));
+    float ymax = near * std::tan(RADIANS(fov)/2.0f);
     float xmax = ymax * aspect;
 
     return Frustum::view(matrix, -xmax, xmax, -ymax, ymax, near, far);
@@ -100,8 +100,7 @@ Frustum Frustum::box(const Matrix4x4& matrix,
 
 AABB Frustum::getAABB() const
 {
-    AABB result;
-    result.extend(corners[0]);
+    AABB result(corners[0], corners[0]);
     result.extend(corners[1]);
     result.extend(corners[2]);
     result.extend(corners[3]);
