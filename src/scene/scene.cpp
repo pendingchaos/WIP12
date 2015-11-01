@@ -122,6 +122,11 @@ void Scene::fixedUpdate(float timestep)
     }
 
     physicsWorld->stepSimulation(timestep);
+
+    for (auto entity : entities)
+    {
+        entity->updateFinalTransform();
+    }
 }
 
 void Scene::_handleInput(const List<Entity *>& entities_)
