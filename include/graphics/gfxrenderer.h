@@ -13,6 +13,8 @@
 #include "scripting/bindings.h"
 #include "graphics/renderlist.h"
 
+#include <mutex>
+
 class Matrix4x4;
 class Str;
 class GfxFramebuffer;
@@ -352,7 +354,7 @@ class GfxRenderer
         RenderList *deferredList;
         RenderList *shadowmapList;
 
-        void fillRenderLists(const List<Entity *>& entities);
+        void fillRenderLists();
 
         void swapFramebuffers();
 
@@ -369,6 +371,16 @@ class GfxRenderer
         List<Object> objects;
 
         void fillObjects(const List<Entity *>& entities);
+
+        static void fillRenderListsJob(size_t index, size_t worker, void *userdata);
+        struct FillRenderListsData
+        {
+            GfxRenderer *renderer;
+            RenderList *shadowmapLists;
+            RenderList *forwardLists;
+            RenderList *deferredLists;
+            Object *objects;
+        };
 
         AABB sceneAABB;
         AABB shadowCasterAABB;

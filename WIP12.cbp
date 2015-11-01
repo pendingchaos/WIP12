@@ -19,7 +19,6 @@
 					<Add option="-g" />
 					<Add option="-Og" />
 					<Add option="-DDEBUG" />
-					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -34,7 +33,6 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DNDEBUG" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -54,7 +52,6 @@
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />

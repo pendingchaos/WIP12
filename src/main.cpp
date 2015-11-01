@@ -103,7 +103,7 @@ int main(int argc, const char *argv[])
 
     initBacktrace();
     initLoggingSystem();
-    initJobSystem(SDL_GetCPUCount()+2);
+    initJobSystem(SDL_GetCPUCount()+1);
 
     int result = EXIT_FAILURE;
 

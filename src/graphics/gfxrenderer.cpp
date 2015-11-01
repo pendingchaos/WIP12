@@ -854,7 +854,7 @@ void GfxRenderer::render()
     computeSceneAABB();
     computeShadowCasterAABB();
 
-    fillRenderLists(scene->getEntities());
+    fillRenderLists();
 
     stats.batchingCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
 
@@ -1464,28 +1464,78 @@ void GfxRenderer::fillLightBuffer(Scene *scene)
     DELETE_ARRAY(lightData);
 }
 
-void GfxRenderer::fillRenderLists(const List<Entity *>& entities)
+void GfxRenderer::fillRenderListsJob(size_t index, size_t worker, void *userdata)
 {
-    for (auto& obj : objects)
+    FillRenderListsData& data = *(FillRenderListsData *)userdata;
+
+    Object& obj = data.objects[index];
+
+    DrawCall drawCall(obj.mesh, obj.material);
+    drawCall.animState = obj.animState;
+    drawCall.worldMatrix = obj.worldMatrix;
+
+    if (obj.shadowCaster)
     {
-        DrawCall drawCall(obj.mesh, obj.material);
-        drawCall.animState = obj.animState;
-        drawCall.worldMatrix = obj.worldMatrix;
+        DrawCall shadowDrawCall = drawCall;
+        shadowDrawCall.material = data.renderer->shadowmapMaterial;
 
-        if (obj.shadowCaster)
+        data.shadowmapLists[worker].addDrawCall(shadowDrawCall);
+    }
+
+    if (obj.material->forward)
+    {
+        data.forwardLists[worker].addDrawCall(drawCall);
+    } else
+    {
+        data.deferredLists[worker].addDrawCall(drawCall);
+    }
+}
+
+void GfxRenderer::fillRenderLists()
+{
+    if (objects.getCount() > 512) //Random number
+    {
+        RenderList forwardLists[getNumWorkers()];
+        RenderList deferredLists[getNumWorkers()];
+        RenderList shadowmapLists[getNumWorkers()];
+
+        FillRenderListsData data;
+        data.renderer = this;
+        data.deferredLists = deferredLists;
+        data.forwardLists = forwardLists;
+        data.shadowmapLists = shadowmapLists;
+        data.objects = objects.getData();
+        runJobsSync(fillRenderListsJob, objects.getCount(), &data, sizeof(FillRenderListsData));
+
+        for (size_t i = 0; i < getNumWorkers(); ++i)
         {
-            DrawCall shadowDrawCall = drawCall;
-            shadowDrawCall.material = shadowmapMaterial;
-
-            shadowmapList->addDrawCall(shadowDrawCall);
+            forwardList->addRenderList(&forwardLists[i]);
+            deferredList->addRenderList(&deferredLists[i]);
+            shadowmapList->addRenderList(&shadowmapLists[i]);
         }
+    } else
+    {
+        for (auto& obj : objects)
+        {
+            DrawCall drawCall(obj.mesh, obj.material);
+            drawCall.animState = obj.animState;
+            drawCall.worldMatrix = obj.worldMatrix;
 
-        if (obj.material->forward)
-        {
-            forwardList->addDrawCall(drawCall);
-        } else
-        {
-            deferredList->addDrawCall(drawCall);
+            if (obj.shadowCaster)
+            {
+                DrawCall shadowDrawCall = drawCall;
+                shadowDrawCall.material = shadowmapMaterial;
+
+                shadowmapList->addDrawCall(shadowDrawCall);
+            }
+
+            if (obj.material->forward)
+            {
+                forwardList->addDrawCall(drawCall);
+            } else
+            {
+                deferredList->addDrawCall(drawCall);
+            }
         }
     }
 }

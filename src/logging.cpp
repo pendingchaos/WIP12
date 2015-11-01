@@ -41,8 +41,6 @@ void logFatal(const char *format, ...)
 
     textLog->vprintf(format, list);
     va_end(list);
-
-    std::exit(1);
 }
 
 void logError(const char *format, ...)

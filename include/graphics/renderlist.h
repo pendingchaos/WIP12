@@ -17,6 +17,8 @@ struct DrawCall
 {
     DrawCall(GfxMesh *mesh_, GfxMaterial *mat) : mesh(mesh_),
                                                  material(mat),
+                                                 worldMatrix(Matrix4x4::NoInit),
+                                                 normalMatrix(Matrix4x4::NoInit),
                                                  animState(nullptr) {}
 
     GfxMesh *mesh;
@@ -35,6 +37,7 @@ class RenderList
         ~RenderList();
 
         void addDrawCall(const DrawCall& drawCall);
+        void addRenderList(const RenderList *list);
         void execute(const Camera& camera);
         void execute(Light *light, size_t pass);
         void clear();

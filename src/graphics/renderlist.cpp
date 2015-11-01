@@ -6,15 +6,16 @@
 #include "graphics/gfxmaterial.h"
 #include "graphics/gfxtexture.h"
 #include "jobsystem.h"
+#include "misc_macros.h"
 
-RenderList::RenderList()
-{
-    matrixTexture = NEW(GfxTexture);
-}
+RenderList::RenderList() : matrixTexture(nullptr) {}
 
 RenderList::~RenderList()
 {
-    matrixTexture->release();
+    if (matrixTexture != nullptr)
+    {
+        matrixTexture->release();
+    }
 
     for (auto batch : batches)
     {
@@ -36,16 +37,15 @@ void RenderList::addDrawCall(const DrawCall& drawCall)
         batch.animState = drawCall.animState;
 
         batches.append(batch);
-
         return;
     }
 
-    for (size_t k = 0; k < batches.getCount(); ++k)
+    for (size_t i = 0; i < batches.getCount(); ++i)
     {
-        if (batches[k].material == drawCall.material and batches[k].mesh == drawCall.mesh)
+        if (batches[i].material == drawCall.material and batches[i].mesh == drawCall.mesh)
         {
-            batches[k].worldMatrices.append(drawCall.worldMatrix);
-            batches[k].normalMatrices.append(drawCall.normalMatrix);
+            batches[i].worldMatrices.append(drawCall.worldMatrix);
+            batches[i].normalMatrices.append(drawCall.normalMatrix);
             return;
         }
     }
@@ -58,6 +58,17 @@ void RenderList::addDrawCall(const DrawCall& drawCall)
     batch.animState = nullptr;
 
     batches.append(batch);
+}
+
+void RenderList::addRenderList(const RenderList *list)
+{
+    for (auto& batch : list->batches)
+    {
+        batch.material->copyRef<GfxMaterial>();
+        batch.mesh->copyRef<GfxMesh>();
+    }
+
+    batches.append(list->batches);
 }
 
 void RenderList::execute(const Camera& camera)
@@ -77,6 +88,7 @@ void RenderList::execute(const Camera& camera)
 
         gfxApi->setCullMode(mesh->cullMode);
 
+        //TODO: This does not increment the draw call count.
         gfxApi->draw(batch.worldMatrices.getCount());
         gfxApi->end();
 
@@ -101,6 +113,7 @@ void RenderList::execute(Light *light, size_t pass)
 
         gfxApi->setCullMode(mesh->cullMode);
 
+        //TODO: This does not increment the draw call count.
         gfxApi->draw(batch.worldMatrices.getCount());
         gfxApi->end();
 
@@ -126,11 +139,16 @@ struct Data
     const Matrix4x4 *normalMatrices;
 };
 
+#define NUM_PER_JOB 32
+
 static void job(size_t index, size_t worker, void *userdata)
 {
+    index *= NUM_PER_JOB;
     Data data = *(Data *)userdata;
-    data.matrixData[index*2] = data.worldMatrices[index];
-    data.matrixData[index*2+1] = data.normalMatrices[index];
+    #define OP(i) data.matrixData[index*2+i*2] = data.worldMatrices[index+i];\
+    data.matrixData[index*2+i*2+1] = data.worldMatrices[index+i];
+    FOR_N(OP, NUM_PER_JOB); index+=NUM_PER_JOB;
+    #undef OP
 }
 
 void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices, const List<Matrix4x4>& normalMatrices)
@@ -139,31 +157,45 @@ void RenderList::fillMatrixTexture(const List<Matrix4x4>& worldMatrices, const L
     size_t numTexels = worldMatrices.getCount() * 8;
     size_t width = numTexels > maxSize ? maxSize : numTexels;
     size_t height = (numTexels+maxSize-1) / maxSize;
+
     Matrix4x4 *matrixData = (Matrix4x4 *)ALLOCATE(width*height*16);
 
-    //Only up to ~1.5 speed up in extreme cases. Huge slowdown is less extreme cases.
-    //~8 speed up when the job sleeps for 10 microseconds.
-    #if 1
-    const Matrix4x4 *worldMatrices_ = worldMatrices.getData();
-    const Matrix4x4 *normalMatrices_ = normalMatrices.getData();
-    for (size_t i = 0; i < worldMatrices.getCount(); ++i)
+    if (worldMatrices.getCount() <= NUM_PER_JOB*8)
     {
-        matrixData[i*2] = worldMatrices_[i];
-        matrixData[i*2+1] = normalMatrices_[i];
+        const Matrix4x4 *worldMatrices_ = worldMatrices.getData();
+        const Matrix4x4 *normalMatrices_ = normalMatrices.getData();
+        for (size_t i = 0; i < worldMatrices.getCount(); ++i)
+        {
+            matrixData[i*2] = worldMatrices_[i];
+            matrixData[i*2+1] = normalMatrices_[i];
+        }
+    } else
+    {
+        Data data;
+        data.matrixData = matrixData;
+        data.worldMatrices = worldMatrices.getData();
+        data.normalMatrices = normalMatrices.getData();
+        runJobsSync(job, worldMatrices.getCount()/NUM_PER_JOB, &data, sizeof(Data));
+        for (size_t i = worldMatrices.getCount()/NUM_PER_JOB*NUM_PER_JOB; i < worldMatrices.getCount(); ++i)
+        {
+            matrixData[i*2] = worldMatrices[i];
+            matrixData[i*2+1] = normalMatrices[i];
+        }
     }
-    #else
-    Data data;
-    data.matrixData = matrixData;
-    data.worldMatrices = worldMatrices.getData();
-    data.normalMatrices = normalMatrices.getData();
-    runJobsSync(job, worldMatrices.getCount(), &data, sizeof(Data));
-    #endif
 
-    matrixTexture->startCreation(GfxTextureType::Texture2D,
-                                 width,
-                                 height,
-                                 1,
-                                 GfxTexFormat::RGBAF32);
+    if (matrixTexture == nullptr)
+    {
+        matrixTexture = NEW(GfxTexture);
+    }
+
+    if (width != matrixTexture->getBaseWidth() or height != matrixTexture->getBaseHeight())
+    {
+        matrixTexture->startCreation(GfxTextureType::Texture2D,
+                                     width,
+                                     height,
+                                     1,
+                                     GfxTexFormat::RGBAF32);
+    }
 
     matrixTexture->allocMipmap(0, 1, matrixData);
 

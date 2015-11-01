@@ -137,7 +137,7 @@ class Resource
         Str filename;
 
         ResType type;
-        mutable std::atomic_uint_least32_t refCount;
+        mutable std::atomic_uint_fast32_t refCount;
     protected:
         virtual void _load() {}
         virtual Resource *_copy() const {return nullptr;}
