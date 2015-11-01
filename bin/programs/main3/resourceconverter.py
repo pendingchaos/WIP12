@@ -89,7 +89,7 @@ if __name__ == "__main__":
         thresh = math.sin(x / 8.0 * 3.1415 + 3.1415/2)*1.5
         thresh += math.sin(z / 8.0 * 3.1415 + 3.1415/2)*1.5
         thresh = thresh / 2 + avgY
-        return random.randint(0, 100) > 50
+        return random.randint(0, 100) > 75
         return y < thresh
     
     for x in xrange(-16, 17):

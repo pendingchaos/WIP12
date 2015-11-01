@@ -255,7 +255,7 @@ void Light::updateMatrices(GfxRenderer *renderer)
         projectionMatrix[2][2] = scale.z;
         projectionMatrix[2][3] = shift.z * scale.z;*/
 
-        #if 1
+        #if 0
         //A bunch of magic.
         Camera& cam = renderer->camera;
         Matrix4x4 viewMat = cam.getViewMatrix();
