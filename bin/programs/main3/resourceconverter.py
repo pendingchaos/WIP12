@@ -3,6 +3,7 @@
 import sys
 import random
 import math
+import noise
 sys.path.append("../")
 from resconvlib import *
 
@@ -86,15 +87,16 @@ if __name__ == "__main__":
     avgY = random.randint(-4, 4)
     
     def block_exists(avgY, x, y, z):
+        return noise.snoise3(x/8.0, y/8.0, z/8.0, 10) > 0.05
         thresh = math.sin(x / 8.0 * 3.1415 + 3.1415/2)*1.5
         thresh += math.sin(z / 8.0 * 3.1415 + 3.1415/2)*1.5
         thresh = thresh / 2 + avgY
         return random.randint(0, 100) > 75
         return y < thresh
     
-    for x in xrange(-16, 17):
-        for y in xrange(-16, 17):
-            for z in xrange(-16, 17):
+    for x in xrange(-8, 9):
+        for y in xrange(-64, 65):
+            for z in xrange(-8, 9):
                 if not block_exists(avgY, x, y, z):
                     continue
                 
@@ -112,7 +114,7 @@ if __name__ == "__main__":
                 ent.transform.position = [x, y, z]
                 ent.transform.scale = [0.5, 0.5, 0.5]
                 
-                if y >= 0:
+                if y >= 60:
                     if random.randint(0, 100) > 50:
                         ent.model = conv["dirt model"]
                     else:
@@ -142,13 +144,13 @@ if __name__ == "__main__":
     
     # Sun
     light = Scene.Light(Scene.Light.Type.Directional)
-    light.direction = [1.0, -1.0, -1.0]
+    light.direction = [0.0, -1.0, 0.0]
     light.color = [3.0, 3.0, 3.0]
     light.shadowmap = True
     light.shadowmap_near = 0.1
     light.shadowmap_far = 100.0
-    light.shadow_min_bias = 0.0
-    light.shadow_bias_scale = 0.0
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low

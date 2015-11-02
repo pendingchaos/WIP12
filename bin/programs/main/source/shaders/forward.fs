@@ -92,6 +92,7 @@ void main()
 
     normal_worldSpace = normalize(normal_worldSpace);
     #endif
+    normal_worldSpace = gl_FrontFacing ? normal_worldSpace : -normal_worldSpace;
 
     result_color.rgb = lighting(albedo_.rgb,
                                 roughness_,

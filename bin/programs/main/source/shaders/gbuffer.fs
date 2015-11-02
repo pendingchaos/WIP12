@@ -63,9 +63,10 @@ void main()
     float weight = texture(weightMap, frag_terruv_tangentSpace).r;
     #endif
 
-    //It is important that this if before parallax mapping. Doing this before fixes artifacts with parallax edge discard.
+    //It is important that this is before parallax mapping. Doing this before fixes artifacts with parallax edge discard.
     result_geom_normal = normalize(cross(dFdx(frag_position_worldSpace), dFdy(frag_position_worldSpace)));
-    
+    result_geom_normal = gl_FrontFacing ? result_geom_normal : -result_geom_normal;
+
     vec4 albedo_ = albedo;
     vec3 normal_worldSpace = normalize(frag_normal_worldSpace);
 
@@ -127,4 +128,5 @@ void main()
     result_material = vec2(metallic_, roughness_);
     result_normal = normal_worldSpace;
     #endif
+    result_normal  = gl_FrontFacing ? result_normal : -result_normal;
 }

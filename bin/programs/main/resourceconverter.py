@@ -144,12 +144,10 @@ if __name__ == "__main__":
     conv["gui.fs"].stage_ = Shader.Stage.Fragment
     
     conv["cube.obj"] = Mesh(["source/cube.obj"], "../../resources/meshes/cube.bin")
-    conv["material test.obj"] = Mesh(["source/material test.obj"], "resources/meshes/material test.bin")
-    conv["material test 2.obj"] = Mesh(["source/material test 2.obj"], "resources/meshes/material test 2.bin")
+    conv["mitsuba.obj"] = Mesh(["source/mitsuba.obj"], "resources/meshes/mitsuba.bin")
     conv["tesselation test.obj"] = Mesh(["source/tesselation test.obj"], "resources/meshes/tesselation test.bin")
     conv["sphere.obj"] = Mesh(["source/sphere.obj"], "resources/meshes/sphere.bin")
     conv["floor.obj"] = Mesh(["source/floor.obj"], "resources/meshes/floor.bin")
-    conv["fence.obj"] = Mesh(["source/fence.obj"], "resources/meshes/fence.bin")
     #conv["aotest.obj"] = Mesh(["source/hairball.obj"], "resources/meshes/aotest.bin")
     conv["platform.obj"] = Mesh(["source/platform.obj"], "resources/meshes/platform.bin")
     #conv["soldier1"] = Mesh(["source/Cube.mesh.xml"], "resources/meshes/soldier.bin")
@@ -162,30 +160,20 @@ if __name__ == "__main__":
     mat.normalMap = conv["normal.png"]
     conv["material"] = mat
     
-    mat = Material([], "resources/materials/clay.bin")
-    mat.smoothness = 0.6
-    mat.metalMask = 0.0
-    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    conv["clay"] = mat
+    materials = []
     
-    mat = Material([], "resources/materials/gold.bin")
-    mat.smoothness = 0.5
-    mat.metalMask = 1.0
-    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    conv["gold"] = mat
-    
-    mat = Material([], "resources/materials/plastic.bin")
-    mat.smoothness = 0.875
-    mat.metalMask = 0.0
-    mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
-    conv["plastic"] = mat
-    
-    mat = Material([], "resources/materials/projectile.bin")
-    mat.smoothness = 0.5
-    mat.metalMask = 1.0
-    mat.albedo = [0.95349481, 0.806474433, 0.374256055, 1.0]
-    mat.normalMap = conv["normal.png"]
-    conv["projectile material"] = mat
+    i = 0
+    for roughness in range(0, 5):
+        row = []
+        for metallic in range(0, 5):
+            mat = Material([], "resources/materials/mat%d" % (i))
+            mat.smoothness = 1.0 - roughness/4.0
+            mat.metalMask = metallic/4.0
+            mat.albedo = [1.0, 0.403921569, 0.0, 1.0]
+            conv["mat%d" % (i)] = mat
+            i += 1
+            row.append(mat)
+        materials.append(row)
     
     mat = Material([], "resources/materials/floor.bin")
     mat.smoothness = 0.6
@@ -193,11 +181,6 @@ if __name__ == "__main__":
     mat.albedoMap = conv["floor.png"]
     conv["floor"] = mat
     
-    mat = Material([], "resources/materials/fence.bin")
-    mat.smoothness = 0.65
-    mat.metalMask = 1.0
-    conv["fence"] = mat
-
     mat = Material([], "resources/materials/ao test material.bin")
     mat.smoothness = 1.0
     mat.metalMask = 0.0
@@ -257,17 +240,13 @@ if __name__ == "__main__":
     model.sub_models = [[Model.LOD(conv["cube.obj"], conv["material"], 0.0, 9999.0)]]
     conv["model"] = model
     
-    model = Model([], "resources/models/clay.bin")
-    model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["clay"], 0.0, 9999.0)]]
-    conv["clay model"] = model
-    
-    model = Model([], "resources/models/gold.bin")
-    model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["gold"], 0.0, 9999.0)]]
-    conv["gold model"] = model
-    
-    model = Model([], "resources/models/plastic.bin")
-    model.sub_models = [[Model.LOD(conv["material test 2.obj"], conv["plastic"], 0.0, 9999.0)]]
-    conv["plastic model"] = model
+    i = 0
+    for row in materials:
+        for mat in row:
+            model = Model([], "resources/models/mitsuba%d.bin" % (i))
+            model.sub_models = [[Model.LOD(conv["mitsuba.obj"], conv["mat%d" % (i)], 0.0, 9999.0)]]
+            conv["mitsuba%d" % (i)] = model
+            i += 1
     
     model = Model([], "resources/models/tesstest.bin")
     model.sub_models = [[Model.LOD(conv["tesselation test.obj"], conv["tesselation test material"], 0.0, 9999.0)]]
@@ -276,10 +255,6 @@ if __name__ == "__main__":
     model = Model([], "resources/models/floor.bin")
     model.sub_models = [[Model.LOD(conv["floor.obj"], conv["floor"], 0.0, 9999.0)]]
     conv["floor model"] = model
-    
-    model = Model([], "resources/models/fence.bin")
-    model.sub_models = [[Model.LOD(conv["fence.obj"], conv["fence"], 0.0, 9999.0)]]
-    conv["fence model"] = model
     
     model = Model([], "resources/models/aotest.bin")
     model.sub_models = [[Model.LOD("resources/meshes/aotest.bin", conv["ao test material"], 0.0, 9999.0)]]
@@ -293,16 +268,12 @@ if __name__ == "__main__":
     model.sub_models = [[Model.LOD(conv["platform.obj"], conv["platform material"], 0.0, 9999.0)]]
     conv["platform"] = model
     
-    model = Model([], "resources/models/projectile.bin")
-    model.sub_models = [[Model.LOD(conv["sphere.obj"], conv["projectile material"], 0.0, 9999.0)]]
-    conv["projectile"] = model
-    
     model = Model([], "resources/models/solider.bin")
     model.sub_models = [[Model.LOD("resources/meshes/soldier1.bin", conv["Soldier material"], 0.0, 9999.0)]]
     conv["Soldier model"] = model
     
     floorShape = PhysicsShape([], "resources/shapes/floor.bin")
-    floorShape.shape = PhysicsShape.Box([8.0, 1.0, 8.0])
+    floorShape.shape = PhysicsShape.Box([16.0, 1.0, 16.0])
     conv["floor shape"] = floorShape
     
     boxShape = PhysicsShape([], "resources/shapes/box.bin")
@@ -310,7 +281,7 @@ if __name__ == "__main__":
     conv["box shape"] = boxShape
     
     someShape = PhysicsShape([], "resources/shapes/someShape.bin")
-    someShape.shape = PhysicsShape.Box([3.01, 3.0, 3.01])
+    someShape.shape = PhysicsShape.Sphere(1.1)
     conv["some shape"] = someShape
     
     fenceShape = PhysicsShape([], "resources/shapes/fence.bin")
@@ -324,10 +295,6 @@ if __name__ == "__main__":
     platformShape = PhysicsShape([], "resources/shapes/platform.bin")
     platformShape.shape = PhysicsShape.Cylinder("y", 0.1, 4.0)
     conv["platform shape"] = platformShape
-    
-    projectileShape = PhysicsShape([], "resources/shapes/projectile.bin")
-    projectileShape.shape = PhysicsShape.Sphere(1.0)
-    conv["projectile shape"] = projectileShape
     
     scene = Scene([], "resources/scenes/scene.bin")
     conv["scene"] = scene
@@ -348,8 +315,8 @@ if __name__ == "__main__":
     modifier.intensity = 1.0
     scene.colorModifiers.append(modifier)
     
-    cubeEnt = Scene.Entity("Cube")
-    cubeEnt.transform.position = [0.0, 2.0, 0.0]
+    cubeEnt = Scene.Entity("PLayer")
+    cubeEnt.transform.position = [4.0, 2.0, 0.0]
     cubeEnt.transform.scale = [1.0, 1.0, 1.0]
     cubeEnt.transform.orientation = [0.0, 0.0, 0.0]
     cubeEnt.rigidBody = Scene.RigidBody()
@@ -364,69 +331,65 @@ if __name__ == "__main__":
     #cubeEnt.scripts.append("resources/scripts/lightscript.cpp")
     scene.entities.append(cubeEnt)
     
-    clayEnt = Scene.Entity("Clay")
-    clayEnt.transform.position = [11.0, 3.0, -6.0]
-    clayEnt.model = conv["clay model"]
-    clayEnt.rigidBody = Scene.RigidBody()
-    clayEnt.rigidBody.shape = someShape
-    scene.entities.append(clayEnt)
-    
-    plasticEnt = Scene.Entity("Plastic")
-    plasticEnt.transform.position = [11.0, 3.0, 0.0]
-    plasticEnt.model = conv["plastic model"]
-    plasticEnt.rigidBody = Scene.RigidBody()
-    plasticEnt.rigidBody.shape = someShape
-    scene.entities.append(plasticEnt)
-    
-    goldEnt = Scene.Entity("Gold")
-    goldEnt.transform.position = [11.0, 3.0, 6.0]
-    goldEnt.model = conv["gold model"]
-    goldEnt.rigidBody = Scene.RigidBody()
-    goldEnt.rigidBody.shape = someShape
-    scene.entities.append(goldEnt)
+    i = 0
+    for x in range(-2, 3):
+        for z in range(-2, 3):
+            ent = Scene.Entity("Mitsuba%d" % (i))
+            ent.transform.position = [x*5+20, 1.15, z*5]
+            ent.transform.orientation = [0.0, -90.0, 0.0]
+            ent.model = conv["mitsuba%d" % (i)]
+            ent.rigidBody = Scene.RigidBody()
+            ent.rigidBody.shape = someShape
+            scene.entities.append(ent)
+            i += 1
     
     floorEnt = Scene.Entity("Floor")
-    floorEnt.transform.position = [0.0, -1.0, 0.0]
+    floorEnt.transform.position = [20.0, -1.0, 0.0]
+    floorEnt.transform.scale = [2.0, 1.0, 2.0]
     floorEnt.model = conv["floor model"]
     floorEnt.rigidBody = Scene.RigidBody()
     floorEnt.rigidBody.shape = floorShape
     scene.entities.append(floorEnt)
     
-    fenceEnt = Scene.Entity("Fence1")
-    fenceEnt.transform.position = [-8.0, 1.55, 0.0]
-    fenceEnt.model = conv["fence model"]
-    fenceEnt.rigidBody = Scene.RigidBody()
-    fenceEnt.rigidBody.shape = fenceShape
-    scene.entities.append(fenceEnt)
-    
-    fenceEnt = Scene.Entity("Fence3")
-    fenceEnt.transform.position = [0.0, 1.55, 8.0]
-    fenceEnt.transform.orientation = [0.0, 90.0, 0.0]
-    fenceEnt.model = conv["fence model"]
-    fenceEnt.rigidBody = Scene.RigidBody()
-    fenceEnt.rigidBody.shape = fenceShape
-    scene.entities.append(fenceEnt)
-    
-    fenceEnt = Scene.Entity("Fence4")
-    fenceEnt.transform.position = [0.0, 1.55, -8.0]
-    fenceEnt.transform.orientation = [0.0, -90.0, 0.0]
-    fenceEnt.model = conv["fence model"]
-    fenceEnt.rigidBody = Scene.RigidBody()
-    fenceEnt.rigidBody.shape = fenceShape
-    scene.entities.append(fenceEnt)
+    floorEnt = Scene.Entity("Floor2")
+    floorEnt.transform.position = [20.0, -10.0, 0.0]
+    floorEnt.transform.scale = [2.0, 1.0, 2.0]
+    floorEnt.model = conv["floor model"]
+    floorEnt.shadow_caster = False
+    floorEnt.rigidBody = Scene.RigidBody()
+    floorEnt.rigidBody.shape = floorShape
+    scene.entities.append(floorEnt)
     
     ent = Scene.Entity("AO test")
-    ent.transform.position = [-5.0, 2.0, 0.0]
+    ent.transform.position = [20.0, -5.5, 0.0]
     ent.transform.orientation = [0.0, 100.0, 0.0]
     ent.transform.scale = [0.5, 0.5, 0.5]
     ent.model = conv["ao test model"]
     scene.entities.append(ent)
     
-    ent = Scene.Entity("Parallax test")
+    light = Scene.Light(Scene.Light.Type.Spot)
+    light.position = [10.0, 0.25, 0.0]
+    light.direction = [1.0, -0.6, 0.0]
+    light.color = [1.0, 1.0, 1.0]
+    light.power = 10.0
+    light.radius = 10.0
+    light.inner_cutoff = 10.0
+    light.outer_cutoff = 12.0
+    light.ambient_strength = 0.0
+    light.shadowmap = False
+    light.shadowmap_near = 0.1
+    light.shadow_min_bias = 0.005
+    light.shadow_bias_scale = 0.05
+    light.shadow_auto_bias_scale = 1.0
+    light.shadowmap_resolution = 512
+    light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
+    scene.lights.append(light)
+    
+    """ent = Scene.Entity("Parallax test")
     ent.transform.position = [0.0, 1.0, 0.0]
     ent.transform.scale = [0.1, 1.0, 0.1]
     ent.model = conv["parallax test model"]
-    scene.entities.append(ent)
+    scene.entities.append(ent)"""
     
     """ent = Scene.Entity("Soldier")
     #ent.transform.position = [0.0, 3.25, -3.0]
@@ -449,13 +412,13 @@ if __name__ == "__main__":
     ent.scripts.append("resources/scripts/animated.rkt")
     scene.entities.append(ent)"""
     
-    ent = Scene.Entity("TessTest")
+    """ent = Scene.Entity("TessTest")
     ent.transform.position = [0.0, 1.15, 5.0]
     ent.transform.orientation = [0.0, 90.0, 0.0]
     ent.model = conv["tesstest"]
     ent.rigidBody = Scene.RigidBody()
     ent.rigidBody.shape = tessTestShape
-    scene.entities.append(ent)
+    scene.entities.append(ent)"""
     
     """platforms = Scene.Entity("Platfoms")
     platforms.transform.position = [0.0, 0.0, 25.0]

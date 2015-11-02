@@ -50,6 +50,52 @@ struct RenderStats
     size_t numDrawCalls;
 } BIND;
 
+struct Object
+{
+    Object(GfxMaterial *material_,
+           GfxMesh *mesh_) : material(material_->copyRef<GfxMaterial>()),
+                             mesh(mesh_->copyRef<GfxMesh>()),
+                             animState(nullptr) {}
+
+    Object(const Object& other) : shadowCaster(other.shadowCaster),
+                                  material(other.material->copyRef<GfxMaterial>()),
+                                  mesh(other.mesh->copyRef<GfxMesh>()),
+                                  animState(other.animState),
+                                  worldMatrix(other.worldMatrix),
+                                  normalMatrix(other.normalMatrix) {}
+
+    ~Object()
+    {
+        material->release();
+        mesh->release();
+    }
+
+    Object& operator = (const Object& other)
+    {
+        shadowCaster = other.shadowCaster;
+        animState = other.animState;
+        worldMatrix = other.worldMatrix;
+        normalMatrix = other.normalMatrix;
+
+        other.material->copyRef<GfxMaterial>();
+        material->release();
+        material = other.material;
+
+        other.mesh->copyRef<GfxMesh>();
+        mesh->release();
+        mesh = other.mesh;
+
+        return *this;
+    }
+
+    bool shadowCaster;
+    GfxMaterial *material;
+    GfxMesh *mesh;
+    GfxAnimationState *animState;
+    Matrix4x4 worldMatrix;
+    Matrix4x4 normalMatrix;
+} BIND;
+
 class GfxRenderer
 {
     NO_COPY(GfxRenderer);
@@ -125,6 +171,7 @@ class GfxRenderer
 
         void resize(const UInt2& size);
         void render();
+        void addObject(const Object& object);
 
         size_t getNumLights() const
         {
@@ -357,16 +404,6 @@ class GfxRenderer
         void fillRenderLists();
 
         void swapFramebuffers();
-
-        struct Object
-        {
-            bool shadowCaster;
-            GfxMaterial *material;
-            GfxMesh *mesh;
-            GfxAnimationState *animState;
-            Matrix4x4 worldMatrix;
-            Matrix4x4 normalMatrix;
-        };
 
         List<Object> objects;
 

@@ -842,13 +842,6 @@ void GfxRenderer::render()
 
     uint64_t start = platform->getTime();
 
-    for (auto& obj : objects)
-    {
-        obj.mesh->release();
-        obj.material->release();
-    }
-    objects.clear();
-
     fillObjects(scene->getEntities());
 
     computeSceneAABB();
@@ -1350,6 +1343,13 @@ void GfxRenderer::render()
     start = platform->getTime();
     updateStats();
     stats.updateStatsCPUTiming = float(platform->getTime() - start) / platform->getTimerFrequency();
+
+    objects.clear();
+}
+
+void GfxRenderer::addObject(const Object& object)
+{
+    objects.append(object);
 }
 
 void GfxRenderer::computeSceneAABB()
@@ -1712,14 +1712,9 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
                         if (lod.minDistance < distance and
                             distance < lod.maxDistance)
                         {
-                            GfxMaterial *material = lod.material;
-                            GfxMesh *mesh = lod.mesh;
-
-                            Object obj;
+                            Object obj(lod.material, lod.mesh);
                             obj.shadowCaster = comp->getShadowCaster();
-                            obj.material = material->copyRef<GfxMaterial>();
-                            obj.mesh = mesh->copyRef<GfxMesh>();
-                            obj.animState = (mesh == animMesh) ? animState : nullptr;
+                            obj.animState = (lod.mesh == animMesh) ? animState : nullptr;
                             obj.worldMatrix = transform * lod.worldMatrix;
                             obj.normalMatrix = Matrix3x3(obj.worldMatrix.inverse().transpose());
 

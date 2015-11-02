@@ -63,6 +63,7 @@
 - [ ] Changing the collision shape of an object crashes the program.
 - [ ] Removing a rigid body does not remove a rigid body.
 - [ ] Static objects can not be moved at runtime. (physics)
+- [ ] Spotlight shadowmapping is broken and breaks directional shadow mapping.
 
 ## Other
 - [ ] Texture types should be immutable.
