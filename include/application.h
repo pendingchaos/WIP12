@@ -109,6 +109,11 @@ class Application
             return stats;
         }
 
+        void *getExtensions() const NO_BIND
+        {
+            return extensions;
+        }
+
         float fixedTimestep;
         bool running;
     private:
@@ -121,6 +126,7 @@ class Application
         FT_Library freeType_;
         AudioDevice *audioDevice_;
         scripting::Engine *scriptEngine_;
+        void *extensions;
 
         ScriptInstance *script;
         Script *nextScript;

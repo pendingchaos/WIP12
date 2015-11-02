@@ -50,27 +50,28 @@ struct RenderStats
     size_t numDrawCalls;
 } BIND;
 
-struct Object
+struct GfxObject
 {
-    Object(GfxMaterial *material_,
-           GfxMesh *mesh_) : material(material_->copyRef<GfxMaterial>()),
-                             mesh(mesh_->copyRef<GfxMesh>()),
-                             animState(nullptr) {}
+    //TODO: Bind this constructor
+    GfxObject(GfxMaterial *material_,
+              GfxMesh *mesh_) : material(material_->copyRef<GfxMaterial>()),
+                                mesh(mesh_->copyRef<GfxMesh>()),
+                                animState(nullptr) {}
 
-    Object(const Object& other) : shadowCaster(other.shadowCaster),
-                                  material(other.material->copyRef<GfxMaterial>()),
-                                  mesh(other.mesh->copyRef<GfxMesh>()),
-                                  animState(other.animState),
-                                  worldMatrix(other.worldMatrix),
-                                  normalMatrix(other.normalMatrix) {}
+    GfxObject(const GfxObject& other) : shadowCaster(other.shadowCaster),
+                                        material(other.material->copyRef<GfxMaterial>()),
+                                        mesh(other.mesh->copyRef<GfxMesh>()),
+                                        animState(other.animState),
+                                        worldMatrix(other.worldMatrix),
+                                        normalMatrix(other.normalMatrix) {}
 
-    ~Object()
+    ~GfxObject()
     {
         material->release();
         mesh->release();
     }
 
-    Object& operator = (const Object& other)
+    GfxObject& operator = (const GfxObject& other)
     {
         shadowCaster = other.shadowCaster;
         animState = other.animState;
@@ -171,7 +172,7 @@ class GfxRenderer
 
         void resize(const UInt2& size);
         void render();
-        void addObject(const Object& object);
+        void addObject(const GfxObject& object);
 
         size_t getNumLights() const
         {
@@ -405,7 +406,7 @@ class GfxRenderer
 
         void swapFramebuffers();
 
-        List<Object> objects;
+        List<GfxObject> objects;
 
         void fillObjects(const List<Entity *>& entities);
 
@@ -416,7 +417,7 @@ class GfxRenderer
             RenderList *shadowmapLists;
             RenderList *forwardLists;
             RenderList *deferredLists;
-            Object *objects;
+            GfxObject *objects;
         };
 
         AABB sceneAABB;

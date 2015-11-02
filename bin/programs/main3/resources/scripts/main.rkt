@@ -14,6 +14,32 @@ return class {
         self.textGPUTiming = 0.0;
         self.textCPUTiming = 0.0;
         self.textTimer = gfxApi:createTimer();
+        
+        self.chunk = MCChunk(64, 64, 64, 3, 0.5);
+        self.chunk:setMaterial(1, resMgr:loadMaterial("resources/materials/grass.bin"));
+        self.chunk:setMaterial(2, resMgr:loadMaterial("resources/materials/dirt.bin"));
+        self.chunk:setMaterial(3, resMgr:loadMaterial("resources/materials/stone.bin"));
+        
+        z = 0;
+        while z < 64 {
+            y = 0;
+            while y < 64 {
+                x = 0;
+                while x < 64 {
+                    if Float3(x+0.0, y+0.0, z+0.0):distance(Float3(32.0)) < 31.0 {
+                        self.chunk:setCube(x, y, z, 1);
+                    };
+                    x = x + 1;
+                };
+                
+                y = y + 1;
+            };
+            
+            z = z + 1;
+        };
+        
+        self.chunk:updateMeshes();
+        self.chunk:updateRigidBodies(self.scene:getPhysicsWorld());
     };
     
     __del__ = function(self) {};
@@ -78,6 +104,7 @@ return class {
         
         renderer:resize(UInt2(width, height));
         renderer:render();
+        self.chunk:render(renderer, Matrix4x4());
         
         gfxStats = renderer:getStats();
         

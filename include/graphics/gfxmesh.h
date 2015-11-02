@@ -197,7 +197,7 @@ class GfxMesh : public Resource
 
         AABB aabb;
         size_t numVertices;
-        size_t numIndices;
+        size_t numIndices; //TODO: Make this private?
         GfxPrimitive primitive;
         GfxCullMode cullMode;
         GfxWinding winding;

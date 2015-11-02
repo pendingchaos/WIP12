@@ -19,6 +19,7 @@
 #include "logging.h"
 #include "scripting/bindings.h"
 #include "scripting/vm/engine.h"
+#include "extensions/extensions.h"
 
 Application::Application(const char *workingDir) : fixedTimestep(0.016f),
                                                    stats({0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}),
@@ -57,6 +58,8 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     LOG_INFO("Initialized an audio device called \"%s\".", audioDevice_->getName().getData());
 
     script = nullptr;
+
+    extensions = initExtensions();
 }
 
 Application::~Application()
@@ -67,6 +70,8 @@ Application::~Application()
     {
         nextScript->release();
     }
+
+    deinitExtensions(extensions);
 
     DELETE(resMgr_);
 

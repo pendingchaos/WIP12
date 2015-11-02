@@ -77,9 +77,11 @@ if __name__ == "__main__":
     scene = Scene([], "resources/scenes/main.bin")
     conv["scene"] = scene
     scene.skybox = conv["skybox"]
-    scene.camera.position = [50.0, 50.0, 50.0]
+    scene.camera.position = [150.0, 150.0, 150.0]
     scene.camera.direction = [-1.0, -1.0, -1.0]
     scene.camera.up = [0.0, 1.0, 0.0]
+    scene.camera.near = 0.1
+    scene.camera.far = 500.0
     
     # Blocks
     numBlocks = 0
@@ -94,7 +96,7 @@ if __name__ == "__main__":
         return random.randint(0, 100) > 75
         return y < thresh
     
-    for x in xrange(-8, 9):
+    """for x in xrange(-8, 9):
         for y in xrange(-64, 65):
             for z in xrange(-8, 9):
                 if not block_exists(avgY, x, y, z):
@@ -126,7 +128,7 @@ if __name__ == "__main__":
                 ent.rigidBody.shape = blockShape
                 scene.entities.append(ent)
     
-    print numBlocks, "blocks."
+    print numBlocks, "blocks." """
     
     ent = Scene.Entity("Player")
     ent.transform.position = [0.0, 80.0, 0.0]
@@ -144,14 +146,14 @@ if __name__ == "__main__":
     
     # Sun
     light = Scene.Light(Scene.Light.Type.Directional)
-    light.direction = [0.0, -1.0, 0.0]
+    light.direction = [-1.0, -1.0, 1.0]
     light.color = [3.0, 3.0, 3.0]
     light.shadowmap = True
     light.shadowmap_near = 0.1
     light.shadowmap_far = 100.0
-    light.shadow_min_bias = 0.005
-    light.shadow_bias_scale = 0.05
-    light.shadow_auto_bias_scale = 1.0
+    light.shadow_min_bias = 0.0001
+    light.shadow_bias_scale = 0.001
+    light.shadow_auto_bias_scale = 0.5
     light.shadowmap_resolution = 1024
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
     light.shadow_radius = 64

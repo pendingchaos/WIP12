@@ -3,6 +3,7 @@
 #define BINDINGS2_H
 
 #include "platform.h"
+#include "jobsystem.h"
 #include "filesystem.h"
 #include "misc_macros.h"
 #include "error.h"
@@ -37,6 +38,7 @@
 #include "graphics/GL/gfxglbuffer.h"
 #include "graphics/GL/gfxglapi.h"
 #include "graphics/GL/gfxgltextureimpl.h"
+#include "extensions/mc_clone/mc_clone.h"
 #include "audio/audioworld.h"
 #include "audio/audio.h"
 #include "audio/audiodevice.h"
@@ -86,6 +88,7 @@ namespace scripting
     Value create(Context *ctx, const List<Light*>& value);
     Value create(Context *ctx, const RenderStats& value);
     Value create(Context *ctx, const Filesystem& value);
+    Value create(Context *ctx, const GfxObject& value);
     Value create(Context *ctx, const T2<float>& value);
     Value create(Context *ctx, const Event& value);
     Value create(Context *ctx, const Stats& value);
@@ -132,6 +135,7 @@ namespace scripting
     Value create(Context *ctx, const List<Entity*>& value);
     Value create(Context *ctx, const Matrix3x3& value);
     Value create(Context *ctx, GhostObject *value);
+    Value create(Context *ctx, MCChunk *value);
     Value create(Context *ctx, HashMap<Str,Str> *value);
     Value create(Context *ctx, GfxApi *value);
     Value create(Context *ctx, GfxCompiledShader *value);
@@ -145,6 +149,7 @@ namespace scripting
     Value create(Context *ctx, Filesystem *value);
     Value create(Context *ctx, ResourceManager *value);
     Value create(Context *ctx, Entity *value);
+    Value create(Context *ctx, GfxObject *value);
     Value create(Context *ctx, GfxRenderer *value);
     Value create(Context *ctx, T2<float> *value);
     Value create(Context *ctx, GfxFramebuffer *value);

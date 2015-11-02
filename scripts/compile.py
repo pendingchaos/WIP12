@@ -2,6 +2,8 @@ import os
 import shutil
 import xml.etree.ElementTree as ET
 
+os.system("python update_extensions.py")
+
 target = "debug" #Change to "release" for a release target.
 process_count = 3
 

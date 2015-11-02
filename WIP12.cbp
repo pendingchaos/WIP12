@@ -83,6 +83,9 @@
 			<Add library="LinearMath" />
 			<Add library="dl" />
 		</Linker>
+		<ExtraCommands>
+			<Add before="cd scripts; python update_extensions.py" />
+		</ExtraCommands>
 		<Unit filename="TODO.md" />
 		<Unit filename="include/application.h" />
 		<Unit filename="include/audio/audio.h" />
@@ -95,6 +98,8 @@
 		<Unit filename="include/containers/string.h" />
 		<Unit filename="include/endian_utils.h" />
 		<Unit filename="include/error.h" />
+		<Unit filename="include/extensions/extensions.h" />
+		<Unit filename="include/extensions/mc_clone/mc_clone.h" />
 		<Unit filename="include/file.h" />
 		<Unit filename="include/filesystem.h" />
 		<Unit filename="include/globals.h" />
@@ -169,6 +174,8 @@
 		<Unit filename="src/containers/resizabledata.cpp" />
 		<Unit filename="src/containers/string.cpp" />
 		<Unit filename="src/error.cpp" />
+		<Unit filename="src/extensions/extensions.cpp" />
+		<Unit filename="src/extensions/mc_clone/mc_clone.cpp" />
 		<Unit filename="src/file.cpp" />
 		<Unit filename="src/filesystem.cpp" />
 		<Unit filename="src/globals.cpp" />

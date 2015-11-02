@@ -18,7 +18,10 @@ struct GfxLOD
            float maxDistance,
            GfxMesh *mesh,
            GfxMaterial *material,
-           const Matrix4x4& matrix) NO_BIND;
+           const Matrix4x4& matrix);
+    GfxLOD(const GfxLOD& other);
+
+    GfxLOD& operator = (const GfxLOD& other);
 
     bool operator == (const GfxLOD& other) const
     {

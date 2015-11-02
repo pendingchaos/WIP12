@@ -79,7 +79,7 @@ class MotionState : public btMotionState
 
 RigidBody::RigidBody(const RigidBodyConstructionInfo& info,
                      PhysicsShape *shape_,
-                     PhysicsWorld *world_) : shape(shape_),
+                     PhysicsWorld *world_) : shape(shape_->copyRef<PhysicsShape>()),
                                              world(world_),
                                              entity(info.entity),
                                              type(info.type),
@@ -362,7 +362,7 @@ void RigidBody::setShape(PhysicsShape *shape_)
 
     shape->release();
 
-    shape = shape_;
+    shape = shape_->copyRef<PhysicsShape>();
 
     updateShape();
 

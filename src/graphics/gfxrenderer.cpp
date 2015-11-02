@@ -1347,7 +1347,7 @@ void GfxRenderer::render()
     objects.clear();
 }
 
-void GfxRenderer::addObject(const Object& object)
+void GfxRenderer::addObject(const GfxObject& object)
 {
     objects.append(object);
 }
@@ -1468,7 +1468,7 @@ void GfxRenderer::fillRenderListsJob(size_t index, size_t worker, void *userdata
 {
     FillRenderListsData& data = *(FillRenderListsData *)userdata;
 
-    Object& obj = data.objects[index];
+    GfxObject& obj = data.objects[index];
 
     DrawCall drawCall(obj.mesh, obj.material);
     drawCall.animState = obj.animState;
@@ -1712,7 +1712,7 @@ void GfxRenderer::fillObjects(const List<Entity *>& entities)
                         if (lod.minDistance < distance and
                             distance < lod.maxDistance)
                         {
-                            Object obj(lod.material, lod.mesh);
+                            GfxObject obj(lod.material, lod.mesh);
                             obj.shadowCaster = comp->getShadowCaster();
                             obj.animState = (lod.mesh == animMesh) ? animState : nullptr;
                             obj.worldMatrix = transform * lod.worldMatrix;

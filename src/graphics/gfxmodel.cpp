@@ -4,14 +4,32 @@
 #include "globals.h"
 
 GfxLOD::GfxLOD(float minDistance_,
-              float maxDistance_,
-              GfxMesh *mesh_,
-              GfxMaterial *material_,
-              const Matrix4x4& matrix) : minDistance(minDistance_),
-                                         maxDistance(maxDistance_),
-                                         mesh(mesh_),
-                                         material(material_),
-                                         worldMatrix(matrix) {}
+               float maxDistance_,
+               GfxMesh *mesh_,
+               GfxMaterial *material_,
+               const Matrix4x4& matrix) : minDistance(minDistance_),
+                                          maxDistance(maxDistance_),
+                                          mesh(mesh_),
+                                          material(material_),
+                                          worldMatrix(matrix) {}
+
+GfxLOD::GfxLOD(const GfxLOD& other) : minDistance(other.minDistance),
+                                      maxDistance(other.maxDistance),
+                                      mesh(other.mesh->copyRef<GfxMesh>()),
+                                      material(other.material->copyRef<GfxMaterial>()),
+                                      worldMatrix(other.worldMatrix) {}
+
+GfxLOD& GfxLOD::operator = (const GfxLOD& other)
+{
+    minDistance = other.minDistance;
+    maxDistance = other.maxDistance;
+    mesh->release();
+    mesh = other.mesh->copyRef<GfxMesh>();
+    material->release();
+    material = other.material->copyRef<GfxMaterial>();
+    worldMatrix = other.worldMatrix;
+    return *this;
+}
 
 GfxModel::GfxModel() : Resource(ResType::GfxModelType) {}
 
