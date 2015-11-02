@@ -987,7 +987,7 @@ void PhysicsCompoundShape::create(const Child *shapes_)
                                       child.position.y,
                                       child.position.z));
 
-        shape_->addChildShape(transform, child.shape->getBulletShape());
+        shape_->addChildShape(transform, child.shape->copyRef<PhysicsShape>()->getBulletShape());
     }
 
     shape_->recalculateLocalAabb();

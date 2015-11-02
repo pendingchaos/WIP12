@@ -131,7 +131,7 @@ if __name__ == "__main__":
     print numBlocks, "blocks." """
     
     ent = Scene.Entity("Player")
-    ent.transform.position = [0.0, 80.0, 0.0]
+    ent.transform.position = [16.0, 80.0, 16.0]
     ent.transform.scale = [1.0, 1.0, 1.0]
     ent.transform.orientation = [0.0, 0.0, 0.0]
     ent.rigidBody = Scene.RigidBody()

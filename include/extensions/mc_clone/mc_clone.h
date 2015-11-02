@@ -45,6 +45,8 @@ class MCChunk
 
         void render(GfxRenderer *renderer, const Matrix4x4& worldMatrix);
     private:
+        uint8_t _getCube(int x, int y, int z);
+
         size_t width;
         size_t height;
         size_t depth;
@@ -53,8 +55,9 @@ class MCChunk
         GfxMesh *meshes[255];
         GfxMaterial *materials[255];
         uint8_t *cubes;
-        List<RigidBody *> bodies;
-        PhysicsShape *shape;
+        RigidBody *body;
+        PhysicsShape *cubeShape;
+        PhysicsShape *compoundShape;
 } BIND NOT_COPYABLE;
 
 #endif // MC_CLONE_H

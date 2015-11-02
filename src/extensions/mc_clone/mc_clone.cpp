@@ -21,7 +21,8 @@ MCChunk::MCChunk(size_t width_,
                                      height(height_),
                                      depth(depth_),
                                      numTypes(numTypes_),
-                                     blockSize(blockSize_)
+                                     blockSize(blockSize_),
+                                     body(nullptr)
 {
     cubes = (uint8_t *)ALLOCATE(width*height*depth);
 
@@ -51,18 +52,18 @@ MCChunk::MCChunk(size_t width_,
         }
     }
 
-    shape = NEW(PhysicsShape);
-    shape->setBox(blockSize);
+    cubeShape = NEW(PhysicsShape);
+    cubeShape->setBox(blockSize);
+
+    compoundShape = NEW(PhysicsShape);
 }
 
 MCChunk::~MCChunk()
 {
-    shape->release();
+    compoundShape->release();
+    cubeShape->release();
 
-    for (auto body : bodies)
-    {
-        body->getWorld()->destroyRigidBody(body);
-    }
+    body->getWorld()->destroyRigidBody(body);
 
     for (size_t i = 0; i < numTypes; ++i)
     {
@@ -115,7 +116,7 @@ void MCChunk::updateMeshes()
         {
             for (int x = 0; x < (int)width; ++x)
             {
-                uint8_t type = getCube(x, y, z);
+                uint8_t type = _getCube(x, y, z);
 
                 if (type == 0)
                 {
@@ -228,11 +229,12 @@ void MCChunk::updateMeshes()
 
 void MCChunk::updateRigidBodies(PhysicsWorld *world)
 {
-    for (auto body : bodies)
+    if (body != nullptr)
     {
         body->getWorld()->destroyRigidBody(body);
     }
-    bodies.clear();
+
+    List<PhysicsCompoundShape::Child> children;
 
     for (int z = 0; z < (int)depth; ++z)
     {
@@ -240,7 +242,7 @@ void MCChunk::updateRigidBodies(PhysicsWorld *world)
         {
             for (int x = 0; x < (int)width; ++x)
             {
-                uint8_t type = getCube(x, y, z);
+                uint8_t type = _getCube(x, y, z);
 
                 if (type == 0)
                 {
@@ -254,21 +256,27 @@ void MCChunk::updateRigidBodies(PhysicsWorld *world)
                 bool negy = getCube(x, y-1, z) == 0;
                 bool negz = getCube(x, y, z-1) == 0;
 
-                Float3 pos = Float3(x, y, z) * blockSize * 2.0f;
-
                 if (not (posx or posy or posz or negx or negy or negz))
                 {
                     continue;
                 }
 
-                RigidBodyConstructionInfo info;
-                info.type = RigidBodyType::Static;
+                Float3 pos = Float3(x, y, z) * blockSize * 2.0f;
 
-                RigidBody *body = world->createRigidBody(info, shape);
-                body->setTransform(Matrix4x4::translate(pos));
+                PhysicsCompoundShape::Child child(cubeShape);
+                child.position = pos;
+
+                children.append(child);
             }
         }
     }
+
+    compoundShape->setCompound(children.getCount(), children.getData());
+
+    RigidBodyConstructionInfo info;
+    info.type = RigidBodyType::Static;
+
+    body = world->createRigidBody(info, compoundShape);
 }
 
 uint8_t MCChunk::getCube(int x, int y, int z)
@@ -288,7 +296,7 @@ uint8_t MCChunk::getCube(int x, int y, int z)
         return 0;
     }
 
-    return cubes[z*width*height + y*width + x];
+    return _getCube(x, y, z);
 }
 
 void MCChunk::setCube(size_t x, size_t y, size_t z, uint8_t type)
@@ -339,6 +347,11 @@ void MCChunk::render(GfxRenderer *renderer, const Matrix4x4& worldMatrix)
 
         renderer->addObject(obj);
     }
+}
+
+uint8_t MCChunk::_getCube(int x, int y, int z)
+{
+    return cubes[z*width*height + y*width + x];
 }
 
 void *init_mc_clone()
