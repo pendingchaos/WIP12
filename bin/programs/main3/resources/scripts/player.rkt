@@ -26,6 +26,8 @@ return class {
         self.wasPressedR = false;
         
         self.focused = false;
+        
+        self.cube = 1;
     };
     
     __del__ = function(self) {
@@ -142,6 +144,22 @@ return class {
             self.angVel = angVel;
         };
         
+        if platform:isKeyPressed(Key._1) {
+            self.cube = 1;
+        };
+        
+        if platform:isKeyPressed(Key._2) {
+            self.cube = 2;
+        };
+        
+        if platform:isKeyPressed(Key._3) {
+            self.cube = 3;
+        };
+        
+        if platform:isKeyPressed(Key._4) {
+            self.cube = 4;
+        };
+        
         if platform:isRightMouseButtonPressed() {
             if not self.wasPressedR {
                 self:handleClick(dir, false);
@@ -152,12 +170,12 @@ return class {
         };
         
         if platform:isLeftMouseButtonPressed() {
-            self.focused = true;
-            
-            if not self.wasPressedL {
+            if (not self.wasPressedL) and self.focused {
                 self:handleClick(dir, true);
-                self.wasPressedL = true;
             };
+            
+            self.wasPressedL = true;
+            self.focused = true;
         } else {
             self.wasPressedL = false;
         };
@@ -284,7 +302,7 @@ return class {
                     y = round(y) + 0.5;
                     z = round(z) + 0.5;
                     
-                    chunk:setCube(x, y, z, 1);
+                    chunk:setCube(x, y, z, self.cube);
                 };
                 
                 done = true;

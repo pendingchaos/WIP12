@@ -26,6 +26,8 @@ if __name__ == "__main__":
     conv["dirt.png"].mag_filter = Texture.Filter.Nearest
     conv["stone.png"] = Texture(["source/stone.png"], "resources/textures/stone.bin")
     conv["stone.png"].mag_filter = Texture.Filter.Nearest
+    conv["bricks.png"] = Texture(["source/bricks.png"], "resources/textures/bricks.bin")
+    conv["bricks.png"].mag_filter = Texture.Filter.Nearest
     
     # Meshes
     conv["block.obj"] = Mesh(["source/block.obj"], "resources/meshes/block.bin")
@@ -50,6 +52,13 @@ if __name__ == "__main__":
     mat.metalMask = 0.0
     mat.albedoMap = conv["stone.png"]
     conv["stone"] = mat
+    
+    # Materials
+    mat = Material([], "resources/materials/bricks.bin")
+    mat.smoothness = 0.0
+    mat.metalMask = 0.0
+    mat.albedoMap = conv["bricks.png"]
+    conv["bricks"] = mat
     
     # Models
     model = Model([], "resources/models/grass.bin")

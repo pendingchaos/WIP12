@@ -68,7 +68,7 @@ class Texture(Resource):
     def __init__(self, src_filenames, dest_filename):
         Resource.__init__(self, "texture", src_filenames, dest_filename)
         
-        self.max_anisotropy = 4.0
+        self.max_anisotropy = 16.0
         self.min_filter = Texture.Filter.Bilinear
         self.mag_filter = Texture.Filter.Bilinear
         self.mipmap_mode = Texture.MipmapMode.Linear

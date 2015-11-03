@@ -216,7 +216,7 @@ class GfxGLApi : public GfxApi
         GfxCompiledShader *geometry;
         GfxCompiledShader *fragment;
 
-        GLuint samplers[2048];
+        GLuint samplers[4096];
         GLuint getSampler(const TextureSampler& params);
 
         void useState(const State& state);

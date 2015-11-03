@@ -199,7 +199,7 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 
     glGenProgramPipelines(1, &pipeline);
 
-    for (size_t i = 0; i < 2048; ++i)
+    for (size_t i = 0; i < 4096; ++i)
     {
         samplers[i] = 0;
     }
@@ -207,7 +207,7 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
 
 GfxGLApi::~GfxGLApi()
 {
-    for (size_t i = 0; i < 2048; ++i)
+    for (size_t i = 0; i < 4096; ++i)
     {
         if (samplers[i] != 0)
         {

@@ -15,12 +15,13 @@ return class {
         self.textCPUTiming = 0.0;
         self.textTimer = gfxApi:createTimer();
         
-        self.chunk = MCChunk(16, 16, 16, 3, 0.5);
+        self.chunk = MCChunk(16, 16, 16, 4, 0.5);
         self.chunk:setMaterial(1, resMgr:loadMaterial("resources/materials/grass.bin"));
         self.chunk:setMaterial(2, resMgr:loadMaterial("resources/materials/dirt.bin"));
         self.chunk:setMaterial(3, resMgr:loadMaterial("resources/materials/stone.bin"));
+        self.chunk:setMaterial(4, resMgr:loadMaterial("resources/materials/bricks.bin"));
         
-        self.numCubes = self.chunk:generateSphere(4, 2);
+        self.numCubes = self.chunk:generateSphere(2, 4);
         
         self.chunk:updateMeshes();
         self.chunk:updateRigidBodies(self.scene:getPhysicsWorld());
@@ -95,23 +96,34 @@ return class {
         if (self.timingsUpdateCountdown < 0.0) and (not self.freezeTimings) {
             self.timingsUpdateCountdown = 0.1;
             
+            cubeNames = List();
+            cubeNames:append("Grass");
+            cubeNames:append("Dirt");
+            cubeNames:append("Stone");
+            cubeNames:append("Bricks");
+            
             format = "FPS: %v
 Frametime: %v ms
 GPU Frametime: %v ms
 CPU Frametime: %v ms
 Draw calls: %v
 Cube count: %v
+Cube: %v
 ";
             
             gpuFrametime = platform:getGPUFrametime();
             cpuFrametime = platform:getCPUFrametime();
+            
+            player = self.scene:findEntity("Player");
+            player = player:findScriptInstanceObj("resources/scripts/player.rkt");
             
             self.timings = format:format(1.0 / frametime,
                                          frametime * 1000.0,
                                          gpuFrametime * 1000.0,
                                          cpuFrametime * 1000.0,
                                          gfxStats.numDrawCalls,
-                                         self.numCubes);
+                                         self.numCubes,
+                                         cubeNames:get(player.cube-1));
             
             cpuStats = app:getStats();
             
