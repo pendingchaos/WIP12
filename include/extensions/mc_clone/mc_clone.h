@@ -39,7 +39,18 @@ class MCChunk
         }
 
         uint8_t getCube(int x, int y, int z);
-        void setCube(size_t x, size_t y, size_t z, uint8_t type);
+        void setCube(int x, int y, int z, uint8_t type);
+
+        //TODO: Get rid of this. It is a workaround for scripting limitations.
+        uint8_t getCube(float x, float y, float z)
+        {
+            return getCube((int)x, (int)y, (int)z);
+        }
+
+        void setCube(float x, float y, float z, uint8_t type)
+        {
+            setCube((int)x, (int)y, (int)z, type);
+        }
 
         void setMaterial(uint8_t type, GfxMaterial *material);
 

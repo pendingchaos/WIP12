@@ -16027,9 +16027,15 @@ MCChunk*f;
 f=(MCChunk*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
-if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t)&&TS(a[4],uint8_t))
+if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],uint8_t))
 {
-( f->setCube(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<uint8_t>::type>::f(ctx,a[4])));
+( f->setCube(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<uint8_t>::type>::f(ctx,a[4])));
+RET CN;
+}
+if(a.getCount()==5)
+if(1&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float)&&TS(a[4],uint8_t))
+{
+( f->setCube(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<uint8_t>::type>::f(ctx,a[4])));
 RET CN;
 }
 CATE(TE,UFOF("MCChunk::setCube.")));
@@ -16149,6 +16155,12 @@ if(a.getCount()==4)
 if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int))
 {
 RET CV( f->getCube(val_to_c<std::remove_reference<int>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int>::type>::f(ctx,a[3])));
+;
+}
+if(a.getCount()==4)
+if(1&&TS(a[1],float)&&TS(a[2],float)&&TS(a[3],float))
+{
+RET CV( f->getCube(val_to_c<std::remove_reference<float>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
 ;
 }
 CATE(TE,UFOF("MCChunk::getCube.")));

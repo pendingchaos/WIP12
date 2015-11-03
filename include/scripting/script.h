@@ -95,7 +95,7 @@ class ScriptInstance
 
         scripting::Value getObj() const
         {
-            return obj;
+            return scripting::createCopy(obj);
         }
     private:
         template <typename... Args>

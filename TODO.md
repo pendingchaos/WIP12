@@ -84,6 +84,7 @@
 - [ ] Fix memory leaks.
 - [ ] Get rid of resource filenames.
     - [ ] Find a way of referencing other resources.
+- [ ] Ungrab cursor when the window is no longer focused.
 
 ## Performance Improvements
 - [ ] Explicit instancing

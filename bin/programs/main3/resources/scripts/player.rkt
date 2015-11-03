@@ -21,6 +21,11 @@ return class {
         shape = PhysicsShape();
         shape:setCylinder(Axis.Y, 0.1, 0.4);
         self.feetGhost = physicsWorld:createGhostObject(shape, 0xFFFF ); #TODO: A space is required.
+        
+        self.wasPressedL = false;
+        self.wasPressedR = false;
+        
+        self.focused = false;
     };
     
     __del__ = function(self) {
@@ -114,9 +119,7 @@ return class {
             body:setLinearVelocity(vel);
         };
         
-        if platform:isLeftMouseButtonPressed() {
-            platform:setCursorVisible(false);
-            
+        if self.focused {
             w = platform:getWindowWidth();
             h = platform:getWindowHeight();
             pos = platform:getMousePosition();
@@ -137,9 +140,33 @@ return class {
             angVel.x = angVel.x + self.rotateSpeed*timestep*rel.x;
             angVel.y = angVel.y + self.rotateSpeed*timestep*rel.y;
             self.angVel = angVel;
-        } else {
-            platform:setCursorVisible(true);
         };
+        
+        if platform:isRightMouseButtonPressed() {
+            if not self.wasPressedR {
+                self:handleClick(dir, false);
+                self.wasPressedR = true;
+            };
+        } else {
+            self.wasPressedR = false;
+        };
+        
+        if platform:isLeftMouseButtonPressed() {
+            self.focused = true;
+            
+            if not self.wasPressedL {
+                self:handleClick(dir, true);
+                self.wasPressedL = true;
+            };
+        } else {
+            self.wasPressedL = false;
+        };
+        
+        if platform:isKeyPressed(Key.Escape) {
+            self.focused = false;
+        };
+        
+        platform:setCursorVisible(not self.focused);
         
         angVel = self.angVel;
         angVel.x = min(self.angVel.x, self.maxAngVel);
@@ -185,5 +212,89 @@ return class {
     
     preRender = function(self) {};
     postRender = function(self) {};
+    
+    rayVsAABB = function(rayOrigin, rayDir, aabb) {
+        center = (aabb.min + aabb.max) / 2.0;
+        extents = aabb.max - center;
+        
+        diff = rayOrigin - center;
+        
+        if (abs(diff.x) > extents.x) and ((diff.x*rayDir.x) >= 0.0) {
+            return false;
+        };
+        
+        if (abs(diff.y) > extents.y) and ((diff.y*rayDir.y) >= 0.0) {
+            return false;
+        };
+        
+        if (abs(diff.z) > extents.z) and ((diff.z*rayDir.z) >= 0.0) {
+            return false;
+        };
+        
+        fAWdU = Float3(abs(rayDir.x), abs(rayDir.y), abs(rayDir.z));
+        
+        f = rayDir.y*diff.z - rayDir.z*diff.y;
+        if abs(f) > (extents.y*fAWdU.z + extents.z*fAWdU.y) {
+            return false;
+        };
+        
+        f = rayDir.z*diff.x - rayDir.x*diff.z;
+        if abs(f) > (extents.x*fAWdU.z + extents.z*fAWdU.x) {
+            return false;
+        };
+        
+        f = rayDir.x*diff.y - rayDir.y*diff.x;
+        if abs(f) > (extents.x*fAWdU.y + extents.y*fAWdU.x) {
+            return false;
+        };
+        
+        return true;
+    };
+    
+    handleClick = function(self, dir, left) {
+        app = getApp();
+        chunk = app:getScript():getObj().chunk;
+        
+        pos = self.entity.transform.position + Float3(0.0, 0.5, 0.0);
+        
+        maxDist = 5.0;
+        
+        t = 0.0;
+        done = false;
+        while (t < maxDist) and not done {
+            x = pos.x + dir.x*t;
+            y = pos.y + dir.y*t;
+            z = pos.z + dir.z*t;
+            
+            x = round(x) + 0.5;
+            y = round(y) + 0.5;
+            z = round(z) + 0.5;
+            
+            cube = chunk:getCube(x, y, z);
+            
+            if cube != 0 {
+                if left {
+                    chunk:setCube(x, y, z, 0);
+                } else {
+                    t = t - 0.05;
+                    x = pos.x + dir.x*t;
+                    y = pos.y + dir.y*t;
+                    z = pos.z + dir.z*t;
+                    x = round(x) + 0.5;
+                    y = round(y) + 0.5;
+                    z = round(z) + 0.5;
+                    
+                    chunk:setCube(x, y, z, 1);
+                };
+                
+                done = true;
+            };
+            
+            t = t + 0.05;
+        };
+        
+        chunk:updateMeshes();
+        chunk:updateRigidBodies(self.scene:getPhysicsWorld());
+    };
 };
 

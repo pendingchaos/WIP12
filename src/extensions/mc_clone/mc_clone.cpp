@@ -49,7 +49,7 @@ MCChunk::MCChunk(size_t width_,
         {
             for (size_t x = 0; x < width; ++x)
             {
-                setCube(x, y, z, 0);
+                setCube((int)x, (int)y, (int)z, 0);
             }
         }
     }
@@ -85,11 +85,9 @@ MCChunk::~MCChunk()
 
     DEALLOCATE(cubes);
 }
-#include <SDL2/SDL_timer.h>
+
 void MCChunk::updateMeshes()
 {
-    Uint64 start = SDL_GetPerformanceCounter();
-
     ResizableData positions[numTypes];
     ResizableData normals[numTypes];
     ResizableData uvs[numTypes];
@@ -271,15 +269,10 @@ void MCChunk::updateMeshes()
         norm.data = normals[i];
         meshes[i]->setAttribute(norm);
     }
-
-    Uint64 end = SDL_GetPerformanceCounter();
-    std::printf("%f\n", double(end-start)/SDL_GetPerformanceFrequency());
 }
 
 void MCChunk::updateRigidBodies(PhysicsWorld *world)
 {
-    Uint64 start = SDL_GetPerformanceCounter();
-
     if (body != nullptr)
     {
         body->getWorld()->destroyRigidBody(body);
@@ -328,24 +321,21 @@ void MCChunk::updateRigidBodies(PhysicsWorld *world)
     info.type = RigidBodyType::Static;
 
     body = world->createRigidBody(info, compoundShape);
-
-    Uint64 end = SDL_GetPerformanceCounter();
-    std::printf("%f\n", double(end-start)/SDL_GetPerformanceFrequency());
 }
 
 uint8_t MCChunk::getCube(int x, int y, int z)
 {
-    if (x < 0 or x > (int)width)
+    if (x < 0 or x >= (int)width)
     {
         return 0;
     }
 
-    if (y < 0 or y > (int)height)
+    if (y < 0 or y >= (int)height)
     {
         return 0;
     }
 
-    if (z < 0 or z > (int)depth)
+    if (z < 0 or z >= (int)depth)
     {
         return 0;
     }
@@ -353,19 +343,19 @@ uint8_t MCChunk::getCube(int x, int y, int z)
     return _getCube(x, y, z);
 }
 
-void MCChunk::setCube(size_t x, size_t y, size_t z, uint8_t type)
+void MCChunk::setCube(int x, int y, int z, uint8_t type)
 {
-    if (x > width)
+    if (x < 0 or x >= (int)width)
     {
         return;
     }
 
-    if (y > height)
+    if (y < 0 or y >= (int)height)
     {
         return;
     }
 
-    if (z > depth)
+    if (z < 0 or z >= (int)depth)
     {
         return;
     }
@@ -418,7 +408,7 @@ size_t MCChunk::generateSphere(size_t radius, uint8_t type)
             {
                 if (Float3(x, y, z).distanceSquared(center) < radiusSq)
                 {
-                    setCube(x, y, z, type);
+                    setCube((int)x, (int)y, (int)z, type);
                     ++count;
                 }
             }
