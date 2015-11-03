@@ -174,6 +174,11 @@ class List
             return find(value) != -1;
         }
 
+        void reserve(size_t amount)
+        {
+            data.reserve(getCount()+amount);
+        }
+
         class Iterator
         {
             friend List;

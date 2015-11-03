@@ -2238,6 +2238,7 @@ SV MCChunk_getCube(CTX ctx,const List<SV>&a);
 SV MCChunk_setCube(CTX ctx,const List<SV>&a);
 SV MCChunk_setMaterial(CTX ctx,const List<SV>&a);
 SV MCChunk_render(CTX ctx,const List<SV>&a);
+SV MCChunk_generateSphere(CTX ctx,const List<SV>&a);
 void StrStrMap_destroy(CTX,const SV&);
 SV StrStrMap_get_member(CTX,const SV&,const SV&);
 void StrStrMap_set_member(CTX,const SV&,const SV&,const SV&);
@@ -2587,6 +2588,7 @@ SV GhostObjList_clear(CTX ctx,const List<SV>&a);
 SV GhostObjList_find(CTX ctx,const List<SV>&a);
 SV GhostObjList_copy(CTX ctx,const List<SV>&a);
 SV GhostObjList_in(CTX ctx,const List<SV>&a);
+SV GhostObjList_reserve(CTX ctx,const List<SV>&a);
 SV GhostObjList_begin(CTX ctx,const List<SV>&a);
 SV GhostObjList_end(CTX ctx,const List<SV>&a);
 void GPUTimer_destroy(CTX,const SV&);
@@ -2829,6 +2831,7 @@ SV LightList_clear(CTX ctx,const List<SV>&a);
 SV LightList_find(CTX ctx,const List<SV>&a);
 SV LightList_copy(CTX ctx,const List<SV>&a);
 SV LightList_in(CTX ctx,const List<SV>&a);
+SV LightList_reserve(CTX ctx,const List<SV>&a);
 SV LightList_begin(CTX ctx,const List<SV>&a);
 SV LightList_end(CTX ctx,const List<SV>&a);
 void RenderStats_destroy(CTX,const SV&);
@@ -3673,6 +3676,7 @@ SV RayCastResultList_clear(CTX ctx,const List<SV>&a);
 SV RayCastResultList_find(CTX ctx,const List<SV>&a);
 SV RayCastResultList_copy(CTX ctx,const List<SV>&a);
 SV RayCastResultList_in(CTX ctx,const List<SV>&a);
+SV RayCastResultList_reserve(CTX ctx,const List<SV>&a);
 SV RayCastResultList_begin(CTX ctx,const List<SV>&a);
 SV RayCastResultList_end(CTX ctx,const List<SV>&a);
 void Platform_destroy(CTX,const SV&);
@@ -3951,6 +3955,7 @@ SV AudioSourceList_clear(CTX ctx,const List<SV>&a);
 SV AudioSourceList_find(CTX ctx,const List<SV>&a);
 SV AudioSourceList_copy(CTX ctx,const List<SV>&a);
 SV AudioSourceList_in(CTX ctx,const List<SV>&a);
+SV AudioSourceList_reserve(CTX ctx,const List<SV>&a);
 SV AudioSourceList_begin(CTX ctx,const List<SV>&a);
 SV AudioSourceList_end(CTX ctx,const List<SV>&a);
 void GfxShader_destroy(CTX,const SV&);
@@ -5277,6 +5282,7 @@ SV StringList_clear(CTX ctx,const List<SV>&a);
 SV StringList_find(CTX ctx,const List<SV>&a);
 SV StringList_copy(CTX ctx,const List<SV>&a);
 SV StringList_in(CTX ctx,const List<SV>&a);
+SV StringList_reserve(CTX ctx,const List<SV>&a);
 SV StringList_begin(CTX ctx,const List<SV>&a);
 SV StringList_end(CTX ctx,const List<SV>&a);
 void Application_destroy(CTX,const SV&);
@@ -5641,6 +5647,7 @@ SV FloatList_clear(CTX ctx,const List<SV>&a);
 SV FloatList_find(CTX ctx,const List<SV>&a);
 SV FloatList_copy(CTX ctx,const List<SV>&a);
 SV FloatList_in(CTX ctx,const List<SV>&a);
+SV FloatList_reserve(CTX ctx,const List<SV>&a);
 SV FloatList_begin(CTX ctx,const List<SV>&a);
 SV FloatList_end(CTX ctx,const List<SV>&a);
 void Container_destroy(CTX,const SV&);
@@ -6053,6 +6060,7 @@ SV ScriptInstanceList_clear(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_find(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_copy(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_in(CTX ctx,const List<SV>&a);
+SV ScriptInstanceList_reserve(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_begin(CTX ctx,const List<SV>&a);
 SV ScriptInstanceList_end(CTX ctx,const List<SV>&a);
 void UInt3_destroy(CTX,const SV&);
@@ -6467,6 +6475,7 @@ SV RigidBodyList_clear(CTX ctx,const List<SV>&a);
 SV RigidBodyList_find(CTX ctx,const List<SV>&a);
 SV RigidBodyList_copy(CTX ctx,const List<SV>&a);
 SV RigidBodyList_in(CTX ctx,const List<SV>&a);
+SV RigidBodyList_reserve(CTX ctx,const List<SV>&a);
 SV RigidBodyList_begin(CTX ctx,const List<SV>&a);
 SV RigidBodyList_end(CTX ctx,const List<SV>&a);
 void ImGui_destroy(CTX,const SV&);
@@ -7113,6 +7122,7 @@ SV List_clear(CTX ctx,const List<SV>&a);
 SV List_find(CTX ctx,const List<SV>&a);
 SV List_copy(CTX ctx,const List<SV>&a);
 SV List_in(CTX ctx,const List<SV>&a);
+SV List_reserve(CTX ctx,const List<SV>&a);
 SV List_begin(CTX ctx,const List<SV>&a);
 SV List_end(CTX ctx,const List<SV>&a);
 void Audio_destroy(CTX,const SV&);
@@ -7265,6 +7275,7 @@ SV GfxSubModelList_clear(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_find(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_copy(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_in(CTX ctx,const List<SV>&a);
+SV GfxSubModelList_reserve(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_begin(CTX ctx,const List<SV>&a);
 SV GfxSubModelList_end(CTX ctx,const List<SV>&a);
 void GfxModel_destroy(CTX,const SV&);
@@ -7368,6 +7379,7 @@ SV GfxLODList_clear(CTX ctx,const List<SV>&a);
 SV GfxLODList_find(CTX ctx,const List<SV>&a);
 SV GfxLODList_copy(CTX ctx,const List<SV>&a);
 SV GfxLODList_in(CTX ctx,const List<SV>&a);
+SV GfxLODList_reserve(CTX ctx,const List<SV>&a);
 SV GfxLODList_begin(CTX ctx,const List<SV>&a);
 SV GfxLODList_end(CTX ctx,const List<SV>&a);
 void EntityList_destroy(CTX,const SV&);
@@ -7442,6 +7454,7 @@ SV EntityList_clear(CTX ctx,const List<SV>&a);
 SV EntityList_find(CTX ctx,const List<SV>&a);
 SV EntityList_copy(CTX ctx,const List<SV>&a);
 SV EntityList_in(CTX ctx,const List<SV>&a);
+SV EntityList_reserve(CTX ctx,const List<SV>&a);
 SV EntityList_begin(CTX ctx,const List<SV>&a);
 SV EntityList_end(CTX ctx,const List<SV>&a);
 void GfxShaderCombination_destroy(CTX,const SV&);
@@ -15981,6 +15994,8 @@ RET CNF(MCChunk_setCube);
 RET CNF(MCChunk_setMaterial);
  EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(MCChunk_render);
+ EI(keyStr.equals("generateSphere", CPL_STR_HASH("generateSphere")))
+RET CNF(MCChunk_generateSphere);
  else
  CATE(KE,"Unknown member for MCChunk."));
 }
@@ -16018,6 +16033,23 @@ if(1&&TS(a[1],size_t)&&TS(a[2],size_t)&&TS(a[3],size_t)&&TS(a[4],uint8_t))
 RET CN;
 }
 CATE(TE,UFOF("MCChunk::setCube.")));
+RET CN;
+}
+
+SV MCChunk_generateSphere(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"MCChunk::generateSphere" EAOE));
+MCChunk*f;
+f=(MCChunk*)((NO)a[0].p)->data;
+
+if(a.getCount()==3)
+if(1&&TS(a[1],size_t)&&TS(a[2],uint8_t))
+{
+RET CV( f->generateSphere(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<uint8_t>::type>::f(ctx,a[2])));
+;
+}
+CATE(TE,UFOF("MCChunk::generateSphere.")));
 RET CN;
 }
 
@@ -18086,6 +18118,8 @@ RET CNF(GhostObjList_find);
 RET CNF(GhostObjList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(GhostObjList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(GhostObjList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GhostObjList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -18206,6 +18240,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GhostObjList::clear.")));
+RET CN;
+}
+
+SV GhostObjList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GhostObjList::reserve" EAOE));
+List<GhostObject*>*f;
+f=(List<GhostObject*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GhostObjList::reserve.")));
 RET CN;
 }
 
@@ -20014,6 +20065,8 @@ RET CNF(LightList_find);
 RET CNF(LightList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(LightList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(LightList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(LightList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -20134,6 +20187,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("LightList::clear.")));
+RET CN;
+}
+
+SV LightList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"LightList::reserve" EAOE));
+List<Light*>*f;
+f=(List<Light*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("LightList::reserve.")));
 RET CN;
 }
 
@@ -24998,6 +25068,8 @@ RET CNF(RayCastResultList_find);
 RET CNF(RayCastResultList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(RayCastResultList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(RayCastResultList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(RayCastResultList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -25118,6 +25190,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("RayCastResultList::clear.")));
+RET CN;
+}
+
+SV RayCastResultList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RayCastResultList::reserve" EAOE));
+List<RayCastResult>*f;
+f=(List<RayCastResult>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("RayCastResultList::reserve.")));
 RET CN;
 }
 
@@ -27292,6 +27381,8 @@ RET CNF(AudioSourceList_find);
 RET CNF(AudioSourceList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(AudioSourceList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(AudioSourceList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(AudioSourceList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -27412,6 +27503,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("AudioSourceList::clear.")));
+RET CN;
+}
+
+SV AudioSourceList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"AudioSourceList::reserve" EAOE));
+List<AudioSource*>*f;
+f=(List<AudioSource*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("AudioSourceList::reserve.")));
 RET CN;
 }
 
@@ -37737,6 +37845,8 @@ RET CNF(StringList_find);
 RET CNF(StringList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(StringList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(StringList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(StringList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -37857,6 +37967,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("StringList::clear.")));
+RET CN;
+}
+
+SV StringList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"StringList::reserve" EAOE));
+List<Str>*f;
+f=(List<Str>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("StringList::reserve.")));
 RET CN;
 }
 
@@ -41293,6 +41420,8 @@ RET CNF(FloatList_find);
 RET CNF(FloatList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(FloatList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(FloatList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(FloatList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -41413,6 +41542,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("FloatList::clear.")));
+RET CN;
+}
+
+SV FloatList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"FloatList::reserve" EAOE));
+List<float>*f;
+f=(List<float>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("FloatList::reserve.")));
 RET CN;
 }
 
@@ -42840,6 +42986,8 @@ RET CNF(ScriptInstanceList_find);
 RET CNF(ScriptInstanceList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(ScriptInstanceList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(ScriptInstanceList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(ScriptInstanceList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -42960,6 +43108,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("ScriptInstanceList::clear.")));
+RET CN;
+}
+
+SV ScriptInstanceList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"ScriptInstanceList::reserve" EAOE));
+List<ScriptInstance*>*f;
+f=(List<ScriptInstance*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("ScriptInstanceList::reserve.")));
 RET CN;
 }
 
@@ -45263,6 +45428,8 @@ RET CNF(RigidBodyList_find);
 RET CNF(RigidBodyList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(RigidBodyList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(RigidBodyList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(RigidBodyList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -45383,6 +45550,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("RigidBodyList::clear.")));
+RET CN;
+}
+
+SV RigidBodyList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"RigidBodyList::reserve" EAOE));
+List<RigidBody*>*f;
+f=(List<RigidBody*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("RigidBodyList::reserve.")));
 RET CN;
 }
 
@@ -50140,6 +50324,8 @@ RET CNF(List_find);
 RET CNF(List_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(List_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(List_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(List_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -50260,6 +50446,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("List::clear.")));
+RET CN;
+}
+
+SV List_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"List::reserve" EAOE));
+List<AutoVal>*f;
+f=(List<AutoVal>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("List::reserve.")));
 RET CN;
 }
 
@@ -51400,6 +51603,8 @@ RET CNF(GfxSubModelList_find);
 RET CNF(GfxSubModelList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(GfxSubModelList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(GfxSubModelList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GfxSubModelList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -51520,6 +51725,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxSubModelList::clear.")));
+RET CN;
+}
+
+SV GfxSubModelList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxSubModelList::reserve" EAOE));
+List<GfxModel::SubModel>*f;
+f=(List<GfxModel::SubModel>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxSubModelList::reserve.")));
 RET CN;
 }
 
@@ -52024,6 +52246,8 @@ RET CNF(GfxLODList_find);
 RET CNF(GfxLODList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(GfxLODList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(GfxLODList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(GfxLODList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -52144,6 +52368,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxLODList::clear.")));
+RET CN;
+}
+
+SV GfxLODList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxLODList::reserve" EAOE));
+List<GfxLOD>*f;
+f=(List<GfxLOD>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("GfxLODList::reserve.")));
 RET CN;
 }
 
@@ -52382,6 +52623,8 @@ RET CNF(EntityList_find);
 RET CNF(EntityList_copy);
  EI(keyStr.equals("in", CPL_STR_HASH("in")))
 RET CNF(EntityList_in);
+ EI(keyStr.equals("reserve", CPL_STR_HASH("reserve")))
+RET CNF(EntityList_reserve);
  EI(keyStr.equals("begin", CPL_STR_HASH("begin")))
 RET CNF(EntityList_begin);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
@@ -52502,6 +52745,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("EntityList::clear.")));
+RET CN;
+}
+
+SV EntityList_reserve(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"EntityList::reserve" EAOE));
+List<Entity*>*f;
+f=(List<Entity*>*)((NO)a[0].p)->data;
+
+if(a.getCount()==2)
+if(1&&TS(a[1],size_t))
+{
+( f->reserve(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1])));
+RET CN;
+}
+CATE(TE,UFOF("EntityList::reserve.")));
 RET CN;
 }
 

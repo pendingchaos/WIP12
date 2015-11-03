@@ -9,9 +9,11 @@
 #include "physics/rigidbody.h"
 #include "physics/physicsshape.h"
 #include "physics/physicsworld.h"
+#include "containers/resizabledata.h"
 
 #include <algorithm>
 #include <cfloat>
+#include <SDL2/SDL_timer.h>
 
 MCChunk::MCChunk(size_t width_,
                  size_t height_,
@@ -63,7 +65,10 @@ MCChunk::~MCChunk()
     compoundShape->release();
     cubeShape->release();
 
-    body->getWorld()->destroyRigidBody(body);
+    if (body != nullptr)
+    {
+        body->getWorld()->destroyRigidBody(body);
+    }
 
     for (size_t i = 0; i < numTypes; ++i)
     {
@@ -80,12 +85,14 @@ MCChunk::~MCChunk()
 
     DEALLOCATE(cubes);
 }
-
+#include <SDL2/SDL_timer.h>
 void MCChunk::updateMeshes()
 {
-    List<Position3D> positions[numTypes];
-    List<Direction3D> normals[numTypes];
-    List<Float2> uvs[numTypes];
+    Uint64 start = SDL_GetPerformanceCounter();
+
+    ResizableData positions[numTypes];
+    ResizableData normals[numTypes];
+    ResizableData uvs[numTypes];
 
     const Float2 t00(0.0f, 0.0f);
     const Float2 t10(1.0f, 0.0f);
@@ -100,15 +107,28 @@ void MCChunk::updateMeshes()
         aabb[i].max = Float3(FLT_MIN);
     }
 
+    #define VERT(pos, uv, norm)\
+    do {\
+        Float3 pos_ = (pos);\
+        posData.setFloat32(posOffset, pos_.x); posOffset += 4;\
+        posData.setFloat32(posOffset, pos_.y); posOffset += 4;\
+        posData.setFloat32(posOffset, pos_.z); posOffset += 4;\
+        uvData.setUInt8(uvOffset, uv.x*255); ++uvOffset;\
+        uvData.setUInt8(uvOffset, uv.y*255); ++uvOffset;\
+        normData.setInt8(normOffset, norm.x*127); ++normOffset;\
+        normData.setInt8(normOffset, norm.y*127); ++normOffset;\
+        normData.setInt8(normOffset, norm.z*127); ++normOffset;\
+    } while (0)
+
     #define QUAD(pos0, uv0, pos1, uv1, pos2, uv2, pos3, uv3, norm)\
     do {\
-        positions[type-1].append(pos1+pos); uvs[type-1].append(uv1); normals[type-1].append(norm);\
-        positions[type-1].append(pos2+pos); uvs[type-1].append(uv2); normals[type-1].append(norm);\
-        positions[type-1].append(pos3+pos); uvs[type-1].append(uv3); normals[type-1].append(norm);\
+        VERT(pos1+pos, uv1, norm);\
+        VERT(pos2+pos, uv2, norm);\
+        VERT(pos3+pos, uv3, norm);\
         \
-        positions[type-1].append(pos3+pos); uvs[type-1].append(uv3); normals[type-1].append(norm);\
-        positions[type-1].append(pos0+pos); uvs[type-1].append(uv0); normals[type-1].append(norm);\
-        positions[type-1].append(pos1+pos); uvs[type-1].append(uv1); normals[type-1].append(norm);\
+        VERT(pos3+pos, uv3, norm);\
+        VERT(pos0+pos, uv0, norm);\
+        VERT(pos1+pos, uv1, norm);\
     } while (0)
     for (int z = 0; z < (int)depth; ++z)
     {
@@ -130,10 +150,35 @@ void MCChunk::updateMeshes()
                 bool negy = getCube(x, y-1, z) == 0;
                 bool negz = getCube(x, y, z-1) == 0;
 
+                if (not (posx or posy or posz or negx or negy or negz))
+                {
+                    continue;
+                }
+
                 Float3 pos = Float3(x, y, z) * blockSize * 2.0f;
 
                 aabb[type-1].extend(pos-blockSize);
                 aabb[type-1].extend(pos+blockSize);
+
+                size_t numQuads = (posx ? 1 : 0) +
+                                  (posy ? 1 : 0) +
+                                  (posz ? 1 : 0) +
+                                  (negx ? 1 : 0) +
+                                  (negy ? 1 : 0) +
+                                  (negz ? 1 : 0);
+
+                ResizableData& posData = positions[type-1];
+                ResizableData& uvData = uvs[type-1];
+                ResizableData& normData = normals[type-1];
+
+                size_t posOffset = posData.getSize();
+                posData.resize(posOffset+numQuads*72);
+
+                size_t uvOffset = uvData.getSize();
+                uvData.resize(uvOffset+numQuads*12);
+
+                size_t normOffset = normData.getSize();
+                normData.resize(normOffset+numQuads*18);
 
                 if (posz)
                 {
@@ -192,6 +237,7 @@ void MCChunk::updateMeshes()
         }
     }
     #undef QUAD
+    #undef VERT
 
     for (size_t i = 0; i < numTypes; ++i)
     {
@@ -203,32 +249,37 @@ void MCChunk::updateMeshes()
             meshes[i]->aabb = aabb[i];
         }
 
-        meshes[i]->numVertices = positions[i].getCount();
+        meshes[i]->numVertices = positions[i].getSize()/12;
         meshes[i]->numIndices = 0;
         meshes[i]->primitive = GfxPrimitive::GfxTriangles;
 
         GfxMeshAttrib pos;
         pos.type = GfxMeshAttribType::Position;
         pos.dataType = GfxMeshAttribDataType::F32_3;
-        pos.data = ResizableData(positions[i].getCount()*12, positions[i].getData());
+        pos.data = positions[i];
         meshes[i]->setAttribute(pos);
 
         GfxMeshAttrib uv;
         uv.type = GfxMeshAttribType::TexCoord;
-        uv.dataType = GfxMeshAttribDataType::F32_2;
-        uv.data = ResizableData(uvs[i].getCount()*8, uvs[i].getData());
+        uv.dataType = GfxMeshAttribDataType::U8_2Norm;
+        uv.data = uvs[i];
         meshes[i]->setAttribute(uv);
 
         GfxMeshAttrib norm;
         norm.type = GfxMeshAttribType::Normal;
-        norm.dataType = GfxMeshAttribDataType::F32_3;
-        norm.data = ResizableData(normals[i].getCount()*12, normals[i].getData());
+        norm.dataType = GfxMeshAttribDataType::S8_3Norm;
+        norm.data = normals[i];
         meshes[i]->setAttribute(norm);
     }
+
+    Uint64 end = SDL_GetPerformanceCounter();
+    std::printf("%f\n", double(end-start)/SDL_GetPerformanceFrequency());
 }
 
 void MCChunk::updateRigidBodies(PhysicsWorld *world)
 {
+    Uint64 start = SDL_GetPerformanceCounter();
+
     if (body != nullptr)
     {
         body->getWorld()->destroyRigidBody(body);
@@ -277,6 +328,9 @@ void MCChunk::updateRigidBodies(PhysicsWorld *world)
     info.type = RigidBodyType::Static;
 
     body = world->createRigidBody(info, compoundShape);
+
+    Uint64 end = SDL_GetPerformanceCounter();
+    std::printf("%f\n", double(end-start)/SDL_GetPerformanceFrequency());
 }
 
 uint8_t MCChunk::getCube(int x, int y, int z)
@@ -347,6 +401,31 @@ void MCChunk::render(GfxRenderer *renderer, const Matrix4x4& worldMatrix)
 
         renderer->addObject(obj);
     }
+}
+
+size_t MCChunk::generateSphere(size_t radius, uint8_t type)
+{
+    size_t radiusSq = radius * radius;
+
+    Float3 center(width/2, height/2, depth/2);
+
+    size_t count = 0;
+    for (size_t z = 0; z < depth; ++z)
+    {
+        for (size_t y = 0; y < height; ++y)
+        {
+            for (size_t x = 0; x < width; ++x)
+            {
+                if (Float3(x, y, z).distanceSquared(center) < radiusSq)
+                {
+                    setCube(x, y, z, type);
+                    ++count;
+                }
+            }
+        }
+    }
+
+    return count;
 }
 
 uint8_t MCChunk::_getCube(int x, int y, int z)

@@ -15,28 +15,12 @@ return class {
         self.textCPUTiming = 0.0;
         self.textTimer = gfxApi:createTimer();
         
-        self.chunk = MCChunk(64, 64, 64, 3, 0.5);
+        self.chunk = MCChunk(128, 128, 128, 3, 0.5);
         self.chunk:setMaterial(1, resMgr:loadMaterial("resources/materials/grass.bin"));
         self.chunk:setMaterial(2, resMgr:loadMaterial("resources/materials/dirt.bin"));
         self.chunk:setMaterial(3, resMgr:loadMaterial("resources/materials/stone.bin"));
         
-        z = 0;
-        while z < 64 {
-            y = 0;
-            while y < 64 {
-                x = 0;
-                while x < 64 {
-                    if Float3(x+0.0, y+0.0, z+0.0):distance(Float3(32.0)) < 31.0 {
-                        self.chunk:setCube(x, y, z, 1);
-                    };
-                    x = x + 1;
-                };
-                
-                y = y + 1;
-            };
-            
-            z = z + 1;
-        };
+        self.numCubes = self.chunk:generateSphere(63, 2);
         
         self.chunk:updateMeshes();
         self.chunk:updateRigidBodies(self.scene:getPhysicsWorld());
@@ -116,6 +100,7 @@ Frametime: %v ms
 GPU Frametime: %v ms
 CPU Frametime: %v ms
 Draw calls: %v
+Cube count: %v
 ";
             
             gpuFrametime = platform:getGPUFrametime();
@@ -125,7 +110,8 @@ Draw calls: %v
                                          frametime * 1000.0,
                                          gpuFrametime * 1000.0,
                                          cpuFrametime * 1000.0,
-                                         gfxStats.numDrawCalls);
+                                         gfxStats.numDrawCalls,
+                                         self.numCubes);
             
             cpuStats = app:getStats();
             

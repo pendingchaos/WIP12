@@ -146,7 +146,7 @@ if __name__ == "__main__":
     
     # Sun
     light = Scene.Light(Scene.Light.Type.Directional)
-    light.direction = [-1.0, -1.0, 1.0]
+    light.direction = [-1.0, -1.0, 0.5]
     light.color = [3.0, 3.0, 3.0]
     light.shadowmap = True
     light.shadowmap_near = 0.1
