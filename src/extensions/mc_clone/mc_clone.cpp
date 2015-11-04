@@ -15,47 +15,32 @@
 #include <cfloat>
 #include <SDL2/SDL_timer.h>
 
-MCChunk::MCChunk(size_t width_,
-                 size_t height_,
-                 size_t depth_,
-                 uint8_t numTypes_,
-                 float blockSize_) : width(width_),
-                                     height(height_),
-                                     depth(depth_),
-                                     numTypes(numTypes_),
-                                     blockSize(blockSize_),
-                                     body(nullptr)
+MCChunk::MCChunk(MCWorld *world_) : world(world_), body(nullptr)
 {
-    cubes = (uint8_t *)ALLOCATE(width*height*depth);
+    UInt3 chunkSize = world->getChunkSize();
 
-    for (size_t i = 0; i < numTypes; ++i)
+    cubes = (uint8_t *)ALLOCATE(chunkSize.x*chunkSize.y*chunkSize.z);
+
+    for (size_t i = 0; i < world->getNumTypes(); ++i)
     {
         meshes[i] = NEW(GfxMesh);
     }
 
-    for (size_t i = numTypes; i < 255; ++i)
+    for (size_t i = world->getNumTypes(); i < 255; ++i)
     {
         meshes[i] = nullptr;
     }
 
-    for (size_t i = 0; i < 255; ++i)
+    for (size_t z = 0; z < chunkSize.z; ++z)
     {
-        materials[i] = nullptr;
-    }
-
-    for (size_t z = 0; z < depth; ++z)
-    {
-        for (size_t y = 0; y < height; ++y)
+        for (size_t y = 0; y < chunkSize.y; ++y)
         {
-            for (size_t x = 0; x < width; ++x)
+            for (size_t x = 0; x < chunkSize.x; ++x)
             {
                 setCube((int)x, (int)y, (int)z, 0);
             }
         }
     }
-
-    cubeShape = NEW(PhysicsShape);
-    cubeShape->setBox(blockSize);
 
     compoundShape = NEW(PhysicsShape);
 }
@@ -63,24 +48,15 @@ MCChunk::MCChunk(size_t width_,
 MCChunk::~MCChunk()
 {
     compoundShape->release();
-    cubeShape->release();
 
     if (body != nullptr)
     {
         body->getWorld()->destroyRigidBody(body);
     }
 
-    for (size_t i = 0; i < numTypes; ++i)
+    for (size_t i = 0; i < world->getNumTypes(); ++i)
     {
         meshes[i]->release();
-    }
-
-    for (size_t i = 0; i < numTypes; ++i)
-    {
-        if (materials[i] != nullptr)
-        {
-            materials[i]->release();
-        }
     }
 
     DEALLOCATE(cubes);
@@ -88,6 +64,10 @@ MCChunk::~MCChunk()
 
 void MCChunk::updateMeshes()
 {
+    UInt3 chunkSize = world->getChunkSize();
+    size_t numTypes = world->getNumTypes();
+    float blockSize = world->getBlockSize();
+
     ResizableData positions[numTypes];
     ResizableData normals[numTypes];
     ResizableData uvs[numTypes];
@@ -128,11 +108,11 @@ void MCChunk::updateMeshes()
         VERT(pos0+pos, uv0, norm);\
         VERT(pos1+pos, uv1, norm);\
     } while (0)
-    for (int z = 0; z < (int)depth; ++z)
+    for (int z = 0; z < (int)chunkSize.z; ++z)
     {
-        for (int y = 0; y < (int)height; ++y)
+        for (int y = 0; y < (int)chunkSize.y; ++y)
         {
-            for (int x = 0; x < (int)width; ++x)
+            for (int x = 0; x < (int)chunkSize.x; ++x)
             {
                 uint8_t type = _getCube(x, y, z);
 
@@ -271,7 +251,7 @@ void MCChunk::updateMeshes()
     }
 }
 
-void MCChunk::updateRigidBodies(PhysicsWorld *world)
+void MCChunk::updateRigidBodies(const Matrix4x4& transform)
 {
     if (body != nullptr)
     {
@@ -280,11 +260,15 @@ void MCChunk::updateRigidBodies(PhysicsWorld *world)
 
     List<PhysicsCompoundShape::Child> children;
 
-    for (int z = 0; z < (int)depth; ++z)
+    UInt3 chunkSize = world->getChunkSize();
+    float blockSize = world->getBlockSize();
+    PhysicsShape *cubeShape = world->getCubeShape();
+
+    for (int z = 0; z < (int)chunkSize.z; ++z)
     {
-        for (int y = 0; y < (int)height; ++y)
+        for (int y = 0; y < (int)chunkSize.y; ++y)
         {
-            for (int x = 0; x < (int)width; ++x)
+            for (int x = 0; x < (int)chunkSize.x; ++x)
             {
                 uint8_t type = _getCube(x, y, z);
 
@@ -320,72 +304,69 @@ void MCChunk::updateRigidBodies(PhysicsWorld *world)
     RigidBodyConstructionInfo info;
     info.type = RigidBodyType::Static;
 
-    body = world->createRigidBody(info, compoundShape);
+    body = world->getPhysicsWorld()->createRigidBody(info, compoundShape);
+    body->setTransform(transform);
 }
 
 uint8_t MCChunk::getCube(int x, int y, int z)
 {
-    if (x < 0 or x >= (int)width)
+    UInt3 chunkSize = world->getChunkSize();
+
+    if (x < 0 or x >= (int)chunkSize.x)
     {
         return 0;
     }
 
-    if (y < 0 or y >= (int)height)
+    if (y < 0 or y >= (int)chunkSize.y)
     {
         return 0;
     }
 
-    if (z < 0 or z >= (int)depth)
+    if (z < 0 or z >= (int)chunkSize.z)
     {
         return 0;
     }
 
-    return _getCube(x, y, z);
+    return cubes[z*chunkSize.x*chunkSize.y + y*chunkSize.x + x];
 }
 
 void MCChunk::setCube(int x, int y, int z, uint8_t type)
 {
-    if (x < 0 or x >= (int)width)
+    UInt3 chunkSize = world->getChunkSize();
+
+    if (x < 0 or x >= (int)chunkSize.x)
     {
         return;
     }
 
-    if (y < 0 or y >= (int)height)
+    if (y < 0 or y >= (int)chunkSize.y)
     {
         return;
     }
 
-    if (z < 0 or z >= (int)depth)
+    if (z < 0 or z >= (int)chunkSize.z)
     {
         return;
     }
 
-    if (type > numTypes)
+    if (type > world->getNumTypes())
     {
         return;
     }
 
-    cubes[z*width*height + y*width + x] = type;
-}
-
-void MCChunk::setMaterial(uint8_t type, GfxMaterial *material)
-{
-    if (type-1 < (int)numTypes)
-    {
-        materials[type-1] = material;
-    }
+    cubes[z*chunkSize.x*chunkSize.y + y*chunkSize.x + x] = type;
 }
 
 void MCChunk::render(GfxRenderer *renderer, const Matrix4x4& worldMatrix)
 {
-    for (size_t i = 0; i < numTypes; ++i)
+    for (size_t i = 0; i < world->getNumTypes(); ++i)
     {
-        if (materials[i] == nullptr)
+        if (world->getMaterial(i) == nullptr)
         {
             continue;
         }
 
-        GfxObject obj(materials[i], meshes[i]);
+        GfxObject obj(world->getMaterial(i), meshes[i]);
         obj.worldMatrix = worldMatrix;
         obj.normalMatrix = worldMatrix.inverse().transpose();
 
@@ -397,14 +378,16 @@ size_t MCChunk::generateSphere(size_t radius, uint8_t type)
 {
     size_t radiusSq = radius * radius;
 
-    Float3 center(width/2, height/2, depth/2);
+    UInt3 chunkSize = world->getChunkSize();
+
+    Float3 center(chunkSize.x/2, chunkSize.y/2, chunkSize.z/2);
 
     size_t count = 0;
-    for (size_t z = 0; z < depth; ++z)
+    for (size_t z = 0; z < chunkSize.z; ++z)
     {
-        for (size_t y = 0; y < height; ++y)
+        for (size_t y = 0; y < chunkSize.y; ++y)
         {
-            for (size_t x = 0; x < width; ++x)
+            for (size_t x = 0; x < chunkSize.x; ++x)
             {
                 if (Float3(x, y, z).distanceSquared(center) < radiusSq)
                 {
@@ -420,7 +403,142 @@ size_t MCChunk::generateSphere(size_t radius, uint8_t type)
 
 uint8_t MCChunk::_getCube(int x, int y, int z)
 {
-    return cubes[z*width*height + y*width + x];
+    UInt3 chunkSize = world->getChunkSize();
+    return cubes[z*chunkSize.x*chunkSize.y + y*chunkSize.x + x];
+}
+
+MCWorld::MCWorld(const UInt3& chunkSize_,
+                 uint8_t numTypes_,
+                 float blockSize_,
+                 PhysicsWorld *physicsWorld_) : chunkSize(chunkSize_),
+                                                numTypes(numTypes_),
+                                                blockSize(blockSize_),
+                                                physicsWorld(physicsWorld_)
+{
+    for (size_t i = 0; i < 255; ++i)
+    {
+        materials[i] = nullptr;
+    }
+
+    cubeShape = NEW(PhysicsShape);
+    cubeShape->setBox(blockSize);
+}
+
+MCWorld::~MCWorld()
+{
+    for (auto& chunk : chunks)
+    {
+        DELETE(chunk.chunk);
+    }
+
+    cubeShape->release();
+
+    for (size_t i = 0; i < numTypes; ++i)
+    {
+        if (materials[i] != nullptr)
+        {
+            materials[i]->release();
+        }
+    }
+}
+
+void MCWorld::setMaterial(uint8_t type, GfxMaterial *material)
+{
+    if (type-1 < (int)numTypes)
+    {
+        materials[type-1] = material;
+    }
+}
+
+void MCWorld::render(GfxRenderer *renderer)
+{
+    for (auto& chunk : chunks)
+    {
+        Position3D pos(chunk.pos.x, chunk.pos.y, chunk.pos.z);
+        pos *= chunkSize;
+        pos *= blockSize * 2.0;
+
+        chunk.chunk->render(renderer, Matrix4x4::translate(pos));
+    }
+}
+
+void MCWorld::update()
+{
+    for (auto& chunk : chunks)
+    {
+        if (chunk.dirty)
+        {
+            Position3D pos(chunk.pos.x, chunk.pos.y, chunk.pos.z);
+            pos *= chunkSize;
+            pos *= blockSize*2.0;
+
+            chunk.chunk->updateMeshes();
+            chunk.chunk->updateRigidBodies(Matrix4x4::translate(pos));
+
+            chunk.dirty = false;
+        }
+    }
+}
+
+int pymod(int a, int b) //Thanks glamhoth
+{
+    return ((a % b) + b) % b;
+}
+
+int div2(int a, int b)
+{
+    return std::floor(float(a) / float(b));
+}
+
+void MCWorld::setCube(int x, int y, int z, uint8_t type)
+{
+    Int3 chunkPos = Int3(div2(x, chunkSize.x),
+                         div2(y, chunkSize.y),
+                         div2(z, chunkSize.z));
+    Int3 relPos = Int3(pymod(x, chunkSize.x),
+                       pymod(y, chunkSize.y),
+                       pymod(z, chunkSize.z));
+
+    for (auto& chunk : chunks)
+    {
+        if (chunkPos == chunk.pos)
+        {
+            chunk.chunk->setCube(relPos.x, relPos.y, relPos.z, type);
+            chunk.dirty = true;
+            return;
+        }
+    }
+
+    Chunk chunk;
+    chunk.pos.x = chunkPos.x;
+    chunk.pos.y = chunkPos.y;
+    chunk.pos.z = chunkPos.z;
+
+    chunk.chunk = NEW(MCChunk, this);
+    chunk.chunk->setCube(relPos.x, relPos.y, relPos.z, type);
+    chunk.dirty = true;
+
+    chunks.append(chunk);
+}
+
+uint8_t MCWorld::getCube(int x, int y, int z)
+{
+    Int3 chunkPos = Int3(div2(x, chunkSize.x),
+                         div2(y, chunkSize.y),
+                         div2(z, chunkSize.z));
+    Int3 relPos = Int3(pymod(x, chunkSize.x),
+                       pymod(y, chunkSize.y),
+                       pymod(z, chunkSize.z));
+
+    for (auto& chunk : chunks)
+    {
+        if (chunk.pos == chunkPos)
+        {
+            return chunk.chunk->getCube(relPos.x, relPos.y, relPos.z);
+        }
+    }
+
+    return 0;
 }
 
 void *init_mc_clone()

@@ -184,7 +184,7 @@ class List
             friend List;
 
             public:
-                const T& operator * () const
+                T& operator * () const
                 {
                     return list.getData()[i];
                 }

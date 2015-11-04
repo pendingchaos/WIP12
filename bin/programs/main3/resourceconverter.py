@@ -39,21 +39,18 @@ if __name__ == "__main__":
     mat.albedoMap = conv["grass.png"]
     conv["grass"] = mat
     
-    # Materials
     mat = Material([], "resources/materials/dirt.bin")
     mat.smoothness = 0.0
     mat.metalMask = 0.0
     mat.albedoMap = conv["dirt.png"]
     conv["dirt"] = mat
     
-    # Materials
     mat = Material([], "resources/materials/stone.bin")
     mat.smoothness = 0.0
     mat.metalMask = 0.0
     mat.albedoMap = conv["stone.png"]
     conv["stone"] = mat
     
-    # Materials
     mat = Material([], "resources/materials/bricks.bin")
     mat.smoothness = 0.0
     mat.metalMask = 0.0
@@ -140,7 +137,7 @@ if __name__ == "__main__":
     print numBlocks, "blocks." """
     
     ent = Scene.Entity("Player")
-    ent.transform.position = [16.0, 80.0, 16.0]
+    ent.transform.position = [0.0, 20.0, 0.0]
     ent.transform.scale = [1.0, 1.0, 1.0]
     ent.transform.orientation = [0.0, 0.0, 0.0]
     ent.rigidBody = Scene.RigidBody()

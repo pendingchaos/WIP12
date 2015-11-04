@@ -15,16 +15,30 @@ return class {
         self.textCPUTiming = 0.0;
         self.textTimer = gfxApi:createTimer();
         
-        self.chunk = MCChunk(16, 16, 16, 4, 0.5);
-        self.chunk:setMaterial(1, resMgr:loadMaterial("resources/materials/grass.bin"));
-        self.chunk:setMaterial(2, resMgr:loadMaterial("resources/materials/dirt.bin"));
-        self.chunk:setMaterial(3, resMgr:loadMaterial("resources/materials/stone.bin"));
-        self.chunk:setMaterial(4, resMgr:loadMaterial("resources/materials/bricks.bin"));
+        self.world = MCWorld(UInt3(16, 16, 16), 4, 0.5, self.scene:getPhysicsWorld());
+        self.world:setMaterial(1, resMgr:loadMaterial("resources/materials/grass.bin"));
+        self.world:setMaterial(2, resMgr:loadMaterial("resources/materials/dirt.bin"));
+        self.world:setMaterial(3, resMgr:loadMaterial("resources/materials/stone.bin"));
+        self.world:setMaterial(4, resMgr:loadMaterial("resources/materials/bricks.bin"));
         
-        self.numCubes = self.chunk:generateSphere(2, 4);
+        self.numCubes = 0;
         
-        self.chunk:updateMeshes();
-        self.chunk:updateRigidBodies(self.scene:getPhysicsWorld());
+        x = -32;
+        while x < 32 {
+            z = -32;
+            while z < 32 {
+                height = (sin(x/2.5)*cos(z/2.5)*0.5+0.5) * 5;
+                y = 0;
+                while y < height {
+                    self.world:setCube(x, y, z, 1);
+                    y = y + 1;
+                };
+                "self.numCubes = self.numCubes + 1;
+                TODO: This causes a stack bounds exception.";
+                z = z + 1;
+            };
+            x = x + 1;
+        };
     };
     
     __del__ = function(self) {};
@@ -62,10 +76,11 @@ return class {
     
     update = function(self) {
         self.scene:update();
+        self.world:update();
     };
     
     fixedUpdate = function(self, timestep) {
-        self.scene:fixedUpdate(timestep)
+        self.scene:fixedUpdate(timestep);
     };
     
     preRender = function(self) {};
@@ -89,7 +104,7 @@ return class {
         
         renderer:resize(UInt2(width, height));
         renderer:render();
-        self.chunk:render(renderer, Matrix4x4());
+        self.world:render(renderer);
         
         gfxStats = renderer:getStats();
         

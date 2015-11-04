@@ -271,7 +271,7 @@ return class {
     
     handleClick = function(self, dir, left) {
         app = getApp();
-        chunk = app:getScript():getObj().chunk;
+        world = app:getScript():getObj().world;
         
         pos = self.entity.transform.position + Float3(0.0, 0.5, 0.0);
         
@@ -283,26 +283,25 @@ return class {
             x = pos.x + dir.x*t;
             y = pos.y + dir.y*t;
             z = pos.z + dir.z*t;
+            x = floor(x + 0.5);
+            y = floor(y + 0.5);
+            z = floor(z + 0.5);
             
-            x = round(x) + 0.5;
-            y = round(y) + 0.5;
-            z = round(z) + 0.5;
-            
-            cube = chunk:getCube(x, y, z);
+            cube = world:getCube(x, y, z);
             
             if cube != 0 {
                 if left {
-                    chunk:setCube(x, y, z, 0);
+                    world:setCube(x, y, z, 0);
                 } else {
                     t = t - 0.05;
                     x = pos.x + dir.x*t;
                     y = pos.y + dir.y*t;
                     z = pos.z + dir.z*t;
-                    x = round(x) + 0.5;
-                    y = round(y) + 0.5;
-                    z = round(z) + 0.5;
+                    x = floor(x + 0.5);
+                    y = floor(y + 0.5);
+                    z = floor(z + 0.5);
                     
-                    chunk:setCube(x, y, z, self.cube);
+                    world:setCube(x, y, z, self.cube);
                 };
                 
                 done = true;
@@ -310,9 +309,6 @@ return class {
             
             t = t + 0.05;
         };
-        
-        chunk:updateMeshes();
-        chunk:updateRigidBodies(self.scene:getPhysicsWorld());
     };
 };
 
