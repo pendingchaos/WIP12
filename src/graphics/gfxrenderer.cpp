@@ -117,9 +117,6 @@ GfxRenderer::GfxRenderer(Scene *scene_) : debugDraw(false),
     compiledShadowmapFragment = shadowmapFragment->getCompiled();
     compiledPointShadowmapFragment = pointShadowmapFragment->getCompiled();
 
-    shadowmapMaterial = NEW(GfxMaterial);
-    shadowmapMaterial->setScript(resMgr->load<Script>("resources/scripts/materials/shadow.rkt"));
-
     lightBuffer = gfxApi->createBuffer();
     lightBuffer->allocData(16384, nullptr, GfxBufferUsage::Dynamic);
 
@@ -309,8 +306,6 @@ GfxRenderer::~GfxRenderer()
     DELETE(bloom3Framebuffer);
     DELETE(bloom4Framebuffer);
     DELETE(bloomDownsampleFramebuffer);
-
-    shadowmapMaterial->release();
 
     DELETE(lightBuffer);
 
@@ -1476,10 +1471,7 @@ void GfxRenderer::fillRenderListsJob(size_t index, size_t worker, void *userdata
 
     if (obj.shadowCaster)
     {
-        DrawCall shadowDrawCall = drawCall;
-        shadowDrawCall.material = data.renderer->shadowmapMaterial;
-
-        data.shadowmapLists[worker].addDrawCall(shadowDrawCall);
+        data.shadowmapLists[worker].addDrawCall(drawCall);
     }
 
     if (obj.material->forward)
@@ -1523,10 +1515,7 @@ void GfxRenderer::fillRenderLists()
 
             if (obj.shadowCaster)
             {
-                DrawCall shadowDrawCall = drawCall;
-                shadowDrawCall.material = shadowmapMaterial;
-
-                shadowmapList->addDrawCall(shadowDrawCall);
+                shadowmapList->addDrawCall(drawCall);
             }
 
             if (obj.material->forward)

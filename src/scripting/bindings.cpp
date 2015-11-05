@@ -6972,7 +6972,6 @@ SV GfxMaterial_save(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setScript(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getScriptInst(CTX ctx,const List<SV>&a);
 SV GfxMaterial_setupRender(CTX ctx,const List<SV>&a);
-SV GfxMaterial_setupShadowRender(CTX ctx,const List<SV>&a);
 SV GfxMaterial_load(CTX ctx,const List<SV>&a);
 SV GfxMaterial_copy(CTX ctx,const List<SV>&a);
 SV GfxMaterial_getType(CTX ctx,const List<SV>&a);
@@ -50586,8 +50585,6 @@ RET CNF(GfxMaterial_setScript);
 RET CNF(GfxMaterial_getScriptInst);
  EI(keyStr.equals("setupRender", CPL_STR_HASH("setupRender")))
 RET CNF(GfxMaterial_setupRender);
- EI(keyStr.equals("setupShadowRender", CPL_STR_HASH("setupShadowRender")))
-RET CNF(GfxMaterial_setupShadowRender);
  EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(GfxMaterial_load);
  EI(keyStr.equals("copy", CPL_STR_HASH("copy")))
@@ -50715,23 +50712,6 @@ if(1&&TS(a[1],const Str &))
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::setFilename.")));
-RET CN;
-}
-
-SV GfxMaterial_setupShadowRender(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxMaterial::setupShadowRender" EAOE));
-GfxMaterial*f;
-f=(GfxMaterial*)((NO)a[0].p)->data;
-
-if(a.getCount()==5)
-if(1&&TS(a[1],GfxMesh *)&&TS(a[2],GfxAnimationState *)&&TS(a[3],Light *)&&TS(a[4],size_t))
-{
-( f->setupShadowRender(val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxAnimationState *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<Light *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[4])));
-RET CN;
-}
-CATE(TE,UFOF("GfxMaterial::setupShadowRender.")));
 RET CN;
 }
 

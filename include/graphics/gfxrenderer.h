@@ -358,8 +358,6 @@ class GfxRenderer
         size_t numDirectionalLights;
         size_t numSpotLights;
 
-        GfxMaterial *shadowmapMaterial;
-
         GfxTerrain *terrain;
 
         void fillLightBuffer(Scene *scene);

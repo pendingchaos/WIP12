@@ -12,6 +12,8 @@ class GfxMaterial;
 class GfxTexture;
 class GfxAnimationState;
 class Light;
+class GfxCompiledShader;
+class GfxShader;
 
 struct DrawCall
 {
@@ -53,6 +55,17 @@ class RenderList
 
         List<Batch> batches;
         GfxTexture *matrixTexture;
+
+        GfxShader *shadowVertexShader;
+        GfxShader *shadowGeometryShader;
+        GfxShader *shadowFragmentShader;
+        GfxShader *shadowPointFragmentShader;
+
+        GfxCompiledShader *shadowVertex;
+        GfxCompiledShader *shadowVertexAnim;
+        GfxCompiledShader *shadowGeometry;
+        GfxCompiledShader *shadowFragment;
+        GfxCompiledShader *shadowPointFragment;
 
         void fillMatrixTexture(const List<Matrix4x4>& matrices, const List<Matrix4x4>& normalMatrices);
 } BIND NOT_COPYABLE;

@@ -95,18 +95,6 @@ void GfxMaterial::setupRender(GfxMesh *mesh, GfxAnimationState *animState, const
                        scripting::create(ctx, camera)));
 }
 
-void GfxMaterial::setupShadowRender(GfxMesh *mesh, GfxAnimationState *animState, Light *light, size_t pass)
-{
-    scripting::Context *ctx = script->getScript()->getContext();
-
-    scripting::destroy(ctx,
-                       script->method("setupShadowRender",
-                       scripting::create(ctx, mesh),
-                       scripting::create(ctx, animState),
-                       scripting::create(ctx, light),
-                       scripting::createInt(pass)));
-}
-
 Resource *GfxMaterial::_copy() const
 {
     GfxMaterial *material = NEW(GfxMaterial);

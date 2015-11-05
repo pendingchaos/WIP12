@@ -15,7 +15,7 @@ return class {
         self.textCPUTiming = 0.0;
         self.textTimer = gfxApi:createTimer();
         
-        self.world = MCWorld(UInt3(16, 16, 16), 4, 0.5, self.scene:getPhysicsWorld());
+        self.world = MCWorld(UInt3(32, 32, 32), 4, 0.5, self.scene:getPhysicsWorld());
         self.world:setMaterial(1, resMgr:loadMaterial("resources/materials/grass.bin"));
         self.world:setMaterial(2, resMgr:loadMaterial("resources/materials/dirt.bin"));
         self.world:setMaterial(3, resMgr:loadMaterial("resources/materials/stone.bin"));

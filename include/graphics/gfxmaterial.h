@@ -46,7 +46,6 @@ class GfxMaterial : public Resource
         }
 
         void setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera);
-        void setupShadowRender(GfxMesh *mesh, GfxAnimationState *animState, Light *light, size_t pass);
 
         bool forward;
     private:
