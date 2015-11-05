@@ -44,8 +44,6 @@ class MCChunk
         void setCube(int x, int y, int z, uint8_t type);
 
         void render(GfxRenderer *renderer, const Matrix4x4& worldMatrix);
-
-        size_t generateSphere(size_t radius, uint8_t type);
     private:
         uint8_t _getCube(int x, int y, int z);
 

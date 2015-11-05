@@ -2207,7 +2207,6 @@ SV MCChunk_getMesh(CTX ctx,const List<SV>&a);
 SV MCChunk_getCube(CTX ctx,const List<SV>&a);
 SV MCChunk_setCube(CTX ctx,const List<SV>&a);
 SV MCChunk_render(CTX ctx,const List<SV>&a);
-SV MCChunk_generateSphere(CTX ctx,const List<SV>&a);
 void GfxCompiledShader_destroy(CTX,const SV&);
 SV GfxCompiledShader_get_member(CTX,const SV&,const SV&);
 void GfxCompiledShader_set_member(CTX,const SV&,const SV&,const SV&);
@@ -15849,8 +15848,6 @@ RET CNF(MCChunk_getCube);
 RET CNF(MCChunk_setCube);
  EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(MCChunk_render);
- EI(keyStr.equals("generateSphere", CPL_STR_HASH("generateSphere")))
-RET CNF(MCChunk_generateSphere);
  else
  CATE(KE,"Unknown member for MCChunk."));
 }
@@ -15888,23 +15885,6 @@ if(1&&TS(a[1],int)&&TS(a[2],int)&&TS(a[3],int)&&TS(a[4],uint8_t))
 RET CN;
 }
 CATE(TE,UFOF("MCChunk::setCube.")));
-RET CN;
-}
-
-SV MCChunk_generateSphere(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"MCChunk::generateSphere" EAOE));
-MCChunk*f;
-f=(MCChunk*)((NO)a[0].p)->data;
-
-if(a.getCount()==3)
-if(1&&TS(a[1],size_t)&&TS(a[2],uint8_t))
-{
-RET CV( f->generateSphere(val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<uint8_t>::type>::f(ctx,a[2])));
-;
-}
-CATE(TE,UFOF("MCChunk::generateSphere.")));
 RET CN;
 }
 

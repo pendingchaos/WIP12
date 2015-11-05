@@ -374,33 +374,6 @@ void MCChunk::render(GfxRenderer *renderer, const Matrix4x4& worldMatrix)
     }
 }
 
-size_t MCChunk::generateSphere(size_t radius, uint8_t type)
-{
-    size_t radiusSq = radius * radius;
-
-    UInt3 chunkSize = world->getChunkSize();
-
-    Float3 center(chunkSize.x/2, chunkSize.y/2, chunkSize.z/2);
-
-    size_t count = 0;
-    for (size_t z = 0; z < chunkSize.z; ++z)
-    {
-        for (size_t y = 0; y < chunkSize.y; ++y)
-        {
-            for (size_t x = 0; x < chunkSize.x; ++x)
-            {
-                if (Float3(x, y, z).distanceSquared(center) < radiusSq)
-                {
-                    setCube((int)x, (int)y, (int)z, type);
-                    ++count;
-                }
-            }
-        }
-    }
-
-    return count;
-}
-
 uint8_t MCChunk::_getCube(int x, int y, int z)
 {
     UInt3 chunkSize = world->getChunkSize();
