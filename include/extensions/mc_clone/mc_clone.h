@@ -18,6 +18,7 @@ class PhysicsWorld;
 class RigidBody;
 class PhysicsShape;
 class MCWorld;
+class Str;
 
 class MCChunk
 {
@@ -44,6 +45,11 @@ class MCChunk
         void setCube(int x, int y, int z, uint8_t type);
 
         void render(GfxRenderer *renderer, const Matrix4x4& worldMatrix);
+
+        const uint8_t *getData() const NO_BIND
+        {
+            return cubes;
+        }
     private:
         uint8_t _getCube(int x, int y, int z);
 
@@ -112,6 +118,9 @@ class MCWorld
         {
             return materials[type];
         }
+
+        void save(Str dir);
+        void load(Str dir);
     private:
         struct Chunk
         {

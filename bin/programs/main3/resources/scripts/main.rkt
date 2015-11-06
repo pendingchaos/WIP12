@@ -23,7 +23,7 @@ return class {
         
         self.numCubes = 0;
         
-        x = -32;
+        "x = -32;
         while x < 32 {
             z = -32;
             while z < 32 {
@@ -33,12 +33,12 @@ return class {
                     self.world:setCube(x, y, z, 1);
                     y = y + 1;
                 };
-                "self.numCubes = self.numCubes + 1;
-                TODO: This causes a stack bounds exception.";
                 z = z + 1;
             };
             x = x + 1;
-        };
+        }";
+        
+        self.world:load("saved_mc_world");
     };
     
     __del__ = function(self) {};
@@ -67,6 +67,10 @@ return class {
                     renderer.debugDraw = not renderer.debugDraw;
                 } elif key == Key.Escape {
                     platform:setFullscreen(false);
+                } elif key == Key.F5 {
+                    self.world:save("saved_mc_world");
+                } elif key == Key.F6 {
+                    self.world:load("saved_mc_world");
                 };
             };
         };

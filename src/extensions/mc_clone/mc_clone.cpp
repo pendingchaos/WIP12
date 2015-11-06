@@ -10,10 +10,13 @@
 #include "physics/physicsshape.h"
 #include "physics/physicsworld.h"
 #include "containers/resizabledata.h"
+#include "containers/string.h"
+#include "file.h"
 
 #include <algorithm>
 #include <cfloat>
 #include <SDL2/SDL_timer.h>
+#include <sys/stat.h>
 
 MCChunk::MCChunk(MCWorld *world_) : world(world_), body(nullptr)
 {
@@ -512,6 +515,91 @@ uint8_t MCWorld::getCube(int x, int y, int z)
     }
 
     return 0;
+}
+
+void MCWorld::save(Str dir)
+{
+    if (dir.getLength() == 0)
+    {
+        dir = '/';
+    } else if (dir[dir.getLength()-1] != '/')
+    {
+        dir = dir + '/';
+    }
+
+    if (not doesFileExist(dir.getData()))
+    {
+        mkdir(dir.getData(), 0777); //TODO: What are the permissions?
+    }
+
+    for (auto& chunk : chunks)
+    {
+        const Str& filename = dir + Str::format("chunk_%d_%d_%d_%u_%u_%u.bin",
+                                                chunk.pos.x,
+                                                chunk.pos.y,
+                                                chunk.pos.z,
+                                                chunkSize.x,
+                                                chunkSize.y,
+                                                chunkSize.z);
+
+        File file(filename.getData(), "wb");
+        file.writeUInt8(1); //Major version
+        file.writeUInt8(0); //Minor version
+        file.writeInt32LE(chunk.pos.x);
+        file.writeInt32LE(chunk.pos.y);
+        file.writeInt32LE(chunk.pos.z);
+        file.writeUInt32LE(chunkSize.x);
+        file.writeUInt32LE(chunkSize.y);
+        file.writeUInt32LE(chunkSize.z);
+        file.write(chunkSize.x*chunkSize.y*chunkSize.z, chunk.chunk->getData());
+    }
+}
+
+void MCWorld::load(Str dir)
+{
+    for (auto& chunk : chunks)
+    {
+        DELETE(chunk.chunk);
+    }
+    chunks.clear();
+
+    List<Str> files = listFiles(dir.getData());
+
+    for (auto& filename : files)
+    {
+        File file(filename.getData(), "rb");
+
+        uint8_t major = file.readUInt8();
+        uint8_t minor = file.readUInt8();
+
+        if (major != 1 or minor != 0)
+        {
+            //TODO: Error
+        }
+
+        int32_t posX = file.readInt32LE();
+        int32_t posY = file.readInt32LE();
+        int32_t posZ = file.readInt32LE();
+
+        uint32_t sizeX = file.readUInt32LE();
+        uint32_t sizeY = file.readUInt32LE();
+        uint32_t sizeZ = file.readUInt32LE();
+
+        posX *= sizeX;
+        posY *= sizeY;
+        posZ *= sizeZ;
+
+        for (size_t z = 0; z < sizeZ; ++z)
+        {
+            for (size_t y = 0; y < sizeY; ++y)
+            {
+                for (size_t x = 0; x < sizeX; ++x)
+                {
+                    setCube(posX+(int)x, posY+(int)y, posZ+(int)z, file.readUInt8());
+                }
+            }
+        }
+    }
 }
 
 void *init_mc_clone()

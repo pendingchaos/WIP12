@@ -64,11 +64,23 @@ List<Str> listFiles(const char *directory)
 
         if (S_ISREG(status.st_mode))
         {
-            result.append(ent->d_name);
+            result.append(fullName);
         }
     }
 
     closedir(dir);
+
+    int index = result.find(".");
+    if (index != -1)
+    {
+        result.remove(index);
+    }
+
+    index = result.find("..");
+    if (index != -1)
+    {
+        result.remove(index);
+    }
 
     return result;
 }
