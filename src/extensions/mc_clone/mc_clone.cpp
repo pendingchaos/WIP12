@@ -402,10 +402,7 @@ MCWorld::MCWorld(const UInt3& chunkSize_,
 
 MCWorld::~MCWorld()
 {
-    for (auto& chunk : chunks)
-    {
-        DELETE(chunk.chunk);
-    }
+    clear();
 
     cubeShape->release();
 
@@ -557,11 +554,7 @@ void MCWorld::save(Str dir)
 
 void MCWorld::load(Str dir)
 {
-    for (auto& chunk : chunks)
-    {
-        DELETE(chunk.chunk);
-    }
-    chunks.clear();
+    clear();
 
     List<Str> files = listFiles(dir.getData());
 
@@ -600,6 +593,15 @@ void MCWorld::load(Str dir)
             }
         }
     }
+}
+
+void MCWorld::clear()
+{
+    for (auto& chunk : chunks)
+    {
+        DELETE(chunk.chunk);
+    }
+    chunks.clear();
 }
 
 void *init_mc_clone()

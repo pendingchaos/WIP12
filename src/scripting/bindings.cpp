@@ -2207,6 +2207,7 @@ SV MCChunk_getMesh(CTX ctx,const List<SV>&a);
 SV MCChunk_getCube(CTX ctx,const List<SV>&a);
 SV MCChunk_setCube(CTX ctx,const List<SV>&a);
 SV MCChunk_render(CTX ctx,const List<SV>&a);
+SV MCChunk_getData(CTX ctx,const List<SV>&a);
 void GfxCompiledShader_destroy(CTX,const SV&);
 SV GfxCompiledShader_get_member(CTX,const SV&,const SV&);
 void GfxCompiledShader_set_member(CTX,const SV&,const SV&,const SV&);
@@ -5395,6 +5396,7 @@ SV MCWorld_getCubeShape(CTX ctx,const List<SV>&a);
 SV MCWorld_getMaterial(CTX ctx,const List<SV>&a);
 SV MCWorld_save(CTX ctx,const List<SV>&a);
 SV MCWorld_load(CTX ctx,const List<SV>&a);
+SV MCWorld_clear(CTX ctx,const List<SV>&a);
 void GfxObject_destroy(CTX,const SV&);
 SV GfxObject_get_member(CTX,const SV&,const SV&);
 void GfxObject_set_member(CTX,const SV&,const SV&,const SV&);
@@ -15850,6 +15852,8 @@ RET CNF(MCChunk_getCube);
 RET CNF(MCChunk_setCube);
  EI(keyStr.equals("render", CPL_STR_HASH("render")))
 RET CNF(MCChunk_render);
+ EI(keyStr.equals("getData", CPL_STR_HASH("getData")))
+RET CNF(MCChunk_getData);
  else
  CATE(KE,"Unknown member for MCChunk."));
 }
@@ -15955,6 +15959,17 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("MCChunk::updateMeshes.")));
+RET CN;
+}
+
+SV MCChunk_getData(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"MCChunk::getData" EAOE));
+MCChunk*f;
+f=(MCChunk*)((NO)a[0].p)->data;
+
+CATE(TE,UFOF("MCChunk::getData.")));
 RET CN;
 }
 
@@ -37884,6 +37899,8 @@ RET CNF(MCWorld_getMaterial);
 RET CNF(MCWorld_save);
  EI(keyStr.equals("load", CPL_STR_HASH("load")))
 RET CNF(MCWorld_load);
+ EI(keyStr.equals("clear", CPL_STR_HASH("clear")))
+RET CNF(MCWorld_clear);
  else
  CATE(KE,"Unknown member for MCWorld."));
 }
@@ -37995,6 +38012,23 @@ RET CV( f->getChunkSize());
 ;
 }
 CATE(TE,UFOF("MCWorld::getChunkSize.")));
+RET CN;
+}
+
+SV MCWorld_clear(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"MCWorld::clear" EAOE));
+MCWorld*f;
+f=(MCWorld*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+( f->clear());
+RET CN;
+}
+CATE(TE,UFOF("MCWorld::clear.")));
 RET CN;
 }
 

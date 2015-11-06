@@ -23,21 +23,6 @@ return class {
         
         self.numCubes = 0;
         
-        "x = -32;
-        while x < 32 {
-            z = -32;
-            while z < 32 {
-                height = (sin(x/2.5)*cos(z/2.5)*0.5+0.5) * 5;
-                y = 0;
-                while y < height {
-                    self.world:setCube(x, y, z, 1);
-                    y = y + 1;
-                };
-                z = z + 1;
-            };
-            x = x + 1;
-        }";
-        
         self.world:load("saved_mc_world");
     };
     
@@ -69,8 +54,30 @@ return class {
                     platform:setFullscreen(false);
                 } elif key == Key.F5 {
                     self.world:save("saved_mc_world");
+                    print("Saved");
                 } elif key == Key.F6 {
                     self.world:load("saved_mc_world");
+                    print("Loaded");
+                } elif key == Key.F7 {
+                    self.world:clear();
+                    
+                    x = -32;
+                    while x < 32 {
+                        z = -32;
+                        while z < 32 {
+                            height = (sin(x/2.5)*cos(z/2.5)*0.5+0.5) * 5;
+                            y = 0;
+                            while y < height {
+                                self.world:setCube(x, y, z, 1);
+                                y = y + 1;
+                            };
+                            "self.numCubes = self.numCubes + 1;
+                            TODO: This causes a stack bounds exception.";
+                            z = z + 1;
+                        };
+                        x = x + 1;
+                    };
+                    print("Generated");
                 };
             };
         };

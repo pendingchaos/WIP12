@@ -121,6 +121,7 @@ class MCWorld
 
         void save(Str dir);
         void load(Str dir);
+        void clear();
     private:
         struct Chunk
         {
