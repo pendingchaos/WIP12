@@ -74,7 +74,7 @@
 - [ ] Fix banding in darkly lit areas, on metallic surfaces and point light lit areas.
     - [ ] Dithering? https://en.wikipedia.org/wiki/Floyd-Steinberg_dithering?
 - [ ] Improve error and exception handling.
-    - Get rid of exceptions?
+    - Get rid of exceptions.
 - [ ] Get WIP12 running on OpenGL 3.3.
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
