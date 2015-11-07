@@ -27,6 +27,7 @@ MCChunk::MCChunk(MCWorld *world_) : world(world_), body(nullptr)
     for (size_t i = 0; i < world->getNumTypes(); ++i)
     {
         meshes[i] = NEW(GfxMesh);
+        meshes[i]->cullMode = GfxCullBack;
     }
 
     for (size_t i = world->getNumTypes(); i < 255; ++i)

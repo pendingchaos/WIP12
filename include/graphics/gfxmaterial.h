@@ -45,7 +45,7 @@ class GfxMaterial : public Resource
             return script;
         }
 
-        void setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera);
+        void setupRender(GfxAnimationState *animState, const Camera& camera);
 
         bool forward;
     private:

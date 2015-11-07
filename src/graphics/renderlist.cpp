@@ -89,8 +89,10 @@ void RenderList::addRenderList(const RenderList *list)
     batches.append(list->batches);
 }
 
-void RenderList::execute(const Camera& camera)
+size_t RenderList::execute(const Camera& camera)
 {
+    size_t drawCount = 0;
+
     for (auto batch : batches)
     {
         fillMatrixTexture(batch.worldMatrices, batch.normalMatrices);
@@ -100,22 +102,26 @@ void RenderList::execute(const Camera& camera)
 
         gfxApi->pushState();
 
-        material->setupRender(mesh, batch.animState, camera);
+        material->setupRender(batch.animState, camera);
+        gfxApi->setMesh(mesh);
 
         gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
 
-        gfxApi->setCullMode(mesh->cullMode);
-
         //TODO: This does not increment the draw call count.
         gfxApi->draw(batch.worldMatrices.getCount());
+        ++drawCount;
         gfxApi->end();
 
         gfxApi->popState();
     }
+
+    return drawCount;
 }
 
-void RenderList::execute(Light *light, size_t pass)
+size_t RenderList::execute(Light *light, size_t pass)
 {
+    size_t drawCount = 0;
+
     for (auto batch : batches)
     {
         fillMatrixTexture(batch.worldMatrices, batch.normalMatrices);
@@ -140,7 +146,11 @@ void RenderList::execute(Light *light, size_t pass)
                       nullptr,
                       geometry,
                       fragment);
+
+        GfxCullMode oldCullMode = mesh->cullMode;
+        mesh->cullMode = GfxCullNone;
         gfxApi->setMesh(batch.mesh);
+        mesh->cullMode = oldCullMode;
 
         switch (light->type)
         {
@@ -199,14 +209,14 @@ void RenderList::execute(Light *light, size_t pass)
 
         gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
 
-        gfxApi->setCullMode(mesh->cullMode);
-
-        //TODO: This does not increment the draw call count.
         gfxApi->draw(batch.worldMatrices.getCount());
+        ++drawCount;
         gfxApi->end();
 
         gfxApi->popState();
     }
+
+    return drawCount;
 }
 
 void RenderList::clear()

@@ -124,9 +124,6 @@ class GfxGLApi : public GfxApi
         virtual void setDepthFunction(GfxDepthFunction depthFunc);
         virtual GfxDepthFunction getDepthFunction() const;
 
-        virtual void setCullMode(GfxCullMode cullMode);
-        virtual GfxCullMode getCullMode() const;
-
         virtual void setViewport(uint16_t left,
                                  uint16_t bottom,
                                  uint16_t width,
@@ -172,7 +169,6 @@ class GfxGLApi : public GfxApi
             uint16_t scissorBottom;
             uint16_t scissorWidth;
             uint16_t scissorHeight;
-            GfxCullMode cullMode;
             bool scissorEnabled:1;
         };
 

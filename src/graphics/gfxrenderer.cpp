@@ -882,8 +882,10 @@ void GfxRenderer::render()
 
     gfxApi->clearDepth();
 
-    deferredList->execute(camera);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    stats.numDrawCalls += deferredList->execute(camera);
     deferredList->clear();
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     swapFramebuffers();
 
@@ -1131,7 +1133,7 @@ void GfxRenderer::render()
 
     fillLightBuffer(scene);
 
-    forwardList->execute(camera);
+    stats.numDrawCalls += forwardList->execute(camera);
     forwardList->clear();
 
     renderSkybox();
@@ -1581,7 +1583,7 @@ void GfxRenderer::renderShadowmap(Light *light)
         gfxApi->setCurrentFramebuffer(light->getFramebuffers()[i]);
         gfxApi->clearDepth();
 
-        shadowmapList->execute(light, i);
+        stats.numDrawCalls += shadowmapList->execute(light, i);
 
         if (light->type != GfxLightType::Spot)
         {
@@ -1608,7 +1610,8 @@ void GfxRenderer::renderTerrain()
 
         gfxApi->pushState();
 
-        material->setupRender(terrain->getMesh(), nullptr, camera);
+        material->setupRender(nullptr, camera);
+        gfxApi->setMesh(terrain->getMesh());
 
         //TODO
         //shaderComb->setDefine(GfxShaderType::Fragment, "TERRAIN", "1");

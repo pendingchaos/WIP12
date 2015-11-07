@@ -60,21 +60,6 @@ class GfxApi
 
         virtual void setMesh(GfxMesh *mesh)=0;
 
-        //Workaround for shadow.rkt.
-        //TODO: Get rid of this.
-        void begin(GfxCompiledShader *vertex,
-                   GfxCompiledShader *geometry,
-                   GfxCompiledShader *fragment)
-        {
-            begin(vertex, nullptr, nullptr, geometry, fragment);
-        }
-
-        void begin(GfxCompiledShader *vertex,
-                   GfxCompiledShader *fragment)
-        {
-            begin(vertex, nullptr, nullptr, nullptr, fragment);
-        }
-
         virtual GfxCompiledShader *getVertexShader()=0;
         virtual GfxCompiledShader *getTessControlShader()=0;
         virtual GfxCompiledShader *getTessEvalShader()=0;
@@ -127,11 +112,6 @@ class GfxApi
             addTextureBinding(shader, name, texture, texture->sampler);
         }
 
-        void addTextureBinding2(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
-        {
-            addTextureBinding(shader, name, texture);
-        }
-
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)=0;
         virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)=0;
 
@@ -177,9 +157,6 @@ class GfxApi
 
         virtual void setDepthFunction(GfxDepthFunction depthFunc)=0;
         virtual GfxDepthFunction getDepthFunction() const=0;
-
-        virtual void setCullMode(GfxCullMode cullMode)=0;
-        virtual GfxCullMode getCullMode() const=0;
 
         virtual void setViewport(uint16_t left,
                                  uint16_t bottom,

@@ -135,11 +135,10 @@ return class {
         self:setPOMHeightMap(src.pomHeightMap);
     };
     
-    setupRender = function(self, mesh, animState, camera) {
+    setupRender = function(self, animState, camera) {
         gfxApi = getGfxApi();
         
-        useTesselation = not isNil(self.displacementMap) and
-                         (mesh.primitive == GfxPrimitive.GfxTriangles);
+        useTesselation = not isNil(self.displacementMap);
         
         animated = not isNil(animState);
         
@@ -152,7 +151,6 @@ return class {
         fragment = shaders:getCompiled(GfxShaderType.Fragment);
         
         gfxApi:begin(shaders);
-        gfxApi:setMesh(mesh);
         
         proj = camera:getProjectionMatrix();
         view = camera:getViewMatrix();
@@ -167,7 +165,7 @@ return class {
             gfxApi:uniform(tessControl, "tessMaxDistance", self.tessMaxDistance);
             gfxApi:uniform(tessControl, "cameraPosition", camera:getPosition());
             
-            gfxApi:addTextureBinding2(tessEval, "heightMap", self.displacementMap);
+            gfxApi:addTextureBinding(tessEval, "heightMap", self.displacementMap);
             gfxApi:uniform(tessEval, "displacementMidlevel", self.displacementMidlevel);
             gfxApi:uniform(tessEval, "projectionViewMatrix", proj * view);
             gfxApi:uniform(tessEval, "strength", self.displacementStrength);
@@ -180,24 +178,24 @@ return class {
         gfxApi:uniform(fragment, "albedo", self.albedo);
         
         if not isNil(self.materialMap) {
-            gfxApi:addTextureBinding2(fragment, "materialMap", self.materialMap);
+            gfxApi:addTextureBinding(fragment, "materialMap", self.materialMap);
         };
         
         if not isNil(self.albedoMap) {
-            gfxApi:addTextureBinding2(fragment, "albedoMap", self.albedoMap);
+            gfxApi:addTextureBinding(fragment, "albedoMap", self.albedoMap);
         };
         
         if not isNil(self.normalMap) {
-            gfxApi:addTextureBinding2(fragment, "normalMap", self.normalMap);
+            gfxApi:addTextureBinding(fragment, "normalMap", self.normalMap);
         };
         
         if not isNil(self.parallaxHeightMap) {
-            gfxApi:addTextureBinding2(fragment, "heightMap", self.parallaxHeightMap);
+            gfxApi:addTextureBinding(fragment, "heightMap", self.parallaxHeightMap);
             gfxApi:uniform(fragment, "heightScale", self.parallaxStrength);
             if self.parallaxEdgeDiscard {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 1);}
             else {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 0);};
         } elif not isNil(self.pomHeightMap) {
-            gfxApi:addTextureBinding2(fragment, "heightMap", self.pomHeightMap);
+            gfxApi:addTextureBinding(fragment, "heightMap", self.pomHeightMap);
             gfxApi:uniform(fragment, "heightScale", self.parallaxStrength);
             if self.parallaxEdgeDiscard {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 1);}
             else {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 0);};

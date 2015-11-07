@@ -84,13 +84,12 @@ void GfxMaterial::_load()
     }
 }
 
-void GfxMaterial::setupRender(GfxMesh *mesh, GfxAnimationState *animState, const Camera& camera)
+void GfxMaterial::setupRender(GfxAnimationState *animState, const Camera& camera)
 {
     scripting::Context *ctx = script->getScript()->getContext();
 
     scripting::destroy(ctx,
                        script->method("setupRender",
-                       scripting::create(ctx, mesh),
                        scripting::create(ctx, animState),
                        scripting::create(ctx, camera)));
 }

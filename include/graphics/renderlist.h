@@ -40,8 +40,8 @@ class RenderList
 
         void addDrawCall(const DrawCall& drawCall);
         void addRenderList(const RenderList *list);
-        void execute(const Camera& camera);
-        void execute(Light *light, size_t pass);
+        size_t execute(const Camera& camera);
+        size_t execute(Light *light, size_t pass);
         void clear();
     private:
         struct Batch

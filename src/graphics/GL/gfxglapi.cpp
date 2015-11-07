@@ -734,7 +734,6 @@ void GfxGLApi::resetState()
     state.scissorBottom = 0;
     state.scissorWidth = 100;
     state.scissorHeight = 100;
-    state.cullMode = GfxCullNone;
     state.scissorEnabled = false;
 
     useState(state);
@@ -804,32 +803,6 @@ void GfxGLApi::setDepthFunction(GfxDepthFunction depthFunc)
     currentState.depthFunc = depthFunc;
 }
 
-void GfxGLApi::setCullMode(GfxCullMode mode)
-{
-    switch (mode)
-    {
-    case GfxCullNone:
-    {
-        glDisable(GL_CULL_FACE);
-        break;
-    }
-    case GfxCullFront:
-    {
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_FRONT);
-        break;
-    }
-    case GfxCullBack:
-    {
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_BACK);
-        break;
-    }
-    }
-
-    currentState.cullMode = mode;
-}
-
 void GfxGLApi::setViewport(uint16_t left,
                            uint16_t bottom,
                            uint16_t width,
@@ -871,7 +844,6 @@ void GfxGLApi::useState(const State& state)
                 state.viewportBottom,
                 state.viewportWidth,
                 state.viewportHeight);
-    setCullMode(state.cullMode);
     setScissorEnabled(state.scissorEnabled);
     setScissor(state.scissorLeft,
                state.scissorBottom,
@@ -932,11 +904,6 @@ bool GfxGLApi::getWriteDepth() const
 GfxDepthFunction GfxGLApi::getDepthFunction() const
 {
     return currentState.depthFunc;
-}
-
-GfxCullMode GfxGLApi::getCullMode() const
-{
-    return currentState.cullMode;
 }
 
 uint16_t GfxGLApi::getViewportLeft() const

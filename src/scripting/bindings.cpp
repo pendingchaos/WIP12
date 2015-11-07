@@ -6543,7 +6543,6 @@ SV GfxApi_uniform(CTX ctx,const List<SV>&a);
 SV GfxApi_uniformU(CTX ctx,const List<SV>&a);
 SV GfxApi_addUBOBinding(CTX ctx,const List<SV>&a);
 SV GfxApi_addTextureBinding(CTX ctx,const List<SV>&a);
-SV GfxApi_addTextureBinding2(CTX ctx,const List<SV>&a);
 SV GfxApi_pushState(CTX ctx,const List<SV>&a);
 SV GfxApi_popState(CTX ctx,const List<SV>&a);
 SV GfxApi_resetState(CTX ctx,const List<SV>&a);
@@ -6567,8 +6566,6 @@ SV GfxApi_setWriteDepth(CTX ctx,const List<SV>&a);
 SV GfxApi_getWriteDepth(CTX ctx,const List<SV>&a);
 SV GfxApi_setDepthFunction(CTX ctx,const List<SV>&a);
 SV GfxApi_getDepthFunction(CTX ctx,const List<SV>&a);
-SV GfxApi_setCullMode(CTX ctx,const List<SV>&a);
-SV GfxApi_getCullMode(CTX ctx,const List<SV>&a);
 SV GfxApi_setViewport(CTX ctx,const List<SV>&a);
 SV GfxApi_getViewportLeft(CTX ctx,const List<SV>&a);
 SV GfxApi_getViewportBottom(CTX ctx,const List<SV>&a);
@@ -43912,14 +43909,14 @@ f=(RenderList*)((NO)a[0].p)->data;
 if(a.getCount()==2)
 if(1&&TS(a[1],const Camera &))
 {
-( f->execute(val_to_c<std::remove_reference<const Camera &>::type>::f(ctx,a[1])));
-RET CN;
+RET CV( f->execute(val_to_c<std::remove_reference<const Camera &>::type>::f(ctx,a[1])));
+;
 }
 if(a.getCount()==3)
 if(1&&TS(a[1],Light *)&&TS(a[2],size_t))
 {
-( f->execute(val_to_c<std::remove_reference<Light *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2])));
-RET CN;
+RET CV( f->execute(val_to_c<std::remove_reference<Light *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<size_t>::type>::f(ctx,a[2])));
+;
 }
 CATE(TE,UFOF("RenderList::execute.")));
 RET CN;
@@ -46598,8 +46595,6 @@ RET CNF(GfxApi_uniformU);
 RET CNF(GfxApi_addUBOBinding);
  EI(keyStr.equals("addTextureBinding", CPL_STR_HASH("addTextureBinding")))
 RET CNF(GfxApi_addTextureBinding);
- EI(keyStr.equals("addTextureBinding2", CPL_STR_HASH("addTextureBinding2")))
-RET CNF(GfxApi_addTextureBinding2);
  EI(keyStr.equals("pushState", CPL_STR_HASH("pushState")))
 RET CNF(GfxApi_pushState);
  EI(keyStr.equals("popState", CPL_STR_HASH("popState")))
@@ -46646,10 +46641,6 @@ RET CNF(GfxApi_getWriteDepth);
 RET CNF(GfxApi_setDepthFunction);
  EI(keyStr.equals("getDepthFunction", CPL_STR_HASH("getDepthFunction")))
 RET CNF(GfxApi_getDepthFunction);
- EI(keyStr.equals("setCullMode", CPL_STR_HASH("setCullMode")))
-RET CNF(GfxApi_setCullMode);
- EI(keyStr.equals("getCullMode", CPL_STR_HASH("getCullMode")))
-RET CNF(GfxApi_getCullMode);
  EI(keyStr.equals("setViewport", CPL_STR_HASH("setViewport")))
 RET CNF(GfxApi_setViewport);
  EI(keyStr.equals("getViewportLeft", CPL_STR_HASH("getViewportLeft")))
@@ -46930,17 +46921,6 @@ RET CV( f->getTessControlShader());
 ;
 }
 CATE(TE,UFOF("GfxApi::getTessControlShader.")));
-RET CN;
-}
-
-SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::getBlendConstantColor" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0].p)->data;
-
-CATE(TE,UFOF("GfxApi::getBlendConstantColor.")));
 RET CN;
 }
 
@@ -47343,18 +47323,6 @@ if(1&&TS(a[1],GfxShaderCombination *))
 ( f->begin(val_to_c<std::remove_reference<GfxShaderCombination *>::type>::f(ctx,a[1])));
 RET CN;
 }
-if(a.getCount()==4)
-if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *))
-{
-( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[3])));
-RET CN;
-}
-if(a.getCount()==3)
-if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *))
-{
-( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2])));
-RET CN;
-}
 CATE(TE,UFOF("GfxApi::begin.")));
 RET CN;
 }
@@ -47547,37 +47515,14 @@ CATE(TE,UFOF("GfxApi::getScissorEnabled.")));
 RET CN;
 }
 
-SV GfxApi_getCullMode(CTX ctx,const List<SV>&a)
+SV GfxApi_getBlendConstantColor(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getCullMode" EAOE));
+CATE(VE,"GfxApi::getBlendConstantColor" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==1)
-if(1)
-{
-RET CV( f->getCullMode());
-;
-}
-CATE(TE,UFOF("GfxApi::getCullMode.")));
-RET CN;
-}
-
-SV GfxApi_addTextureBinding2(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::addTextureBinding2" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0].p)->data;
-
-if(a.getCount()==4)
-if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *))
-{
-( f->addTextureBinding2(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3])));
-RET CN;
-}
-CATE(TE,UFOF("GfxApi::addTextureBinding2.")));
+CATE(TE,UFOF("GfxApi::getBlendConstantColor.")));
 RET CN;
 }
 
@@ -47629,23 +47574,6 @@ if(1&&TS(a[1],bool))
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::setBlendingEnabled.")));
-RET CN;
-}
-
-SV GfxApi_setCullMode(CTX ctx,const List<SV>&a)
-{
-if(a.getCount()<1)
-CATE(VE,"GfxApi::setCullMode" EAOE));
-GfxApi*f;
-f=(GfxApi*)((NO)a[0].p)->data;
-
-if(a.getCount()==2)
-if(1&&TS(a[1],GfxCullMode))
-{
-( f->setCullMode(val_to_c<std::remove_reference<GfxCullMode>::type>::f(ctx,a[1])));
-RET CN;
-}
-CATE(TE,UFOF("GfxApi::setCullMode.")));
 RET CN;
 }
 
@@ -50813,10 +50741,10 @@ CATE(VE,"GfxMaterial::setupRender" EAOE));
 GfxMaterial*f;
 f=(GfxMaterial*)((NO)a[0].p)->data;
 
-if(a.getCount()==4)
-if(1&&TS(a[1],GfxMesh *)&&TS(a[2],GfxAnimationState *)&&TS(a[3],const Camera &))
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxAnimationState *)&&TS(a[2],const Camera &))
 {
-( f->setupRender(val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxAnimationState *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Camera &>::type>::f(ctx,a[3])));
+( f->setupRender(val_to_c<std::remove_reference<GfxAnimationState *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const Camera &>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("GfxMaterial::setupRender.")));
