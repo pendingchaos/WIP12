@@ -9,7 +9,9 @@
 #include "jobsystem.h"
 #include "misc_macros.h"
 
-RenderList::RenderList() : matrixTexture(nullptr)
+#include <algorithm>
+
+RenderList::RenderList() : needsSorting(false), matrixTexture(nullptr)
 {
     shadowVertexShader = resMgr->load<GfxShader>("resources/shaders/shadowmap.vs.bin");
     shadowGeometryShader = resMgr->load<GfxShader>("resources/shaders/pointShadowmap.gs.bin");
@@ -35,199 +37,250 @@ RenderList::~RenderList()
         matrixTexture->release();
     }
 
-    for (auto batch : batches)
+    for (auto drawCall : drawCalls)
     {
-        batch.material->release();
-        batch.mesh->release();
+        drawCall.material->release();
+        drawCall.mesh->release();
     }
 }
 
 void RenderList::addDrawCall(const DrawCall& drawCall)
 {
-    //Currently skinned draw calls can not be batched.
-    if (drawCall.animState != nullptr)
-    {
-        Batch batch;
-        batch.material = drawCall.material->copyRef<GfxMaterial>();
-        batch.mesh = drawCall.mesh->copyRef<GfxMesh>();
-        batch.worldMatrices.append(drawCall.worldMatrix);
-        batch.normalMatrices.append(drawCall.normalMatrix);
-        batch.animState = drawCall.animState;
+    Item item;
+    item.key = ((size_t)drawCall.material%4294967296)<<32 |
+               ((size_t)drawCall.mesh%4294967296);
+    item.drawCallIndex = drawCalls.getCount();
 
-        batches.append(batch);
-        return;
-    }
+    drawCall.material->copyRef<GfxMaterial>();
+    drawCall.mesh->copyRef<GfxMesh>();
 
-    for (size_t i = 0; i < batches.getCount(); ++i)
-    {
-        if (batches[i].material == drawCall.material and batches[i].mesh == drawCall.mesh)
-        {
-            batches[i].worldMatrices.append(drawCall.worldMatrix);
-            batches[i].normalMatrices.append(drawCall.normalMatrix);
-            return;
-        }
-    }
+    items.append(item);
+    drawCalls.append(drawCall);
 
-    Batch batch;
-    batch.material = drawCall.material->copyRef<GfxMaterial>();
-    batch.mesh = drawCall.mesh->copyRef<GfxMesh>();
-    batch.worldMatrices.append(drawCall.worldMatrix);
-    batch.normalMatrices.append(drawCall.normalMatrix);
-    batch.animState = nullptr;
-
-    batches.append(batch);
+    needsSorting = true;
 }
 
 void RenderList::addRenderList(const RenderList *list)
 {
-    for (auto& batch : list->batches)
+    size_t start = drawCalls.getCount();
+
+    items.append(list->items);
+    drawCalls.append(list->drawCalls);
+
+    for (size_t i = start; i < items.getCount(); ++i)
     {
-        batch.material->copyRef<GfxMaterial>();
-        batch.mesh->copyRef<GfxMesh>();
+        items[i].drawCallIndex += start;
     }
 
-    batches.append(list->batches);
+    needsSorting = true;
 }
 
+#define DRAW do\
+{\
+    fillMatrixTexture(worldMatrices, normalMatrices);\
+    gfxApi->pushState();\
+    gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);\
+    gfxApi->draw(worldMatrices.getCount());\
+    ++drawCount;\
+    gfxApi->end();\
+    gfxApi->popState();\
+    worldMatrices.clear();\
+    normalMatrices.clear();\
+} while (0)
 size_t RenderList::execute(const Camera& camera)
 {
+    if (needsSorting)
+    {
+        std::sort(items.getData(), items.getData()+items.getCount());
+    }
+
     size_t drawCount = 0;
 
-    for (auto batch : batches)
+    List<Matrix4x4> worldMatrices;
+    List<Matrix4x4> normalMatrices;
+    GfxMesh *mesh = nullptr;
+    GfxMaterial *material = nullptr;
+    for (auto& item : items)
     {
-        fillMatrixTexture(batch.worldMatrices, batch.normalMatrices);
+        DrawCall& drawCall = drawCalls[item.drawCallIndex];
 
-        GfxMaterial *material = batch.material;
-        GfxMesh *mesh = batch.mesh;
+        if (((drawCall.mesh != mesh) or
+             (drawCall.material != material)) and
+            (mesh != nullptr) and
+            (material != nullptr))
+        {
+            DRAW;
+        }
 
-        gfxApi->pushState();
+        if (drawCall.mesh != mesh)
+        {
+            mesh = drawCall.mesh;
+            gfxApi->setMesh(mesh);
+        }
 
-        material->setupRender(batch.animState, camera);
-        gfxApi->setMesh(mesh);
+        if (drawCall.material != material)
+        {
+            material = drawCall.material;
+            material->setupRender(drawCall.animState, camera);
+        }
 
-        gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
+        worldMatrices.append(drawCall.worldMatrix);
+        normalMatrices.append(drawCall.normalMatrix);
 
-        //TODO: This does not increment the draw call count.
-        gfxApi->draw(batch.worldMatrices.getCount());
-        ++drawCount;
-        gfxApi->end();
+        if (drawCall.animState != nullptr)
+        {
+            DRAW;
+            mesh = nullptr;
+            material = nullptr;
+        }
+    }
 
-        gfxApi->popState();
+    if (worldMatrices.getCount() != 0)
+    {
+        DRAW;
     }
 
     return drawCount;
 }
+#undef DRAW
 
+#define DRAW(animState_) do\
+{\
+    GfxAnimationState *animState = animState_;\
+    fillMatrixTexture(worldMatrices, normalMatrices);\
+    gfxApi->pushState();\
+    GfxCompiledShader *vertex = animState != nullptr ? shadowVertexAnim : shadowVertex;\
+    GfxCompiledShader *geometry = nullptr;\
+    GfxCompiledShader *fragment = light->type == GfxLightType::Point ? shadowPointFragment : shadowFragment;\
+    if (light->type == GfxLightType::Point)\
+    {\
+        if (light->point.singlePassShadowMap)\
+        {\
+            geometry = shadowGeometry;\
+        }\
+    }\
+    gfxApi->begin(vertex,\
+                  nullptr,\
+                  nullptr,\
+                  geometry,\
+                  fragment);\
+    GfxCullMode oldCullMode = mesh->cullMode;\
+    mesh->cullMode = GfxCullNone;\
+    gfxApi->setMesh(mesh);\
+    mesh->cullMode = oldCullMode;\
+    switch (light->type)\
+    {\
+    case GfxLightType::Point:\
+    {\
+        Position3D pos = light->point.position;\
+        Matrix4x4 matrices[] = {Matrix4x4::lookAtDir(pos, Float3(1.0f, 0.0f, 0.0f), Float3(0.0f, -1.0f, 0.0f)),\
+                                Matrix4x4::lookAtDir(pos, Float3(-1.0f, 0.0f, 0.0f), Float3(0.0f, -1.0f, 0.0f)),\
+                                Matrix4x4::lookAtDir(pos, Float3(0.0f, 1.0f, 0.0f), Float3(0.0f, 0.0f, 1.0f)),\
+                                Matrix4x4::lookAtDir(pos, Float3(0.0f, -1.0f, 0.0f), Float3(0.0f, 0.0f, -1.0f)),\
+                                Matrix4x4::lookAtDir(pos, Float3(0.0f, 0.0f, 1.0f), Float3(0.0f, -1.0f, 0.0f)),\
+                                Matrix4x4::lookAtDir(pos, Float3(0.0f, 0.0f, -1.0f), Float3(0.0f, -1.0f, 0.0f))};\
+        if (light->point.singlePassShadowMap)\
+        {\
+            gfxApi->uniform(geometry, "matrix0", light->getProjectionMatrix() * matrices[0]);\
+            gfxApi->uniform(geometry, "matrix1", light->getProjectionMatrix() * matrices[1]);\
+            gfxApi->uniform(geometry, "matrix2", light->getProjectionMatrix() * matrices[2]);\
+            gfxApi->uniform(geometry, "matrix3", light->getProjectionMatrix() * matrices[3]);\
+            gfxApi->uniform(geometry, "matrix4", light->getProjectionMatrix() * matrices[4]);\
+            gfxApi->uniform(geometry, "matrix5", light->getProjectionMatrix() * matrices[5]);\
+            gfxApi->uniform(vertex, "projectionMatrix", Matrix4x4());\
+            gfxApi->uniform(vertex, "viewMatrix", Matrix4x4());\
+        } else\
+        {\
+            gfxApi->uniform(vertex, "projectionMatrix", light->getProjectionMatrix());\
+            gfxApi->uniform(vertex, "viewMatrix", matrices[pass]);\
+        }\
+        gfxApi->uniform(fragment, "lightPos", pos);\
+        gfxApi->uniform(fragment, "lightFar", light->getPointLightInfluence());\
+        break;\
+    }\
+    case GfxLightType::Directional:\
+    {\
+        gfxApi->uniform(vertex, "projectionMatrix", light->getCascadeProjectionMatrix(pass));\
+        gfxApi->uniform(vertex, "viewMatrix", light->getCascadeViewMatrix(pass));\
+        break;\
+    }\
+    case GfxLightType::Spot:\
+    {\
+        gfxApi->uniform(vertex, "projectionMatrix", light->getProjectionMatrix());\
+        gfxApi->uniform(vertex, "viewMatrix", light->getViewMatrix());\
+        break;\
+    }\
+    }\
+    gfxApi->uniform(fragment, "biasScale", light->shadowAutoBiasScale);\
+    if (animState != nullptr)\
+    {\
+        gfxApi->addUBOBinding(fragment, "bonePositionData", animState->getMatrixBuffer());\
+    }\
+    gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);\
+    gfxApi->draw(worldMatrices.getCount());\
+    ++drawCount;\
+    gfxApi->end();\
+    gfxApi->popState();\
+    worldMatrices.clear();\
+    normalMatrices.clear();\
+} while (0)
 size_t RenderList::execute(Light *light, size_t pass)
 {
+    if (needsSorting)
+    {
+        std::sort(items.getData(), items.getData()+items.getCount());
+    }
+
     size_t drawCount = 0;
 
-    for (auto batch : batches)
+    List<Matrix4x4> worldMatrices;
+    List<Matrix4x4> normalMatrices;
+    GfxMesh *mesh = nullptr;
+    for (auto& item : items)
     {
-        fillMatrixTexture(batch.worldMatrices, batch.normalMatrices);
+        DrawCall& drawCall = drawCalls[item.drawCallIndex];
 
-        GfxMesh *mesh = batch.mesh;
-
-        gfxApi->pushState();
-
-        GfxCompiledShader *vertex = batch.animState != nullptr ? shadowVertexAnim : shadowVertex;
-        GfxCompiledShader *geometry = nullptr;
-        GfxCompiledShader *fragment = light->type == GfxLightType::Point ? shadowPointFragment : shadowFragment;
-        if (light->type == GfxLightType::Point)
+        if ((drawCall.mesh != mesh) and
+            (mesh != nullptr))
         {
-            if (light->point.singlePassShadowMap)
-            {
-                geometry = shadowGeometry;
-            }
+            DRAW(drawCall.animState);
         }
 
-        gfxApi->begin(vertex,
-                      nullptr,
-                      nullptr,
-                      geometry,
-                      fragment);
-
-        GfxCullMode oldCullMode = mesh->cullMode;
-        mesh->cullMode = GfxCullNone;
-        gfxApi->setMesh(batch.mesh);
-        mesh->cullMode = oldCullMode;
-
-        switch (light->type)
+        if (drawCall.mesh != mesh)
         {
-        case GfxLightType::Point:
-        {
-            Position3D pos = light->point.position;
-
-            Matrix4x4 matrices[] = {Matrix4x4::lookAtDir(pos, Float3(1.0f, 0.0f, 0.0f), Float3(0.0f, -1.0f, 0.0f)),
-                                    Matrix4x4::lookAtDir(pos, Float3(-1.0f, 0.0f, 0.0f), Float3(0.0f, -1.0f, 0.0f)),
-                                    Matrix4x4::lookAtDir(pos, Float3(0.0f, 1.0f, 0.0f), Float3(0.0f, 0.0f, 1.0f)),
-                                    Matrix4x4::lookAtDir(pos, Float3(0.0f, -1.0f, 0.0f), Float3(0.0f, 0.0f, -1.0f)),
-                                    Matrix4x4::lookAtDir(pos, Float3(0.0f, 0.0f, 1.0f), Float3(0.0f, -1.0f, 0.0f)),
-                                    Matrix4x4::lookAtDir(pos, Float3(0.0f, 0.0f, -1.0f), Float3(0.0f, -1.0f, 0.0f))};
-
-            if (light->point.singlePassShadowMap)
-            {
-                gfxApi->uniform(geometry, "matrix0", light->getProjectionMatrix() * matrices[0]);
-                gfxApi->uniform(geometry, "matrix1", light->getProjectionMatrix() * matrices[1]);
-                gfxApi->uniform(geometry, "matrix2", light->getProjectionMatrix() * matrices[2]);
-                gfxApi->uniform(geometry, "matrix3", light->getProjectionMatrix() * matrices[3]);
-                gfxApi->uniform(geometry, "matrix4", light->getProjectionMatrix() * matrices[4]);
-                gfxApi->uniform(geometry, "matrix5", light->getProjectionMatrix() * matrices[5]);
-
-                gfxApi->uniform(vertex, "projectionMatrix", Matrix4x4());
-                gfxApi->uniform(vertex, "viewMatrix", Matrix4x4());
-            } else
-            {
-                gfxApi->uniform(vertex, "projectionMatrix", light->getProjectionMatrix());
-                gfxApi->uniform(vertex, "viewMatrix", matrices[pass]);
-            }
-
-            gfxApi->uniform(fragment, "lightPos", pos);
-            gfxApi->uniform(fragment, "lightFar", light->getPointLightInfluence());
-            break;
-        }
-        case GfxLightType::Directional:
-        {
-            gfxApi->uniform(vertex, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
-            gfxApi->uniform(vertex, "viewMatrix", light->getCascadeViewMatrix(pass));
-            break;
-        }
-        case GfxLightType::Spot:
-        {
-            gfxApi->uniform(vertex, "projectionMatrix", light->getProjectionMatrix());
-            gfxApi->uniform(vertex, "viewMatrix", light->getViewMatrix());
-            break;
-        }
+            gfxApi->setMesh(drawCall.mesh);
+            mesh = drawCall.mesh;
         }
 
-        gfxApi->uniform(fragment, "biasScale", light->shadowAutoBiasScale);
+        worldMatrices.append(drawCall.worldMatrix);
+        normalMatrices.append(drawCall.normalMatrix);
 
-        if (batch.animState != nullptr)
+        if (drawCall.animState != nullptr)
         {
-            gfxApi->addUBOBinding(fragment, "bonePositionData", batch.animState->getMatrixBuffer());
+            DRAW(drawCall.animState);
+            mesh = nullptr;
         }
+    }
 
-        gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
-
-        gfxApi->draw(batch.worldMatrices.getCount());
-        ++drawCount;
-        gfxApi->end();
-
-        gfxApi->popState();
+    if (worldMatrices.getCount() != 0)
+    {
+        DRAW(nullptr);
     }
 
     return drawCount;
 }
+#undef DRAW
 
 void RenderList::clear()
 {
-    for (auto batch : batches)
+    for (auto drawCall : drawCalls)
     {
-        batch.material->release();
-        batch.mesh->release();
+        drawCall.material->release();
+        drawCall.mesh->release();
     }
 
-    batches.clear();
+    items.clear();
+    drawCalls.clear();
 }
 
 struct Data

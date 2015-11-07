@@ -46,11 +46,20 @@ class GfxMaterial : public Resource
         }
 
         void setupRender(GfxAnimationState *animState, const Camera& camera);
+        GfxShaderCombination *getShaders(bool animated);
 
         bool forward;
+        GfxCompiledShader *vertex;
+        GfxCompiledShader *tessControl;
+        GfxCompiledShader *tessEval;
+        GfxCompiledShader *geometry;
+        GfxCompiledShader *fragment;
+        GfxCompiledShader *animVertex;
+        GfxCompiledShader *animTessControl;
+        GfxCompiledShader *animTessEval;
+        GfxCompiledShader *animGeometry;
+        GfxCompiledShader *animFragment;
     private:
-        GfxShaderCombination *shaderComb;
-
         ScriptInstance *script;
     protected:
         virtual void _load();

@@ -44,16 +44,22 @@ class RenderList
         size_t execute(Light *light, size_t pass);
         void clear();
     private:
-        struct Batch
+        struct Item
         {
-            GfxMesh *mesh;
-            GfxMaterial *material;
-            List<Matrix4x4> worldMatrices;
-            List<Matrix4x4> normalMatrices;
-            GfxAnimationState *animState;
+            uint64_t key;
+            size_t drawCallIndex;
+
+            bool operator < (const Item& other)
+            {
+                //It should be sorted in descending order so < is not used.
+                return key > other.key;
+            }
         };
 
-        List<Batch> batches;
+        List<Item> items;
+        List<DrawCall> drawCalls;
+        bool needsSorting;
+
         GfxTexture *matrixTexture;
 
         GfxShader *shadowVertexShader;

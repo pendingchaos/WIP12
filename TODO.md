@@ -79,7 +79,6 @@
 - [ ] Improve directional shadow quality.
 - [ ] Improve directional shadow transitions.
 - [ ] Cleanup code.
-- [ ] A proper shaderball.
 - [ ] Separate material parameters, material rendering and mesh rendering.
 - [ ] Fix memory leaks.
 - [ ] Get rid of resource filenames.
