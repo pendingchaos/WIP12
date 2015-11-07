@@ -101,5 +101,4 @@
 - [ ] Improve directional light performance.
     - [ ] Only do deferred shading where deferred objects are rendered.
 - [ ] Improve fixed update performance and find out what's not showing up on the renderer CPU timings.
-    - [ ] Framebuffer bindings seems to be very slow with non-square framebuffers.
 - [ ] Malloc and free are showing up at the top. (perf)

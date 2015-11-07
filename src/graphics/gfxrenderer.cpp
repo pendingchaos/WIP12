@@ -639,7 +639,7 @@ void GfxRenderer::removeTerrain()
 
 void GfxRenderer::resize(const UInt2& size)
 {
-    if (size.x != width or size.y != width)
+    if (size.x != width or size.y != height)
     {
         width = size.x;
         height = size.y;
