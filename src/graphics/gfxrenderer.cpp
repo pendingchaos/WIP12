@@ -789,7 +789,8 @@ class PostEffect
             }
 
             gfxApi->setCurrentFramebuffer(fb);
-            gfxApi->begin(shaders, quad);
+            gfxApi->begin(shaders);
+            gfxApi->setMesh(quad);
             return *this;
         }
 
@@ -1018,7 +1019,8 @@ void GfxRenderer::render()
         }
         }
 
-        gfxApi->begin(shaders, quadMesh);
+        gfxApi->begin(shaders);
+        gfxApi->setMesh(quadMesh);
 
         GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);
 
@@ -1280,7 +1282,8 @@ void GfxRenderer::render()
             {
             case RenderMode::Overlay:
             {
-                gfxApi->begin(overlayShaders, quadMesh);
+                gfxApi->begin(overlayShaders);
+                gfxApi->setMesh(quadMesh);
 
                 gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Vertex), "transform", transform);
                 gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Fragment), "color", comp->overlayData.color);
@@ -1538,7 +1541,8 @@ void GfxRenderer::renderSkybox()
         GfxCompiledShader *compiledVS = skyboxShaders->getCompiled(GfxShaderType::Vertex);
         GfxCompiledShader *compiledFS = skyboxShaders->getCompiled(GfxShaderType::Fragment);
 
-        gfxApi->begin(skyboxShaders, skyboxMesh);
+        gfxApi->begin(skyboxShaders);
+        gfxApi->setMesh(skyboxMesh);
 
         gfxApi->setDepthFunction(GfxLessEqual);
 
@@ -1638,8 +1642,8 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
                   compiledTerrainTessControl,
                   compiledTerrainTessEval,
                   nullptr,
-                  compiledShadowmapFragment,
-                  terrain->getMesh());
+                  compiledShadowmapFragment);
+    gfxApi->setMesh(terrain->getMesh());
 
     gfxApi->uniform(compiledTerrainVertex, "sizeInChunks", (uint32_t)terrain->getSizeInChunks());
     gfxApi->uniform(compiledTerrainVertex, "chunkSize", terrain->getChunkSize());

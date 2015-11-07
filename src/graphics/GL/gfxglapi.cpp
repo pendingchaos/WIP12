@@ -296,64 +296,12 @@ void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
     glClearBufferuiv(GL_COLOR, rtIndex, value_);
 }
 
-#define BEGIN_DRAW for (size_t i = 0; i < textureBindingCount; ++i)\
-{\
-    TextureBinding& binding = textureBindings[i];\
-\
-    glActiveTexture(GL_TEXTURE0+i);\
-    glBindTexture(binding.target, dynamic_cast<GfxGLTextureImpl *>(binding.texture->getImpl())->getGLTexture());\
-\
-    glProgramUniform1i(binding.program, binding.location, i);\
-    glBindSampler(i, binding.sampler);\
-}\
-for (size_t i = 0; i < uboBindingCount; ++i)\
-{\
-    const UBOBinding& binding = uboBindings[i];\
-\
-    glBindBufferBase(GL_UNIFORM_BUFFER, i, dynamic_cast<const GfxGLBuffer *>(binding.buffer)->getGLBuffer());\
-    glUniformBlockBinding(binding.program, binding.location, i);\
-}\
-\
-switch (mesh->cullMode)\
-{\
-case GfxCullNone:\
-{\
-    glDisable(GL_CULL_FACE);\
-    break;\
-}\
-case GfxCullFront:\
-{\
-    glEnable(GL_CULL_FACE);\
-    glCullFace(GL_FRONT);\
-}\
-case GfxCullBack:\
-{\
-    glEnable(GL_CULL_FACE);\
-    glCullFace(GL_BACK);\
-}\
-}\
-\
-switch (mesh->winding)\
-{\
-case GfxCCW:\
-{\
-    glFrontFace(GL_CCW);\
-    break;\
-}\
-case GfxCW:\
-{\
-    glFrontFace(GL_CW);\
-    break;\
-}\
-}
-
 #define END_DRAW for (size_t i = 0; i < textureBindingCount; ++i)\
 {\
-    TextureBinding& binding = textureBindings[i];\
+    GLuint binding = textureBindings[i];\
 \
     glActiveTexture(GL_TEXTURE0+i);\
-    glBindTexture(binding.target, 0);\
-    binding.texture = nullptr;\
+    glBindTexture(binding, 0);\
 \
     glBindSampler(i, 0);\
 }\
@@ -365,13 +313,10 @@ void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *tessControl_,
                      GfxCompiledShader *tessEval_,
                      GfxCompiledShader *geometry_,
-                     GfxCompiledShader *fragment_,
-                     GfxMesh *mesh_)
+                     GfxCompiledShader *fragment_)
 {
-    mesh = mesh_;
+    mesh = nullptr;
     tesselation = (tessControl_ != nullptr) or (tessEval_ != nullptr);
-
-    glBindVertexArray(mesh->getGLVAO());
 
     glBindProgramPipeline(pipeline);
 
@@ -428,8 +373,6 @@ void GfxGLApi::draw(size_t instanceCount)
         return;
     }
 
-    BEGIN_DRAW
-
     GLenum primitive = tesselation ? GL_PATCHES : toGLPrimitive[(int)mesh->primitive];
 
     if (not mesh->getIndexed())
@@ -477,14 +420,48 @@ void GfxGLApi::draw(size_t instanceCount)
 
 void GfxGLApi::end()
 {
-    if (mesh == nullptr)
-    {
-        return;
-    }
-
     END_DRAW
 
     mesh = nullptr;
+}
+
+void GfxGLApi::setMesh(GfxMesh *mesh_)
+{
+    mesh = mesh_;
+    glBindVertexArray(mesh_->getGLVAO());
+
+    switch (mesh->cullMode)
+    {
+    case GfxCullNone:
+    {
+        glDisable(GL_CULL_FACE);
+        break;
+    }
+    case GfxCullFront:
+    {
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+    }
+    case GfxCullBack:
+    {
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+    }
+    }
+
+    switch (mesh->winding)
+    {
+    case GfxCCW:
+    {
+        glFrontFace(GL_CCW);
+        break;
+    }
+    case GfxCW:
+    {
+        glFrontFace(GL_CW);
+        break;
+    }
+    }
 }
 
 GfxCompiledShader *GfxGLApi::getVertexShader()
@@ -667,56 +644,28 @@ void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const 
         return;
     }
 
-    /*GLuint program = dynamic_cast<GfxGLCompiledShader *>(shader)->getGLProgram();
+    glBindBufferBase(GL_UNIFORM_BUFFER, uboBindingCount, ((const GfxGLBuffer *)buffer)->getGLBuffer());
+    glUniformBlockBinding(shader->getGLProgram(), location, uboBindingCount);
 
-    std::cout << name << ':' << std::endl;
-
-    GLint num = 0;
-    GLenum prop[] = {GL_NUM_ACTIVE_VARIABLES};
-    glGetProgramResourceiv(program, GL_UNIFORM_BLOCK, location, 1, prop, 1, NULL, &num);
-
-    GLint indices[num];
-    GLenum prop3[] = {GL_ACTIVE_VARIABLES};
-    glGetProgramResourceiv(program, GL_UNIFORM_BLOCK, location, 1, prop3, num, NULL, indices);
-
-    for (size_t i = 0; i < num; ++i)
-    {
-        GLint len;
-        GLenum prop2[] = {GL_NAME_LENGTH};
-
-        glGetProgramResourceiv(program, GL_UNIFORM, indices[i], 1, prop2, 1, NULL, &len);
-
-        char name[len+1];
-        name[len] = '\x00';
-        glGetProgramResourceName(program, GL_UNIFORM, indices[i], len, NULL, name);
-
-        GLint offset;
-        GLenum prop4[] = {GL_OFFSET};
-        glGetProgramResourceiv(program, GL_UNIFORM, indices[i], 1, prop4, 1, NULL, &offset);
-
-        std::cout << "    " << offset << ' ' << name << std::endl;
-    }*/
-
-    if (uboBindingCount < sizeof(uboBindings)/sizeof(UBOBinding))
-    {
-        uboBindings[uboBindingCount++] = (UBOBinding){.buffer = buffer,
-                                                      .location = location,
-                                                      .program = shader->getGLProgram()};
-    }
+    ++uboBindingCount;
 }
 
 void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture, TextureSampler sampler)
 {
     UNIFORM_START
 
-    if (textureBindingCount < sizeof(textureBindings)/sizeof(TextureBinding))
+    if (textureBindingCount < sizeof(textureBindings)/sizeof(GLuint))
     {
-        textureBindings[textureBindingCount++] = (TextureBinding){.texture = texture,
-                                                                  .target = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLTarget(),
-                                                                  .location = location,
-                                                                  .program = shader->getGLProgram(),
-                                                                  .bindingGet = dynamic_cast<GfxGLTextureImpl *>(texture->getImpl())->getGLBindingGet(),
-                                                                  .sampler = getSampler(sampler)};
+        GLuint target = ((GfxGLTextureImpl *)texture->getImpl())->getGLTarget();
+        GLuint id = ((GfxGLTextureImpl *)texture->getImpl())->getGLTexture();
+
+        glActiveTexture(GL_TEXTURE0+textureBindingCount);
+        glBindTexture(target, id);
+
+        glProgramUniform1i(shader->getGLProgram(), location, textureBindingCount);
+        glBindSampler(textureBindingCount, getSampler(sampler));
+
+        textureBindings[textureBindingCount++] = target;
     }
 }
 

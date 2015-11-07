@@ -223,9 +223,10 @@ void Font::render(size_t size,
         GfxCompiledShader *geometry = shaders->getCompiled(GfxShaderType::Geometry);
         GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);
 
+        gfxApi->setMesh(quadMesh);
         for (size_t j = 0; j < positions.getCount()/100; ++j)
         {
-            gfxApi->begin(shaders, quadMesh);
+            gfxApi->begin(shaders);
 
             gfxApi->uniform(geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
             gfxApi->uniform(geometry, "glyphPositions", 100, positions.getData()+j*100);
@@ -240,7 +241,7 @@ void Font::render(size_t size,
         {
             size_t offset = positions.getCount()/100*100;
 
-            gfxApi->begin(shaders, quadMesh);
+            gfxApi->begin(shaders);
 
             gfxApi->uniform(geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
             gfxApi->uniform(geometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);

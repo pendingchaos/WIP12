@@ -151,7 +151,8 @@ return class {
         tessEval = shaders:getCompiled(GfxShaderType.TessEval);
         fragment = shaders:getCompiled(GfxShaderType.Fragment);
         
-        gfxApi:begin(shaders, mesh);
+        gfxApi:begin(shaders);
+        gfxApi:setMesh(mesh);
         
         proj = camera:getProjectionMatrix();
         view = camera:getViewMatrix();

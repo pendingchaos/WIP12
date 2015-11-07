@@ -89,7 +89,8 @@ void GfxDebugDrawer::render(const Camera& camera)
 
     mesh->numVertices = lines.getCount() * 2;
 
-    gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment, mesh);
+    gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment);
+    gfxApi->setMesh(mesh);
 
     gfxApi->uniform(compiledVertex, "projectionMatrix", camera.getProjectionMatrix());
     gfxApi->uniform(compiledVertex, "viewMatrix", camera.getViewMatrix());

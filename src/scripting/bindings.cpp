@@ -6533,6 +6533,7 @@ SV GfxApi_clearColor(CTX ctx,const List<SV>&a);
 SV GfxApi_begin(CTX ctx,const List<SV>&a);
 SV GfxApi_draw(CTX ctx,const List<SV>&a);
 SV GfxApi_end(CTX ctx,const List<SV>&a);
+SV GfxApi_setMesh(CTX ctx,const List<SV>&a);
 SV GfxApi_getVertexShader(CTX ctx,const List<SV>&a);
 SV GfxApi_getTessControlShader(CTX ctx,const List<SV>&a);
 SV GfxApi_getTessEvalShader(CTX ctx,const List<SV>&a);
@@ -46577,6 +46578,8 @@ RET CNF(GfxApi_begin);
 RET CNF(GfxApi_draw);
  EI(keyStr.equals("end", CPL_STR_HASH("end")))
 RET CNF(GfxApi_end);
+ EI(keyStr.equals("setMesh", CPL_STR_HASH("setMesh")))
+RET CNF(GfxApi_setMesh);
  EI(keyStr.equals("getVertexShader", CPL_STR_HASH("getVertexShader")))
 RET CNF(GfxApi_getVertexShader);
  EI(keyStr.equals("getTessControlShader", CPL_STR_HASH("getTessControlShader")))
@@ -46859,6 +46862,23 @@ if(1)
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::pushState.")));
+RET CN;
+}
+
+SV GfxApi_getTessPatchSize(CTX ctx,const List<SV>&a)
+{
+if(a.getCount()<1)
+CATE(VE,"GfxApi::getTessPatchSize" EAOE));
+GfxApi*f;
+f=(GfxApi*)((NO)a[0].p)->data;
+
+if(a.getCount()==1)
+if(1)
+{
+RET CV( f->getTessPatchSize());
+;
+}
+CATE(TE,UFOF("GfxApi::getTessPatchSize.")));
 RET CN;
 }
 
@@ -47150,20 +47170,20 @@ CATE(TE,UFOF("GfxApi::uniform.")));
 RET CN;
 }
 
-SV GfxApi_getTessPatchSize(CTX ctx,const List<SV>&a)
+SV GfxApi_setMesh(CTX ctx,const List<SV>&a)
 {
 if(a.getCount()<1)
-CATE(VE,"GfxApi::getTessPatchSize" EAOE));
+CATE(VE,"GfxApi::setMesh" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==1)
-if(1)
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxMesh *))
 {
-RET CV( f->getTessPatchSize());
-;
+( f->setMesh(val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[1])));
+RET CN;
 }
-CATE(TE,UFOF("GfxApi::getTessPatchSize.")));
+CATE(TE,UFOF("GfxApi::setMesh.")));
 RET CN;
 }
 
@@ -47311,28 +47331,28 @@ CATE(VE,"GfxApi::begin" EAOE));
 GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
-if(a.getCount()==7)
-if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *)&&TS(a[4],GfxCompiledShader *)&&TS(a[5],GfxCompiledShader *)&&TS(a[6],GfxMesh *))
+if(a.getCount()==6)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *)&&TS(a[4],GfxCompiledShader *)&&TS(a[5],GfxCompiledShader *))
 {
-( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[5]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[6])));
+( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[4]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[5])));
 RET CN;
 }
-if(a.getCount()==3)
-if(1&&TS(a[1],GfxShaderCombination *)&&TS(a[2],GfxMesh *))
+if(a.getCount()==2)
+if(1&&TS(a[1],GfxShaderCombination *))
 {
-( f->begin(val_to_c<std::remove_reference<GfxShaderCombination *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[2])));
-RET CN;
-}
-if(a.getCount()==5)
-if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *)&&TS(a[4],GfxMesh *))
-{
-( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[4])));
+( f->begin(val_to_c<std::remove_reference<GfxShaderCombination *>::type>::f(ctx,a[1])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxMesh *))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *)&&TS(a[3],GfxCompiledShader *))
 {
-( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxMesh *>::type>::f(ctx,a[3])));
+( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[3])));
+RET CN;
+}
+if(a.getCount()==3)
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],GfxCompiledShader *))
+{
+( f->begin(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[2])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::begin.")));

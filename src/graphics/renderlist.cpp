@@ -139,8 +139,8 @@ void RenderList::execute(Light *light, size_t pass)
                       nullptr,
                       nullptr,
                       geometry,
-                      fragment,
-                      batch.mesh);
+                      fragment);
+        gfxApi->setMesh(batch.mesh);
 
         switch (light->type)
         {

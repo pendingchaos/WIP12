@@ -40,10 +40,11 @@ class GfxGLApi : public GfxApi
                            GfxCompiledShader *tessControl,
                            GfxCompiledShader *tessEval,
                            GfxCompiledShader *geometry,
-                           GfxCompiledShader *fragment,
-                           GfxMesh *mesh);
+                           GfxCompiledShader *fragment);
         virtual void draw(size_t instanceCount=1);
         virtual void end();
+
+        virtual void setMesh(GfxMesh *mesh);
 
         virtual GfxCompiledShader *getVertexShader();
         virtual GfxCompiledShader *getTessControlShader();
@@ -184,28 +185,10 @@ class GfxGLApi : public GfxApi
         State stateStack[64];
         uint8_t stateStackSize;
 
-        struct TextureBinding
-        {
-            GfxTexture *texture;
-            GLuint target;
-            GLint location;
-            GLuint program;
-            GLenum bindingGet;
-            GLuint sampler;
-        };
-
-        struct UBOBinding
-        {
-            const GfxBuffer *buffer;
-            GLint location;
-            GLuint program;
-        };
-
         uint8_t textureBindingCount;
-        TextureBinding textureBindings[64];
+        GLuint textureBindings[128];
 
         uint8_t uboBindingCount;
-        UBOBinding uboBindings[64];
 
         GfxMesh *mesh;
         bool tesselation;

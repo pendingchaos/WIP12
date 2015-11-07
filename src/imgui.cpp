@@ -494,7 +494,8 @@ void ImGui::render()
                                     GfxOneMinusSrcAlpha);
             gfxApi->setDepthFunction(GfxAlways);
 
-            gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment, mesh);
+            gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment);
+            gfxApi->setMesh(mesh);
 
             float w = gfxApi->getViewportWidth();
             float h = gfxApi->getViewportHeight();
