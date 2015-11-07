@@ -66,57 +66,57 @@ class GfxApi
         virtual GfxCompiledShader *getGeometryShader()=0;
         virtual GfxCompiledShader *getFragmentShader()=0;
 
-        virtual void uniform(GfxShaderType shader, const char *name, float value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Float2& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Float3& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Float4& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, float value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Float3& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Float4& value)=0;
 
-        virtual void uniform(GfxShaderType shader, const char *name, int32_t value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Int2& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Int3& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Int4& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, int32_t value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Int2& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Int3& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Int4& value)=0;
 
-        virtual void uniform(GfxShaderType shader, const char *name, uint32_t value)=0 NO_BIND;
-        virtual void uniform(GfxShaderType shader, const char *name, const UInt2& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const UInt3& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const UInt4& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, uint32_t value)=0 NO_BIND;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt2& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt3& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt4& value)=0;
 
-        void uniformU(GfxShaderType shader, const char *name, uint32_t value)
+        void uniformU(GfxCompiledShader *shader, const char *name, uint32_t value)
         {
             uniform(shader, name, value);
         }
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const float *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Float2 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Float3 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Float4 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float4 *values) NO_BIND=0;
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const int32_t *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Int2 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Int3 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Int4 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const int32_t *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int2 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int4 *values) NO_BIND=0;
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const uint32_t *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const UInt2 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const UInt3 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const UInt4 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const uint32_t *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt2 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values) NO_BIND=0;
 
-        virtual void addUBOBinding(GfxShaderType shader, const char *name, const GfxBuffer *buffer)=0;
-        virtual void addTextureBinding(GfxShaderType shader,
+        virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer)=0;
+        virtual void addTextureBinding(GfxCompiledShader *shader,
                                        const char *name,
                                        GfxTexture *texture,
                                        TextureSampler sampler)=0;
 
-        void addTextureBinding(GfxShaderType shader, const char *name, GfxTexture *texture)
+        void addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture)
         {
             addTextureBinding(shader, name, texture, texture->sampler);
         }
 
-        virtual void uniform(GfxShaderType shader, const char *name, const Matrix3x3& value)=0;
-        virtual void uniform(GfxShaderType shader, const char *name, const Matrix4x4& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)=0;
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Matrix3x3 *values) NO_BIND=0;
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Matrix4x4 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *values) NO_BIND=0;
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *values) NO_BIND=0;
 
         virtual void pushState()=0;
         virtual void popState()=0;

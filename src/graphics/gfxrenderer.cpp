@@ -810,13 +810,13 @@ class PostEffect
         template <typename T>
         PostEffect& uniform(const char *name, const T& v)
         {
-            gfxApi->uniform(GfxShaderType::Fragment, name, v);
+            gfxApi->uniform(shaders->getCompiled(GfxShaderType::Fragment), name, v);
             return *this;
         }
 
         PostEffect& texture(const char *name, GfxTexture *tex)
         {
-            gfxApi->addTextureBinding(GfxShaderType::Fragment, name, tex, tex->sampler);
+            gfxApi->addTextureBinding(shaders->getCompiled(GfxShaderType::Fragment), name, tex, tex->sampler);
             return *this;
         }
     private:
@@ -976,7 +976,7 @@ void GfxRenderer::render()
 
             float influence = light->getPointLightInfluence(0.003921f);
 
-            //TODO: Enable when Frustum is fixed.
+            //Enable when Frustum is fixed.
             //if (not camera.getFrustum().sphereIntersection(light->point.position, influence))
             //{
             //    gfxApi->popState();
@@ -1022,29 +1022,32 @@ void GfxRenderer::render()
         gfxApi->begin(shaders);
         gfxApi->setMesh(quadMesh);
 
-        gfxApi->addTextureBinding(GfxShaderType::Fragment, "albedoTexture", readColorTexture);
-        gfxApi->addTextureBinding(GfxShaderType::Fragment, "materialTexture", materialTexture);
-        gfxApi->addTextureBinding(GfxShaderType::Fragment, "normalTexture", normalTexture);
-        gfxApi->addTextureBinding(GfxShaderType::Fragment, "geomNormalTexture", geomNormalTexture);
-        gfxApi->addTextureBinding(GfxShaderType::Fragment, "aoTexture", ssaoTexture);
-        gfxApi->uniform(GfxShaderType::Fragment, "viewProjection", camera.getProjectionMatrix() * camera.getViewMatrix());
-        gfxApi->uniform(GfxShaderType::Fragment, "lightColor", light->color * light->power);
-        gfxApi->uniform(GfxShaderType::Fragment, "lightAmbientStrength", light->ambientStrength);
-        gfxApi->uniform(GfxShaderType::Fragment, "cameraPosition", camera.getPosition());
+        GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);
+
+        gfxApi->addTextureBinding(fragment, "albedoTexture", readColorTexture);
+        gfxApi->addTextureBinding(fragment, "materialTexture", materialTexture);
+        gfxApi->addTextureBinding(fragment, "normalTexture", normalTexture);
+        gfxApi->addTextureBinding(fragment, "geomNormalTexture", geomNormalTexture);
+        gfxApi->addTextureBinding(fragment, "depthTexture", depthTexture);
+        gfxApi->addTextureBinding(fragment, "aoTexture", ssaoTexture);
+        gfxApi->uniform(fragment, "viewProjection", camera.getProjectionMatrix() * camera.getViewMatrix());
+        gfxApi->uniform(fragment, "lightColor", light->color * light->power);
+        gfxApi->uniform(fragment, "lightAmbientStrength", light->ambientStrength);
+        gfxApi->uniform(fragment, "cameraPosition", camera.getPosition());
 
         if (light->getShadowmap() != nullptr)
         {
-            gfxApi->uniform(GfxShaderType::Fragment, "shadowMinBias", light->shadowMinBias);
-            gfxApi->uniform(GfxShaderType::Fragment, "shadowBiasScale", light->shadowBiasScale);
-            gfxApi->uniform(GfxShaderType::Fragment, "shadowFixedBias", light->shadowFixedBias);
+            gfxApi->uniform(fragment, "shadowMinBias", light->shadowMinBias);
+            gfxApi->uniform(fragment, "shadowBiasScale", light->shadowBiasScale);
+            gfxApi->uniform(fragment, "shadowFixedBias", light->shadowFixedBias);
 
             if (light->type == GfxLightType::Directional)
             {
                 GfxTexture *shadowmap = light->getShadowmap();
 
-                gfxApi->uniform(GfxShaderType::Fragment, "shadowRadius", light->shadowRadius);
-                gfxApi->addTextureBinding(GfxShaderType::Fragment, "depthmap", shadowmap);
-                gfxApi->addTextureBinding(GfxShaderType::Fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
+                gfxApi->uniform(fragment, "shadowRadius", light->shadowRadius);
+                gfxApi->addTextureBinding(fragment, "depthmap", shadowmap);
+                gfxApi->addTextureBinding(fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
 
                 Matrix4x4 view[4];
                 view[0] = light->getCascadeViewMatrix(0);
@@ -1058,15 +1061,22 @@ void GfxRenderer::render()
                 proj[2] = light->getCascadeProjectionMatrix(2);
                 proj[3] = light->getCascadeProjectionMatrix(3);
 
-                gfxApi->uniform(GfxShaderType::Fragment, "shadowmapViewMatrices", 4, view);
-                gfxApi->uniform(GfxShaderType::Fragment, "shadowmapProjectionMatrices", 4, proj);
+                //TODO: Why doesn't gfxApi->uniform(fragment, "<name>", 4, <stuff>) work?
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[0]", view[0]);
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[1]", view[1]);
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[2]", view[2]);
+                gfxApi->uniform(fragment, "shadowmapViewMatrices[3]", view[3]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[0]", proj[0]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[1]", proj[1]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[2]", proj[2]);
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrices[3]", proj[3]);
             } else
             {
                 GfxTexture *shadowmap = light->getShadowmap();
 
-                gfxApi->addTextureBinding(GfxShaderType::Fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
-                gfxApi->uniform(GfxShaderType::Fragment, "shadowmapViewMatrix", light->getViewMatrix());
-                gfxApi->uniform(GfxShaderType::Fragment, "shadowmapProjectionMatrix", light->getProjectionMatrix());
+                gfxApi->addTextureBinding(fragment, "shadowmap", shadowmap, TextureSampler::createShadowmap());
+                gfxApi->uniform(fragment, "shadowmapViewMatrix", light->getViewMatrix());
+                gfxApi->uniform(fragment, "shadowmapProjectionMatrix", light->getProjectionMatrix());
             }
         }
 
@@ -1074,27 +1084,27 @@ void GfxRenderer::render()
         {
         case GfxLightType::Directional:
         {
-            gfxApi->uniform(GfxShaderType::Fragment, "lightNegDir", -light->direction.direction.normalize());
-            gfxApi->uniform(GfxShaderType::Fragment, "time", float(platform->getTime()) / float(platform->getTimerFrequency()));
+            gfxApi->uniform(fragment, "lightNegDir", -light->direction.direction.normalize());
+            gfxApi->uniform(fragment, "time", float(platform->getTime()) / float(platform->getTimerFrequency()));
             break;
         }
         case GfxLightType::Spot:
         {
-            gfxApi->uniform(GfxShaderType::Fragment, "lightNegDir", -light->spot.direction.normalize());
-            gfxApi->uniform(GfxShaderType::Fragment, "lightPos", light->spot.position);
-            gfxApi->uniform(GfxShaderType::Fragment, "lightCosInnerCutoff", (float)std::cos(RADIANS(light->spot.innerCutoff)));
-            gfxApi->uniform(GfxShaderType::Fragment, "lightCosOuterCutoff", (float)std::cos(RADIANS(light->spot.outerCutoff)));
-            gfxApi->uniform(GfxShaderType::Fragment, "lightRadius", light->spot.radius);
+            gfxApi->uniform(fragment, "lightNegDir", -light->spot.direction.normalize());
+            gfxApi->uniform(fragment, "lightPos", light->spot.position);
+            gfxApi->uniform(fragment, "lightCosInnerCutoff", (float)std::cos(RADIANS(light->spot.innerCutoff)));
+            gfxApi->uniform(fragment, "lightCosOuterCutoff", (float)std::cos(RADIANS(light->spot.outerCutoff)));
+            gfxApi->uniform(fragment, "lightRadius", light->spot.radius);
             break;
         }
         case GfxLightType::Point:
         {
-            gfxApi->uniform(GfxShaderType::Fragment, "lightPos", light->point.position);
-            gfxApi->uniform(GfxShaderType::Fragment, "lightRadius", light->point.radius);
+            gfxApi->uniform(fragment, "lightPos", light->point.position);
+            gfxApi->uniform(fragment, "lightRadius", light->point.radius);
 
             if (light->getShadowmap() != nullptr)
             {
-                gfxApi->uniform(GfxShaderType::Fragment, "lightFar", light->getPointLightInfluence());
+                gfxApi->uniform(fragment, "lightFar", light->getPointLightInfluence());
             }
             break;
         }
@@ -1275,9 +1285,9 @@ void GfxRenderer::render()
                 gfxApi->begin(overlayShaders);
                 gfxApi->setMesh(quadMesh);
 
-                gfxApi->uniform(GfxShaderType::Vertex, "transform", transform);
-                gfxApi->uniform(GfxShaderType::Fragment, "color", comp->overlayData.color);
-                gfxApi->addTextureBinding(GfxShaderType::Fragment, "colorTexture", comp->overlayTexture);
+                gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Vertex), "transform", transform);
+                gfxApi->uniform(overlayShaders->getCompiled(GfxShaderType::Fragment), "color", comp->overlayData.color);
+                gfxApi->addTextureBinding(overlayShaders->getCompiled(GfxShaderType::Fragment), "colorTexture", comp->overlayTexture);
 
                 gfxApi->draw();
                 gfxApi->end();
@@ -1528,15 +1538,18 @@ void GfxRenderer::renderSkybox()
     {
         gfxApi->pushState();
 
+        GfxCompiledShader *compiledVS = skyboxShaders->getCompiled(GfxShaderType::Vertex);
+        GfxCompiledShader *compiledFS = skyboxShaders->getCompiled(GfxShaderType::Fragment);
+
         gfxApi->begin(skyboxShaders);
         gfxApi->setMesh(skyboxMesh);
 
         gfxApi->setDepthFunction(GfxLessEqual);
 
-        gfxApi->uniform(GfxShaderType::Vertex, "projectionMatrix", camera.getProjectionMatrix());
-        gfxApi->uniform(GfxShaderType::Vertex, "viewMatrix", Matrix4x4(Matrix3x3(camera.getViewMatrix())));
+        gfxApi->uniform(compiledVS, "projectionMatrix", camera.getProjectionMatrix());
+        gfxApi->uniform(compiledVS, "viewMatrix", Matrix4x4(Matrix3x3(camera.getViewMatrix())));
 
-        gfxApi->addTextureBinding(GfxShaderType::Fragment, "enviroment", skybox);
+        gfxApi->addTextureBinding(compiledFS, "enviroment", skybox);
 
         gfxApi->draw();
         gfxApi->end();
@@ -1633,17 +1646,17 @@ void GfxRenderer::renderTerrainToShadowmap(const Matrix4x4& projectionMatrix,
                   compiledShadowmapFragment);
     gfxApi->setMesh(terrain->getMesh());
 
-    gfxApi->uniform(GfxShaderType::Vertex, "sizeInChunks", (uint32_t)terrain->getSizeInChunks());
-    gfxApi->uniform(GfxShaderType::Vertex, "chunkSize", terrain->getChunkSize());
-    gfxApi->uniform(GfxShaderType::TessControl, "cameraPosition", camera.getPosition());
-    gfxApi->uniform(GfxShaderType::TessEval, "viewMatrix", viewMatrix);
-    gfxApi->uniform(GfxShaderType::TessEval, "projectionMatrix", projectionMatrix);
-    gfxApi->uniform(GfxShaderType::TessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
-    gfxApi->uniform(GfxShaderType::TessEval, "scale", terrain->getScale());
-    gfxApi->addTextureBinding(GfxShaderType::TessEval,
+    gfxApi->uniform(compiledTerrainVertex, "sizeInChunks", (uint32_t)terrain->getSizeInChunks());
+    gfxApi->uniform(compiledTerrainVertex, "chunkSize", terrain->getChunkSize());
+    gfxApi->uniform(compiledTerrainTessControl, "cameraPosition", camera.getPosition());
+    gfxApi->uniform(compiledTerrainTessEval, "viewMatrix", viewMatrix);
+    gfxApi->uniform(compiledTerrainTessEval, "projectionMatrix", projectionMatrix);
+    gfxApi->uniform(compiledTerrainTessEval, "size", terrain->getChunkSize() * terrain->getSizeInChunks());
+    gfxApi->uniform(compiledTerrainTessEval, "scale", terrain->getScale());
+    gfxApi->addTextureBinding(compiledTerrainTessEval,
                               "heightMap",
                               terrain->getHeightmap());
-    gfxApi->uniform(GfxShaderType::Fragment, "biasScale", autoBiasScale);
+    gfxApi->uniform(compiledShadowmapFragment, "biasScale", autoBiasScale);
 
     gfxApi->setTessPatchSize(4);
 

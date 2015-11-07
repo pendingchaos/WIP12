@@ -92,8 +92,8 @@ void GfxDebugDrawer::render(const Camera& camera)
     gfxApi->begin(compiledVertex, nullptr, nullptr, nullptr, compiledFragment);
     gfxApi->setMesh(mesh);
 
-    gfxApi->uniform(GfxShaderType::Vertex, "projectionMatrix", camera.getProjectionMatrix());
-    gfxApi->uniform(GfxShaderType::Vertex, "viewMatrix", camera.getViewMatrix());
+    gfxApi->uniform(compiledVertex, "projectionMatrix", camera.getProjectionMatrix());
+    gfxApi->uniform(compiledVertex, "viewMatrix", camera.getViewMatrix());
 
     gfxApi->draw();
     gfxApi->end();

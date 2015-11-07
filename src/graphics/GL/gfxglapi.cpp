@@ -16,8 +16,11 @@
 #include <cstring>
 #include <iostream>
 
-#define UNIFORM_START GLuint program = shaders[(int)shader]->getGLProgram();\
-GLint location = glGetUniformLocation(program, name);
+#define UNIFORM_START GLint location = glGetUniformLocation(shader->getGLProgram(), name);\
+if (location == -1)\
+{\
+    return;\
+}
 
 static const GLenum toGLPrimitive[] = {GL_POINTS,
                                        GL_LINE_STRIP,
@@ -145,8 +148,7 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
                        tessControl(nullptr),
                        tessEval(nullptr),
                        geometry(nullptr),
-                       fragment(nullptr),
-                       compute(nullptr)
+                       fragment(nullptr)
 {
     glflInit();
 
@@ -406,8 +408,10 @@ void GfxGLApi::end()
 {
     for (size_t i = 0; i < textureBindingCount; ++i)
     {
+        GLuint binding = textureBindings[i];
+
         glActiveTexture(GL_TEXTURE0+i);
-        glBindTexture(textureBindings[i], 0);
+        glBindTexture(binding, 0);
 
         glBindSampler(i, 0);
     }
@@ -480,157 +484,155 @@ GfxCompiledShader *GfxGLApi::getFragmentShader()
     return fragment;
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, float value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, float value)
 {
     UNIFORM_START
-    glProgramUniform1f(program, location, value);
+    glProgramUniform1f(shader->getGLProgram(), location, value);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Float2& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Float2& value)
 {
     UNIFORM_START
-    glProgramUniform2f(program, location, value.x, value.y);
+    glProgramUniform2f(shader->getGLProgram(), location, value.x, value.y);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Float3& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Float3& value)
 {
     UNIFORM_START
-    glProgramUniform3f(program, location, value.x, value.y, value.z);
+    glProgramUniform3f(shader->getGLProgram(), location, value.x, value.y, value.z);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Float4& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Float4& value)
 {
     UNIFORM_START
-    glProgramUniform4f(program, location, value.x, value.y, value.z, value.w);
+    glProgramUniform4f(shader->getGLProgram(), location, value.x, value.y, value.z, value.w);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, int32_t value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, int32_t value)
 {
     UNIFORM_START
-    glProgramUniform1i(program, location, value);
+    glProgramUniform1i(shader->getGLProgram(), location, value);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Int2& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Int2& value)
 {
     UNIFORM_START
-    glProgramUniform2i(program, location, value.x, value.y);
+    glProgramUniform2i(shader->getGLProgram(), location, value.x, value.y);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Int3& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Int3& value)
 {
     UNIFORM_START
-    glProgramUniform3i(program, location, value.x, value.y, value.z);
+    glProgramUniform3i(shader->getGLProgram(), location, value.x, value.y, value.z);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Int4& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Int4& value)
 {
     UNIFORM_START
-    glProgramUniform4i(program, location, value.x, value.y, value.z, value.w);
+    glProgramUniform4i(shader->getGLProgram(), location, value.x, value.y, value.z, value.w);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, uint32_t value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, uint32_t value)
 {
     UNIFORM_START
-    glProgramUniform1ui(program, location, value);
+    glProgramUniform1ui(shader->getGLProgram(), location, value);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const UInt2& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const UInt2& value)
 {
     UNIFORM_START
-    glProgramUniform2ui(program, location, value.x, value.y);
+    glProgramUniform2ui(shader->getGLProgram(), location, value.x, value.y);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const UInt3& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const UInt3& value)
 {
     UNIFORM_START
-    glProgramUniform3ui(program, location, value.y, value.y, value.z);
+    glProgramUniform3ui(shader->getGLProgram(), location, value.y, value.y, value.z);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const UInt4& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const UInt4& value)
 {
     UNIFORM_START
-    glProgramUniform4ui(program, location, value.x, value.y, value.z, value.w);
+    glProgramUniform4ui(shader->getGLProgram(), location, value.x, value.y, value.z, value.w);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const float *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values)
 {
     UNIFORM_START
-    glProgramUniform1fv(program, location, count, (const GLfloat *)values);
+    glProgramUniform1fv(shader->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Float2 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values)
 {
     UNIFORM_START
-    glProgramUniform2fv(program, location, count, (const GLfloat *)values);
+    glProgramUniform2fv(shader->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Float3 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float3 *values)
 {
     UNIFORM_START
-    glProgramUniform3fv(program, location, count, (const GLfloat *)values);
+    glProgramUniform3fv(shader->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Float4 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float4 *values)
 {
     UNIFORM_START
-    glProgramUniform4fv(program, location, count, (const GLfloat *)values);
+    glProgramUniform4fv(shader->getGLProgram(), location, count, (const GLfloat *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const int32_t *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const int32_t *values)
 {
     UNIFORM_START
-    glProgramUniform1iv(program, location, count, (const GLint *)values);
+    glProgramUniform1iv(shader->getGLProgram(), location, count, (const GLint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Int2 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int2 *values)
 {
     UNIFORM_START
-    glProgramUniform2iv(program, location, count, (const GLint *)values);
+    glProgramUniform2iv(shader->getGLProgram(), location, count, (const GLint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Int3 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int3 *values)
 {
     UNIFORM_START
-    glProgramUniform3iv(program, location, count, (const GLint *)values);
+    glProgramUniform3iv(shader->getGLProgram(), location, count, (const GLint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Int4 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int4 *values)
 {
     UNIFORM_START
-    glProgramUniform4iv(program, location, count, (const GLint *)values);
+    glProgramUniform4iv(shader->getGLProgram(), location, count, (const GLint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const uint32_t *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const uint32_t *values)
 {
     UNIFORM_START
-    glProgramUniform1uiv(program, location, count, (const GLuint *)values);
+    glProgramUniform1uiv(shader->getGLProgram(), location, count, (const GLuint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const UInt2 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt2 *values)
 {
     UNIFORM_START
-    glProgramUniform2uiv(program, location, count, (const GLuint *)values);
+    glProgramUniform2uiv(shader->getGLProgram(), location, count, (const GLuint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const UInt3 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt3 *values)
 {
     UNIFORM_START
-    glProgramUniform3uiv(program, location, count, (const GLuint *)values);
+    glProgramUniform3uiv(shader->getGLProgram(), location, count, (const GLuint *)values);
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const UInt4 *values)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values)
 {
     UNIFORM_START
-    glProgramUniform4uiv(program, location, count, (const GLuint *)values);
+    glProgramUniform4uiv(shader->getGLProgram(), location, count, (const GLuint *)values);
 }
 
-void GfxGLApi::addUBOBinding(GfxShaderType shader, const char *name, const GfxBuffer *buffer)
+void GfxGLApi::addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer)
 {
-    GLuint program = shaders[(int)shader]->getGLProgram();
-
     GLint location;
 
-    location = glGetUniformBlockIndex(program, name);
+    location = glGetUniformBlockIndex(shader->getGLProgram(), name);
 
     if (location == -1)
     {
@@ -638,12 +640,12 @@ void GfxGLApi::addUBOBinding(GfxShaderType shader, const char *name, const GfxBu
     }
 
     glBindBufferBase(GL_UNIFORM_BUFFER, uboBindingCount, ((const GfxGLBuffer *)buffer)->getGLBuffer());
-    glUniformBlockBinding(program, location, uboBindingCount);
+    glUniformBlockBinding(shader->getGLProgram(), location, uboBindingCount);
 
     ++uboBindingCount;
 }
 
-void GfxGLApi::addTextureBinding(GfxShaderType shader, const char *name, GfxTexture *texture, TextureSampler sampler)
+void GfxGLApi::addTextureBinding(GfxCompiledShader *shader, const char *name, GfxTexture *texture, TextureSampler sampler)
 {
     UNIFORM_START
 
@@ -655,35 +657,35 @@ void GfxGLApi::addTextureBinding(GfxShaderType shader, const char *name, GfxText
         glActiveTexture(GL_TEXTURE0+textureBindingCount);
         glBindTexture(target, id);
 
-        glProgramUniform1i(program, location, textureBindingCount);
+        glProgramUniform1i(shader->getGLProgram(), location, textureBindingCount);
         glBindSampler(textureBindingCount, getSampler(sampler));
 
         textureBindings[textureBindingCount++] = target;
     }
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Matrix3x3& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value)
 {
     UNIFORM_START
-    glProgramUniformMatrix3fv(program, location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
+    glProgramUniformMatrix3fv(shader->getGLProgram(), location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, const Matrix4x4& value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value)
 {
     UNIFORM_START
-    glProgramUniformMatrix4fv(program, location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
+    glProgramUniformMatrix4fv(shader->getGLProgram(), location, 1, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Matrix3x3 *value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *value)
 {
     UNIFORM_START
-    glProgramUniformMatrix3fv(program, location, count, GL_TRUE, reinterpret_cast<const float *>(value));
+    glProgramUniformMatrix3fv(shader->getGLProgram(), location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
-void GfxGLApi::uniform(GfxShaderType shader, const char *name, size_t count, const Matrix4x4 *value)
+void GfxGLApi::uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *value)
 {
     UNIFORM_START
-    glProgramUniformMatrix4fv(program, location, count, GL_TRUE, reinterpret_cast<const float *>(value));
+    glProgramUniformMatrix4fv(shader->getGLProgram(), location, count, GL_TRUE, reinterpret_cast<const float *>(&value));
 }
 
 void GfxGLApi::pushState()

@@ -504,19 +504,19 @@ void ImGui::render()
             float ftop = rect.top / h * 2.0f - 1.0f;
             float fbottom = rect.bottom / h * 2.0f - 1.0f;
 
-            gfxApi->uniform(GfxShaderType::Vertex, "offset", Float2(fleft, fbottom));
-            gfxApi->uniform(GfxShaderType::Vertex, "size", Float2(fright-fleft, ftop-fbottom));
-            gfxApi->uniform(GfxShaderType::Vertex, "gradientStart", rect.gradientStart);
-            gfxApi->uniform(GfxShaderType::Vertex, "gradientSize", rect.gradientSize);
-            gfxApi->uniform(GfxShaderType::Vertex, "gradientPower", rect.gradientPower);
-            gfxApi->uniform(GfxShaderType::Vertex, "color", Float3(rect.colorR, rect.colorG, rect.colorB));
-            gfxApi->uniform(GfxShaderType::Fragment, "topRight", Float2(rect.right, rect.top));
-            gfxApi->uniform(GfxShaderType::Fragment, "bottomLeft", Float2(rect.left, rect.bottom));
-            gfxApi->uniform(GfxShaderType::Fragment, "brightness", rect.brightness);
-            gfxApi->uniform(GfxShaderType::Fragment, "topLeftCornerRoundness", rect.topLeftCornerRoundness);
-            gfxApi->uniform(GfxShaderType::Fragment, "topRightCornerRoundness", rect.topRightCornerRoundness);
-            gfxApi->uniform(GfxShaderType::Fragment, "bottomLeftCornerRoundness", rect.bottomLeftCornerRoundness);
-            gfxApi->uniform(GfxShaderType::Fragment, "bottomRightCornerRoundness", rect.bottomRightCornerRoundness);
+            gfxApi->uniform(compiledVertex, "offset", Float2(fleft, fbottom));
+            gfxApi->uniform(compiledVertex, "size", Float2(fright-fleft, ftop-fbottom));
+            gfxApi->uniform(compiledVertex, "gradientStart", rect.gradientStart);
+            gfxApi->uniform(compiledVertex, "gradientSize", rect.gradientSize);
+            gfxApi->uniform(compiledVertex, "gradientPower", rect.gradientPower);
+            gfxApi->uniform(compiledVertex, "color", Float3(rect.colorR, rect.colorG, rect.colorB));
+            gfxApi->uniform(compiledFragment, "topRight", Float2(rect.right, rect.top));
+            gfxApi->uniform(compiledFragment, "bottomLeft", Float2(rect.left, rect.bottom));
+            gfxApi->uniform(compiledFragment, "brightness", rect.brightness);
+            gfxApi->uniform(compiledFragment, "topLeftCornerRoundness", rect.topLeftCornerRoundness);
+            gfxApi->uniform(compiledFragment, "topRightCornerRoundness", rect.topRightCornerRoundness);
+            gfxApi->uniform(compiledFragment, "bottomLeftCornerRoundness", rect.bottomLeftCornerRoundness);
+            gfxApi->uniform(compiledFragment, "bottomRightCornerRoundness", rect.bottomRightCornerRoundness);
 
             gfxApi->draw();
             gfxApi->end();

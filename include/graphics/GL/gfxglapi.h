@@ -52,47 +52,47 @@ class GfxGLApi : public GfxApi
         virtual GfxCompiledShader *getGeometryShader();
         virtual GfxCompiledShader *getFragmentShader();
 
-        virtual void uniform(GfxShaderType shader, const char *name, float value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Float2& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Float3& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Float4& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, float value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Float2& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Float3& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Float4& value);
 
-        virtual void uniform(GfxShaderType shader, const char *name, int32_t value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Int2& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Int3& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Int4& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, int32_t value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Int2& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Int3& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Int4& value);
 
-        virtual void uniform(GfxShaderType shader, const char *name, uint32_t value);
-        virtual void uniform(GfxShaderType shader, const char *name, const UInt2& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const UInt3& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const UInt4& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, uint32_t value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt2& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt3& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const UInt4& value);
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const float *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Float2 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Float3 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Float4 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const float *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float2 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float3 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Float4 *values);
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const int32_t *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Int2 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Int3 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Int4 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const int32_t *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int2 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int3 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Int4 *values);
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const uint32_t *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const UInt2 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const UInt3 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const UInt4 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const uint32_t *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt2 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt3 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const UInt4 *values);
 
-        virtual void addUBOBinding(GfxShaderType shader, const char *name, const GfxBuffer *buffer);
-        virtual void addTextureBinding(GfxShaderType shader,
+        virtual void addUBOBinding(GfxCompiledShader *shader, const char *name, const GfxBuffer *buffer);
+        virtual void addTextureBinding(GfxCompiledShader *shader,
                                        const char *name,
                                        GfxTexture *texture,
                                        TextureSampler sampler);
 
-        virtual void uniform(GfxShaderType shader, const char *name, const Matrix3x3& value);
-        virtual void uniform(GfxShaderType shader, const char *name, const Matrix4x4& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix3x3& value);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, const Matrix4x4& value);
 
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Matrix3x3 *values);
-        virtual void uniform(GfxShaderType shader, const char *name, size_t count, const Matrix4x4 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix3x3 *values);
+        virtual void uniform(GfxCompiledShader *shader, const char *name, size_t count, const Matrix4x4 *values);
 
         virtual void pushState();
         virtual void popState();
@@ -189,19 +189,11 @@ class GfxGLApi : public GfxApi
         GfxMesh *mesh;
         bool tesselation;
 
-        union
-        {
-            struct
-            {
-                GfxCompiledShader *vertex;
-                GfxCompiledShader *tessControl;
-                GfxCompiledShader *tessEval;
-                GfxCompiledShader *geometry;
-                GfxCompiledShader *fragment;
-                GfxCompiledShader *compute;
-            };
-            GfxCompiledShader *shaders[6];
-        };
+        GfxCompiledShader *vertex;
+        GfxCompiledShader *tessControl;
+        GfxCompiledShader *tessEval;
+        GfxCompiledShader *geometry;
+        GfxCompiledShader *fragment;
 
         GLuint samplers[4096];
         GLuint getSampler(const TextureSampler& params);

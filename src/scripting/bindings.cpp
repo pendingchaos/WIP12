@@ -46949,9 +46949,9 @@ GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],uint32_t))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],uint32_t))
 {
-( f->uniformU(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[3])));
+( f->uniformU(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::uniformU.")));
@@ -47063,87 +47063,87 @@ GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],float))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],float))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<float>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Float2 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Float2 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Float2 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Float2 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Float3 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Float3 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Float3 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Float4 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Float4 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Float4 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Float4 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],int32_t))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],int32_t))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int32_t>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<int32_t>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Int2 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Int2 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Int2 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Int2 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Int3 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Int3 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Int3 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Int3 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Int4 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Int4 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Int4 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Int4 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],uint32_t))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],uint32_t))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<uint32_t>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const UInt2 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt2 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt2 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt2 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const UInt3 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt3 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt3 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt3 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const UInt4 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const UInt4 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt4 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const UInt4 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Matrix3x3 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Matrix3x3 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Matrix3x3 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Matrix3x3 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const Matrix4x4 &))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const Matrix4x4 &))
 {
-( f->uniform(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[3])));
+( f->uniform(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const Matrix4x4 &>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::uniform.")));
@@ -47175,9 +47175,9 @@ GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],const GfxBuffer *))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],const GfxBuffer *))
 {
-( f->addUBOBinding(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const GfxBuffer *>::type>::f(ctx,a[3])));
+( f->addUBOBinding(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<const GfxBuffer *>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::addUBOBinding.")));
@@ -47688,15 +47688,15 @@ GfxApi*f;
 f=(GfxApi*)((NO)a[0].p)->data;
 
 if(a.getCount()==5)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *)&&TS(a[4],TextureSampler))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *)&&TS(a[4],TextureSampler))
 {
-( f->addTextureBinding(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<TextureSampler>::type>::f(ctx,a[4])));
+( f->addTextureBinding(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3]), val_to_c<std::remove_reference<TextureSampler>::type>::f(ctx,a[4])));
 RET CN;
 }
 if(a.getCount()==4)
-if(1&&TS(a[1],GfxShaderType)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *))
+if(1&&TS(a[1],GfxCompiledShader *)&&TS(a[2],const char *)&&TS(a[3],GfxTexture *))
 {
-( f->addTextureBinding(val_to_c<std::remove_reference<GfxShaderType>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3])));
+( f->addTextureBinding(val_to_c<std::remove_reference<GfxCompiledShader *>::type>::f(ctx,a[1]), val_to_c<std::remove_reference<const char *>::type>::f(ctx,a[2]), val_to_c<std::remove_reference<GfxTexture *>::type>::f(ctx,a[3])));
 RET CN;
 }
 CATE(TE,UFOF("GfxApi::addTextureBinding.")));
