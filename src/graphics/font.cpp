@@ -220,18 +220,15 @@ void Font::render(size_t size,
 
         Glyph& glyph = kv.second[0].glyph;
 
-        GfxCompiledShader *geometry = shaders->getCompiled(GfxShaderType::Geometry);
-        GfxCompiledShader *fragment = shaders->getCompiled(GfxShaderType::Fragment);
-
         gfxApi->setMesh(quadMesh);
         for (size_t j = 0; j < positions.getCount()/100; ++j)
         {
             gfxApi->begin(shaders);
 
-            gfxApi->uniform(geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
-            gfxApi->uniform(geometry, "glyphPositions", 100, positions.getData()+j*100);
-            gfxApi->uniform(fragment, "color", color);
-            gfxApi->addTextureBinding(fragment, "glyphTexture", glyph.texture);
+            gfxApi->uniform(GfxShaderType::Geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
+            gfxApi->uniform(GfxShaderType::Geometry, "glyphPositions", 100, positions.getData()+j*100);
+            gfxApi->uniform(GfxShaderType::Fragment, "color", color);
+            gfxApi->addTextureBinding(GfxShaderType::Fragment, "glyphTexture", glyph.texture);
 
             gfxApi->draw(100);
             gfxApi->end();
@@ -243,10 +240,10 @@ void Font::render(size_t size,
 
             gfxApi->begin(shaders);
 
-            gfxApi->uniform(geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
-            gfxApi->uniform(geometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);
-            gfxApi->uniform(fragment, "color", color);
-            gfxApi->addTextureBinding(fragment, "glyphTexture", glyph.texture);
+            gfxApi->uniform(GfxShaderType::Geometry, "glyphSize", Float2(glyph.size.x, glyph.size.y + 1.0f) * onePixel);
+            gfxApi->uniform(GfxShaderType::Geometry, "glyphPositions", positions.getCount() % 100, positions.getData()+offset);
+            gfxApi->uniform(GfxShaderType::Fragment, "color", color);
+            gfxApi->addTextureBinding(GfxShaderType::Fragment, "glyphTexture", glyph.texture);
 
             gfxApi->draw(positions.getCount() % 100);
             gfxApi->end();

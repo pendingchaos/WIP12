@@ -105,7 +105,7 @@ size_t RenderList::execute(const Camera& camera)
         material->setupRender(batch.animState, camera);
         gfxApi->setMesh(mesh);
 
-        gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
+        gfxApi->addTextureBinding(GfxShaderType::Vertex, "matrixTexture", matrixTexture);
 
         //TODO: This does not increment the draw call count.
         gfxApi->draw(batch.worldMatrices.getCount());
@@ -167,47 +167,47 @@ size_t RenderList::execute(Light *light, size_t pass)
 
             if (light->point.singlePassShadowMap)
             {
-                gfxApi->uniform(geometry, "matrix0", light->getProjectionMatrix() * matrices[0]);
-                gfxApi->uniform(geometry, "matrix1", light->getProjectionMatrix() * matrices[1]);
-                gfxApi->uniform(geometry, "matrix2", light->getProjectionMatrix() * matrices[2]);
-                gfxApi->uniform(geometry, "matrix3", light->getProjectionMatrix() * matrices[3]);
-                gfxApi->uniform(geometry, "matrix4", light->getProjectionMatrix() * matrices[4]);
-                gfxApi->uniform(geometry, "matrix5", light->getProjectionMatrix() * matrices[5]);
+                gfxApi->uniform(GfxShaderType::Geometry, "matrix0", light->getProjectionMatrix() * matrices[0]);
+                gfxApi->uniform(GfxShaderType::Geometry, "matrix1", light->getProjectionMatrix() * matrices[1]);
+                gfxApi->uniform(GfxShaderType::Geometry, "matrix2", light->getProjectionMatrix() * matrices[2]);
+                gfxApi->uniform(GfxShaderType::Geometry, "matrix3", light->getProjectionMatrix() * matrices[3]);
+                gfxApi->uniform(GfxShaderType::Geometry, "matrix4", light->getProjectionMatrix() * matrices[4]);
+                gfxApi->uniform(GfxShaderType::Geometry, "matrix5", light->getProjectionMatrix() * matrices[5]);
 
-                gfxApi->uniform(vertex, "projectionMatrix", Matrix4x4());
-                gfxApi->uniform(vertex, "viewMatrix", Matrix4x4());
+                gfxApi->uniform(GfxShaderType::Vertex, "projectionMatrix", Matrix4x4());
+                gfxApi->uniform(GfxShaderType::Vertex, "viewMatrix", Matrix4x4());
             } else
             {
-                gfxApi->uniform(vertex, "projectionMatrix", light->getProjectionMatrix());
-                gfxApi->uniform(vertex, "viewMatrix", matrices[pass]);
+                gfxApi->uniform(GfxShaderType::Vertex, "projectionMatrix", light->getProjectionMatrix());
+                gfxApi->uniform(GfxShaderType::Vertex, "viewMatrix", matrices[pass]);
             }
 
-            gfxApi->uniform(fragment, "lightPos", pos);
-            gfxApi->uniform(fragment, "lightFar", light->getPointLightInfluence());
+            gfxApi->uniform(GfxShaderType::Fragment, "lightPos", pos);
+            gfxApi->uniform(GfxShaderType::Fragment, "lightFar", light->getPointLightInfluence());
             break;
         }
         case GfxLightType::Directional:
         {
-            gfxApi->uniform(vertex, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
-            gfxApi->uniform(vertex, "viewMatrix", light->getCascadeViewMatrix(pass));
+            gfxApi->uniform(GfxShaderType::Vertex, "projectionMatrix", light->getCascadeProjectionMatrix(pass));
+            gfxApi->uniform(GfxShaderType::Vertex, "viewMatrix", light->getCascadeViewMatrix(pass));
             break;
         }
         case GfxLightType::Spot:
         {
-            gfxApi->uniform(vertex, "projectionMatrix", light->getProjectionMatrix());
-            gfxApi->uniform(vertex, "viewMatrix", light->getViewMatrix());
+            gfxApi->uniform(GfxShaderType::Vertex, "projectionMatrix", light->getProjectionMatrix());
+            gfxApi->uniform(GfxShaderType::Vertex, "viewMatrix", light->getViewMatrix());
             break;
         }
         }
 
-        gfxApi->uniform(fragment, "biasScale", light->shadowAutoBiasScale);
+        gfxApi->uniform(GfxShaderType::Fragment, "biasScale", light->shadowAutoBiasScale);
 
         if (batch.animState != nullptr)
         {
-            gfxApi->addUBOBinding(fragment, "bonePositionData", batch.animState->getMatrixBuffer());
+            gfxApi->addUBOBinding(GfxShaderType::Vertex, "bonePositionData", batch.animState->getMatrixBuffer());
         }
 
-        gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);
+        gfxApi->addTextureBinding(GfxShaderType::Vertex, "matrixTexture", matrixTexture);
 
         gfxApi->draw(batch.worldMatrices.getCount());
         ++drawCount;

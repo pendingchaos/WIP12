@@ -145,67 +145,62 @@ return class {
         if animated {shaders = self.shadersAnim;}
         else {shaders = self.shaders;};
         
-        vertex = shaders:getCompiled(GfxShaderType.Vertex);
-        tessControl = shaders:getCompiled(GfxShaderType.TessControl);
-        tessEval = shaders:getCompiled(GfxShaderType.TessEval);
-        fragment = shaders:getCompiled(GfxShaderType.Fragment);
-        
         gfxApi:begin(shaders);
         
         proj = camera:getProjectionMatrix();
         view = camera:getViewMatrix();
         
-        gfxApi:uniform(vertex, "cameraPosition", camera:getPosition());
+        gfxApi:uniform(GfxShaderType.Vertex, "cameraPosition", camera:getPosition());
         
         if useTesselation {
-            gfxApi:uniform(vertex, "projectionViewMatrix", Matrix4x4());
-            gfxApi:uniform(tessControl, "minTessLevel", self.minTessLevel);
-            gfxApi:uniform(tessControl, "maxTessLevel", self.maxTessLevel);
-            gfxApi:uniform(tessControl, "tessMinDistance", self.tessMinDistance);
-            gfxApi:uniform(tessControl, "tessMaxDistance", self.tessMaxDistance);
-            gfxApi:uniform(tessControl, "cameraPosition", camera:getPosition());
+            gfxApi:uniform(GfxShaderType.Vertex, "projectionViewMatrix", Matrix4x4());
+            gfxApi:uniform(GfxShaderType.TessControl, "minTessLevel", self.minTessLevel);
+            gfxApi:uniform(GfxShaderType.TessControl, "maxTessLevel", self.maxTessLevel);
+            gfxApi:uniform(GfxShaderType.TessControl, "tessMinDistance", self.tessMinDistance);
+            gfxApi:uniform(GfxShaderType.TessControl, "tessMaxDistance", self.tessMaxDistance);
+            gfxApi:uniform(GfxShaderType.TessControl, "cameraPosition", camera:getPosition());
             
-            gfxApi:addTextureBinding(tessEval, "heightMap", self.displacementMap);
-            gfxApi:uniform(tessEval, "displacementMidlevel", self.displacementMidlevel);
-            gfxApi:uniform(tessEval, "projectionViewMatrix", proj * view);
-            gfxApi:uniform(tessEval, "strength", self.displacementStrength);
+            gfxApi:addTextureBinding(GfxShaderType.TessEval, "heightMap", self.displacementMap);
+            gfxApi:uniform(GfxShaderType.TessEval, "displacementMidlevel", self.displacementMidlevel);
+            gfxApi:uniform(GfxShaderType.TessEval, "projectionViewMatrix", proj * view);
+            gfxApi:uniform(GfxShaderType.TessEval, "strength", self.displacementStrength);
         } else {
-            gfxApi:uniform(vertex, "projectionViewMatrix", proj * view);
+            gfxApi:uniform(GfxShaderType.Vertex, "projectionViewMatrix", proj * view);
         };
         
-        gfxApi:uniform(fragment, "smoothness", self.smoothness);
-        gfxApi:uniform(fragment, "metalMask", self.metalMask);
-        gfxApi:uniform(fragment, "albedo", self.albedo);
+        gfxApi:uniform(GfxShaderType.Fragment, "smoothness", self.smoothness);
+        gfxApi:uniform(GfxShaderType.Fragment, "metalMask", self.metalMask);
+        gfxApi:uniform(GfxShaderType.Fragment, "albedo", self.albedo);
         
         if not isNil(self.materialMap) {
-            gfxApi:addTextureBinding(fragment, "materialMap", self.materialMap);
+            gfxApi:addTextureBinding(GfxShaderType.Fragment, "materialMap", self.materialMap);
         };
         
         if not isNil(self.albedoMap) {
-            gfxApi:addTextureBinding(fragment, "albedoMap", self.albedoMap);
+            gfxApi:addTextureBinding(GfxShaderType.Fragment, "albedoMap", self.albedoMap);
         };
         
         if not isNil(self.normalMap) {
-            gfxApi:addTextureBinding(fragment, "normalMap", self.normalMap);
+            gfxApi:addTextureBinding(GfxShaderType.Fragment, "normalMap", self.normalMap);
         };
         
         if not isNil(self.parallaxHeightMap) {
-            gfxApi:addTextureBinding(fragment, "heightMap", self.parallaxHeightMap);
-            gfxApi:uniform(fragment, "heightScale", self.parallaxStrength);
-            if self.parallaxEdgeDiscard {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 1);}
-            else {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 0);};
+            gfxApi:addTextureBinding(GfxShaderType.Fragment, "heightMap", self.parallaxHeightMap);
+            gfxApi:uniform(GfxShaderType.Fragment, "heightScale", self.parallaxStrength);
+            if self.parallaxEdgeDiscard {gfxApi:uniform(GfxShaderType.Fragment, "parallaxEdgeDiscard", 1);}
+            else {gfxApi:uniform(GfxShaderType.Fragment, "parallaxEdgeDiscard", 0);};
         } elif not isNil(self.pomHeightMap) {
-            gfxApi:addTextureBinding(fragment, "heightMap", self.pomHeightMap);
-            gfxApi:uniform(fragment, "heightScale", self.parallaxStrength);
-            if self.parallaxEdgeDiscard {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 1);}
-            else {gfxApi:uniform(fragment, "parallaxEdgeDiscard", 0);};
-            gfxApi:uniformU(fragment, "pomMinLayers", self.pomMinLayers);
-            gfxApi:uniformU(fragment, "pomMaxLayers", self.pomMaxLayers);
+            gfxApi:addTextureBinding(GfxShaderType.Fragment, "heightMap", self.pomHeightMap);
+            gfxApi:uniform(GfxShaderType.Fragment, "heightScale", self.parallaxStrength);
+            if self.parallaxEdgeDiscard {gfxApi:uniform(GfxShaderType.Fragment, "parallaxEdgeDiscard", 1);}
+            else {gfxApi:uniform(GfxShaderType.Fragment, "parallaxEdgeDiscard", 0);};
+            gfxApi:uniformU(GfxShaderType.Fragment, "pomMinLayers", self.pomMinLayers);
+            gfxApi:uniformU(GfxShaderType.Fragment, "pomMaxLayers", self.pomMaxLayers);
         };
         
         if animated {
-            gfxApi:addUBOBinding(vertex, "bonePositionData", animState:getMatrixBuffer());
-            gfxApi:addUBOBinding(vertex, "boneNormalData", animState:getNormalMatrixBuffer());
+            gfxApi:addUBOBinding(GfxShaderType.Vertex, "bonePositionData", animState:getMatrixBuffer());
+            gfxApi:addUBOBinding(GfxShaderType.Vertex, "boneNormalData", animState:getNormalMatrixBuffer());
         };
         
         gfxApi:setTessPatchSize(3);
