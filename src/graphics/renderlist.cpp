@@ -78,14 +78,21 @@ void RenderList::addRenderList(const RenderList *list)
 #define DRAW do\
 {\
     fillMatrixTexture(worldMatrices, normalMatrices);\
-    gfxApi->pushState();\
     gfxApi->addTextureBinding(gfxApi->getVertexShader(), "matrixTexture", matrixTexture);\
     gfxApi->draw(worldMatrices.getCount());\
     ++drawCount;\
-    gfxApi->end();\
-    gfxApi->popState();\
     worldMatrices.clear();\
     normalMatrices.clear();\
+} while (0)
+#define BEGIN_MAT(material, animState) do\
+{\
+    gfxApi->pushState();\
+    (material)->setupRender((animState), camera);\
+} while (0)
+#define END_MAT do\
+{\
+    gfxApi->end();\
+    gfxApi->popState();\
 } while (0)
 size_t RenderList::execute(const Camera& camera)
 {
@@ -120,8 +127,13 @@ size_t RenderList::execute(const Camera& camera)
 
         if (drawCall.material != material)
         {
+            if (material != nullptr)
+            {
+                END_MAT;
+            }
+
             material = drawCall.material;
-            material->setupRender(drawCall.animState, camera);
+            BEGIN_MAT(material, drawCall.animState);
         }
 
         worldMatrices.append(drawCall.worldMatrix);
@@ -138,6 +150,7 @@ size_t RenderList::execute(const Camera& camera)
     if (worldMatrices.getCount() != 0)
     {
         DRAW;
+        END_MAT;
     }
 
     return drawCount;

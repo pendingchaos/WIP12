@@ -49,16 +49,6 @@ class GfxMaterial : public Resource
         GfxShaderCombination *getShaders(bool animated);
 
         bool forward;
-        GfxCompiledShader *vertex;
-        GfxCompiledShader *tessControl;
-        GfxCompiledShader *tessEval;
-        GfxCompiledShader *geometry;
-        GfxCompiledShader *fragment;
-        GfxCompiledShader *animVertex;
-        GfxCompiledShader *animTessControl;
-        GfxCompiledShader *animTessEval;
-        GfxCompiledShader *animGeometry;
-        GfxCompiledShader *animFragment;
     private:
         ScriptInstance *script;
     protected:

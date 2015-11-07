@@ -135,20 +135,6 @@ return class {
         self:setPOMHeightMap(src.pomHeightMap);
     };
     
-    updateShaders = function(self, animated) {
-        mat = self.material;
-        
-        mat.vertex = self.shaders:getCompiled(GfxShaderType.Vertex);
-        mat.tessControl = self.shaders:getCompiled(GfxShaderType.TessControl);
-        mat.tessEval = self.shaders:getCompiled(GfxShaderType.TessEval);
-        mat.fragment = self.shaders:getCompiled(GfxShaderType.Fragment);
-        
-        mat.animVertex = self.shadersAnim:getCompiled(GfxShaderType.Vertex);
-        mat.animTessControl = self.shadersAnim:getCompiled(GfxShaderType.TessControl);
-        mat.animTessEval = self.shadersAnim:getCompiled(GfxShaderType.TessEval);
-        mat.animFragment = self.shadersAnim:getCompiled(GfxShaderType.Fragment);
-    };
-    
     setupRender = function(self, animState, camera) {
         gfxApi = getGfxApi();
         

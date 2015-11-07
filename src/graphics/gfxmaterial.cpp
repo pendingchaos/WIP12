@@ -7,33 +7,13 @@
 #include "scripting/bindings2.h"
 
 GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
-                             script(nullptr),
                              forward(true),
-                             vertex(nullptr),
-                             tessControl(nullptr),
-                             tessEval(nullptr),
-                             geometry(nullptr),
-                             fragment(nullptr),
-                             animVertex(nullptr),
-                             animTessControl(nullptr),
-                             animTessEval(nullptr),
-                             animGeometry(nullptr),
-                             animFragment(nullptr) {}
+                             script(nullptr) {}
 
 GfxMaterial::GfxMaterial(const Str& filename) : Resource(filename,
                                                             ResType::GfxMaterialType),
-                                                script(nullptr),
                                                 forward(true),
-                                                vertex(nullptr),
-                                                tessControl(nullptr),
-                                                tessEval(nullptr),
-                                                geometry(nullptr),
-                                                fragment(nullptr),
-                                                animVertex(nullptr),
-                                                animTessControl(nullptr),
-                                                animTessEval(nullptr),
-                                                animGeometry(nullptr),
-                                                animFragment(nullptr) {}
+                                                script(nullptr) {}
 
 GfxMaterial::~GfxMaterial()
 {
