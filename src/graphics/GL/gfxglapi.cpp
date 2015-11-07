@@ -296,26 +296,12 @@ void GfxGLApi::clearColor(size_t rtIndex, UInt4 value)
     glClearBufferuiv(GL_COLOR, rtIndex, value_);
 }
 
-#define END_DRAW for (size_t i = 0; i < textureBindingCount; ++i)\
-{\
-    GLuint binding = textureBindings[i];\
-\
-    glActiveTexture(GL_TEXTURE0+i);\
-    glBindTexture(binding, 0);\
-\
-    glBindSampler(i, 0);\
-}\
-\
-textureBindingCount = 0;\
-uboBindingCount = 0;
-
 void GfxGLApi::begin(GfxCompiledShader *vertex_,
                      GfxCompiledShader *tessControl_,
                      GfxCompiledShader *tessEval_,
                      GfxCompiledShader *geometry_,
                      GfxCompiledShader *fragment_)
 {
-    mesh = nullptr;
     tesselation = (tessControl_ != nullptr) or (tessEval_ != nullptr);
 
     glBindProgramPipeline(pipeline);
@@ -420,9 +406,18 @@ void GfxGLApi::draw(size_t instanceCount)
 
 void GfxGLApi::end()
 {
-    END_DRAW
+    for (size_t i = 0; i < textureBindingCount; ++i)
+    {
+        GLuint binding = textureBindings[i];
 
-    mesh = nullptr;
+        glActiveTexture(GL_TEXTURE0+i);
+        glBindTexture(binding, 0);
+
+        glBindSampler(i, 0);
+    }
+
+    textureBindingCount = 0;
+    uboBindingCount = 0;
 }
 
 void GfxGLApi::setMesh(GfxMesh *mesh_)
