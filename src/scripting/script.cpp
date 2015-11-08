@@ -439,8 +439,8 @@ void ScriptInstance::destroy()
 Script::Script() : Resource(ResType::ScriptType),
                    context(nullptr) {}
 
-Script::Script(const Str& filename) : Resource(filename,
-                                                  ResType::ScriptType),
+Script::Script(const Str& filename_) : Resource(filename_,
+                                                ResType::ScriptType),
                                          context(nullptr) {}
 
 Script::~Script()

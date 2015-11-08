@@ -4,6 +4,7 @@
 #include "filesystem.h"
 
 #include <vorbis/vorbisfile.h>
+#include <SDL2/SDL_assert.h>
 
 Audio::Audio() : Resource(ResType::AudioType), frequency(11025) {}
 
@@ -36,16 +37,18 @@ void Audio::_load()
         return;
     }
 
+    SDL_assert_paranoid(info->rate >= 0);
     frequency = info->rate;
 
-    size_t numSamples = ov_pcm_total(&file, -1);
+    ogg_int64_t numSamples = ov_pcm_total(&file, -1);
+    SDL_assert_paranoid(numSamples >= 0);
 
     data = List<float>(numSamples*2);
 
     size_t samplesRead = 0;
     int stream = 0;
 
-    while (samplesRead != numSamples)
+    while (samplesRead != (size_t)numSamples)
     {
         float **pcm;
 
@@ -74,6 +77,7 @@ void Audio::_load()
             }
         }
 
+        SDL_assert(result >= 0);
         samplesRead += result;
     }
 

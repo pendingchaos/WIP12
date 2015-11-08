@@ -12,8 +12,8 @@ class ByteCodeGenException : public Exception
         ByteCodeGenException(const char *file_,
                              size_t line_,
                              const char *function_,
-                             const char *message) : Exception(file_, line_, function_),
-                                                    message(message) {}
+                             const char *message_) : Exception(file_, line_, function_),
+                                                     message(message_) {}
 
         virtual const char *getString() const
         {

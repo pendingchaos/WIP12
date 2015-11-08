@@ -2,6 +2,8 @@
 
 #include "misc_macros.h"
 
+#include <SDL2/SDL_assert.h>
+
 Camera::Camera() : position(0.0f),
                    direction(0.0f, 0.0f, 1.0f),
                    up(0.0f, 1.0f, 0.0f),
@@ -37,6 +39,7 @@ void Camera::setType(CameraType type_)
         break;
     }
     case CameraType::Matrices: {break;}
+    default: {SDL_assert(false);}
     }
 
     createProjectionMatrix();
@@ -208,6 +211,7 @@ void Camera::createProjectionMatrix()
         break;
     }
     case CameraType::Matrices: {break;}
+    default: {SDL_assert(false);}
     }
 }
 
@@ -237,7 +241,9 @@ void Camera::createFrustum()
     }
     case CameraType::Matrices:
     {
+        break;
         //TODO
     }
+    default: {SDL_assert(false);}
     }
 }

@@ -6,6 +6,7 @@
 #include "scripting/bindings.h"
 
 #include <SDL2/SDL_audio.h>
+#include <SDL2/SDL_assert.h>
 
 class AudioDevice
 {
@@ -34,6 +35,7 @@ class AudioDevice
 
         size_t getFrequency() const
         {
+            SDL_assert_paranoid(spec.freq >= 0);
             return spec.freq;
         }
 

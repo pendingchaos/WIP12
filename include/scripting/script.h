@@ -4,6 +4,7 @@
 #include "resource/resource.h"
 #include "scripting/vm/context.h"
 #include "scripting/vm/types.h"
+#include "misc_macros.h"
 
 #include <dlfcn.h>
 
@@ -105,7 +106,7 @@ class ScriptInstance
             buildArgs(list, args...);
         }
 
-        void buildArgs(List<scripting::Value>& list) {}
+        void buildArgs(List<scripting::Value>& list) {UNUSED(list);}
 
         ScriptInstance(Script *script,
                        const scripting::Value& obj,

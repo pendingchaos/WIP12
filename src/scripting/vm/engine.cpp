@@ -162,6 +162,7 @@ static double asNumber(Context *ctx, const Value& value)
     }
 
     SDL_assert_release(false);
+    return 0.0;
 }
 
 static Value mathAbs(Context *ctx, const List<Value>& args)
@@ -188,6 +189,7 @@ static Value mathAbs(Context *ctx, const List<Value>& args)
     }
 
     SDL_assert_release(false);
+    return createInt(0);
 }
 
 template <double (*F)(double)>

@@ -90,7 +90,7 @@ class File
 
         void seek(long int offset, FileOrigin origin);
 
-        long int tell();
+        size_t tell();
 
         void flush();
 

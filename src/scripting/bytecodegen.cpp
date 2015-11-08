@@ -3,6 +3,8 @@
 #include "scripting/vm/bytecode.h"
 #include "scripting/parser/ast.h"
 
+#include <SDL2/SDL_assert.h>
+
 namespace scripting
 {
 static const uint8_t opPushFloat = (uint8_t)Opcode::PushFloat;
@@ -617,6 +619,10 @@ static bool _generateBytecode(ASTNode *node, ResizableData& data, List<Str>& str
         //TODO
         THROW(ByteCodeGenException, "Try/except has not been implemented yet.");
         return false;
+    }
+    default:
+    {
+        SDL_assert(false);
     }
     }
 }

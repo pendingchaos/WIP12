@@ -12,6 +12,7 @@
 #include "containers/resizabledata.h"
 #include "containers/string.h"
 #include "file.h"
+#include "misc_macros.h"
 
 #include <algorithm>
 #include <cfloat>
@@ -454,12 +455,12 @@ void MCWorld::update()
     }
 }
 
-int pymod(int a, int b) //Thanks glamhoth
+static int pymod(int a, int b) //Thanks glamhoth
 {
     return ((a % b) + b) % b;
 }
 
-int div2(int a, int b)
+static int div2(int a, int b)
 {
     return std::floor(float(a) / float(b));
 }
@@ -579,9 +580,9 @@ void MCWorld::load(Str dir)
         uint32_t sizeY = file.readUInt32LE();
         uint32_t sizeZ = file.readUInt32LE();
 
-        posX *= sizeX;
-        posY *= sizeY;
-        posZ *= sizeZ;
+        posX *= (int32_t)sizeX;
+        posY *= (int32_t)sizeY;
+        posZ *= (int32_t)sizeZ;
 
         for (size_t z = 0; z < sizeZ; ++z)
         {
@@ -613,5 +614,7 @@ void *init_mc_clone()
 
 void deinit_mc_clone(void *ext)
 {
+    UNUSED(ext);
+
     logInfo("Deinitialized MCClone extension\n");
 }

@@ -87,7 +87,7 @@ class Font : public Resource
         struct Glyph
         {
             UInt2 size;
-            UInt2 bearing;
+            Int2 bearing;
             float xAdvance;
             GfxTexture *texture;
         };

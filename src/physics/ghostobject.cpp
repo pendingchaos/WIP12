@@ -2,7 +2,7 @@
 
 #include "physics/physicsworld.h"
 
-GhostObject::GhostObject(unsigned short collisionMask,
+GhostObject::GhostObject(short collisionMask,
                          PhysicsWorld *world_,
                          PhysicsShape *shape_) : shape(shape_->copyRef<PhysicsShape>()),
                                                  world(world_),

@@ -9,14 +9,13 @@
 #include "math/aabb.h"
 #include "scripting/bindings.h"
 
-class GfxApi;
 class GfxBuffer;
 class Camera;
 
 class GfxDebugDrawer
 {
     public:
-        GfxDebugDrawer(GfxApi *gfxApi) NO_BIND;
+        GfxDebugDrawer() NO_BIND;
         ~GfxDebugDrawer();
 
         void addLine(const Position3D& startPos,

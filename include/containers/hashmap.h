@@ -4,6 +4,8 @@
 #include "containers/list.h"
 #include "error.h"
 #include "scripting/bindings.h"
+#include "utils.h"
+#include "misc_macros.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -21,7 +23,7 @@ inline size_t getHash(const uint8_t& value)
 
 inline size_t getHash(const int8_t& value)
 {
-    return static_cast<size_t>(value);
+    return static_cast<size_t>(union_cast<uint8_t>(value));
 }
 
 inline size_t getHash(const uint16_t& value)
@@ -31,7 +33,7 @@ inline size_t getHash(const uint16_t& value)
 
 inline size_t getHash(const int16_t& value)
 {
-    return static_cast<size_t>(value);
+    return static_cast<size_t>(union_cast<uint16_t>(value));
 }
 
 inline size_t getHash(const uint32_t& value)
@@ -41,7 +43,7 @@ inline size_t getHash(const uint32_t& value)
 
 inline size_t getHash(const int32_t& value)
 {
-    return static_cast<size_t>(value);
+    return static_cast<size_t>(union_cast<uint32_t>(value));
 }
 
 inline size_t getHash(const uint64_t& value)
@@ -51,7 +53,7 @@ inline size_t getHash(const uint64_t& value)
 
 inline size_t getHash(const int64_t& value)
 {
-    return static_cast<size_t>(value);
+    return static_cast<size_t>(union_cast<uint64_t>(value));
 }
 
 inline size_t getHash(const float& value)
@@ -71,6 +73,7 @@ inline size_t getHash(const double& value)
 template <typename T>
 size_t getHash(const T& value)
 {
+    UNUSED(value);
     return 0;
 }
 
@@ -84,7 +87,7 @@ namespace std
             return getHash(v);
         }
     };
-};
+}
 
 class LookupException : public Exception
 {

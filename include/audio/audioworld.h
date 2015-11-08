@@ -6,6 +6,7 @@
 #include "scripting/bindings.h"
 
 #include <cmath>
+#include <SDL2/SDL_assert.h>
 
 class AudioDevice;
 
@@ -79,6 +80,8 @@ class AudioWorld
 
             if (index != -1)
             {
+                SDL_assert_paranoid(index >= 0);
+
                 DELETE(sources[index]);
 
                 sources.remove(index);

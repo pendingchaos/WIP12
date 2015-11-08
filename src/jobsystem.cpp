@@ -4,6 +4,7 @@
 #include <mutex>
 #include <atomic>
 #include <SDL2/SDL_cpuinfo.h>
+#include <SDL2/SDL_assert.h>
 
 #include "memory.h"
 
@@ -93,7 +94,9 @@ void runJobsSync(JobFunc func, size_t count, void *userdata, size_t dataSize)
         }
     } else
     {
-        size_t cacheLineSize = SDL_GetCPUCacheLineSize();
+        int cacheLineSize = SDL_GetCPUCacheLineSize();
+        SDL_assert_paranoid(cacheLineSize >= 0);
+
         size_t newDataSize = dataSize/cacheLineSize*cacheLineSize + ((dataSize%cacheLineSize)?cacheLineSize:0);
 
         void *datas = ALLOCATE(newDataSize*(numThreads+1));

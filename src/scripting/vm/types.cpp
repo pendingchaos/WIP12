@@ -233,7 +233,7 @@ void destroy(Context *context, const Value& value)
     }
     case ValueType::StringType:
     {
-        ((Str *)value.s)->~Str();
+        ((const Str *)value.s)->~Str();
         break;
     }
     case ValueType::NativeObject:

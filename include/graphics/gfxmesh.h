@@ -136,18 +136,18 @@ class GfxMesh : public Resource
                         GfxMeshIndexDataType indexType,
                         const void *indices) NO_BIND;
 
-        void addIndices(size_t numIndices,
-                        GfxMeshIndexDataType indexType,
+        void addIndices(size_t numIndices_,
+                        GfxMeshIndexDataType indexType_,
                         const ResizableData& data)
         {
             static const size_t indexTypeSizes[] = {1, 2, 4};
 
-            if ((indexTypeSizes[(int)indexType] * numIndices) > data.getSize())
+            if ((indexTypeSizes[(int)indexType_] * numIndices_) > data.getSize())
             {
                 THROW(BoundsException);
             }
 
-            addIndices(numIndices, indexType, data.getData());
+            addIndices(numIndices_, indexType_, data.getData());
         }
 
         void removeIndices();

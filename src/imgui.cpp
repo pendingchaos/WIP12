@@ -8,7 +8,7 @@
 #include "platform.h"
 #include "globals.h"
 
-bool intersects(int left, int right, int bottom, int top, Int2 pos)
+static bool intersects(int left, int right, int bottom, int top, Int2 pos)
 {
     return pos.x > left and pos.x < right and pos.y > bottom and pos.y < top;
 }
@@ -185,18 +185,18 @@ void ImGui::endContainer(Container *container)
     container->scrollY = (1.0f - container->vertical.getValue()) * std::max(extraContainerHeight - containerheight, 0);
 }
 
-float scrollBarLogic(int left,
-                     int right,
-                     int bottom,
-                     int top,
-                     ScrollBar *state,
-                     bool vertical,
-                     float scrollSpeed)
+static float scrollBarLogic(int left,
+                            int right,
+                            int bottom,
+                            int top,
+                            ScrollBar *state,
+                            bool vertical,
+                            float scrollSpeed)
 {
     int size = vertical ? top-bottom : right-left;
 
     Int2 mousePos = platform->getMousePosition();
-    mousePos.y = platform->getWindowHeight() - mousePos.y;
+    mousePos.y = (int)platform->getWindowHeight() - mousePos.y;
     bool intersection = intersects(left, right, bottom, top, mousePos);
 
     float brightness = intersection ? 0.95f : 1.0f;
@@ -264,6 +264,11 @@ float scrollBarLogic(int left,
         {
             state->state = ScrollBarState::Idle;
         }
+        break;
+    }
+    default:
+    {
+        SDL_assert(false);
         break;
     }
     }
@@ -394,8 +399,8 @@ bool ImGui::button(const char *text, int left, int right, int bottom, int top)
     left += scrollX;
     right += scrollX;
 
-    top += scrollY;
-    bottom += scrollY;
+    top += (int)scrollY;
+    bottom += (int)scrollY;
 
     bool pressed = false;
 
@@ -452,8 +457,8 @@ size_t ImGui::label(const char *text,
 {
     size_t textWidth = font->predictWidth(textSize, text);
 
-    int left = isLeft ? leftOrRight : (leftOrRight - textWidth);
-    int bottom = isBottom ? bottomOrTop : (bottomOrTop - textSize/2);
+    int left = isLeft ? leftOrRight : (leftOrRight - (int)textWidth);
+    int bottom = isBottom ? bottomOrTop : (bottomOrTop - (int)textSize/2);
 
     containerLeft = std::min(containerLeft, left);
     containerRight = std::max(containerRight, left + int(textWidth));
@@ -556,6 +561,11 @@ void ImGui::render()
             gfxApi->popState();
             break;
         }
+        default:
+        {
+            SDL_assert(false);
+            break;
+        }
         }
     }
 
@@ -582,14 +592,19 @@ bool GuiPlacer::button(const char *text, size_t width, size_t height)
     {
     case XOrigin::Left:
     {
-        result = gui->button(text, currentLeftOrRight, currentLeftOrRight+width, currentTop-height, currentTop);
-        currentLeftOrRight += width + padding;
+        result = gui->button(text, currentLeftOrRight, currentLeftOrRight+(int)width, currentTop-(int)height, currentTop);
+        currentLeftOrRight += (int)width + (int)padding;
         break;
     }
     case XOrigin::Right:
     {
-        result = gui->button(text, currentLeftOrRight-width, currentLeftOrRight, currentTop-height, currentTop);
-        currentLeftOrRight -= width + padding;
+        result = gui->button(text, currentLeftOrRight-width, currentLeftOrRight, currentTop-(int)height, currentTop);
+        currentLeftOrRight -= (int)width + (int)padding;
+        break;
+    }
+    default:
+    {
+        SDL_assert(false);
         break;
     }
     }
@@ -605,12 +620,17 @@ void GuiPlacer::label(const char *text)
     {
     case XOrigin::Left:
     {
-        currentLeftOrRight += gui->label(text, currentLeftOrRight, currentTop, true, false) + padding;
+        currentLeftOrRight += (int)gui->label(text, currentLeftOrRight, currentTop, true, false) + (int)padding;
         break;
     }
     case XOrigin::Right:
     {
-        currentLeftOrRight -= gui->label(text, currentLeftOrRight, currentTop, false, false) + padding;
+        currentLeftOrRight -= (int)gui->label(text, currentLeftOrRight, currentTop, false, false) + (int)padding;
+        break;
+    }
+    default:
+    {
+        SDL_assert(false);
         break;
     }
     }

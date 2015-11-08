@@ -10,6 +10,8 @@
 #include "memory.h"
 #include "scripting/bindings.h"
 
+#include <SDL2/SDL_assert.h>
+
 class PhysicsWorld;
 class GfxShader;
 class GfxMesh;
@@ -83,6 +85,8 @@ class Scene : public Resource
 
             if (index != -1)
             {
+                SDL_assert_paranoid(index >= 0);
+
                 scripts.remove(index);
 
                 DELETE(instance);
@@ -94,11 +98,11 @@ class Scene : public Resource
             return scripts;
         }
 
-        ScriptInstance *findScriptInstance(const Str& filename) const
+        ScriptInstance *findScriptInstance(const Str& filename_) const
         {
             for (auto script : scripts)
             {
-                if (script->getScript()->getFilename() == filename)
+                if (script->getScript()->getFilename() == filename_)
                 {
                     return script;
                 }

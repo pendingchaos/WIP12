@@ -10,10 +10,10 @@ GfxMaterial::GfxMaterial() : Resource(ResType::GfxMaterialType),
                              forward(true),
                              script(nullptr) {}
 
-GfxMaterial::GfxMaterial(const Str& filename) : Resource(filename,
-                                                            ResType::GfxMaterialType),
-                                                forward(true),
-                                                script(nullptr) {}
+GfxMaterial::GfxMaterial(const Str& filename_) : Resource(filename_,
+                                                          ResType::GfxMaterialType),
+                                                 forward(true),
+                                                 script(nullptr) {}
 
 GfxMaterial::~GfxMaterial()
 {

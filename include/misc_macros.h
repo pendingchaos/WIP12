@@ -125,4 +125,6 @@ protected:\
 
 #define FORCE_INLINE inline __attribute__((always_inline))
 
+#define UNUSED(x) do {(void)sizeof((x));} while (0)
+
 #endif // MISC_MACROS_H

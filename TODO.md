@@ -64,6 +64,7 @@
 - [ ] Removing a rigid body does not remove a rigid body.
 - [ ] Static objects can not be moved at runtime. (physics)
 - [ ] Spotlight shadowmapping is broken and breaks directional shadow mapping.
+- [ ] 4x4x4 chunk size crashes the program.
 
 ## Other
 - [ ] Texture types should be immutable.

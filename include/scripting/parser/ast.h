@@ -14,12 +14,12 @@ namespace scripting
             ParseException(const char *file_,
                            size_t line_,
                            const char *function_,
-                           const char *message,
+                           const char *message_,
                            size_t scriptLine_,
-                           size_t scriptColumn) : Exception(file_, line_, function_),
-                                                  message(message),
-                                                  scriptLine(scriptLine_),
-                                                  scriptColumn(scriptColumn) {}
+                           size_t scriptColumn_) : Exception(file_, line_, function_),
+                                                   message(message_),
+                                                   scriptLine(scriptLine_),
+                                                   scriptColumn(scriptColumn_) {}
 
             virtual const char *getString() const
             {

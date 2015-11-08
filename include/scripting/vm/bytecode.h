@@ -91,21 +91,17 @@ class Bytecode
                 THROW(BytecodeBoundsException);
             }
 
-            uint8_t *data_ = (uint8_t *)data.getData() + offset;
-
-            return FROM_LE_S64(*((int64_t *)data_));
+            return data.getInt64LE(offset);
         }
 
-        int32_t getUInt32(size_t offset) const
+        uint32_t getUInt32(size_t offset) const
         {
             if (offset + 4 > data.getSize())
             {
                 THROW(BytecodeBoundsException);
             }
 
-            uint8_t *data_ = (uint8_t *)data.getData() + offset;
-
-            return FROM_LE_U32(*((uint32_t *)data_));
+            return data.getUInt32LE(offset);
         }
 
         int32_t getInt32(size_t offset) const
@@ -115,9 +111,7 @@ class Bytecode
                 THROW(BytecodeBoundsException);
             }
 
-            uint8_t *data_ = (uint8_t *)data.getData() + offset;
-
-            return FROM_LE_U32(*((int32_t *)data_));
+            return data.getInt32LE(offset);
         }
 
         double getDouble(size_t offset) const
@@ -127,9 +121,7 @@ class Bytecode
                 THROW(BytecodeBoundsException);
             }
 
-            uint8_t *data_ = (uint8_t *)data.getData() + offset;
-
-            return *((double *)data_);
+            return data.getFloat64(offset);
         }
 
         uint8_t getUInt8(size_t offset) const
@@ -139,7 +131,7 @@ class Bytecode
                 THROW(BytecodeBoundsException);
             }
 
-            return *((uint8_t *)data.getData() + offset);
+            return data.getUInt8(offset);
         }
 
         bool getBoolean(size_t offset) const
@@ -159,7 +151,7 @@ class Bytecode
                 THROW(BytecodeBoundsException);
             }
 
-            return ResizableData(amount, ((uint8_t *)data.getData()) + offset);
+            return ResizableData(amount, ((const uint8_t *)data.getData()) + offset);
         }
 
         ResizableData data;

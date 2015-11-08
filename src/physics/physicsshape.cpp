@@ -877,10 +877,9 @@ void PhysicsHeightfield::create(const float *data_)
     data = NEW_ARRAY(float, width*height);
     float maxHeight = -INFINITY;
 
-    float value;
     for (size_t i = 0; i < width*height; ++i)
     {
-        value = data_[i];
+        float value = data_[i];
 
         data[i] = value;
 

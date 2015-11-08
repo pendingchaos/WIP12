@@ -351,7 +351,7 @@ if __name__ == "__main__":
     floorEnt.rigidBody.shape = floorShape
     scene.entities.append(floorEnt)
     
-    floorEnt = Scene.Entity("Floor2")
+    """floorEnt = Scene.Entity("Floor2")
     floorEnt.transform.position = [20.0, -10.0, 0.0]
     floorEnt.transform.scale = [2.0, 1.0, 2.0]
     floorEnt.model = conv["floor model"]
@@ -383,7 +383,7 @@ if __name__ == "__main__":
     light.shadow_auto_bias_scale = 1.0
     light.shadowmap_resolution = 512
     light.shadowmap_precision = Scene.Light.ShadowmapPrecision.Low
-    scene.lights.append(light)
+    scene.lights.append(light)"""
     
     """ent = Scene.Entity("Parallax test")
     ent.transform.position = [0.0, 1.0, 0.0]

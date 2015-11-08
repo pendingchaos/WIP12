@@ -21,7 +21,7 @@ class ResizableData
 
         ResizableData(std::size_t size) : data(size) {}
 
-        ResizableData(std::size_t size, const void *data_) NO_BIND : data((uint8_t *)data_, (uint8_t *)data_+size) {}
+        ResizableData(std::size_t size, const void *data_) NO_BIND : data((const uint8_t *)data_, (const uint8_t *)data_+size) {}
 
         bool operator == (const ResizableData& other) const
         {
@@ -75,7 +75,7 @@ class ResizableData
                 THROW(BoundsException);
             }
 
-            data.insert(data.begin()+start, (uint8_t *)dataToInsert, (uint8_t *)dataToInsert+size);
+            data.insert(data.begin()+(int)start, (const uint8_t *)dataToInsert, (const uint8_t *)dataToInsert+size);
         }
 
         void insert(std::size_t start, const ResizableData& data_)
@@ -85,12 +85,12 @@ class ResizableData
                 THROW(BoundsException);
             }
 
-            data.insert(data.begin()+start, data_.data.begin(), data_.data.end());
+            data.insert(data.begin()+(int)start, data_.data.begin(), data_.data.end());
         }
 
         void append(std::size_t size, const void *dataToAppend) NO_BIND
         {
-            data.insert(data.end(), (uint8_t *)dataToAppend, (uint8_t *)dataToAppend+size);
+            data.insert(data.end(), (const uint8_t *)dataToAppend, (const uint8_t *)dataToAppend+size);
         }
 
         void append(const ResizableData& data_)
@@ -105,7 +105,7 @@ class ResizableData
                 THROW(BoundsException);
             }
 
-            data.erase(data.begin()+start, data.begin()+start+size);
+            data.erase(data.begin()+(int)start, data.begin()+(int)start+(int)size);
         }
 
         void clear()
@@ -126,11 +126,11 @@ class ResizableData
                 THROW(BoundsException);
             }
 
-            return *(T *)(data.data()+offset);
+            return *(const T *)(data.data()+offset);
         }
 
         template <typename T>
-        void set(size_t offset, const T& v) const NO_BIND
+        void set(size_t offset, const T& v) NO_BIND
         {
             if (offset+sizeof(T) > data.size())
             {
@@ -165,33 +165,33 @@ class ResizableData
         uint64_t getUInt64BE(size_t offset) const {return FROM_BE_U64(get<uint64_t>(offset));}
         int64_t getInt64BE(size_t offset) const {return FROM_BE_S64(get<int64_t>(offset));}
 
-        void setUInt8(size_t offset, uint8_t v) const {set<uint8_t>(offset, v);}
-        void setInt8(size_t offset, int8_t v) const {set<int8_t>(offset, v);}
-        void setUInt16(size_t offset, uint16_t v) const {set<uint16_t>(offset, v);}
-        void setInt16(size_t offset, int16_t v) const {set<int16_t>(offset, v);}
-        void setUInt32(size_t offset, uint32_t v) const {set<uint32_t>(offset, v);}
-        void setInt32(size_t offset, int32_t v) const {set<int32_t>(offset, v);}
-        void setUInt64(size_t offset, uint64_t v) const {set<uint64_t>(offset, v);}
-        void setInt64(size_t offset, int64_t v) const {set<int64_t>(offset, v);}
-        void setFloat32(size_t offset, float v) const {set<float>(offset, v);}
-        void setFloat64(size_t offset, double v) const {set<double>(offset, v);}
+        void setUInt8(size_t offset, uint8_t v) {set<uint8_t>(offset, v);}
+        void setInt8(size_t offset, int8_t v) {set<int8_t>(offset, v);}
+        void setUInt16(size_t offset, uint16_t v) {set<uint16_t>(offset, v);}
+        void setInt16(size_t offset, int16_t v) {set<int16_t>(offset, v);}
+        void setUInt32(size_t offset, uint32_t v) {set<uint32_t>(offset, v);}
+        void setInt32(size_t offset, int32_t v) {set<int32_t>(offset, v);}
+        void setUInt64(size_t offset, uint64_t v) {set<uint64_t>(offset, v);}
+        void setInt64(size_t offset, int64_t v) {set<int64_t>(offset, v);}
+        void setFloat32(size_t offset, float v) {set<float>(offset, v);}
+        void setFloat64(size_t offset, double v) {set<double>(offset, v);}
 
-        void setUInt16LE(size_t offset, uint16_t v) const {set<uint16_t>(offset, TO_LE_U16(v));}
-        void setInt16LE(size_t offset, int16_t v) const {set<int16_t>(offset, TO_LE_S16(v));}
-        void setUInt32LE(size_t offset, uint32_t v) const {set<uint32_t>(offset, TO_LE_U32(v));}
-        void setInt32LE(size_t offset, int32_t v) const {set<int32_t>(offset, TO_LE_S32(v));}
-        void setUInt64LE(size_t offset, uint64_t v) const {set<uint64_t>(offset, TO_LE_U64(v));}
-        void setInt64LE(size_t offset, int64_t v) const {set<int64_t>(offset, TO_LE_S64(v));}
+        void setUInt16LE(size_t offset, uint16_t v) {set<uint16_t>(offset, TO_LE_U16(v));}
+        void setInt16LE(size_t offset, int16_t v) {set<int16_t>(offset, TO_LE_S16(v));}
+        void setUInt32LE(size_t offset, uint32_t v) {set<uint32_t>(offset, TO_LE_U32(v));}
+        void setInt32LE(size_t offset, int32_t v) {set<int32_t>(offset, TO_LE_S32(v));}
+        void setUInt64LE(size_t offset, uint64_t v) {set<uint64_t>(offset, TO_LE_U64(v));}
+        void setInt64LE(size_t offset, int64_t v) {set<int64_t>(offset, TO_LE_S64(v));}
 
-        void setUInt16BE(size_t offset, uint16_t v) const {set<uint16_t>(offset, TO_BE_U16(v));}
-        void setInt16BE(size_t offset, int16_t v) const {set<int16_t>(offset, TO_BE_S16(v));}
-        void setUInt32BE(size_t offset, uint32_t v) const {set<uint32_t>(offset, TO_BE_U32(v));}
-        void setInt32BE(size_t offset, int32_t v) const {set<int32_t>(offset, TO_BE_S32(v));}
-        void setUInt64BE(size_t offset, uint64_t v) const {set<uint64_t>(offset, TO_BE_U64(v));}
-        void setInt64BE(size_t offset, int64_t v) const {set<int64_t>(offset, TO_BE_S64(v));}
+        void setUInt16BE(size_t offset, uint16_t v) {set<uint16_t>(offset, TO_BE_U16(v));}
+        void setInt16BE(size_t offset, int16_t v) {set<int16_t>(offset, TO_BE_S16(v));}
+        void setUInt32BE(size_t offset, uint32_t v) {set<uint32_t>(offset, TO_BE_U32(v));}
+        void setInt32BE(size_t offset, int32_t v) {set<int32_t>(offset, TO_BE_S32(v));}
+        void setUInt64BE(size_t offset, uint64_t v) {set<uint64_t>(offset, TO_BE_U64(v));}
+        void setInt64BE(size_t offset, int64_t v) {set<int64_t>(offset, TO_BE_S64(v));}
 
-        char getChar(size_t offset) const {return get<char>(offset);}
-        void setChar(size_t offset, char c) const {set<char>(offset, c);}
+        char getChar(size_t offset) {return get<char>(offset);}
+        void setChar(size_t offset, char c) {set<char>(offset, c);}
     private:
         std::vector<uint8_t> data;
 } BIND;

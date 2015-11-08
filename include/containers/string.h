@@ -5,6 +5,7 @@
 #include "containers/list.h"
 #include "misc_macros.h"
 #include "memory.h"
+#include "utils.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -26,7 +27,7 @@ size_t calcHash(const char *str);
 
 inline size_t calcCharHash(char c)
 {
-    return (STR_HASH_BASIS ^ c) * STR_HASH_PRIME;
+    return (STR_HASH_BASIS ^ union_cast<unsigned char>(c)) * STR_HASH_PRIME;
 }
 
 constexpr size_t _calcHash(char c, const char *rest, size_t value)

@@ -9,7 +9,7 @@ tok.str = str_;\
 tokens.append(tok);\
 }
 
-bool isEnd(char c)
+static bool isEnd(char c)
 {
     return not (c >= 'a' and c <= 'z') and
            not (c >= 'A' and c <= 'Z') and

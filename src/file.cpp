@@ -8,6 +8,7 @@
 #include <cmath>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <SDL2/SDL_assert.h>
 
 time_t getLastFileModification(const char *filename)
 {
@@ -73,12 +74,14 @@ List<Str> listFiles(const char *directory)
     int index = result.find(".");
     if (index != -1)
     {
+        SDL_assert_paranoid(index >= 0);
         result.remove(index);
     }
 
     index = result.find("..");
     if (index != -1)
     {
+        SDL_assert_paranoid(index >= 0);
         result.remove(index);
     }
 
@@ -180,17 +183,29 @@ void File::seek(long int offset, FileOrigin origin)
         }
         break;
     }
+    default:
+    {
+        SDL_assert(false);
+        break;
+    }
     }
 }
 
-long int File::tell()
+size_t File::tell()
 {
     if (file == nullptr)
     {
         THROW(FileException, filename, "File invalid");
     }
 
-    return std::ftell(file);
+    int result =  std::ftell(file);
+
+    if (result < 0)
+    {
+        THROW(FileException, filename, "ftell failed");
+    }
+
+    return result;
 }
 
 void File::flush()
@@ -215,7 +230,7 @@ bool File::isAtEndOfFile()
 
 size_t File::getSize()
 {
-    long int lastPosition = tell();
+    size_t lastPosition = tell();
 
     seek(0, FileOrigin::End);
 

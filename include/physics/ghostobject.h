@@ -61,13 +61,13 @@ class GhostObject
             return shape;
         }
     private:
-        GhostObject(unsigned short collisionMask, PhysicsWorld *world, PhysicsShape *shape);
+        GhostObject(short collisionMask, PhysicsWorld *world, PhysicsShape *shape);
         ~GhostObject();
 
         PhysicsShape *shape;
         btPairCachingGhostObject *ghostObject;
         PhysicsWorld *world;
-        unsigned short collisionMask;
+        short collisionMask;
 } BIND;
 
 #endif // GHOSTOBJECT_H

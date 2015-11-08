@@ -1,6 +1,8 @@
 #ifndef ENDIAN_UTIL_H
 #define ENDIAN_UTIL_H
 
+#include "utils.h"
+
 #include <stdint.h>
 
 #if 1145258561 == 0x44434241
@@ -19,8 +21,9 @@ inline uint16_t swapEndianU16(uint16_t integer)
 
 inline int16_t swapEndianS16(int16_t integer)
 {
-    return ((integer & 0xFF00) >> 8) |
-           ((integer & 0x00FF) << 8);
+    uint16_t ui = union_cast<uint16_t>(integer);
+    return union_cast<int16_t>(((ui & 0xFF00) >> 8) |
+                               ((ui & 0x00FF) << 8));
 }
 
 inline uint32_t swapEndianU32(uint32_t integer)
@@ -33,10 +36,11 @@ inline uint32_t swapEndianU32(uint32_t integer)
 
 inline int32_t swapEndianS32(int32_t integer)
 {
-    return ((integer & 0xFF000000) >> 24) |
-           ((integer & 0x00FF0000) >> 8)  |
-           ((integer & 0x0000FF00) << 8)  |
-           ((integer & 0xF00000FF) << 24);
+    uint32_t ui = union_cast<uint32_t>(integer);
+    return union_cast<int32_t>(((ui & 0xFF000000) >> 24) |
+                               ((ui & 0x00FF0000) >> 8)  |
+                               ((ui & 0x0000FF00) << 8)  |
+                               ((ui & 0xF00000FF) << 24));
 }
 
 inline uint64_t swapEndianU64(uint64_t integer)
@@ -53,14 +57,15 @@ inline uint64_t swapEndianU64(uint64_t integer)
 
 inline int64_t swapEndianS64(int64_t integer)
 {
-    return ((integer & 0xFF00000000000000) >> 56) |
-           ((integer & 0x00FF000000000000) >> 48) |
-           ((integer & 0x0000FF0000000000) >> 40) |
-           ((integer & 0x000000FF00000000) >> 32) |
-           ((integer & 0x00000000FF000000) << 32) |
-           ((integer & 0x0000000000FF0000) << 40) |
-           ((integer & 0x000000000000FF00) << 48) |
-           ((integer & 0x00000000000000FF) << 56);
+    uint64_t ui = union_cast<uint64_t>(integer);
+    return union_cast<int64_t>(((ui & 0xFF00000000000000) >> 56) |
+                               ((ui & 0x00FF000000000000) >> 48) |
+                               ((ui & 0x0000FF0000000000) >> 40) |
+                               ((ui & 0x000000FF00000000) >> 32) |
+                               ((ui & 0x00000000FF000000) << 32) |
+                               ((ui & 0x0000000000FF0000) << 40) |
+                               ((ui & 0x000000000000FF00) << 48) |
+                               ((ui & 0x00000000000000FF) << 56));
 }
 
 #if IS_LITTLE_ENDIAN

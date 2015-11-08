@@ -6,6 +6,7 @@
 #include "physics/physicsshape.h"
 #include "scripting/script.h"
 #include "scripting/bindings.h"
+#include "utils.h"
 
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
@@ -33,7 +34,7 @@ class RigidBodyConstructionInfo
                                       restitution(0.0f),
                                       linearSleepingThreshold(0.8f),
                                       angularSleepingThreshold(1.0f),
-                                      collisionMask(0xFFFF) {}
+                                      collisionMask(union_cast<short>(0xFFFF)) {}
 
         RigidBodyType type;
         float mass;

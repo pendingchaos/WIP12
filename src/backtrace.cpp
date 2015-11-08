@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <algorithm>
+#include <SDL2/SDL_assert.h>
 
 char *theBacktrace[256];
 unsigned int theDepth;
@@ -34,7 +35,9 @@ const char **getBacktrace(unsigned int& depth)
 {
     void *trace[256];
 
-    depth = backtrace(trace, 256);
+    int depth_ = backtrace(trace, 256);
+    SDL_assert_paranoid(depth_ >= 0);
+    depth = depth_;
     theDepth = depth;
 
     for (unsigned int i=0; i<depth; ++i)

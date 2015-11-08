@@ -93,7 +93,7 @@ class Resource
             return type;
         }
 
-        void release() const
+        void release()
         {
             if (--refCount == 0)
             {

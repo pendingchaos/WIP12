@@ -71,9 +71,9 @@ class GfxTerrain
             recreate();
         }
 
-        void setHeightmap(GfxTexture *heightmap) const NO_BIND
+        void setHeightmap(GfxTexture *heightmap_) NO_BIND
         {
-            heightmap = heightmap;
+            heightmap = heightmap_;
         }
 
         GfxMesh *getMesh() const

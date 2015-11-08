@@ -30,9 +30,9 @@ void Context::reset()
 
         for (auto stack : entry.stacks)
         {
-            for (size_t i = 0; i < stack.size; ++i)
+            for (size_t j = 0; j < stack.size; ++j)
             {
-                destroy(this, stack.values[i]);
+                destroy(this, stack.values[j]);
             }
         }
 
@@ -355,9 +355,9 @@ if (aVal.type == ValueType::Object or\
     aVal.type == ValueType::NativeObject or\
     aVal.type == ValueType::StringType)\
 {\
-    List<Value> args;\
-    args.append(bVal);\
-    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
+    List<Value> args_;\
+    args_.append(bVal);\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args_);\
 } else if ((aVal.type == ValueType::Float or bVal.type == ValueType::Float) and (aVal.type == ValueType::Int or bVal.type == ValueType::Int))\
 {\
     double a = aVal.type == ValueType::Float ? aVal.f : aVal.i;\
@@ -414,9 +414,9 @@ Value bVal = popStack(*stack);\
 \
 if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
-    List<Value> args;\
-    args.append(bVal);\
-    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
+    List<Value> args_;\
+    args_.append(bVal);\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args_);\
 } else if (aVal.type != type_ or bVal.type != type_)\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
@@ -476,9 +476,9 @@ Value bVal = popStack(*stack);\
 \
 if (aVal.type == ValueType::Object or aVal.type == ValueType::NativeObject)\
 {\
-    List<Value> args;\
-    args.append(bVal);\
-    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
+    List<Value> args_;\
+    args_.append(bVal);\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args_);\
 } else if (aVal.type != ValueType::Int or bVal.type != ValueType::Int)\
 {\
     throwException(createException(ExcType::TypeError, "Invalid operand types for " STR(op)));\
@@ -537,9 +537,9 @@ if (aVal.type == ValueType::Object or\
     aVal.type == ValueType::NativeObject or\
     aVal.type == ValueType::StringType)\
 {\
-    List<Value> args;\
-    args.append(bVal);\
-    stack->values[stack->size++] = callMethod(this, aVal, funcName, args);\
+    List<Value> args_;\
+    args_.append(bVal);\
+    stack->values[stack->size++] = callMethod(this, aVal, funcName, args_);\
 } else if ((aVal.type == ValueType::Float or bVal.type == ValueType::Float) and (aVal.type == ValueType::Int or bVal.type == ValueType::Int))\
 {\
     double a = aVal.type == ValueType::Float ? aVal.f : aVal.i;\
@@ -612,7 +612,7 @@ BREAK
                 throwException(createException(ExcType::ValueError, "Argument count must not be negative."));
             }
 
-            //In {} because so destructors are ran when using a computed goto.
+            //In {} because so destructors are not ran when using a computed goto.
             {
                 List<Value> args;
 
@@ -891,7 +891,7 @@ size_t toIndex(Context *ctx, const Value& value)
         }
     } else if (value.type == ValueType::Float)
     {
-        if ((size_t)value.f < 0)
+        if ((ptrdiff_t)value.f < 0)
         {
             ctx->throwException(createException(ExcType::ValueError, "Index should not be below zero."));
         } else

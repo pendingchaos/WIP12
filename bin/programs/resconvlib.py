@@ -287,7 +287,7 @@ class Material(Resource):
         output.write(struct.pack("<L", len(matScriptFile)))
         output.write(matScriptFile)
         
-        s = struct.pack("<fffffffbbbffffff",
+        s = struct.pack("<fffffffBBBffffff",
                         self.albedo[0],
                         self.albedo[1],
                         self.albedo[2],

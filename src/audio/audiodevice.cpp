@@ -3,8 +3,9 @@
 #include "memory.h"
 #include "endian_utils.h"
 #include "logging.h"
+#include "misc_macros.h"
 
-uint32_t floatToUint32(float f)
+static uint32_t floatToUint32(float f)
 {
     union
     {
@@ -58,6 +59,7 @@ Str AudioDevice::getName(size_t index)
 
 size_t AudioDevice::getDeviceCount()
 {
+    SDL_assert_paranoid(SDL_GetNumAudioDevices(false) >= 0);
     return SDL_GetNumAudioDevices(false);
 }
 
@@ -103,6 +105,7 @@ bool AudioDevice::getPaused()
 
 void AudioDevice::runCallbacks(size_t numSamples)
 {
+    UNUSED(numSamples);
     /*float *result = (float *)ALLOCATE(numSamples * sizeof(float) * 2);
 
     for (size_t i = 0; i < numSamples*2; ++i)
@@ -239,6 +242,8 @@ void AudioDevice::runCallbacks(size_t numSamples)
 
 void AudioDevice::audioDeviceCallback(void *userdata, Uint8 *data, int len)
 {
+    SDL_assert_paranoid(len >= 0);
+
     List<Uint8>& queued = ((AudioDevice *)userdata)->queued;
 
     if (queued.getCount() < (size_t)len)

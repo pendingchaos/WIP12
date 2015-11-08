@@ -43,6 +43,6 @@ namespace scripting
     class Engine;
 
     void registerBindings(scripting::Engine *engine);
-};
+}
 
 #endif // BINDINGS_H

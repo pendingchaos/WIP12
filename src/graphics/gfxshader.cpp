@@ -8,8 +8,8 @@
 
 #include <unistd.h>
 
-GfxShader::GfxShader(const Str& filename) : Resource(filename,
-                                                        ResType::GfxShaderType),
+GfxShader::GfxShader(const Str& filename_) : Resource(filename_,
+                                                      ResType::GfxShaderType),
                                                shaderType(GfxShaderType::Vertex) {}
 
 GfxShader::GfxShader() : Resource(ResType::GfxShaderType),

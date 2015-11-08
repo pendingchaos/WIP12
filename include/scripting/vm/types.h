@@ -68,7 +68,7 @@ struct Value
 
     Str getStr() const
     {
-        return *(Str *)s;
+        return *(const Str *)s;
     }
 };
 

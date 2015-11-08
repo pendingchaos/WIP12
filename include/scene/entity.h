@@ -13,6 +13,8 @@
 #include "audio/audioworld.h"
 #include "scripting/bindings.h"
 
+#include <SDL2/SDL_assert.h>
+
 class Scene;
 class Entity;
 
@@ -141,6 +143,8 @@ class Entity
 
             if (index != -1)
             {
+                SDL_assert_paranoid(index >= 0);
+
                 scripts.remove(index);
 
                 DELETE(instance);

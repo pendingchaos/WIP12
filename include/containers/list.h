@@ -143,7 +143,7 @@ class List
             }
             #endif
 
-            data.erase(data.begin()+index, data.begin()+index+count);
+            data.erase(data.begin()+(int)index, data.begin()+(int)index+(int)count);
         }
 
         void clear()

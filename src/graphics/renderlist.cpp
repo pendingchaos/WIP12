@@ -10,6 +10,7 @@
 #include "misc_macros.h"
 
 #include <algorithm>
+#include <SDL2/SDL_assert.h>
 
 RenderList::RenderList() : needsSorting(false), matrixTexture(nullptr)
 {
@@ -223,6 +224,10 @@ size_t RenderList::execute(const Camera& camera)
         gfxApi->uniform(vertex, "viewMatrix", light->getViewMatrix());\
         break;\
     }\
+    default:\
+    {\
+        SDL_assert(false);\
+    }\
     }\
     gfxApi->uniform(fragment, "biasScale", light->shadowAutoBiasScale);\
     if (animState != nullptr)\
@@ -307,11 +312,13 @@ struct Data
 
 static void job(size_t index, size_t worker, void *userdata)
 {
+    UNUSED(worker);
+
     index *= NUM_PER_JOB;
     Data data = *(Data *)userdata;
     #define OP(i) data.matrixData[index*2+i*2] = data.worldMatrices[index+i];\
     data.matrixData[index*2+i*2+1] = data.worldMatrices[index+i];
-    FOR_N(OP, NUM_PER_JOB); index+=NUM_PER_JOB;
+    FOR_N(OP, NUM_PER_JOB);
     #undef OP
 }
 

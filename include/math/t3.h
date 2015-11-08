@@ -224,7 +224,7 @@ class T3
 
         const T& operator [] (size_t index) const
         {
-            return ((T *)this)[index];
+            return ((const T *)this)[index];
         }
 
         #define SWIZZLE3(upperX, upperY, upperZ, X, Y, Z) T3 JOIN(JOIN(JOIN(get, upperX), upperY), upperZ)() const\

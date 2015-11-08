@@ -49,7 +49,7 @@ Application::Application(const char *workingDir) : fixedTimestep(0.016f),
     gfxApi_ = NEW(GfxGLApi);
     gfxApi = gfxApi_;
 
-    debugDrawer_ = NEW(GfxDebugDrawer, gfxApi_);
+    debugDrawer_ = NEW(GfxDebugDrawer);
     debugDrawer = debugDrawer_;
 
     audioDevice_ = NEW(AudioDevice, 0, 44100, 4096);
@@ -154,13 +154,13 @@ void Application::updateFunction()
 
     platform_->running = running;
 
-    int numSamples = audioDevice->getSamples() * 2 - audioDevice->getNumQueuedSamples();
-
-    numSamples = std::max(numSamples, 0);
+    ptrdiff_t numSamples = (ptrdiff_t)audioDevice->getSamples() * 2 - (ptrdiff_t)audioDevice->getNumQueuedSamples();
+    numSamples = std::max(numSamples, (ptrdiff_t)0);
+    SDL_assert_paranoid(numSamples >= 0);
 
     start = platform_->getTime();
 
-    if (numSamples > 0)
+    if (numSamples != 0)
     {
         audioDevice->runCallbacks(numSamples);
     }
@@ -177,8 +177,9 @@ struct Data
     void (Application::*update)();
 } data;
 
-void _updateFunction(Platform *platform)
+static void _updateFunction(Platform *platform_)
 {
+    UNUSED(platform_);
     CALL_METHOD_POINTER(*data.app, data.update);
 }
 

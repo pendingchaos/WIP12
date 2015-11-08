@@ -5,7 +5,7 @@
 #include "graphics/gfxrenderer.h"
 #include "globals.h"
 
-GfxDebugDrawer::GfxDebugDrawer(GfxApi *gfxApi) : mesh(nullptr)
+GfxDebugDrawer::GfxDebugDrawer() : mesh(nullptr)
 {
     vertex = resMgr->load<GfxShader>(
     "resources/shaders/debugDraw.vs.bin");

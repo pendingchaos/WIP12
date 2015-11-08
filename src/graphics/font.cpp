@@ -5,7 +5,7 @@
 
 #include <cstring>
 
-Font::Font(const Str& filename) : Resource(filename, ResType::FontType)
+Font::Font(const Str& filename_) : Resource(filename_, ResType::FontType)
 {
     quadMesh = NEW(GfxMesh);
     quadMesh->primitive = GfxPoints;
@@ -190,7 +190,7 @@ void Font::render(size_t size,
 
         Character character;
         character.position = Position2D(x + glyph.bearing.x * onePixel.x,
-                                        y - (glyph.size.y - glyph.bearing.y) * onePixel.y);
+                                        y - ((int)glyph.size.y - glyph.bearing.y) * onePixel.y);
         character.glyph = glyph;
 
         auto pos = characters.find(string[i]);
@@ -262,6 +262,8 @@ void Font::loadGlyph(Face& face, char character) const
 
     Glyph glyph;
 
+    SDL_assert(face.face->glyph->bitmap.width >= 0);
+    SDL_assert(face.face->glyph->bitmap.rows >= 0);
     glyph.size.x = face.face->glyph->bitmap.width;
     glyph.size.y = face.face->glyph->bitmap.rows;
     glyph.bearing.x = face.face->glyph->bitmap_left;
