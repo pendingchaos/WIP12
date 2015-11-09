@@ -162,6 +162,7 @@
 		<Unit filename="include/scripting/vm/context.h" />
 		<Unit filename="include/scripting/vm/engine.h" />
 		<Unit filename="include/scripting/vm/types.h" />
+		<Unit filename="include/utils.h" />
 		<Unit filename="scripts/genGLFL.py" />
 		<Unit filename="scripts/gen_misc_macros.py" />
 		<Unit filename="src/application.cpp" />

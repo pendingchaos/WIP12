@@ -21,7 +21,7 @@ resourceconverter.py depends on Pillow. It can be installed with
 pip2 install Pillow
 ```
 
-If you have yum and pip(2) you can run
+If you have yum and pip (the Python 2 one) you can run
 ```shell
 make install_deps
 ```
