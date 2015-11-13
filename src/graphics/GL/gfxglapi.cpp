@@ -178,6 +178,7 @@ GfxGLApi::GfxGLApi() : stateStackSize(0),
     {
         glEnable(GL_DEBUG_OUTPUT);
         glDebugMessageCallback(debugCallback, nullptr);
+        //glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, 0, GL_TRUE);
     }
 
     glEnable(GL_DEPTH_TEST);
