@@ -4,7 +4,7 @@
 
 A work in progress using [OpenGL](https://opengl.org) and [Bullet Physics](bulletphysics.org) in C++.
 Please do not submit any pull requests. This is my own project that I am making for fun and knowledge.
-Don't clone this unless you want to download over half a gigabyte of data.
+If you want to clone this, pass `--depth 1` or you'll end up downloading ~1GiB of data.
 
 The program has only been tested on a GNU/Linux based operating system.
 
